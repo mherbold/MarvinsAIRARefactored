@@ -1,0 +1,81 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <Version>2.0.$([MSBuild]::Subtract($([System.Math]::Floor($([MSBuild]::Divide($([System.DateTimeOffset]::UtcNow.ToUnixTimeSeconds()), 86400)))), 20180)).$([MSBuild]::Divide($([MSBuild]::Modulo($([System.DateTimeOffset]::UtcNow.ToUnixTimeSeconds()), 86400)), 60))</Version>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Platforms>AnyCPU;x64</Platforms>
+    <ApplicationIcon>Artwork\white-icon.ico</ApplicationIcon>
+    <UseWindowsForms>True</UseWindowsForms>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Remove="Resources\Resources.resx" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Artwork\Background.png" />
+    <None Remove="Artwork\Dial Marker.png" />
+    <None Remove="Artwork\Dial.png" />
+    <None Remove="Artwork\Power LED - Green.png" />
+    <None Remove="Artwork\Power LED - Red.png" />
+    <None Remove="Artwork\Power LED - Yellow.png" />
+    <None Remove="Artwork\Round Button - Down.png" />
+    <None Remove="Artwork\Round Button - Minus.png" />
+    <None Remove="Artwork\Round Button - Plus.png" />
+    <None Remove="Artwork\Round Button - Reset FFB.png" />
+    <None Remove="Artwork\Round Button - Test FFB.png" />
+    <None Remove="Artwork\Switch - Off.png" />
+    <None Remove="Artwork\Switch - On.png" />
+    <None Remove="Fonts\14 Segment LED Regular.ttf" />
+    <None Remove="GeneratedRaceCarInterior.png" />
+    <None Remove="white-icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Resources\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="System.Windows.Extensions" Version="9.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\IRSDKSharper\IRSDKSharper.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Artwork\Background.png" />
+    <Resource Include="Artwork\Dial Marker.png" />
+    <Resource Include="Artwork\Dial.png" />
+    <Resource Include="Artwork\Power LED - Green.png" />
+    <Resource Include="Artwork\Power LED - Red.png" />
+    <Resource Include="Artwork\Power LED - Yellow.png" />
+    <Resource Include="Artwork\Round Button - Down.png" />
+    <Resource Include="Artwork\Round Button - Minus.png" />
+    <Resource Include="Artwork\Round Button - Plus.png" />
+    <Resource Include="Artwork\Round Button - Reset FFB.png" />
+    <Resource Include="Artwork\Round Button - Test FFB.png" />
+    <Resource Include="Artwork\Switch - Off.png" />
+    <Resource Include="Artwork\Switch - On.png" />
+    <Resource Include="Artwork\white-icon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Resources\Resources.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>

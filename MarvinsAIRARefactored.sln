@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35828.75
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvinsAIRARefactored", "MarvinsAIRARefactored.csproj", "{47D4F509-459D-4DDE-9A42-86F944F2FF6C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB} = {A390E578-1750-F1B6-74F0-BC080A0C9AAB}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRSDKSharper", "..\IRSDKSharper\IRSDKSharper.csproj", "{A390E578-1750-F1B6-74F0-BC080A0C9AAB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|x64.ActiveCfg = Debug|x64
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|x64.Build.0 = Debug|x64
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|x64.ActiveCfg = Release|x64
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|x64.Build.0 = Release|x64
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Debug|x64.ActiveCfg = Debug|x64
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Debug|x64.Build.0 = Debug|x64
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|x64.ActiveCfg = Release|x64
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B2657563-585A-430E-920E-FB7949D6FD96}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,654 @@
+﻿<Window x:Class="MarvinsAIRARefactored.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarvinsAIRARefactored"
+        xmlns:components="clr-namespace:MarvinsAIRARefactored.Components"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:resources="clr-namespace:MarvinsAIRARefactored.Resources"
+        mc:Ignorable="d"
+        Title="{Binding Localization[AppTitle]}"
+        Icon="/Artwork/white-icon.ico"
+        Width="1100"
+        MinWidth="1100"
+        Height="550"
+        MinHeight="350"
+        ResizeMode="CanResizeWithGrip"
+        WindowStyle="SingleBorderWindow">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static components:DataContext.Instance}"/>
+    </Window.DataContext>
+
+    <Window.Background>
+        <ImageBrush ImageSource="/Artwork/Background.png" Stretch="UniformToFill"/>
+    </Window.Background>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="0" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
+
+            <TabItem x:Name="RacingWheel_TabItem" Header="{Binding Localization[RacingWheel]}">
+
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[Power]}" HorizontalAlignment="Center"/>
+
+                            <Button Grid.Row="1" Click="RacingWheelPower_Click">
+                                <Grid>
+                                    <Image x:Name="RacingWheelPowerRed_Image" Source="/Artwork/Power LED - Red.png" Visibility="Visible"/>
+                                    <Image x:Name="RacingWheelPowerYellow_Image" Source="/Artwork/Power LED - Yellow.png" Visibility="Hidden"/>
+                                    <Image x:Name="RacingWheelPowerGreen_Image" Source="/Artwork/Power LED - Green.png" Visibility="Hidden"/>
+                                </Grid>
+                            </Button>
+
+                        </Grid>
+
+                        <Grid Grid.Column="1" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[Test]}" HorizontalAlignment="Center"/>
+
+                            <Button Grid.Row="1" Click="RacingWheelTest_Click">
+                                <Grid>
+                                    <Image Source="/Artwork/Round Button - Test FFB.png"/>
+                                </Grid>
+                            </Button>
+
+                        </Grid>
+
+                        <Grid Grid.Column="2" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[Reset]}" HorizontalAlignment="Center"/>
+
+                            <Button Grid.Row="1" Click="RacingWheelReset_Click">
+                                <Grid>
+                                    <Image Source="/Artwork/Round Button - Reset FFB.png"/>
+                                </Grid>
+                            </Button>
+
+                        </Grid>
+                        <Grid Grid.Column="3" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="*"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[RacingWheelDevice]}"/>
+
+                            <ComboBox Grid.Row="1" x:Name="RacingWheelDevice_ComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.RacingWheelDeviceGuid}" VerticalContentAlignment="Center" />
+
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="290"/>
+                            <ColumnDefinition Width="290"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[MaxForce]}" HorizontalAlignment="Center"/>
+
+                            <Border Grid.Row="1" BorderBrush="White" BorderThickness="2" Padding="10,4,10,4" CornerRadius="4">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Color="#D0000000"/>
+                                        <GradientStop Color="#D0404040" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0" Source="/Artwork/Dial.png"/>
+                                    <Image Grid.Column="0" x:Name="RacingWheelMaxForceKnob_Image" Source="/Artwork/Dial Marker.png" RenderTransformOrigin="0.5,0.5" MouseDown="RacingWheelMaxForceKnob_MouseDown" MouseUp="RacingWheelMaxForceKnob_MouseUp" MouseMove="RacingWheelMaxForceKnob_MouseMove" Cursor="Hand"/>
+                                    <Label Grid.Column="1" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Margin="10,0,0,0" Content="{Binding Settings.RacingWheelMaxForceString}" Width="150" HorizontalContentAlignment="Center"/>
+                                    <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                                        <Button Padding="0" Margin="1" Click="RacingWheelMaxForcePlus_Click">
+                                            <Image Source="/Artwork/Round Button - Plus.png"/>
+                                        </Button>
+                                        <Button Padding="0" Margin="1" Click="RacingWheelMaxForceMinus_Click">
+                                            <Image Source="/Artwork/Round Button - Minus.png"/>
+                                        </Button>
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </Border>
+
+                        </Grid>
+
+                        <Grid Grid.Column="1" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[DetailStrength]}" HorizontalAlignment="Center"/>
+
+                            <Border Grid.Row="1" BorderBrush="White" BorderThickness="2" Padding="10,4,10,4" CornerRadius="4">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Color="#D0000000"/>
+                                        <GradientStop Color="#D0404040" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0" Source="/Artwork/Dial.png"/>
+                                    <Image Grid.Column="0" x:Name="RacingWheelDetailStrengthKnob_Image" Source="/Artwork/Dial Marker.png" RenderTransformOrigin="0.5,0.5" MouseDown="RacingWheelDetailStrengthKnob_MouseDown" MouseUp="RacingWheelDetailStrengthKnob_MouseUp" MouseMove="RacingWheelDetailStrengthKnob_MouseMove" Cursor="Hand"/>
+                                    <Label Grid.Column="1" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Margin="10,0,0,0" Content="{Binding Settings.RacingWheelDetailStrengthString}" Width="90" HorizontalContentAlignment="Center"/>
+                                    <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                                        <Button Padding="0" Margin="1" Click="RacingWheelDetailStrengthPlus_Click">
+                                            <Image Source="/Artwork/Round Button - Plus.png"/>
+                                        </Button>
+                                        <Button Padding="0" Margin="1" Click="RacingWheelDetailStrengthMinus_Click">
+                                            <Image Source="/Artwork/Round Button - Minus.png"/>
+                                        </Button>
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </Border>
+
+                        </Grid>
+
+                        <Grid Grid.Column="2" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[Algorithm]}" HorizontalAlignment="Center"/>
+
+                            <ComboBox Grid.Row="1" x:Name="RacingWheelAlgorithm_ComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.RacingWheelAlgorithm}" VerticalContentAlignment="Center"/>
+
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="290"/>
+                            <ColumnDefinition Width="290"/>
+                            <ColumnDefinition Width="290"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[ParkedStrength]}" HorizontalAlignment="Center"/>
+
+                            <Border Grid.Row="1" BorderBrush="White" BorderThickness="2" Padding="10,4,10,4" CornerRadius="4">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Color="#D0000000"/>
+                                        <GradientStop Color="#D0404040" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0" Source="/Artwork/Dial.png"/>
+                                    <Image Grid.Column="0" x:Name="RacingWheelParkedStrengthKnob_Image" Source="/Artwork/Dial Marker.png" RenderTransformOrigin="0.5,0.5" MouseDown="RacingWheelParkedStrengthKnob_MouseDown" MouseUp="RacingWheelParkedStrengthKnob_MouseUp" MouseMove="RacingWheelParkedStrengthKnob_MouseMove" Cursor="Hand"/>
+                                    <Label Grid.Column="1" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Margin="10,0,0,0" Content="{Binding Settings.RacingWheelParkedStrengthString}" Width="90" HorizontalContentAlignment="Center"/>
+                                    <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                                        <Button Padding="0" Margin="1" Click="RacingWheelParkedStrengthPlus_Click">
+                                            <Image Source="/Artwork/Round Button - Plus.png"/>
+                                        </Button>
+                                        <Button Padding="0" Margin="1" Click="RacingWheelParkedStrengthMinus_Click">
+                                            <Image Source="/Artwork/Round Button - Minus.png"/>
+                                        </Button>
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </Border>
+
+                        </Grid>
+
+                        <Grid Grid.Column="1" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[SoftLockStrength]}" HorizontalAlignment="Center"/>
+
+                            <Border Grid.Row="1" BorderBrush="White" BorderThickness="2" Padding="10,4,10,4" CornerRadius="4">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Color="#D0000000"/>
+                                        <GradientStop Color="#D0404040" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0" Source="/Artwork/Dial.png"/>
+                                    <Image Grid.Column="0" x:Name="RacingWheelSoftLockStrengthKnob_Image" Source="/Artwork/Dial Marker.png" RenderTransformOrigin="0.5,0.5" MouseDown="RacingWheelSoftLockStrengthKnob_MouseDown" MouseUp="RacingWheelSoftLockStrengthKnob_MouseUp" MouseMove="RacingWheelSoftLockStrengthKnob_MouseMove" Cursor="Hand"/>
+                                    <Label Grid.Column="1" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Margin="10,0,0,0" Content="{Binding Settings.RacingWheelSoftLockStrengthString}" Width="90" HorizontalContentAlignment="Center"/>
+                                    <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                                        <Button Padding="0" Margin="1" Click="RacingWheelSoftLockStrengthPlus_Click">
+                                            <Image Source="/Artwork/Round Button - Plus.png"/>
+                                        </Button>
+                                        <Button Padding="0" Margin="1" Click="RacingWheelSoftLockStrengthMinus_Click">
+                                            <Image Source="/Artwork/Round Button - Minus.png"/>
+                                        </Button>
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </Border>
+
+                        </Grid>
+
+                        <Grid Grid.Column="2" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[Friction]}" HorizontalAlignment="Center"/>
+
+                            <Border Grid.Row="1" BorderBrush="White" BorderThickness="2" Padding="10,4,10,4" CornerRadius="4">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
+                                        <GradientStop Color="#D0000000"/>
+                                        <GradientStop Color="#D0404040" Offset="1"/>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Image Grid.Column="0" Source="/Artwork/Dial.png"/>
+                                    <Image Grid.Column="0" x:Name="RacingWheelFrictionKnob_Image" Source="/Artwork/Dial Marker.png" RenderTransformOrigin="0.5,0.5" MouseDown="RacingWheelFrictionKnob_MouseDown" MouseUp="RacingWheelFrictionKnob_MouseUp" MouseMove="RacingWheelFrictionKnob_MouseMove" Cursor="Hand"/>
+                                    <Label Grid.Column="1" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Margin="10,0,0,0" Content="{Binding Settings.RacingWheelFrictionString}" Width="90" HorizontalContentAlignment="Center"/>
+                                    <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                                        <Button Padding="0" Margin="1" Click="RacingWheelFrictionPlus_Click">
+                                            <Image Source="/Artwork/Round Button - Plus.png"/>
+                                        </Button>
+                                        <Button Padding="0" Margin="1" Click="RacingWheelFrictionMinus_Click">
+                                            <Image Source="/Artwork/Round Button - Minus.png"/>
+                                        </Button>
+                                    </StackPanel>
+
+                                </Grid>
+
+                            </Border>
+
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="3" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Click="RacingWheelFadeEnabled_Click">
+                            <Grid>
+                                <Image x:Name="RacingWheelFade_Off_Image" Source="/Artwork/Switch - Off.png" Visibility="Hidden"/>
+                                <Image x:Name="RacingWheelFade_On_Image" Source="/Artwork/Switch - On.png"/>
+                            </Grid>
+                        </Button>
+
+                        <Label Grid.Column="1" Content="{Binding Localization[FadeForceFeedback]}" Margin="10,0,0,0" Cursor="Hand" MouseDown="RacingWheelFadeEnabled_Click"/>
+
+                    </Grid>
+                </Grid>
+
+            </TabItem>
+
+            <TabItem x:Name="Graphs_TabItem" Header="{Binding Localization[Graphs]}">
+
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <Label Content="{Binding Localization[Native60HzTorque]}" HorizontalAlignment="Center"/>
+                            <Label x:Name="Native60HzTorque_MinMaxAvg" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                            <Label x:Name="Native60HzTorque_VarStdDev" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                        </StackPanel>
+
+                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray" Background="#D0000000">
+                            <Image x:Name="Native60HzTorque_Image" Height="201" Width="3840" HorizontalAlignment="Right"/>
+                        </Border>
+
+                        <Label Grid.Column="2" x:Name="GraphsSteeringWheelTorque60HzSimNotRunning_Label" Content="{Binding Localization[SimulatorNotRunning]}" HorizontalContentAlignment="Center" Foreground="#FFFF6A6A"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <Label Content="{Binding Localization[Native360HzTorque]}" HorizontalAlignment="Center"/>
+                            <Label x:Name="Native360HzTorque_MinMaxAvg" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                            <Label x:Name="Native360HzTorque_VarStdDev" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                        </StackPanel>
+
+                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray" Background="#D0000000">
+                            <Image x:Name="Native360HzTorque_Image" Height="201" Width="3840" HorizontalAlignment="Right"/>
+                        </Border>
+
+                        <Label Grid.Column="2" x:Name="GraphsSteeringWheelTorque360HzSimNotRunning_Label" Content="{Binding Localization[SimulatorNotRunning]}" HorizontalContentAlignment="Center" Foreground="#FFFF6A6A"/>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <Label Content="{Binding Localization[Output500HzTorque]}" HorizontalAlignment="Center"/>
+                            <Label x:Name="OutputTorque_MinMaxAvg" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                            <Label x:Name="OutputTorque_VarStdDev" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                        </StackPanel>
+
+                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray" Background="#D0000000">
+                            <Image x:Name="OutputTorque_Image" Height="201" Width="3840" HorizontalAlignment="Right"/>
+                        </Border>
+
+                    </Grid>
+
+                    <Grid Grid.Row="3" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <Label Content="{Binding Localization[MultimediaTimerJitter]}" HorizontalAlignment="Center"/>
+                            <Label x:Name="MultimediaTimerJitter_MinMaxAvg" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                            <Label x:Name="MultimediaTimerJitter_VarStdDev" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                        </StackPanel>
+
+                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray" Background="#D0000000">
+                            <Image x:Name="MultimediaTimerJitter_Image" Height="201" Width="3840" HorizontalAlignment="Right"/>
+                        </Border>
+
+                    </Grid>
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem x:Name="Simulator_TabItem" Header="{Binding Localization[Simulator]}">
+
+                <Grid Margin="2">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+                    <TabControl Grid.Row="0" TabStripPlacement="Top" Background="{x:Null}">
+
+                        <TabItem x:Name="SimulatorHeaderData_TabItem" Header="{Binding Localization[HeaderData]}" Padding="24,2,24,2">
+
+                            <Grid>
+                                
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:HeaderDataViewer Grid.Column="0" x:Name="HeaderDataViewer" MouseWheel="HeaderDataViewer_MouseWheel" ClipToBounds="True"/>
+                                <ScrollBar Grid.Column="1" x:Name="HeaderDataViewer_ScrollBar" Scroll="HeaderDataViewer_ScrollBar_Scroll" SmallChange="1" LargeChange="5" Maximum="0"/>
+                                
+                            </Grid>
+                            
+                        </TabItem>
+
+                        <TabItem x:Name="SimulatorSessionInfo_TabItem" Header="{Binding Localization[SessionInformation]}" Padding="24,2,24,2">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:SessionInfoViewer Grid.Column="0" x:Name="SessionInfoViewer" MouseWheel="SessionInfoViewer_MouseWheel" ClipToBounds="True"/>
+                                <ScrollBar Grid.Column="1" x:Name="SessionInfoViewer_ScrollBar" Scroll="SessionInfoViewer_ScrollBar_Scroll" SmallChange="1" LargeChange="5" Maximum="0"/>
+
+                            </Grid>
+
+                        </TabItem>
+
+                        <TabItem x:Name="SimulatorTelemetryData_TabItem" Header="{Binding Localization[TelemetryData]}" Padding="24,2,24,2">
+
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:TelemetryDataViewer Grid.Column="0" x:Name="TelemetryDataViewer" MouseWheel="TelemetryDataViewer_MouseWheel" ClipToBounds="True"/>
+                                <ScrollBar Grid.Column="1" x:Name="TelemetryDataViewer_ScrollBar" Scroll="TelemetryDataViewer_ScrollBar_Scroll" SmallChange="1" LargeChange="5" Maximum="0"/>
+
+                            </Grid>
+
+                        </TabItem>
+
+                    </TabControl>
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem x:Name="App_TabItem" Header="{Binding Localization[App]}">
+
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid Grid.Column="0" Margin="10,0,10,0">
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+
+                            <Label Grid.Row="0" Content="{Binding Localization[Language]}"/>
+
+                            <ComboBox Grid.Row="1" x:Name="AppLanguage_ComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.CurrentLanguageCode}" VerticalContentAlignment="Center"/>
+
+                        </Grid>
+
+                    </Grid>
+                    
+                    <Grid Grid.Row="1" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Button Grid.Column="0" Click="AppTopmostWindowEnabled_Click">
+                            <Grid>
+                                <Image x:Name="AppTopmostWindow_Off_Image" Source="/Artwork/Switch - Off.png"/>
+                                <Image x:Name="AppTopmostWindow_On_Image" Source="/Artwork/Switch - On.png" Visibility="Hidden"/>
+                            </Grid>
+                        </Button>
+
+                        <Label Grid.Column="1" Content="{Binding Localization[TopmostWindow]}" Margin="10,0,0,0" Cursor="Hand" MouseDown="AppTopmostWindowEnabled_Click"/>
+
+                    </Grid>
+
+                </Grid>
+
+            </TabItem>
+
+            <TabItem x:Name="Debug_TabItem" Header="{Binding Localization[Debug]}">
+
+                <Grid Margin="10">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0" Margin="0,10,0,10">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="240"/>
+                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
+                            <Label Content="Debug" HorizontalAlignment="Center"/>
+                            <Label x:Name="Debug_MinMaxAvg" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                            <Label x:Name="Debug_VarStdDev" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                        </StackPanel>
+
+                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray" Background="#D0000000">
+                            <Image x:Name="DebugGraph_Image" Height="201" Width="3840" HorizontalAlignment="Right"/>
+                        </Border>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1" Margin="0,10,0,10">
+
+                        <StackPanel>
+
+                            <Label x:Name="Debug_Label" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test"/>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </Grid>
+
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+
+</Window>
