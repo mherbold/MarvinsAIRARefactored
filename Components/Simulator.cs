@@ -1,20 +1,21 @@
 ﻿
-using System.Windows;
-
-using Image = System.Windows.Controls.Image;
-
 using IRSDKSharper;
+using System.Windows;
+using WinRT;
+using Image = System.Windows.Controls.Image;
 
 namespace MarvinsAIRARefactored.Components;
 
 public class Simulator
 {
 	public const int IRSDK_360HZ_SAMPLES_PER_FRAME = 6;
+	private const float ONE_G = 9.80665f; // in meters per second squared
 
 	private readonly IRacingSdk _irsdk = new();
 
 	public IRacingSdk IRSDK { get => _irsdk; }
 
+	public float GForce { get; private set; } = 0f;
 	public bool IsConnected { get => _irsdk.IsConnected; }
 	public bool IsOnTrack { get; private set; } = false;
 	public bool OnPitRoad { get; private set; } = false;
@@ -29,6 +30,7 @@ public class Simulator
 
 	private bool _telemetryDataInitialized = false;
 	private int? _tickCountLastFrame = null;
+	private float? _velocityLastFrame = null;
 
 	private IRacingSdkDatum? _isOnTrackDatum = null;
 	private IRacingSdkDatum? _onPitRoadDatum = null;
@@ -138,6 +140,7 @@ public class Simulator
 
 			_telemetryDataInitialized = false;
 			_tickCountLastFrame = null;
+			_velocityLastFrame = null;
 
 			app.RacingWheel.UseSteeringWheelTorqueData = false;
 			app.RacingWheel.SuspendForceFeedback = true;
@@ -181,6 +184,25 @@ public class Simulator
 				_telemetryDataInitialized = true;
 			}
 
+			// set last frame tick count if its not been set yet
+
+			_tickCountLastFrame ??= _irsdk.Data.TickCount - 1;
+
+			// calculate delta time
+
+			var deltaSeconds = (float) ( _irsdk.Data.TickCount - (int) _tickCountLastFrame ) / _irsdk.Data.TickRate;
+
+			// update tick count last frame
+
+			_tickCountLastFrame = _irsdk.Data.TickCount;
+
+			// protect ourselves from zero or negative time just in case
+
+			if ( deltaSeconds <= 0f )
+			{
+				return;
+			}
+
 			// get is on track status
 
 			IsOnTrack = _irsdk.Data.GetBool( _isOnTrackDatum );
@@ -219,17 +241,38 @@ public class Simulator
 
 			Velocity = MathF.Sqrt( VelocityX * VelocityX + VelocityY * VelocityY );
 
-			// set last frame tick count if its not been set yet
+			app.Debug.Label_1 = $"Velocity = {app.Simulator.Velocity:F2} m/s";
 
-			_tickCountLastFrame ??= _irsdk.Data.TickCount - 1;
+			// calculate g force
+
+			if ( _velocityLastFrame != null )
+			{
+				GForce = MathF.Abs( Velocity - (float) _velocityLastFrame ) / deltaSeconds / ONE_G;
+			}
+			else
+			{
+				GForce = 0f;
+			}
+
+			app.Debug.Label_2 = $"GForce = {app.Simulator.GForce:F2} g";
+
+			// crash protection processing
+
+			if ( ( DataContext.Instance.Settings.RacingWheelCrashProtectionGForce < 20.0f ) && ( DataContext.Instance.Settings.RacingWheelCrashProtectionDuration > 0f ) && ( DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction > 0f ) )
+			{
+				if ( MathF.Abs( GForce ) >= DataContext.Instance.Settings.RacingWheelCrashProtectionGForce )
+				{
+					app.RacingWheel.ActivateCrashProtection = true;
+				}
+			}
+
+			// save values for the next frame
+
+			_velocityLastFrame = Velocity;
 
 			// poll direct input devices
 
-			app.DirectInput.PollDevices( (float) ( _irsdk.Data.TickCount - (int) _tickCountLastFrame ) / _irsdk.Data.TickRate );
-
-			// update tick count last frame
-
-			_tickCountLastFrame = _irsdk.Data.TickCount;
+			app.DirectInput.PollDevices( deltaSeconds );
 
 			// update statistics and graphs
 

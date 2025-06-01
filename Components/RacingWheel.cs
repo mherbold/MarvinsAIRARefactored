@@ -8,9 +8,11 @@ namespace MarvinsAIRARefactored.Components;
 public class RacingWheel
 {
 	private const int _maxSteeringWheelTorque360HzIndex = Simulator.IRSDK_360HZ_SAMPLES_PER_FRAME + 1;
-	private const int _unsuspendCounterStartValue = 500;
-	private const int _fadeCounterStartValue = 1000;
-	private const int _testSignalCounterStartValue = 1000;
+
+	private const float _unsuspendTimeMS = 1000f;
+	private const float _fadeTimeMS = 2000f;
+	private const float _testSignalTime = 2000f;
+	private const float _crashProtectionRecoveryTime = 1000f;
 
 	private Guid? _currentRacingWheelGuid = null;
 
@@ -22,15 +24,16 @@ public class RacingWheel
 	public bool ResetForceFeedback { private get; set; } = false; // set to true manually (via reset button)
 	public bool UseSteeringWheelTorqueData { private get; set; } = false; // false if simulator is disconnected or if driver is not on track
 	public bool UpdateSteeringWheelTorqueBuffer { private get; set; } = false; // true when simulator has new torque data to be copied
-	public bool ActivateCrashProtection { private get; set; } = false;
-	public bool ActivateCurbProtection { private get; set; } = false;
+	public bool ActivateCrashProtection { private get; set; } = false; // set to true to activate crash protection
+	public bool ActivateCurbProtection { private get; set; } = false; // set to true to activate curb protection
 	public bool PlayTestSignal { private get; set; } = false; // set to true manually (via test button)
 	public bool ClearPeakTorque { private get; set; } = false; // set to clear peak torque
 	public bool AutoSetMaxForce { private get; set; } = false; // set to auto-set the max force setting
 
-	private int _unsuspendCounter = 0;
-	private int _fadeCounter = 0;
-	private int _testSignalCounter = 0;
+	private float _unsuspendTimerMS = 0f;
+	private float _fadeTimerMS = 0f;
+	private float _testSignalTimerMS = 0f;
+	private float _crashProtectionTimerMS = 0f;
 
 	private readonly float[] _steeringWheelTorque360Hz = new float[ Simulator.IRSDK_360HZ_SAMPLES_PER_FRAME + 2 ];
 
@@ -88,7 +91,7 @@ public class RacingWheel
 
 				if ( PlayTestSignal )
 				{
-					_testSignalCounter = _testSignalCounterStartValue;
+					_testSignalTimerMS = _testSignalTime;
 
 					app.Logger.WriteLine( "[RacingWheel] Sending test signal" );
 
@@ -97,11 +100,11 @@ public class RacingWheel
 
 				var testSignalTorque = 0f;
 
-				if ( _testSignalCounter > 0 )
+				if ( _testSignalTimerMS > 0f )
 				{
-					testSignalTorque = MathF.Cos( _testSignalCounter * MathF.Tau / 12f ) * MathF.Sin( _testSignalCounter * MathF.Tau / _testSignalCounterStartValue * 2f ) * 0.2f;
+					testSignalTorque = MathF.Cos( _testSignalTimerMS * MathF.Tau / 12f ) * MathF.Sin( _testSignalTimerMS * MathF.Tau / _testSignalTime * 2f ) * 0.2f;
 
-					_testSignalCounter--;
+					_testSignalTimerMS--;
 				}
 
 				// check if we want to suspend or unsuspend force feedback
@@ -114,7 +117,7 @@ public class RacingWheel
 					{
 						app.Logger.WriteLine( "[RacingWheel] Requesting suspend of force feedback" );
 
-						_unsuspendCounter = _unsuspendCounterStartValue;
+						_unsuspendTimerMS = _unsuspendTimeMS;
 					}
 					else
 					{
@@ -143,7 +146,7 @@ public class RacingWheel
 
 					if ( DataContext.Instance.Settings.RacingWheelFadeEnabled )
 					{
-						_fadeCounter = _fadeCounterStartValue;
+						_fadeTimerMS = _fadeTimeMS;
 					}
 				}
 
@@ -159,7 +162,7 @@ public class RacingWheel
 
 				// if power button is off, or suspend is requested, or unsuspend counter is still counting down, then suspend the racing wheel force feedback
 
-				if ( !DataContext.Instance.Settings.RacingWheelEnableForceFeedback || _isSuspended || ( _unsuspendCounter > 0 ) )
+				if ( !DataContext.Instance.Settings.RacingWheelEnableForceFeedback || _isSuspended || ( _unsuspendTimerMS > 0f ) )
 				{
 					if ( _currentRacingWheelGuid != null )
 					{
@@ -172,7 +175,7 @@ public class RacingWheel
 						_currentRacingWheelGuid = null;
 					}
 
-					_unsuspendCounter--;
+					_unsuspendTimerMS -= deltaMilliseconds;
 
 					return;
 				}
@@ -376,6 +379,28 @@ public class RacingWheel
 
 					_lastSteeringWheelTorque360Hz = steeringWheelTorque360Hz;
 
+					// apply crash protection
+
+					if ( ActivateCrashProtection )
+					{
+						_crashProtectionTimerMS = DataContext.Instance.Settings.RacingWheelCrashProtectionDuration * 1000f + _crashProtectionRecoveryTime;
+
+						ActivateCrashProtection = false;
+					}
+
+					app.Debug.Label_3 = $"_crashProtectionTimerMS = {_crashProtectionTimerMS:F0}";
+
+					if ( _crashProtectionTimerMS > 0f )
+					{
+						var crashProtectionScale = 1f - DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction * ( ( _crashProtectionTimerMS <= _crashProtectionRecoveryTime ) ? ( _crashProtectionTimerMS / _crashProtectionRecoveryTime ) : 1f );
+
+						app.Debug.Label_4 = $"crashProtectionScale = {crashProtectionScale * 100:F0}";
+
+						outputTorque *= crashProtectionScale;
+
+						_crashProtectionTimerMS -= deltaMilliseconds;
+					}
+
 					// reduce forces when parked
 
 					if ( DataContext.Instance.Settings.RacingWheelParkedStrength < 1f )
@@ -402,10 +427,6 @@ public class RacingWheel
 						}
 					}
 
-					// add test signal torque
-
-					outputTorque += testSignalTorque;
-
 					// apply friction torque
 
 					if ( DataContext.Instance.Settings.RacingWheelFriction > 0f )
@@ -415,25 +436,36 @@ public class RacingWheel
 
 					// apply fade
 
-					if ( _fadeCounter > 0 )
+					app.Debug.Label_5 = $"_fadeTimerMS = {_fadeTimerMS:F0}";
+					app.Debug.Label_6 = $"_lastUnfadedOutputTorque = {_lastUnfadedOutputTorque:F2}";
+
+					if ( _fadeTimerMS > 0f )
 					{
-						var fadeScale = (float) _fadeCounter / _fadeCounterStartValue;
+						var fadeScale = _fadeTimerMS / _fadeTimeMS;
 
 						if ( _usingSteeringWheelTorqueData )
 						{
+							app.Debug.Label_7 = $"fadeScale = {fadeScale * 100:F2}% (fading in)";
+
 							outputTorque *= 1f - fadeScale;
 						}
 						else
 						{
+							app.Debug.Label_7 = $"fadeScale = {fadeScale * 100:F0}% (fading out)";
+
 							outputTorque = _lastUnfadedOutputTorque * fadeScale;
 						}
 
-						_fadeCounter--;
+						_fadeTimerMS -= deltaMilliseconds;
 					}
 					else
 					{
 						_lastUnfadedOutputTorque = outputTorque;
 					}
+
+					// add test signal torque
+
+					outputTorque += testSignalTorque;
 
 					// update force feedback torque
 
@@ -444,7 +476,7 @@ public class RacingWheel
 			{
 				app.Logger.WriteLine( $"[RacingWheel] Exception caught: {exception.Message.Trim()}" );
 
-				_unsuspendCounter = 500;
+				_unsuspendTimerMS = _unsuspendTimeMS;
 			}
 		}
 	}

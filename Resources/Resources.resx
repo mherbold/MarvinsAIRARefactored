@@ -369,4 +369,28 @@
     <value>Switches</value>
     <comment>Racing wheel</comment>
   </data>
+  <data name="CrashProtection" xml:space="preserve">
+    <value>Crash Protection</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GForceUnits" xml:space="preserve">
+    <value> g</value>
+    <comment>Abbreviation for G-Force</comment>
+  </data>
+  <data name="GForce" xml:space="preserve">
+    <value>G-Force</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Duration</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ForceReduction" xml:space="preserve">
+    <value>Force Reduction</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SecondsUnits" xml:space="preserve">
+    <value> sec</value>
+    <comment>Abbreviation for seconds (time)</comment>
+  </data>
 </root>

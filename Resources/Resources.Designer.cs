@@ -187,6 +187,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Crash Protection.
+        /// </summary>
+        internal static string CrashProtection {
+            get {
+                return ResourceManager.GetString("CrashProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Force.
         /// </summary>
         internal static string CurrentForce {
@@ -277,6 +286,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Duration.
+        /// </summary>
+        internal static string Duration {
+            get {
+                return ResourceManager.GetString("Duration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fade force feedback when entering or exiting car.
         /// </summary>
         internal static string FadeForceFeedback {
@@ -286,11 +304,38 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Force Reduction.
+        /// </summary>
+        internal static string ForceReduction {
+            get {
+                return ResourceManager.GetString("ForceReduction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Friction.
         /// </summary>
         internal static string Friction {
             get {
                 return ResourceManager.GetString("Friction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to G-Force.
+        /// </summary>
+        internal static string GForce {
+            get {
+                return ResourceManager.GetString("GForce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  g.
+        /// </summary>
+        internal static string GForceUnits {
+            get {
+                return ResourceManager.GetString("GForceUnits", resourceCulture);
             }
         }
         
@@ -507,6 +552,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Reset {
             get {
                 return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  sec.
+        /// </summary>
+        internal static string SecondsUnits {
+            get {
+                return ResourceManager.GetString("SecondsUnits", resourceCulture);
             }
         }
         

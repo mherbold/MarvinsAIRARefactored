@@ -230,6 +230,168 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Racing wheel - Crash protection g-force
+
+	private float _racingWheelCrashProtectionGForce = 8f;
+
+	public float RacingWheelCrashProtectionGForce
+	{
+		get => _racingWheelCrashProtectionGForce;
+
+		set
+		{
+			value = Math.Clamp( value, 2f, 20f );
+
+			if ( value != _racingWheelCrashProtectionGForce )
+			{
+				_racingWheelCrashProtectionGForce = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelCrashProtectionGForce == 20f )
+			{
+				RacingWheelCrashProtectionGForceString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelCrashProtectionGForceString = $"{_racingWheelCrashProtectionGForce:F1}{DataContext.Instance.Localization[ "GForceUnits" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelCrashProtectionGForceString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelCrashProtectionGForceString
+	{
+		get => _racingWheelCrashProtectionGForceString;
+
+		set
+		{
+			if ( value != _racingWheelCrashProtectionGForceString )
+			{
+				_racingWheelCrashProtectionGForceString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings RacingWheelCrashProtectionGForcePlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings RacingWheelCrashProtectionGForceMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Crash protection duration
+
+	private float _racingWheelCrashProtectionDuration = 1f;
+
+	public float RacingWheelCrashProtectionDuration
+	{
+		get => _racingWheelCrashProtectionDuration;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 10f );
+
+			if ( value != _racingWheelCrashProtectionDuration )
+			{
+				_racingWheelCrashProtectionDuration = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelCrashProtectionDuration == 0f )
+			{
+				RacingWheelCrashProtectionDurationString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelCrashProtectionDurationString = $"{_racingWheelCrashProtectionDuration:F1}{DataContext.Instance.Localization[ "SecondsUnits" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelCrashProtectionDurationString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelCrashProtectionDurationString
+	{
+		get => _racingWheelCrashProtectionDurationString;
+
+		set
+		{
+			if ( value != _racingWheelCrashProtectionDurationString )
+			{
+				_racingWheelCrashProtectionDurationString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings RacingWheelCrashProtectionDurationPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings RacingWheelCrashProtectionDurationMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Crash protection force reduction
+
+	private float _racingWheelCrashProtectionForceReduction = 0.95f;
+
+	public float RacingWheelCrashProtectionForceReduction
+	{
+		get => _racingWheelCrashProtectionForceReduction;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _racingWheelCrashProtectionForceReduction )
+			{
+				_racingWheelCrashProtectionForceReduction = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelCrashProtectionForceReduction == 0f )
+			{
+				RacingWheelCrashProtectionForceReductionString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelCrashProtectionForceReductionString = $"{_racingWheelCrashProtectionForceReduction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelCrashProtectionForceReductionString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelCrashProtectionForceReductionString
+	{
+		get => _racingWheelCrashProtectionForceReductionString;
+
+		set
+		{
+			if ( value != _racingWheelCrashProtectionForceReductionString )
+			{
+				_racingWheelCrashProtectionForceReductionString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings RacingWheelCrashProtectionForceReductionPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings RacingWheelCrashProtectionForceReductionMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
 	#region Racing wheel - Parked strength
 
 	private float _racingWheelParkedStrength = 0.25f;

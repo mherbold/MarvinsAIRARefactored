@@ -35,7 +35,7 @@ PrivilegesRequired=lowest
 PrivilegesRequiredOverridesAllowed=dialog
 OutputBaseFilename=MarvinsAIRARefactored-Setup-{#MyAppVersion}
 OutputDir=userdocs:MarvinsAIRA Refactored
-SetupIconFile=C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\Artwork\white-icon.ico
+SetupIconFile=C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\Artwork\white_icon.ico
 SolidCompression=yes
 WizardStyle=modern
 
