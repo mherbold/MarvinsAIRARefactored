@@ -155,28 +155,30 @@ public partial class App : Application
 				DataContext.Instance.Settings.RacingWheelMaxForce -= 1f;
 			}
 
-			// racing wheel parked strength knob
+			// racing wheel auto margin knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelParkedStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelAutoMarginPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelParkedStrength += 0.05f;
+				DataContext.Instance.Settings.RacingWheelAutoMargin += 1f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelParkedStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelAutoMarginMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelParkedStrength -= 0.05f;
+				DataContext.Instance.Settings.RacingWheelAutoMargin -= 1f;
 			}
 
-			// racing wheel soft lock knob
+			// racing wheel auto button
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelSoftLockStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelAutoButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelSoftLockStrength += 0.05f;
+				RacingWheel.AutoSetMaxForce = true;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelSoftLockStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			// racing wheel clear button
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelClearButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelSoftLockStrength -= 0.05f;
+				RacingWheel.ClearPeakTorque = true;
 			}
 
 			// racing wheel detail boost knob
@@ -213,6 +215,42 @@ public partial class App : Application
 			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelBiasMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				DataContext.Instance.Settings.RacingWheelBias -= 0.01f;
+			}
+
+			// racing compression rate knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCompressionRatePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCompressionRate += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCompressionRateMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCompressionRate -= 0.01f;
+			}
+
+			// racing wheel parked strength knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelParkedStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelParkedStrength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelParkedStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelParkedStrength -= 0.05f;
+			}
+
+			// racing wheel soft lock knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelSoftLockStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelSoftLockStrength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelSoftLockStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelSoftLockStrength -= 0.05f;
 			}
 
 			// racing wheel friction knob
@@ -282,6 +320,7 @@ public partial class App : Application
 
 				app.Dispatcher.BeginInvoke( () =>
 				{
+					app.RacingWheel.Tick( app );
 					app.SettingsFile.Tick( app );
 					app.AdminBoxx.Tick( app );
 					app.Debug.Tick( app );

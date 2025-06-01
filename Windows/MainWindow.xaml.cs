@@ -55,7 +55,7 @@ public partial class MainWindow : Window
 			DWMAPI.DwmSetWindowAttribute( WindowHandle, (uint) DWMAPI.cbAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, ref value, (uint) System.Runtime.InteropServices.Marshal.SizeOf( value ) );
 
 			UpdateRacingWheelPowerButton();
-			UpdateRacingWheelTestAndResetButtons();
+			UpdateRacingWheelForceFeedbackButtons();
 
 			Misc.ForcePropertySetters( Components.DataContext.Instance.Settings );
 
@@ -120,7 +120,7 @@ public partial class MainWindow : Window
 		}
 	}
 
-	public void UpdateRacingWheelTestAndResetButtons()
+	public void UpdateRacingWheelForceFeedbackButtons()
 	{
 		var app = App.Instance;
 
@@ -132,6 +132,8 @@ public partial class MainWindow : Window
 
 				RacingWheel_Test_Button.Disabled = disableButtons;
 				RacingWheel_Reset_Button.Disabled = disableButtons;
+				RacingWheel_Auto_Button.Disabled = disableButtons;
+				RacingWheel_Clear_Button.Disabled = disableButtons;
 			} );
 		}
 	}
@@ -207,6 +209,25 @@ public partial class MainWindow : Window
 		if ( app != null )
 		{
 			app.RacingWheel.ResetForceFeedback = true;
+		}
+	}
+
+	private void RacingWheel_Auto_Button_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		if ( app != null )
+		{
+		}
+	}
+
+	private void RacingWheel_Clear_Button_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		if ( app != null )
+		{
+			app.RacingWheel.ClearPeakTorque = true;
 		}
 	}
 

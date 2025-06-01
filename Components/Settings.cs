@@ -171,6 +171,65 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Racing wheel - Auto margin
+
+	private float _racingWheelAutoMargin = 0f;
+
+	public float RacingWheelAutoMargin
+	{
+		get => _racingWheelAutoMargin;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _racingWheelAutoMargin )
+			{
+				_racingWheelAutoMargin = value;
+
+				OnPropertyChanged();
+			}
+
+			RacingWheelAutoMarginString = $"{_racingWheelAutoMargin * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _racingWheelAutoMarginString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelAutoMarginString
+	{
+		get => _racingWheelAutoMarginString;
+
+		set
+		{
+			if ( value != _racingWheelAutoMarginString )
+			{
+				_racingWheelAutoMarginString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings RacingWheelAutoMarginPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings RacingWheelAutoMarginMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Auto
+
+	public ButtonMappings RacingWheelAutoButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Clear
+
+	public ButtonMappings RacingWheelClearButtonMappings { get; set; } = new();
+
+	#endregion
+
 	#region Racing wheel - Parked strength
 
 	private float _racingWheelParkedStrength = 0.25f;

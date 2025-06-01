@@ -162,7 +162,7 @@ public class DirectInput
 
 			_forceFeedbackInitialized = true;
 
-			app.MainWindow.UpdateRacingWheelTestAndResetButtons();
+			app.MainWindow.UpdateRacingWheelForceFeedbackButtons();
 
 			app.Logger.WriteLine( "[DirectInput] <<< InitializeForceFeedback" );
 		}
@@ -178,7 +178,7 @@ public class DirectInput
 
 			_forceFeedbackInitialized = false;
 
-			app.MainWindow.UpdateRacingWheelTestAndResetButtons();
+			app.MainWindow.UpdateRacingWheelForceFeedbackButtons();
 
 			ForceFeedbackWheelPosition = 0f;
 			ForceFeedbackWheelVelocity = 0f;

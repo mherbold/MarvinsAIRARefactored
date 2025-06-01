@@ -9,10 +9,11 @@
         mc:Ignorable="d"
         Title="{Binding Localization[AppTitle]}"
         Icon="/artwork/white_icon.ico"
-        Width="1100"
         MinWidth="1100"
-        Height="550"
         MinHeight="350"
+        Width="1100"
+        Height="550"
+        d:Height="1000"
         ResizeMode="CanResizeWithGrip"
         WindowStyle="SingleBorderWindow">
 
@@ -36,106 +37,167 @@
 
                 <StackPanel Margin="10">
 
-                    <Grid Margin="0,10,0,10">
+                    <GroupBox Header="{Binding Localization[Device]}">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid Margin="0,10,0,10">
 
-                        <Grid Grid.Column="0" Margin="10,0,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
+                            <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0">
 
-                            <Label Grid.Row="0" Content="{Binding Localization[RacingWheelDevice]}"/>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
 
-                            <ComboBox Grid.Row="1" x:Name="RacingWheel_Device_ComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.RacingWheelDeviceGuid}" VerticalContentAlignment="Center" />
+                                <Label Grid.Row="0" Content="{Binding Localization[RacingWheelDevice]}"/>
 
-                        </Grid>
+                                <ComboBox Grid.Row="1" x:Name="RacingWheel_Device_ComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.RacingWheelDeviceGuid}" VerticalContentAlignment="Center" />
 
-                        <controls:MappableImageButton Grid.Column="1" x:Name="RacingWheel_Power_Button" Margin="10,0,10,0" LabelText="{Binding Localization[Power]}" BehindIcon="/MarvinsAIRARefactored;component/artwork/power_led_black.png" ButtonMappings="{Binding Settings.RacingWheelPowerButtonMappings}" Click="RacingWheel_Power_Button_Click"/>
+                            </Grid>
 
-                        <controls:MappableImageButton Grid.Column="2" x:Name="RacingWheel_Test_Button" Margin="10,0,10,0" LabelText="{Binding Localization[Test]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_test_ffb.png" ButtonMappings="{Binding Settings.RacingWheelTestButtonMappings}" Click="RacingWheel_Test_Button_Click"/>
-
-                        <controls:MappableImageButton Grid.Column="3" x:Name="RacingWheel_Reset_Button" Margin="10,0,10,0" LabelText="{Binding Localization[Reset]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_reset_ffb.png" ButtonMappings="{Binding Settings.RacingWheelResetButtonMappings}" Click="RacingWheel_Reset_Button_Click"/>
-
-                    </Grid>
-
-                    <Grid Margin="0,10,0,10">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <controls:KnobControl Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[MaxForce]}" Value="{Binding Settings.RacingWheelMaxForce, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelMaxForceString}" SmallValueChangeStep="0.01" LargeValueChangeStep="1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.RacingWheelMaxForcePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelMaxForceMinusButtonMappings}"/>
-
-                        <controls:KnobControl Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[ParkedStrength]}" Value="{Binding Settings.RacingWheelParkedStrength, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelParkedStrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelParkedStrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelParkedStrengthMinusButtonMappings}"/>
-
-                        <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[SoftLockStrength]}" Value="{Binding Settings.RacingWheelSoftLockStrength, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelSoftLockStrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelSoftLockStrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelSoftLockStrengthMinusButtonMappings}"/>
-
-                    </Grid>
-
-                    <Grid Margin="0,10,0,10" x:Name="RacingWheel_AlgorithmRowOne_Grid">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <Grid Grid.Column="0" Margin="10,0,10,0">
-
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="Auto"/>
-                            </Grid.RowDefinitions>
-
-                            <Label Grid.Row="0" Content="{Binding Localization[Algorithm]}" HorizontalAlignment="Center"/>
-
-                            <ComboBox Grid.Row="1" x:Name="RacingWheel_Algorithm_ComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.RacingWheelAlgorithm}" VerticalContentAlignment="Center"/>
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                                <controls:MappableImageButton Grid.Column="1" x:Name="RacingWheel_Power_Button" Margin="10,0,10,0" LabelText="{Binding Localization[Power]}" BehindIcon="/MarvinsAIRARefactored;component/artwork/power_led_black.png" ButtonMappings="{Binding Settings.RacingWheelPowerButtonMappings}" Click="RacingWheel_Power_Button_Click"/>
+                                <controls:MappableImageButton Grid.Column="2" x:Name="RacingWheel_Test_Button" Margin="10,0,10,0" LabelText="{Binding Localization[Test]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_test_ffb.png" ButtonMappings="{Binding Settings.RacingWheelTestButtonMappings}" Click="RacingWheel_Test_Button_Click"/>
+                                <controls:MappableImageButton Grid.Column="3" x:Name="RacingWheel_Reset_Button" Margin="10,0,10,0" LabelText="{Binding Localization[Reset]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_reset_ffb.png" ButtonMappings="{Binding Settings.RacingWheelResetButtonMappings}" Click="RacingWheel_Reset_Button_Click"/>
+                            </StackPanel>
 
                         </Grid>
 
-                        <controls:KnobControl Grid.Column="1" x:Name="RacingWheel_DeltaLimit_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DeltaLimit]}" Value="{Binding Settings.RacingWheelDeltaLimit, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDeltaLimitString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.RacingWheelDeltaLimitPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDeltaLimitMinusButtonMappings}"/>
+                    </GroupBox>
 
-                        <controls:KnobControl Grid.Column="1" x:Name="RacingWheel_DetailBoost_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DetailBoost]}" Value="{Binding Settings.RacingWheelDetailBoost, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDetailBoostString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.RacingWheelDetailBoostPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDetailBoostMinusButtonMappings}"/>
+                    <GroupBox Header="{Binding Localization[OverallStrength]}" Margin="0,10,0,0">
 
-                        <controls:KnobControl Grid.Column="2" x:Name="RacingWheel_Bias_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[Bias]}" Value="{Binding Settings.RacingWheelBias, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelBiasString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelBiasPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelBiasMinusButtonMappings}"/>
+                        <StackPanel>
 
-                    </Grid>
+                            <Grid Margin="0,10,0,10">
 
-                    <Grid Margin="0,10,0,10" x:Name="RacingWheel_AlgorithmRowTwo_Grid">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                                <controls:KnobControl Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[MaxForce]}" Value="{Binding Settings.RacingWheelMaxForce, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelMaxForceString}" SmallValueChangeStep="0.01" LargeValueChangeStep="1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.RacingWheelMaxForcePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelMaxForceMinusButtonMappings}"/>
 
-                        <controls:KnobControl Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[CompressionRate]}" Value="{Binding Settings.RacingWheelCompressionRate, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCompressionRateString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelCompressionRatePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCompressionRateMinusButtonMappings}"/>
+                                <controls:KnobControl Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[AutoMargin]}" Value="{Binding Settings.RacingWheelAutoMargin, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelAutoMarginString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.RacingWheelAutoMarginPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelAutoMarginMinusButtonMappings}"/>
 
-                    </Grid>
+                                <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
 
-                    <Grid Margin="0,10,0,10">
+                                    <controls:MappableImageButton x:Name="RacingWheel_Auto_Button" Margin="10,0,10,0" LabelText="{Binding Localization[Auto]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_magic.png" ButtonMappings="{Binding Settings.RacingWheelAutoButtonMappings}" Click="RacingWheel_Auto_Button_Click"/>
+                                    <controls:MappableImageButton x:Name="RacingWheel_Clear_Button" Margin="10,0,10,0" LabelText="{Binding Localization[Clear]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_zero.png" ButtonMappings="{Binding Settings.RacingWheelClearButtonMappings}" Click="RacingWheel_Clear_Button_Click"/>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                                </StackPanel>
 
-                        <controls:KnobControl Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Friction]}" Value="{Binding Settings.RacingWheelFriction, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelFrictionString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelFrictionPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelFrictionMinusButtonMappings}"/>
+                            </Grid>
 
-                    </Grid>
+                            <Grid Margin="0,10,0,10">
 
-                    <controls:Switch Margin="0,20,0,10" IsOn="{Binding Settings.RacingWheelFadeEnabled, Mode=TwoWay}" LabelText="{Binding Localization[FadeForceFeedback]}"/>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <StackPanel Grid.Column="0" Margin="40,0,40,0">
+                                    <Label Content="{Binding Localization[CurrentForce]}" HorizontalAlignment="Center"/>
+                                    <Label x:Name="RacingWheel_CurrentForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" Margin="40,0,40,0">
+                                    <Label Content="{Binding Localization[PeakForce]}" HorizontalAlignment="Center"/>
+                                    <Label x:Name="RacingWheel_PeakForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="2" Margin="40,0,40,0">
+                                    <Label Content="{Binding Localization[AutoForce]}" HorizontalAlignment="Center"/>
+                                    <Label x:Name="RacingWheel_AutoForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" HorizontalAlignment="Center"/>
+                                </StackPanel>
+
+                            </Grid>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Algorithm]}" Margin="0,10,0,0">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,10,0,10" x:Name="RacingWheel_AlgorithmRowOne_Grid">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Margin="10,0,10,0">
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0" Content="{Binding Localization[Algorithm]}" HorizontalAlignment="Center"/>
+
+                                    <ComboBox Grid.Row="1" x:Name="RacingWheel_Algorithm_ComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.RacingWheelAlgorithm}" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+
+                                <controls:KnobControl Grid.Column="1" x:Name="RacingWheel_DeltaLimit_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DeltaLimit]}" Value="{Binding Settings.RacingWheelDeltaLimit, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDeltaLimitString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.RacingWheelDeltaLimitPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDeltaLimitMinusButtonMappings}"/>
+
+                                <controls:KnobControl Grid.Column="1" x:Name="RacingWheel_DetailBoost_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DetailBoost]}" Value="{Binding Settings.RacingWheelDetailBoost, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDetailBoostString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.RacingWheelDetailBoostPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDetailBoostMinusButtonMappings}"/>
+
+                                <controls:KnobControl Grid.Column="2" x:Name="RacingWheel_Bias_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[Bias]}" Value="{Binding Settings.RacingWheelBias, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelBiasString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelBiasPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelBiasMinusButtonMappings}"/>
+
+                            </Grid>
+
+                            <Grid Margin="0,10,0,10" x:Name="RacingWheel_AlgorithmRowTwo_Grid">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:KnobControl Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[CompressionRate]}" Value="{Binding Settings.RacingWheelCompressionRate, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCompressionRateString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelCompressionRatePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCompressionRateMinusButtonMappings}"/>
+
+                            </Grid>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[OtherFeatures]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,10">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:KnobControl Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[ParkedStrength]}" Value="{Binding Settings.RacingWheelParkedStrength, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelParkedStrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelParkedStrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelParkedStrengthMinusButtonMappings}"/>
+
+                            <controls:KnobControl Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[SoftLockStrength]}" Value="{Binding Settings.RacingWheelSoftLockStrength, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelSoftLockStrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelSoftLockStrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelSoftLockStrengthMinusButtonMappings}"/>
+
+                            <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Friction]}" Value="{Binding Settings.RacingWheelFriction, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelFrictionString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelFrictionPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelFrictionMinusButtonMappings}"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Switches]}" Margin="0,10,0,0">
+
+                        <controls:Switch Margin="0,20,0,10" IsOn="{Binding Settings.RacingWheelFadeEnabled, Mode=TwoWay}" LabelText="{Binding Localization[FadeForceFeedback]}"/>
+
+                    </GroupBox>
 
                 </StackPanel>
 
@@ -338,7 +400,7 @@
             <TabItem x:Name="Debug_TabItem" Header="{Binding Localization[Debug]}">
 
                 <StackPanel Margin="10">
-                    
+
                     <StackPanel Margin="0,10,0,10">
 
                         <Label x:Name="Debug_Label_1" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 1"/>

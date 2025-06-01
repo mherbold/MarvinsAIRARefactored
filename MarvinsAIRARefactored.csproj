@@ -29,6 +29,7 @@
     <None Remove="Artwork\icon_reset_ffb.png" />
     <None Remove="Artwork\icon_test_ffb.png" />
     <None Remove="Artwork\icon_trash.png" />
+    <None Remove="Artwork\icon_zero.png" />
     <None Remove="Artwork\power_led_black.png" />
     <None Remove="Artwork\power_led_green.png" />
     <None Remove="Artwork\power_led_red.png" />
@@ -47,7 +48,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Artwork\icon_magic.png" />
     <Resource Include="Artwork\icon_record_off.png" />
+    <Resource Include="Artwork\icon_zero.png" />
     <Resource Include="Artwork\power_led_black.png" />
     <Resource Include="Artwork\round_button_disabled.png" />
     <Resource Include="Artwork\round_button_disabled_small.png" />

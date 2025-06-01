@@ -329,4 +329,44 @@
     <value>Compression Rate</value>
     <comment>Racing wheel</comment>
   </data>
+  <data name="Device" xml:space="preserve">
+    <value>Device</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="OverallStrength" xml:space="preserve">
+    <value>Overall Strength</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="AutoMargin" xml:space="preserve">
+    <value>Auto Margin</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Auto" xml:space="preserve">
+    <value>Auto</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Clear</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CurrentForce" xml:space="preserve">
+    <value>Current Force</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PeakForce" xml:space="preserve">
+    <value>Peak Force</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="AutoForce" xml:space="preserve">
+    <value>Auto Force</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="OtherFeatures" xml:space="preserve">
+    <value>Other Features</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Switches" xml:space="preserve">
+    <value>Switches</value>
+    <comment>Racing wheel</comment>
+  </data>
 </root>

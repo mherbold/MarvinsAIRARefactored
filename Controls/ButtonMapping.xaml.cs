@@ -58,8 +58,11 @@ public partial class ButtonMapping : UserControl
 
 			app.DirectInput.OnInput += OnInput;
 
-			Record_ImageButton.Blink = true;
-			Record_ImageButton.ButtonIcon_Image.Visibility = Visibility.Visible;
+			Dispatcher.BeginInvoke( () =>
+			{
+				Record_ImageButton.Blink = true;
+				Record_ImageButton.ButtonIcon_Image.Visibility = Visibility.Visible;
+			} );
 			
 			UpdateLabels();
 		}
@@ -75,8 +78,11 @@ public partial class ButtonMapping : UserControl
 
 			app.DirectInput.OnInput -= OnInput;
 
-			Record_ImageButton.Blink = false;
-			Record_ImageButton.ButtonIcon_Image.Visibility = Visibility.Hidden;
+			Dispatcher.BeginInvoke( () =>
+			{
+				Record_ImageButton.Blink = false;
+				Record_ImageButton.ButtonIcon_Image.Visibility = Visibility.Hidden;
+			} );
 
 			UpdateLabels();
 		}

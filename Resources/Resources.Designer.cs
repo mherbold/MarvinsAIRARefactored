@@ -97,6 +97,33 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Auto.
+        /// </summary>
+        internal static string Auto {
+            get {
+                return ResourceManager.GetString("Auto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Force.
+        /// </summary>
+        internal static string AutoForce {
+            get {
+                return ResourceManager.GetString("AutoForce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto Margin.
+        /// </summary>
+        internal static string AutoMargin {
+            get {
+                return ResourceManager.GetString("AutoMargin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bias.
         /// </summary>
         internal static string Bias {
@@ -111,6 +138,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Button {
             get {
                 return ResourceManager.GetString("Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear.
+        /// </summary>
+        internal static string Clear {
+            get {
+                return ResourceManager.GetString("Clear", resourceCulture);
             }
         }
         
@@ -147,6 +183,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string ConnectToAdminBoxx {
             get {
                 return ResourceManager.GetString("ConnectToAdminBoxx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Current Force.
+        /// </summary>
+        internal static string CurrentForce {
+            get {
+                return ResourceManager.GetString("CurrentForce", resourceCulture);
             }
         }
         
@@ -219,6 +264,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string DetailBoosterOn60Hz {
             get {
                 return ResourceManager.GetString("DetailBoosterOn60Hz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Device.
+        /// </summary>
+        internal static string Device {
+            get {
+                return ResourceManager.GetString("Device", resourceCulture);
             }
         }
         
@@ -358,6 +412,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Other Features.
+        /// </summary>
+        internal static string OtherFeatures {
+            get {
+                return ResourceManager.GetString("OtherFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Output 500 Hz Torque.
         /// </summary>
         internal static string Output500HzTorque {
@@ -367,11 +430,29 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Overall Strength.
+        /// </summary>
+        internal static string OverallStrength {
+            get {
+                return ResourceManager.GetString("OverallStrength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Parked Strength.
         /// </summary>
         internal static string ParkedStrength {
             get {
                 return ResourceManager.GetString("ParkedStrength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Peak Force.
+        /// </summary>
+        internal static string PeakForce {
+            get {
+                return ResourceManager.GetString("PeakForce", resourceCulture);
             }
         }
         
@@ -462,6 +543,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string SoftLockStrength {
             get {
                 return ResourceManager.GetString("SoftLockStrength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Switches.
+        /// </summary>
+        internal static string Switches {
+            get {
+                return ResourceManager.GetString("Switches", resourceCulture);
             }
         }
         

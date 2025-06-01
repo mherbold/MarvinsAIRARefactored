@@ -25,6 +25,8 @@ public class RacingWheel
 	public bool ActivateCrashProtection { private get; set; } = false;
 	public bool ActivateCurbProtection { private get; set; } = false;
 	public bool PlayTestSignal { private get; set; } = false; // set to true manually (via test button)
+	public bool ClearPeakTorque { private get; set; } = false; // set to clear peak torque
+	public bool AutoSetMaxForce { private get; set; } = false; // set to auto-set the max force setting
 
 	private int _unsuspendCounter = 0;
 	private int _fadeCounter = 0;
@@ -33,8 +35,11 @@ public class RacingWheel
 	private readonly float[] _steeringWheelTorque360Hz = new float[ Simulator.IRSDK_360HZ_SAMPLES_PER_FRAME + 2 ];
 
 	private float _lastSteeringWheelTorque360Hz = 0f;
-	private float _lastUnfadedOutputTorque = 0f;
 	private float _runningSteeringWheelTorque360Hz = 0f;
+
+	private float _lastUnfadedOutputTorque = 0f;
+	private float _peakTorque = 0f;
+	private float _autoTorque = 0f;
 
 	private float _elapsedMilliseconds = 0f;
 
@@ -194,6 +199,18 @@ public class RacingWheel
 					app.DirectInput.InitializeForceFeedback( (Guid) _currentRacingWheelGuid );
 				}
 
+				// check if we want to auto set max force
+
+				if ( AutoSetMaxForce )
+				{
+					AutoSetMaxForce = false;
+					ClearPeakTorque = true;
+
+					DataContext.Instance.Settings.RacingWheelMaxForce = _autoTorque;
+
+					app.Logger.WriteLine( $"[RacingWheel] Max force auto set to {_autoTorque}" );
+				}
+
 				// update elapsed milliseconds
 
 				_elapsedMilliseconds += deltaMilliseconds;
@@ -248,6 +265,24 @@ public class RacingWheel
 
 				var steeringWheelTorque60Hz = _steeringWheelTorque360Hz[ 6 ];
 				var steeringWheelTorque360Hz = Misc.InterpolateHermite( m0, m1, m2, m3, t );
+
+				// update peak torque
+
+				if ( ClearPeakTorque )
+				{
+					_peakTorque = 0f;
+
+					ClearPeakTorque = false;
+				}
+
+				if ( app.Simulator.IsOnTrack && ( app.Simulator.PlayerTrackSurface == IRSDKSharper.IRacingSdkEnum.TrkLoc.OnTrack ) )
+				{
+					_peakTorque = MathF.Max( _peakTorque, Misc.Lerp( _peakTorque, MathF.Abs( steeringWheelTorque360Hz ), 0.01f ) );
+				}
+
+				// update auto torque
+
+				_autoTorque = _peakTorque * ( 1f + DataContext.Instance.Settings.RacingWheelAutoMargin );
 
 				// this part is done only if we have a racing wheel device initialized
 
@@ -412,5 +447,11 @@ public class RacingWheel
 				_unsuspendCounter = 500;
 			}
 		}
+	}
+
+	public void Tick( App app )
+	{
+		app.MainWindow.RacingWheel_PeakForce_Label.Content = $"{_peakTorque:F2}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
+		app.MainWindow.RacingWheel_AutoForce_Label.Content = $"{_autoTorque:F2}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
 	}
 }

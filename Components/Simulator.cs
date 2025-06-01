@@ -17,6 +17,8 @@ public class Simulator
 
 	public bool IsConnected { get => _irsdk.IsConnected; }
 	public bool IsOnTrack { get; private set; } = false;
+	public bool OnPitRoad { get; private set; } = false;
+	public IRacingSdkEnum.TrkLoc PlayerTrackSurface { get; private set; } = IRacingSdkEnum.TrkLoc.NotInWorld;
 	public bool SteeringFFBEnabled { get; private set; } = false;
 	public float SteeringWheelAngle { get; private set; } = 0f;
 	public float SteeringWheelAngleMax { get; private set; } = 0f;
@@ -29,6 +31,8 @@ public class Simulator
 	private int? _tickCountLastFrame = null;
 
 	private IRacingSdkDatum? _isOnTrackDatum = null;
+	private IRacingSdkDatum? _onPitRoadDatum = null;
+	private IRacingSdkDatum? _playerTrackSurfaceDatum = null;
 	private IRacingSdkDatum? _steeringFFBEnabledDatum = null;
 	private IRacingSdkDatum? _steeringWheelAngleDatum = null;
 	private IRacingSdkDatum? _steeringWheelAngleMaxDatum = null;
@@ -165,6 +169,8 @@ public class Simulator
 			if ( !_telemetryDataInitialized )
 			{
 				_isOnTrackDatum = _irsdk.Data.TelemetryDataProperties[ "IsOnTrack" ];
+				_onPitRoadDatum = _irsdk.Data.TelemetryDataProperties[ "OnPitRoad" ];
+				_playerTrackSurfaceDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerTrackSurface" ];
 				_steeringFFBEnabledDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringFFBEnabled" ];
 				_steeringWheelAngleDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringWheelAngle" ];
 				_steeringWheelAngleMaxDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringWheelAngleMax" ];
@@ -181,11 +187,19 @@ public class Simulator
 
 			app.RacingWheel.UseSteeringWheelTorqueData = IsOnTrack;
 
+			// get on pit road status
+
+			OnPitRoad = _irsdk.Data.GetBool( _onPitRoadDatum );
+
 			// suspend racing wheel force feedback if iracing ffb is enabled
 
 			SteeringFFBEnabled = _irsdk.Data.GetBool( _steeringFFBEnabledDatum );
 
 			app.RacingWheel.SuspendForceFeedback = SteeringFFBEnabled;
+
+			// get the player track surface
+
+			PlayerTrackSurface = (IRacingSdkEnum.TrkLoc) _irsdk.Data.GetInt( _playerTrackSurfaceDatum );
 
 			// get steering wheel angle and max angle
 
@@ -213,10 +227,6 @@ public class Simulator
 
 			app.DirectInput.PollDevices( (float) ( _irsdk.Data.TickCount - (int) _tickCountLastFrame ) / _irsdk.Data.TickRate );
 
-			// trigger the app worker thread
-
-			app.TriggerWorkerThread();
-
 			// update tick count last frame
 
 			_tickCountLastFrame = _irsdk.Data.TickCount;
@@ -242,6 +252,10 @@ public class Simulator
 					_native360HzTorqueGraph.Advance();
 				}
 			}
+
+			// trigger the app worker thread
+
+			app.TriggerWorkerThread();
 		}
 	}
 
@@ -254,6 +268,8 @@ public class Simulator
 
 	public void Tick( App app )
 	{
+		app.MainWindow.RacingWheel_CurrentForce_Label.Content = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F2}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
+
 		if ( app.MainWindow.GraphsTabItemIsVisible )
 		{
 			_native60HzTorqueGraph.UpdateImage();
