@@ -7,9 +7,6 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-using System.Windows.Media;
-
-using Image = System.Windows.Controls.Image;
 
 using MarvinsAIRARefactored.WinApi;
 
@@ -72,37 +69,27 @@ public class Misc
 		return 0.5f * ( a + ( b * t ) + ( c * t * t ) + ( d * t * t * t ) );
 	}
 
-	public static void AdjustKnobControl( string settingName, float amount, Image image, float rotationMultiplier )
+	public static void ForcePropertySetters( object obj )
 	{
-		var app = App.Instance;
+		if ( obj == null ) return;
 
-		if ( app != null )
+		var type = obj.GetType();
+
+		var properties = type.GetProperties( BindingFlags.Public | BindingFlags.Instance );
+
+		foreach ( var prop in properties )
 		{
-			var property = DataContext.Instance.Settings.GetType().GetProperty( settingName );
-
-			if ( property != null )
+			if ( prop.CanRead && prop.CanWrite && prop.GetIndexParameters().Length == 0 )
 			{
-				var oldValue = (float?) property.GetValue( DataContext.Instance.Settings );
-
-				if ( oldValue != null )
+				try
 				{
-					property.SetValue( DataContext.Instance.Settings, oldValue + amount );
+					object? currentValue = prop.GetValue( obj );
 
-					var newValue = (float?) property.GetValue( DataContext.Instance.Settings );
-
-					if ( ( newValue != null ) && newValue != oldValue )
-					{
-						var delta = (float) newValue - (float) oldValue;
-
-						if ( image.RenderTransform is RotateTransform rotateTransform )
-						{
-							image.RenderTransform = new RotateTransform( rotateTransform.Angle + delta * rotationMultiplier * 50f, 0.5, 0.5 );
-						}
-						else
-						{
-							image.RenderTransform = new RotateTransform( delta * rotationMultiplier * 50f, 0.5, 0.5 );
-						}
-					}
+					prop.SetValue( obj, currentValue );
+				}
+				catch ( Exception ex )
+				{
+					System.Diagnostics.Debug.WriteLine( $"Error processing property '{prop.Name}': {ex.Message}" );
 				}
 			}
 		}

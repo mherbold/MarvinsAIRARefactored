@@ -58,7 +58,7 @@ public class TelemetryDataViewer : Control
 		{
 			for ( var valueIndex = 0; valueIndex < keyValuePair.Value.Count; valueIndex++ )
 			{
-				if ( ( lineIndex >= ScrollIndex ) && !stopDrawing )
+				if (  lineIndex >= ScrollIndex  && !stopDrawing )
 				{
 					var brush = ( lineIndex & 1 ) == 1 ? _oddLineBrush : _evenLineBrush;
 

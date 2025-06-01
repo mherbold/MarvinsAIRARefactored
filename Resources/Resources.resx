@@ -127,13 +127,18 @@
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>Marvin's Awesome iRacing App</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="Bias" xml:space="preserve">
+    <value>Bias</value>
+    <comment>Racing wheel</comment>
   </data>
   <data name="Debug" xml:space="preserve">
     <value>Debug</value>
     <comment>Tab item</comment>
   </data>
-  <data name="DetailStrength" xml:space="preserve">
-    <value>Detail Strength</value>
+  <data name="DetailBoost" xml:space="preserve">
+    <value>Detail Boost</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
@@ -155,6 +160,14 @@
   <data name="Language" xml:space="preserve">
     <value>Language</value>
     <comment>App</comment>
+  </data>
+  <data name="DetailBooster" xml:space="preserve">
+    <value>Detail Booster</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DeltaLimiter" xml:space="preserve">
+    <value>Delta Limiter</value>
+    <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="MaxForce" xml:space="preserve">
     <value>Max Force</value>
@@ -245,7 +258,75 @@
     <comment>App</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>Nm</value>
+    <value> Nm</value>
     <comment>Abbreviation for Newton-meters</comment>
+  </data>
+  <data name="DetailBoosterOn60Hz" xml:space="preserve">
+    <value>Detail Booster On 60 Hz</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="AdminBoxx" xml:space="preserve">
+    <value>AdminBoxx</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="ConnectToAdminBoxx" xml:space="preserve">
+    <value>Connect To AdminBoxx</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="UpdateButtonMappings" xml:space="preserve">
+    <value>Update Button Mappings</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="PressTheRecordButton" xml:space="preserve">
+    <value>[Press The Record Button]</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>Button</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>Click</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Hold" xml:space="preserve">
+    <value>Hold</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>Keyboard</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="WaitingForInput" xml:space="preserve">
+    <value>[Waiting For Input]</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="DeltaLimit" xml:space="preserve">
+    <value>Delta Limit</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="DeltaLimitUnits" xml:space="preserve">
+    <value> Nm/s</value>
+    <comment>Abbreviation for Newton-meters per millisecond</comment>
+  </data>
+  <data name="DeltaLimiterOn60Hz" xml:space="preserve">
+    <value>Delta Limiter On 60 Hz</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="ZeAlanLeTwist" xml:space="preserve">
+    <value>Ze Alan Le Twist</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="CompressionRateUnits" xml:space="preserve">
+    <value>%/Nm</value>
+    <comment>Abbreviation for percent per Newton-meters</comment>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+    <comment>Abbreviation for percent</comment>
+  </data>
+  <data name="CompressionRate" xml:space="preserve">
+    <value>Compression Rate</value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

@@ -220,8 +220,8 @@ public class MultimediaTimer
 		{
 			_jitterGraph.UpdateImage();
 
-			app.MainWindow.MultimediaTimerJitter_MinMaxAvg.Content = $"{_jitterStatistics.MinimumValue,5:F2} {_jitterStatistics.MaximumValue,5:F2} {_jitterStatistics.AverageValue,5:F2}";
-			app.MainWindow.MultimediaTimerJitter_VarStdDev.Content = $"{_jitterStatistics.Variance,5:F2} {_jitterStatistics.StandardDeviation,5:F2}";
+			app.MainWindow.Graphs_MultimediaTimerJitter_MinMaxAvg.Content = $"{_jitterStatistics.MinimumValue,5:F2} {_jitterStatistics.MaximumValue,5:F2} {_jitterStatistics.AverageValue,5:F2}";
+			app.MainWindow.Graphs_MultimediaTimerJitter_VarStdDev.Content = $"{_jitterStatistics.Variance,5:F2} {_jitterStatistics.StandardDeviation,5:F2}";
 		}
 	}
 }

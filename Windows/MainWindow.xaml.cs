@@ -1,34 +1,22 @@
 ﻿
+using MarvinsAIRARefactored.Components;
+using MarvinsAIRARefactored.WinApi;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 
-using Cursors = System.Windows.Input.Cursors;
-using Image = System.Windows.Controls.Image;
-using MouseEventArgs = System.Windows.Input.MouseEventArgs;
-using Point = System.Windows.Point;
 using ScrollEventArgs = System.Windows.Controls.Primitives.ScrollEventArgs;
 using TabControl = System.Windows.Controls.TabControl;
 
-using MarvinsAIRARefactored.Components;
-using MarvinsAIRARefactored.WinApi;
-
-namespace MarvinsAIRARefactored;
+namespace MarvinsAIRARefactored.Windows;
 
 public partial class MainWindow : Window
 {
 	public nint WindowHandle { get; private set; } = 0;
 	public bool GraphsTabItemIsVisible { get; private set; } = false;
 	public bool DebugTabItemIsVisible { get; private set; } = false;
-
-	private Point _lastMousePosition = new();
-
-	private bool _racingWheelMaxForceCapturedMouse = false;
-	private bool _racingWheelDetailStrengthCapturedMouse = false;
-	private bool _racingWheelParkedStrengthCapturedMouse = false;
-	private bool _racingWheelSoftLockStrengthCapturedMouse = false;
-	private bool _racingWheelFrictionCapturedMouse = false;
 
 	public MainWindow()
 	{
@@ -44,11 +32,9 @@ public partial class MainWindow : Window
 
 			app.Logger.WriteLine( $"[MainWindow] Version is {version}" );
 
-			Title = Components.DataContext.Instance.Localization[ "AppTitle" ] + " " + Misc.GetVersion();
+			RefreshWindow();
 
-			RacingWheel.SetAlgorithmComboBoxItemsSource( RacingWheelAlgorithm_ComboBox );
-
-			Components.Localization.SetLanguageComboBoxItemsSource( AppLanguage_ComboBox );
+			Components.Localization.SetLanguageComboBoxItemsSource( App_Language_ComboBox );
 
 			app.Logger.WriteLine( "[MainWindow] <<< Constructor" );
 		}
@@ -68,14 +54,33 @@ public partial class MainWindow : Window
 
 			DWMAPI.DwmSetWindowAttribute( WindowHandle, (uint) DWMAPI.cbAttribute.DWMWA_USE_IMMERSIVE_DARK_MODE, ref value, (uint) System.Runtime.InteropServices.Marshal.SizeOf( value ) );
 
-			UpdateRacingWheelPowerIcon();
-			UpdateAppTopmostWindowEnabledIcon();
+			UpdateRacingWheelPowerButton();
+			UpdateRacingWheelTestAndResetButtons();
+
+			Misc.ForcePropertySetters( Components.DataContext.Instance.Settings );
 
 			app.Logger.WriteLine( "[MainWindow] <<< Initialize" );
 		}
 	}
 
-	public void UpdateRacingWheelPowerIcon()
+	public void RefreshWindow()
+	{
+		Dispatcher.BeginInvoke( () =>
+		{
+			var app = App.Instance;
+
+			if ( app != null )
+			{
+				Title = Components.DataContext.Instance.Localization[ "AppTitle" ] + " " + Misc.GetVersion();
+
+				app.DirectInput.SetComboBoxItemsSource( RacingWheel_Device_ComboBox );
+
+				RacingWheel.SetComboBoxItemsSource( RacingWheel_Algorithm_ComboBox );
+			}
+		} );
+	}
+
+	public void UpdateRacingWheelPowerButton()
 	{
 		var app = App.Instance;
 
@@ -83,58 +88,88 @@ public partial class MainWindow : Window
 		{
 			Dispatcher.BeginInvoke( () =>
 			{
-				var redIconVisibility = Visibility.Hidden;
-				var yellowIconVisibility = Visibility.Hidden;
-				var greenIconVisibility = Visibility.Hidden;
+				RacingWheel_Power_Button.Blink = false;
+
+				ImageSource? imageSource;
 
 				if ( !Components.DataContext.Instance.Settings.RacingWheelEnableForceFeedback )
 				{
-					redIconVisibility = Visibility.Visible;
+					imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/power_led_red.png" ) as ImageSource;
+
+					RacingWheel_Power_Button.Blink = true;
 				}
-				else if ( app.RacingWheel.Suspend )
+				else if ( app.RacingWheel.SuspendForceFeedback )
 				{
-					yellowIconVisibility = Visibility.Visible;
+					imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/power_led_yellow.png" ) as ImageSource;
+
+					if ( app.Simulator.IsConnected )
+					{
+						RacingWheel_Power_Button.Blink = true;
+					}
 				}
 				else
 				{
-					greenIconVisibility = Visibility.Visible;
+					imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/power_led_green.png" ) as ImageSource;
 				}
 
-				RacingWheelPowerRed_Image.Visibility = redIconVisibility;
-				RacingWheelPowerYellow_Image.Visibility = yellowIconVisibility;
-				RacingWheelPowerGreen_Image.Visibility = greenIconVisibility;
+				if ( imageSource != null )
+				{
+					RacingWheel_Power_Button.ButtonIcon = imageSource;
+				}
 			} );
 		}
 	}
 
-	public void UpdateRacingWheelFadeEnabledIcon()
+	public void UpdateRacingWheelTestAndResetButtons()
 	{
-		UpdateSwitchIcon( Components.DataContext.Instance.Settings.RacingWheelFadeEnabled, RacingWheelFade_Off_Image, RacingWheelFade_On_Image );
+		var app = App.Instance;
+
+		if ( app != null )
+		{
+			Dispatcher.BeginInvoke( () =>
+			{
+				var disableButtons = !app.DirectInput.ForceFeedbackInitialized;
+
+				RacingWheel_Test_Button.Disabled = disableButtons;
+				RacingWheel_Reset_Button.Disabled = disableButtons;
+			} );
+		}
 	}
 
-	public void UpdateAppTopmostWindowEnabledIcon()
-	{
-		UpdateSwitchIcon( Components.DataContext.Instance.Settings.AppTopmostWindowEnabled, AppTopmostWindow_Off_Image, AppTopmostWindow_On_Image );
-	}
-
-	private void UpdateSwitchIcon( bool switchIsOn, Image offImage, Image onImage )
+	public void UpdateRacingWheelAlgorithmControls()
 	{
 		Dispatcher.BeginInvoke( () =>
 		{
-			var offIconVisibility = Visibility.Hidden;
-			var onIconVisibility = Visibility.Hidden;
+			var racingWheelAlgorithmRowTwoGridVisibility = Visibility.Collapsed;
+			var detailBoostKnobControlVisibility = Visibility.Hidden;
+			var deltaLimitKnobControlVisibility = Visibility.Hidden;
+			var biasKnobControlVisibility = Visibility.Hidden;
 
-			if ( !switchIsOn )
+			switch ( Components.DataContext.Instance.Settings.RacingWheelAlgorithm )
 			{
-				offIconVisibility = Visibility.Visible;
-			}
-			else
-			{
-				onIconVisibility = Visibility.Visible;
+				case Settings.RacingWheelAlgorithmEnum.DetailBooster:
+				case Settings.RacingWheelAlgorithmEnum.DetailBoosterOn60Hz:
+					detailBoostKnobControlVisibility = Visibility.Visible;
+					biasKnobControlVisibility = Visibility.Visible;
+					break;
+
+				case Settings.RacingWheelAlgorithmEnum.DeltaLimiter:
+				case Settings.RacingWheelAlgorithmEnum.DeltaLimiterOn60Hz:
+					deltaLimitKnobControlVisibility = Visibility.Visible;
+					biasKnobControlVisibility = Visibility.Visible;
+					break;
+
+				case Settings.RacingWheelAlgorithmEnum.ZeAlanLeTwist:
+					racingWheelAlgorithmRowTwoGridVisibility = Visibility.Visible;
+					deltaLimitKnobControlVisibility = Visibility.Visible;
+					biasKnobControlVisibility = Visibility.Visible;
+					break;
 			}
 
-			offImage.Visibility = offIconVisibility;
-			onImage.Visibility = onIconVisibility;
+			RacingWheel_AlgorithmRowTwo_Grid.Visibility = racingWheelAlgorithmRowTwoGridVisibility;
+			RacingWheel_DetailBoost_KnobControl.Visibility = detailBoostKnobControlVisibility;
+			RacingWheel_DeltaLimit_KnobControl.Visibility = deltaLimitKnobControlVisibility;
+			RacingWheel_Bias_KnobControl.Visibility = biasKnobControlVisibility;
 		} );
 	}
 
@@ -150,12 +185,12 @@ public partial class MainWindow : Window
 		}
 	}
 
-	private void RacingWheelPower_Click( object sender, RoutedEventArgs e )
+	private void RacingWheel_Power_Button_Click( object sender, RoutedEventArgs e )
 	{
 		Components.DataContext.Instance.Settings.RacingWheelEnableForceFeedback = !Components.DataContext.Instance.Settings.RacingWheelEnableForceFeedback;
 	}
 
-	private void RacingWheelTest_Click( object sender, RoutedEventArgs e )
+	private void RacingWheel_Test_Button_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance;
 
@@ -165,322 +200,17 @@ public partial class MainWindow : Window
 		}
 	}
 
-	private void RacingWheelReset_Click( object sender, RoutedEventArgs e )
+	private void RacingWheel_Reset_Button_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance;
 
 		if ( app != null )
 		{
-			app.RacingWheel.Reset = true;
+			app.RacingWheel.ResetForceFeedback = true;
 		}
 	}
 
-	private void RacingWheelMaxForceKnob_MouseDown( object sender, MouseButtonEventArgs e )
-	{
-		Mouse.Capture( (Image) sender );
-
-		Mouse.OverrideCursor = Cursors.SizeWE;
-
-		_lastMousePosition = e.GetPosition( null );
-
-		_racingWheelMaxForceCapturedMouse = true;
-	}
-
-	private void RacingWheelMaxForceKnob_MouseUp( object sender, MouseButtonEventArgs e )
-	{
-		if ( _racingWheelMaxForceCapturedMouse )
-		{
-			Mouse.Capture( null );
-
-			Mouse.OverrideCursor = null;
-
-			_racingWheelMaxForceCapturedMouse = false;
-		}
-	}
-
-	private void RacingWheelMaxForceKnob_MouseMove( object sender, MouseEventArgs e )
-	{
-		if ( _racingWheelMaxForceCapturedMouse )
-		{
-			var newPosition = e.GetPosition( null );
-
-			if ( newPosition != _lastMousePosition )
-			{
-				var delta = ( newPosition.X - _lastMousePosition.X ) + ( newPosition.Y - _lastMousePosition.Y );
-
-				Misc.AdjustKnobControl( "RacingWheelMaxForce", (float) delta * 0.01f, RacingWheelMaxForceKnob_Image, 1f );
-
-				_lastMousePosition = newPosition;
-			}
-		}
-	}
-
-	private void RacingWheelMaxForcePlus_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			Misc.AdjustKnobControl( "RacingWheelMaxForce", 1f, RacingWheelMaxForceKnob_Image, 1f );
-		}
-	}
-
-	private void RacingWheelMaxForceMinus_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			Misc.AdjustKnobControl( "RacingWheelMaxForce", -1f, RacingWheelMaxForceKnob_Image, 1f );
-		}
-	}
-
-	private void RacingWheelDetailStrengthKnob_MouseDown( object sender, MouseButtonEventArgs e )
-	{
-		Mouse.Capture( (Image) sender );
-
-		Mouse.OverrideCursor = Cursors.SizeWE;
-
-		_lastMousePosition = e.GetPosition( null );
-
-		_racingWheelDetailStrengthCapturedMouse = true;
-	}
-
-	private void RacingWheelDetailStrengthKnob_MouseUp( object sender, MouseButtonEventArgs e )
-	{
-		if ( _racingWheelDetailStrengthCapturedMouse )
-		{
-			Mouse.Capture( null );
-
-			Mouse.OverrideCursor = null;
-
-			_racingWheelDetailStrengthCapturedMouse = false;
-		}
-	}
-
-	private void RacingWheelDetailStrengthKnob_MouseMove( object sender, MouseEventArgs e )
-	{
-		if ( _racingWheelDetailStrengthCapturedMouse )
-		{
-			var newPosition = e.GetPosition( null );
-
-			if ( newPosition != _lastMousePosition )
-			{
-				var delta = ( newPosition.X - _lastMousePosition.X ) + ( newPosition.Y - _lastMousePosition.Y );
-
-				Misc.AdjustKnobControl( "RacingWheelDetailStrength", (float) delta * 0.001f, RacingWheelDetailStrengthKnob_Image, 10f );
-
-				_lastMousePosition = newPosition;
-			}
-		}
-	}
-
-	private void RacingWheelDetailStrengthPlus_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			Misc.AdjustKnobControl( "RacingWheelDetailStrength", 0.1f, RacingWheelDetailStrengthKnob_Image, 10f );
-		}
-	}
-
-	private void RacingWheelDetailStrengthMinus_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			Misc.AdjustKnobControl( "RacingWheelDetailStrength", -0.1f, RacingWheelDetailStrengthKnob_Image, 10f );
-		}
-	}
-
-	private void RacingWheelParkedStrengthKnob_MouseDown( object sender, MouseButtonEventArgs e )
-	{
-		Mouse.Capture( (Image) sender );
-
-		Mouse.OverrideCursor = Cursors.SizeWE;
-
-		_lastMousePosition = e.GetPosition( null );
-
-		_racingWheelParkedStrengthCapturedMouse = true;
-	}
-
-	private void RacingWheelParkedStrengthKnob_MouseUp( object sender, MouseButtonEventArgs e )
-	{
-		if ( _racingWheelParkedStrengthCapturedMouse )
-		{
-			Mouse.Capture( null );
-
-			Mouse.OverrideCursor = null;
-
-			_racingWheelParkedStrengthCapturedMouse = false;
-		}
-	}
-
-	private void RacingWheelParkedStrengthKnob_MouseMove( object sender, MouseEventArgs e )
-	{
-		if ( _racingWheelParkedStrengthCapturedMouse )
-		{
-			var newPosition = e.GetPosition( null );
-
-			if ( newPosition != _lastMousePosition )
-			{
-				var delta = ( newPosition.X - _lastMousePosition.X ) + ( newPosition.Y - _lastMousePosition.Y );
-
-				Misc.AdjustKnobControl( "RacingWheelParkedStrength", (float) delta * 0.001f, RacingWheelParkedStrengthKnob_Image, 10f );
-
-				_lastMousePosition = newPosition;
-			}
-		}
-	}
-
-	private void RacingWheelParkedStrengthPlus_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			Misc.AdjustKnobControl( "RacingWheelParkedStrength", 0.05f, RacingWheelParkedStrengthKnob_Image, 10f );
-		}
-	}
-
-	private void RacingWheelParkedStrengthMinus_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			Misc.AdjustKnobControl( "RacingWheelParkedStrength", -0.05f, RacingWheelParkedStrengthKnob_Image, 10f );
-		}
-	}
-
-	private void RacingWheelSoftLockStrengthKnob_MouseDown( object sender, MouseButtonEventArgs e )
-	{
-		Mouse.Capture( (Image) sender );
-
-		Mouse.OverrideCursor = Cursors.SizeWE;
-
-		_lastMousePosition = e.GetPosition( null );
-
-		_racingWheelSoftLockStrengthCapturedMouse = true;
-	}
-
-	private void RacingWheelSoftLockStrengthKnob_MouseUp( object sender, MouseButtonEventArgs e )
-	{
-		if ( _racingWheelSoftLockStrengthCapturedMouse )
-		{
-			Mouse.Capture( null );
-
-			Mouse.OverrideCursor = null;
-
-			_racingWheelSoftLockStrengthCapturedMouse = false;
-		}
-	}
-
-	private void RacingWheelSoftLockStrengthKnob_MouseMove( object sender, MouseEventArgs e )
-	{
-		if ( _racingWheelSoftLockStrengthCapturedMouse )
-		{
-			var newPosition = e.GetPosition( null );
-
-			if ( newPosition != _lastMousePosition )
-			{
-				var delta = ( newPosition.X - _lastMousePosition.X ) + ( newPosition.Y - _lastMousePosition.Y );
-
-				Misc.AdjustKnobControl( "RacingWheelSoftLockStrength", (float) delta * 0.001f, RacingWheelSoftLockStrengthKnob_Image, 10f );
-
-				_lastMousePosition = newPosition;
-			}
-		}
-	}
-
-	private void RacingWheelSoftLockStrengthPlus_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			Misc.AdjustKnobControl( "RacingWheelSoftLockStrength", 0.05f, RacingWheelSoftLockStrengthKnob_Image, 10f );
-		}
-	}
-
-	private void RacingWheelSoftLockStrengthMinus_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			Misc.AdjustKnobControl( "RacingWheelSoftLockStrength", -0.05f, RacingWheelSoftLockStrengthKnob_Image, 10f );
-		}
-	}
-
-	private void RacingWheelFrictionKnob_MouseDown( object sender, MouseButtonEventArgs e )
-	{
-		Mouse.Capture( (Image) sender );
-
-		Mouse.OverrideCursor = Cursors.SizeWE;
-
-		_lastMousePosition = e.GetPosition( null );
-
-		_racingWheelFrictionCapturedMouse = true;
-	}
-
-	private void RacingWheelFrictionKnob_MouseUp( object sender, MouseButtonEventArgs e )
-	{
-		if ( _racingWheelFrictionCapturedMouse )
-		{
-			Mouse.Capture( null );
-
-			Mouse.OverrideCursor = null;
-
-			_racingWheelFrictionCapturedMouse = false;
-		}
-	}
-
-	private void RacingWheelFrictionKnob_MouseMove( object sender, MouseEventArgs e )
-	{
-		if ( _racingWheelFrictionCapturedMouse )
-		{
-			var newPosition = e.GetPosition( null );
-
-			if ( newPosition != _lastMousePosition )
-			{
-				var delta = ( newPosition.X - _lastMousePosition.X ) + ( newPosition.Y - _lastMousePosition.Y );
-
-				Misc.AdjustKnobControl( "RacingWheelFriction", (float) delta * 0.001f, RacingWheelFrictionKnob_Image, 10f );
-
-				_lastMousePosition = newPosition;
-			}
-		}
-	}
-
-	private void RacingWheelFrictionPlus_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			Misc.AdjustKnobControl( "RacingWheelFriction", 0.05f, RacingWheelFrictionKnob_Image, 10f );
-		}
-	}
-
-	private void RacingWheelFrictionMinus_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			Misc.AdjustKnobControl( "RacingWheelFriction", -0.05f, RacingWheelFrictionKnob_Image, 10f );
-		}
-	}
-
-	private void RacingWheelFadeEnabled_Click( object sender, RoutedEventArgs e )
-	{
-		Components.DataContext.Instance.Settings.RacingWheelFadeEnabled = !Components.DataContext.Instance.Settings.RacingWheelFadeEnabled;
-	}
-
-	private void HeaderDataViewer_MouseWheel( object sender, MouseWheelEventArgs e )
+	private void Simulator_HeaderData_HeaderDataViewer_MouseWheel( object sender, MouseWheelEventArgs e )
 	{
 		var delta = e.Delta / 30.0f;
 
@@ -493,40 +223,17 @@ public partial class MainWindow : Window
 			delta = MathF.Min( -1, delta );
 		}
 
-		HeaderDataViewer_ScrollBar.Value -= delta;
+		Simulator_HeaderData_ScrollBar.Value -= delta;
 
-		HeaderDataViewer.ScrollIndex = (int) HeaderDataViewer_ScrollBar.Value;
+		Simulator_HeaderData_HeaderDataViewer.ScrollIndex = (int) Simulator_HeaderData_ScrollBar.Value;
 	}
 
-	private void HeaderDataViewer_ScrollBar_Scroll( object sender, ScrollEventArgs e )
+	private void Simulator_HeaderData_ScrollBar_Scroll( object sender, ScrollEventArgs e )
 	{
-		HeaderDataViewer.ScrollIndex = (int) e.NewValue;
+		Simulator_HeaderData_HeaderDataViewer.ScrollIndex = (int) e.NewValue;
 	}
 
-	private void SessionInfoViewer_MouseWheel( object sender, MouseWheelEventArgs e )
-	{
-		var delta = e.Delta / 30.0f;
-
-		if ( delta > 0 )
-		{
-			delta = MathF.Max( 1, delta );
-		}
-		else
-		{
-			delta = MathF.Min( -1, delta );
-		}
-
-		SessionInfoViewer_ScrollBar.Value -= delta;
-
-		SessionInfoViewer.ScrollIndex = (int) SessionInfoViewer_ScrollBar.Value;
-	}
-
-	private void SessionInfoViewer_ScrollBar_Scroll( object sender, ScrollEventArgs e )
-	{
-		SessionInfoViewer.ScrollIndex = (int) e.NewValue;
-	}
-
-	private void TelemetryDataViewer_MouseWheel( object sender, MouseWheelEventArgs e )
+	private void Simulator_SessionInfo_SessionInfoViewer_MouseWheel( object sender, MouseWheelEventArgs e )
 	{
 		var delta = e.Delta / 30.0f;
 
@@ -539,72 +246,110 @@ public partial class MainWindow : Window
 			delta = MathF.Min( -1, delta );
 		}
 
-		TelemetryDataViewer_ScrollBar.Value -= delta;
+		Simulator_SessionInfo_ScrollBar.Value -= delta;
 
-		TelemetryDataViewer.ScrollIndex = (int) TelemetryDataViewer_ScrollBar.Value;
+		Simulator_SessionInfo_SessionInfoViewer.ScrollIndex = (int) Simulator_SessionInfo_ScrollBar.Value;
 	}
 
-	private void TelemetryDataViewer_ScrollBar_Scroll( object sender, ScrollEventArgs e )
+	private void Simulator_SessionInfo_ScrollBar_Scroll( object sender, ScrollEventArgs e )
 	{
-		TelemetryDataViewer.ScrollIndex = (int) e.NewValue;
+		Simulator_SessionInfo_SessionInfoViewer.ScrollIndex = (int) e.NewValue;
 	}
 
-	private void AppTopmostWindowEnabled_Click( object sender, RoutedEventArgs e )
+	private void Simulator_TelemetryData_TelemetryDataViewer_MouseWheel( object sender, MouseWheelEventArgs e )
 	{
-		Components.DataContext.Instance.Settings.AppTopmostWindowEnabled = !Components.DataContext.Instance.Settings.AppTopmostWindowEnabled;
+		var delta = e.Delta / 30.0f;
+
+		if ( delta > 0 )
+		{
+			delta = MathF.Max( 1, delta );
+		}
+		else
+		{
+			delta = MathF.Min( -1, delta );
+		}
+
+		Simulator_TelemetryData_ScrollBar.Value -= delta;
+
+		Simulator_TelemetryData_TelemetryDataViewer.ScrollIndex = (int) Simulator_TelemetryData_ScrollBar.Value;
+	}
+
+	private void Simulator_TelemetryData_ScrollBar_Scroll( object sender, ScrollEventArgs e )
+	{
+		Simulator_TelemetryData_TelemetryDataViewer.ScrollIndex = (int) e.NewValue;
+	}
+
+	private void AdminBoxx_ConnectToAdminBoxx_Switch_Toggled( object sender, EventArgs e )
+	{
+		var app = App.Instance;
+
+		if ( app != null )
+		{
+			if ( AdminBoxx_ConnectToAdminBoxx_Switch.IsOn )
+			{
+				if ( !app.AdminBoxx.Connect() )
+				{
+					AdminBoxx_ConnectToAdminBoxx_Switch.IsOn = false;
+				}
+			}
+			else
+			{
+				app.AdminBoxx.Disconnect();
+			}
+		}
 	}
 
 	public void Tick( App app )
 	{
 		// header data
 
-		HeaderDataViewer.InvalidateVisual();
+		Simulator_HeaderData_HeaderDataViewer.InvalidateVisual();
 
-		HeaderDataViewer_ScrollBar.Maximum = HeaderDataViewer.NumTotalLines - HeaderDataViewer.NumVisibleLines;
-		HeaderDataViewer_ScrollBar.ViewportSize = HeaderDataViewer.NumVisibleLines;
+		Simulator_HeaderData_ScrollBar.Maximum = Simulator_HeaderData_HeaderDataViewer.NumTotalLines - Simulator_HeaderData_HeaderDataViewer.NumVisibleLines;
+		Simulator_HeaderData_ScrollBar.ViewportSize = Simulator_HeaderData_HeaderDataViewer.NumVisibleLines;
 
-		if ( HeaderDataViewer.NumVisibleLines >= HeaderDataViewer.NumTotalLines )
+		if ( Simulator_HeaderData_HeaderDataViewer.NumVisibleLines >= Simulator_HeaderData_HeaderDataViewer.NumTotalLines )
 		{
-			HeaderDataViewer.ScrollIndex = 0;
-			HeaderDataViewer_ScrollBar.Visibility = Visibility.Collapsed;
+			Simulator_HeaderData_HeaderDataViewer.ScrollIndex = 0;
+			Simulator_HeaderData_ScrollBar.Visibility = Visibility.Collapsed;
 		}
 		else
 		{
-			HeaderDataViewer_ScrollBar.Visibility = Visibility.Visible;
+			Simulator_HeaderData_ScrollBar.Visibility = Visibility.Visible;
 		}
 
 		// session information
 
-		SessionInfoViewer.InvalidateVisual();
+		Simulator_SessionInfo_SessionInfoViewer.InvalidateVisual();
 
-		SessionInfoViewer_ScrollBar.Maximum = SessionInfoViewer.NumTotalLines - SessionInfoViewer.NumVisibleLines;
-		SessionInfoViewer_ScrollBar.ViewportSize = SessionInfoViewer.NumVisibleLines;
+		Simulator_SessionInfo_ScrollBar.Maximum = Simulator_SessionInfo_SessionInfoViewer.NumTotalLines - Simulator_SessionInfo_SessionInfoViewer.NumVisibleLines;
+		Simulator_SessionInfo_ScrollBar.ViewportSize = Simulator_SessionInfo_SessionInfoViewer.NumVisibleLines;
 
-		if ( SessionInfoViewer.NumVisibleLines >= SessionInfoViewer.NumTotalLines )
+		if ( Simulator_SessionInfo_SessionInfoViewer.NumVisibleLines >= Simulator_SessionInfo_SessionInfoViewer.NumTotalLines )
 		{
-			SessionInfoViewer.ScrollIndex = 0;
-			SessionInfoViewer_ScrollBar.Visibility = Visibility.Collapsed;
+			Simulator_SessionInfo_SessionInfoViewer.ScrollIndex = 0;
+			Simulator_SessionInfo_ScrollBar.Visibility = Visibility.Collapsed;
 		}
 		else
 		{
-			SessionInfoViewer_ScrollBar.Visibility = Visibility.Visible;
+			Simulator_SessionInfo_ScrollBar.Visibility = Visibility.Visible;
 		}
 
 		// telemetry data
 
-		TelemetryDataViewer.InvalidateVisual();
+		Simulator_TelemetryData_TelemetryDataViewer.InvalidateVisual();
 
-		TelemetryDataViewer_ScrollBar.Maximum = TelemetryDataViewer.NumTotalLines - TelemetryDataViewer.NumVisibleLines;
-		TelemetryDataViewer_ScrollBar.ViewportSize = TelemetryDataViewer.NumVisibleLines;
+		Simulator_TelemetryData_ScrollBar.Maximum = Simulator_TelemetryData_TelemetryDataViewer.NumTotalLines - Simulator_TelemetryData_TelemetryDataViewer.NumVisibleLines;
+		Simulator_TelemetryData_ScrollBar.ViewportSize = Simulator_TelemetryData_TelemetryDataViewer.NumVisibleLines;
 
-		if ( TelemetryDataViewer.NumVisibleLines >= TelemetryDataViewer.NumTotalLines )
+		if ( Simulator_TelemetryData_TelemetryDataViewer.NumVisibleLines >= Simulator_TelemetryData_TelemetryDataViewer.NumTotalLines )
 		{
-			TelemetryDataViewer.ScrollIndex = 0;
-			TelemetryDataViewer_ScrollBar.Visibility = Visibility.Collapsed;
+			Simulator_TelemetryData_TelemetryDataViewer.ScrollIndex = 0;
+			Simulator_TelemetryData_ScrollBar.Visibility = Visibility.Collapsed;
 		}
 		else
 		{
-			TelemetryDataViewer_ScrollBar.Visibility = Visibility.Visible;
+			Simulator_TelemetryData_ScrollBar.Visibility = Visibility.Visible;
 		}
 	}
 }

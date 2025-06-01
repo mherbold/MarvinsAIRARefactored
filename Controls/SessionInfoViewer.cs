@@ -46,7 +46,7 @@ public class SessionInfoViewer : Control
 
 		var sessionInfo = irsdk.Data.SessionInfo;
 
-		if ( !irsdk.IsConnected || ( sessionInfo == null ) )
+		if ( !irsdk.IsConnected ||  sessionInfo == null  )
 		{
 			return;
 		}
@@ -66,9 +66,9 @@ public class SessionInfoViewer : Control
 
 	private void DrawSessionInfo( DrawingContext drawingContext, string propertyName, object? valueAsObject, int indent, ref Point point, ref int lineIndex, ref bool stopDrawing )
 	{
-		var isSimpleValue = ( ( valueAsObject is null ) || ( valueAsObject is string ) || ( valueAsObject is int ) || ( valueAsObject is float ) || ( valueAsObject is double ) );
+		var isSimpleValue =   valueAsObject is null  ||  valueAsObject is string  ||  valueAsObject is int  ||  valueAsObject is float  ||  valueAsObject is double  ;
 
-		if ( ( lineIndex >= ScrollIndex ) && !stopDrawing )
+		if (  lineIndex >= ScrollIndex  && !stopDrawing )
 		{
 			var brush = ( lineIndex & 1 ) == 1 ? _oddLineBrush : _evenLineBrush;
 

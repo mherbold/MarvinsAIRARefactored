@@ -44,13 +44,6 @@ public class SettingsFile
 				if ( !value || !PauseSerialization )
 				{
 					_queueForSerialization = value;
-
-					if ( value )
-					{
-						var app = App.Instance;
-
-						app?.Logger.WriteLine( "[SettingsFile] Queued for serialization" );
-					}
 				}
 			}
 		}
@@ -85,6 +78,11 @@ public class SettingsFile
 	{
 		if ( QueueForSerialization )
 		{
+			if ( _serializationCounter == 0 )
+			{
+				app.Logger.WriteLine( "[SettingsFile] Queued for serialization" );
+			}
+
 			_serializationCounter = 60;
 
 			QueueForSerialization = false;

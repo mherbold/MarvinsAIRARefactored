@@ -1,0 +1,8 @@
+MAIRA Refactored TODO
+
+- Try Thruxton / Rain Master challenge with AMG in wet, spawn on track, touch wheel and it vibrates.
+
+- Use https://catherinearnould.com/autres/resx/ for fast localization
+- Add iRacing Simulator is not running message to the simulator tab
+- Fix iRacing is not running in graph tab drawing over existing graph
+- Make minimizing window update tabisvisible properties

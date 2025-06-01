@@ -21,7 +21,6 @@ public class Simulator
 	public float SteeringWheelAngle { get; private set; } = 0f;
 	public float SteeringWheelAngleMax { get; private set; } = 0f;
 	public float[] SteeringWheelTorque_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
-	public float SteeringWheelVelocity { get; private set; } = 0f;
 	public float Velocity { get; private set; } = 0f;
 	public float VelocityX { get; private set; } = 0f;
 	public float VelocityY { get; private set; } = 0f;
@@ -70,8 +69,6 @@ public class Simulator
 			_irsdk.OnTelemetryData += OnTelemetryData;
 			_irsdk.OnDebugLog += OnDebugLog;
 
-			_irsdk.Start();
-
 			app.Logger.WriteLine( "[Simulator] <<< Initialize" );
 		}
 	}
@@ -90,6 +87,11 @@ public class Simulator
 
 			app.Logger.WriteLine( "[Simulator] <<< Shutdown" );
 		}
+	}
+
+	public void Start()
+	{
+		_irsdk.Start();
 	}
 
 	private void OnException( Exception exception )
@@ -113,8 +115,9 @@ public class Simulator
 
 			app.Dispatcher.BeginInvoke( () =>
 			{
-				app.MainWindow.GraphsSteeringWheelTorque60HzSimNotRunning_Label.Visibility = Visibility.Hidden;
-				app.MainWindow.GraphsSteeringWheelTorque360HzSimNotRunning_Label.Visibility = Visibility.Hidden;
+				app.MainWindow.Graphs_Native60HzTorque_SimulatorNotRunning_Label.Visibility = Visibility.Hidden;
+				app.MainWindow.Graphs_Native360HzTorque_SimulatorNotRunning_Label.Visibility = Visibility.Hidden;
+				app.MainWindow.Simulator_SimulatorNotRunning_Label.Visibility = Visibility.Hidden;
 			} );
 
 			app.Logger.WriteLine( "[Simulator] <<< OnConnected" );
@@ -132,14 +135,15 @@ public class Simulator
 			_telemetryDataInitialized = false;
 			_tickCountLastFrame = null;
 
-			app.RacingWheel.Active = false;
-			app.RacingWheel.Suspend = true;
+			app.RacingWheel.UseSteeringWheelTorqueData = false;
+			app.RacingWheel.SuspendForceFeedback = true;
 			app.MultimediaTimer.Suspend = true;
 
 			app.Dispatcher.BeginInvoke( () =>
 			{
-				app.MainWindow.GraphsSteeringWheelTorque60HzSimNotRunning_Label.Visibility = Visibility.Visible;
-				app.MainWindow.GraphsSteeringWheelTorque360HzSimNotRunning_Label.Visibility = Visibility.Visible;
+				app.MainWindow.Graphs_Native60HzTorque_SimulatorNotRunning_Label.Visibility = Visibility.Visible;
+				app.MainWindow.Graphs_Native360HzTorque_SimulatorNotRunning_Label.Visibility = Visibility.Visible;
+				app.MainWindow.Simulator_SimulatorNotRunning_Label.Visibility = Visibility.Visible;
 			} );
 
 			app.Logger.WriteLine( "[Simulator] <<< OnDisconnected" );
@@ -175,13 +179,13 @@ public class Simulator
 
 			IsOnTrack = _irsdk.Data.GetBool( _isOnTrackDatum );
 
-			app.RacingWheel.Active = IsOnTrack;
+			app.RacingWheel.UseSteeringWheelTorqueData = IsOnTrack;
 
 			// suspend racing wheel force feedback if iracing ffb is enabled
 
 			SteeringFFBEnabled = _irsdk.Data.GetBool( _steeringFFBEnabledDatum );
 
-			app.RacingWheel.Suspend = SteeringFFBEnabled;
+			app.RacingWheel.SuspendForceFeedback = SteeringFFBEnabled;
 
 			// get steering wheel angle and max angle
 
@@ -201,20 +205,17 @@ public class Simulator
 
 			Velocity = MathF.Sqrt( VelocityX * VelocityX + VelocityY * VelocityY );
 
-			// poll the force feedback device
+			// set last frame tick count if its not been set yet
 
-			if ( _tickCountLastFrame != null )
-			{
-				app.DirectInput.PollForceFeedbackDevice( (float) ( _irsdk.Data.TickCount - (int) _tickCountLastFrame ) / _irsdk.Data.TickRate );
+			_tickCountLastFrame ??= _irsdk.Data.TickCount - 1;
 
-				SteeringWheelVelocity = app.DirectInput.ForceFeedbackWheelVelocity;
-			}
-			else
-			{
-				app.DirectInput.PollForceFeedbackDevice( 1f );
+			// poll direct input devices
 
-				SteeringWheelVelocity = 0f;
-			}
+			app.DirectInput.PollDevices( (float) ( _irsdk.Data.TickCount - (int) _tickCountLastFrame ) / _irsdk.Data.TickRate );
+
+			// trigger the app worker thread
+
+			app.TriggerWorkerThread();
 
 			// update tick count last frame
 
@@ -241,10 +242,6 @@ public class Simulator
 					_native360HzTorqueGraph.Advance();
 				}
 			}
-
-			// trigger the app worker thread
-
-			app.TriggerWorkerThread();
 		}
 	}
 
@@ -261,13 +258,13 @@ public class Simulator
 		{
 			_native60HzTorqueGraph.UpdateImage();
 
-			app.MainWindow.Native60HzTorque_MinMaxAvg.Content = $"{_native60HzTorqueStatistics.MinimumValue,5:F2} {_native60HzTorqueStatistics.MaximumValue,5:F2} {_native60HzTorqueStatistics.AverageValue,5:F2}";
-			app.MainWindow.Native60HzTorque_VarStdDev.Content = $"{_native60HzTorqueStatistics.Variance,5:F2} {_native60HzTorqueStatistics.StandardDeviation,5:F2}";
+			app.MainWindow.Graphs_Native60HzTorque_MinMaxAvg.Content = $"{_native60HzTorqueStatistics.MinimumValue,5:F2} {_native60HzTorqueStatistics.MaximumValue,5:F2} {_native60HzTorqueStatistics.AverageValue,5:F2}";
+			app.MainWindow.Graphs_Native60HzTorque_VarStdDev.Content = $"{_native60HzTorqueStatistics.Variance,5:F2} {_native60HzTorqueStatistics.StandardDeviation,5:F2}";
 
 			_native360HzTorqueGraph.UpdateImage();
 
-			app.MainWindow.Native360HzTorque_MinMaxAvg.Content = $"{_native360HzTorqueStatistics.MinimumValue,5:F2} {_native360HzTorqueStatistics.MaximumValue,5:F2} {_native360HzTorqueStatistics.AverageValue,5:F2}";
-			app.MainWindow.Native360HzTorque_VarStdDev.Content = $"{_native360HzTorqueStatistics.Variance,5:F2} {_native360HzTorqueStatistics.StandardDeviation,5:F2}";
+			app.MainWindow.Graphs_Native360HzTorque_MinMaxAvg.Content = $"{_native360HzTorqueStatistics.MinimumValue,5:F2} {_native360HzTorqueStatistics.MaximumValue,5:F2} {_native360HzTorqueStatistics.AverageValue,5:F2}";
+			app.MainWindow.Graphs_Native360HzTorque_VarStdDev.Content = $"{_native360HzTorqueStatistics.Variance,5:F2} {_native360HzTorqueStatistics.StandardDeviation,5:F2}";
 		}
 	}
 }

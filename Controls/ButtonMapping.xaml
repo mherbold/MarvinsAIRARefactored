@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="MarvinsAIRARefactored.Controls.ButtonMapping"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MarvinsAIRARefactored.Controls"
+             xmlns:components="clr-namespace:MarvinsAIRARefactored.Components"
+             mc:Ignorable="d"
+             d:Width="700"
+             d:Height="Auto">
+
+    <Border Margin="0,10,0,10" Padding="0,10,0,10" BorderThickness="2" CornerRadius="10" Background="#CC000000" BorderBrush="White">
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <local:ImageButton Grid.Column="0" x:Name="Record_ImageButton" LabelText="" BehindIcon="/MarvinsAIRARefactored;component/artwork/icon_record_off.png" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_record_on.png" Width="48" Height="48" Margin="10,0,10,0" Click="Record_ImageButton_Click"/>
+
+            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+
+                <Label x:Name="FirstButton_Label" Content="Line 1" Margin="0" Padding="0" FontSize="18" HorizontalAlignment="Center"/>
+                <Label x:Name="SecondButton_Label" Content="Line 2" Margin="0" Padding="0" FontSize="18" HorizontalAlignment="Center" />
+
+            </StackPanel>
+
+            <local:ImageButton Grid.Column="2" LabelText="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_trash.png" Width="48" Height="48" Margin="10,0,10,0" Click="TrashButton_Click"/>
+
+        </Grid>
+
+    </Border>
+
+</UserControl>

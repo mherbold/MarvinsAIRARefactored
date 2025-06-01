@@ -64,7 +64,7 @@
                     <ControlTemplate TargetType="{x:Type ToggleButton}">
                         <Border x:Name="templateRoot" Background="{StaticResource ComboBox.Background}" BorderBrush="{StaticResource ComboBox.Border}" BorderThickness="2" CornerRadius="4" SnapsToDevicePixels="true">
                             <Border x:Name="splitBorder" BorderBrush="Transparent" BorderThickness="0" HorizontalAlignment="Right" Margin="0,5,10,0" SnapsToDevicePixels="true">
-                                <Image Source="/Artwork/Round Button - Down.png" Stretch="None"/>
+                                <Image Source="/artwork/round_button_down_arrow.png" Stretch="None"/>
                             </Border>
                         </Border>
                         <ControlTemplate.Triggers>
@@ -327,7 +327,7 @@
             <Setter Property="Padding" Value="0"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
             <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="Background" Value="#B0000000"/>
+            <Setter Property="Background" Value="#D0000000"/>
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}"/>
 
@@ -389,7 +389,7 @@
 
         <SolidColorBrush x:Key="TabItem.Foreground" Color="#FFFFFFFF"/>
         <SolidColorBrush x:Key="TabItem.Selected.Background" Color="#8000FF00"/>
-        <SolidColorBrush x:Key="TabItem.Static.Background" Color="#80000000"/>
+        <SolidColorBrush x:Key="TabItem.Static.Background" Color="#A0000000"/>
         <SolidColorBrush x:Key="TabItem.MouseOver.Background" Color="#800000FF"/>
         <SolidColorBrush x:Key="TabItem.Disabled.Background" Color="#80FF0000"/>
 

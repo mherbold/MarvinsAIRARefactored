@@ -61,6 +61,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to AdminBoxx.
+        /// </summary>
+        internal static string AdminBoxx {
+            get {
+                return ResourceManager.GetString("AdminBoxx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Algorithm.
         /// </summary>
         internal static string Algorithm {
@@ -88,6 +97,60 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bias.
+        /// </summary>
+        internal static string Bias {
+            get {
+                return ResourceManager.GetString("Bias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Button.
+        /// </summary>
+        internal static string Button {
+            get {
+                return ResourceManager.GetString("Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click.
+        /// </summary>
+        internal static string Click {
+            get {
+                return ResourceManager.GetString("Click", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Compression Rate.
+        /// </summary>
+        internal static string CompressionRate {
+            get {
+                return ResourceManager.GetString("CompressionRate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to %/Nm.
+        /// </summary>
+        internal static string CompressionRateUnits {
+            get {
+                return ResourceManager.GetString("CompressionRateUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect To AdminBoxx.
+        /// </summary>
+        internal static string ConnectToAdminBoxx {
+            get {
+                return ResourceManager.GetString("ConnectToAdminBoxx", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Debug.
         /// </summary>
         internal static string Debug {
@@ -97,11 +160,65 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Detail Strength.
+        ///   Looks up a localized string similar to Delta Limit.
         /// </summary>
-        internal static string DetailStrength {
+        internal static string DeltaLimit {
             get {
-                return ResourceManager.GetString("DetailStrength", resourceCulture);
+                return ResourceManager.GetString("DeltaLimit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delta Limiter.
+        /// </summary>
+        internal static string DeltaLimiter {
+            get {
+                return ResourceManager.GetString("DeltaLimiter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Delta Limiter On 60 Hz.
+        /// </summary>
+        internal static string DeltaLimiterOn60Hz {
+            get {
+                return ResourceManager.GetString("DeltaLimiterOn60Hz", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  Nm/s.
+        /// </summary>
+        internal static string DeltaLimitUnits {
+            get {
+                return ResourceManager.GetString("DeltaLimitUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detail Boost.
+        /// </summary>
+        internal static string DetailBoost {
+            get {
+                return ResourceManager.GetString("DetailBoost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detail Booster.
+        /// </summary>
+        internal static string DetailBooster {
+            get {
+                return ResourceManager.GetString("DetailBooster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detail Booster On 60 Hz.
+        /// </summary>
+        internal static string DetailBoosterOn60Hz {
+            get {
+                return ResourceManager.GetString("DetailBoosterOn60Hz", resourceCulture);
             }
         }
         
@@ -138,6 +255,24 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string HeaderData {
             get {
                 return ResourceManager.GetString("HeaderData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hold.
+        /// </summary>
+        internal static string Hold {
+            get {
+                return ResourceManager.GetString("Hold", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Keyboard.
+        /// </summary>
+        internal static string Keyboard {
+            get {
+                return ResourceManager.GetString("Keyboard", resourceCulture);
             }
         }
         
@@ -241,11 +376,29 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to %.
+        /// </summary>
+        internal static string Percent {
+            get {
+                return ResourceManager.GetString("Percent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Power.
         /// </summary>
         internal static string Power {
             get {
                 return ResourceManager.GetString("Power", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Press The Record Button].
+        /// </summary>
+        internal static string PressTheRecordButton {
+            get {
+                return ResourceManager.GetString("PressTheRecordButton", resourceCulture);
             }
         }
         
@@ -349,11 +502,38 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Nm.
+        ///   Looks up a localized string similar to  Nm.
         /// </summary>
         internal static string TorqueUnits {
             get {
                 return ResourceManager.GetString("TorqueUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Update Button Mappings.
+        /// </summary>
+        internal static string UpdateButtonMappings {
+            get {
+                return ResourceManager.GetString("UpdateButtonMappings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [Waiting For Input].
+        /// </summary>
+        internal static string WaitingForInput {
+            get {
+                return ResourceManager.GetString("WaitingForInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ze Alan Le Twist.
+        /// </summary>
+        internal static string ZeAlanLeTwist {
+            get {
+                return ResourceManager.GetString("ZeAlanLeTwist", resourceCulture);
             }
         }
     }

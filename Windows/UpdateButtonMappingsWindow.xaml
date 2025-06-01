@@ -1,0 +1,39 @@
+﻿<Window x:Class="MarvinsAIRARefactored.Windows.UpdateButtonMappingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarvinsAIRARefactored.Windows"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:components="clr-namespace:MarvinsAIRARefactored.Components"
+        mc:Ignorable="d"
+        Title="{Binding Localization[UpdateButtonMappings]}"
+        Icon="/artwork/white_icon.ico"
+        Width="800"
+        Height="400"
+        ResizeMode="CanResizeWithGrip"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner"
+        Closed="Window_Closed"
+        MinWidth="600"
+        MinHeight="300">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static components:DataContext.Instance}"/>
+    </Window.DataContext>
+
+    <Window.Background>
+        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/artwork/simagic_fx_pro_wheel.png" Stretch="UniformToFill" Opacity="0.1"/>
+    </Window.Background>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <StackPanel x:Name="StackPanel" Margin="20">
+
+            <controls:ImageButton Width="48" Height="48" LabelText="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_plus.png" Margin="10" Click="PlusButton_Click"/>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</Window>

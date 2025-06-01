@@ -9,7 +9,7 @@
     <Version>2.0.$([MSBuild]::Subtract($([System.Math]::Floor($([MSBuild]::Divide($([System.DateTimeOffset]::UtcNow.ToUnixTimeSeconds()), 86400)))), 20180)).$([MSBuild]::Divide($([MSBuild]::Modulo($([System.DateTimeOffset]::UtcNow.ToUnixTimeSeconds()), 86400)), 60))</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     <Platforms>AnyCPU;x64</Platforms>
-    <ApplicationIcon>Artwork\white-icon.ico</ApplicationIcon>
+    <ApplicationIcon>artwork\white_icon.ico</ApplicationIcon>
     <UseWindowsForms>True</UseWindowsForms>
   </PropertyGroup>
 
@@ -18,22 +18,43 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Artwork\Background.png" />
-    <None Remove="Artwork\Dial Marker.png" />
-    <None Remove="Artwork\Dial.png" />
-    <None Remove="Artwork\Power LED - Green.png" />
-    <None Remove="Artwork\Power LED - Red.png" />
-    <None Remove="Artwork\Power LED - Yellow.png" />
-    <None Remove="Artwork\Round Button - Down.png" />
-    <None Remove="Artwork\Round Button - Minus.png" />
-    <None Remove="Artwork\Round Button - Plus.png" />
-    <None Remove="Artwork\Round Button - Reset FFB.png" />
-    <None Remove="Artwork\Round Button - Test FFB.png" />
-    <None Remove="Artwork\Switch - Off.png" />
-    <None Remove="Artwork\Switch - On.png" />
-    <None Remove="Fonts\14 Segment LED Regular.ttf" />
-    <None Remove="GeneratedRaceCarInterior.png" />
-    <None Remove="white-icon.ico" />
+    <None Remove="Artwork\background.png" />
+    <None Remove="Artwork\dial.png" />
+    <None Remove="Artwork\dial_marker.png" />
+    <None Remove="Artwork\icon_down_small.png" />
+    <None Remove="Artwork\icon_minus_small.png" />
+    <None Remove="Artwork\icon_plus.png" />
+    <None Remove="Artwork\icon_plus_small.png" />
+    <None Remove="Artwork\icon_record_off.png" />
+    <None Remove="Artwork\icon_reset_ffb.png" />
+    <None Remove="Artwork\icon_test_ffb.png" />
+    <None Remove="Artwork\icon_trash.png" />
+    <None Remove="Artwork\power_led_black.png" />
+    <None Remove="Artwork\power_led_green.png" />
+    <None Remove="Artwork\power_led_red.png" />
+    <None Remove="Artwork\power_led_yellow.png" />
+    <None Remove="Artwork\round_button_disabled.png" />
+    <None Remove="Artwork\round_button_disabled_small.png" />
+    <None Remove="Artwork\round_button_down_arrow.png" />
+    <None Remove="Artwork\round_button_mapped.png" />
+    <None Remove="Artwork\round_button_mapped_small.png" />
+    <None Remove="Artwork\round_button_pressed.png" />
+    <None Remove="Artwork\round_button_pressed_small.png" />
+    <None Remove="Artwork\simagic_fx_pro_wheel.png" />
+    <None Remove="Artwork\switch_off.png" />
+    <None Remove="Artwork\switch_on.png" />
+    <None Remove="Artwork\white_icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Artwork\icon_record_off.png" />
+    <Resource Include="Artwork\power_led_black.png" />
+    <Resource Include="Artwork\round_button_disabled.png" />
+    <Resource Include="Artwork\round_button_disabled_small.png" />
+    <Resource Include="Artwork\round_button_mapped.png" />
+    <Resource Include="Artwork\round_button_mapped_small.png" />
+    <Resource Include="Artwork\simagic_fx_pro_wheel.png" />
+    <Resource Include="Artwork\white_icon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -46,6 +67,8 @@
 
   <ItemGroup>
     <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
+    <PackageReference Include="System.IO.Ports" Version="9.0.5" />
+    <PackageReference Include="System.Management" Version="9.0.5" />
     <PackageReference Include="System.Windows.Extensions" Version="9.0.5" />
   </ItemGroup>
 
@@ -54,20 +77,28 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Artwork\Background.png" />
-    <Resource Include="Artwork\Dial Marker.png" />
-    <Resource Include="Artwork\Dial.png" />
-    <Resource Include="Artwork\Power LED - Green.png" />
-    <Resource Include="Artwork\Power LED - Red.png" />
-    <Resource Include="Artwork\Power LED - Yellow.png" />
-    <Resource Include="Artwork\Round Button - Down.png" />
-    <Resource Include="Artwork\Round Button - Minus.png" />
-    <Resource Include="Artwork\Round Button - Plus.png" />
-    <Resource Include="Artwork\Round Button - Reset FFB.png" />
-    <Resource Include="Artwork\Round Button - Test FFB.png" />
-    <Resource Include="Artwork\Switch - Off.png" />
-    <Resource Include="Artwork\Switch - On.png" />
-    <Resource Include="Artwork\white-icon.ico" />
+    <Resource Include="Artwork\background.png" />
+    <Resource Include="Artwork\dial.png" />
+    <Resource Include="Artwork\dial_marker.png" />
+    <Resource Include="Artwork\icon_down_small.png" />
+    <Resource Include="Artwork\icon_minus_small.png" />
+    <Resource Include="Artwork\icon_plus.png" />
+    <Resource Include="Artwork\icon_plus_small.png" />
+    <Resource Include="Artwork\icon_record_on.png" />
+    <Resource Include="Artwork\icon_reset_ffb.png" />
+    <Resource Include="Artwork\icon_test_ffb.png" />
+    <Resource Include="Artwork\icon_trash.png" />
+    <Resource Include="Artwork\power_led_green.png" />
+    <Resource Include="Artwork\power_led_red.png" />
+    <Resource Include="Artwork\power_led_yellow.png" />
+    <Resource Include="Artwork\round_button_down_arrow.png" />
+    <Resource Include="Artwork\round_button.png" />
+    <Resource Include="Artwork\round_button_small.png" />
+    <Resource Include="Artwork\round_button_pressed.png" />
+    <Resource Include="Artwork\round_button_pressed_small.png" />
+    <Resource Include="Artwork\switch_off.png" />
+    <Resource Include="Artwork\switch_on.png" />
+    <Resource Include="Artwork\white_icon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -77,5 +108,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy &quot;$(ProjectDir)Resources\Resources.resx&quot; &quot;C:\Users\marvi\OneDrive\Documents\MarvinsAIRA Refactored\Languages\&quot; /Y /I" />
+  </Target>
 
 </Project>

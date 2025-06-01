@@ -7,110 +7,38 @@ namespace MarvinsAIRARefactored.Components;
 
 public class RacingWheel
 {
-	private bool _suspend = true;
+	private const int _maxSteeringWheelTorque360HzIndex = Simulator.IRSDK_360HZ_SAMPLES_PER_FRAME + 1;
+	private const int _unsuspendCounterStartValue = 500;
+	private const int _fadeCounterStartValue = 1000;
+	private const int _testSignalCounterStartValue = 1000;
+
+	private Guid? _currentRacingWheelGuid = null;
+
+	private bool _isSuspended = true;
+	private bool _usingSteeringWheelTorqueData = false;
+
+	public Guid? NextRacingWheelGuid { private get; set; } = null;
+	public bool SuspendForceFeedback { get; set; } = true; // true if simulator is disconnected or if FFB is enabled in the simulator
+	public bool ResetForceFeedback { private get; set; } = false; // set to true manually (via reset button)
+	public bool UseSteeringWheelTorqueData { private get; set; } = false; // false if simulator is disconnected or if driver is not on track
+	public bool UpdateSteeringWheelTorqueBuffer { private get; set; } = false; // true when simulator has new torque data to be copied
+	public bool ActivateCrashProtection { private get; set; } = false;
+	public bool ActivateCurbProtection { private get; set; } = false;
+	public bool PlayTestSignal { private get; set; } = false; // set to true manually (via test button)
+
 	private int _unsuspendCounter = 0;
-
-	public bool Suspend
-	{
-		get => _suspend;
-
-		set
-		{
-			if ( value != _suspend )
-			{
-				_suspend = value;
-
-				var app = App.Instance;
-
-				if ( app != null )
-				{
-					if ( _suspend )
-					{
-						app.Logger.WriteLine( "[RacingWheel] Requesting suspend of force feedback" );
-					}
-					else
-					{
-						app.Logger.WriteLine( "[RacingWheel] Requesting resumption of force feedback" );
-					}
-
-					app.MainWindow.UpdateRacingWheelPowerIcon();
-				}
-			}
-
-			if ( value )
-			{
-				_unsuspendCounter = 1500;
-			}
-		}
-	}
-
-	private bool _active = false;
-	private int _activeCounter = 0;
-	private const int _activeCounterMaxValue = 1000;
-
-	public bool Active
-	{
-		private get => _active;
-
-		set
-		{
-			if ( value != _active )
-			{
-				_active = value;
-
-				var app = App.Instance;
-
-				if ( app != null )
-				{
-					if ( _active )
-					{
-						app.Logger.WriteLine( "[RacingWheel] Requesting fade in of force feedback" );
-					}
-					else
-					{
-						app.Logger.WriteLine( "[RacingWheel] Requesting fade out of force feedback" );
-					}
-
-					app.MainWindow.UpdateRacingWheelPowerIcon();
-				}
-
-				_activeCounter = _activeCounterMaxValue;
-			}
-		}
-	}
-
-	public bool UpdateSteeringWheelTorqueBuffer { private get; set; } = true;
-
-	private Guid? _racingWheelGuid = null;
-	private Guid? _nextRacingWheelGuid = null;
-
-	public Guid? NextRacingWheelGuid
-	{
-		private get => _nextRacingWheelGuid;
-
-		set
-		{
-			var app = App.Instance;
-
-			app?.Logger.WriteLine( "[RacingWheel] Setting next racing wheel GUID" );
-
-			_nextRacingWheelGuid = value;
-		}
-	}
-
+	private int _fadeCounter = 0;
 	private int _testSignalCounter = 0;
-
-	public bool PlayTestSignal { private get; set; } = false;
-
-	public bool Reset { private get; set; } = false;
 
 	private readonly float[] _steeringWheelTorque360Hz = new float[ Simulator.IRSDK_360HZ_SAMPLES_PER_FRAME + 2 ];
 
-	private const int _maxSteeringWheelTorque360HzIndex = Simulator.IRSDK_360HZ_SAMPLES_PER_FRAME + 1;
+	private float _lastSteeringWheelTorque360Hz = 0f;
+	private float _lastUnfadedOutputTorque = 0f;
+	private float _runningSteeringWheelTorque360Hz = 0f;
 
 	private float _elapsedMilliseconds = 0f;
 
-	public static void SetAlgorithmComboBoxItemsSource( ComboBox comboBox )
+	public static void SetComboBoxItemsSource( ComboBox comboBox )
 	{
 		var app = App.Instance;
 
@@ -118,11 +46,25 @@ public class RacingWheel
 		{
 			app.Logger.WriteLine( "[RacingWheel] SetAlgorithmComboBoxItemsSource >>>" );
 
-			comboBox.ItemsSource = new Dictionary<Settings.RacingWheelAlgorithmEnum, string>
+			var selectedItem = comboBox.SelectedItem as KeyValuePair<Settings.RacingWheelAlgorithmEnum, string>?;
+
+			var dictionary = new Dictionary<Settings.RacingWheelAlgorithmEnum, string>
 			{
 				{ Settings.RacingWheelAlgorithmEnum.Native60Hz, DataContext.Instance.Localization[ "Native60Hz" ] },
-				{ Settings.RacingWheelAlgorithmEnum.Native360Hz, DataContext.Instance.Localization[ "Native360Hz" ] }
+				{ Settings.RacingWheelAlgorithmEnum.Native360Hz, DataContext.Instance.Localization[ "Native360Hz" ] },
+				{ Settings.RacingWheelAlgorithmEnum.DetailBooster, DataContext.Instance.Localization[ "DetailBooster" ] },
+				{ Settings.RacingWheelAlgorithmEnum.DeltaLimiter, DataContext.Instance.Localization[ "DeltaLimiter" ] },
+				{ Settings.RacingWheelAlgorithmEnum.DetailBoosterOn60Hz, DataContext.Instance.Localization[ "DetailBoosterOn60Hz" ] },
+				{ Settings.RacingWheelAlgorithmEnum.DeltaLimiterOn60Hz, DataContext.Instance.Localization[ "DeltaLimiterOn60Hz" ] },
+				{ Settings.RacingWheelAlgorithmEnum.ZeAlanLeTwist, DataContext.Instance.Localization[ "ZeAlanLeTwist" ] }
 			};
+
+			comboBox.ItemsSource = dictionary;
+
+			if ( selectedItem.HasValue )
+			{
+				comboBox.SelectedItem = dictionary.FirstOrDefault( keyValuePair => keyValuePair.Key.Equals( selectedItem.Value.Key ) ); ;
+			}
 
 			app.Logger.WriteLine( "[RacingWheel] <<< SetAlgorithmComboBoxItemsSource" );
 		}
@@ -141,7 +83,9 @@ public class RacingWheel
 
 				if ( PlayTestSignal )
 				{
-					_testSignalCounter = 1000;
+					_testSignalCounter = _testSignalCounterStartValue;
+
+					app.Logger.WriteLine( "[RacingWheel] Sending test signal" );
 
 					PlayTestSignal = false;
 				}
@@ -150,60 +94,104 @@ public class RacingWheel
 
 				if ( _testSignalCounter > 0 )
 				{
-					testSignalTorque = MathF.Cos( _testSignalCounter * MathF.Tau / 12f ) * MathF.Sin( _testSignalCounter * MathF.Tau / 1000f * 2f ) * 0.2f;
+					testSignalTorque = MathF.Cos( _testSignalCounter * MathF.Tau / 12f ) * MathF.Sin( _testSignalCounter * MathF.Tau / _testSignalCounterStartValue * 2f ) * 0.2f;
 
 					_testSignalCounter--;
 				}
 
+				// check if we want to suspend or unsuspend force feedback
+
+				if ( SuspendForceFeedback != _isSuspended )
+				{
+					_isSuspended = SuspendForceFeedback;
+
+					if ( _isSuspended )
+					{
+						app.Logger.WriteLine( "[RacingWheel] Requesting suspend of force feedback" );
+
+						_unsuspendCounter = _unsuspendCounterStartValue;
+					}
+					else
+					{
+						app.Logger.WriteLine( "[RacingWheel] Requesting resumption of force feedback" );
+					}
+
+					app.MainWindow.UpdateRacingWheelPowerButton();
+				}
+
+				// check if we want to fade in or out the steering wheel torque data
+
+				if ( UseSteeringWheelTorqueData != _usingSteeringWheelTorqueData )
+				{
+					_usingSteeringWheelTorqueData = UseSteeringWheelTorqueData;
+
+					if ( _usingSteeringWheelTorqueData )
+					{
+						app.Logger.WriteLine( "[RacingWheel] Requesting fade in of steering wheel torque data" );
+					}
+					else
+					{
+						app.Logger.WriteLine( "[RacingWheel] Requesting fade out of steering wheel torque data" );
+					}
+
+					app.MainWindow.UpdateRacingWheelPowerButton();
+
+					if ( DataContext.Instance.Settings.RacingWheelFadeEnabled )
+					{
+						_fadeCounter = _fadeCounterStartValue;
+					}
+				}
+
 				// check if we want to reset the racing wheel device
 
-				if ( Reset )
+				if ( ResetForceFeedback )
 				{
-					_nextRacingWheelGuid = _racingWheelGuid;
+					ResetForceFeedback = false;
+					NextRacingWheelGuid = _currentRacingWheelGuid;
 
-					Reset = false;
+					app.Logger.WriteLine( "[RacingWheel] Requesting reset of force feedback device" );
 				}
 
 				// if power button is off, or suspend is requested, or unsuspend counter is still counting down, then suspend the racing wheel force feedback
 
-				if ( !DataContext.Instance.Settings.RacingWheelEnableForceFeedback || Suspend || ( _unsuspendCounter > 0 ) )
+				if ( !DataContext.Instance.Settings.RacingWheelEnableForceFeedback || _isSuspended || ( _unsuspendCounter > 0 ) )
 				{
-					if ( _racingWheelGuid != null )
+					if ( _currentRacingWheelGuid != null )
 					{
 						app.Logger.WriteLine( "[RacingWheel] Suspending racing wheel force feedback" );
 
 						app.DirectInput.ShutdownForceFeedback();
 
-						_nextRacingWheelGuid = _racingWheelGuid;
+						NextRacingWheelGuid = _currentRacingWheelGuid;
 
-						_racingWheelGuid = null;
+						_currentRacingWheelGuid = null;
 					}
 
-					Interlocked.Decrement( ref _unsuspendCounter );
+					_unsuspendCounter--;
 
 					return;
 				}
 
 				// if next racing wheel guid is set then re-initialize force feedback
 
-				if ( _nextRacingWheelGuid != null )
+				if ( NextRacingWheelGuid != null )
 				{
-					if ( _racingWheelGuid != null )
+					if ( _currentRacingWheelGuid != null )
 					{
 						app.Logger.WriteLine( "[RacingWheel] Uninitializing racing wheel force feedback" );
 
 						app.DirectInput.ShutdownForceFeedback();
 
-						_racingWheelGuid = null;
+						_currentRacingWheelGuid = null;
 					}
 
 					app.Logger.WriteLine( "[RacingWheel] Initializing racing wheel force feedback" );
 
-					_racingWheelGuid = _nextRacingWheelGuid;
+					_currentRacingWheelGuid = NextRacingWheelGuid;
 
-					_nextRacingWheelGuid = null;
+					NextRacingWheelGuid = null;
 
-					app.DirectInput.InitializeForceFeedback( (Guid) _racingWheelGuid );
+					app.DirectInput.InitializeForceFeedback( (Guid) _currentRacingWheelGuid );
 				}
 
 				// update elapsed milliseconds
@@ -214,7 +202,7 @@ public class RacingWheel
 
 				if ( UpdateSteeringWheelTorqueBuffer )
 				{
-					if ( _active )
+					if ( _usingSteeringWheelTorqueData )
 					{
 						_steeringWheelTorque360Hz[ 0 ] = _steeringWheelTorque360Hz[ 7 ];
 						_steeringWheelTorque360Hz[ 1 ] = app.Simulator.SteeringWheelTorque_ST[ 0 ];
@@ -224,17 +212,6 @@ public class RacingWheel
 						_steeringWheelTorque360Hz[ 5 ] = app.Simulator.SteeringWheelTorque_ST[ 4 ];
 						_steeringWheelTorque360Hz[ 6 ] = app.Simulator.SteeringWheelTorque_ST[ 5 ];
 						_steeringWheelTorque360Hz[ 7 ] = app.Simulator.SteeringWheelTorque_ST[ 5 ];
-					}
-					else if ( _activeCounter > 0 )
-					{
-						_steeringWheelTorque360Hz[ 0 ] = _steeringWheelTorque360Hz[ 7 ];
-						_steeringWheelTorque360Hz[ 1 ] = _steeringWheelTorque360Hz[ 7 ];
-						_steeringWheelTorque360Hz[ 2 ] = _steeringWheelTorque360Hz[ 7 ];
-						_steeringWheelTorque360Hz[ 3 ] = _steeringWheelTorque360Hz[ 7 ];
-						_steeringWheelTorque360Hz[ 4 ] = _steeringWheelTorque360Hz[ 7 ];
-						_steeringWheelTorque360Hz[ 5 ] = _steeringWheelTorque360Hz[ 7 ];
-						_steeringWheelTorque360Hz[ 6 ] = _steeringWheelTorque360Hz[ 7 ];
-						_steeringWheelTorque360Hz[ 7 ] = _steeringWheelTorque360Hz[ 7 ];
 					}
 					else
 					{
@@ -274,7 +251,7 @@ public class RacingWheel
 
 				// this part is done only if we have a racing wheel device initialized
 
-				if ( _racingWheelGuid != null )
+				if ( _currentRacingWheelGuid != null )
 				{
 					// calculate output torque
 
@@ -283,15 +260,86 @@ public class RacingWheel
 					switch ( DataContext.Instance.Settings.RacingWheelAlgorithm )
 					{
 						case Settings.RacingWheelAlgorithmEnum.Native60Hz:
-
+						{
 							outputTorque = steeringWheelTorque60Hz / DataContext.Instance.Settings.RacingWheelMaxForce;
+
 							break;
+						}
 
 						case Settings.RacingWheelAlgorithmEnum.Native360Hz:
-
+						{
 							outputTorque = steeringWheelTorque360Hz / DataContext.Instance.Settings.RacingWheelMaxForce;
+
 							break;
+						}
+
+						case Settings.RacingWheelAlgorithmEnum.DetailBooster:
+						{
+							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + ( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz ) * ( 1f + DataContext.Instance.Settings.RacingWheelDetailBoost ), steeringWheelTorque360Hz, DataContext.Instance.Settings.RacingWheelBias );
+
+							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.Instance.Settings.RacingWheelMaxForce;
+
+							break;
+						}
+
+						case Settings.RacingWheelAlgorithmEnum.DeltaLimiter:
+						{
+							var deltaLimit = DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f;
+
+							var limitedDeltaSteeringWheelTorque360Hz = Math.Clamp( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz, -deltaLimit, deltaLimit );
+
+							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + limitedDeltaSteeringWheelTorque360Hz, steeringWheelTorque360Hz, DataContext.Instance.Settings.RacingWheelBias );
+
+							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.Instance.Settings.RacingWheelMaxForce;
+
+							break;
+						}
+
+						case Settings.RacingWheelAlgorithmEnum.DetailBoosterOn60Hz:
+						{
+							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + ( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz ) * ( 1f + DataContext.Instance.Settings.RacingWheelDetailBoost ), steeringWheelTorque60Hz, DataContext.Instance.Settings.RacingWheelBias );
+
+							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.Instance.Settings.RacingWheelMaxForce;
+
+							break;
+						}
+
+						case Settings.RacingWheelAlgorithmEnum.DeltaLimiterOn60Hz:
+						{
+							var deltaLimit = DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f;
+
+							var limitedDeltaSteeringWheelTorque360Hz = Math.Clamp( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz, -deltaLimit, deltaLimit );
+
+							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + limitedDeltaSteeringWheelTorque360Hz, steeringWheelTorque360Hz, DataContext.Instance.Settings.RacingWheelBias );
+
+							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.Instance.Settings.RacingWheelMaxForce;
+
+							break;
+						}
+
+						case Settings.RacingWheelAlgorithmEnum.ZeAlanLeTwist:
+						{
+							var deltaLimit = DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f;
+
+							var delta = steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz;
+
+							var compressibleDelta = MathF.Max( 0f, MathF.Abs( delta ) - deltaLimit );
+
+							var deltaScale = MathF.Max( 0f, 1f - ( compressibleDelta * DataContext.Instance.Settings.RacingWheelCompressionRate ) );
+
+							var compressedDeltaSteeringWheelTorque360Hz = ( compressibleDelta > 0f ) ? delta : delta + MathF.Sign( delta ) * compressibleDelta * deltaScale;
+
+							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + compressedDeltaSteeringWheelTorque360Hz, steeringWheelTorque360Hz, DataContext.Instance.Settings.RacingWheelBias );
+
+							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.Instance.Settings.RacingWheelMaxForce;
+
+							break;
+						}
 					}
+
+					// save last 360Hz steering wheel torque
+
+					_lastSteeringWheelTorque360Hz = steeringWheelTorque360Hz;
 
 					// reduce forces when parked
 
@@ -312,9 +360,9 @@ public class RacingWheel
 
 							outputTorque += sign * deltaToMax * 2f * DataContext.Instance.Settings.RacingWheelSoftLockStrength;
 
-							if ( MathF.Sign( app.Simulator.SteeringWheelVelocity ) != sign )
+							if ( MathF.Sign( app.DirectInput.ForceFeedbackWheelVelocity ) != sign )
 							{
-								outputTorque += app.Simulator.SteeringWheelVelocity * DataContext.Instance.Settings.RacingWheelSoftLockStrength;
+								outputTorque += app.DirectInput.ForceFeedbackWheelVelocity * DataContext.Instance.Settings.RacingWheelSoftLockStrength;
 							}
 						}
 					}
@@ -327,23 +375,29 @@ public class RacingWheel
 
 					if ( DataContext.Instance.Settings.RacingWheelFriction > 0f )
 					{
-						outputTorque += app.Simulator.SteeringWheelVelocity * DataContext.Instance.Settings.RacingWheelFriction;
+						outputTorque += app.DirectInput.ForceFeedbackWheelVelocity * DataContext.Instance.Settings.RacingWheelFriction;
 					}
 
 					// apply fade
 
-					if ( _activeCounter > 0 )
+					if ( _fadeCounter > 0 )
 					{
-						var fadeScale = (float) _activeCounter / _activeCounterMaxValue;
+						var fadeScale = (float) _fadeCounter / _fadeCounterStartValue;
 
-						if ( _active )
+						if ( _usingSteeringWheelTorqueData )
 						{
-							fadeScale = 1f - fadeScale;
+							outputTorque *= 1f - fadeScale;
+						}
+						else
+						{
+							outputTorque = _lastUnfadedOutputTorque * fadeScale;
 						}
 
-						outputTorque *= fadeScale;
-
-						_activeCounter--;
+						_fadeCounter--;
+					}
+					else
+					{
+						_lastUnfadedOutputTorque = outputTorque;
 					}
 
 					// update force feedback torque
