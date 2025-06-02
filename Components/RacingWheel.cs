@@ -10,7 +10,8 @@ public class RacingWheel
 	private const int _maxSteeringWheelTorque360HzIndex = Simulator.IRSDK_360HZ_SAMPLES_PER_FRAME + 1;
 
 	private const float _unsuspendTimeMS = 1000f;
-	private const float _fadeTimeMS = 2000f;
+	private const float _fadeInTimeMS = 2000f;
+	private const float _fadeOutTimeMS = 500f;
 	private const float _testSignalTime = 2000f;
 	private const float _crashProtectionRecoveryTime = 1000f;
 
@@ -34,6 +35,7 @@ public class RacingWheel
 	private float _fadeTimerMS = 0f;
 	private float _testSignalTimerMS = 0f;
 	private float _crashProtectionTimerMS = 0f;
+	private float _curbProtectionTimerMS = 0f;
 
 	private readonly float[] _steeringWheelTorque360Hz = new float[ Simulator.IRSDK_360HZ_SAMPLES_PER_FRAME + 2 ];
 
@@ -102,9 +104,9 @@ public class RacingWheel
 
 				if ( _testSignalTimerMS > 0f )
 				{
-					testSignalTorque = MathF.Cos( _testSignalTimerMS * MathF.Tau / 12f ) * MathF.Sin( _testSignalTimerMS * MathF.Tau / _testSignalTime * 2f ) * 0.2f;
+					testSignalTorque = MathF.Cos( _testSignalTimerMS * MathF.Tau / 20f ) * MathF.Sin( _testSignalTimerMS * MathF.Tau / _testSignalTime * 2f ) * 0.2f;
 
-					_testSignalTimerMS--;
+					_testSignalTimerMS -= deltaMilliseconds;
 				}
 
 				// check if we want to suspend or unsuspend force feedback
@@ -133,20 +135,22 @@ public class RacingWheel
 				{
 					_usingSteeringWheelTorqueData = UseSteeringWheelTorqueData;
 
-					if ( _usingSteeringWheelTorqueData )
-					{
-						app.Logger.WriteLine( "[RacingWheel] Requesting fade in of steering wheel torque data" );
-					}
-					else
-					{
-						app.Logger.WriteLine( "[RacingWheel] Requesting fade out of steering wheel torque data" );
-					}
-
 					app.MainWindow.UpdateRacingWheelPowerButton();
 
 					if ( DataContext.Instance.Settings.RacingWheelFadeEnabled )
 					{
-						_fadeTimerMS = _fadeTimeMS;
+						if ( _usingSteeringWheelTorqueData )
+						{
+							app.Logger.WriteLine( "[RacingWheel] Requesting fade in of steering wheel torque data" );
+
+							_fadeTimerMS = _fadeInTimeMS;
+						}
+						else
+						{
+							app.Logger.WriteLine( "[RacingWheel] Requesting fade out of steering wheel torque data" );
+
+							_fadeTimerMS = _fadeOutTimeMS;
+						}
 					}
 				}
 
@@ -287,6 +291,50 @@ public class RacingWheel
 
 				_autoTorque = _peakTorque * ( 1f + DataContext.Instance.Settings.RacingWheelAutoMargin );
 
+				// update crash protection
+
+				if ( ActivateCrashProtection )
+				{
+					_crashProtectionTimerMS = DataContext.Instance.Settings.RacingWheelCrashProtectionDuration * 1000f + _crashProtectionRecoveryTime;
+
+					ActivateCrashProtection = false;
+				}
+
+				app.Debug.Label_3 = $"_crashProtectionTimerMS = {_crashProtectionTimerMS:F0}";
+
+				var crashProtectionScale = 1f;
+
+				if ( _crashProtectionTimerMS > 0f )
+				{
+					crashProtectionScale = 1f - DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction * ( ( _crashProtectionTimerMS <= _crashProtectionRecoveryTime ) ? ( _crashProtectionTimerMS / _crashProtectionRecoveryTime ) : 1f );
+
+					_crashProtectionTimerMS -= deltaMilliseconds;
+				}
+
+				app.Debug.Label_4 = $"crashProtectionScale = {crashProtectionScale * 100:F0}";
+
+				// update curb protection
+
+				if ( ActivateCurbProtection )
+				{
+					_curbProtectionTimerMS = DataContext.Instance.Settings.RacingWheelCurbProtectionDuration * 1000f;
+
+					ActivateCurbProtection = false;
+				}
+
+				app.Debug.Label_9 = $"_curbProtectionTimerMS = {_curbProtectionTimerMS:F0}";
+
+				var curbProtectionLerpFactor = 0f;
+
+				if ( _curbProtectionTimerMS > 0f )
+				{
+					curbProtectionLerpFactor = DataContext.Instance.Settings.RacingWheelCurbProtectionForceReduction;
+
+					_curbProtectionTimerMS -= deltaMilliseconds;
+				}
+
+				app.Debug.Label_10 = $"curbProtectionLerpFactor = {curbProtectionLerpFactor * 100:F0}%";
+
 				// this part is done only if we have a racing wheel device initialized
 
 				if ( _currentRacingWheelGuid != null )
@@ -313,7 +361,9 @@ public class RacingWheel
 
 						case Settings.RacingWheelAlgorithmEnum.DetailBooster:
 						{
-							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + ( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz ) * ( 1f + DataContext.Instance.Settings.RacingWheelDetailBoost ), steeringWheelTorque360Hz, DataContext.Instance.Settings.RacingWheelBias );
+							var detailBoost = Misc.Lerp( 1f + DataContext.Instance.Settings.RacingWheelDetailBoost, 1f, curbProtectionLerpFactor );
+
+							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + ( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz ) * detailBoost, steeringWheelTorque360Hz, DataContext.Instance.Settings.RacingWheelBias );
 
 							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.Instance.Settings.RacingWheelMaxForce;
 
@@ -322,7 +372,7 @@ public class RacingWheel
 
 						case Settings.RacingWheelAlgorithmEnum.DeltaLimiter:
 						{
-							var deltaLimit = DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f;
+							var deltaLimit = Misc.Lerp( DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f, 1f, curbProtectionLerpFactor );
 
 							var limitedDeltaSteeringWheelTorque360Hz = Math.Clamp( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz, -deltaLimit, deltaLimit );
 
@@ -335,7 +385,9 @@ public class RacingWheel
 
 						case Settings.RacingWheelAlgorithmEnum.DetailBoosterOn60Hz:
 						{
-							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + ( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz ) * ( 1f + DataContext.Instance.Settings.RacingWheelDetailBoost ), steeringWheelTorque60Hz, DataContext.Instance.Settings.RacingWheelBias );
+							var detailBoost = Misc.Lerp( 1f + DataContext.Instance.Settings.RacingWheelDetailBoost, 1f, curbProtectionLerpFactor );
+
+							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + ( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz ) * detailBoost, steeringWheelTorque60Hz, DataContext.Instance.Settings.RacingWheelBias );
 
 							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.Instance.Settings.RacingWheelMaxForce;
 
@@ -344,7 +396,7 @@ public class RacingWheel
 
 						case Settings.RacingWheelAlgorithmEnum.DeltaLimiterOn60Hz:
 						{
-							var deltaLimit = DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f;
+							var deltaLimit = Misc.Lerp( DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f, 1f, curbProtectionLerpFactor );
 
 							var limitedDeltaSteeringWheelTorque360Hz = Math.Clamp( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz, -deltaLimit, deltaLimit );
 
@@ -357,7 +409,7 @@ public class RacingWheel
 
 						case Settings.RacingWheelAlgorithmEnum.ZeAlanLeTwist:
 						{
-							var deltaLimit = DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f;
+							var deltaLimit = Misc.Lerp( DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f, 1f, curbProtectionLerpFactor );
 
 							var delta = steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz;
 
@@ -381,25 +433,7 @@ public class RacingWheel
 
 					// apply crash protection
 
-					if ( ActivateCrashProtection )
-					{
-						_crashProtectionTimerMS = DataContext.Instance.Settings.RacingWheelCrashProtectionDuration * 1000f + _crashProtectionRecoveryTime;
-
-						ActivateCrashProtection = false;
-					}
-
-					app.Debug.Label_3 = $"_crashProtectionTimerMS = {_crashProtectionTimerMS:F0}";
-
-					if ( _crashProtectionTimerMS > 0f )
-					{
-						var crashProtectionScale = 1f - DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction * ( ( _crashProtectionTimerMS <= _crashProtectionRecoveryTime ) ? ( _crashProtectionTimerMS / _crashProtectionRecoveryTime ) : 1f );
-
-						app.Debug.Label_4 = $"crashProtectionScale = {crashProtectionScale * 100:F0}";
-
-						outputTorque *= crashProtectionScale;
-
-						_crashProtectionTimerMS -= deltaMilliseconds;
-					}
+					outputTorque *= crashProtectionScale;
 
 					// reduce forces when parked
 
@@ -441,16 +475,18 @@ public class RacingWheel
 
 					if ( _fadeTimerMS > 0f )
 					{
-						var fadeScale = _fadeTimerMS / _fadeTimeMS;
-
 						if ( _usingSteeringWheelTorqueData )
 						{
+							var fadeScale = _fadeTimerMS / _fadeInTimeMS;
+
 							app.Debug.Label_7 = $"fadeScale = {fadeScale * 100:F2}% (fading in)";
 
 							outputTorque *= 1f - fadeScale;
 						}
 						else
 						{
+							var fadeScale = _fadeTimerMS / _fadeOutTimeMS;
+
 							app.Debug.Label_7 = $"fadeScale = {fadeScale * 100:F0}% (fading out)";
 
 							outputTorque = _lastUnfadedOutputTorque * fadeScale;
@@ -460,6 +496,8 @@ public class RacingWheel
 					}
 					else
 					{
+						app.Debug.Label_7 = $"fadeScale = OFF";
+
 						_lastUnfadedOutputTorque = outputTorque;
 					}
 

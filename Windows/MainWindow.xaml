@@ -13,7 +13,7 @@
         MinHeight="350"
         Width="1100"
         Height="550"
-        d:Height="1000"
+        d:Height="1500"
         ResizeMode="CanResizeWithGrip"
         WindowStyle="SingleBorderWindow">
 
@@ -104,18 +104,18 @@
                                 </Grid.ColumnDefinitions>
 
                                 <StackPanel Grid.Column="0" Margin="40,0,40,0">
-                                    <Label Content="{Binding Localization[CurrentForce]}" HorizontalAlignment="Center"/>
-                                    <Label x:Name="RacingWheel_CurrentForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" HorizontalAlignment="Center"/>
+                                    <Label Content="{Binding Localization[CurrentForce]}" HorizontalAlignment="Center" Padding="0"/>
+                                    <Label x:Name="RacingWheel_CurrentForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1" Margin="40,0,40,0">
-                                    <Label Content="{Binding Localization[PeakForce]}" HorizontalAlignment="Center"/>
-                                    <Label x:Name="RacingWheel_PeakForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" HorizontalAlignment="Center"/>
+                                    <Label Content="{Binding Localization[PeakForce]}" HorizontalAlignment="Center" Padding="0"/>
+                                    <Label x:Name="RacingWheel_PeakForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2" Margin="40,0,40,0">
-                                    <Label Content="{Binding Localization[AutoForce]}" HorizontalAlignment="Center"/>
-                                    <Label x:Name="RacingWheel_AutoForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" HorizontalAlignment="Center"/>
+                                    <Label Content="{Binding Localization[AutoForce]}" HorizontalAlignment="Center" Padding="0"/>
+                                    <Label x:Name="RacingWheel_AutoForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                             </Grid>
@@ -188,6 +188,26 @@
                             <controls:KnobControl Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Duration]}" Value="{Binding Settings.RacingWheelCrashProtectionDuration, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCrashProtectionDurationString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.5" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationMinusButtonMappings}"/>
 
                             <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[ForceReduction]}" Value="{Binding Settings.RacingWheelCrashProtectionForceReduction, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCrashProtectionForceReductionString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionForceReductionPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionForceReductionMinusButtonMappings}"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox x:Name="RacingWheel_CurbProtection_GroupBox" Header="{Binding Localization[CurbProtection]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,10">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:KnobControl Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[ShockVelocity]}" Value="{Binding Settings.RacingWheelCurbProtectionShockVelocity, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCurbProtectionShockVelocityString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionShockVelocityPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionShockVelocityMinusButtonMappings}"/>
+
+                            <controls:KnobControl Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Duration]}" Value="{Binding Settings.RacingWheelCurbProtectionDuration, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCurbProtectionDurationString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionDurationPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionDurationMinusButtonMappings}"/>
+
+                            <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[ForceReduction]}" Value="{Binding Settings.RacingWheelCurbProtectionForceReduction, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCurbProtectionForceReductionString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionForceReductionPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionForceReductionMinusButtonMappings}"/>
 
                         </Grid>
 
@@ -428,10 +448,11 @@
                         <Label x:Name="Debug_Label_3" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 3"/>
                         <Label x:Name="Debug_Label_4" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 4"/>
                         <Label x:Name="Debug_Label_5" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 5"/>
-                        <Label x:Name="Debug_Label_6" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 6" />
+                        <Label x:Name="Debug_Label_6" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 6"/>
                         <Label x:Name="Debug_Label_7" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 7"/>
                         <Label x:Name="Debug_Label_8" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 8"/>
                         <Label x:Name="Debug_Label_9" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 9"/>
+                        <Label x:Name="Debug_Label_10" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 10"/>
 
                     </StackPanel>
 

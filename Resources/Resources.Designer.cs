@@ -196,6 +196,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Curb Protection.
+        /// </summary>
+        internal static string CurbProtection {
+            get {
+                return ResourceManager.GetString("CurbProtection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Current Force.
         /// </summary>
         internal static string CurrentForce {
@@ -570,6 +579,24 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string SessionInformation {
             get {
                 return ResourceManager.GetString("SessionInformation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shock Velocity.
+        /// </summary>
+        internal static string ShockVelocity {
+            get {
+                return ResourceManager.GetString("ShockVelocity", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  m/s.
+        /// </summary>
+        internal static string ShockVelocityUnits {
+            get {
+                return ResourceManager.GetString("ShockVelocityUnits", resourceCulture);
             }
         }
         

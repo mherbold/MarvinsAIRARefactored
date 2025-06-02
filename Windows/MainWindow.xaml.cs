@@ -143,35 +143,40 @@ public partial class MainWindow : Window
 		Dispatcher.BeginInvoke( () =>
 		{
 			var racingWheelAlgorithmRowTwoGridVisibility = Visibility.Collapsed;
-			var detailBoostKnobControlVisibility = Visibility.Hidden;
-			var deltaLimitKnobControlVisibility = Visibility.Hidden;
-			var biasKnobControlVisibility = Visibility.Hidden;
+			var racingWheelDetailBoostKnobControlVisibility = Visibility.Hidden;
+			var racingWheelDeltaLimitKnobControlVisibility = Visibility.Hidden;
+			var racingWheelBiasKnobControlVisibility = Visibility.Hidden;
+			var racingWheelCurbProtectionGroupBoxVisibility = Visibility.Collapsed;
 
 			switch ( Components.DataContext.Instance.Settings.RacingWheelAlgorithm )
 			{
 				case Settings.RacingWheelAlgorithmEnum.DetailBooster:
 				case Settings.RacingWheelAlgorithmEnum.DetailBoosterOn60Hz:
-					detailBoostKnobControlVisibility = Visibility.Visible;
-					biasKnobControlVisibility = Visibility.Visible;
+					racingWheelDetailBoostKnobControlVisibility = Visibility.Visible;
+					racingWheelBiasKnobControlVisibility = Visibility.Visible;
+					racingWheelCurbProtectionGroupBoxVisibility = Visibility.Visible;
 					break;
 
 				case Settings.RacingWheelAlgorithmEnum.DeltaLimiter:
 				case Settings.RacingWheelAlgorithmEnum.DeltaLimiterOn60Hz:
-					deltaLimitKnobControlVisibility = Visibility.Visible;
-					biasKnobControlVisibility = Visibility.Visible;
+					racingWheelDeltaLimitKnobControlVisibility = Visibility.Visible;
+					racingWheelBiasKnobControlVisibility = Visibility.Visible;
+					racingWheelCurbProtectionGroupBoxVisibility = Visibility.Visible;
 					break;
 
 				case Settings.RacingWheelAlgorithmEnum.ZeAlanLeTwist:
 					racingWheelAlgorithmRowTwoGridVisibility = Visibility.Visible;
-					deltaLimitKnobControlVisibility = Visibility.Visible;
-					biasKnobControlVisibility = Visibility.Visible;
+					racingWheelDeltaLimitKnobControlVisibility = Visibility.Visible;
+					racingWheelBiasKnobControlVisibility = Visibility.Visible;
+					racingWheelCurbProtectionGroupBoxVisibility = Visibility.Visible;
 					break;
 			}
 
 			RacingWheel_AlgorithmRowTwo_Grid.Visibility = racingWheelAlgorithmRowTwoGridVisibility;
-			RacingWheel_DetailBoost_KnobControl.Visibility = detailBoostKnobControlVisibility;
-			RacingWheel_DeltaLimit_KnobControl.Visibility = deltaLimitKnobControlVisibility;
-			RacingWheel_Bias_KnobControl.Visibility = biasKnobControlVisibility;
+			RacingWheel_DetailBoost_KnobControl.Visibility = racingWheelDetailBoostKnobControlVisibility;
+			RacingWheel_DeltaLimit_KnobControl.Visibility = racingWheelDeltaLimitKnobControlVisibility;
+			RacingWheel_Bias_KnobControl.Visibility = racingWheelBiasKnobControlVisibility;
+			RacingWheel_CurbProtection_GroupBox.Visibility = racingWheelCurbProtectionGroupBoxVisibility;
 		} );
 	}
 

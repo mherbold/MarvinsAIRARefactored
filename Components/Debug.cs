@@ -12,6 +12,7 @@ public class Debug
 	public string Label_7 { private get; set; } = string.Empty;
 	public string Label_8 { private get; set; } = string.Empty;
 	public string Label_9 { private get; set; } = string.Empty;
+	public string Label_10 { private get; set; } = string.Empty;
 
 	public void Tick( App app )
 	{
@@ -26,6 +27,7 @@ public class Debug
 			app.MainWindow.Debug_Label_7.Content = Label_7;
 			app.MainWindow.Debug_Label_8.Content = Label_8;
 			app.MainWindow.Debug_Label_9.Content = Label_9;
+			app.MainWindow.Debug_Label_10.Content = Label_10;
 		}
 	}
 }

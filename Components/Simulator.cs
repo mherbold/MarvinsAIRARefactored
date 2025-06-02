@@ -15,11 +15,16 @@ public class Simulator
 
 	public IRacingSdk IRSDK { get => _irsdk; }
 
+	public float[] CFShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
+	public float[] CRShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
 	public float GForce { get; private set; } = 0f;
 	public bool IsConnected { get => _irsdk.IsConnected; }
 	public bool IsOnTrack { get; private set; } = false;
-	public bool OnPitRoad { get; private set; } = false;
+	public float[] LFShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
+	public float[] LRShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
 	public IRacingSdkEnum.TrkLoc PlayerTrackSurface { get; private set; } = IRacingSdkEnum.TrkLoc.NotInWorld;
+	public float[] RFShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
+	public float[] RRShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
 	public bool SteeringFFBEnabled { get; private set; } = false;
 	public float SteeringWheelAngle { get; private set; } = 0f;
 	public float SteeringWheelAngleMax { get; private set; } = 0f;
@@ -32,9 +37,14 @@ public class Simulator
 	private int? _tickCountLastFrame = null;
 	private float? _velocityLastFrame = null;
 
+	private IRacingSdkDatum? _cfShockVel_STDatum = null;
+	private IRacingSdkDatum? _crShockVel_STDatum = null;
 	private IRacingSdkDatum? _isOnTrackDatum = null;
-	private IRacingSdkDatum? _onPitRoadDatum = null;
+	private IRacingSdkDatum? _lfShockVel_STDatum = null;
+	private IRacingSdkDatum? _lrShockVel_STDatum = null;
 	private IRacingSdkDatum? _playerTrackSurfaceDatum = null;
+	private IRacingSdkDatum? _rfShockVel_STDatum = null;
+	private IRacingSdkDatum? _rrShockVel_STDatum = null;
 	private IRacingSdkDatum? _steeringFFBEnabledDatum = null;
 	private IRacingSdkDatum? _steeringWheelAngleDatum = null;
 	private IRacingSdkDatum? _steeringWheelAngleMaxDatum = null;
@@ -172,7 +182,6 @@ public class Simulator
 			if ( !_telemetryDataInitialized )
 			{
 				_isOnTrackDatum = _irsdk.Data.TelemetryDataProperties[ "IsOnTrack" ];
-				_onPitRoadDatum = _irsdk.Data.TelemetryDataProperties[ "OnPitRoad" ];
 				_playerTrackSurfaceDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerTrackSurface" ];
 				_steeringFFBEnabledDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringFFBEnabled" ];
 				_steeringWheelAngleDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringWheelAngle" ];
@@ -180,6 +189,20 @@ public class Simulator
 				_steeringWheelTorque_STDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringWheelTorque_ST" ];
 				_velocityXDatum = _irsdk.Data.TelemetryDataProperties[ "VelocityX" ];
 				_velocityYDatum = _irsdk.Data.TelemetryDataProperties[ "VelocityY" ];
+
+				_cfShockVel_STDatum = null;
+				_crShockVel_STDatum = null;
+				_lfShockVel_STDatum = null;
+				_lrShockVel_STDatum = null;
+				_rfShockVel_STDatum = null;
+				_rrShockVel_STDatum = null;
+
+				_irsdk.Data.TelemetryDataProperties.TryGetValue( "CFshockVel_ST", out _cfShockVel_STDatum );
+				_irsdk.Data.TelemetryDataProperties.TryGetValue( "CRshockVel_ST", out _crShockVel_STDatum );
+				_irsdk.Data.TelemetryDataProperties.TryGetValue( "LRshockVel_ST", out _lfShockVel_STDatum );
+				_irsdk.Data.TelemetryDataProperties.TryGetValue( "LRshockVel_ST", out _lrShockVel_STDatum );
+				_irsdk.Data.TelemetryDataProperties.TryGetValue( "RFshockVel_ST", out _rfShockVel_STDatum );
+				_irsdk.Data.TelemetryDataProperties.TryGetValue( "RRshockVel_ST", out _rrShockVel_STDatum );
 
 				_telemetryDataInitialized = true;
 			}
@@ -208,10 +231,6 @@ public class Simulator
 			IsOnTrack = _irsdk.Data.GetBool( _isOnTrackDatum );
 
 			app.RacingWheel.UseSteeringWheelTorqueData = IsOnTrack;
-
-			// get on pit road status
-
-			OnPitRoad = _irsdk.Data.GetBool( _onPitRoadDatum );
 
 			// suspend racing wheel force feedback if iracing ffb is enabled
 
@@ -258,11 +277,67 @@ public class Simulator
 
 			// crash protection processing
 
-			if ( ( DataContext.Instance.Settings.RacingWheelCrashProtectionGForce < 20.0f ) && ( DataContext.Instance.Settings.RacingWheelCrashProtectionDuration > 0f ) && ( DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction > 0f ) )
+			if ( ( DataContext.Instance.Settings.RacingWheelCrashProtectionGForce > 0f ) && ( DataContext.Instance.Settings.RacingWheelCrashProtectionDuration > 0f ) && ( DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction > 0f ) )
 			{
 				if ( MathF.Abs( GForce ) >= DataContext.Instance.Settings.RacingWheelCrashProtectionGForce )
 				{
 					app.RacingWheel.ActivateCrashProtection = true;
+				}
+			}
+
+			// get next 360 Hz shock velocity samples
+
+			if ( _cfShockVel_STDatum != null )
+			{
+				_irsdk.Data.GetFloatArray( _cfShockVel_STDatum, CFShockVel_ST, 0, CFShockVel_ST.Length );
+			}
+
+			if ( _crShockVel_STDatum != null )
+			{
+				_irsdk.Data.GetFloatArray( _crShockVel_STDatum, CRShockVel_ST, 0, CRShockVel_ST.Length );
+			}
+
+			if ( _lfShockVel_STDatum != null )
+			{
+				_irsdk.Data.GetFloatArray( _lfShockVel_STDatum, LFShockVel_ST, 0, LFShockVel_ST.Length );
+			}
+
+			if ( _lrShockVel_STDatum != null )
+			{
+				_irsdk.Data.GetFloatArray( _lrShockVel_STDatum, LRShockVel_ST, 0, LRShockVel_ST.Length );
+			}
+
+			if ( _rfShockVel_STDatum != null )
+			{
+				_irsdk.Data.GetFloatArray( _rfShockVel_STDatum, RFShockVel_ST, 0, RFShockVel_ST.Length );
+			}
+
+			if ( _rrShockVel_STDatum != null )
+			{
+				_irsdk.Data.GetFloatArray( _rrShockVel_STDatum, RRShockVel_ST, 0, RRShockVel_ST.Length );
+			}
+
+			// curb protection processing
+
+			if ( ( DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity > 0f ) && ( DataContext.Instance.Settings.RacingWheelCurbProtectionDuration > 0f ) && ( DataContext.Instance.Settings.RacingWheelCurbProtectionForceReduction > 0f ) )
+			{
+				var maxShockVelocity = 0f;
+
+				for ( var i = 0; i < IRSDK_360HZ_SAMPLES_PER_FRAME; i++ )
+				{
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CFShockVel_ST[ i ] ) );
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CRShockVel_ST[ i ] ) );
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LFShockVel_ST[ i ] ) );
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LRShockVel_ST[ i ] ) );
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RFShockVel_ST[ i ] ) );
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RRShockVel_ST[ i ] ) );
+				}
+
+				app.Debug.Label_8 = $"maxShockVelocity = {maxShockVelocity:F2} m/s";
+
+				if ( maxShockVelocity >= DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity )
+				{
+					app.RacingWheel.ActivateCurbProtection = true;
 				}
 			}
 

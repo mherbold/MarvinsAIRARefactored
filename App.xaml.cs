@@ -217,7 +217,7 @@ public partial class App : Application
 				DataContext.Instance.Settings.RacingWheelBias -= 0.01f;
 			}
 
-			// racing compression rate knob
+			// racing wheel compression rate knob
 
 			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCompressionRatePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
@@ -227,6 +227,78 @@ public partial class App : Application
 			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCompressionRateMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				DataContext.Instance.Settings.RacingWheelCompressionRate -= 0.01f;
+			}
+
+			// racing wheel crash protection g force knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionGForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCrashProtectionGForce += 0.5f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionGForceMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCrashProtectionGForce -= 0.5f;
+			}
+
+			// racing wheel crash protection duration knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionDurationPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCrashProtectionDuration += 0.5f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionDurationMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCrashProtectionDuration -= 0.5f;
+			}
+
+			// racing wheel crash protection force reduction knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionForceReductionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionForceReductionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction -= 0.05f;
+			}
+
+			// racing wheel curb protection shock velocity knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocityPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity += 0.1f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocityMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity -= 0.1f;
+			}
+
+			// racing wheel curb protection duration knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionDurationPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCurbProtectionDuration += 0.1f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionDurationMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCurbProtectionDuration -= 0.1f;
+			}
+
+			// racing wheel curb protection force reduction knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionForceReductionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCurbProtectionForceReduction += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionForceReductionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.RacingWheelCurbProtectionForceReduction -= 0.05f;
 			}
 
 			// racing wheel parked strength knob

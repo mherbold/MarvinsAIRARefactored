@@ -249,7 +249,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelCrashProtectionGForce == 20f )
+			if ( _racingWheelCrashProtectionGForce == 0f )
 			{
 				RacingWheelCrashProtectionGForceString = DataContext.Instance.Localization[ "OFF" ];
 			}
@@ -389,6 +389,168 @@ public class Settings : INotifyPropertyChanged
 	public ButtonMappings RacingWheelCrashProtectionForceReductionPlusButtonMappings { get; set; } = new();
 
 	public ButtonMappings RacingWheelCrashProtectionForceReductionMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Curb protection shock velocity
+
+	private float _racingWheelCurbProtectionShockVelocity = 0.5f;
+
+	public float RacingWheelCurbProtectionShockVelocity
+	{
+		get => _racingWheelCurbProtectionShockVelocity;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _racingWheelCurbProtectionShockVelocity )
+			{
+				_racingWheelCurbProtectionShockVelocity = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelCurbProtectionShockVelocity == 0f )
+			{
+				RacingWheelCurbProtectionShockVelocityString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelCurbProtectionShockVelocityString = $"{_racingWheelCurbProtectionShockVelocity:F2}{DataContext.Instance.Localization[ "ShockVelocityUnits" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelCurbProtectionShockVelocityString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelCurbProtectionShockVelocityString
+	{
+		get => _racingWheelCurbProtectionShockVelocityString;
+
+		set
+		{
+			if ( value != _racingWheelCurbProtectionShockVelocityString )
+			{
+				_racingWheelCurbProtectionShockVelocityString= value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings RacingWheelCurbProtectionShockVelocityPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings RacingWheelCurbProtectionShockVelocityMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Curb protection duration
+
+	private float _racingWheelCurbProtectionDuration = 0.1f;
+
+	public float RacingWheelCurbProtectionDuration
+	{
+		get => _racingWheelCurbProtectionDuration;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _racingWheelCurbProtectionDuration )
+			{
+				_racingWheelCurbProtectionDuration = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelCurbProtectionDuration == 0f )
+			{
+				RacingWheelCurbProtectionDurationString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelCurbProtectionDurationString = $"{_racingWheelCurbProtectionDuration:F2}{DataContext.Instance.Localization[ "SecondsUnits" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelCurbProtectionDurationString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelCurbProtectionDurationString
+	{
+		get => _racingWheelCurbProtectionDurationString;
+
+		set
+		{
+			if ( value != _racingWheelCurbProtectionDurationString )
+			{
+				_racingWheelCurbProtectionDurationString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings RacingWheelCurbProtectionDurationPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings RacingWheelCurbProtectionDurationMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Curb protection force reduction
+
+	private float _racingWheelCurbProtectionForceReduction = 0.75f;
+
+	public float RacingWheelCurbProtectionForceReduction
+	{
+		get => _racingWheelCurbProtectionForceReduction;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _racingWheelCurbProtectionForceReduction )
+			{
+				_racingWheelCurbProtectionForceReduction = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelCurbProtectionForceReduction == 0f )
+			{
+				RacingWheelCurbProtectionForceReductionString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelCurbProtectionForceReductionString = $"{_racingWheelCurbProtectionForceReduction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelCurbProtectionForceReductionString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelCurbProtectionForceReductionString
+	{
+		get => _racingWheelCurbProtectionForceReductionString;
+
+		set
+		{
+			if ( value != _racingWheelCurbProtectionForceReductionString )
+			{
+				_racingWheelCurbProtectionForceReductionString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings RacingWheelCurbProtectionForceReductionPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings RacingWheelCurbProtectionForceReductionMinusButtonMappings { get; set; } = new();
 
 	#endregion
 

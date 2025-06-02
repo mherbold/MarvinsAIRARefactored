@@ -393,4 +393,16 @@
     <value> sec</value>
     <comment>Abbreviation for seconds (time)</comment>
   </data>
+  <data name="ShockVelocityUnits" xml:space="preserve">
+    <value> m/s</value>
+    <comment>Abbreviation for meters per second</comment>
+  </data>
+  <data name="CurbProtection" xml:space="preserve">
+    <value>Curb Protection</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ShockVelocity" xml:space="preserve">
+    <value>Shock Velocity</value>
+    <comment>Racing wheel</comment>
+  </data>
 </root>
