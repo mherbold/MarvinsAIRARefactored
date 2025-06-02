@@ -133,6 +133,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brake.
+        /// </summary>
+        internal static string Brake {
+            get {
+                return ResourceManager.GetString("Brake", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Button.
         /// </summary>
         internal static string Button {
@@ -156,6 +165,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Click {
             get {
                 return ResourceManager.GetString("Click", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clutch.
+        /// </summary>
+        internal static string Clutch {
+            get {
+                return ResourceManager.GetString("Clutch", resourceCulture);
             }
         }
         
@@ -511,6 +529,51 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pedal Effects.
+        /// </summary>
+        internal static string PedalEffects {
+            get {
+                return ResourceManager.GetString("PedalEffects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pedals.
+        /// </summary>
+        internal static string Pedals {
+            get {
+                return ResourceManager.GetString("Pedals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [No Compatible Simagic Pedals Found].
+        /// </summary>
+        internal static string PedalsNone {
+            get {
+                return ResourceManager.GetString("PedalsNone", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simagic P1000 Pedals.
+        /// </summary>
+        internal static string PedalsP1000 {
+            get {
+                return ResourceManager.GetString("PedalsP1000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Simagic P2000 Pedals.
+        /// </summary>
+        internal static string PedalsP2000 {
+            get {
+                return ResourceManager.GetString("PedalsP2000", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to %.
         /// </summary>
         internal static string Percent {
@@ -628,6 +691,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Strength.
+        /// </summary>
+        internal static string Strength {
+            get {
+                return ResourceManager.GetString("Strength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Switches.
         /// </summary>
         internal static string Switches {
@@ -660,6 +732,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string ThisLanguage {
             get {
                 return ResourceManager.GetString("ThisLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Throttle.
+        /// </summary>
+        internal static string Throttle {
+            get {
+                return ResourceManager.GetString("Throttle", resourceCulture);
             }
         }
         

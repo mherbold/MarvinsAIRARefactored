@@ -23,16 +23,25 @@ public partial class KnobControl : UserControl
 		InitializeComponent();
 
 		KnobImage.RenderTransform = _knobRotation;
+
+		UpdateLabelVisual();
 	}
 
 	#region Dependency Properties
 
-	public static readonly DependencyProperty TitleProperty = DependencyProperty.Register( nameof( Title ), typeof( string ), typeof( KnobControl ), new PropertyMetadata( "MaxForce" ) );
+	public static readonly DependencyProperty TitleProperty = DependencyProperty.Register( nameof( Title ), typeof( string ), typeof( KnobControl ), new PropertyMetadata( string.Empty, OnTitleChanged ) );
 
 	public string Title
 	{
 		get => (string) GetValue( TitleProperty );
 		set => SetValue( TitleProperty, value );
+	}
+
+	private static void OnTitleChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
+	{
+		var control = (KnobControl) d;
+
+		control.UpdateLabelVisual();
 	}
 
 	public static readonly DependencyProperty ValueProperty = DependencyProperty.Register( nameof( Value ), typeof( float ), typeof( KnobControl ), new PropertyMetadata( 0f, OnValueChanged ) );
@@ -160,6 +169,18 @@ public partial class KnobControl : UserControl
 		Value = newValue;
 
 		ValueChangedCallback?.Invoke( newValue );
+	}
+
+	private void UpdateLabelVisual()
+	{
+		if ( Title == string.Empty )
+		{
+			Label.Visibility = Visibility.Collapsed;
+		}
+		else
+		{
+			Label.Visibility = Visibility.Visible;
+		}
 	}
 
 	private void UpdateKnobVisual( float oldValue, float newValue )

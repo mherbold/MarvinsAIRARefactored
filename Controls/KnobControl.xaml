@@ -13,12 +13,11 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalAlignment="Center"/>
+        <Label x:Name="Label" Grid.Row="0" Content="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalAlignment="Center"/>
 
-        <Border Grid.Row="2" BorderBrush="White" BorderThickness="2" Padding="10,4,10,4" CornerRadius="4">
+        <Border Grid.Row="1" BorderBrush="White" BorderThickness="2" Padding="10,4,10,4" CornerRadius="4">
 
             <Border.Background>
                 <LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
@@ -45,7 +44,7 @@
 
                     <local:MappableImageButton LabelText="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_plus_small.png" Padding="0" Margin="1" Click="Plus_Click" Small="True" ButtonMappings="{Binding PlusButtonMappings, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                     <local:MappableImageButton LabelText="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_minus_small.png" Padding="0" Margin="1" Click="Minus_Click" Small="True" ButtonMappings="{Binding MinusButtonMappings, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
-                    
+
                 </StackPanel>
 
             </Grid>

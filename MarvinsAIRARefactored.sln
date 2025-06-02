@@ -6,9 +6,12 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvinsAIRARefactored", "MarvinsAIRARefactored.csproj", "{47D4F509-459D-4DDE-9A42-86F944F2FF6C}"
 	ProjectSection(ProjectDependencies) = postProject
 		{A390E578-1750-F1B6-74F0-BC080A0C9AAB} = {A390E578-1750-F1B6-74F0-BC080A0C9AAB}
+		{E610D340-46FB-1A2F-2786-C15E54D42918} = {E610D340-46FB-1A2F-2786-C15E54D42918}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRSDKSharper", "..\IRSDKSharper\IRSDKSharper.csproj", "{A390E578-1750-F1B6-74F0-BC080A0C9AAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimagicHPR", "..\SimagicHPR\SimagicHPR.csproj", "{E610D340-46FB-1A2F-2786-C15E54D42918}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -34,6 +37,14 @@ Global
 		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|x64.ActiveCfg = Release|x64
 		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|x64.Build.0 = Release|x64
+		{E610D340-46FB-1A2F-2786-C15E54D42918}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E610D340-46FB-1A2F-2786-C15E54D42918}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E610D340-46FB-1A2F-2786-C15E54D42918}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{E610D340-46FB-1A2F-2786-C15E54D42918}.Debug|x64.Build.0 = Debug|Any CPU
+		{E610D340-46FB-1A2F-2786-C15E54D42918}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E610D340-46FB-1A2F-2786-C15E54D42918}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E610D340-46FB-1A2F-2786-C15E54D42918}.Release|x64.ActiveCfg = Release|Any CPU
+		{E610D340-46FB-1A2F-2786-C15E54D42918}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

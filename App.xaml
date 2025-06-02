@@ -36,7 +36,7 @@
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="20"/>
+                                <RowDefinition Height="10"/>
                             </Grid.RowDefinitions>
                             <Border Background="{TemplateBinding Background}" BorderBrush="Transparent" BorderThickness="{TemplateBinding BorderThickness}" Grid.Column="0" Grid.ColumnSpan="4" Grid.RowSpan="3" Grid.Row="1"/>
                             <Border BorderBrush="#80A08080" BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="10" Grid.ColumnSpan="4" Grid.RowSpan="3" Grid.Row="1">

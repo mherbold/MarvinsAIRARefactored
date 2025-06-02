@@ -21,6 +21,7 @@ public partial class App : Application
 
 	public Logger Logger { get; private set; }
 	public RacingWheel RacingWheel { get; private set; }
+	public Pedals Pedals { get; private set; }
 	public SettingsFile SettingsFile { get; private set; }
 	public AdminBoxx AdminBoxx { get; private set; }
 	public Debug Debug { get; private set; }
@@ -46,6 +47,7 @@ public partial class App : Application
 
 		Logger = new();
 		RacingWheel = new();
+		Pedals = new();
 		SettingsFile = new();
 		AdminBoxx = new();
 		Debug = new();
@@ -69,12 +71,13 @@ public partial class App : Application
 
 		Misc.DisableThrottling();
 
-		if ( !Directory.Exists( App.DocumentsFolder ) )
+		if ( !Directory.Exists( DocumentsFolder ) )
 		{
-			Directory.CreateDirectory( App.DocumentsFolder );
+			Directory.CreateDirectory( DocumentsFolder );
 		}
 
 		Logger.Initialize();
+		Pedals.Initialize();
 		SettingsFile.Initialize();
 		DirectInput.Initialize();
 		MultimediaTimer.Initialize();
@@ -84,7 +87,7 @@ public partial class App : Application
 
 		GC.Collect();
 
-		MainWindow.Resources = App.Current.Resources;
+		MainWindow.Resources = Current.Resources;
 
 		MainWindow.Show();
 		MainWindow.Initialize();
@@ -392,6 +395,7 @@ public partial class App : Application
 
 				app.Dispatcher.BeginInvoke( () =>
 				{
+					app.Pedals.Tick( app );
 					app.RacingWheel.Tick( app );
 					app.SettingsFile.Tick( app );
 					app.AdminBoxx.Tick( app );

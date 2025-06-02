@@ -405,4 +405,40 @@
     <value>Shock Velocity</value>
     <comment>Racing wheel</comment>
   </data>
+  <data name="Pedals" xml:space="preserve">
+    <value>Pedals</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="PedalsP1000" xml:space="preserve">
+    <value>Simagic P1000 Pedals</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="PedalsP2000" xml:space="preserve">
+    <value>Simagic P2000 Pedals</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="PedalsNone" xml:space="preserve">
+    <value>[No Compatible Simagic Pedals Found]</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="Clutch" xml:space="preserve">
+    <value>Clutch</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Brake" xml:space="preserve">
+    <value>Brake</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Throttle" xml:space="preserve">
+    <value>Throttle</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="PedalEffects" xml:space="preserve">
+    <value>Pedal Effects</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>Strength</value>
+    <comment>Pedals</comment>
+  </data>
 </root>

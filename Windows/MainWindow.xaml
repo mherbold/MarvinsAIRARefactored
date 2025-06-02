@@ -39,7 +39,7 @@
 
                     <GroupBox Header="{Binding Localization[Device]}">
 
-                        <Grid Margin="0,10,0,10">
+                        <Grid Margin="0,10,0,20">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -54,9 +54,9 @@
                                     <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
 
-                                <Label Grid.Row="0" Content="{Binding Localization[RacingWheelDevice]}"/>
+                                <Label Grid.Row="0" Content="{Binding Localization[RacingWheelDevice]}" HorizontalAlignment="Center"/>
 
-                                <ComboBox Grid.Row="1" x:Name="RacingWheel_Device_ComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.RacingWheelDeviceGuid}" VerticalContentAlignment="Center" />
+                                <ComboBox Grid.Row="1" x:Name="RacingWheel_Device_ComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.RacingWheelDeviceGuid}" VerticalContentAlignment="Center"/>
 
                             </Grid>
 
@@ -128,7 +128,7 @@
 
                         <StackPanel>
 
-                            <Grid Margin="0,10,0,10" x:Name="RacingWheel_AlgorithmRowOne_Grid">
+                            <Grid Margin="0,10,0,20" x:Name="RacingWheel_AlgorithmRowOne_Grid">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -157,7 +157,7 @@
 
                             </Grid>
 
-                            <Grid Margin="0,10,0,10" x:Name="RacingWheel_AlgorithmRowTwo_Grid">
+                            <Grid Margin="0,0,0,20" x:Name="RacingWheel_AlgorithmRowTwo_Grid">
 
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*"/>
@@ -175,7 +175,7 @@
 
                     <GroupBox Header="{Binding Localization[CrashProtection]}" Margin="0,10,0,0">
 
-                        <Grid Margin="0,10,0,10">
+                        <Grid Margin="0,10,0,20">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -195,7 +195,7 @@
 
                     <GroupBox x:Name="RacingWheel_CurbProtection_GroupBox" Header="{Binding Localization[CurbProtection]}" Margin="0,10,0,0">
 
-                        <Grid Margin="0,10,0,10">
+                        <Grid Margin="0,10,0,20">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -215,7 +215,7 @@
 
                     <GroupBox Header="{Binding Localization[OtherFeatures]}" Margin="0,10,0,0">
 
-                        <Grid Margin="0,10,0,10">
+                        <Grid Margin="0,10,0,20">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -235,7 +235,115 @@
 
                     <GroupBox Header="{Binding Localization[Switches]}" Margin="0,10,0,0">
 
-                        <controls:Switch Margin="0,20,0,10" IsOn="{Binding Settings.RacingWheelFadeEnabled, Mode=TwoWay}" LabelText="{Binding Localization[FadeForceFeedback]}"/>
+                        <controls:Switch Margin="0,20,0,20" IsOn="{Binding Settings.RacingWheelFadeEnabled, Mode=TwoWay}" LabelText="{Binding Localization[FadeForceFeedback]}"/>
+
+                    </GroupBox>
+
+                </StackPanel>
+
+            </TabItem>
+
+            <TabItem x:Name="Pedals_TabItem" Header="{Binding Localization[Pedals]}">
+
+                <StackPanel Margin="10">
+
+                    <GroupBox Header="{Binding Localization[Device]}">
+
+                        <Label x:Name="Pedals_Device_Label" Margin="10" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" VerticalAlignment="Center"/>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Clutch]}" Margin="0,10,0,0">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="1" Content="1" Padding="0"/>
+                                    <Label Grid.Column="1" Grid.Row="0" Content="{Binding Localization[PedalEffects]}" HorizontalAlignment="Center"/>
+                                    <ComboBox Grid.Column="1" Grid.Row="1" x:Name="Pedals_Clutch_Effect_ComboBox_1" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalClutchEffect1}" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsClutchEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect1StrengthString}" SmallValueChangeStep="0.01" LargeValueChangeStep="1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.PedalsClutchEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect1StrengthMinusButtonMappings}"/>
+
+                            </Grid>
+                            
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Content="2" Padding="0"/>
+                                    <ComboBox Grid.Column="1" x:Name="Pedals_Clutch_Effect_ComboBox_2" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalClutchEffect2}" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsClutchEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect2StrengthString}" SmallValueChangeStep="0.01" LargeValueChangeStep="1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.PedalsClutchEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect2StrengthMinusButtonMappings}"/>
+
+                            </Grid>
+
+                            <Grid Margin="0,10,0,20">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Content="3" Padding="0"/>
+                                    <ComboBox Grid.Column="1" x:Name="Pedals_Clutch_Effect_ComboBox_3" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalClutchEffect3}" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsClutchEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect3StrengthString}" SmallValueChangeStep="0.01" LargeValueChangeStep="1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.PedalsClutchEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect3StrengthMinusButtonMappings}"/>
+
+                            </Grid>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Brake]}" Margin="0,10,0,0">
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Throttle]}" Margin="0,10,0,0">
 
                     </GroupBox>
 
