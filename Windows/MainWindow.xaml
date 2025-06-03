@@ -289,7 +289,7 @@
 
                     <GroupBox Header="{Binding Localization[Frequency]}" Margin="0,10,0,0">
 
-                        <Grid>
+                        <Grid Margin="0,10,0,20">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
@@ -307,7 +307,7 @@
 
                     <GroupBox Header="{Binding Localization[Amplitude]}" Margin="0,10,0,0">
 
-                        <Grid>
+                        <Grid Margin="0,10,0,20">
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*"/>
