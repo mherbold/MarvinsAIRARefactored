@@ -433,7 +433,7 @@ public class Settings : INotifyPropertyChanged
 		{
 			if ( value != _racingWheelCurbProtectionShockVelocityString )
 			{
-				_racingWheelCurbProtectionShockVelocityString= value;
+				_racingWheelCurbProtectionShockVelocityString = value;
 
 				OnPropertyChanged();
 			}
@@ -675,7 +675,7 @@ public class Settings : INotifyPropertyChanged
 		ZeAlanLeTwist,
 	};
 
-	private RacingWheelAlgorithmEnum _racingWheelAlgorithm = RacingWheelAlgorithmEnum.Native360Hz;
+	private RacingWheelAlgorithmEnum _racingWheelAlgorithm = RacingWheelAlgorithmEnum.DetailBooster;
 
 	public RacingWheelAlgorithmEnum RacingWheelAlgorithm
 	{
@@ -958,6 +958,925 @@ public class Settings : INotifyPropertyChanged
 			}
 		}
 	}
+
+	#endregion
+
+	#region Pedals - Enums
+
+	public enum PedalEffectEnum
+	{
+		None,
+		GearChange,
+		ABSEngaged,
+		WideRPM,
+		NarrowRPM,
+		SteeringEffects,
+		WheelLock,
+		WheelSpin,
+		ClutchSlip
+	};
+
+	#endregion
+
+	#region Pedals - Minimum frequency
+
+	private float _pedalsMinimumFrequency = 15f;
+
+	public float PedalsMinimumFrequency
+	{
+		get => _pedalsMinimumFrequency;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 50f );
+
+			if ( value != _pedalsMinimumFrequency )
+			{
+				_pedalsMinimumFrequency = value;
+
+				OnPropertyChanged();
+
+				PedalsMaximumFrequency = MathF.Max( PedalsMaximumFrequency, _pedalsMinimumFrequency );
+			}
+
+			PedalsMinimumFrequencyString = $"{_pedalsMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
+		}
+	}
+
+	private string _pedalsMinimumFrequencyString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsMinimumFrequencyString
+	{
+		get => _pedalsMinimumFrequencyString;
+
+		set
+		{
+			if ( value != _pedalsMinimumFrequencyString )
+			{
+				_pedalsMinimumFrequencyString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsMinimumFrequencyPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsMinimumFrequencyMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Maximum frequency
+
+	private float _pedalsMaximumFrequency = 35f;
+
+	public float PedalsMaximumFrequency
+	{
+		get => _pedalsMaximumFrequency;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 50f );
+
+			if ( value != _pedalsMaximumFrequency )
+			{
+				_pedalsMaximumFrequency = value;
+
+				OnPropertyChanged();
+
+				PedalsMinimumFrequency = MathF.Min( PedalsMinimumFrequency, _pedalsMaximumFrequency );
+			}
+
+			PedalsMaximumFrequencyString = $"{_pedalsMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
+		}
+	}
+
+	private string _pedalsMaximumFrequencyString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsMaximumFrequencyString
+	{
+		get => _pedalsMaximumFrequencyString;
+
+		set
+		{
+			if ( value != _pedalsMaximumFrequencyString )
+			{
+				_pedalsMaximumFrequencyString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsMaximumFrequencyPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsMaximumFrequencyMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Frequency curve
+
+	private float _pedalsFrequencyCurve = 0f;
+
+	public float PedalsFrequencyCurve
+	{
+		get => _pedalsFrequencyCurve;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _pedalsFrequencyCurve )
+			{
+				_pedalsFrequencyCurve = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsFrequencyCurveString = $"{_pedalsFrequencyCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsFrequencyCurveString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsFrequencyCurveString
+	{
+		get => _pedalsFrequencyCurveString;
+
+		set
+		{
+			if ( value != _pedalsFrequencyCurveString )
+			{
+				_pedalsFrequencyCurveString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsFrequencyCurvePlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsFrequencyCurveMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Minimum Amplitude
+
+	private float _pedalsMinimumAmplitude = 0.18f;
+
+	public float PedalsMinimumAmplitude
+	{
+		get => _pedalsMinimumAmplitude;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsMinimumAmplitude )
+			{
+				_pedalsMinimumAmplitude = value;
+
+				OnPropertyChanged();
+
+				PedalsMaximumAmplitude = MathF.Max( PedalsMaximumAmplitude, _pedalsMinimumAmplitude );
+			}
+
+			PedalsMinimumAmplitudeString = $"{_pedalsMinimumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsMinimumAmplitudeString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsMinimumAmplitudeString
+	{
+		get => _pedalsMinimumAmplitudeString;
+
+		set
+		{
+			if ( value != _pedalsMinimumAmplitudeString )
+			{
+				_pedalsMinimumAmplitudeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsMinimumAmplitudePlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsMinimumAmplitudeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Maximum Amplitude
+
+	private float _pedalsMaximumAmplitude = 0.6f;
+
+	public float PedalsMaximumAmplitude
+	{
+		get => _pedalsMaximumAmplitude;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsMaximumAmplitude )
+			{
+				_pedalsMaximumAmplitude = value;
+
+				OnPropertyChanged();
+
+				PedalsMinimumAmplitude = MathF.Min( PedalsMinimumAmplitude, _pedalsMaximumAmplitude );
+			}
+
+			PedalsMaximumAmplitudeString = $"{_pedalsMaximumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsMaximumAmplitudeString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsMaximumAmplitudeString
+	{
+		get => _pedalsMaximumAmplitudeString;
+
+		set
+		{
+			if ( value != _pedalsMaximumAmplitudeString )
+			{
+				_pedalsMaximumAmplitudeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsMaximumAmplitudePlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsMaximumAmplitudeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Amplitude curve
+
+	private float _pedalsAmplitudeCurve = 0f;
+
+	public float PedalsAmplitudeCurve
+	{
+		get => _pedalsAmplitudeCurve;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _pedalsAmplitudeCurve )
+			{
+				_pedalsAmplitudeCurve = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsAmplitudeCurveString = $"{_pedalsAmplitudeCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsAmplitudeCurveString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsAmplitudeCurveString
+	{
+		get => _pedalsAmplitudeCurveString;
+
+		set
+		{
+			if ( value != _pedalsAmplitudeCurveString )
+			{
+				_pedalsAmplitudeCurveString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsAmplitudeCurvePlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsAmplitudeCurveMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Clutch effect 1
+
+	private PedalEffectEnum _pedalsClutchEffect1 = PedalEffectEnum.GearChange;
+
+	public PedalEffectEnum PedalsClutchEffect1
+	{
+		get => _pedalsClutchEffect1;
+
+		set
+		{
+			if ( value != _pedalsClutchEffect1 )
+			{
+				_pedalsClutchEffect1 = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Pedals - Clutch effect 1 strength
+
+	private float _pedalsClutchEffect1Strength = 1f;
+
+	public float PedalsClutchEffect1Strength
+	{
+		get => _pedalsClutchEffect1Strength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsClutchEffect1Strength )
+			{
+				_pedalsClutchEffect1Strength = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsClutchEffect1StrengthString = $"{_pedalsClutchEffect1Strength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsClutchEffect1StrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsClutchEffect1StrengthString
+	{
+		get => _pedalsClutchEffect1StrengthString;
+
+		set
+		{
+			if ( value != _pedalsClutchEffect1StrengthString )
+			{
+				_pedalsClutchEffect1StrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsClutchEffect1StrengthPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsClutchEffect1StrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Clutch effect 2
+
+	private PedalEffectEnum _pedalsClutchEffect2 = PedalEffectEnum.ClutchSlip;
+
+	public PedalEffectEnum PedalsClutchEffect2
+	{
+		get => _pedalsClutchEffect2;
+
+		set
+		{
+			if ( value != _pedalsClutchEffect2 )
+			{
+				_pedalsClutchEffect2 = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Pedals - Clutch effect 2 strength
+
+	private float _pedalsClutchEffect2Strength = 1f;
+
+	public float PedalsClutchEffect2Strength
+	{
+		get => _pedalsClutchEffect2Strength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsClutchEffect2Strength )
+			{
+				_pedalsClutchEffect2Strength = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsClutchEffect2StrengthString = $"{_pedalsClutchEffect2Strength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsClutchEffect2StrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsClutchEffect2StrengthString
+	{
+		get => _pedalsClutchEffect2StrengthString;
+
+		set
+		{
+			if ( value != _pedalsClutchEffect2StrengthString )
+			{
+				_pedalsClutchEffect2StrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsClutchEffect2StrengthPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsClutchEffect2StrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Clutch effect 3
+
+	private PedalEffectEnum _pedalsClutchEffect3 = PedalEffectEnum.SteeringEffects;
+
+	public PedalEffectEnum PedalsClutchEffect3
+	{
+		get => _pedalsClutchEffect3;
+
+		set
+		{
+			if ( value != _pedalsClutchEffect3 )
+			{
+				_pedalsClutchEffect3 = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Pedals - Clutch effect 3 strength
+
+	private float _pedalsClutchEffect3Strength = 1f;
+
+	public float PedalsClutchEffect3Strength
+	{
+		get => _pedalsClutchEffect3Strength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsClutchEffect3Strength )
+			{
+				_pedalsClutchEffect3Strength = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsClutchEffect3StrengthString = $"{_pedalsClutchEffect3Strength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsClutchEffect3StrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsClutchEffect3StrengthString
+	{
+		get => _pedalsClutchEffect3StrengthString;
+
+		set
+		{
+			if ( value != _pedalsClutchEffect3StrengthString )
+			{
+				_pedalsClutchEffect3StrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsClutchEffect3StrengthPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsClutchEffect3StrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Brake effect 1
+
+	private PedalEffectEnum _pedalsBrakeEffect1 = PedalEffectEnum.ABSEngaged;
+
+	public PedalEffectEnum PedalsBrakeEffect1
+	{
+		get => _pedalsBrakeEffect1;
+
+		set
+		{
+			if ( value != _pedalsBrakeEffect1 )
+			{
+				_pedalsBrakeEffect1 = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Pedals - Brake effect 1 strength
+
+	private float _pedalsBrakeEffect1Strength = 1f;
+
+	public float PedalsBrakeEffect1Strength
+	{
+		get => _pedalsBrakeEffect1Strength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsBrakeEffect1Strength )
+			{
+				_pedalsBrakeEffect1Strength = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsBrakeEffect1StrengthString = $"{_pedalsBrakeEffect1Strength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsBrakeEffect1StrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsBrakeEffect1StrengthString
+	{
+		get => _pedalsBrakeEffect1StrengthString;
+
+		set
+		{
+			if ( value != _pedalsBrakeEffect1StrengthString )
+			{
+				_pedalsBrakeEffect1StrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsBrakeEffect1StrengthPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsBrakeEffect1StrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Brake effect 2
+
+	private PedalEffectEnum _pedalsBrakeEffect2 = PedalEffectEnum.WheelLock;
+
+	public PedalEffectEnum PedalsBrakeEffect2
+	{
+		get => _pedalsBrakeEffect2;
+
+		set
+		{
+			if ( value != _pedalsBrakeEffect2 )
+			{
+				_pedalsBrakeEffect2 = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Pedals - Brake effect 2 strength
+
+	private float _pedalsBrakeEffect2Strength = 1f;
+
+	public float PedalsBrakeEffect2Strength
+	{
+		get => _pedalsBrakeEffect2Strength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsBrakeEffect2Strength )
+			{
+				_pedalsBrakeEffect2Strength = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsBrakeEffect2StrengthString = $"{_pedalsBrakeEffect2Strength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsBrakeEffect2StrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsBrakeEffect2StrengthString
+	{
+		get => _pedalsBrakeEffect2StrengthString;
+
+		set
+		{
+			if ( value != _pedalsBrakeEffect2StrengthString )
+			{
+				_pedalsBrakeEffect2StrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsBrakeEffect2StrengthPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsBrakeEffect2StrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Brake effect 3
+
+	private PedalEffectEnum _pedalsBrakeEffect3 = PedalEffectEnum.SteeringEffects;
+
+	public PedalEffectEnum PedalsBrakeEffect3
+	{
+		get => _pedalsBrakeEffect3;
+
+		set
+		{
+			if ( value != _pedalsBrakeEffect3 )
+			{
+				_pedalsBrakeEffect3 = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Pedals - Brake effect 3 strength
+
+	private float _pedalsBrakeEffect3Strength = 1f;
+
+	public float PedalsBrakeEffect3Strength
+	{
+		get => _pedalsBrakeEffect3Strength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsBrakeEffect3Strength )
+			{
+				_pedalsBrakeEffect3Strength = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsBrakeEffect3StrengthString = $"{_pedalsBrakeEffect3Strength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsBrakeEffect3StrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsBrakeEffect3StrengthString
+	{
+		get => _pedalsBrakeEffect3StrengthString;
+
+		set
+		{
+			if ( value != _pedalsBrakeEffect3StrengthString )
+			{
+				_pedalsBrakeEffect3StrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsBrakeEffect3StrengthPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsBrakeEffect3StrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Throttle effect 1
+
+	private PedalEffectEnum _pedalsThrottleEffect1 = PedalEffectEnum.WheelSpin;
+
+	public PedalEffectEnum PedalsThrottleEffect1
+	{
+		get => _pedalsThrottleEffect1;
+
+		set
+		{
+			if ( value != _pedalsThrottleEffect1 )
+			{
+				_pedalsThrottleEffect1 = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Pedals - Throttle effect 1 strength
+
+	private float _pedalsThrottleEffect1Strength = 1f;
+
+	public float PedalsThrottleEffect1Strength
+	{
+		get => _pedalsThrottleEffect1Strength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsThrottleEffect1Strength )
+			{
+				_pedalsThrottleEffect1Strength = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsThrottleEffect1StrengthString = $"{_pedalsThrottleEffect1Strength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsThrottleEffect1StrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsThrottleEffect1StrengthString
+	{
+		get => _pedalsThrottleEffect1StrengthString;
+
+		set
+		{
+			if ( value != _pedalsThrottleEffect1StrengthString )
+			{
+				_pedalsThrottleEffect1StrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsThrottleEffect1StrengthPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsThrottleEffect1StrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Throttle effect 2
+
+	private PedalEffectEnum _pedalsThrottleEffect2 = PedalEffectEnum.NarrowRPM;
+
+	public PedalEffectEnum PedalsThrottleEffect2
+	{
+		get => _pedalsThrottleEffect2;
+
+		set
+		{
+			if ( value != _pedalsThrottleEffect2 )
+			{
+				_pedalsThrottleEffect2 = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Pedals - Throttle effect 2 strength
+
+	private float _pedalsThrottleEffect2Strength = 1f;
+
+	public float PedalsThrottleEffect2Strength
+	{
+		get => _pedalsThrottleEffect2Strength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsThrottleEffect2Strength )
+			{
+				_pedalsThrottleEffect2Strength = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsThrottleEffect2StrengthString = $"{_pedalsThrottleEffect2Strength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsThrottleEffect2StrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsThrottleEffect2StrengthString
+	{
+		get => _pedalsThrottleEffect2StrengthString;
+
+		set
+		{
+			if ( value != _pedalsThrottleEffect2StrengthString )
+			{
+				_pedalsThrottleEffect2StrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsThrottleEffect2StrengthPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsThrottleEffect2StrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Throttle effect 3
+
+	private PedalEffectEnum _pedalsThrottleEffect3 = PedalEffectEnum.None;
+
+	public PedalEffectEnum PedalsThrottleEffect3
+	{
+		get => _pedalsThrottleEffect3;
+
+		set
+		{
+			if ( value != _pedalsThrottleEffect3 )
+			{
+				_pedalsThrottleEffect3 = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Pedals - Throttle effect 3 strength
+
+	private float _pedalsThrottleEffect3Strength = 1f;
+
+	public float PedalsThrottleEffect3Strength
+	{
+		get => _pedalsThrottleEffect3Strength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsThrottleEffect3Strength )
+			{
+				_pedalsThrottleEffect3Strength = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsThrottleEffect3StrengthString = $"{_pedalsThrottleEffect3Strength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsThrottleEffect3StrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsThrottleEffect3StrengthString
+	{
+		get => _pedalsThrottleEffect3StrengthString;
+
+		set
+		{
+			if ( value != _pedalsThrottleEffect3StrengthString )
+			{
+				_pedalsThrottleEffect3StrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings PedalsThrottleEffect3StrengthPlusButtonMappings { get; set; } = new();
+
+	public ButtonMappings PedalsThrottleEffect3StrengthMinusButtonMappings { get; set; } = new();
 
 	#endregion
 

@@ -54,7 +54,7 @@ public class RacingWheel
 
 		if ( app != null )
 		{
-			app.Logger.WriteLine( "[RacingWheel] SetAlgorithmComboBoxItemsSource >>>" );
+			app.Logger.WriteLine( "[RacingWheel] SetComboBoxItemsSource >>>" );
 
 			var selectedItem = comboBox.SelectedItem as KeyValuePair<Settings.RacingWheelAlgorithmEnum, string>?;
 
@@ -76,7 +76,7 @@ public class RacingWheel
 				comboBox.SelectedItem = dictionary.FirstOrDefault( keyValuePair => keyValuePair.Key.Equals( selectedItem.Value.Key ) ); ;
 			}
 
-			app.Logger.WriteLine( "[RacingWheel] <<< SetAlgorithmComboBoxItemsSource" );
+			app.Logger.WriteLine( "[RacingWheel] <<< SetComboBoxItemsSource" );
 		}
 	}
 

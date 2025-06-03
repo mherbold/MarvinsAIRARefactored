@@ -23,7 +23,7 @@
     </Window.DataContext>
 
     <Window.Background>
-        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/artwork/simagic_fx_pro_wheel.png" Stretch="UniformToFill" Opacity="0.1"/>
+        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/artwork/background_buttonmapping.png" Stretch="UniformToFill" Opacity="0.2"/>
     </Window.Background>
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">

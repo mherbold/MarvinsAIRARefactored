@@ -76,6 +76,16 @@ public partial class MainWindow : Window
 				app.DirectInput.SetComboBoxItemsSource( RacingWheel_Device_ComboBox );
 
 				RacingWheel.SetComboBoxItemsSource( RacingWheel_Algorithm_ComboBox );
+
+				Pedals.SetComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_1 );
+				Pedals.SetComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_2 );
+				Pedals.SetComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_3 );
+				Pedals.SetComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_1 );
+				Pedals.SetComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_2 );
+				Pedals.SetComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_3 );
+				Pedals.SetComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_1 );
+				Pedals.SetComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_2 );
+				Pedals.SetComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_3 );
 			}
 		} );
 	}

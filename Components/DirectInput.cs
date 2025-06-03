@@ -225,17 +225,26 @@ public class DirectInput
 
 	public void SetComboBoxItemsSource( ComboBox comboBox )
 	{
-		var dictionary = new Dictionary<Guid, string>();
+		var app = App.Instance;
 
-		if ( _forceFeedbackDeviceInstanceList.Count == 0 )
+		if ( app != null )
 		{
-			dictionary.Add( Guid.Empty, DataContext.Instance.Localization[ "NoAttachedFFBDevicesFound" ] );
+			app.Logger.WriteLine( "[DirectInput] SetComboBoxItemsSource >>>" );
+
+			var dictionary = new Dictionary<Guid, string>();
+
+			if ( _forceFeedbackDeviceInstanceList.Count == 0 )
+			{
+				dictionary.Add( Guid.Empty, DataContext.Instance.Localization[ "NoAttachedFFBDevicesFound" ] );
+			}
+
+			_forceFeedbackDeviceInstanceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
+
+			comboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
+			comboBox.SelectedValue = DataContext.Instance.Settings.RacingWheelDeviceGuid;
+
+			app.Logger.WriteLine( "[DirectInput] <<< SetComboBoxItemsSource" );
 		}
-
-		_forceFeedbackDeviceInstanceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
-
-		comboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
-		comboBox.SelectedValue = DataContext.Instance.Settings.RacingWheelDeviceGuid;
 	}
 
 	public void PollDevices( float deltaSeconds )

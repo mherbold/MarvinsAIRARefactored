@@ -339,6 +339,186 @@ public partial class App : Application
 			{
 				DataContext.Instance.Settings.RacingWheelFriction -= 0.05f;
 			}
+
+			// pedals minimum frequency knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMinimumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsMinimumFrequency += 1f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMinimumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsMinimumFrequency -= 1f;
+			}
+
+			// pedals maximum frequency knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMaximumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsMaximumFrequency += 1f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMaximumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsMaximumFrequency -= 1f;
+			}
+
+			// pedals frequency curve knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsFrequencyCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsFrequencyCurve += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsFrequencyCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsFrequencyCurve -= 0.01f;
+			}
+
+			// pedals minimum amplitude knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMinimumAmplitudePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsMinimumAmplitude += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMinimumAmplitudeMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsMinimumAmplitude -= 0.01f;
+			}
+
+			// pedals maximum amplitude knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMaximumAmplitudePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsMaximumAmplitude += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMaximumAmplitudeMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsMaximumAmplitude -= 0.01f;
+			}
+
+			// pedals amplitude curve knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsAmplitudeCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsAmplitudeCurve += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsAmplitudeCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsAmplitudeCurve -= 0.01f;
+			}
+
+			// pedals clutch effect 1 strength knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsClutchEffect1Strength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsClutchEffect1Strength -= 0.05f;
+			}
+
+			// pedals clutch effect 2 strength knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsClutchEffect2Strength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsClutchEffect2Strength -= 0.05f;
+			}
+
+			// pedals clutch effect 3 strength knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsClutchEffect3Strength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsClutchEffect3Strength -= 0.05f;
+			}
+
+			// pedals brake effect 1 strength knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsBrakeEffect1Strength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsBrakeEffect1Strength -= 0.05f;
+			}
+
+			// pedals brake effect 2 strength knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsBrakeEffect2Strength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsBrakeEffect2Strength -= 0.05f;
+			}
+
+			// pedals brake effect 3 strength knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsBrakeEffect3Strength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsBrakeEffect3Strength -= 0.05f;
+			}
+
+			// pedals throttle effect 1 strength knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsThrottleEffect1Strength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsThrottleEffect1Strength -= 0.05f;
+			}
+
+			// pedals throttle effect 2 strength knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsThrottleEffect2Strength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsThrottleEffect2Strength -= 0.05f;
+			}
+
+			// pedals throttle effect 3 strength knob
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsThrottleEffect3Strength += 0.05f;
+			}
+
+			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.Instance.Settings.PedalsThrottleEffect3Strength -= 0.05f;
+			}
 		}
 	}
 

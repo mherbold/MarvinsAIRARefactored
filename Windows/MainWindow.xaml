@@ -21,17 +21,40 @@
         <Binding Source="{x:Static components:DataContext.Instance}"/>
     </Window.DataContext>
 
-    <Window.Background>
-        <ImageBrush ImageSource="/artwork/background.png" Stretch="UniformToFill" Opacity="0.5"/>
-    </Window.Background>
-
+    <Window.Resources>
+        <ImageBrush x:Key="RacingWheelTabBackground" ImageSource="/artwork/background_racingwheel.png" Stretch="UniformToFill" Opacity="1"/>
+        <ImageBrush x:Key="PedalsTabBackground" ImageSource="/artwork/background_pedals.png" Stretch="UniformToFill" AlignmentX="Right" AlignmentY="Bottom" Opacity="1"/>
+        <ImageBrush x:Key="AdminBoxxTabBackground" ImageSource="/artwork/background_adminboxx.png" Stretch="UniformToFill" Opacity="1"/>
+        <ImageBrush x:Key="AppTabBackground" ImageSource="/artwork/background_app.png" Stretch="UniformToFill" Opacity="1"/>
+    </Window.Resources>
+    
+    <Window.Style>
+        <Style TargetType="Window">
+            <Setter Property="Background" Value="{StaticResource RacingWheelTabBackground}"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="0">
+                    <Setter Property="Background" Value="{StaticResource RacingWheelTabBackground}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="1">
+                    <Setter Property="Background" Value="{StaticResource PedalsTabBackground}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="4">
+                    <Setter Property="Background" Value="{StaticResource AdminBoxxTabBackground}"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="5">
+                    <Setter Property="Background" Value="{StaticResource AppTabBackground}"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Style>
+    
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <TabControl Grid.Row="0" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
+        <TabControl Grid.Row="0" x:Name="TabControl" TabStripPlacement="Left" SelectionChanged="TabControl_SelectionChanged">
 
             <TabItem x:Name="RacingWheel_TabItem" Header="{Binding Localization[RacingWheel]}">
 
@@ -249,7 +272,54 @@
 
                     <GroupBox Header="{Binding Localization[Device]}">
 
-                        <Label x:Name="Pedals_Device_Label" Margin="10" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" VerticalAlignment="Center"/>
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            
+                            <Label Grid.Column="0" x:Name="Pedals_Device_Label" Content="{Binding Localization[PedalsNone]}" Margin="10" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" VerticalAlignment="Center"/>
+                            <Image Grid.Column="2" Source="/Artwork/simagic_logo.png" Height="32" Margin="0,0,10,0"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Frequency]}" Margin="0,10,0,0">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:KnobControl Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Minimum]}" Value="{Binding Settings.PedalsMinimumFrequency, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMinimumFrequencyString}" SmallValueChangeStep="0.1" LargeValueChangeStep="1" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.PedalsMinimumFrequencyPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMinimumFrequencyMinusButtonMappings}"/>
+                            <controls:KnobControl Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Maximum]}" Value="{Binding Settings.PedalsMaximumFrequency, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMaximumFrequencyString}" SmallValueChangeStep="0.1" LargeValueChangeStep="1" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.PedalsMaximumFrequencyPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMaximumFrequencyMinusButtonMappings}"/>
+                            <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Curve]}" Value="{Binding Settings.PedalsFrequencyCurve, Mode=TwoWay}" ValueString="{Binding Settings.PedalsFrequencyCurveString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsFrequencyCurvePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsFrequencyCurveMinusButtonMappings}"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Amplitude]}" Margin="0,10,0,0">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:KnobControl Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Minimum]}" Value="{Binding Settings.PedalsMinimumAmplitude, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMinimumAmplitudeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsMinimumAmplitudePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMinimumAmplitudeMinusButtonMappings}"/>
+                            <controls:KnobControl Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Maximum]}" Value="{Binding Settings.PedalsMaximumAmplitude, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMaximumAmplitudeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsMaximumAmplitudePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMaximumAmplitudeMinusButtonMappings}"/>
+                            <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Curve]}" Value="{Binding Settings.PedalsAmplitudeCurve, Mode=TwoWay}" ValueString="{Binding Settings.PedalsAmplitudeCurveString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsAmplitudeCurvePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsAmplitudeCurveMinusButtonMappings}"/>
+
+                        </Grid>
 
                     </GroupBox>
 
@@ -279,11 +349,11 @@
 
                                     <Label Grid.Column="0" Grid.Row="1" Content="1" Padding="0"/>
                                     <Label Grid.Column="1" Grid.Row="0" Content="{Binding Localization[PedalEffects]}" HorizontalAlignment="Center"/>
-                                    <ComboBox Grid.Column="1" Grid.Row="1" x:Name="Pedals_Clutch_Effect_ComboBox_1" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalClutchEffect1}" VerticalContentAlignment="Center"/>
+                                    <ComboBox Grid.Column="1" Grid.Row="1" x:Name="Pedals_Clutch_Effect_ComboBox_1" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalsClutchEffect1}" VerticalContentAlignment="Center"/>
 
                                 </Grid>
 
-                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsClutchEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect1StrengthString}" SmallValueChangeStep="0.01" LargeValueChangeStep="1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.PedalsClutchEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect1StrengthMinusButtonMappings}"/>
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsClutchEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect1StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsClutchEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect1StrengthMinusButtonMappings}"/>
 
                             </Grid>
                             
@@ -303,11 +373,11 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Label Grid.Column="0" Content="2" Padding="0"/>
-                                    <ComboBox Grid.Column="1" x:Name="Pedals_Clutch_Effect_ComboBox_2" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalClutchEffect2}" VerticalContentAlignment="Center"/>
+                                    <ComboBox Grid.Column="1" x:Name="Pedals_Clutch_Effect_ComboBox_2" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalsClutchEffect2}" VerticalContentAlignment="Center"/>
 
                                 </Grid>
 
-                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsClutchEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect2StrengthString}" SmallValueChangeStep="0.01" LargeValueChangeStep="1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.PedalsClutchEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect2StrengthMinusButtonMappings}"/>
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsClutchEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect2StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsClutchEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect2StrengthMinusButtonMappings}"/>
 
                             </Grid>
 
@@ -327,11 +397,11 @@
                                     </Grid.ColumnDefinitions>
 
                                     <Label Grid.Column="0" Content="3" Padding="0"/>
-                                    <ComboBox Grid.Column="1" x:Name="Pedals_Clutch_Effect_ComboBox_3" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalClutchEffect3}" VerticalContentAlignment="Center"/>
+                                    <ComboBox Grid.Column="1" x:Name="Pedals_Clutch_Effect_ComboBox_3" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalsClutchEffect3}" VerticalContentAlignment="Center"/>
 
                                 </Grid>
 
-                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsClutchEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect3StrengthString}" SmallValueChangeStep="0.01" LargeValueChangeStep="1" RotationMultiplier="1" PlusButtonMappings="{Binding Settings.PedalsClutchEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect3StrengthMinusButtonMappings}"/>
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsClutchEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect3StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsClutchEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect3StrengthMinusButtonMappings}"/>
 
                             </Grid>
 
@@ -341,9 +411,173 @@
 
                     <GroupBox Header="{Binding Localization[Brake]}" Margin="0,10,0,0">
 
+                        <StackPanel>
+
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="1" Content="1" Padding="0"/>
+                                    <Label Grid.Column="1" Grid.Row="0" Content="{Binding Localization[PedalEffects]}" HorizontalAlignment="Center"/>
+                                    <ComboBox Grid.Column="1" Grid.Row="1" x:Name="Pedals_Brake_Effect_ComboBox_1" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalsBrakeEffect1}" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsBrakeEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsBrakeEffect1StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsBrakeEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsBrakeEffect1StrengthMinusButtonMappings}"/>
+
+                            </Grid>
+
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Content="2" Padding="0"/>
+                                    <ComboBox Grid.Column="1" x:Name="Pedals_Brake_Effect_ComboBox_2" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalsBrakeEffect2}" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsBrakeEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsBrakeEffect2StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsBrakeEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsBrakeEffect2StrengthMinusButtonMappings}"/>
+
+                            </Grid>
+
+                            <Grid Margin="0,10,0,20">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Content="3" Padding="0"/>
+                                    <ComboBox Grid.Column="1" x:Name="Pedals_Brake_Effect_ComboBox_3" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalsBrakeEffect3}" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsBrakeEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsBrakeEffect3StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsBrakeEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsBrakeEffect3StrengthMinusButtonMappings}"/>
+
+                            </Grid>
+
+                        </StackPanel>
+
                     </GroupBox>
 
                     <GroupBox Header="{Binding Localization[Throttle]}" Margin="0,10,0,0">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Column="0" Grid.Row="1" Content="1" Padding="0"/>
+                                    <Label Grid.Column="1" Grid.Row="0" Content="{Binding Localization[PedalEffects]}" HorizontalAlignment="Center"/>
+                                    <ComboBox Grid.Column="1" Grid.Row="1" x:Name="Pedals_Throttle_Effect_ComboBox_1" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalsThrottleEffect1}" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsThrottleEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsThrottleEffect1StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsThrottleEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsThrottleEffect1StrengthMinusButtonMappings}"/>
+
+                            </Grid>
+
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Content="2" Padding="0"/>
+                                    <ComboBox Grid.Column="1" x:Name="Pedals_Throttle_Effect_ComboBox_2" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalsThrottleEffect2}" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsThrottleEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsThrottleEffect2StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsThrottleEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsThrottleEffect2StrengthMinusButtonMappings}"/>
+
+                            </Grid>
+
+                            <Grid Margin="0,10,0,20">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid Grid.Column="0" Grid.ColumnSpan="2" Margin="10,0,10,0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="20"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Grid.Column="0" Content="3" Padding="0"/>
+                                    <ComboBox Grid.Column="1" x:Name="Pedals_Throttle_Effect_ComboBox_3" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.PedalsThrottleEffect3}" VerticalContentAlignment="Center"/>
+
+                                </Grid>
+
+                                <controls:KnobControl Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsThrottleEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsThrottleEffect3StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsThrottleEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsThrottleEffect3StrengthMinusButtonMappings}"/>
+
+                            </Grid>
+
+                        </StackPanel>
 
                     </GroupBox>
 
@@ -504,6 +738,16 @@
 
             </TabItem>
 
+            <TabItem x:Name="AdminBoxx_TabItem" Header="{Binding Localization[AdminBoxx]}">
+
+                <StackPanel Margin="10">
+
+                    <controls:Switch Margin="0,10,0,10" x:Name="AdminBoxx_ConnectToAdminBoxx_Switch" LabelText="{Binding Localization[ConnectToAdminBoxx]}" Toggled="AdminBoxx_ConnectToAdminBoxx_Switch_Toggled"/>
+
+                </StackPanel>
+
+            </TabItem>
+
             <TabItem x:Name="App_TabItem" Header="{Binding Localization[App]}">
 
                 <StackPanel Margin="10">
@@ -530,16 +774,6 @@
                     </Grid>
 
                     <controls:Switch Margin="0,10,0,10" IsOn="{Binding Settings.AppTopmostWindowEnabled, Mode=TwoWay}" LabelText="{Binding Localization[TopmostWindow]}"/>
-
-                </StackPanel>
-
-            </TabItem>
-
-            <TabItem x:Name="AdminBoxx_TabItem" Header="{Binding Localization[AdminBoxx]}">
-
-                <StackPanel Margin="10">
-
-                    <controls:Switch Margin="0,10,0,10" x:Name="AdminBoxx_ConnectToAdminBoxx_Switch" LabelText="{Binding Localization[ConnectToAdminBoxx]}" Toggled="AdminBoxx_ConnectToAdminBoxx_Switch_Toggled"/>
 
                 </StackPanel>
 

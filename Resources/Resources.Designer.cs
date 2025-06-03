@@ -61,6 +61,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ABS Engaged.
+        /// </summary>
+        internal static string ABSEngaged {
+            get {
+                return ResourceManager.GetString("ABSEngaged", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AdminBoxx.
         /// </summary>
         internal static string AdminBoxx {
@@ -75,6 +84,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Algorithm {
             get {
                 return ResourceManager.GetString("Algorithm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amplitude.
+        /// </summary>
+        internal static string Amplitude {
+            get {
+                return ResourceManager.GetString("Amplitude", resourceCulture);
             }
         }
         
@@ -178,6 +196,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clutch Slip.
+        /// </summary>
+        internal static string ClutchSlip {
+            get {
+                return ResourceManager.GetString("ClutchSlip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Compression Rate.
         /// </summary>
         internal static string CompressionRate {
@@ -228,6 +255,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string CurrentForce {
             get {
                 return ResourceManager.GetString("CurrentForce", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Curve.
+        /// </summary>
+        internal static string Curve {
+            get {
+                return ResourceManager.GetString("Curve", resourceCulture);
             }
         }
         
@@ -340,11 +376,29 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Frequency.
+        /// </summary>
+        internal static string Frequency {
+            get {
+                return ResourceManager.GetString("Frequency", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Friction.
         /// </summary>
         internal static string Friction {
             get {
                 return ResourceManager.GetString("Friction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gear Change.
+        /// </summary>
+        internal static string GearChange {
+            get {
+                return ResourceManager.GetString("GearChange", resourceCulture);
             }
         }
         
@@ -385,6 +439,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to  Hz.
+        /// </summary>
+        internal static string HertzUnits {
+            get {
+                return ResourceManager.GetString("HertzUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hold.
         /// </summary>
         internal static string Hold {
@@ -421,11 +484,38 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum.
+        /// </summary>
+        internal static string Maximum {
+            get {
+                return ResourceManager.GetString("Maximum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimum.
+        /// </summary>
+        internal static string Minimum {
+            get {
+                return ResourceManager.GetString("Minimum", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multimedia Timer Jitter.
         /// </summary>
         internal static string MultimediaTimerJitter {
             get {
                 return ResourceManager.GetString("MultimediaTimerJitter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RPM (Narrow).
+        /// </summary>
+        internal static string NarrowRPM {
+            get {
+                return ResourceManager.GetString("NarrowRPM", resourceCulture);
             }
         }
         
@@ -471,6 +561,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string NoAttachedFFBDevicesFound {
             get {
                 return ResourceManager.GetString("NoAttachedFFBDevicesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to None.
+        /// </summary>
+        internal static string None {
+            get {
+                return ResourceManager.GetString("None", resourceCulture);
             }
         }
         
@@ -691,6 +790,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Steering Effects.
+        /// </summary>
+        internal static string SteeringEffects {
+            get {
+                return ResourceManager.GetString("SteeringEffects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Strength.
         /// </summary>
         internal static string Strength {
@@ -777,6 +885,33 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string WaitingForInput {
             get {
                 return ResourceManager.GetString("WaitingForInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wheel Lock.
+        /// </summary>
+        internal static string WheelLock {
+            get {
+                return ResourceManager.GetString("WheelLock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wheel Spin.
+        /// </summary>
+        internal static string WheelSpin {
+            get {
+                return ResourceManager.GetString("WheelSpin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to RPM (Wide).
+        /// </summary>
+        internal static string WideRPM {
+            get {
+                return ResourceManager.GetString("WideRPM", resourceCulture);
             }
         }
         

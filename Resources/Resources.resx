@@ -441,4 +441,64 @@
     <value>Strength</value>
     <comment>Pedals</comment>
   </data>
+  <data name="HertzUnits" xml:space="preserve">
+    <value> Hz</value>
+    <comment>Abbreviation for Hertz</comment>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Frequency</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Amplitude" xml:space="preserve">
+    <value>Amplitude</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimum</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maximum</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Curve" xml:space="preserve">
+    <value>Curve</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="GearChange" xml:space="preserve">
+    <value>Gear Change</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="ClutchSlip" xml:space="preserve">
+    <value>Clutch Slip</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="SteeringEffects" xml:space="preserve">
+    <value>Steering Effects</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="ABSEngaged" xml:space="preserve">
+    <value>ABS Engaged</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="WheelLock" xml:space="preserve">
+    <value>Wheel Lock</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Wheel Spin</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="NarrowRPM" xml:space="preserve">
+    <value>RPM (Narrow)</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="WideRPM" xml:space="preserve">
+    <value>RPM (Wide)</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>None</value>
+    <comment>Pedal effects list</comment>
+  </data>
 </root>

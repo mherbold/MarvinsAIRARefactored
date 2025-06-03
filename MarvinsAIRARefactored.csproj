@@ -18,7 +18,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Remove="Artwork\background.png" />
+    <None Remove="Artwork\background_adminboxx.png" />
+    <None Remove="Artwork\background_pedals.png" />
+    <None Remove="Artwork\background_racingwheel.png" />
     <None Remove="Artwork\dial.png" />
     <None Remove="Artwork\dial_marker.png" />
     <None Remove="Artwork\icon_down_small.png" />
@@ -41,13 +43,16 @@
     <None Remove="Artwork\round_button_mapped_small.png" />
     <None Remove="Artwork\round_button_pressed.png" />
     <None Remove="Artwork\round_button_pressed_small.png" />
-    <None Remove="Artwork\simagic_fx_pro_wheel.png" />
+    <None Remove="Artwork\simagic_logo.png" />
     <None Remove="Artwork\switch_off.png" />
     <None Remove="Artwork\switch_on.png" />
     <None Remove="Artwork\white_icon.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Artwork\background_adminboxx.png" />
+    <Resource Include="Artwork\background_pedals.png" />
+    <Resource Include="Artwork\background_racingwheel.png" />
     <Resource Include="Artwork\icon_magic.png" />
     <Resource Include="Artwork\icon_record_off.png" />
     <Resource Include="Artwork\icon_zero.png" />
@@ -56,7 +61,8 @@
     <Resource Include="Artwork\round_button_disabled_small.png" />
     <Resource Include="Artwork\round_button_mapped.png" />
     <Resource Include="Artwork\round_button_mapped_small.png" />
-    <Resource Include="Artwork\simagic_fx_pro_wheel.png" />
+    <Resource Include="Artwork\background_buttonmapping.png" />
+    <Resource Include="Artwork\simagic_logo.png" />
     <Resource Include="Artwork\white_icon.ico" />
   </ItemGroup>
 
@@ -81,7 +87,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Resource Include="Artwork\background.png" />
+    <Resource Include="Artwork\background_app.png" />
     <Resource Include="Artwork\dial.png" />
     <Resource Include="Artwork\dial_marker.png" />
     <Resource Include="Artwork\icon_down_small.png" />
