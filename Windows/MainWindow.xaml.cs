@@ -1,6 +1,4 @@
 ﻿
-using MarvinsAIRARefactored.Components;
-using MarvinsAIRARefactored.WinApi;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -9,6 +7,11 @@ using System.Windows.Media;
 
 using ScrollEventArgs = System.Windows.Controls.Primitives.ScrollEventArgs;
 using TabControl = System.Windows.Controls.TabControl;
+
+using MarvinsAIRARefactored.Components;
+using MarvinsAIRARefactored.Enums;
+using MarvinsAIRARefactored.WinApi;
+using MarvinsAIRARefactored.Classes;
 
 namespace MarvinsAIRARefactored.Windows;
 
@@ -56,8 +59,9 @@ public partial class MainWindow : Window
 
 			UpdateRacingWheelPowerButton();
 			UpdateRacingWheelForceFeedbackButtons();
+			UpdateStatus();
 
-			Misc.ForcePropertySetters( Components.DataContext.Instance.Settings );
+			Misc.ForcePropertySetters( MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings );
 
 			app.Logger.WriteLine( "[MainWindow] <<< Initialize" );
 		}
@@ -71,21 +75,21 @@ public partial class MainWindow : Window
 
 			if ( app != null )
 			{
-				Title = Components.DataContext.Instance.Localization[ "AppTitle" ] + " " + Misc.GetVersion();
+				Title = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "AppTitle" ] + " " + Misc.GetVersion();
 
-				app.DirectInput.SetComboBoxItemsSource( RacingWheel_Device_ComboBox );
+				app.DirectInput.SetMairaComboBoxItemsSource( RacingWheel_Device_ComboBox );
 
-				RacingWheel.SetComboBoxItemsSource( RacingWheel_Algorithm_ComboBox );
+				RacingWheel.SetMairaComboBoxItemsSource( RacingWheel_Algorithm_ComboBox );
 
-				Pedals.SetComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_1 );
-				Pedals.SetComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_2 );
-				Pedals.SetComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_3 );
-				Pedals.SetComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_1 );
-				Pedals.SetComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_2 );
-				Pedals.SetComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_3 );
-				Pedals.SetComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_1 );
-				Pedals.SetComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_2 );
-				Pedals.SetComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_3 );
+				Pedals.SetMairaComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_1 );
+				Pedals.SetMairaComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_2 );
+				Pedals.SetMairaComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_3 );
+				Pedals.SetMairaComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_1 );
+				Pedals.SetMairaComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_2 );
+				Pedals.SetMairaComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_3 );
+				Pedals.SetMairaComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_1 );
+				Pedals.SetMairaComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_2 );
+				Pedals.SetMairaComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_3 );
 			}
 		} );
 	}
@@ -98,23 +102,23 @@ public partial class MainWindow : Window
 		{
 			Dispatcher.BeginInvoke( () =>
 			{
-				RacingWheel_Power_Button.Blink = false;
+				RacingWheel_Power_MairaMappableButton.Blink = false;
 
 				ImageSource? imageSource;
 
-				if ( !Components.DataContext.Instance.Settings.RacingWheelEnableForceFeedback )
+				if ( !MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelEnableForceFeedback )
 				{
 					imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/power_led_red.png" ) as ImageSource;
 
-					RacingWheel_Power_Button.Blink = true;
+					RacingWheel_Power_MairaMappableButton.Blink = true;
 				}
-				else if ( app.RacingWheel.SuspendForceFeedback )
+				else if ( app.RacingWheel.SuspendForceFeedback || !app.DirectInput.ForceFeedbackInitialized )
 				{
 					imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/power_led_yellow.png" ) as ImageSource;
 
 					if ( app.Simulator.IsConnected )
 					{
-						RacingWheel_Power_Button.Blink = true;
+						RacingWheel_Power_MairaMappableButton.Blink = true;
 					}
 				}
 				else
@@ -124,7 +128,7 @@ public partial class MainWindow : Window
 
 				if ( imageSource != null )
 				{
-					RacingWheel_Power_Button.ButtonIcon = imageSource;
+					RacingWheel_Power_MairaMappableButton.ButtonIcon = imageSource;
 				}
 			} );
 		}
@@ -140,10 +144,10 @@ public partial class MainWindow : Window
 			{
 				var disableButtons = !app.DirectInput.ForceFeedbackInitialized;
 
-				RacingWheel_Test_Button.Disabled = disableButtons;
-				RacingWheel_Reset_Button.Disabled = disableButtons;
-				RacingWheel_Auto_Button.Disabled = disableButtons;
-				RacingWheel_Clear_Button.Disabled = disableButtons;
+				RacingWheel_Test_MairaMappableButton.Disabled = disableButtons;
+				RacingWheel_Reset_MairaMappableButton.Disabled = disableButtons;
+				RacingWheel_Auto_MairaMappableButton.Disabled = disableButtons;
+				RacingWheel_Clear_MairaMappableButton.Disabled = disableButtons;
 			} );
 		}
 	}
@@ -158,23 +162,23 @@ public partial class MainWindow : Window
 			var racingWheelBiasKnobControlVisibility = Visibility.Hidden;
 			var racingWheelCurbProtectionGroupBoxVisibility = Visibility.Collapsed;
 
-			switch ( Components.DataContext.Instance.Settings.RacingWheelAlgorithm )
+			switch ( MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelAlgorithm )
 			{
-				case Settings.RacingWheelAlgorithmEnum.DetailBooster:
-				case Settings.RacingWheelAlgorithmEnum.DetailBoosterOn60Hz:
+				case RacingWheelAlgorithmEnum.DetailBooster:
+				case RacingWheelAlgorithmEnum.DetailBoosterOn60Hz:
 					racingWheelDetailBoostKnobControlVisibility = Visibility.Visible;
 					racingWheelBiasKnobControlVisibility = Visibility.Visible;
 					racingWheelCurbProtectionGroupBoxVisibility = Visibility.Visible;
 					break;
 
-				case Settings.RacingWheelAlgorithmEnum.DeltaLimiter:
-				case Settings.RacingWheelAlgorithmEnum.DeltaLimiterOn60Hz:
+				case RacingWheelAlgorithmEnum.DeltaLimiter:
+				case RacingWheelAlgorithmEnum.DeltaLimiterOn60Hz:
 					racingWheelDeltaLimitKnobControlVisibility = Visibility.Visible;
 					racingWheelBiasKnobControlVisibility = Visibility.Visible;
 					racingWheelCurbProtectionGroupBoxVisibility = Visibility.Visible;
 					break;
 
-				case Settings.RacingWheelAlgorithmEnum.ZeAlanLeTwist:
+				case RacingWheelAlgorithmEnum.ZeAlanLeTwist:
 					racingWheelAlgorithmRowTwoGridVisibility = Visibility.Visible;
 					racingWheelDeltaLimitKnobControlVisibility = Visibility.Visible;
 					racingWheelBiasKnobControlVisibility = Visibility.Visible;
@@ -190,6 +194,42 @@ public partial class MainWindow : Window
 		} );
 	}
 
+	public void UpdateStatus()
+	{
+		Dispatcher.BeginInvoke( () =>
+		{
+			var app = App.Instance;
+
+			if ( app != null )
+			{
+				if ( app.Simulator.IsConnected )
+				{
+					Status_Car_Label.Content = app.Simulator.CarScreenName == string.Empty ? MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Default" ] : app.Simulator.CarScreenName;
+					Status_Track_Label.Content = app.Simulator.TrackDisplayName == string.Empty ? MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Default" ] : app.Simulator.TrackDisplayName;
+					Status_TrackConfiguration_Label.Content = app.Simulator.TrackConfigName == string.Empty ? MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Default" ] : app.Simulator.TrackConfigName;
+					Status_WetDry_Label.Content = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ app.Simulator.WeatherDeclaredWet ? "Wet" : "Dry" ];
+
+					Status_Car_Label.Visibility = Visibility.Visible;
+					Status_Track_Label.Visibility = Visibility.Visible;
+					Status_TrackConfiguration_Label.Visibility = Visibility.Visible;
+					Status_WetDry_Label.Visibility = Visibility.Visible;
+				}
+				else
+				{
+					Status_Car_Label.Content = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "SimulatorNotRunning" ];
+					Status_Track_Label.Content = string.Empty;
+					Status_TrackConfiguration_Label.Content = string.Empty;
+					Status_WetDry_Label.Content = string.Empty;
+
+					Status_Car_Label.Visibility = Visibility.Visible;
+					Status_Track_Label.Visibility = Visibility.Collapsed;
+					Status_TrackConfiguration_Label.Visibility = Visibility.Collapsed;
+					Status_WetDry_Label.Visibility = Visibility.Collapsed;
+				}
+			}
+		} );
+	}
+
 	private void TabControl_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
 		if ( e.Source is TabControl tabControl )
@@ -202,12 +242,17 @@ public partial class MainWindow : Window
 		}
 	}
 
-	private void RacingWheel_Power_Button_Click( object sender, RoutedEventArgs e )
+	private void RacingWheel_Power_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
-		Components.DataContext.Instance.Settings.RacingWheelEnableForceFeedback = !Components.DataContext.Instance.Settings.RacingWheelEnableForceFeedback;
+		MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelEnableForceFeedback = !MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelEnableForceFeedback;
 	}
 
-	private void RacingWheel_Test_Button_Click( object sender, RoutedEventArgs e )
+	private void RacingWheel_Power_MairaMappableButton_MouseRightButtonDown( object sender, MouseButtonEventArgs e )
+	{
+
+	}
+
+	private void RacingWheel_Test_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance;
 
@@ -217,7 +262,7 @@ public partial class MainWindow : Window
 		}
 	}
 
-	private void RacingWheel_Reset_Button_Click( object sender, RoutedEventArgs e )
+	private void RacingWheel_Reset_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance;
 
@@ -227,7 +272,7 @@ public partial class MainWindow : Window
 		}
 	}
 
-	private void RacingWheel_Auto_Button_Click( object sender, RoutedEventArgs e )
+	private void RacingWheel_Auto_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance;
 
@@ -236,7 +281,7 @@ public partial class MainWindow : Window
 		}
 	}
 
-	private void RacingWheel_Clear_Button_Click( object sender, RoutedEventArgs e )
+	private void RacingWheel_Clear_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance;
 
@@ -315,17 +360,17 @@ public partial class MainWindow : Window
 		Simulator_TelemetryData_TelemetryDataViewer.ScrollIndex = (int) e.NewValue;
 	}
 
-	private void AdminBoxx_ConnectToAdminBoxx_Switch_Toggled( object sender, EventArgs e )
+	private void AdminBoxx_ConnectToAdminBoxx_MairaSwitch_Toggled( object sender, EventArgs e )
 	{
 		var app = App.Instance;
 
 		if ( app != null )
 		{
-			if ( AdminBoxx_ConnectToAdminBoxx_Switch.IsOn )
+			if ( AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn )
 			{
 				if ( !app.AdminBoxx.Connect() )
 				{
-					AdminBoxx_ConnectToAdminBoxx_Switch.IsOn = false;
+					AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn = false;
 				}
 			}
 			else
@@ -333,6 +378,20 @@ public partial class MainWindow : Window
 				app.AdminBoxx.Disconnect();
 			}
 		}
+	}
+
+	private void Debug_AlanLeReset_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		app?.Debug.ResetFFBSamples();
+	}
+
+	private void Debug_AlanLeDump_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		app?.Debug.DumpFFBSamplesToCSVFile();
 	}
 
 	public void Tick( App app )

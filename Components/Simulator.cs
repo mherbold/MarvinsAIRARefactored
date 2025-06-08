@@ -1,8 +1,11 @@
 ﻿
-using IRSDKSharper;
 using System.Windows;
-using WinRT;
+
 using Image = System.Windows.Controls.Image;
+
+using IRSDKSharper;
+
+using MarvinsAIRARefactored.Classes;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -17,6 +20,7 @@ public class Simulator
 
 	public bool BrakeABSactive { get; private set; } = false;
 	public float Brake { get; private set; } = 0f;
+	public string CarScreenName { get; private set; } = string.Empty;
 	public float[] CFShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
 	public float Clutch { get; private set; } = 0f;
 	public float[] CRShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
@@ -38,15 +42,21 @@ public class Simulator
 	public float SteeringWheelAngleMax { get; private set; } = 0f;
 	public float[] SteeringWheelTorque_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
 	public float Throttle { get; private set; } = 0f;
+	public string TrackDisplayName { get; private set; } = string.Empty;
+	public string TrackConfigName { get; private set; } = string.Empty;
 	public float Velocity { get; private set; } = 0f;
 	public float VelocityX { get; private set; } = 0f;
 	public float VelocityY { get; private set; } = 0f;
 	public bool WasOnTrack { get; private set; } = false;
+	public bool WeatherDeclaredWet { get; private set; } = false;
 
 	private bool _telemetryDataInitialized = false;
+	private bool _needToUpdateFromContextSettings = false;
+
 	private int? _tickCountLastFrame = null;
 	private float? _velocityLastFrame = null;
-	private int? _lastPedalUpateFrame = null;
+	private bool? _weatherDeclaredWetLastFrame = null;
+	private int? _lastPedalUpdateFrame = null;
 
 	private IRacingSdkDatum? _brakeABSactiveDatum = null;
 	private IRacingSdkDatum? _brakeDatum = null;
@@ -68,6 +78,8 @@ public class Simulator
 	private IRacingSdkDatum? _throttleDatum = null;
 	private IRacingSdkDatum? _velocityXDatum = null;
 	private IRacingSdkDatum? _velocityYDatum = null;
+	private IRacingSdkDatum? _weatherDeclaredWetDatum = null;
+
 
 	private readonly Graph _native60HzTorqueGraph;
 	private readonly Statistics _native60HzTorqueStatistics = new( 60 );
@@ -146,6 +158,8 @@ public class Simulator
 
 			app.MultimediaTimer.Suspend = false;
 
+			_needToUpdateFromContextSettings = true;
+
 			app.Dispatcher.BeginInvoke( () =>
 			{
 				app.MainWindow.Graphs_Native60HzTorque_SimulatorNotRunning_Label.Visibility = Visibility.Hidden;
@@ -168,7 +182,7 @@ public class Simulator
 			_telemetryDataInitialized = false;
 			_tickCountLastFrame = null;
 			_velocityLastFrame = null;
-			_lastPedalUpateFrame = null;
+			_lastPedalUpdateFrame = null;
 
 			app.RacingWheel.UseSteeringWheelTorqueData = false;
 			app.RacingWheel.SuspendForceFeedback = true;
@@ -192,6 +206,32 @@ public class Simulator
 		NumForwardGears = sessionInfo.DriverInfo.DriverCarGearNumForward;
 		ShiftLightsShiftRPM = sessionInfo.DriverInfo.DriverCarSLShiftRPM;
 		SimMode = sessionInfo.WeekendInfo.SimMode;
+
+		foreach ( var driver in _irsdk.Data.SessionInfo.DriverInfo.Drivers )
+		{
+			if ( driver.CarIdx == _irsdk.Data.SessionInfo.DriverInfo.DriverCarIdx )
+			{
+				CarScreenName = driver.CarScreenName ?? string.Empty;
+				break;
+			}
+		}
+
+		TrackDisplayName = _irsdk.Data.SessionInfo.WeekendInfo.TrackDisplayName ?? string.Empty;
+		TrackConfigName = _irsdk.Data.SessionInfo.WeekendInfo.TrackConfigName ?? string.Empty;
+
+		if ( _needToUpdateFromContextSettings )
+		{
+			DataContext.DataContext.Instance.Settings.UpdateFromContextSettings();
+
+			_needToUpdateFromContextSettings = false;
+		}
+
+		var app = App.Instance;
+
+		if ( app != null )
+		{
+			app.MainWindow.UpdateStatus();
+		}
 	}
 
 	private void OnTelemetryData()
@@ -218,6 +258,7 @@ public class Simulator
 				_throttleDatum = _irsdk.Data.TelemetryDataProperties[ "Throttle" ];
 				_velocityXDatum = _irsdk.Data.TelemetryDataProperties[ "VelocityX" ];
 				_velocityYDatum = _irsdk.Data.TelemetryDataProperties[ "VelocityY" ];
+				_weatherDeclaredWetDatum = _irsdk.Data.TelemetryDataProperties[ "WeatherDeclaredWet" ];
 
 				_cfShockVel_STDatum = null;
 				_crShockVel_STDatum = null;
@@ -311,6 +352,23 @@ public class Simulator
 
 			app.Debug.Label_1 = $"Velocity = {app.Simulator.Velocity:F2} m/s";
 
+			// get weather declared wet and reload settings if it was changed
+
+			WeatherDeclaredWet = _irsdk.Data.GetBool( _weatherDeclaredWetDatum );
+
+			if ( _weatherDeclaredWetLastFrame != null )
+			{
+				if ( WeatherDeclaredWet != _weatherDeclaredWetLastFrame )
+				{
+					if ( !_needToUpdateFromContextSettings )
+					{
+						DataContext.DataContext.Instance.Settings.UpdateFromContextSettings();
+					}
+				}
+			}
+
+			_weatherDeclaredWetLastFrame = WeatherDeclaredWet;
+
 			// calculate g force
 
 			if ( _velocityLastFrame != null )
@@ -326,9 +384,9 @@ public class Simulator
 
 			// crash protection processing
 
-			if ( ( DataContext.Instance.Settings.RacingWheelCrashProtectionGForce > 0f ) && ( DataContext.Instance.Settings.RacingWheelCrashProtectionDuration > 0f ) && ( DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction > 0f ) )
+			if ( ( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionGForce > 0f ) && ( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionDuration > 0f ) && ( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction > 0f ) )
 			{
-				if ( MathF.Abs( GForce ) >= DataContext.Instance.Settings.RacingWheelCrashProtectionGForce )
+				if ( MathF.Abs( GForce ) >= DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionGForce )
 				{
 					app.RacingWheel.ActivateCrashProtection = true;
 				}
@@ -368,7 +426,7 @@ public class Simulator
 
 			// curb protection processing
 
-			if ( ( DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity > 0f ) && ( DataContext.Instance.Settings.RacingWheelCurbProtectionDuration > 0f ) && ( DataContext.Instance.Settings.RacingWheelCurbProtectionForceReduction > 0f ) )
+			if ( ( DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity > 0f ) && ( DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionDuration > 0f ) && ( DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionForceReduction > 0f ) )
 			{
 				var maxShockVelocity = 0f;
 
@@ -384,7 +442,7 @@ public class Simulator
 
 				app.Debug.Label_8 = $"maxShockVelocity = {maxShockVelocity:F2} m/s";
 
-				if ( maxShockVelocity >= DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity )
+				if ( maxShockVelocity >= DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity )
 				{
 					app.RacingWheel.ActivateCurbProtection = true;
 				}
@@ -400,9 +458,9 @@ public class Simulator
 
 			// update pedals at 20 fps
 
-			if ( ( _lastPedalUpateFrame == null ) || ( _irsdk.Data.TickCount >= ( _lastPedalUpateFrame + 3 ) ) )
+			if ( ( _lastPedalUpdateFrame == null ) || ( _irsdk.Data.TickCount >= ( _lastPedalUpdateFrame + 3 ) ) )
 			{
-				_lastPedalUpateFrame = _irsdk.Data.TickCount;
+				_lastPedalUpdateFrame = _irsdk.Data.TickCount;
 
 				app.Pedals.Update( app );
 			}
@@ -413,7 +471,7 @@ public class Simulator
 			{
 				_native60HzTorqueStatistics.Update( SteeringWheelTorque_ST[ 5 ] );
 
-				var y60Hz = SteeringWheelTorque_ST[ 5 ] / DataContext.Instance.Settings.RacingWheelMaxForce;
+				var y60Hz = SteeringWheelTorque_ST[ 5 ] / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
 
 				_native60HzTorqueGraph.DrawGradientLine( y60Hz, 255, 0, 0 );
 				_native60HzTorqueGraph.Advance();
@@ -422,11 +480,18 @@ public class Simulator
 				{
 					_native360HzTorqueStatistics.Update( SteeringWheelTorque_ST[ i ] );
 
-					var y360Hz = SteeringWheelTorque_ST[ i ] / DataContext.Instance.Settings.RacingWheelMaxForce;
+					var y360Hz = SteeringWheelTorque_ST[ i ] / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
 
 					_native360HzTorqueGraph.DrawGradientLine( y360Hz, 255, 0, 0 );
 					_native360HzTorqueGraph.Advance();
 				}
+			}
+
+			// temporary code for Alan Le
+
+			for ( var i = 0; i < SteeringWheelTorque_ST.Length; i++ )
+			{
+				app.Debug.AddFFBSample( _irsdk.Data.TickCount * 6 + i, SteeringWheelTorque_ST[ i ] );
 			}
 
 			// trigger the app worker thread
@@ -444,7 +509,7 @@ public class Simulator
 
 	public void Tick( App app )
 	{
-		app.MainWindow.RacingWheel_CurrentForce_Label.Content = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F2}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
+		app.MainWindow.RacingWheel_CurrentForce_Label.Content = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F2}{DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
 
 		if ( app.MainWindow.GraphsTabItemIsVisible )
 		{

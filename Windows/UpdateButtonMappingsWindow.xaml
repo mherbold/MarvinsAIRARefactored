@@ -3,14 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MarvinsAIRARefactored.Windows"
+        xmlns:windows="clr-namespace:MarvinsAIRARefactored.Windows"
         xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
         xmlns:components="clr-namespace:MarvinsAIRARefactored.Components"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
         mc:Ignorable="d"
         Title="{Binding Localization[UpdateButtonMappings]}"
         Icon="/artwork/white_icon.ico"
         Width="800"
-        Height="400"
+        Height="320"
         ResizeMode="CanResizeWithGrip"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterOwner"
@@ -19,7 +20,7 @@
         MinHeight="300">
 
     <Window.DataContext>
-        <Binding Source="{x:Static components:DataContext.Instance}"/>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}"/>
     </Window.DataContext>
 
     <Window.Background>
@@ -30,7 +31,12 @@
 
         <StackPanel x:Name="StackPanel" Margin="20">
 
-            <controls:ImageButton Width="48" Height="48" LabelText="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_plus.png" Margin="10" Click="PlusButton_Click"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <controls:MairaButton Title="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_plus.png" Margin="10" Click="Plus_MairaButton_Click"/>
+                <controls:MairaButton Title="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_thumbs_up.png" Margin="10" Click="ThumbsUp_MairaButton_Click"/>
+
+            </StackPanel>
 
         </StackPanel>
 

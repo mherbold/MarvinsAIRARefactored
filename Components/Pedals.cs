@@ -1,6 +1,8 @@
 ﻿
+using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.Controls;
+using MarvinsAIRARefactored.Enums;
 using Simagic;
-
 using ComboBox = System.Windows.Controls.ComboBox;
 
 namespace MarvinsAIRARefactored.Components;
@@ -45,15 +47,15 @@ public class Pedals
 				switch ( pedals )
 				{
 					case HPR.Pedals.None:
-						app.MainWindow.Pedals_Device_Label.Content = DataContext.Instance.Localization[ "PedalsNone" ];
+						app.MainWindow.Pedals_Device_Label.Content = DataContext.DataContext.Instance.Localization[ "PedalsNone" ];
 						break;
 
 					case HPR.Pedals.P1000:
-						app.MainWindow.Pedals_Device_Label.Content = DataContext.Instance.Localization[ "PedalsP1000" ];
+						app.MainWindow.Pedals_Device_Label.Content = DataContext.DataContext.Instance.Localization[ "PedalsP1000" ];
 						break;
 
 					case HPR.Pedals.P2000:
-						app.MainWindow.Pedals_Device_Label.Content = DataContext.Instance.Localization[ "PedalsP2000" ];
+						app.MainWindow.Pedals_Device_Label.Content = DataContext.DataContext.Instance.Localization[ "PedalsP2000" ];
 						break;
 				}
 			} );
@@ -62,7 +64,7 @@ public class Pedals
 		}
 	}
 
-	public static void SetComboBoxItemsSource( ComboBox comboBox )
+	public static void SetMairaComboBoxItemsSource( MairaComboBox mairaComboBox )
 	{
 		var app = App.Instance;
 
@@ -70,26 +72,26 @@ public class Pedals
 		{
 			app.Logger.WriteLine( "[Pedals] SetComboBoxItemsSource >>>" );
 
-			var selectedItem = comboBox.SelectedItem as KeyValuePair<Settings.PedalEffectEnum, string>?;
+			var selectedItem = mairaComboBox.SelectedItem as KeyValuePair<PedalEffectEnum, string>?;
 
-			var dictionary = new Dictionary<Settings.PedalEffectEnum, string>
+			var dictionary = new Dictionary<PedalEffectEnum, string>
 			{
-				{ Settings.PedalEffectEnum.None, DataContext.Instance.Localization[ "None" ] },
-				{ Settings.PedalEffectEnum.GearChange, DataContext.Instance.Localization[ "GearChange" ] },
-				{ Settings.PedalEffectEnum.ABSEngaged, DataContext.Instance.Localization[ "ABSEngaged" ] },
-				{ Settings.PedalEffectEnum.WideRPM, DataContext.Instance.Localization[ "WideRPM" ] },
-				{ Settings.PedalEffectEnum.NarrowRPM, DataContext.Instance.Localization[ "NarrowRPM" ] },
-				{ Settings.PedalEffectEnum.SteeringEffects, DataContext.Instance.Localization[ "SteeringEffects" ] },
-				{ Settings.PedalEffectEnum.WheelLock, DataContext.Instance.Localization[ "WheelLock" ] },
-				{ Settings.PedalEffectEnum.WheelSpin, DataContext.Instance.Localization[ "WheelSpin" ] },
-				{ Settings.PedalEffectEnum.ClutchSlip, DataContext.Instance.Localization[ "ClutchSlip" ] },
+				{ PedalEffectEnum.None, DataContext.DataContext.Instance.Localization[ "None" ] },
+				{ PedalEffectEnum.GearChange, DataContext.DataContext.Instance.Localization[ "GearChange" ] },
+				{ PedalEffectEnum.ABSEngaged, DataContext.DataContext.Instance.Localization[ "ABSEngaged" ] },
+				{ PedalEffectEnum.WideRPM, DataContext.DataContext.Instance.Localization[ "WideRPM" ] },
+				{ PedalEffectEnum.NarrowRPM, DataContext.DataContext.Instance.Localization[ "NarrowRPM" ] },
+				{ PedalEffectEnum.SteeringEffects, DataContext.DataContext.Instance.Localization[ "SteeringEffects" ] },
+				{ PedalEffectEnum.WheelLock, DataContext.DataContext.Instance.Localization[ "WheelLock" ] },
+				{ PedalEffectEnum.WheelSpin, DataContext.DataContext.Instance.Localization[ "WheelSpin" ] },
+				{ PedalEffectEnum.ClutchSlip, DataContext.DataContext.Instance.Localization[ "ClutchSlip" ] },
 			};
 
-			comboBox.ItemsSource = dictionary;
+			mairaComboBox.ItemsSource = dictionary;
 
 			if ( selectedItem.HasValue )
 			{
-				comboBox.SelectedItem = dictionary.FirstOrDefault( keyValuePair => keyValuePair.Key.Equals( selectedItem.Value.Key ) ); ;
+				mairaComboBox.SelectedItem = dictionary.FirstOrDefault( keyValuePair => keyValuePair.Key.Equals( selectedItem.Value.Key ) ); ;
 			}
 
 			app.Logger.WriteLine( "[Pedals] <<< SetComboBoxItemsSource" );
@@ -148,8 +150,8 @@ public class Pedals
 
 			effectEngaged[ 1 ] = true;
 
-			effectFrequency[ 1 ] = MathF.Min( DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Max( DataContext.Instance.Settings.PedalsMinimumFrequency, _gearChangeFrequency ) );
-			effectAmplitude[ 1 ] = MathF.Min( DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Max( DataContext.Instance.Settings.PedalsMinimumAmplitude, _gearChangeAmplitude ) );
+			effectFrequency[ 1 ] = MathF.Min( DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Max( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, _gearChangeFrequency ) );
+			effectAmplitude[ 1 ] = MathF.Min( DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Max( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, _gearChangeAmplitude ) );
 		}
 
 		#endregion
@@ -160,8 +162,8 @@ public class Pedals
 		{
 			effectEngaged[ 2 ] = true;
 
-			effectFrequency[ 2 ] = MathF.Min( DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Max( DataContext.Instance.Settings.PedalsMinimumFrequency, _absEngagedFrequency ) );
-			effectAmplitude[ 2 ] = Misc.Lerp( DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( app.Simulator.Brake, 1f + DataContext.Instance.Settings.PedalsAmplitudeCurve ) );
+			effectFrequency[ 2 ] = MathF.Min( DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Max( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, _absEngagedFrequency ) );
+			effectAmplitude[ 2 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( app.Simulator.Brake, 1f + DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve ) );
 		}
 
 		#endregion
@@ -179,8 +181,8 @@ public class Pedals
 
 			effectEngaged[ 3 ] = true;
 
-			effectFrequency[ 3 ] = Misc.Lerp( DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, 1f + DataContext.Instance.Settings.PedalsFrequencyCurve ) );
-			effectAmplitude[ 3 ] = Misc.Lerp( DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( rpm * app.Simulator.Throttle, 1f + DataContext.Instance.Settings.PedalsAmplitudeCurve ) );
+			effectFrequency[ 3 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, 1f + DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve ) );
+			effectAmplitude[ 3 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( rpm * app.Simulator.Throttle, 1f + DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve ) );
 		}
 
 		#endregion
@@ -200,8 +202,8 @@ public class Pedals
 
 				effectEngaged[ 4 ] = true;
 
-				effectFrequency[ 4 ] = Misc.Lerp( DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, 1f + DataContext.Instance.Settings.PedalsFrequencyCurve ) );
-				effectAmplitude[ 4 ] = Misc.Lerp( DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( rpm * app.Simulator.Throttle, 1f + DataContext.Instance.Settings.PedalsAmplitudeCurve ) );
+				effectFrequency[ 4 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, 1f + DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve ) );
+				effectAmplitude[ 4 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( rpm * app.Simulator.Throttle, 1f + DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve ) );
 			}
 		}
 
@@ -316,8 +318,8 @@ public class Pedals
 
 				effectEngaged[ 8 ] = true;
 
-				effectFrequency[ 8 ] = Misc.Lerp( DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, 1f + DataContext.Instance.Settings.PedalsFrequencyCurve ) );
-				effectAmplitude[ 8 ] = MathF.Min( DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Max( DataContext.Instance.Settings.PedalsMinimumAmplitude, _clutchSlipAmplitude ) );
+				effectFrequency[ 8 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, 1f + DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve ) );
+				effectAmplitude[ 8 ] = MathF.Min( DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Max( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, _clutchSlipAmplitude ) );
 			}
 		}
 
@@ -327,28 +329,28 @@ public class Pedals
 
 		for ( var i = 0; i < 3; i++ )
 		{
-			var effect1 = ( i == 0 ) ? (int) DataContext.Instance.Settings.PedalsClutchEffect1 : ( i == 1 ) ? (int) DataContext.Instance.Settings.PedalsBrakeEffect1 : (int) DataContext.Instance.Settings.PedalsThrottleEffect1;
-			var effect2 = ( i == 0 ) ? (int) DataContext.Instance.Settings.PedalsClutchEffect2 : ( i == 1 ) ? (int) DataContext.Instance.Settings.PedalsBrakeEffect2 : (int) DataContext.Instance.Settings.PedalsThrottleEffect2;
-			var effect3 = ( i == 0 ) ? (int) DataContext.Instance.Settings.PedalsClutchEffect3 : ( i == 1 ) ? (int) DataContext.Instance.Settings.PedalsBrakeEffect3 : (int) DataContext.Instance.Settings.PedalsThrottleEffect3;
+			var effect1 = ( i == 0 ) ? (int) DataContext.DataContext.Instance.Settings.PedalsClutchEffect1 : ( i == 1 ) ? (int) DataContext.DataContext.Instance.Settings.PedalsBrakeEffect1 : (int) DataContext.DataContext.Instance.Settings.PedalsThrottleEffect1;
+			var effect2 = ( i == 0 ) ? (int) DataContext.DataContext.Instance.Settings.PedalsClutchEffect2 : ( i == 1 ) ? (int) DataContext.DataContext.Instance.Settings.PedalsBrakeEffect2 : (int) DataContext.DataContext.Instance.Settings.PedalsThrottleEffect2;
+			var effect3 = ( i == 0 ) ? (int) DataContext.DataContext.Instance.Settings.PedalsClutchEffect3 : ( i == 1 ) ? (int) DataContext.DataContext.Instance.Settings.PedalsBrakeEffect3 : (int) DataContext.DataContext.Instance.Settings.PedalsThrottleEffect3;
 
-			var scale1 = ( i == 0 ) ? DataContext.Instance.Settings.PedalsClutchEffect1Strength : ( i == 1 ) ? DataContext.Instance.Settings.PedalsBrakeEffect1Strength : DataContext.Instance.Settings.PedalsThrottleEffect1Strength;
-			var scale2 = ( i == 0 ) ? DataContext.Instance.Settings.PedalsClutchEffect2Strength : ( i == 1 ) ? DataContext.Instance.Settings.PedalsBrakeEffect2Strength : DataContext.Instance.Settings.PedalsThrottleEffect2Strength;
-			var scale3 = ( i == 0 ) ? DataContext.Instance.Settings.PedalsClutchEffect3Strength : ( i == 1 ) ? DataContext.Instance.Settings.PedalsBrakeEffect3Strength : DataContext.Instance.Settings.PedalsThrottleEffect3Strength;
+			var scale1 = ( i == 0 ) ? DataContext.DataContext.Instance.Settings.PedalsClutchEffect1Strength : ( i == 1 ) ? DataContext.DataContext.Instance.Settings.PedalsBrakeEffect1Strength : DataContext.DataContext.Instance.Settings.PedalsThrottleEffect1Strength;
+			var scale2 = ( i == 0 ) ? DataContext.DataContext.Instance.Settings.PedalsClutchEffect2Strength : ( i == 1 ) ? DataContext.DataContext.Instance.Settings.PedalsBrakeEffect2Strength : DataContext.DataContext.Instance.Settings.PedalsThrottleEffect2Strength;
+			var scale3 = ( i == 0 ) ? DataContext.DataContext.Instance.Settings.PedalsClutchEffect3Strength : ( i == 1 ) ? DataContext.DataContext.Instance.Settings.PedalsBrakeEffect3Strength : DataContext.DataContext.Instance.Settings.PedalsThrottleEffect3Strength;
 
 			if ( effectEngaged[ effect1 ] )
 			{
 				frequency[ i ] = effectFrequency[ effect1 ];
-				amplitude[ i ] = ( effectAmplitude[ effect1 ] - DataContext.Instance.Settings.PedalsMinimumAmplitude ) * scale1 + DataContext.Instance.Settings.PedalsMinimumAmplitude;
+				amplitude[ i ] = ( effectAmplitude[ effect1 ] - DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude ) * scale1 + DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude;
 			}
 			else if ( effectEngaged[ effect2 ] )
 			{
 				frequency[ i ] = effectFrequency[ effect2 ];
-				amplitude[ i ] = ( effectAmplitude[ effect2 ] - DataContext.Instance.Settings.PedalsMinimumAmplitude ) * scale2 + DataContext.Instance.Settings.PedalsMinimumAmplitude;
+				amplitude[ i ] = ( effectAmplitude[ effect2 ] - DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude ) * scale2 + DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude;
 			}
 			else if ( effectEngaged[ effect3 ] )
 			{
 				frequency[ i ] = effectFrequency[ effect3 ];
-				amplitude[ i ] = ( effectAmplitude[ effect3 ] - DataContext.Instance.Settings.PedalsMinimumAmplitude ) * scale3 + DataContext.Instance.Settings.PedalsMinimumAmplitude;
+				amplitude[ i ] = ( effectAmplitude[ effect3 ] - DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude ) * scale3 + DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude;
 			}
 
 			if ( ( frequency[ i ] == 0f ) || ( amplitude[ i ] == 0f ) )

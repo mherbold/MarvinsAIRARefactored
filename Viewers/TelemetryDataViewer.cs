@@ -11,7 +11,7 @@ using Point = System.Windows.Point;
 
 using IRSDKSharper;
 
-namespace MarvinsAIRARefactored.Controls;
+namespace MarvinsAIRARefactored.Viewers;
 
 public class TelemetryDataViewer : Control
 {

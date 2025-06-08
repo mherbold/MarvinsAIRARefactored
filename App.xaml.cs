@@ -3,8 +3,9 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
-using MarvinsAIRARefactored.Windows;
+using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
+using MarvinsAIRARefactored.Windows;
 
 using Application = System.Windows.Application;
 using Timer = System.Timers.Timer;
@@ -127,402 +128,416 @@ public partial class App : Application
 		{
 			// racing wheel power button
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelPowerButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelEnableForceFeedbackMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelEnableForceFeedback = !DataContext.Instance.Settings.RacingWheelEnableForceFeedback;
+				DataContext.DataContext.Instance.Settings.RacingWheelEnableForceFeedback = !DataContext.DataContext.Instance.Settings.RacingWheelEnableForceFeedback;
 			}
 
 			// racing wheel test button
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelTestButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelTestButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				RacingWheel.PlayTestSignal = true;
 			}
 
 			// racing wheel reset button
 			
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelResetButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelResetButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				RacingWheel.ResetForceFeedback = true;
 			}
 
 			// racing wheel max force knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelMaxForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelMaxForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelMaxForce += 1f;
+				DataContext.DataContext.Instance.Settings.RacingWheelMaxForce += 1f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelMaxForceMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelMaxForceMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelMaxForce -= 1f;
+				DataContext.DataContext.Instance.Settings.RacingWheelMaxForce -= 1f;
 			}
 
 			// racing wheel auto margin knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelAutoMarginPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelAutoMarginPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelAutoMargin += 1f;
+				DataContext.DataContext.Instance.Settings.RacingWheelAutoMargin += 1f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelAutoMarginMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelAutoMarginMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelAutoMargin -= 1f;
+				DataContext.DataContext.Instance.Settings.RacingWheelAutoMargin -= 1f;
 			}
 
 			// racing wheel auto button
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelAutoButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelAutoButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				RacingWheel.AutoSetMaxForce = true;
 			}
 
 			// racing wheel clear button
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelClearButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelClearButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				RacingWheel.ClearPeakTorque = true;
 			}
 
 			// racing wheel detail boost knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelDetailBoostPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelDetailBoostPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelDetailBoost += 0.1f;
+				DataContext.DataContext.Instance.Settings.RacingWheelDetailBoost += 0.1f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelDetailBoostMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelDetailBoostMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelDetailBoost -= 0.1f;
+				DataContext.DataContext.Instance.Settings.RacingWheelDetailBoost -= 0.1f;
 			}
 
 			// racing wheel delta limit knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelDeltaLimitPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimitPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelDeltaLimit += 0.01f;
+				DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimit += 0.01f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelDeltaLimitMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimitMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelDeltaLimit -= 0.01f;
+				DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimit -= 0.01f;
 			}
 
 			// racing wheel bias knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelBiasPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelBiasPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelBias += 0.01f;
+				DataContext.DataContext.Instance.Settings.RacingWheelBias += 0.01f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelBiasMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelBiasMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelBias -= 0.01f;
+				DataContext.DataContext.Instance.Settings.RacingWheelBias -= 0.01f;
 			}
 
 			// racing wheel compression rate knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCompressionRatePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCompressionRatePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCompressionRate += 0.01f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCompressionRate += 0.01f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCompressionRateMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCompressionRateMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCompressionRate -= 0.01f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCompressionRate -= 0.01f;
 			}
 
 			// racing wheel crash protection g force knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionGForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionGForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCrashProtectionGForce += 0.5f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionGForce += 0.5f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionGForceMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionGForceMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCrashProtectionGForce -= 0.5f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionGForce -= 0.5f;
 			}
 
 			// racing wheel crash protection duration knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionDurationPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionDurationPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCrashProtectionDuration += 0.5f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionDuration += 0.5f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionDurationMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionDurationMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCrashProtectionDuration -= 0.5f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionDuration -= 0.5f;
 			}
 
 			// racing wheel crash protection force reduction knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionForceReductionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionForceReductionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction += 0.05f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCrashProtectionForceReductionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionForceReductionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction -= 0.05f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction -= 0.05f;
 			}
 
 			// racing wheel curb protection shock velocity knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocityPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocityPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity += 0.1f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity += 0.1f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocityMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocityMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity -= 0.1f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionShockVelocity -= 0.1f;
 			}
 
 			// racing wheel curb protection duration knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionDurationPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionDurationPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCurbProtectionDuration += 0.1f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionDuration += 0.1f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionDurationMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionDurationMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCurbProtectionDuration -= 0.1f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionDuration -= 0.1f;
 			}
 
 			// racing wheel curb protection force reduction knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionForceReductionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionForceReductionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCurbProtectionForceReduction += 0.05f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionForceReduction += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelCurbProtectionForceReductionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionForceReductionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelCurbProtectionForceReduction -= 0.05f;
+				DataContext.DataContext.Instance.Settings.RacingWheelCurbProtectionForceReduction -= 0.05f;
 			}
 
 			// racing wheel parked strength knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelParkedStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelParkedStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelParkedStrength += 0.05f;
+				DataContext.DataContext.Instance.Settings.RacingWheelParkedStrength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelParkedStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelParkedStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelParkedStrength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.RacingWheelParkedStrength -= 0.05f;
 			}
 
 			// racing wheel soft lock knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelSoftLockStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelSoftLockStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelSoftLockStrength += 0.05f;
+				DataContext.DataContext.Instance.Settings.RacingWheelSoftLockStrength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelSoftLockStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelSoftLockStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelSoftLockStrength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.RacingWheelSoftLockStrength -= 0.05f;
 			}
 
 			// racing wheel friction knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelFrictionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelFrictionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelFriction += 0.05f;
+				DataContext.DataContext.Instance.Settings.RacingWheelFriction += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.RacingWheelFrictionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelFrictionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.RacingWheelFriction -= 0.05f;
+				DataContext.DataContext.Instance.Settings.RacingWheelFriction -= 0.05f;
 			}
 
 			// pedals minimum frequency knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMinimumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsMinimumFrequency += 1f;
+				DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency += 1f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMinimumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsMinimumFrequency -= 1f;
+				DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency -= 1f;
 			}
 
 			// pedals maximum frequency knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMaximumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsMaximumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsMaximumFrequency += 1f;
+				DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency += 1f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMaximumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsMaximumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsMaximumFrequency -= 1f;
+				DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency -= 1f;
 			}
 
 			// pedals frequency curve knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsFrequencyCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsFrequencyCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsFrequencyCurve += 0.01f;
+				DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve += 0.01f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsFrequencyCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsFrequencyCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsFrequencyCurve -= 0.01f;
+				DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve -= 0.01f;
 			}
 
 			// pedals minimum amplitude knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMinimumAmplitudePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitudePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsMinimumAmplitude += 0.01f;
+				DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude += 0.01f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMinimumAmplitudeMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitudeMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsMinimumAmplitude -= 0.01f;
+				DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude -= 0.01f;
 			}
 
 			// pedals maximum amplitude knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMaximumAmplitudePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitudePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsMaximumAmplitude += 0.01f;
+				DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude += 0.01f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsMaximumAmplitudeMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitudeMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsMaximumAmplitude -= 0.01f;
+				DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude -= 0.01f;
 			}
 
 			// pedals amplitude curve knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsAmplitudeCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsAmplitudeCurve += 0.01f;
+				DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve += 0.01f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsAmplitudeCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsAmplitudeCurve -= 0.01f;
+				DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve -= 0.01f;
 			}
 
 			// pedals clutch effect 1 strength knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsClutchEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsClutchEffect1Strength += 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsClutchEffect1Strength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsClutchEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsClutchEffect1Strength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsClutchEffect1Strength -= 0.05f;
 			}
 
 			// pedals clutch effect 2 strength knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsClutchEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsClutchEffect2Strength += 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsClutchEffect2Strength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsClutchEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsClutchEffect2Strength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsClutchEffect2Strength -= 0.05f;
 			}
 
 			// pedals clutch effect 3 strength knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsClutchEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsClutchEffect3Strength += 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsClutchEffect3Strength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsClutchEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsClutchEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsClutchEffect3Strength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsClutchEffect3Strength -= 0.05f;
 			}
 
 			// pedals brake effect 1 strength knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsBrakeEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsBrakeEffect1Strength += 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsBrakeEffect1Strength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsBrakeEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsBrakeEffect1Strength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsBrakeEffect1Strength -= 0.05f;
 			}
 
 			// pedals brake effect 2 strength knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsBrakeEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsBrakeEffect2Strength += 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsBrakeEffect2Strength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsBrakeEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsBrakeEffect2Strength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsBrakeEffect2Strength -= 0.05f;
 			}
 
 			// pedals brake effect 3 strength knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsBrakeEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsBrakeEffect3Strength += 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsBrakeEffect3Strength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsBrakeEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsBrakeEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsBrakeEffect3Strength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsBrakeEffect3Strength -= 0.05f;
 			}
 
 			// pedals throttle effect 1 strength knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsThrottleEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsThrottleEffect1Strength += 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsThrottleEffect1Strength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsThrottleEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsThrottleEffect1Strength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsThrottleEffect1Strength -= 0.05f;
 			}
 
 			// pedals throttle effect 2 strength knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsThrottleEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsThrottleEffect2Strength += 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsThrottleEffect2Strength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsThrottleEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsThrottleEffect2Strength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsThrottleEffect2Strength -= 0.05f;
 			}
 
 			// pedals throttle effect 3 strength knob
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsThrottleEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsThrottleEffect3Strength += 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsThrottleEffect3Strength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( DataContext.Instance.Settings.PedalsThrottleEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsThrottleEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.Instance.Settings.PedalsThrottleEffect3Strength -= 0.05f;
+				DataContext.DataContext.Instance.Settings.PedalsThrottleEffect3Strength -= 0.05f;
+			}
+
+			// debug alan le reset
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.DebugAlanLeResetMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				Debug.ResetFFBSamples();
+			}
+
+			// debug alan le dump
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.DebugAlanLeDumpMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				Debug.DumpFFBSamplesToCSVFile();
 			}
 		}
 	}
 
-	private bool CheckMappedButtons( Settings.ButtonMappings buttonMappings, Guid deviceInstanceGuid, int buttonNumber )
+	private bool CheckMappedButtons( ButtonMappings buttonMappings, Guid deviceInstanceGuid, int buttonNumber )
 	{
 		foreach ( var mappedButton in buttonMappings.MappedButtons )
 		{

@@ -277,6 +277,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Default.
+        /// </summary>
+        internal static string Default {
+            get {
+                return ResourceManager.GetString("Default", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delta Limit.
         /// </summary>
         internal static string DeltaLimit {
@@ -345,6 +354,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Device {
             get {
                 return ResourceManager.GetString("Device", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dry.
+        /// </summary>
+        internal static string Dry {
+            get {
+                return ResourceManager.GetString("Dry", resourceCulture);
             }
         }
         
@@ -673,11 +691,56 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Per Car.
+        /// </summary>
+        internal static string PerCar {
+            get {
+                return ResourceManager.GetString("PerCar", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to %.
         /// </summary>
         internal static string Percent {
             get {
                 return ResourceManager.GetString("Percent", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Track.
+        /// </summary>
+        internal static string PerTrack {
+            get {
+                return ResourceManager.GetString("PerTrack", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Track Configuration.
+        /// </summary>
+        internal static string PerTrackConfiguration {
+            get {
+                return ResourceManager.GetString("PerTrackConfiguration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Wet/Dry.
+        /// </summary>
+        internal static string PerWetDry {
+            get {
+                return ResourceManager.GetString("PerWetDry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Per Wheelbase.
+        /// </summary>
+        internal static string PerWheelbase {
+            get {
+                return ResourceManager.GetString("PerWheelbase", resourceCulture);
             }
         }
         
@@ -723,6 +786,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Reset {
             get {
                 return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Save This Setting.
+        /// </summary>
+        internal static string SaveThisSetting {
+            get {
+                return ResourceManager.GetString("SaveThisSetting", resourceCulture);
             }
         }
         
@@ -885,6 +957,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string WaitingForInput {
             get {
                 return ResourceManager.GetString("WaitingForInput", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wet.
+        /// </summary>
+        internal static string Wet {
+            get {
+                return ResourceManager.GetString("Wet", resourceCulture);
             }
         }
         

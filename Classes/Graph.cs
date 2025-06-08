@@ -6,7 +6,7 @@ using System.Windows.Media.Imaging;
 
 using Image = System.Windows.Controls.Image;
 
-namespace MarvinsAIRARefactored.Components;
+namespace MarvinsAIRARefactored.Classes;
 
 public class Graph
 {
@@ -40,7 +40,7 @@ public class Graph
 
 		var iy = (int) MathF.Floor( Math.Clamp( y * _bitmapHeight, 0, _bitmapHeight - 1 ) );
 
-		_colorData[ iy, _x ] = 0xFF000000 | ( red << 16 ) | ( green << 8 ) | blue;
+		_colorData[ iy, _x ] = 0xFF000000 |  red << 16  |  green << 8  | blue;
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
@@ -59,7 +59,7 @@ public class Graph
 			{
 				var multiplier = MathF.Pow( i / range, 2.2f );
 
-				var color = 0xFF000000 | ( ( (uint) ( red * multiplier ) ) << 16 ) | ( ( (uint) ( green * multiplier ) ) << 8 ) | ( (uint) ( blue * multiplier ) );
+				var color = 0xFF000000 |   (uint) ( red * multiplier )  << 16  |   (uint) ( green * multiplier )  << 8  |  (uint) ( blue * multiplier ) ;
 
 				_colorData[ iy1 + i - 1, _x ] = color;
 			}
@@ -72,7 +72,7 @@ public class Graph
 			{
 				var multiplier = MathF.Pow( i / range, 2.2f );
 
-				var color = 0xFF000000 | ( ( (uint) ( red * multiplier ) ) << 16 ) | ( ( (uint) ( green * multiplier ) ) << 8 ) | ( (uint) ( blue * multiplier ) );
+				var color = 0xFF000000 |   (uint) ( red * multiplier )  << 16  |   (uint) ( green * multiplier )  << 8  |  (uint) ( blue * multiplier ) ;
 
 				_colorData[ iy1 - i + 1, _x ] = color;
 			}
@@ -88,7 +88,7 @@ public class Graph
 		var iy1 = (int) MathF.Floor( Math.Clamp( y2 * _bitmapHeight, 0, _bitmapHeight - 1 ) );
 		var iy2 = (int) MathF.Floor( Math.Clamp( y1 * _bitmapHeight, 0, _bitmapHeight - 1 ) );
 
-		var color = ( alpha << 24 ) | ( red << 16 ) | ( green << 8 ) | blue;
+		var color =  alpha << 24  |  red << 16  |  green << 8  | blue;
 
 		for ( var y = iy1; y <= iy2; y++ )
 		{

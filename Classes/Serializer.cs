@@ -1,9 +1,8 @@
 ﻿
 using System.IO;
-using System.IO.Pipes;
 using System.Xml.Serialization;
 
-namespace MarvinsAIRARefactored.Components;
+namespace MarvinsAIRARefactored.Classes;
 
 public static class Serializer
 {

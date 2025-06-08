@@ -2,8 +2,10 @@
 using SharpDX.DirectInput;
 using System.Runtime.CompilerServices;
 
-using ComboBox = System.Windows.Controls.ComboBox;
 using Image = System.Windows.Controls.Image;
+
+using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.Controls;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -104,68 +106,84 @@ public class DirectInput
 		}
 	}
 
-	public void InitializeForceFeedback( Guid deviceGuid )
+	public bool InitializeForceFeedback( Guid deviceGuid )
 	{
+		var success = false;
+
 		var app = App.Instance;
 
 		if ( app != null )
 		{
 			app.Logger.WriteLine( "[DirectInput] InitializeForceFeedback >>>" );
 
-			app.Logger.WriteLine( "[DirectInput] Creating the force feedback joystick" );
-
-			_forceFeedbackDeviceInstanceGuid = deviceGuid;
-
-			_forceFeedbackJoystick = new Joystick( _directInput, _forceFeedbackDeviceInstanceGuid );
-
-			app.Logger.WriteLine( "[DirectInput] Setting the cooperative level to exclusive and background mode" );
-
-			_forceFeedbackJoystick.SetCooperativeLevel( app.MainWindow.WindowHandle, CooperativeLevel.Exclusive | CooperativeLevel.Background );
-
-			app.Logger.WriteLine( "[DirectInput] Acquiring the joystick" );
-
-			_forceFeedbackJoystick.Acquire();
-
-			foreach ( var effectInfo in _forceFeedbackJoystick.GetEffects() )
+			try
 			{
-				if ( ( effectInfo.Type & EffectType.Hardware ) == EffectType.ConstantForce )
+				app.Logger.WriteLine( "[DirectInput] Creating the force feedback joystick" );
+
+				_forceFeedbackDeviceInstanceGuid = deviceGuid;
+
+				_forceFeedbackJoystick = new Joystick( _directInput, _forceFeedbackDeviceInstanceGuid );
+			}
+			catch ( Exception exception )
+			{
+				app.Logger.WriteLine( $"[DirectInput] Exception caught: {exception.Message.Trim()}" );
+
+				app.RacingWheel.NextRacingWheelGuid = Guid.Empty;
+			}
+
+			if ( _forceFeedbackJoystick != null )
+			{
+				app.Logger.WriteLine( "[DirectInput] Setting the cooperative level to exclusive and background mode" );
+
+				_forceFeedbackJoystick.SetCooperativeLevel( app.MainWindow.WindowHandle, CooperativeLevel.Exclusive | CooperativeLevel.Background );
+
+				app.Logger.WriteLine( "[DirectInput] Acquiring the joystick" );
+
+				_forceFeedbackJoystick.Acquire();
+
+				foreach ( var effectInfo in _forceFeedbackJoystick.GetEffects() )
 				{
-					_forceFeedbackEffectParameters = new EffectParameters
+					if ( ( effectInfo.Type & EffectType.Hardware ) == EffectType.ConstantForce )
 					{
-						Flags = EffectFlags.ObjectOffsets | EffectFlags.Cartesian,
-						Duration = 500000,
-						Gain = DI_FFNOMINALMAX,
-						SamplePeriod = 0,
-						StartDelay = 0,
-						TriggerButton = DIEB_NOTRIGGER,
-						TriggerRepeatInterval = int.MaxValue,
-						Axes = [ 0 ],
-						Directions = [ 0 ],
-						Envelope = new Envelope(),
-						Parameters = new ConstantForce { Magnitude = 0 }
-					};
+						_forceFeedbackEffectParameters = new EffectParameters
+						{
+							Flags = EffectFlags.ObjectOffsets | EffectFlags.Cartesian,
+							Duration = 500000,
+							Gain = DI_FFNOMINALMAX,
+							SamplePeriod = 0,
+							StartDelay = 0,
+							TriggerButton = DIEB_NOTRIGGER,
+							TriggerRepeatInterval = int.MaxValue,
+							Axes = [ 0 ],
+							Directions = [ 0 ],
+							Envelope = new Envelope(),
+							Parameters = new ConstantForce { Magnitude = 0 }
+						};
 
-					app.Logger.WriteLine( "[DirectInput] Creating the constant force effect" );
+						app.Logger.WriteLine( "[DirectInput] Creating the constant force effect" );
 
-					_forceFeedbackEffect = new Effect( _forceFeedbackJoystick, effectInfo.Guid, _forceFeedbackEffectParameters );
+						_forceFeedbackEffect = new Effect( _forceFeedbackJoystick, effectInfo.Guid, _forceFeedbackEffectParameters );
 
-					_forceFeedbackEffect.Download();
+						_forceFeedbackEffect.Download();
 
-					break;
+						break;
+					}
 				}
+
+				if ( _forceFeedbackEffect == null )
+				{
+					app.Logger.WriteLine( "[DirectInput] Warning - constant force effect was not created (not supported?)" );
+				}
+
+				_forceFeedbackInitialized = true;
+
+				app.MainWindow.UpdateRacingWheelForceFeedbackButtons();
 			}
-
-			if ( _forceFeedbackEffect == null )
-			{
-				app.Logger.WriteLine( "[DirectInput] Warning - constant force effect was not created (not supported?)" );
-			}
-
-			_forceFeedbackInitialized = true;
-
-			app.MainWindow.UpdateRacingWheelForceFeedbackButtons();
 
 			app.Logger.WriteLine( "[DirectInput] <<< InitializeForceFeedback" );
 		}
+
+		return success;
 	}
 
 	public void ShutdownForceFeedback()
@@ -223,7 +241,7 @@ public class DirectInput
 		}
 	}
 
-	public void SetComboBoxItemsSource( ComboBox comboBox )
+	public void SetMairaComboBoxItemsSource( MairaComboBox mairaComboBox )
 	{
 		var app = App.Instance;
 
@@ -235,13 +253,13 @@ public class DirectInput
 
 			if ( _forceFeedbackDeviceInstanceList.Count == 0 )
 			{
-				dictionary.Add( Guid.Empty, DataContext.Instance.Localization[ "NoAttachedFFBDevicesFound" ] );
+				dictionary.Add( Guid.Empty, DataContext.DataContext.Instance.Localization[ "NoAttachedFFBDevicesFound" ] );
 			}
 
 			_forceFeedbackDeviceInstanceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
 
-			comboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
-			comboBox.SelectedValue = DataContext.Instance.Settings.RacingWheelDeviceGuid;
+			mairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
+			mairaComboBox.SelectedValue = DataContext.DataContext.Instance.Settings.RacingWheelDeviceGuid;
 
 			app.Logger.WriteLine( "[DirectInput] <<< SetComboBoxItemsSource" );
 		}
@@ -282,7 +300,7 @@ public class DirectInput
 
 		if ( _keyboardUpdates != null )
 		{
-			var keyboardText = DataContext.Instance.Localization[ "Keyboard" ];
+			var keyboardText = DataContext.DataContext.Instance.Localization[ "Keyboard" ];
 
 			foreach ( var keyboardUpdate in _keyboardUpdates )
 			{
@@ -460,9 +478,9 @@ public class DirectInput
 				}
 			}
 
-			if ( DataContext.Instance.Settings.RacingWheelDeviceGuid == Guid.Empty )
+			if ( DataContext.DataContext.Instance.Settings.RacingWheelDeviceGuid == Guid.Empty )
 			{
-				DataContext.Instance.Settings.RacingWheelDeviceGuid = _forceFeedbackDeviceInstanceList.FirstOrDefault().Key;
+				DataContext.DataContext.Instance.Settings.RacingWheelDeviceGuid = _forceFeedbackDeviceInstanceList.FirstOrDefault().Key;
 			}
 
 			_directInputInitialized = true;

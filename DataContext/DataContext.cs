@@ -2,7 +2,9 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace MarvinsAIRARefactored.Components;
+using MarvinsAIRARefactored.Components;
+
+namespace MarvinsAIRARefactored.DataContext;
 
 public class DataContext : INotifyPropertyChanged
 {

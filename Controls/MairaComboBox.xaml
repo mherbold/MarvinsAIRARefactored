@@ -1,0 +1,23 @@
+﻿<UserControl x:Class="MarvinsAIRARefactored.Controls.MairaComboBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+             mc:Ignorable="d"
+             d:Width="300"
+             d:Height="Auto">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" x:Name="Label" Content="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalAlignment="Center" PreviewMouseRightButtonDown="Label_PreviewMouseRightButtonDown"/>
+
+        <ComboBox Grid.Row="1" ItemsSource="{Binding ItemsSource, RelativeSource={RelativeSource AncestorType=UserControl}}" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding SelectedValue, RelativeSource={RelativeSource AncestorType=UserControl}}" VerticalContentAlignment="Center"/>
+
+    </Grid>
+
+</UserControl>

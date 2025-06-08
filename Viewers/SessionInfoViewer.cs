@@ -10,7 +10,7 @@ using Control = System.Windows.Controls.Control;
 using FlowDirection = System.Windows.FlowDirection;
 using Point = System.Windows.Point;
 
-namespace MarvinsAIRARefactored.Controls;
+namespace MarvinsAIRARefactored.Viewers;
 
 public class SessionInfoViewer : Control
 {

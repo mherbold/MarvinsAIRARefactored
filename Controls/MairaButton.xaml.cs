@@ -7,30 +7,30 @@ using UserControl = System.Windows.Controls.UserControl;
 
 namespace MarvinsAIRARefactored.Controls;
 
-public partial class ImageButton : UserControl
+public partial class MairaButton : UserControl
 {
 	private DispatcherTimer? _timer = null;
 	private bool _blink = false;
 
-	public ImageButton()
+	public MairaButton()
 	{
 		InitializeComponent();
 	}
 
-	private void ImageButton_Loaded( object sender, RoutedEventArgs e )
+	private void MairaButton_Loaded( object sender, RoutedEventArgs e )
 	{
 		UpdateImageSources();
 	}
 
-	public static readonly DependencyProperty LabelTextProperty = DependencyProperty.Register( nameof( LabelText ), typeof( string ), typeof( ImageButton ), new PropertyMetadata( "" ) );
+	public static readonly DependencyProperty TitleProperty = DependencyProperty.Register( nameof( Title ), typeof( string ), typeof( MairaButton ), new PropertyMetadata( "" ) );
 
-	public string LabelText
+	public string Title
 	{
-		get => (string) GetValue( LabelTextProperty );
-		set => SetValue( LabelTextProperty, value );
+		get => (string) GetValue( TitleProperty );
+		set => SetValue( TitleProperty, value );
 	}
 
-	public static readonly DependencyProperty BehindIconProperty = DependencyProperty.Register( nameof( BehindIcon ), typeof( ImageSource ), typeof( ImageButton ), new PropertyMetadata( null ) );
+	public static readonly DependencyProperty BehindIconProperty = DependencyProperty.Register( nameof( BehindIcon ), typeof( ImageSource ), typeof( MairaButton ), new PropertyMetadata( null ) );
 
 	public ImageSource BehindIcon
 	{
@@ -38,7 +38,7 @@ public partial class ImageButton : UserControl
 		set => SetValue( BehindIconProperty, value );
 	}
 
-	public static readonly DependencyProperty ButtonIconProperty = DependencyProperty.Register( nameof( ButtonIcon ), typeof( ImageSource ), typeof( ImageButton ), new PropertyMetadata( null ) );
+	public static readonly DependencyProperty ButtonIconProperty = DependencyProperty.Register( nameof( ButtonIcon ), typeof( ImageSource ), typeof( MairaButton ), new PropertyMetadata( null ) );
 
 	public ImageSource ButtonIcon
 	{
@@ -46,7 +46,7 @@ public partial class ImageButton : UserControl
 		set => SetValue( ButtonIconProperty, value );
 	}
 
-	public static readonly DependencyProperty BlinkProperty = DependencyProperty.Register( nameof( Blink ), typeof( bool ), typeof( ImageButton ), new PropertyMetadata( false, OnBlinkChanged ) );
+	public static readonly DependencyProperty BlinkProperty = DependencyProperty.Register( nameof( Blink ), typeof( bool ), typeof( MairaButton ), new PropertyMetadata( false, OnBlinkChanged ) );
 
 	public bool Blink
 	{
@@ -56,13 +56,13 @@ public partial class ImageButton : UserControl
 
 	private static void OnBlinkChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
 	{
-		if ( d is ImageButton imageButton )
+		if ( d is MairaButton mairaButton )
 		{
-			imageButton.UpdateBlink();
+			mairaButton.UpdateBlink();
 		}
 	}
 
-	public static readonly DependencyProperty SmallProperty = DependencyProperty.Register( nameof( Small ), typeof( bool ), typeof( ImageButton ), new PropertyMetadata( false, OnSmallChanged ) );
+	public static readonly DependencyProperty SmallProperty = DependencyProperty.Register( nameof( Small ), typeof( bool ), typeof( MairaButton ), new PropertyMetadata( false, OnSmallChanged ) );
 
 	public bool Small
 	{
@@ -72,13 +72,13 @@ public partial class ImageButton : UserControl
 
 	private static void OnSmallChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
 	{
-		if ( d is ImageButton imageButton )
+		if ( d is MairaButton mairaButton )
 		{
-			imageButton.UpdateImageSources();
+			mairaButton.UpdateImageSources();
 		}
 	}
 
-	public static readonly DependencyProperty DisabledProperty = DependencyProperty.Register( nameof( Disabled ), typeof( bool ), typeof( ImageButton ), new PropertyMetadata( false, OnDisabledChanged ) );
+	public static readonly DependencyProperty DisabledProperty = DependencyProperty.Register( nameof( Disabled ), typeof( bool ), typeof( MairaButton ), new PropertyMetadata( false, OnDisabledChanged ) );
 
 	public bool Disabled
 	{
@@ -88,9 +88,9 @@ public partial class ImageButton : UserControl
 
 	private static void OnDisabledChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
 	{
-		if ( d is ImageButton imageButton )
+		if ( d is MairaButton mairaButton )
 		{
-			imageButton.Disabled_Image.Visibility = imageButton.Disabled ? Visibility.Visible : Visibility.Hidden;
+			mairaButton.Disabled_Image.Visibility = mairaButton.Disabled ? Visibility.Visible : Visibility.Hidden;
 		}
 	}
 
@@ -141,12 +141,20 @@ public partial class ImageButton : UserControl
 			Normal_Image.Source = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/round_button_small.png" ) as ImageSource;
 			Pressed_Image.Source = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/round_button_pressed_small.png" ) as ImageSource;
 			Disabled_Image.Source = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/round_button_disabled_small.png" ) as ImageSource;
+
+			Normal_Image.Height = 24;
+			Pressed_Image.Height = 24;
+			Disabled_Image.Height = 24;
 		}
 		else
 		{
 			Normal_Image.Source = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/round_button.png" ) as ImageSource;
 			Pressed_Image.Source = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/round_button_pressed.png" ) as ImageSource;
 			Disabled_Image.Source = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/artwork/round_button_disabled.png" ) as ImageSource;
+
+			Normal_Image.Height = 48;
+			Pressed_Image.Height = 48;
+			Disabled_Image.Height = 48;
 		}
 	}
 

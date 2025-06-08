@@ -1,11 +1,11 @@
-﻿<UserControl x:Class="MarvinsAIRARefactored.Controls.ImageButton"
+﻿<UserControl x:Class="MarvinsAIRARefactored.Controls.MairaButton"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MarvinsAIRARefactored.Controls"
+             xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
              mc:Ignorable="d"
-             Loaded="ImageButton_Loaded">
+             Loaded="MairaButton_Loaded">
     
     <Grid>
         
@@ -14,13 +14,13 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="{Binding LabelText, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalAlignment="Center">
+        <Label Grid.Row="0" x:Name="Label" Content="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalAlignment="Center">
             <Label.Style>
                 <Style TargetType="Label">
                     <Setter Property="Visibility" Value="Visible"/>
                     <Setter Property="Foreground" Value="#FFFFFFFF"/>
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding LabelText, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="">
+                        <DataTrigger Binding="{Binding Title, RelativeSource={RelativeSource AncestorType=UserControl}}" Value="">
                             <Setter Property="Visibility" Value="Collapsed"/>
                         </DataTrigger>
                     </Style.Triggers>

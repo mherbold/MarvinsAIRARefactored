@@ -28,8 +28,7 @@
     <None Remove="Artwork\icon_plus.png" />
     <None Remove="Artwork\icon_plus_small.png" />
     <None Remove="Artwork\icon_record_off.png" />
-    <None Remove="Artwork\icon_reset_ffb.png" />
-    <None Remove="Artwork\icon_test_ffb.png" />
+    <None Remove="Artwork\icon_thumbs_up.png" />
     <None Remove="Artwork\icon_trash.png" />
     <None Remove="Artwork\icon_zero.png" />
     <None Remove="Artwork\power_led_black.png" />
@@ -55,6 +54,7 @@
     <Resource Include="Artwork\background_racingwheel.png" />
     <Resource Include="Artwork\icon_magic.png" />
     <Resource Include="Artwork\icon_record_off.png" />
+    <Resource Include="Artwork\icon_thumbs_up.png" />
     <Resource Include="Artwork\icon_zero.png" />
     <Resource Include="Artwork\power_led_black.png" />
     <Resource Include="Artwork\round_button_disabled.png" />
@@ -95,8 +95,8 @@
     <Resource Include="Artwork\icon_plus.png" />
     <Resource Include="Artwork\icon_plus_small.png" />
     <Resource Include="Artwork\icon_record_on.png" />
-    <Resource Include="Artwork\icon_reset_ffb.png" />
-    <Resource Include="Artwork\icon_test_ffb.png" />
+    <Resource Include="Artwork\icon_reset.png" />
+    <Resource Include="Artwork\icon_vibrate.png" />
     <Resource Include="Artwork\icon_trash.png" />
     <Resource Include="Artwork\power_led_green.png" />
     <Resource Include="Artwork\power_led_red.png" />

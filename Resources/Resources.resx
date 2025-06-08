@@ -501,4 +501,40 @@
     <value>None</value>
     <comment>Pedal effects list</comment>
   </data>
+  <data name="PerWheelbase" xml:space="preserve">
+    <value>Per Wheelbase</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerCar" xml:space="preserve">
+    <value>Per Car</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerTrack" xml:space="preserve">
+    <value>Per Track</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerTrackConfiguration" xml:space="preserve">
+    <value>Per Track Configuration</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerWetDry" xml:space="preserve">
+    <value>Per Wet/Dry</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="Wet" xml:space="preserve">
+    <value>Wet</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Dry" xml:space="preserve">
+    <value>Dry</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
+    <comment>Status</comment>
+  </data>
+  <data name="SaveThisSetting" xml:space="preserve">
+    <value>Save This Setting</value>
+    <comment>Window title</comment>
+  </data>
 </root>

@@ -1,5 +1,5 @@
 ﻿
-namespace MarvinsAIRARefactored.Components;
+namespace MarvinsAIRARefactored.Classes;
 
 public class Statistics( int size )
 {
@@ -40,7 +40,7 @@ public class Statistics( int size )
 			minimumValue = MathF.Min( minimumValue, value );
 			maximumValue = MathF.Max( maximumValue, value );
 
-			variance += MathF.Pow( ( value - AverageValue ), 2f );
+			variance += MathF.Pow(  value - AverageValue , 2f );
 		}
 
 		MinimumValue = minimumValue;

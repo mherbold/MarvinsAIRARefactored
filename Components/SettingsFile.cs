@@ -1,6 +1,9 @@
 ﻿
 using System.IO;
 
+using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.DataContext;
+
 namespace MarvinsAIRARefactored.Components;
 
 public class SettingsFile
@@ -65,7 +68,7 @@ public class SettingsFile
 
 			if ( settings != null )
 			{
-				DataContext.Instance.Settings = settings;
+				DataContext.DataContext.Instance.Settings = settings;
 			}
 
 			PauseSerialization = false;
@@ -94,7 +97,7 @@ public class SettingsFile
 
 			if ( _serializationCounter == 0 )
 			{
-				Serializer.Save( SettingsFilePath, DataContext.Instance.Settings );
+				Serializer.Save( SettingsFilePath, DataContext.DataContext.Instance.Settings );
 
 				app.Logger.WriteLine( "[SettingsFile] Settings.xml file updated" );
 			}

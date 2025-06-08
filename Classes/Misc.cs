@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 
 using MarvinsAIRARefactored.WinApi;
 
-namespace MarvinsAIRARefactored.Components;
+namespace MarvinsAIRARefactored.Classes;
 
 public class Misc
 {
@@ -66,7 +66,7 @@ public class Misc
 		var c = 2.0f * v0 - 5.0f * v1 + 4.0f * v2 - v3;
 		var d = -v0 + 3.0f * v1 - 3.0f * v2 + v3;
 
-		return 0.5f * ( a + ( b * t ) + ( c * t * t ) + ( d * t * t * t ) );
+		return 0.5f * ( a +  b * t  +  c * t * t  +  d * t * t * t  );
 	}
 
 	public static void ForcePropertySetters( object obj )
@@ -83,7 +83,7 @@ public class Misc
 			{
 				try
 				{
-					object? currentValue = prop.GetValue( obj );
+					var currentValue = prop.GetValue( obj );
 
 					prop.SetValue( obj, currentValue );
 				}
@@ -119,7 +119,7 @@ public class Misc
 					{
 						if ( entry.Value is ResXDataNode node )
 						{
-							string? valueAsString = node.GetValue( (ITypeResolutionService?) null )?.ToString();
+							var valueAsString = node.GetValue( (ITypeResolutionService?) null )?.ToString();
 
 							if ( valueAsString != null )
 							{

@@ -3,7 +3,7 @@ using System.IO.Ports;
 using System.Management;
 using System.Text;
 
-namespace MarvinsAIRARefactored.Components;
+namespace MarvinsAIRARefactored.Classes;
 
 public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 {
@@ -34,7 +34,7 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 						var start = name.IndexOf( "(COM" );
 						var end = name.IndexOf( ')', start );
 
-						if ( ( start >= 0 ) && ( end >= 0 ) )
+						if (  start >= 0  &&  end >= 0  )
 						{
 							var portName = name.Substring( start + 1, end - start - 1 );
 
