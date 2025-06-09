@@ -1,4 +1,5 @@
 ﻿
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -8,10 +9,10 @@ using System.Windows.Media;
 using ScrollEventArgs = System.Windows.Controls.Primitives.ScrollEventArgs;
 using TabControl = System.Windows.Controls.TabControl;
 
+using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
 using MarvinsAIRARefactored.Enums;
 using MarvinsAIRARefactored.WinApi;
-using MarvinsAIRARefactored.Classes;
 
 namespace MarvinsAIRARefactored.Windows;
 
@@ -20,6 +21,8 @@ public partial class MainWindow : Window
 	public nint WindowHandle { get; private set; } = 0;
 	public bool GraphsTabItemIsVisible { get; private set; } = false;
 	public bool DebugTabItemIsVisible { get; private set; } = false;
+
+	private string? _installerFilePath = null;
 
 	public MainWindow()
 	{
@@ -228,6 +231,33 @@ public partial class MainWindow : Window
 				}
 			}
 		} );
+	}
+
+	public void CloseAndLaunchInstaller( string installerFilePath )
+	{
+		_installerFilePath = installerFilePath;
+
+		Close();
+	}
+
+	private void Window_Closed( object sender, EventArgs e )
+	{
+		var app = App.Instance;
+
+		if ( app != null )
+		{
+			app.Logger.WriteLine( "[MainWindow] Window closed" );
+
+			if ( _installerFilePath != null )
+			{
+				var processStartInfo = new ProcessStartInfo( _installerFilePath )
+				{
+					UseShellExecute = true
+				};
+
+				Process.Start( processStartInfo );
+			}
+		}
 	}
 
 	private void TabControl_SelectionChanged( object sender, SelectionChangedEventArgs e )

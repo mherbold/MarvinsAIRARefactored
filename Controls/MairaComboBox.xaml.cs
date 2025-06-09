@@ -81,6 +81,8 @@ public partial class MairaComboBox : UserControl
 
 			if ( ContextSwitches != null )
 			{
+				app.Logger.WriteLine( "[MairaComboBox] Showing update context switches window" );
+
 				var updateContextSwitchesWindow = new UpdateContextSwitchesWindow( ContextSwitches )
 				{
 					Owner = app.MainWindow

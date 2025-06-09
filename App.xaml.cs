@@ -21,6 +21,7 @@ public partial class App : Application
 	public static App? Instance { get; private set; }
 
 	public Logger Logger { get; private set; }
+	public CloudService CloudService { get; private set; }
 	public RacingWheel RacingWheel { get; private set; }
 	public Pedals Pedals { get; private set; }
 	public SettingsFile SettingsFile { get; private set; }
@@ -47,6 +48,7 @@ public partial class App : Application
 		Instance = this;
 
 		Logger = new();
+		CloudService = new();
 		RacingWheel = new();
 		Pedals = new();
 		SettingsFile = new();
@@ -66,7 +68,7 @@ public partial class App : Application
 		_autoResetEvent.Set();
 	}
 
-	private void App_Startup( object sender, StartupEventArgs e )
+	private async void App_Startup( object sender, StartupEventArgs e )
 	{
 		Logger.WriteLine( "[App] App_Startup >>>" );
 
@@ -78,6 +80,7 @@ public partial class App : Application
 		}
 
 		Logger.Initialize();
+		CloudService.Initialize();
 		Pedals.Initialize();
 		SettingsFile.Initialize();
 		DirectInput.Initialize();
@@ -92,6 +95,11 @@ public partial class App : Application
 
 		MainWindow.Show();
 		MainWindow.Initialize();
+
+		if ( DataContext.DataContext.Instance.Settings.AppCheckForUpdates )
+		{
+			await CloudService.CheckForUpdates( false );
+		}
 
 		_workerThread.Start();
 
@@ -141,7 +149,7 @@ public partial class App : Application
 			}
 
 			// racing wheel reset button
-			
+
 			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelResetButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				RacingWheel.ResetForceFeedback = true;

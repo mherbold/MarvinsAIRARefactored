@@ -537,4 +537,28 @@
     <value>Save This Setting</value>
     <comment>Window title</comment>
   </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>New Version Available!</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="DownloadQuestion" xml:space="preserve">
+    <value>Would you like to download it now?</value>
+    <comment>Cloud service</comment>
+  </data>
+  <data name="RunInstaller" xml:space="preserve">
+    <value>Run installer?</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="RunInstallerQuestion" xml:space="preserve">
+    <value>Would you like to run the installer now?</value>
+    <comment>Cloud service</comment>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Check For Updates</value>
+    <comment>App</comment>
+  </data>
+  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
+    <value>Automatically Download Updates</value>
+    <comment>App</comment>
+  </data>
 </root>

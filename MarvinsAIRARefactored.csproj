@@ -23,6 +23,7 @@
     <None Remove="Artwork\background_racingwheel.png" />
     <None Remove="Artwork\dial.png" />
     <None Remove="Artwork\dial_marker.png" />
+    <None Remove="Artwork\icon_cancel.png" />
     <None Remove="Artwork\icon_down_small.png" />
     <None Remove="Artwork\icon_minus_small.png" />
     <None Remove="Artwork\icon_plus.png" />
@@ -52,6 +53,7 @@
     <Resource Include="Artwork\background_adminboxx.png" />
     <Resource Include="Artwork\background_pedals.png" />
     <Resource Include="Artwork\background_racingwheel.png" />
+    <Resource Include="Artwork\icon_cancel.png" />
     <Resource Include="Artwork\icon_magic.png" />
     <Resource Include="Artwork\icon_record_off.png" />
     <Resource Include="Artwork\icon_thumbs_up.png" />
@@ -75,6 +77,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
     <PackageReference Include="System.IO.Ports" Version="9.0.5" />
     <PackageReference Include="System.Management" Version="9.0.5" />

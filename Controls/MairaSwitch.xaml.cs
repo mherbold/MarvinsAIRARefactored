@@ -88,6 +88,8 @@ public partial class MairaSwitch : UserControl
 
 			if ( ContextSwitches != null )
 			{
+				app.Logger.WriteLine( "[MairaSwitch] Showing update context switches window" );
+
 				var updateContextSwitchesWindow = new UpdateContextSwitchesWindow( ContextSwitches )
 				{
 					Owner = app.MainWindow

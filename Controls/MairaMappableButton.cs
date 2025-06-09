@@ -43,6 +43,8 @@ public class MairaMappableButton : MairaButton
 
 			if ( ContextSwitches != null )
 			{
+				app.Logger.WriteLine( "[MairaMappableButton] Showing update context switches window" );
+
 				var updateContextSwitchesWindow = new UpdateContextSwitchesWindow( ContextSwitches )
 				{
 					Owner = app.MainWindow
@@ -63,6 +65,8 @@ public class MairaMappableButton : MairaButton
 
 			if ( ButtonMappings != null )
 			{
+				app.Logger.WriteLine( "[MairaMappableButton] Showing update button mappings window" );
+
 				var updateButtonMappingsWindow = new UpdateButtonMappingsWindow( ButtonMappings )
 				{
 					Owner = app.MainWindow

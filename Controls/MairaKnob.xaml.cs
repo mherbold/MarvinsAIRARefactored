@@ -178,6 +178,8 @@ public partial class MairaKnob : UserControl
 
 			if ( ContextSwitches != null )
 			{
+				app.Logger.WriteLine( "[MairaKnob] Showing update context switches window" );
+
 				var updateContextSwitchesWindow = new UpdateContextSwitchesWindow( ContextSwitches )
 				{
 					Owner = app.MainWindow

@@ -1,0 +1,45 @@
+﻿<Window x:Class="MarvinsAIRARefactored.Windows.RunInstallerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:windows="clr-namespace:MarvinsAIRARefactored.Windows"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:components="clr-namespace:MarvinsAIRARefactored.Components"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding DataContext.Instance.Localization[RunInstaller]}"
+        Icon="/artwork/white_icon.ico"
+        Width="800"
+        Height="Auto"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner"
+        SizeToContent="Height">
+
+    <Window.DataContext>
+        <datacontext:ContextSwitches/>
+    </Window.DataContext>
+
+    <Window.Background>
+        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/artwork/background_buttonmapping.png" Stretch="UniformToFill" Opacity="0.2"/>
+    </Window.Background>
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+        <StackPanel Margin="20">
+
+            <Label Content="{Binding DataContext.Instance.Localization[RunInstallerQuestion]}" HorizontalAlignment="Center"/>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <controls:MairaButton Title="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_cancel.png" Margin="10,10,10,0" Click="Cancel_MairaButton_Click"/>
+                <controls:MairaButton Title="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_thumbs_up.png" Margin="10,10,10,0" Click="ThumbsUp_MairaButton_Click"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+    </ScrollViewer>
+
+</Window>

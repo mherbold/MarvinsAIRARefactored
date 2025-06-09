@@ -17,7 +17,8 @@
         Height="550"
         d:Height="1500"
         ResizeMode="CanResizeWithGrip"
-        WindowStyle="SingleBorderWindow">
+        WindowStyle="SingleBorderWindow"
+        Closed="Window_Closed">
 
     <Window.DataContext>
         <Binding Source="{x:Static datacontext:DataContext.Instance}"/>
@@ -668,6 +669,8 @@
                     </Grid>
 
                     <controls:MairaSwitch Margin="0,10,0,10" IsOn="{Binding Settings.AppTopmostWindowEnabled, Mode=TwoWay}" Title="{Binding Localization[TopmostWindow]}"/>
+                    <controls:MairaSwitch Margin="0,10,0,10" IsOn="{Binding Settings.AppCheckForUpdates, Mode=TwoWay}" Title="{Binding Localization[CheckForUpdates]}"/>
+                    <controls:MairaSwitch Margin="0,10,0,10" IsOn="{Binding Settings.AppAutomaticallyDownloadUpdates, Mode=TwoWay}" Title="{Binding Localization[AutomaticallyDownloadUpdates]}"/>
 
                 </StackPanel>
 

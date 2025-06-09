@@ -1419,7 +1419,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsClutchEffect2ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsClutchEffect2ContextSwitches { get => PedalsClutchEffect1ContextSwitches; set => PedalsClutchEffect1ContextSwitches = value; }
 
 	#endregion
 
@@ -1464,7 +1464,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsClutchEffect2StrengthContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsClutchEffect2StrengthContextSwitches { get => PedalsClutchEffect1StrengthContextSwitches; set => PedalsClutchEffect1StrengthContextSwitches = value; }
 	public ButtonMappings PedalsClutchEffect2StrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsClutchEffect2StrengthMinusButtonMappings { get; set; } = new();
 
@@ -1489,7 +1489,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsClutchEffect3ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsClutchEffect3ContextSwitches { get => PedalsClutchEffect1ContextSwitches; set => PedalsClutchEffect1ContextSwitches = value; }
 
 	#endregion
 
@@ -1534,7 +1534,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsClutchEffect3StrengthContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsClutchEffect3StrengthContextSwitches { get => PedalsClutchEffect1StrengthContextSwitches; set => PedalsClutchEffect1StrengthContextSwitches = value; }
 	public ButtonMappings PedalsClutchEffect3StrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsClutchEffect3StrengthMinusButtonMappings { get; set; } = new();
 
@@ -1629,7 +1629,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsBrakeEffect2ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsBrakeEffect2ContextSwitches { get => PedalsBrakeEffect1ContextSwitches; set => PedalsBrakeEffect1ContextSwitches = value; }
 
 	#endregion
 
@@ -1674,7 +1674,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsBrakeEffect2StrengthContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsBrakeEffect2StrengthContextSwitches { get => PedalsBrakeEffect1StrengthContextSwitches; set => PedalsBrakeEffect1StrengthContextSwitches = value; }
 	public ButtonMappings PedalsBrakeEffect2StrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsBrakeEffect2StrengthMinusButtonMappings { get; set; } = new();
 
@@ -1699,7 +1699,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsBrakeEffect3ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsBrakeEffect3ContextSwitches { get => PedalsBrakeEffect1ContextSwitches; set => PedalsBrakeEffect1ContextSwitches = value; }
 
 	#endregion
 
@@ -1744,7 +1744,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsBrakeEffect3StrengthContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsBrakeEffect3StrengthContextSwitches { get => PedalsBrakeEffect1StrengthContextSwitches; set => PedalsBrakeEffect1StrengthContextSwitches = value; }
 	public ButtonMappings PedalsBrakeEffect3StrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsBrakeEffect3StrengthMinusButtonMappings { get; set; } = new();
 
@@ -1839,7 +1839,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsThrottleEffect2ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsThrottleEffect2ContextSwitches { get => PedalsThrottleEffect1ContextSwitches; set => PedalsThrottleEffect1ContextSwitches = value; }
 
 	#endregion
 
@@ -1884,7 +1884,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsThrottleEffect2StrengthContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsThrottleEffect2StrengthContextSwitches { get => PedalsThrottleEffect1StrengthContextSwitches; set => PedalsThrottleEffect1StrengthContextSwitches = value; }
 	public ButtonMappings PedalsThrottleEffect2StrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsThrottleEffect2StrengthMinusButtonMappings { get; set; } = new();
 
@@ -1909,7 +1909,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsThrottleEffect3ContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsThrottleEffect3ContextSwitches { get => PedalsThrottleEffect1ContextSwitches; set => PedalsThrottleEffect1ContextSwitches = value; }
 
 	#endregion
 
@@ -1954,7 +1954,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	public ContextSwitches PedalsThrottleEffect3StrengthContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ContextSwitches PedalsThrottleEffect3StrengthContextSwitches { get => PedalsThrottleEffect1StrengthContextSwitches; set => PedalsThrottleEffect1StrengthContextSwitches = value; }
 	public ButtonMappings PedalsThrottleEffect3StrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsThrottleEffect3StrengthMinusButtonMappings { get; set; } = new();
 
@@ -2011,6 +2011,48 @@ public class Settings : INotifyPropertyChanged
 			if ( app != null )
 			{
 				app.MainWindow.Topmost = _appTopmostWindowEnabled;
+			}
+		}
+	}
+
+	#endregion
+
+	#region App - Check for updates
+
+	private bool _appCheckForUpdates = true;
+
+	public bool AppCheckForUpdates
+	{
+		get => _appCheckForUpdates;
+
+		set
+		{
+			if ( value != _appCheckForUpdates )
+			{
+				_appCheckForUpdates = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region App - Automatically download updates
+
+	private bool _appAutomaticallyDownloadUpdates = true;
+
+	public bool AppAutomaticallyDownloadUpdates
+	{
+		get => _appAutomaticallyDownloadUpdates;
+
+		set
+		{
+			if ( value != _appAutomaticallyDownloadUpdates )
+			{
+				_appAutomaticallyDownloadUpdates = value;
+
+				OnPropertyChanged();
 			}
 		}
 	}

@@ -142,6 +142,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Automatically Download Updates.
+        /// </summary>
+        internal static string AutomaticallyDownloadUpdates {
+            get {
+                return ResourceManager.GetString("AutomaticallyDownloadUpdates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bias.
         /// </summary>
         internal static string Bias {
@@ -165,6 +174,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Button {
             get {
                 return ResourceManager.GetString("Button", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Check For Updates.
+        /// </summary>
+        internal static string CheckForUpdates {
+            get {
+                return ResourceManager.GetString("CheckForUpdates", resourceCulture);
             }
         }
         
@@ -354,6 +372,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Device {
             get {
                 return ResourceManager.GetString("Device", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to download it now?.
+        /// </summary>
+        internal static string DownloadQuestion {
+            get {
+                return ResourceManager.GetString("DownloadQuestion", resourceCulture);
             }
         }
         
@@ -574,6 +601,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to New Version Available!.
+        /// </summary>
+        internal static string NewVersionAvailable {
+            get {
+                return ResourceManager.GetString("NewVersionAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to [No Attached Force Feedback Devices Found].
         /// </summary>
         internal static string NoAttachedFFBDevicesFound {
@@ -786,6 +822,24 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Reset {
             get {
                 return ResourceManager.GetString("Reset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Run installer?.
+        /// </summary>
+        internal static string RunInstaller {
+            get {
+                return ResourceManager.GetString("RunInstaller", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Would you like to run the installer now?.
+        /// </summary>
+        internal static string RunInstallerQuestion {
+            get {
+                return ResourceManager.GetString("RunInstallerQuestion", resourceCulture);
             }
         }
         
