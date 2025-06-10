@@ -5,17 +5,28 @@ namespace MarvinsAIRARefactored.Components;
 
 public class AdminBoxx
 {
+	public bool IsConnected { get; private set; } = false;
+
 	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( "239A", "80F2" );
 
 	private int counter = 60 * 2;
 
+	public AdminBoxx()
+	{
+		_usbSerialPortHelper.DataReceived += OnDataReceived;
+	}
+
 	public bool Connect()
 	{
-		return _usbSerialPortHelper.Open( 115200 );
+		IsConnected = _usbSerialPortHelper.Open();
+
+		return IsConnected;
 	}
 
 	public void Disconnect()
 	{
+		IsConnected = false;
+
 		_usbSerialPortHelper.Close();
 	}
 
@@ -25,9 +36,13 @@ public class AdminBoxx
 
 		if ( counter == 0 )
 		{
-			counter = 60 * 10;
+			counter = 2 * 60;
 
-			_usbSerialPortHelper.SendData( "u" );
+			_usbSerialPortHelper.WriteLine( "PING" );
 		}
+	}
+
+	private void OnDataReceived( object? sender, string e )
+	{
 	}
 }

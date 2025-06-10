@@ -27,20 +27,23 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 				var name = device[ "Name" ]?.ToString();
 				var deviceId = device[ "PNPDeviceID" ]?.ToString();
 
-				if ( name != null )
+				if ( !string.IsNullOrEmpty( name ) && !string.IsNullOrEmpty( deviceId ) )
 				{
-					if ( !string.IsNullOrEmpty( deviceId ) && deviceId.Contains( $"VID_{_vid}", StringComparison.OrdinalIgnoreCase ) && deviceId.Contains( $"PID_{_pid}", StringComparison.OrdinalIgnoreCase ) )
+					if ( deviceId.Contains( $"VID_{_vid}", StringComparison.OrdinalIgnoreCase ) && deviceId.Contains( $"PID_{_pid}", StringComparison.OrdinalIgnoreCase ) )
 					{
-						var start = name.IndexOf( "(COM" );
-						var end = name.IndexOf( ')', start );
-
-						if (  start >= 0  &&  end >= 0  )
+						if ( !deviceId.Contains( "MI_00", StringComparison.OrdinalIgnoreCase ) )
 						{
-							var portName = name.Substring( start + 1, end - start - 1 );
+							var start = name.IndexOf( "(COM" );
+							var end = name.IndexOf( ')', start );
 
-							app.Logger.WriteLine( $"[AdminBoxx] AdminBoxx found on port {portName}" );
+							if ( ( start >= 0 ) && ( end >= 0 ) )
+							{
+								var portName = name.Substring( start + 1, end - start - 1 );
 
-							return portName;
+								app.Logger.WriteLine( $"[AdminBoxx] AdminBoxx found on port {portName}" );
+
+								return portName;
+							}
 						}
 					}
 				}
@@ -52,7 +55,7 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 		return null;
 	}
 
-	public bool Open( int baudRate = 9600, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One )
+	public bool Open( int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One )
 	{
 		var serialPortOpened = false;
 
@@ -68,6 +71,7 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 			{
 				_serialPort = new SerialPort( portName, baudRate, parity, dataBits, stopBits )
 				{
+					Handshake = Handshake.None,
 					Encoding = Encoding.ASCII,
 					ReadTimeout = 3000,
 					WriteTimeout = 3000
@@ -86,13 +90,13 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 		return serialPortOpened;
 	}
 
-	public void SendData( string data )
+	public void WriteLine( string data )
 	{
 		if ( _serialPort != null && _serialPort.IsOpen )
 		{
 			var app = App.Instance;
 
-			app?.Logger.WriteLine( "[AdminBoxx] Sending \"{data}\"" );
+			app?.Logger.WriteLine( $"[AdminBoxx] Sending \"{data}\"" );
 
 			_serialPort.WriteLine( data );
 		}

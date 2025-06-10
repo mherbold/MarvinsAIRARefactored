@@ -398,9 +398,12 @@ public partial class MainWindow : Window
 		{
 			if ( AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn )
 			{
-				if ( !app.AdminBoxx.Connect() )
+				if ( !app.AdminBoxx.IsConnected )
 				{
-					AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn = false;
+					if ( !app.AdminBoxx.Connect() )
+					{
+						AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn = false;
+					}
 				}
 			}
 			else
