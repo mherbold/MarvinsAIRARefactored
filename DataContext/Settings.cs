@@ -1960,6 +1960,52 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region AdminBoxx - Brightness
+
+	private float _adminBoxxBrightness = 0.15f;
+
+	public float AdminBoxxBrightness
+	{
+		get => _adminBoxxBrightness;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _adminBoxxBrightness )
+			{
+				_adminBoxxBrightness = value;
+
+				OnPropertyChanged();
+			}
+
+			AdminBoxxBrightnessString = $"{_adminBoxxBrightness * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _adminBoxxBrightnessString = string.Empty;
+
+	[XmlIgnore]
+	public string AdminBoxxBrightnessString
+	{
+		get => _adminBoxxBrightnessString;
+
+		set
+		{
+			if ( value != _adminBoxxBrightnessString )
+			{
+				_adminBoxxBrightnessString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings AdminBoxxBrightnessPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AdminBoxxBrightnessMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
 	#region App - Current language code
 
 	private string _appCurrentLanguageCode = "default";

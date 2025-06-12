@@ -13,6 +13,8 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 	private SerialPort? _serialPort = null;
 
 	public event EventHandler<string>? DataReceived = null;
+	
+	private StringBuilder _dataBuffer = new();
 
 	public string? FindPortName()
 	{
@@ -40,7 +42,7 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 							{
 								var portName = name.Substring( start + 1, end - start - 1 );
 
-								app.Logger.WriteLine( $"[AdminBoxx] AdminBoxx found on port {portName}" );
+								app.Logger.WriteLine( $"[UsbSerialPortHelper] Device found on port {portName}" );
 
 								return portName;
 							}
@@ -49,7 +51,7 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 				}
 			}
 
-			app.Logger.WriteLine( "[AdminBoxx] AdminBoxx not found" );
+			app.Logger.WriteLine( "[UsbSerialPortHelper] Device not found" );
 		}
 
 		return null;
@@ -63,7 +65,7 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 
 		if ( app != null )
 		{
-			app.Logger.WriteLine( "[AdminBoxx] Open >>>" );
+			app.Logger.WriteLine( "[UsbSerialPortHelper] Open >>>" );
 
 			var portName = FindPortName();
 
@@ -80,24 +82,29 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 				_serialPort.DataReceived += OnDataReceived;
 
 				_serialPort.Open();
+				_serialPort.DiscardInBuffer();
 
 				serialPortOpened = true;
 			}
 
-			app.Logger.WriteLine( "[AdminBoxx] <<< Open" );
+			app.Logger.WriteLine( "[UsbSerialPortHelper] <<< Open" );
 		}
 
 		return serialPortOpened;
+	}
+
+	public void Write( byte[] data )
+	{
+		if ( _serialPort != null && _serialPort.IsOpen )
+		{
+			_serialPort.Write( data, 0, data.Length );
+		}
 	}
 
 	public void WriteLine( string data )
 	{
 		if ( _serialPort != null && _serialPort.IsOpen )
 		{
-			var app = App.Instance;
-
-			app?.Logger.WriteLine( $"[AdminBoxx] Sending \"{data}\"" );
-
 			_serialPort.WriteLine( data );
 		}
 	}
@@ -108,13 +115,20 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 		{
 			if ( _serialPort != null )
 			{
-				var data = _serialPort.ReadLine();
+				var incoming = _serialPort.ReadExisting();
 
-				var app = App.Instance;
+				_dataBuffer.Append( incoming );
 
-				app?.Logger.WriteLine( "[AdminBoxx] Received \"{data}\"" );
+				var newlineIndex = 0;
 
-				DataReceived?.Invoke( this, data );
+				while ( ( newlineIndex = _dataBuffer.ToString().IndexOf( '\n' ) ) >= 0 )
+				{
+					var data = _dataBuffer.ToString( 0, newlineIndex ).TrimEnd( '\r' );
+
+					_dataBuffer.Remove( 0, newlineIndex + 1 );
+
+					DataReceived?.Invoke( this, data );
+				}
 			}
 		}
 		catch ( Exception )
@@ -128,7 +142,7 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 		{
 			var app = App.Instance;
 
-			app?.Logger.WriteLine( "[AdminBoxx] Closing serial port" );
+			app?.Logger.WriteLine( "[UsbSerialPortHelper] Closing serial port" );
 
 			_serialPort.DataReceived -= OnDataReceived;
 

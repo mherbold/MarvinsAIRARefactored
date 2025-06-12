@@ -277,11 +277,6 @@ public partial class MainWindow : Window
 		MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelEnableForceFeedback = !MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelEnableForceFeedback;
 	}
 
-	private void RacingWheel_Power_MairaMappableButton_MouseRightButtonDown( object sender, MouseButtonEventArgs e )
-	{
-
-	}
-
 	private void RacingWheel_Test_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance;
@@ -479,5 +474,61 @@ public partial class MainWindow : Window
 		{
 			Simulator_TelemetryData_ScrollBar.Visibility = Visibility.Visible;
 		}
+	}
+
+	private void AdminBoxx_Brightness_ValueChanged( float newValue )
+	{
+		var app = App.Instance;
+
+		app?.AdminBoxx.ResendAllLEDs();
+	}
+
+	private void AdminBoxx_Yellow_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		app?.AdminBoxx.WaveFlag( AdminBoxx.Yellow );
+	}
+
+	private void AdminBoxx_Green_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		app?.AdminBoxx.WaveFlag( AdminBoxx.Green );
+	}
+
+	private void AdminBoxx_White_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		app?.AdminBoxx.WaveFlag( AdminBoxx.White );
+	}
+
+	private void AdminBoxx_Checkered_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		app?.AdminBoxx.WaveFlag( AdminBoxx.White, true );
+	}
+
+	private void AdminBoxx_Black_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		app?.AdminBoxx.WaveFlag( AdminBoxx.Magenta );
+	}
+
+	private void AdminBoxx_Blue_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		app?.AdminBoxx.WaveFlag( AdminBoxx.Blue );
+	}
+
+	private void AdminBoxx_Red_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		app?.AdminBoxx.WaveFlag( AdminBoxx.Red );
 	}
 }

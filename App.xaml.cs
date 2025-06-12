@@ -3,12 +3,12 @@ using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
 
+using Application = System.Windows.Application;
+using Timer = System.Timers.Timer;
+
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
 using MarvinsAIRARefactored.Windows;
-
-using Application = System.Windows.Application;
-using Timer = System.Timers.Timer;
 
 namespace MarvinsAIRARefactored;
 
@@ -28,6 +28,7 @@ public partial class App : Application
 	public AdminBoxx AdminBoxx { get; private set; }
 	public Debug Debug { get; private set; }
 	public new MainWindow MainWindow { get; private set; }
+	public ChatQueue ChatQueue { get; private set; }
 	public DirectInput DirectInput { get; private set; }
 	public MultimediaTimer MultimediaTimer { get; private set; }
 	public Simulator Simulator { get; private set; }
@@ -55,6 +56,7 @@ public partial class App : Application
 		AdminBoxx = new();
 		Debug = new();
 		MainWindow = new();
+		ChatQueue = new();
 		DirectInput = new( MainWindow.Graphs_OutputTorque_Image );
 		MultimediaTimer = new( MainWindow.Graphs_MultimediaTimerJitter_Image );
 		Simulator = new( MainWindow.Graphs_Native60HzTorque_Image, MainWindow.Graphs_Native360HzTorque_Image );
@@ -83,6 +85,7 @@ public partial class App : Application
 		CloudService.Initialize();
 		Pedals.Initialize();
 		SettingsFile.Initialize();
+		AdminBoxx.Initialize();
 		DirectInput.Initialize();
 		MultimediaTimer.Initialize();
 		Simulator.Initialize();
@@ -124,6 +127,7 @@ public partial class App : Application
 
 		Simulator.Shutdown();
 		MultimediaTimer.Shutdown();
+		AdminBoxx.Shutdown();
 		DirectInput.Shutdown();
 		Logger.Shutdown();
 
@@ -603,6 +607,7 @@ public partial class App : Application
 					app.SettingsFile.Tick( app );
 					app.AdminBoxx.Tick( app );
 					app.Debug.Tick( app );
+					app.ChatQueue.Tick( app );
 					app.MainWindow.Tick( app );
 					app.DirectInput.Tick( app );
 					app.MultimediaTimer.Tick( app );

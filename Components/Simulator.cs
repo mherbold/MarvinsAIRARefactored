@@ -6,6 +6,7 @@ using Image = System.Windows.Controls.Image;
 using IRSDKSharper;
 
 using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.WinApi;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -18,6 +19,8 @@ public class Simulator
 
 	public IRacingSdk IRSDK { get => _irsdk; }
 
+	public IntPtr? WindowHandle { get; private set; } = null;
+
 	public bool BrakeABSactive { get; private set; } = false;
 	public float Brake { get; private set; } = 0f;
 	public string CarScreenName { get; private set; } = string.Empty;
@@ -28,13 +31,18 @@ public class Simulator
 	public float GForce { get; private set; } = 0f;
 	public bool IsConnected { get => _irsdk.IsConnected; }
 	public bool IsOnTrack { get; private set; } = false;
+	public bool IsReplayPlaying { get; private set; } = false;
 	public float[] LFShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
 	public float[] LRShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
 	public int NumForwardGears { get; private set; } = 0;
+	public IRacingSdkEnum.PaceMode PaceMode { get; private set; } = IRacingSdkEnum.PaceMode.NotPacing;
 	public IRacingSdkEnum.TrkLoc PlayerTrackSurface { get; private set; } = IRacingSdkEnum.TrkLoc.NotInWorld;
+	public bool ReplayPlaySlowMotion { get; private set; } = false;
+	public int ReplayPlaySpeed { get; private set; } = 1;
 	public float[] RFShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
 	public float RPM { get; private set; } = 0f;
 	public float[] RRShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
+	public IRacingSdkEnum.Flags SessionFlags { get; private set; } = 0;
 	public float ShiftLightsShiftRPM { get; private set; } = 0f;
 	public string SimMode { get; private set; } = string.Empty;
 	public bool SteeringFFBEnabled { get; private set; } = false;
@@ -56,6 +64,9 @@ public class Simulator
 	private int? _tickCountLastFrame = null;
 	private float? _velocityLastFrame = null;
 	private bool? _weatherDeclaredWetLastFrame = null;
+	private bool? _isReplayPlayingLastFrame = null;
+	private IRacingSdkEnum.Flags? _sessionFlagsLastFrame = null;
+
 	private int? _lastPedalUpdateFrame = null;
 
 	private IRacingSdkDatum? _brakeABSactiveDatum = null;
@@ -65,12 +76,17 @@ public class Simulator
 	private IRacingSdkDatum? _crShockVel_STDatum = null;
 	private IRacingSdkDatum? _gearDatum = null;
 	private IRacingSdkDatum? _isOnTrackDatum = null;
+	private IRacingSdkDatum? _isReplayPlayingDatum = null;
 	private IRacingSdkDatum? _lfShockVel_STDatum = null;
 	private IRacingSdkDatum? _lrShockVel_STDatum = null;
+	private IRacingSdkDatum? _paceModeDatum = null;
 	private IRacingSdkDatum? _playerTrackSurfaceDatum = null;
+	private IRacingSdkDatum? _replayPlaySlowMotionDatum = null;
+	private IRacingSdkDatum? _replayPlaySpeedDatum = null;
 	private IRacingSdkDatum? _rfShockVel_STDatum = null;
 	private IRacingSdkDatum? _rpmDatum = null;
 	private IRacingSdkDatum? _rrShockVel_STDatum = null;
+	private IRacingSdkDatum? _sessionFlagsDatum = null;
 	private IRacingSdkDatum? _steeringFFBEnabledDatum = null;
 	private IRacingSdkDatum? _steeringWheelAngleDatum = null;
 	private IRacingSdkDatum? _steeringWheelAngleMaxDatum = null;
@@ -156,9 +172,13 @@ public class Simulator
 		{
 			app.Logger.WriteLine( "[Simulator] OnConnected >>>" );
 
+			WindowHandle = User32.FindWindow( null, "iRacing.com Simulator" );
+
 			app.MultimediaTimer.Suspend = false;
 
 			_needToUpdateFromContextSettings = true;
+
+			app.AdminBoxx.SimulatorConnected();
 
 			app.Dispatcher.BeginInvoke( () =>
 			{
@@ -179,14 +199,22 @@ public class Simulator
 		{
 			app.Logger.WriteLine( "[Simulator] OnDisconnected >>>" );
 
+			WindowHandle = null;
+
 			_telemetryDataInitialized = false;
+
 			_tickCountLastFrame = null;
 			_velocityLastFrame = null;
+			_weatherDeclaredWetLastFrame = null;
+			_isReplayPlayingLastFrame = null;
+
 			_lastPedalUpdateFrame = null;
 
 			app.RacingWheel.UseSteeringWheelTorqueData = false;
 			app.RacingWheel.SuspendForceFeedback = true;
 			app.MultimediaTimer.Suspend = true;
+
+			app.AdminBoxx.SimulatorDisconnected();
 
 			app.Dispatcher.BeginInvoke( () =>
 			{
@@ -249,8 +277,13 @@ public class Simulator
 				_clutchDatum = _irsdk.Data.TelemetryDataProperties[ "Clutch" ];
 				_gearDatum = _irsdk.Data.TelemetryDataProperties[ "Gear" ];
 				_isOnTrackDatum = _irsdk.Data.TelemetryDataProperties[ "IsOnTrack" ];
+				_isReplayPlayingDatum = _irsdk.Data.TelemetryDataProperties[ "IsReplayPlaying" ];
+				_paceModeDatum = _irsdk.Data.TelemetryDataProperties[ "PaceMode" ];
 				_playerTrackSurfaceDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerTrackSurface" ];
+				_replayPlaySlowMotionDatum = _irsdk.Data.TelemetryDataProperties[ "ReplayPlaySlowMotion" ];
+				_replayPlaySpeedDatum = _irsdk.Data.TelemetryDataProperties[ "ReplayPlaySpeed" ];
 				_rpmDatum = _irsdk.Data.TelemetryDataProperties[ "RPM" ];
+				_sessionFlagsDatum = _irsdk.Data.TelemetryDataProperties[ "SessionFlags" ];
 				_steeringFFBEnabledDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringFFBEnabled" ];
 				_steeringWheelAngleDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringWheelAngle" ];
 				_steeringWheelAngleMaxDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringWheelAngleMax" ];
@@ -318,15 +351,46 @@ public class Simulator
 
 			app.RacingWheel.UseSteeringWheelTorqueData = IsOnTrack;
 
+			// update replay status
+
+			IsReplayPlaying = _irsdk.Data.GetBool( _isReplayPlayingDatum );
+
+			if ( IsReplayPlaying != _isReplayPlayingLastFrame )
+			{
+				app.AdminBoxx.ReplayPlayingChanged();
+			}
+
+			_isReplayPlayingLastFrame = IsReplayPlaying;
+
 			// suspend racing wheel force feedback if iracing ffb is enabled
 
 			SteeringFFBEnabled = _irsdk.Data.GetBool( _steeringFFBEnabledDatum );
 
 			app.RacingWheel.SuspendForceFeedback = SteeringFFBEnabled;
 
+			// get the session flags
+
+			SessionFlags = (IRacingSdkEnum.Flags) _irsdk.Data.GetBitField( _sessionFlagsDatum );
+
+			if ( SessionFlags != _sessionFlagsLastFrame )
+			{
+				app.AdminBoxx.SessionFlagsChanged();
+			}
+
+			_sessionFlagsLastFrame = SessionFlags;
+
+			// get the current pace mode
+
+			PaceMode = (IRacingSdkEnum.PaceMode) _irsdk.Data.GetInt( _paceModeDatum );
+
 			// get the player track surface
 
 			PlayerTrackSurface = (IRacingSdkEnum.TrkLoc) _irsdk.Data.GetInt( _playerTrackSurfaceDatum );
+
+			// get the replay play status
+
+			ReplayPlaySlowMotion = _irsdk.Data.GetBool( _replayPlaySlowMotionDatum );
+			ReplayPlaySpeed = _irsdk.Data.GetInt( _replayPlaySpeedDatum );
 
 			// get steering wheel angle and max angle
 
