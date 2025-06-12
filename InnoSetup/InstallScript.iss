@@ -52,6 +52,7 @@ Name: "{userdocs}\MarvinsAIRA Refactored\Languages"
 [Files]
 Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\bin\publish\*"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\bin\publish\Resources\Resources.resx"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Languages"; Flags: ignoreversion
+Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\Sounds\*.wav"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Sounds"; Flags: ignoreversion
 Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\Fonts\advanced_led_board-7.ttf"; DestDir: "{autofonts}"; FontInstall: "Advanced LED Board-7"; Flags: onlyifdoesntexist uninsneveruninstall fontisnttruetype
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 

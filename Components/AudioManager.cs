@@ -7,12 +7,14 @@ namespace MarvinsAIRARefactored.Components
 {
 	public class AudioManager : IDisposable
 	{
-		private readonly string soundsDirectory = Path.Combine( App.DocumentsFolder, "Sounds" );
+		private readonly Lock _lock = new();
+		
+		private readonly string _soundsDirectory = Path.Combine( App.DocumentsFolder, "Sounds" );
 
-		private readonly Dictionary<string, CachedSound> soundCache = [];
-		private readonly Dictionary<string, CachedSoundPlayer> players = [];
+		private readonly Dictionary<string, CachedSound> _soundCache = [];
+		private readonly Dictionary<string, CachedSoundPlayer> _soundPlayerCache = [];
 
-		private FileSystemWatcher? watcher = null;
+		private FileSystemWatcher? _fileSystemWatcher = null;
 
 		public void Initialize()
 		{
@@ -22,21 +24,21 @@ namespace MarvinsAIRARefactored.Components
 			{
 				app.Logger.WriteLine( "[AudioManager] Initialize >>>" );
 
-				if ( !Directory.Exists( soundsDirectory ) )
+				if ( !Directory.Exists( _soundsDirectory ) )
 				{
-					Directory.CreateDirectory( soundsDirectory );
+					Directory.CreateDirectory( _soundsDirectory );
 				}
 
-				watcher = new FileSystemWatcher( soundsDirectory, "*.wav" )
+				_fileSystemWatcher = new FileSystemWatcher( _soundsDirectory, "*.wav" )
 				{
 					NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName,
 					EnableRaisingEvents = true,
 					IncludeSubdirectories = false
 				};
 
-				watcher.Changed += OnSoundFileChanged;
-				watcher.Created += OnSoundFileChanged;
-				watcher.Renamed += OnSoundFileChanged;
+				_fileSystemWatcher.Changed += OnSoundFileChanged;
+				_fileSystemWatcher.Created += OnSoundFileChanged;
+				_fileSystemWatcher.Renamed += OnSoundFileChanged;
 
 				app.Logger.WriteLine( "[AudioManager] <<< Initialize" );
 			}
@@ -81,35 +83,56 @@ namespace MarvinsAIRARefactored.Components
 			}
 
 			var sound = new CachedSound( path );
+			var player = new CachedSoundPlayer( sound );
 
-			soundCache[ key ] = sound;
+			using ( _lock.EnterScope() )
+			{
+				_soundCache[ key ] = sound;
 
-			players[ key ] = new CachedSoundPlayer( sound );
+				if ( _soundPlayerCache.TryGetValue( key, out var value ) )
+				{
+					value.Dispose();
+				}
+
+				_soundPlayerCache[ key ] = player;
+			}
 		}
 
 		public void Play( string key )
 		{
-			if ( players.TryGetValue( key, out var player ) )
+			using ( _lock.EnterScope() )
 			{
-				player.Play();
+				if ( _soundPlayerCache.TryGetValue( key, out var player ) )
+				{
+					player.Play();
+				}
 			}
 		}
 
 		public void Stop( string key )
 		{
-			if ( players.TryGetValue( key, out var player ) )
+			using ( _lock.EnterScope() )
 			{
-				player.Stop();
+				if ( _soundPlayerCache.TryGetValue( key, out var player ) )
+				{
+					player.Stop();
+				}
 			}
 		}
 
 		public void Dispose()
 		{
-			watcher?.Dispose();
+			_fileSystemWatcher?.Dispose();
 
-			foreach ( var player in players.Values )
+			using ( _lock.EnterScope() )
 			{
-				player.Dispose();
+				foreach ( var player in _soundPlayerCache.Values )
+				{
+					player.Dispose();
+				}
+
+				_soundPlayerCache.Clear();
+				_soundCache.Clear();
 			}
 		}
 	}
