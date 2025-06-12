@@ -29,6 +29,7 @@ public partial class App : Application
 	public Debug Debug { get; private set; }
 	public new MainWindow MainWindow { get; private set; }
 	public ChatQueue ChatQueue { get; private set; }
+	public AudioManager AudioManager { get; private set; }
 	public DirectInput DirectInput { get; private set; }
 	public MultimediaTimer MultimediaTimer { get; private set; }
 	public Simulator Simulator { get; private set; }
@@ -57,6 +58,7 @@ public partial class App : Application
 		Debug = new();
 		MainWindow = new();
 		ChatQueue = new();
+		AudioManager = new();
 		DirectInput = new( MainWindow.Graphs_OutputTorque_Image );
 		MultimediaTimer = new( MainWindow.Graphs_MultimediaTimerJitter_Image );
 		Simulator = new( MainWindow.Graphs_Native60HzTorque_Image, MainWindow.Graphs_Native360HzTorque_Image );
@@ -86,6 +88,7 @@ public partial class App : Application
 		Pedals.Initialize();
 		SettingsFile.Initialize();
 		AdminBoxx.Initialize();
+		AudioManager.Initialize();
 		DirectInput.Initialize();
 		MultimediaTimer.Initialize();
 		Simulator.Initialize();
