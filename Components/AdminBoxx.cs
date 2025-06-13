@@ -119,7 +119,7 @@ public partial class AdminBoxx
 
 	private readonly ConcurrentQueue<(int y, int x)> _ledUpdateConcurrentQueue = new();
 	private readonly HashSet<(int y, int x)> _ledUpdateHashSet = [];
-	private readonly Lock _ledUpdateLock = new();
+	private readonly Lock _lock = new();
 
 	private readonly Timer _timer = new( 10 );
 
@@ -190,7 +190,7 @@ public partial class AdminBoxx
 			pattern = _blueNoiseLedOrder;
 		}
 
-		lock ( _ledUpdateLock )
+		using ( _lock.EnterScope() )
 		{
 			foreach ( var (x, y) in pattern )
 			{
@@ -383,7 +383,7 @@ public partial class AdminBoxx
 
 			_ledColorsDirty = true;
 
-			lock ( _ledUpdateLock )
+			using ( _lock.EnterScope() )
 			{
 				var coord = (y, x);
 
@@ -616,6 +616,8 @@ public partial class AdminBoxx
 					case 8: SetLEDToColor( 2, 2, Red, false ); break;
 					case 9: SetLEDToColor( 2, 3, Red, false ); break;
 				}
+
+				app.AudioManager.Play( $"{number}" );
 			}
 
 			app.Logger.WriteLine( $"[AdminBoxx] <<< DoNumber( {number} )" );
@@ -1232,7 +1234,7 @@ public partial class AdminBoxx
 	{
 		if ( _ledUpdateConcurrentQueue.TryDequeue( out var coord ) )
 		{
-			lock ( _ledUpdateLock )
+			using ( _lock.EnterScope() )
 			{
 				_ledUpdateHashSet.Remove( coord );
 			}
