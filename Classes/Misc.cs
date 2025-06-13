@@ -89,7 +89,7 @@ public class Misc
 				}
 				catch ( Exception ex )
 				{
-					System.Diagnostics.Debug.WriteLine( $"Error processing property '{prop.Name}': {ex.Message}" );
+					Debug.WriteLine( $"Error processing property '{prop.Name}': {ex.Message}" );
 				}
 			}
 		}
