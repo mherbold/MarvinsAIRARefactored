@@ -1,14 +1,15 @@
 ﻿
 using System.IO;
 
-using NAudio.Wave;
+using SharpDX.Multimedia;
+using SharpDX.XAudio2;
 
 namespace MarvinsAIRARefactored.Components
 {
 	public class AudioManager : IDisposable
 	{
 		private readonly Lock _lock = new();
-		
+
 		private readonly string _soundsDirectory = Path.Combine( App.DocumentsFolder, "Sounds" );
 
 		private readonly Dictionary<string, CachedSound> _soundCache = [];
@@ -40,6 +41,15 @@ namespace MarvinsAIRARefactored.Components
 				_fileSystemWatcher.Created += OnSoundFileChanged;
 				_fileSystemWatcher.Renamed += OnSoundFileChanged;
 
+				string[] soundKeys = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ];
+
+				foreach ( var soundKey in soundKeys )
+				{
+					var path = Path.Combine( _soundsDirectory, $"{soundKey}.wav" );
+
+					LoadSound( path );
+				}
+
 				app.Logger.WriteLine( "[AudioManager] <<< Initialize" );
 			}
 		}
@@ -54,20 +64,15 @@ namespace MarvinsAIRARefactored.Components
 				{
 					app.Logger.WriteLine( "[AudioManager] OnSoundFileChanged >>>" );
 
-					string? key = Path.GetFileNameWithoutExtension( e.Name )?.ToLower();
-
-					if ( key != null )
+					try
 					{
-						try
-						{
-							LoadSound( key, e.FullPath );
+						LoadSound( e.FullPath );
 
-							app.Logger.WriteLine( $"[AudioManager] Hot-reloaded sound: {key}" );
-						}
-						catch ( Exception exception )
-						{
-							app.Logger.WriteLine( $"[AudioManager] Failed to reload {key}: {exception.Message}" );
-						}
+						app.Logger.WriteLine( $"[AudioManager] Hot-reloaded sound: {e.FullPath}" );
+					}
+					catch ( Exception exception )
+					{
+						app.Logger.WriteLine( $"[AudioManager] Failed to reload {e.FullPath}: {exception.Message}" );
 					}
 
 					app.Logger.WriteLine( "[AudioManager] <<< OnSoundFileChanged" );
@@ -75,26 +80,29 @@ namespace MarvinsAIRARefactored.Components
 			} );
 		}
 
-		public void LoadSound( string key, string path )
+		public void LoadSound( string path )
 		{
-			if ( !File.Exists( path ) )
+			if ( File.Exists( path ) )
 			{
-				return;
-			}
+				string? key = Path.GetFileNameWithoutExtension( path )?.ToLower();
 
-			var sound = new CachedSound( path );
-			var player = new CachedSoundPlayer( sound );
-
-			using ( _lock.EnterScope() )
-			{
-				_soundCache[ key ] = sound;
-
-				if ( _soundPlayerCache.TryGetValue( key, out var value ) )
+				if ( key != null )
 				{
-					value.Dispose();
-				}
+					var sound = new CachedSound( path );
+					var player = new CachedSoundPlayer( sound );
 
-				_soundPlayerCache[ key ] = player;
+					using ( _lock.EnterScope() )
+					{
+						_soundCache[ key ] = sound;
+
+						if ( _soundPlayerCache.TryGetValue( key, out var value ) )
+						{
+							value.Dispose();
+						}
+
+						_soundPlayerCache[ key ] = player;
+					}
+				}
 			}
 		}
 
@@ -139,47 +147,59 @@ namespace MarvinsAIRARefactored.Components
 
 	public class CachedSound
 	{
-		public float[] AudioData { get; private set; }
-		public WaveFormat WaveFormat { get; private set; }
+		public SoundStream SoundStream { get; }
+		public WaveFormat WaveFormat => SoundStream.Format;
+		public AudioBuffer AudioBuffer { get; }
+		public uint[]? DecodedPacketsInfo { get; }
 
-		public CachedSound( string audioFileName )
+		public CachedSound( string path )
 		{
-			using var audioFileReader = new AudioFileReader( audioFileName );
+			SoundStream = new SoundStream( File.OpenRead( path ) );
 
-			WaveFormat = audioFileReader.WaveFormat;
-
-			var wholeFile = new List<float>( (int) ( audioFileReader.Length / 4 ) );
-
-			var readBuffer = new float[ audioFileReader.WaveFormat.SampleRate * audioFileReader.WaveFormat.Channels ];
-
-			int samplesRead;
-
-			while ( ( samplesRead = audioFileReader.Read( readBuffer, 0, readBuffer.Length ) ) > 0 )
+			AudioBuffer = new AudioBuffer
 			{
-				wholeFile.AddRange( readBuffer.Take( samplesRead ) );
-			}
+				Stream = SoundStream.ToDataStream(),
+				AudioBytes = (int) SoundStream.Length,
+				Flags = BufferFlags.EndOfStream
+			};
 
-			AudioData = [ .. wholeFile ];
+			DecodedPacketsInfo = SoundStream.DecodedPacketsInfo != null ? Array.ConvertAll( SoundStream.DecodedPacketsInfo, x => (uint) x ) : null;
 		}
 	}
 
 	public class CachedSoundPlayer : IDisposable
 	{
-		private readonly WaveOutEvent _outputDevice;
-		private readonly BufferedWaveProvider _waveProvider;
+		private readonly CachedSound _sound;
+		private readonly XAudio2 _xaudio;
+		private readonly MasteringVoice _masteringVoice;
+		private SourceVoice? _sourceVoice;
 
 		public CachedSoundPlayer( CachedSound sound )
 		{
-			_outputDevice = new WaveOutEvent();
-			_waveProvider = new BufferedWaveProvider( sound.WaveFormat );
-
-			_outputDevice.Init( _waveProvider );
+			_sound = sound;
+			_xaudio = new XAudio2();
+			_masteringVoice = new MasteringVoice( _xaudio );
 		}
 
-		public void Play() => _outputDevice.Play();
+		public void Play()
+		{
+			_sourceVoice?.DestroyVoice();
+			_sourceVoice = new SourceVoice( _xaudio, _sound.WaveFormat );
+			_sourceVoice.SubmitSourceBuffer( _sound.AudioBuffer, _sound.DecodedPacketsInfo );
+			_sourceVoice.Start();
+		}
 
-		public void Stop() => _outputDevice.Stop();
+		public void Stop()
+		{
+			_sourceVoice?.Stop();
+		}
 
-		public void Dispose() => _outputDevice.Dispose();
+		public void Dispose()
+		{
+			_sourceVoice?.Dispose();
+			_masteringVoice.Dispose();
+			_xaudio.Dispose();
+			_sound.SoundStream.Dispose();
+		}
 	}
 }
