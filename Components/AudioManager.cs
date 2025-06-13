@@ -41,7 +41,16 @@ namespace MarvinsAIRARefactored.Components
 				_fileSystemWatcher.Created += OnSoundFileChanged;
 				_fileSystemWatcher.Renamed += OnSoundFileChanged;
 
-				string[] soundKeys = [ "0", "1", "2", "3", "4", "5", "6", "7", "8", "9" ];
+				string[] soundKeys = [
+					"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "cancel", "enter",
+					"double_file", "single_file",
+					"plus_one_lap", "minus_one_lap",
+					"throw_caution_flag", "advance_to_next_session",
+					"chat_toggle", "chat_enabled", "chat_disabled",
+					"black_flag_drive_through", "black_flag_stop_and_go", "clear_black_flag", "clear_all_black_flags",
+					"wave_by_driver", "end_of_line_driver", "remove_driver", "disqualify_driver",
+					"live", "pause", "play", "slow_motion", "fast_forward", "rewind", "next_incident", "previous_incident"
+				];
 
 				foreach ( var soundKey in soundKeys )
 				{

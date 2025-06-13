@@ -515,7 +515,7 @@ public partial class MainWindow : Window
 	{
 		var app = App.Instance;
 
-		app?.AdminBoxx.WaveFlag( AdminBoxx.Magenta );
+		app?.AdminBoxx.WaveFlag( AdminBoxx.DarkGray );
 	}
 
 	private void AdminBoxx_Blue_Click( object sender, RoutedEventArgs e )
