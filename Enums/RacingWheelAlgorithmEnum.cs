@@ -10,4 +10,5 @@ public enum RacingWheelAlgorithmEnum
 	DetailBoosterOn60Hz,
 	DeltaLimiterOn60Hz,
 	ZeAlanLeTwist,
+	TimeBias360hz
 };

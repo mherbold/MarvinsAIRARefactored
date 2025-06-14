@@ -372,7 +372,8 @@ public class DirectInput
 				}
 
 				_outputTorqueGraph.DrawGradientLine( magnitude, red, green, blue );
-				_outputTorqueGraph.Advance();
+                
+                _outputTorqueGraph.Advance();
 			}
 
 			if ( _forceFeedbackEffectParameters != null )

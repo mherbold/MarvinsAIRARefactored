@@ -50,6 +50,11 @@ public class RacingWheel
 
 	private float _elapsedMilliseconds = 0f;
 
+	private float _lastTorque = -1;
+	public float ProtectionDeltaForce { get; set; } = .02f;
+	public float ProtectionMinValue { get; set; } = 0f;
+	public float ProtectionOutputValue { get; private set; } = 0f;
+
 	public static void SetMairaComboBoxItemsSource( MairaComboBox mairaComboBox )
 	{
 		var app = App.Instance;
@@ -68,8 +73,9 @@ public class RacingWheel
 				{ RacingWheelAlgorithmEnum.DeltaLimiter, DataContext.DataContext.Instance.Localization[ "DeltaLimiter" ] },
 				{ RacingWheelAlgorithmEnum.DetailBoosterOn60Hz, DataContext.DataContext.Instance.Localization[ "DetailBoosterOn60Hz" ] },
 				{ RacingWheelAlgorithmEnum.DeltaLimiterOn60Hz, DataContext.DataContext.Instance.Localization[ "DeltaLimiterOn60Hz" ] },
-				{ RacingWheelAlgorithmEnum.ZeAlanLeTwist, DataContext.DataContext.Instance.Localization[ "ZeAlanLeTwist" ] }
-			};
+				{ RacingWheelAlgorithmEnum.ZeAlanLeTwist, DataContext.DataContext.Instance.Localization[ "ZeAlanLeTwist" ] },
+                { RacingWheelAlgorithmEnum.TimeBias360hz, DataContext.DataContext.Instance.Localization[ "TimeBias360hz" ] }
+            };
 
 			mairaComboBox.ItemsSource = dictionary;
 
@@ -348,88 +354,106 @@ public class RacingWheel
 
 					var outputTorque = 0f;
 
-					switch ( DataContext.DataContext.Instance.Settings.RacingWheelAlgorithm )
+					switch (DataContext.DataContext.Instance.Settings.RacingWheelAlgorithm)
 					{
 						case RacingWheelAlgorithmEnum.Native60Hz:
-						{
-							outputTorque = steeringWheelTorque60Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
+							{
+								outputTorque = steeringWheelTorque60Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
 
-							break;
-						}
+								break;
+							}
 
 						case RacingWheelAlgorithmEnum.Native360Hz:
-						{
-							outputTorque = steeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
+							{
+								outputTorque = steeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
 
-							break;
-						}
+								break;
+							}
 
 						case RacingWheelAlgorithmEnum.DetailBooster:
-						{
-							var detailBoost = Misc.Lerp( 1f + DataContext.DataContext.Instance.Settings.RacingWheelDetailBoost, 1f, curbProtectionLerpFactor );
+							{
+								var detailBoost = Misc.Lerp(1f + DataContext.DataContext.Instance.Settings.RacingWheelDetailBoost, 1f, curbProtectionLerpFactor);
 
-							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + ( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz ) * detailBoost, steeringWheelTorque360Hz, DataContext.DataContext.Instance.Settings.RacingWheelBias );
+								_runningSteeringWheelTorque360Hz = Misc.Lerp(_runningSteeringWheelTorque360Hz + (steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz) * detailBoost, steeringWheelTorque360Hz, DataContext.DataContext.Instance.Settings.RacingWheelBias);
 
-							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
+								outputTorque = _runningSteeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
 
-							break;
-						}
+								break;
+							}
 
 						case RacingWheelAlgorithmEnum.DeltaLimiter:
-						{
-							var deltaLimit = Misc.Lerp( DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f, 1f, curbProtectionLerpFactor );
+							{
+								var deltaLimit = Misc.Lerp(DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f, 1f, curbProtectionLerpFactor);
 
-							var limitedDeltaSteeringWheelTorque360Hz = Math.Clamp( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz, -deltaLimit, deltaLimit );
+								var limitedDeltaSteeringWheelTorque360Hz = Math.Clamp(steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz, -deltaLimit, deltaLimit);
 
-							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + limitedDeltaSteeringWheelTorque360Hz, steeringWheelTorque360Hz, DataContext.DataContext.Instance.Settings.RacingWheelBias );
+								_runningSteeringWheelTorque360Hz = Misc.Lerp(_runningSteeringWheelTorque360Hz + limitedDeltaSteeringWheelTorque360Hz, steeringWheelTorque360Hz, DataContext.DataContext.Instance.Settings.RacingWheelBias);
 
-							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
+								outputTorque = _runningSteeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
 
-							break;
-						}
+								break;
+							}
 
 						case RacingWheelAlgorithmEnum.DetailBoosterOn60Hz:
-						{
-							var detailBoost = Misc.Lerp( 1f + DataContext.DataContext.Instance.Settings.RacingWheelDetailBoost, 1f, curbProtectionLerpFactor );
+							{
+								var detailBoost = Misc.Lerp(1f + DataContext.DataContext.Instance.Settings.RacingWheelDetailBoost, 1f, curbProtectionLerpFactor);
 
-							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + ( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz ) * detailBoost, steeringWheelTorque60Hz, DataContext.DataContext.Instance.Settings.RacingWheelBias );
+								_runningSteeringWheelTorque360Hz = Misc.Lerp(_runningSteeringWheelTorque360Hz + (steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz) * detailBoost, steeringWheelTorque60Hz, DataContext.DataContext.Instance.Settings.RacingWheelBias);
 
-							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
+								outputTorque = _runningSteeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
 
-							break;
-						}
+								break;
+							}
 
 						case RacingWheelAlgorithmEnum.DeltaLimiterOn60Hz:
-						{
-							var deltaLimit = Misc.Lerp( DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f, 1f, curbProtectionLerpFactor );
+							{
+								var deltaLimit = Misc.Lerp(DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f, 1f, curbProtectionLerpFactor);
 
-							var limitedDeltaSteeringWheelTorque360Hz = Math.Clamp( steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz, -deltaLimit, deltaLimit );
+								var limitedDeltaSteeringWheelTorque360Hz = Math.Clamp(steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz, -deltaLimit, deltaLimit);
 
-							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + limitedDeltaSteeringWheelTorque360Hz, steeringWheelTorque360Hz, DataContext.DataContext.Instance.Settings.RacingWheelBias );
+								_runningSteeringWheelTorque360Hz = Misc.Lerp(_runningSteeringWheelTorque360Hz + limitedDeltaSteeringWheelTorque360Hz, steeringWheelTorque360Hz, DataContext.DataContext.Instance.Settings.RacingWheelBias);
 
-							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
+								outputTorque = _runningSteeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
 
-							break;
-						}
+								break;
+							}
 
 						case RacingWheelAlgorithmEnum.ZeAlanLeTwist:
-						{
-							var deltaLimit = Misc.Lerp( DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f, 1f, curbProtectionLerpFactor );
+							{
+								var deltaLimit = Misc.Lerp(DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimit / 500f, 1f, curbProtectionLerpFactor);
 
-							var delta = steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz;
+								var delta = steeringWheelTorque360Hz - _lastSteeringWheelTorque360Hz;
 
-							var compressibleDelta = MathF.Max( 0f, MathF.Abs( delta ) - deltaLimit );
+								var compressibleDelta = MathF.Max(0f, MathF.Abs(delta) - deltaLimit);
 
-							var deltaScale = MathF.Max( 0f, 1f - ( compressibleDelta * DataContext.DataContext.Instance.Settings.RacingWheelCompressionRate ) );
+								var deltaScale = MathF.Max(0f, 1f - (compressibleDelta * DataContext.DataContext.Instance.Settings.RacingWheelCompressionRate));
 
-							var compressedDeltaSteeringWheelTorque360Hz = ( compressibleDelta > 0f ) ? delta : delta + MathF.Sign( delta ) * compressibleDelta * deltaScale;
+								var compressedDeltaSteeringWheelTorque360Hz = (compressibleDelta > 0f) ? delta : delta + MathF.Sign(delta) * compressibleDelta * deltaScale;
 
-							_runningSteeringWheelTorque360Hz = Misc.Lerp( _runningSteeringWheelTorque360Hz + compressedDeltaSteeringWheelTorque360Hz, steeringWheelTorque360Hz, DataContext.DataContext.Instance.Settings.RacingWheelBias );
+								_runningSteeringWheelTorque360Hz = Misc.Lerp(_runningSteeringWheelTorque360Hz + compressedDeltaSteeringWheelTorque360Hz, steeringWheelTorque360Hz, DataContext.DataContext.Instance.Settings.RacingWheelBias);
 
-							outputTorque = _runningSteeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
+								outputTorque = _runningSteeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
 
+								break;
+							}
+
+						case RacingWheelAlgorithmEnum.TimeBias360hz:
+							{
+
+                                outputTorque = steeringWheelTorque360Hz / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
+
+                                if (_lastTorque == -1)//if flag
+                                {
+                                    _lastTorque = outputTorque;
+                                }
+
+                                float deltaTorque = Math.Abs(outputTorque - _lastTorque);
+                                float bias = Math.Clamp(ProtectionDeltaForce / deltaTorque, ProtectionMinValue, 1);
+                                ProtectionOutputValue = outputTorque * bias + (_lastTorque * (1 - bias));
+								outputTorque = ProtectionOutputValue;
+                                _lastTorque = ProtectionOutputValue;
+                            }
 							break;
-						}
 					}
 
 					// save last 360Hz steering wheel torque
@@ -440,7 +464,9 @@ public class RacingWheel
 
 					outputTorque *= crashProtectionScale;
 
-					// reduce forces when parked
+				
+
+					// reduce forces when parked v
 
 					if ( DataContext.DataContext.Instance.Settings.RacingWheelParkedStrength < 1f )
 					{
