@@ -115,6 +115,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Audio.
+        /// </summary>
+        internal static string Audio {
+            get {
+                return ResourceManager.GetString("Audio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Auto.
         /// </summary>
         internal static string Auto {
@@ -156,6 +165,33 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Bias {
             get {
                 return ResourceManager.GetString("Bias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black Flag B.
+        /// </summary>
+        internal static string BlackFlagB {
+            get {
+                return ResourceManager.GetString("BlackFlagB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black Flag G.
+        /// </summary>
+        internal static string BlackFlagG {
+            get {
+                return ResourceManager.GetString("BlackFlagG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Black Flag R.
+        /// </summary>
+        internal static string BlackFlagR {
+            get {
+                return ResourceManager.GetString("BlackFlagR", resourceCulture);
             }
         }
         
@@ -246,6 +282,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string CompressionRateUnits {
             get {
                 return ResourceManager.GetString("CompressionRateUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connection.
+        /// </summary>
+        internal static string Connection {
+            get {
+                return ResourceManager.GetString("Connection", resourceCulture);
             }
         }
         
@@ -390,6 +435,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Device {
             get {
                 return ResourceManager.GetString("Device", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Display.
+        /// </summary>
+        internal static string Display {
+            get {
+                return ResourceManager.GetString("Display", resourceCulture);
             }
         }
         

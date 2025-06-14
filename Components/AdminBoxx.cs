@@ -17,12 +17,11 @@ public partial class AdminBoxx
 	public static Color Yellow { get; } = new( 1f, 1f, 0f );
 	public static Color Green { get; } = new( 0f, 1f, 0f );
 	public static Color White { get; } = new( 1f, 1f, 1f );
-	public static Color Black { get; } = new( 0f, 0f, 0f );
 	public static Color Blue { get; } = new( 0f, 0f, 1f );
 	public static Color Red { get; } = new( 1f, 0f, 0f );
 	public static Color Cyan { get; } = new( 0f, 1f, 1f );
 	public static Color Magenta { get; } = new( 1f, 0f, 1f );
-	public static Color DarkGray { get; } = new( 0.2f, 0.2f, 0.2f );
+	public static Color Disabled { get; } = new( 0f, 0f, 0f );
 
 	public bool IsConnected { get; private set; } = false;
 
@@ -58,26 +57,26 @@ public partial class AdminBoxx
 
 	private static readonly Color[,] _playbackDisabledColors = new Color[ _numRows, _numColumns ]
 	{
-		{ Green, Black, Black, Black, Cyan,  Cyan,  Green, Green },
-		{ Green, Black, Black, Black, Cyan,  Cyan,  Cyan,  Cyan  },
-		{ Green, Black, Black, Black, Green, Black, Black, Black },
-		{ Green, Black, Black, Black, Black, Black, Black, Black }
+		{ Green, Disabled, Disabled, Disabled, Cyan,     Cyan,     Green,    Green    },
+		{ Green, Disabled, Disabled, Disabled, Cyan,     Cyan,     Cyan,     Cyan     },
+		{ Green, Disabled, Disabled, Disabled, Green,    Disabled, Disabled, Disabled },
+		{ Green, Disabled, Disabled, Disabled, Disabled, Disabled, Disabled, Disabled }
 	};
 
 	private static readonly Color[,] _playbackEnabledColors = new Color[ _numRows, _numColumns ]
 	{
-		{ Green, Black, Black, Black, Cyan,    Cyan,    Green,   Green   },
-		{ Green, Black, Black, Black, Cyan,    Cyan,    Cyan,    Cyan    },
-		{ Green, Black, Black, Black, Green,   Magenta, Magenta, Magenta },
-		{ Green, Black, Black, Black, Magenta, Magenta, Magenta, Magenta }
+		{ Green, Disabled, Disabled, Disabled, Cyan,    Cyan,    Green,   Green   },
+		{ Green, Disabled, Disabled, Disabled, Cyan,    Cyan,    Cyan,    Cyan    },
+		{ Green, Disabled, Disabled, Disabled, Green,   Magenta, Magenta, Magenta },
+		{ Green, Disabled, Disabled, Disabled, Magenta, Magenta, Magenta, Magenta }
 	};
 
 	private static readonly Color[,] _numpadEnabledColors = new Color[ _numRows, _numColumns ]
 	{
-		{ Black, Cyan, Cyan, Cyan,  Black, Black, Black, Black },
-		{ Black, Cyan, Cyan, Cyan,  Black, Black, Black, Black },
-		{ Black, Cyan, Cyan, Cyan,  Black, Black, Black, Black },
-		{ Black, Red,  Cyan, Green, Black, Black, Black, Black }
+		{ Disabled, Cyan, Cyan, Cyan,  Disabled, Disabled, Disabled, Disabled },
+		{ Disabled, Cyan, Cyan, Cyan,  Disabled, Disabled, Disabled, Disabled },
+		{ Disabled, Cyan, Cyan, Cyan,  Disabled, Disabled, Disabled, Disabled },
+		{ Disabled, Red,  Cyan, Green, Disabled, Disabled, Disabled, Disabled }
 	};
 
 	private static readonly Regex ButtonPressRegex = MyRegex();
@@ -100,8 +99,11 @@ public partial class AdminBoxx
 
 	private int _wavingFlagCounter = 0;
 	private int _wavingFlagState = 0;
-	private Color _wavingFlagColor = Black;
+	private Color _wavingFlagColor = Disabled;
 	private bool _wavingFlagCheckered = false;
+
+	private int _testCounter = 0;
+	private int _testState = 0;
 
 	private float _brightness = 1f;
 
@@ -185,10 +187,7 @@ public partial class AdminBoxx
 
 	public void ResendAllLEDs( (int x, int y)[]? pattern = null )
 	{
-		if ( pattern == null )
-		{
-			pattern = _blueNoiseLedOrder;
-		}
+		pattern ??= _blueNoiseLedOrder;
 
 		using ( _lock.EnterScope() )
 		{
@@ -215,7 +214,7 @@ public partial class AdminBoxx
 			}
 			else
 			{
-				SetLEDToColor( y, x, Black, forceUpdate );
+				SetLEDToColor( y, x, Disabled, forceUpdate );
 			}
 		}
 	}
@@ -244,6 +243,12 @@ public partial class AdminBoxx
 		_globalChatEnabled = true;
 
 		_driverChatDisabled.Clear();
+	}
+
+	public void StartTestCycle()
+	{
+		_testState = 0;
+		_testCounter = 1;
 	}
 
 	public void ReplayPlayingChanged()
@@ -319,7 +324,7 @@ public partial class AdminBoxx
 				{
 					_shownBlackFlag = true;
 
-					WaveFlag( DarkGray );
+					WaveBlackFlag();
 				}
 			}
 			else
@@ -357,12 +362,21 @@ public partial class AdminBoxx
 		}
 	}
 
-	public void WaveFlag( Color color, bool checkered = false )
+	public void WaveBlackFlag()
+	{
+		var color = new Color( DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagR, DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagG, DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagB );
+
+		WaveFlag( color );
+	}
+
+	private void WaveFlag( Color color, bool checkered = false )
 	{
 		_wavingFlagCounter = 30;
 		_wavingFlagState = 0;
 		_wavingFlagColor = color;
 		_wavingFlagCheckered = checkered;
+
+		_brightness = 1f;
 
 		SetAllLEDsToColor( color, _wavingFlagLedOrder, true, _wavingFlagCheckered, 0 );
 	}
@@ -1345,6 +1359,63 @@ public partial class AdminBoxx
 					case 4:
 						_brightness = 1f;
 						UpdateColors( _wavingFlagLedOrder, true );
+						break;
+				}
+			}
+		}
+
+		if ( _testCounter > 0 )
+		{
+			if ( Interlocked.Decrement( ref _testCounter ) == 0 )
+			{
+				_testCounter = 120;
+
+				switch ( Interlocked.Increment( ref _testState ) )
+				{
+					case 1:
+						WaveFlag( Yellow );
+						break;
+
+					case 2:
+						WaveFlag( Green );
+						break;
+
+					case 3:
+						WaveFlag( White );
+						break;
+
+					case 4:
+						WaveFlag( White, true );
+						break;
+
+					case 5:
+						var color = new Color( DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagR, DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagG, DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagB );
+						WaveFlag( color );
+						break;
+
+					case 6:
+						WaveFlag( Blue );
+						break;
+
+					case 7:
+						WaveFlag( Red );
+						break;
+
+					case 8:
+						SetAllLEDsToColorArray( _playbackDisabledColors, _blueNoiseLedOrder, false );
+						break;
+
+					case 9:
+						SetAllLEDsToColorArray( _playbackEnabledColors, _blueNoiseLedOrder, false );
+						break;
+
+					case 10:
+						SetAllLEDsToColorArray( _numpadEnabledColors, _blueNoiseLedOrder, false );
+						break;
+
+					case 11:
+						_testCounter = 0;
+						UpdateColors(_blueNoiseLedOrder, false);
 						break;
 				}
 			}

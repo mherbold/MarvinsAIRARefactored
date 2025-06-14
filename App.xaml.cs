@@ -553,6 +553,42 @@ public partial class App : Application
 				DataContext.DataContext.Instance.Settings.AdminBoxxBrightness -= 0.01f;
 			}
 
+			// adminboxx black flag r
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagGPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagR += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagRMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagR -= 0.01f;
+			}
+
+			// adminboxx black flag g
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagGPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagG += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagGMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagG -= 0.01f;
+			}
+
+			// adminboxx black flag b
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagGPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagB += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagBMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.AdminBoxxBlackFlagB -= 0.01f;
+			}
+
 			// adminboxx volume knob
 
 			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxVolumePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )

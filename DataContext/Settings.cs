@@ -2027,6 +2027,144 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region AdminBoxx - Black flag R
+
+	private float _adminBoxxBlackFlagR = 0.25f;
+
+	public float AdminBoxxBlackFlagR
+	{
+		get => _adminBoxxBlackFlagR;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _adminBoxxBlackFlagR )
+			{
+				_adminBoxxBlackFlagR = value;
+
+				OnPropertyChanged();
+			}
+
+			AdminBoxxBlackFlagRString = $"{_adminBoxxBlackFlagR * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _adminBoxxBlackFlagRString = string.Empty;
+
+	[XmlIgnore]
+	public string AdminBoxxBlackFlagRString
+	{
+		get => _adminBoxxBlackFlagRString;
+
+		set
+		{
+			if ( value != _adminBoxxBlackFlagRString )
+			{
+				_adminBoxxBlackFlagRString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings AdminBoxxBlackFlagRPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AdminBoxxBlackFlagRMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region AdminBoxx - Black flag G
+
+	private float _adminBoxxBlackFlagG = 0f;
+
+	public float AdminBoxxBlackFlagG
+	{
+		get => _adminBoxxBlackFlagG;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _adminBoxxBlackFlagG )
+			{
+				_adminBoxxBlackFlagG = value;
+
+				OnPropertyChanged();
+			}
+
+			AdminBoxxBlackFlagGString = $"{_adminBoxxBlackFlagG * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _adminBoxxBlackFlagGString = string.Empty;
+
+	[XmlIgnore]
+	public string AdminBoxxBlackFlagGString
+	{
+		get => _adminBoxxBlackFlagGString;
+
+		set
+		{
+			if ( value != _adminBoxxBlackFlagGString )
+			{
+				_adminBoxxBlackFlagGString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings AdminBoxxBlackFlagGPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AdminBoxxBlackFlagGMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region AdminBoxx - Black flag B
+
+	private float _adminBoxxBlackFlagB = 0.25f;
+
+	public float AdminBoxxBlackFlagB
+	{
+		get => _adminBoxxBlackFlagB;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _adminBoxxBlackFlagB )
+			{
+				_adminBoxxBlackFlagB = value;
+
+				OnPropertyChanged();
+			}
+
+			AdminBoxxBlackFlagBString = $"{_adminBoxxBlackFlagB * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _adminBoxxBlackFlagBString = string.Empty;
+
+	[XmlIgnore]
+	public string AdminBoxxBlackFlagBString
+	{
+		get => _adminBoxxBlackFlagBString;
+
+		set
+		{
+			if ( value != _adminBoxxBlackFlagBString )
+			{
+				_adminBoxxBlackFlagBString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings AdminBoxxBlackFlagBPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AdminBoxxBlackFlagBMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
 	#region AdminBoxx - Volume
 
 	private float _adminBoxxVolume = 0.8f;

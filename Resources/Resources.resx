@@ -577,4 +577,28 @@
     <value>[No Audio Devices Found]</value>
     <comment>Audio device list</comment>
   </data>
+  <data name="Connection" xml:space="preserve">
+    <value>Connection</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Display</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Audio" xml:space="preserve">
+    <value>Audio</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="BlackFlagR" xml:space="preserve">
+    <value>Black Flag R</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="BlackFlagG" xml:space="preserve">
+    <value>Black Flag G</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="BlackFlagB" xml:space="preserve">
+    <value>Black Flag B</value>
+    <comment>AdminBoxx</comment>
+  </data>
 </root>

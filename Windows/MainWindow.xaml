@@ -479,6 +479,86 @@
 
             </TabItem>
 
+            <TabItem x:Name="AdminBoxx_TabItem" Header="{Binding Localization[AdminBoxx]}">
+
+                <StackPanel Margin="10">
+
+                    <GroupBox Header="{Binding Localization[Connection]}" Margin="0,10,0,0">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:MairaSwitch Grid.Column="0" x:Name="AdminBoxx_ConnectToAdminBoxx_MairaSwitch" Margin="10,0,10,0"  Title="{Binding Localization[ConnectToAdminBoxx]}" Toggled="AdminBoxx_ConnectToAdminBoxx_MairaSwitch_Toggled"/>
+                                <controls:MairaButton Grid.Column="1" x:Name="AdminBoxx_Test" Margin="10,0,10,0"  Title="Test" Click="AdminBoxx_Test_Click"/>
+
+                            </Grid>
+
+                            <controls:MairaSwitch Margin="10,10,10,20" x:Name="AdminBoxx_ConnectOnStartup_MairaSwitch" Title="{Binding Localization[ConnectOnStartup]}" IsOn="{Binding Settings.AdminBoxxConnectOnStartup, Mode=TwoWay}"/>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Display]}" Margin="0,10,0,0">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:MairaKnob Grid.Column="0" Margin="10,0,10,20" Title="{Binding Localization[Brightness]}" Value="{Binding Settings.AdminBoxxBrightness, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxBrightnessString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxBrightnessPlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxBrightnessMinusButtonMappings}" ValueChangedCallback="AdminBoxx_Brightness_ValueChanged"/>
+
+                            </Grid>
+
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:MairaKnob Grid.Column="0" Margin="10,0,10,20" Title="{Binding Localization[BlackFlagR]}" Value="{Binding Settings.AdminBoxxBlackFlagR, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxBlackFlagRString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxBlackFlagRPlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxBlackFlagRMinusButtonMappings}" ValueChangedCallback="AdminBoxx_BlackFlag_ValueChanged"/>
+                                <controls:MairaKnob Grid.Column="1" Margin="10,0,10,20" Title="{Binding Localization[BlackFlagG]}" Value="{Binding Settings.AdminBoxxBlackFlagG, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxBlackFlagGString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxBlackFlagGPlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxBlackFlagGMinusButtonMappings}" ValueChangedCallback="AdminBoxx_BlackFlag_ValueChanged"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,20" Title="{Binding Localization[BlackFlagB]}" Value="{Binding Settings.AdminBoxxBlackFlagB, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxBlackFlagBString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxBlackFlagBPlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxBlackFlagBMinusButtonMappings}" ValueChangedCallback="AdminBoxx_BlackFlag_ValueChanged"/>
+
+                            </Grid>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Audio]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,0">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,20" Title="{Binding Localization[Volume]}" Value="{Binding Settings.AdminBoxxVolume, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxVolumeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxVolumePlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxVolumeMinusButtonMappings}" ValueChangedCallback="AdminBoxx_Volume_ValueChanged"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                </StackPanel>
+
+            </TabItem>
+
             <TabItem x:Name="Graphs_TabItem" Header="{Binding Localization[Graphs]}">
 
                 <StackPanel Margin="10">
@@ -630,52 +710,6 @@
                     <Label x:Name="Simulator_SimulatorNotRunning_Label" Margin="0,30,0,0" Content="{Binding Localization[SimulatorNotRunning]}" HorizontalContentAlignment="Center" Foreground="#FFFF6A6A"/>
 
                 </Grid>
-
-            </TabItem>
-
-            <TabItem x:Name="AdminBoxx_TabItem" Header="{Binding Localization[AdminBoxx]}">
-
-                <StackPanel Margin="10">
-
-                    <Grid>
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-
-                        <controls:MairaSwitch Grid.Column="0" Margin="0,10,0,0" x:Name="AdminBoxx_ConnectToAdminBoxx_MairaSwitch" Title="{Binding Localization[ConnectToAdminBoxx]}" Toggled="AdminBoxx_ConnectToAdminBoxx_MairaSwitch_Toggled"/>
-                        <controls:MairaButton Grid.Column="1" x:Name="AdminBoxx_Test" Title="Test" Click="AdminBoxx_Test_Click"/>
-
-                    </Grid>
-
-                    <controls:MairaSwitch Margin="0,10,0,20" x:Name="AdminBoxx_ConnectOnStartup_MairaSwitch" Title="{Binding Localization[ConnectOnStartup]}" IsOn="{Binding Settings.AdminBoxxConnectOnStartup, Mode=TwoWay}"/>
-
-                    <Grid Margin="0,0,0,20">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Brightness]}" Value="{Binding Settings.AdminBoxxBrightness, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxBrightnessString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxBrightnessPlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxBrightnessMinusButtonMappings}" ValueChangedCallback="AdminBoxx_Brightness_ValueChanged"/>
-
-                    </Grid>
-
-                    <Grid Margin="0,0,0,20">
-
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-                        <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Volume]}" Value="{Binding Settings.AdminBoxxVolume, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxVolumeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxVolumePlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxVolumeMinusButtonMappings}" ValueChangedCallback="AdminBoxx_Volume_ValueChanged"/>
-
-                    </Grid>
-
-                </StackPanel>
 
             </TabItem>
 
