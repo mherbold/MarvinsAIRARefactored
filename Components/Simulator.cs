@@ -537,9 +537,11 @@ public class Simulator
 				_native60HzTorqueStatistics.Update( SteeringWheelTorque_ST[ 5 ] );
 
 				var y60Hz = SteeringWheelTorque_ST[ 5 ] / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
+                
+                _native60HzTorqueGraph.DrawGradientLine( y60Hz, 255, 0, 0 );
+                _native60HzTorqueGraph.DrawGradientLine(app.RacingWheel.ProtectionOutputValue, 0, 0, 255);
 
-				_native60HzTorqueGraph.DrawGradientLine( y60Hz, 255, 0, 0 );
-				_native60HzTorqueGraph.Advance();
+                _native60HzTorqueGraph.Advance();
 
 				for ( var i = 0; i < SteeringWheelTorque_ST.Length; i++ )
 				{
@@ -548,7 +550,8 @@ public class Simulator
 					var y360Hz = SteeringWheelTorque_ST[ i ] / DataContext.DataContext.Instance.Settings.RacingWheelMaxForce;
 
 					_native360HzTorqueGraph.DrawGradientLine( y360Hz, 255, 0, 0 );
-					_native360HzTorqueGraph.Advance();
+               //     _native360HzTorqueGraph.DrawGradientLine(app.RacingWheel.ProtectionOutputValue, 0, 0, 255);
+                    _native360HzTorqueGraph.Advance();
 				}
 			}
 
