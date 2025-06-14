@@ -114,11 +114,13 @@ public class Graph
 
 	public void UpdateImage()
 	{
-		var leftX = _x;
+		var x = _x;
+
+		var leftX = x;
 		var leftWidth = _bitmapWidth - leftX;
 
 		var rightX = 0;
-		var rightWidth = _x - rightX;
+		var rightWidth = x - rightX;
 
 		if ( leftWidth > 0 )
 		{
