@@ -160,15 +160,6 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Bias.
-        /// </summary>
-        internal static string Bias {
-            get {
-                return ResourceManager.GetString("Bias", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Black Flag B.
         /// </summary>
         internal static string BlackFlagB {
@@ -385,6 +376,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delta Limiter Bias.
+        /// </summary>
+        internal static string DeltaLimiterBias {
+            get {
+                return ResourceManager.GetString("DeltaLimiterBias", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delta Limiter On 60 Hz.
         /// </summary>
         internal static string DeltaLimiterOn60Hz {
@@ -408,6 +408,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string DetailBoost {
             get {
                 return ResourceManager.GetString("DetailBoost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Detail Boost Bias.
+        /// </summary>
+        internal static string DetailBoostBias {
+            get {
+                return ResourceManager.GetString("DetailBoostBias", resourceCulture);
             }
         }
         
@@ -592,6 +601,24 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to LFE Recording Device.
+        /// </summary>
+        internal static string LFERecordingDevice {
+            get {
+                return ResourceManager.GetString("LFERecordingDevice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Low Frequency Effects.
+        /// </summary>
+        internal static string LowFrequencyEffects {
+            get {
+                return ResourceManager.GetString("LowFrequencyEffects", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Max Force.
         /// </summary>
         internal static string MaxForce {
@@ -682,20 +709,29 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to [No Attached Force Feedback Devices Found].
-        /// </summary>
-        internal static string NoAttachedFFBDevicesFound {
-            get {
-                return ResourceManager.GetString("NoAttachedFFBDevicesFound", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to [No Audio Devices Found].
         /// </summary>
         internal static string NoAudioDevicesFound {
             get {
                 return ResourceManager.GetString("NoAudioDevicesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [No Force Feedback Devices Found].
+        /// </summary>
+        internal static string NoFFBDevicesFound {
+            get {
+                return ResourceManager.GetString("NoFFBDevicesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [No Audio Recording Devices Found].
+        /// </summary>
+        internal static string NoLFEDevicesFound {
+            get {
+                return ResourceManager.GetString("NoLFEDevicesFound", resourceCulture);
             }
         }
         
@@ -723,6 +759,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string OtherFeatures {
             get {
                 return ResourceManager.GetString("OtherFeatures", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Output.
+        /// </summary>
+        internal static string Output {
+            get {
+                return ResourceManager.GetString("Output", resourceCulture);
             }
         }
         
@@ -889,15 +934,6 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Racing Wheel Device.
-        /// </summary>
-        internal static string RacingWheelDevice {
-            get {
-                return ResourceManager.GetString("RacingWheelDevice", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Reset.
         /// </summary>
         internal static string Reset {
@@ -993,6 +1029,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string SoftLockStrength {
             get {
                 return ResourceManager.GetString("SoftLockStrength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Steering Device.
+        /// </summary>
+        internal static string SteeringDevice {
+            get {
+                return ResourceManager.GetString("SteeringDevice", resourceCulture);
             }
         }
         
@@ -1110,6 +1155,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string Wet {
             get {
                 return ResourceManager.GetString("Wet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wheel LFE.
+        /// </summary>
+        internal static string WheelLFE {
+            get {
+                return ResourceManager.GetString("WheelLFE", resourceCulture);
             }
         }
         

@@ -144,17 +144,17 @@ public class Settings : INotifyPropertyChanged
 
 	#region Racing wheel - Device
 
-	private Guid _racingWheelDeviceGuid = Guid.Empty;
+	private Guid _racingWheelSteeringDeviceGuid = Guid.Empty;
 
-	public Guid RacingWheelDeviceGuid
+	public Guid RacingWheelSteeringDeviceGuid
 	{
-		get => _racingWheelDeviceGuid;
+		get => _racingWheelSteeringDeviceGuid;
 
 		set
 		{
-			if ( value != _racingWheelDeviceGuid )
+			if ( value != _racingWheelSteeringDeviceGuid )
 			{
-				_racingWheelDeviceGuid = value;
+				_racingWheelSteeringDeviceGuid = value;
 
 				OnPropertyChanged();
 
@@ -162,7 +162,7 @@ public class Settings : INotifyPropertyChanged
 
 				if ( app != null )
 				{
-					app.RacingWheel.NextRacingWheelGuid = _racingWheelDeviceGuid;
+					app.RacingWheel.NextRacingWheelGuid = _racingWheelSteeringDeviceGuid;
 				}
 			}
 		}
@@ -392,7 +392,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Racing wheel - Delta limit
 
-	private float _racingWheelDeltaLimit = 1f;
+	private float _racingWheelDeltaLimit = 32.4f;
 
 	public float RacingWheelDeltaLimit
 	{
@@ -400,7 +400,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 99.99f );
+			value = Math.Clamp( value, 0f, 99.9f );
 
 			if ( value != _racingWheelDeltaLimit )
 			{
@@ -409,7 +409,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			RacingWheelDeltaLimitString = $"{_racingWheelDeltaLimit:F2}{DataContext.Instance.Localization[ "DeltaLimitUnits" ]}";
+			RacingWheelDeltaLimitString = $"{_racingWheelDeltaLimit:F1}{DataContext.Instance.Localization[ "DeltaLimitUnits" ]}";
 		}
 	}
 
@@ -437,50 +437,97 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Racing wheel - Bias
+	#region Racing wheel - Detail boost bias
 
-	private float _racingWheelBias = 0.1f;
+	private float _racingWheelDetailBoostBias = 0.1f;
 
-	public float RacingWheelBias
+	public float RacingWheelDetailBoostBias
 	{
-		get => _racingWheelBias;
+		get => _racingWheelDetailBoostBias;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _racingWheelBias )
+			if ( value != _racingWheelDetailBoostBias )
 			{
-				_racingWheelBias = value;
+				_racingWheelDetailBoostBias = value;
 
 				OnPropertyChanged();
 			}
 
-			RacingWheelBiasString = $"{_racingWheelBias * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			RacingWheelDetailBoostBiasString = $"{_racingWheelDetailBoostBias * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
-	private string _racingWheelBiasString = string.Empty;
+	private string _racingWheelDetailBoostBiasString = string.Empty;
 
 	[XmlIgnore]
-	public string RacingWheelBiasString
+	public string RacingWheelDetailBoostBiasString
 	{
-		get => _racingWheelBiasString;
+		get => _racingWheelDetailBoostBiasString;
 
 		set
 		{
-			if ( value != _racingWheelBiasString )
+			if ( value != _racingWheelDetailBoostBiasString )
 			{
-				_racingWheelBiasString = value;
+				_racingWheelDetailBoostBiasString = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	public ContextSwitches RacingWheelBiasContextSwitches { get; set; } = new( true, true, false, false, false );
-	public ButtonMappings RacingWheelBiasPlusButtonMappings { get; set; } = new();
-	public ButtonMappings RacingWheelBiasMinusButtonMappings { get; set; } = new();
+	public ContextSwitches RacingWheelDetailBoostBiasContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings RacingWheelDetailBoostBiasPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelDetailBoostBiasMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Delta limiter bias
+
+	private float _racingWheelDeltaLimiterBias = 0.2f;
+
+	public float RacingWheelDeltaLimiterBias
+	{
+		get => _racingWheelDeltaLimiterBias;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _racingWheelDeltaLimiterBias )
+			{
+				_racingWheelDeltaLimiterBias = value;
+
+				OnPropertyChanged();
+			}
+
+			RacingWheelDeltaLimiterBiasString = $"{_racingWheelDeltaLimiterBias * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _racingWheelDeltaLimiterBiasString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelDeltaLimiterBiasString
+	{
+		get => _racingWheelDeltaLimiterBiasString;
+
+		set
+		{
+			if ( value != _racingWheelDeltaLimiterBiasString )
+			{
+				_racingWheelDeltaLimiterBiasString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches RacingWheelDeltaLimiterBiasContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings RacingWheelDeltaLimiterBiasPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelDeltaLimiterBiasMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
@@ -531,6 +578,250 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Racing wheel - Output minimum
+
+	private float _racingWheelOutputMinimum = 0f;
+
+	public float RacingWheelOutputMinimum
+	{
+		get => _racingWheelOutputMinimum;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 0.1f );
+
+			if ( value != _racingWheelOutputMinimum )
+			{
+				_racingWheelOutputMinimum = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelOutputMinimum == 0f )
+			{
+				RacingWheelOutputMinimumString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelOutputMinimumString = $"{_racingWheelOutputMinimum * 100f:F1}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelOutputMinimumString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelOutputMinimumString
+	{
+		get => _racingWheelOutputMinimumString;
+
+		set
+		{
+			if ( value != _racingWheelOutputMinimumString )
+			{
+				_racingWheelOutputMinimumString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches RacingWheelOutputMinimumContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ButtonMappings RacingWheelOutputMinimumPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelOutputMinimumMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Output maximum
+
+	private float _racingWheelOutputMaximum = 1f;
+
+	public float RacingWheelOutputMaximum
+	{
+		get => _racingWheelOutputMaximum;
+
+		set
+		{
+			value = Math.Clamp( value, 0.2f, 1f );
+
+			if ( value != _racingWheelOutputMaximum )
+			{
+				_racingWheelOutputMaximum = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelOutputMaximum == 1f )
+			{
+				RacingWheelOutputMaximumString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelOutputMaximumString = $"{_racingWheelOutputMaximum * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelOutputMaximumString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelOutputMaximumString
+	{
+		get => _racingWheelOutputMaximumString;
+
+		set
+		{
+			if ( value != _racingWheelOutputMaximumString )
+			{
+				_racingWheelOutputMaximumString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches RacingWheelOutputMaximumContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ButtonMappings RacingWheelOutputMaximumPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelOutputMaximumMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Output curve
+
+	private float _racingWheelOutputCurve = 0f;
+
+	public float RacingWheelOutputCurve
+	{
+		get => _racingWheelOutputCurve;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _racingWheelOutputCurve )
+			{
+				_racingWheelOutputCurve = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelOutputCurve == 0f )
+			{
+				RacingWheelOutputCurveString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelOutputCurveString = $"{_racingWheelOutputCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelOutputCurveString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelOutputCurveString
+	{
+		get => _racingWheelOutputCurveString;
+
+		set
+		{
+			if ( value != _racingWheelOutputCurveString )
+			{
+				_racingWheelOutputCurveString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches RacingWheelOutputCurveContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ButtonMappings RacingWheelOutputCurvePlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelOutputCurveMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - LFE Recording Device
+
+	private Guid _racingWheelLFERecordingDeviceGuid = Guid.Empty;
+
+	public Guid RacingWheelLFERecordingDeviceGuid
+	{
+		get => _racingWheelLFERecordingDeviceGuid;
+
+		set
+		{
+			if ( value != _racingWheelLFERecordingDeviceGuid )
+			{
+				_racingWheelLFERecordingDeviceGuid = value;
+
+				OnPropertyChanged();
+
+				var app = App.Instance;
+
+				if ( app != null )
+				{
+					app.LFE.NextRecordingDeviceGuid = _racingWheelLFERecordingDeviceGuid;
+				}
+			}
+		}
+	}
+
+	#endregion
+
+	#region Racing wheel - LFE strength
+
+	private float _racingWheelLFEStrength = 0.05f;
+
+	public float RacingWheelLFEStrength
+	{
+		get => _racingWheelLFEStrength;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _racingWheelLFEStrength )
+			{
+				_racingWheelLFEStrength = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelLFEStrength == 0f )
+			{
+				RacingWheelLFEStrengthString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelLFEStrengthString = $"{_racingWheelLFEStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelLFEStrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelLFEStrengthString
+	{
+		get => _racingWheelLFEStrengthString;
+
+		set
+		{
+			if ( value != _racingWheelLFEStrengthString )
+			{
+				_racingWheelLFEStrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches RacingWheelLFEStrengthContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings RacingWheelLFEStrengthPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelLFEStrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
 	#region Racing wheel - Crash protection g-force
 
 	private float _racingWheelCrashProtectionGForce = 8f;
@@ -550,7 +841,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelCrashProtectionGForce == 0f )
+			if ( _racingWheelCrashProtectionGForce == 2f )
 			{
 				RacingWheelCrashProtectionGForceString = DataContext.Instance.Localization[ "OFF" ];
 			}
@@ -1157,7 +1448,14 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsFrequencyCurveString = $"{_pedalsFrequencyCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			if ( _pedalsFrequencyCurve == 0f )
+			{
+				PedalsFrequencyCurveString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				PedalsFrequencyCurveString = $"{_pedalsFrequencyCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
 		}
 	}
 
@@ -1302,7 +1600,14 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsAmplitudeCurveString = $"{_pedalsAmplitudeCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			if ( _pedalsAmplitudeCurve == 0f )
+			{
+				PedalsAmplitudeCurveString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				PedalsAmplitudeCurveString = $"{_pedalsAmplitudeCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
 		}
 	}
 

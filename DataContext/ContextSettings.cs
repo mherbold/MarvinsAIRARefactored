@@ -5,7 +5,7 @@ namespace MarvinsAIRARefactored.DataContext;
 
 public class ContextSettings
 {
-	public Guid RacingWheelDeviceGuid { get; set; }
+	public Guid RacingWheelSteeringDeviceGuid { get; set; }
 	public bool RacingWheelEnableForceFeedback {  get; set; }
 	public float RacingWheelMaxForce {  get; set; }
 	public float RacingWheelAutoMargin {  get; set; }

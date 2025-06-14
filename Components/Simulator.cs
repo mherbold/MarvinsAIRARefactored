@@ -13,8 +13,9 @@ namespace MarvinsAIRARefactored.Components;
 
 public class Simulator
 {
-	public const int IRSDK_360HZ_SAMPLES_PER_FRAME = 6;
-	private const float ONE_G = 9.80665f; // in meters per second squared
+	public const int SamplesPerFrame360Hz = 6;
+
+	private const float _oneG = 9.80665f; // in meters per second squared
 
 	private readonly IRacingSdk _irsdk = new();
 
@@ -25,31 +26,31 @@ public class Simulator
 	public bool BrakeABSactive { get; private set; } = false;
 	public float Brake { get; private set; } = 0f;
 	public string CarScreenName { get; private set; } = string.Empty;
-	public float[] CFShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
+	public float[] CFShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float Clutch { get; private set; } = 0f;
-	public float[] CRShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
+	public float[] CRShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public int Gear { get; private set; } = 0;
 	public float GForce { get; private set; } = 0f;
 	public bool IsConnected { get => _irsdk.IsConnected; }
 	public bool IsOnTrack { get; private set; } = false;
 	public bool IsReplayPlaying { get; private set; } = false;
-	public float[] LFShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
-	public float[] LRShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
+	public float[] LFShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] LRShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public int NumForwardGears { get; private set; } = 0;
 	public IRacingSdkEnum.PaceMode PaceMode { get; private set; } = IRacingSdkEnum.PaceMode.NotPacing;
 	public IRacingSdkEnum.TrkLoc PlayerTrackSurface { get; private set; } = IRacingSdkEnum.TrkLoc.NotInWorld;
 	public bool ReplayPlaySlowMotion { get; private set; } = false;
 	public int ReplayPlaySpeed { get; private set; } = 1;
-	public float[] RFShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
+	public float[] RFShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float RPM { get; private set; } = 0f;
-	public float[] RRShockVel_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
+	public float[] RRShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public IRacingSdkEnum.Flags SessionFlags { get; private set; } = 0;
 	public float ShiftLightsShiftRPM { get; private set; } = 0f;
 	public string SimMode { get; private set; } = string.Empty;
 	public bool SteeringFFBEnabled { get; private set; } = false;
 	public float SteeringWheelAngle { get; private set; } = 0f;
 	public float SteeringWheelAngleMax { get; private set; } = 0f;
-	public float[] SteeringWheelTorque_ST { get; private set; } = new float[ IRSDK_360HZ_SAMPLES_PER_FRAME ];
+	public float[] SteeringWheelTorque_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float Throttle { get; private set; } = 0f;
 	public string TrackDisplayName { get; private set; } = string.Empty;
 	public string TrackConfigName { get; private set; } = string.Empty;
@@ -438,7 +439,7 @@ public class Simulator
 
 			if ( _velocityLastFrame != null )
 			{
-				GForce = MathF.Abs( Velocity - (float) _velocityLastFrame ) / deltaSeconds / ONE_G;
+				GForce = MathF.Abs( Velocity - (float) _velocityLastFrame ) / deltaSeconds / _oneG;
 			}
 			else
 			{
@@ -449,7 +450,7 @@ public class Simulator
 
 			// crash protection processing
 
-			if ( ( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionGForce > 0f ) && ( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionDuration > 0f ) && ( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction > 0f ) )
+			if ( ( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionGForce > 2f ) && ( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionDuration > 0f ) && ( DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionForceReduction > 0f ) )
 			{
 				if ( MathF.Abs( GForce ) >= DataContext.DataContext.Instance.Settings.RacingWheelCrashProtectionGForce )
 				{
@@ -495,7 +496,7 @@ public class Simulator
 			{
 				var maxShockVelocity = 0f;
 
-				for ( var i = 0; i < IRSDK_360HZ_SAMPLES_PER_FRAME; i++ )
+				for ( var i = 0; i < SamplesPerFrame360Hz; i++ )
 				{
 					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CFShockVel_ST[ i ] ) );
 					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CRShockVel_ST[ i ] ) );

@@ -31,6 +31,7 @@ public partial class App : Application
 	public ChatQueue ChatQueue { get; private set; }
 	public AudioManager AudioManager { get; private set; }
 	public DirectInput DirectInput { get; private set; }
+	public LFE LFE { get; private set; }
 	public MultimediaTimer MultimediaTimer { get; private set; }
 	public Simulator Simulator { get; private set; }
 
@@ -60,6 +61,7 @@ public partial class App : Application
 		ChatQueue = new();
 		AudioManager = new();
 		DirectInput = new( MainWindow.Graphs_OutputTorque_Image );
+		LFE = new( MainWindow.Graphs_LFE_Image );
 		MultimediaTimer = new( MainWindow.Graphs_MultimediaTimerJitter_Image );
 		Simulator = new( MainWindow.Graphs_Native60HzTorque_Image, MainWindow.Graphs_Native360HzTorque_Image );
 
@@ -90,6 +92,7 @@ public partial class App : Application
 		AdminBoxx.Initialize();
 		AudioManager.Initialize();
 		DirectInput.Initialize();
+		LFE.Initialize();
 		MultimediaTimer.Initialize();
 		Simulator.Initialize();
 
@@ -136,6 +139,7 @@ public partial class App : Application
 		Simulator.Shutdown();
 		MultimediaTimer.Shutdown();
 		AdminBoxx.Shutdown();
+		LFE.Shutdown();
 		DirectInput.Shutdown();
 		Logger.Shutdown();
 
@@ -229,16 +233,28 @@ public partial class App : Application
 				DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimit -= 0.01f;
 			}
 
-			// racing wheel bias knob
+			// racing wheel detail boost bias knob
 
-			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelBiasPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelDetailBoostBiasPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.DataContext.Instance.Settings.RacingWheelBias += 0.01f;
+				DataContext.DataContext.Instance.Settings.RacingWheelDetailBoostBias += 0.01f;
 			}
 
-			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelBiasMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelDetailBoostBiasMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				DataContext.DataContext.Instance.Settings.RacingWheelBias -= 0.01f;
+				DataContext.DataContext.Instance.Settings.RacingWheelDetailBoostBias -= 0.01f;
+			}
+
+			// racing wheel delta limiter bias knob
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimiterBiasPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimiterBias += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimiterBiasMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.RacingWheelDeltaLimiterBias -= 0.01f;
 			}
 
 			// racing wheel compression rate knob
@@ -251,6 +267,54 @@ public partial class App : Application
 			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelCompressionRateMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				DataContext.DataContext.Instance.Settings.RacingWheelCompressionRate -= 0.01f;
+			}
+
+			// racing wheel output minimum knob
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelOutputMinimumPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.RacingWheelOutputMinimum += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelOutputMinimumMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.RacingWheelOutputMinimum -= 0.01f;
+			}
+
+			// racing wheel output maximum knob
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelOutputMaximumPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.RacingWheelOutputMaximum += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelOutputMaximumMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.RacingWheelOutputMaximum -= 0.01f;
+			}
+
+			// racing wheel output curve knob
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelOutputCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.RacingWheelOutputCurve += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelOutputCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.RacingWheelOutputCurve -= 0.01f;
+			}
+
+			// racing wheel lfe strength knob
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelLFEStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.RacingWheelLFEStrength += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.RacingWheelLFEStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.RacingWheelLFEStrength -= 0.01f;
 			}
 
 			// racing wheel crash protection g force knob
@@ -678,6 +742,7 @@ public partial class App : Application
 					app.ChatQueue.Tick( app );
 					app.MainWindow.Tick( app );
 					app.DirectInput.Tick( app );
+					app.LFE.Tick( app );
 					app.MultimediaTimer.Tick( app );
 					app.Simulator.Tick( app );
 				} );

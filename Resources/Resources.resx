@@ -129,8 +129,8 @@
     <value>Marvin's Awesome iRacing App</value>
     <comment>Window title</comment>
   </data>
-  <data name="Bias" xml:space="preserve">
-    <value>Bias</value>
+  <data name="DetailBoostBias" xml:space="preserve">
+    <value>Detail Boost Bias</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Debug" xml:space="preserve">
@@ -193,9 +193,9 @@
     <value>Native 360 Hz Torque</value>
     <comment>Graphs</comment>
   </data>
-  <data name="NoAttachedFFBDevicesFound" xml:space="preserve">
-    <value>[No Attached Force Feedback Devices Found]</value>
-    <comment>Racing wheel device list</comment>
+  <data name="NoFFBDevicesFound" xml:space="preserve">
+    <value>[No Force Feedback Devices Found]</value>
+    <comment>Steering device list</comment>
   </data>
   <data name="OFF" xml:space="preserve">
     <value>OFF</value>
@@ -217,8 +217,8 @@
     <value>Racing Wheel</value>
     <comment>Tab item</comment>
   </data>
-  <data name="RacingWheelDevice" xml:space="preserve">
-    <value>Racing Wheel Device</value>
+  <data name="SteeringDevice" xml:space="preserve">
+    <value>Steering Device</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Reset" xml:space="preserve">
@@ -439,7 +439,7 @@
   </data>
   <data name="Strength" xml:space="preserve">
     <value>Strength</value>
-    <comment>Pedals</comment>
+    <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
     <value> Hz</value>
@@ -455,15 +455,15 @@
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
-    <comment>Pedals</comment>
+    <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
     <value>Maximum</value>
-    <comment>Pedals</comment>
+    <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="Curve" xml:space="preserve">
     <value>Curve</value>
-    <comment>Pedals</comment>
+    <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="GearChange" xml:space="preserve">
     <value>Gear Change</value>
@@ -600,5 +600,29 @@
   <data name="BlackFlagB" xml:space="preserve">
     <value>Black Flag B</value>
     <comment>AdminBoxx</comment>
+  </data>
+  <data name="DeltaLimiterBias" xml:space="preserve">
+    <value>Delta Limiter Bias</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Output</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="WheelLFE" xml:space="preserve">
+    <value>Wheel LFE</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="LFERecordingDevice" xml:space="preserve">
+    <value>LFE Recording Device</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="LowFrequencyEffects" xml:space="preserve">
+    <value>Low Frequency Effects</value>
+    <comment>Graphs</comment>
+  </data>
+  <data name="NoLFEDevicesFound" xml:space="preserve">
+    <value>[No Audio Recording Devices Found]</value>
+    <comment>LFE device list</comment>
   </data>
 </root>

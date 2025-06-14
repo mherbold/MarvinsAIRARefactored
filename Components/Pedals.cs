@@ -163,7 +163,7 @@ public class Pedals
 			effectEngaged[ 2 ] = true;
 
 			effectFrequency[ 2 ] = MathF.Min( DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Max( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, _absEngagedFrequency ) );
-			effectAmplitude[ 2 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( app.Simulator.Brake, 1f + DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve ) );
+			effectAmplitude[ 2 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( app.Simulator.Brake, Misc.CurveToPower( DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve ) ) );
 		}
 
 		#endregion
@@ -181,8 +181,8 @@ public class Pedals
 
 			effectEngaged[ 3 ] = true;
 
-			effectFrequency[ 3 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, 1f + DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve ) );
-			effectAmplitude[ 3 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( rpm * app.Simulator.Throttle, 1f + DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve ) );
+			effectFrequency[ 3 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, Misc.CurveToPower( DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve ) ) );
+			effectAmplitude[ 3 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( rpm * app.Simulator.Throttle, Misc.CurveToPower( DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve ) ) );
 		}
 
 		#endregion
@@ -202,8 +202,8 @@ public class Pedals
 
 				effectEngaged[ 4 ] = true;
 
-				effectFrequency[ 4 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, 1f + DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve ) );
-				effectAmplitude[ 4 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( rpm * app.Simulator.Throttle, 1f + DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve ) );
+				effectFrequency[ 4 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, Misc.CurveToPower( DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve ) ) );
+				effectAmplitude[ 4 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Pow( rpm * app.Simulator.Throttle, Misc.CurveToPower( DataContext.DataContext.Instance.Settings.PedalsAmplitudeCurve ) ) );
 			}
 		}
 
@@ -318,7 +318,7 @@ public class Pedals
 
 				effectEngaged[ 8 ] = true;
 
-				effectFrequency[ 8 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, 1f + DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve ) );
+				effectFrequency[ 8 ] = Misc.Lerp( DataContext.DataContext.Instance.Settings.PedalsMinimumFrequency, DataContext.DataContext.Instance.Settings.PedalsMaximumFrequency, MathF.Pow( rpm, Misc.CurveToPower( DataContext.DataContext.Instance.Settings.PedalsFrequencyCurve ) ) );
 				effectAmplitude[ 8 ] = MathF.Min( DataContext.DataContext.Instance.Settings.PedalsMaximumAmplitude, MathF.Max( DataContext.DataContext.Instance.Settings.PedalsMinimumAmplitude, _clutchSlipAmplitude ) );
 			}
 		}

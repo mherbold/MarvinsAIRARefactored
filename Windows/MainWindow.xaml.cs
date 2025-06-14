@@ -80,7 +80,9 @@ public partial class MainWindow : Window
 			{
 				Title = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "AppTitle" ] + " " + Misc.GetVersion();
 
-				app.DirectInput.SetMairaComboBoxItemsSource( RacingWheel_Device_ComboBox );
+				app.DirectInput.SetMairaComboBoxItemsSource( RacingWheel_SteeringDevice_ComboBox );
+
+				app.LFE.SetMairaComboBoxItemsSource( RacingWheel_LFERecordingDevice_ComboBox );
 
 				RacingWheel.SetMairaComboBoxItemsSource( RacingWheel_Algorithm_ComboBox );
 
@@ -162,7 +164,8 @@ public partial class MainWindow : Window
 			var racingWheelAlgorithmRowTwoGridVisibility = Visibility.Collapsed;
 			var racingWheelDetailBoostKnobControlVisibility = Visibility.Hidden;
 			var racingWheelDeltaLimitKnobControlVisibility = Visibility.Hidden;
-			var racingWheelBiasKnobControlVisibility = Visibility.Hidden;
+			var racingWheelDetailBoostBiasKnobControlVisibility = Visibility.Hidden;
+			var racingWheelDeltaLimiterBiasKnobControlVisibility = Visibility.Hidden;
 			var racingWheelCurbProtectionGroupBoxVisibility = Visibility.Collapsed;
 
 			switch ( MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelAlgorithm )
@@ -170,21 +173,21 @@ public partial class MainWindow : Window
 				case RacingWheelAlgorithmEnum.DetailBooster:
 				case RacingWheelAlgorithmEnum.DetailBoosterOn60Hz:
 					racingWheelDetailBoostKnobControlVisibility = Visibility.Visible;
-					racingWheelBiasKnobControlVisibility = Visibility.Visible;
+					racingWheelDetailBoostBiasKnobControlVisibility = Visibility.Visible;
 					racingWheelCurbProtectionGroupBoxVisibility = Visibility.Visible;
 					break;
 
 				case RacingWheelAlgorithmEnum.DeltaLimiter:
 				case RacingWheelAlgorithmEnum.DeltaLimiterOn60Hz:
 					racingWheelDeltaLimitKnobControlVisibility = Visibility.Visible;
-					racingWheelBiasKnobControlVisibility = Visibility.Visible;
+					racingWheelDeltaLimiterBiasKnobControlVisibility = Visibility.Visible;
 					racingWheelCurbProtectionGroupBoxVisibility = Visibility.Visible;
 					break;
 
 				case RacingWheelAlgorithmEnum.ZeAlanLeTwist:
 					racingWheelAlgorithmRowTwoGridVisibility = Visibility.Visible;
 					racingWheelDeltaLimitKnobControlVisibility = Visibility.Visible;
-					racingWheelBiasKnobControlVisibility = Visibility.Visible;
+					racingWheelDeltaLimiterBiasKnobControlVisibility = Visibility.Visible;
 					racingWheelCurbProtectionGroupBoxVisibility = Visibility.Visible;
 					break;
 			}
@@ -192,7 +195,8 @@ public partial class MainWindow : Window
 			RacingWheel_AlgorithmRowTwo_Grid.Visibility = racingWheelAlgorithmRowTwoGridVisibility;
 			RacingWheel_DetailBoost_KnobControl.Visibility = racingWheelDetailBoostKnobControlVisibility;
 			RacingWheel_DeltaLimit_KnobControl.Visibility = racingWheelDeltaLimitKnobControlVisibility;
-			RacingWheel_Bias_KnobControl.Visibility = racingWheelBiasKnobControlVisibility;
+			RacingWheel_DetailBoostBias_KnobControl.Visibility = racingWheelDetailBoostBiasKnobControlVisibility;
+			RacingWheel_DeltaLimiterBias_KnobControl.Visibility = racingWheelDeltaLimiterBiasKnobControlVisibility;
 			RacingWheel_CurbProtection_GroupBox.Visibility = racingWheelCurbProtectionGroupBoxVisibility;
 		} );
 	}

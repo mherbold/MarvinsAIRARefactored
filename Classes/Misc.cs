@@ -61,6 +61,19 @@ public class Misc
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
+	public static float CurveToPower( float curve )
+	{
+		if ( curve >= 0f )
+		{
+			return 1f + curve * 4f;
+		}
+		else
+		{
+			return 1f - curve * 0.75f;
+		}
+	}
+
+	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	public static float InterpolateHermite( float v0, float v1, float v2, float v3, float t )
 	{
 		var a = 2.0f * v1;

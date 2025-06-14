@@ -26,7 +26,7 @@ public class Context : IComparable<Context?>
 		{
 			if ( contextSwitches.PerWheelbase )
 			{
-				WheelbaseGuid = DataContext.Instance.Settings.RacingWheelDeviceGuid;
+				WheelbaseGuid = DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid;
 			}
 
 			if ( contextSwitches.PerCar )

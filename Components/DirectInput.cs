@@ -1,6 +1,7 @@
 ﻿
-using SharpDX.DirectInput;
 using System.Runtime.CompilerServices;
+
+using SharpDX.DirectInput;
 
 using Image = System.Windows.Controls.Image;
 
@@ -32,11 +33,10 @@ public class DirectInput
 
 	public event Action<string, Guid, int, bool>? OnInput = null;
 
-	private readonly Dictionary<Guid, string> _forceFeedbackDeviceInstanceList = [];
+	private readonly Dictionary<Guid, string> _forceFeedbackDeviceList = [];
 
 	private readonly SharpDX.DirectInput.DirectInput _directInput = new();
 
-	private bool _directInputInitialized = false;
 	private Keyboard? _keyboard = null;
 	private KeyboardState _keyboardState = new();
 	private KeyboardUpdate[]? _keyboardUpdates = null;
@@ -70,7 +70,7 @@ public class DirectInput
 		{
 			app.Logger.WriteLine( "[DirectInput] Initialize >>>" );
 
-			EnumerateAttachedDevices();
+			EnumerateDevices();
 
 			app.Logger.WriteLine( "[DirectInput] <<< Initialize" );
 		}
@@ -82,7 +82,7 @@ public class DirectInput
 
 		var app = App.Instance;
 
-		if ( ( app != null ) && _directInputInitialized )
+		if ( app != null )
 		{
 			app.Logger.WriteLine( "[DirectInput] Shutdown >>>" );
 
@@ -93,14 +93,10 @@ public class DirectInput
 				joystickInfo.Joystick.Dispose();
 			}
 
-			_joystickInfoList.Clear();
-
 			_keyboard?.Dispose();
 
 			_keyboard = null;
 			_keyboardUpdates = null;
-
-			_directInputInitialized = false;
 
 			app.Logger.WriteLine( "[DirectInput] <<< Shutdown" );
 		}
@@ -251,15 +247,15 @@ public class DirectInput
 
 			var dictionary = new Dictionary<Guid, string>();
 
-			if ( _forceFeedbackDeviceInstanceList.Count == 0 )
+			if ( _forceFeedbackDeviceList.Count == 0 )
 			{
-				dictionary.Add( Guid.Empty, DataContext.DataContext.Instance.Localization[ "NoAttachedFFBDevicesFound" ] );
+				dictionary.Add( Guid.Empty, DataContext.DataContext.Instance.Localization[ "NoFFBDevicesFound" ] );
 			}
 
-			_forceFeedbackDeviceInstanceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
+			_forceFeedbackDeviceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
 
 			mairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
-			mairaComboBox.SelectedValue = DataContext.DataContext.Instance.Settings.RacingWheelDeviceGuid;
+			mairaComboBox.SelectedValue = DataContext.DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid;
 
 			app.Logger.WriteLine( "[DirectInput] <<< SetMairaComboBoxItemsSource" );
 		}
@@ -384,15 +380,13 @@ public class DirectInput
 		}
 	}
 
-	private void EnumerateAttachedDevices()
+	private void EnumerateDevices()
 	{
 		var app = App.Instance;
 
 		if ( app != null )
 		{
-			app.Logger.WriteLine( "[DirectInput] EnumerateAttachedDevices >>>" );
-
-			Shutdown();
+			app.Logger.WriteLine( "[DirectInput] EnumerateDevices >>>" );
 
 			var deviceInstanceList = _directInput.GetDevices( DeviceClass.All, DeviceEnumerationFlags.AttachedOnly );
 
@@ -412,7 +406,7 @@ public class DirectInput
 
 					if ( deviceInstance.ForceFeedbackDriverGuid != Guid.Empty )
 					{
-						_forceFeedbackDeviceInstanceList.Add( deviceInstance.InstanceGuid, description );
+						_forceFeedbackDeviceList.Add( deviceInstance.InstanceGuid, description );
 					}
 
 					if ( deviceInstance.Type == DeviceType.Keyboard )
@@ -478,14 +472,12 @@ public class DirectInput
 				}
 			}
 
-			if ( DataContext.DataContext.Instance.Settings.RacingWheelDeviceGuid == Guid.Empty )
+			if ( DataContext.DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid == Guid.Empty )
 			{
-				DataContext.DataContext.Instance.Settings.RacingWheelDeviceGuid = _forceFeedbackDeviceInstanceList.FirstOrDefault().Key;
+				DataContext.DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid = _forceFeedbackDeviceList.FirstOrDefault().Key;
 			}
 
-			_directInputInitialized = true;
-
-			app.Logger.WriteLine( "[DirectInput] <<< EnumerateAttachedDevices" );
+			app.Logger.WriteLine( "[DirectInput] <<< EnumerateDevices" );
 		}
 	}
 
