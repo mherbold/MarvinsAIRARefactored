@@ -29,20 +29,41 @@ def set_all_leds(color):
         for x in range(num_columns):
             trellis.color(x, y, color)
 
+
 # Indicate startup
 set_all_leds(white)
 print("Starting up.")
 
+# Buffer for storing incoming data
+buffer = bytearray()
+usb_was_connected = True
+app_was_connected = True
+turn_off_screen = False
+force_update_leds = True
+last_command_time = time.monotonic()
+
 # Send a message to the PC app
 def send_to_pc(message):
-    print(f"Sending to PC: {message}")
     usb_cdc.data.write((message + "\n").encode())
 
 
 # Callback function for button presses
 def on_press(x, y, edge):
+    global app_was_connected, turn_off_screen, force_update_leds
+
     if edge:
-        send_to_pc(f":{y},{x}")
+
+        if app_was_connected:
+            send_to_pc(f":{y},{x}")
+
+        else:
+            turn_off_screen = not turn_off_screen
+
+            if turn_off_screen:
+                set_all_leds(black)
+
+            else:
+                force_update_leds = True
 
 
 # Set callback on all buttons
@@ -50,12 +71,6 @@ for y in range(num_rows):
     for x in range(num_columns):
         trellis.activate_key(x, y, NeoTrellis.EDGE_RISING)
         trellis.set_callback(x, y, on_press)
-
-# Buffer for storing incoming data
-buffer = bytearray()
-usb_was_connected = True
-app_was_connected = True
-last_command_time = time.monotonic()
 
 # Successful startup
 print("Started up OK.")
@@ -69,9 +84,12 @@ while True:
     while usb_cdc.data.in_waiting:
         current_time = time.monotonic()
         byte = usb_cdc.data.read(1)
+
         if byte:
             buffer.append(byte[0])
+
             if byte[0] == 255:  # End of message
+
                 # ping command
                 if len(buffer) == 2 and buffer[0] == 128:
                     last_command_time = current_time
@@ -88,6 +106,7 @@ while True:
                         y = led // num_columns
                         trellis.color(x, y, (r, g, b))
                         last_command_time = current_time
+
                     else:
                         print("Invalid values for LED color command.")
 
@@ -98,17 +117,22 @@ while True:
                 buffer = bytearray()
 
     usb_connected = supervisor.runtime.usb_connected
-    if usb_connected != usb_was_connected:
+    app_connected = current_time - last_command_time < heartbeat_timeout
+
+    usb_changed = usb_connected != usb_was_connected
+    app_changed = app_connected != app_was_connected
+
+    if usb_changed or app_changed or force_update_leds:
+        force_update_leds = False
+        turn_off_screen = False
+
         if not usb_connected:
             set_all_leds(red)
-    usb_was_connected = usb_connected
 
-    app_connected = (current_time - last_command_time < heartbeat_timeout)
-    if usb_connected:
-        if app_connected != app_was_connected:
-            print(app_connected)
-            if not app_connected:
-                set_all_leds(yellow)
+        elif not app_connected:
+            set_all_leds(yellow)
+
+    usb_was_connected = usb_connected
     app_was_connected = app_connected
 
     time.sleep(0.01)
