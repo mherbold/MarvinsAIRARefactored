@@ -247,7 +247,7 @@ public class DirectInput
 
 		if ( app != null )
 		{
-			app.Logger.WriteLine( "[DirectInput] SetComboBoxItemsSource >>>" );
+			app.Logger.WriteLine( "[DirectInput] SetMairaComboBoxItemsSource >>>" );
 
 			var dictionary = new Dictionary<Guid, string>();
 
@@ -261,7 +261,7 @@ public class DirectInput
 			mairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
 			mairaComboBox.SelectedValue = DataContext.DataContext.Instance.Settings.RacingWheelDeviceGuid;
 
-			app.Logger.WriteLine( "[DirectInput] <<< SetComboBoxItemsSource" );
+			app.Logger.WriteLine( "[DirectInput] <<< SetMairaComboBoxItemsSource" );
 		}
 	}
 

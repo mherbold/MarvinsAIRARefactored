@@ -56,7 +56,7 @@ public class RacingWheel
 
 		if ( app != null )
 		{
-			app.Logger.WriteLine( "[RacingWheel] SetComboBoxItemsSource >>>" );
+			app.Logger.WriteLine( "[RacingWheel] SetMairaComboBoxItemsSource >>>" );
 
 			var selectedItem = mairaComboBox.SelectedValue as KeyValuePair<RacingWheelAlgorithmEnum, string>?;
 
@@ -78,7 +78,7 @@ public class RacingWheel
 				mairaComboBox.SelectedValue = dictionary.FirstOrDefault( keyValuePair => keyValuePair.Key.Equals( selectedItem.Value.Key ) ); ;
 			}
 
-			app.Logger.WriteLine( "[RacingWheel] <<< SetComboBoxItemsSource" );
+			app.Logger.WriteLine( "[RacingWheel] <<< SetMairaComboBoxItemsSource" );
 		}
 	}
 

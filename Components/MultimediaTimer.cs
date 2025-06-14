@@ -3,8 +3,8 @@ using System.Diagnostics;
 
 using Image = System.Windows.Controls.Image;
 
-using MarvinsAIRARefactored.WinApi;
 using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.PInvoke;
 
 namespace MarvinsAIRARefactored.Components;
 

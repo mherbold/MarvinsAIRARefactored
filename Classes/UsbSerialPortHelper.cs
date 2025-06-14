@@ -7,14 +7,18 @@ namespace MarvinsAIRARefactored.Classes;
 
 public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 {
+	public event EventHandler<string>? DataReceived = null;
+	public event EventHandler? PortClosed = null;
+
 	private readonly string _vid = vid.ToUpper();
 	private readonly string _pid = pid.ToUpper();
 
 	private SerialPort? _serialPort = null;
+	private CancellationTokenSource? _cancellationTokenSource = null;
 
-	public event EventHandler<string>? DataReceived = null;
-	
 	private StringBuilder _dataBuffer = new();
+
+	private readonly Lock _lock = new();
 
 	public string? FindPortName()
 	{
@@ -67,24 +71,31 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 		{
 			app.Logger.WriteLine( "[UsbSerialPortHelper] Open >>>" );
 
-			var portName = FindPortName();
-
-			if ( portName != null )
+			using ( _lock.EnterScope() )
 			{
-				_serialPort = new SerialPort( portName, baudRate, parity, dataBits, stopBits )
+				var portName = FindPortName();
+
+				if ( portName != null )
 				{
-					Handshake = Handshake.None,
-					Encoding = Encoding.ASCII,
-					ReadTimeout = 3000,
-					WriteTimeout = 3000
-				};
+					_serialPort = new SerialPort( portName, baudRate, parity, dataBits, stopBits )
+					{
+						Handshake = Handshake.None,
+						Encoding = Encoding.ASCII,
+						ReadTimeout = 3000,
+						WriteTimeout = 3000
+					};
 
-				_serialPort.DataReceived += OnDataReceived;
+					_serialPort.DataReceived += OnDataReceived;
 
-				_serialPort.Open();
-				_serialPort.DiscardInBuffer();
+					_serialPort.Open();
+					_serialPort.DiscardInBuffer();
 
-				serialPortOpened = true;
+					_cancellationTokenSource = new();
+
+					_ = Task.Run( () => MonitorPort( _cancellationTokenSource.Token ) );
+
+					serialPortOpened = true;
+				}
 			}
 
 			app.Logger.WriteLine( "[UsbSerialPortHelper] <<< Open" );
@@ -93,19 +104,56 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 		return serialPortOpened;
 	}
 
+	public void Close()
+	{
+		if ( _serialPort != null )
+		{
+			var app = App.Instance;
+
+			app?.Logger.WriteLine( "[UsbSerialPortHelper] Closing serial port" );
+
+			using ( _lock.EnterScope() )
+			{
+				_serialPort.DataReceived -= OnDataReceived;
+
+				if ( _serialPort.IsOpen )
+				{
+					_serialPort.Close();
+				}
+
+				_serialPort.Dispose();
+
+				_serialPort = null;
+			}
+		}
+	}
+
+	public void Dispose()
+	{
+		GC.SuppressFinalize( this );
+
+		Close();
+	}
+
 	public void Write( byte[] data )
 	{
-		if ( _serialPort != null && _serialPort.IsOpen )
+		using ( _lock.EnterScope() )
 		{
-			_serialPort.Write( data, 0, data.Length );
+			if ( _serialPort != null && _serialPort.IsOpen )
+			{
+				_serialPort.Write( data, 0, data.Length );
+			}
 		}
 	}
 
 	public void WriteLine( string data )
 	{
-		if ( _serialPort != null && _serialPort.IsOpen )
+		using ( _lock.EnterScope() )
 		{
-			_serialPort.WriteLine( data );
+			if ( _serialPort != null && _serialPort.IsOpen )
+			{
+				_serialPort.WriteLine( data );
+			}
 		}
 	}
 
@@ -135,30 +183,21 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 		{
 		}
 	}
-
-	public void Close()
+	private async Task MonitorPort( CancellationToken token )
 	{
-		if ( _serialPort != null )
+		while ( !token.IsCancellationRequested )
 		{
-			var app = App.Instance;
+			await Task.Delay( 1000, token );
 
-			app?.Logger.WriteLine( "[UsbSerialPortHelper] Closing serial port" );
-
-			_serialPort.DataReceived -= OnDataReceived;
-
-			if ( _serialPort.IsOpen )
+			using ( _lock.EnterScope() )
 			{
-				_serialPort.Close();
+				if ( ( _serialPort == null ) || !_serialPort.IsOpen )
+				{
+					Close();
+					PortClosed?.Invoke( this, EventArgs.Empty );
+					break;
+				}
 			}
 		}
-	}
-
-	public void Dispose()
-	{
-		GC.SuppressFinalize( this );
-
-		Close();
-
-		_serialPort?.Dispose();
 	}
 }

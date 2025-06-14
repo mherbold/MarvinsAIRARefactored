@@ -169,6 +169,15 @@ namespace MarvinsAIRARefactored.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Brightness.
+        /// </summary>
+        internal static string Brightness {
+            get {
+                return ResourceManager.GetString("Brightness", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Button.
         /// </summary>
         internal static string Button {
@@ -237,6 +246,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string CompressionRateUnits {
             get {
                 return ResourceManager.GetString("CompressionRateUnits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Connect to AdminBoxx on App Startup.
+        /// </summary>
+        internal static string ConnectOnStartup {
+            get {
+                return ResourceManager.GetString("ConnectOnStartup", resourceCulture);
             }
         }
         
@@ -615,6 +633,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string NoAttachedFFBDevicesFound {
             get {
                 return ResourceManager.GetString("NoAttachedFFBDevicesFound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to [No Audio Devices Found].
+        /// </summary>
+        internal static string NoAudioDevicesFound {
+            get {
+                return ResourceManager.GetString("NoAudioDevicesFound", resourceCulture);
             }
         }
         
@@ -1002,6 +1029,15 @@ namespace MarvinsAIRARefactored.Resources {
         internal static string UpdateButtonMappings {
             get {
                 return ResourceManager.GetString("UpdateButtonMappings", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Volume.
+        /// </summary>
+        internal static string Volume {
+            get {
+                return ResourceManager.GetString("Volume", resourceCulture);
             }
         }
         

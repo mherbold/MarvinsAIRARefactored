@@ -1,4 +1,6 @@
 ﻿
+using PInvoke;
+using System;
 using System.Collections;
 using System.ComponentModel.Design;
 using System.Diagnostics;
@@ -7,8 +9,6 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
-
-using MarvinsAIRARefactored.WinApi;
 
 namespace MarvinsAIRARefactored.Classes;
 
@@ -34,7 +34,7 @@ public class Misc
 			var processInformation = new Kernel32.PROCESS_POWER_THROTTLING_STATE()
 			{
 				Version = 1,
-				ControlMask = (uint) Kernel32.ControlMask.PROCESS_POWER_THROTTLING_IGNORE_TIMER_RESOLUTION,
+				ControlMask = (Kernel32.ProcessorPowerThrottlingFlags) 4, // PROCESS_POWER_THROTTLING_IGNORE_TIMER_RESOLUTION
 				StateMask = 0
 			};
 
@@ -44,7 +44,9 @@ public class Misc
 
 			var processHandle = Process.GetCurrentProcess().Handle;
 
-			_ = Kernel32.SetProcessInformation( processHandle, (uint) Kernel32.ProcessInformationClass.ProcessPowerThrottling, ref processInformationPtr, (uint) processInformationSize );
+			Kernel32.SafeObjectHandle safeHandle = new Kernel32.SafeObjectHandle( processHandle, ownsHandle: false );
+
+			_ = Kernel32.SetProcessInformation( safeHandle, Kernel32.PROCESS_INFORMATION_CLASS.ProcessPowerThrottling, processInformationPtr, (uint) processInformationSize );
 
 			Marshal.FreeHGlobal( processInformationPtr );
 

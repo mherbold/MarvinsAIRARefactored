@@ -3,10 +3,11 @@ using System.Windows;
 
 using Image = System.Windows.Controls.Image;
 
+using PInvoke;
+
 using IRSDKSharper;
 
 using MarvinsAIRARefactored.Classes;
-using MarvinsAIRARefactored.WinApi;
 
 namespace MarvinsAIRARefactored.Components;
 

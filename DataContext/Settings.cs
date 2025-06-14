@@ -1960,6 +1960,27 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region AdminBoxx - Connect on startup
+
+	private bool _adminBoxxConnectOnStartup = false;
+
+	public bool AdminBoxxConnectOnStartup
+	{
+		get => _adminBoxxConnectOnStartup;
+
+		set
+		{
+			if ( value != _adminBoxxConnectOnStartup )
+			{
+				_adminBoxxConnectOnStartup = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region AdminBoxx - Brightness
 
 	private float _adminBoxxBrightness = 0.15f;
@@ -2003,6 +2024,52 @@ public class Settings : INotifyPropertyChanged
 
 	public ButtonMappings AdminBoxxBrightnessPlusButtonMappings { get; set; } = new();
 	public ButtonMappings AdminBoxxBrightnessMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region AdminBoxx - Volume
+
+	private float _adminBoxxVolume = 0.8f;
+
+	public float AdminBoxxVolume
+	{
+		get => _adminBoxxVolume;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _adminBoxxVolume )
+			{
+				_adminBoxxVolume = value;
+
+				OnPropertyChanged();
+			}
+
+			AdminBoxxVolumeString = $"{_adminBoxxVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _adminBoxxVolumeString = string.Empty;
+
+	[XmlIgnore]
+	public string AdminBoxxVolumeString
+	{
+		get => _adminBoxxVolumeString;
+
+		set
+		{
+			if ( value != _adminBoxxBrightnessString )
+			{
+				_adminBoxxVolumeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings AdminBoxxVolumePlusButtonMappings { get; set; } = new();
+	public ButtonMappings AdminBoxxVolumeMinusButtonMappings { get; set; } = new();
 
 	#endregion
 

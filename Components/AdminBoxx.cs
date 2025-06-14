@@ -1,15 +1,12 @@
 ﻿
 using System.Collections.Concurrent;
 using System.Text.RegularExpressions;
-using System.Windows.Controls;
-using System.Windows.Media;
 
-using Brushes = System.Windows.Media.Brushes;
-using Color = MarvinsAIRARefactored.Classes.Color;
-using Label = System.Windows.Controls.Label;
 using Timer = System.Timers.Timer;
 
 using IRSDKSharper;
+
+using Color = MarvinsAIRARefactored.Classes.Color;
 
 using MarvinsAIRARefactored.Classes;
 
@@ -25,7 +22,7 @@ public partial class AdminBoxx
 	public static Color Red { get; } = new( 1f, 0f, 0f );
 	public static Color Cyan { get; } = new( 0f, 1f, 1f );
 	public static Color Magenta { get; } = new( 1f, 0f, 1f );
-	public static Color DarkGray { get; } = new( 0.25f, 0.25f, 0.25f );
+	public static Color DarkGray { get; } = new( 0.2f, 0.2f, 0.2f );
 
 	public bool IsConnected { get; private set; } = false;
 
@@ -34,10 +31,9 @@ public partial class AdminBoxx
 
 	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( "239A", "80F2" );
 
-	private readonly Label[,] _labels = new Label[ _numRows, _numColumns ];
 	private readonly Color[,] _colors = new Color[ _numRows, _numColumns ];
 
-	public static readonly (int x, int y)[] _blueNoiseLedOrder =
+	private static readonly (int x, int y)[] _blueNoiseLedOrder =
 	[
 		(3, 2), (6, 0), (0, 3), (4, 1), (7, 2), (2, 0), (1, 3), (5, 2),
 		(6, 3), (3, 0), (0, 0), (4, 2), (7, 0), (1, 0), (5, 3), (2, 2),
@@ -45,7 +41,7 @@ public partial class AdminBoxx
 		(6, 2), (3, 1), (0, 1), (4, 3), (7, 1), (1, 1), (5, 1), (2, 3)
 	];
 
-	public static readonly (int x, int y)[] _wavingFlagLedOrder =
+	private static readonly (int x, int y)[] _wavingFlagLedOrder =
 	[
 		(0, 0),
 		(0, 1), (1, 0),
@@ -89,9 +85,9 @@ public partial class AdminBoxx
 	private bool _globalChatEnabled = true;
 	private HashSet<string> _driverChatDisabled = [];
 
-	private bool _ledColorsDirty = false;
 	private bool _inNumpadMode = false;
 	private bool _blackFlagDriveThrough = false;
+	private bool _singleFilePaceMode = false;
 	private bool _carNumberIsRequired = false;
 
 	private bool _shownYellowFlag = false;
@@ -117,11 +113,6 @@ public partial class AdminBoxx
 
 	private int _pingCounter = 0;
 
-	private int _clearCounter = 0;
-	private bool _set = false;
-	private int _setY = 0;
-	private int _setX = 0;
-
 	private readonly ConcurrentQueue<(int y, int x)> _ledUpdateConcurrentQueue = new();
 	private readonly HashSet<(int y, int x)> _ledUpdateHashSet = [];
 	private readonly Lock _lock = new();
@@ -134,26 +125,13 @@ public partial class AdminBoxx
 	public AdminBoxx()
 	{
 		_usbSerialPortHelper.DataReceived += OnDataReceived;
+		_usbSerialPortHelper.PortClosed += OnPortClosed;
 
 		_timer.Elapsed += OnTimer;
 	}
 
 	public void Initialize()
 	{
-		var app = App.Instance;
-
-		if ( app != null )
-		{
-			foreach ( Label label in app.MainWindow.AdminBoxx_LED_Grid.Children.OfType<Label>() )
-			{
-				var row = Grid.GetRow( label );
-				var col = Grid.GetColumn( label );
-
-				_labels[ row, col ] = label;
-				_colors[ row, col ] = new( 0, 0, 0 );
-			}
-		}
-
 		_timer.Start();
 	}
 
@@ -178,6 +156,11 @@ public partial class AdminBoxx
 
 				UpdateColors( _blueNoiseLedOrder, true );
 			}
+
+			app.Dispatcher.BeginInvoke( () =>
+			{
+				app.MainWindow.AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn = IsConnected;
+			} );
 		}
 
 		return IsConnected;
@@ -185,9 +168,19 @@ public partial class AdminBoxx
 
 	public void Disconnect()
 	{
-		IsConnected = false;
+		var app = App.Instance;
 
-		_usbSerialPortHelper.Close();
+		if ( app != null )
+		{
+			IsConnected = false;
+
+			_usbSerialPortHelper.Close();
+
+			app.Dispatcher.BeginInvoke( () =>
+			{
+				app.MainWindow.AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn = false;
+			} );
+		}
 	}
 
 	public void ResendAllLEDs( (int x, int y)[]? pattern = null )
@@ -380,8 +373,6 @@ public partial class AdminBoxx
 		{
 			_colors[ y, x ] = color;
 
-			_ledColorsDirty = true;
-
 			using ( _lock.EnterScope() )
 			{
 				var coord = (y, x);
@@ -509,11 +500,6 @@ public partial class AdminBoxx
 
 				app.Logger.WriteLine( $"[AdminBoxx] Button press detected: row={y}, col={x}" );
 
-				_setY = y;
-				_setX = x;
-
-				_set = true;
-
 				switch ( y )
 				{
 					case 0:
@@ -618,7 +604,7 @@ public partial class AdminBoxx
 					case 9: SetLEDToColor( 2, 3, Red, false ); break;
 				}
 
-				app.AudioManager.Play( $"{number}" );
+				app.AudioManager.Play( $"{number}", DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
 			}
 
 			app.Logger.WriteLine( $"[AdminBoxx] <<< DoNumber( {number} )" );
@@ -637,7 +623,7 @@ public partial class AdminBoxx
 			{
 				LeaveNumpadMode( false );
 
-				app.AudioManager.Play( "cancel" );
+				PlayAudio( "cancel" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoEscape" );
@@ -660,7 +646,7 @@ public partial class AdminBoxx
 
 					if ( _carNumberCallback != ChatCallback )
 					{
-						app.AudioManager.Play( "enter" );
+						PlayAudio( "enter" );
 					}
 				}
 			}
@@ -683,7 +669,7 @@ public partial class AdminBoxx
 				{
 					app.ChatQueue.SendMessage( "!yellow" );
 
-					app.AudioManager.Play( "throw_caution_flag" );
+					PlayAudio( "throw_caution_flag" );
 				}
 			}
 
@@ -705,7 +691,7 @@ public partial class AdminBoxx
 
 				SetLEDToColor( 0, 4, Red, false );
 
-				app.AudioManager.Play( "black_flag_stop_and_go" );
+				PlayAudio( "black_flag_stop_and_go" );
 			}
 			else if ( _carNumberCallback == BlackFlagCallback )
 			{
@@ -715,13 +701,13 @@ public partial class AdminBoxx
 				{
 					SetLEDToColor( 0, 4, Yellow, false );
 
-					app.AudioManager.Play( "black_flag_drive_through" );
+					PlayAudio( "black_flag_drive_through" );
 				}
 				else
 				{
 					SetLEDToColor( 0, 4, Red, false );
 
-					app.AudioManager.Play( "black_flag_stop_and_go" );
+					PlayAudio( "black_flag_stop_and_go" );
 				}
 			}
 
@@ -764,7 +750,7 @@ public partial class AdminBoxx
 
 				SetLEDToColor( 0, 5, Cyan, false );
 
-				app.AudioManager.Play( "clear_black_flag" );
+				PlayAudio( "clear_black_flag" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoClearFlag" );
@@ -797,7 +783,7 @@ public partial class AdminBoxx
 			{
 				app.ChatQueue.SendMessage( "!clearall" );
 
-				app.AudioManager.Play( "clear_all_black_flags" );
+				PlayAudio( "clear_all_black_flags" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoClearAllFlags" );
@@ -816,7 +802,7 @@ public partial class AdminBoxx
 			{
 				EnterNumpadMode( ChatCallback, false );
 
-				app.AudioManager.Play( "chat_toggle" );
+				PlayAudio( "chat_toggle" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoChat" );
@@ -841,13 +827,13 @@ public partial class AdminBoxx
 
 					_globalChatEnabled = false;
 
-					app.AudioManager.Play( "chat_disabled" );
+					PlayAudio( "chat_disabled" );
 				}
 				else
 				{
 					app.ChatQueue.SendMessage( "!chat" );
 
-					app.AudioManager.Play( "chat_enabled" );
+					PlayAudio( "chat_enabled" );
 
 					_globalChatEnabled = true;
 				}
@@ -879,18 +865,19 @@ public partial class AdminBoxx
 
 			if ( !_inNumpadMode )
 			{
-				switch ( app.Simulator.PaceMode )
-				{
-					case IRacingSdkEnum.PaceMode.DoubleFileStart:
-					case IRacingSdkEnum.PaceMode.DoubleFileRestart:
-						app.ChatQueue.SendMessage( "!restart single" );
-						app.AudioManager.Play( "single_file" );
-						break;
+				_singleFilePaceMode = !_singleFilePaceMode;
 
-					default:
-						app.ChatQueue.SendMessage( "!restart double" );
-						app.AudioManager.Play( "double_file" );
-						break;
+				if ( _singleFilePaceMode )
+				{
+					app.ChatQueue.SendMessage( "!restart single" );
+
+					PlayAudio( "single_file" );
+				}
+				else
+				{
+					app.ChatQueue.SendMessage( "!restart double" );
+
+					PlayAudio( "double_file" );
 				}
 			}
 
@@ -912,7 +899,7 @@ public partial class AdminBoxx
 
 				SetLEDToColor( 1, 4, Cyan, false );
 
-				app.AudioManager.Play( "wave_by_driver" );
+				PlayAudio( "wave_by_driver" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoWaveByDriver" );
@@ -947,7 +934,7 @@ public partial class AdminBoxx
 
 				SetLEDToColor( 1, 5, Cyan, false );
 
-				app.AudioManager.Play( "end_of_line_driver" );
+				PlayAudio( "end_of_line_driver" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoEndOfLineDriver" );
@@ -982,7 +969,7 @@ public partial class AdminBoxx
 
 				SetLEDToColor( 1, 6, Cyan, false );
 
-				app.AudioManager.Play( "disqualify_driver" );
+				PlayAudio( "disqualify_driver" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoDisqualifyDriver" );
@@ -1017,7 +1004,7 @@ public partial class AdminBoxx
 
 				SetLEDToColor( 1, 7, Cyan, false );
 
-				app.AudioManager.Play( "remove_driver" );
+				PlayAudio( "remove_driver" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoRemoveDriver" );
@@ -1050,7 +1037,7 @@ public partial class AdminBoxx
 			{
 				app.ChatQueue.SendMessage( "!pacelaps +1" );
 
-				app.AudioManager.Play( "plus_one_lap" );
+				PlayAudio( "plus_one_lap" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoPlusOneLap" );
@@ -1069,7 +1056,7 @@ public partial class AdminBoxx
 			{
 				app.ChatQueue.SendMessage( "!advance" );
 
-				app.AudioManager.Play( "advance_to_next_session" );
+				PlayAudio( "advance_to_next_session" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoAdvanceToNextSession" );
@@ -1089,7 +1076,7 @@ public partial class AdminBoxx
 				app.Simulator.IRSDK.ReplaySetPlayPosition( IRacingSdkEnum.RpyPosMode.End, 0 );
 				app.Simulator.IRSDK.ReplaySetPlaySpeed( 16, false );
 
-				app.AudioManager.Play( "live" );
+				PlayAudio( "live" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoLive" );
@@ -1108,7 +1095,7 @@ public partial class AdminBoxx
 			{
 				app.Simulator.IRSDK.ReplaySearch( IRacingSdkEnum.RpySrchMode.PrevIncident );
 
-				app.AudioManager.Play( "previous_incident" );
+				PlayAudio( "previous_incident" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoGoToPreviousIncident" );
@@ -1127,7 +1114,7 @@ public partial class AdminBoxx
 			{
 				app.Simulator.IRSDK.ReplaySearch( IRacingSdkEnum.RpySrchMode.NextIncident );
 
-				app.AudioManager.Play( "next_incident" );
+				PlayAudio( "next_incident" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoGoToNextIncident" );
@@ -1146,7 +1133,7 @@ public partial class AdminBoxx
 			{
 				app.ChatQueue.SendMessage( "!pacelaps -1" );
 
-				app.AudioManager.Play( "minus_one_lap" );
+				PlayAudio( "minus_one_lap" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoMinusOneLap" );
@@ -1190,7 +1177,7 @@ public partial class AdminBoxx
 
 				app.Simulator.IRSDK.ReplaySetPlaySpeed( replayPlaySpeed, true );
 
-				app.AudioManager.Play( "slow_motion" );
+				PlayAudio( "slow_motion" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoSlowMotion" );
@@ -1220,7 +1207,7 @@ public partial class AdminBoxx
 
 				app.Simulator.IRSDK.ReplaySetPlaySpeed( replayPlaySpeed, false );
 
-				app.AudioManager.Play( "rewind" );
+				PlayAudio( "rewind" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoReverse" );
@@ -1243,13 +1230,13 @@ public partial class AdminBoxx
 				{
 					replayPlaySpeed = 1;
 
-					app.AudioManager.Play( "play" );
+					PlayAudio( "play" );
 				}
 				else
 				{
 					replayPlaySpeed = 0;
 
-					app.AudioManager.Play( "pause" );
+					PlayAudio( "pause" );
 				}
 
 				app.Simulator.IRSDK.ReplaySetPlaySpeed( replayPlaySpeed, false );
@@ -1282,7 +1269,7 @@ public partial class AdminBoxx
 
 				app.Simulator.IRSDK.ReplaySetPlaySpeed( replayPlaySpeed, false );
 
-				app.AudioManager.Play( "fast_forward" );
+				PlayAudio( "fast_forward" );
 			}
 
 			app.Logger.WriteLine( "[AdminBoxx] <<< DoFastForward" );
@@ -1291,23 +1278,20 @@ public partial class AdminBoxx
 
 	#endregion
 
+	private static void PlayAudio( string key )
+	{
+		var app = App.Instance;
+
+		app?.AudioManager.Play( key, DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
+	}
+
+	private void OnPortClosed( object? sender, EventArgs e )
+	{
+		Disconnect();
+	}
+
 	private void OnTimer( object? sender, EventArgs e )
 	{
-		if ( IsConnected )
-		{
-			if ( _pingCounter > 0 )
-			{
-				if ( Interlocked.Decrement( ref _pingCounter ) == 0 )
-				{
-					_pingCounter = 100;
-
-					byte[] data = [ 128, 255 ];
-
-					_usbSerialPortHelper.Write( data );
-				}
-			}
-		}
-
 		if ( _ledUpdateConcurrentQueue.TryDequeue( out var coord ) )
 		{
 			using ( _lock.EnterScope() )
@@ -1316,6 +1300,23 @@ public partial class AdminBoxx
 			}
 
 			SendLED( coord.y, coord.x );
+
+			_pingCounter = 100;
+		}
+
+		if ( IsConnected )
+		{
+			if ( _pingCounter > 0 )
+			{
+				if ( Interlocked.Decrement( ref _pingCounter ) == 0 )
+				{
+					byte[] data = [ 128, 255 ];
+
+					_usbSerialPortHelper.Write( data );
+
+					_pingCounter = 100;
+				}
+			}
 		}
 	}
 
@@ -1347,53 +1348,6 @@ public partial class AdminBoxx
 						break;
 				}
 			}
-		}
-
-		if ( _clearCounter > 0 )
-		{
-			Interlocked.Decrement( ref _clearCounter );
-
-			if ( _clearCounter == 0 )
-			{
-				app.Dispatcher.BeginInvoke( () =>
-				{
-					for ( var y = 0; y < _numRows; y++ )
-					{
-						for ( var x = 0; x < _numColumns; x++ )
-						{
-							_labels[ y, x ].BorderBrush = Brushes.White;
-						}
-					}
-				} );
-			}
-		}
-
-		if ( _set )
-		{
-			_set = false;
-
-			app.Dispatcher.BeginInvoke( () =>
-			{
-				_labels[ _setY, _setX ].BorderBrush = Brushes.Red;
-			} );
-
-			_clearCounter = 20;
-		}
-
-		if ( _ledColorsDirty )
-		{
-			_ledColorsDirty = false;
-
-			app.Dispatcher.BeginInvoke( () =>
-			{
-				for ( var y = 0; y < _numRows; y++ )
-				{
-					for ( var x = 0; x < _numColumns; x++ )
-					{
-						_labels[ y, x ].Background = new SolidColorBrush( System.Windows.Media.Color.FromScRgb( 1f, _colors[ y, x ].R * 0.75f, _colors[ y, x ].G * 0.75f, _colors[ y, x ].B * 0.75f ) );
-					}
-				}
-			} );
 		}
 	}
 }

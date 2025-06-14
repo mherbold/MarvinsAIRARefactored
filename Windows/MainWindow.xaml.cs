@@ -12,7 +12,7 @@ using TabControl = System.Windows.Controls.TabControl;
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
 using MarvinsAIRARefactored.Enums;
-using MarvinsAIRARefactored.WinApi;
+using MarvinsAIRARefactored.PInvoke;
 
 namespace MarvinsAIRARefactored.Windows;
 
@@ -395,10 +395,7 @@ public partial class MainWindow : Window
 			{
 				if ( !app.AdminBoxx.IsConnected )
 				{
-					if ( !app.AdminBoxx.Connect() )
-					{
-						AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn = false;
-					}
+					app.AdminBoxx.Connect();
 				}
 			}
 			else
@@ -406,6 +403,27 @@ public partial class MainWindow : Window
 				app.AdminBoxx.Disconnect();
 			}
 		}
+	}
+
+	private void AdminBoxx_Brightness_ValueChanged( float newValue )
+	{
+		var app = App.Instance;
+
+		app?.AdminBoxx.ResendAllLEDs();
+	}
+
+	private void AdminBoxx_Volume_ValueChanged( float newValue )
+	{
+		var app = App.Instance;
+
+		app?.AudioManager.Play( "volume", newValue );
+	}
+
+	private void AdminBoxx_Test_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance;
+
+		app?.AdminBoxx.WaveFlag( AdminBoxx.Red );
 	}
 
 	private void Debug_AlanLeReset_Click( object sender, RoutedEventArgs e )
@@ -474,61 +492,5 @@ public partial class MainWindow : Window
 		{
 			Simulator_TelemetryData_ScrollBar.Visibility = Visibility.Visible;
 		}
-	}
-
-	private void AdminBoxx_Brightness_ValueChanged( float newValue )
-	{
-		var app = App.Instance;
-
-		app?.AdminBoxx.ResendAllLEDs();
-	}
-
-	private void AdminBoxx_Yellow_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		app?.AdminBoxx.WaveFlag( AdminBoxx.Yellow );
-	}
-
-	private void AdminBoxx_Green_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		app?.AdminBoxx.WaveFlag( AdminBoxx.Green );
-	}
-
-	private void AdminBoxx_White_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		app?.AdminBoxx.WaveFlag( AdminBoxx.White );
-	}
-
-	private void AdminBoxx_Checkered_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		app?.AdminBoxx.WaveFlag( AdminBoxx.White, true );
-	}
-
-	private void AdminBoxx_Black_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		app?.AdminBoxx.WaveFlag( AdminBoxx.DarkGray );
-	}
-
-	private void AdminBoxx_Blue_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		app?.AdminBoxx.WaveFlag( AdminBoxx.Blue );
-	}
-
-	private void AdminBoxx_Red_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance;
-
-		app?.AdminBoxx.WaveFlag( AdminBoxx.Red );
 	}
 }

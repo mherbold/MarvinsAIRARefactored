@@ -102,6 +102,11 @@ public partial class App : Application
 		MainWindow.Show();
 		MainWindow.Initialize();
 
+		if ( DataContext.DataContext.Instance.Settings.AdminBoxxConnectOnStartup )
+		{
+			AdminBoxx.Connect();
+		}
+
 		if ( DataContext.DataContext.Instance.Settings.AppCheckForUpdates )
 		{
 			await CloudService.CheckForUpdates( false );
@@ -534,6 +539,30 @@ public partial class App : Application
 			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.PedalsThrottleEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				DataContext.DataContext.Instance.Settings.PedalsThrottleEffect3Strength -= 0.05f;
+			}
+
+			// adminboxx brightness knob
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxBrightnessPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.AdminBoxxBrightness += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxBrightnessMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.AdminBoxxBrightness -= 0.01f;
+			}
+
+			// adminboxx volume knob
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxVolumePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.AdminBoxxVolume += 0.01f;
+			}
+
+			if ( CheckMappedButtons( DataContext.DataContext.Instance.Settings.AdminBoxxVolumeMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				DataContext.DataContext.Instance.Settings.AdminBoxxVolume -= 0.01f;
 			}
 
 			// debug alan le reset

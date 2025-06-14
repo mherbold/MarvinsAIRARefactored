@@ -561,4 +561,20 @@
     <value>Automatically Download Updates</value>
     <comment>App</comment>
   </data>
+  <data name="ConnectOnStartup" xml:space="preserve">
+    <value>Connect to AdminBoxx on App Startup</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>Brightness</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Volume</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="NoAudioDevicesFound" xml:space="preserve">
+    <value>[No Audio Devices Found]</value>
+    <comment>Audio device list</comment>
+  </data>
 </root>

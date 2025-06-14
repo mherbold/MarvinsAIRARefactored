@@ -1,9 +1,9 @@
 ﻿
-using MarvinsAIRARefactored.WinApi;
+using PInvoke;
 
 using IRSDKSharper;
 
-namespace MarvinsAIRARefactored.Classes;
+namespace MarvinsAIRARefactored.Components;
 
 public partial class ChatQueue
 {
@@ -38,7 +38,7 @@ public partial class ChatQueue
 
 					foreach ( var ch in chatMessage )
 					{
-						User32.PostMessage( (IntPtr) app.Simulator.WindowHandle, 0x0102, ch, 0 );
+						User32.PostMessage( (IntPtr) app.Simulator.WindowHandle, User32.WindowMessage.WM_CHAR, ch, 0 );
 					}
 				}
 

@@ -1,8 +1,8 @@
-﻿
-using System.IO;
+﻿using System.IO;
 
-using SharpDX.Multimedia;
 using SharpDX.XAudio2;
+
+using MarvinsAIRARefactored.Classes;
 
 namespace MarvinsAIRARefactored.Components
 {
@@ -16,6 +16,15 @@ namespace MarvinsAIRARefactored.Components
 		private readonly Dictionary<string, CachedSoundPlayer> _soundPlayerCache = [];
 
 		private FileSystemWatcher? _fileSystemWatcher = null;
+
+		private readonly XAudio2 _xaudio2;
+		private readonly MasteringVoice _masteringVoice;
+
+		public AudioManager()
+		{
+			_xaudio2 = new XAudio2();
+			_masteringVoice = new MasteringVoice( _xaudio2 );
+		}
 
 		public void Initialize()
 		{
@@ -49,7 +58,8 @@ namespace MarvinsAIRARefactored.Components
 					"chat_toggle", "chat_enabled", "chat_disabled",
 					"black_flag_drive_through", "black_flag_stop_and_go", "clear_black_flag", "clear_all_black_flags",
 					"wave_by_driver", "end_of_line_driver", "remove_driver", "disqualify_driver",
-					"live", "pause", "play", "slow_motion", "fast_forward", "rewind", "next_incident", "previous_incident"
+					"live", "pause", "play", "slow_motion", "fast_forward", "rewind", "next_incident", "previous_incident",
+					"volume"
 				];
 
 				foreach ( var soundKey in soundKeys )
@@ -65,7 +75,7 @@ namespace MarvinsAIRARefactored.Components
 
 		private void OnSoundFileChanged( object sender, FileSystemEventArgs e )
 		{
-			Task.Delay( 200 ).ContinueWith( _ =>
+			Task.Delay( 1000 ).ContinueWith( _ =>
 			{
 				var app = App.Instance;
 
@@ -98,15 +108,16 @@ namespace MarvinsAIRARefactored.Components
 				if ( key != null )
 				{
 					var sound = new CachedSound( path );
-					var player = new CachedSoundPlayer( sound );
+					var player = new CachedSoundPlayer( sound, _xaudio2 );
 
 					using ( _lock.EnterScope() )
 					{
 						_soundCache[ key ] = sound;
 
-						if ( _soundPlayerCache.TryGetValue( key, out var value ) )
+						if ( _soundPlayerCache.TryGetValue( key, out var existing ) )
 						{
-							value.Dispose();
+							existing.Stop();
+							existing.Dispose();
 						}
 
 						_soundPlayerCache[ key ] = player;
@@ -115,13 +126,13 @@ namespace MarvinsAIRARefactored.Components
 			}
 		}
 
-		public void Play( string key )
+		public void Play( string key, float volume, bool loop = false )
 		{
 			using ( _lock.EnterScope() )
 			{
 				if ( _soundPlayerCache.TryGetValue( key, out var player ) )
 				{
-					player.Play();
+					player.Play( volume, loop );
 				}
 			}
 		}
@@ -151,64 +162,9 @@ namespace MarvinsAIRARefactored.Components
 				_soundPlayerCache.Clear();
 				_soundCache.Clear();
 			}
-		}
-	}
 
-	public class CachedSound
-	{
-		public SoundStream SoundStream { get; }
-		public WaveFormat WaveFormat => SoundStream.Format;
-		public AudioBuffer AudioBuffer { get; }
-		public uint[]? DecodedPacketsInfo { get; }
-
-		public CachedSound( string path )
-		{
-			SoundStream = new SoundStream( File.OpenRead( path ) );
-
-			AudioBuffer = new AudioBuffer
-			{
-				Stream = SoundStream.ToDataStream(),
-				AudioBytes = (int) SoundStream.Length,
-				Flags = BufferFlags.EndOfStream
-			};
-
-			DecodedPacketsInfo = SoundStream.DecodedPacketsInfo != null ? Array.ConvertAll( SoundStream.DecodedPacketsInfo, x => (uint) x ) : null;
-		}
-	}
-
-	public class CachedSoundPlayer : IDisposable
-	{
-		private readonly CachedSound _sound;
-		private readonly XAudio2 _xaudio;
-		private readonly MasteringVoice _masteringVoice;
-		private SourceVoice? _sourceVoice;
-
-		public CachedSoundPlayer( CachedSound sound )
-		{
-			_sound = sound;
-			_xaudio = new XAudio2();
-			_masteringVoice = new MasteringVoice( _xaudio );
-		}
-
-		public void Play()
-		{
-			_sourceVoice?.DestroyVoice();
-			_sourceVoice = new SourceVoice( _xaudio, _sound.WaveFormat );
-			_sourceVoice.SubmitSourceBuffer( _sound.AudioBuffer, _sound.DecodedPacketsInfo );
-			_sourceVoice.Start();
-		}
-
-		public void Stop()
-		{
-			_sourceVoice?.Stop();
-		}
-
-		public void Dispose()
-		{
-			_sourceVoice?.Dispose();
 			_masteringVoice.Dispose();
-			_xaudio.Dispose();
-			_sound.SoundStream.Dispose();
+			_xaudio2.Dispose();
 		}
 	}
 }

@@ -70,7 +70,7 @@ public class Pedals
 
 		if ( app != null )
 		{
-			app.Logger.WriteLine( "[Pedals] SetComboBoxItemsSource >>>" );
+			app.Logger.WriteLine( "[Pedals] SetMairaComboBoxItemsSource >>>" );
 
 			var selectedItem = mairaComboBox.SelectedItem as KeyValuePair<PedalEffectEnum, string>?;
 
@@ -94,7 +94,7 @@ public class Pedals
 				mairaComboBox.SelectedItem = dictionary.FirstOrDefault( keyValuePair => keyValuePair.Key.Equals( selectedItem.Value.Key ) ); ;
 			}
 
-			app.Logger.WriteLine( "[Pedals] <<< SetComboBoxItemsSource" );
+			app.Logger.WriteLine( "[Pedals] <<< SetMairaComboBoxItemsSource" );
 		}
 	}
 
