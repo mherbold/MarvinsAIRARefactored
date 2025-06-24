@@ -225,7 +225,7 @@ public class RacingWheel
 
             case Algorithm.TimeBias360hz:
 				{
-					outputTorque = steeringWheelTorque60Hz / settings.RacingWheelMaxForce;
+					outputTorque = lastSteeringWheelTorque500Hz / settings.RacingWheelMaxForce;
 
 					if (_lastTorque == -1)//if flag
 					{
