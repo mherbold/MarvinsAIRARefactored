@@ -47,9 +47,9 @@ public partial class MairaButtonMapping : UserControl
 
 	private void StartRecording()
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( ( app != null ) && !_isRecording )
+		if ( !_isRecording )
 		{
 			_isRecording = true;
 
@@ -63,16 +63,16 @@ public partial class MairaButtonMapping : UserControl
 				Record_MairaButton.Blink = true;
 				Record_MairaButton.ButtonIcon_Image.Visibility = Visibility.Visible;
 			} );
-			
+
 			UpdateLabels();
 		}
 	}
 
 	public void StopRecording()
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( ( app != null ) && _isRecording )
+		if ( _isRecording )
 		{
 			_isRecording = false;
 
@@ -126,38 +126,35 @@ public partial class MairaButtonMapping : UserControl
 
 	private void OnInput( string deviceProductName, Guid deviceInstanceGuid, int buttonNumber, bool isPressed )
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		app.Logger.WriteLine( $"[ButtonMapping] OnInput: {deviceProductName}, {deviceInstanceGuid}, {buttonNumber}, {isPressed}" );
+
+		if ( _isRecording )
 		{
-			app.Logger.WriteLine( $"[ButtonMapping] OnInput: {deviceProductName}, {deviceInstanceGuid}, {buttonNumber}, {isPressed}" );
-
-			if ( _isRecording )
+			if ( !isPressed )
 			{
-				if ( !isPressed )
+				StopRecording();
+			}
+			else if ( MappedButton.ClickButton.DeviceInstanceGuid == Guid.Empty )
+			{
+				MappedButton.ClickButton = new ButtonMappings.MappedButton.Button()
 				{
-					StopRecording();
-				}
-				else if ( MappedButton.ClickButton.DeviceInstanceGuid == Guid.Empty )
-				{
-					MappedButton.ClickButton = new ButtonMappings.MappedButton.Button()
-					{
-						DeviceProductName = deviceProductName,
-						DeviceInstanceGuid = deviceInstanceGuid,
-						ButtonNumber = buttonNumber
-					};
-				}
-				else if ( MappedButton.HoldButton.DeviceInstanceGuid == Guid.Empty )
-				{
-					MappedButton.HoldButton = MappedButton.ClickButton;
+					DeviceProductName = deviceProductName,
+					DeviceInstanceGuid = deviceInstanceGuid,
+					ButtonNumber = buttonNumber
+				};
+			}
+			else if ( MappedButton.HoldButton.DeviceInstanceGuid == Guid.Empty )
+			{
+				MappedButton.HoldButton = MappedButton.ClickButton;
 
-					MappedButton.ClickButton = new ButtonMappings.MappedButton.Button()
-					{
-						DeviceProductName = deviceProductName,
-						DeviceInstanceGuid = deviceInstanceGuid,
-						ButtonNumber = buttonNumber
-					};
-				}
+				MappedButton.ClickButton = new ButtonMappings.MappedButton.Button()
+				{
+					DeviceProductName = deviceProductName,
+					DeviceInstanceGuid = deviceInstanceGuid,
+					ButtonNumber = buttonNumber
+				};
 			}
 		}
 	}

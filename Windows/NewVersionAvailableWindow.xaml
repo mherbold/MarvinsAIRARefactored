@@ -8,7 +8,7 @@
         xmlns:components="clr-namespace:MarvinsAIRARefactored.Components"
         xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
         mc:Ignorable="d"
-        Title="{Binding DataContext.Instance.Localization[NewVersionAvailable]}"
+        Title="{Binding Localization[NewVersionAvailable]}"
         Icon="/artwork/white_icon.ico"
         Width="800"
         Height="Auto"
@@ -18,7 +18,7 @@
         SizeToContent="Height">
 
     <Window.DataContext>
-        <datacontext:ContextSwitches/>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}"/>
     </Window.DataContext>
 
     <Window.Background>
@@ -27,17 +27,21 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
 
+        <ScrollViewer.LayoutTransform>
+            <ScaleTransform x:Name="RootScaleTransform" ScaleX="{Binding Settings.AppUIScale}" ScaleY="{Binding Settings.AppUIScale}"/>
+        </ScrollViewer.LayoutTransform>
+
         <StackPanel Margin="20">
 
             <Label x:Name="CurrentVersion_Label" Content="Test" HorizontalAlignment="Center"/>
-            
+
             <Border Margin="0,10,0,10" Padding="10,10,10,10" BorderThickness="2" CornerRadius="10" Background="#B0000000" BorderBrush="White">
 
-                <TextBlock x:Name="ChangeLog_TextBlock" Text="This is just a test." Foreground="#FFFFFF" FontSize="20"/>
+                <TextBlock x:Name="ChangeLog_TextBlock" Text="This is just a test." Foreground="#FFFFFF" FontSize="20" TextWrapping="Wrap"/>
 
             </Border>
 
-            <Label Content="{Binding DataContext.Instance.Localization[DownloadQuestion]}" HorizontalAlignment="Center"/>
+            <Label Content="{Binding Localization[DownloadQuestion]}" HorizontalAlignment="Center"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 

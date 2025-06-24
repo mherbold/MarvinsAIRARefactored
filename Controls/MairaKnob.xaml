@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
              mc:Ignorable="d"
-             d:Width="200"
+             d:Width="250"
              d:Height="Auto">
 
     <Grid>
@@ -36,9 +36,19 @@
 
                 <Image Grid.Column="0" Source="/MarvinsAIRARefactored;component/artwork/dial.png"/>
 
-                <Image Grid.Column="0" x:Name="KnobImage" Source="/MarvinsAIRARefactored;component/artwork/dial_marker.png" RenderTransformOrigin="0.5,0.5" MouseDown="KnobImage_Image_MouseDown" MouseUp="KnobImage_Image_MouseUp" MouseMove="KnobImage_Image_MouseMove" Cursor="Hand"/>
+                <Image Grid.Column="0" x:Name="KnobImage" Source="/MarvinsAIRARefactored;component/artwork/dial_marker.png" RenderTransformOrigin="0.5,0.5" MouseDown="KnobImage_Image_MouseDown" MouseMove="KnobImage_Image_MouseMove" MouseUp="KnobImage_Image_MouseUp" LostMouseCapture="KnobImage_Image_LostMouseCapture" Cursor="Hand"/>
 
-                <Label Grid.Column="1" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Margin="10,0,0,0" Content="{Binding ValueString, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalContentAlignment="Center"/>
+                <Grid Grid.Column="1">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0" x:Name="CurveImage" Width="48" Height="48" Margin="10,0,0,0" Visibility="Collapsed"/>
+                    <Label Grid.Column="1" x:Name="Value_Label" FontSize="37" FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Digital-7 Mono" Foreground="PaleGreen" Padding="0" Margin="10,0,0,0" Content="{Binding ValueString, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalContentAlignment="Center" PreviewMouseRightButtonDown="Value_Label_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="Value_Label_PreviewMouseRightButtonUp" MouseLeave="Value_Label_MouseLeave"/>
+
+                </Grid>
 
                 <StackPanel Grid.Column="2" Margin="10,0,0,0">
 

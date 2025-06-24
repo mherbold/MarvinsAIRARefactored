@@ -11,14 +11,20 @@
         mc:Ignorable="d"
         Title="{Binding Localization[AppTitle]}"
         Icon="/artwork/white_icon.ico"
-        MinWidth="1100"
+        MinWidth="550"
         MinHeight="350"
         Width="1100"
         Height="550"
-        d:Height="1500"
+        d:Height="2500"
         ResizeMode="CanResizeWithGrip"
         WindowStyle="SingleBorderWindow"
-        Closed="Window_Closed">
+        Closed="Window_Closed"
+        WindowStartupLocation="CenterScreen"
+        LocationChanged="Window_LocationChanged"
+        SizeChanged="Window_SizeChanged"
+        ContentRendered="Window_ContentRendered"
+        StateChanged="Window_StateChanged"
+        Closing="Window_Closing">
 
     <Window.DataContext>
         <Binding Source="{x:Static datacontext:DataContext.Instance}"/>
@@ -41,7 +47,7 @@
                 <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="1">
                     <Setter Property="Background" Value="{StaticResource PedalsTabBackground}"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="4">
+                <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="2">
                     <Setter Property="Background" Value="{StaticResource AdminBoxxTabBackground}"/>
                 </DataTrigger>
                 <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="5">
@@ -53,12 +59,16 @@
 
     <Grid>
 
+        <Grid.LayoutTransform>
+            <ScaleTransform x:Name="RootScaleTransform" ScaleX="{Binding Settings.AppUIScale}" ScaleY="{Binding Settings.AppUIScale}"/>
+        </Grid.LayoutTransform>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border Background="#303030" Padding="0,2,0,2" BorderThickness="0,0,0,3" BorderBrush="#402020">
+        <Border x:Name="Status_Border" Background="#303030" Padding="0,2,0,2" BorderThickness="0,0,0,3" BorderBrush="#402020">
 
             <Grid HorizontalAlignment="Center">
 
@@ -82,7 +92,7 @@
 
             <TabItem x:Name="RacingWheel_TabItem" Header="{Binding Localization[RacingWheel]}">
 
-                <StackPanel Margin="10">
+                <StackPanel Margin="10,10,10,20">
 
                     <GroupBox Header="{Binding Localization[Device]}">
 
@@ -94,10 +104,10 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <controls:MairaComboBox Grid.Column="0" Grid.ColumnSpan="2" x:Name="RacingWheel_Device_ComboBox" Title="{Binding Localization[RacingWheelDevice]}" SelectedValue="{Binding Settings.RacingWheelDeviceGuid, Mode=TwoWay}" VerticalContentAlignment="Center" Margin="10,0,10,0"/>
+                            <controls:MairaComboBox Grid.Column="0" Grid.ColumnSpan="2" x:Name="RacingWheel_SteeringDevice_ComboBox" Title="{Binding Localization[SteeringDevice]}" SelectedValue="{Binding Settings.RacingWheelSteeringDeviceGuid, Mode=TwoWay}" VerticalContentAlignment="Center" Margin="10,0,10,0"/>
 
                             <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
-                                <controls:MairaMappableButton Grid.Column="1" x:Name="RacingWheel_Power_MairaMappableButton" Margin="10,0,10,0" Title="{Binding Localization[Power]}" BehindIcon="/MarvinsAIRARefactored;component/artwork/power_led_black.png" ContextSwitches="{Binding Settings.RacingWheelEnableForceFeedbackContextSwitches}" ButtonMappings="{Binding Settings.RacingWheelEnableForceFeedbackMappings}" Click="RacingWheel_Power_MairaMappableButton_Click"/>
+                                <controls:MairaMappableButton Grid.Column="1" x:Name="RacingWheel_Power_MairaMappableButton" Margin="10,0,10,0" Title="{Binding Localization[Power]}" BehindIcon="/MarvinsAIRARefactored;component/artwork/power_led_black.png" ContextSwitches="{Binding Settings.RacingWheelEnableForceFeedbackContextSwitches}" ButtonMappings="{Binding Settings.RacingWheelEnableForceFeedbackButtonMappings}" Click="RacingWheel_Power_MairaMappableButton_Click"/>
                                 <controls:MairaMappableButton Grid.Column="2" x:Name="RacingWheel_Test_MairaMappableButton" Margin="10,0,10,0" Title="{Binding Localization[Test]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_vibrate.png" ButtonMappings="{Binding Settings.RacingWheelTestButtonMappings}" Click="RacingWheel_Test_MairaMappableButton_Click"/>
                                 <controls:MairaMappableButton Grid.Column="3" x:Name="RacingWheel_Reset_MairaMappableButton" Margin="10,0,10,0" Title="{Binding Localization[Reset]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_reset.png" ButtonMappings="{Binding Settings.RacingWheelResetButtonMappings}" Click="RacingWheel_Reset_MairaMappableButton_Click"/>
                             </StackPanel>
@@ -118,15 +128,12 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[MaxForce]}" Value="{Binding Settings.RacingWheelMaxForce, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelMaxForceString}" SmallValueChangeStep="0.01" LargeValueChangeStep="1" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelMaxForceContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelMaxForcePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelMaxForceMinusButtonMappings}"/>
-
-                                <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[AutoMargin]}" Value="{Binding Settings.RacingWheelAutoMargin, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelAutoMarginString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelAutoMarginContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelAutoMarginPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelAutoMarginMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[MaxForce]}" Value="{Binding Settings.RacingWheelMaxForce, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelMaxForceString}" SmallValueChangeStep="0.01" LargeValueChangeStep="1" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelMaxForceContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelMaxForcePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelMaxForceMinusButtonMappings}" DefaultValue="50"/>
+                                <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[AutoMargin]}" Value="{Binding Settings.RacingWheelAutoMargin, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelAutoMarginString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelAutoMarginContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelAutoMarginPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelAutoMarginMinusButtonMappings}" DefaultValue="0"/>
 
                                 <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center">
-
                                     <controls:MairaMappableButton x:Name="RacingWheel_Auto_MairaMappableButton" Margin="10,0,10,0" Title="{Binding Localization[Auto]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_magic.png" ButtonMappings="{Binding Settings.RacingWheelAutoButtonMappings}" Click="RacingWheel_Auto_MairaMappableButton_Click"/>
                                     <controls:MairaMappableButton x:Name="RacingWheel_Clear_MairaMappableButton" Margin="10,0,10,0" Title="{Binding Localization[Clear]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_zero.png" ButtonMappings="{Binding Settings.RacingWheelClearButtonMappings}" Click="RacingWheel_Clear_MairaMappableButton_Click"/>
-
                                 </StackPanel>
 
                             </Grid>
@@ -141,17 +148,17 @@
 
                                 <StackPanel Grid.Column="0" Margin="40,0,40,0">
                                     <Label Content="{Binding Localization[CurrentForce]}" HorizontalAlignment="Center" Padding="0"/>
-                                    <Label x:Name="RacingWheel_CurrentForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" HorizontalAlignment="Center"/>
+                                    <Label x:Name="RacingWheel_CurrentForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Digital-7 Mono" Foreground="PaleGreen" Padding="0" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="1" Margin="40,0,40,0">
                                     <Label Content="{Binding Localization[PeakForce]}" HorizontalAlignment="Center" Padding="0"/>
-                                    <Label x:Name="RacingWheel_PeakForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" HorizontalAlignment="Center"/>
+                                    <Label x:Name="RacingWheel_PeakForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Digital-7 Mono" Foreground="PaleGreen" Padding="0" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                                 <StackPanel Grid.Column="2" Margin="40,0,40,0">
                                     <Label Content="{Binding Localization[AutoForce]}" HorizontalAlignment="Center" Padding="0"/>
-                                    <Label x:Name="RacingWheel_AutoForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" HorizontalAlignment="Center"/>
+                                    <Label x:Name="RacingWheel_AutoForce_Label" Content="0.00 Nm" FontSize="37" FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Digital-7 Mono" Foreground="PaleGreen" Padding="0" HorizontalAlignment="Center"/>
                                 </StackPanel>
 
                             </Grid>
@@ -174,11 +181,14 @@
 
                                 <controls:MairaComboBox Grid.Column="0" x:Name="RacingWheel_Algorithm_ComboBox" Title="{Binding Localization[Algorithm]}" SelectedValue="{Binding Settings.RacingWheelAlgorithm, Mode=TwoWay}" VerticalContentAlignment="Center" Margin="10,0,10,0" ContextSwitches="{Binding Settings.RacingWheelAlgorithmContextSwitches}"/>
 
-                                <controls:MairaKnob Grid.Column="1" x:Name="RacingWheel_DeltaLimit_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DeltaLimit]}" Value="{Binding Settings.RacingWheelDeltaLimit, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDeltaLimitString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelDeltaLimitContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelDeltaLimitPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDeltaLimitMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="1" x:Name="RacingWheel_DetailBoost_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DetailBoost]}" Value="{Binding Settings.RacingWheelDetailBoost, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDetailBoostString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelDetailBoostContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelDetailBoostPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDetailBoostMinusButtonMappings}" DefaultValue="0"/>
+                                <controls:MairaKnob Grid.Column="2" x:Name="RacingWheel_DetailBoostBias_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DetailBoostBias]}" Value="{Binding Settings.RacingWheelDetailBoostBias, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDetailBoostBiasString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelDetailBoostBiasContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelDetailBoostBiasPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDetailBoostBiasMinusButtonMappings}" DefaultValue="0.1"/>
 
-                                <controls:MairaKnob Grid.Column="1" x:Name="RacingWheel_DetailBoost_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DetailBoost]}" Value="{Binding Settings.RacingWheelDetailBoost, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDetailBoostString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelDetailBoostContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelDetailBoostPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDetailBoostMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="1" x:Name="RacingWheel_DeltaLimit_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DeltaLimit]}" Value="{Binding Settings.RacingWheelDeltaLimit, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDeltaLimitString}" SmallValueChangeStep="1" LargeValueChangeStep="10" RotationMultiplier="0.01" ContextSwitches="{Binding Settings.RacingWheelDeltaLimitContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelDeltaLimitPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDeltaLimitMinusButtonMappings}" DefaultValue="500"/>
+                                <controls:MairaKnob Grid.Column="2" x:Name="RacingWheel_DeltaLimiterBias_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DeltaLimiterBias]}" Value="{Binding Settings.RacingWheelDeltaLimiterBias, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDeltaLimiterBiasString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelDeltaLimiterBiasContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelDeltaLimiterBiasPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDeltaLimiterBiasMinusButtonMappings}" DefaultValue="0.2"/>
 
-                                <controls:MairaKnob Grid.Column="2" x:Name="RacingWheel_Bias_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[Bias]}" Value="{Binding Settings.RacingWheelBias, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelBiasString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelBiasContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelBiasPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelBiasMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="1" x:Name="RacingWheel_SlewCompressionThreshold" Margin="10,0,10,0" Title="{Binding Localization[SlewCompressionThreshold]}" Value="{Binding Settings.RacingWheelSlewCompressionThreshold, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelSlewCompressionThresholdString}" SmallValueChangeStep="0.1" LargeValueChangeStep="1" RotationMultiplier="0.1" ContextSwitches="{Binding Settings.RacingWheelSlewCompressionThresholdContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelSlewCompressionThresholdPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelSlewCompressionThresholdMinusButtonMappings}" DefaultValue="2"/>
+                                <controls:MairaKnob Grid.Column="2" x:Name="RacingWheel_SlewCompressionRate" Margin="10,0,10,0" Title="{Binding Localization[SlewCompressionRate]}" Value="{Binding Settings.RacingWheelSlewCompressionRate, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelSlewCompressionRateString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelSlewCompressionRateContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelSlewCompressionRatePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelSlewCompressionRateMinusButtonMappings}" DefaultValue="0.65"/>
 
                             </Grid>
 
@@ -190,11 +200,51 @@
                                     <ColumnDefinition Width="*"/>
                                 </Grid.ColumnDefinitions>
 
-                                <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[CompressionRate]}" Value="{Binding Settings.RacingWheelCompressionRate, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCompressionRateString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelCompressionRateContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCompressionRatePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCompressionRateMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="1" x:Name="RacingWheel_TotalCompressionThreshold" Margin="10,0,10,0" Title="{Binding Localization[TotalCompressionThreshold]}" Value="{Binding Settings.RacingWheelTotalCompressionThreshold, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelTotalCompressionThresholdString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelTotalCompressionThresholdContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelTotalCompressionThresholdPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelTotalCompressionThresholdMinusButtonMappings}" DefaultValue="0.65"/>
+                                <controls:MairaKnob Grid.Column="2" x:Name="RacingWheel_TotalCompressionRate" Margin="10,0,10,0" Title="{Binding Localization[TotalCompressionRate]}" Value="{Binding Settings.RacingWheelTotalCompressionRate, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelTotalCompressionRateString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelTotalCompressionRateContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelTotalCompressionRatePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelTotalCompressionRateMinusButtonMappings}" DefaultValue="0.75"/>
 
                             </Grid>
 
+                            <Border Margin="10,10,10,20" BorderThickness="1" BorderBrush="Gray" Background="#80000000">
+                                <Image x:Name="Algorithm_Image" Height="201" Width="3840" HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality"/>
+                            </Border>
+
                         </StackPanel>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Output]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Minimum]}" Value="{Binding Settings.RacingWheelOutputMinimum, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelOutputMinimumString}" SmallValueChangeStep="0.0001" LargeValueChangeStep="0.001" RotationMultiplier="100" ContextSwitches="{Binding Settings.RacingWheelOutputMinimumContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelOutputMinimumPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelOutputMinimumMinusButtonMappings}" DefaultValue="0"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Maximum]}" Value="{Binding Settings.RacingWheelOutputMaximum, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelOutputMaximumString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelOutputMaximumContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelOutputMaximumPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelOutputMaximumMinusButtonMappings}" DefaultValue="1"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Curve]}" Value="{Binding Settings.RacingWheelOutputCurve, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelOutputCurveString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelOutputCurveContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelOutputCurvePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelOutputCurveMinusButtonMappings}" ShowCurve="True" DefaultValue="0"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[WheelLFE]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaComboBox Grid.Column="0" Grid.ColumnSpan="2" x:Name="RacingWheel_LFERecordingDevice_ComboBox" Title="{Binding Localization[LFERecordingDevice]}" SelectedValue="{Binding Settings.RacingWheelLFERecordingDeviceGuid, Mode=TwoWay}" VerticalContentAlignment="Center" Margin="10,0,10,0"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.RacingWheelLFEStrength, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelLFEStrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelLFEStrengthContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelLFEStrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelLFEStrengthMinusButtonMappings}" DefaultValue="0.05"/>
+
+                        </Grid>
 
                     </GroupBox>
 
@@ -208,11 +258,9 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[GForce]}" Value="{Binding Settings.RacingWheelCrashProtectionGForce, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCrashProtectionGForceString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.5" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelCrashProtectionGForceContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionGForcePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionGForceMinusButtonMappings}"/>
-
-                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Duration]}" Value="{Binding Settings.RacingWheelCrashProtectionDuration, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCrashProtectionDurationString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.5" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelCrashProtectionDurationContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationMinusButtonMappings}"/>
-
-                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[ForceReduction]}" Value="{Binding Settings.RacingWheelCrashProtectionForceReduction, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCrashProtectionForceReductionString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelCrashProtectionForceReductionContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionForceReductionPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionForceReductionMinusButtonMappings}"/>
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[GForce]}" Value="{Binding Settings.RacingWheelCrashProtectionGForce, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCrashProtectionGForceString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.5" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelCrashProtectionGForceContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionGForcePlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionGForceMinusButtonMappings}" DefaultValue="8"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Duration]}" Value="{Binding Settings.RacingWheelCrashProtectionDuration, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCrashProtectionDurationString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.5" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelCrashProtectionDurationContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationMinusButtonMappings}" DefaultValue="5"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[ForceReduction]}" Value="{Binding Settings.RacingWheelCrashProtectionForceReduction, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCrashProtectionForceReductionString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelCrashProtectionForceReductionContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionForceReductionPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionForceReductionMinusButtonMappings}" DefaultValue="0.95"/>
 
                         </Grid>
 
@@ -228,11 +276,9 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[ShockVelocity]}" Value="{Binding Settings.RacingWheelCurbProtectionShockVelocity, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCurbProtectionShockVelocityString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelCurbProtectionShockVelocityContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionShockVelocityPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionShockVelocityMinusButtonMappings}"/>
-
-                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Duration]}" Value="{Binding Settings.RacingWheelCurbProtectionDuration, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCurbProtectionDurationString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelCurbProtectionDurationContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionDurationPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionDurationMinusButtonMappings}"/>
-
-                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[ForceReduction]}" Value="{Binding Settings.RacingWheelCurbProtectionForceReduction, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCurbProtectionForceReductionString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelCurbProtectionForceReductionContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionForceReductionPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionForceReductionMinusButtonMappings}"/>
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[ShockVelocity]}" Value="{Binding Settings.RacingWheelCurbProtectionShockVelocity, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCurbProtectionShockVelocityString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelCurbProtectionShockVelocityContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionShockVelocityPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionShockVelocityMinusButtonMappings}" DefaultValue="0.5"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Duration]}" Value="{Binding Settings.RacingWheelCurbProtectionDuration, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCurbProtectionDurationString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelCurbProtectionDurationContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionDurationPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionDurationMinusButtonMappings}" DefaultValue="0.1"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[ForceReduction]}" Value="{Binding Settings.RacingWheelCurbProtectionForceReduction, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelCurbProtectionForceReductionString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelCurbProtectionForceReductionContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelCurbProtectionForceReductionPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelCurbProtectionForceReductionMinusButtonMappings}" DefaultValue="0.75"/>
 
                         </Grid>
 
@@ -248,11 +294,9 @@
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
 
-                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[ParkedStrength]}" Value="{Binding Settings.RacingWheelParkedStrength, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelParkedStrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelParkedStrengthContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelParkedStrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelParkedStrengthMinusButtonMappings}"/>
-
-                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[SoftLockStrength]}" Value="{Binding Settings.RacingWheelSoftLockStrength, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelSoftLockStrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelSoftLockStrengthContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelSoftLockStrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelSoftLockStrengthMinusButtonMappings}"/>
-
-                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Friction]}" Value="{Binding Settings.RacingWheelFriction, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelFrictionString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelFrictionContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelFrictionPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelFrictionMinusButtonMappings}"/>
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[ParkedStrength]}" Value="{Binding Settings.RacingWheelParkedStrength, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelParkedStrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelParkedStrengthContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelParkedStrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelParkedStrengthMinusButtonMappings}" DefaultValue="0.25"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[SoftLockStrength]}" Value="{Binding Settings.RacingWheelSoftLockStrength, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelSoftLockStrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelSoftLockStrengthContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelSoftLockStrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelSoftLockStrengthMinusButtonMappings}" DefaultValue="0.25"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Friction]}" Value="{Binding Settings.RacingWheelFriction, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelFrictionString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelFrictionContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelFrictionPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelFrictionMinusButtonMappings}" DefaultValue="0"/>
 
                         </Grid>
 
@@ -260,7 +304,12 @@
 
                     <GroupBox Header="{Binding Localization[Switches]}" Margin="0,10,0,0">
 
-                        <controls:MairaSwitch Margin="0,20,0,20" IsOn="{Binding Settings.RacingWheelFadeEnabled, Mode=TwoWay}" Title="{Binding Localization[FadeForceFeedback]}" ContextSwitches="{Binding Settings.RacingWheelFadeEnabledContextSwitches}"/>
+                        <StackPanel>
+
+                            <controls:MairaSwitch Margin="10,20,10,0" IsOn="{Binding Settings.RacingWheelFadeEnabled, Mode=TwoWay}" Title="{Binding Localization[FadeForceFeedback]}" ContextSwitches="{Binding Settings.RacingWheelFadeEnabledContextSwitches}"/>
+                            <controls:MairaSwitch Margin="10,10,10,10" IsOn="{Binding Settings.RacingWheelAlwaysEnableFFB, Mode=TwoWay}" Title="{Binding Localization[AlwaysEnableFFB]}"/>
+
+                        </StackPanel>
 
                     </GroupBox>
 
@@ -270,7 +319,7 @@
 
             <TabItem x:Name="Pedals_TabItem" Header="{Binding Localization[Pedals]}">
 
-                <StackPanel Margin="10">
+                <StackPanel Margin="10,10,10,20">
 
                     <GroupBox Header="{Binding Localization[Device]}">
 
@@ -278,48 +327,14 @@
 
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <Label Grid.Column="0" x:Name="Pedals_Device_Label" Content="{Binding Localization[PedalsNone]}" Margin="10" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" VerticalAlignment="Center"/>
-                            <Image Grid.Column="2" Source="/Artwork/simagic_logo.png" Height="32" Margin="0,0,10,0"/>
-
-                        </Grid>
-
-                    </GroupBox>
-
-                    <GroupBox Header="{Binding Localization[Frequency]}" Margin="0,10,0,0">
-
-                        <Grid Margin="0,10,0,20">
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Minimum]}" Value="{Binding Settings.PedalsMinimumFrequency, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMinimumFrequencyString}" SmallValueChangeStep="0.1" LargeValueChangeStep="1" RotationMultiplier="0.1" ContextSwitches="{Binding Settings.PedalsMinimumFrequencyContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsMinimumFrequencyPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMinimumFrequencyMinusButtonMappings}"/>
-                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Maximum]}" Value="{Binding Settings.PedalsMaximumFrequency, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMaximumFrequencyString}" SmallValueChangeStep="0.1" LargeValueChangeStep="1" RotationMultiplier="0.1" ContextSwitches="{Binding Settings.PedalsMaximumFrequencyContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsMaximumFrequencyPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMaximumFrequencyMinusButtonMappings}"/>
-                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Curve]}" Value="{Binding Settings.PedalsFrequencyCurve, Mode=TwoWay}" ValueString="{Binding Settings.PedalsFrequencyCurveString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsFrequencyCurveContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsFrequencyCurvePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsFrequencyCurveMinusButtonMappings}"/>
-
-                        </Grid>
-
-                    </GroupBox>
-
-                    <GroupBox Header="{Binding Localization[Amplitude]}" Margin="0,10,0,0">
-
-                        <Grid Margin="0,10,0,20">
-
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                            </Grid.ColumnDefinitions>
-
-                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Minimum]}" Value="{Binding Settings.PedalsMinimumAmplitude, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMinimumAmplitudeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsMinimumAmplitudeContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsMinimumAmplitudePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMinimumAmplitudeMinusButtonMappings}"/>
-                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Maximum]}" Value="{Binding Settings.PedalsMaximumAmplitude, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMaximumAmplitudeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsMaximumAmplitudeContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsMaximumAmplitudePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMaximumAmplitudeMinusButtonMappings}"/>
-                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Curve]}" Value="{Binding Settings.PedalsAmplitudeCurve, Mode=TwoWay}" ValueString="{Binding Settings.PedalsAmplitudeCurveString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsAmplitudeCurveContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsAmplitudeCurvePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsAmplitudeCurveMinusButtonMappings}"/>
+                            <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.PedalsEnabled, Mode=TwoWay}"/>
+                            <Label Grid.Column="1" x:Name="Pedals_Device_Label" Content="{Binding Localization[PedalsNone]}" Margin="0,10,10,10" FontSize="37" FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Digital-7 Mono" Padding="0" VerticalAlignment="Center"/>
+                            <Image Grid.Column="3" Source="/Artwork/simagic_logo.png" Height="32" Margin="0,0,10,0"/>
 
                         </Grid>
 
@@ -339,7 +354,7 @@
 
                                 <Label Grid.Column="0" Content="1" Margin="10,0,10,0" Padding="0" Height="48" VerticalAlignment="Bottom"/>
                                 <controls:MairaComboBox Grid.Column="1" x:Name="Pedals_Clutch_Effect_ComboBox_1" Margin="10,0,10,0" Title="{Binding Localization[PedalEffects]}" SelectedValue="{Binding Settings.PedalsClutchEffect1, Mode=TwoWay}" ContextSwitches="{Binding Settings.PedalsClutchEffect1ContextSwitches}"/>
-                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsClutchEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect1StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsClutchEffect1StrengthContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsClutchEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect1StrengthMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsClutchEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect1StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsClutchEffect1StrengthContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsClutchEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect1StrengthMinusButtonMappings}" DefaultValue="1"/>
 
                             </Grid>
 
@@ -353,7 +368,7 @@
 
                                 <Label Grid.Column="0" Content="2" Margin="10,0,10,0" Padding="0" Height="48" VerticalAlignment="Bottom"/>
                                 <controls:MairaComboBox Grid.Column="1" x:Name="Pedals_Clutch_Effect_ComboBox_2" Margin="10,0,10,0" SelectedValue="{Binding Settings.PedalsClutchEffect2, Mode=TwoWay}"/>
-                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsClutchEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect2StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsClutchEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect2StrengthMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsClutchEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect2StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsClutchEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect2StrengthMinusButtonMappings}" DefaultValue="1"/>
 
                             </Grid>
 
@@ -367,7 +382,7 @@
 
                                 <Label Grid.Column="0" Content="3" Margin="10,0,10,0" Padding="0" Height="48" VerticalAlignment="Bottom"/>
                                 <controls:MairaComboBox Grid.Column="1" x:Name="Pedals_Clutch_Effect_ComboBox_3" Margin="10,0,10,0" SelectedValue="{Binding Settings.PedalsClutchEffect3, Mode=TwoWay}"/>
-                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsClutchEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect3StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsClutchEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect3StrengthMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsClutchEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchEffect3StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsClutchEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchEffect3StrengthMinusButtonMappings}" DefaultValue="1"/>
 
                             </Grid>
 
@@ -389,7 +404,7 @@
 
                                 <Label Grid.Column="0" Content="1" Margin="10,0,10,0" Padding="0" Height="48" VerticalAlignment="Bottom"/>
                                 <controls:MairaComboBox Grid.Column="1" x:Name="Pedals_Brake_Effect_ComboBox_1" Margin="10,0,10,0" Title="{Binding Localization[PedalEffects]}" SelectedValue="{Binding Settings.PedalsBrakeEffect1, Mode=TwoWay}" ContextSwitches="{Binding Settings.PedalsBrakeEffect1ContextSwitches}"/>
-                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsBrakeEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsBrakeEffect1StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsBrakeEffect1StrengthContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsBrakeEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsBrakeEffect1StrengthMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsBrakeEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsBrakeEffect1StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsBrakeEffect1StrengthContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsBrakeEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsBrakeEffect1StrengthMinusButtonMappings}" DefaultValue="1"/>
 
                             </Grid>
 
@@ -403,7 +418,7 @@
 
                                 <Label Grid.Column="0" Content="2" Margin="10,0,10,0" Padding="0" Height="48" VerticalAlignment="Bottom"/>
                                 <controls:MairaComboBox Grid.Column="1" x:Name="Pedals_Brake_Effect_ComboBox_2" Margin="10,0,10,0" SelectedValue="{Binding Settings.PedalsBrakeEffect2, Mode=TwoWay}"/>
-                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsBrakeEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsBrakeEffect2StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsBrakeEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsBrakeEffect2StrengthMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsBrakeEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsBrakeEffect2StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsBrakeEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsBrakeEffect2StrengthMinusButtonMappings}" DefaultValue="1"/>
 
                             </Grid>
 
@@ -417,7 +432,7 @@
 
                                 <Label Grid.Column="0" Content="3" Margin="10,0,10,0" Padding="0" Height="48" VerticalAlignment="Bottom"/>
                                 <controls:MairaComboBox Grid.Column="1" x:Name="Pedals_Brake_Effect_ComboBox_3" Margin="10,0,10,0" SelectedValue="{Binding Settings.PedalsBrakeEffect3, Mode=TwoWay}"/>
-                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsBrakeEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsBrakeEffect3StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsBrakeEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsBrakeEffect3StrengthMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsBrakeEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsBrakeEffect3StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsBrakeEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsBrakeEffect3StrengthMinusButtonMappings}" DefaultValue="1"/>
 
                             </Grid>
 
@@ -439,7 +454,7 @@
 
                                 <Label Grid.Column="0" Content="1" Margin="10,0,10,0" Padding="0" Height="48" VerticalAlignment="Bottom"/>
                                 <controls:MairaComboBox Grid.Column="1" x:Name="Pedals_Throttle_Effect_ComboBox_1" Margin="10,0,10,0" Title="{Binding Localization[PedalEffects]}" SelectedValue="{Binding Settings.PedalsThrottleEffect1, Mode=TwoWay}" ContextSwitches="{Binding Settings.PedalsThrottleEffect1ContextSwitches}"/>
-                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsThrottleEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsThrottleEffect1StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsThrottleEffect1StrengthContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsThrottleEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsThrottleEffect1StrengthMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Strength]}" Value="{Binding Settings.PedalsThrottleEffect1Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsThrottleEffect1StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsThrottleEffect1StrengthContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsThrottleEffect1StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsThrottleEffect1StrengthMinusButtonMappings}" DefaultValue="1"/>
 
                             </Grid>
 
@@ -453,7 +468,7 @@
 
                                 <Label Grid.Column="0" Content="2" Margin="10,0,10,0" Padding="0" Height="48" VerticalAlignment="Bottom"/>
                                 <controls:MairaComboBox Grid.Column="1" x:Name="Pedals_Throttle_Effect_ComboBox_2" Margin="10,0,10,0" SelectedValue="{Binding Settings.PedalsThrottleEffect2, Mode=TwoWay}"/>
-                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsThrottleEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsThrottleEffect2StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsThrottleEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsThrottleEffect2StrengthMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsThrottleEffect2Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsThrottleEffect2StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsThrottleEffect2StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsThrottleEffect2StrengthMinusButtonMappings}" DefaultValue="1"/>
 
                             </Grid>
 
@@ -467,7 +482,7 @@
 
                                 <Label Grid.Column="0" Content="3" Margin="10,0,10,0" Padding="0" Height="48" VerticalAlignment="Bottom"/>
                                 <controls:MairaComboBox Grid.Column="1" x:Name="Pedals_Throttle_Effect_ComboBox_3" Margin="10,0,10,0" SelectedValue="{Binding Settings.PedalsThrottleEffect3, Mode=TwoWay}"/>
-                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsThrottleEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsThrottleEffect3StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsThrottleEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsThrottleEffect3StrengthMinusButtonMappings}"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="" Value="{Binding Settings.PedalsThrottleEffect3Strength, Mode=TwoWay}" ValueString="{Binding Settings.PedalsThrottleEffect3StrengthString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.PedalsThrottleEffect3StrengthPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsThrottleEffect3StrengthMinusButtonMappings}" DefaultValue="1"/>
 
                             </Grid>
 
@@ -475,95 +490,325 @@
 
                     </GroupBox>
 
+                    <GroupBox Header="{Binding Localization[GearChangeShiftIntoGear]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Frequency]}" Value="{Binding Settings.PedalsShiftIntoGearFrequency, Mode=TwoWay}" ValueString="{Binding Settings.PedalsShiftIntoGearFrequencyString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsShiftIntoGearFrequencyContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsShiftIntoGearFrequencyPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsShiftIntoGearFrequencyMinusButtonMappings}" DefaultValue="0.3"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Amplitude]}" Value="{Binding Settings.PedalsShiftIntoGearAmplitude, Mode=TwoWay}" ValueString="{Binding Settings.PedalsShiftIntoGearAmplitudeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsShiftIntoGearAmplitudeContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsShiftIntoGearAmplitudePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsShiftIntoGearAmplitudeMinusButtonMappings}" DefaultValue="1"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Duration]}" Value="{Binding Settings.PedalsShiftIntoGearDuration, Mode=TwoWay}" ValueString="{Binding Settings.PedalsShiftIntoGearDurationString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsShiftIntoGearDurationContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsShiftIntoGearDurationPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsShiftIntoGearDurationMinusButtonMappings}" DefaultValue="0.1"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[GearChangeShiftIntoNeutral]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Frequency]}" Value="{Binding Settings.PedalsShiftIntoNeutralFrequency, Mode=TwoWay}" ValueString="{Binding Settings.PedalsShiftIntoNeutralFrequencyString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsShiftIntoNeutralFrequencyContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralFrequencyPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralFrequencyMinusButtonMappings}" DefaultValue="0.7"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Amplitude]}" Value="{Binding Settings.PedalsShiftIntoNeutralAmplitude, Mode=TwoWay}" ValueString="{Binding Settings.PedalsShiftIntoNeutralAmplitudeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsShiftIntoNeutralAmplitudeContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralAmplitudePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralAmplitudeMinusButtonMappings}" DefaultValue="0.75"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Duration]}" Value="{Binding Settings.PedalsShiftIntoNeutralDuration, Mode=TwoWay}" ValueString="{Binding Settings.PedalsShiftIntoNeutralDurationString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsShiftIntoNeutralDurationContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralDurationPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralDurationMinusButtonMappings}" DefaultValue="0.05"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[ABSEngaged]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Frequency]}" Value="{Binding Settings.PedalsABSEngagedFrequency, Mode=TwoWay}" ValueString="{Binding Settings.PedalsABSEngagedFrequencyString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsABSEngagedFrequencyContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsABSEngagedFrequencyPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsABSEngagedFrequencyMinusButtonMappings}" DefaultValue="0.5"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Amplitude]}" Value="{Binding Settings.PedalsABSEngagedAmplitude, Mode=TwoWay}" ValueString="{Binding Settings.PedalsABSEngagedAmplitudeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsABSEngagedAmplitudeContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsABSEngagedAmplitudePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsABSEngagedAmplitudeMinusButtonMappings}" DefaultValue="1"/>
+                            <controls:MairaSwitch Grid.Column="2" Margin="10,0,10,0" IsOn="{Binding Settings.PedalsABSEngagedFadeWithBrakeEnabled, Mode=TwoWay}" Title="{Binding Localization[FadeWithBrake]}" ContextSwitches="{Binding Settings.PedalsABSEngagedFadeWithBrakeEnabledContextSwitches}" LabelPosition="Top"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[RPM]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[StartingRPM]}" Value="{Binding Settings.PedalsStartingRPM, Mode=TwoWay}" ValueString="{Binding Settings.PedalsStartingRPMString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsStartingRPMContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsStartingRPMPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsStartingRPMMinusButtonMappings}" DefaultValue="0"/>
+                            <controls:MairaSwitch Grid.Column="1" Margin="10,0,10,0" IsOn="{Binding Settings.PedalsRPMVibrateInTopGearEnabled, Mode=TwoWay}" Title="{Binding Localization[VibrateInTopGear]}" ContextSwitches="{Binding Settings.PedalsRPMVibrateInTopGearEnabledContextSwitches}" LabelPosition="Top"/>
+                            <controls:MairaSwitch Grid.Column="2" Margin="10,0,10,0" IsOn="{Binding Settings.PedalsRPMFadeWithThrottleEnabled, Mode=TwoWay}" Title="{Binding Localization[FadeWithThrottle]}" ContextSwitches="{Binding Settings.PedalsRPMFadeWithThrottleEnabledContextSwitches}" LabelPosition="Top"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[ClutchSlip]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[StartingPoint]}" Value="{Binding Settings.PedalsClutchSlipStart, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchSlipStartString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsClutchSlipStartContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsClutchSlipStartPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchSlipStartMinusButtonMappings}" DefaultValue="0.25"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[EndingPoint]}" Value="{Binding Settings.PedalsClutchSlipEnd, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchSlipEndString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsClutchSlipEndContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsClutchSlipEndPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchSlipEndMinusButtonMappings}" DefaultValue="0.75"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Frequency]}" Value="{Binding Settings.PedalsClutchSlipFrequency, Mode=TwoWay}" ValueString="{Binding Settings.PedalsClutchSlipFrequencyString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsClutchSlipFrequencyContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsClutchSlipFrequencyPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsClutchSlipFrequencyMinusButtonMappings}" DefaultValue="1"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Frequency]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Minimum]}" Value="{Binding Settings.PedalsMinimumFrequency, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMinimumFrequencyString}" SmallValueChangeStep="0.1" LargeValueChangeStep="1" RotationMultiplier="0.1" ContextSwitches="{Binding Settings.PedalsMinimumFrequencyContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsMinimumFrequencyPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMinimumFrequencyMinusButtonMappings}" DefaultValue="15"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Maximum]}" Value="{Binding Settings.PedalsMaximumFrequency, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMaximumFrequencyString}" SmallValueChangeStep="0.1" LargeValueChangeStep="1" RotationMultiplier="0.1" ContextSwitches="{Binding Settings.PedalsMaximumFrequencyContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsMaximumFrequencyPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMaximumFrequencyMinusButtonMappings}" DefaultValue="50"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Curve]}" Value="{Binding Settings.PedalsFrequencyCurve, Mode=TwoWay}" ValueString="{Binding Settings.PedalsFrequencyCurveString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsFrequencyCurveContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsFrequencyCurvePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsFrequencyCurveMinusButtonMappings}" ShowCurve="True" DefaultValue="0.25"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Amplitude]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[Minimum]}" Value="{Binding Settings.PedalsMinimumAmplitude, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMinimumAmplitudeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsMinimumAmplitudeContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsMinimumAmplitudePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMinimumAmplitudeMinusButtonMappings}" DefaultValue="0"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Maximum]}" Value="{Binding Settings.PedalsMaximumAmplitude, Mode=TwoWay}" ValueString="{Binding Settings.PedalsMaximumAmplitudeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsMaximumAmplitudeContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsMaximumAmplitudePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsMaximumAmplitudeMinusButtonMappings}" DefaultValue="1"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[Curve]}" Value="{Binding Settings.PedalsAmplitudeCurve, Mode=TwoWay}" ValueString="{Binding Settings.PedalsAmplitudeCurveString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsAmplitudeCurveContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsAmplitudeCurvePlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsAmplitudeCurveMinusButtonMappings}" ShowCurve="True" DefaultValue="0"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[OtherFeatures]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,0" Title="{Binding Localization[NoiseDamper]}" Value="{Binding Settings.PedalsNoiseDamper, Mode=TwoWay}" ValueString="{Binding Settings.PedalsNoiseDamperString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.PedalsNoiseDamperContextSwitches}" PlusButtonMappings="{Binding Settings.PedalsNoiseDamperPlusButtonMappings}" MinusButtonMappings="{Binding Settings.PedalsNoiseDamperMinusButtonMappings}" DefaultValue="0.1"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
                 </StackPanel>
 
             </TabItem>
 
-            <TabItem x:Name="Graphs_TabItem" Header="{Binding Localization[Graphs]}">
+            <TabItem x:Name="AdminBoxx_TabItem" Header="{Binding Localization[AdminBoxx]}">
 
-                <StackPanel Margin="10">
+                <StackPanel Margin="10,10,10,20">
 
-                    <Grid Margin="0,10,0,10">
+                    <GroupBox Header="{Binding Localization[Connection]}" Margin="0,10,0,0">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="240"/>
-                            <ColumnDefinition Width="10"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <StackPanel>
 
-                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="{Binding Localization[Native60HzTorque]}" HorizontalAlignment="Center"/>
-                            <Label x:Name="Graphs_Native60HzTorque_MinMaxAvg" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
-                            <Label x:Name="Graphs_Native60HzTorque_VarStdDev" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:MairaSwitch Grid.Column="0" x:Name="AdminBoxx_ConnectToAdminBoxx_MairaSwitch" Margin="10,0,10,0"  Title="{Binding Localization[ConnectToAdminBoxx]}" Toggled="AdminBoxx_ConnectToAdminBoxx_MairaSwitch_Toggled"/>
+                                <controls:MairaButton Grid.Column="1" x:Name="AdminBoxx_Test" Margin="10,0,10,0"  Title="Test" Click="AdminBoxx_Test_Click"/>
+
+                            </Grid>
+
+                            <controls:MairaSwitch Margin="10,10,10,20" x:Name="AdminBoxx_ConnectOnStartup_MairaSwitch" Title="{Binding Localization[ConnectOnStartup]}" IsOn="{Binding Settings.AdminBoxxConnectOnStartup, Mode=TwoWay}"/>
+
                         </StackPanel>
 
-                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray" Background="#D0000000">
-                            <Image x:Name="Graphs_Native60HzTorque_Image" Height="201" Width="3840" HorizontalAlignment="Right"/>
-                        </Border>
+                    </GroupBox>
 
-                        <Label Grid.Column="2" x:Name="Graphs_Native60HzTorque_SimulatorNotRunning_Label" Content="{Binding Localization[SimulatorNotRunning]}" HorizontalContentAlignment="Center" Foreground="#FFFF6A6A"/>
+                    <GroupBox Header="{Binding Localization[Display]}" Margin="0,10,0,0">
+
+                        <StackPanel>
+
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:MairaKnob Grid.Column="0" Margin="10,0,10,20" Title="{Binding Localization[Brightness]}" Value="{Binding Settings.AdminBoxxBrightness, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxBrightnessString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxBrightnessPlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxBrightnessMinusButtonMappings}" ValueChangedCallback="AdminBoxx_Brightness_ValueChanged" DefaultValue="0.15"/>
+
+                            </Grid>
+
+                            <Grid Margin="0,10,0,0">
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <controls:MairaKnob Grid.Column="0" Margin="10,0,10,20" Title="{Binding Localization[BlackFlagR]}" Value="{Binding Settings.AdminBoxxBlackFlagR, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxBlackFlagRString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxBlackFlagRPlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxBlackFlagRMinusButtonMappings}" ValueChangedCallback="AdminBoxx_BlackFlag_ValueChanged" DefaultValue="0.25"/>
+                                <controls:MairaKnob Grid.Column="1" Margin="10,0,10,20" Title="{Binding Localization[BlackFlagG]}" Value="{Binding Settings.AdminBoxxBlackFlagG, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxBlackFlagGString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxBlackFlagGPlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxBlackFlagGMinusButtonMappings}" ValueChangedCallback="AdminBoxx_BlackFlag_ValueChanged" DefaultValue="0"/>
+                                <controls:MairaKnob Grid.Column="2" Margin="10,0,10,20" Title="{Binding Localization[BlackFlagB]}" Value="{Binding Settings.AdminBoxxBlackFlagB, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxBlackFlagBString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxBlackFlagBPlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxBlackFlagBMinusButtonMappings}" ValueChangedCallback="AdminBoxx_BlackFlag_ValueChanged" DefaultValue="0.25"/>
+
+                            </Grid>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[Audio]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,0">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaKnob Grid.Column="0" Margin="10,0,10,20" Title="{Binding Localization[Volume]}" Value="{Binding Settings.AdminBoxxVolume, Mode=TwoWay}" ValueString="{Binding Settings.AdminBoxxVolumeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" PlusButtonMappings="{Binding Settings.AdminBoxxVolumePlusButtonMappings}" MinusButtonMappings="{Binding Settings.AdminBoxxVolumeMinusButtonMappings}" ValueChangedCallback="AdminBoxx_Volume_ValueChanged" DefaultValue="0.75"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                </StackPanel>
+
+            </TabItem>
+
+            <TabItem x:Name="Graph_TabItem" Header="{Binding Localization[Graph]}">
+
+                <StackPanel Margin="10,10,10,20">
+
+                    <Border Grid.Column="2" Margin="0,10,0,0" BorderThickness="1" BorderBrush="Gray" Background="#80000000">
+                        <Image x:Name="Graph_Image" Height="401" Width="3840" HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality"/>
+                    </Border>
+
+                    <Grid Margin="0,10,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                            <ColumnDefinition Width="1*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <controls:MairaComboBox Grid.Column="0" x:Name="Graph_Statistics_ComboBox" SelectedValue="{Binding Settings.GraphStatisticsLayerIndex, Mode=TwoWay}" VerticalContentAlignment="Center"/>
+
+                        <StackPanel Grid.Column="1">
+                            <Label Content="{Binding Localization[Minimum]}" HorizontalAlignment="Center" FontSize="11"/>
+                            <Label x:Name="Graph_Minimum_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="2">
+                            <Label Content="{Binding Localization[Maximum]}" HorizontalAlignment="Center" FontSize="11"/>
+                            <Label x:Name="Graph_Maximum_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="3">
+                            <Label Content="{Binding Localization[Average]}" HorizontalAlignment="Center" FontSize="11"/>
+                            <Label x:Name="Graph_Average_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="4">
+                            <Label Content="{Binding Localization[Variance]}" HorizontalAlignment="Center" FontSize="11"/>
+                            <Label x:Name="Graph_Variance_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
+                        </StackPanel>
+                        <StackPanel Grid.Column="5">
+                            <Label Content="{Binding Localization[StandardDeviation]}" HorizontalAlignment="Center" FontSize="11"/>
+                            <Label x:Name="Graph_StandardDeviation_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
+                        </StackPanel>
 
                     </Grid>
 
-                    <Grid Margin="0,10,0,10">
+                    <Grid Margin="0,20,0,0">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="240"/>
-                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="{Binding Localization[Native360HzTorque]}" HorizontalAlignment="Center"/>
-                            <Label x:Name="Graphs_Native360HzTorque_MinMaxAvg" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
-                            <Label x:Name="Graphs_Native360HzTorque_VarStdDev" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
-                        </StackPanel>
-
-                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray" Background="#D0000000">
-                            <Image x:Name="Graphs_Native360HzTorque_Image" Height="201" Width="3840" HorizontalAlignment="Right"/>
-                        </Border>
-
-                        <Label Grid.Column="2" x:Name="Graphs_Native360HzTorque_SimulatorNotRunning_Label" Content="{Binding Localization[SimulatorNotRunning]}" HorizontalContentAlignment="Center" Foreground="#FFFF6A6A"/>
+                        <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphInputTorque, Mode=TwoWay}" Title="{Binding Localization[InputTorque]}"/>
+                        <controls:MairaSwitch Grid.Column="1" IsOn="{Binding Settings.GraphOutputTorque, Mode=TwoWay}" Title="{Binding Localization[OutputTorque]}"/>
 
                     </Grid>
 
-                    <Grid Margin="0,10,0,10">
+                    <Grid Margin="0,10,0,0">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="240"/>
-                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="{Binding Localization[Output500HzTorque]}" HorizontalAlignment="Center"/>
-                            <Label x:Name="Graphs_OutputTorque_MinMaxAvg" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
-                            <Label x:Name="Graphs_OutputTorque_VarStdDev" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
-                        </StackPanel>
-
-                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray" Background="#D0000000">
-                            <Image x:Name="Graphs_OutputTorque_Image" Height="201" Width="3840" HorizontalAlignment="Right"/>
-                        </Border>
+                        <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphInputTorque60Hz, Mode=TwoWay}" Title="{Binding Localization[InputTorque60Hz]}"/>
+                        <controls:MairaSwitch Grid.Column="1" IsOn="{Binding Settings.GraphInputLFE, Mode=TwoWay}" Title="{Binding Localization[InputLFE]}"/>
 
                     </Grid>
 
-                    <Grid Margin="0,10,0,10">
+                    <Grid Margin="0,10,0,0">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="240"/>
-                            <ColumnDefinition Width="10"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
 
-                        <StackPanel Grid.Column="0" VerticalAlignment="Center">
-                            <Label Content="{Binding Localization[MultimediaTimerJitter]}" HorizontalAlignment="Center"/>
-                            <Label x:Name="Graphs_MultimediaTimerJitter_MinMaxAvg" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
-                            <Label x:Name="Graphs_MultimediaTimerJitter_VarStdDev" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22"/>
-                        </StackPanel>
+                        <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphClutchPedalHaptics, Mode=TwoWay}" Title="{Binding Localization[ClutchPedalHaptics]}"/>
+                        <controls:MairaSwitch Grid.Column="1" IsOn="{Binding Settings.GraphBrakePedalHaptics, Mode=TwoWay}" Title="{Binding Localization[BrakePedalHaptics]}"/>
+                        <controls:MairaSwitch Grid.Column="2" IsOn="{Binding Settings.GraphThrottlePedalHaptics, Mode=TwoWay}" Title="{Binding Localization[ThrottlePedalHaptics]}"/>
 
-                        <Border Grid.Column="2" BorderThickness="1" BorderBrush="Gray" Background="#D0000000">
-                            <Image x:Name="Graphs_MultimediaTimerJitter_Image" Height="201" Width="3840" HorizontalAlignment="Right"/>
-                        </Border>
+                    </Grid>
+
+                    <Grid Margin="0,10,0,0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphTimerJitter, Mode=TwoWay}" Title="{Binding Localization[TimerJitter]}"/>
 
                     </Grid>
 
@@ -573,104 +818,498 @@
 
             <TabItem x:Name="Simulator_TabItem" Header="{Binding Localization[Simulator]}">
 
-                <Grid>
+                <TabControl TabStripPlacement="Top" Background="{x:Null}">
 
-                    <TabControl TabStripPlacement="Top" Margin="2" Background="{x:Null}">
+                    <TabItem x:Name="Simulator_HeaderData_TabItem" Header="{Binding Localization[HeaderData]}" Padding="24,2,24,2">
 
-                        <TabItem x:Name="Simulator_HeaderData_TabItem" Header="{Binding Localization[HeaderData]}" Padding="24,2,24,2">
+                        <Grid>
 
-                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                            <viewers:HeaderDataViewer Grid.Column="0" x:Name="Simulator_HeaderData_HeaderDataViewer" MouseWheel="Simulator_HeaderData_HeaderDataViewer_MouseWheel" ClipToBounds="True"/>
+                            <ScrollBar Grid.Column="1" x:Name="Simulator_HeaderData_ScrollBar" Scroll="Simulator_HeaderData_ScrollBar_Scroll" SmallChange="1" LargeChange="5" Maximum="0"/>
 
-                                <viewers:HeaderDataViewer Grid.Column="0" x:Name="Simulator_HeaderData_HeaderDataViewer" MouseWheel="Simulator_HeaderData_HeaderDataViewer_MouseWheel" ClipToBounds="True"/>
-                                <ScrollBar Grid.Column="1" x:Name="Simulator_HeaderData_ScrollBar" Scroll="Simulator_HeaderData_ScrollBar_Scroll" SmallChange="1" LargeChange="5" Maximum="0"/>
+                        </Grid>
 
-                            </Grid>
+                    </TabItem>
 
-                        </TabItem>
+                    <TabItem x:Name="Simulator_SessionInfo_TabItem" Header="{Binding Localization[SessionInformation]}" Padding="24,2,24,2">
 
-                        <TabItem x:Name="Simulator_SessionInfo_TabItem" Header="{Binding Localization[SessionInformation]}" Padding="24,2,24,2">
+                        <Grid>
 
-                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                            <viewers:SessionInfoViewer Grid.Column="0" x:Name="Simulator_SessionInfo_SessionInfoViewer" MouseWheel="Simulator_SessionInfo_SessionInfoViewer_MouseWheel" ClipToBounds="True"/>
+                            <ScrollBar Grid.Column="1" x:Name="Simulator_SessionInfo_ScrollBar" Scroll="Simulator_SessionInfo_ScrollBar_Scroll" SmallChange="1" LargeChange="5" Maximum="0"/>
 
-                                <viewers:SessionInfoViewer Grid.Column="0" x:Name="Simulator_SessionInfo_SessionInfoViewer" MouseWheel="Simulator_SessionInfo_SessionInfoViewer_MouseWheel" ClipToBounds="True"/>
-                                <ScrollBar Grid.Column="1" x:Name="Simulator_SessionInfo_ScrollBar" Scroll="Simulator_SessionInfo_ScrollBar_Scroll" SmallChange="1" LargeChange="5" Maximum="0"/>
+                        </Grid>
 
-                            </Grid>
+                    </TabItem>
 
-                        </TabItem>
+                    <TabItem x:Name="Simulator_TelemetryData_TabItem" Header="{Binding Localization[TelemetryData]}" Padding="24,2,24,2">
 
-                        <TabItem x:Name="Simulator_TelemetryData_TabItem" Header="{Binding Localization[TelemetryData]}" Padding="24,2,24,2">
+                        <Grid>
 
-                            <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
 
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
+                            <viewers:TelemetryDataViewer Grid.Column="0" x:Name="Simulator_TelemetryData_TelemetryDataViewer" MouseWheel="Simulator_TelemetryData_TelemetryDataViewer_MouseWheel" ClipToBounds="True"/>
+                            <ScrollBar Grid.Column="1" x:Name="Simulator_TelemetryData_ScrollBar" Scroll="Simulator_TelemetryData_ScrollBar_Scroll" SmallChange="1" LargeChange="5" Maximum="0"/>
 
-                                <viewers:TelemetryDataViewer Grid.Column="0" x:Name="Simulator_TelemetryData_TelemetryDataViewer" MouseWheel="Simulator_TelemetryData_TelemetryDataViewer_MouseWheel" ClipToBounds="True"/>
-                                <ScrollBar Grid.Column="1" x:Name="Simulator_TelemetryData_ScrollBar" Scroll="Simulator_TelemetryData_ScrollBar_Scroll" SmallChange="1" LargeChange="5" Maximum="0"/>
+                        </Grid>
 
-                            </Grid>
+                    </TabItem>
 
-                        </TabItem>
-
-                    </TabControl>
-
-                    <Label x:Name="Simulator_SimulatorNotRunning_Label" Margin="0,30,0,0" Content="{Binding Localization[SimulatorNotRunning]}" HorizontalContentAlignment="Center" Foreground="#FFFF6A6A"/>
-
-                </Grid>
-
-            </TabItem>
-
-            <TabItem x:Name="AdminBoxx_TabItem" Header="{Binding Localization[AdminBoxx]}">
-
-                <StackPanel Margin="10">
-
-                    <controls:MairaSwitch Margin="0,10,0,10" x:Name="AdminBoxx_ConnectToAdminBoxx_MairaSwitch" Title="{Binding Localization[ConnectToAdminBoxx]}" Toggled="AdminBoxx_ConnectToAdminBoxx_MairaSwitch_Toggled"/>
-
-                </StackPanel>
+                </TabControl>
 
             </TabItem>
 
             <TabItem x:Name="App_TabItem" Header="{Binding Localization[App]}">
 
-                <StackPanel Margin="10">
+                <StackPanel Margin="10,10,10,20">
 
-                    <Grid Margin="0,10,0,10">
+                    <GroupBox Header="{Binding Localization[Language]}">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid Margin="0,10,0,20">
 
-                        <Grid Grid.Column="0" Margin="10,0,10,0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <ComboBox Grid.Row="0" x:Name="App_Language_ComboBox" Margin="10,10,10,0" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.AppCurrentLanguageCode}" VerticalContentAlignment="Center"/>
+
+                            </Grid>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[AppWindow]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto"/>
                                 <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
 
-                            <Label Grid.Row="0" Content="{Binding Localization[Language]}"/>
+                            <controls:MairaSwitch Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" IsOn="{Binding Settings.AppTopmostWindowEnabled, Mode=TwoWay}" Title="{Binding Localization[TopmostWindow]}"/>
+                            <controls:MairaSwitch Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" IsOn="{Binding Settings.AppRememberWindowPositionAndSize, Mode=TwoWay}" Title="{Binding Localization[RememberWindowPositionAndSize]}"/>
+                            <controls:MairaSwitch Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" IsOn="{Binding Settings.AppStartWithWindows, Mode=TwoWay}" Title="{Binding Localization[StartWithWindows]}"/>
+                            <controls:MairaSwitch Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" IsOn="{Binding Settings.AppStartMinimized, Mode=TwoWay}" Title="{Binding Localization[StartMinimized]}"/>
+                            <controls:MairaSwitch Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" IsOn="{Binding Settings.AppMinimizeToSystemTray, Mode=TwoWay}" Title="{Binding Localization[MinimizeToSystemTray]}"/>
 
-                            <ComboBox Grid.Row="1" x:Name="App_Language_ComboBox" DisplayMemberPath="Value" SelectedValuePath="Key" SelectedValue="{Binding Settings.AppCurrentLanguageCode}" VerticalContentAlignment="Center"/>
+                            <controls:MairaKnob Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" VerticalAlignment="Center" Margin="10,0,10,33" Title="{Binding Localization[UIScale]}" Value="{Binding Settings.AppUIScale, Mode=TwoWay}" ValueString="{Binding Settings.AppUIScaleString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" DefaultValue="1"/>
 
                         </Grid>
 
-                    </Grid>
+                    </GroupBox>
 
-                    <controls:MairaSwitch Margin="0,10,0,10" IsOn="{Binding Settings.AppTopmostWindowEnabled, Mode=TwoWay}" Title="{Binding Localization[TopmostWindow]}"/>
-                    <controls:MairaSwitch Margin="0,10,0,10" IsOn="{Binding Settings.AppCheckForUpdates, Mode=TwoWay}" Title="{Binding Localization[CheckForUpdates]}"/>
-                    <controls:MairaSwitch Margin="0,10,0,10" IsOn="{Binding Settings.AppAutomaticallyDownloadUpdates, Mode=TwoWay}" Title="{Binding Localization[AutomaticallyDownloadUpdates]}"/>
+                    <GroupBox Header="{Binding Localization[CloudService]}" Margin="0,10,0,0">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaSwitch Grid.Column="0" Grid.ColumnSpan="2" IsOn="{Binding Settings.AppCheckForUpdates, Mode=TwoWay}" Title="{Binding Localization[CheckForUpdates]}" Margin="0,10,0,0"/>
+                            <controls:MairaButton Grid.Column="2" x:Name="App_CheckNow_MairaButton" Title="{Binding Localization[CheckNow]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_binoculars.png" Click="App_CheckNow_MairaButton_Click"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                </StackPanel>
+
+            </TabItem>
+
+            <TabItem x:Name="Contribute_TabItem" Header="{Binding Localization[Contribute]}">
+
+                <StackPanel Margin="10,10,10,20">
+
+                    <GroupBox Header="{Binding Localization[CodeContributions]}">
+
+                        <StackPanel Margin="0,10,0,10">
+
+                            <TextBlock TextWrapping="Wrap">
+                                
+                                <Run Text="{Binding Localization[CodeContributionsText], Mode=OneWay}" Foreground="White"/>
+                                <Hyperlink NavigateUri="https://github.com/mherbold/MarvinsAIRARefactored" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="{Binding Localization[GitHubRepository], Mode=OneWay}"/></Hyperlink>
+
+                            </TextBlock>
+
+                            <TextBlock HorizontalAlignment="Center" Margin="0,20,0,10">
+                                
+                                <Run Text="❤️❤️❤️" Foreground="Red"/>
+                                <Run Text="{Binding Localization[Contributors], Mode=OneWay}" FontWeight="Bold" Foreground="White"/>
+                                <Run Text="❤️❤️❤️" Foreground="Red"/>
+
+                            </TextBlock>
+
+                            <UniformGrid Columns="1" HorizontalAlignment="Center">
+
+                                <UniformGrid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="DeepSkyBlue" />
+                                    </Style>
+                                </UniformGrid.Resources>
+
+                                <TextBlock Text="Matthew Brittle"/>
+                                <TextBlock Text="Alan Le"/>
+
+                            </UniformGrid>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[TranslationContributions]}" Margin="0,10,0,0">
+
+                        <StackPanel Margin="0,10,0,10">
+
+                            <TextBlock TextWrapping="Wrap">
+                                
+                                <Run Text="{Binding Localization[TranslationContributionsText], Mode=OneWay}" Foreground="White"/>
+                                <Hyperlink NavigateUri="https://discord.com/channels/1353509415571165204/1385439382693216297" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="{Binding Localization[TranslationsDiscordChannel], Mode=OneWay}"/></Hyperlink>
+
+                            </TextBlock>
+
+                            <TextBlock HorizontalAlignment="Center" Margin="0,20,0,10">
+                                
+                                <Run Text="❤️❤️❤️" Foreground="Red"/>
+                                <Run Text="{Binding Localization[Contributors], Mode=OneWay}" FontWeight="Bold" Foreground="White"/>
+                                <Run Text="❤️❤️❤️" Foreground="Red"/>
+
+                            </TextBlock>
+
+                            <UniformGrid Columns="2">
+
+                                <UniformGrid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="DeepSkyBlue" />
+                                    </Style>
+                                </UniformGrid.Resources>
+
+                                <!--Jakub Trinkl-->
+                                <TextBlock Text="Jakub Trinkl - Czech - Čestina"/>
+                                <!--Vpolne-->
+                                <TextBlock Text="Stepan Kutyrev - Russian - Русский"/>
+                                <!--XKRamires-->
+                                <TextBlock Text="Raul Ramires - Portuguese (Brazil) - Português (Brazil)"/>
+                                <!--LAS-Zeppelin83-->
+                                <TextBlock Text="Michael Marcotte - French (Canada) - Français (Canada)"/>
+                                <!--Rene-->
+                                <TextBlock Text="Rene - German - Deutsch"/>
+                                <!--Rodas007-->
+                                <TextBlock Text="Rodas007 - Spanish - Español"/>
+
+                            </UniformGrid>
+
+                        </StackPanel>
+
+                    </GroupBox>
+
+                </StackPanel>
+
+            </TabItem>
+
+            <TabItem x:Name="Donate_TabItem" Header="{Binding Localization[Donate]}">
+
+                <StackPanel Margin="10,10,10,20">
+
+                    <GroupBox Header="{Binding Localization[Donations]}">
+
+                        <StackPanel Margin="0,10,0,10">
+
+                            <TextBlock TextWrapping="Wrap">
+                                
+                                <Run Text="{Binding Localization[DonationsText], Mode=OneWay}" Foreground="White"/>
+                                <Hyperlink NavigateUri="https://buymeacoffee.com/marvinherbold" RequestNavigate="Hyperlink_RequestNavigate"><Run Text="{Binding Localization[BuyMeACoffee], Mode=OneWay}"/></Hyperlink>
+
+                            </TextBlock>
+
+                            <TextBlock HorizontalAlignment="Center" Margin="0,20,0,10">
+                                
+                                <Run Text="❤️❤️❤️" Foreground="Red"/>
+                                <Run Text="{Binding Localization[SuperDonors], Mode=OneWay}" FontWeight="Bold" Foreground="White"/>
+                                <Run Text="❤️❤️❤️" Foreground="Red"/>
+
+                            </TextBlock>
+
+                            <UniformGrid Columns="3">
+
+                                <UniformGrid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="DeepSkyBlue" />
+                                    </Style>
+                                </UniformGrid.Resources>
+
+                                <TextBlock Text="@lucciano.netto"/>
+                                <TextBlock Text="Bruno Cerdeira Santos"/>
+                                <TextBlock Text="DIOGO XAVIER OLIVEIRA"/>
+                                <TextBlock Text="Herbert Heissenberger"/>
+                                <TextBlock Text="Robert JL Henry"/>
+                                <TextBlock Text="Ken Osborne"/>
+                                <TextBlock Text="Chad McNeese"/>
+                                <TextBlock Text="Marcos Martins de Souza"/>
+                                <TextBlock Text="Erin Andrusak"/>
+                                <TextBlock Text="Thiago G de O Morgado"/>
+                                <TextBlock Text="Matthew Davids"/>
+                                <TextBlock Text="Travis Boudreaux"/>
+
+                            </UniformGrid>
+
+                            <TextBlock HorizontalAlignment="Center" Margin="0,20,0,10">
+                                
+                                <Run Text="❤️❤️❤️" Foreground="Red"/>
+                                <Run Text="{Binding Localization[Donors], Mode=OneWay}" FontWeight="Bold" Foreground="White"/>
+                                <Run Text="❤️❤️❤️" Foreground="Red"/>
+
+                            </TextBlock>
+
+                            <UniformGrid Columns="3">
+
+                                <UniformGrid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="LimeGreen" />
+                                    </Style>
+                                </UniformGrid.Resources>
+
+                                <TextBlock Text="Ade"/>
+                                <TextBlock Text="Adrian G Rubio"/>
+                                <TextBlock Text="Ahmad El Baba"/>
+                                <TextBlock Text="Alan"/>
+                                <TextBlock Text="Alan King"/>
+                                <TextBlock Text="Alberto"/>
+                                <TextBlock Text="Alberto Rama"/>
+                                <TextBlock Text="Alexander Socher"/>
+                                <TextBlock Text="@alcir_lima_dp"/>
+                                <TextBlock Text="Andreas Mauchle"/>
+                                <TextBlock Text="Ari D Sherwood"/>
+                                <TextBlock Text="ARMracing"/>
+                                <TextBlock Text="AUSTIN ELLIOTT"/>
+                                <TextBlock Text="@azmath16"/>
+                                <TextBlock Text="Ba Anh Vu"/>
+                                <TextBlock Text="ben"/>
+                                <TextBlock Text="Ben Holmes"/>
+                                <TextBlock Text="Binesh Lad"/>
+                                <TextBlock Text="BorkulusRift"/>
+                                <TextBlock Text="Brendan Hobbart"/>
+                                <TextBlock Text="BZ"/>
+                                <TextBlock Text="Camron Frederick"/>
+                                <TextBlock Text="candido martinez"/>
+                                <TextBlock Text="Carlos Mancuso"/>
+                                <TextBlock Text="Chad Buchanan"/>
+                                <TextBlock Text="Chase"/>
+                                <TextBlock Text="choppy bristow"/>
+                                <TextBlock Text="Chris wilson"/>
+                                <TextBlock Text="Christian Elsinger"/>
+                                <TextBlock Text="Christian O"/>
+                                <TextBlock Text="Christian Scherf"/>
+                                <TextBlock Text="CJ Kent"/>
+                                <TextBlock Text="Cori Pandolfi"/>
+                                <TextBlock Text="Craig Miller"/>
+                                <TextBlock Text="Crispin Williamson"/>
+                                <TextBlock Text="CRISTIAN VILLENA SANCHEZ"/>
+                                <TextBlock Text="Dan"/>
+                                <TextBlock Text="Daniel Cohen"/>
+                                <TextBlock Text="Daniel König"/>
+                                <TextBlock Text="Daniel R"/>
+                                <TextBlock Text="Dave Cam"/>
+                                <TextBlock Text="Dave G"/>
+                                <TextBlock Text="David"/>
+                                <TextBlock Text="David Payne"/>
+                                <TextBlock Text="didier porte"/>
+                                <TextBlock Text="Dirk Ehrhardt"/>
+                                <TextBlock Text="EatisLee"/>
+                                <TextBlock Text="Elprimartin"/>
+                                <TextBlock Text="@eliassomo97"/>
+                                <TextBlock Text="@elimendozaaltamira"/>
+                                <TextBlock Text="Enrico castellano"/>
+                                <TextBlock Text="FABIO R QUEIROZ"/>
+                                <TextBlock Text="Flavio A Mendes"/>
+                                <TextBlock Text="Franck PELLOUX"/>
+                                <TextBlock Text="Frederick J Haag"/>
+                                <TextBlock Text="@fuelpodcast"/>
+                                <TextBlock Text="G. Balla"/>
+                                <TextBlock Text="@G83MIKE"/>
+                                <TextBlock Text="Gareth Bowen"/>
+                                <TextBlock Text="Geert Van Laere"/>
+                                <TextBlock Text="Gerrit van Bommel"/>
+                                <TextBlock Text="GingaNinjaRacing"/>
+                                <TextBlock Text="Glen D Blanchard DDS"/>
+                                <TextBlock Text="Grimaldi Jean"/>
+                                <TextBlock Text="Grimax Racing"/>
+                                <TextBlock Text="Greg Obrigavitch"/>
+                                <TextBlock Text="Greg Ogilvie"/>
+                                <TextBlock Text="GUIDOTTI"/>
+                                <TextBlock Text="Halan Williams"/>
+                                <TextBlock Text="hamilton smith"/>
+                                <TextBlock Text="Haralambos Babaletskos"/>
+                                <TextBlock Text="HG Vosmeijer"/>
+                                <TextBlock Text="Hugo"/>
+                                <TextBlock Text="illuminodie"/>
+                                <TextBlock Text="J van Zuijlekom"/>
+                                <TextBlock Text="Jai Cook"/>
+                                <TextBlock Text="Jakub Trinkl"/>
+                                <TextBlock Text="Janekeyu"/>
+                                <TextBlock Text="Jason"/>
+                                <TextBlock Text="Javier Montero Isusi"/>
+                                <TextBlock Text="Jeff Fritscher"/>
+                                <TextBlock Text="jeremy"/>
+                                <TextBlock Text="Jeroni Fajardo"/>
+                                <TextBlock Text="Jesse Moseley"/>
+                                <TextBlock Text="Joachim Osbeck"/>
+                                <TextBlock Text="JOAO BATISTA"/>
+                                <TextBlock Text="João Carriço"/>
+                                <TextBlock Text="Joe Pearson"/>
+                                <TextBlock Text="@joeyladouceur"/>
+                                <TextBlock Text="Johan Grankvist"/>
+                                <TextBlock Text="John Cherry"/>
+                                <TextBlock Text="John Ebersole"/>
+                                <TextBlock Text="John McCallion"/>
+                                <TextBlock Text="John Millet"/>
+                                <TextBlock Text="Jonathan E Marshall"/>
+                                <TextBlock Text="joy perez"/>
+                                <TextBlock Text="Juan Lu"/>
+                                <TextBlock Text="Julian"/>
+                                <TextBlock Text="Karl Thoroddsen"/>
+                                <TextBlock Text="Kevin Burke"/>
+                                <TextBlock Text="Kevin J Fanning"/>
+                                <TextBlock Text="klaas lageman"/>
+                                <TextBlock Text="Knosby"/>
+                                <TextBlock Text="Lufino"/>
+                                <TextBlock Text="Luka"/>
+                                <TextBlock Text="Maciej Tonderski"/>
+                                <TextBlock Text="Manhar G Dalal"/>
+                                <TextBlock Text="Marco"/>
+                                <TextBlock Text="marcus iglesias de souza oliveira"/>
+                                <TextBlock Text="Marin Marinov"/>
+                                <TextBlock Text="Martin Heidenbluth"/>
+                                <TextBlock Text="Mark Fleming"/>
+                                <TextBlock Text="Mark G"/>
+                                <TextBlock Text="Mark R McLewee"/>
+                                <TextBlock Text="Markus Kathan"/>
+                                <TextBlock Text="Marshall"/>
+                                <TextBlock Text="Massimo Martiglia"/>
+                                <TextBlock Text="Matteo Di Francesxo"/>
+                                <TextBlock Text="Matusz Attila"/>
+                                <TextBlock Text="Matt Swift"/>
+                                <TextBlock Text="Maxwell Giacomazzi"/>
+                                <TextBlock Text="M C Hastrich"/>
+                                <TextBlock Text="Michael Buckley"/>
+                                <TextBlock Text="Michael Gair"/>
+                                <TextBlock Text="Michael Othon"/>
+                                <TextBlock Text="Michie"/>
+                                <TextBlock Text="Miguel Angel Casado González"/>
+                                <TextBlock Text="Mike M"/>
+                                <TextBlock Text="Mikey Polard"/>
+                                <TextBlock Text="@millsdo"/>
+                                <TextBlock Text="Mitchell Bowen"/>
+                                <TextBlock Text="MR A M HALL"/>
+                                <TextBlock Text="Mr Kurt Nicholson"/>
+                                <TextBlock Text="Maksym Palazov"/>
+                                <TextBlock Text="Nash Milincic"/>
+                                <TextBlock Text="Nelson Rivera"/>
+                                <TextBlock Text="Nicholas Williams"/>
+                                <TextBlock Text="Noah Rusk"/>
+                                <TextBlock Text="@ nzkrems"/>
+                                <TextBlock Text="Ole"/>
+                                <TextBlock Text="olegs hanins"/>
+                                <TextBlock Text="Olly"/>
+                                <TextBlock Text="Omar Carlet"/>
+                                <TextBlock Text="Pan-Am Racing"/>
+                                <TextBlock Text="Panayiotis Papaioannou"/>
+                                <TextBlock Text="Paolo"/>
+                                <TextBlock Text="Patrick Park"/>
+                                <TextBlock Text="Patrick Rochadel"/>
+                                <TextBlock Text="Paul Mathie"/>
+                                <TextBlock Text="Peynado"/>
+                                <TextBlock Text="Philippe Jean"/>
+                                <TextBlock Text="Raphael"/>
+                                <TextBlock Text="Rene Vorwerk"/>
+                                <TextBlock Text="Rick"/>
+                                <TextBlock Text="Robert Gerke"/>
+                                <TextBlock Text="Robert Perry"/>
+                                <TextBlock Text="Robert Watson"/>
+                                <TextBlock Text="Rodrigo Ribeiro R S lima"/>
+                                <TextBlock Text="Rony Issak"/>
+                                <TextBlock Text="Rowly"/>
+                                <TextBlock Text="Rubén Ropero-Ruiz"/>
+                                <TextBlock Text="Ryan Bath"/>
+                                <TextBlock Text="Ryan Feltrin"/>
+                                <TextBlock Text="S.Schels"/>
+                                <TextBlock Text="Salvatore Palomba"/>
+                                <TextBlock Text="Sascha"/>
+                                <TextBlock Text="Sebastian"/>
+                                <TextBlock Text="SEBASTIAO FERREIRA"/>
+                                <TextBlock Text="Sean Symes"/>
+                                <TextBlock Text="Sergio Junior"/>
+                                <TextBlock Text="Sergio Macias"/>
+                                <TextBlock Text="Shane Cochran"/>
+                                <TextBlock Text="Shane Gleeson"/>
+                                <TextBlock Text="Shawn L Parrish"/>
+                                <TextBlock Text="@sidgeracing"/>
+                                <TextBlock Text="Simon A Todd"/>
+                                <TextBlock Text="Simon Racicot"/>
+                                <TextBlock Text="Stanislav Boldyryev"/>
+                                <TextBlock Text="Steve  T"/>
+                                <TextBlock Text="Steven Barker"/>
+                                <TextBlock Text="steven slater"/>
+                                <TextBlock Text="stuart h ware"/>
+                                <TextBlock Text="T"/>
+                                <TextBlock Text="Theodore J Tadeusiak"/>
+                                <TextBlock Text="Thomas M Crow"/>
+                                <TextBlock Text="Timothy Craig"/>
+                                <TextBlock Text="Timothy Moore"/>
+                                <TextBlock Text="Todd Hayne"/>
+                                <TextBlock Text="Tom Weston"/>
+                                <TextBlock Text="Tomáš Šulek"/>
+                                <TextBlock Text="Tony M"/>
+                                <TextBlock Text="Travis Rhoads"/>
+                                <TextBlock Text="Tripp Lanier"/>
+                                <TextBlock Text="Tyler Hagan"/>
+                                <TextBlock Text="V A Parnell Jr MD"/>
+                                <TextBlock Text="William Daily Jr"/>
+                                <TextBlock Text="xiaofan shi"/>
+                                <TextBlock Text="Yafar Abdala."/>
+                                <TextBlock Text="YAMINE TAIEB"/>
+                                <TextBlock Text="Yann LE DOUSSAL"/>
+                                <TextBlock Text="zdenek.kaska"/>
+                                <TextBlock Text="arcaias"/>
+                                <TextBlock Text="f1iq.bsky.social"/>
+
+                            </UniformGrid>
+
+                        </StackPanel>
+
+                    </GroupBox>
 
                 </StackPanel>
 
@@ -678,28 +1317,28 @@
 
             <TabItem x:Name="Debug_TabItem" Header="{Binding Localization[Debug]}">
 
-                <StackPanel Margin="10">
+                <StackPanel Margin="10,10,10,20">
 
-                    <GroupBox Header="Marvin's Test Variables" Margin="0,10,0,10">
+                    <GroupBox Header="Marvin's Test Variables" Margin="0,10,0,0">
 
                         <StackPanel>
 
-                            <Label x:Name="Debug_Label_1" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 1"/>
-                            <Label x:Name="Debug_Label_2" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 2"/>
-                            <Label x:Name="Debug_Label_3" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 3"/>
-                            <Label x:Name="Debug_Label_4" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 4"/>
-                            <Label x:Name="Debug_Label_5" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 5"/>
-                            <Label x:Name="Debug_Label_6" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 6"/>
-                            <Label x:Name="Debug_Label_7" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 7"/>
-                            <Label x:Name="Debug_Label_8" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 8"/>
-                            <Label x:Name="Debug_Label_9" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 9"/>
-                            <Label x:Name="Debug_Label_10" FontSize="37" FontFamily="Advanced LED Board-7" Padding="0" Content="Test 10"/>
+                            <Label x:Name="Debug_Label_1" FontSize="37" Padding="0" Content="Test 1"/>
+                            <Label x:Name="Debug_Label_2" FontSize="37" Padding="0" Content="Test 2"/>
+                            <Label x:Name="Debug_Label_3" FontSize="37" Padding="0" Content="Test 3"/>
+                            <Label x:Name="Debug_Label_4" FontSize="37" Padding="0" Content="Test 4"/>
+                            <Label x:Name="Debug_Label_5" FontSize="37" Padding="0" Content="Test 5"/>
+                            <Label x:Name="Debug_Label_6" FontSize="37" Padding="0" Content="Test 6"/>
+                            <Label x:Name="Debug_Label_7" FontSize="37" Padding="0" Content="Test 7"/>
+                            <Label x:Name="Debug_Label_8" FontSize="37" Padding="0" Content="Test 8"/>
+                            <Label x:Name="Debug_Label_9" FontSize="37" Padding="0" Content="Test 9"/>
+                            <Label x:Name="Debug_Label_10" FontSize="37" Padding="0" Content="Test 10"/>
 
                         </StackPanel>
 
                     </GroupBox>
 
-                    <GroupBox Header="Alan Le's Super Special Buttons" Margin="0,10,0,10">
+                    <GroupBox Header="Alan Le's Super Special Buttons" Margin="0,10,0,0">
 
                         <StackPanel Orientation="Horizontal">
 

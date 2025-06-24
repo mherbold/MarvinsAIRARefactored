@@ -9,6 +9,10 @@ public partial class UpdateContextSwitchesWindow : Window
 {
 	public UpdateContextSwitchesWindow( ContextSwitches contextSwitches )
 	{
+		var app = App.Instance!;
+
+		app.MainWindow.MakeWindowVisible();
+
 		InitializeComponent();
 
 		DataContext = contextSwitches;

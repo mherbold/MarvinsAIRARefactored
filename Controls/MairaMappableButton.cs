@@ -35,47 +35,41 @@ public class MairaMappableButton : MairaButton
 
 	private void MappableMairaButton_Label_PreviewMouseRightButtonDown( object sender, MouseButtonEventArgs e )
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		e.Handled = true;
+
+		if ( ContextSwitches != null )
 		{
-			e.Handled = true;
+			app.Logger.WriteLine( "[MairaMappableButton] Showing update context switches window" );
 
-			if ( ContextSwitches != null )
+			var updateContextSwitchesWindow = new UpdateContextSwitchesWindow( ContextSwitches )
 			{
-				app.Logger.WriteLine( "[MairaMappableButton] Showing update context switches window" );
+				Owner = app.MainWindow
+			};
 
-				var updateContextSwitchesWindow = new UpdateContextSwitchesWindow( ContextSwitches )
-				{
-					Owner = app.MainWindow
-				};
-
-				updateContextSwitchesWindow.ShowDialog();
-			}
+			updateContextSwitchesWindow.ShowDialog();
 		}
 	}
 
 	private void MappableMairaButton_Button_PreviewMouseRightButtonDown( object sender, MouseButtonEventArgs e )
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		e.Handled = true;
+
+		if ( ButtonMappings != null )
 		{
-			e.Handled = true;
+			app.Logger.WriteLine( "[MairaMappableButton] Showing update button mappings window" );
 
-			if ( ButtonMappings != null )
+			var updateButtonMappingsWindow = new UpdateButtonMappingsWindow( ButtonMappings )
 			{
-				app.Logger.WriteLine( "[MairaMappableButton] Showing update button mappings window" );
+				Owner = app.MainWindow
+			};
 
-				var updateButtonMappingsWindow = new UpdateButtonMappingsWindow( ButtonMappings )
-				{
-					Owner = app.MainWindow
-				};
+			updateButtonMappingsWindow.ShowDialog();
 
-				updateButtonMappingsWindow.ShowDialog();
-
-				UpdateImageSources();
-			}
+			UpdateImageSources();
 		}
 	}
 

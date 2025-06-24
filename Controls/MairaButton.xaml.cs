@@ -145,6 +145,8 @@ public partial class MairaButton : UserControl
 			Normal_Image.Height = 24;
 			Pressed_Image.Height = 24;
 			Disabled_Image.Height = 24;
+
+			ButtonIcon_Image.Height = 24;
 		}
 		else
 		{
@@ -155,6 +157,8 @@ public partial class MairaButton : UserControl
 			Normal_Image.Height = 48;
 			Pressed_Image.Height = 48;
 			Disabled_Image.Height = 48;
+
+			ButtonIcon_Image.Height = 48;
 		}
 	}
 

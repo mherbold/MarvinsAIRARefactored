@@ -43,111 +43,102 @@ public partial class Localization : INotifyPropertyChanged
 
 	public void LoadLanguage( string? languageCode = "default" )
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		app.Logger.WriteLine( $"[Localization] Loading language: {languageCode}" );
+
+		var languagesDirectory = Path.Combine( App.DocumentsFolder, "Languages" );
+
+		if ( !Directory.Exists( languagesDirectory ) )
 		{
-			app.Logger.WriteLine( $"[Localization] Loading language: {languageCode}" );
+			Directory.CreateDirectory( languagesDirectory );
+		}
 
-			var languagesDirectory = Path.Combine( App.DocumentsFolder, "Languages" );
+		var languageFile = ( languageCode == "default" ) ? "Resources.resx" : $"Resources.{languageCode}.resx";
 
-			if ( !Directory.Exists( languagesDirectory ) )
-			{
-				Directory.CreateDirectory( languagesDirectory );
-			}
+		var filePath = Path.Combine( languagesDirectory, languageFile );
 
-			var languageFile = ( languageCode == "default" ) ? "Resources.resx" : $"Resources.{languageCode}.resx";
+		if ( File.Exists( filePath ) )
+		{
+			app.Logger.WriteLine( $"[Localization] Language found in user documents folder" );
 
-			var filePath = Path.Combine( languagesDirectory, languageFile );
+			_translations = Misc.LoadResx( filePath );
+		}
+		else
+		{
+			filePath = Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "Resources", languageFile );
 
 			if ( File.Exists( filePath ) )
 			{
-				app.Logger.WriteLine( $"[Localization] Language found in user documents folder" );
+				app.Logger.WriteLine( $"[Localization] Language found in app folder" );
 
 				_translations = Misc.LoadResx( filePath );
 			}
 			else
 			{
-				filePath = Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "Resources", languageFile );
+				app.Logger.WriteLine( $"[Localization] Language not found" );
 
-				if ( File.Exists( filePath ) )
-				{
-					app.Logger.WriteLine( $"[Localization] Language found in app folder" );
-
-					_translations = Misc.LoadResx( filePath );
-				}
-				else
-				{
-					app.Logger.WriteLine( $"[Localization] Language not found" );
-
-					_translations = [];
-				}
+				_translations = [];
 			}
-
-			OnPropertyChanged( null );
 		}
+
+		OnPropertyChanged( null );
 	}
 
 	public void LoadDefaultLanguage()
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
-		{
-			app.Logger.WriteLine( "[Localization] LoadDefaultLanguage >>>" );
+		app.Logger.WriteLine( "[Localization] LoadDefaultLanguage >>>" );
 
-			LoadLanguage();
+		LoadLanguage();
 
-			_defaults = _translations;
+		_defaults = _translations;
 
-			OnPropertyChanged( null );
+		OnPropertyChanged( null );
 
-			app.Logger.WriteLine( "[Localization] <<< LoadDefaultLanguage" );
-		}
+		app.Logger.WriteLine( "[Localization] <<< LoadDefaultLanguage" );
 	}
 
 	public static void SetLanguageComboBoxItemsSource( ComboBox comboBox )
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		app.Logger.WriteLine( "[Localization] SetLanguageComboBoxItemsSource >>>" );
+
+		var languagesDirectory = Path.Combine( App.DocumentsFolder, "Languages" );
+
+		if ( !Directory.Exists( languagesDirectory ) )
 		{
-			app.Logger.WriteLine( "[Localization] SetLanguageComboBoxItemsSource >>>" );
+			Directory.CreateDirectory( languagesDirectory );
+		}
 
-			var languagesDirectory = Path.Combine( App.DocumentsFolder, "Languages" );
+		var comboBoxItemsDictionary = new Dictionary<string, string> { { "default", "English" } };
 
-			if ( !Directory.Exists( languagesDirectory ) )
+		var regex = MyRegex();
+
+		var files = Directory.GetFiles( languagesDirectory, "*.resx" );
+
+		foreach ( var file in files )
+		{
+			var fileName = Path.GetFileName( file );
+
+			var match = regex.Match( fileName );
+
+			if ( match.Success )
 			{
-				Directory.CreateDirectory( languagesDirectory );
-			}
+				var resxDictionary = Misc.LoadResx( file );
 
-			var comboBoxItemsDictionary = new Dictionary<string, string> { { "default", "English" } };
-
-			var regex = MyRegex();
-
-			var files = Directory.GetFiles( languagesDirectory, "*.resx" );
-
-			foreach ( var file in files )
-			{
-				var fileName = Path.GetFileName( file );
-
-				var match = regex.Match( fileName );
-
-				if ( match.Success )
+				if ( resxDictionary.TryGetValue( "ThisLanguage", out var value ) )
 				{
-					var resxDictionary = Misc.LoadResx( file );
-
-					if ( resxDictionary.TryGetValue( "ThisLanguage", out var value ) )
-					{
-						comboBoxItemsDictionary.Add( match.Groups[ "languageCode" ].Value, value );
-					}
+					comboBoxItemsDictionary.Add( match.Groups[ "languageCode" ].Value, value );
 				}
 			}
-
-			comboBox.ItemsSource = comboBoxItemsDictionary;
-
-			app.Logger.WriteLine( "[Localization] <<< SetLanguageComboBoxItemsSource" );
 		}
+
+		comboBox.ItemsSource = comboBoxItemsDictionary;
+
+		app.Logger.WriteLine( "[Localization] <<< SetLanguageComboBoxItemsSource" );
 	}
 
 	[GeneratedRegex( @"^Resources\.(?<languageCode>[a-z]{2}(-[A-Z]{2})?)\.resx$", RegexOptions.IgnoreCase, "en-US" )]

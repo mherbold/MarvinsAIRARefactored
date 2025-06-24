@@ -29,6 +29,10 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
 
+        <ScrollViewer.LayoutTransform>
+            <ScaleTransform x:Name="RootScaleTransform" ScaleX="{Binding Settings.AppUIScale}" ScaleY="{Binding Settings.AppUIScale}"/>
+        </ScrollViewer.LayoutTransform>
+
         <StackPanel x:Name="StackPanel" Margin="20">
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">

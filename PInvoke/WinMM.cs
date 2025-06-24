@@ -1,7 +1,7 @@
 ﻿
 using System.Runtime.InteropServices;
 
-namespace MarvinsAIRARefactored.WinApi;
+namespace MarvinsAIRARefactored.PInvoke;
 
 partial class WinMM
 {

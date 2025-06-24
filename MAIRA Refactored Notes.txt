@@ -1,0 +1,4 @@
+
+MAIRA Refactored Notes
+
+- Use https://catherinearnould.com/autres/resx/ for fast localization

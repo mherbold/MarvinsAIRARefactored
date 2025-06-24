@@ -2,12 +2,17 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Threading;
 
 using Cursors = System.Windows.Input.Cursors;
 using Image = System.Windows.Controls.Image;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
+using Pen = System.Windows.Media.Pen;
 using Point = System.Windows.Point;
 using UserControl = System.Windows.Controls.UserControl;
+
+using PInvoke;
 
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.DataContext;
@@ -17,15 +22,24 @@ namespace MarvinsAIRARefactored.Controls;
 
 public partial class MairaKnob : UserControl
 {
-	private Point _lastMousePosition;
-	private bool _isDragging = false;
+	private const int ResetHoldMilliseconds = 1000;
+
 	private readonly RotateTransform _knobRotation = new( 0, 0.5, 0.5 );
+
+	private bool _isDragging = false;
+	private POINT _draggingCenter;
+
+	private readonly DispatcherTimer _resetDispatcherTimer = new() { Interval = TimeSpan.FromMilliseconds( 20 ) };
+	private DateTime _resetStartTime;
+	private bool _isResetting;
 
 	public MairaKnob()
 	{
 		InitializeComponent();
 
 		KnobImage.RenderTransform = _knobRotation;
+
+		_resetDispatcherTimer.Tick += ResetDispatcherTimer_Tick;
 
 		UpdateLabelVisual();
 	}
@@ -126,28 +140,44 @@ public partial class MairaKnob : UserControl
 		set => SetValue( MinusButtonMappingsProperty, value );
 	}
 
+	public static readonly DependencyProperty ShowCurveProperty = DependencyProperty.Register( nameof( ShowCurve ), typeof( bool ), typeof( MairaKnob ), new PropertyMetadata( false, OnShowCurveChanged ) );
+
+	public bool ShowCurve
+	{
+		get => (bool) GetValue( ShowCurveProperty );
+		set => SetValue( ShowCurveProperty, value );
+	}
+
+	private static void OnShowCurveChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
+	{
+		var control = (MairaKnob) d;
+
+		control.UpdateKnobVisual( control.Value, control.Value );
+	}
+
+	public static readonly DependencyProperty DefaultValueProperty = DependencyProperty.Register( nameof( DefaultValue ), typeof( float? ), typeof( MairaKnob ), new PropertyMetadata( null ) );
+
+	public float? DefaultValue
+	{
+		get => (float?) GetValue( DefaultValueProperty );
+		set => SetValue( DefaultValueProperty, value );
+	}
+
 	#endregion
 
 	#region Event Handlers
 
 	private void KnobImage_Image_MouseDown( object sender, MouseButtonEventArgs e )
 	{
-		Mouse.Capture( (Image) sender );
-		Mouse.OverrideCursor = Cursors.SizeWE;
-
-		_lastMousePosition = e.GetPosition( null );
-
-		_isDragging = true;
-	}
-
-	private void KnobImage_Image_MouseUp( object sender, MouseButtonEventArgs e )
-	{
-		if ( _isDragging )
+		if ( e.LeftButton == MouseButtonState.Pressed )
 		{
-			Mouse.Capture( null );
-			Mouse.OverrideCursor = null;
+			_isDragging = true;
 
-			_isDragging = false;
+			User32.GetCursorPos( out _draggingCenter );
+
+			_ = User32.ShowCursor( false );
+
+			Mouse.Capture( (Image) sender );
 		}
 	}
 
@@ -155,13 +185,32 @@ public partial class MairaKnob : UserControl
 	{
 		if ( _isDragging )
 		{
-			var newPosition = e.GetPosition( null );
+			User32.GetCursorPos( out POINT current );
 
-			var delta = ( newPosition.X - _lastMousePosition.X ) + ( newPosition.Y - _lastMousePosition.Y );
+			var delta = ( current.x - _draggingCenter.x ) + ( current.y - _draggingCenter.y );
 
-			_lastMousePosition = newPosition;
+			if ( delta != 0 )
+			{
+				AdjustValue( delta * SmallValueChangeStep * 0.25f );
 
-			AdjustValue( (float) delta * SmallValueChangeStep );
+				User32.SetCursorPos( _draggingCenter.x, _draggingCenter.y );
+			}
+		}
+	}
+
+	private void KnobImage_Image_MouseUp( object sender, MouseButtonEventArgs e )
+	{
+		if ( _isDragging && ( e.ChangedButton == MouseButton.Left ) )
+		{
+			EndDrag();
+		}
+	}
+
+	private void KnobImage_Image_LostMouseCapture( object sender, MouseEventArgs e )
+	{
+		if ( _isDragging )
+		{
+			EndDrag();
 		}
 	}
 
@@ -170,25 +219,44 @@ public partial class MairaKnob : UserControl
 
 	private void Label_PreviewMouseRightButtonDown( object sender, MouseButtonEventArgs e )
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		e.Handled = true;
+
+		if ( ContextSwitches != null )
 		{
-			e.Handled = true;
+			app.Logger.WriteLine( "[MairaKnob] Showing update context switches window" );
 
-			if ( ContextSwitches != null )
+			var updateContextSwitchesWindow = new UpdateContextSwitchesWindow( ContextSwitches )
 			{
-				app.Logger.WriteLine( "[MairaKnob] Showing update context switches window" );
+				Owner = app.MainWindow
+			};
 
-				var updateContextSwitchesWindow = new UpdateContextSwitchesWindow( ContextSwitches )
-				{
-					Owner = app.MainWindow
-				};
-
-				updateContextSwitchesWindow.ShowDialog();
-			}
+			updateContextSwitchesWindow.ShowDialog();
 		}
 	}
+
+	private void Value_Label_PreviewMouseRightButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		if ( ( Keyboard.Modifiers != ModifierKeys.None ) || ( DefaultValue == null ) )
+		{
+			return;
+		}
+
+		e.Handled = true;
+
+		_resetStartTime = DateTime.Now;
+		_isResetting = true;
+
+		_resetDispatcherTimer.Start();
+
+		Mouse.OverrideCursor = Cursors.None;
+
+		CursorCountdownOverlay.Start();
+	}
+
+	private void Value_Label_PreviewMouseRightButtonUp( object sender, MouseButtonEventArgs e ) => CancelReset();
+	private void Value_Label_MouseLeave( object sender, MouseEventArgs e ) => CancelReset();
 
 	#endregion
 
@@ -202,6 +270,14 @@ public partial class MairaKnob : UserControl
 		Value = newValue;
 
 		ValueChangedCallback?.Invoke( newValue );
+	}
+	private void EndDrag()
+	{
+		_isDragging = false;
+
+		_ = User32.ShowCursor( true );
+
+		Mouse.Capture( null );
 	}
 
 	private void UpdateLabelVisual()
@@ -221,6 +297,104 @@ public partial class MairaKnob : UserControl
 		float delta = newValue - oldValue;
 
 		_knobRotation.Angle += delta * RotationMultiplier * 50f;
+
+		if ( ShowCurve )
+		{
+			var imageWidth = (int) CurveImage.Width;
+			var imageHeight = (int) CurveImage.Height;
+
+			var power = Misc.CurveToPower( Value );
+
+			var dv = new DrawingVisual();
+
+			using ( var dc = dv.RenderOpen() )
+			{
+				var darkGray = new SolidColorBrush( System.Windows.Media.Color.FromRgb( 48, 48, 48 ) );
+
+				dc.DrawRectangle( darkGray, null, new Rect( 0, 0, imageWidth, imageHeight ) );
+
+				var penGrid = new Pen( new SolidColorBrush( System.Windows.Media.Color.FromRgb( 0, 0, 0 ) ), 1 );
+
+				for ( var x = imageWidth / 4; x < imageWidth; x += imageWidth / 4 )
+				{
+					dc.DrawLine( penGrid, new Point( x, 0 ), new Point( x, imageHeight ) );
+				}
+
+				for ( var y = imageWidth / 4; y < imageHeight; y += imageHeight / 4 )
+				{
+					dc.DrawLine( penGrid, new Point( 0, y ), new Point( imageWidth, y ) );
+				}
+
+				var geometry = new StreamGeometry();
+
+				using ( var ctx = geometry.Open() )
+				{
+					for ( var x = 0; x < imageWidth; x++ )
+					{
+						float xf = x / (float) ( imageWidth - 1 );
+						float yf = MathF.Pow( xf, power );
+
+						int y = imageHeight - 1 - (int) ( yf * ( imageHeight - 1 ) );
+
+						if ( x == 0 )
+						{
+							ctx.BeginFigure( new Point( x, y ), false, false );
+						}
+						else
+						{
+							ctx.LineTo( new Point( x, y ), true, false );
+						}
+					}
+				}
+
+				dc.DrawGeometry( null, new Pen( System.Windows.Media.Brushes.White, 1.5f ), geometry );
+			}
+
+			var renderTargetBitmap = new RenderTargetBitmap( imageWidth, imageHeight, 96, 96, PixelFormats.Pbgra32 );
+
+			renderTargetBitmap.Render( dv );
+
+			CurveImage.Source = renderTargetBitmap;
+			CurveImage.Visibility = Visibility.Visible;
+		}
+		else
+		{
+			CurveImage.Visibility = Visibility.Collapsed;
+		}
+	}
+
+	private void ResetDispatcherTimer_Tick( object? sender, EventArgs e )
+	{
+		if ( !_isResetting )
+		{
+			return;
+		}
+
+		var elapsed = ( DateTime.Now - _resetStartTime ).TotalMilliseconds;
+		var progress = 1 - Math.Min( 1, elapsed / ResetHoldMilliseconds );
+
+		CursorCountdownOverlay.UpdateProgress( progress );
+
+		if ( elapsed >= ResetHoldMilliseconds )
+		{
+			if ( DefaultValue != null )
+			{
+				Value = (float) DefaultValue;
+			}
+
+			CancelReset();
+		}
+	}
+
+	private void CancelReset()
+	{
+		_isResetting = false;
+
+		_resetDispatcherTimer.Stop();
+
+		CursorCountdownOverlay.Stop();
+
+		Mouse.OverrideCursor = null;
 	}
 
 	#endregion

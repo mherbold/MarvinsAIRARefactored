@@ -1,0 +1,792 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Algorithm" xml:space="preserve">
+    <value>Алгоритм</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="App" xml:space="preserve">
+    <value>Настройки</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="DetailBoostBias" xml:space="preserve">
+    <value>Смещение (Detail Boost Bias)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Debug" xml:space="preserve">
+    <value>Отладка</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="DetailBoost" xml:space="preserve">
+    <value>Усиление деталей</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FadeForceFeedback" xml:space="preserve">
+    <value>Уменьшать усилие при входе/выходе из машины</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Friction" xml:space="preserve">
+    <value>Трение (friction)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Graph" xml:space="preserve">
+    <value>График</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="HeaderData" xml:space="preserve">
+    <value>Header данные</value>
+    <comment>Simulator</comment>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Язык</value>
+    <comment>App</comment>
+  </data>
+  <data name="DetailBooster" xml:space="preserve">
+    <value>Усиление деталей</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DeltaLimiter" xml:space="preserve">
+    <value>Уменьшение деталей (delta limit)</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="MaxForce" xml:space="preserve">
+    <value>Максимальная сила</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Native60Hz" xml:space="preserve">
+    <value>Нативные 60гц</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="Native360Hz" xml:space="preserve">
+    <value>Нативные 360гц</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="NoFFBDevicesFound" xml:space="preserve">
+    <value>[Устройство с обратной связью не найдено]</value>
+    <comment>Steering device list</comment>
+  </data>
+  <data name="OFF" xml:space="preserve">
+    <value>ВЫКЛ</value>
+    <comment>Generic</comment>
+  </data>
+  <data name="ParkedStrength" xml:space="preserve">
+    <value>Сила на парковке</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>ВКЛ</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="RacingWheel" xml:space="preserve">
+    <value>Руль</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="SteeringDevice" xml:space="preserve">
+    <value>Устройство ввода</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Сброс</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SessionInformation" xml:space="preserve">
+    <value>Информация о сессии</value>
+    <comment>Simulator</comment>
+  </data>
+  <data name="Simulator" xml:space="preserve">
+    <value>Симулятор</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="SimulatorNotRunning" xml:space="preserve">
+    <value>iRacing не запущен</value>
+    <comment>Generic</comment>
+  </data>
+  <data name="SoftLockStrength" xml:space="preserve">
+    <value>Ограничение soft lock</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="TelemetryData" xml:space="preserve">
+    <value>Данные телеметрии</value>
+    <comment>Simulator</comment>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Тест</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ThisLanguage" xml:space="preserve">
+    <value>Русский</value>
+    <comment>App language list</comment>
+  </data>
+  <data name="TopmostWindow" xml:space="preserve">
+    <value>Поверх всех окон</value>
+    <comment>App</comment>
+  </data>
+  <data name="TorqueUnits" xml:space="preserve">
+    <value> Нм</value>
+    <comment>Abbreviation for Newton-meters</comment>
+  </data>
+  <data name="DetailBoosterOn60Hz" xml:space="preserve">
+    <value>Усиление деталей (на 60гц)</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="AdminBoxx" xml:space="preserve">
+    <value>AdminBoxx</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="ConnectToAdminBoxx" xml:space="preserve">
+    <value>Подключиться к AdminBoxx</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="UpdateButtonMappings" xml:space="preserve">
+    <value>Обновить назначения клавиш</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="PressTheRecordButton" xml:space="preserve">
+    <value>[Нажмите кнопку "запись"]</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>Кнопка</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>Клик</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Hold" xml:space="preserve">
+    <value>Удерживать</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>Клавиатура</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="WaitingForInput" xml:space="preserve">
+    <value>[Ожидается ввод]</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="DeltaLimit" xml:space="preserve">
+    <value>Уменьшение деталей(delta limit)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="DeltaLimitUnits" xml:space="preserve">
+    <value> Нм/с</value>
+    <comment>Abbreviation for Newton-meters per millisecond</comment>
+  </data>
+  <data name="DeltaLimiterOn60Hz" xml:space="preserve">
+    <value>Уменьшение деталей (на 60гц)</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="ZeAlanLeTwist" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="CompressionRateUnits" xml:space="preserve">
+    <value>%/Нм</value>
+    <comment>Abbreviation for percent per Newton-meters</comment>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+    <comment>Abbreviation for percent</comment>
+  </data>
+  <data name="CompressionRate" xml:space="preserve">
+    <value>Степень сжатия</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Device" xml:space="preserve">
+    <value>Устройство</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="OverallStrength" xml:space="preserve">
+    <value>Общая сила</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="AutoMargin" xml:space="preserve">
+    <value>Погрешность для автонастройки</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Auto" xml:space="preserve">
+    <value>Авто</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Сброс</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CurrentForce" xml:space="preserve">
+    <value>Текущая сила</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PeakForce" xml:space="preserve">
+    <value>Максимальная сила</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="AutoForce" xml:space="preserve">
+    <value>Авто сила</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="OtherFeatures" xml:space="preserve">
+    <value>Иное</value>
+    <comment>Racing wheel, Pedals</comment>
+  </data>
+  <data name="Switches" xml:space="preserve">
+    <value>Switches</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CrashProtection" xml:space="preserve">
+    <value>Защита от аварий</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GForceUnits" xml:space="preserve">
+    <value> g</value>
+    <comment>Abbreviation for G-Force</comment>
+  </data>
+  <data name="GForce" xml:space="preserve">
+    <value>Ускорение</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Длительность</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ForceReduction" xml:space="preserve">
+    <value>Уменьшение усилия</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SecondsUnits" xml:space="preserve">
+    <value> сек</value>
+    <comment>Abbreviation for seconds (time)</comment>
+  </data>
+  <data name="ShockVelocityUnits" xml:space="preserve">
+    <value> м/с</value>
+    <comment>Abbreviation for meters per second</comment>
+  </data>
+  <data name="CurbProtection" xml:space="preserve">
+    <value>Защита от поребриков</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ShockVelocity" xml:space="preserve">
+    <value>Скорость удара</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Pedals" xml:space="preserve">
+    <value>Педали</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="PedalsP1000" xml:space="preserve">
+    <value>Педали Simagic P1000 </value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="PedalsP2000" xml:space="preserve">
+    <value>Педали Simagic P2000</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="PedalsNone" xml:space="preserve">
+    <value>[Не найдено совместимых педалей Simagic]</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="Clutch" xml:space="preserve">
+    <value>Сцепление</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Brake" xml:space="preserve">
+    <value>Тормоз</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Throttle" xml:space="preserve">
+    <value>Газ</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="PedalEffects" xml:space="preserve">
+    <value>Эффекты педалей</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>Сила</value>
+    <comment>Racing wheel, Pedals</comment>
+  </data>
+  <data name="HertzUnits" xml:space="preserve">
+    <value> Гц</value>
+    <comment>Abbreviation for Hertz</comment>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Частота</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Amplitude" xml:space="preserve">
+    <value>Амплитуда</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Минимум</value>
+    <comment>Racing wheel, Pedals, Graph</comment>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Максимум</value>
+    <comment>Racing wheel, Pedals, Graph</comment>
+  </data>
+  <data name="Curve" xml:space="preserve">
+    <value>Кривая</value>
+    <comment>Racing wheel, Pedals</comment>
+  </data>
+  <data name="GearChange" xml:space="preserve">
+    <value>Переключение передачи</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="ClutchSlip" xml:space="preserve">
+    <value>Пробуксовка сцепления (clutch slip)</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="SteeringEffects" xml:space="preserve">
+    <value>Эффекты руля</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="WheelLock" xml:space="preserve">
+    <value>Блокировка колёс</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Пробуксовка колёс</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="RPM" xml:space="preserve">
+    <value>Обороты (RPM)</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Выкл</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="PerWheelbase" xml:space="preserve">
+    <value>Для базы</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerCar" xml:space="preserve">
+    <value>для машины</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerTrack" xml:space="preserve">
+    <value>для трека</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerTrackConfiguration" xml:space="preserve">
+    <value>для конфигурации трека</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerWetDry" xml:space="preserve">
+    <value>для влажной/сухой</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="Wet" xml:space="preserve">
+    <value>Влажный</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Dry" xml:space="preserve">
+    <value>Сухой</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>По-умолчанию</value>
+    <comment>Status</comment>
+  </data>
+  <data name="SaveThisSetting" xml:space="preserve">
+    <value>Сохранить эту настройку</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>Доступна новая версия!</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="DownloadQuestion" xml:space="preserve">
+    <value>Хотите скачать сейчас?</value>
+    <comment>Cloud service</comment>
+  </data>
+  <data name="RunInstaller" xml:space="preserve">
+    <value>Запустить установщик?</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="RunInstallerQuestion" xml:space="preserve">
+    <value>Запустить установщик прямо сейчас?</value>
+    <comment>Cloud service</comment>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Проверять обновления</value>
+    <comment>App</comment>
+  </data>
+  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
+    <value>Автоматически загружать обновления</value>
+    <comment>App</comment>
+  </data>
+  <data name="ConnectOnStartup" xml:space="preserve">
+    <value>Connect to AdminBoxx on App Startup</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>Яркость</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Громкость</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="NoAudioDevicesFound" xml:space="preserve">
+    <value>[Аудио устройства не найдены]</value>
+    <comment>Audio device list</comment>
+  </data>
+  <data name="Connection" xml:space="preserve">
+    <value>Соединение</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Display</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Audio" xml:space="preserve">
+    <value>Audio</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="BlackFlagR" xml:space="preserve">
+    <value>Black Flag R</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="BlackFlagG" xml:space="preserve">
+    <value>Black Flag G</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="BlackFlagB" xml:space="preserve">
+    <value>Black Flag B</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="DeltaLimiterBias" xml:space="preserve">
+    <value>Смещение (Delta Limiter Bias)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Вывод</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="WheelLFE" xml:space="preserve">
+    <value>Вибрация руля (LFE)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="LFERecordingDevice" xml:space="preserve">
+    <value>Устройство записи LFE</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>Среднее</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="Variance" xml:space="preserve">
+    <value>Разброс</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="StandardDeviation" xml:space="preserve">
+    <value>Стандартное отклонение</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="InputTorque60Hz" xml:space="preserve">
+    <value>60 Гц Torque вход</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="InputTorque" xml:space="preserve">
+    <value>Torque вход</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="OutputTorque" xml:space="preserve">
+    <value>Torque выход</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="TimerJitter" xml:space="preserve">
+    <value>Timer Jitter</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="InputLFE" xml:space="preserve">
+    <value>LFE вход</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="ABSEngaged" xml:space="preserve">
+    <value>Работа АБС </value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>[Выкл]</value>
+    <comment>LFE device list</comment>
+  </data>
+  <data name="RememberWindowPositionAndSize" xml:space="preserve">
+    <value>Запоминать положение и размер окна</value>
+    <comment>App</comment>
+  </data>
+  <data name="FadeWithBrake" xml:space="preserve">
+    <value>Уменьшать с нажатием тормоза</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="StartingRPM" xml:space="preserve">
+    <value>Начальные обороты</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="VibrateInTopGear" xml:space="preserve">
+    <value>Вибрировать на максимальной передаче</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="FadeWithThrottle" xml:space="preserve">
+    <value>Уменьшать с нажатием газа</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="StartingPoint" xml:space="preserve">
+    <value>Начальная точка</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="EndingPoint" xml:space="preserve">
+    <value>Конечная точка</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="GearChangeShiftIntoGear" xml:space="preserve">
+    <value>Переключение передачи - включение передачи</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
+    <value>Переключение передачи - включение нейтральной</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="AlwaysEnableFFB" xml:space="preserve">
+    <value>Выдавать FFB даже оно включено в iRacing</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ClutchPedalHaptics" xml:space="preserve">
+    <value>Хаптика сцепления</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="BrakePedalHaptics" xml:space="preserve">
+    <value>Хаптика тормоза</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="ThrottlePedalHaptics" xml:space="preserve">
+    <value>Хаптика газа</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="NoiseDamper" xml:space="preserve">
+    <value>Снижение шумов</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="AppWindow" xml:space="preserve">
+    <value>Окно приложения</value>
+    <comment>App</comment>
+  </data>
+  <data name="UIScale" xml:space="preserve">
+    <value>Масштаб интерфейса</value>
+    <comment>App</comment>
+  </data>
+  <data name="CloudService" xml:space="preserve">
+    <value>Облачный сервис</value>
+    <comment>App</comment>
+  </data>
+  <data name="CheckNow" xml:space="preserve">
+    <value>Проверить сейчас</value>
+    <comment>App</comment>
+  </data>
+  <data name="CheckingForUpdate" xml:space="preserve">
+    <value>Проверка обновлений...</value>
+    <comment>Status</comment>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>Загрузка обновления...</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Contribute" xml:space="preserve">
+    <value>Поучаствовать</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="BuyMeACoffee" xml:space="preserve">
+    <value>Купить мне кофе!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DonationsText" xml:space="preserve">
+    <value>Пожертвования абсолютно добровольные.Я никогда не буду брать плату за использование MAIRA. Но всё же они очень приятны и хорошо мотивируют продолжать работать над приложением. Большое спасибо всем, кто уже сделал пожертвование! Это можно сделать по ссылке:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donations" xml:space="preserve">
+    <value>Пожертвование</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donors" xml:space="preserve">
+    <value>Доноры</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="SuperDonors" xml:space="preserve">
+    <value>Супер Доноры</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Пожертвовать</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="CodeContributions" xml:space="preserve">
+    <value>Программисты</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributions" xml:space="preserve">
+    <value>Переводчики</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="CodeContributionsText" xml:space="preserve">
+    <value>Если вы разрабатываете на C# и хотите помочь с кодом, то вот ссылка на GitHub репозиторий:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributionsText" xml:space="preserve">
+    <value>Если вы знаете несколько языков, то можете помочь с переводом приложения на все языки мира! Больше информации как это сделать в Дискорде:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationsDiscordChannel" xml:space="preserve">
+    <value>Канал Дискорда про переводы</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="GitHubRepository" xml:space="preserve">
+    <value>Репозиторий GitHub</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>Участники</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>Показать окно</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="ExitApp" xml:space="preserve">
+    <value>Выйти из приложения</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+    <value>Сворачивать в трей вместо панели задач</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Запускать свёрнутым</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartWithWindows" xml:space="preserve">
+    <value>Запускать со стартом Windows</value>
+    <comment>App</comment>
+  </data>
+</root>

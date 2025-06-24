@@ -9,10 +9,16 @@ public partial class NewVersionAvailableWindow : Window
 
 	public NewVersionAvailableWindow( string currentVersion, string changeLog )
 	{
+		var app = App.Instance!;
+
+		app.MainWindow.MakeWindowVisible();
+
 		InitializeComponent();
 
+		var lines = changeLog.Split( [ "\r\n", "\n", "\r" ], StringSplitOptions.None );
+
 		CurrentVersion_Label.Content = currentVersion;
-		ChangeLog_TextBlock.Text = changeLog.Trim();
+		ChangeLog_TextBlock.Text = string.Join( Environment.NewLine, lines.Where( line => !string.IsNullOrWhiteSpace( line ) ).Select( line => $"• {line}" ) );
 	}
 
 	private void Cancel_MairaButton_Click( object sender, RoutedEventArgs e )

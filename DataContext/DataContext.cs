@@ -23,24 +23,24 @@ public class DataContext : INotifyPropertyChanged
 	public Settings Settings
 	{
 		get => _settings;
-		
+
 		set
 		{
 			_settings = value;
 
 			OnPropertyChanged();
 
-			var app = App.Instance;
+			var app = App.Instance!;
 
-			app?.Logger.WriteLine( "[DataContext] Settings object changed" );
+			app.Logger.WriteLine( "[DataContext] Settings object changed" );
 		}
 	}
 
 	public DataContext()
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		app?.Logger.WriteLine( "[DataContext] Constructor >>>" );
+		app.Logger.WriteLine( "[DataContext] Constructor >>>" );
 
 		Instance = this;
 
@@ -50,6 +50,6 @@ public class DataContext : INotifyPropertyChanged
 
 		_settings = new Settings();
 
-		app?.Logger.WriteLine( "[DataContext] <<< Constructor" );
+		app.Logger.WriteLine( "[DataContext] <<< Constructor" );
 	}
 }
