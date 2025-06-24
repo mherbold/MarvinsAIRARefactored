@@ -20,45 +20,42 @@ public class Context : IComparable<Context?>
 
 	public Context( ContextSwitches contextSwitches )
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		if ( contextSwitches.PerWheelbase )
 		{
-			if ( contextSwitches.PerWheelbase )
-			{
-				WheelbaseGuid = DataContext.Instance.Settings.RacingWheelDeviceGuid;
-			}
+			WheelbaseGuid = DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid;
+		}
 
-			if ( contextSwitches.PerCar )
+		if ( contextSwitches.PerCar )
+		{
+			if ( ( app.Simulator.IsConnected ) && ( app.Simulator.CarScreenName != string.Empty ) )
 			{
-				if ( ( app.Simulator.IsConnected ) && ( app.Simulator.CarScreenName != string.Empty ) )
-				{
-					CarName = app.Simulator.CarScreenName;
-				}
+				CarName = app.Simulator.CarScreenName;
 			}
+		}
 
-			if ( contextSwitches.PerTrack )
+		if ( contextSwitches.PerTrack )
+		{
+			if ( ( app.Simulator.IsConnected ) && ( app.Simulator.TrackDisplayName != string.Empty ) )
 			{
-				if ( ( app.Simulator.IsConnected ) && ( app.Simulator.TrackDisplayName != string.Empty ) )
-				{
-					TrackName = app.Simulator.TrackDisplayName;
-				}
+				TrackName = app.Simulator.TrackDisplayName;
 			}
+		}
 
-			if ( contextSwitches.PerTrackConfiguration )
+		if ( contextSwitches.PerTrackConfiguration )
+		{
+			if ( ( app.Simulator.IsConnected ) && ( app.Simulator.TrackConfigName != string.Empty ) )
 			{
-				if ( ( app.Simulator.IsConnected ) && ( app.Simulator.TrackConfigName != string.Empty ) )
-				{
-					TrackConfigurationName = app.Simulator.TrackConfigName;
-				}
+				TrackConfigurationName = app.Simulator.TrackConfigName;
 			}
+		}
 
-			if ( contextSwitches.PerWetDry )
+		if ( contextSwitches.PerWetDry )
+		{
+			if ( app.Simulator.IsConnected )
 			{
-				if ( app.Simulator.IsConnected )
-				{
-					WetDryName = app.Simulator.WeatherDeclaredWet ? Context.WetContextName : Context.DryContextName;
-				}
+				WetDryName = app.Simulator.WeatherDeclaredWet ? Context.WetContextName : Context.DryContextName;
 			}
 		}
 	}

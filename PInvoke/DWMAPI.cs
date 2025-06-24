@@ -1,7 +1,7 @@
 ﻿
 using System.Runtime.InteropServices;
 
-namespace MarvinsAIRARefactored.WinApi;
+namespace MarvinsAIRARefactored.PInvoke;
 
 public partial class DWMAPI
 {

@@ -36,12 +36,7 @@ public class TelemetryDataViewer : Control
 
 	protected override void OnRender( DrawingContext drawingContext )
 	{
-		var app = App.Instance;
-
-		if ( app == null )
-		{
-			return;
-		}
+		var app = App.Instance!;
 
 		var irsdk = app.Simulator.IRSDK;
 

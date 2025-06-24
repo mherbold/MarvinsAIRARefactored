@@ -1,10 +1,7 @@
 ﻿
 using System.Diagnostics;
 
-using Image = System.Windows.Controls.Image;
-
-using MarvinsAIRARefactored.WinApi;
-using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.PInvoke;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -21,18 +18,17 @@ public class MultimediaTimer
 		{
 			if ( value != _suspend )
 			{
-
-				var app = App.Instance;
+				var app = App.Instance!;
 
 				if ( value )
 				{
-					app?.Logger.WriteLine( "[MultimediaTimer] Requesting suspend of timer" );
+					app.Logger.WriteLine( "[MultimediaTimer] Requesting suspend of timer" );
 
 					_suspendCounter = App.TimerTicksPerSecond * 4;
 				}
 				else
 				{
-					app?.Logger.WriteLine( "[MultimediaTimer] Requesting resumption of timer" );
+					app.Logger.WriteLine( "[MultimediaTimer] Requesting resumption of timer" );
 
 					ResumeTimerNow();
 				}
@@ -54,72 +50,51 @@ public class MultimediaTimer
 
 	private bool _running = true;
 
-	private readonly Graph _jitterGraph;
-	private readonly Statistics _jitterStatistics = new( 500 );
-
-	public MultimediaTimer( Image jitterGraphImage )
-	{
-		var app = App.Instance;
-
-		app?.Logger.WriteLine( "[MultimediaTimer] Constructor >>>" );
-
-		_jitterGraph = new Graph( jitterGraphImage );
-
-		app?.Logger.WriteLine( "[MultimediaTimer] <<< Constructor" );
-	}
-
 	public void Initialize()
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
-		{
-			app.Logger.WriteLine( "[MultimediaTimer] Initialize >>>" );
+		app.Logger.WriteLine( "[MultimediaTimer] Initialize >>>" );
 
-			_stopwatch.Start();
+		app.Graph.SetLayerColors( Graph.LayerIndex.TimerJitter, 0.25f, 1f, 0.25f, 1f, 0.25f, 0.25f );
 
-			_workerThread.Start();
+		_stopwatch.Start();
 
-			app.Logger.WriteLine( "[MultimediaTimer] <<< Initialize" );
-		}
+		_workerThread.Start();
+
+		app.Logger.WriteLine( "[MultimediaTimer] <<< Initialize" );
 	}
 
 	public void Shutdown()
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
-		{
-			app.Logger.WriteLine( "[MultimediaTimer] Shutdown >>>" );
+		app.Logger.WriteLine( "[MultimediaTimer] Shutdown >>>" );
 
-			_running = false;
+		_running = false;
 
-			_autoResetEvent.Set();
+		_autoResetEvent.Set();
 
-			app.Logger.WriteLine( "[MultimediaTimer] <<< Shutdown" );
-		}
+		app.Logger.WriteLine( "[MultimediaTimer] <<< Shutdown" );
 	}
 
 	private void ResumeTimerNow()
 	{
 		if ( _multimediaTimerId == 0 )
 		{
-			var app = App.Instance;
+			var app = App.Instance!;
 
-			if ( app != null )
-			{
-				app.Logger.WriteLine( "[MultimediaTimer] ResumeTimerNow >>>" );
+			app.Logger.WriteLine( "[MultimediaTimer] ResumeTimerNow >>>" );
 
-				app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeBeginPeriod" );
+			app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeBeginPeriod" );
 
-				_ = WinMM.TimeBeginPeriod( 1 );
+			_ = WinMM.TimeBeginPeriod( 1 );
 
-				app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeSetEvent" );
+			app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeSetEvent" );
 
-				_multimediaTimerId = WinMM.TimeSetEvent( 2, 0, _autoResetEvent.SafeWaitHandle.DangerousGetHandle(), ref _multimediaTimerId, (uint) ( WinMM.fuEvent.TIME_PERIODIC | WinMM.fuEvent.TIME_CALLBACK_EVENT_SET ) );
+			_multimediaTimerId = WinMM.TimeSetEvent( 2, 0, _autoResetEvent.SafeWaitHandle.DangerousGetHandle(), ref _multimediaTimerId, (uint) ( WinMM.fuEvent.TIME_PERIODIC | WinMM.fuEvent.TIME_CALLBACK_EVENT_SET ) );
 
-				app.Logger.WriteLine( "[MultimediaTimer] <<< ResumeTimerNow" );
-			}
+			app.Logger.WriteLine( "[MultimediaTimer] <<< ResumeTimerNow" );
 		}
 	}
 
@@ -127,76 +102,67 @@ public class MultimediaTimer
 	{
 		if ( _multimediaTimerId != 0 )
 		{
-			var app = App.Instance;
+			var app = App.Instance!;
 
-			if ( app != null )
-			{
-				app.Logger.WriteLine( "[MultimediaTimer] SuspendTimerNow >>>" );
+			app.Logger.WriteLine( "[MultimediaTimer] SuspendTimerNow >>>" );
 
-				app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeEndPeriod" );
+			app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeEndPeriod" );
 
-				_ = WinMM.TimeEndPeriod( 1 );
+			_ = WinMM.TimeEndPeriod( 1 );
 
-				app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeKillEvent" );
+			app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeKillEvent" );
 
-				_ = WinMM.TimeKillEvent( _multimediaTimerId );
+			_ = WinMM.TimeKillEvent( _multimediaTimerId );
 
-				_multimediaTimerId = 0;
+			_multimediaTimerId = 0;
 
-				app.Logger.WriteLine( "[MultimediaTimer] <<< SuspendTimerNow" );
-			}
+			app.Logger.WriteLine( "[MultimediaTimer] <<< SuspendTimerNow" );
 		}
 	}
 
 	private static void WorkerThread()
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		while ( app.MultimediaTimer._running )
 		{
-			while ( app.MultimediaTimer._running )
+			app.MultimediaTimer._autoResetEvent.WaitOne();
+
+			var multimediaTimer = app.MultimediaTimer;
+
+			var totalMilliseconds = multimediaTimer._stopwatch.Elapsed.TotalMilliseconds;
+
+			if ( multimediaTimer._lastTotalMilliseconds == 0 )
 			{
-				app.MultimediaTimer._autoResetEvent.WaitOne();
+				multimediaTimer._lastTotalMilliseconds = totalMilliseconds;
+			}
+			else
+			{
+				var deltaMilliseconds = (float) ( totalMilliseconds - multimediaTimer._lastTotalMilliseconds );
 
-				var multimediaTimer = app.MultimediaTimer;
-
-				var totalMilliseconds = multimediaTimer._stopwatch.Elapsed.TotalMilliseconds;
-
-				if ( multimediaTimer._lastTotalMilliseconds == 0 )
+				if ( deltaMilliseconds > 1f )
 				{
 					multimediaTimer._lastTotalMilliseconds = totalMilliseconds;
-				}
-				else
-				{
-					var deltaMilliseconds = (float) ( totalMilliseconds - multimediaTimer._lastTotalMilliseconds );
 
-					if ( deltaMilliseconds > 1f )
-					{
-						multimediaTimer._lastTotalMilliseconds = totalMilliseconds;
+					// update racing wheel force feedback
 
-						// update racing wheel force feedback
+					app.RacingWheel.Update( deltaMilliseconds );
 
-						app.RacingWheel.Update( deltaMilliseconds );
+					// update pedals graph
 
-						// update jitter statistics and graph
+					app.Pedals.UpdateGraph();
 
-						if ( app.MainWindow.GraphsTabItemIsVisible )
-						{
-							var jitterMilliseconds = deltaMilliseconds - 2f;
+					// update jitter statistics and graph
 
-							multimediaTimer._jitterStatistics.Update( jitterMilliseconds );
+					var jitterMilliseconds = deltaMilliseconds - 2f;
 
-							var y = Math.Clamp( jitterMilliseconds / 2f, -1f, 1f );
+					var y = Math.Clamp( jitterMilliseconds / 2f, -1f, 1f );
 
-							var absY = MathF.Abs( y );
+					app.Graph.UpdateLayer( Graph.LayerIndex.TimerJitter, jitterMilliseconds, y );
 
-							var colorRed = (uint) ( absY * 255 );
-							var colorGreen = (uint) ( ( 1f - absY ) * 255 );
+					// update the graph
 
-							multimediaTimer._jitterGraph.DrawGradientLine( y, colorRed, colorGreen, 0 );
-							multimediaTimer._jitterGraph.Advance();
-						}
-					}
+					app.Graph.Update();
 				}
 			}
 		}
@@ -215,14 +181,6 @@ public class MultimediaTimer
 					SuspendTimerNow();
 				}
 			}
-		}
-
-		if ( app.MainWindow.GraphsTabItemIsVisible )
-		{
-			_jitterGraph.UpdateImage();
-
-			app.MainWindow.Graphs_MultimediaTimerJitter_MinMaxAvg.Content = $"{_jitterStatistics.MinimumValue,5:F2} {_jitterStatistics.MaximumValue,5:F2} {_jitterStatistics.AverageValue,5:F2}";
-			app.MainWindow.Graphs_MultimediaTimerJitter_VarStdDev.Content = $"{_jitterStatistics.Variance,5:F2} {_jitterStatistics.StandardDeviation,5:F2}";
 		}
 	}
 }

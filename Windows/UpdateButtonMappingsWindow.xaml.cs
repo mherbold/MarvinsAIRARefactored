@@ -16,6 +16,10 @@ public partial class UpdateButtonMappingsWindow : Window
 	{
 		WindowIsOpen = true;
 
+		var app = App.Instance!;
+
+		app.MainWindow.MakeWindowVisible();
+
 		InitializeComponent();
 
 		_buttonMappings = buttonMappings;
@@ -63,12 +67,9 @@ public partial class UpdateButtonMappingsWindow : Window
 			}
 		}
 
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
-		{
-			app.SettingsFile.QueueForSerialization = true;
-		}
+		app.SettingsFile.QueueForSerialization = true;
 
 		WindowIsOpen = false;
 	}

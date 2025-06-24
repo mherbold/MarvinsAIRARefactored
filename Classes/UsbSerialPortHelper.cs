@@ -7,50 +7,53 @@ namespace MarvinsAIRARefactored.Classes;
 
 public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 {
+	public event EventHandler<string>? DataReceived = null;
+	public event EventHandler? PortClosed = null;
+
 	private readonly string _vid = vid.ToUpper();
 	private readonly string _pid = pid.ToUpper();
 
 	private SerialPort? _serialPort = null;
+	private CancellationTokenSource? _cancellationTokenSource = null;
 
-	public event EventHandler<string>? DataReceived = null;
+	private StringBuilder _dataBuffer = new();
+
+	private readonly Lock _lock = new();
 
 	public string? FindPortName()
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		using var searcher = new ManagementObjectSearcher( "SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'" );
+
+		foreach ( var device in searcher.Get() )
 		{
-			using var searcher = new ManagementObjectSearcher( "SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'" );
+			var name = device[ "Name" ]?.ToString();
+			var deviceId = device[ "PNPDeviceID" ]?.ToString();
 
-			foreach ( var device in searcher.Get() )
+			if ( !string.IsNullOrEmpty( name ) && !string.IsNullOrEmpty( deviceId ) )
 			{
-				var name = device[ "Name" ]?.ToString();
-				var deviceId = device[ "PNPDeviceID" ]?.ToString();
-
-				if ( !string.IsNullOrEmpty( name ) && !string.IsNullOrEmpty( deviceId ) )
+				if ( deviceId.Contains( $"VID_{_vid}", StringComparison.OrdinalIgnoreCase ) && deviceId.Contains( $"PID_{_pid}", StringComparison.OrdinalIgnoreCase ) )
 				{
-					if ( deviceId.Contains( $"VID_{_vid}", StringComparison.OrdinalIgnoreCase ) && deviceId.Contains( $"PID_{_pid}", StringComparison.OrdinalIgnoreCase ) )
+					if ( !deviceId.Contains( "MI_00", StringComparison.OrdinalIgnoreCase ) )
 					{
-						if ( !deviceId.Contains( "MI_00", StringComparison.OrdinalIgnoreCase ) )
+						var start = name.IndexOf( "(COM" );
+						var end = name.IndexOf( ')', start );
+
+						if ( ( start >= 0 ) && ( end >= 0 ) )
 						{
-							var start = name.IndexOf( "(COM" );
-							var end = name.IndexOf( ')', start );
+							var portName = name.Substring( start + 1, end - start - 1 );
 
-							if ( ( start >= 0 ) && ( end >= 0 ) )
-							{
-								var portName = name.Substring( start + 1, end - start - 1 );
+							app.Logger.WriteLine( $"[UsbSerialPortHelper] Device found on port {portName}" );
 
-								app.Logger.WriteLine( $"[AdminBoxx] AdminBoxx found on port {portName}" );
-
-								return portName;
-							}
+							return portName;
 						}
 					}
 				}
 			}
-
-			app.Logger.WriteLine( "[AdminBoxx] AdminBoxx not found" );
 		}
+
+		app.Logger.WriteLine( "[UsbSerialPortHelper] Device not found" );
 
 		return null;
 	}
@@ -59,12 +62,12 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 	{
 		var serialPortOpened = false;
 
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		app.Logger.WriteLine( "[UsbSerialPortHelper] Open >>>" );
+
+		using ( _lock.EnterScope() )
 		{
-			app.Logger.WriteLine( "[AdminBoxx] Open >>>" );
-
 			var portName = FindPortName();
 
 			if ( portName != null )
@@ -80,61 +83,41 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 				_serialPort.DataReceived += OnDataReceived;
 
 				_serialPort.Open();
+				_serialPort.DiscardInBuffer();
+
+				_cancellationTokenSource = new();
+
+				_ = Task.Run( () => MonitorPort( _cancellationTokenSource.Token ) );
 
 				serialPortOpened = true;
 			}
-
-			app.Logger.WriteLine( "[AdminBoxx] <<< Open" );
 		}
+
+		app.Logger.WriteLine( "[UsbSerialPortHelper] <<< Open" );
 
 		return serialPortOpened;
-	}
-
-	public void WriteLine( string data )
-	{
-		if ( _serialPort != null && _serialPort.IsOpen )
-		{
-			var app = App.Instance;
-
-			app?.Logger.WriteLine( $"[AdminBoxx] Sending \"{data}\"" );
-
-			_serialPort.WriteLine( data );
-		}
-	}
-
-	private void OnDataReceived( object sender, SerialDataReceivedEventArgs e )
-	{
-		try
-		{
-			if ( _serialPort != null )
-			{
-				var data = _serialPort.ReadLine();
-
-				var app = App.Instance;
-
-				app?.Logger.WriteLine( "[AdminBoxx] Received \"{data}\"" );
-
-				DataReceived?.Invoke( this, data );
-			}
-		}
-		catch ( Exception )
-		{
-		}
 	}
 
 	public void Close()
 	{
 		if ( _serialPort != null )
 		{
-			var app = App.Instance;
+			var app = App.Instance!;
 
-			app?.Logger.WriteLine( "[AdminBoxx] Closing serial port" );
+			app.Logger.WriteLine( "[UsbSerialPortHelper] Closing serial port" );
 
-			_serialPort.DataReceived -= OnDataReceived;
-
-			if ( _serialPort.IsOpen )
+			using ( _lock.EnterScope() )
 			{
-				_serialPort.Close();
+				_serialPort.DataReceived -= OnDataReceived;
+
+				if ( _serialPort.IsOpen )
+				{
+					_serialPort.Close();
+				}
+
+				_serialPort.Dispose();
+
+				_serialPort = null;
 			}
 		}
 	}
@@ -144,7 +127,71 @@ public class UsbSerialPortHelper( string vid, string pid ) : IDisposable
 		GC.SuppressFinalize( this );
 
 		Close();
+	}
 
-		_serialPort?.Dispose();
+	public void Write( byte[] data )
+	{
+		using ( _lock.EnterScope() )
+		{
+			if ( _serialPort != null && _serialPort.IsOpen )
+			{
+				_serialPort.Write( data, 0, data.Length );
+			}
+		}
+	}
+
+	public void WriteLine( string data )
+	{
+		using ( _lock.EnterScope() )
+		{
+			if ( _serialPort != null && _serialPort.IsOpen )
+			{
+				_serialPort.WriteLine( data );
+			}
+		}
+	}
+
+	private void OnDataReceived( object sender, SerialDataReceivedEventArgs e )
+	{
+		try
+		{
+			if ( _serialPort != null )
+			{
+				var incoming = _serialPort.ReadExisting();
+
+				_dataBuffer.Append( incoming );
+
+				var newlineIndex = 0;
+
+				while ( ( newlineIndex = _dataBuffer.ToString().IndexOf( '\n' ) ) >= 0 )
+				{
+					var data = _dataBuffer.ToString( 0, newlineIndex ).TrimEnd( '\r' );
+
+					_dataBuffer.Remove( 0, newlineIndex + 1 );
+
+					DataReceived?.Invoke( this, data );
+				}
+			}
+		}
+		catch ( Exception )
+		{
+		}
+	}
+	private async Task MonitorPort( CancellationToken token )
+	{
+		while ( !token.IsCancellationRequested )
+		{
+			await Task.Delay( 1000, token );
+
+			using ( _lock.EnterScope() )
+			{
+				if ( ( _serialPort == null ) || !_serialPort.IsOpen )
+				{
+					Close();
+					PortClosed?.Invoke( this, EventArgs.Empty );
+					break;
+				}
+			}
+		}
 	}
 }

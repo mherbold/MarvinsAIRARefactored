@@ -8,7 +8,7 @@
         xmlns:components="clr-namespace:MarvinsAIRARefactored.Components"
         xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
         mc:Ignorable="d"
-        Title="{Binding DataContext.Instance.Localization[RunInstaller]}"
+        Title="{Binding Localization[RunInstaller]}"
         Icon="/artwork/white_icon.ico"
         Width="800"
         Height="Auto"
@@ -18,7 +18,7 @@
         SizeToContent="Height">
 
     <Window.DataContext>
-        <datacontext:ContextSwitches/>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}"/>
     </Window.DataContext>
 
     <Window.Background>
@@ -27,9 +27,13 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
 
+        <ScrollViewer.LayoutTransform>
+            <ScaleTransform x:Name="RootScaleTransform" ScaleX="{Binding Settings.AppUIScale}" ScaleY="{Binding Settings.AppUIScale}"/>
+        </ScrollViewer.LayoutTransform>
+
         <StackPanel Margin="20">
 
-            <Label Content="{Binding DataContext.Instance.Localization[RunInstallerQuestion]}" HorizontalAlignment="Center"/>
+            <Label Content="{Binding Localization[RunInstallerQuestion]}" HorizontalAlignment="Center"/>
 
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
 

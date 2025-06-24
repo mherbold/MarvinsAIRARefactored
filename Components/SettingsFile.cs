@@ -13,7 +13,7 @@ public class SettingsFile
 	private bool _pauseSerialization = false;
 	public bool PauseSerialization
 	{
-		private get => _pauseSerialization;
+		get => _pauseSerialization;
 
 		set
 		{
@@ -21,15 +21,15 @@ public class SettingsFile
 			{
 				_pauseSerialization = value;
 
-				var app = App.Instance;
+				var app = App.Instance!;
 
 				if ( value )
 				{
-					app?.Logger.WriteLine( "[SettingsFile] Pausing serialization" );
+					app.Logger.WriteLine( "[SettingsFile] Pausing serialization" );
 				}
 				else
 				{
-					app?.Logger.WriteLine( "[SettingsFile] Un-pausing serialization" );
+					app.Logger.WriteLine( "[SettingsFile] Un-pausing serialization" );
 				}
 			}
 		}
@@ -56,25 +56,22 @@ public class SettingsFile
 
 	public void Initialize()
 	{
-		var app = App.Instance;
+		var app = App.Instance!;
 
-		if ( app != null )
+		app.Logger.WriteLine( "[SettingsFile] Initialize >>>" );
+
+		PauseSerialization = true;
+
+		var settings = (Settings?) Serializer.Load( SettingsFilePath, typeof( Settings ) );
+
+		if ( settings != null )
 		{
-			app.Logger.WriteLine( "[SettingsFile] Initialize >>>" );
-
-			PauseSerialization = true;
-
-			var settings = (Settings?) Serializer.Load( SettingsFilePath, typeof( Settings ) );
-
-			if ( settings != null )
-			{
-				DataContext.DataContext.Instance.Settings = settings;
-			}
-
-			PauseSerialization = false;
-
-			app.Logger.WriteLine( "[SettingsFile] <<< Initialize" );
+			DataContext.DataContext.Instance.Settings = settings;
 		}
+
+		PauseSerialization = false;
+
+		app.Logger.WriteLine( "[SettingsFile] <<< Initialize" );
 	}
 
 	public void Tick( App app )

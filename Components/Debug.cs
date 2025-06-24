@@ -20,11 +20,24 @@ public class Debug
 
 	public class FFBSample
 	{
-		public int time;
-		public float magnitude;
+		public float deltaMilliseconds;
+		public float steeringWheelTorque60Hz;
+		public float steeringWheelTorque500Hz;
+		public float inputLFEMagnitude;
+		public float outputTorque;
+		public float simulatorSteeringWheelAngle;
+		public float directInputWheelPosition;
+		public float directInputWheelVelocity;
+		public float velocityX;
+		public float velocityY;
+		public float gear;
+		public float clutch;
+		public float brake;
+		public float throttle;
+		public float lapDistPct;
 	}
 
-	private readonly FFBSample[] _ffbSamples = new FFBSample[ 100000 ];
+	private readonly FFBSample[] _ffbSamples = new FFBSample[ 300000 ];
 
 	private int _ffbSampleIndex;
 
@@ -47,14 +60,34 @@ public class Debug
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void AddFFBSample( int time, float magnitude )
+	public void AddFFBSample( float deltaMilliseconds, float steeringWheelTorque60Hz, float steeringWheelTorque500Hz, float inputLFEMagnitude, float outputTorque )
 	{
+		var app = App.Instance!;
+
 		if ( _ffbSampleIndex < _ffbSamples.Length )
 		{
-			_ffbSamples[ _ffbSampleIndex++ ] = new FFBSample() { time = time, magnitude = magnitude };
+			_ffbSamples[ _ffbSampleIndex++ ] = new FFBSample()
+			{
+				deltaMilliseconds = deltaMilliseconds,
+				steeringWheelTorque60Hz = steeringWheelTorque60Hz,
+				steeringWheelTorque500Hz = steeringWheelTorque500Hz,
+				inputLFEMagnitude = inputLFEMagnitude,
+				outputTorque = outputTorque,
+				simulatorSteeringWheelAngle = app.Simulator.SteeringWheelAngle,
+				directInputWheelPosition = app.DirectInput.ForceFeedbackWheelPosition,
+				directInputWheelVelocity = app.DirectInput.ForceFeedbackWheelVelocity,
+				velocityX = app.Simulator.VelocityX,
+				velocityY = app.Simulator.VelocityY,
+				gear = app.Simulator.Gear,
+				clutch = app.Simulator.Clutch,
+				brake = app.Simulator.Brake,
+				throttle = app.Simulator.Throttle,
+				lapDistPct = app.Simulator.LapDistPct
+			};
 		}
 	}
 
+	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	public void ResetFFBSamples()
 	{
 		_ffbSampleIndex = 0;
@@ -62,15 +95,15 @@ public class Debug
 
 	public void DumpFFBSamplesToCSVFile()
 	{
-		var filePath = Path.Combine( App.DocumentsFolder, "360HzSamples.csv" );
+		var filePath = Path.Combine( App.DocumentsFolder, "DataDump.csv" );
 
 		using var writer = new StreamWriter( filePath, false, Encoding.UTF8 );
 
-		writer.WriteLine( "Time,Magnitude" );
+		writer.WriteLine( "DeltaMilliseconds,60HzInput,500HzInput,500HzLFEInput,500HzOutput,SimWheelAngle,DIWheelPosition,DIWheelVelocity,CarVelocityX,CarVelocityY,Gear,Clutch,Brake,Throttle,LapDistPct" );
 
 		for ( var i = 0; i < _ffbSampleIndex; i++ )
 		{
-			writer.WriteLine( $"{_ffbSamples[ i ].time},{_ffbSamples[ i ].magnitude}" );
+			writer.WriteLine( $"{_ffbSamples[ i ].deltaMilliseconds:F6},{_ffbSamples[ i ].steeringWheelTorque60Hz:F4},{_ffbSamples[ i ].steeringWheelTorque500Hz:F4},{_ffbSamples[ i ].inputLFEMagnitude:F4},{_ffbSamples[ i ].outputTorque:F4},{_ffbSamples[ i ].simulatorSteeringWheelAngle:F4},{_ffbSamples[ i ].directInputWheelPosition:F4},{_ffbSamples[ i ].directInputWheelVelocity:F8},{_ffbSamples[ i ].velocityX:F4},{_ffbSamples[ i ].velocityY:F4},{_ffbSamples[ i ].gear},{_ffbSamples[ i ].clutch:F4},{_ffbSamples[ i ].brake:F4},{_ffbSamples[ i ].throttle:F4},{_ffbSamples[ i ].lapDistPct:F6}" );
 		}
 	}
 }
