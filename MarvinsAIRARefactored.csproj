@@ -129,7 +129,7 @@
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy &quot;$(ProjectDir)Resources\Resources*.resx&quot; &quot;C:\Users\marvi\OneDrive\Documents\MarvinsAIRA Refactored\Languages\&quot; /Y /I" />
+    <Exec Command="xcopy &quot;$(ProjectDir)Resources\Resources*.resx&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\Languages\&quot; /Y /I" />
   </Target>
 
 </Project>
