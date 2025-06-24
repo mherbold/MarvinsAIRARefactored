@@ -65,8 +65,7 @@ public class RacingWheel
 	private GraphBase _algorithmPreviewGraphBase = new();
 
     private float _lastTorque = -1;
-  
-    public float Matts_OutputValue { get; private set; } = 0f;
+   
     public void Initialize()
 	{ 
 		var app = App.Instance!;
@@ -224,22 +223,23 @@ public class RacingWheel
 				break;
 			}
 
-			case Algorithm.TimeBias360hz:
+            case Algorithm.TimeBias360hz:
+				{
+					outputTorque = steeringWheelTorque60Hz / settings.RacingWheelMaxForce;
 
-                outputTorque = steeringWheelTorque60Hz / settings.RacingWheelMaxForce;
+					if (_lastTorque == -1)//if flag
+					{
+						_lastTorque = outputTorque;
+					}
 
-				if (_lastTorque == -1)//if flag
-                {
-                    _lastTorque = outputTorque;
-                }
+					float deltaTorque = Math.Abs(outputTorque - _lastTorque);
+					float bias = Math.Clamp(deltaTorque / settings.RacingWheel_Matts_DeltaForce, settings.RacingWheel_Matts_MinValue, 1);
+					outputTorque = outputTorque * bias + (_lastTorque * (1 - bias));
 
-                float deltaTorque = Math.Abs(outputTorque - _lastTorque);
-                float bias = Math.Clamp(deltaTorque / settings.RacingWheel_Matts_DeltaForce, settings.RacingWheel_Matts_MinValue, 1);
-                outputTorque = outputTorque * bias + (_lastTorque * (1 - bias));
-
-                _lastTorque = outputTorque;
-                break;
-		}
+					_lastTorque = outputTorque;
+					break;
+				}
+        }
 
 		return outputTorque;
 	}
