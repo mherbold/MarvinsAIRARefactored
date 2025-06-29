@@ -25,7 +25,7 @@ public partial class App : Application
 	public SettingsFile SettingsFile { get; private set; }
 	public Graph Graph { get; private set; }
 	public Pedals Pedals { get; private set; }
-	public SteeringEffects Effects { get; private set; }
+
 	public AdminBoxx AdminBoxx { get; private set; }
 	public Debug Debug { get; private set; }
 	public new MainWindow MainWindow { get; private set; }
@@ -89,7 +89,6 @@ public partial class App : Application
 		Simulator = new();
 		RecordingManager = new();
 
-		Effects = new();
 		_timer.Elapsed += OnTimer;
 	}
 

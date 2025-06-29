@@ -14,6 +14,7 @@ namespace MarvinsAIRARefactored.Components
 
         private static Mutex _mutex;
 
+        [STAThread]
         public static byte Check()
         {
 
