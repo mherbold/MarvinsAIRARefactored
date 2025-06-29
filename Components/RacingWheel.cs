@@ -538,6 +538,8 @@ public class RacingWheel
 
 			var outputTorque = ProcessAlgorithm( ref _runningSteeringWheelTorque500Hz, _lastSteeringWheelTorque500Hz, steeringWheelTorque60Hz, steeringWheelTorque500Hz, curbProtectionLerpFactor );
 
+
+			app.Effects.ProcessEffects(ref outputTorque);
 			// save last 500Hz steering wheel torque
 
 			_lastSteeringWheelTorque500Hz = steeringWheelTorque500Hz;

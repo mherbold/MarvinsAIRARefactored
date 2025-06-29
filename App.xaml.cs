@@ -36,6 +36,7 @@ public partial class App : Application
 	public MultimediaTimer MultimediaTimer { get; private set; }
 	public Simulator Simulator { get; private set; }
 	public RecordingManager RecordingManager { get; private set; }
+	public SteeringEffects Effects { get; private set; }
 
 	public const int TimerPeriodInMilliseconds = 17;
 	public const int TimerTicksPerSecond = 1000 / TimerPeriodInMilliseconds;
@@ -73,6 +74,7 @@ public partial class App : Application
 		Simulator = new();
 		RecordingManager = new();
 
+		Effects = new SteeringEffects();
 		_timer.Elapsed += OnTimer;
 	}
 
