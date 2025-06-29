@@ -25,6 +25,7 @@ public partial class App : Application
 	public SettingsFile SettingsFile { get; private set; }
 	public Graph Graph { get; private set; }
 	public Pedals Pedals { get; private set; }
+	public SteeringEffects Effects { get; private set; }
 	public AdminBoxx AdminBoxx { get; private set; }
 	public Debug Debug { get; private set; }
 	public new MainWindow MainWindow { get; private set; }
@@ -54,9 +55,24 @@ public partial class App : Application
 
 	App()
 	{
-		Instance = this;
+        Instance = this;
 
-		Logger = new();
+        Logger = new();
+
+        switch (AppInstances.Check())
+		{
+			case 1:
+                System.Windows.Forms.MessageBox.Show("Another instance is already running.");
+				this.Shutdown();
+                return;
+
+			case 2:
+                System.Windows.Forms.MessageBox.Show("Original MAIRA is running. Please close it and then try opening refactored again.");
+				this.Shutdown();
+                return;
+		}
+
+		
 		CloudService = new();
 		SettingsFile = new();
 		Graph = new();
@@ -73,6 +89,7 @@ public partial class App : Application
 		Simulator = new();
 		RecordingManager = new();
 
+		Effects = new();
 		_timer.Elapsed += OnTimer;
 	}
 
@@ -176,11 +193,13 @@ public partial class App : Application
 
 		_autoResetEvent.Set();
 
-		Simulator.Shutdown();
-		MultimediaTimer.Shutdown();
-		AdminBoxx.Shutdown();
-		LFE.Shutdown();
-		DirectInput.Shutdown();
+
+		Simulator?.Shutdown();
+		MultimediaTimer?.Shutdown();
+		AdminBoxx?.Shutdown();
+		LFE?.Shutdown();
+		DirectInput?.Shutdown();
+
 		Logger.Shutdown();
 
 		Logger.WriteLine( "[App] <<< App_Exit" );
