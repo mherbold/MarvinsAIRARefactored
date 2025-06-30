@@ -63,9 +63,7 @@ public class RacingWheel
 	private float _elapsedMilliseconds = 0f;
 
 	private readonly GraphBase _algorithmPreviewGraphBase = new();
-
-    private float _lastTorque = -1;
-   
+  
     public void Initialize()
 	{ 
 		var app = App.Instance!;
@@ -106,7 +104,9 @@ public class RacingWheel
 		app.Logger.WriteLine( "[RacingWheel] <<< SetMairaComboBoxItemsSource" );
 	}
 
-	[MethodImpl( MethodImplOptions.AggressiveInlining )]
+    private static float _lastTorque = -1; //used for matts alg
+
+    [MethodImpl( MethodImplOptions.AggressiveInlining )]
 	private static float ProcessAlgorithm( ref float runningSteeringWheelTorque500Hz, float lastSteeringWheelTorque500Hz, float steeringWheelTorque60Hz, float steeringWheelTorque500Hz, float curbProtectionLerpFactor )
 	{
 		// shortcut to settings
