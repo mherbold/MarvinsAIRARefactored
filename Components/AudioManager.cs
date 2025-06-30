@@ -50,15 +50,13 @@ namespace MarvinsAIRARefactored.Components
 			_fileSystemWatcher.Renamed += OnSoundFileChanged;
 
 			string[] soundKeys = [
-				"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "cancel", "enter",
-					"double_file", "single_file",
-					"plus_one_lap", "minus_one_lap",
-					"throw_caution_flag", "advance_to_next_session",
-					"chat_toggle", "chat_enabled", "chat_disabled",
-					"black_flag_drive_through", "black_flag_stop_and_go", "clear_black_flag", "clear_all_black_flags",
-					"wave_by_driver", "end_of_line_driver", "remove_driver", "disqualify_driver",
-					"live", "pause", "play", "slow_motion", "fast_forward", "rewind", "next_incident", "previous_incident",
-					"volume"
+				"beep",
+				"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+				"restart_is_double_file", "restart_is_single_file",
+				"caution_extended_by_one_lap", "caution_shortened_by_one_lap",
+				"we_are_under_caution",
+				"black_flag_driver_number", "clear_driver_number", "wave_by_driver_number", "end_of_line_driver_number", "disqualify_driver_number",
+				"connected_to_adminboxx_app", "connected_to_iracing_simulator",
 			];
 
 			foreach ( var soundKey in soundKeys )
@@ -98,7 +96,7 @@ namespace MarvinsAIRARefactored.Components
 		{
 			if ( File.Exists( path ) )
 			{
-				string? key = Path.GetFileNameWithoutExtension( path )?.ToLower();
+				var key = Path.GetFileNameWithoutExtension( path )?.ToLower();
 
 				if ( key != null )
 				{
@@ -141,6 +139,21 @@ namespace MarvinsAIRARefactored.Components
 					player.Stop();
 				}
 			}
+		}
+
+		public bool SomethingIsPlaying()
+		{
+			foreach ( var keyValuePair in _soundPlayerCache )
+			{
+				var soundPlayer = keyValuePair.Value;
+
+				if ( soundPlayer.IsPlaying() )
+				{
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		public void Dispose()

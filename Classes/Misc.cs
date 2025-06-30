@@ -7,6 +7,8 @@ using System.Reflection;
 using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
+using System.Windows;
+using System.Windows.Media;
 
 using IWshRuntimeLibrary;
 
@@ -113,9 +115,9 @@ public class Misc
 	{
 		var dictionary = new Dictionary<string, string>();
 
-		var app = App.Instance!;
+		var app = App.Instance;
 
-		app.Logger.WriteLine( $"[Misc] LoadResx >>> ({filePath})" );
+		app?.Logger.WriteLine( $"[Misc] LoadResx >>> ({filePath})" );
 
 		if ( System.IO.File.Exists( filePath ) )
 		{
@@ -151,7 +153,7 @@ public class Misc
 			}
 		}
 
-		app.Logger.WriteLine( "[Misc] <<< LoadResx" );
+		app?.Logger.WriteLine( "[Misc] <<< LoadResx" );
 
 		return dictionary;
 	}
@@ -214,6 +216,26 @@ public class Misc
 			{
 				System.IO.File.Delete( shortcutPath );
 			}
+		}
+	}
+
+	public static void ApplyToTaggedElements( DependencyObject root, string tagName, Action<FrameworkElement> action )
+	{
+		if ( ( root == null ) || ( action == null ) || ( tagName == null ) )
+		{
+			return;
+		}
+
+		for ( var childIndex = 0; childIndex < VisualTreeHelper.GetChildrenCount( root ); childIndex++ )
+		{
+			var child = VisualTreeHelper.GetChild( root, childIndex );
+
+			if ( ( child is FrameworkElement frameworkElement ) && ( frameworkElement.Tag?.ToString() == tagName ) )
+			{
+				action( frameworkElement );
+			}
+
+			ApplyToTaggedElements( child, tagName, action );
 		}
 	}
 }

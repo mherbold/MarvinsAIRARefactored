@@ -50,11 +50,13 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 Name: "{userdocs}\MarvinsAIRA Refactored"
 Name: "{userdocs}\MarvinsAIRA Refactored\Languages"
 Name: "{userdocs}\MarvinsAIRA Refactored\Sounds"
+Name: "{userdocs}\MarvinsAIRA Refactored\Recordings"
 
 [Files]
 Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\bin\publish\*"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\Resources\Resources*.resx"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Languages"; Flags: ignoreversion
 Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\Sounds\*.wav"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Sounds"; Flags: ignoreversion
+Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\Recordings\*.csv"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Recordings"; Flags: ignoreversion
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

@@ -43,9 +43,9 @@ public partial class Localization : INotifyPropertyChanged
 
 	public void LoadLanguage( string? languageCode = "default" )
 	{
-		var app = App.Instance!;
+		var app = App.Instance;
 
-		app.Logger.WriteLine( $"[Localization] Loading language: {languageCode}" );
+		app?.Logger.WriteLine( $"[Localization] Loading language: {languageCode}" );
 
 		var languagesDirectory = Path.Combine( App.DocumentsFolder, "Languages" );
 
@@ -60,7 +60,7 @@ public partial class Localization : INotifyPropertyChanged
 
 		if ( File.Exists( filePath ) )
 		{
-			app.Logger.WriteLine( $"[Localization] Language found in user documents folder" );
+			app?.Logger.WriteLine( $"[Localization] Language found in user documents folder" );
 
 			_translations = Misc.LoadResx( filePath );
 		}
@@ -70,13 +70,13 @@ public partial class Localization : INotifyPropertyChanged
 
 			if ( File.Exists( filePath ) )
 			{
-				app.Logger.WriteLine( $"[Localization] Language found in app folder" );
+				app?.Logger.WriteLine( $"[Localization] Language found in app folder" );
 
 				_translations = Misc.LoadResx( filePath );
 			}
 			else
 			{
-				app.Logger.WriteLine( $"[Localization] Language not found" );
+				app?.Logger.WriteLine( $"[Localization] Language not found" );
 
 				_translations = [];
 			}
@@ -87,9 +87,9 @@ public partial class Localization : INotifyPropertyChanged
 
 	public void LoadDefaultLanguage()
 	{
-		var app = App.Instance!;
+		var app = App.Instance;
 
-		app.Logger.WriteLine( "[Localization] LoadDefaultLanguage >>>" );
+		app?.Logger.WriteLine( "[Localization] LoadDefaultLanguage >>>" );
 
 		LoadLanguage();
 
@@ -97,7 +97,7 @@ public partial class Localization : INotifyPropertyChanged
 
 		OnPropertyChanged( null );
 
-		app.Logger.WriteLine( "[Localization] <<< LoadDefaultLanguage" );
+		app?.Logger.WriteLine( "[Localization] <<< LoadDefaultLanguage" );
 	}
 
 	public static void SetLanguageComboBoxItemsSource( ComboBox comboBox )

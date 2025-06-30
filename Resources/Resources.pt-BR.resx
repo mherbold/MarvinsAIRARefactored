@@ -59,7 +59,10 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root"
+    xmlns=""
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -297,10 +300,6 @@
     <value>Limite Delta 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="ZeAlanLeTwist" xml:space="preserve">
-    <value></value>
-    <comment>Racing wheel algorithms list</comment>
-  </data>
   <data name="CompressionRateUnits" xml:space="preserve">
     <value>%/Nm</value>
     <comment>Abbreviation for percent per Newton-meters</comment>
@@ -323,10 +322,6 @@
   </data>
   <data name="AutoMargin" xml:space="preserve">
     <value>Margem Automática</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Automático</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -712,5 +707,121 @@
   <data name="DownloadingUpdate" xml:space="preserve">
     <value>Baixando Atualizações...</value>
     <comment>Status</comment>
+  </data>
+  <data name="Contribute" xml:space="preserve">
+    <value>Contribua</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="BuyMeACoffee" xml:space="preserve">
+    <value>Me Pague um Café!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DonationsText" xml:space="preserve">
+    <value>Doações são completamente opcionais. Eu nunca vou cobrar nenhuma taxa para usar o MAIRA. Dito isso, doações são um grande motivador para eu continuar aprimorando o MAIRA. Muito obrigado a todos que doaram até agora! Link para doação:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donations" xml:space="preserve">
+    <value>Doações</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donors" xml:space="preserve">
+    <value>Doadores</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="SuperDonors" xml:space="preserve">
+    <value>Super Doadores</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Doar</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="CodeContributions" xml:space="preserve">
+    <value>Contribuições de Código</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributions" xml:space="preserve">
+    <value>Contribuições de Traduções</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="CodeContributionsText" xml:space="preserve">
+    <value>Se você é um desenvolvedor C# e gostaria de contribuir para esse projeto, aqui está o link para o repositório do GitHub:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributionsText" xml:space="preserve">
+    <value>Se você sabe ler e escrever em múltiplas línguas, precisamos da sua ajuda para traduzir esse aplicativo para o máximo possível de idiomas! Para mais informações sobre como fazer isso, visite o canal do Discord:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationsDiscordChannel" xml:space="preserve">
+    <value>Canal de Traduções do Discord</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="GitHubRepository" xml:space="preserve">
+    <value>Repositório do GitHub</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>Colaboradores</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>Mostrar Janela</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="ExitApp" xml:space="preserve">
+    <value>Sair do Aplicativo</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+    <value>Minimizar para a Bandeja do Sistema</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Iniciar Minimizado</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartWithWindows" xml:space="preserve">
+    <value>Iniciar com o Windows</value>
+    <comment>App</comment>
+  </data>
+  <data name="TotalCompressionRate" xml:space="preserve">
+    <value>Total: Taxa de Compressão</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewCompressionThreshold" xml:space="preserve">
+    <value>Slew: Limite de Compressão</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewCompressionRate" xml:space="preserve">
+    <value>Slew: Taxa de Compressão</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="TotalCompressionThreshold" xml:space="preserve">
+    <value>Total: Limite de Compressão</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewUnits" xml:space="preserve">
+    <value>Nm/ms</value>
+    <comment>Abbreviation for Newton-meters per second</comment>
+  </data>
+  <data name="WheelForce" xml:space="preserve">
+    <value>Força</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Setar</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Prévia</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="NoRecordingsFound" xml:space="preserve">
+    <value>[Nenhum Dado Encontrado]</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CenterWheelWhenNotInCar" xml:space="preserve">
+    <value>Centralizar volante quando não estiver no veículo</value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

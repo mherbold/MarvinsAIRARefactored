@@ -1,4 +1,6 @@
 ﻿
+using System.Text;
+
 using PInvoke;
 
 using IRSDKSharper;
@@ -64,8 +66,6 @@ public class Simulator
 	private bool? _weatherDeclaredWetLastFrame = null;
 	private bool? _isReplayPlayingLastFrame = null;
 	private IRacingSdkEnum.Flags? _sessionFlagsLastFrame = null;
-
-	private int? _lastPedalUpdateFrame = null;
 
 	private IRacingSdkDatum? _brakeABSactiveDatum = null;
 	private IRacingSdkDatum? _brakeDatum = null;
@@ -139,7 +139,26 @@ public class Simulator
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( $"[Simulator] Exception thrown: {exception.Message.Trim()}" );
+		var fullMessage = new StringBuilder();
+
+		fullMessage.AppendLine( "[Simulator] Exception thrown!" );
+		fullMessage.AppendLine( $"[Simulator] Type: {exception.GetType().FullName}" );
+		fullMessage.AppendLine( $"[Simulator] Message: {exception.Message}" );
+		fullMessage.AppendLine( $"[Simulator] Stack Trace: {exception.StackTrace}" );
+
+		var inner = exception.InnerException;
+
+		while ( inner != null )
+		{
+			fullMessage.AppendLine( "[Simulator] --- Inner Exception ---" );
+			fullMessage.AppendLine( $"[Simulator] Type: {inner.GetType().FullName}" );
+			fullMessage.AppendLine( $"[Simulator] Message: {inner.Message}" );
+			fullMessage.AppendLine( $"[Simulator] Stack Trace: {inner.StackTrace}" );
+
+			inner = inner.InnerException;
+		}
+
+		app.Logger.WriteLine( fullMessage.ToString() );
 
 		throw new Exception( "IRSDKSharper exception thrown", exception );
 	}
@@ -177,8 +196,6 @@ public class Simulator
 		_velocityLastFrame = null;
 		_weatherDeclaredWetLastFrame = null;
 		_isReplayPlayingLastFrame = null;
-
-		_lastPedalUpdateFrame = null;
 
 		app.RacingWheel.UseSteeringWheelTorqueData = false;
 		app.RacingWheel.SuspendForceFeedback = true;
@@ -384,8 +401,6 @@ public class Simulator
 
 		Velocity = MathF.Sqrt( VelocityX * VelocityX + VelocityY * VelocityY );
 
-		app.Debug.Label_1 = $"Velocity = {app.Simulator.Velocity:F2} m/s";
-
 		// get weather declared wet and reload settings if it was changed
 
 		WeatherDeclaredWet = _irsdk.Data.GetBool( _weatherDeclaredWetDatum );
@@ -413,8 +428,6 @@ public class Simulator
 		{
 			GForce = 0f;
 		}
-
-		app.Debug.Label_2 = $"GForce = {app.Simulator.GForce:F2} g";
 
 		// crash protection processing
 
@@ -474,8 +487,6 @@ public class Simulator
 				maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RRShockVel_ST[ i ] ) );
 			}
 
-			app.Debug.Label_8 = $"maxShockVelocity = {maxShockVelocity:F2} m/s";
-
 			if ( maxShockVelocity >= settings.RacingWheelCurbProtectionShockVelocity )
 			{
 				app.RacingWheel.ActivateCurbProtection = true;
@@ -489,15 +500,6 @@ public class Simulator
 		// poll direct input devices
 
 		app.DirectInput.PollDevices( deltaSeconds );
-
-		// update pedals at 20 fps
-
-		if ( ( _lastPedalUpdateFrame == null ) || ( _irsdk.Data.TickCount >= ( _lastPedalUpdateFrame + 3 ) ) )
-		{
-			_lastPedalUpdateFrame = _irsdk.Data.TickCount;
-
-			app.Pedals.Update( app );
-		}
 
 		// trigger the app worker thread
 
@@ -513,6 +515,6 @@ public class Simulator
 
 	public void Tick( App app )
 	{
-		app.MainWindow.RacingWheel_CurrentForce_Label.Content = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F2}{DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
+		app.MainWindow.RacingWheel_CurrentForce_Label.Content = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F1}{DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
 	}
 }

@@ -142,7 +142,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
-    <value>Slábnutí síly FFB při vstupování/vystupování do vozu </value>
+    <value>Slábnutí síly FFB při vstupování/vystupování do vozu</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Friction" xml:space="preserve">
@@ -286,7 +286,7 @@
     <comment>Button mapping</comment>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value>Delta limiter</value>
+    <value>Delta Limiter</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
@@ -295,10 +295,6 @@
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
     <value>Delta Limiter při 60 Hz</value>
-    <comment>Racing wheel algorithms list</comment>
-  </data>
-  <data name="ZeAlanLeTwist" xml:space="preserve">
-    <value></value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
@@ -323,10 +319,6 @@
   </data>
   <data name="AutoMargin" xml:space="preserve">
     <value>Automatické nastavení FFB</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Automaticky</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -370,7 +362,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceReduction" xml:space="preserve">
-    <value>Snížení síly</value>
+    <value>Snížení síly o</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
@@ -434,7 +426,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="Amplitude" xml:space="preserve">
-    <value>Amplituda</value>
+    <value>Amplitude</value>
     <comment>Pedals</comment>
   </data>
   <data name="Minimum" xml:space="preserve">
@@ -688,5 +680,137 @@
   <data name="NoiseDamper" xml:space="preserve">
     <value>Tlumič hluku</value>
     <comment>Pedals</comment>
+  </data>
+  <data name="AppWindow" xml:space="preserve">
+    <value>Okno aplikace</value>
+    <comment>App</comment>
+  </data>
+  <data name="UIScale" xml:space="preserve">
+    <value>Měřítko UI</value>
+    <comment>App</comment>
+  </data>
+  <data name="CloudService" xml:space="preserve">
+    <value>Cloud Servis</value>
+    <comment>App</comment>
+  </data>
+  <data name="CheckNow" xml:space="preserve">
+    <value>Zkontrolovat teď</value>
+    <comment>App</comment>
+  </data>
+  <data name="CheckingForUpdate" xml:space="preserve">
+    <value>Kontroluji dostupné aktualizace...</value>
+    <comment>Status</comment>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>Probíhá stahování aktualizace...</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Contribute" xml:space="preserve">
+    <value>Podíleli se</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="BuyMeACoffee" xml:space="preserve">
+    <value>Přispět na tvorbu!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DonationsText" xml:space="preserve">
+    <value>Příspěvky jsou pouze dobrovolné a nikdy nebude MAIRA zpoplatněná. Vašich příspěvků si moc vážím a motivuje mě to pokračovat dále. Obrovské díky patří všem, kteří už poslali nějaký příspěvek! Zde je odkaz, kde je možné taky přispět:</value>
+    <comment>true</comment>
+  </data>
+  <data name="Donations" xml:space="preserve">
+    <value>Příspěvky</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donors" xml:space="preserve">
+    <value>Přispěvatelé</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="SuperDonors" xml:space="preserve">
+    <value>Super Přispěvatelé</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Příspěvek</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="CodeContributions" xml:space="preserve">
+    <value>Pomoc s tvorbou Kódu MAIRA!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributions" xml:space="preserve">
+    <value>Pomoc s překladem MAIRA!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="CodeContributionsText" xml:space="preserve">
+    <value>Pokud se vyznáte ve tvorbě kódu programů, zde je odkaz na GitHub ´úložiště:</value>
+    <comment>true</comment>
+  </data>
+  <data name="TranslationContributionsText" xml:space="preserve">
+    <value>Pokud umíte číst a psát nějakým jazykem, kterým MAIRA ještě není přeložená a chtěli by jste se podílet na překladu, tak navštivte Discord kanál:</value>
+    <comment>true</comment>
+  </data>
+  <data name="TranslationsDiscordChannel" xml:space="preserve">
+    <value>Translations Discord Channel</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="GitHubRepository" xml:space="preserve">
+    <value>GitHub úložiště</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>Přispěvatelé</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>Zobrazit okno aplikace</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="ExitApp" xml:space="preserve">
+    <value>Ukončit aplikaci</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+    <value>Minimalizovat do systémové lišty</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Minimalizovat při spuštění</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartWithWindows" xml:space="preserve">
+    <value>Spustit se spuštěním Windows</value>
+    <comment>App</comment>
+  </data>
+  <data name="TotalCompressionRate" xml:space="preserve">
+    <value>Celkové omezení náběhu síly (slewrate)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewCompressionThreshold" xml:space="preserve">
+    <value>Hranice omezení náběhu síly (slewrate)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewCompressionRate" xml:space="preserve">
+    <value>Velikost omezení náběhu síly (slewrate)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="TotalCompressionThreshold" xml:space="preserve">
+    <value>Celková hranice omezení náběhu síly (slewrate)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewUnits" xml:space="preserve">
+    <value> Nm/ms</value>
+    <comment>Abbreviation for Newton-meters per second</comment>
+  </data>
+  <data name="WheelForce" xml:space="preserve">
+    <value>Celková síla základny</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Vypočítat</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Náhled křivky FFB</value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

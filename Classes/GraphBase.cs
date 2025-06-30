@@ -84,6 +84,8 @@ public class GraphBase
 	{
 		if ( ( _colorArray != null ) && ( _colorMixArray != null ) )
 		{
+			var gridSize = _bitmapHeightMinusOne / 8;
+
 			for ( var y = 0; y < BitmapHeight; y++ )
 			{
 				var a = (uint) ( MathF.Min( 1f, _colorMixArray[ y, 0 ] ) * 255f );
@@ -94,7 +96,17 @@ public class GraphBase
 				_colorArray[ y, _x ] = ( a << 24 ) | ( r << 16 ) | ( g << 8 ) | b;
 			}
 
-			_colorArray[ _bitmapHeightMinusOne / 2, _x ] = 0xFFFFFFFF;
+			for ( var i = 0; i < 8; i++ )
+			{
+				var y = gridSize * i;
+
+				if ( _colorArray[ y, _x ] == 0 )
+				{
+					_colorArray[ y, _x ] = 0x8080C080;
+				}
+			}
+
+			_colorArray[ gridSize * 4, _x ] = 0xFFFFFFFF;
 
 			_x = ( _x + 1 ) % BitmapWidth;
 

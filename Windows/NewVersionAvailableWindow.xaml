@@ -10,12 +10,14 @@
         mc:Ignorable="d"
         Title="{Binding Localization[NewVersionAvailable]}"
         Icon="/artwork/white_icon.ico"
+        MinWidth="600"
         Width="800"
-        Height="Auto"
+        MinHeight="150"
+        MaxHeight="400"
+        SizeToContent="Height"
         ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow"
-        WindowStartupLocation="CenterOwner"
-        SizeToContent="Height">
+        WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
         <Binding Source="{x:Static datacontext:DataContext.Instance}"/>

@@ -5,14 +5,15 @@ namespace MarvinsAIRARefactored.DataContext;
 
 public class ContextSettings
 {
-	public Guid RacingWheelSteeringDeviceGuid { get; set; }
 	public bool RacingWheelEnableForceFeedback { get; set; }
+	public float RacingWheelWheelForce { get; set; }
+	public float RacingWheelStrength { get; set; }
 	public float RacingWheelMaxForce { get; set; }
 	public float RacingWheelAutoMargin { get; set; }
 	public RacingWheel.Algorithm RacingWheelAlgorithm { get; set; }
 	public float RacingWheelDetailBoost { get; set; }
-	public float RacingWheelDeltaLimit { get; set; }
 	public float RacingWheelDetailBoostBias { get; set; }
+	public float RacingWheelDeltaLimit { get; set; }
 	public float RacingWheelDeltaLimiterBias { get; set; }
 	public float RacingWheelSlewCompressionThreshold { get; set; }
 	public float RacingWheelSlewCompressionRate { get; set; }
@@ -21,7 +22,6 @@ public class ContextSettings
 	public float RacingWheelOutputMinimum { get; set; }
 	public float RacingWheelOutputMaximum { get; set; }
 	public float RacingWheelOutputCurve { get; set; }
-	public Guid RacingWheelLFERecordingDeviceGuid { get; set; }
 	public float RacingWheelLFEStrength { get; set; }
 	public float RacingWheelCrashProtectionGForce { get; set; }
 	public float RacingWheelCrashProtectionDuration { get; set; }
@@ -32,25 +32,26 @@ public class ContextSettings
 	public float RacingWheelParkedStrength { get; set; }
 	public float RacingWheelSoftLockStrength { get; set; }
 	public float RacingWheelFriction { get; set; }
+	public bool RacingWheelCenterWheelWhenNotInCar { get; set; }
 	public bool RacingWheelFadeEnabled { get; set; }
 	public Pedals.Effect PedalsClutchEffect1 { get; set; }
-	public float PedalsClutchEffect1Strength { get; set; }
+	public float PedalsClutchStrength1 { get; set; }
 	public Pedals.Effect PedalsClutchEffect2 { get; set; }
-	public float PedalsClutchEffect2Strength { get; set; }
+	public float PedalsClutchStrength2 { get; set; }
 	public Pedals.Effect PedalsClutchEffect3 { get; set; }
-	public float PedalsClutchEffect3Strength { get; set; }
+	public float PedalsClutchStrength3 { get; set; }
 	public Pedals.Effect PedalsBrakeEffect1 { get; set; }
-	public float PedalsBrakeEffect1Strength { get; set; }
+	public float PedalsBrakeStrength1 { get; set; }
 	public Pedals.Effect PedalsBrakeEffect2 { get; set; }
-	public float PedalsBrakeEffect2Strength { get; set; }
+	public float PedalsBrakeStrength2 { get; set; }
 	public Pedals.Effect PedalsBrakeEffect3 { get; set; }
-	public float PedalsBrakeEffect3Strength { get; set; }
+	public float PedalsBrakeStrength3 { get; set; }
 	public Pedals.Effect PedalsThrottleEffect1 { get; set; }
-	public float PedalsThrottleEffect1Strength { get; set; }
+	public float PedalsThrottleStrength1 { get; set; }
 	public Pedals.Effect PedalsThrottleEffect2 { get; set; }
-	public float PedalsThrottleEffect2Strength { get; set; }
+	public float PedalsThrottleStrength2 { get; set; }
 	public Pedals.Effect PedalsThrottleEffect3 { get; set; }
-	public float PedalsThrottleEffect3Strength { get; set; }
+	public float PedalsThrottleStrength3 { get; set; }
 	public float PedalsShiftIntoGearFrequency { get; set; }
 	public float PedalsShiftIntoGearAmplitude { get; set; }
 	public float PedalsShiftIntoGearDuration { get; set; }
@@ -63,6 +64,12 @@ public class ContextSettings
 	public float PedalsStartingRPM { get; set; }
 	public bool PedalsVibrateInTopGearEnabled { get; set; }
 	public bool PedalsFadeWithThrottleEnabled { get; set; }
+	public float PedalsWheelLockFrequency { get; set; }
+	public float PedalsWheelLockSensitivity { get; set; }
+	public bool PedalsWheelLockFadeWithBrakeEnabled { get; set; }
+	public float PedalsWheelSpinFrequency { get; set; }
+	public float PedalsWheelSpinSensitivity { get; set; }
+	public bool PedalsWheelSpinFadeWithThrottleEnabled { get; set; }
 	public float PedalsClutchSlipStart { get; set; }
 	public float PedalsClutchSlipEnd { get; set; }
 	public float PedalsClutchSlipFrequency { get; set; }

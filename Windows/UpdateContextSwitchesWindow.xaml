@@ -11,7 +11,7 @@
         Title="{Binding DataContext.Instance.Localization[SaveThisSetting]}"
         Icon="/artwork/white_icon.ico"
         Width="800"
-        Height="320"
+        SizeToContent="Height"
         ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterOwner">

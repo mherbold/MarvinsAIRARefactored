@@ -11,11 +11,10 @@
         Title="{Binding Localization[RunInstaller]}"
         Icon="/artwork/white_icon.ico"
         Width="800"
-        Height="Auto"
+        SizeToContent="Height"
         ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow"
-        WindowStartupLocation="CenterOwner"
-        SizeToContent="Height">
+        WindowStartupLocation="CenterOwner">
 
     <Window.DataContext>
         <Binding Source="{x:Static datacontext:DataContext.Instance}"/>

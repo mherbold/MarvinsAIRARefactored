@@ -297,10 +297,6 @@
     <value>Delta Limiter On 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="ZeAlanLeTwist" xml:space="preserve">
-    <value>Slew and Total Compression</value>
-    <comment>Racing wheel algorithms list</comment>
-  </data>
   <data name="CompressionRateUnits" xml:space="preserve">
     <value>%/Nm</value>
     <comment>Abbreviation for percent per Newton-meters</comment>
@@ -323,10 +319,6 @@
   </data>
   <data name="AutoMargin" xml:space="preserve">
     <value>Auto Margin</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="Auto" xml:space="preserve">
-    <value>Auto</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -808,5 +800,49 @@
   <data name="SlewUnits" xml:space="preserve">
     <value> Nm/ms</value>
     <comment>Abbreviation for Newton-meters per second</comment>
+  </data>
+  <data name="WheelForce" xml:space="preserve">
+    <value>Wheel Force</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Set</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Preview</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="NoRecordingsFound" xml:space="preserve">
+    <value>[No Recordings Found]</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CenterWheelWhenNotInCar" xml:space="preserve">
+    <value>Center wheel when not in car</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>Enable simple mode</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Sensitivity</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="ZeAlanLeTwist" xml:space="preserve">
+    <value>Slew and Total Compression</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DiscordModerators" xml:space="preserve">
+    <value>Discord Moderators</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>I want to thank these volunteer moderators for helping answer the many questions posed by MAIRA users, allowing me to have more time to focus on the development of MAIRA!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>The AdminBoxx firmware is being updated</value>
+    <comment>AdminBoxx</comment>
   </data>
 </root>

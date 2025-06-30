@@ -10,14 +10,15 @@
         mc:Ignorable="d"
         Title="{Binding Localization[UpdateButtonMappings]}"
         Icon="/artwork/white_icon.ico"
+        MinWidth="600"
         Width="800"
-        Height="320"
+        MinHeight="150"
+        MaxHeight="400"
+        SizeToContent="Height"
         ResizeMode="CanResizeWithGrip"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterOwner"
-        Closed="Window_Closed"
-        MinWidth="600"
-        MinHeight="300">
+        Closed="Window_Closed">
 
     <Window.DataContext>
         <Binding Source="{x:Static datacontext:DataContext.Instance}"/>

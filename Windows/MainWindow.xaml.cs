@@ -46,8 +46,8 @@ public partial class MainWindow : Window
 
 		Components.Localization.SetLanguageComboBoxItemsSource( App_Language_ComboBox );
 
-		AdminBoxx_TabItem.Visibility = Visibility.Collapsed;
-		Debug_TabItem.Visibility = Visibility.Collapsed;
+		// AdminBoxx_TabItem.Visibility = Visibility.Collapsed;
+		// Debug_TabItem.Visibility = Visibility.Collapsed;
 
 		app.Logger.WriteLine( "[MainWindow] <<< Constructor" );
 	}
@@ -103,19 +103,21 @@ public partial class MainWindow : Window
 
 			app.LFE.SetMairaComboBoxItemsSource( RacingWheel_LFERecordingDevice_ComboBox );
 
+			app.RecordingManager.SetMairaComboBoxItemsSource( RacingWheel_PreviewRecordings_ComboBox );
+
 			Graph.SetMairaComboBoxItemsSource( Graph_Statistics_ComboBox );
 
 			RacingWheel.SetMairaComboBoxItemsSource( RacingWheel_Algorithm_ComboBox );
 
-			Pedals.SetMairaComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_1 );
-			Pedals.SetMairaComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_2 );
-			Pedals.SetMairaComboBoxItemsSource( Pedals_Clutch_Effect_ComboBox_3 );
-			Pedals.SetMairaComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_1 );
-			Pedals.SetMairaComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_2 );
-			Pedals.SetMairaComboBoxItemsSource( Pedals_Brake_Effect_ComboBox_3 );
-			Pedals.SetMairaComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_1 );
-			Pedals.SetMairaComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_2 );
-			Pedals.SetMairaComboBoxItemsSource( Pedals_Throttle_Effect_ComboBox_3 );
+			Pedals.SetMairaComboBoxItemsSource( Pedals_ClutchEffect1_ComboBox );
+			Pedals.SetMairaComboBoxItemsSource( Pedals_ClutchEffect2_ComboBox );
+			Pedals.SetMairaComboBoxItemsSource( Pedals_ClutchEffect3_ComboBox );
+			Pedals.SetMairaComboBoxItemsSource( Pedals_BrakeEffect1_ComboBox );
+			Pedals.SetMairaComboBoxItemsSource( Pedals_BrakeEffect2_ComboBox );
+			Pedals.SetMairaComboBoxItemsSource( Pedals_BrakeEffect3_ComboBox );
+			Pedals.SetMairaComboBoxItemsSource( Pedals_ThrottleEffect1_ComboBox );
+			Pedals.SetMairaComboBoxItemsSource( Pedals_ThrottleEffect2_ComboBox );
+			Pedals.SetMairaComboBoxItemsSource( Pedals_ThrottleEffect3_ComboBox );
 
 			UpdateStatus();
 			UpdatePedalsDevice();
@@ -149,6 +151,12 @@ public partial class MainWindow : Window
 				backgroundColor = Brushes.DarkOrange;
 
 				panel1Message = localization[ "DownloadingUpdate" ];
+			}
+			else if ( app.AdminBoxx.IsUpdating )
+			{
+				backgroundColor = Brushes.DarkOrange;
+
+				panel1Message = localization[ "AdminBoxxIsUpdating" ];
 			}
 			else if ( app.Simulator.IsConnected )
 			{
@@ -257,7 +265,7 @@ public partial class MainWindow : Window
 
 			RacingWheel_Test_MairaMappableButton.Disabled = disableButtons;
 			RacingWheel_Reset_MairaMappableButton.Disabled = disableButtons;
-			RacingWheel_Auto_MairaMappableButton.Disabled = disableButtons;
+			RacingWheel_Set_MairaMappableButton.Disabled = disableButtons;
 			RacingWheel_Clear_MairaMappableButton.Disabled = disableButtons;
 		} );
 	}
@@ -298,11 +306,12 @@ public partial class MainWindow : Window
 					break;
 
 				case RacingWheel.Algorithm.ZeAlanLeTwist:
-					racingWheelAlgorithmRowTwoGridVisibility = Visibility.Visible;
 					racingWheelSlewCompressionThresholdVisibility = Visibility.Visible;
 					racingWheelSlewCompressionRateVisibility = Visibility.Visible;
 					racingWheelTotalCompressionThresholdVisibility = Visibility.Visible;
 					racingWheelTotalCompressionRateVisibility = Visibility.Visible;
+
+					racingWheelAlgorithmRowTwoGridVisibility = Visibility.Visible;
 					racingWheelCurbProtectionGroupBoxVisibility = Visibility.Visible;
 					break;
 
@@ -329,6 +338,16 @@ public partial class MainWindow : Window
 
 
         } );
+	}
+
+	public void UpdateRacingWheelSimpleMode()
+	{
+		Dispatcher.BeginInvoke( () =>
+		{
+			var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+			Misc.ApplyToTaggedElements( MainGrid, "Complex", element => element.Visibility = settings.RacingWheelSimpleModeEnabled ? Visibility.Collapsed : Visibility.Visible );
+		} );
 	}
 
 	public void UpdatePedalsDevice()
@@ -560,7 +579,7 @@ public partial class MainWindow : Window
 		app.RacingWheel.ResetForceFeedback = true;
 	}
 
-	private void RacingWheel_Auto_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	private void RacingWheel_Set_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
@@ -572,6 +591,69 @@ public partial class MainWindow : Window
 		var app = App.Instance!;
 
 		app.RacingWheel.ClearPeakTorque = true;
+	}
+
+	private void Pedals_ClutchTest1_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Pedals.StartTest( 0, 0 );
+	}
+
+	private void Pedals_ClutchTest2_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Pedals.StartTest( 0, 1 );
+	}
+
+	private void Pedals_ClutchTest3_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Pedals.StartTest( 0, 2 );
+	}
+
+	private void Pedals_BrakeTest1_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Pedals.StartTest( 1, 0 );
+	}
+
+	private void Pedals_BrakeTest2_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Pedals.StartTest( 1, 1 );
+	}
+
+	private void Pedals_BrakeTest3_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Pedals.StartTest( 1, 2 );
+	}
+
+	private void Pedals_ThrottleTest1_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Pedals.StartTest( 2, 0 );
+	}
+
+	private void Pedals_ThrottleTest2_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Pedals.StartTest( 2, 1 );
+	}
+
+	private void Pedals_ThrottleTest3_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Pedals.StartTest( 2, 2 );
 	}
 
 	private void Simulator_HeaderData_HeaderDataViewer_MouseWheel( object sender, MouseWheelEventArgs e )
@@ -678,7 +760,7 @@ public partial class MainWindow : Window
 	{
 		var app = App.Instance!;
 
-		app.AudioManager.Play( "volume", newValue );
+		app.AudioManager.Play( "beep", newValue );
 	}
 
 	private void AdminBoxx_Test_Click( object sender, RoutedEventArgs e )
@@ -702,18 +784,18 @@ public partial class MainWindow : Window
 		e.Handled = true;
 	}
 
-	private void Debug_AlanLeReset_Click( object sender, RoutedEventArgs e )
+	private void Debug_ResetRecording_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
-		app.Debug.ResetFFBSamples();
+		app.RecordingManager.ResetRecording();
 	}
 
-	private void Debug_AlanLeDump_Click( object sender, RoutedEventArgs e )
+	private void Debug_SaveRecording_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
-		app.Debug.DumpFFBSamplesToCSVFile();
+		app.RecordingManager.SaveRecording();
 	}
 
 	public void Tick( App app )

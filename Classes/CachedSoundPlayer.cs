@@ -53,6 +53,11 @@ public class CachedSoundPlayer : IDisposable
 		_sourceVoice?.Stop();
 	}
 
+	public bool IsPlaying()
+	{
+		return _sourceVoice?.State.BuffersQueued > 0;
+	}
+
 	public void Dispose()
 	{
 		_sourceVoice?.Dispose();

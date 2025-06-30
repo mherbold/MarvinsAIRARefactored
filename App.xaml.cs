@@ -35,6 +35,7 @@ public partial class App : Application
 	public LFE LFE { get; private set; }
 	public MultimediaTimer MultimediaTimer { get; private set; }
 	public Simulator Simulator { get; private set; }
+	public RecordingManager RecordingManager { get; private set; }
 
 	public const int TimerPeriodInMilliseconds = 17;
 	public const int TimerTicksPerSecond = 1000 / TimerPeriodInMilliseconds;
@@ -70,6 +71,7 @@ public partial class App : Application
 		LFE = new();
 		MultimediaTimer = new();
 		Simulator = new();
+		RecordingManager = new();
 
 		_timer.Elapsed += OnTimer;
 	}
@@ -115,6 +117,7 @@ public partial class App : Application
 			LFE.Initialize();
 			MultimediaTimer.Initialize();
 			Simulator.Initialize();
+			RecordingManager.Initialize();
 
 			DirectInput.OnInput += OnInput;
 
@@ -211,6 +214,18 @@ public partial class App : Application
 			{
 				RacingWheel.ResetForceFeedback = true;
 			}
+			
+			// racing wheel strength knob
+
+			if ( CheckMappedButtons( settings.RacingWheelStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelStrength += 0.01f;
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelStrength -= 0.01f;
+			}
 
 			// racing wheel max force knob
 
@@ -238,7 +253,7 @@ public partial class App : Application
 
 			// racing wheel auto button
 
-			if ( CheckMappedButtons( settings.RacingWheelAutoButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.RacingWheelSetButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				RacingWheel.AutoSetMaxForce = true;
 			}
@@ -502,124 +517,187 @@ public partial class App : Application
 				settings.RacingWheelFriction -= 0.05f;
 			}
 
-			// pedals clutch effect 1 strength knob
+			// pedals clutch strength 1 knob
 
-			if ( CheckMappedButtons( settings.PedalsClutchEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsClutchStrength1PlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsClutchEffect1Strength += 0.05f;
+				settings.PedalsClutchStrength1 += 0.05f;
 			}
 
-			if ( CheckMappedButtons( settings.PedalsClutchEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsClutchStrength1MinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsClutchEffect1Strength -= 0.05f;
+				settings.PedalsClutchStrength1 -= 0.05f;
 			}
 
-			// pedals clutch effect 2 strength knob
+			// pedals clutch test 1 button
 
-			if ( CheckMappedButtons( settings.PedalsClutchEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsClutchTest1ButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsClutchEffect2Strength += 0.05f;
+				Pedals.StartTest( 0, 0 );
 			}
 
-			if ( CheckMappedButtons( settings.PedalsClutchEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			// pedals clutch strength 2 knob
+
+			if ( CheckMappedButtons( settings.PedalsClutchStrength2PlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsClutchEffect2Strength -= 0.05f;
+				settings.PedalsClutchStrength2 += 0.05f;
 			}
 
-			// pedals clutch effect 3 strength knob
-
-			if ( CheckMappedButtons( settings.PedalsClutchEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsClutchStrength2MinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsClutchEffect3Strength += 0.05f;
+				settings.PedalsClutchStrength2 -= 0.05f;
 			}
 
-			if ( CheckMappedButtons( settings.PedalsClutchEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			// pedals clutch test 2 button
+
+			if ( CheckMappedButtons( settings.PedalsClutchTest2ButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsClutchEffect3Strength -= 0.05f;
+				Pedals.StartTest( 0, 1 );
 			}
 
-			// pedals brake effect 1 strength knob
+			// pedals clutch strength 3 knob
 
-			if ( CheckMappedButtons( settings.PedalsBrakeEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsClutchStrength3PlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsBrakeEffect1Strength += 0.05f;
+				settings.PedalsClutchStrength3 += 0.05f;
 			}
 
-			if ( CheckMappedButtons( settings.PedalsBrakeEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsClutchStrength3MinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsBrakeEffect1Strength -= 0.05f;
+				settings.PedalsClutchStrength3 -= 0.05f;
 			}
 
-			// pedals brake effect 2 strength knob
+			// pedals clutch test 3 button
 
-			if ( CheckMappedButtons( settings.PedalsBrakeEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsClutchTest3ButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsBrakeEffect2Strength += 0.05f;
+				Pedals.StartTest( 0, 2 );
 			}
 
-			if ( CheckMappedButtons( settings.PedalsBrakeEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			// pedals brake strength 1 knob
+
+			if ( CheckMappedButtons( settings.PedalsBrakeStrength1PlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsBrakeEffect2Strength -= 0.05f;
+				settings.PedalsBrakeStrength1 += 0.05f;
 			}
 
-			// pedals brake effect 3 strength knob
-
-			if ( CheckMappedButtons( settings.PedalsBrakeEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsBrakeStrength1MinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsBrakeEffect3Strength += 0.05f;
+				settings.PedalsBrakeStrength1 -= 0.05f;
 			}
 
-			if ( CheckMappedButtons( settings.PedalsBrakeEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			// pedals brake test 1 button
+
+			if ( CheckMappedButtons( settings.PedalsBrakeTest1ButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsBrakeEffect3Strength -= 0.05f;
+				Pedals.StartTest( 1, 0 );
 			}
 
-			// pedals throttle effect 1 strength knob
+			// pedals brake strength 2 knob
 
-			if ( CheckMappedButtons( settings.PedalsThrottleEffect1StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsBrakeStrength2PlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsThrottleEffect1Strength += 0.05f;
+				settings.PedalsBrakeStrength2 += 0.05f;
 			}
 
-			if ( CheckMappedButtons( settings.PedalsThrottleEffect1StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsBrakeStrength2MinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsThrottleEffect1Strength -= 0.05f;
+				settings.PedalsBrakeStrength2 -= 0.05f;
 			}
 
-			// pedals throttle effect 2 strength knob
+			// pedals brake test 2 button
 
-			if ( CheckMappedButtons( settings.PedalsThrottleEffect2StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsBrakeTest2ButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsThrottleEffect2Strength += 0.05f;
+				Pedals.StartTest( 1, 1 );
 			}
 
-			if ( CheckMappedButtons( settings.PedalsThrottleEffect2StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			// pedals brake strength 3 knob
+
+			if ( CheckMappedButtons( settings.PedalsBrakeStrength3PlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsThrottleEffect2Strength -= 0.05f;
+				settings.PedalsBrakeStrength3 += 0.05f;
 			}
 
-			// pedals throttle effect 3 strength knob
-
-			if ( CheckMappedButtons( settings.PedalsThrottleEffect3StrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.PedalsBrakeStrength3MinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsThrottleEffect3Strength += 0.05f;
+				settings.PedalsBrakeStrength3 -= 0.05f;
 			}
 
-			if ( CheckMappedButtons( settings.PedalsThrottleEffect3StrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			// pedals brake test 3 button
+
+			if ( CheckMappedButtons( settings.PedalsBrakeTest3ButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsThrottleEffect3Strength -= 0.05f;
+				Pedals.StartTest( 2, 1 );
+			}
+
+			// pedals throttle strength 1 knob
+
+			if ( CheckMappedButtons( settings.PedalsThrottleStrength1PlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsThrottleStrength1 += 0.05f;
+			}
+
+			if ( CheckMappedButtons( settings.PedalsThrottleStrength1MinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsThrottleStrength1 -= 0.05f;
+			}
+
+			// pedals throttle test 1 button
+
+			if ( CheckMappedButtons( settings.PedalsThrottleTest1ButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				Pedals.StartTest( 2, 0 );
+			}
+
+			// pedals throttle strength 2 knob
+
+			if ( CheckMappedButtons( settings.PedalsThrottleStrength2PlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsThrottleStrength2 += 0.05f;
+			}
+
+			if ( CheckMappedButtons( settings.PedalsThrottleStrength2MinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsThrottleStrength2 -= 0.05f;
+			}
+
+			// pedals throttle test 2 button
+
+			if ( CheckMappedButtons( settings.PedalsThrottleTest2ButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				Pedals.StartTest( 2, 1 );
+			}
+
+			// pedals throttle strength 3 knob
+
+			if ( CheckMappedButtons( settings.PedalsThrottleStrength3PlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsThrottleStrength3 += 0.05f;
+			}
+
+			if ( CheckMappedButtons( settings.PedalsThrottleStrength3MinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsThrottleStrength3 -= 0.05f;
+			}
+
+			// pedals throttle test 3 button
+
+			if ( CheckMappedButtons( settings.PedalsThrottleTest3ButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				Pedals.StartTest( 2, 2 );
 			}
 
 			// pedals shift into gear frequency knob
 
 			if ( CheckMappedButtons( settings.PedalsShiftIntoGearFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsShiftIntoGearFrequency += 1f;
+				settings.PedalsShiftIntoGearFrequency += 0.01f;
 			}
 
 			if ( CheckMappedButtons( settings.PedalsShiftIntoGearFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsShiftIntoGearFrequency -= 1f;
+				settings.PedalsShiftIntoGearFrequency -= 0.01f;
 			}
 
 			// pedals shift into gear amplitude knob
@@ -650,12 +728,12 @@ public partial class App : Application
 
 			if ( CheckMappedButtons( settings.PedalsShiftIntoNeutralFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsShiftIntoNeutralFrequency += 1f;
+				settings.PedalsShiftIntoNeutralFrequency += 0.01f;
 			}
 
 			if ( CheckMappedButtons( settings.PedalsShiftIntoNeutralFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsShiftIntoNeutralFrequency -= 1f;
+				settings.PedalsShiftIntoNeutralFrequency -= 0.01f;
 			}
 
 			// pedals shift into neutral amplitude knob
@@ -686,12 +764,12 @@ public partial class App : Application
 
 			if ( CheckMappedButtons( settings.PedalsABSEngagedFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsABSEngagedFrequency += 1f;
+				settings.PedalsABSEngagedFrequency += 0.01f;
 			}
 
 			if ( CheckMappedButtons( settings.PedalsABSEngagedFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.PedalsABSEngagedFrequency -= 1f;
+				settings.PedalsABSEngagedFrequency -= 0.01f;
 			}
 
 			// pedals abs engaged amplitude knob
@@ -716,6 +794,54 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.PedalsStartingRPMMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.PedalsStartingRPM -= 0.01f;
+			}
+
+			// pedals wheel lock frequency knob
+
+			if ( CheckMappedButtons( settings.PedalsWheelLockFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsWheelLockFrequency += 0.01f;
+			}
+
+			if ( CheckMappedButtons( settings.PedalsWheelLockFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsWheelLockFrequency -= 0.01f;
+			}
+
+			// pedals wheel lock sensitivity knob
+
+			if ( CheckMappedButtons( settings.PedalsWheelLockSensitivityPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsWheelLockSensitivity += 0.01f;
+			}
+
+			if ( CheckMappedButtons( settings.PedalsWheelLockSensitivityMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsWheelLockSensitivity -= 0.01f;
+			}
+
+			// pedals wheel spin frequency knob
+
+			if ( CheckMappedButtons( settings.PedalsWheelSpinFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsWheelSpinFrequency += 0.01f;
+			}
+
+			if ( CheckMappedButtons( settings.PedalsWheelSpinFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsWheelSpinFrequency -= 0.01f;
+			}
+
+			// pedals wheel spin sensitivity knob
+
+			if ( CheckMappedButtons( settings.PedalsWheelSpinSensitivityPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsWheelSpinSensitivity += 0.01f;
+			}
+
+			if ( CheckMappedButtons( settings.PedalsWheelSpinSensitivityMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsWheelSpinSensitivity -= 0.01f;
 			}
 
 			// pedals clutch slip start knob
@@ -898,18 +1024,18 @@ public partial class App : Application
 				settings.AdminBoxxVolume -= 0.01f;
 			}
 
-			// debug alan le reset
+			// debug reset recording
 
-			if ( CheckMappedButtons( settings.DebugAlanLeResetMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.DebugResetRecordingMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				Debug.ResetFFBSamples();
+				RecordingManager.ResetRecording();
 			}
 
-			// debug alan le dump
+			// debug save recording
 
-			if ( CheckMappedButtons( settings.DebugAlanLeDumpMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.DebugSaveRecordingMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				Debug.DumpFFBSamplesToCSVFile();
+				RecordingManager.SaveRecording();
 			}
 		}
 	}
@@ -969,6 +1095,7 @@ public partial class App : Application
 				{
 					app.RacingWheel.Tick( app );
 					app.SettingsFile.Tick( app );
+					app.Pedals.Tick( app );
 					app.AdminBoxx.Tick( app );
 					app.Debug.Tick( app );
 					app.ChatQueue.Tick( app );
