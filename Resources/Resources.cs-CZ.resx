@@ -59,7 +59,10 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root"
+    xmlns=""
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -715,7 +718,7 @@
   </data>
   <data name="DonationsText" xml:space="preserve">
     <value>Příspěvky jsou pouze dobrovolné a nikdy nebude MAIRA zpoplatněná. Vašich příspěvků si moc vážím a motivuje mě to pokračovat dále. Obrovské díky patří všem, kteří už poslali nějaký příspěvek! Zde je odkaz, kde je možné taky přispět:</value>
-    <comment>true</comment>
+    <comment>Contribute</comment>
   </data>
   <data name="Donations" xml:space="preserve">
     <value>Příspěvky</value>
@@ -743,11 +746,11 @@
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>Pokud se vyznáte ve tvorbě kódu programů, zde je odkaz na GitHub ´úložiště:</value>
-    <comment>true</comment>
+    <comment>Contribute</comment>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
     <value>Pokud umíte číst a psát nějakým jazykem, kterým MAIRA ještě není přeložená a chtěli by jste se podílet na překladu, tak navštivte Discord kanál:</value>
-    <comment>true</comment>
+    <comment>Contribute</comment>
   </data>
   <data name="TranslationsDiscordChannel" xml:space="preserve">
     <value>Translations Discord Channel</value>
@@ -812,5 +815,37 @@
   <data name="Preview" xml:space="preserve">
     <value>Náhled křivky FFB</value>
     <comment>Racing wheel</comment>
+  </data>
+  <data name="NoRecordingsFound" xml:space="preserve">
+    <value>[Nahrávky nenalezeny]</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CenterWheelWhenNotInCar" xml:space="preserve">
+    <value>Vycentrovat volant mimo vozidlo</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>Povolit jednoduchý režim</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Citlivost</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="ZeAlanLeTwist" xml:space="preserve">
+    <value>ZeAlanLeTwist</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DiscordModerators" xml:space="preserve">
+    <value>Moderátoři na Discordu</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>Chtěl bych poděkovat všem moderátorům na Discordu, kteří každý den odpovídají na spousty dotazů. Především díky nim, jsem schopný se plně věnovat na vývoji MAIRY</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>AdminBoxx bude aktualizován..</value>
+    <comment>AdminBoxx</comment>
   </data>
 </root>

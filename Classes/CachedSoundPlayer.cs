@@ -3,19 +3,13 @@ using SharpDX.XAudio2;
 
 namespace MarvinsAIRARefactored.Classes;
 
-public class CachedSoundPlayer : IDisposable
+public class CachedSoundPlayer( CachedSound sound, XAudio2 xaudio2 ) : IDisposable
 {
-	private readonly CachedSound _sound;
-	private readonly XAudio2 _xaudio2;
+	private readonly CachedSound _sound = sound;
+	private readonly XAudio2 _xaudio2 = xaudio2;
 	private SourceVoice? _sourceVoice;
 
-	public CachedSoundPlayer( CachedSound sound, XAudio2 xaudio2 )
-	{
-		_sound = sound;
-		_xaudio2 = xaudio2;
-	}
-
-	public void Play( float volume = 1.0f, bool loop = false )
+	public void Play( float volume = 1f, float frequencyRatio = 1f, bool loop = false )
 	{
 		if ( ( _sourceVoice == null ) || ( _sourceVoice.VoiceDetails.InputSampleRate != _sound.WaveFormat.SampleRate ) )
 		{
@@ -32,7 +26,8 @@ public class CachedSoundPlayer : IDisposable
 			}
 		}
 
-		_sourceVoice.SetVolume( Math.Clamp( volume, 0.0f, 1.0f ) );
+		_sourceVoice.SetFrequencyRatio( frequencyRatio );
+		_sourceVoice.SetVolume( Math.Clamp( volume, 0f, 1f ) );
 
 		var buffer = new AudioBuffer
 		{
@@ -51,6 +46,11 @@ public class CachedSoundPlayer : IDisposable
 	public void Stop()
 	{
 		_sourceVoice?.Stop();
+	}
+
+	public bool IsPlaying()
+	{
+		return _sourceVoice?.State.BuffersQueued > 0;
 	}
 
 	public void Dispose()
