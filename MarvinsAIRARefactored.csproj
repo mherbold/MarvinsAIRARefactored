@@ -15,6 +15,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="AdminBoxx\code.py" />
     <None Remove="Artwork\icon_left_small.png" />
     <None Remove="Artwork\icon_right_small.png" />
     <None Remove="Artwork\icon_up_small.png" />
@@ -30,6 +31,10 @@
       <Isolated>false</Isolated>
       <EmbedInteropTypes>true</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="AdminBoxx\code.py" />
   </ItemGroup>
 
   <ItemGroup>

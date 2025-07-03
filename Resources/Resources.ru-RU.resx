@@ -533,7 +533,7 @@
     <comment>App</comment>
   </data>
   <data name="ConnectOnStartup" xml:space="preserve">
-    <value>Connect to AdminBoxx on App Startup</value>
+    <value>Подключаться к AdminBoxx при запуске приложения</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Brightness" xml:space="preserve">
@@ -553,23 +553,23 @@
     <comment>AdminBoxx</comment>
   </data>
   <data name="Display" xml:space="preserve">
-    <value>Display</value>
+    <value>Дисплей</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
+    <value>Звук</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="BlackFlagR" xml:space="preserve">
-    <value>Black Flag R</value>
+    <value>Чёрный флаг R</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="BlackFlagG" xml:space="preserve">
-    <value>Black Flag G</value>
+    <value>Чёрный флаг G</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="BlackFlagB" xml:space="preserve">
-    <value>Black Flag B</value>
+    <value>Чёрный флаг B</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -785,19 +785,19 @@
     <comment>App</comment>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value></value>
+    <value>Общий: коэффициент сжатия</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value></value>
+    <value>Slew: Предел для сжатия</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value></value>
+    <value>Slew: Коэффициент сжатия</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value></value>
+    <value>Общий: Предел для сжатия</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
@@ -823,5 +823,29 @@
   <data name="CenterWheelWhenNotInCar" xml:space="preserve">
     <value>Центрировать руль, когда не в машине</value>
     <comment>Racing wheel</comment>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>Включить просто режим</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Чувствительность</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="ZeAlanLeTwist" xml:space="preserve">
+    <value>Скорость нарастания момента(Slew) и сжатие</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DiscordModerators" xml:space="preserve">
+    <value>Модераторы Дискорда</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>Хочу поблагодарить модераторов, которые помогают отвечать на многочисленные вопросы пользователям MAIRA, что позволяет мне сосредоточиться на разработке!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>Прошивка AdminBoxx обновляется</value>
+    <comment>AdminBoxx</comment>
   </data>
 </root>

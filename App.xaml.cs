@@ -204,6 +204,18 @@ public partial class App : Application
 		Logger.WriteLine( "[App] <<< App_Exit" );
 	}
 
+	private void SendChatMessage( string key, string? value = null )
+	{
+		if ( Simulator.UserName != string.Empty )
+		{
+			var playerName = Simulator.UserName;
+
+			playerName = playerName.Replace( " ", "." );
+
+			ChatQueue.SendMessage( $"/{playerName} [MAIRA] {DataContext.DataContext.Instance.Localization[ key ]}", value );
+		}
+	}
+
 	private void OnInput( string deviceProductName, Guid deviceInstanceGuid, int buttonNumber, bool isPressed )
 	{
 		if ( !UpdateButtonMappingsWindow.WindowIsOpen && isPressed )
@@ -212,11 +224,17 @@ public partial class App : Application
 
 			var settings = DataContext.DataContext.Instance.Settings;
 
+			// shortcut to localization
+
+			var localization = DataContext.DataContext.Instance.Localization;
+
 			// racing wheel power button
 
 			if ( CheckMappedButtons( settings.RacingWheelEnableForceFeedbackButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelEnableForceFeedback = !settings.RacingWheelEnableForceFeedback;
+
+				SendChatMessage( "Power", settings.RacingWheelEnableForceFeedback ? localization[ "ON" ] : localization[ "OFF" ] );
 			}
 
 			// racing wheel test button
@@ -224,6 +242,8 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelTestButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				RacingWheel.PlayTestSignal = true;
+
+				SendChatMessage( "Test" );
 			}
 
 			// racing wheel reset button
@@ -231,6 +251,8 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelResetButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				RacingWheel.ResetForceFeedback = true;
+
+				SendChatMessage( "Reset" );
 			}
 			
 			// racing wheel strength knob
@@ -238,11 +260,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelStrength += 0.01f;
+
+				SendChatMessage( "Strength", settings.RacingWheelStrengthString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelStrength -= 0.01f;
+
+				SendChatMessage( "Strength", settings.RacingWheelStrengthString );
 			}
 
 			// racing wheel max force knob
@@ -250,11 +276,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelMaxForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelMaxForce += 1f;
+
+				SendChatMessage( "MaxForce", settings.RacingWheelMaxForceString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelMaxForceMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelMaxForce -= 1f;
+
+				SendChatMessage( "MaxForce", settings.RacingWheelMaxForceString );
 			}
 
 			// racing wheel auto margin knob
@@ -262,11 +292,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelAutoMarginPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelAutoMargin += 1f;
+
+				SendChatMessage( "AutoMargin", settings.RacingWheelAutoMarginString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelAutoMarginMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelAutoMargin -= 1f;
+
+				SendChatMessage( "AutoMargin", settings.RacingWheelAutoMarginString );
 			}
 
 			// racing wheel auto button
@@ -274,6 +308,8 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelSetButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				RacingWheel.AutoSetMaxForce = true;
+
+				SendChatMessage( "Set" );
 			}
 
 			// racing wheel clear button
@@ -281,6 +317,8 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelClearButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				RacingWheel.ClearPeakTorque = true;
+
+				SendChatMessage( "Clear" );
 			}
 
 			// racing wheel detail boost knob
@@ -288,23 +326,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelDetailBoostPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelDetailBoost += 0.1f;
+
+				SendChatMessage( "DetailBoost", settings.RacingWheelDetailBoostString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelDetailBoostMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelDetailBoost -= 0.1f;
-			}
 
-			// racing wheel delta limit knob
-
-			if ( CheckMappedButtons( settings.RacingWheelDeltaLimitPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
-			{
-				settings.RacingWheelDeltaLimit += 0.01f;
-			}
-
-			if ( CheckMappedButtons( settings.RacingWheelDeltaLimitMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
-			{
-				settings.RacingWheelDeltaLimit -= 0.01f;
+				SendChatMessage( "DetailBoost", settings.RacingWheelDetailBoostString );
 			}
 
 			// racing wheel detail boost bias knob
@@ -312,11 +342,31 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelDetailBoostBiasPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelDetailBoostBias += 0.01f;
+
+				SendChatMessage( "DetailBoostBias", settings.RacingWheelDetailBoostBiasString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelDetailBoostBiasMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelDetailBoostBias -= 0.01f;
+
+				SendChatMessage( "DetailBoostBias", settings.RacingWheelDetailBoostBiasString );
+			}
+
+			// racing wheel delta limit knob
+
+			if ( CheckMappedButtons( settings.RacingWheelDeltaLimitPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelDeltaLimit += 0.01f;
+
+				SendChatMessage( "DeltaLimit", settings.RacingWheelDeltaLimitString );
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelDeltaLimitMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelDeltaLimit -= 0.01f;
+
+				SendChatMessage( "DeltaLimit", settings.RacingWheelDeltaLimitString );
 			}
 
 			// racing wheel delta limiter bias knob
@@ -324,11 +374,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelDeltaLimiterBiasPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelDeltaLimiterBias += 0.01f;
+
+				SendChatMessage( "DeltaLimiterBias", settings.RacingWheelDeltaLimiterBiasString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelDeltaLimiterBiasMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelDeltaLimiterBias -= 0.01f;
+
+				SendChatMessage( "DeltaLimiterBias", settings.RacingWheelDeltaLimiterBiasString );
 			}
 
 			// racing wheel slew compression threshold knob
@@ -336,11 +390,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelSlewCompressionThresholdPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelSlewCompressionThreshold += 1f;
+
+				SendChatMessage( "SlewCompressionThreshold", settings.RacingWheelSlewCompressionThresholdString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelSlewCompressionThresholdMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelSlewCompressionThreshold -= 1f;
+
+				SendChatMessage( "SlewCompressionThreshold", settings.RacingWheelSlewCompressionThresholdString );
 			}
 
 			// racing wheel slew compression rate knob
@@ -348,11 +406,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelSlewCompressionRatePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelSlewCompressionRate += 0.01f;
+
+				SendChatMessage( "SlewCompressionRate", settings.RacingWheelSlewCompressionRateString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelSlewCompressionRateMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelSlewCompressionRate -= 0.01f;
+
+				SendChatMessage( "SlewCompressionRate", settings.RacingWheelSlewCompressionRateString );
 			}
 
 			// racing wheel total compression threshold knob
@@ -360,11 +422,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelTotalCompressionThresholdPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelTotalCompressionThreshold += 0.01f;
+
+				SendChatMessage( "TotalCompressionThreshold", settings.RacingWheelTotalCompressionThresholdString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelTotalCompressionThresholdMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelTotalCompressionThreshold -= 0.01f;
+
+				SendChatMessage( "TotalCompressionThreshold", settings.RacingWheelTotalCompressionThresholdString );
 			}
 
 			// racing wheel total compression rate knob
@@ -372,11 +438,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelTotalCompressionRatePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelTotalCompressionRate += 0.01f;
+
+				SendChatMessage( "TotalCompressionRate", settings.RacingWheelTotalCompressionRateString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelTotalCompressionRateMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelTotalCompressionRate -= 0.01f;
+
+				SendChatMessage( "TotalCompressionRate", settings.RacingWheelTotalCompressionRateString );
 			}
 
 			// racing wheel output minimum knob
@@ -384,11 +454,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelOutputMinimumPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelOutputMinimum += 0.01f;
+
+				SendChatMessage( "Minimum", settings.RacingWheelOutputMinimumString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelOutputMinimumMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelOutputMinimum -= 0.01f;
+
+				SendChatMessage( "Minimum", settings.RacingWheelOutputMinimumString );
 			}
 
 			// racing wheel output maximum knob
@@ -396,11 +470,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelOutputMaximumPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelOutputMaximum += 0.01f;
+
+				SendChatMessage( "Maximum", settings.RacingWheelOutputMaximumString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelOutputMaximumMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelOutputMaximum -= 0.01f;
+
+				SendChatMessage( "Maximum", settings.RacingWheelOutputMaximumString );
 			}
 
 			// racing wheel output curve knob
@@ -408,11 +486,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelOutputCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelOutputCurve += 0.01f;
+
+				SendChatMessage( "Curve", settings.RacingWheelOutputCurveString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelOutputCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelOutputCurve -= 0.01f;
+
+				SendChatMessage( "Curve", settings.RacingWheelOutputCurveString );
 			}
 
 			// racing wheel lfe strength knob
@@ -420,11 +502,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelLFEStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelLFEStrength += 0.01f;
+
+				SendChatMessage( "Strength", settings.RacingWheelLFEStrengthString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelLFEStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelLFEStrength -= 0.01f;
+
+				SendChatMessage( "Strength", settings.RacingWheelLFEStrengthString );
 			}
 
 			// racing wheel crash protection g force knob
@@ -432,11 +518,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionGForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelCrashProtectionGForce += 0.5f;
+
+				SendChatMessage( "GForce", settings.RacingWheelCrashProtectionGForceString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionGForceMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelCrashProtectionGForce -= 0.5f;
+
+				SendChatMessage( "GForce", settings.RacingWheelCrashProtectionGForceString );
 			}
 
 			// racing wheel crash protection duration knob
@@ -444,11 +534,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionDurationPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelCrashProtectionDuration += 0.5f;
+
+				SendChatMessage( "Duration", settings.RacingWheelCrashProtectionDurationString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionDurationMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelCrashProtectionDuration -= 0.5f;
+
+				SendChatMessage( "Duration", settings.RacingWheelCrashProtectionDurationString );
 			}
 
 			// racing wheel crash protection force reduction knob
@@ -456,11 +550,15 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionForceReductionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelCrashProtectionForceReduction += 0.05f;
+
+				SendChatMessage( "ForceReduction", settings.RacingWheelCrashProtectionForceReductionString );
 			}
 
 			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionForceReductionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.RacingWheelCrashProtectionForceReduction -= 0.05f;
+
+				SendChatMessage( "ForceReduction", settings.RacingWheelCrashProtectionForceReductionString );
 			}
 
 			// racing wheel curb protection shock velocity knob

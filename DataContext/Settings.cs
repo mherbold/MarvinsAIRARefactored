@@ -306,7 +306,7 @@ public class Settings : INotifyPropertyChanged
 		{
 			value = float.IsNaN( value ) ? 0.1f : value;
 
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, RacingWheelAllowSuperStrength ? 2f : 1f );
 
 			if ( value != _racingWheelStrength )
 			{
@@ -360,7 +360,7 @@ public class Settings : INotifyPropertyChanged
 		{
 			value = float.IsNaN( value ) ? 50f : value;
 
-			value = Math.Clamp( value, RacingWheelWheelForce, 300.0f );
+			value = Math.Clamp( value, RacingWheelWheelForce * ( RacingWheelAllowSuperStrength ? 0.5f : 1f ), 300.0f );
 
 			if ( value != _racingWheelMaxForce )
 			{
@@ -551,7 +551,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0.05f, 1f );
 
 			if ( value != _racingWheelDetailBoostBias )
 			{
@@ -653,7 +653,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0.05f, 1f );
 
 			if ( value != _racingWheelDeltaLimiterBias )
 			{
@@ -1706,6 +1706,30 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	public ContextSwitches RacingWheelFadeEnabledContextSwitches { get; set; } = new( false, false, false, false, false );
+
+	#endregion
+
+	#region Racing wheel - Allow super strength
+
+	private bool _racingWheelAllowSuperStrength = false;
+
+	public bool RacingWheelAllowSuperStrength
+	{
+		get => _racingWheelAllowSuperStrength;
+
+		set
+		{
+			if ( value != _racingWheelAllowSuperStrength )
+			{
+				_racingWheelAllowSuperStrength = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateRelatedRacingWheelSettings( nameof( RacingWheelMaxForce ) );
+			UpdateRelatedRacingWheelSettings( nameof( RacingWheelStrength ) );
+		}
+	}
 
 	#endregion
 

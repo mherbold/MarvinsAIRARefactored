@@ -1,14 +1,16 @@
 ﻿
 using System.Collections.Concurrent;
+using System.IO;
+using System.Reflection;
 using System.Text.RegularExpressions;
 
+using Color = MarvinsAIRARefactored.Classes.Color;
 using Timer = System.Timers.Timer;
 
 using IRSDKSharper;
 
-using Color = MarvinsAIRARefactored.Classes.Color;
-
 using MarvinsAIRARefactored.Classes;
+using System.Text;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -24,6 +26,7 @@ public partial class AdminBoxx
 	public static Color Disabled { get; } = new( 0f, 0f, 0f );
 
 	public bool IsConnected { get; private set; } = false;
+	public bool IsUpdating { get; private set; } = false;
 
 	private const int _numColumns = 8;
 	private const int _numRows = 4;
@@ -79,10 +82,8 @@ public partial class AdminBoxx
 		{ Red, Yellow, Cyan, Green, Red, Red, Red, Red }
 	};
 
-	private static readonly Regex ButtonPressRegex = MyRegex();
-
 	private bool _globalChatEnabled = true;
-	private HashSet<string> _driverChatDisabled = [];
+	private readonly HashSet<string> _driverChatDisabled = [];
 
 	private bool _inNumpadMode = false;
 	private bool _replayEnabled = false;
@@ -113,6 +114,13 @@ public partial class AdminBoxx
 	private int _testCounter = 0;
 	private int _testState = 0;
 
+	private int _beepCounter = 0;
+	private int _beepsRemaining = 0;
+
+	private string? _soundToPlay = null;
+	private string? _driverNumberToSay = null;
+	private int _driverNumberToSayIndex = 0;
+
 	private int _blinkCounter = 60;
 
 	private float _brightness = 1f;
@@ -125,14 +133,30 @@ public partial class AdminBoxx
 
 	private int _pingCounter = 0;
 
+	private int _updatePyCurrentLine = 0;
+	private string[]? _updatePyLines = null;
+
 	private readonly ConcurrentQueue<(int y, int x)> _ledUpdateConcurrentQueue = new();
 	private readonly HashSet<(int y, int x)> _ledUpdateHashSet = [];
 	private readonly Lock _lock = new();
 
 	private readonly Timer _timer = new( 10 );
 
+	[GeneratedRegex( @"^V([\d.]+)$", RegexOptions.Compiled )]
+	private static partial Regex VersionNumberRegex();
+	private static readonly Regex StaticVersionNumberRegex = VersionNumberRegex();
+
 	[GeneratedRegex( @"^:(\d+),(\d+)$", RegexOptions.Compiled )]
-	private static partial Regex MyRegex();
+	private static partial Regex ButtonPressRegex();
+	private static readonly Regex StaticButtonPressRegex = ButtonPressRegex();
+
+	[GeneratedRegex( @"^N$", RegexOptions.Compiled )]
+	private static partial Regex NextLineRegex();
+	private static readonly Regex StaticNextLineRegex = NextLineRegex();
+
+	[GeneratedRegex( @"^VERSION = ""(?<version>[\d.]+)""", RegexOptions.Compiled | RegexOptions.Multiline )]
+	private static partial Regex CodePyVersionRegex();
+	private static readonly Regex StaticCodePyVersionRegex = CodePyVersionRegex();
 
 	public AdminBoxx()
 	{
@@ -163,6 +187,10 @@ public partial class AdminBoxx
 			_pingCounter = 100;
 
 			UpdateColors( _blueNoiseLedOrder, true );
+
+			PlayAudio( 3, "connected_to_adminboxx_app", null );
+
+			RequestVersionNumber();
 		}
 
 		app.Dispatcher.BeginInvoke( () =>
@@ -234,6 +262,13 @@ public partial class AdminBoxx
 	public void SimulatorConnected()
 	{
 		UpdateColors( _blueNoiseLedOrder, true );
+
+		if ( IsConnected )
+		{
+			StopAudio( "connected_to_adminboxx_app" );
+
+			PlayAudio( 3, "connected_to_iracing_simulator", null );
+		}
 	}
 
 	public void SimulatorDisconnected()
@@ -268,13 +303,18 @@ public partial class AdminBoxx
 
 		// yellow flag / caution flag
 
-		if ( (int) ( app.Simulator.SessionFlags & ( IRacingSdkEnum.Flags.YellowWaving | IRacingSdkEnum.Flags.CautionWaving ) ) != 0 )
+		if ( ( app.Simulator.SessionFlags & ( IRacingSdkEnum.Flags.YellowWaving | IRacingSdkEnum.Flags.CautionWaving ) ) != 0 )
 		{
 			if ( !_shownYellowFlag )
 			{
 				_shownYellowFlag = true;
 
 				WaveFlag( Yellow, 2 );
+
+				if ( ( app.Simulator.SessionFlags & IRacingSdkEnum.Flags.CautionWaving ) != 0 )
+				{
+					PlayAudio( 0, "we_are_under_caution", null );
+				}
 			}
 		}
 		else
@@ -516,6 +556,73 @@ public partial class AdminBoxx
 		}
 	}
 
+	private void RequestVersionNumber()
+	{
+		if ( IsConnected )
+		{
+			var app = App.Instance!;
+
+			app.Logger.WriteLine( $"[AdminBoxx] Requesting version number" );
+
+			byte[] data = [ 130, 255 ];
+
+			_usbSerialPortHelper.Write( data );
+		}
+	}
+
+	private void StartCodePyUpdate( string codePy )
+	{
+		if ( IsConnected )
+		{
+			var app = App.Instance!;
+
+			app.Logger.WriteLine( $"[AdminBoxx] Starting code.py update" );
+
+			byte[] data = [ 131, 255 ];
+
+			_usbSerialPortHelper.Write( data );
+
+			_updatePyCurrentLine = 0;
+			_updatePyLines = codePy.Split( [ "\r\n", "\r", "\n" ], StringSplitOptions.None );
+
+			IsUpdating = true;
+
+			app.MainWindow.UpdateStatus();
+		}
+	}
+
+	private void SendNextCodePyLine()
+	{
+		if ( IsConnected )
+		{
+			if ( _updatePyLines != null )
+			{
+				if ( _updatePyCurrentLine < _updatePyLines.Length )
+				{
+					var data = new byte[] { 132 }.Concat( Encoding.ASCII.GetBytes( _updatePyLines[ _updatePyCurrentLine ] ) ).Concat( new byte[] { 255 } ).ToArray();
+
+					_usbSerialPortHelper.Write( data );
+
+					_updatePyCurrentLine++;
+				}
+				else
+				{
+					var app = App.Instance!;
+
+					app.Logger.WriteLine( $"[AdminBoxx] Finishing code.py update" );
+
+					byte[] data = [ 133, 255 ];
+
+					_usbSerialPortHelper.Write( data );
+
+					IsUpdating = false;
+
+					app.MainWindow.UpdateStatus();
+				}
+			}
+		}
+	}
+
 	private bool EnterNumpadMode( CarNumberCallback carNumberCallback, bool carNumberIsRequired = true )
 	{
 		if ( !_inNumpadMode )
@@ -555,100 +662,123 @@ public partial class AdminBoxx
 		return false;
 	}
 
-	#region Handle button commands
-
 	private void OnDataReceived( object? sender, string data )
 	{
 		var app = App.Instance!;
 
-		if ( !app.Simulator.IsConnected )
-		{
-			return;
-		}
-
-		var match = ButtonPressRegex.Match( data );
+		var match = StaticButtonPressRegex.Match( data );
 
 		if ( match.Success )
 		{
-			var y = int.Parse( match.Groups[ 1 ].Value );
-			var x = int.Parse( match.Groups[ 2 ].Value );
-
-			app.Logger.WriteLine( $"[AdminBoxx] Button press detected: row={y}, col={x}" );
-
-			switch ( y )
+			if ( app.Simulator.IsConnected )
 			{
-				case 0:
-				{
-					switch ( x )
-					{
-						case 0: DoYellowFlag(); break;
-						case 1: DoNumber( 1 ); break;
-						case 2: DoNumber( 2 ); break;
-						case 3: DoNumber( 3 ); break;
-						case 4: DoBlackFlag(); break;
-						case 5: DoClearFlag(); break;
-						case 6: DoClearAllFlags(); break;
-						case 7: DoChat(); break;
-					}
+				var y = int.Parse( match.Groups[ 1 ].Value );
+				var x = int.Parse( match.Groups[ 2 ].Value );
 
-					break;
-				}
-
-				case 1:
-				{
-					switch ( x )
-					{
-						case 0: DoTogglePaceMode(); break;
-						case 1: DoNumber( 4 ); break;
-						case 2: DoNumber( 5 ); break;
-						case 3: DoNumber( 6 ); break;
-						case 4: DoWaveByDriver(); break;
-						case 5: DoEndOfLineDriver(); break;
-						case 6: DoDisqualifyDriver(); break;
-						case 7: DoRemoveDriver(); break;
-					}
-
-					break;
-				}
-
-				case 2:
-				{
-					switch ( x )
-					{
-						case 0: DoPlusOneLap(); break;
-						case 1: DoNumber( 7 ); break;
-						case 2: DoNumber( 8 ); break;
-						case 3: DoNumber( 9 ); break;
-						case 4: DoAdvanceToNextSession(); break;
-						case 5: DoLive(); break;
-						case 6: DoGoToPreviousIncident(); break;
-						case 7: DoGoToNextIncident(); break;
-					}
-
-					break;
-				}
-
-				case 3:
-				{
-					switch ( x )
-					{
-						case 0: DoMinusOneLap(); break;
-						case 1: DoEscape(); break;
-						case 2: DoNumber( 0 ); break;
-						case 3: DoEnter(); break;
-						case 4: DoSlowMotion(); break;
-						case 5: DoReverse(); break;
-						case 6: DoForward(); break;
-						case 7: DoFastForward(); break;
-					}
-
-					break;
-				}
+				HandleButtonPress( y, x );
 			}
+
+			return;
 		}
-		else
+
+		match = StaticVersionNumberRegex.Match( data );
+
+		if ( match.Success )
 		{
-			app.Logger.WriteLine( $"[AdminBoxx] Unrecognized message: \"{data}\"" );
+			HandleVersionNumber( match.Groups[ 1 ].Value );
+
+			return;
+		}
+
+		match = StaticNextLineRegex.Match( data );
+
+		if ( match.Success )
+		{
+			SendNextCodePyLine();
+
+			return;
+		}
+
+		app.Logger.WriteLine( $"[AdminBoxx] Unrecognized message: \"{data}\"" );
+	}
+
+	#region Handle button commands
+
+	private void HandleButtonPress( int y, int x )
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( $"[AdminBoxx] Button press detected: row={y}, col={x}" );
+
+		switch ( y )
+		{
+			case 0:
+			{
+				switch ( x )
+				{
+					case 0: DoYellowFlag(); break;
+					case 1: DoNumber( 1 ); break;
+					case 2: DoNumber( 2 ); break;
+					case 3: DoNumber( 3 ); break;
+					case 4: DoBlackFlag(); break;
+					case 5: DoClearFlag(); break;
+					case 6: DoClearAllFlags(); break;
+					case 7: DoChat(); break;
+				}
+
+				break;
+			}
+
+			case 1:
+			{
+				switch ( x )
+				{
+					case 0: DoTogglePaceMode(); break;
+					case 1: DoNumber( 4 ); break;
+					case 2: DoNumber( 5 ); break;
+					case 3: DoNumber( 6 ); break;
+					case 4: DoWaveByDriver(); break;
+					case 5: DoEndOfLineDriver(); break;
+					case 6: DoDisqualifyDriver(); break;
+					case 7: DoRemoveDriver(); break;
+				}
+
+				break;
+			}
+
+			case 2:
+			{
+				switch ( x )
+				{
+					case 0: DoPlusOneLap(); break;
+					case 1: DoNumber( 7 ); break;
+					case 2: DoNumber( 8 ); break;
+					case 3: DoNumber( 9 ); break;
+					case 4: DoAdvanceToNextSession(); break;
+					case 5: DoLive(); break;
+					case 6: DoGoToPreviousIncident(); break;
+					case 7: DoGoToNextIncident(); break;
+				}
+
+				break;
+			}
+
+			case 3:
+			{
+				switch ( x )
+				{
+					case 0: DoMinusOneLap(); break;
+					case 1: DoEscape(); break;
+					case 2: DoNumber( 0 ); break;
+					case 3: DoEnter(); break;
+					case 4: DoSlowMotion(); break;
+					case 5: DoReverse(); break;
+					case 6: DoForward(); break;
+					case 7: DoFastForward(); break;
+				}
+
+				break;
+			}
 		}
 	}
 
@@ -675,8 +805,6 @@ public partial class AdminBoxx
 				case 8: SetLEDToColor( 2, 2, Magenta, false ); break;
 				case 9: SetLEDToColor( 2, 3, Magenta, false ); break;
 			}
-
-			app.AudioManager.Play( $"{number}", DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
 		}
 
 		app.Logger.WriteLine( $"[AdminBoxx] <<< DoNumber( {number} )" );
@@ -692,7 +820,7 @@ public partial class AdminBoxx
 		{
 			LeaveNumpadMode( false );
 
-			PlayAudio( "cancel" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoEscape" );
@@ -709,11 +837,6 @@ public partial class AdminBoxx
 			if ( !_carNumberIsRequired || ( _carNumber != string.Empty ) )
 			{
 				LeaveNumpadMode( true );
-
-				if ( _carNumberCallback != ChatCallback )
-				{
-					PlayAudio( "enter" );
-				}
 			}
 		}
 
@@ -732,7 +855,7 @@ public partial class AdminBoxx
 			{
 				app.ChatQueue.SendMessage( "!yellow" );
 
-				PlayAudio( "throw_caution_flag" );
+				PlayAudio( 3, null, null );
 			}
 		}
 
@@ -751,7 +874,7 @@ public partial class AdminBoxx
 
 			SetLEDToColor( 0, 4, Cyan, false );
 
-			PlayAudio( "black_flag_stop_and_go" );
+			PlayAudio( 1, null, null );
 		}
 		else if ( _carNumberCallback == BlackFlagCallback )
 		{
@@ -761,13 +884,13 @@ public partial class AdminBoxx
 			{
 				SetLEDToColor( 0, 4, Yellow, false );
 
-				PlayAudio( "black_flag_drive_through" );
+				PlayAudio( 2, null, null );
 			}
 			else
 			{
 				SetLEDToColor( 0, 4, Cyan, false );
 
-				PlayAudio( "black_flag_stop_and_go" );
+				PlayAudio( 1, null, null );
 			}
 		}
 
@@ -783,11 +906,14 @@ public partial class AdminBoxx
 		if ( _blackFlagDriveThrough )
 		{
 			app.ChatQueue.SendMessage( $"!black #{_carNumber} D" );
+
 		}
 		else
 		{
 			app.ChatQueue.SendMessage( $"!black #{_carNumber}" );
 		}
+
+		PlayAudio( 1, "black_flag_driver_number", _carNumber );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< BlackFlagCallback" );
 	}
@@ -804,7 +930,7 @@ public partial class AdminBoxx
 
 			SetLEDToColor( 0, 5, Cyan, false );
 
-			PlayAudio( "clear_black_flag" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoClearFlag" );
@@ -818,6 +944,8 @@ public partial class AdminBoxx
 
 		app.ChatQueue.SendMessage( $"!clear #{_carNumber}" );
 
+		PlayAudio( 1, "clear_driver_number", _carNumber );
+
 		app.Logger.WriteLine( "[AdminBoxx] <<< ClearFlagCallback" );
 	}
 
@@ -830,8 +958,6 @@ public partial class AdminBoxx
 		if ( !_inNumpadMode )
 		{
 			app.ChatQueue.SendMessage( "!clearall" );
-
-			PlayAudio( "clear_all_black_flags" );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoClearAllFlags" );
@@ -848,8 +974,6 @@ public partial class AdminBoxx
 			EnterNumpadMode( ChatCallback, false );
 
 			SetLEDToColor( 0, 7, Cyan, false );
-
-			PlayAudio( "chat_toggle" );
 		}
 		else
 		{
@@ -860,14 +984,10 @@ public partial class AdminBoxx
 				app.ChatQueue.SendMessage( "!nchat" );
 
 				_globalChatEnabled = false;
-
-				PlayAudio( "chat_disabled" );
 			}
 			else
 			{
 				app.ChatQueue.SendMessage( "!chat" );
-
-				PlayAudio( "chat_enabled" );
 
 				_globalChatEnabled = true;
 			}
@@ -893,14 +1013,10 @@ public partial class AdminBoxx
 				app.ChatQueue.SendMessage( "!nchat" );
 
 				_globalChatEnabled = false;
-
-				PlayAudio( "chat_disabled" );
 			}
 			else
 			{
 				app.ChatQueue.SendMessage( "!chat" );
-
-				PlayAudio( "chat_enabled" );
 
 				_globalChatEnabled = true;
 			}
@@ -935,13 +1051,13 @@ public partial class AdminBoxx
 			{
 				app.ChatQueue.SendMessage( "!restart single" );
 
-				PlayAudio( "single_file" );
+				PlayAudio( 1, "restart_is_single_file", null );
 			}
 			else
 			{
 				app.ChatQueue.SendMessage( "!restart double" );
 
-				PlayAudio( "double_file" );
+				PlayAudio( 2, "restart_is_double_file", null );
 			}
 		}
 
@@ -960,7 +1076,7 @@ public partial class AdminBoxx
 
 			SetLEDToColor( 1, 4, Cyan, false );
 
-			PlayAudio( "wave_by_driver" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoWaveByDriver" );
@@ -973,6 +1089,8 @@ public partial class AdminBoxx
 		app.Logger.WriteLine( "[AdminBoxx] WaveByDriverCallback >>>" );
 
 		app.ChatQueue.SendMessage( $"!waveby #{_carNumber}" );
+
+		PlayAudio( 1, "wave_by_driver_number", _carNumber );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< WaveByDriverCallback" );
 	}
@@ -989,7 +1107,7 @@ public partial class AdminBoxx
 
 			SetLEDToColor( 1, 5, Cyan, false );
 
-			PlayAudio( "end_of_line_driver" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoEndOfLineDriver" );
@@ -1002,6 +1120,8 @@ public partial class AdminBoxx
 		app.Logger.WriteLine( "[AdminBoxx] EndOfLineDriverCallback >>>" );
 
 		app.ChatQueue.SendMessage( $"!eol #{_carNumber}" );
+
+		PlayAudio( 1, "end_of_line_driver_number", _carNumber );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< EndOfLineDriverCallback" );
 	}
@@ -1018,7 +1138,7 @@ public partial class AdminBoxx
 
 			SetLEDToColor( 1, 6, Cyan, false );
 
-			PlayAudio( "disqualify_driver" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoDisqualifyDriver" );
@@ -1031,6 +1151,8 @@ public partial class AdminBoxx
 		app.Logger.WriteLine( "[AdminBoxx] DisqualifyDriverCallback >>>" );
 
 		app.ChatQueue.SendMessage( $"!dq #{_carNumber}" );
+
+		PlayAudio( 1, "disqualify_driver_number", _carNumber );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DisqualifyDriverCallback" );
 	}
@@ -1047,7 +1169,7 @@ public partial class AdminBoxx
 
 			SetLEDToColor( 1, 7, Cyan, false );
 
-			PlayAudio( "remove_driver" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoRemoveDriver" );
@@ -1074,7 +1196,7 @@ public partial class AdminBoxx
 		{
 			app.ChatQueue.SendMessage( "!pacelaps +1" );
 
-			PlayAudio( "plus_one_lap" );
+			PlayAudio( 2, "caution_extended_by_one_lap", null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoPlusOneLap" );
@@ -1090,7 +1212,7 @@ public partial class AdminBoxx
 		{
 			app.ChatQueue.SendMessage( "!advance" );
 
-			PlayAudio( "advance_to_next_session" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoAdvanceToNextSession" );
@@ -1107,7 +1229,7 @@ public partial class AdminBoxx
 			app.Simulator.IRSDK.ReplaySetPlayPosition( IRacingSdkEnum.RpyPosMode.End, 0 );
 			app.Simulator.IRSDK.ReplaySetPlaySpeed( 16, false );
 
-			PlayAudio( "live" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoLive" );
@@ -1123,7 +1245,7 @@ public partial class AdminBoxx
 		{
 			app.Simulator.IRSDK.ReplaySearch( IRacingSdkEnum.RpySrchMode.PrevIncident );
 
-			PlayAudio( "previous_incident" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoGoToPreviousIncident" );
@@ -1139,7 +1261,7 @@ public partial class AdminBoxx
 		{
 			app.Simulator.IRSDK.ReplaySearch( IRacingSdkEnum.RpySrchMode.NextIncident );
 
-			PlayAudio( "next_incident" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoGoToNextIncident" );
@@ -1155,7 +1277,7 @@ public partial class AdminBoxx
 		{
 			app.ChatQueue.SendMessage( "!pacelaps -1" );
 
-			PlayAudio( "minus_one_lap" );
+			PlayAudio( 2, "caution_shortened_by_one_lap", null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoMinusOneLap" );
@@ -1196,7 +1318,7 @@ public partial class AdminBoxx
 
 			app.Simulator.IRSDK.ReplaySetPlaySpeed( replayPlaySpeed, true );
 
-			PlayAudio( "slow_motion" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoSlowMotion" );
@@ -1223,7 +1345,7 @@ public partial class AdminBoxx
 
 			app.Simulator.IRSDK.ReplaySetPlaySpeed( replayPlaySpeed, false );
 
-			PlayAudio( "rewind" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoReverse" );
@@ -1242,15 +1364,13 @@ public partial class AdminBoxx
 			if ( replayPlaySpeed != 1 )
 			{
 				replayPlaySpeed = 1;
-
-				PlayAudio( "play" );
 			}
 			else
 			{
 				replayPlaySpeed = 0;
-
-				PlayAudio( "pause" );
 			}
+
+			PlayAudio( 1, null, null );
 
 			app.Simulator.IRSDK.ReplaySetPlaySpeed( replayPlaySpeed, false );
 		}
@@ -1279,7 +1399,7 @@ public partial class AdminBoxx
 
 			app.Simulator.IRSDK.ReplaySetPlaySpeed( replayPlaySpeed, false );
 
-			PlayAudio( "fast_forward" );
+			PlayAudio( 1, null, null );
 		}
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DoFastForward" );
@@ -1287,11 +1407,68 @@ public partial class AdminBoxx
 
 	#endregion
 
-	private static void PlayAudio( string key )
+	private void HandleVersionNumber( string version )
 	{
 		var app = App.Instance!;
 
-		app.AudioManager.Play( key, DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
+		app.Logger.WriteLine( "[AdminBoxx] HandleVersionNumber >>>" );
+
+		app.Logger.WriteLine( $"[AdminBoxx] Version on AdminBoxx is {version}" );
+
+		var assembly = Assembly.GetExecutingAssembly();
+
+		var resourceName = assembly.GetManifestResourceNames().FirstOrDefault( name => name.EndsWith( "code.py" ) ) ?? throw new Exception( "Could not find code.py embedded resource" );
+
+		using var resourceStream = assembly.GetManifestResourceStream( resourceName ) ?? throw new Exception( "Could not open code.py embedded resource as a resource stream" );
+		using var reader = new StreamReader( resourceStream ) ?? throw new Exception( "Could not create stream reader to read in code.py embedded resource" );
+
+		var codePy = reader.ReadToEnd();
+
+		var match = StaticCodePyVersionRegex.Match( codePy );
+
+		if ( !match.Success )
+		{
+			throw new Exception( "Could not extract version number from code.py embedded resource" );
+		}
+
+		var currentVersion = match.Groups[ "version" ].Value;
+
+		app.Logger.WriteLine( $"[AdminBoxx] Current version is {currentVersion}" );
+
+		if ( version != currentVersion )
+		{
+			app.Logger.WriteLine( $"[AdminBoxx] Versions do not match - updating AdminBoxx" );
+
+			StartCodePyUpdate( codePy );
+		}
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< HandleVersionNumber" );
+	}
+
+	private void PlayAudio( int beepCount, string? key, string? driverNumberToSay )
+	{
+		_beepsRemaining = beepCount;
+		_beepCounter = 1;
+
+		_soundToPlay = key;
+
+		_driverNumberToSay = driverNumberToSay;
+		_driverNumberToSayIndex = 0;
+	}
+
+	private void StopAudio( string key )
+	{
+		var app = App.Instance!;
+
+		app.AudioManager.Stop( key );
+
+		if ( _soundToPlay == key )
+		{
+			_beepsRemaining = 0;
+			_beepCounter = 0;
+
+			_soundToPlay = null;
+		}
 	}
 
 	private void OnPortClosed( object? sender, EventArgs e )
@@ -1478,6 +1655,49 @@ public partial class AdminBoxx
 					SetLEDToColor( 3, 5, ( app.Simulator.ReplayPlaySpeed < 0 ) ? Magenta : Disabled, false );
 					SetLEDToColor( 3, 6, ( app.Simulator.ReplayPlaySpeed == 1 ) || ( app.Simulator.ReplayPlaySlowMotion && ( app.Simulator.ReplayPlaySpeed > 1 ) ) ? Magenta : Disabled, false );
 					SetLEDToColor( 3, 7, ( app.Simulator.ReplayPlaySpeed > 1 ) && !app.Simulator.ReplayPlaySlowMotion ? Magenta : Disabled, false );
+				}
+			}
+		}
+
+		if ( _beepCounter > 0 )
+		{
+			_beepCounter--;
+
+			if ( _beepCounter == 0 )
+			{
+				if ( _beepsRemaining > 0 )
+				{
+					app.AudioManager.Play( "beep", DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
+
+					_beepsRemaining--;
+
+					_beepCounter = 30;
+				}
+				else if ( _soundToPlay != null )
+				{
+					app.AudioManager.Play( _soundToPlay, DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
+
+					_soundToPlay = null;
+
+					_beepCounter = 1;
+				}
+				else if ( _driverNumberToSay != null )
+				{
+					if ( !app.AudioManager.SomethingIsPlaying() )
+					{
+						var nextNumberToSay = _driverNumberToSay[ _driverNumberToSayIndex ];
+
+						app.AudioManager.Play( $"{nextNumberToSay}", DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
+
+						_driverNumberToSayIndex++;
+
+						if ( _driverNumberToSayIndex == _driverNumberToSay.Length )
+						{
+							_driverNumberToSay = null;
+						}
+					}
+
+					_beepCounter = 1;
 				}
 			}
 		}

@@ -52,6 +52,7 @@ public class Simulator
 	public float Throttle { get; private set; } = 0f;
 	public string TrackDisplayName { get; private set; } = string.Empty;
 	public string TrackConfigName { get; private set; } = string.Empty;
+	public string UserName { get; private set; } = string.Empty;
 	public float Velocity { get; private set; } = 0f;
 	public float VelocityX { get; private set; } = 0f;
 	public float VelocityY { get; private set; } = 0f;
@@ -223,6 +224,7 @@ public class Simulator
 			if ( driver.CarIdx == _irsdk.Data.SessionInfo.DriverInfo.DriverCarIdx )
 			{
 				CarScreenName = driver.CarScreenName ?? string.Empty;
+				UserName = driver.UserName ?? string.Empty;
 				break;
 			}
 		}

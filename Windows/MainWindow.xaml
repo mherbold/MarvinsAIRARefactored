@@ -250,7 +250,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Border Grid.Row="0" BorderThickness="2" BorderBrush="#FFF" Background="#80000000" CornerRadius="5" Padding="0,0,0,6">
-                                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=GroupBox}}">
+                                    <ScrollViewer x:Name="RacingWheel_Preview_ScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=GroupBox}}" PreviewMouseWheel="RacingWheel_Preview_ScrollViewer_PreviewMouseWheel">
                                         <Image x:Name="RacingWheel_AlgorithmPreview_Image" Height="301" Width="3840" RenderOptions.BitmapScalingMode="HighQuality"/>
                                     </ScrollViewer>
                                 </Border>
@@ -356,6 +356,7 @@
 
                             <controls:MairaSwitch Margin="10,20,10,0" IsOn="{Binding Settings.RacingWheelCenterWheelWhenNotInCar, Mode=TwoWay}" Title="{Binding Localization[CenterWheelWhenNotInCar]}" ContextSwitches="{Binding Settings.RacingWheelCenterWheelWhenNotInCarContextSwitches}" Tag="Complex"/>
                             <controls:MairaSwitch Margin="10,10,10,0" IsOn="{Binding Settings.RacingWheelFadeEnabled, Mode=TwoWay}" Title="{Binding Localization[FadeForceFeedback]}" ContextSwitches="{Binding Settings.RacingWheelFadeEnabledContextSwitches}" Tag="Complex"/>
+                            <controls:MairaSwitch Margin="10,10,10,0" IsOn="{Binding Settings.RacingWheelAllowSuperStrength, Mode=TwoWay}" Title="{Binding Localization[AllowSuperStrength]}" Tag="Complex"/>
                             <controls:MairaSwitch Margin="10,10,10,0" IsOn="{Binding Settings.RacingWheelAlwaysEnableFFB, Mode=TwoWay}" Title="{Binding Localization[AlwaysEnableFFB]}" Tag="Complex"/>
                             <controls:MairaSwitch Margin="10,10,10,10" IsOn="{Binding Settings.RacingWheelSimpleModeEnabled, Mode=TwoWay}" Title="{Binding Localization[SimpleMode]}"/>
 
@@ -1129,11 +1130,11 @@
                                 <!--LAS-Zeppelin83-->
                                 <TextBlock Text="Michael Marcotte - French (Canada) - Français (Canada)"/>
                                 <!--Rene-->
-                                <TextBlock Text="Rene - German - Deutsch"/>
+                                <TextBlock Text="Rene Stangl - German - Deutsch"/>
                                 <!--Rodas007-->
                                 <TextBlock Text="Rodas007 - Spanish - Español"/>
                                 <!--Jordi Koller-->
-                                <TextBlock Text="Rodas007 - Dutch - Nederlands"/>
+                                <TextBlock Text="Jordi Koller - Dutch - Nederlands"/>
 
                             </UniformGrid>
 
