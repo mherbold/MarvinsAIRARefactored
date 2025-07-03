@@ -566,7 +566,7 @@ public class RacingWheel
 
 			if ( settings.RacingWheelSoftLockStrength > 0f )
 			{
-				var deltaToMax = app.Simulator.SteeringWheelAngleMax - MathF.Abs( app.Simulator.SteeringWheelAngle );
+				var deltaToMax = ( app.Simulator.SteeringWheelAngleMax * 0.5f ) - MathF.Abs( app.Simulator.SteeringWheelAngle );
 
 				if ( deltaToMax < 0f )
 				{

@@ -152,6 +152,12 @@ public partial class MainWindow : Window
 
 				panel1Message = localization[ "DownloadingUpdate" ];
 			}
+			else if ( app.AdminBoxx.IsUpdating )
+			{
+				backgroundColor = Brushes.DarkOrange;
+
+				panel1Message = localization[ "AdminBoxxIsUpdating" ];
+			}
 			else if ( app.Simulator.IsConnected )
 			{
 				backgroundColor = new SolidColorBrush( System.Windows.Media.Color.FromScRgb( 1f, 0.1f, 0.1f, 0.1f ) );
@@ -574,6 +580,21 @@ public partial class MainWindow : Window
 		app.RacingWheel.ClearPeakTorque = true;
 	}
 
+	private void RacingWheel_Preview_ScrollViewer_PreviewMouseWheel( object sender, MouseWheelEventArgs e )
+	{
+		e.Handled = true;
+
+		var eventArg = new MouseWheelEventArgs( e.MouseDevice, e.Timestamp, e.Delta )
+		{
+			RoutedEvent = MouseWheelEvent,
+			Source = sender
+		};
+
+		var parent = ( (ScrollViewer) sender ).Parent as UIElement;
+
+		parent?.RaiseEvent( eventArg );
+	}
+
 	private void Pedals_ClutchTest1_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
@@ -741,7 +762,7 @@ public partial class MainWindow : Window
 	{
 		var app = App.Instance!;
 
-		app.AudioManager.Play( "volume", newValue );
+		app.AudioManager.Play( "beep", newValue );
 	}
 
 	private void AdminBoxx_Test_Click( object sender, RoutedEventArgs e )

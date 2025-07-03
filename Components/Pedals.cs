@@ -29,7 +29,7 @@ public class Pedals
 
 	public HPR.PedalsDevice PedalsDevice { get; private set; }
 
-	private int _pedalUpdateCounter = UpdateInterval;
+	private int _updateCounter = UpdateInterval;
 
 	private bool _testing = false;
 	private bool _testJustStarted = false;
@@ -499,11 +499,11 @@ public class Pedals
 
 	public void Tick( App app )
 	{
-		_pedalUpdateCounter--;
+		_updateCounter--;
 
-		if ( _pedalUpdateCounter == 0 )
+		if ( _updateCounter == 0 )
 		{
-			_pedalUpdateCounter = UpdateInterval;
+			_updateCounter = UpdateInterval;
 
 			Update( app );
 		}

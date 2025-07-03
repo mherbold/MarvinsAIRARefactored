@@ -59,7 +59,10 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root"
+    xmlns=""
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -122,7 +125,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="App" xml:space="preserve">
-    <value>App</value>
+    <value>Einstellungen</value>
     <comment>Tab item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
@@ -130,23 +133,23 @@
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
-    <value>Detail Verstärkung Verteilung</value>
+    <value>Detail-Verstärkung Verteilung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Debug" xml:space="preserve">
-    <value>Fehlerbehebung</value>
+    <value>Fehlersuche (Debug)</value>
     <comment>Tab item</comment>
   </data>
   <data name="DetailBoost" xml:space="preserve">
-    <value>Detail Verstärkung</value>
+    <value>Detail-Verstärkung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
-    <value>reduziere FFB bei ein- und aussteigen</value>
+    <value>Reduziere FFB beim Ein- und Aussteigen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Friction" xml:space="preserve">
-    <value>Friktion</value>
+    <value>Lenkrad-Widerstand</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Graph" xml:space="preserve">
@@ -162,11 +165,11 @@
     <comment>App</comment>
   </data>
   <data name="DetailBooster" xml:space="preserve">
-    <value>Detail Booster</value>
+    <value>Detailverstärker</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
-    <value>Delta Limiter</value>
+    <value>Delta Begrenzer</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="MaxForce" xml:space="preserve">
@@ -190,7 +193,7 @@
     <comment>Generic</comment>
   </data>
   <data name="ParkedStrength" xml:space="preserve">
-    <value>Stärke geparktes Fahrzeug</value>
+    <value>Stärke  stehendes Fahrzeug</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Power" xml:space="preserve">
@@ -202,11 +205,11 @@
     <comment>Tab item</comment>
   </data>
   <data name="SteeringDevice" xml:space="preserve">
-    <value>Lenkradbasis</value>
+    <value>Lenkrad-Basis</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>Zurücksetzen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SessionInformation" xml:space="preserve">
@@ -218,11 +221,11 @@
     <comment>Tab item</comment>
   </data>
   <data name="SimulatorNotRunning" xml:space="preserve">
-    <value>Der iRacing Simulator läuft nicht</value>
+    <value>iRacing Simulator nicht aktiv</value>
     <comment>Generic</comment>
   </data>
   <data name="SoftLockStrength" xml:space="preserve">
-    <value>Stärke des Soft Locks</value>
+    <value>Stärke virtueller Anschlag</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="TelemetryData" xml:space="preserve">
@@ -246,7 +249,7 @@
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value>Detail Booster bei 60 Hz</value>
+    <value>Detail Verstärker bei 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
@@ -286,7 +289,7 @@
     <comment>Button mapping</comment>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value>Delta Limit</value>
+    <value>Delta-Limit</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
@@ -294,7 +297,7 @@
     <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
-    <value>Delta Limiter bei 60 Hz</value>
+    <value>Delta Begrenzer bei 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
@@ -310,7 +313,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Device" xml:space="preserve">
-    <value>Gerät</value>
+    <value>Ausgabe-Gerät</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OverallStrength" xml:space="preserve">
@@ -318,11 +321,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMargin" xml:space="preserve">
-    <value>Auto Spielraum</value>
+    <value>Spielraum bei Autoeinstellung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>löschen</value>
+    <value>Löschen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentForce" xml:space="preserve">
@@ -342,7 +345,7 @@
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="Switches" xml:space="preserve">
-    <value>Schalter</value>
+    <value>Weitere Einstellungen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CrashProtection" xml:space="preserve">
@@ -366,7 +369,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value> sec</value>
+    <value> sek</value>
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="ShockVelocityUnits" xml:space="preserve">
@@ -374,7 +377,7 @@
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Curb Schutz</value>
+    <value>Schutz bei Randsteinen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
@@ -470,23 +473,23 @@
     <comment>Pedal effects list</comment>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value>Je Lenkradbasis</value>
+    <value>Pro Lenkradbasis</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerCar" xml:space="preserve">
-    <value>Je Fahrzeug</value>
+    <value>Pro Fahrzeug</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerTrack" xml:space="preserve">
-    <value>Je Strecke</value>
+    <value>Pro Strecke</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerTrackConfiguration" xml:space="preserve">
-    <value>Je Streckenkonfiguration</value>
+    <value>Pro Streckenkonfiguration</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerWetDry" xml:space="preserve">
-    <value>Je Nass/Trocken</value>
+    <value>Pro Nass/Trocken</value>
     <comment>Save conditions</comment>
   </data>
   <data name="Wet" xml:space="preserve">
@@ -522,7 +525,7 @@
     <comment>Cloud service</comment>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
-    <value>Prüfe auf Updates</value>
+    <value>Beim Start nach Updates suchen</value>
     <comment>App</comment>
   </data>
   <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
@@ -570,7 +573,7 @@
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Delta-Limiter-Verteilung</value>
+    <value>Delta-Begrenzer-Verteilung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Output" xml:space="preserve">
@@ -598,11 +601,11 @@
     <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
-    <value>Eingabe-Drehmoment (60 Hz)</value>
+    <value>Eingangs-Drehmoment (60 Hz)</value>
     <comment>Graph</comment>
   </data>
   <data name="InputTorque" xml:space="preserve">
-    <value>Eingabe-Drehmoment</value>
+    <value>Eingangs-Drehmoment</value>
     <comment>Graph</comment>
   </data>
   <data name="OutputTorque" xml:space="preserve">
@@ -614,11 +617,11 @@
     <comment>Graph</comment>
   </data>
   <data name="InputLFE" xml:space="preserve">
-    <value>Eingabe LFE</value>
+    <value>Eingang LFE</value>
     <comment>Graph</comment>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
-    <value>ABS Aktiviert</value>
+    <value>ABS Aktiv</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="Disabled" xml:space="preserve">
@@ -626,11 +629,11 @@
     <comment>LFE device list</comment>
   </data>
   <data name="RememberWindowPositionAndSize" xml:space="preserve">
-    <value>Fensterposition und -größe merken </value>
+    <value>Fenstergröße und -position merken </value>
     <comment>App</comment>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
-    <value>Mit Bremse ausblenden</value>
+    <value>Ausblenden beim Bremsen</value>
     <comment>Pedals</comment>
   </data>
   <data name="StartingRPM" xml:space="preserve">
@@ -642,7 +645,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
-    <value>Mit Gaspedal ausblenden</value>
+    <value>Ausblenden bei Gasbetätigung</value>
     <comment>Pedals</comment>
   </data>
   <data name="StartingPoint" xml:space="preserve">
@@ -678,7 +681,182 @@
     <comment>Graph</comment>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
-    <value>"Noise" Dämpfer</value>
+    <value>Rauschunterdrückung</value>
     <comment>Pedals</comment>
+  </data>
+  <data name="AppWindow" xml:space="preserve">
+    <value>App-Fenster</value>
+    <comment>App</comment>
+  </data>
+  <data name="UIScale" xml:space="preserve">
+    <value>UI-Skalierung</value>
+    <comment>App</comment>
+  </data>
+  <data name="CloudService" xml:space="preserve">
+    <value>Cloud-Dienst</value>
+    <comment>App</comment>
+  </data>
+  <data name="CheckNow" xml:space="preserve">
+    <value>Jetzt prüfen</value>
+    <comment>App</comment>
+  </data>
+  <data name="CheckingForUpdate" xml:space="preserve">
+    <value>Suche nach Updates</value>
+    <comment>Status</comment>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>Update wird heruntergeladen</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Contribute" xml:space="preserve">
+    <value>Mitwirkende</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="BuyMeACoffee" xml:space="preserve">
+    <value>Buy Me a Coffee!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DonationsText" xml:space="preserve">
+    <value>Spenden sind komplett FREIWILLIG!
+Die Nutzung von MAIRA wird immer kostenlos sein. Ich werde niemals Gebühren dafür erheben.
+Dennoch: Spenden geben mir ein gutes Gefühl und motivieren mich ungemein, MAIRA immer weiter zu verbessern. Ein riesiges Dankeschön an alle, die bereits gespendet haben!
+Hier ist der Link zum Spenden:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donations" xml:space="preserve">
+    <value>Spenden</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donors" xml:space="preserve">
+    <value>Spender</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="SuperDonors" xml:space="preserve">
+    <value>Super-Spender</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Spenden</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="CodeContributions" xml:space="preserve">
+    <value>Code-Unterstützung</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributions" xml:space="preserve">
+    <value>Übersetzungen</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="CodeContributionsText" xml:space="preserve">
+    <value>Wenn du ein C#-Entwickler bist und Code zu diesem Projekt beisteuern möchtest, findest du hier den Link zum GitHub-Repository:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributionsText" xml:space="preserve">
+    <value>Du kannst mehrere Srachen? Dann brauchen wir deine Hilfe  um MAIRA in jede mögliche Sprache der Welt zu übersetzen! Weitere Informationen dazu findest du in diesem Discord-Kanal:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationsDiscordChannel" xml:space="preserve">
+    <value>Übersetzung Discord-Kanal</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="GitHubRepository" xml:space="preserve">
+    <value>GitHub-Repository</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>Mitwirkende</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>Zeige Fenster</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="ExitApp" xml:space="preserve">
+    <value>App schliessen</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+    <value>In System-Tray minimieren</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Minimiert starten</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartWithWindows" xml:space="preserve">
+    <value>Mit Windows starten</value>
+    <comment>App</comment>
+  </data>
+  <data name="TotalCompressionRate" xml:space="preserve">
+    <value>Gesamt: Komprimierungsrate</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewCompressionThreshold" xml:space="preserve">
+    <value>Anstieg: Komprimierungsschwelle</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewCompressionRate" xml:space="preserve">
+    <value>Anstieg: Komprimierungsrate</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="TotalCompressionThreshold" xml:space="preserve">
+    <value>Gesamt: Komprimierungsschwelle</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewUnits" xml:space="preserve">
+    <value> Nm/ms</value>
+    <comment>Abbreviation for Newton-meters per second</comment>
+  </data>
+  <data name="WheelForce" xml:space="preserve">
+    <value>Lenkrad-Kraft</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Übernehmen</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Vorschau</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="NoRecordingsFound" xml:space="preserve">
+    <value>[Keine Aufzeichnung gefunden]</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CenterWheelWhenNotInCar" xml:space="preserve">
+    <value>Lenkrad zentrieren wenn nicht im Fahrzeug</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>Einfacher Modus</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Empfindlichkeit</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="ZeAlanLeTwist" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DiscordModerators" xml:space="preserve">
+    <value>Discord Moderatoren</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>Ich möchte mich bei den ehrenamtlichen Moderatoren bedanken, die geholfen haben, die vielen Fragen der Nutzer zu beantworten. Das ermöglicht mir, mehr Zeit in die Entwicklung von MAIRA zu stecken!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>Die AdminBoxx Firmware wird aktualisiert.</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="AllowSuperStrength" xml:space="preserve">
+    <value>Bis zu 200 % Stärke erlauben (Auf eigene Gefahr!)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ON" xml:space="preserve">
+    <value>EIN</value>
+    <comment>Generic</comment>
   </data>
 </root>

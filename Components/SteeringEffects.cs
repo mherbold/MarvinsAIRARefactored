@@ -94,7 +94,7 @@ namespace MarvinsAIRARefactored.Components
         private void DumpDataToFile()
         {
 
-            string path = Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}.xml");
+            string path = Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}.csv");
 
             
             using (TextWriter writer = new StreamWriter(path))
@@ -117,6 +117,7 @@ namespace MarvinsAIRARefactored.Components
         public void Reset()
         {
             _recordProfile = true;
+            Links.Clear();
         }
 
         private void ProcessUnderSteer()
@@ -154,7 +155,6 @@ namespace MarvinsAIRARefactored.Components
     public class SteeringEffects
     {
 
-      
         private Simulator _simulator;
 
         SteertingProfile _profile;
@@ -183,24 +183,16 @@ namespace MarvinsAIRARefactored.Components
         private void IRSDK_OnTelemetryData()
         {
             _profile.Update();
-            //just for debugging
-            _app.Dispatcher.Invoke(() =>
-            {
-                _app.Debug.Label_10 = $"{_simulator.SteeringWheelAngle}";
-            });
-            
+            //just for testing
+      
+            _app.Debug.Label_10 = $"{MathHelper.ToDegress(_simulator.SteeringWheelAngle)}";
+           
         }
 
         private void IRSDK_OnConnected()
         {
             _profile.Reset();
         }
-
-       
-
-
-
-        private float ChangeInAngle = (float)((10f / 180f) * Math.PI);
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void ProcessEffects(ref float torque)
@@ -210,9 +202,7 @@ namespace MarvinsAIRARefactored.Components
 
             _profile.Process();
 
-            _lastDirectionalVector = _currentDirectionalVector - _lastDirectionalVector;
-            _carDirection = (float)_lastDirectionalVector.Angle();
-
+   
         }
     }
 }

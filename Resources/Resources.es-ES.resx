@@ -59,7 +59,10 @@
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+  <xsd:schema id="root"
+    xmlns=""
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
     <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
     <xsd:element name="root" msdata:IsDataSet="true">
       <xsd:complexType>
@@ -262,7 +265,7 @@
     <comment>Window title</comment>
   </data>
   <data name="PressTheRecordButton" xml:space="preserve">
-    <value>[Pulsa un botón para grabar]</value>
+    <value>[Pulsa el botón de grabar]</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Button" xml:space="preserve">
@@ -680,5 +683,169 @@
   <data name="NoiseDamper" xml:space="preserve">
     <value>Amortiguador de Ruido</value>
     <comment>Pedals</comment>
+  </data>
+  <data name="AppWindow" xml:space="preserve">
+    <value>Ventana de la Aplicación</value>
+    <comment>App</comment>
+  </data>
+  <data name="UIScale" xml:space="preserve">
+    <value>Escala de la Interfaz</value>
+    <comment>App</comment>
+  </data>
+  <data name="CloudService" xml:space="preserve">
+    <value>Servicio en la Nube</value>
+    <comment>App</comment>
+  </data>
+  <data name="CheckNow" xml:space="preserve">
+    <value>Comprobar Ahora</value>
+    <comment>App</comment>
+  </data>
+  <data name="CheckingForUpdate" xml:space="preserve">
+    <value>Buscando actualización...</value>
+    <comment>Status</comment>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>Descargando actualización...</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Contribute" xml:space="preserve">
+    <value>Colaborar</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="BuyMeACoffee" xml:space="preserve">
+    <value>¡Invítame a un café!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DonationsText" xml:space="preserve">
+    <value>Las donaciones son completamente opcionales. Nunca cobraré ninguna tarifa por usar MAIRA. Dicho esto, las donaciones me hacen sentir genial y son una gran motivación para seguir trabajando en MAIRA. ¡Un enorme agradecimiento a todos los que ya han donado! Aquí tienes el enlace para donar:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donations" xml:space="preserve">
+    <value>Donaciones</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donors" xml:space="preserve">
+    <value> Donantes</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="SuperDonors" xml:space="preserve">
+    <value>Superdonantes</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Donar</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="CodeContributions" xml:space="preserve">
+    <value>Contribuciones de Código</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributions" xml:space="preserve">
+    <value>Contribuciones de Traducción</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="CodeContributionsText" xml:space="preserve">
+    <value>Si eres un desarrollador de C# y te gustaría contribuir con código a este proyecto, aquí tienes el enlace al repositorio de GitHub:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributionsText" xml:space="preserve">
+    <value>Si puedes leer y escribir en varios idiomas, ¡necesitamos tu ayuda para traducir esta aplicación a todos los idiomas posibles del mundo! Para más información sobre cómo hacerlo, visita este canal de Discord:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationsDiscordChannel" xml:space="preserve">
+    <value>Canal de Discord de Traducciones</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="GitHubRepository" xml:space="preserve">
+    <value>Repositorio de GitHub</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>Colaboradores</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>Mostrar Ventana</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="ExitApp" xml:space="preserve">
+    <value>Salir de la Aplicación</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+    <value>Minimizar a la Bandeja del Sistema</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Iniciar Minimizado</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartWithWindows" xml:space="preserve">
+    <value>Iniciar con Windows</value>
+    <comment>App</comment>
+  </data>
+  <data name="TotalCompressionRate" xml:space="preserve">
+    <value>Total: Tasa de Compresión</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewCompressionThreshold" xml:space="preserve">
+    <value>Velocidad de Respuesta: Umbral de Compresión</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewCompressionRate" xml:space="preserve">
+    <value>Velocidad de Respuesta: Tasa de Compresión</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="TotalCompressionThreshold" xml:space="preserve">
+    <value>Total: Umbral de Compresión</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewUnits" xml:space="preserve">
+    <value></value>
+    <comment>Abbreviation for Newton-meters per second</comment>
+  </data>
+  <data name="WheelForce" xml:space="preserve">
+    <value>Fuerza del Volante</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Establecer</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Vista Previa</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="NoRecordingsFound" xml:space="preserve">
+    <value>[No se han encontrado grabaciones]</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CenterWheelWhenNotInCar" xml:space="preserve">
+    <value>Centrar el volante cuando no se está en el coche</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>Activar modo simple</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Sensibilidad</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="ZeAlanLeTwist" xml:space="preserve">
+    <value>Velocidad de Respuesta y Compresión Total</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DiscordModerators" xml:space="preserve">
+    <value>Moderadores de Discord</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>¡Quiero dar las gracias a estos moderadores voluntarios por ayudar a responder a las muchas preguntas planteadas por los usuarios de MAIRA, lo que me permite tener más tiempo para centrarme en el desarrollo de MAIRA!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>l firmware de AdminBoxx se está actualizando</value>
+    <comment>AdminBoxx</comment>
   </data>
 </root>

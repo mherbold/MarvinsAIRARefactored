@@ -841,4 +841,16 @@
     <value>I want to thank these volunteer moderators for helping answer the many questions posed by MAIRA users, allowing me to have more time to focus on the development of MAIRA!</value>
     <comment>Contribute</comment>
   </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>The AdminBoxx firmware is being updated</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="AllowSuperStrength" xml:space="preserve">
+    <value>Allow up to 200% strength (potentially dangerous)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ON" xml:space="preserve">
+    <value>ON</value>
+    <comment>Generic</comment>
+  </data>
 </root>
