@@ -168,13 +168,13 @@ namespace MarvinsAIRARefactored.Components
             _app = App.Instance!;
             _app.Simulator.IRSDK.OnConnected += IRSDK_OnConnected;
             _app.Simulator.IRSDK.OnTelemetryData += IRSDK_OnTelemetryData;
-            
+
             _simulator = _app.Simulator;
 
             _profile = new SteertingProfile(_simulator);
             _profile.WriteLineToLog += WriteLineToLog;
         }
-
+        
         private void WriteLineToLog(string text)
         {
             _logger.WriteLine(text);
@@ -204,11 +204,14 @@ namespace MarvinsAIRARefactored.Components
 
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public void ProcessEffects(ref float torque)
-        {
+        { 
+            //iv jused torque as a ref to avoid garbarge accumalating
             App app = App.Instance!;
 
             _profile.Process();
 
+            _lastDirectionalVector = _currentDirectionalVector - _lastDirectionalVector;
+            _carDirection = (float)_lastDirectionalVector.Angle();
 
         }
     }
