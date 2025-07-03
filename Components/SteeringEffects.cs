@@ -2,12 +2,12 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
-using System.IO;
 namespace MarvinsAIRARefactored.Components
 {
 
@@ -16,6 +16,11 @@ namespace MarvinsAIRARefactored.Components
     {
         public int Speed;
         public float Yaw;
+
+        public SpeedSteeringLink()
+        {
+
+        }
 
         public SpeedSteeringLink(int speed, float yaw)
         {
@@ -39,6 +44,13 @@ namespace MarvinsAIRARefactored.Components
         public bool UnderSteerEffectEnabled = true;
         public bool OverSteerEffectEnabled = true;
         private bool _recordProfile = false;
+
+        /// <summary>
+        /// the point of the yaw data where the tire scrub starts to kick in
+        /// </summary>
+        private int YawCurveStartPoint = -1;
+
+        private float YawCurveFactor = 1;
 
         public Action<string> WriteLineToLog;
 
@@ -84,19 +96,30 @@ namespace MarvinsAIRARefactored.Components
 
                 if (speed > 80)
                 {
+                    DumpDataToFile();
+                    _recordProfile = false;
                     FinalizeProfile();
                 }
             }
 
         }
 
-
+        private void SaveXml(string path, List<SpeedSteeringLink> ldata)
+        {
+            System.Xml.Serialization.XmlSerializer data = new System.Xml.Serialization.XmlSerializer(typeof(List<SpeedSteeringLink>));
+            //now lets write some tmp code to save the data so we can load it up for some testing
+            using (StreamWriter writer = new StreamWriter(path))
+            {
+                data.Serialize(writer, ldata);
+            }
+        }
         private void DumpDataToFile()
         {
 
             string path = Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}.csv");
-
             
+
+
             using (TextWriter writer = new StreamWriter(path))
             {
                 //write header
@@ -105,19 +128,102 @@ namespace MarvinsAIRARefactored.Components
                 foreach(var item in Links)  
                     writer.WriteLine($"{item.Speed}, {item.Yaw}");
             }
+            try
+            {
+                SaveXml(Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}.xml"), Links);
+            }
+            catch (Exception ex) 
+            {
+
+            }
         }
 
+        /// <summary>
+        /// the last thing to do is to analize the data collected
+        /// </summary>
         private void FinalizeProfile()
         {
-            DumpDataToFile();
-            _recordProfile = false;
-            
-        }
+            Links = Links.OrderBy(x => x.Speed).ToList();
 
+            byte yawDropCount = 0;
+            int index = -1;
+            for (int i = 0; i < Links.Count - 1; i++)
+            {
+                if (Links[i].Yaw > Links[i + 1].Yaw) //look for when the yaw drops
+                {
+                    yawDropCount++;
+                    if (index == -1)
+                        index = i;
+                    if (yawDropCount > 2) //if 3 or more drops then we found the correct place
+                        break;
+                }
+                else
+                {
+                    index = -1;
+                    yawDropCount = 0; //reset drop count
+                }
+            }
+
+            YawCurveStartPoint = index; //set the point where the tires start to slip and the yaw rate starts to drop off
+
+            //now we need to calculate the curve factor
+            //we need to do this to calculate how the tire slip will work           
+            float start, end;
+            start = Links[YawCurveStartPoint].Yaw;
+            end = Links[Links.Count-1].Yaw;
+
+            float curveFactor = 0f; //curve factor is how much of a curve we want
+            float marginOfError = 0; 
+            float bestMargineOfError = float.PositiveInfinity;
+            float predicion = 0;
+
+            //we will loop through 10 times changing the curve factor
+            //we will mesure the margin of error between the real result and predicted result
+            //the smallest margin of error will be the best curvFactor to use
+            for (int c = 0; c < 10; c++)
+            {
+                marginOfError = 0;
+                
+                for (int i = YawCurveStartPoint; i < Links.Count; i++)
+                {
+                    float f = (i - YawCurveStartPoint) / (float)(Links.Count - YawCurveStartPoint - 1);
+                    predicion = MathHelper.QuadraticBezier(start, (start * curveFactor) + (end * (1 - curveFactor)), end, f);
+                    
+                    marginOfError += Math.Abs(1 - (predicion / Links[i].Yaw));
+                }
+
+                if (marginOfError < bestMargineOfError)
+                {
+                    bestMargineOfError = marginOfError;
+                    YawCurveFactor = curveFactor; //get the current best curve factor and save it
+                }
+                curveFactor += .05f;
+                curveFactor = Math.Clamp(curveFactor, 0, 1);
+            }
+
+           //write the predictated data to file so we can plot it in excel
+            using (TextWriter writer = new StreamWriter(Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}PRE.csv")))
+            {
+                //write header
+                writer.WriteLine($"{_simulator.CarScreenName}");
+                writer.WriteLine($"Speed, Yaw");
+                for (int i = YawCurveStartPoint; i < Links.Count; i++)
+                {
+                    float f = (i - YawCurveStartPoint) / (float)(Links.Count - YawCurveStartPoint - 1);
+                    writer.WriteLine($"{Links[i].Speed}, {MathHelper.QuadraticBezier(start, (start * YawCurveFactor) + (end * (1 - YawCurveFactor)), end, f)}");
+                    // foreach (var item in predicted)
+                    // writer.WriteLine($"{item.Speed}, {item.Yaw}");
+                }
+            }
+        }
+        bool _tryLoad = false;
         public void Reset()
         {
             _recordProfile = true;
             Links.Clear();
+
+            _tryLoad = true;
+            
         }
 
         private void ProcessUnderSteer()
@@ -134,6 +240,27 @@ namespace MarvinsAIRARefactored.Components
 
         public void Update()
         {
+            if (_tryLoad)
+            {
+                if (_simulator.CarScreenName == string.Empty)
+                    return;
+                //mess around and try to load the data for testing
+                string pathxml = Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}.xml");
+
+                if (File.Exists(pathxml))
+                {
+                    System.Xml.Serialization.XmlSerializer data = new System.Xml.Serialization.XmlSerializer(typeof(List<SpeedSteeringLink>));
+                    using (StreamReader reader = new StreamReader(pathxml))
+                    {
+                        Links = (List<SpeedSteeringLink>)data.Deserialize(reader);
+                    }
+                    FinalizeProfile(); //we stil need to finalize the profile
+                    _recordProfile = false;
+                }
+                _tryLoad = false;
+            }
+
+
             if (_recordProfile)
             {
                 RecordProfile();
