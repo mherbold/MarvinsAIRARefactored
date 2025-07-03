@@ -24,14 +24,25 @@ namespace MarvinsAIRARefactored.Classes
         {
             return Math.Abs(a - b);
         }
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="start">start point</param>
+        /// <param name="end">end point</param>
+        /// <param name="mid">middle point of curve</param>
+        /// <param name="t">amount between 0 and 1</param>
+        /// <returns></returns>
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
-        public static float QuadraticBezier(float start, float end, float mid, float t)
+        public static float QuadraticBezier(float start, float mid, float end, float t)
         {
             float u = 1 - t;
-            return u * u * start + 2 * u * t * end + t * t * mid;
+            return u * u * start + 2 * u * t * mid + t * t * end;
         }
 
-       
+
+
+
+
         [MethodImpl(MethodImplOptions.AggressiveInlining)]
         public static float ToRadians(float rad)
         {
