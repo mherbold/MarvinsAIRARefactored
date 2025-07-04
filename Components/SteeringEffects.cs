@@ -29,6 +29,23 @@ namespace MarvinsAIRARefactored.Components
         }
 
     }
+
+    public class AngleSteeringLink
+    {
+        public int Angle;
+        public float Yaw;
+
+        public AngleSteeringLink()
+        {
+
+        }
+
+        public AngleSteeringLink(int angle, float yaw)
+        {
+            this.Angle = angle;
+            this.Yaw = yaw;
+        }
+    }
     [DebuggerDisplay("Recoding = {_recordProfile}, Links = {Links.Count}")]
     public class SteertingProfile
     {
@@ -40,6 +57,7 @@ namespace MarvinsAIRARefactored.Components
         /// </summary>
         private const float YawRateDropOffEnd = .007f;
         public List<SpeedSteeringLink> Links { get; private set; } = new List<SpeedSteeringLink>();
+        public List<AngleSteeringLink> AngleLinks { get; private set; } = new List<AngleSteeringLink>();
 
         public bool UnderSteerEffectEnabled = true;
         public bool OverSteerEffectEnabled = true;
@@ -51,6 +69,14 @@ namespace MarvinsAIRARefactored.Components
         private int YawCurveStartPoint = -1;
 
         private float YawCurveFactor = 1;
+
+
+        private float PredictionStartYawValue, PredictionEndYawValue;
+        private float PredictionStartSpeed;
+
+        private float PredictionYawPerWheelAngle;
+
+        public float PredictedYawRate { get; private set; }
 
         public Action<string> WriteLineToLog;
 
@@ -82,6 +108,16 @@ namespace MarvinsAIRARefactored.Components
             float speed = MathHelper.ToMPH(_simulator.Velocity);
 
 
+            if (speed >= 9.5 && speed <= 10.5f) //16kph
+            {
+                int wheelAngle = ((int)(_simulator.SteeringWheelAngle / 5f)) * 5;
+
+                if (AngleLinks.FirstOrDefault(x => x.Angle == wheelAngle) == null)
+                {
+                    AngleLinks.Add(new AngleSteeringLink(wheelAngle, YawRate));
+                }
+            }
+
             if (MathHelper.Distance(Math.Abs(_simulator.SteeringWheelAngle), RecordingWheelAngle) < DistanceAllowedWheelAngle)
             {
                 int nearestSpeed = ((int)(speed / 2f)) * 2;
@@ -90,7 +126,7 @@ namespace MarvinsAIRARefactored.Components
                     if (MathHelper.Distance(nearestSpeed, speed) < .6f)
                     {
                         Links.Add(new SpeedSteeringLink(nearestSpeed, YawRate));
-                       
+
                     }
 
 
@@ -113,13 +149,12 @@ namespace MarvinsAIRARefactored.Components
                 data.Serialize(writer, ldata);
             }
         }
+
+
         private void DumpDataToFile()
         {
-
             string path = Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}.csv");
             
-
-
             using (TextWriter writer = new StreamWriter(path))
             {
                 //write header
@@ -215,6 +250,11 @@ namespace MarvinsAIRARefactored.Components
                     // writer.WriteLine($"{item.Speed}, {item.Yaw}");
                 }
             }
+
+            PredictionStartSpeed = Links[YawCurveStartPoint].Speed;
+            PredictionStartYawValue = Links[YawCurveStartPoint].Yaw;
+            PredictionEndYawValue = Links[Links.Count-1].Yaw;
+            
         }
         bool _tryLoad = false;
         public void Reset()
@@ -267,6 +307,23 @@ namespace MarvinsAIRARefactored.Components
                 return;
             }
 
+            //run predictions
+
+            int speed = ((int)(MathHelper.ToMPH(_simulator.Velocity) / 2)) * 2;
+            var pdata = Links?.FirstOrDefault(x => x.Speed == speed);
+            if (pdata == null)
+            {
+                return;
+            }
+            if (speed >= PredictionStartSpeed)
+            {
+                float t = (MathHelper.ToMPH(_simulator.Velocity) - PredictionStartSpeed) / (80f - PredictionStartSpeed);
+                t = Math.Clamp(t, 0, 1);
+                PredictedYawRate = MathHelper.QuadraticBezier(PredictionStartYawValue, (PredictionStartYawValue * YawCurveFactor) + (PredictionEndYawValue * (1 - YawCurveFactor)), PredictionEndYawValue, t);
+
+                PredictedYawRate = (PredictedYawRate / MathHelper.PIOVER2) * _simulator.SteeringWheelAngle;
+            }
+
         }
 
         public void Process()
@@ -311,7 +368,10 @@ namespace MarvinsAIRARefactored.Components
         {
             _profile.Update();
             //just for testing
-      
+
+            _app.Debug.Label_8 = $"Pre: {_profile.PredictedYawRate:0.00}";
+            _app.Debug.Label_9 = $"Act: {_simulator.IRSDK.Data.GetFloat("YawRate"):0.00}";
+
             _app.Debug.Label_10 = $"{MathHelper.ToDegress(_simulator.SteeringWheelAngle)}";
            
         }
