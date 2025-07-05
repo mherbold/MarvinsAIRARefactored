@@ -50,18 +50,24 @@ namespace MarvinsAIRARefactored.Components
     public class SteertingProfile
     {
         private readonly float DistanceAllowedWheelAngle = MathHelper.ToRadians(2);
-        private readonly float RecordingWheelAngle = MathHelper.ToRadians(90);
+        private readonly float RecordingWheelAngle90 = MathHelper.ToRadians(90);
+        private readonly float RecordingWheelAngle45 = MathHelper.ToRadians(45);
+        private readonly float RecordingWheelAngle135 = MathHelper.ToRadians(135);
 
         /// <summary>
         /// maybe we could use a dropoff rate to detect when the car is starting to understeer
         /// </summary>
         private const float YawRateDropOffEnd = .007f;
-        public List<SpeedSteeringLink> Links { get; private set; } = new List<SpeedSteeringLink>();
+        public List<SpeedSteeringLink> Links90 { get; private set; } = new List<SpeedSteeringLink>();
+        public List<SpeedSteeringLink> Links135 { get; private set; } = new List<SpeedSteeringLink>();
+        public List<SpeedSteeringLink> Links45 { get; private set; } = new List<SpeedSteeringLink>();
+
+        //expermental
         public List<AngleSteeringLink> AngleLinks { get; private set; } = new List<AngleSteeringLink>();
 
         public bool UnderSteerEffectEnabled = true;
         public bool OverSteerEffectEnabled = true;
-        private bool _recordProfile = false;
+        private bool _recordProfile = true;
 
         /// <summary>
         /// the point of the yaw data where the tire scrub starts to kick in
@@ -106,26 +112,54 @@ namespace MarvinsAIRARefactored.Components
             float YawRate = _simulator.IRSDK.Data.GetFloat("YawRate");
 
             float speed = MathHelper.ToMPH(_simulator.Velocity);
+            /* expermimental code, work in progress proberbly be dumped
+
+                        if (speed >= 9.5 && speed <= 10.5f) //16kph
+                        {
+                            int wheelAngle = ((int)(_simulator.SteeringWheelAngle / 5f)) * 5;
+
+                            if (AngleLinks.FirstOrDefault(x => x.Angle == wheelAngle) == null)
+                            {
+                                AngleLinks.Add(new AngleSteeringLink(wheelAngle, YawRate));
+                            }
+                        }
+            */
+            //we will record 90, 45 and 135 angles
 
 
-            if (speed >= 9.5 && speed <= 10.5f) //16kph
-            {
-                int wheelAngle = ((int)(_simulator.SteeringWheelAngle / 5f)) * 5;
-
-                if (AngleLinks.FirstOrDefault(x => x.Angle == wheelAngle) == null)
-                {
-                    AngleLinks.Add(new AngleSteeringLink(wheelAngle, YawRate));
-                }
-            }
-
-            if (MathHelper.Distance(Math.Abs(_simulator.SteeringWheelAngle), RecordingWheelAngle) < DistanceAllowedWheelAngle)
+            if (MathHelper.Distance(Math.Abs(_simulator.SteeringWheelAngle), RecordingWheelAngle45) < DistanceAllowedWheelAngle)
             {
                 int nearestSpeed = ((int)(speed / 2f)) * 2;
 
-                if (Links.FirstOrDefault(x => x.Speed == nearestSpeed) == null)
+                if (Links45.FirstOrDefault(x => x.Speed == nearestSpeed) == null)
                     if (MathHelper.Distance(nearestSpeed, speed) < .6f)
                     {
-                        Links.Add(new SpeedSteeringLink(nearestSpeed, YawRate));
+                        Links45.Add(new SpeedSteeringLink(nearestSpeed, YawRate));
+
+                    }
+            }
+
+
+            if (MathHelper.Distance(Math.Abs(_simulator.SteeringWheelAngle), RecordingWheelAngle135) < DistanceAllowedWheelAngle)
+            {
+                int nearestSpeed = ((int)(speed / 2f)) * 2;
+
+                if (Links135.FirstOrDefault(x => x.Speed == nearestSpeed) == null)
+                    if (MathHelper.Distance(nearestSpeed, speed) < .6f)
+                    {
+                        Links135.Add(new SpeedSteeringLink(nearestSpeed, YawRate));
+
+                    }
+            }
+
+            if (MathHelper.Distance(Math.Abs(_simulator.SteeringWheelAngle), RecordingWheelAngle90) < DistanceAllowedWheelAngle)
+            {
+                int nearestSpeed = ((int)(speed / 2f)) * 2;
+
+                if (Links90.FirstOrDefault(x => x.Speed == nearestSpeed) == null)
+                    if (MathHelper.Distance(nearestSpeed, speed) < .6f)
+                    {
+                        Links90.Add(new SpeedSteeringLink(nearestSpeed, YawRate));
 
                     }
 
@@ -153,19 +187,47 @@ namespace MarvinsAIRARefactored.Components
 
         private void DumpDataToFile()
         {
-            string path = Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}.csv");
+            string path = Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}-90.csv");
             
             using (TextWriter writer = new StreamWriter(path))
             {
                 //write header
-                writer.WriteLine($"{_simulator.CarScreenName}");
+                writer.WriteLine($"{_simulator.CarScreenName} - 90");
                 writer.WriteLine($"Speed, Yaw");
-                foreach(var item in Links)  
+                foreach(var item in Links90)  
                     writer.WriteLine($"{item.Speed}, {item.Yaw}");
             }
+
+            if (Links45.Count != 0)
+            {
+                path = Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}-45.csv");
+                using (TextWriter writer = new StreamWriter(path))
+                {
+                    //write header
+                    writer.WriteLine($"{_simulator.CarScreenName} - 45");
+                    writer.WriteLine($"Speed, Yaw");
+                    foreach (var item in Links45)
+                        writer.WriteLine($"{item.Speed}, {item.Yaw}");
+                }
+            }
+
+            if (Links135.Count != 0)
+            {
+                path = Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}-135.csv");
+                using (TextWriter writer = new StreamWriter(path))
+                {
+                    //write header
+                    writer.WriteLine($"{_simulator.CarScreenName} - 135");
+                    writer.WriteLine($"Speed, Yaw");
+                    foreach (var item in Links135)
+                        writer.WriteLine($"{item.Speed}, {item.Yaw}");
+                }
+            }
+
+
             try
             {
-                SaveXml(Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}.xml"), Links);
+                SaveXml(Path.Combine(App.DocumentsFolder, $"{_simulator.CarScreenName}.xml"), Links90);
             }
             catch (Exception ex) 
             {
@@ -178,13 +240,13 @@ namespace MarvinsAIRARefactored.Components
         /// </summary>
         private void FinalizeProfile()
         {
-            Links = Links.OrderBy(x => x.Speed).ToList();
+            Links90 = Links90.OrderBy(x => x.Speed).ToList();
 
             byte yawDropCount = 0;
             int index = -1;
-            for (int i = 0; i < Links.Count - 1; i++)
+            for (int i = 0; i < Links90.Count - 1; i++)
             {
-                if (Links[i].Yaw > Links[i + 1].Yaw) //look for when the yaw drops
+                if (Links90[i].Yaw > Links90[i + 1].Yaw) //look for when the yaw drops
                 {
                     yawDropCount++;
                     if (index == -1)
@@ -204,8 +266,8 @@ namespace MarvinsAIRARefactored.Components
             //now we need to calculate the curve factor
             //we need to do this to calculate how the tire slip will work           
             float start, end;
-            start = Links[YawCurveStartPoint].Yaw;
-            end = Links[Links.Count-1].Yaw;
+            start = Links90[YawCurveStartPoint].Yaw;
+            end = Links90[Links90.Count-1].Yaw;
 
             float curveFactor = 0f; //curve factor is how much of a curve we want
             float marginOfError = 0; 
@@ -219,12 +281,12 @@ namespace MarvinsAIRARefactored.Components
             {
                 marginOfError = 0;
                 
-                for (int i = YawCurveStartPoint; i < Links.Count; i++)
+                for (int i = YawCurveStartPoint; i < Links90.Count; i++)
                 {
-                    float f = (i - YawCurveStartPoint) / (float)(Links.Count - YawCurveStartPoint - 1);
+                    float f = (i - YawCurveStartPoint) / (float)(Links90.Count - YawCurveStartPoint - 1);
                     predicion = MathHelper.QuadraticBezier(start, (start * curveFactor) + (end * (1 - curveFactor)), end, f);
                     
-                    marginOfError += Math.Abs(1 - (predicion / Links[i].Yaw));
+                    marginOfError += Math.Abs(1 - (predicion / Links90[i].Yaw));
                 }
 
                 if (marginOfError < bestMargineOfError)
@@ -242,25 +304,25 @@ namespace MarvinsAIRARefactored.Components
                 //write header
                 writer.WriteLine($"{_simulator.CarScreenName}");
                 writer.WriteLine($"Speed, Yaw");
-                for (int i = YawCurveStartPoint; i < Links.Count; i++)
+                for (int i = YawCurveStartPoint; i < Links90.Count; i++)
                 {
-                    float f = (i - YawCurveStartPoint) / (float)(Links.Count - YawCurveStartPoint - 1);
-                    writer.WriteLine($"{Links[i].Speed}, {MathHelper.QuadraticBezier(start, (start * YawCurveFactor) + (end * (1 - YawCurveFactor)), end, f)}");
+                    float f = (i - YawCurveStartPoint) / (float)(Links90.Count - YawCurveStartPoint - 1);
+                    writer.WriteLine($"{Links90[i].Speed}, {MathHelper.QuadraticBezier(start, (start * YawCurveFactor) + (end * (1 - YawCurveFactor)), end, f)}");
                     // foreach (var item in predicted)
                     // writer.WriteLine($"{item.Speed}, {item.Yaw}");
                 }
             }
 
-            PredictionStartSpeed = Links[YawCurveStartPoint].Speed;
-            PredictionStartYawValue = Links[YawCurveStartPoint].Yaw;
-            PredictionEndYawValue = Links[Links.Count-1].Yaw;
+            PredictionStartSpeed = Links90[YawCurveStartPoint].Speed;
+            PredictionStartYawValue = Links90[YawCurveStartPoint].Yaw;
+            PredictionEndYawValue = Links90[Links90.Count-1].Yaw;
             
         }
         bool _tryLoad = false;
         public void Reset()
         {
             _recordProfile = true;
-            Links.Clear();
+            Links90.Clear();
 
             _tryLoad = true;
             
@@ -268,13 +330,13 @@ namespace MarvinsAIRARefactored.Components
 
         private void ProcessUnderSteer()
         {
-            if (Links.Count == 0)
+            if (Links90.Count == 0)
                 return;
         }
 
         private void ProcessOverSteer()
         {
-            if (Links.Count == 0)
+            if (Links90.Count == 0)
                 return;
         }
 
@@ -292,10 +354,10 @@ namespace MarvinsAIRARefactored.Components
                     System.Xml.Serialization.XmlSerializer data = new System.Xml.Serialization.XmlSerializer(typeof(List<SpeedSteeringLink>));
                     using (StreamReader reader = new StreamReader(pathxml))
                     {
-                        Links = (List<SpeedSteeringLink>)data.Deserialize(reader);
+                        Links90 = (List<SpeedSteeringLink>)data.Deserialize(reader);
                     }
                     FinalizeProfile(); //we stil need to finalize the profile
-                    _recordProfile = false;
+                  //  _recordProfile = false;
                 }
                 _tryLoad = false;
             }
@@ -310,7 +372,7 @@ namespace MarvinsAIRARefactored.Components
             //run predictions
 
             int speed = ((int)(MathHelper.ToMPH(_simulator.Velocity) / 2)) * 2;
-            var pdata = Links?.FirstOrDefault(x => x.Speed == speed);
+            var pdata = Links90?.FirstOrDefault(x => x.Speed == speed);
             if (pdata == null)
             {
                 return;
