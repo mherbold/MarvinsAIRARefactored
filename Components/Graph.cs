@@ -8,6 +8,8 @@ namespace MarvinsAIRARefactored.Components;
 
 public class Graph : GraphBase
 {
+	private const int UpdateInterval = 6;
+
 	public enum LayerIndex
 	{
 		InputTorque,
@@ -23,6 +25,8 @@ public class Graph : GraphBase
 
 	private readonly Layer[] _layerArray = new Layer[ (int) LayerIndex.Count ];
 	private readonly Statistics[] _statisticsArray = new Statistics[ (int) LayerIndex.Count ];
+
+	private int _updateCounter = UpdateInterval + 2;
 
 	public void Initialize()
 	{
@@ -140,13 +144,20 @@ public class Graph : GraphBase
 	{
 		WritePixels();
 
-		var statistics = _statisticsArray[ (int) DataContext.DataContext.Instance.Settings.GraphStatisticsLayerIndex ];
+		_updateCounter--;
 
-		app.MainWindow.Graph_Minimum_Label.Content = $"{statistics.MinimumValue:F2}";
-		app.MainWindow.Graph_Maximum_Label.Content = $"{statistics.MaximumValue:F2}";
-		app.MainWindow.Graph_Average_Label.Content = $"{statistics.AverageValue:F2}";
-		app.MainWindow.Graph_Variance_Label.Content = $"{statistics.Variance:F2}";
-		app.MainWindow.Graph_StandardDeviation_Label.Content = $"{statistics.StandardDeviation:F2}";
+		if ( _updateCounter == 0 )
+		{
+			_updateCounter = UpdateInterval;
+
+			var statistics = _statisticsArray[ (int) DataContext.DataContext.Instance.Settings.GraphStatisticsLayerIndex ];
+
+			app.MainWindow.Graph_Minimum_Label.Content = $"{statistics.MinimumValue:F2}";
+			app.MainWindow.Graph_Maximum_Label.Content = $"{statistics.MaximumValue:F2}";
+			app.MainWindow.Graph_Average_Label.Content = $"{statistics.AverageValue:F2}";
+			app.MainWindow.Graph_Variance_Label.Content = $"{statistics.Variance:F2}";
+			app.MainWindow.Graph_StandardDeviation_Label.Content = $"{statistics.StandardDeviation:F2}";
+		}
 	}
 
 	private class Layer
@@ -162,4 +173,3 @@ public class Graph : GraphBase
 		public float maxB;
 	}
 }
-

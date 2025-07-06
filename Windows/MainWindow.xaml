@@ -47,10 +47,10 @@
                 <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="1">
                     <Setter Property="Background" Value="{StaticResource PedalsTabBackground}"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="2">
+                <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="3">
                     <Setter Property="Background" Value="{StaticResource AdminBoxxTabBackground}"/>
                 </DataTrigger>
-                <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="5">
+                <DataTrigger Binding="{Binding ElementName=TabControl, Path=SelectedIndex}" Value="6">
                     <Setter Property="Background" Value="{StaticResource AppTabBackground}"/>
                 </DataTrigger>
             </Style.Triggers>
@@ -68,7 +68,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <Border x:Name="Status_Border" Background="#303030" Padding="0,2,0,2" BorderThickness="0,0,0,3" BorderBrush="#402020">
+        <Border x:Name="Status_Border" Background="#303030" Padding="0,2,0,2" BorderThickness="0,0,0,3" BorderBrush="#402020" Tag="HideWhenGraphIsSoloed">
 
             <Grid HorizontalAlignment="Center">
 
@@ -188,7 +188,7 @@
 
                                 <controls:MairaComboBox Grid.Column="0" x:Name="RacingWheel_Algorithm_ComboBox" Title="{Binding Localization[Algorithm]}" SelectedValue="{Binding Settings.RacingWheelAlgorithm, Mode=TwoWay}" VerticalContentAlignment="Center" Margin="10,0,10,0" ContextSwitches="{Binding Settings.RacingWheelAlgorithmContextSwitches}"/>
 
-                                <controls:MairaKnob Grid.Column="1" x:Name="RacingWheel_DetailBoost_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DetailBoost]}" Value="{Binding Settings.RacingWheelDetailBoost, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDetailBoostString}" SmallValueChangeStep="0.01" LargeValueChangeStep="0.1" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelDetailBoostContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelDetailBoostPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDetailBoostMinusButtonMappings}" DefaultValue="0"/>
+                                <controls:MairaKnob Grid.Column="1" x:Name="RacingWheel_DetailBoost_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DetailBoost]}" Value="{Binding Settings.RacingWheelDetailBoost, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDetailBoostString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="1" ContextSwitches="{Binding Settings.RacingWheelDetailBoostContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelDetailBoostPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDetailBoostMinusButtonMappings}" DefaultValue="0"/>
                                 <controls:MairaKnob Grid.Column="2" x:Name="RacingWheel_DetailBoostBias_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DetailBoostBias]}" Value="{Binding Settings.RacingWheelDetailBoostBias, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDetailBoostBiasString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" ContextSwitches="{Binding Settings.RacingWheelDetailBoostBiasContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelDetailBoostBiasPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDetailBoostBiasMinusButtonMappings}" DefaultValue="0.1"/>
 
                                 <controls:MairaKnob Grid.Column="1" x:Name="RacingWheel_DeltaLimit_KnobControl" Margin="10,0,10,0" Title="{Binding Localization[DeltaLimit]}" Value="{Binding Settings.RacingWheelDeltaLimit, Mode=TwoWay}" ValueString="{Binding Settings.RacingWheelDeltaLimitString}" SmallValueChangeStep="1" LargeValueChangeStep="10" RotationMultiplier="0.01" ContextSwitches="{Binding Settings.RacingWheelDeltaLimitContextSwitches}" PlusButtonMappings="{Binding Settings.RacingWheelDeltaLimitPlusButtonMappings}" MinusButtonMappings="{Binding Settings.RacingWheelDeltaLimitMinusButtonMappings}" DefaultValue="500"/>
@@ -253,7 +253,7 @@
                                 </Grid.RowDefinitions>
 
                                 <Border Grid.Row="0" BorderThickness="2" BorderBrush="#FFF" Background="#80000000" CornerRadius="5" Padding="0,0,0,6">
-                                    <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=GroupBox}}">
+                                    <ScrollViewer x:Name="RacingWheel_Preview_ScrollViewer" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled" MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=GroupBox}}" PreviewMouseWheel="RacingWheel_Preview_ScrollViewer_PreviewMouseWheel">
                                         <Image x:Name="RacingWheel_AlgorithmPreview_Image" Height="301" Width="3840" RenderOptions.BitmapScalingMode="HighQuality"/>
                                     </ScrollViewer>
                                 </Border>
@@ -359,6 +359,9 @@
 
                             <controls:MairaSwitch Margin="10,20,10,0" IsOn="{Binding Settings.RacingWheelCenterWheelWhenNotInCar, Mode=TwoWay}" Title="{Binding Localization[CenterWheelWhenNotInCar]}" ContextSwitches="{Binding Settings.RacingWheelCenterWheelWhenNotInCarContextSwitches}" Tag="Complex"/>
                             <controls:MairaSwitch Margin="10,10,10,0" IsOn="{Binding Settings.RacingWheelFadeEnabled, Mode=TwoWay}" Title="{Binding Localization[FadeForceFeedback]}" ContextSwitches="{Binding Settings.RacingWheelFadeEnabledContextSwitches}" Tag="Complex"/>
+                            <controls:MairaSwitch Margin="10,10,10,0" IsOn="{Binding Settings.RacingWheelSendChatMessages, Mode=TwoWay}" Title="{Binding Localization[SendChatMessages]}" Tag="Complex"/>
+                            <controls:MairaSwitch Margin="10,10,10,0" IsOn="{Binding Settings.RacingWheelEnableLogitechRPMLights, Mode=TwoWay}" Title="{Binding Localization[EnableLogitechRPMLights]}" Tag="Complex"/>
+                            <controls:MairaSwitch Margin="10,10,10,0" IsOn="{Binding Settings.RacingWheelAllowSuperStrength, Mode=TwoWay}" Title="{Binding Localization[AllowSuperStrength]}" Tag="Complex"/>
                             <controls:MairaSwitch Margin="10,10,10,0" IsOn="{Binding Settings.RacingWheelAlwaysEnableFFB, Mode=TwoWay}" Title="{Binding Localization[AlwaysEnableFFB]}" Tag="Complex"/>
                             <controls:MairaSwitch Margin="10,10,10,10" IsOn="{Binding Settings.RacingWheelSimpleModeEnabled, Mode=TwoWay}" Title="{Binding Localization[SimpleMode]}"/>
 
@@ -743,6 +746,105 @@
 
             </TabItem>
 
+            <TabItem x:Name="Sounds_TabItem" Header="{Binding Localization[Sounds]}">
+
+                <StackPanel Margin="10,10,10,20">
+
+                    <GroupBox Header="{Binding Localization[Master]}">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="116"/>
+                                <ColumnDefinition Width="68"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaSwitch Grid.Column="0" Margin="10,0,10,0" IsOn="{Binding Settings.SoundsMasterEnabled, Mode=TwoWay}" Title="{Binding Localization[Enabled]}" LabelPosition="Top"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Volume]}" Value="{Binding Settings.SoundsMasterVolume, Mode=TwoWay}" ValueString="{Binding Settings.SoundsMasterVolumeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.SoundsMasterVolumePlusButtonMappings}" MinusButtonMappings="{Binding Settings.SoundsMasterVolumeMinusButtonMappings}" DefaultValue="0.75"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[ABSEngaged]}">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaSwitch Grid.Column="0" Margin="10,0,10,0" IsOn="{Binding Settings.SoundsABSEngagedEnabled, Mode=TwoWay}" Title="{Binding Localization[Enabled]}" LabelPosition="Top"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Volume]}" Value="{Binding Settings.SoundsABSEngagedVolume, Mode=TwoWay}" ValueString="{Binding Settings.SoundsABSEngagedVolumeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.SoundsABSEngagedVolumePlusButtonMappings}" MinusButtonMappings="{Binding Settings.SoundsABSEngagedVolumeMinusButtonMappings}" DefaultValue="0.75"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[FrequencyRatio]}" Value="{Binding Settings.SoundsABSEngagedFrequencyRatio, Mode=TwoWay}" ValueString="{Binding Settings.SoundsABSEngagedFrequencyRatioString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.SoundsABSEngagedFrequencyRatioPlusButtonMappings}" MinusButtonMappings="{Binding Settings.SoundsABSEngagedFrequencyRatioMinusButtonMappings}" DefaultValue="1"/>
+                            <controls:MairaSwitch Grid.Column="4" Margin="10,0,10,0" IsOn="{Binding Settings.SoundsABSEngagedFadeWithBrake, Mode=TwoWay}" Title="{Binding Localization[Fade]}" LabelPosition="Top"/>
+                            <controls:MairaButton Grid.Column="5" Margin="10,0,10,0" Title="{Binding Localization[Test]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_vibrate.png" Click="Sounds_ABSEngaged_Test_MairaButton_Click"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[WheelLock]}">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="116"/>
+                                <ColumnDefinition Width="68"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaSwitch Grid.Column="0" Margin="10,0,10,0" IsOn="{Binding Settings.SoundsWheelLockEnabled, Mode=TwoWay}" Title="{Binding Localization[Enabled]}" LabelPosition="Top"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Volume]}" Value="{Binding Settings.SoundsWheelLockVolume, Mode=TwoWay}" ValueString="{Binding Settings.SoundsWheelLockVolumeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.SoundsWheelLockVolumePlusButtonMappings}" MinusButtonMappings="{Binding Settings.SoundsWheelLockVolumeMinusButtonMappings}" DefaultValue="0.75"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[FrequencyRatio]}" Value="{Binding Settings.SoundsWheelLockFrequencyRatio, Mode=TwoWay}" ValueString="{Binding Settings.SoundsWheelLockFrequencyRatioString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.SoundsWheelLockFrequencyRatioPlusButtonMappings}" MinusButtonMappings="{Binding Settings.SoundsWheelLockFrequencyRatioMinusButtonMappings}" DefaultValue="1"/>
+                            <controls:MairaKnob Grid.Column="3" Margin="10,0,10,0" Title="{Binding Localization[Sensitivity]}" Value="{Binding Settings.SoundsWheelLockSensitivity, Mode=TwoWay}" ValueString="{Binding Settings.SoundsWheelLockSensitivityString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.SoundsWheelLockSensitivityPlusButtonMappings}" MinusButtonMappings="{Binding Settings.SoundsWheelLockSensitivityMinusButtonMappings}" DefaultValue="0.95"/>
+                            <controls:MairaSwitch Grid.Column="4" Margin="10,0,10,0" IsOn="{Binding Settings.SoundsWheelLockFadeWithBrake, Mode=TwoWay}" Title="{Binding Localization[Fade]}" LabelPosition="Top"/>
+                            <controls:MairaButton Grid.Column="5" Margin="10,0,10,0" Title="{Binding Localization[Test]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_vibrate.png" Click="Sounds_WheelLock_Test_MairaButton_Click"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                    <GroupBox Header="{Binding Localization[WheelSpin]}">
+
+                        <Grid Margin="0,10,0,20">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="116"/>
+                                <ColumnDefinition Width="68"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaSwitch Grid.Column="0" Margin="10,0,10,0" IsOn="{Binding Settings.SoundsWheelSpinEnabled, Mode=TwoWay}" Title="{Binding Localization[Enabled]}" LabelPosition="Top"/>
+                            <controls:MairaKnob Grid.Column="1" Margin="10,0,10,0" Title="{Binding Localization[Volume]}" Value="{Binding Settings.SoundsWheelSpinVolume, Mode=TwoWay}" ValueString="{Binding Settings.SoundsWheelSpinVolumeString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.SoundsWheelSpinVolumePlusButtonMappings}" MinusButtonMappings="{Binding Settings.SoundsWheelSpinVolumeMinusButtonMappings}" DefaultValue="0.75"/>
+                            <controls:MairaKnob Grid.Column="2" Margin="10,0,10,0" Title="{Binding Localization[FrequencyRatio]}" Value="{Binding Settings.SoundsWheelSpinFrequencyRatio, Mode=TwoWay}" ValueString="{Binding Settings.SoundsWheelSpinFrequencyRatioString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.SoundsWheelSpinFrequencyRatioPlusButtonMappings}" MinusButtonMappings="{Binding Settings.SoundsWheelSpinFrequencyRatioMinusButtonMappings}" DefaultValue="1"/>
+                            <controls:MairaKnob Grid.Column="3" Margin="10,0,10,0" Title="{Binding Localization[Sensitivity]}" Value="{Binding Settings.SoundsWheelSpinSensitivity, Mode=TwoWay}" ValueString="{Binding Settings.SoundsWheelSpinSensitivityString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="0.1" PlusButtonMappings="{Binding Settings.SoundsWheelSpinSensitivityPlusButtonMappings}" MinusButtonMappings="{Binding Settings.SoundsWheelSpinSensitivityMinusButtonMappings}" DefaultValue="0.95"/>
+                            <controls:MairaSwitch Grid.Column="4" Margin="10,0,10,0" IsOn="{Binding Settings.SoundsWheelSpinFadeWithThrottle, Mode=TwoWay}" Title="{Binding Localization[Fade]}" LabelPosition="Top"/>
+                            <controls:MairaButton Grid.Column="5" Margin="10,0,10,0" Title="{Binding Localization[Test]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_vibrate.png" Click="Sounds_WheelSpin_Test_MairaButton_Click"/>
+
+                        </Grid>
+
+                    </GroupBox>
+
+                </StackPanel>
+
+            </TabItem>
+
             <TabItem x:Name="AdminBoxx_TabItem" Header="{Binding Localization[AdminBoxx]}">
 
                 <StackPanel Margin="10,10,10,20">
@@ -825,99 +927,126 @@
 
             <TabItem x:Name="Graph_TabItem" Header="{Binding Localization[Graph]}">
 
-                <StackPanel Margin="10,10,10,20">
+                <StackPanel x:Name="Graph_Main_StackPanel" Margin="10,10,10,20">
 
-                    <Border Grid.Column="2" Margin="0,10,0,0" BorderThickness="2" BorderBrush="#FFF" Background="#80000000" CornerRadius="5">
-                        <Image x:Name="Graph_Image" Height="401" Width="3840" HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality"/>
-                    </Border>
+                    <Grid x:Name="Graph_Grid">
 
-                    <Grid Margin="0,10,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="3*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                            <ColumnDefinition Width="1*"/>
-                        </Grid.ColumnDefinitions>
+                        <Border x:Name="Graph_Border" Grid.Row="0" Margin="0,10,0,0" BorderThickness="2" BorderBrush="#FFF" Background="#80000000" CornerRadius="5">
+                            <Image x:Name="Graph_Image" Height="401" Width="3840" HorizontalAlignment="Right" RenderOptions.BitmapScalingMode="HighQuality"/>
+                        </Border>
 
-                        <controls:MairaComboBox Grid.Column="0" x:Name="Graph_Statistics_ComboBox" SelectedValue="{Binding Settings.GraphStatisticsLayerIndex, Mode=TwoWay}" VerticalContentAlignment="Center"/>
+                        <controls:MairaButton Grid.Row="0" Margin="20" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_target.png" HorizontalAlignment="Right" VerticalAlignment="Bottom" Click="Graph_Target_MairaButton_Click">
 
-                        <StackPanel Grid.Column="1">
-                            <Label Content="{Binding Localization[Minimum]}" HorizontalAlignment="Center" FontSize="11"/>
-                            <Label x:Name="Graph_Minimum_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="2">
-                            <Label Content="{Binding Localization[Maximum]}" HorizontalAlignment="Center" FontSize="11"/>
-                            <Label x:Name="Graph_Maximum_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="3">
-                            <Label Content="{Binding Localization[Average]}" HorizontalAlignment="Center" FontSize="11"/>
-                            <Label x:Name="Graph_Average_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="4">
-                            <Label Content="{Binding Localization[Variance]}" HorizontalAlignment="Center" FontSize="11"/>
-                            <Label x:Name="Graph_Variance_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
-                        </StackPanel>
-                        <StackPanel Grid.Column="5">
-                            <Label Content="{Binding Localization[StandardDeviation]}" HorizontalAlignment="Center" FontSize="11"/>
-                            <Label x:Name="Graph_StandardDeviation_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
-                        </StackPanel>
+                            <controls:MairaButton.Style>
+                                <Style TargetType="controls:MairaButton">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding IsMouseOver, ElementName=Graph_Grid}" Value="True">
+                                            <Setter Property="Visibility" Value="Visible"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </controls:MairaButton.Style>
+
+                        </controls:MairaButton>
 
                     </Grid>
 
-                    <Grid Margin="0,20,0,0">
+                    <StackPanel x:Name="Graph_BottomPanel_StackPanel" Tag="HideWhenGraphIsSoloed">
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        <Grid Margin="0,10,0,0">
 
-                        <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphInputTorque, Mode=TwoWay}" Title="{Binding Localization[InputTorque]}"/>
-                        <controls:MairaSwitch Grid.Column="1" IsOn="{Binding Settings.GraphOutputTorque, Mode=TwoWay}" Title="{Binding Localization[OutputTorque]}"/>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="3*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                                <ColumnDefinition Width="1*"/>
+                            </Grid.ColumnDefinitions>
 
-                    </Grid>
+                            <controls:MairaComboBox Grid.Column="0" x:Name="Graph_Statistics_ComboBox" SelectedValue="{Binding Settings.GraphStatisticsLayerIndex, Mode=TwoWay}" VerticalContentAlignment="Center"/>
 
-                    <Grid Margin="0,10,0,0">
+                            <StackPanel Grid.Column="1">
+                                <Label Content="{Binding Localization[Minimum]}" HorizontalAlignment="Center" FontSize="11"/>
+                                <Label x:Name="Graph_Minimum_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="2">
+                                <Label Content="{Binding Localization[Maximum]}" HorizontalAlignment="Center" FontSize="11"/>
+                                <Label x:Name="Graph_Maximum_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="3">
+                                <Label Content="{Binding Localization[Average]}" HorizontalAlignment="Center" FontSize="11"/>
+                                <Label x:Name="Graph_Average_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="4">
+                                <Label Content="{Binding Localization[Variance]}" HorizontalAlignment="Center" FontSize="11"/>
+                                <Label x:Name="Graph_Variance_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="5">
+                                <Label Content="{Binding Localization[StandardDeviation]}" HorizontalAlignment="Center" FontSize="11"/>
+                                <Label x:Name="Graph_StandardDeviation_Label" HorizontalAlignment="Center" FontFamily="Cascadia Mono" FontSize="22" Content="0.00"/>
+                            </StackPanel>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        </Grid>
 
-                        <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphInputTorque60Hz, Mode=TwoWay}" Title="{Binding Localization[InputTorque60Hz]}"/>
-                        <controls:MairaSwitch Grid.Column="1" IsOn="{Binding Settings.GraphInputLFE, Mode=TwoWay}" Title="{Binding Localization[InputLFE]}"/>
+                        <Grid Margin="0,20,0,0">
 
-                    </Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                    <Grid Margin="0,10,0,0">
+                            <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphInputTorque, Mode=TwoWay}" Title="{Binding Localization[InputTorque]}"/>
+                            <controls:MairaSwitch Grid.Column="1" IsOn="{Binding Settings.GraphOutputTorque, Mode=TwoWay}" Title="{Binding Localization[OutputTorque]}"/>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        </Grid>
 
-                        <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphClutchPedalHaptics, Mode=TwoWay}" Title="{Binding Localization[ClutchPedalHaptics]}"/>
-                        <controls:MairaSwitch Grid.Column="1" IsOn="{Binding Settings.GraphBrakePedalHaptics, Mode=TwoWay}" Title="{Binding Localization[BrakePedalHaptics]}"/>
-                        <controls:MairaSwitch Grid.Column="2" IsOn="{Binding Settings.GraphThrottlePedalHaptics, Mode=TwoWay}" Title="{Binding Localization[ThrottlePedalHaptics]}"/>
+                        <Grid Margin="0,10,0,0">
 
-                    </Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
 
-                    <Grid Margin="0,10,0,0">
+                            <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphInputTorque60Hz, Mode=TwoWay}" Title="{Binding Localization[InputTorque60Hz]}"/>
+                            <controls:MairaSwitch Grid.Column="1" IsOn="{Binding Settings.GraphInputLFE, Mode=TwoWay}" Title="{Binding Localization[InputLFE]}"/>
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
+                        </Grid>
 
-                        <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphTimerJitter, Mode=TwoWay}" Title="{Binding Localization[TimerJitter]}"/>
+                        <Grid Margin="0,10,0,0">
 
-                    </Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphClutchPedalHaptics, Mode=TwoWay}" Title="{Binding Localization[ClutchPedalHaptics]}"/>
+                            <controls:MairaSwitch Grid.Column="1" IsOn="{Binding Settings.GraphBrakePedalHaptics, Mode=TwoWay}" Title="{Binding Localization[BrakePedalHaptics]}"/>
+                            <controls:MairaSwitch Grid.Column="2" IsOn="{Binding Settings.GraphThrottlePedalHaptics, Mode=TwoWay}" Title="{Binding Localization[ThrottlePedalHaptics]}"/>
+
+                        </Grid>
+
+                        <Grid Margin="0,10,0,0">
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+
+                            <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.GraphTimerJitter, Mode=TwoWay}" Title="{Binding Localization[TimerJitter]}"/>
+
+                        </Grid>
+
+                    </StackPanel>
 
                 </StackPanel>
 
@@ -1029,7 +1158,7 @@
                             <controls:MairaSwitch Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" IsOn="{Binding Settings.AppStartMinimized, Mode=TwoWay}" Title="{Binding Localization[StartMinimized]}"/>
                             <controls:MairaSwitch Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,10,0,0" IsOn="{Binding Settings.AppMinimizeToSystemTray, Mode=TwoWay}" Title="{Binding Localization[MinimizeToSystemTray]}"/>
 
-                            <controls:MairaKnob Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" VerticalAlignment="Center" Margin="10,0,10,33" Title="{Binding Localization[UIScale]}" Value="{Binding Settings.AppUIScale, Mode=TwoWay}" ValueString="{Binding Settings.AppUIScaleString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" DefaultValue="1"/>
+                            <controls:MairaKnob Grid.Row="0" Grid.Column="2" Grid.RowSpan="3" VerticalAlignment="Center" Margin="10,0,10,33" Title="{Binding Localization[UIScale]}" Value="{Binding Settings.AppUIScale, Mode=TwoWay}" ValueString="{Binding Settings.AppUIScaleString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" DefaultValue="0.85"/>
 
                         </Grid>
 
@@ -1040,13 +1169,12 @@
                         <Grid Margin="0,10,0,20">
 
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <controls:MairaSwitch Grid.Column="0" Grid.ColumnSpan="2" IsOn="{Binding Settings.AppCheckForUpdates, Mode=TwoWay}" Title="{Binding Localization[CheckForUpdates]}" Margin="0,10,0,0"/>
-                            <controls:MairaButton Grid.Column="2" x:Name="App_CheckNow_MairaButton" Title="{Binding Localization[CheckNow]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_binoculars.png" Click="App_CheckNow_MairaButton_Click"/>
+                            <controls:MairaSwitch Grid.Column="0" IsOn="{Binding Settings.AppCheckForUpdates, Mode=TwoWay}" Title="{Binding Localization[CheckForUpdates]}" Margin="0,20,0,0"/>
+                            <controls:MairaButton Grid.Column="1" x:Name="App_CheckNow_MairaButton" Margin="40,0" Title="{Binding Localization[CheckNow]}" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_binoculars.png" Click="App_CheckNow_MairaButton_Click"/>
 
                         </Grid>
 
@@ -1132,11 +1260,11 @@
                                 <!--LAS-Zeppelin83-->
                                 <TextBlock Text="Michael Marcotte - French (Canada) - Français (Canada)"/>
                                 <!--Rene-->
-                                <TextBlock Text="Rene - German - Deutsch"/>
+                                <TextBlock Text="Rene Stangl - German - Deutsch"/>
                                 <!--Rodas007-->
                                 <TextBlock Text="Rodas007 - Spanish - Español"/>
                                 <!--Jordi Koller-->
-                                <TextBlock Text="Rodas007 - Dutch - Nederlands"/>
+                                <TextBlock Text="Jordi Koller - Dutch - Nederlands"/>
 
                             </UniformGrid>
 

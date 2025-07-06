@@ -22,6 +22,8 @@ namespace MarvinsAIRARefactored.Windows;
 
 public partial class MainWindow : Window
 {
+	private const int UpdateInterval = 6;
+
 	public nint WindowHandle { get; private set; } = 0;
 	public bool GraphTabItemIsVisible { get; private set; } = false;
 	public bool DebugTabItemIsVisible { get; private set; } = false;
@@ -31,6 +33,8 @@ public partial class MainWindow : Window
 	private bool _initialized = false;
 
 	private NotifyIcon? _notifyIcon = null;
+
+	private int _updateCounter = UpdateInterval + 6;
 
 	public MainWindow()
 	{
@@ -593,6 +597,21 @@ public partial class MainWindow : Window
 		app.RacingWheel.ClearPeakTorque = true;
 	}
 
+	private void RacingWheel_Preview_ScrollViewer_PreviewMouseWheel( object sender, MouseWheelEventArgs e )
+	{
+		e.Handled = true;
+
+		var eventArg = new MouseWheelEventArgs( e.MouseDevice, e.Timestamp, e.Delta )
+		{
+			RoutedEvent = MouseWheelEvent,
+			Source = sender
+		};
+
+		var parent = ( (ScrollViewer) sender ).Parent as UIElement;
+
+		parent?.RaiseEvent( eventArg );
+	}
+
 	private void Pedals_ClutchTest1_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
@@ -654,6 +673,98 @@ public partial class MainWindow : Window
 		var app = App.Instance!;
 
 		app.Pedals.StartTest( 2, 2 );
+	}
+
+	private void Sounds_ABSEngaged_Test_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Sounds.Test( Sounds.SoundEffectType.ABSEngaged );
+	}
+
+	private void Sounds_WheelLock_Test_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Sounds.Test( Sounds.SoundEffectType.WheelLock );
+	}
+
+	private void Sounds_WheelSpin_Test_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Sounds.Test( Sounds.SoundEffectType.WheelSpin );
+	}
+
+	private void AdminBoxx_ConnectToAdminBoxx_MairaSwitch_Toggled( object sender, EventArgs e )
+	{
+		var app = App.Instance!;
+
+		if ( AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn )
+		{
+			if ( !app.AdminBoxx.IsConnected )
+			{
+				app.AdminBoxx.Connect();
+			}
+		}
+		else
+		{
+			app.AdminBoxx.Disconnect();
+		}
+	}
+
+	private void AdminBoxx_Brightness_ValueChanged( float newValue )
+	{
+		var app = App.Instance!;
+
+		app.AdminBoxx.ResendAllLEDs();
+	}
+
+	private void AdminBoxx_BlackFlag_ValueChanged( float newValue )
+	{
+		var app = App.Instance!;
+
+		app.AdminBoxx.WaveBlackFlag();
+	}
+
+	private void AdminBoxx_Volume_ValueChanged( float newValue )
+	{
+		var app = App.Instance!;
+
+		app.AudioManager.Play( "beep", newValue );
+	}
+
+	private void AdminBoxx_Test_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.AdminBoxx.StartTestCycle();
+	}
+
+	private void Graph_Target_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( Graph_BottomPanel_StackPanel.Visibility == Visibility.Visible )
+		{
+			Misc.ApplyToTaggedElements( MainGrid, "HideWhenGraphIsSoloed", element => element.Visibility = Visibility.Collapsed );
+
+			Graph_Main_StackPanel.Margin = new Thickness( 0 );
+			Graph_Border.Margin = new Thickness( 0 );
+
+			WindowStyle = WindowStyle.None;
+			ResizeMode = ResizeMode.NoResize;
+			SizeToContent = SizeToContent.Height;
+		}
+		else
+		{
+			Misc.ApplyToTaggedElements( MainGrid, "HideWhenGraphIsSoloed", element => element.Visibility = Visibility.Visible );
+
+			Graph_Main_StackPanel.Margin = new Thickness( 10, 10, 10, 20 );
+			Graph_Border.Margin = new Thickness( 0, 10, 0, 0 );
+
+			WindowStyle = WindowStyle.SingleBorderWindow;
+			ResizeMode = ResizeMode.CanResizeWithGrip;
+			SizeToContent = SizeToContent.Manual;
+		}
 	}
 
 	private void Simulator_HeaderData_HeaderDataViewer_MouseWheel( object sender, MouseWheelEventArgs e )
@@ -725,51 +836,6 @@ public partial class MainWindow : Window
 		Simulator_TelemetryData_TelemetryDataViewer.ScrollIndex = (int) e.NewValue;
 	}
 
-	private void AdminBoxx_ConnectToAdminBoxx_MairaSwitch_Toggled( object sender, EventArgs e )
-	{
-		var app = App.Instance!;
-
-		if ( AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn )
-		{
-			if ( !app.AdminBoxx.IsConnected )
-			{
-				app.AdminBoxx.Connect();
-			}
-		}
-		else
-		{
-			app.AdminBoxx.Disconnect();
-		}
-	}
-
-	private void AdminBoxx_Brightness_ValueChanged( float newValue )
-	{
-		var app = App.Instance!;
-
-		app.AdminBoxx.ResendAllLEDs();
-	}
-
-	private void AdminBoxx_BlackFlag_ValueChanged( float newValue )
-	{
-		var app = App.Instance!;
-
-		app.AdminBoxx.WaveBlackFlag();
-	}
-
-	private void AdminBoxx_Volume_ValueChanged( float newValue )
-	{
-		var app = App.Instance!;
-
-		app.AudioManager.Play( "beep", newValue );
-	}
-
-	private void AdminBoxx_Test_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance!;
-
-		app.AdminBoxx.StartTestCycle();
-	}
-
 	private async void App_CheckNow_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
@@ -800,55 +866,62 @@ public partial class MainWindow : Window
 
 	public void Tick( App app )
 	{
-		// header data
+		_updateCounter--;
 
-		Simulator_HeaderData_HeaderDataViewer.InvalidateVisual();
-
-		Simulator_HeaderData_ScrollBar.Maximum = Simulator_HeaderData_HeaderDataViewer.NumTotalLines - Simulator_HeaderData_HeaderDataViewer.NumVisibleLines;
-		Simulator_HeaderData_ScrollBar.ViewportSize = Simulator_HeaderData_HeaderDataViewer.NumVisibleLines;
-
-		if ( Simulator_HeaderData_HeaderDataViewer.NumVisibleLines >= Simulator_HeaderData_HeaderDataViewer.NumTotalLines )
+		if ( _updateCounter == 0 )
 		{
-			Simulator_HeaderData_HeaderDataViewer.ScrollIndex = 0;
-			Simulator_HeaderData_ScrollBar.Visibility = Visibility.Collapsed;
-		}
-		else
-		{
-			Simulator_HeaderData_ScrollBar.Visibility = Visibility.Visible;
-		}
+			_updateCounter = UpdateInterval;
 
-		// session information
+			// header data
 
-		Simulator_SessionInfo_SessionInfoViewer.InvalidateVisual();
+			Simulator_HeaderData_HeaderDataViewer.InvalidateVisual();
 
-		Simulator_SessionInfo_ScrollBar.Maximum = Simulator_SessionInfo_SessionInfoViewer.NumTotalLines - Simulator_SessionInfo_SessionInfoViewer.NumVisibleLines;
-		Simulator_SessionInfo_ScrollBar.ViewportSize = Simulator_SessionInfo_SessionInfoViewer.NumVisibleLines;
+			Simulator_HeaderData_ScrollBar.Maximum = Simulator_HeaderData_HeaderDataViewer.NumTotalLines - Simulator_HeaderData_HeaderDataViewer.NumVisibleLines;
+			Simulator_HeaderData_ScrollBar.ViewportSize = Simulator_HeaderData_HeaderDataViewer.NumVisibleLines;
 
-		if ( Simulator_SessionInfo_SessionInfoViewer.NumVisibleLines >= Simulator_SessionInfo_SessionInfoViewer.NumTotalLines )
-		{
-			Simulator_SessionInfo_SessionInfoViewer.ScrollIndex = 0;
-			Simulator_SessionInfo_ScrollBar.Visibility = Visibility.Collapsed;
-		}
-		else
-		{
-			Simulator_SessionInfo_ScrollBar.Visibility = Visibility.Visible;
-		}
+			if ( Simulator_HeaderData_HeaderDataViewer.NumVisibleLines >= Simulator_HeaderData_HeaderDataViewer.NumTotalLines )
+			{
+				Simulator_HeaderData_HeaderDataViewer.ScrollIndex = 0;
+				Simulator_HeaderData_ScrollBar.Visibility = Visibility.Collapsed;
+			}
+			else
+			{
+				Simulator_HeaderData_ScrollBar.Visibility = Visibility.Visible;
+			}
 
-		// telemetry data
+			// session information
 
-		Simulator_TelemetryData_TelemetryDataViewer.InvalidateVisual();
+			Simulator_SessionInfo_SessionInfoViewer.InvalidateVisual();
 
-		Simulator_TelemetryData_ScrollBar.Maximum = Simulator_TelemetryData_TelemetryDataViewer.NumTotalLines - Simulator_TelemetryData_TelemetryDataViewer.NumVisibleLines;
-		Simulator_TelemetryData_ScrollBar.ViewportSize = Simulator_TelemetryData_TelemetryDataViewer.NumVisibleLines;
+			Simulator_SessionInfo_ScrollBar.Maximum = Simulator_SessionInfo_SessionInfoViewer.NumTotalLines - Simulator_SessionInfo_SessionInfoViewer.NumVisibleLines;
+			Simulator_SessionInfo_ScrollBar.ViewportSize = Simulator_SessionInfo_SessionInfoViewer.NumVisibleLines;
 
-		if ( Simulator_TelemetryData_TelemetryDataViewer.NumVisibleLines >= Simulator_TelemetryData_TelemetryDataViewer.NumTotalLines )
-		{
-			Simulator_TelemetryData_TelemetryDataViewer.ScrollIndex = 0;
-			Simulator_TelemetryData_ScrollBar.Visibility = Visibility.Collapsed;
-		}
-		else
-		{
-			Simulator_TelemetryData_ScrollBar.Visibility = Visibility.Visible;
+			if ( Simulator_SessionInfo_SessionInfoViewer.NumVisibleLines >= Simulator_SessionInfo_SessionInfoViewer.NumTotalLines )
+			{
+				Simulator_SessionInfo_SessionInfoViewer.ScrollIndex = 0;
+				Simulator_SessionInfo_ScrollBar.Visibility = Visibility.Collapsed;
+			}
+			else
+			{
+				Simulator_SessionInfo_ScrollBar.Visibility = Visibility.Visible;
+			}
+
+			// telemetry data
+
+			Simulator_TelemetryData_TelemetryDataViewer.InvalidateVisual();
+
+			Simulator_TelemetryData_ScrollBar.Maximum = Simulator_TelemetryData_TelemetryDataViewer.NumTotalLines - Simulator_TelemetryData_TelemetryDataViewer.NumVisibleLines;
+			Simulator_TelemetryData_ScrollBar.ViewportSize = Simulator_TelemetryData_TelemetryDataViewer.NumVisibleLines;
+
+			if ( Simulator_TelemetryData_TelemetryDataViewer.NumVisibleLines >= Simulator_TelemetryData_TelemetryDataViewer.NumTotalLines )
+			{
+				Simulator_TelemetryData_TelemetryDataViewer.ScrollIndex = 0;
+				Simulator_TelemetryData_ScrollBar.Visibility = Visibility.Collapsed;
+			}
+			else
+			{
+				Simulator_TelemetryData_ScrollBar.Visibility = Visibility.Visible;
+			}
 		}
 	}
 }

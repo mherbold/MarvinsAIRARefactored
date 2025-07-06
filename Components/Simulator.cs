@@ -4,14 +4,16 @@ using System.Text;
 using PInvoke;
 
 using IRSDKSharper;
+using MarvinsAIRARefactored.Classes;
 
 namespace MarvinsAIRARefactored.Components;
 
 public class Simulator
 {
 	public const int SamplesPerFrame360Hz = 6;
-
-	private const float _oneG = 9.80665f; // in meters per second squared
+	private const int UpdateInterval = 6;
+	private const int MaxNumGears = 10;
+	private const float OneG = 9.80665f; // in meters per second squared
 
 	private readonly IRacingSdk _irsdk = new();
 
@@ -25,6 +27,7 @@ public class Simulator
 	public float[] CFShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float Clutch { get; private set; } = 0f;
 	public float[] CRShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float CurrentRpmSpeedRatio { get; private set; } = 0f;
 	public int Gear { get; private set; } = 0;
 	public float GForce { get; private set; } = 0f;
 	public bool IsConnected { get => _irsdk.IsConnected; }
@@ -41,8 +44,10 @@ public class Simulator
 	public int ReplayPlaySpeed { get; private set; } = 1;
 	public float[] RFShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float RPM { get; private set; } = 0f;
+	public float[] RPMSpeedRatios { get; private set; } = new float[ MaxNumGears ];
 	public float[] RRShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public IRacingSdkEnum.Flags SessionFlags { get; private set; } = 0;
+	public float ShiftLightsFirstRPM { get; private set; } = 0f;
 	public float ShiftLightsShiftRPM { get; private set; } = 0f;
 	public string SimMode { get; private set; } = string.Empty;
 	public bool SteeringFFBEnabled { get; private set; } = false;
@@ -52,6 +57,7 @@ public class Simulator
 	public float Throttle { get; private set; } = 0f;
 	public string TrackDisplayName { get; private set; } = string.Empty;
 	public string TrackConfigName { get; private set; } = string.Empty;
+	public string UserName { get; private set; } = string.Empty;
 	public float Velocity { get; private set; } = 0f;
 	public float VelocityX { get; private set; } = 0f;
 	public float VelocityY { get; private set; } = 0f;
@@ -95,6 +101,8 @@ public class Simulator
 	private IRacingSdkDatum? _velocityXDatum = null;
 	private IRacingSdkDatum? _velocityYDatum = null;
 	private IRacingSdkDatum? _weatherDeclaredWetDatum = null;
+
+	private int _updateCounter = UpdateInterval + 5;
 
 	public void Initialize()
 	{
@@ -179,6 +187,11 @@ public class Simulator
 
 		app.AdminBoxx.SimulatorConnected();
 
+		for ( var gear = 0; gear < MaxNumGears; gear++ )
+		{
+			RPMSpeedRatios[ gear ] = 0f;
+		}
+
 		app.Logger.WriteLine( "[Simulator] <<< OnConnected" );
 	}
 
@@ -215,6 +228,7 @@ public class Simulator
 		var sessionInfo = _irsdk.Data.SessionInfo;
 
 		NumForwardGears = sessionInfo.DriverInfo.DriverCarGearNumForward;
+		ShiftLightsFirstRPM = sessionInfo.DriverInfo.DriverCarSLFirstRPM;
 		ShiftLightsShiftRPM = sessionInfo.DriverInfo.DriverCarSLShiftRPM;
 		SimMode = sessionInfo.WeekendInfo.SimMode;
 
@@ -223,6 +237,7 @@ public class Simulator
 			if ( driver.CarIdx == _irsdk.Data.SessionInfo.DriverInfo.DriverCarIdx )
 			{
 				CarScreenName = driver.CarScreenName ?? string.Empty;
+				UserName = driver.UserName ?? string.Empty;
 				break;
 			}
 		}
@@ -422,7 +437,7 @@ public class Simulator
 
 		if ( _velocityLastFrame != null )
 		{
-			GForce = MathF.Abs( Velocity - (float) _velocityLastFrame ) / deltaSeconds / _oneG;
+			GForce = MathF.Abs( Velocity - (float) _velocityLastFrame ) / deltaSeconds / OneG;
 		}
 		else
 		{
@@ -497,6 +512,43 @@ public class Simulator
 
 		_velocityLastFrame = Velocity;
 
+		// update rpm / speed ratios
+
+		CurrentRpmSpeedRatio = 0f;
+
+		if ( IsOnTrack && ( Gear > 0 ) && ( Clutch == 1f ) && ( RPM > 500f ) && ( VelocityX >= 4.4704f ) ) // VX >= 10 MPH
+		{
+			CurrentRpmSpeedRatio = VelocityX / RPM;
+
+			if ( ( Brake == 0f ) && ( VelocityY < 0.1f ) && ( PlayerTrackSurface == IRacingSdkEnum.TrkLoc.OnTrack ) )
+			{
+				var delta = MathF.Abs( CurrentRpmSpeedRatio - RPMSpeedRatios[ Gear ] );
+
+				if ( delta > 0.001f )
+				{
+					RPMSpeedRatios[ Gear ] = CurrentRpmSpeedRatio;
+				}
+				else if ( delta > 0f )
+				{
+					RPMSpeedRatios[ Gear ] = Misc.Lerp( RPMSpeedRatios[ Gear ], CurrentRpmSpeedRatio, 0.001f );
+				}
+				else
+				{
+					RPMSpeedRatios[ Gear ] = Misc.Lerp( RPMSpeedRatios[ Gear ], CurrentRpmSpeedRatio, 0.01f );
+				}
+
+				switch ( Gear )
+				{
+					case 1: app.Debug.Label_1 = $"{RPMSpeedRatios[ 1 ]:F8}"; break;
+					case 2: app.Debug.Label_2 = $"{RPMSpeedRatios[ 2 ]:F8}"; break;
+					case 3: app.Debug.Label_3 = $"{RPMSpeedRatios[ 3 ]:F8}"; break;
+					case 4: app.Debug.Label_4 = $"{RPMSpeedRatios[ 4 ]:F8}"; break;
+					case 5: app.Debug.Label_5 = $"{RPMSpeedRatios[ 5 ]:F8}"; break;
+					case 6: app.Debug.Label_6 = $"{RPMSpeedRatios[ 6 ]:F8}"; break;
+				}
+			}
+		}
+
 		// poll direct input devices
 
 		app.DirectInput.PollDevices( deltaSeconds );
@@ -515,6 +567,13 @@ public class Simulator
 
 	public void Tick( App app )
 	{
-		app.MainWindow.RacingWheel_CurrentForce_Label.Content = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F1}{DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
+		_updateCounter--;
+
+		if ( _updateCounter == 0 )
+		{
+			_updateCounter = UpdateInterval;
+
+			app.MainWindow.RacingWheel_CurrentForce_Label.Content = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F1}{DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
+		}
 	}
 }

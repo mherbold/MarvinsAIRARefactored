@@ -1,8 +1,6 @@
 ﻿
 using Simagic;
 
-using IRSDKSharper;
-
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Controls;
 
@@ -25,11 +23,10 @@ public class Pedals
 	private const float DeltaSeconds = 1f / 20f;
 	private const float TestDuration = 3f;
 	private const int UpdateInterval = 3;
-	private const int MaxNumGears = 10;
 
 	public HPR.PedalsDevice PedalsDevice { get; private set; }
 
-	private int _pedalUpdateCounter = UpdateInterval;
+	private int _updateCounter = UpdateInterval + 3;
 
 	private bool _testing = false;
 	private bool _testJustStarted = false;
@@ -48,9 +45,6 @@ public class Pedals
 	private readonly float[] _frequency = new float[ 3 ];
 	private readonly float[] _amplitude = new float[ 3 ];
 	private readonly float[] _cycles = new float[ 3 ];
-
-	private float _currentRpmSpeedRatio = 0f;
-	private readonly float[] _rpmSpeedRatios = new float[ MaxNumGears ];
 
 	public void Initialize()
 	{
@@ -110,14 +104,6 @@ public class Pedals
 		app.Logger.WriteLine( "[Pedals] <<< SetMairaComboBoxItemsSource" );
 	}
 
-	public void SimulatorConnected()
-	{
-		for ( var gear = 0; gear < MaxNumGears; gear++ )
-		{
-			_rpmSpeedRatios[ gear ] = 0f;
-		}
-	}
-
 	public void StartTest( int pedalIndex, int effectIndex )
 	{
 		_testPedalIndex = pedalIndex;
@@ -166,28 +152,6 @@ public class Pedals
 			if ( _testTimer >= TestDuration )
 			{
 				_testing = false;
-			}
-		}
-
-		// update rpm / speed ratios
-
-		_currentRpmSpeedRatio = 0f;
-
-		if ( app.Simulator.IsOnTrack && ( app.Simulator.Gear > 0 ) && ( app.Simulator.Clutch == 1f ) && ( app.Simulator.RPM > 500f ) && ( app.Simulator.VelocityX >= 4.4704f ) ) // VX >= 10 MPH
-		{
-			_currentRpmSpeedRatio = app.Simulator.VelocityX / app.Simulator.RPM;
-
-			if ( ( app.Simulator.PlayerTrackSurface == IRacingSdkEnum.TrkLoc.OnTrack ) && ( app.Simulator.Brake == 0f ) && ( app.Simulator.VelocityY < 0.1f ) )
-			{
-				_rpmSpeedRatios[ app.Simulator.Gear ] = MathF.Max( _currentRpmSpeedRatio, _rpmSpeedRatios[ app.Simulator.Gear ] );
-
-				switch ( app.Simulator.Gear )
-				{
-					case 1: app.Debug.Label_1 = $"{_rpmSpeedRatios[ 1 ]:F8}"; break;
-					case 2: app.Debug.Label_2 = $"{_rpmSpeedRatios[ 2 ]:F8}"; break;
-					case 3: app.Debug.Label_3 = $"{_rpmSpeedRatios[ 3 ]:F8}"; break;
-					case 4: app.Debug.Label_4 = $"{_rpmSpeedRatios[ 4 ]:F8}"; break;
-				}
 			}
 		}
 
@@ -403,21 +367,23 @@ public class Pedals
 
 	private (bool, float, float) DoWheelLockEffect( App app, float amplitude )
 	{
-		if ( _testing || ( ( _currentRpmSpeedRatio > 0f ) && ( _rpmSpeedRatios[ app.Simulator.Gear ] > 0f ) ) )
+		if ( _testing || ( ( app.Simulator.CurrentRpmSpeedRatio > 0f ) && ( app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] > 0f ) ) )
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
-			var adjustedRpmSpeedRatio = _rpmSpeedRatios[ app.Simulator.Gear ] * settings.PedalsWheelLockSensitivity;
-			var difference = _currentRpmSpeedRatio - adjustedRpmSpeedRatio;
-			var differencePct = difference / adjustedRpmSpeedRatio;
+			var difference = app.Simulator.CurrentRpmSpeedRatio - app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ];
+			var differencePct = ( difference / app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] ) - ( 1f - settings.PedalsWheelLockSensitivity );
 
-			if ( _testing || ( differencePct > 0.05f ) )
+			app.Debug.Label_7 = $"WL difference: {difference:F6}";
+			app.Debug.Label_8 = $"WL differencePct: {differencePct * 100f:F2}%";
+
+			if ( _testing || ( differencePct > 0f ) )
 			{
 				var frequency = Misc.Lerp( settings.PedalsMinimumFrequency, settings.PedalsMaximumFrequency, MathF.Pow( settings.PedalsWheelLockFrequency, Misc.CurveToPower( settings.PedalsFrequencyCurve ) ) );
 
 				if ( !_testing )
 				{
-					amplitude = Misc.Lerp( 0f, amplitude, ( differencePct - 0.05f ) / 0.05f );
+					amplitude = Misc.Lerp( 0f, amplitude, differencePct / 0.03f );
 
 					if ( settings.PedalsWheelLockFadeWithBrakeEnabled )
 					{
@@ -427,36 +393,35 @@ public class Pedals
 
 				amplitude = Math.Clamp( amplitude, 0f, 1f );
 
-				amplitude = Misc.Lerp( settings.PedalsMinimumAmplitude, settings.PedalsMaximumAmplitude, MathF.Pow( amplitude, Misc.CurveToPower( settings.PedalsAmplitudeCurve ) ) );
+				app.Debug.Label_9 = $"WL amplitude: {amplitude:F4}";
 
-				app.Debug.Label_5 = $"Wheel Lock: {amplitude:F2}";
+				amplitude = Misc.Lerp( settings.PedalsMinimumAmplitude, settings.PedalsMaximumAmplitude, MathF.Pow( amplitude, Misc.CurveToPower( settings.PedalsAmplitudeCurve ) ) );
 
 				return (true, frequency, amplitude);
 			}
-		}
 
-		app.Debug.Label_5 = "Wheel Lock: NO";
+			app.Debug.Label_9 = $"WL amplitude: {0f:F4}";
+		}
 
 		return (false, 0f, 0f);
 	}
 
 	private (bool, float, float) DoWheelSpinEffect( App app, float amplitude )
 	{
-		if ( _testing || ( ( _currentRpmSpeedRatio > 0f ) && ( _rpmSpeedRatios[ app.Simulator.Gear ] > 0f ) ) )
+		if ( _testing || ( ( app.Simulator.CurrentRpmSpeedRatio > 0f ) && ( app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] > 0f ) ) )
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
-			var adjustedRpmSpeedRatio = _rpmSpeedRatios[ app.Simulator.Gear ] * settings.PedalsWheelSpinSensitivity;
-			var difference = adjustedRpmSpeedRatio - _currentRpmSpeedRatio;
-			var differencePct = difference / adjustedRpmSpeedRatio;
+			var difference = app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] - app.Simulator.CurrentRpmSpeedRatio;
+			var differencePct = ( difference / app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] ) - ( 1f - settings.PedalsWheelSpinSensitivity );
 
-			if ( _testing || ( differencePct > 0.05f ) )
+			if ( _testing || ( differencePct > 0f ) )
 			{
 				var frequency = Misc.Lerp( settings.PedalsMinimumFrequency, settings.PedalsMaximumFrequency, MathF.Pow( settings.PedalsWheelSpinFrequency, Misc.CurveToPower( settings.PedalsFrequencyCurve ) ) );
 
 				if ( !_testing )
 				{
-					amplitude = Misc.Lerp( 0f, amplitude, ( differencePct - 0.05f ) / 0.05f );
+					amplitude = Misc.Lerp( 0f, amplitude, differencePct / 0.03f );
 
 					if ( settings.PedalsWheelSpinFadeWithThrottleEnabled )
 					{
@@ -468,13 +433,9 @@ public class Pedals
 
 				amplitude = Misc.Lerp( settings.PedalsMinimumAmplitude, settings.PedalsMaximumAmplitude, MathF.Pow( amplitude, Misc.CurveToPower( settings.PedalsAmplitudeCurve ) ) );
 
-				app.Debug.Label_6 = $"Wheel Spin: {amplitude:F2}";
-
 				return (true, frequency, amplitude);
 			}
 		}
-
-		app.Debug.Label_6 = "Wheel Spin: NO";
 
 		return (false, 0f, 0f);
 	}
@@ -499,11 +460,11 @@ public class Pedals
 
 	public void Tick( App app )
 	{
-		_pedalUpdateCounter--;
+		_updateCounter--;
 
-		if ( _pedalUpdateCounter == 0 )
+		if ( _updateCounter == 0 )
 		{
-			_pedalUpdateCounter = UpdateInterval;
+			_updateCounter = UpdateInterval;
 
 			Update( app );
 		}

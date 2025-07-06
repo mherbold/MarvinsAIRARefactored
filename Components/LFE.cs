@@ -144,32 +144,39 @@ public class LFE
 
 			if ( NextRecordingDeviceGuid != Guid.Empty )
 			{
-				_directSoundCapture = new DirectSoundCapture( (Guid) NextRecordingDeviceGuid );
-
-				var captureBufferDescription = new CaptureBufferDescription
+				try
 				{
-					Format = new WaveFormat( _captureBufferFrequency, _captureBufferBitsPerSample, 1 ),
-					BufferBytes = _captureBufferSizeInBytes
-				};
+					_directSoundCapture = new DirectSoundCapture( (Guid) NextRecordingDeviceGuid );
 
-				_captureBuffer = new CaptureBuffer( _directSoundCapture, captureBufferDescription );
-
-				var notificationPositionArray = new NotificationPosition[ _captureBufferNumSamples / _frameSizeInSamples ];
-
-				for ( var i = 0; i < notificationPositionArray.Length; i++ )
-				{
-					notificationPositionArray[ i ] = new()
+					var captureBufferDescription = new CaptureBufferDescription
 					{
-						Offset = i * _frameSizeInBytes,
-						WaitHandle = _autoResetEvent
+						Format = new WaveFormat( _captureBufferFrequency, _captureBufferBitsPerSample, 1 ),
+						BufferBytes = _captureBufferSizeInBytes
 					};
+
+					_captureBuffer = new CaptureBuffer( _directSoundCapture, captureBufferDescription );
+
+					var notificationPositionArray = new NotificationPosition[ _captureBufferNumSamples / _frameSizeInSamples ];
+
+					for ( var i = 0; i < notificationPositionArray.Length; i++ )
+					{
+						notificationPositionArray[ i ] = new()
+						{
+							Offset = i * _frameSizeInBytes,
+							WaitHandle = _autoResetEvent
+						};
+					}
+
+					_batchIndex = 0;
+					_pingPongIndex = 0;
+
+					_captureBuffer.SetNotificationPositions( notificationPositionArray );
+					_captureBuffer.Start( true );
 				}
-
-				_batchIndex = 0;
-				_pingPongIndex = 0;
-
-				_captureBuffer.SetNotificationPositions( notificationPositionArray );
-				_captureBuffer.Start( true );
+				catch ( Exception exception )
+				{
+					app.Logger.WriteLine( "[LFE] Failed to create direct sound capture buffer - could microphone access be restricted? " + exception.Message.Trim() );
+				}
 
 				signalReceived = false;
 			}

@@ -21,6 +21,8 @@ namespace MarvinsAIRARefactored.Components
 		private readonly XAudio2 _xaudio2;
 		private readonly MasteringVoice _masteringVoice;
 
+		private readonly Dictionary<string, DateTime> _debounceMap = [];
+
 		public AudioManager()
 		{
 			_xaudio2 = new XAudio2();
@@ -42,35 +44,63 @@ namespace MarvinsAIRARefactored.Components
 			{
 				NotifyFilter = NotifyFilters.LastWrite | NotifyFilters.FileName,
 				EnableRaisingEvents = true,
-				IncludeSubdirectories = false
+				IncludeSubdirectories = true
 			};
 
 			_fileSystemWatcher.Changed += OnSoundFileChanged;
 			_fileSystemWatcher.Created += OnSoundFileChanged;
 			_fileSystemWatcher.Renamed += OnSoundFileChanged;
 
-			string[] soundKeys = [
-				"beep",
-				"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
-				"restart_is_double_file", "restart_is_single_file",
-				"caution_extended_by_one_lap", "caution_shortened_by_one_lap",
-				"we_are_under_caution",
-				"black_flag_driver_number", "clear_driver_number", "wave_by_driver_number", "end_of_line_driver_number", "disqualify_driver_number",
-				"connected_to_adminboxx_app", "connected_to_iracing_simulator",
-			];
+			app.Logger.WriteLine( "[AudioManager] <<< Initialize" );
+		}
 
+		public void LoadSounds( string directory, string[] soundKeys )
+		{
 			foreach ( var soundKey in soundKeys )
 			{
-				var path = Path.Combine( _soundsDirectory, $"{soundKey}.wav" );
-
-				LoadSound( path );
+				LoadSound( directory, soundKey );
 			}
+		}
 
-			app.Logger.WriteLine( "[AudioManager] <<< Initialize" );
+		public void LoadSound( string directory, string soundKey )
+		{
+			var path = Path.Combine( _soundsDirectory, directory, $"{soundKey}.wav" );
+
+			LoadSound( path );
+
+			path = Path.Combine( _soundsDirectory, directory, $"{soundKey}_custom.wav" );
+
+			LoadSound( path );
 		}
 
 		private void OnSoundFileChanged( object sender, FileSystemEventArgs e )
 		{
+			using ( _lock.EnterScope() )
+			{
+				var now = DateTime.Now;
+
+				var expiredKeys = _debounceMap.Where( kvp => ( now - kvp.Value ).TotalSeconds > 10 ).Select( kvp => kvp.Key ).ToList();
+
+				foreach ( var key in expiredKeys )
+				{
+					_debounceMap.Remove( key );
+				}
+
+				if ( _debounceMap.TryGetValue( e.FullPath, out var lastTime ) )
+				{
+					if ( ( now - lastTime ).TotalMilliseconds < 500 )
+					{
+						return;
+					}
+
+					_debounceMap[ e.FullPath ] = now;
+				}
+				else
+				{
+					_debounceMap.Add( e.FullPath, now );
+				}
+			}
+
 			Task.Delay( 1000 ).ContinueWith( _ =>
 			{
 				var app = App.Instance!;
@@ -92,7 +122,7 @@ namespace MarvinsAIRARefactored.Components
 			} );
 		}
 
-		public void LoadSound( string path )
+		private void LoadSound( string path )
 		{
 			if ( File.Exists( path ) )
 			{
@@ -119,14 +149,35 @@ namespace MarvinsAIRARefactored.Components
 			}
 		}
 
-		public void Play( string key, float volume, bool loop = false )
+		public void Play( string key, float volume, float frequencyRatio = 1f, bool loop = false )
 		{
 			using ( _lock.EnterScope() )
 			{
-				if ( _soundPlayerCache.TryGetValue( key, out var player ) )
+				if ( !_soundPlayerCache.TryGetValue( $"{key}_custom", out var player ) )
 				{
-					player.Play( volume, loop );
+					if ( !_soundPlayerCache.TryGetValue( key, out player ) )
+					{
+						player = null;
+					}
 				}
+
+				player?.Play( volume, frequencyRatio, loop );
+			}
+		}
+
+		public void Update( string key, float volume, float frequencyRatio = 1f )
+		{
+			using ( _lock.EnterScope() )
+			{
+				if ( !_soundPlayerCache.TryGetValue( $"{key}_custom", out var player ) )
+				{
+					if ( !_soundPlayerCache.TryGetValue( key, out player ) )
+					{
+						player = null;
+					}
+				}
+
+				player?.Update( volume, frequencyRatio );
 			}
 		}
 
@@ -134,9 +185,14 @@ namespace MarvinsAIRARefactored.Components
 		{
 			using ( _lock.EnterScope() )
 			{
-				if ( _soundPlayerCache.TryGetValue( key, out var player ) )
+				if ( _soundPlayerCache.TryGetValue( $"{key}_custom", out var player ) )
 				{
-					player.Stop();
+					player?.Stop();
+				}
+
+				if ( _soundPlayerCache.TryGetValue( key, out player ) )
+				{
+					player?.Stop();
 				}
 			}
 		}

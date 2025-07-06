@@ -28,6 +28,7 @@ public class DirectInput
 	private static readonly Guid KeyboardGuid = new( "6f1d2b61-d5a0-11cf-bfc7-444553540000" );
 
 	public bool ForceFeedbackInitialized { get => _forceFeedbackInitialized; }
+	public Joystick? ForceFeedbackJoystick { get; private set; } = null;
 	public float ForceFeedbackWheelPosition { get; private set; } = 0f;
 	public float ForceFeedbackWheelVelocity { get; private set; } = 0f;
 
@@ -47,7 +48,6 @@ public class DirectInput
 
 	private bool _forceFeedbackInitialized = false;
 	private Guid _forceFeedbackDeviceInstanceGuid = Guid.Empty;
-	private Joystick? _forceFeedbackJoystick = null;
 	private EffectParameters? _forceFeedbackEffectParameters = null;
 	private Effect? _forceFeedbackEffect = null;
 
@@ -99,7 +99,7 @@ public class DirectInput
 
 			_forceFeedbackDeviceInstanceGuid = deviceGuid;
 
-			_forceFeedbackJoystick = new Joystick( _directInput, _forceFeedbackDeviceInstanceGuid );
+			ForceFeedbackJoystick = new Joystick( _directInput, _forceFeedbackDeviceInstanceGuid );
 		}
 		catch ( Exception exception )
 		{
@@ -108,17 +108,17 @@ public class DirectInput
 			app.RacingWheel.NextRacingWheelGuid = Guid.Empty;
 		}
 
-		if ( _forceFeedbackJoystick != null )
+		if ( ForceFeedbackJoystick != null )
 		{
 			app.Logger.WriteLine( "[DirectInput] Setting the cooperative level to exclusive and background mode" );
 
-			_forceFeedbackJoystick.SetCooperativeLevel( app.MainWindow.WindowHandle, CooperativeLevel.Exclusive | CooperativeLevel.Background );
+			ForceFeedbackJoystick.SetCooperativeLevel( app.MainWindow.WindowHandle, CooperativeLevel.Exclusive | CooperativeLevel.Background );
 
 			app.Logger.WriteLine( "[DirectInput] Acquiring the joystick" );
 
-			_forceFeedbackJoystick.Acquire();
+			ForceFeedbackJoystick.Acquire();
 
-			foreach ( var effectInfo in _forceFeedbackJoystick.GetEffects() )
+			foreach ( var effectInfo in ForceFeedbackJoystick.GetEffects() )
 			{
 				if ( ( effectInfo.Type & EffectType.Hardware ) == EffectType.ConstantForce )
 				{
@@ -139,7 +139,7 @@ public class DirectInput
 
 					app.Logger.WriteLine( "[DirectInput] Creating the constant force effect" );
 
-					_forceFeedbackEffect = new Effect( _forceFeedbackJoystick, effectInfo.Guid, _forceFeedbackEffectParameters );
+					_forceFeedbackEffect = new Effect( ForceFeedbackJoystick, effectInfo.Guid, _forceFeedbackEffectParameters );
 
 					_forceFeedbackEffect.Download();
 
@@ -196,21 +196,21 @@ public class DirectInput
 				_forceFeedbackEffect = null;
 			}
 
-			if ( _forceFeedbackJoystick != null )
+			if ( ForceFeedbackJoystick != null )
 			{
 				app.Logger.WriteLine( "[DirectInput] Unacquiring and disposing of the force feedback joystick" );
 
 				try
 				{
-					_forceFeedbackJoystick.Unacquire();
+					ForceFeedbackJoystick.Unacquire();
 				}
 				catch ( Exception )
 				{
 				}
 
-				_forceFeedbackJoystick.Dispose();
+				ForceFeedbackJoystick.Dispose();
 
-				_forceFeedbackJoystick = null;
+				ForceFeedbackJoystick = null;
 			}
 
 			app.Logger.WriteLine( "[DirectInput] <<< ShutdownForceFeedback" );

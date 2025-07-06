@@ -133,7 +133,7 @@
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
-    <value>Bias de Boost de Detalhes</value>
+    <value>Balanço do Boost de Detalhes</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Debug" xml:space="preserve">
@@ -225,7 +225,7 @@
     <comment>Generic</comment>
   </data>
   <data name="SoftLockStrength" xml:space="preserve">
-    <value>Força do Soft Lock</value>
+    <value>Intensidade do Batente Virtual</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="TelemetryData" xml:space="preserve">
@@ -233,7 +233,7 @@
     <comment>Simulator</comment>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Teste</value>
+    <value>Testar</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
@@ -249,7 +249,7 @@
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value>Booster de Detalhes 60 Hz</value>
+    <value>Boost de Detalhes 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
@@ -317,7 +317,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Força Geral</value>
+    <value>Intensidade Geral</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMargin" xml:space="preserve">
@@ -329,15 +329,15 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentForce" xml:space="preserve">
-    <value>Força Atual</value>
+    <value>Intensidade Atual</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="PeakForce" xml:space="preserve">
-    <value>Força de Pico</value>
+    <value>Intensidade de Pico</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoForce" xml:space="preserve">
-    <value>Força Automática</value>
+    <value>Intensidade Automática</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
@@ -365,7 +365,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceReduction" xml:space="preserve">
-    <value>Redução de Força</value>
+    <value>Redução de Intensidade</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
@@ -417,7 +417,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="Strength" xml:space="preserve">
-    <value>Força</value>
+    <value>Intensidade</value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
@@ -457,11 +457,11 @@
     <comment>Pedal effects list</comment>
   </data>
   <data name="WheelLock" xml:space="preserve">
-    <value>Trava do Volante</value>
+    <value>Batente Virtual</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="WheelSpin" xml:space="preserve">
-    <value>Patinar</value>
+    <value>Patinagem das Rodas</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="RPM" xml:space="preserve">
@@ -473,7 +473,7 @@
     <comment>Pedal effects list</comment>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value>Por Base</value>
+    <value>Por Dispositivo</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerCar" xml:space="preserve">
@@ -509,7 +509,7 @@
     <comment>Window title</comment>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>Nova Versão Disponível</value>
+    <value>Nova Versão Disponível!</value>
     <comment>Window title</comment>
   </data>
   <data name="DownloadQuestion" xml:space="preserve">
@@ -573,7 +573,7 @@
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Bias de Limitador Delta</value>
+    <value>Balanceamento do Limite Delta</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Output" xml:space="preserve">
@@ -633,7 +633,7 @@
     <comment>App</comment>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
-    <value>Diminuir com o Freio</value>
+    <value>Redução Gradual com a Frenagem</value>
     <comment>Pedals</comment>
   </data>
   <data name="StartingRPM" xml:space="preserve">
@@ -645,7 +645,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
-    <value>Diminuir com o Acelerador</value>
+    <value>Redução Gradual ao Acelerar</value>
     <comment>Pedals</comment>
   </data>
   <data name="StartingPoint" xml:space="preserve">
@@ -823,5 +823,29 @@
   <data name="CenterWheelWhenNotInCar" xml:space="preserve">
     <value>Centralizar volante quando não estiver no veículo</value>
     <comment>Racing wheel</comment>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>Habilitar modo simples</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Sensibilidadesta</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="ZeAlanLeTwist" xml:space="preserve">
+    <value>Velocidade de Reação e Compressão Total</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DiscordModerators" xml:space="preserve">
+    <value>Moderadores do Discord</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>Gostaria de agradecer a esses moderadores voluntários por ajudarem a responder as muitas perguntas feitas pelos usuários do MAIRA, permitindo que eu tenha mais tempo para focar no desenvolvimento do MAIRA!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>O firmware do AdminBoxx está sendo atualizado</value>
+    <comment>AdminBoxx</comment>
   </data>
 </root>

@@ -46,11 +46,11 @@
                     </Grid.ColumnDefinitions>
 
                     <Image Grid.Column="0" x:Name="CurveImage" Width="48" Height="48" Margin="10,0,0,0" Visibility="Collapsed"/>
-                    <Label Grid.Column="1" x:Name="Value_Label" FontSize="37" FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Digital-7 Mono" Foreground="PaleGreen" Padding="0" Margin="10,0,0,0" Content="{Binding ValueString, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalContentAlignment="Center" PreviewMouseRightButtonDown="Value_Label_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="Value_Label_PreviewMouseRightButtonUp" MouseLeave="Value_Label_MouseLeave"/>
+                    <Label Grid.Column="1" x:Name="Value_Label" FontSize="37" FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Digital-7 Mono" Foreground="PaleGreen" Padding="0" Margin="5,0,0,0" Content="{Binding ValueString, RelativeSource={RelativeSource AncestorType=UserControl}}" HorizontalContentAlignment="Center" PreviewMouseRightButtonDown="Value_Label_PreviewMouseRightButtonDown" PreviewMouseRightButtonUp="Value_Label_PreviewMouseRightButtonUp" MouseLeave="Value_Label_MouseLeave"/>
 
                 </Grid>
 
-                <StackPanel Grid.Column="2" Margin="10,0,0,0">
+                <StackPanel Grid.Column="2" Margin="5,0,0,0">
 
                     <controls:MairaMappableButton Title="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_plus_small.png" Padding="0" Margin="1" Click="Plus_MairaMappableButton_Click" Small="True" ButtonMappings="{Binding PlusButtonMappings, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                     <controls:MairaMappableButton Title="" ButtonIcon="/MarvinsAIRARefactored;component/artwork/icon_minus_small.png" Padding="0" Margin="1" Click="Minus_MairaMappableButton_Click" Small="True" ButtonMappings="{Binding MinusButtonMappings, RelativeSource={RelativeSource AncestorType=UserControl}}"/>

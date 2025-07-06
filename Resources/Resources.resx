@@ -619,7 +619,7 @@
   </data>
   <data name="ABSEngaged" xml:space="preserve">
     <value>ABS Engaged</value>
-    <comment>Pedal effects list</comment>
+    <comment>Pedal effects list, Sounds</comment>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>[Disabled]</value>
@@ -844,5 +844,37 @@
   <data name="AdminBoxxIsUpdating" xml:space="preserve">
     <value>The AdminBoxx firmware is being updated</value>
     <comment>AdminBoxx</comment>
+  </data>
+  <data name="AllowSuperStrength" xml:space="preserve">
+    <value>Allow up to 200% strength (potentially dangerous)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ON" xml:space="preserve">
+    <value>ON</value>
+    <comment>Generic</comment>
+  </data>
+  <data name="Sounds" xml:space="preserve">
+    <value>Sounds</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Enabled</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FrequencyRatio" xml:space="preserve">
+    <value>Frequency Ratio</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="Fade" xml:space="preserve">
+    <value>Fade</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="SendChatMessages" xml:space="preserve">
+    <value>Send private chat messages to the driver</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="EnableLogitechRPMLights" xml:space="preserve">
+    <value>Enable Logitech RPM lights</value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

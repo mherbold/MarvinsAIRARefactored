@@ -168,6 +168,20 @@ public partial class AdminBoxx
 
 	public void Initialize()
 	{
+		var app = App.Instance!;
+
+		string[] soundKeys = [
+			"beep",
+			"0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+			"restart_is_double_file", "restart_is_single_file",
+			"caution_extended_by_one_lap", "caution_shortened_by_one_lap",
+			"we_are_under_caution",
+			"black_flag_driver_number", "clear_driver_number", "wave_by_driver_number", "end_of_line_driver_number", "disqualify_driver_number",
+			"connected_to_adminboxx_app", "connected_to_iracing_simulator",
+		];
+
+		app.AudioManager.LoadSounds( "AdminBoxx", soundKeys );
+
 		_timer.Start();
 	}
 
