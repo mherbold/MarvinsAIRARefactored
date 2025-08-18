@@ -12,6 +12,7 @@
     <ApplicationIcon>Artwork\AppIcon\white_icon.ico</ApplicationIcon>
     <UseWindowsForms>True</UseWindowsForms>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <LangVersion>preview</LangVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
