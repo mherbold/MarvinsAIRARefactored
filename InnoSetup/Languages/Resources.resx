@@ -1165,4 +1165,46 @@
     <value>These are the folks who have generously contributed some of their spare time, to run steering effects calibrations on some of their favorite cars, and to upload those calibration files!</value>
     <comment>Contribute</comment>
   </data>
+ <data name="Wind" xml:space="preserve">
+    <value>Wind</value>
+  </data>
+  <data name="Wind_MinSpeed" xml:space="preserve">
+    <value>Minimum Speed</value>
+  </data>
+  <data name="Wind_Scale" xml:space="preserve">
+    <value>Master Power Modifyer</value>
+  </data>
+  <data name="Wind_Gloable" xml:space="preserve">
+    <value>Global Controls</value>
+  </data>
+  <data name="Wind_Preview" xml:space="preserve">
+    <value>Preview</value>
+  </data>
+  <data name="WindSimulatorFanPower" xml:space="preserve">
+    <value>Fan Power</value>
+  </data>
+  <data name="WindSimulatorEnabled" xml:space="preserve">
+    <value>Enable Wind Simulator</value>
+  </data>
+  <data name="CalculateWind" xml:space="preserve">
+    <value>Calculate</value>
+  </data>
+  <data name="SetupWizardWind" xml:space="preserve">
+    <value>Setup Wizard</value>
+  </data>
+  <data name="WindLowPower" xml:space="preserve">
+    <value>Low Power</value>
+  </data>
+  <data name="WindHighPower" xml:space="preserve">
+    <value>High Power</value>
+  </data>
+  <data name="WindCurveFactor" xml:space="preserve">
+    <value>Curve Factor</value>
+  </data>
+  <data name="AdditionalFunctions" xml:space="preserve">
+    <value>Additional Functions</value>
+  </data>
+  <data name="ShowWindSimulatorTab" xml:space="preserve">
+    <value>Show Wind Simulator Tab</value>
+  </data>
 </root>
