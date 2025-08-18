@@ -2,6 +2,8 @@
 using System.IO.Ports;
 using System.Threading;
 
+namespace MarvinsAIRARefactored.Classes;
+
 public class ArduinoConnection
 {
 	#region EventArgs
@@ -37,7 +39,7 @@ public class ArduinoConnection
 	private readonly byte[] handshake;
 	private SerialPort? arduinoPort;
 	private bool run;
-	private Thread runThread;
+	
 
 	#endregion
 
@@ -60,7 +62,7 @@ public class ArduinoConnection
 	{
 		this.handshake = handshake;
 
-		runThread = new Thread( RunConnection );
+		
 	}
 
 	#endregion
@@ -87,6 +89,19 @@ public class ArduinoConnection
 				OnArduinoConnected( this, new ConnectionEventArgs( arduinoPort ) );
 			}
 
+			if (arduinoPort.BytesToRead > 0)
+			{
+				byte[] buffer = new byte[arduinoPort.BytesToRead];
+				arduinoPort.Read(buffer, 0, arduinoPort.BytesToRead);
+
+				string s = string.Empty;
+				for (int i = 0; i < buffer.Length; i++)
+				{
+                    s += $"{buffer[i]:X2} ";
+                }
+     
+            }
+
 			Thread.Sleep( 300 );
 		}
 		while ( run );
@@ -97,12 +112,18 @@ public class ArduinoConnection
 
 	public void Start()
 	{
-		runThread.Start();
+		if (run )
+			return;
+
+        var thread = new Thread(RunConnection);
+
+		thread.Start();
 		run = true;
 	}
 
 	public void Stop()
 	{
+		
 		run = false;
 	}
 

@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <!-- 
-    Microsoft ResX Schema 
-    
+  <!--
+    Microsoft ResX Schema
+
     Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
     associated with the data types.
-    
+
     Example:
-    
+
     ... ado.net/XML headers & schema ...
     <resheader name="resmimetype">text/microsoft-resx</resheader>
     <resheader name="version">2.0</resheader>
@@ -26,36 +26,36 @@
         <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
         <comment>This is a comment</comment>
     </data>
-                
-    There are any number of "resheader" rows that contain simple 
+
+    There are any number of "resheader" rows that contain simple
     name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
     mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
     extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
     read any of the formats listed below.
-    
+
     mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
             : and then encoded with base64 encoding.
-    
+
     mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
+    value   : The object must be serialized with
             : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
             : and then encoded with base64 encoding.
 
     mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
+    value   : The object must be serialized into a byte array
             : using a System.ComponentModel.TypeConverter
             : and then encoded with base64 encoding.
     -->
@@ -118,11 +118,11 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algoritmo</value>
+    <value>Algorithmus</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="App" xml:space="preserve">
-    <value>App</value>
+    <value>Einstellungen</value>
     <comment>Tab item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
@@ -130,119 +130,119 @@
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
-    <value>Compensación de la Mejora de Detalle</value>
+    <value>Detail-Verstärkung Verteilung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Debug" xml:space="preserve">
-    <value>Depuración</value>
+    <value>Fehlersuche (Debug)</value>
     <comment>Tab item</comment>
   </data>
   <data name="DetailBoost" xml:space="preserve">
-    <value>Mejora de Detalle</value>
+    <value>Detail-Verstärkung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
-    <value>Atenuar el force feedback al entrar o salir del coche</value>
+    <value>Reduziere FFB beim Ein- und Aussteigen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="RacingFriction" xml:space="preserve">
-    <value>Fricción</value>
+    <value>Lenkrad-Widerstand</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Graph" xml:space="preserve">
-    <value>Gráfico</value>
+    <value>Kurve</value>
     <comment>Tab item</comment>
   </data>
   <data name="HeaderData" xml:space="preserve">
-    <value>Datos de Cabecera</value>
+    <value>Header Daten</value>
     <comment>Simulator</comment>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Idioma</value>
+    <value>Sprache</value>
     <comment>App</comment>
   </data>
   <data name="DetailBooster" xml:space="preserve">
-    <value>Amplificador de Detalle</value>
+    <value>Detailverstärker</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
-    <value>Limitador de Delta</value>
+    <value>Delta Begrenzer</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="MaxForce" xml:space="preserve">
-    <value>Fuerza Máxima</value>
+    <value>Maximale Kraft</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Native60Hz" xml:space="preserve">
-    <value>60 Hz Nativos</value>
+    <value>Nativ 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="Native360Hz" xml:space="preserve">
-    <value>360 Hz Nativos</value>
+    <value>Nativ 360 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="NoFFBDevicesFound" xml:space="preserve">
-    <value>[No se han encontrado dispositivos Force Feedback]</value>
+    <value>[Kein FFB-Gerät gefunden]</value>
     <comment>Steering device list</comment>
   </data>
   <data name="OFF" xml:space="preserve">
-    <value>OFF</value>
+    <value>AUS</value>
     <comment>Generic</comment>
   </data>
   <data name="Power" xml:space="preserve">
-    <value>Encendido</value>
+    <value>Ein/Aus</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="RacingWheel" xml:space="preserve">
-    <value>Volante</value>
+    <value>Lenkrad</value>
     <comment>Tab item</comment>
   </data>
   <data name="SteeringDevice" xml:space="preserve">
-    <value>Base del Volante</value>
+    <value>Lenkrad-Basis</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Restablecer</value>
+    <value>Zurücksetzen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Información de la Sesión</value>
+    <value>Sitzungsinformation</value>
     <comment>Simulator</comment>
   </data>
   <data name="Simulator" xml:space="preserve">
-    <value>Simulador</value>
+    <value>Simulator</value>
     <comment>Tab item</comment>
   </data>
   <data name="SimulatorNotRunning" xml:space="preserve">
-    <value>El simulador iRacing no se está ejecutando</value>
+    <value>iRacing Simulator nicht aktiv</value>
     <comment>Generic</comment>
   </data>
   <data name="SoftLockStrength" xml:space="preserve">
-    <value>Intensidad del Tope Virtual</value>
+    <value>Stärke virtueller Anschlag</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Datos de Telemetría</value>
+    <value>Telemetrie Daten</value>
     <comment>Simulator</comment>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Prueba</value>
+    <value>Test</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
-    <value>Español</value>
+    <value>Deutsch</value>
     <comment>App language list</comment>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
-    <value>Mantener en primer plano</value>
+    <value>Fenster im Vordergrund halten</value>
     <comment>App</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>Nm</value>
+    <value> Nm</value>
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value>Amplificador de Detalle (con 60 Hz)</value>
+    <value>Detail Verstärker bei 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
@@ -250,47 +250,47 @@
     <comment>Tab item</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
-    <value>Conectar a AdminBoxx</value>
+    <value>Verbinde zur AdminBoxx</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="UpdateButtonMappings" xml:space="preserve">
-    <value>Actualizar Mapeo de Botones</value>
+    <value>Aktualisiere Tastenbelegung</value>
     <comment>Window title</comment>
   </data>
   <data name="PressTheRecordButton" xml:space="preserve">
-    <value>[Pulsa el botón de grabar]</value>
+    <value>[Drücke den Aufnahme-Knopf]</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Button" xml:space="preserve">
-    <value>Botón</value>
+    <value>Knopf</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Click" xml:space="preserve">
-    <value>Clic</value>
+    <value>Klick</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Hold" xml:space="preserve">
-    <value>Mantener Pulsado</value>
+    <value>Halten</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Keyboard" xml:space="preserve">
-    <value>Teclado</value>
+    <value>Tastatur</value>
     <comment>Button mapping</comment>
   </data>
   <data name="WaitingForInput" xml:space="preserve">
-    <value>[Esperando Entrada]</value>
+    <value>[Warte auf Eingabe]</value>
     <comment>Button mapping</comment>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value>Límite de Delta</value>
+    <value>Delta-Limit</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value>Nm/s</value>
+    <value> Nm/s</value>
     <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
-    <value>Limitador de Delta (con 60 Hz)</value>
+    <value>Delta Begrenzer bei 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
@@ -302,47 +302,47 @@
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="CompressionRate" xml:space="preserve">
-    <value>Tasa de Compresión</value>
+    <value>Kompressionsrate</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Device" xml:space="preserve">
-    <value>Dispositivo</value>
+    <value>Ausgabe-Gerät</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Intensidad General</value>
+    <value>Gesamtkraft</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMargin" xml:space="preserve">
-    <value>Margen Automático</value>
+    <value>Spielraum bei Autoeinstellung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Borrar</value>
+    <value>Löschen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentForce" xml:space="preserve">
-    <value>Fuerza Actual</value>
+    <value>Aktuelle Kraft</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="PeakForce" xml:space="preserve">
-    <value>Pico de Fuerza</value>
+    <value>Maximale Kraft</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoForce" xml:space="preserve">
-    <value>Fuerza Automática</value>
+    <value>Automatische Kraft</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Otras Funciones</value>
+    <value>Weitere Funktionen</value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="Switches" xml:space="preserve">
-    <value>Interruptores</value>
+    <value>Weitere Einstellungen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Protección Anti-impactos</value>
+    <value>Kollisionsschutz</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
@@ -350,19 +350,19 @@
     <comment>Abbreviation for G-Force</comment>
   </data>
   <data name="GForce" xml:space="preserve">
-    <value>Fuerza-G</value>
+    <value>G-Kraft</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Duration" xml:space="preserve">
-    <value>Duración</value>
+    <value>Dauer</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceReduction" xml:space="preserve">
-    <value>Reducción de Fuerza</value>
+    <value>Kraftreduzierung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value> seg</value>
+    <value> sek</value>
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="ShockVelocityUnits" xml:space="preserve">
@@ -370,183 +370,183 @@
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Protección de Pianos</value>
+    <value>Schutz bei Randsteinen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
-    <value>Velocidad de Amortiguador</value>
+    <value>Dämpfergeschwindigkeit</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Pedales</value>
+    <value>Pedale</value>
     <comment>Tab item</comment>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
-    <value>Simagic P1000 Pedals</value>
+    <value>Simagic P1000 Pedale</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsP2000" xml:space="preserve">
-    <value>Simagic P2000 Pedals</value>
+    <value>Simagic P2000 Pedale</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsNone" xml:space="preserve">
-    <value>[No se han encontrado pedales Simagic compatibles]</value>
+    <value>[Keine kompatiblen Simagic Pedale gefunden]</value>
     <comment>Pedals device</comment>
   </data>
   <data name="Clutch" xml:space="preserve">
-    <value>Embrague</value>
+    <value>Kupplung</value>
     <comment>Pedals</comment>
   </data>
   <data name="Brake" xml:space="preserve">
-    <value>Freno</value>
+    <value>Bremse</value>
     <comment>Pedals</comment>
   </data>
   <data name="Throttle" xml:space="preserve">
-    <value>Acelerador</value>
+    <value>Gaspedal</value>
     <comment>Pedals</comment>
   </data>
   <data name="PedalEffects" xml:space="preserve">
-    <value>Efectos de Pedal</value>
+    <value>Pedal Effekte</value>
     <comment>Pedals</comment>
   </data>
   <data name="Strength" xml:space="preserve">
-    <value>Intensidad</value>
+    <value>Stärke</value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>Hz</value>
+    <value> Hz</value>
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency" xml:space="preserve">
-    <value>Frecuencia</value>
+    <value>Frequenz</value>
     <comment>Pedals</comment>
   </data>
   <data name="Amplitude" xml:space="preserve">
-    <value>Amplitud</value>
+    <value>Amplitude</value>
     <comment>Pedals</comment>
   </data>
   <data name="Minimum" xml:space="preserve">
-    <value>Mínimo</value>
+    <value>Minimum</value>
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
-    <value>Máximo</value>
+    <value>Maximum</value>
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Curve" xml:space="preserve">
-    <value>Curva</value>
+    <value>Kurve</value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="GearChange" xml:space="preserve">
-    <value>Cambio de Marcha</value>
+    <value>Gangwechsel</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="ClutchSlip" xml:space="preserve">
-    <value>Deslizamiento del Embrague</value>
+    <value>Kupplungsschlupf</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
-    <value>Efectos de Dirección</value>
+    <value>Lenkeffekte</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="WheelLock" xml:space="preserve">
-    <value>Bloqueo de Ruedas</value>
+    <value>Lenkeinschlag</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="WheelSpin" xml:space="preserve">
-    <value>Patinaje de Ruedas</value>
+    <value>Reifenschlupf</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="RPM" xml:space="preserve">
-    <value>RPM</value>
+    <value>Drehzahl</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="None" xml:space="preserve">
-    <value>Ninguno</value>
+    <value>Keine</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value>Por Base de Volante</value>
+    <value>Pro Lenkradbasis</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerCar" xml:space="preserve">
-    <value>Por Coche</value>
+    <value>Pro Fahrzeug</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerTrack" xml:space="preserve">
-    <value>Por Circuito</value>
+    <value>Pro Strecke</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerTrackConfiguration" xml:space="preserve">
-    <value>Por Configuración de Circuito</value>
+    <value>Pro Streckenkonfiguration</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerWetDry" xml:space="preserve">
-    <value>Por Mojado/Seco</value>
+    <value>Pro Nass/Trocken</value>
     <comment>Save conditions</comment>
   </data>
   <data name="Wet" xml:space="preserve">
-    <value>Mojado</value>
+    <value>Nass</value>
     <comment>Status</comment>
   </data>
   <data name="Dry" xml:space="preserve">
-    <value>Seco</value>
+    <value>Trocken</value>
     <comment>Status</comment>
   </data>
   <data name="Default" xml:space="preserve">
-    <value>Por Defecto</value>
+    <value>Voreinstellung</value>
     <comment>Status</comment>
   </data>
   <data name="SaveThisSetting" xml:space="preserve">
-    <value>Guardar esta Configuración</value>
+    <value>Einstellung speichern</value>
     <comment>Window title</comment>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>¡Nueva Versión Disponible!</value>
+    <value>Neue Version verfügbar!</value>
     <comment>Window title</comment>
   </data>
   <data name="DownloadQuestion" xml:space="preserve">
-    <value>¿Quieres descargarla ahora?</value>
+    <value>Download jetzt starten?</value>
     <comment>Cloud service</comment>
   </data>
   <data name="RunInstaller" xml:space="preserve">
-    <value>¿Ejecutar instalador?</value>
+    <value>Starte Installation?</value>
     <comment>Window title</comment>
   </data>
   <data name="RunInstallerQuestion" xml:space="preserve">
-    <value>¿Quieres ejecutar el instalador ahora?</value>
+    <value>Möchten Sie die Installation jetzt starten?</value>
     <comment>Cloud service</comment>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
-    <value>Buscar Actualizaciones</value>
+    <value>Beim Start nach Updates suchen</value>
     <comment>App</comment>
   </data>
   <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Descargar Actualizaciones Automáticamente</value>
+    <value>Updates automatisch herunterladen</value>
     <comment>App</comment>
   </data>
   <data name="ConnectOnStartup" xml:space="preserve">
-    <value>Conectar a AdminBoxx al Iniciar la Aplicación</value>
+    <value>Verbinde zur AdminBoxx beim App-Start</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Brightness" xml:space="preserve">
-    <value>Brillo</value>
+    <value>Helligkeit</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Volumen</value>
+    <value>Lautstärke</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[No se han encontrado dispositivos de audio]</value>
+    <value>[Keine Audiogeräte gefunden]</value>
     <comment>Audio device list</comment>
   </data>
   <data name="Connection" xml:space="preserve">
-    <value>Conexión</value>
+    <value>Verbindung</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Display" xml:space="preserve">
-    <value>Pantalla</value>
+    <value>Anzeige</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Audio" xml:space="preserve">
@@ -554,353 +554,290 @@
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Compensación del Limitador de Delta</value>
+    <value>Delta-Begrenzer-Verteilung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Salida</value>
+    <value>Ausgabe</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="WheelLFE" xml:space="preserve">
-    <value>LFE del Volante</value>
+    <value>Lenkrad LFE</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
-    <value>Dispositivo de Grabación LFE</value>
+    <value>LFE Aufnahmegerät</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Average" xml:space="preserve">
-    <value>Media</value>
+    <value>Durchschnitt</value>
     <comment>Graph</comment>
   </data>
   <data name="Variance" xml:space="preserve">
-    <value>Variación</value>
+    <value>Abweichung</value>
     <comment>Graph</comment>
   </data>
   <data name="StandardDeviation" xml:space="preserve">
-    <value>Desviación Estándar</value>
+    <value>Standardabweichung</value>
     <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
-    <value>Par de Entrada (60 Hz)</value>
+    <value>Eingangs-Drehmoment (60 Hz)</value>
     <comment>Graph</comment>
   </data>
   <data name="InputTorque" xml:space="preserve">
-    <value>Par de Entrada</value>
+    <value>Eingangs-Drehmoment</value>
     <comment>Graph</comment>
   </data>
   <data name="OutputTorque" xml:space="preserve">
-    <value>Par de Salida</value>
+    <value>Ausgabe-Drehmoment</value>
     <comment>Graph</comment>
   </data>
   <data name="TimerJitter" xml:space="preserve">
-    <value>Jitter del Temporizador</value>
+    <value>Timer-Schwankung</value>
     <comment>Graph</comment>
   </data>
   <data name="InputLFE" xml:space="preserve">
-    <value>Entrada LFE</value>
+    <value>Eingang LFE</value>
     <comment>Graph</comment>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
-    <value>ABS Activado</value>
-    <comment>Pedal effects list, Sounds</comment>
+    <value>ABS Aktiv</value>
+    <comment>Pedal effects list</comment>
   </data>
   <data name="Disabled" xml:space="preserve">
-    <value>[Desactivado]</value>
+    <value>[Deaktiviert]</value>
     <comment>LFE device list</comment>
   </data>
   <data name="RememberWindowPositionAndSize" xml:space="preserve">
-    <value>Recordar Posición y Tamaño de la Ventana</value>
+    <value>Fenstergröße und -position merken </value>
     <comment>App</comment>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
-    <value>Atenuar con el Freno</value>
+    <value>Ausblenden beim Bremsen</value>
     <comment>Pedals</comment>
   </data>
   <data name="StartingRPM" xml:space="preserve">
-    <value>RPM de Inicio</value>
+    <value>Start Drehzahl</value>
     <comment>Pedals</comment>
   </data>
   <data name="VibrateInTopGear" xml:space="preserve">
-    <value>Vibrar en la Última Marcha</value>
+    <value>Vibration im höchsten Gang</value>
     <comment>Pedals</comment>
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
-    <value>Atenuar con el Acelerador</value>
+    <value>Ausblenden bei Gasbetätigung</value>
     <comment>Pedals</comment>
   </data>
   <data name="StartingPoint" xml:space="preserve">
-    <value>Punto de Inicio</value>
+    <value>Startpunkt</value>
     <comment>Pedals</comment>
   </data>
   <data name="EndingPoint" xml:space="preserve">
-    <value>Punto Final</value>
+    <value>Endpunkt</value>
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Cambio de Marcha - Meter Marcha</value>
+    <value>Gangwechsel - Gang einlegen</value>
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Cambio de Marcha - Poner Punto Muerto</value>
+    <value>Gangwechsel - In Leerlauf schalten</value>
     <comment>Pedals</comment>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
-    <value>Habilitar FFB incluso con el FFB de iRacing activo</value>
+    <value>Aktiviere FFB auch wenn iRacing FFB aktiviert ist</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ClutchPedalHaptics" xml:space="preserve">
-    <value>Sistemas Hápticos del Pedal de Embrague</value>
+    <value>Vibrationsfeedback am Kupplungspedal</value>
     <comment>Graph</comment>
   </data>
   <data name="BrakePedalHaptics" xml:space="preserve">
-    <value>Sistemas Hápticos del Pedal de Freno</value>
+    <value>Vibrationsfeedback  am Bremspedal</value>
     <comment>Graph</comment>
   </data>
   <data name="ThrottlePedalHaptics" xml:space="preserve">
-    <value>Sistemas Hápticos del Pedal de Acelerador</value>
+    <value>Vibrationsfeedback am Gaspedal</value>
     <comment>Graph</comment>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
-    <value>Amortiguador de Ruido</value>
+    <value>Rauschunterdrückung</value>
     <comment>Pedals</comment>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Ventana de la Aplicación</value>
+    <value>App-Fenster</value>
     <comment>App</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
-    <value>Escala de la Interfaz</value>
+    <value>UI-Skalierung</value>
     <comment>App</comment>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Servicio en la Nube</value>
+    <value>Cloud-Dienst</value>
     <comment>App</comment>
   </data>
   <data name="CheckNow" xml:space="preserve">
-    <value>Comprobar Ahora</value>
+    <value>Jetzt prüfen</value>
     <comment>App</comment>
   </data>
   <data name="CheckingForUpdate" xml:space="preserve">
-    <value>Buscando actualización...</value>
+    <value>Suche nach Updates</value>
     <comment>Status</comment>
   </data>
   <data name="DownloadingUpdate" xml:space="preserve">
-    <value>Descargando actualización...</value>
+    <value>Update wird heruntergeladen</value>
     <comment>Status</comment>
   </data>
   <data name="Contribute" xml:space="preserve">
-    <value>Colaborar</value>
+    <value>Mitwirkende</value>
     <comment>Tab item</comment>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
-    <value>¡Invítame a un café!</value>
+    <value>Buy Me a Coffee!</value>
     <comment>Contribute</comment>
   </data>
   <data name="DonationsText" xml:space="preserve">
-    <value>Las donaciones son completamente opcionales. Nunca cobraré ninguna tarifa por usar MAIRA. Dicho esto, las donaciones me hacen sentir genial y son una gran motivación para seguir trabajando en MAIRA. ¡Un enorme agradecimiento a todos los que ya han donado! Aquí tienes el enlace para donar:</value>
+    <value>Spenden sind komplett FREIWILLIG!
+Die Nutzung von MAIRA wird immer kostenlos sein. Ich werde niemals Gebühren dafür erheben.
+Dennoch: Spenden geben mir ein gutes Gefühl und motivieren mich ungemein, MAIRA immer weiter zu verbessern. Ein riesiges Dankeschön an alle, die bereits gespendet haben!
+Hier ist der Link zum Spenden:</value>
     <comment>Contribute</comment>
   </data>
   <data name="Donations" xml:space="preserve">
-    <value>Donaciones</value>
+    <value>Spenden</value>
     <comment>Contribute</comment>
   </data>
   <data name="Donors" xml:space="preserve">
-    <value>Donantes</value>
+    <value>Spender</value>
     <comment>Contribute</comment>
   </data>
   <data name="SuperDonors" xml:space="preserve">
-    <value>Superdonantes</value>
+    <value>Super-Spender</value>
     <comment>Contribute</comment>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>Donar</value>
+    <value>Spenden</value>
     <comment>Tab item</comment>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Contribuciones de Código</value>
+    <value>Code-Unterstützung</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Contribuciones de Traducción</value>
+    <value>Übersetzungen</value>
     <comment>Contribute</comment>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
-    <value>Si eres un desarrollador de C# y te gustaría contribuir con código a este proyecto, aquí tienes el enlace al repositorio de GitHub:</value>
+    <value>Wenn du ein C#-Entwickler bist und Code zu diesem Projekt beisteuern möchtest, findest du hier den Link zum GitHub-Repository:</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Si puedes leer y escribir en varios idiomas, ¡necesitamos tu ayuda para traducir esta aplicación a todos los idiomas posibles del mundo! Para más información sobre cómo hacerlo, visita este canal de Discord:</value>
+    <value>Du kannst mehrere Srachen? Dann brauchen wir deine Hilfe  um MAIRA in jede mögliche Sprache der Welt zu übersetzen! Weitere Informationen dazu findest du in diesem Discord-Kanal:</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Canal de Discord de Traducciones</value>
+    <value>Übersetzung Discord-Kanal</value>
     <comment>Contribute</comment>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
-    <value>Repositorio de GitHub</value>
+    <value>GitHub-Repository</value>
     <comment>Contribute</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
-    <value>Colaboradores</value>
+    <value>Mitwirkende</value>
     <comment>Contribute</comment>
   </data>
   <data name="ShowWindow" xml:space="preserve">
-    <value>Mostrar Ventana</value>
+    <value>Zeige Fenster</value>
     <comment>System tray icon</comment>
   </data>
   <data name="ExitApp" xml:space="preserve">
-    <value>Salir de la Aplicación</value>
+    <value>App schliessen</value>
     <comment>System tray icon</comment>
   </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
-    <value>Minimizar a la Bandeja del Sistema</value>
+    <value>In System-Tray minimieren</value>
     <comment>App</comment>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Iniciar Minimizado</value>
+    <value>Minimiert starten</value>
     <comment>App</comment>
   </data>
   <data name="StartWithWindows" xml:space="preserve">
-    <value>Iniciar con Windows</value>
+    <value>Mit Windows starten</value>
     <comment>App</comment>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value>Total: Tasa de Compresión</value>
+    <value>Gesamt: Komprimierungsrate</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Velocidad de Respuesta: Umbral de Compresión</value>
+    <value>Anstieg: Komprimierungsschwelle</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Velocidad de Respuesta: Tasa de Compresión</value>
+    <value>Anstieg: Komprimierungsrate</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value>Total: Umbral de Compresión</value>
+    <value>Gesamt: Komprimierungsschwelle</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>Nm/ms</value>
+    <value> Nm/ms</value>
     <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
-    <value>Fuerza del Volante</value>
+    <value>Lenkrad-Kraft</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Set" xml:space="preserve">
-    <value>Establecer</value>
+    <value>Übernehmen</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Preview" xml:space="preserve">
-    <value>Vista Previa</value>
+    <value>Vorschau</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
-    <value>[No se han encontrado grabaciones]</value>
+    <value>[Keine Aufzeichnung gefunden]</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CenterWheelWhenNotInCar" xml:space="preserve">
-    <value>Centrar el volante cuando no se está en el coche</value>
+    <value>Lenkrad zentrieren wenn nicht im Fahrzeug</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SimpleMode" xml:space="preserve">
-    <value>Activar modo simple</value>
+    <value>Einfacher Modus</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Sensitivity" xml:space="preserve">
-    <value>Sensibilidad</value>
+    <value>Empfindlichkeit</value>
     <comment>Pedals</comment>
   </data>
   <data name="ZeAlanLeTwist" xml:space="preserve">
-    <value>Velocidad de Respuesta y Compresión Total</value>
+    <value></value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Moderadores de Discord</value>
+    <value>Discord Moderatoren</value>
     <comment>Contribute</comment>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
-    <value>¡Quiero dar las gracias a estos moderadores voluntarios por ayudar a responder a las muchas preguntas planteadas por los usuarios de MAIRA, lo que me permite tener más tiempo para centrarme en el desarrollo de MAIRA!</value>
+    <value>Ich möchte mich bei den ehrenamtlichen Moderatoren bedanken, die geholfen haben, die vielen Fragen der Nutzer zu beantworten. Das ermöglicht mir, mehr Zeit in die Entwicklung von MAIRA zu stecken!</value>
     <comment>Contribute</comment>
   </data>
   <data name="AdminBoxxIsUpdating" xml:space="preserve">
-    <value>El firmware de AdminBoxx se está actualizando.</value>
+    <value>Die AdminBoxx Firmware wird aktualisiert.</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="AllowSuperStrength" xml:space="preserve">
-    <value>Permitir hasta un 200% de intensidad (potencialmente peligroso)</value>
+    <value>Bis zu 200 % Stärke erlauben (Auf eigene Gefahr!)</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ON" xml:space="preserve">
-    <value>Activado</value>
+    <value>EIN</value>
     <comment>Generic</comment>
-  </data>
-  <data name="Sounds" xml:space="preserve">
-    <value>Sonidos</value>
-    <comment>Tab item</comment>
-  </data>
-  <data name="Enabled" xml:space="preserve">
-    <value>Activado</value>
-    <comment>Sounds</comment>
-  </data>
-  <data name="FrequencyRatio" xml:space="preserve">
-    <value>Relación de Frecuencia</value>
-    <comment>Sounds</comment>
-  </data>
-  <data name="Fade" xml:space="preserve">
-    <value> Atenuación</value>
-    <comment>Sounds</comment>
-  </data>
-  <data name="SendChatMessages" xml:space="preserve">
-    <value>Enviar mensajes de chat privados al piloto</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Activar luces RPM de Logitech</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="Wind" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Wind_MinSpeed" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Wind_Scale" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Wind_Gloable" xml:space="preserve">
-    <value />
-  </data>
-  <data name="Wind_Preview" xml:space="preserve">
-    <value />
-  </data>
-  <data name="WindSimulatorFanPower" xml:space="preserve">
-    <value />
-  </data>
-  <data name="WindSimulatorEnabled" xml:space="preserve">
-    <value />
-  </data>
-  <data name="CalculateWind" xml:space="preserve">
-    <value />
-  </data>
-  <data name="SetupWizardWind" xml:space="preserve">
-    <value />
-  </data>
-  <data name="WindLowPower" xml:space="preserve">
-    <value />
-  </data>
-  <data name="WindHighPower" xml:space="preserve">
-    <value />
-  </data>
-  <data name="WindCurveFactor" xml:space="preserve">
-    <value />
-  </data>
-  <data name="AdditionalFunctions" xml:space="preserve">
-    <value />
-  </data>
-  <data name="ShowWindSimulatorTab" xml:space="preserve">
-    <value />
   </data>
 </root>
