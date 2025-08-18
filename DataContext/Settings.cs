@@ -5543,11 +5543,531 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	#endregion
+    #endregion
 
-	#region App - Check for updates
+    #region Wind Simulation
 
-	private bool _appCheckForUpdates = true;
+	private int _windSimulationMinimumSpeed = 0;
+
+	public int WindSimulationMinimumSpeed
+	{
+		get => _windSimulationMinimumSpeed;
+		set
+		{
+			value = Math.Clamp( value, 0, 320 );
+			if ( value != _windSimulationMinimumSpeed )
+			{
+				_windSimulationMinimumSpeed = value;
+				OnPropertyChanged();
+			}
+
+            WindSimulationMinimumSpeedString = $"{_windSimulationMinimumSpeed}";
+        }
+    }
+
+    private string _windSimulationMinimumSpeedString = string.Empty;
+
+    [XmlIgnore]
+    public string WindSimulationMinimumSpeedString
+	{
+		get => _windSimulationMinimumSpeedString;
+		set
+		{
+			if ( value != _windSimulationMinimumSpeedString )
+			{
+				_windSimulationMinimumSpeedString = value;
+				OnPropertyChanged();
+			}
+        }
+    }
+
+
+	public float _windSimulationScaleFactor = 1f;
+	
+
+	public float WindSimulationScaleFactor
+	{
+		get => _windSimulationScaleFactor;
+		set
+		{
+			value = Math.Clamp( value, 0.1f, 10f );
+			if ( value != _windSimulationScaleFactor )
+			{
+				_windSimulationScaleFactor = value;
+				OnPropertyChanged();
+			}
+			WindSimulationScaleFactorString = $"{_windSimulationScaleFactor * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+        }
+    }
+
+	private string _windSimulationScaleFactorString = string.Empty;
+
+	[XmlIgnore]
+	public string WindSimulationScaleFactorString
+	{
+		get => _windSimulationScaleFactorString;
+		set
+		{
+			if ( value != _windSimulationScaleFactorString )
+			{
+				_windSimulationScaleFactorString = value;
+				OnPropertyChanged();
+			}
+        }
+    }
+
+
+
+
+	private int[] _windSimulationSpeedKPH = new int[10] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270 };
+
+	[XmlIgnore]
+	public int[] WindSimulationSpeedKPH
+	{
+		get => _windSimulationSpeedKPH;
+    }
+
+
+
+    public int WindSimulationSpeedKPHOne
+	{
+		get => _windSimulationSpeedKPH[0];
+		set
+		{
+			if ( value != _windSimulationSpeedKPH[0])
+			{
+				_windSimulationSpeedKPH[0] = value;
+				OnPropertyChanged();
+			}
+		}
+	}
+
+    public int WindSimulationSpeedKPHTwo
+    {
+        get => _windSimulationSpeedKPH[1];
+        set
+        {
+            if (value != _windSimulationSpeedKPH[1])
+            {
+                _windSimulationSpeedKPH[1] = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public int WindSimulationSpeedKPHThree
+    {
+        get => _windSimulationSpeedKPH[2];
+        set
+        {
+            if (value != _windSimulationSpeedKPH[2])
+            {
+                _windSimulationSpeedKPH[2] = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public int WindSimulationSpeedKPHFour
+    {
+        get => _windSimulationSpeedKPH[3];
+        set
+        {
+            if (value != _windSimulationSpeedKPH[3])
+            {
+                _windSimulationSpeedKPH[3] = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public int WindSimulationSpeedKPHFive
+    {
+        get => _windSimulationSpeedKPH[4];
+        set
+        {
+            if (value != _windSimulationSpeedKPH[4])
+            {
+                _windSimulationSpeedKPH[4] = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public int WindSimulationSpeedKPHSix
+    {
+        get => _windSimulationSpeedKPH[5];
+        set
+        {
+            if (value != _windSimulationSpeedKPH[5])
+            {
+                _windSimulationSpeedKPH[5] = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public int WindSimulationSpeedKPHSeven
+    {
+        get => _windSimulationSpeedKPH[6];
+        set
+        {
+            if (value != _windSimulationSpeedKPH[6])
+            {
+                _windSimulationSpeedKPH[6] = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public int WindSimulationSpeedKPHEight
+    {
+        get => _windSimulationSpeedKPH[7];
+        set
+        {
+            if (value != _windSimulationSpeedKPH[7])
+            {
+                _windSimulationSpeedKPH[7] = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    public int WindSimulationSpeedKPHNine
+    {
+        get => _windSimulationSpeedKPH[8];
+        set
+        {
+            if (value != _windSimulationSpeedKPH[8])
+            {
+                _windSimulationSpeedKPH[8] = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+  
+    public int WindSimulationSpeedKPHTen
+    {
+        get => _windSimulationSpeedKPH[9];
+        set
+        {
+            if (value != _windSimulationSpeedKPH[9])
+            {
+                _windSimulationSpeedKPH[9] = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+    private int[] _windSimulationFanPower = new int[10] { 0, 30, 60, 90, 120, 150, 180, 210, 240, 270 };
+
+    [XmlIgnore]
+    public int[] WindSimulationFanPower
+    {
+        get => _windSimulationFanPower;
+    }
+
+
+	public int WindSimulationFanPowerOne
+	{
+		get => _windSimulationFanPower[0];
+		set
+		{
+			value = Math.Clamp( value, 0, 320);
+			if ( value != _windSimulationFanPower[0])
+			{
+                _windSimulationFanPower[0] = value;
+                OnPropertyChanged();
+			}
+			
+		}
+	}
+	
+	public int WindSimulationFanPowerTwo
+    {
+		get => _windSimulationFanPower[1];
+        set
+        {
+            value = Math.Clamp(value, 0, 320);
+            if (value != _windSimulationFanPower[1])
+            {
+                _windSimulationFanPower[1] = value;
+                OnPropertyChanged();
+            }
+
+        }
+    }
+
+	public int WindSimulationFanPowerThree
+    {
+		get => _windSimulationFanPower[2];
+        set
+        {
+            value = Math.Clamp(value, 0, 320);
+            if (value != _windSimulationFanPower[2])
+            {
+                _windSimulationFanPower[2] = value;
+                OnPropertyChanged();
+            }
+
+        }
+    }
+
+ 
+    public int WindSimulationFanPowerFour
+    {
+        get => _windSimulationFanPower[3];
+        set
+        {
+            value = Math.Clamp(value, 0, 320);
+            if (value != _windSimulationFanPower[3])
+            {
+                _windSimulationFanPower[3] = value;
+                OnPropertyChanged();
+            }
+
+        }
+    }
+
+	
+	public int WindSimulationFanPowerFive
+	{
+		get => _windSimulationFanPower[4];
+		set
+		{
+			value = Math.Clamp(value, 0, 320);
+			if (value != _windSimulationFanPower[4])
+			{
+                _windSimulationFanPower[4] = value;
+                OnPropertyChanged();
+			}
+		}
+    }
+
+	public int WindSimulationFanPowerSix
+	{
+		get => _windSimulationFanPower[5];
+		set
+		{
+			value = Math.Clamp(value, 0, 320);
+			if (value != _windSimulationFanPower[5])
+            {
+                _windSimulationFanPower[5] = value;
+                OnPropertyChanged();
+			}
+        }
+    }
+
+
+	public int WindSimulationFanPowerSeven
+	{
+		get => _windSimulationFanPower[6];
+		set
+		{
+			value = Math.Clamp(value, 0, 320);
+			if (value != _windSimulationFanPower[6])
+			{
+                _windSimulationFanPower[6] = value;
+                OnPropertyChanged();
+			}
+        }
+    }
+
+	public int WindSimulationFanPowerEight
+	{
+		get => _windSimulationFanPower[7];
+		set
+		{
+			value = Math.Clamp(value, 0, 320);
+			if (value != _windSimulationFanPower[7])
+			{
+                _windSimulationFanPower[7] = value;
+                OnPropertyChanged();
+			}
+        }
+    }
+
+	public int WindSimulationFanPowerNine
+	{
+		get => _windSimulationFanPower[8];
+        set
+		{
+            value = Math.Clamp(value, 0, 320);
+            if (value != _windSimulationFanPower[8])
+            {
+                _windSimulationFanPower[8] = value;
+                OnPropertyChanged();
+            }
+        }
+    }
+
+	private int _windSimulationFanPowerTen = 270;
+	public int WindSimulationFanPowerTen
+	{
+		get => _windSimulationFanPowerTen;
+		set
+		{
+			value = Math.Clamp(value, 0, 320);
+			if (value != _windSimulationFanPowerTen)
+			{
+                _windSimulationFanPowerTen = value;
+                _windSimulationFanPower[9] = value;
+                OnPropertyChanged();
+			}
+        }
+    }
+
+	private bool _windSimulationEnabled;
+
+	public bool WindSimulationEnabled
+	{
+		get => _windSimulationEnabled;
+		set
+		{
+			if ( value != _windSimulationEnabled )
+			{
+				_windSimulationEnabled = value;
+				OnPropertyChanged();
+			}
+        }
+    }
+
+    private bool _windSimulatorPreviewEnabled = false;
+
+	[XmlIgnore]
+    public bool WindSimulatorPreviewEnabled
+    {
+        get => _windSimulatorPreviewEnabled;
+        set
+        {
+            if (value != _windSimulatorPreviewEnabled)
+            {
+                _windSimulatorPreviewEnabled = value;
+                OnPropertyChanged();
+                App.Instance?.MainWindow.OnWindSimPreviewChanged();
+            }
+
+          
+        }
+    }
+
+
+	//stuff for setup wizard
+	private int _windSimulatorSetupWizardLow = 50;
+	public int WindSimulatorSetupWizardLow
+	{
+		get => _windSimulatorSetupWizardLow;
+		set
+		{
+            value = Math.Clamp(value, 0, 320);
+            if ( value != _windSimulatorSetupWizardLow )
+			{
+				_windSimulatorSetupWizardLow = value;
+				OnPropertyChanged();
+				WindSimulatorSetupWizardLowString = $"{_windSimulatorSetupWizardLow:000}";
+            }
+        }
+    }
+
+	private string _windSimulatorSetupWizardLowString = string.Empty;
+	public string WindSimulatorSetupWizardLowString
+	{
+		get => _windSimulatorSetupWizardLowString;
+		set
+		{
+			if (value != _windSimulatorSetupWizardLowString)
+			{
+				_windSimulatorSetupWizardLowString = value;
+				OnPropertyChanged();
+				
+            }
+		}
+	}
+
+    private int _windSimulatorSetupWizardHigh = 320;
+	public int WindSimulatorSetupWizardHigh
+    {
+		get => _windSimulatorSetupWizardHigh;
+		set
+		{
+            value = Math.Clamp(value, 0, 320);
+            if ( value != _windSimulatorSetupWizardHigh )
+			{
+				
+                _windSimulatorSetupWizardHigh = value;
+				OnPropertyChanged();
+                WindSimulatorSetupWizardHighString = $"{_windSimulatorSetupWizardHigh:000}";
+                
+            }
+        }
+    }
+
+	private string _windSimulatorSetupWizardHighString = string.Empty;
+	public string WindSimulatorSetupWizardHighString
+	{
+		get => _windSimulatorSetupWizardHighString;
+		set
+		{
+			if ( value != _windSimulatorSetupWizardHighString )
+			{
+				_windSimulatorSetupWizardHighString = value;
+				OnPropertyChanged();
+			}
+        }
+    }
+
+    private float _windSimulatorSetupWizardCurve = 1;
+	public float WindSimulatorSetupWizardCurve
+	{
+		get => _windSimulatorSetupWizardCurve;
+		set
+		{
+			value = Math.Clamp( value, 0.1f, 3f );
+            if ( value != _windSimulatorSetupWizardCurve )
+			{
+				_windSimulatorSetupWizardCurve = value;
+				OnPropertyChanged();
+                WindSimulatorSetupWizardCurveString = $"{_windSimulatorSetupWizardCurve:F2}";
+            }
+        }
+    }
+
+	private string _windSimulatorSetupWizardCurveString = string.Empty;
+	public string WindSimulatorSetupWizardCurveString
+	{
+		get => _windSimulatorSetupWizardCurveString;
+		set
+		{
+			if ( value != _windSimulatorSetupWizardCurveString )
+			{
+				_windSimulatorSetupWizardCurveString = value;
+				OnPropertyChanged();
+            }
+        }
+    }
+
+	public bool _showWindSimulatorTab = false;
+
+	public bool ShowWindSimulatorTab
+	{
+		get => _showWindSimulatorTab;
+		set
+		{
+			if (value !=  _showWindSimulatorTab)
+			{
+				_showWindSimulatorTab = value;
+				OnPropertyChanged();
+				
+			}
+            App.Instance?.MainWindow.UpdateTabs(); //update the tabs for the app
+        }
+	}
+    #endregion
+
+    #region App - Check for updates
+
+    private bool _appCheckForUpdates = true;
 
 	public bool AppCheckForUpdates
 	{

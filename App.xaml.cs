@@ -48,8 +48,9 @@ public partial class App : Application
 	public SteeringEffects SteeringEffects { get; private set; }
 	public VirtualJoystick VirtualJoystick { get; private set; }
 	public GripOMeter GripOMeter { get; private set; }
+	public WindSimulator WindSimulator { get; private set; }
 
-	public const int TimerPeriodInMilliseconds = 17;
+    public const int TimerPeriodInMilliseconds = 17;
 	public const int TimerTicksPerSecond = 1000 / TimerPeriodInMilliseconds;
 
 	private const string MutexName = "MarvinsAIRARefactoredMutex";
@@ -90,8 +91,9 @@ public partial class App : Application
 		SteeringEffects = new();
 		VirtualJoystick = new();
 		GripOMeter = new();
+		WindSimulator = new();	
 
-		_timer.Elapsed += OnTimer;
+        _timer.Elapsed += OnTimer;
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
