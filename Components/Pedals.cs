@@ -1,8 +1,8 @@
 ﻿
-using Simagic;
-
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Controls;
+using Simagic;
+using System.Runtime.Intrinsics.Arm;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -14,7 +14,7 @@ public class Pedals
 		GearChange,
 		ABSEngaged,
 		RPM,
-		SteeringEffects,
+		UndersteerEffect,
 		WheelLock,
 		WheelSpin,
 		ClutchSlip
@@ -84,7 +84,7 @@ public class Pedals
 			{ Effect.GearChange, DataContext.DataContext.Instance.Localization[ "GearChange" ] },
 			{ Effect.ABSEngaged, DataContext.DataContext.Instance.Localization[ "ABSEngaged" ] },
 			{ Effect.RPM, DataContext.DataContext.Instance.Localization[ "RPM" ] },
-			{ Effect.SteeringEffects, DataContext.DataContext.Instance.Localization[ "SteeringEffects" ] },
+			{ Effect.UndersteerEffect, DataContext.DataContext.Instance.Localization[ "UndersteerEffect" ] },
 			{ Effect.WheelLock, DataContext.DataContext.Instance.Localization[ "WheelLock" ] },
 			{ Effect.WheelSpin, DataContext.DataContext.Instance.Localization[ "WheelSpin" ] },
 			{ Effect.ClutchSlip, DataContext.DataContext.Instance.Localization[ "ClutchSlip" ] },
@@ -281,6 +281,7 @@ public class Pedals
 			Effect.GearChange => DoGearChangeEffect( app, amplitude ),
 			Effect.ABSEngaged => DoABSEngagedEffect( app, amplitude ),
 			Effect.RPM => DoRPMEffect( app, amplitude ),
+			Effect.UndersteerEffect => DoUndersteerEffect( app, amplitude ),
 			Effect.WheelLock => DoWheelLockEffect( app, amplitude ),
 			Effect.WheelSpin => DoWheelSpinEffect( app, amplitude ),
 			Effect.ClutchSlip => DoClutchSlipEffect( app, amplitude ),
@@ -314,7 +315,6 @@ public class Pedals
 			}
 
 			amplitude = Math.Clamp( amplitude, 0f, 1f );
-
 			amplitude = Misc.Lerp( settings.PedalsMinimumAmplitude, settings.PedalsMaximumAmplitude, MathF.Pow( amplitude, Misc.CurveToPower( settings.PedalsAmplitudeCurve ) ) );
 
 			return (true, frequency, amplitude);
@@ -353,13 +353,38 @@ public class Pedals
 				}
 
 				amplitude = Math.Clamp( amplitude, 0f, 1f );
-
 				amplitude = Misc.Lerp( settings.PedalsMinimumAmplitude, settings.PedalsMaximumAmplitude, MathF.Pow( amplitude, Misc.CurveToPower( settings.PedalsAmplitudeCurve ) ) );
-
 				amplitude *= MathF.Pow( frequency / 50f, Misc.CurveToPower( settings.PedalsNoiseDamper ) );
 
 				return (true, frequency, amplitude);
 			}
+		}
+
+		return (false, 0f, 0f);
+	}
+
+	private (bool, float, float) DoUndersteerEffect( App app, float amplitude )
+	{
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		var factor = app.SteeringEffects.UndersteerEffectFactor;
+
+		if ( _testing || ( factor > 0f ) )
+		{
+			if ( _testing )
+			{
+				factor = _testTimer / TestDuration;
+			}
+
+			factor = MathF.Pow( factor, Misc.CurveToPower( settings.SteeringEffectsUndersteerPedalVibrationCurve ) );
+
+			var frequency = Misc.Lerp( settings.PedalsMinimumFrequency, settings.PedalsMaximumFrequency, MathF.Pow( factor, Misc.CurveToPower( settings.PedalsFrequencyCurve ) ) );
+
+			amplitude = Math.Clamp( amplitude, 0f, 1f );
+			amplitude = Misc.Lerp( settings.PedalsMinimumAmplitude, settings.PedalsMaximumAmplitude, MathF.Pow( amplitude, Misc.CurveToPower( settings.PedalsAmplitudeCurve ) ) );
+			amplitude *= MathF.Pow( frequency / 50f, Misc.CurveToPower( settings.PedalsNoiseDamper ) );
+
+			return (true, frequency, amplitude);
 		}
 
 		return (false, 0f, 0f);
@@ -373,9 +398,6 @@ public class Pedals
 
 			var difference = app.Simulator.CurrentRpmSpeedRatio - app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ];
 			var differencePct = ( difference / app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] ) - ( 1f - settings.PedalsWheelLockSensitivity );
-
-			// app.Debug.Label_7 = $"WL difference: {difference:F6}";
-			// app.Debug.Label_8 = $"WL differencePct: {differencePct * 100f:F2}%";
 
 			if ( _testing || ( differencePct > 0f ) )
 			{
@@ -392,15 +414,10 @@ public class Pedals
 				}
 
 				amplitude = Math.Clamp( amplitude, 0f, 1f );
-
-				// app.Debug.Label_9 = $"WL amplitude: {amplitude:F4}";
-
 				amplitude = Misc.Lerp( settings.PedalsMinimumAmplitude, settings.PedalsMaximumAmplitude, MathF.Pow( amplitude, Misc.CurveToPower( settings.PedalsAmplitudeCurve ) ) );
 
 				return (true, frequency, amplitude);
 			}
-
-			// app.Debug.Label_9 = $"WL amplitude: {0f:F4}";
 		}
 
 		return (false, 0f, 0f);
@@ -430,7 +447,6 @@ public class Pedals
 				}
 
 				amplitude = Math.Clamp( amplitude, 0f, 1f );
-
 				amplitude = Misc.Lerp( settings.PedalsMinimumAmplitude, settings.PedalsMaximumAmplitude, MathF.Pow( amplitude, Misc.CurveToPower( settings.PedalsAmplitudeCurve ) ) );
 
 				return (true, frequency, amplitude);
@@ -449,7 +465,6 @@ public class Pedals
 			var frequency = Misc.Lerp( settings.PedalsMinimumFrequency, settings.PedalsMaximumFrequency, MathF.Pow( settings.PedalsClutchSlipFrequency, Misc.CurveToPower( settings.PedalsFrequencyCurve ) ) );
 
 			amplitude = Math.Clamp( amplitude, 0f, 1f );
-
 			amplitude = MathF.Min( settings.PedalsMaximumAmplitude, MathF.Max( settings.PedalsMinimumAmplitude, amplitude ) );
 
 			return (true, frequency, amplitude);

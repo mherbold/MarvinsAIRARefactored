@@ -55,8 +55,8 @@ Name: "{userdocs}\AdminBoxx\Sounds"
 Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\bin\publish\MarvinsAIRARefactored.exe"; DestName: "AdminBoxx.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\bin\publish\createdump.exe"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\bin\publish\*.dll"; DestDir: "{app}"; Flags: ignoreversion
-Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\Resources\Resources*.resx"; DestDir: "{userdocs}\AdminBoxx\Languages"; Flags: ignoreversion
-Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\Sounds\*.wav"; DestDir: "{userdocs}\AdminBoxx\Sounds"; Flags: ignoreversion recursesubdirs
+Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Languages\Resources*.resx"; DestDir: "{userdocs}\AdminBoxx\Languages"; Flags: ignoreversion
+Source: "C:\Users\marvi\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Sounds\*.wav"; DestDir: "{userdocs}\AdminBoxx\Sounds"; Flags: ignoreversion recursesubdirs
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
 [Icons]

@@ -334,11 +334,11 @@ public class RacingWheel
 
 			// understeer steering effect signal generator
 
-			if ( app.SteeringEffects.UndersteerEffectIntensity > 0f )
+			if ( app.SteeringEffects.UndersteerEffectFactor > 0f )
 			{
-				var freq = app.SteeringEffects.IsUndersteering ? settings.SteeringEffectsUndersteerFrequency : settings.SteeringEffectsUndersteerWarningFrequency;
+				var freq = app.SteeringEffects.IsUndersteering ? settings.SteeringEffectsUndersteerWheelVibrationFrequency : settings.SteeringEffectsUndersteerWheelVibrationWarningFrequency;
 
-				var understeerEffectTorque = MathF.Cos( _understeerEffectTimerMS * MathF.Tau * freq ) * settings.SteeringEffectsUndersteerStrength;
+				var understeerEffectTorque = MathF.Cos( _understeerEffectTimerMS * MathF.Tau * freq ) * settings.SteeringEffectsUndersteerWheelVibrationStrength;
 
 				_understeerEffectTimerMS -= deltaMilliseconds * 0.001f;
 
@@ -347,7 +347,7 @@ public class RacingWheel
 					_understeerEffectTimerMS += 1f;
 				}
 
-				vibrationTorque += understeerEffectTorque * app.SteeringEffects.UndersteerEffectIntensity;
+				vibrationTorque += understeerEffectTorque * MathF.Pow( app.SteeringEffects.UndersteerEffectFactor, Misc.CurveToPower( settings.SteeringEffectsUndersteerWheelVibrationCurve ) );
 			}
 
 			// check if we want to suspend or unsuspend force feedback
@@ -609,7 +609,7 @@ public class RacingWheel
 
 			// calculate parked factor (0-5 MPH)
 
-			var parkedFactor = Math.Clamp( 1f - app.Simulator.Velocity / 2.2352f, 0f, 1f );
+			var parkedFactor = Math.Clamp( 1f - ( app.Simulator.Velocity / 2.2352f ), 0f, 1f );
 
 			// reduce forces when parked
 
@@ -666,7 +666,7 @@ public class RacingWheel
 
 				if ( settings.RacingWheelCenterWheelWhileRacing )
 				{
-					var centeringForce = Math.Clamp( app.DirectInput.ForceFeedbackWheelPosition, -0.25f, 0.25f ) + app.DirectInput.ForceFeedbackWheelVelocity * settings.RacingWheelWheelCenteringStrength * 0.1f;
+					var centeringForce = ( Math.Clamp( app.DirectInput.ForceFeedbackWheelPosition, -0.25f, 0.25f ) + app.DirectInput.ForceFeedbackWheelVelocity * 0.1f ) * settings.RacingWheelWheelCenteringStrength;
 
 					racingCenteringForce = Math.Clamp( centeringForce, -1f, 1f );
 				}
@@ -675,7 +675,7 @@ public class RacingWheel
 
 				if ( settings.RacingWheelCenterWheelWhileParked )
 				{
-					var centeringForce = Math.Clamp( app.DirectInput.ForceFeedbackWheelPosition, -0.25f, 0.25f ) + app.DirectInput.ForceFeedbackWheelVelocity * settings.RacingWheelParkedWheelCenteringStrength * 0.1f;
+					var centeringForce = ( Math.Clamp( app.DirectInput.ForceFeedbackWheelPosition, -0.25f, 0.25f ) + app.DirectInput.ForceFeedbackWheelVelocity * 0.1f ) * settings.RacingWheelParkedWheelCenteringStrength;
 
 					parkedCenteringForce = Math.Clamp( centeringForce, -1f, 1f );
 				}

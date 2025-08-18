@@ -1,11 +1,12 @@
 ﻿
 using System.Text;
+using System.IO;
 
 using PInvoke;
 
 using IRSDKSharper;
+
 using MarvinsAIRARefactored.Classes;
-using System.IO;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -22,6 +23,7 @@ public class Simulator
 
 	public IntPtr? WindowHandle { get; private set; } = null;
 
+	public List<IRacingSdkSessionInfo.DriverInfoModel.DriverTireModel>? AvailableTires = null;
 	public bool BrakeABSactive { get; private set; } = false;
 	public float Brake { get; private set; } = 0f;
 	public string CarScreenName { get; private set; } = string.Empty;
@@ -30,6 +32,8 @@ public class Simulator
 	public float Clutch { get; private set; } = 0f;
 	public float[] CRShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float CurrentRpmSpeedRatio { get; private set; } = 0f;
+	public int CurrentTireIndex { get; private set; } = -1;
+	public string CurrentTireCompoundType { get; private set; } = string.Empty;
 	public int Gear { get; private set; } = 0;
 	public float GForce { get; private set; } = 0f;
 	public bool IsConnected { get => _irsdk.IsConnected; }
@@ -58,8 +62,6 @@ public class Simulator
 	public float SteeringWheelAngleMax { get; private set; } = 0f;
 	public float[] SteeringWheelTorque_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float Throttle { get; private set; } = 0f;
-	public int TireCompound { get; private set; } = 0;
-	public string TireCompoundType { get; private set; } = string.Empty;
 	public string TrackDisplayName { get; private set; } = string.Empty;
 	public string TrackConfigName { get; private set; } = string.Empty;
 	public string UserName { get; private set; } = string.Empty;
@@ -72,14 +74,15 @@ public class Simulator
 	public float YawRate { get; private set; } = 0f;
 
 	private bool _telemetryDataInitialized = false;
-	private bool _needToUpdateFromContextSettings = false;
-	private bool _needToLoadCalibration = false;
+	private bool _waitingForFirstSessionInfo = false;
+	public bool _carSettingsMightHaveChanged = false;
 
 	private int? _tickCountLastFrame = null;
 	private float? _velocityLastFrame = null;
 	private bool? _weatherDeclaredWetLastFrame = null;
 	private bool? _isReplayPlayingLastFrame = null;
 	private IRacingSdkEnum.Flags? _sessionFlagsLastFrame = null;
+	private int? _currentTireIndexLastFrame = null;
 
 	private IRacingSdkDatum? _brakeABSactiveDatum = null;
 	private IRacingSdkDatum? _brakeDatum = null;
@@ -157,30 +160,7 @@ public class Simulator
 
 	private void OnException( Exception exception )
 	{
-		var app = App.Instance!;
-
-		var fullMessage = new StringBuilder();
-
-		fullMessage.AppendLine( "[Simulator] Exception thrown!" );
-		fullMessage.AppendLine( $"[Simulator] Type: {exception.GetType().FullName}" );
-		fullMessage.AppendLine( $"[Simulator] Message: {exception.Message}" );
-		fullMessage.AppendLine( $"[Simulator] Stack Trace: {exception.StackTrace}" );
-
-		var inner = exception.InnerException;
-
-		while ( inner != null )
-		{
-			fullMessage.AppendLine( "[Simulator] --- Inner Exception ---" );
-			fullMessage.AppendLine( $"[Simulator] Type: {inner.GetType().FullName}" );
-			fullMessage.AppendLine( $"[Simulator] Message: {inner.Message}" );
-			fullMessage.AppendLine( $"[Simulator] Stack Trace: {inner.StackTrace}" );
-
-			inner = inner.InnerException;
-		}
-
-		app.Logger.WriteLine( fullMessage.ToString() );
-
-		throw new Exception( "IRSDKSharper exception thrown", exception );
+		App.Instance!.ShowFatalError( null, exception );
 	}
 
 	private void OnConnected()
@@ -193,7 +173,7 @@ public class Simulator
 
 		app.MultimediaTimer.Suspend = false;
 
-		_needToUpdateFromContextSettings = true;
+		_waitingForFirstSessionInfo = true;
 
 		app.RacingWheel.ResetForceFeedback = true;
 
@@ -222,13 +202,64 @@ public class Simulator
 		_weatherDeclaredWetLastFrame = null;
 		_isReplayPlayingLastFrame = null;
 
+		AvailableTires = null;
+		BrakeABSactive = false;
+		Brake = 0f;
+		CarScreenName = string.Empty;
+		CarSetupName = string.Empty;
+		Clutch = 0f;
+		CurrentRpmSpeedRatio = 0f;
+		CurrentTireIndex = -1;
+		CurrentTireCompoundType = string.Empty;
+		Gear = 0;
+		GForce = 0f;
+		IsOnTrack = false;
+		IsReplayPlaying = false;
+		LapDistPct = 0f;
+		NumForwardGears = 0;
+		PaceMode = IRacingSdkEnum.PaceMode.NotPacing;
+		PlayerCarIdx = 0;
+		PlayerTrackSurface = IRacingSdkEnum.TrkLoc.NotInWorld;
+		ReplayFrameNumEnd = 1;
+		ReplayPlaySlowMotion = false;
+		ReplayPlaySpeed = 1;
+		RPM = 0f;
+		SessionFlags = 0;
+		ShiftLightsFirstRPM = 0f;
+		ShiftLightsShiftRPM = 0f;
+		SimMode = string.Empty;
+		SteeringFFBEnabled = false;
+		SteeringWheelAngle = 0f;
+		SteeringWheelAngleMax = 0f;
+		Throttle = 0f;
+		TrackDisplayName = string.Empty;
+		TrackConfigName = string.Empty;
+		UserName = string.Empty;
+		Velocity = 0f;
+		VelocityX = 0f;
+		VelocityY = 0f;
+		WasOnTrack = false;
+		WeatherDeclaredWet = false;
+		YawNorth = 0f;
+		YawRate = 0f;
+
+		Array.Clear( CFShockVel_ST );
+		Array.Clear( CRShockVel_ST );
+		Array.Clear( LFShockVel_ST );
+		Array.Clear( LRShockVel_ST );
+		Array.Clear( RFShockVel_ST );
+		Array.Clear( RPMSpeedRatios );
+		Array.Clear( RRShockVel_ST );
+		Array.Clear( SteeringWheelTorque_ST );
+
 		app.RacingWheel.UseSteeringWheelTorqueData = false;
 		app.RacingWheel.SuspendForceFeedback = true;
 		app.MultimediaTimer.Suspend = true;
 
 		app.AdminBoxx.SimulatorDisconnected();
-
 		app.MainWindow.UpdateStatus();
+		app.SteeringEffects.SetMairaComboBoxItemsSources();
+		app.SteeringEffects.ClearCalibration();
 
 		app.Logger.WriteLine( "[Simulator] <<< OnDisconnected" );
 	}
@@ -261,20 +292,20 @@ public class Simulator
 		TrackDisplayName = _irsdk.Data.SessionInfo.WeekendInfo.TrackDisplayName ?? string.Empty;
 		TrackConfigName = _irsdk.Data.SessionInfo.WeekendInfo.TrackConfigName ?? string.Empty;
 
-		UpdateTireCompoundType();
-
-		if ( _needToUpdateFromContextSettings )
+		if ( _waitingForFirstSessionInfo )
 		{
-			DataContext.DataContext.Instance.Settings.UpdateFromContextSettings();
+			UpdateTireProperties();
 
-			_needToUpdateFromContextSettings = false;
+			DataContext.DataContext.Instance.Settings.UpdateSettings( false );
+
+			_waitingForFirstSessionInfo = false;
 		}
 
-		_needToLoadCalibration = true;
+		_carSettingsMightHaveChanged = true;
 
 		app.MainWindow.UpdateStatus();
 
-		app.SteeringEffects.SetMairaComboBoxItemsSource();
+		app.SteeringEffects.SetMairaComboBoxItemsSources();
 
 #if DEBUG
 
@@ -464,16 +495,16 @@ public class Simulator
 		{
 			if ( WeatherDeclaredWet != _weatherDeclaredWetLastFrame )
 			{
-				if ( !_needToUpdateFromContextSettings )
+				if ( !_waitingForFirstSessionInfo )
 				{
-					settings.UpdateFromContextSettings();
+					settings.UpdateSettings( false );
 				}
 			}
 		}
 
 		_weatherDeclaredWetLastFrame = WeatherDeclaredWet;
 
-		// get the tire compound and tire compound type
+		// get the current tire index and the current tire compound type
 
 		if ( ( PlayerCarIdx >= 0 ) && ( PlayerCarIdx < _carIdxTireCompoundDatum!.Count ) )
 		{
@@ -481,9 +512,19 @@ public class Simulator
 
 			_irsdk.Data.GetIntArray( _carIdxTireCompoundDatum, carIdxTireCompounds, 0, _carIdxTireCompoundDatum.Count );
 
-			TireCompound = carIdxTireCompounds[ PlayerCarIdx ];
+			CurrentTireIndex = carIdxTireCompounds[ PlayerCarIdx ]; // iracing's "carIdxTireCompound" data name is wrong - it should probably have been "carIdxTireIdx"
 
-			UpdateTireCompoundType();
+			if ( _currentTireIndexLastFrame != null )
+			{
+				if ( CurrentTireIndex != _currentTireIndexLastFrame )
+				{
+					UpdateTireProperties();
+
+					_carSettingsMightHaveChanged = true;
+				}
+			}
+
+			_currentTireIndexLastFrame = CurrentTireIndex;
 		}
 
 		// get the yaw north and rate
@@ -621,9 +662,9 @@ public class Simulator
 		app.TriggerWorkerThread();
 	}
 
-	private void UpdateTireCompoundType()
+	private void UpdateTireProperties()
 	{
-		var tireCompoundTypeFound = false;
+		var tireFound = false;
 
 		var sessionInfo = _irsdk.Data.SessionInfo;
 
@@ -633,13 +674,15 @@ public class Simulator
 			{
 				if ( sessionInfo.DriverInfo.DriverTires != null )
 				{
+					AvailableTires = sessionInfo.DriverInfo.DriverTires;
+
 					for ( var tireIndex = 0; tireIndex < sessionInfo.DriverInfo.DriverTires.Count; tireIndex++ )
 					{
-						if ( sessionInfo.DriverInfo.DriverTires[ tireIndex ].TireIndex == TireCompound )
+						if ( AvailableTires[ tireIndex ].TireIndex == CurrentTireIndex )
 						{
-							TireCompoundType = sessionInfo.DriverInfo.DriverTires[ tireIndex ].TireCompoundType.ToLower();
+							CurrentTireCompoundType = AvailableTires[ tireIndex ].TireCompoundType.ToLower();
 
-							tireCompoundTypeFound = true;
+							tireFound = true;
 
 							break;
 						}
@@ -648,9 +691,9 @@ public class Simulator
 			}
 		}
 
-		if ( !tireCompoundTypeFound )
+		if ( !tireFound )
 		{
-			TireCompoundType = "unknown";
+			CurrentTireCompoundType = "unknown";
 		}
 	}
 
@@ -672,9 +715,9 @@ public class Simulator
 			app.MainWindow.RacingWheel_CurrentForce_Label.Content = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F1}{DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
 		}
 
-		if ( _needToLoadCalibration )
+		if ( _carSettingsMightHaveChanged )
 		{
-			_needToLoadCalibration = false;
+			_carSettingsMightHaveChanged = false;
 
 			app.SteeringEffects.LoadCalibration();
 		}

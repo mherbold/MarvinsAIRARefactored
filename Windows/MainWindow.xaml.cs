@@ -163,7 +163,7 @@ public partial class MainWindow : Window
 			Pedals.SetMairaComboBoxItemsSource(Pedals_ThrottleEffect2_ComboBox);
 			Pedals.SetMairaComboBoxItemsSource(Pedals_ThrottleEffect3_ComboBox);
 
-			app.SteeringEffects.SetMairaComboBoxItemsSource();
+			app.SteeringEffects.SetMairaComboBoxItemsSources();
 
 #endif
 
@@ -226,42 +226,42 @@ public partial class MainWindow : Window
 
 			if (panel1Message == string.Empty)
 			{
-				Status_Car_Label.Visibility = Visibility.Collapsed;
+				Status_Panel1_Label.Visibility = Visibility.Collapsed;
 			}
 			else
 			{
-				Status_Car_Label.Content = panel1Message;
-				Status_Car_Label.Visibility = Visibility.Visible;
+				Status_Panel1_Label.Content = panel1Message;
+				Status_Panel1_Label.Visibility = Visibility.Visible;
 			}
 
 			if (panel2Message == string.Empty)
 			{
-				Status_Track_Label.Visibility = Visibility.Collapsed;
+				Status_Panel2_Label.Visibility = Visibility.Collapsed;
 			}
 			else
 			{
-				Status_Track_Label.Content = panel2Message;
-				Status_Track_Label.Visibility = Visibility.Visible;
+				Status_Panel2_Label.Content = panel2Message;
+				Status_Panel2_Label.Visibility = Visibility.Visible;
 			}
 
 			if (panel3Message == string.Empty)
 			{
-				Status_TrackConfiguration_Label.Visibility = Visibility.Collapsed;
+				Status_Panel3_Label.Visibility = Visibility.Collapsed;
 			}
 			else
 			{
-				Status_TrackConfiguration_Label.Content = panel3Message;
-				Status_TrackConfiguration_Label.Visibility = Visibility.Visible;
+				Status_Panel3_Label.Content = panel3Message;
+				Status_Panel3_Label.Visibility = Visibility.Visible;
 			}
 
 			if (panel4Message == string.Empty)
 			{
-				Status_WetDry_Label.Visibility = Visibility.Collapsed;
+				Status_Panel4_Label.Visibility = Visibility.Collapsed;
 			}
 			else
 			{
-				Status_WetDry_Label.Content = panel4Message;
-				Status_WetDry_Label.Visibility = Visibility.Visible;
+				Status_Panel4_Label.Content = panel4Message;
+				Status_Panel4_Label.Visibility = Visibility.Visible;
 			}
 		});
 	}

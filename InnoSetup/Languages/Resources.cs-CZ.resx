@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!--
+    Microsoft ResX Schema
+
+    Version 2.0
+
+    The primary goals of this format is to allow a simple XML format
+    that is mostly human readable. The generation and parsing of the
+    various data types are done through the TypeConverter classes
+    associated with the data types.
+
+    Example:
+
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+
+    There are any number of "resheader" rows that contain simple
+    name/value pairs.
+
+    Each data row contains a name, and value. The row also contains a
+    type or mimetype. Type corresponds to a .NET class that support
+    text/value conversion through the TypeConverter architecture.
+    Classes that don't support this are serialized and stored with the
+    mimetype set.
+
+    The mimetype is used for serialized objects, and tells the
+    ResXResourceReader how to depersist the object. This is currently not
+    extensible. For a given mimetype the value must be set accordingly:
+
+    Note - application/x-microsoft.net.object.binary.base64 is the format
+    that the ResXResourceWriter will generate, however the reader can
+    read any of the formats listed below.
+
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Algorithm" xml:space="preserve">
+    <value>Algoritmus FFB</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="App" xml:space="preserve">
+    <value>Aplikace</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>MAIRA</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="DetailBoostBias" xml:space="preserve">
+    <value>Odchylka zvýšení detailů FFB</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Debug" xml:space="preserve">
+    <value>Debug</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="DetailBoost" xml:space="preserve">
+    <value>Zvýšení detailů FFB</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FadeForceFeedback" xml:space="preserve">
+    <value>Slábnutí síly FFB při vstupování/vystupování do vozu</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="RacingFriction" xml:space="preserve">
+    <value>Odpor (Friction)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Graph" xml:space="preserve">
+    <value>Graf FFB</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="HeaderData" xml:space="preserve">
+    <value>Hlavní data</value>
+    <comment>Simulator</comment>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Jazyk</value>
+    <comment>App</comment>
+  </data>
+  <data name="DetailBooster" xml:space="preserve">
+    <value>Zesílení Detailů</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DeltaLimiter" xml:space="preserve">
+    <value>Delta Limiter</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="MaxForce" xml:space="preserve">
+    <value>Maximální síla</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Native60Hz" xml:space="preserve">
+    <value>60 Hz</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="Native360Hz" xml:space="preserve">
+    <value>360 Hz</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="NoFFBDevicesFound" xml:space="preserve">
+    <value>[nenalezeno dostupné zařízení]</value>
+    <comment>Steering device list</comment>
+  </data>
+  <data name="OFF" xml:space="preserve">
+    <value>Vypnuto</value>
+    <comment>Generic</comment>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>Zap/Vyp</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="RacingWheel" xml:space="preserve">
+    <value>Volant</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="SteeringDevice" xml:space="preserve">
+    <value>Volantová základna</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Obnovit</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SessionInformation" xml:space="preserve">
+    <value>Informace o aktuální jízdě</value>
+    <comment>Simulator</comment>
+  </data>
+  <data name="Simulator" xml:space="preserve">
+    <value>Simulátor</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="SimulatorNotRunning" xml:space="preserve">
+    <value>iRacing není spuštěný!</value>
+    <comment>Generic</comment>
+  </data>
+  <data name="SoftLockStrength" xml:space="preserve">
+    <value>Síla dorazu řízení</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="TelemetryData" xml:space="preserve">
+    <value>Telemetrické data</value>
+    <comment>Simulator</comment>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Test</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ThisLanguage" xml:space="preserve">
+    <value>Čestina</value>
+    <comment>App language list</comment>
+  </data>
+  <data name="TopmostWindow" xml:space="preserve">
+    <value>Okno vždy na vrchu</value>
+    <comment>App</comment>
+  </data>
+  <data name="TorqueUnits" xml:space="preserve">
+    <value> Nm</value>
+    <comment>Abbreviation for Newton-meters</comment>
+  </data>
+  <data name="DetailBoosterOn60Hz" xml:space="preserve">
+    <value>Zesílení detailů při 60 Hz</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="AdminBoxx" xml:space="preserve">
+    <value>AdminBoxx</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="ConnectToAdminBoxx" xml:space="preserve">
+    <value>Připojit k  AdminBoxx</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="UpdateButtonMappings" xml:space="preserve">
+    <value>Změna klávesy</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="PressTheRecordButton" xml:space="preserve">
+    <value>[Stiskněte pro nahrávání]</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>Tlačítko</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>Stiskněte</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Hold" xml:space="preserve">
+    <value>Podržte</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>Klávesnice</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="WaitingForInput" xml:space="preserve">
+    <value>[Čekám na signál]</value>
+    <comment>Button mapping</comment>
+  </data>
+  <data name="DeltaLimit" xml:space="preserve">
+    <value>Delta Limiter</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="DeltaLimitUnits" xml:space="preserve">
+    <value> Nm/s</value>
+    <comment>Abbreviation for Newton-meters per millisecond</comment>
+  </data>
+  <data name="DeltaLimiterOn60Hz" xml:space="preserve">
+    <value>Delta Limiter při 60 Hz</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="CompressionRateUnits" xml:space="preserve">
+    <value>%/Nm</value>
+    <comment>Abbreviation for percent per Newton-meters</comment>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+    <comment>Abbreviation for percent</comment>
+  </data>
+  <data name="CompressionRate" xml:space="preserve">
+    <value>Velikost komprese</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Device" xml:space="preserve">
+    <value>Zařízení</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="OverallStrength" xml:space="preserve">
+    <value>Celková síla FFB</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="AutoMargin" xml:space="preserve">
+    <value>Automatické nastavení FFB</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Vymazat</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CurrentForce" xml:space="preserve">
+    <value>Aktuální síla FFB</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PeakForce" xml:space="preserve">
+    <value>Vrchol síly FFB</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="AutoForce" xml:space="preserve">
+    <value>Automatické vypočítání síly FFB</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="OtherFeatures" xml:space="preserve">
+    <value>Jiné nastavení</value>
+    <comment>Racing wheel, Pedals</comment>
+  </data>
+  <data name="Switches" xml:space="preserve">
+    <value>Přepínače</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CrashProtection" xml:space="preserve">
+    <value>Ochrana při nárazu</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GForceUnits" xml:space="preserve">
+    <value> g</value>
+    <comment>Abbreviation for G-Force</comment>
+  </data>
+  <data name="GForce" xml:space="preserve">
+    <value>G-síly</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Trvání</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ForceReduction" xml:space="preserve">
+    <value>Snížení síly o</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SecondsUnits" xml:space="preserve">
+    <value> sec</value>
+    <comment>Abbreviation for seconds (time)</comment>
+  </data>
+  <data name="ShockVelocityUnits" xml:space="preserve">
+    <value> m/s</value>
+    <comment>Abbreviation for meters per second</comment>
+  </data>
+  <data name="CurbProtection" xml:space="preserve">
+    <value>Ochrana při přejetí obrubníku</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ShockVelocity" xml:space="preserve">
+    <value>Při zrychlení volantu</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Pedals" xml:space="preserve">
+    <value>Pedály</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="PedalsP1000" xml:space="preserve">
+    <value>PedálySimagic P1000</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="PedalsP2000" xml:space="preserve">
+    <value>Pedály Simagic P2000</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="PedalsNone" xml:space="preserve">
+    <value>[nebyly nalezeny kompatibilní pedály]</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="Clutch" xml:space="preserve">
+    <value>Spojka</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Brake" xml:space="preserve">
+    <value>Brzda</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Throttle" xml:space="preserve">
+    <value>Plyn</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="PedalEffects" xml:space="preserve">
+    <value>Efekty pedálu</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>Síla</value>
+    <comment>Racing wheel, Pedals</comment>
+  </data>
+  <data name="HertzUnits" xml:space="preserve">
+    <value> Hz</value>
+    <comment>Abbreviation for Hertz</comment>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Frekvence</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Amplitude" xml:space="preserve">
+    <value>Amplitude</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimální</value>
+    <comment>Racing wheel, Pedals, Graph</comment>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maximální</value>
+    <comment>Racing wheel, Pedals, Graph</comment>
+  </data>
+  <data name="Curve" xml:space="preserve">
+    <value>Křivka průběhu FFB</value>
+    <comment>Racing wheel, Pedals</comment>
+  </data>
+  <data name="GearChange" xml:space="preserve">
+    <value>Přeřazení</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="ClutchSlip" xml:space="preserve">
+    <value>Prokluz spojky</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="SteeringEffects" xml:space="preserve">
+    <value>Efekty FFB</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="WheelLock" xml:space="preserve">
+    <value>Zablokování kola</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Prokluz kola</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="RPM" xml:space="preserve">
+    <value>Otáčky motoru</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Nic</value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="PerWheelbase" xml:space="preserve">
+    <value>Pro volantovou základnu</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerCar" xml:space="preserve">
+    <value>Pro vozidlo</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerTrack" xml:space="preserve">
+    <value>Pro trať</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerTrackConfiguration" xml:space="preserve">
+    <value>Pro konfiguraci (layout) tratě</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="PerWetDry" xml:space="preserve">
+    <value>Pro suché/mokré podmínky</value>
+    <comment>Save conditions</comment>
+  </data>
+  <data name="Wet" xml:space="preserve">
+    <value>Mokro</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Dry" xml:space="preserve">
+    <value>Sucho</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Výchozí</value>
+    <comment>Status</comment>
+  </data>
+  <data name="SaveThisSetting" xml:space="preserve">
+    <value>Uložit toto nastavení</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>Dostupná nová aktualizace!</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="DownloadQuestion" xml:space="preserve">
+    <value>Přejete si stáhnout aktualizaci?</value>
+    <comment>Cloud service</comment>
+  </data>
+  <data name="RunInstaller" xml:space="preserve">
+    <value>Instalátor</value>
+    <comment>Window title</comment>
+  </data>
+  <data name="RunInstallerQuestion" xml:space="preserve">
+    <value>Přejete si nyní spustit instalaci aktualizace?</value>
+    <comment>Cloud service</comment>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Kontrola aktualizací.</value>
+    <comment>App</comment>
+  </data>
+  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
+    <value>Automaticky stahovat aktualizace</value>
+    <comment>App</comment>
+  </data>
+  <data name="ConnectOnStartup" xml:space="preserve">
+    <value>Připojit k AdminBoxx při spuštění</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>Jas</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Hlasitost</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="NoAudioDevicesFound" xml:space="preserve">
+    <value>[Žádné zvuková zařízení]</value>
+    <comment>Audio device list</comment>
+  </data>
+  <data name="Connection" xml:space="preserve">
+    <value>Připojení</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Display" xml:space="preserve">
+    <value>Zobrazení</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Audio" xml:space="preserve">
+    <value>Zvuk</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="DeltaLimiterBias" xml:space="preserve">
+    <value>Delta Limiter - odchylka</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Output" xml:space="preserve">
+    <value>Výstup</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="WheelLFE" xml:space="preserve">
+    <value>Vibrace volantu (LFE)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="LFERecordingDevice" xml:space="preserve">
+    <value>Nahrávací zařízení (LFE)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Average" xml:space="preserve">
+    <value>Průměrný</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="Variance" xml:space="preserve">
+    <value>Rozptyl</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="StandardDeviation" xml:space="preserve">
+    <value>Standartní odchylka</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="InputTorque60Hz" xml:space="preserve">
+    <value>Vstupní síla (60 Hz)</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="InputTorque" xml:space="preserve">
+    <value>Vstupní síla</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="OutputTorque" xml:space="preserve">
+    <value>Výstupní síla</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="TimerJitter" xml:space="preserve">
+    <value>Odchylka časování </value>
+    <comment>Graph</comment>
+  </data>
+  <data name="InputLFE" xml:space="preserve">
+    <value>Vstup LFE</value>
+    <comment>Graph</comment>
+  </data>
+  <data name="ABSEngaged" xml:space="preserve">
+    <value>ABS aktivováno</value>
+    <comment>Pedal effects list, Sounds</comment>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>[Zakázáno]</value>
+    <comment>LFE device list</comment>
+  </data>
+  <data name="RememberWindowPositionAndSize" xml:space="preserve">
+    <value>Pamatovat si pozice a velikost okna</value>
+    <comment>App</comment>
+  </data>
+  <data name="FadeWithBrake" xml:space="preserve">
+    <value>Slábnutí při brzdě</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="StartingRPM" xml:space="preserve">
+    <value>Startovací otáčky</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="VibrateInTopGear" xml:space="preserve">
+    <value>Vibrovat při nejvyšším převodu</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="FadeWithThrottle" xml:space="preserve">
+    <value>Slábnutí při plynu</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="StartingPoint" xml:space="preserve">
+    <value>Bod začátku</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="EndingPoint" xml:space="preserve">
+    <value>Bod konce</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="GearChangeShiftIntoGear" xml:space="preserve">
+    <value>Změna převodu - zařadit převod</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
+    <value>Změna převodu - zařazení Neutrálu</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="AlwaysEnableFFB" xml:space="preserve">
+    <value>Vždy povolit FFB při zapnutém iRacingu </value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ClutchPedalHaptics" xml:space="preserve">
+    <value>Spojka - Haptická odezva </value>
+    <comment>Graph</comment>
+  </data>
+  <data name="BrakePedalHaptics" xml:space="preserve">
+    <value>Brzda - Haptická odezva </value>
+    <comment>Graph</comment>
+  </data>
+  <data name="ThrottlePedalHaptics" xml:space="preserve">
+    <value>Plyn - Haptická odezva </value>
+    <comment>Graph</comment>
+  </data>
+  <data name="NoiseDamper" xml:space="preserve">
+    <value>Tlumič hluku</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="AppWindow" xml:space="preserve">
+    <value>Okno aplikace</value>
+    <comment>App</comment>
+  </data>
+  <data name="UIScale" xml:space="preserve">
+    <value>Měřítko UI</value>
+    <comment>App</comment>
+  </data>
+  <data name="CloudService" xml:space="preserve">
+    <value>Cloud Servis</value>
+    <comment>App</comment>
+  </data>
+  <data name="CheckNow" xml:space="preserve">
+    <value>Zkontrolovat teď</value>
+    <comment>App</comment>
+  </data>
+  <data name="CheckingForUpdate" xml:space="preserve">
+    <value>Kontroluji dostupné aktualizace...</value>
+    <comment>Status</comment>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>Probíhá stahování aktualizace...</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Contribute" xml:space="preserve">
+    <value>Podíleli se</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="BuyMeACoffee" xml:space="preserve">
+    <value>Přispět na tvorbu!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DonationsText" xml:space="preserve">
+    <value>Příspěvky jsou pouze dobrovolné a nikdy nebude MAIRA zpoplatněná. Vašich příspěvků si moc vážím a motivuje mě to pokračovat dále. Obrovské díky patří všem, kteří už poslali nějaký příspěvek! Zde je odkaz, kde je možné taky přispět:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donations" xml:space="preserve">
+    <value>Příspěvky</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donors" xml:space="preserve">
+    <value>Přispěvatelé</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="SuperDonors" xml:space="preserve">
+    <value>Super Přispěvatelé</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Příspěvek</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="CodeContributions" xml:space="preserve">
+    <value>Pomoc s tvorbou Kódu MAIRA!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributions" xml:space="preserve">
+    <value>Pomoc s překladem MAIRA!</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="CodeContributionsText" xml:space="preserve">
+    <value>Pokud se vyznáte ve tvorbě kódu programů, zde je odkaz na GitHub ´úložiště:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationContributionsText" xml:space="preserve">
+    <value>Pokud umíte číst a psát nějakým jazykem, kterým MAIRA ještě není přeložená a chtěli by jste se podílet na překladu, tak navštivte Discord kanál:</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="TranslationsDiscordChannel" xml:space="preserve">
+    <value>Translations Discord Channel</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="GitHubRepository" xml:space="preserve">
+    <value>GitHub úložiště</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>Přispěvatelé</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>Zobrazit okno aplikace</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="ExitApp" xml:space="preserve">
+    <value>Ukončit aplikaci</value>
+    <comment>System tray icon</comment>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+    <value>Minimalizovat do systémové lišty</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Minimalizovat při spuštění</value>
+    <comment>App</comment>
+  </data>
+  <data name="StartWithWindows" xml:space="preserve">
+    <value>Spustit se spuštěním Windows</value>
+    <comment>App</comment>
+  </data>
+  <data name="TotalCompressionRate" xml:space="preserve">
+    <value>Celkové omezení náběhu síly (slewrate)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewCompressionThreshold" xml:space="preserve">
+    <value>Hranice omezení náběhu síly (slewrate)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewCompressionRate" xml:space="preserve">
+    <value>Velikost omezení náběhu síly (slewrate)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="TotalCompressionThreshold" xml:space="preserve">
+    <value>Celková hranice omezení náběhu síly (slewrate)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewUnits" xml:space="preserve">
+    <value> Nm/ms</value>
+    <comment>Abbreviation for Newton-meters per second</comment>
+  </data>
+  <data name="WheelForce" xml:space="preserve">
+    <value>Celková síla základny</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Vypočítat</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Preview" xml:space="preserve">
+    <value>Náhled křivky FFB</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="NoRecordingsFound" xml:space="preserve">
+    <value>[Nahrávky nenalezeny]</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CenterWheelWhenNotInCar" xml:space="preserve">
+    <value>Vycentrovat volant mimo vozidlo</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>Povolit jednoduchý režim</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Citlivost</value>
+    <comment>Pedals</comment>
+  </data>
+  <data name="ZeAlanLeTwist" xml:space="preserve">
+    <value>ZeAlanLeTwist</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DiscordModerators" xml:space="preserve">
+    <value>Moderátoři na Discordu</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>Chtěl bych poděkovat všem moderátorům na Discordu, kteří každý den odpovídají na spousty dotazů. Především díky nim, jsem schopný se plně věnovat na vývoji MAIRY</value>
+    <comment>Contribute</comment>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>AdminBoxx bude aktualizován..</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="AllowSuperStrength" xml:space="preserve">
+    <value>Povolit zvýšení síly FFB na 200% (může být riskantní)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ON" xml:space="preserve">
+    <value>Zapnout</value>
+    <comment>Generic</comment>
+  </data>
+  <data name="Sounds" xml:space="preserve">
+    <value>Zvuky</value>
+    <comment>Tab item</comment>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Povolit</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FrequencyRatio" xml:space="preserve">
+    <value>Poměr frekvence</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="Fade" xml:space="preserve">
+    <value>Slábnutí</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="SendChatMessages" xml:space="preserve">
+    <value>Odeslat jezdci soukromou zprávu </value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="EnableLogitechRPMLights" xml:space="preserve">
+    <value>Povolit Logitech RPM světla</value>
+    <comment>Racing wheel</comment>
+  </data>
+</root>

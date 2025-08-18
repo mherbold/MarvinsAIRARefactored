@@ -1,0 +1,79 @@
+﻿<Window x:Class="MarvinsAIRARefactored.Windows.ErrorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding Localization[AppTitle]}"
+        SizeToContent="Height"
+        Width="480"
+        WindowStartupLocation="CenterOwner"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStyle="SingleBorderWindow"
+        Background="#FF221111">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}"/>
+    </Window.DataContext>
+
+    <Border Padding="20">
+
+        <Grid>
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="10"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <!-- Icon -->
+            <Image Grid.Row="0" Grid.Column="0" Width="24" Height="24" Source="/MarvinsAIRARefactored;component/Artwork/ButtonIcons/button_icon_sad_face.png" RenderOptions.BitmapScalingMode="HighQuality"/>
+
+            <TextBlock Grid.Row="0" Grid.Column="2" x:Name="Title_TextBlock" FontSize="16" FontWeight="SemiBold" Text="{Binding Localization[ErrorTitle]}" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="#FFFFFF"/>
+
+            <TextBlock Grid.Row="2" Grid.Column="2" x:Name="Message_TextBlock" FontSize="14" TextWrapping="Wrap" Margin="0,2,0,0" Foreground="#FFFFFF" d:Text="This is an example message that can be displayed inside of this error window. This text can be wrapped as well."/>
+
+            <Expander x:Name="Details_Expander" Grid.Row="3" Grid.ColumnSpan="3" IsExpanded="False" Margin="0,20,0,0">
+
+                <Expander.Header>
+                    <Label Content="{Binding Localization[Details]}" Padding="8,0,0,0"/>
+                </Expander.Header>
+
+                <Expander.Style>
+                    <Style TargetType="Expander">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Text, ElementName=Details_TextBox}" Value="">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Expander.Style>
+
+                <Border Margin="0,10,0,10" Padding="10,10,10,10" BorderThickness="2" CornerRadius="10" Background="#B0000000" BorderBrush="White">
+                    <TextBox x:Name="Details_TextBox" Padding="0,0,0,10" IsReadOnly="True" TextWrapping="NoWrap" FontFamily="Consolas" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" BorderThickness="0" Background="#FF000000" Foreground="#FFFFFF" d:Text="Example details text"/>
+                </Border>
+
+            </Expander>
+
+            <StackPanel Grid.Row="5" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right">
+                <controls:MairaButton Title="" ButtonIcon="/MarvinsAIRARefactored;component/Artwork/ButtonIcons/button_icon_copy.png" Margin="5,0,5,0" Click="CopyDetails_MairaButton_Click"/>
+                <controls:MairaButton Title="" ButtonIcon="/MarvinsAIRARefactored;component/Artwork/ButtonIcons/button_icon_exit.png" Margin="5,0,5,0" Click="Exit_MairaButton_Click"/>
+            </StackPanel>
+
+        </Grid>
+
+    </Border>
+
+</Window>

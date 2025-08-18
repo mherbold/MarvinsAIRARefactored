@@ -15,7 +15,8 @@
         ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterOwner"
-        Background="#FF111111">
+        Background="#FF111111"
+        Closed="Window_Closed">
 
     <Window.DataContext>
         <datacontext:ContextSwitches/>

@@ -12,6 +12,7 @@ namespace MarvinsAIRARefactored.DataContext;
 public class Settings : INotifyPropertyChanged
 {
 	private bool _updatingRacingWheelRelatedSettings = false;
+	private bool _suppressUpdatingOfContextSettings = false;
 
 	#region INotifyProperty stuff
 
@@ -27,24 +28,13 @@ public class Settings : INotifyPropertyChanged
 
 			if ( property != null )
 			{
-				app.Logger.WriteLine( $"[Settings] {propertyName} = {property.GetValue( this )}" );
+				var value = property.GetValue( this );
 
-				var contextSwitchesPropertyName = $"{propertyName}ContextSwitches";
+				app.Logger.WriteLine( $"[Settings] Updating base setting {propertyName} to {value}" );
 
-				var contextSwitchesProperty = GetType().GetProperty( contextSwitchesPropertyName );
-
-				if ( contextSwitchesProperty != null )
+				if ( !_suppressUpdatingOfContextSettings )
 				{
-					var contextSwitches = (ContextSwitches?) contextSwitchesProperty.GetValue( this );
-
-					if ( contextSwitches != null )
-					{
-						var context = new Context( contextSwitches );
-
-						var contextSettings = FindContextSettings( context );
-
-						UpdateToContextSettings( contextSettings );
-					}
+					UpdateSettings( true );
 				}
 			}
 		}
@@ -60,17 +50,48 @@ public class Settings : INotifyPropertyChanged
 
 	public SerializableDictionary<Context, ContextSettings> ContextSettingsDictionary { get; set; } = [];
 
-	public void UpdateFromContextSettings()
+	private ContextSettings FindContextSettings( Context context )
+	{
+		if ( !ContextSettingsDictionary.TryGetValue( context, out var contextSettings ) )
+		{
+			contextSettings = new ContextSettings();
+
+			var contextSettingsProperties = typeof( ContextSettings ).GetProperties( BindingFlags.Public | BindingFlags.Instance );
+
+			foreach ( var contextSettingsProperty in contextSettingsProperties )
+			{
+				if ( contextSettingsProperty.CanRead && contextSettingsProperty.CanWrite )
+				{
+					var settingsProperty = typeof( Settings ).GetProperty( contextSettingsProperty.Name );
+
+					if ( settingsProperty != null )
+					{
+						var settingsPropertyValue = settingsProperty.GetValue( this );
+
+						contextSettingsProperty.SetValue( contextSettings, settingsPropertyValue );
+					}
+				}
+			}
+
+			ContextSettingsDictionary.Add( context, contextSettings );
+		}
+
+		return contextSettings;
+	}
+
+	public void UpdateSettings( bool updateContextSettings )
 	{
 		var app = App.Instance!;
 
-		var destinationProperties = typeof( Settings ).GetProperties( BindingFlags.Public | BindingFlags.Instance );
+		_suppressUpdatingOfContextSettings = !updateContextSettings;
 
-		foreach ( var destinationProperty in destinationProperties )
+		var settingsProperties = typeof( Settings ).GetProperties( BindingFlags.Public | BindingFlags.Instance );
+
+		foreach ( var settingsProperty in settingsProperties )
 		{
-			if ( destinationProperty.CanWrite && !destinationProperty.Name.EndsWith( "String" ) )
+			if ( settingsProperty.CanRead && settingsProperty.CanWrite && !settingsProperty.Name.EndsWith( "String" ) )
 			{
-				var contextSwitchesPropertyName = $"{destinationProperty.Name}ContextSwitches";
+				var contextSwitchesPropertyName = $"{settingsProperty.Name}ContextSwitches";
 
 				var contextSwitchesProperty = GetType().GetProperty( contextSwitchesPropertyName );
 
@@ -84,56 +105,35 @@ public class Settings : INotifyPropertyChanged
 
 						var contextSettings = FindContextSettings( context );
 
-						var sourceProperty = typeof( ContextSettings ).GetProperty( destinationProperty.Name );
+						var contextSettingsProperty = typeof( ContextSettings ).GetProperty( settingsProperty.Name );
 
-						if ( sourceProperty != null )
+						if ( contextSettingsProperty != null )
 						{
-							var value = sourceProperty.GetValue( contextSettings );
+							var contextSettingsPropertyValue = contextSettingsProperty.GetValue( contextSettings );
+							var settingsPropertyValue = settingsProperty.GetValue( this );
 
-							app.Logger.WriteLine( $"[Settings] Setting {destinationProperty.Name} = {value} ({context.WheelbaseGuid}|{context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
+							if ( !Equals( contextSettingsPropertyValue, settingsPropertyValue ) )
+							{
+								if ( updateContextSettings )
+								{
+									app.Logger.WriteLine( $"[Settings] Updating context setting {contextSettingsProperty.Name} to {settingsPropertyValue} from setting ({context.WheelbaseGuid}|{context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
 
-							destinationProperty.SetValue( this, value );
+									contextSettingsProperty.SetValue( contextSettings, settingsPropertyValue );
+								}
+								else
+								{
+									app.Logger.WriteLine( $"[Settings] Updating setting {settingsProperty.Name} to {contextSettingsPropertyValue} from context setting ({context.WheelbaseGuid}|{context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
+
+									settingsProperty.SetValue( this, contextSettingsPropertyValue );
+								}
+							}
 						}
 					}
 				}
 			}
 		}
-	}
 
-	private ContextSettings FindContextSettings( Context context )
-	{
-		if ( !ContextSettingsDictionary.TryGetValue( context, out var contextSettings ) )
-		{
-			contextSettings = new ContextSettings();
-
-			UpdateToContextSettings( contextSettings );
-
-			ContextSettingsDictionary.Add( context, contextSettings );
-		}
-
-		return contextSettings;
-	}
-
-	private void UpdateToContextSettings( ContextSettings contextSettings )
-	{
-		var sourceProperties = typeof( Settings ).GetProperties( BindingFlags.Public | BindingFlags.Instance );
-
-		var destinationProperties = typeof( ContextSettings ).GetProperties( BindingFlags.Public | BindingFlags.Instance );
-
-		foreach ( var sourceProperty in sourceProperties )
-		{
-			if ( sourceProperty.CanRead )
-			{
-				var destinationProperty = Array.Find( destinationProperties, p => p.Name == sourceProperty.Name && p.CanWrite && p.PropertyType.IsAssignableFrom( sourceProperty.PropertyType ) );
-
-				if ( destinationProperty != null )
-				{
-					var value = sourceProperty.GetValue( this );
-
-					destinationProperty.SetValue( contextSettings, value );
-				}
-			}
-		}
+		_suppressUpdatingOfContextSettings = false;
 	}
 
 	#endregion
@@ -2094,19 +2094,19 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Steering effects - Understeer calibration file
+	#region Steering effects - Understeer calibration file name 1
 
-	private string _steeringEffectsUndersteerCalibrationFile = string.Empty;
+	private string _steeringEffectsUndersteerCalibrationFileName1 = string.Empty;
 
-	public string SteeringEffectsUndersteerCalibrationFile
+	public string SteeringEffectsUndersteerCalibrationFileName1
 	{
-		get => _steeringEffectsUndersteerCalibrationFile;
+		get => _steeringEffectsUndersteerCalibrationFileName1;
 
 		set
 		{
-			if ( value != _steeringEffectsUndersteerCalibrationFile )
+			if ( value != _steeringEffectsUndersteerCalibrationFileName1 )
 			{
-				_steeringEffectsUndersteerCalibrationFile = value;
+				_steeringEffectsUndersteerCalibrationFileName1 = value;
 
 				OnPropertyChanged();
 			}
@@ -2117,59 +2117,61 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	public ContextSwitches SteeringEffectsUndersteerCalibrationFileName1ContextSwitches { get; set; } = new( false, true, false, false, false );
+
 	#endregion
 
-	#region Steering effects - Understeer strength
+	#region Steering effects - Understeer calibration file name 2
 
-	private float _steeringEffectsUndersteerStrength = 0.1f;
+	private string _steeringEffectsUndersteerCalibrationFileName2 = string.Empty;
 
-	public float SteeringEffectsUndersteerStrength
+	public string SteeringEffectsUndersteerCalibrationFileName2
 	{
-		get => _steeringEffectsUndersteerStrength;
+		get => _steeringEffectsUndersteerCalibrationFileName2;
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 0.3f );
-
-			if ( value != _steeringEffectsUndersteerStrength )
+			if ( value != _steeringEffectsUndersteerCalibrationFileName2 )
 			{
-				_steeringEffectsUndersteerStrength = value;
+				_steeringEffectsUndersteerCalibrationFileName2 = value;
 
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsUndersteerStrength == 0f )
-			{
-				SteeringEffectsUndersteerStrengthString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SteeringEffectsUndersteerStrengthString = $"{_steeringEffectsUndersteerStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			var app = App.Instance!;
+
+			app.SteeringEffects.LoadCalibration();
 		}
 	}
 
-	private string _steeringEffectsUndersteerStrengthString = string.Empty;
+	public ContextSwitches SteeringEffectsUndersteerCalibrationFileName2ContextSwitches { get; set; } = new( false, true, false, false, false );
 
-	[XmlIgnore]
-	public string SteeringEffectsUndersteerStrengthString
+	#endregion
+
+	#region Steering effects - Understeer calibration file name 3
+
+	private string _steeringEffectsUndersteerCalibrationFileName3 = string.Empty;
+
+	public string SteeringEffectsUndersteerCalibrationFileName3
 	{
-		get => _steeringEffectsUndersteerStrengthString;
+		get => _steeringEffectsUndersteerCalibrationFileName3;
 
 		set
 		{
-			if ( value != _steeringEffectsUndersteerStrengthString )
+			if ( value != _steeringEffectsUndersteerCalibrationFileName3 )
 			{
-				_steeringEffectsUndersteerStrengthString = value;
+				_steeringEffectsUndersteerCalibrationFileName3 = value;
 
 				OnPropertyChanged();
 			}
+
+			var app = App.Instance!;
+
+			app.SteeringEffects.LoadCalibration();
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerStrengthContextSwitches { get; set; } = new( true, true, false, false, false );
-	public ButtonMappings SteeringEffectsUndersteerStrengthPlusButtonMappings { get; set; } = new();
-	public ButtonMappings SteeringEffectsUndersteerStrengthMinusButtonMappings { get; set; } = new();
+	public ContextSwitches SteeringEffectsUndersteerCalibrationFileName3ContextSwitches { get; set; } = new( false, true, false, false, false );
 
 	#endregion
 
@@ -2224,7 +2226,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Steering effects - Understeer threshold
 
-	private float _steeringEffectsUndersteerThreshold = 1.25f;
+	private float _steeringEffectsUndersteerThreshold = 1.1f;
 
 	public float SteeringEffectsUndersteerThreshold
 	{
@@ -2271,151 +2273,353 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Steering effects - Understeer curve
+	#region Steering effects - Understeer wheel vibration warning frequency
 
-	private float _steeringEffectsUndersteerCurve = 0f;
+	private float _steeringEffectsUndersteerWheelVibrationWarningFrequency = 35f;
 
-	public float SteeringEffectsUndersteerCurve
+	public float SteeringEffectsUndersteerWheelVibrationWarningFrequency
 	{
-		get => _steeringEffectsUndersteerCurve;
+		get => _steeringEffectsUndersteerWheelVibrationWarningFrequency;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 50f );
+
+			if ( value != _steeringEffectsUndersteerWheelVibrationWarningFrequency )
+			{
+				_steeringEffectsUndersteerWheelVibrationWarningFrequency = value;
+
+				OnPropertyChanged();
+			}
+
+			SteeringEffectsUndersteerWheelVibrationWarningFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationWarningFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
+		}
+	}
+
+	private string _steeringEffectsUndersteerWheelVibrationWarningFrequencyString = string.Empty;
+
+	[XmlIgnore]
+	public string SteeringEffectsUndersteerWheelVibrationWarningFrequencyString
+	{
+		get => _steeringEffectsUndersteerWheelVibrationWarningFrequencyString;
+
+		set
+		{
+			if ( value != _steeringEffectsUndersteerWheelVibrationWarningFrequencyString )
+			{
+				_steeringEffectsUndersteerWheelVibrationWarningFrequencyString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SteeringEffectsUndersteerWheelVibrationWarningFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings SteeringEffectsUndersteerWheelVibrationWarningFrequencyPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SteeringEffectsUndersteerWheelVibrationWarningFrequencyMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Steering effects - Understeer wheel vibration frequency
+
+	private float _steeringEffectsUndersteerWheelVibrationFrequency = 50f;
+
+	public float SteeringEffectsUndersteerWheelVibrationFrequency
+	{
+		get => _steeringEffectsUndersteerWheelVibrationFrequency;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 50f );
+
+			if ( value != _steeringEffectsUndersteerWheelVibrationFrequency )
+			{
+				_steeringEffectsUndersteerWheelVibrationFrequency = value;
+
+				OnPropertyChanged();
+			}
+
+			SteeringEffectsUndersteerWheelVibrationFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
+		}
+	}
+
+	private string _steeringEffectsUndersteerWheelVibrationFrequencyString = string.Empty;
+
+	[XmlIgnore]
+	public string SteeringEffectsUndersteerWheelVibrationFrequencyString
+	{
+		get => _steeringEffectsUndersteerWheelVibrationFrequencyString;
+
+		set
+		{
+			if ( value != _steeringEffectsUndersteerWheelVibrationFrequencyString )
+			{
+				_steeringEffectsUndersteerWheelVibrationFrequencyString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SteeringEffectsUndersteerWheelVibrationFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings SteeringEffectsUndersteerWheelVibrationFrequencyPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SteeringEffectsUndersteerWheelVibrationFrequencyMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Steering effects - Understeer wheel vibration curve
+
+	private float _steeringEffectsUndersteerWheelVibrationCurve = 0f;
+
+	public float SteeringEffectsUndersteerWheelVibrationCurve
+	{
+		get => _steeringEffectsUndersteerWheelVibrationCurve;
 
 		set
 		{
 			value = Math.Clamp( value, -1f, 1f );
 
-			if ( value != _steeringEffectsUndersteerCurve )
+			if ( value != _steeringEffectsUndersteerWheelVibrationCurve )
 			{
-				_steeringEffectsUndersteerCurve = value;
+				_steeringEffectsUndersteerWheelVibrationCurve = value;
 
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsUndersteerCurve == 0f )
+			if ( _steeringEffectsUndersteerWheelVibrationCurve == 0f )
 			{
-				SteeringEffectsUndersteerCurveString = DataContext.Instance.Localization[ "OFF" ];
+				SteeringEffectsUndersteerWheelVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
 			}
 			else
 			{
-				SteeringEffectsUndersteerCurveString = $"{_steeringEffectsUndersteerCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+				SteeringEffectsUndersteerWheelVibrationCurveString = $"{_steeringEffectsUndersteerWheelVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 			}
 		}
 	}
 
-	private string _steeringEffectsUndersteerCurveString = string.Empty;
+	private string _steeringEffectsUndersteerWheelVibrationCurveString = string.Empty;
 
 	[XmlIgnore]
-	public string SteeringEffectsUndersteerCurveString
+	public string SteeringEffectsUndersteerWheelVibrationCurveString
 	{
-		get => _steeringEffectsUndersteerCurveString;
+		get => _steeringEffectsUndersteerWheelVibrationCurveString;
 
 		set
 		{
-			if ( value != _steeringEffectsUndersteerCurveString )
+			if ( value != _steeringEffectsUndersteerWheelVibrationCurveString )
 			{
-				_steeringEffectsUndersteerCurveString = value;
+				_steeringEffectsUndersteerWheelVibrationCurveString = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerCurveContextSwitches { get; set; } = new( true, true, false, false, false );
-	public ButtonMappings SteeringEffectsUndersteerCurvePlusButtonMappings { get; set; } = new();
-	public ButtonMappings SteeringEffectsUndersteerCurveMinusButtonMappings { get; set; } = new();
+	public ContextSwitches SteeringEffectsUndersteerWheelVibrationCurveContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings SteeringEffectsUndersteerWheelVibrationCurvePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SteeringEffectsUndersteerWheelVibrationCurveMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
-	#region Steering effects - Understeer warning frequency
+	#region Steering effects - Understeer wheel vibration strength
 
-	private float _steeringEffectsUndersteerWarningFrequency = 35f;
+	private float _steeringEffectsUndersteerWheelVibrationStrength = 0.1f;
 
-	public float SteeringEffectsUndersteerWarningFrequency
+	public float SteeringEffectsUndersteerWheelVibrationStrength
 	{
-		get => _steeringEffectsUndersteerWarningFrequency;
+		get => _steeringEffectsUndersteerWheelVibrationStrength;
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 50f );
+			value = Math.Clamp( value, 0f, 0.3f );
 
-			if ( value != _steeringEffectsUndersteerWarningFrequency )
+			if ( value != _steeringEffectsUndersteerWheelVibrationStrength )
 			{
-				_steeringEffectsUndersteerWarningFrequency = value;
+				_steeringEffectsUndersteerWheelVibrationStrength = value;
 
 				OnPropertyChanged();
 			}
 
-			SteeringEffectsUndersteerWarningFrequencyString = $"{_steeringEffectsUndersteerWarningFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
+			if ( _steeringEffectsUndersteerWheelVibrationStrength == 0f )
+			{
+				SteeringEffectsUndersteerWheelVibrationStrengthString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				SteeringEffectsUndersteerWheelVibrationStrengthString = $"{_steeringEffectsUndersteerWheelVibrationStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
 		}
 	}
 
-	private string _steeringEffectsUndersteerWarningFrequencyString = string.Empty;
+	private string _steeringEffectsUndersteerWheelVibrationStrengthString = string.Empty;
 
 	[XmlIgnore]
-	public string SteeringEffectsUndersteerWarningFrequencyString
+	public string SteeringEffectsUndersteerWheelVibrationStrengthString
 	{
-		get => _steeringEffectsUndersteerWarningFrequencyString;
+		get => _steeringEffectsUndersteerWheelVibrationStrengthString;
 
 		set
 		{
-			if ( value != _steeringEffectsUndersteerWarningFrequencyString )
+			if ( value != _steeringEffectsUndersteerWheelVibrationStrengthString )
 			{
-				_steeringEffectsUndersteerWarningFrequencyString = value;
+				_steeringEffectsUndersteerWheelVibrationStrengthString = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerWarningFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
-	public ButtonMappings SteeringEffectsUndersteerWarningFrequencyPlusButtonMappings { get; set; } = new();
-	public ButtonMappings SteeringEffectsUndersteerWarningFrequencyMinusButtonMappings { get; set; } = new();
+	public ContextSwitches SteeringEffectsUndersteerWheelVibrationStrengthContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings SteeringEffectsUndersteerWheelVibrationStrengthPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SteeringEffectsUndersteerWheelVibrationStrengthMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
-	#region Steering effects - Understeer frequency
+	#region Steering effects - Understeer pedal vibration warning frequency
 
-	private float _steeringEffectsUndersteerFrequency = 50f;
+	private float _steeringEffectsUndersteerPedalVibrationWarningFrequency = 0f;
 
-	public float SteeringEffectsUndersteerFrequency
+	public float SteeringEffectsUndersteerPedalVibrationWarningFrequency
 	{
-		get => _steeringEffectsUndersteerFrequency;
+		get => _steeringEffectsUndersteerPedalVibrationWarningFrequency;
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 50f );
+			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _steeringEffectsUndersteerFrequency )
+			if ( value != _steeringEffectsUndersteerPedalVibrationWarningFrequency )
 			{
-				_steeringEffectsUndersteerFrequency = value;
+				_steeringEffectsUndersteerPedalVibrationWarningFrequency = value;
 
 				OnPropertyChanged();
 			}
 
-			SteeringEffectsUndersteerFrequencyString = $"{_steeringEffectsUndersteerFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
+			SteeringEffectsUndersteerPedalVibrationWarningFrequencyString = $"{_steeringEffectsUndersteerPedalVibrationWarningFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
-	private string _steeringEffectsUndersteerFrequencyString = string.Empty;
+	private string _steeringEffectsUndersteerPedalVibrationWarningFrequencyString = string.Empty;
 
 	[XmlIgnore]
-	public string SteeringEffectsUndersteerFrequencyString
+	public string SteeringEffectsUndersteerPedalVibrationWarningFrequencyString
 	{
-		get => _steeringEffectsUndersteerFrequencyString;
+		get => _steeringEffectsUndersteerPedalVibrationWarningFrequencyString;
 
 		set
 		{
-			if ( value != _steeringEffectsUndersteerFrequencyString )
+			if ( value != _steeringEffectsUndersteerPedalVibrationWarningFrequencyString )
 			{
-				_steeringEffectsUndersteerFrequencyString = value;
+				_steeringEffectsUndersteerPedalVibrationWarningFrequencyString = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	public ContextSwitches SteeringEffectsUndersteerFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
-	public ButtonMappings SteeringEffectsUndersteerFrequencyPlusButtonMappings { get; set; } = new();
-	public ButtonMappings SteeringEffectsUndersteerFrequencyMinusButtonMappings { get; set; } = new();
+	public ContextSwitches SteeringEffectsUndersteerPedalVibrationWarningFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings SteeringEffectsUndersteerPedalVibrationWarningFrequencyPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SteeringEffectsUndersteerPedalVibrationWarningFrequencyMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Steering effects - Understeer pedal vibration frequency
+
+	private float _steeringEffectsUndersteerPedalVibrationFrequency = 1f;
+
+	public float SteeringEffectsUndersteerPedalVibrationFrequency
+	{
+		get => _steeringEffectsUndersteerPedalVibrationFrequency;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _steeringEffectsUndersteerPedalVibrationFrequency )
+			{
+				_steeringEffectsUndersteerPedalVibrationFrequency = value;
+
+				OnPropertyChanged();
+			}
+
+			SteeringEffectsUndersteerPedalVibrationFrequencyString = $"{_steeringEffectsUndersteerPedalVibrationFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _steeringEffectsUndersteerPedalVibrationFrequencyString = string.Empty;
+
+	[XmlIgnore]
+	public string SteeringEffectsUndersteerPedalVibrationFrequencyString
+	{
+		get => _steeringEffectsUndersteerPedalVibrationFrequencyString;
+
+		set
+		{
+			if ( value != _steeringEffectsUndersteerPedalVibrationFrequencyString )
+			{
+				_steeringEffectsUndersteerPedalVibrationFrequencyString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SteeringEffectsUndersteerPedalVibrationFrequencyContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings SteeringEffectsUndersteerPedalVibrationFrequencyPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SteeringEffectsUndersteerPedalVibrationFrequencyMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Steering effects - Understeer pedal vibration curve
+
+	private float _steeringEffectsUndersteerPedalVibrationCurve = 0f;
+
+	public float SteeringEffectsUndersteerPedalVibrationCurve
+	{
+		get => _steeringEffectsUndersteerPedalVibrationCurve;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _steeringEffectsUndersteerPedalVibrationCurve )
+			{
+				_steeringEffectsUndersteerPedalVibrationCurve = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _steeringEffectsUndersteerPedalVibrationCurve == 0f )
+			{
+				SteeringEffectsUndersteerPedalVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				SteeringEffectsUndersteerPedalVibrationCurveString = $"{_steeringEffectsUndersteerPedalVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _steeringEffectsUndersteerPedalVibrationCurveString = string.Empty;
+
+	[XmlIgnore]
+	public string SteeringEffectsUndersteerPedalVibrationCurveString
+	{
+		get => _steeringEffectsUndersteerPedalVibrationCurveString;
+
+		set
+		{
+			if ( value != _steeringEffectsUndersteerPedalVibrationCurveString )
+			{
+				_steeringEffectsUndersteerPedalVibrationCurveString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SteeringEffectsUndersteerPedalVibrationCurveContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings SteeringEffectsUndersteerPedalVibrationCurvePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SteeringEffectsUndersteerPedalVibrationCurveMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
@@ -2533,6 +2737,92 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Steering effects - Warm up speed
+
+	private float _steeringEffectsWarmUpSpeed = 120f;
+
+	public float SteeringEffectsWarmUpSpeed
+	{
+		get => _steeringEffectsWarmUpSpeed;
+
+		set
+		{
+			value = Math.Clamp( value, 50f, 250f );
+
+			if ( value != _steeringEffectsWarmUpSpeed )
+			{
+				_steeringEffectsWarmUpSpeed = value;
+
+				OnPropertyChanged();
+			}
+
+			SteeringEffectsWarmUpSpeedString = $"{_steeringEffectsWarmUpSpeed:F0}{DataContext.Instance.Localization[ "KPHUnits" ]}";
+		}
+	}
+
+	private string _steeringEffectsWarmUpSpeedString = string.Empty;
+
+	[XmlIgnore]
+	public string SteeringEffectsWarmUpSpeedString
+	{
+		get => _steeringEffectsWarmUpSpeedString;
+
+		set
+		{
+			if ( value != _steeringEffectsWarmUpSpeedString )
+			{
+				_steeringEffectsWarmUpSpeedString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Steering effects - Warm up lap count
+
+	private float _steeringEffectsWarmUpLapCount = 10;
+
+	public float SteeringEffectsWarmUpLapCount
+	{
+		get => _steeringEffectsWarmUpLapCount;
+
+		set
+		{
+			value = Math.Clamp( value, 1f, 50f );
+
+			if ( value != _steeringEffectsWarmUpLapCount )
+			{
+				_steeringEffectsWarmUpLapCount = value;
+
+				OnPropertyChanged();
+			}
+
+			SteeringEffectsWarmUpLapCountString = $"{_steeringEffectsWarmUpLapCount:F0}";
+		}
+	}
+
+	private string _steeringEffectsWarmUpLapCountString = string.Empty;
+
+	[XmlIgnore]
+	public string SteeringEffectsWarmUpLapCountString
+	{
+		get => _steeringEffectsWarmUpLapCountString;
+
+		set
+		{
+			if ( value != _steeringEffectsWarmUpLapCountString )
+			{
+				_steeringEffectsWarmUpLapCountString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Pedals - Enabled
 
 	private bool _pedalsEnabled = false;
@@ -2558,6 +2848,310 @@ public class Settings : INotifyPropertyChanged
 			}
 		}
 	}
+
+	#endregion
+
+	#region Pedals - Minimum frequency
+
+	private float _pedalsMinimumFrequency = 15f;
+
+	public float PedalsMinimumFrequency
+	{
+		get => _pedalsMinimumFrequency;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 50f );
+
+			if ( value != _pedalsMinimumFrequency )
+			{
+				_pedalsMinimumFrequency = value;
+
+				OnPropertyChanged();
+
+				PedalsMaximumFrequency = MathF.Max( PedalsMaximumFrequency, _pedalsMinimumFrequency );
+			}
+
+			PedalsMinimumFrequencyString = $"{_pedalsMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
+		}
+	}
+
+	private string _pedalsMinimumFrequencyString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsMinimumFrequencyString
+	{
+		get => _pedalsMinimumFrequencyString;
+
+		set
+		{
+			if ( value != _pedalsMinimumFrequencyString )
+			{
+				_pedalsMinimumFrequencyString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches PedalsMinimumFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings PedalsMinimumFrequencyPlusButtonMappings { get; set; } = new();
+	public ButtonMappings PedalsMinimumFrequencyMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Maximum frequency
+
+	private float _pedalsMaximumFrequency = 50f;
+
+	public float PedalsMaximumFrequency
+	{
+		get => _pedalsMaximumFrequency;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 50f );
+
+			if ( value != _pedalsMaximumFrequency )
+			{
+				_pedalsMaximumFrequency = value;
+
+				OnPropertyChanged();
+
+				PedalsMinimumFrequency = MathF.Min( PedalsMinimumFrequency, _pedalsMaximumFrequency );
+			}
+
+			PedalsMaximumFrequencyString = $"{_pedalsMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
+		}
+	}
+
+	private string _pedalsMaximumFrequencyString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsMaximumFrequencyString
+	{
+		get => _pedalsMaximumFrequencyString;
+
+		set
+		{
+			if ( value != _pedalsMaximumFrequencyString )
+			{
+				_pedalsMaximumFrequencyString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches PedalsMaximumFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings PedalsMaximumFrequencyPlusButtonMappings { get; set; } = new();
+	public ButtonMappings PedalsMaximumFrequencyMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Frequency curve
+
+	private float _pedalsFrequencyCurve = 0.25f;
+
+	public float PedalsFrequencyCurve
+	{
+		get => _pedalsFrequencyCurve;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _pedalsFrequencyCurve )
+			{
+				_pedalsFrequencyCurve = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _pedalsFrequencyCurve == 0f )
+			{
+				PedalsFrequencyCurveString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				PedalsFrequencyCurveString = $"{_pedalsFrequencyCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _pedalsFrequencyCurveString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsFrequencyCurveString
+	{
+		get => _pedalsFrequencyCurveString;
+
+		set
+		{
+			if ( value != _pedalsFrequencyCurveString )
+			{
+				_pedalsFrequencyCurveString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches PedalsFrequencyCurveContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings PedalsFrequencyCurvePlusButtonMappings { get; set; } = new();
+	public ButtonMappings PedalsFrequencyCurveMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Minimum Amplitude
+
+	private float _pedalsMinimumAmplitude = 0f;
+
+	public float PedalsMinimumAmplitude
+	{
+		get => _pedalsMinimumAmplitude;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsMinimumAmplitude )
+			{
+				_pedalsMinimumAmplitude = value;
+
+				OnPropertyChanged();
+
+				PedalsMaximumAmplitude = MathF.Max( PedalsMaximumAmplitude, _pedalsMinimumAmplitude );
+			}
+
+			PedalsMinimumAmplitudeString = $"{_pedalsMinimumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsMinimumAmplitudeString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsMinimumAmplitudeString
+	{
+		get => _pedalsMinimumAmplitudeString;
+
+		set
+		{
+			if ( value != _pedalsMinimumAmplitudeString )
+			{
+				_pedalsMinimumAmplitudeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches PedalsMinimumAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings PedalsMinimumAmplitudePlusButtonMappings { get; set; } = new();
+	public ButtonMappings PedalsMinimumAmplitudeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Maximum Amplitude
+
+	private float _pedalsMaximumAmplitude = 1f;
+
+	public float PedalsMaximumAmplitude
+	{
+		get => _pedalsMaximumAmplitude;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _pedalsMaximumAmplitude )
+			{
+				_pedalsMaximumAmplitude = value;
+
+				OnPropertyChanged();
+
+				PedalsMinimumAmplitude = MathF.Min( PedalsMinimumAmplitude, _pedalsMaximumAmplitude );
+			}
+
+			PedalsMaximumAmplitudeString = $"{_pedalsMaximumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsMaximumAmplitudeString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsMaximumAmplitudeString
+	{
+		get => _pedalsMaximumAmplitudeString;
+
+		set
+		{
+			if ( value != _pedalsMaximumAmplitudeString )
+			{
+				_pedalsMaximumAmplitudeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches PedalsMaximumAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings PedalsMaximumAmplitudePlusButtonMappings { get; set; } = new();
+	public ButtonMappings PedalsMaximumAmplitudeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Amplitude curve
+
+	private float _pedalsAmplitudeCurve = 0f;
+
+	public float PedalsAmplitudeCurve
+	{
+		get => _pedalsAmplitudeCurve;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _pedalsAmplitudeCurve )
+			{
+				_pedalsAmplitudeCurve = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _pedalsAmplitudeCurve == 0f )
+			{
+				PedalsAmplitudeCurveString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				PedalsAmplitudeCurveString = $"{_pedalsAmplitudeCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _pedalsAmplitudeCurveString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsAmplitudeCurveString
+	{
+		get => _pedalsAmplitudeCurveString;
+
+		set
+		{
+			if ( value != _pedalsAmplitudeCurveString )
+			{
+				_pedalsAmplitudeCurveString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches PedalsAmplitudeCurveContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings PedalsAmplitudeCurvePlusButtonMappings { get; set; } = new();
+	public ButtonMappings PedalsAmplitudeCurveMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
@@ -2715,7 +3309,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Pedals - Clutch effect 3
 
-	private Pedals.Effect _pedalsClutchEffect3 = Pedals.Effect.SteeringEffects;
+	private Pedals.Effect _pedalsClutchEffect3 = Pedals.Effect.UndersteerEffect;
 
 	public Pedals.Effect PedalsClutchEffect3
 	{
@@ -2943,7 +3537,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Pedals - Brake effect 3
 
-	private Pedals.Effect _pedalsBrakeEffect3 = Pedals.Effect.SteeringEffects;
+	private Pedals.Effect _pedalsBrakeEffect3 = Pedals.Effect.UndersteerEffect;
 
 	public Pedals.Effect PedalsBrakeEffect3
 	{
@@ -3171,7 +3765,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Pedals - Throttle effect 3
 
-	private Pedals.Effect _pedalsThrottleEffect3 = Pedals.Effect.None;
+	private Pedals.Effect _pedalsThrottleEffect3 = Pedals.Effect.UndersteerEffect;
 
 	public Pedals.Effect PedalsThrottleEffect3
 	{
@@ -4113,310 +4707,6 @@ public class Settings : INotifyPropertyChanged
 	public ContextSwitches PedalsClutchSlipFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
 	public ButtonMappings PedalsClutchSlipFrequencyPlusButtonMappings { get; set; } = new();
 	public ButtonMappings PedalsClutchSlipFrequencyMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region Pedals - Minimum frequency
-
-	private float _pedalsMinimumFrequency = 15f;
-
-	public float PedalsMinimumFrequency
-	{
-		get => _pedalsMinimumFrequency;
-
-		set
-		{
-			value = Math.Clamp( value, 0f, 50f );
-
-			if ( value != _pedalsMinimumFrequency )
-			{
-				_pedalsMinimumFrequency = value;
-
-				OnPropertyChanged();
-
-				PedalsMaximumFrequency = MathF.Max( PedalsMaximumFrequency, _pedalsMinimumFrequency );
-			}
-
-			PedalsMinimumFrequencyString = $"{_pedalsMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
-		}
-	}
-
-	private string _pedalsMinimumFrequencyString = string.Empty;
-
-	[XmlIgnore]
-	public string PedalsMinimumFrequencyString
-	{
-		get => _pedalsMinimumFrequencyString;
-
-		set
-		{
-			if ( value != _pedalsMinimumFrequencyString )
-			{
-				_pedalsMinimumFrequencyString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches PedalsMinimumFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings PedalsMinimumFrequencyPlusButtonMappings { get; set; } = new();
-	public ButtonMappings PedalsMinimumFrequencyMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region Pedals - Maximum frequency
-
-	private float _pedalsMaximumFrequency = 50f;
-
-	public float PedalsMaximumFrequency
-	{
-		get => _pedalsMaximumFrequency;
-
-		set
-		{
-			value = Math.Clamp( value, 0f, 50f );
-
-			if ( value != _pedalsMaximumFrequency )
-			{
-				_pedalsMaximumFrequency = value;
-
-				OnPropertyChanged();
-
-				PedalsMinimumFrequency = MathF.Min( PedalsMinimumFrequency, _pedalsMaximumFrequency );
-			}
-
-			PedalsMaximumFrequencyString = $"{_pedalsMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
-		}
-	}
-
-	private string _pedalsMaximumFrequencyString = string.Empty;
-
-	[XmlIgnore]
-	public string PedalsMaximumFrequencyString
-	{
-		get => _pedalsMaximumFrequencyString;
-
-		set
-		{
-			if ( value != _pedalsMaximumFrequencyString )
-			{
-				_pedalsMaximumFrequencyString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches PedalsMaximumFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings PedalsMaximumFrequencyPlusButtonMappings { get; set; } = new();
-	public ButtonMappings PedalsMaximumFrequencyMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region Pedals - Frequency curve
-
-	private float _pedalsFrequencyCurve = 0.25f;
-
-	public float PedalsFrequencyCurve
-	{
-		get => _pedalsFrequencyCurve;
-
-		set
-		{
-			value = Math.Clamp( value, -1f, 1f );
-
-			if ( value != _pedalsFrequencyCurve )
-			{
-				_pedalsFrequencyCurve = value;
-
-				OnPropertyChanged();
-			}
-
-			if ( _pedalsFrequencyCurve == 0f )
-			{
-				PedalsFrequencyCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				PedalsFrequencyCurveString = $"{_pedalsFrequencyCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
-		}
-	}
-
-	private string _pedalsFrequencyCurveString = string.Empty;
-
-	[XmlIgnore]
-	public string PedalsFrequencyCurveString
-	{
-		get => _pedalsFrequencyCurveString;
-
-		set
-		{
-			if ( value != _pedalsFrequencyCurveString )
-			{
-				_pedalsFrequencyCurveString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches PedalsFrequencyCurveContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings PedalsFrequencyCurvePlusButtonMappings { get; set; } = new();
-	public ButtonMappings PedalsFrequencyCurveMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region Pedals - Minimum Amplitude
-
-	private float _pedalsMinimumAmplitude = 0f;
-
-	public float PedalsMinimumAmplitude
-	{
-		get => _pedalsMinimumAmplitude;
-
-		set
-		{
-			value = Math.Clamp( value, 0f, 1f );
-
-			if ( value != _pedalsMinimumAmplitude )
-			{
-				_pedalsMinimumAmplitude = value;
-
-				OnPropertyChanged();
-
-				PedalsMaximumAmplitude = MathF.Max( PedalsMaximumAmplitude, _pedalsMinimumAmplitude );
-			}
-
-			PedalsMinimumAmplitudeString = $"{_pedalsMinimumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-		}
-	}
-
-	private string _pedalsMinimumAmplitudeString = string.Empty;
-
-	[XmlIgnore]
-	public string PedalsMinimumAmplitudeString
-	{
-		get => _pedalsMinimumAmplitudeString;
-
-		set
-		{
-			if ( value != _pedalsMinimumAmplitudeString )
-			{
-				_pedalsMinimumAmplitudeString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches PedalsMinimumAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings PedalsMinimumAmplitudePlusButtonMappings { get; set; } = new();
-	public ButtonMappings PedalsMinimumAmplitudeMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region Pedals - Maximum Amplitude
-
-	private float _pedalsMaximumAmplitude = 1f;
-
-	public float PedalsMaximumAmplitude
-	{
-		get => _pedalsMaximumAmplitude;
-
-		set
-		{
-			value = Math.Clamp( value, 0f, 1f );
-
-			if ( value != _pedalsMaximumAmplitude )
-			{
-				_pedalsMaximumAmplitude = value;
-
-				OnPropertyChanged();
-
-				PedalsMinimumAmplitude = MathF.Min( PedalsMinimumAmplitude, _pedalsMaximumAmplitude );
-			}
-
-			PedalsMaximumAmplitudeString = $"{_pedalsMaximumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-		}
-	}
-
-	private string _pedalsMaximumAmplitudeString = string.Empty;
-
-	[XmlIgnore]
-	public string PedalsMaximumAmplitudeString
-	{
-		get => _pedalsMaximumAmplitudeString;
-
-		set
-		{
-			if ( value != _pedalsMaximumAmplitudeString )
-			{
-				_pedalsMaximumAmplitudeString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches PedalsMaximumAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings PedalsMaximumAmplitudePlusButtonMappings { get; set; } = new();
-	public ButtonMappings PedalsMaximumAmplitudeMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region Pedals - Amplitude curve
-
-	private float _pedalsAmplitudeCurve = 0f;
-
-	public float PedalsAmplitudeCurve
-	{
-		get => _pedalsAmplitudeCurve;
-
-		set
-		{
-			value = Math.Clamp( value, -1f, 1f );
-
-			if ( value != _pedalsAmplitudeCurve )
-			{
-				_pedalsAmplitudeCurve = value;
-
-				OnPropertyChanged();
-			}
-
-			if ( _pedalsAmplitudeCurve == 0f )
-			{
-				PedalsAmplitudeCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				PedalsAmplitudeCurveString = $"{_pedalsAmplitudeCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
-		}
-	}
-
-	private string _pedalsAmplitudeCurveString = string.Empty;
-
-	[XmlIgnore]
-	public string PedalsAmplitudeCurveString
-	{
-		get => _pedalsAmplitudeCurveString;
-
-		set
-		{
-			if ( value != _pedalsAmplitudeCurveString )
-			{
-				_pedalsAmplitudeCurveString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches PedalsAmplitudeCurveContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings PedalsAmplitudeCurvePlusButtonMappings { get; set; } = new();
-	public ButtonMappings PedalsAmplitudeCurveMinusButtonMappings { get; set; } = new();
 
 	#endregion
 

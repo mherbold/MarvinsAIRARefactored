@@ -34,7 +34,7 @@ public class ContextSwitches : INotifyPropertyChanged
 
 				if ( property != null )
 				{
-					app.Logger.WriteLine( $"[ContextSwitches] {propertyName} = {property.GetValue( this )}" );
+					// app.Logger.WriteLine( $"[ContextSwitches] {propertyName} = {property.GetValue( this )}" );
 				}
 			}
 

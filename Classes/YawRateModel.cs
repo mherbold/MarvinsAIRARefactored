@@ -5,51 +5,53 @@ namespace MarvinsAIRARefactored.Classes;
 
 using MarvinsAIRARefactored.Components;
 
-public class YawRateModel( int[] steeringWheelAnglesInDegrees, float[,] yawRateDataInDegrees, int maxSpeed )
+public class YawRateModel( int[] steeringWheelAnglesInDegrees, float[,] yawRateDataInDegrees, int maxSpeedInKPH )
 {
-	private const int MinStartingMagnitude = 150;
-	private const float MaxYawPredictionError = 1.5f;
+	private const int MinStartingSpeedInKPH = 150;
+	private const float MaxSpeedInterpolationErrorInKPH = 6.5f;
 
 	private readonly int[] _steeringWheelAnglesInDegrees = steeringWheelAnglesInDegrees;
 	private readonly float[,] _yawRateDataInDegrees = yawRateDataInDegrees;
-	private readonly int _maxSpeed = maxSpeed;
+	private readonly int _maxSpeedInKPH = maxSpeedInKPH;
 
-	public (Func<float, float> yawRatePredictor, Func<float, float> speedPredictor, int lowestSteeringWheelAngle) FitWithProgressiveRefinement()
+	public (Func<float, float> yawRateInterpolator, Func<float, float> speedInterpolator, int shallowestSteeringWheelAngle) FitWithProgressiveRefinement()
 	{
 		var usedAngles = new List<float>();
 		var usedMaxYawRates = new List<float>();
-		var usedCorrespondingSpeeds = new List<float>();
+		var usedSpeeds = new List<float>();
 
-		var initialAngles = GetSortedAngles().Where( a => Math.Abs( a ) >= MinStartingMagnitude ).ToList();
+		var initialAngles = GetSortedAngles().Where( a => Math.Abs( a ) >= MinStartingSpeedInKPH ).ToList();
 
 		foreach ( var angle in initialAngles )
 		{
-			var (maxYawRate, correspondingSpeed) = GetMaxYawRateAtAngle( angle );
+			var (maxYawRate, speed) = GetMaxYawRateAtAngle( angle );
 
-			if ( correspondingSpeed >= 0 )
+			if ( speed >= 0 )
 			{
 				usedAngles.Add( angle );
 				usedMaxYawRates.Add( maxYawRate );
-				usedCorrespondingSpeeds.Add( correspondingSpeed );
+				usedSpeeds.Add( speed );
 			}
 		}
 
-		var remainingAngles = GetSortedAngles().Where( a => Math.Abs( a ) < MinStartingMagnitude ).ToList();
+		var remainingAngles = GetSortedAngles().Where( a => Math.Abs( a ) < MinStartingSpeedInKPH ).ToList();
 
 		foreach ( var angle in remainingAngles )
 		{
-			var yawRatePredictor = FitSpline( [ .. usedAngles ], [ .. usedMaxYawRates ] );
-			var expectedYawRate = yawRatePredictor( angle );
-			var yawRatePeakCandidates = GetYawRatePeaksAtAngle( angle, out var speeds );
+			var speedInterpolator = FitSpline( [ .. usedAngles ], [ .. usedSpeeds ] );
+			var expectedSpeed = speedInterpolator( angle );
+			var candidates = FindPeaksAtAngle( angle );
 
-			if ( yawRatePeakCandidates.Count > 0 )
+			if ( candidates.Count > 0 )
 			{
 				var bestCandidateIndex = 0;
 				var bestCandidateError = float.MaxValue;
 
-				for ( var candidateIndex = 0; candidateIndex < yawRatePeakCandidates.Count; candidateIndex++ )
+				for ( var candidateIndex = 0; candidateIndex < candidates.Count; candidateIndex++ )
 				{
-					var candidateError = MathF.Abs( yawRatePeakCandidates[ candidateIndex ] - expectedYawRate );
+					var (candidateMaxYawRate, candidateSpeed) = candidates[ candidateIndex ];
+
+					var candidateError = MathF.Abs( candidateSpeed - expectedSpeed );
 
 					if ( candidateError < bestCandidateError )
 					{
@@ -58,32 +60,34 @@ public class YawRateModel( int[] steeringWheelAnglesInDegrees, float[,] yawRateD
 					}
 				}
 
-				if ( bestCandidateError <= MaxYawPredictionError )
+				if ( bestCandidateError <= MaxSpeedInterpolationErrorInKPH )
 				{
+					var (candidateMaxYawRate, candidateSpeed) = candidates[ bestCandidateIndex ];
+
 					usedAngles.Add( angle );
-					usedMaxYawRates.Add( yawRatePeakCandidates[ bestCandidateIndex ] );
-					usedCorrespondingSpeeds.Add( speeds[ bestCandidateIndex ] );
+					usedMaxYawRates.Add( candidateMaxYawRate );
+					usedSpeeds.Add( candidateSpeed );
 				}
 			}
 		}
 
-		var finalYawRatePredictor = FitSpline( [ .. usedAngles ], [ .. usedMaxYawRates ] );
-		var finalSpeedPredictor = FitSpline( [ .. usedAngles ], [ .. usedCorrespondingSpeeds ] );
+		var finalYawRateInterpolator = FitSpline( [ .. usedAngles ], [ .. usedMaxYawRates ] );
+		var finalSpeedInterpolator = FitSpline( [ .. usedAngles ], [ .. usedSpeeds ] );
 
 		// write to debug file
 
-		var filePath = Path.Combine( SteeringEffects.CalibrationDirectory, $"debug_sampled_yaw_rates.csv" );
+		var filePath = Path.Combine( SteeringEffects.CalibrationDirectory, $"debug_source_max_yaw_rates.csv" );
 
 		using var writer = new StreamWriter( filePath );
 
-		writer.WriteLine( "Steering Wheel Angle,Max Yaw Rate,Corresponding Speed" );
+		writer.WriteLine( "Steering Wheel Angle,Max Yaw Rate,Speed" );
 
 		for ( var i = 0; i < usedAngles.Count; i++ )
 		{
-			writer.WriteLine( $"{usedAngles[ i ]:F0},{usedMaxYawRates[ i ]:F6},{usedCorrespondingSpeeds[ i ]:F0}" );
+			writer.WriteLine( $"{usedAngles[ i ]:F0},{usedMaxYawRates[ i ]:F6},{usedSpeeds[ i ]:F0}" );
 		}
 
-		return (finalYawRatePredictor, finalSpeedPredictor, (int) usedAngles.Last());
+		return (finalYawRateInterpolator, finalSpeedInterpolator, (int) usedAngles.Last());
 	}
 
 	private List<int> GetSortedAngles()
@@ -103,7 +107,7 @@ public class YawRateModel( int[] steeringWheelAnglesInDegrees, float[,] yawRateD
 		var maxYaw = float.MinValue;
 		var speedAtMax = -1;
 
-		for ( var speed = 0; speed <= _maxSpeed; speed++ )
+		for ( var speed = 0; speed <= _maxSpeedInKPH; speed++ )
 		{
 			var yaw = _yawRateDataInDegrees[ angleIndex, speed ];
 
@@ -117,11 +121,9 @@ public class YawRateModel( int[] steeringWheelAnglesInDegrees, float[,] yawRateD
 		return (maxYaw, speedAtMax);
 	}
 
-	private List<float> GetYawRatePeaksAtAngle( int angle, out List<int> speeds )
+	private List<(float, float)> FindPeaksAtAngle( int angle )
 	{
-		speeds = [];
-
-		var peaks = new List<float>();
+		var peaks = new List<(float, float)>();
 		var angleIndex = Array.IndexOf( _steeringWheelAnglesInDegrees, angle );
 
 		if ( angleIndex < 0 )
@@ -129,16 +131,15 @@ public class YawRateModel( int[] steeringWheelAnglesInDegrees, float[,] yawRateD
 			return peaks;
 		}
 
-		for ( var speed = 1; speed < _maxSpeed - 1; speed++ )
+		for ( var speedInKPH = 1; speedInKPH < _maxSpeedInKPH - 1; speedInKPH++ )
 		{
-			var prev = _yawRateDataInDegrees[ angleIndex, speed - 1 ];
-			var curr = _yawRateDataInDegrees[ angleIndex, speed ];
-			var next = _yawRateDataInDegrees[ angleIndex, speed + 1 ];
+			var previousYawRate = _yawRateDataInDegrees[ angleIndex, speedInKPH - 1 ];
+			var currentYawRate = _yawRateDataInDegrees[ angleIndex, speedInKPH ];
+			var nextYawRate = _yawRateDataInDegrees[ angleIndex, speedInKPH + 1 ];
 
-			if ( ( curr > prev ) && ( curr > next ) )
+			if ( ( currentYawRate > previousYawRate ) && ( currentYawRate > nextYawRate ) )
 			{
-				peaks.Add( curr );
-				speeds.Add( speed );
+				peaks.Add( (currentYawRate, speedInKPH) );
 			}
 		}
 

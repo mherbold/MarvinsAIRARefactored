@@ -2,13 +2,14 @@
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
-
-using Application = System.Windows.Application;
-using Timer = System.Timers.Timer;
+using System.Windows.Threading;
 
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
 using MarvinsAIRARefactored.Windows;
+
+using Application = System.Windows.Application;
+using Timer = System.Timers.Timer;
 
 namespace MarvinsAIRARefactored;
 
@@ -53,9 +54,11 @@ public partial class App : Application
     public const int TimerPeriodInMilliseconds = 17;
 	public const int TimerTicksPerSecond = 1000 / TimerPeriodInMilliseconds;
 
-	private const string MutexName = "MarvinsAIRARefactoredMutex";
+	private const string RefactoredMutexName = "MarvinsAIRARefactoredMutex";
+	private const string ClassicMutexName = "MarvinsAIRA Mutex";
 
-	private static Mutex? _mutex = null;
+	private static Mutex? _refactoredMutex = null;
+	private static Mutex? _classicMutex = null;
 
 	private readonly AutoResetEvent _autoResetEvent = new( false );
 
@@ -102,11 +105,66 @@ public partial class App : Application
 		_autoResetEvent.Set();
 	}
 
+	public void ShowFatalError( string? message = null, Exception? exception = null )
+	{
+		message ??= DataContext.DataContext.Instance.Localization[ "ExceptionThrown" ];
+
+		var app = App.Instance!;
+
+		var uiDispatcher = app.Dispatcher;
+
+		void ShowAndExit()
+		{
+			try
+			{
+				ErrorWindow.ShowModal( message, exception );
+			}
+			catch
+			{
+				// last-ditch fallback if dialog fails
+			}
+			finally
+			{
+				app.Shutdown( -1 );
+			}
+		}
+
+		if ( uiDispatcher.CheckAccess() )
+		{
+			ShowAndExit(); // already on UI thread
+		}
+		else
+		{
+			uiDispatcher.Invoke( ShowAndExit, DispatcherPriority.Send );
+		}
+	}
+
 	private async void App_Startup( object sender, StartupEventArgs e )
 	{
+		DispatcherUnhandledException += ( sender, args ) =>
+		{
+			args.Handled = true;
+
+			ShowFatalError( null, args.Exception );
+		};
+
+		AppDomain.CurrentDomain.UnhandledException += ( sender, args ) =>
+		{
+			var exception = args.ExceptionObject as Exception ?? new Exception( "Unknown fatal error." );
+
+			ShowFatalError( null, exception );
+		};
+
+		TaskScheduler.UnobservedTaskException += ( sender, args ) =>
+		{
+			args.SetObserved();
+
+			ShowFatalError( null, args.Exception );
+		};
+
 		Logger.WriteLine( "[App] App_Startup >>>" );
 
-		_mutex = new Mutex( true, MutexName, out var createdNew );
+		_refactoredMutex = new Mutex( true, RefactoredMutexName, out var createdNew );
 
 		if ( !createdNew )
 		{
@@ -118,81 +176,92 @@ public partial class App : Application
 		}
 		else
 		{
-			Misc.DisableThrottling();
+			_classicMutex = new Mutex( true, ClassicMutexName, out createdNew );
 
-			if ( !Directory.Exists( DocumentsFolder ) )
+			if ( !createdNew )
 			{
-				Directory.CreateDirectory( DocumentsFolder );
+				Logger.WriteLine( "[App] Classic MAIRA is currently running!" );
+
+				ShowFatalError( DataContext.DataContext.Instance.Localization[ "ClassicMAIRAIsRunning" ] );
 			}
-
-			Logger.Initialize();
-			SettingsFile.Initialize();
-			AdminBoxx.Initialize();
-			AudioManager.Initialize();
-			Simulator.Initialize();
-			DirectInput.Initialize();
-
-#if !ADMINBOXX
-
-			CloudService.Initialize();
-			Graph.Initialize();
-			Pedals.Initialize();
-			RacingWheel.Initialize();
-			Sounds.Initialize();
-			LFE.Initialize();
-			MultimediaTimer.Initialize();
-			RecordingManager.Initialize();
-			VirtualJoystick.Initialize();
-			GripOMeter.Initialize();
-
-#endif
-
-			DirectInput.OnInput += OnInput;
-
-			GC.Collect();
-
-			MainWindow.Resources = Current.Resources;
-
-			MainWindow.Initialize();
-
-			var showWindow = true;
-
-			if ( DataContext.DataContext.Instance.Settings.AppStartMinimized )
+			else
 			{
-				MainWindow.WindowState = WindowState.Minimized;
+				Misc.DisableThrottling();
 
-				if ( DataContext.DataContext.Instance.Settings.AppMinimizeToSystemTray )
+				if ( !Directory.Exists( DocumentsFolder ) )
 				{
-					showWindow = false;
+					Directory.CreateDirectory( DocumentsFolder );
 				}
-			}
 
-			if ( showWindow )
-			{
-				MainWindow.Show();
-			}
-
-			if ( DataContext.DataContext.Instance.Settings.AdminBoxxConnectOnStartup )
-			{
-				AdminBoxx.Connect();
-			}
+				Logger.Initialize();
+				SettingsFile.Initialize();
+				AdminBoxx.Initialize();
+				AudioManager.Initialize();
+				Simulator.Initialize();
+				DirectInput.Initialize();
 
 #if !ADMINBOXX
 
-			if ( DataContext.DataContext.Instance.Settings.AppCheckForUpdates )
-			{
-				await CloudService.CheckForUpdates( false );
-			}
+				CloudService.Initialize();
+				Graph.Initialize();
+				Pedals.Initialize();
+				RacingWheel.Initialize();
+				Sounds.Initialize();
+				LFE.Initialize();
+				MultimediaTimer.Initialize();
+				RecordingManager.Initialize();
+				VirtualJoystick.Initialize();
+				GripOMeter.Initialize();
 
 #endif
 
-			_workerThread.Start();
+				DirectInput.OnInput += OnInput;
 
-			_timer.Start();
+				GC.Collect();
 
-			Simulator.Start();
+				MainWindow.Resources = Current.Resources;
 
-			GC.Collect();
+				MainWindow.Initialize();
+
+				var showWindow = true;
+
+				if ( DataContext.DataContext.Instance.Settings.AppStartMinimized )
+				{
+					MainWindow.WindowState = WindowState.Minimized;
+
+					if ( DataContext.DataContext.Instance.Settings.AppMinimizeToSystemTray )
+					{
+						showWindow = false;
+					}
+				}
+
+				if ( showWindow )
+				{
+					MainWindow.Show();
+				}
+
+				if ( DataContext.DataContext.Instance.Settings.AdminBoxxConnectOnStartup )
+				{
+					AdminBoxx.Connect();
+				}
+
+#if !ADMINBOXX
+
+				if ( DataContext.DataContext.Instance.Settings.AppCheckForUpdates )
+				{
+					await CloudService.CheckForUpdates( false );
+				}
+
+#endif
+
+				_workerThread.Start();
+
+				_timer.Start();
+
+				Simulator.Start();
+
+				GC.Collect();
+			}
 		}
 
 		Logger.WriteLine( "[App] <<< App_Startup" );
@@ -890,14 +959,14 @@ public partial class App : Application
 
 			// steering effects understeer strength
 
-			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsUndersteerStrength += 0.05f;
+				settings.SteeringEffectsUndersteerWheelVibrationStrength += 0.05f;
 			}
 
-			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsUndersteerStrength -= 0.05f;
+				settings.SteeringEffectsUndersteerWheelVibrationStrength -= 0.05f;
 			}
 
 			// steering effects understeer warning threshold
@@ -926,38 +995,38 @@ public partial class App : Application
 
 			// steering effects understeer curve
 
-			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsUndersteerCurve += 0.05f;
+				settings.SteeringEffectsUndersteerWheelVibrationCurve += 0.05f;
 			}
 
-			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsUndersteerCurve -= 0.05f;
+				settings.SteeringEffectsUndersteerWheelVibrationCurve -= 0.05f;
 			}
 
 			// steering effects understeer warning frequency
 
-			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWarningFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationWarningFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsUndersteerWarningFrequency += 1f;
+				settings.SteeringEffectsUndersteerWheelVibrationWarningFrequency += 1f;
 			}
 
-			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWarningFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationWarningFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsUndersteerWarningFrequency -= 1f;
+				settings.SteeringEffectsUndersteerWheelVibrationWarningFrequency -= 1f;
 			}
 
 			// steering effects understeer frequency
 
-			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsUndersteerFrequency += 1f;
+				settings.SteeringEffectsUndersteerWheelVibrationFrequency += 1f;
 			}
 
-			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsUndersteerFrequency -= 1f;
+				settings.SteeringEffectsUndersteerWheelVibrationFrequency -= 1f;
 			}
 
 			// pedals clutch strength 1 knob
