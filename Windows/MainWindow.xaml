@@ -439,7 +439,9 @@
 
                     <StackPanel Margin="0,10,0,10">
 
+
                         <GroupBox Header="{Binding Localization[UndersteerCalibrationFiles]}">
+
 
                             <StackPanel>
 
@@ -545,6 +547,7 @@
 
                                 </Grid>
 
+
                             </StackPanel>
 
                         </GroupBox>
@@ -568,6 +571,7 @@
                                     <controls:MairaKnob Grid.Column="4" Title="{Binding Localization[Curve]}" Value="{Binding Settings.SteeringEffectsUndersteerPedalVibrationCurve, Mode=TwoWay}" ValueString="{Binding Settings.SteeringEffectsUndersteerPedalVibrationCurveString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.01" RotationMultiplier="10" ContextSwitches="{Binding Settings.SteeringEffectsUndersteerPedalVibrationCurveContextSwitches}" PlusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationCurvePlusButtonMappings}" MinusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationCurveMinusButtonMappings}" ShowCurve="True" DefaultValue="0"/>
 
                                 </Grid>
+
 
                             </StackPanel>
 
@@ -1365,6 +1369,134 @@
 
             </TabItem>
 
+            <TabItem x:Name="WindSimulator_TabItem" Header="{Binding Localization[Wind]}" Tag="WindTab" Visibility="{Binding Settings.ShowWindSimulatorTab}">
+
+                <StackPanel Background="#FF333333">
+
+                    <Label x:Name="Arduino_Connected_Label" Content="Wind Simulator Device Not Found" Background="Red"  HorizontalContentAlignment="Center" FontWeight="Bold"/>
+
+                    <StackPanel x:Name="Wind_Main_StackPanel" Margin="10,10,10,20">
+
+                        <Grid x:Name="Wind_Grid"/>
+
+
+
+                    </StackPanel>
+
+                    <Grid Margin="0,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <GroupBox Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2" Margin="0,0,0,0" Header="{Binding Localization[Wind_Gloable]}" HorizontalAlignment="Stretch">
+                            <StackPanel Orientation="Horizontal">
+                                <controls:MairaSwitch Title="{Binding Localization[WindSimulatorEnabled]}" IsOn="{Binding Settings.WindSimulationEnabled, Mode=TwoWay}"  LabelPosition="Top"  />
+                                <controls:MairaKnob Width="200" HorizontalAlignment="Stretch" Title="{Binding Localization[Wind_MinSpeed]}" Value="{Binding Settings.WindSimulationMinimumSpeed, Mode=TwoWay}" ValueString="{Binding Settings.WindSimulationMinimumSpeedString}" SmallValueChangeStep="1" LargeValueChangeStep="1" RotationMultiplier="1" DefaultValue="0"/>
+                                <controls:MairaKnob Width="200" Title="{Binding Localization[Wind_Scale]}" Value="{Binding Settings.WindSimulationScaleFactor, Mode=TwoWay}" ValueString="{Binding Settings.WindSimulationScaleFactorString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.05" RotationMultiplier="10" DefaultValue="0.85"/>
+                            </StackPanel>
+                        </GroupBox>
+                        <GroupBox Header="{Binding Localization[WindSimulatorFanPower]}"
+                                  Margin="0,0,0,0"
+                                  VerticalAlignment="Center" 
+                                  Height="299" 
+                                  HorizontalAlignment="Stretch" 
+                                  
+                                  Grid.ColumnSpan="2"
+                                  Grid.Column="0"
+                                  Grid.Row="1">
+
+                            <StackPanel HorizontalAlignment="Stretch" 
+                                        Orientation="Horizontal" 
+                                        Margin="0,6,0,0">
+
+
+                                <!-- Slider + TextBox Pairs -->
+
+                                <controls:MairaWindSlider TargetSpeedKPH="{Binding Settings.WindSimulationSpeedKPHOne, Mode=TwoWay}"
+                                                          FanPower="{Binding Settings.WindSimulationFanPowerOne, Mode=TwoWay}"
+                                                          IdNumber="0"
+                                                          Tag="FanPower"></controls:MairaWindSlider>
+
+                                <controls:MairaWindSlider TargetSpeedKPH="{Binding Settings.WindSimulationSpeedKPHTwo, Mode=TwoWay}"
+                                                          FanPower="{Binding Settings.WindSimulationFanPowerTwo, Mode=TwoWay}"
+                                                          IdNumber="1"
+                                                          Tag="FanPower"></controls:MairaWindSlider>
+
+                                <controls:MairaWindSlider TargetSpeedKPH="{Binding Settings.WindSimulationSpeedKPHThree, Mode=TwoWay}"
+                                                            FanPower="{Binding Settings.WindSimulationFanPowerThree, Mode=TwoWay}"
+                                                          IdNumber="2"
+                                                          Tag="FanPower"></controls:MairaWindSlider>
+
+                                <controls:MairaWindSlider TargetSpeedKPH="{Binding Settings.WindSimulationSpeedKPHFour, Mode=TwoWay}"
+                                                          FanPower="{Binding Settings.WindSimulationFanPowerFour, Mode=TwoWay}"
+                                                          IdNumber="3"></controls:MairaWindSlider>
+
+                                <controls:MairaWindSlider TargetSpeedKPH="{Binding Settings.WindSimulationSpeedKPHFive, Mode=TwoWay}"
+                                                          FanPower="{Binding Settings.WindSimulationFanPowerFive, Mode=TwoWay}"
+                                                          IdNumber="4"
+                                                          Tag="FanPower"></controls:MairaWindSlider>
+
+                                <controls:MairaWindSlider TargetSpeedKPH="{Binding Settings.WindSimulationSpeedKPHSix, Mode=TwoWay}"
+                                                          FanPower="{Binding Settings.WindSimulationFanPowerSix, Mode=TwoWay}"
+                                                          IdNumber="5"
+                                                          Tag="FanPower"></controls:MairaWindSlider>
+
+                                <controls:MairaWindSlider TargetSpeedKPH="{Binding Settings.WindSimulationSpeedKPHSeven, Mode=TwoWay}"
+                                                          FanPower="{Binding Settings.WindSimulationFanPowerSeven, Mode=TwoWay}"
+                                                          IdNumber="6"
+                                                          Tag="FanPower"></controls:MairaWindSlider>
+
+                                <controls:MairaWindSlider TargetSpeedKPH="{Binding Settings.WindSimulationSpeedKPHEight, Mode=TwoWay}"
+                                                          FanPower="{Binding Settings.WindSimulationFanPowerEight, Mode=TwoWay}"
+                                                          IdNumber="7"
+                                                          Tag="FanPower"></controls:MairaWindSlider>
+
+                                <controls:MairaWindSlider TargetSpeedKPH="{Binding Settings.WindSimulationSpeedKPHNine, Mode=TwoWay}"
+                                                          FanPower="{Binding Settings.WindSimulationFanPowerNine, Mode=TwoWay}"
+                                                          IdNumber="8"
+                                                          Tag="FanPower"></controls:MairaWindSlider>
+
+                                <controls:MairaWindSlider TargetSpeedKPH="{Binding Settings.WindSimulationSpeedKPHTen, Mode=TwoWay}"
+                                                          FanPower="{Binding Settings.WindSimulationFanPowerTen, Mode=TwoWay}"
+                                                          IdNumber="9"
+                                                          Tag="FanPower"></controls:MairaWindSlider>
+
+
+
+                                <StackPanel Orientation="Vertical" Margin="0,0">
+                                    <Label Content="Speed KPH"/>
+
+                                    <controls:MairaSwitch Height="30" Margin="0,130" IsOn="{Binding Settings.WindSimulatorPreviewEnabled, Mode=TwoWay}" Title="{Binding Localization[Wind_Preview]}"/>
+                                </StackPanel>
+
+
+
+
+
+
+                            </StackPanel>
+                        </GroupBox>
+
+                        <GroupBox Header="{Binding Localization[SetupWizardWind]}" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                            <StackPanel Orientation="Horizontal">
+                                <controls:MairaKnob Title="{Binding Localization[WindLowPower]}" Margin="5,0" Value="{Binding Settings.WindSimulatorSetupWizardLow, Mode=TwoWay}" ValueString="{Binding Settings.WindSimulatorSetupWizardLowString}" SmallValueChangeStep="1" LargeValueChangeStep="2" Width="200"></controls:MairaKnob>
+                                <controls:MairaKnob Title="{Binding Localization[WindHighPower]}" Margin="5,0" Value="{Binding Settings.WindSimulatorSetupWizardHigh, Mode=TwoWay}" ValueString="{Binding Settings.WindSimulatorSetupWizardHighString}" SmallValueChangeStep="1" LargeValueChangeStep="2" Width="200"></controls:MairaKnob>
+                                <controls:MairaKnob Title="{Binding Localization[WindCurveFactor]}" Margin="5,0" Value="{Binding Settings.WindSimulatorSetupWizardCurve, Mode=TwoWay}" ValueString="{Binding Settings.WindSimulatorSetupWizardCurveString}" SmallValueChangeStep="0.001" LargeValueChangeStep="0.002" Width="200"></controls:MairaKnob>
+                                <controls:MairaButton Title="{Binding Localization[CalculateWind]}" Margin="5,0" Click="StartSetupWizard_MairaButton_Click"/>
+                            </StackPanel>
+                        </GroupBox>
+                    </Grid>
+
+
+                </StackPanel>
+
+            </TabItem>
+
             <TabItem x:Name="Graph_TabItem" Header="{Binding Localization[Graph]}">
 
                 <StackPanel Background="#FF333333">
@@ -1593,6 +1725,7 @@
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
                                     <RowDefinition Height="Auto"/>
+
                                 </Grid.RowDefinitions>
 
                                 <controls:MairaSwitch Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0" IsOn="{Binding Settings.AppTopmostWindowEnabled, Mode=TwoWay}" Title="{Binding Localization[TopmostWindow]}"/>
@@ -1622,6 +1755,26 @@
                                 <controls:MairaSwitch Grid.Column="0" Grid.ColumnSpan="3" IsOn="{Binding Settings.AppCheckForUpdates, Mode=TwoWay}" Title="{Binding Localization[CheckForUpdates]}" VerticalAlignment="Top"/>
                                 <controls:MairaButton Grid.Column="4" x:Name="App_CheckNow_MairaButton" Title="{Binding Localization[CheckNow]}" ButtonIcon="/MarvinsAIRARefactored;component/Artwork/ButtonIcons/button_icon_binoculars.png" Click="App_CheckNow_MairaButton_Click"/>
 
+                            </Grid>
+
+                        </GroupBox>
+
+                        <GroupBox Header="{Binding Localization[AdditionalFunctions]}">
+                            <Grid>
+
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="20"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+
+                                <controls:MairaSwitch Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0" IsOn="{Binding Settings.ShowWindSimulatorTab, Mode=TwoWay}" Title="{Binding Localization[ShowWindSimulatorTab]}"/>
                             </Grid>
 
                         </GroupBox>
