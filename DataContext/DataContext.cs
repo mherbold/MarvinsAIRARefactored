@@ -19,8 +19,6 @@ public class DataContext : INotifyPropertyChanged
 
 	public Localization Localization { get; }
 
-	
-
     private Settings _settings;
 	public Settings Settings
 	{
