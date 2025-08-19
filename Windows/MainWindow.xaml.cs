@@ -1060,8 +1060,14 @@ public partial class MainWindow : Window
 
 		Dispatcher.BeginInvoke(() =>
 		{
-			Misc.ApplyToTaggedElements(MainGrid, "WindTab", element => element.Visibility = settings._showWindSimulatorTab == true ? Visibility.Visible : Visibility.Collapsed);
-		});
+			Misc.ApplyToTaggedElements(MainGrid, "Wind_Tab", element => element.Visibility = settings.ShowWindSimulatorTab == true ? Visibility.Visible : Visibility.Collapsed);
+            Misc.ApplyToTaggedElements(MainGrid, "AdminBoxx_Tab", element => element.Visibility = settings.ShowAdminBoxxTab == true ? Visibility.Visible : Visibility.Collapsed);
+            Misc.ApplyToTaggedElements(MainGrid, "Sound_Tab", element => element.Visibility = settings.ShowSound_Tab == true ? Visibility.Visible : Visibility.Collapsed);
+            Misc.ApplyToTaggedElements(MainGrid, "SteeringEffects_Tab", element => element.Visibility = settings.ShowSteeringEffects_Tab == true ? Visibility.Visible : Visibility.Collapsed);
+            Misc.ApplyToTaggedElements(MainGrid, "Pedals_Tab", element => element.Visibility = settings.ShowPedals_Tab == true ? Visibility.Visible : Visibility.Collapsed);
+            
+         
+        });
 	}
 
 	public void OnWindSimPreviewChanged()

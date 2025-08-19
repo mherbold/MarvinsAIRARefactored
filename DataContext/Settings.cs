@@ -6337,22 +6337,97 @@ public class Settings : INotifyPropertyChanged
         }
     }
 
-	public bool _showWindSimulatorTab = false;
 
-	public bool ShowWindSimulatorTab
-	{
-		get => _showWindSimulatorTab;
-		set
-		{
-			if (value !=  _showWindSimulatorTab)
-			{
-				_showWindSimulatorTab = value;
-				OnPropertyChanged();
-				
-			}
+    #endregion
+
+    #region Tabs
+
+    public bool _showWindSimulatorTab = false;
+
+    public bool ShowWindSimulatorTab
+    {
+        get => _showWindSimulatorTab;
+        set
+        {
+            if (value != _showWindSimulatorTab)
+            {
+                _showWindSimulatorTab = value;
+                OnPropertyChanged();
+
+            }
             App.Instance?.MainWindow.UpdateTabs(); //update the tabs for the app
         }
-	}
+    }
+
+    public bool _showAdminBoxxTab = false;
+
+    public bool ShowAdminBoxxTab
+    {
+        get => _showAdminBoxxTab;
+        set
+        {
+            if (value != _showAdminBoxxTab)
+            {
+                _showAdminBoxxTab = value;
+                OnPropertyChanged();
+
+            }
+            App.Instance?.MainWindow.UpdateTabs(); //update the tabs for the app
+        }
+    }
+
+    public bool _showSound_Tab = false;
+
+    public bool ShowSound_Tab
+    {
+        get => _showSound_Tab;
+        set
+        {
+            if (value != _showSound_Tab)
+            {
+                _showSound_Tab = value;
+                OnPropertyChanged();
+
+            }
+            App.Instance?.MainWindow.UpdateTabs(); //update the tabs for the app
+        }
+    }
+
+    public bool _showSteeringEffects_Tab = false;
+
+    public bool ShowSteeringEffects_Tab
+    {
+        get => _showSteeringEffects_Tab;
+        set
+        {
+            if (value != _showSteeringEffects_Tab)
+            {
+                _showSteeringEffects_Tab = value;
+                OnPropertyChanged();
+
+            }
+            App.Instance?.MainWindow.UpdateTabs(); //update the tabs for the app
+        }
+    }
+
+    public bool _showPedals_Tab = false;
+
+    public bool ShowPedals_Tab
+    {
+        get => _showPedals_Tab;
+        set
+        {
+            if (value != _showPedals_Tab)
+            {
+                _showPedals_Tab = value;
+                OnPropertyChanged();
+
+            }
+            App.Instance?.MainWindow.UpdateTabs(); //update the tabs for the app
+        }
+    }
+
+    
     #endregion
 
     #region App - Check for updates

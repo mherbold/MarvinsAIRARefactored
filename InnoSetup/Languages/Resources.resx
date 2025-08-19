@@ -1165,7 +1165,7 @@
     <value>These are the folks who have generously contributed some of their spare time, to run steering effects calibrations on some of their favorite cars, and to upload those calibration files!</value>
     <comment>Contribute</comment>
   </data>
- <data name="Wind" xml:space="preserve">
+  <data name="Wind" xml:space="preserve">
     <value>Wind</value>
   </data>
   <data name="Wind_MinSpeed" xml:space="preserve">
@@ -1206,5 +1206,17 @@
   </data>
   <data name="ShowWindSimulatorTab" xml:space="preserve">
     <value>Show Wind Simulator Tab</value>
+  </data>
+  <data name="ShowPedalsTab" xml:space="preserve">
+    <value>Show Pedals Tab</value>
+  </data>
+  <data name="ShowSteeringEffectsTab" xml:space="preserve">
+    <value>Show Steering Effects Tab</value>
+  </data>
+  <data name="ShowSoundTab" xml:space="preserve">
+    <value>Show Sound Tab</value>
+  </data>
+  <data name="ShowAdminBoxxTab" xml:space="preserve">
+    <value>Show Admin Boxx Tab</value>
   </data>
 </root>

@@ -433,7 +433,7 @@
 
             </TabItem>
 
-            <TabItem x:Name="SteeringEffects_TabItem" Header="{Binding Localization[SteeringEffects]}">
+            <TabItem x:Name="SteeringEffects_TabItem" Header="{Binding Localization[SteeringEffects]}" Tag="SteeringEffects_Tab">
 
                 <StackPanel Background="#FF333333">
 
@@ -712,7 +712,7 @@
 
             </TabItem>
 
-            <TabItem x:Name="Pedals_TabItem" Header="{Binding Localization[Pedals]}">
+            <TabItem x:Name="Pedals_TabItem" Header="{Binding Localization[Pedals]}" Tag="Pedals_Tab">
 
                 <StackPanel Background="#FF333333">
 
@@ -1157,7 +1157,7 @@
 
             </TabItem>
 
-            <TabItem x:Name="Sounds_TabItem" Header="{Binding Localization[Sounds]}">
+            <TabItem x:Name="Sounds_TabItem" Header="{Binding Localization[Sounds]}" Tag="Sound_Tab">
 
                 <StackPanel Background="#FF333333">
 
@@ -1280,7 +1280,7 @@
 
             </TabItem>
 
-            <TabItem x:Name="AdminBoxx_TabItem" Header="{Binding Localization[AdminBoxx]}">
+            <TabItem x:Name="AdminBoxx_TabItem" Header="{Binding Localization[AdminBoxx]}" Tag="AdminBoxx_Tab">
 
                 <StackPanel Background="#FF333333">
 
@@ -1369,7 +1369,7 @@
 
             </TabItem>
 
-            <TabItem x:Name="WindSimulator_TabItem" Header="{Binding Localization[Wind]}" Tag="WindTab" Visibility="{Binding Settings.ShowWindSimulatorTab}">
+            <TabItem x:Name="WindSimulator_TabItem" Header="{Binding Localization[Wind]}" Tag="Wind_Tab" Visibility="{Binding Settings.ShowWindSimulatorTab}">
 
                 <StackPanel Background="#FF333333">
 
@@ -1772,9 +1772,17 @@
 
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
                                 </Grid.RowDefinitions>
 
                                 <controls:MairaSwitch Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3" Margin="0" IsOn="{Binding Settings.ShowWindSimulatorTab, Mode=TwoWay}" Title="{Binding Localization[ShowWindSimulatorTab]}"/>
+                                <controls:MairaSwitch Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0" IsOn="{Binding Settings.ShowAdminBoxxTab, Mode=TwoWay}" Title="{Binding Localization[ShowAdminBoxxTab]}"/>
+                                <controls:MairaSwitch Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0" IsOn="{Binding Settings.ShowSound_Tab, Mode=TwoWay}" Title="{Binding Localization[ShowSoundTab]}"/>
+                                <controls:MairaSwitch Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0" IsOn="{Binding Settings.ShowSteeringEffects_Tab, Mode=TwoWay}" Title="{Binding Localization[ShowSteeringEffectsTab]}"/>
+                                <controls:MairaSwitch Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="3" Margin="0,10,0,0" IsOn="{Binding Settings.ShowPedals_Tab, Mode=TwoWay}" Title="{Binding Localization[ShowPedalsTab]}"/>
                             </Grid>
 
                         </GroupBox>
