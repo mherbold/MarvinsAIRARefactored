@@ -30,17 +30,17 @@ namespace MarvinsAIRARefactored.Components
 
         readonly ArduinoConnection arduinoConnection = new(handshake);
 
-        private readonly IRacingSdk _irsdk;
-
+        
+        private Simulator _sim;
     
         // private Settings _settings;
         private bool _arduinoEnabled = false;
+
+        private float _timeOut = 0;
         public WindSimulator()
         {
-            _irsdk = App.Instance?.Simulator.IRSDK ?? throw new ArgumentNullException("IRSDK is null");
-
-            _irsdk.OnSessionInfo += Irsdk_OnSessionInfo;
-            _irsdk.OnTelemetryData += Irsdk_OnTelemetryData;
+            _sim = App.Instance?.Simulator ?? throw new ArgumentNullException("IRSDK is null");
+            _sim.IRSDK.OnTelemetryData += Irsdk_OnTelemetryData;
 
             App.Instance.Exit += Instance_Exit;
 
@@ -72,6 +72,14 @@ namespace MarvinsAIRARefactored.Components
         private App _app;
         private void UpdateFanPowers(int leftFanPower, int rightFanPower)
         {
+            _timeOut -= 0.25f; // Decrease timeout by 250ms
+
+            if (_timeOut <= 0)
+            {
+                leftFanPower = 0;
+                rightFanPower = 0;
+            }
+
             if (arduinoIsConnected)
             {
                 if (_arduinoEnabled)
@@ -133,7 +141,6 @@ namespace MarvinsAIRARefactored.Components
         private (int leftFan, int rightFan) CalculateFanPower(float speed)
         {
            
-
             int index = Array.FindIndex(DataContext.DataContext.Instance.Settings.WindSimulationSpeedKPH, x=> x > speed);
 
             if (index == -1)
@@ -184,49 +191,34 @@ namespace MarvinsAIRARefactored.Components
 
         private void Irsdk_OnTelemetryData()
         {
-            if (_isReplay)
-                return; // don't do anything in replay mode
+            _timeOut = 2;
 
-            var velocityY = _irsdk.Data.GetFloat("VelocityY", 0); // positive = turning right, negative = turning left
-            var velocityX = _irsdk.Data.GetFloat("VelocityX", 0); // positive = forward, negative = backwards
+            if (_sim.IsReplayPlaying)
+            {
+                _fanPower.left = 0;
+                _fanPower.right = 0;
+                return;
+            }
+
+            var velocityY = _sim.VelocityX;
+            var velocityX = _sim.VelocityY;
 
             var z = Math.Max(0, velocityX);
             var lx = Math.Max(0, -velocityY);
             var rx = Math.Max(0, velocityY);
+            z += lx;
+            z += rx;
 
-            //   if (!settings.curve)
-            {
-                z += lx;
-                z += rx;
-
-                lx = 0;
-                rx = 0;
-            }
-
-//            _settings
-            //   if (settings.units == Settings.Units.Imperial)
-            {
-                z *= MPS_TO_MPH;
-                lx *= MPS_TO_MPH;
-                rx *= MPS_TO_MPH;
-            }
-            // else
-            {
-  //              z *= MPS_TO_KPH;
-    ///            lx *= MPS_TO_KPH;
-       //         rx *= MPS_TO_KPH;
-            }
+            lx = 0;
+            rx = 0;
+            z *= MPS_TO_KPH;
+            lx *= MPS_TO_KPH;
+            rx *= MPS_TO_KPH;
 
             _fanPower = CalculateFanPower((float)Math.Sqrt(Math.Max(0, (lx * lx) - (rx * rx) + (z * z))));
         }
 
-        private bool _isReplay = false;
-        private void Irsdk_OnSessionInfo()
-        {
-            _isReplay = (_irsdk.Data.SessionInfo.WeekendInfo.SimMode != "full");
-        }
 
-      
 
         private void ArduinoConnection_ArduinoDisconnected(object connection, ArduinoConnection.ConnectionEventArgs connectionInformation)
         {
