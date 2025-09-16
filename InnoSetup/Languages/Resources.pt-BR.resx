@@ -135,9 +135,6 @@
     <value>Volante</value>
     <comment>Tab item</comment>
   </data>
-  <data name="RacingWheel_UC" xml:space="preserve">
-    <value>Volante</value>
-  </data>
   <data name="SteeringDevice" xml:space="preserve">
     <value>Dispositivo</value>
     <comment>Racing wheel</comment>
@@ -246,12 +243,6 @@
     <value>Taxa de Compressão</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="Device_UC" xml:space="preserve">
-    <value>Dispositivo</value>
-  </data>
-  <data name="OverallStrength_UC" xml:space="preserve">
-    <value>Intensidade Geral</value>
-  </data>
   <data name="AutoMargin" xml:space="preserve">
     <value>Margem Automática</value>
     <comment>Racing wheel</comment>
@@ -267,9 +258,6 @@
   <data name="PeakForce" xml:space="preserve">
     <value>Intensidade de Pico</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="AutoMaxForce" xml:space="preserve">
-    <value>Intensidade Automática</value>
   </data>
   <data name="OtherFeatures_UC" xml:space="preserve">
     <value>OUTRAS FUNCIONALIDADES</value>
@@ -1154,6 +1142,9 @@
   <data name="Algorithm_UC" xml:space="preserve">
     <value>ALGORITMO</value>
   </data>
+  <data name="AutoMaxForce" xml:space="preserve">
+    <value>Intensidade Automática</value>
+  </data>
   <data name="ClutchSlip" xml:space="preserve">
     <value>Ponto da Embreagem</value>
   </data>
@@ -1172,11 +1163,11 @@
   <data name="Pedals" xml:space="preserve">
     <value>Pedais</value>
   </data>
-  <data name="WheelLock" xml:space="preserve">
-    <value>Batente Virtual</value>
-  </data>
   <data name="WheelSpin" xml:space="preserve">
     <value>Patinagem das Rodas</value>
+  </data>
+  <data name="WheelLock" xml:space="preserve">
+    <value>Batente Virtual</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
     <value>Nível de Aderência</value>
