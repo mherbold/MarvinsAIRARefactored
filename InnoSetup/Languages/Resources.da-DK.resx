@@ -1116,6 +1116,9 @@
   <data name="Pedals" xml:space="preserve">
     <value>Pedaler</value>
   </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Hjulspin</value>
+  </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Hjul lås</value>
   </data>
