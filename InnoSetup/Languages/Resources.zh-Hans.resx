@@ -836,6 +836,10 @@
     <value>启用按键绑定设置更新提示信息</value>
     <comment>Racing wheel</comment>
   </data>
+  <data name="UndersteerEffect" xml:space="preserve">
+    <value>转向不足效果</value>
+    <comment>Steering effects</comment>
+  </data>
   <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
     <value>你当前未在向心的赛道</value>
     <comment>Steering effects</comment>
@@ -992,10 +996,6 @@
     <value>这些转向效果校准文件为慷慨的贡献者在他们所偏好的车辆上测试和体验后提供</value>
     <comment>Contribute</comment>
   </data>
-  <data name="UndersteerEffect" xml:space="preserve">
-    <value>转向不足效果</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="Algorithm_UC" xml:space="preserve">
     <value>算法</value>
   </data>
@@ -1032,11 +1032,11 @@
   <data name="Pedals" xml:space="preserve">
     <value>踏板</value>
   </data>
-  <data name="WheelLock" xml:space="preserve">
-    <value>车轮锁死</value>
-  </data>
   <data name="WheelSpin" xml:space="preserve">
     <value>车轮打滑</value>
+  </data>
+  <data name="WheelLock" xml:space="preserve">
+    <value>车轮锁死</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
     <value>抓地力测量计</value>
