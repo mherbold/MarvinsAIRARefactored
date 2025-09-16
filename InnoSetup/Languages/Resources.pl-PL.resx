@@ -874,29 +874,10 @@
   <data name="Pedals" xml:space="preserve">
     <value>Pedały</value>
   </data>
-  <data name="WheelLock" xml:space="preserve">
-    <value>Zblokowane Koła</value>
-  </data>
   <data name="WheelSpin" xml:space="preserve">
     <value>Poślizg kół</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MultiCompression" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiSlew" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="EnableSoftLimiter" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiDetailGain" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiSmoothing" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiAdjust" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="WheelLock" xml:space="preserve">
+    <value>Zblokowane Koła</value>
   </data>
 <data name="RacingFriction"><value /></data><data name="NotOnCentripetalCircuitTrack"><value /></data><data name="RunCalibration"><value /></data><data name="StopCalibration"><value /></data><data name="SteeringWheelLeft"><value /></data><data name="SteeringWheelCenter"><value /></data><data name="SteeringWheelRight"><value /></data><data name="SteeringWheel90Left"><value /></data><data name="MinThrottle"><value /></data><data name="MaxThrottle"><value /></data><data name="ShiftUp"><value /></data><data name="ShiftDown"><value /></data><data name="MinBrake"><value /></data><data name="MaxBrake"><value /></data><data name="NotCalibrating"><value /></data><data name="ResetCalibration"><value /></data><data name="ShowGripOMeter"><value /></data><data name="MakeGripOMeterDraggable"><value /></data><data name="GripOMeter_UC"><value /></data><data name="GripOMeterScale"><value /></data><data name="ResetGripOMeter"><value /></data><data name="UndersteerWheelVibrationEffect_UC"><value /></data><data name="Progress:"><value>Postęp:</value></data><data name="CalibrationFileNotSelected"><value>[Plik kalibracji nie wybrano]</value></data><data name="ParkedEffects_UC"><value /></data><data name="ForceFeedbackStrength"><value /></data><data name="WheelCenteringStrength"><value /></data><data name="CenterWheelWhileRacing"><value /></data><data name="CenterWheelWhileParked"><value /></data><data name="ParkedFriction"><value /></data><data name="ParkedWheelCenteringStrength"><value /></data><data name="CurrentCarSetup"><value /></data><data name="UndersteerPedalVibrationEffect_UC"><value /></data><data name="ErrorTitle"><value /></data><data name="Details"><value>Szczegóły</value></data><data name="ClassicMAIRAIsRunning"><value /></data><data name="ExceptionThrown"><value /></data><data name="KPHUnits"><value /></data><data name="CalibrationFileContributors"><value>Współautorzy plików kalibracji</value></data><data name="CalibrationFilesText"><value /></data><data name="DegreesPerSecond"><value /></data><data name="CalibrationFile_UC"><value /></data><data name="Understeer_UC"><value>PODSTEROWNOŚĆ</value></data><data name="Oversteer_UC"><value>NADSTEROWNOŚĆ</value></data><data name="MinimumThreshold"><value /></data><data name="MaximumThreshold"><value /></data><data name="MinimumFrequency"><value /></data><data name="MaximumFrequency"><value /></data><data name="Calibration_UC"><value /></data><data name="VibrationPattern"><value /></data><data name="SineWave"><value>Sinusoida</value></data><data name="SquareWave"><value>Fala prostokątna</value></data><data name="TriangleWave"><value>Fala trójkątna</value></data><data name="SawtoothWaveIn"><value>Fala piłokształtna (narastająca)</value></data><data name="SawtoothWaveOut"><value>Fala piłokształtna (opadająca)</value></data><data name="DecreaseForce"><value /></data><data name="IncreaseForce"><value /></data><data name="UndersteerWheelConstantForceEffect_UC"><value>EFEKT STAŁEJ SIŁY NA KIEROWNICY (PODSTEROWNOŚĆ)</value></data><data name="Direction"><value /></data><data name="OversteerWheelVibrationEffect_UC"><value>EFEKT WIBRACJI KIEROWNICY (NADSTEROWNOŚĆ)</value></data><data name="OversteerWheelConstantForceEffect_UC"><value>EFEKT STAŁEJ SIŁY NA KIEROWNICY (NADSTEROWNOŚĆ)</value></data><data name="OversteerPedalVibrationEffect_UC"><value>EFEKT WIBRACJI PEDAŁU (NADSTEROWNOŚĆ)</value></data><data name="UndersteerEffect"><value>Efekt podsterowności</value></data><data name="OversteerEffect"><value>Efekt nadsterowności</value></data><data name="ConfigurationFileIsInvalid"><value /></data><data name="SpeechToText"><value>Rozpoznawanie mowy</value></data><data name="Overlay"><value>Nakładka</value></data><data name="OverlayWindow_UC"><value>OKNO NAKŁADKI</value></data><data name="ShowOverlayWindow"><value>Pokaż okno nakładki</value></data><data name="MakeOverlayWindowDraggable"><value>Uczyń okno nakładki możliwym do przeciągania</value></data><data name="ResetOverlayWindow"><value>Zresetuj pozycję okna nakładki</value></data><data name="OverlayWindowScale"><value>Skalowanie okna nakładki</value></data><data name="STT_Title"><value>Most MAIRA do rozpoznawania mowy</value></data><data name="STT_Hint"><value>Wybierz urządzenie przechwytywania dźwięku, a następnie kliknij przycisk Włącz.</value></data><data name="STT_Button"><value>Włącz rozpoznawanie mowy</value></data><data name="FFBDeviceNotSelected"><value>[Force Feedback urządzenie nie wybrano]</value></data><data name="ReadyToDonate"><value>Gotowy, aby przekazać darowiznę?</value></data><data name="CalibrationFileContributions_UC"><value>WKŁAD W PLIKI KALIBRACJI</value></data><data name="SpeechToText_UC"><value>ROZPOZNAWANIE MOWY</value></data><data name="Changelog"><value>Dziennik zmian</value></data><data name="GripOMeter"><value /></data></root>
