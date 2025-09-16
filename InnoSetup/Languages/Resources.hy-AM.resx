@@ -1135,6 +1135,9 @@
   <data name="Pedals" xml:space="preserve">
     <value>Ոտնակներ</value>
   </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Անիվների սահք</value>
+  </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Անիվների արգելափակում</value>
   </data>
