@@ -800,6 +800,33 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Racing wheel - Enable Soft Limiter
+
+	private bool _racingWheelEnableSoftLimiter = true;
+
+	public bool RacingWheelEnableSoftLimiter
+	{
+		get => _racingWheelEnableSoftLimiter;
+
+		set
+		{
+			if (value != _racingWheelEnableSoftLimiter)
+			{
+				_racingWheelEnableSoftLimiter = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.RacingWheel.UpdateAlgorithmPreview = true;
+		}
+	}
+
+	public ContextSwitches RacingWheelEnableSoftLimiterContextSwitches { get; set; } = new(true, true, false, false, false);
+
+	#endregion
+
 	#region Racing wheel - Total compression threshold
 
 	private float _racingWheelTotalCompressionThreshold = 0.65f;
@@ -900,6 +927,258 @@ public class Settings : INotifyPropertyChanged
 	public ContextSwitches RacingWheelTotalCompressionRateContextSwitches { get; set; } = new( true, true, false, false, false );
 	public ButtonMappings RacingWheelTotalCompressionRatePlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelTotalCompressionRateMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Multi-adjust simple compression
+
+	private float _racingWheelMultiCompression = 0f;
+
+	public float RacingWheelMultiCompression
+	{
+		get => _racingWheelMultiCompression;
+
+		set
+		{
+			value = MathF.Round(Math.Clamp(value, 0f, 1f), 2);
+
+			if (value != _racingWheelMultiCompression)
+			{
+				_racingWheelMultiCompression = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.RacingWheel.UpdateAlgorithmPreview = true;
+
+			if ( _racingWheelMultiCompression != 0f )
+			{
+				RacingWheelMultiCompressionString = $"{_racingWheelMultiCompression * 100f:F0}";
+			}
+			else
+			{
+				RacingWheelMultiCompressionString = DataContext.Instance.Localization[ "OFF" ];
+			}
+		}
+	}
+
+	private string _racingWheelMultiCompressionString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelMultiCompressionString
+	{
+		get => _racingWheelMultiCompressionString;
+
+		set
+		{
+			if (value != _racingWheelMultiCompressionString)
+			{
+				_racingWheelMultiCompressionString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches RacingWheelMultiCompressionContextSwitches { get; set; } = new(true, true, false, false, false);
+	public ButtonMappings RacingWheelMultiCompressionPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelMultiCompressionMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Multi-adjust simple slew reduction
+
+	private float _racingWheelMultiSlew = 0f;
+
+	public float RacingWheelMultiSlew
+	{
+		get => _racingWheelMultiSlew;
+
+		set
+		{
+			value = MathF.Round(Math.Clamp(value, 0f, 1f), 2);
+
+			if (value != _racingWheelMultiSlew)
+			{
+				_racingWheelMultiSlew = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.RacingWheel.UpdateAlgorithmPreview = true;
+
+			if ( _racingWheelMultiSlew != 0f )
+			{
+				RacingWheelMultiSlewString = $"{_racingWheelMultiSlew * 100f:F0}";
+			}
+			else
+			{
+				RacingWheelMultiSlewString = DataContext.Instance.Localization[ "OFF" ];
+			}
+		}
+	}
+
+	private string _racingWheelMultiSlewString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelMultiSlewString
+	{
+		get => _racingWheelMultiSlewString;
+
+		set
+		{
+			if (value != _racingWheelMultiSlewString)
+			{
+				_racingWheelMultiSlewString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches RacingWheelMultiSlewContextSwitches { get; set; } = new(true, true, false, false, false);
+	public ButtonMappings RacingWheelMultiSlewPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelMultiSlewMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Multi-adjust detail gain
+
+	private float _racingWheelMultiDetailGain = 0f;
+
+	public float RacingWheelMultiDetailGain
+	{
+		get => _racingWheelMultiDetailGain;
+
+		set
+		{
+			value = MathF.Round( Math.Clamp(value, -1f, 2f), 2 );
+
+			if (value != _racingWheelMultiDetailGain)
+			{
+				_racingWheelMultiDetailGain = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.RacingWheel.UpdateAlgorithmPreview = true;
+
+			RacingWheelMultiDetailGainString = $"{_racingWheelMultiDetailGain * 100f:F0}{DataContext.Instance.Localization["Percent"]}";
+		}
+	}
+
+	private string _racingWheelMultiDetailGainString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelMultiDetailGainString
+	{
+		get => _racingWheelMultiDetailGainString;
+
+		set
+		{
+			if (value != _racingWheelMultiDetailGainString)
+			{
+				_racingWheelMultiDetailGainString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches RacingWheelMultiDetailGainContextSwitches { get; set; } = new(true, true, false, false, false);
+	public ButtonMappings RacingWheelMultiDetailGainPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelMultiDetailGainMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Multi-adjust smoothing
+
+	private float _racingWheelMultiSmoothing = 0f;
+
+	public float RacingWheelMultiSmoothing
+	{
+		get => _racingWheelMultiSmoothing;
+
+		set
+		{
+			value = MathF.Round(Math.Clamp(value, 0f, 1f), 2);
+
+			if (value != _racingWheelMultiSmoothing)
+			{
+				_racingWheelMultiSmoothing = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.RacingWheel.UpdateAlgorithmPreview = true;
+
+			if ( _racingWheelMultiSmoothing != 0f )
+			{
+				RacingWheelMultiSmoothingString = $"{_racingWheelMultiSmoothing * 100f:F0}";
+			}
+			else
+			{
+				RacingWheelMultiSmoothingString = DataContext.Instance.Localization[ "OFF" ];
+			}
+		}
+	}
+
+	private string _racingWheelMultiSmoothingString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelMultiSmoothingString
+	{
+		get => _racingWheelMultiSmoothingString;
+
+		set
+		{
+			if (value != _racingWheelMultiSmoothingString)
+			{
+				_racingWheelMultiSmoothingString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches RacingWheelMultiSmoothingContextSwitches { get; set; } = new(true, true, false, false, false);
+	public ButtonMappings RacingWheelMultiSmoothingPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelMultiSmoothingMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Enable Multi-Adjust Soft Limiter
+
+	private bool _racingWheelMultiSoftLimiter = true;
+
+	public bool RacingWheelMultiSoftLimiter
+	{
+		get => _racingWheelMultiSoftLimiter;
+
+		set
+		{
+			if (value != _racingWheelMultiSoftLimiter)
+			{
+				_racingWheelMultiSoftLimiter = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.RacingWheel.UpdateAlgorithmPreview = true;
+		}
+	}
+
+	public ContextSwitches RacingWheelMultiSoftLimiterContextSwitches { get; set; } = new(true, true, false, false, false);
 
 	#endregion
 

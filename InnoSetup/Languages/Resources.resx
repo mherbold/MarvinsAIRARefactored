@@ -1277,4 +1277,28 @@
     <value>Grip-O-Meter</value>
     <comment>Steering effects</comment>
   </data>
+  <data name="MultiCompression" xml:space="preserve">
+    <value>General Torque Compression</value>
+    <comment>General Torque Compression</comment>
+  </data>
+  <data name="MultiSlew" xml:space="preserve">
+    <value>Decrease Slew Rate</value>
+    <comment>Decrease Slew Rate</comment>
+  </data>
+  <data name="EnableSoftLimiter" xml:space="preserve">
+    <value>Soft Clipping</value>
+    <comment>Soft Clipping</comment>
+  </data>
+  <data name="MultiDetailGain" xml:space="preserve">
+    <value>Detail Gain Adjustment Amount</value>
+    <comment>Detail Gain Adjustment Amount</comment>
+  </data>
+  <data name="MultiSmoothing" xml:space="preserve">
+    <value>Smoothing Amount</value>
+    <comment>Smoothing Amount</comment>
+  </data>
+  <data name="MultiAdjust" xml:space="preserve">
+    <value>Multi Adjustment Toolkit</value>
+    <comment>Multiple Adjustments</comment>
+  </data>
 </root>

@@ -653,6 +653,94 @@ public partial class App : Application
 				}
 			}
 
+			// racing wheel multi-adjust compression knob
+
+			if ( CheckMappedButtons( settings.RacingWheelMultiCompressionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelMultiCompression += 0.01f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiCompressionString );
+				}
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelMultiCompressionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelMultiCompression -= 0.01f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiCompressionString );
+				}
+			}
+
+			// racing wheel multi-adjust slew knob
+
+			if ( CheckMappedButtons( settings.RacingWheelMultiSlewPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelMultiSlew += 0.01f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiSlewString );
+				}
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelMultiSlewMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelMultiSlew -= 0.01f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiSlewString );
+				}
+			}
+
+			// racing wheel multi-adjust detail gain knob
+
+			if ( CheckMappedButtons( settings.RacingWheelMultiDetailGainPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelMultiDetailGain += 0.01f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiDetailGainString );
+				}
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelMultiDetailGainMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelMultiDetailGain -= 0.01f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiDetailGainString );
+				}
+			}
+
+			// racing wheel multi-adjust smoothing knob
+
+			if ( CheckMappedButtons( settings.RacingWheelMultiSmoothingPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelMultiSmoothing += 0.01f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiSmoothingString );
+				}
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelMultiSmoothingMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelMultiSmoothing -= 0.01f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiSmoothingString );
+				}
+			}
+
 			// racing wheel output minimum knob
 
 			if ( CheckMappedButtons( settings.RacingWheelOutputMinimumPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )

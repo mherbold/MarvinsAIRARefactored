@@ -193,6 +193,9 @@
     <value>Direksiyon</value>
     <comment>Tab item</comment>
   </data>
+  <data name="RacingWheel_UC" xml:space="preserve">
+    <value>Direksiyon</value>
+  </data>
   <data name="SteeringDevice" xml:space="preserve">
     <value>Direksiyon</value>
     <comment>Racing wheel</comment>
@@ -301,6 +304,12 @@
     <value>Sıkıştırma Oranı</value>
     <comment>Racing wheel</comment>
   </data>
+  <data name="Device_UC" xml:space="preserve">
+    <value>Cihaz</value>
+  </data>
+  <data name="OverallStrength_UC" xml:space="preserve">
+    <value>Ortalama Kuvvet</value>
+  </data>
   <data name="AutoMargin" xml:space="preserve">
     <value>Otomatik Marj</value>
     <comment>Racing wheel</comment>
@@ -316,6 +325,9 @@
   <data name="PeakForce" xml:space="preserve">
     <value>Maksimum Kuvvet</value>
     <comment>Racing wheel</comment>
+  </data>
+  <data name="AutoMaxForce" xml:space="preserve">
+    <value>Kuvveti Otomatik Ayarla</value>
   </data>
   <data name="OtherFeatures_UC" xml:space="preserve">
     <value>Diğer Özellikler</value>
@@ -1176,8 +1188,8 @@
     <value>Konuşmayı Metne Dönüştürmeyi Aktifleştir</value>
     <comment>Speech-to-text bridge</comment>
   </data>
-  <data name="Device_UC" xml:space="preserve">
-    <value>Cihaz</value>
+  <data name="Algorithm_UC" xml:space="preserve">
+    <value>Algoritma</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>Katkıda bulun</value>
@@ -1200,26 +1212,14 @@
   <data name="ABSEngaged" xml:space="preserve">
     <value>ABS Devrede</value>
   </data>
-  <data name="Algorithm_UC" xml:space="preserve">
-    <value>Algoritma</value>
-  </data>
   <data name="Amplitude" xml:space="preserve">
     <value>Genlik</value>
-  </data>
-  <data name="AutoMaxForce" xml:space="preserve">
-    <value>Kuvveti Otomatik Ayarla</value>
   </data>
   <data name="ClutchSlip" xml:space="preserve">
     <value>Debriyaj Kayması</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frekans</value>
-  </data>
-  <data name="OverallStrength_UC" xml:space="preserve">
-    <value>Ortalama Kuvvet</value>
-  </data>
-  <data name="RacingWheel_UC" xml:space="preserve">
-    <value>Direksiyon</value>
   </data>
   <data name="RPM" xml:space="preserve">
     <value>Devir</value>
@@ -1230,13 +1230,32 @@
   <data name="Pedals" xml:space="preserve">
     <value>Pedallar</value>
   </data>
-  <data name="WheelSpin" xml:space="preserve">
-    <value>Direksiyon Dönüş</value>
-  </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Direksiyon Kilidi</value>
   </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Direksiyon Dönüş</value>
+  </data>
   <data name="GripOMeter" xml:space="preserve">
     <value>Grip-O-Meter</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="MultiCompression" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MultiSlew" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="EnableSoftLimiter" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MultiDetailGain" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MultiSmoothing" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MultiAdjust" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
 </root>

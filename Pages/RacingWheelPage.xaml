@@ -286,6 +286,28 @@
                                 MinusButtonMappings="{Binding Settings.RacingWheelSlewCompressionRateMinusButtonMappings}"
                                 DefaultValue="0.65" />
 
+            <controls:MairaKnob x:Name="MultiCompression_MairaKnob"
+                                Grid.Column="2"
+                                Label="{Binding Localization[MultiCompression]}"
+                                Value="{Binding Settings.RacingWheelMultiCompression, Mode=TwoWay}"
+                                ValueString="{Binding Settings.RacingWheelMultiCompressionString}"
+                                StepSize="0.01"
+                                ContextSwitches="{Binding Settings.RacingWheelMultiCompressionContextSwitches}"
+                                PlusButtonMappings="{Binding Settings.RacingWheelMultiCompressionPlusButtonMappings}"
+                                MinusButtonMappings="{Binding Settings.RacingWheelMultiCompressionMinusButtonMappings}"
+                                DefaultValue="0" />
+
+            <controls:MairaKnob x:Name="MultiSlew_MairaKnob"
+                                Grid.Column="4"
+                                Label="{Binding Localization[MultiSlew]}"
+                                Value="{Binding Settings.RacingWheelMultiSlew, Mode=TwoWay}"
+                                ValueString="{Binding Settings.RacingWheelMultiSlewString}"
+                                StepSize="0.01"
+                                ContextSwitches="{Binding Settings.RacingWheelMultiSlewContextSwitches}"
+                                PlusButtonMappings="{Binding Settings.RacingWheelMultiSlewPlusButtonMappings}"
+                                MinusButtonMappings="{Binding Settings.RacingWheelMultiSlewMinusButtonMappings}"
+                                DefaultValue="0" />
+
         </Grid>
 
         <Grid x:Name="AlgorithmRowTwo_Grid"
@@ -298,6 +320,12 @@
                 <ColumnDefinition Width="40" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
+
+            <controls:MairaSwitch x:Name="EnableSoftLimiter_MairaSwitch"
+                                Grid.Column="0"
+                                Label="{Binding Localization[EnableSoftLimiter]}"
+                                IsOn="{Binding Settings.RacingWheelEnableSoftLimiter, Mode=TwoWay}"
+                                ContextSwitches="{Binding Settings.RacingWheelEnableSoftLimiterContextSwitches}" />
 
             <controls:MairaKnob x:Name="TotalCompressionThreshold_MairaKnob"
                                 Grid.Column="2"
@@ -320,6 +348,34 @@
                                 PlusButtonMappings="{Binding Settings.RacingWheelTotalCompressionRatePlusButtonMappings}"
                                 MinusButtonMappings="{Binding Settings.RacingWheelTotalCompressionRateMinusButtonMappings}"
                                 DefaultValue="0.75" />
+
+            <controls:MairaSwitch x:Name="EnableMultiSoftLimiter_MairaSwitch"
+                                Grid.Column="0"
+                                Label="{Binding Localization[EnableSoftLimiter]}"
+                                IsOn="{Binding Settings.RacingWheelMultiSoftLimiter, Mode=TwoWay}"
+                                ContextSwitches="{Binding Settings.RacingWheelMultiSoftLimiterContextSwitches}" />
+
+            <controls:MairaKnob x:Name="MultiDetailGain_MairaKnob"
+                                Grid.Column="2"
+                                Label="{Binding Localization[MultiDetailGain]}"
+                                Value="{Binding Settings.RacingWheelMultiDetailGain, Mode=TwoWay}"
+                                ValueString="{Binding Settings.RacingWheelMultiDetailGainString}"
+                                StepSize="0.01"
+                                ContextSwitches="{Binding Settings.RacingWheelMultiDetailGainContextSwitches}"
+                                PlusButtonMappings="{Binding Settings.RacingWheelMultiDetailGainPlusButtonMappings}"
+                                MinusButtonMappings="{Binding Settings.RacingWheelMultiDetailGainMinusButtonMappings}"
+                                DefaultValue="0" />
+
+            <controls:MairaKnob x:Name="MultiSmoothing_MairaKnob"
+                                Grid.Column="4"
+                                Label="{Binding Localization[MultiSmoothing]}"
+                                Value="{Binding Settings.RacingWheelMultiSmoothing, Mode=TwoWay}"
+                                ValueString="{Binding Settings.RacingWheelMultiSmoothingString}"
+                                StepSize="0.01"
+                                ContextSwitches="{Binding Settings.RacingWheelMultiSmoothingContextSwitches}"
+                                PlusButtonMappings="{Binding Settings.RacingWheelMultiSmoothingPlusButtonMappings}"
+                                MinusButtonMappings="{Binding Settings.RacingWheelMultiSmoothingMinusButtonMappings}"
+                                DefaultValue="0" />
 
         </Grid>
 
