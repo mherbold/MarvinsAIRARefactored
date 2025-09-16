@@ -592,30 +592,11 @@
   <data name="Pedals" xml:space="preserve">
     <value>Pedalen</value>
   </data>
-  <data name="WheelLock" xml:space="preserve">
-    <value>Blokkeren van een wiel</value>
-  </data>
   <data name="WheelSpin" xml:space="preserve">
     <value>Spinnen van de banden</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MultiCompression" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiSlew" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="EnableSoftLimiter" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiDetailGain" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiSmoothing" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiAdjust" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="WheelLock" xml:space="preserve">
+    <value>Blokkeren van een wiel</value>
   </data>
   <data name="InputTorque60Hz">
     <value />
