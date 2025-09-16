@@ -135,9 +135,6 @@
     <value>Direksiyon</value>
     <comment>Tab item</comment>
   </data>
-  <data name="RacingWheel_UC" xml:space="preserve">
-    <value>Direksiyon</value>
-  </data>
   <data name="SteeringDevice" xml:space="preserve">
     <value>Direksiyon</value>
     <comment>Racing wheel</comment>
@@ -246,12 +243,6 @@
     <value>Sıkıştırma Oranı</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="Device_UC" xml:space="preserve">
-    <value>Cihaz</value>
-  </data>
-  <data name="OverallStrength_UC" xml:space="preserve">
-    <value>Ortalama Kuvvet</value>
-  </data>
   <data name="AutoMargin" xml:space="preserve">
     <value>Otomatik Marj</value>
     <comment>Racing wheel</comment>
@@ -267,9 +258,6 @@
   <data name="PeakForce" xml:space="preserve">
     <value>Maksimum Kuvvet</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="AutoMaxForce" xml:space="preserve">
-    <value>Kuvveti Otomatik Ayarla</value>
   </data>
   <data name="OtherFeatures_UC" xml:space="preserve">
     <value>DIĞER ÖZELLIKLER</value>
@@ -1157,6 +1145,9 @@
   <data name="Amplitude" xml:space="preserve">
     <value>Genlik</value>
   </data>
+  <data name="AutoMaxForce" xml:space="preserve">
+    <value>Kuvveti Otomatik Ayarla</value>
+  </data>
   <data name="ClutchSlip" xml:space="preserve">
     <value>Debriyaj Kayması</value>
   </data>
@@ -1177,6 +1168,9 @@
   </data>
   <data name="Pedals" xml:space="preserve">
     <value>Pedallar</value>
+  </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Direksiyon Dönüş</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Direksiyon Kilidi</value>
