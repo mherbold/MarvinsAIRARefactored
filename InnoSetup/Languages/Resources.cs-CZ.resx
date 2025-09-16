@@ -1124,6 +1124,9 @@
   <data name="Pedals" xml:space="preserve">
     <value>Pedály</value>
   </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Prokluz kola</value>
+  </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Zablokování kola</value>
   </data>
