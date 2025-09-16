@@ -837,6 +837,10 @@
     <value>Включить сообщения об обновлении настроек ввода</value>
     <comment>Racing wheel</comment>
   </data>
+  <data name="UndersteerEffect" xml:space="preserve">
+    <value>Эффект андерстира</value>
+    <comment>Steering effects</comment>
+  </data>
   <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
     <value>Вы не находитесь на треке 'Centripetal Circuit'</value>
     <comment>Steering effects</comment>
@@ -993,10 +997,6 @@
     <value>Эти люди великодушно уделили своё время для проведения тестов, создания и загрузки файлов калибровки для их любимых машин.</value>
     <comment>Contribute</comment>
   </data>
-  <data name="UndersteerEffect" xml:space="preserve">
-    <value>Эффект андерстира</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="Algorithm_UC" xml:space="preserve">
     <value>АЛГОРИТМ</value>
   </data>
@@ -1035,6 +1035,9 @@
   </data>
   <data name="Pedals" xml:space="preserve">
     <value>Педали</value>
+  </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Пробуксовка колёс</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Блокировка колёс</value>
