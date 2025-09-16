@@ -1,110 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -126,7 +67,7 @@
     <comment>Tab item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value>Marvins Awesome iRacing App</value>
+    <value />
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
@@ -150,11 +91,11 @@
     <comment>Tab item</comment>
   </data>
   <data name="HeaderData_UC" xml:space="preserve">
-    <value>Header Daten</value>
+    <value>HEADER DATEN</value>
     <comment>Simulator</comment>
   </data>
   <data name="Language_UC" xml:space="preserve">
-    <value>Sprache</value>
+    <value>SPRACHE</value>
     <comment>App</comment>
   </data>
   <data name="DetailBooster" xml:space="preserve">
@@ -205,11 +146,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SessionInformation_UC" xml:space="preserve">
-    <value>Sitzungsinformation</value>
+    <value>SITZUNGSINFORMATION</value>
     <comment>Simulator</comment>
   </data>
   <data name="Simulator" xml:space="preserve">
-    <value>Simulator</value>
+    <value />
     <comment>Tab item</comment>
   </data>
   <data name="SimulatorNotRunning" xml:space="preserve">
@@ -221,11 +162,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="TelemetryData_UC" xml:space="preserve">
-    <value>Telemetrie Daten</value>
+    <value>TELEMETRIE DATEN</value>
     <comment>Simulator</comment>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Test</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
@@ -237,7 +178,7 @@
     <comment>App</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value> Nm</value>
+    <value />
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
@@ -245,7 +186,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
-    <value>AdminBoxx</value>
+    <value />
     <comment>Tab item</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
@@ -285,7 +226,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value> Nm/s</value>
+    <value />
     <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
@@ -293,11 +234,11 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
+    <value />
     <comment>Abbreviation for percent per Newton-meters</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value>%</value>
+    <value />
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="CompressionRate" xml:space="preserve">
@@ -339,7 +280,7 @@
     <value>Kollisionsschutz</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value> g</value>
+    <value />
     <comment>Abbreviation for g-force</comment>
   </data>
   <data name="GForce" xml:space="preserve">
@@ -359,7 +300,7 @@
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="ShockVelocityUnits" xml:space="preserve">
-    <value> m/s</value>
+    <value />
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
@@ -402,21 +343,22 @@
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value> Hz</value>
+    <value />
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
     <value>Frequenz</value>
   </data>
-  <data name="Amplitude_UC" xml:space="preserve">
-    <value>Amplitude</value>
+  <data name="Amplitude" xml:space="preserve">
+    <value />
+    <comment>Pedals</comment>
   </data>
   <data name="Minimum" xml:space="preserve">
-    <value>Minimum</value>
+    <value />
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
-    <value>Maximum</value>
+    <value />
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Curve" xml:space="preserve">
@@ -535,7 +477,7 @@
     <comment>AdminBoxx</comment>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
+    <value />
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -646,7 +588,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="AppWindow_UC" xml:space="preserve">
-    <value>App-Fenster</value>
+    <value>APP-FENSTER</value>
     <comment>App</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
@@ -654,7 +596,7 @@
     <comment>App</comment>
   </data>
   <data name="CloudService_UC" xml:space="preserve">
-    <value>Cloud-Dienst</value>
+    <value>CLOUD-DIENST</value>
     <comment>App</comment>
   </data>
   <data name="CheckNow" xml:space="preserve">
@@ -670,7 +612,7 @@
     <comment>Status</comment>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
-    <value>Buy Me a Coffee!</value>
+    <value />
     <comment>Contribute</comment>
   </data>
   <data name="DonationsText" xml:space="preserve">
@@ -694,11 +636,11 @@ Hier ist der Link zum Spenden:</value>
     <comment>Tab item</comment>
   </data>
   <data name="CodeContributions_UC" xml:space="preserve">
-    <value>Code-Unterstützung</value>
+    <value>CODE-UNTERSTÜTZUNG</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributions_UC" xml:space="preserve">
-    <value>Übersetzungen</value>
+    <value>ÜBERSETZUNGEN</value>
     <comment>Contribute</comment>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
@@ -758,7 +700,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value> Nm/ms</value>
+    <value />
     <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
@@ -789,11 +731,11 @@ Hier ist der Link zum Spenden:</value>
     <comment>Pedals</comment>
   </data>
   <data name="ZeAlanLeTwist" xml:space="preserve">
-    <value />
+    <value>Anstiegsrate und Gesamtkompression</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DiscordModerators_UC" xml:space="preserve">
-    <value>Discord Moderatoren</value>
+    <value>DISCORD MODERATOREN</value>
     <comment>Contribute</comment>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
@@ -836,11 +778,11 @@ Hier ist der Link zum Spenden:</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value>°</value>
+    <value />
     <comment>Abbreviation for degrees</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
-    <value>Gesamtlautstärke</value>
+    <value>GESAMTLAUTSTÄRKE</value>
     <comment>Sounds</comment>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
@@ -995,7 +937,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Error window</comment>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Details</value>
+    <value />
     <comment>Error window</comment>
   </data>
   <data name="ClassicMAIRAIsRunning" xml:space="preserve">
@@ -1019,7 +961,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Contribute</comment>
   </data>
   <data name="DegreesPerSecond" xml:space="preserve">
-    <value>°/s</value>
+    <value />
     <comment>Abbreviation for degrees per second</comment>
   </data>
   <data name="CalibrationFile_UC" xml:space="preserve">
@@ -1115,11 +1057,11 @@ Hier ist der Link zum Spenden:</value>
     <comment>Speech to text</comment>
   </data>
   <data name="Overlay" xml:space="preserve">
-    <value>Overlay</value>
+    <value />
     <comment>Speech to text</comment>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
-    <value>Overlay-Fenster</value>
+    <value>OVERLAY-FENSTER</value>
     <comment>Speech to text</comment>
   </data>
   <data name="ShowOverlayWindow" xml:space="preserve">
@@ -1162,59 +1104,136 @@ Hier ist der Link zum Spenden:</value>
     <value>Discord Moderatoren</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
-    <value>Einstellungen</value>
-  </data>
-  <data name="Simulator_UC" xml:space="preserve">
-    <value>Simulator</value>
+    <value>EINSTELLUNGEN</value>
   </data>
   <data name="Graph_UC" xml:space="preserve">
-    <value>Diagramm</value>
+    <value>DIAGRAMM</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>Sprache zu Text</value>
+    <value>SPRACHE ZU TEXT</value>
   </data>
-  <data name="ABSEngaged" xml:space="preserve">
-    <value>ABS Aktiv</value>
-    <comment>Pedal effects list, Sounds</comment>
+  <data name="ABSEngaged_UC" xml:space="preserve">
+    <value>ABS AKTIV</value>
   </data>
-  <data name="Amplitude" xml:space="preserve">
-    <value>Amplitude</value>
-    <comment>Pedals</comment>
+  <data name="Algorithm_UC" xml:space="preserve">
+    <value>ALGORITHMUS</value>
   </data>
-  <data name="ClutchSlip" xml:space="preserve">
-    <value>Kupplungsschlupf</value>
-    <comment>Pedal effects list</comment>
+  <data name="AutoMaxForce" xml:space="preserve">
+    <value>Automatische Kraft</value>
   </data>
-  <data name="Frequency" xml:space="preserve">
-    <value>Frequenz</value>
-    <comment>Pedals</comment>
+  <data name="Brake_UC" xml:space="preserve">
+    <value>BREMSE</value>
   </data>
-  <data name="RPM" xml:space="preserve">
-    <value>Drehzahl</value>
-    <comment>Pedal effects list</comment>
+  <data name="Calibration_UC" xml:space="preserve">
+    <value>KALIBRIERUNG</value>
   </data>
-  <data name="Sounds" xml:space="preserve">
-    <value>Audio</value>
-    <comment>Tab item</comment>
+  <data name="CalibrationFile_UC" xml:space="preserve">
+    <value>KALIBRIERUNGSDATEI</value>
   </data>
-  <data name="Pedals" xml:space="preserve">
-    <value>Pedale</value>
+  <data name="Clutch_UC" xml:space="preserve">
+    <value>KUPPLUNG</value>
   </data>
-  <data name="WheelLock" xml:space="preserve">
-    <value>Lenkeinschlag</value>
+  <data name="ClutchSlip_UC" xml:space="preserve">
+    <value>KUPPLUNGSSCHLUPF</value>
   </data>
-  <data name="WheelSpin" xml:space="preserve">
-    <value>Reifenschlupf</value>
+  <data name="CrashProtection_UC" xml:space="preserve">
+    <value>KOLLISIONSSCHUTZ</value>
   </data>
-  <data name="GripOMeter" xml:space="preserve">
-    <value>Grip-O-Meter</value>
+  <data name="CurbProtection_UC" xml:space="preserve">
+    <value>SCHUTZ BEI RANDSTEINEN</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MultiCompression" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="Device_UC" xml:space="preserve">
+    <value>AUSGABE-GERÄT</value>
   </data>
-  <data name="MultiSlew" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="Donate_UC" xml:space="preserve">
+    <value>SPENDEN</value>
+  </data>
+  <data name="Donors_UC" xml:space="preserve">
+    <value>SPENDER</value>
+  </data>
+  <data name="Frequency_UC" xml:space="preserve">
+    <value>FREQUENZ</value>
+  </data>
+  <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
+    <value>GANGWECHSEL - GANG EINLEGEN</value>
+  </data>
+  <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
+    <value>GANGWECHSEL - IN LEERLAUF SCHALTEN</value>
+  </data>
+  <data name="OtherFeatures_UC" xml:space="preserve">
+    <value>WEITERE FUNKTIONEN</value>
+  </data>
+  <data name="Output_UC" xml:space="preserve">
+    <value>AUSGABE</value>
+  </data>
+  <data name="OverallStrength_UC" xml:space="preserve">
+    <value>GESAMTKRAFT</value>
+  </data>
+  <data name="Oversteer_UC" xml:space="preserve">
+    <value>ÜBERSTEUERN</value>
+  </data>
+  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>ÜBERSTEUERN – PEDALVIBRATIONS-EFFEKT</value>
+  </data>
+  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>ÜBERSTEUERN – KONSTANTER LENKRADKRAFT-EFFEKT</value>
+  </data>
+  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>ÜBERSTEUERN – LENKRADVIBRATIONS-EFFEKT</value>
+  </data>
+  <data name="ParkedEffects_UC" xml:space="preserve">
+    <value>EFFEKTE BEI STEHENDEM FAHRZEUG</value>
+  </data>
+  <data name="Pedals_UC" xml:space="preserve">
+    <value>PEDALE</value>
+  </data>
+  <data name="Preview_UC" xml:space="preserve">
+    <value>VORSCHAU</value>
+  </data>
+  <data name="PrivateMessages_UC" xml:space="preserve">
+    <value>PRIVATE NACHRICHTEN</value>
+  </data>
+  <data name="RacingWheel_UC" xml:space="preserve">
+    <value>LENKRAD</value>
+  </data>
+  <data name="RPM_UC" xml:space="preserve">
+    <value>DREHZAHL</value>
+  </data>
+  <data name="Sounds_UC" xml:space="preserve">
+    <value>AUDIO</value>
+  </data>
+  <data name="SteeringEffects_UC" xml:space="preserve">
+    <value>LENKEFFEKTE</value>
+  </data>
+  <data name="SuperDonors_UC" xml:space="preserve">
+    <value>SUPER-SPENDER</value>
+  </data>
+  <data name="Switches_UC" xml:space="preserve">
+    <value>WEITERE EINSTELLUNGEN</value>
+  </data>
+  <data name="Throttle_UC" xml:space="preserve">
+    <value>GASPEDAL</value>
+  </data>
+  <data name="Understeer_UC" xml:space="preserve">
+    <value>UNTERSTEUERN</value>
+  </data>
+  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>UNTERSTEUERN – PEDALVIBRATIONS-EFFEKT</value>
+  </data>
+  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>UNTERSTEUERN – KONSTANTE LENKRADKRAFT</value>
+  </data>
+  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>UNTERSTEUERN – LENKRADVIBRATIONS-EFFEKT</value>
+  </data>
+  <data name="WheelLFE_UC" xml:space="preserve">
+    <value>LENKRAD LFE</value>
+  </data>
+  <data name="WheelLock_UC" xml:space="preserve">
+    <value>LENKEINSCHLAG</value>
+  </data>
+  <data name="WheelSpin_UC" xml:space="preserve">
+    <value>REIFENSCHLUPF</value>
   </data>
   <data name="EnableSoftLimiter" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
@@ -1225,7 +1244,19 @@ Hier ist der Link zum Spenden:</value>
   <data name="MultiSmoothing" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-  <data name="MultiAdjust" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="Contribute_UC">
+    <value>MITWIRKEN</value>
   </data>
-</root>
+  <data name="FFBDeviceNotSelected">
+    <value>[Force Feedback Gerät nicht ausgewählt]</value>
+  </data>
+  <data name="ReadyToDonate">
+    <value>Bereit zu spenden?</value>
+  </data>
+  <data name="CalibrationFileContributions_UC">
+    <value>BEITRÄGE ZUR KALIBRIERUNGSDATEI</value>
+  </data>
+  <data name="Changelog">
+    <value>Änderungsprotokoll</value>
+  </data>
+<data name="Amplitude_UC"><value /></data><data name="GripOMeter_UC"><value /></data><data name="Simulator_UC"><value /></data><data name="GripOMeter"><value /></data></root>

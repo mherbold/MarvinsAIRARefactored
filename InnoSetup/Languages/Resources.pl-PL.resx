@@ -1,110 +1,52 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -126,7 +68,7 @@
     <comment>Zakładka</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value>Marvin's Awesome iRacing App</value>
+    <value />
     <comment>Tytuł Okna</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
@@ -146,11 +88,11 @@
     <comment>Zakładka</comment>
   </data>
   <data name="HeaderData_UC" xml:space="preserve">
-    <value>Nagłówek</value>
+    <value>NAGŁÓWEK</value>
     <comment>Symulator</comment>
   </data>
   <data name="Language_UC" xml:space="preserve">
-    <value>Język</value>
+    <value>JĘZYK</value>
     <comment>Aplikacja</comment>
   </data>
   <data name="DetailBooster" xml:space="preserve">
@@ -189,7 +131,7 @@
     <value>Baza Kierownicy</value>
   </data>
   <data name="RacingWheel_UC" xml:space="preserve">
-    <value>Baza Kierownicy</value>
+    <value>BAZA KIEROWNICY</value>
     <comment>Zakładka</comment>
   </data>
   <data name="SteeringDevice" xml:space="preserve">
@@ -197,11 +139,11 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Reset</value>
+    <value>Resetuj</value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="SessionInformation_UC" xml:space="preserve">
-    <value>Informacje o Sesji</value>
+    <value>INFORMACJE O SESJI</value>
     <comment>Symulator</comment>
   </data>
   <data name="Simulator" xml:space="preserve">
@@ -217,11 +159,11 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="TelemetryData_UC" xml:space="preserve">
-    <value>Dane Telemetryczne</value>
+    <value>DANE TELEMETRYCZNE</value>
     <comment>Symulator</comment>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Test</value>
+    <value>Przetestuj</value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
@@ -233,7 +175,7 @@
     <comment>Aplikacja</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value> Nm</value>
+    <value />
     <comment>Skrót dla niutonometrów</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
@@ -241,7 +183,7 @@
     <comment>Lista Algorytmów Bazy Kierownicy</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
-    <value>AdminBoxx</value>
+    <value />
     <comment>Zakładka</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
@@ -281,7 +223,7 @@
     <comment>Mapowanie Przycisków</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value> Nm/s</value>
+    <value />
     <comment>Skrót dla niutonometrów na sekundę</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
@@ -289,11 +231,11 @@
     <comment>Lista Algorytmów Bazy Kierownicy</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
+    <value />
     <comment>Skrót dla procentu na niutonometr</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value>%</value>
+    <value />
     <comment>Skrót dla procentu</comment>
   </data>
   <data name="CompressionRate" xml:space="preserve">
@@ -301,11 +243,11 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
-    <value>Urządzenie </value>
+    <value>URZĄDZENIE </value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="OverallStrength_UC" xml:space="preserve">
-    <value>Ogólna Siła</value>
+    <value>OGÓLNA SIŁA</value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="AutoMargin" xml:space="preserve">
@@ -329,19 +271,19 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="OtherFeatures_UC" xml:space="preserve">
-    <value>Inne Funkcje</value>
+    <value>INNE FUNKCJE</value>
     <comment>Baza Kierownicy, Pedały</comment>
   </data>
   <data name="Switches_UC" xml:space="preserve">
-    <value>Przełączniki</value>
+    <value>PRZEŁĄCZNIKI</value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="CrashProtection_UC" xml:space="preserve">
-    <value>Zabezpieczenie Podczas Uderzenia Na Torze</value>
+    <value>ZABEZPIECZENIE PODCZAS UDERZENIA NA TORZE</value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value> g</value>
+    <value />
     <comment>skrót dla siły G</comment>
   </data>
   <data name="GForce" xml:space="preserve">
@@ -361,11 +303,11 @@
     <comment>Skrót dla czasu ( sekunda)</comment>
   </data>
   <data name="ShockVelocityUnits" xml:space="preserve">
-    <value> m/s</value>
+    <value />
     <comment>Skrót dla metra na sekundę</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
-    <value>Zabezpieczenie Podczas Ostrego Najazdu Na Krawężnik</value>
+    <value>ZABEZPIECZENIE PODCZAS OSTREGO NAJAZDU NA KRAWĘŻNIK</value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
@@ -373,7 +315,7 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>Pedały</value>
+    <value>PEDAŁY</value>
     <comment>Zakładka</comment>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
@@ -389,15 +331,15 @@
     <comment>Zestaw Pedałów</comment>
   </data>
   <data name="Clutch_UC" xml:space="preserve">
-    <value>Sprzęgło</value>
+    <value>SPRZĘGŁO</value>
     <comment>Pedały</comment>
   </data>
   <data name="Brake_UC" xml:space="preserve">
-    <value>Hamulec</value>
+    <value>HAMULEC</value>
     <comment>Pedały</comment>
   </data>
   <data name="Throttle_UC" xml:space="preserve">
-    <value>Przepustnica</value>
+    <value>PRZEPUSTNICA</value>
     <comment>Pedały</comment>
   </data>
   <data name="PedalEffects" xml:space="preserve">
@@ -409,19 +351,19 @@
     <comment>Baza Kierownicy, Pedały</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value> Hz</value>
+    <value />
     <comment>Skrót dla Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>Częstotliwość</value>
+    <value>CZĘSTOTLIWOŚĆ</value>
     <comment>Pedały</comment>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>Amplituda</value>
+    <value>AMPLITUDA</value>
     <comment>Pedały</comment>
   </data>
   <data name="Minimum" xml:space="preserve">
-    <value>Minimum</value>
+    <value />
     <comment>Baza Kierownicy, Pedały, Wykres</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
@@ -437,26 +379,26 @@
     <comment>Lista efektów pedałów</comment>
   </data>
   <data name="ClutchSlip_UC" xml:space="preserve">
-    <value>Poślizg Sprzęgła</value>
+    <value>POŚLIZG SPRZĘGŁA</value>
     <comment>Lista efektów pedałów</comment>
   </data>
   <data name="SteeringEffects_UC" xml:space="preserve">
-    <value>Efekty Kierownicy</value>
+    <value>EFEKTY KIEROWNICY</value>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
     <value>Efekty Kierownicy</value>
     <comment>Zakładka, Lista efektów pedałów</comment>
   </data>
   <data name="WheelLock_UC" xml:space="preserve">
-    <value>Zblokowane Koła</value>
+    <value>ZBLOKOWANE KOŁA</value>
     <comment>Lista efektów pedałów</comment>
   </data>
   <data name="WheelSpin_UC" xml:space="preserve">
-    <value>Poślizg kół</value>
+    <value>POŚLIZG KÓŁ</value>
     <comment>Lista efektów pedałów</comment>
   </data>
   <data name="RPM_UC" xml:space="preserve">
-    <value>Obr./Min</value>
+    <value>OBR./MIN</value>
     <comment>Lista efektów pedałów</comment>
   </data>
   <data name="None" xml:space="preserve">
@@ -548,7 +490,7 @@
     <comment>AdminBoxx</comment>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
+    <value />
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -556,11 +498,11 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="Output_UC" xml:space="preserve">
-    <value>Wyjście </value>
+    <value>WYJŚCIE </value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="WheelLFE_UC" xml:space="preserve">
-    <value>LFE Kierownicy</value>
+    <value>LFE KIEROWNICY</value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
@@ -600,7 +542,7 @@
     <comment>Wykres</comment>
   </data>
   <data name="ABSEngaged_UC" xml:space="preserve">
-    <value>ABS Włączony</value>
+    <value>ABS WŁĄCZONY</value>
     <comment>Lista efektów pedałów,Dźwięki</comment>
   </data>
   <data name="Disabled" xml:space="preserve">
@@ -636,11 +578,11 @@
     <comment>Pedały</comment>
   </data>
   <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
-    <value>Zmiana biegu – Na Inny Bieg</value>
+    <value>ZMIANA BIEGU – NA INNY BIEG</value>
     <comment>Pedały</comment>
   </data>
   <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
-    <value>Zmiana Biegu _ Na Położenie Neutralne</value>
+    <value>ZMIANA BIEGU _ NA POŁOŻENIE NEUTRALNE</value>
     <comment>Pedały</comment>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
@@ -664,7 +606,7 @@
     <comment>Pedały</comment>
   </data>
   <data name="AppWindow_UC" xml:space="preserve">
-    <value>Okno Aplikacji</value>
+    <value>OKNO APLIKACJI</value>
     <comment>Aplikacja</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
@@ -672,7 +614,7 @@
     <comment>Aplikacja</comment>
   </data>
   <data name="CloudService_UC" xml:space="preserve">
-    <value>Magazyn Chmura</value>
+    <value>MAGAZYN CHMURA</value>
     <comment>Aplikacja</comment>
   </data>
   <data name="CheckNow" xml:space="preserve">
@@ -688,7 +630,7 @@
     <comment>Status</comment>
   </data>
   <data name="Contribute_UC" xml:space="preserve">
-    <value>Współpraca</value>
+    <value>WSPÓŁPRACA</value>
     <comment>Zakładka</comment>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
@@ -700,15 +642,15 @@
     <comment>Współpraca</comment>
   </data>
   <data name="Donate_UC" xml:space="preserve">
-    <value>Darowizny</value>
+    <value>DAROWIZNY</value>
     <comment>Współpraca</comment>
   </data>
   <data name="Donors_UC" xml:space="preserve">
-    <value>Darczyńcy</value>
+    <value>DARCZYŃCY</value>
     <comment>Współpraca</comment>
   </data>
   <data name="SuperDonors_UC" xml:space="preserve">
-    <value>Super Darczyńcy</value>
+    <value>SUPER DARCZYŃCY</value>
     <comment>Współpraca</comment>
   </data>
   <data name="Donate" xml:space="preserve">
@@ -716,11 +658,11 @@
     <comment>Zakładka</comment>
   </data>
   <data name="CodeContributions_UC" xml:space="preserve">
-    <value>Współtwórcy Kodu</value>
+    <value>WSPÓŁTWÓRCY KODU</value>
     <comment>Współpraca</comment>
   </data>
   <data name="TranslationContributions_UC" xml:space="preserve">
-    <value>Współtwórcy Tłumaczeń</value>
+    <value>WSPÓŁTWÓRCY TŁUMACZEŃ</value>
     <comment>Współpraca</comment>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
@@ -782,7 +724,7 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value> Nm/ms</value>
+    <value />
     <comment>Skrót dla niutonometrów na milisekundę</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
@@ -794,7 +736,7 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="Preview_UC" xml:space="preserve">
-    <value>Podgląd</value>
+    <value>PODGLĄD</value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
@@ -818,7 +760,7 @@
     <comment>Lista Algorytmów Bazy Kierownicy</comment>
   </data>
   <data name="DiscordModerators_UC" xml:space="preserve">
-    <value>Moderatorzy Discord</value>
+    <value>MODERATORZY DISCORD</value>
     <comment>Współpraca</comment>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
@@ -838,7 +780,7 @@
     <comment>Ogólne</comment>
   </data>
   <data name="Sounds_UC" xml:space="preserve">
-    <value>Dźwięki</value>
+    <value>DŹWIĘKI</value>
     <comment>Zakładka</comment>
   </data>
   <data name="Enabled" xml:space="preserve">
@@ -862,11 +804,11 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value>°</value>
+    <value />
     <comment>Efekty Kierownicy</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
-    <value>Główny</value>
+    <value>GŁÓWNY</value>
     <comment>Dźwięki</comment>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
@@ -878,7 +820,7 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="PrivateMessages_UC" xml:space="preserve">
-    <value>Wiadomości Prywatne</value>
+    <value>WIADOMOŚCI PRYWATNE</value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
@@ -894,7 +836,7 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="Algorithm_UC" xml:space="preserve">
-    <value>Algorytm</value>
+    <value>ALGORYTM</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>Współpraca</value>
@@ -903,13 +845,13 @@
     <value>Moderatorzy Discord</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
-    <value>Aplikacja</value>
+    <value>APLIKACJA</value>
   </data>
   <data name="Simulator_UC" xml:space="preserve">
-    <value>Symulator</value>
+    <value>SYMULATOR</value>
   </data>
   <data name="Graph_UC" xml:space="preserve">
-    <value>Wykres</value>
+    <value>WYKRES</value>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
     <value>ABS Włączony</value>
@@ -957,4 +899,4 @@
   <data name="MultiAdjust" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
-</root>
+<data name="RacingFriction"><value /></data><data name="NotOnCentripetalCircuitTrack"><value /></data><data name="RunCalibration"><value /></data><data name="StopCalibration"><value /></data><data name="SteeringWheelLeft"><value /></data><data name="SteeringWheelCenter"><value /></data><data name="SteeringWheelRight"><value /></data><data name="SteeringWheel90Left"><value /></data><data name="MinThrottle"><value /></data><data name="MaxThrottle"><value /></data><data name="ShiftUp"><value /></data><data name="ShiftDown"><value /></data><data name="MinBrake"><value /></data><data name="MaxBrake"><value /></data><data name="NotCalibrating"><value /></data><data name="ResetCalibration"><value /></data><data name="ShowGripOMeter"><value /></data><data name="MakeGripOMeterDraggable"><value /></data><data name="GripOMeter_UC"><value /></data><data name="GripOMeterScale"><value /></data><data name="ResetGripOMeter"><value /></data><data name="UndersteerWheelVibrationEffect_UC"><value /></data><data name="Progress:"><value>Postęp:</value></data><data name="CalibrationFileNotSelected"><value>[Plik kalibracji nie wybrano]</value></data><data name="ParkedEffects_UC"><value /></data><data name="ForceFeedbackStrength"><value /></data><data name="WheelCenteringStrength"><value /></data><data name="CenterWheelWhileRacing"><value /></data><data name="CenterWheelWhileParked"><value /></data><data name="ParkedFriction"><value /></data><data name="ParkedWheelCenteringStrength"><value /></data><data name="CurrentCarSetup"><value /></data><data name="UndersteerPedalVibrationEffect_UC"><value /></data><data name="ErrorTitle"><value /></data><data name="Details"><value>Szczegóły</value></data><data name="ClassicMAIRAIsRunning"><value /></data><data name="ExceptionThrown"><value /></data><data name="KPHUnits"><value /></data><data name="CalibrationFileContributors"><value>Współautorzy plików kalibracji</value></data><data name="CalibrationFilesText"><value /></data><data name="DegreesPerSecond"><value /></data><data name="CalibrationFile_UC"><value /></data><data name="Understeer_UC"><value>PODSTEROWNOŚĆ</value></data><data name="Oversteer_UC"><value>NADSTEROWNOŚĆ</value></data><data name="MinimumThreshold"><value /></data><data name="MaximumThreshold"><value /></data><data name="MinimumFrequency"><value /></data><data name="MaximumFrequency"><value /></data><data name="Calibration_UC"><value /></data><data name="VibrationPattern"><value /></data><data name="SineWave"><value>Sinusoida</value></data><data name="SquareWave"><value>Fala prostokątna</value></data><data name="TriangleWave"><value>Fala trójkątna</value></data><data name="SawtoothWaveIn"><value>Fala piłokształtna (narastająca)</value></data><data name="SawtoothWaveOut"><value>Fala piłokształtna (opadająca)</value></data><data name="DecreaseForce"><value /></data><data name="IncreaseForce"><value /></data><data name="UndersteerWheelConstantForceEffect_UC"><value>EFEKT STAŁEJ SIŁY NA KIEROWNICY (PODSTEROWNOŚĆ)</value></data><data name="Direction"><value /></data><data name="OversteerWheelVibrationEffect_UC"><value>EFEKT WIBRACJI KIEROWNICY (NADSTEROWNOŚĆ)</value></data><data name="OversteerWheelConstantForceEffect_UC"><value>EFEKT STAŁEJ SIŁY NA KIEROWNICY (NADSTEROWNOŚĆ)</value></data><data name="OversteerPedalVibrationEffect_UC"><value>EFEKT WIBRACJI PEDAŁU (NADSTEROWNOŚĆ)</value></data><data name="UndersteerEffect"><value>Efekt podsterowności</value></data><data name="OversteerEffect"><value>Efekt nadsterowności</value></data><data name="ConfigurationFileIsInvalid"><value /></data><data name="SpeechToText"><value>Rozpoznawanie mowy</value></data><data name="Overlay"><value>Nakładka</value></data><data name="OverlayWindow_UC"><value>OKNO NAKŁADKI</value></data><data name="ShowOverlayWindow"><value>Pokaż okno nakładki</value></data><data name="MakeOverlayWindowDraggable"><value>Uczyń okno nakładki możliwym do przeciągania</value></data><data name="ResetOverlayWindow"><value>Zresetuj pozycję okna nakładki</value></data><data name="OverlayWindowScale"><value>Skalowanie okna nakładki</value></data><data name="STT_Title"><value>Most MAIRA do rozpoznawania mowy</value></data><data name="STT_Hint"><value>Wybierz urządzenie przechwytywania dźwięku, a następnie kliknij przycisk Włącz.</value></data><data name="STT_Button"><value>Włącz rozpoznawanie mowy</value></data><data name="FFBDeviceNotSelected"><value>[Force Feedback urządzenie nie wybrano]</value></data><data name="ReadyToDonate"><value>Gotowy, aby przekazać darowiznę?</value></data><data name="CalibrationFileContributions_UC"><value>WKŁAD W PLIKI KALIBRACJI</value></data><data name="SpeechToText_UC"><value>ROZPOZNAWANIE MOWY</value></data><data name="Changelog"><value>Dziennik zmian</value></data><data name="GripOMeter"><value /></data></root>

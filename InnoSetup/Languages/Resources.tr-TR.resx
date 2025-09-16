@@ -1,110 +1,52 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -150,11 +92,11 @@
     <comment>Tab item</comment>
   </data>
   <data name="HeaderData_UC" xml:space="preserve">
-    <value>Başlık Verileri</value>
+    <value>BAŞLIK VERILERI</value>
     <comment>Simulator</comment>
   </data>
   <data name="Language_UC" xml:space="preserve">
-    <value>Dil</value>
+    <value>DIL</value>
     <comment>App</comment>
   </data>
   <data name="DetailBooster" xml:space="preserve">
@@ -205,11 +147,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SessionInformation_UC" xml:space="preserve">
-    <value>Oturum Bilgileri</value>
+    <value>OTURUM BILGILERI</value>
     <comment>Simulator</comment>
   </data>
   <data name="Simulator" xml:space="preserve">
-    <value>Simulator</value>
+    <value>Simülatör</value>
     <comment>Tab item</comment>
   </data>
   <data name="SimulatorNotRunning" xml:space="preserve">
@@ -221,11 +163,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="TelemetryData_UC" xml:space="preserve">
-    <value>Telemetri Verisi</value>
+    <value>TELEMETRI VERISI</value>
     <comment>Simulator</comment>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Test</value>
+    <value>Test et</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
@@ -237,7 +179,7 @@
     <comment>App</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value> Nm</value>
+    <value />
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
@@ -245,7 +187,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
-    <value>AdminBoxx</value>
+    <value />
     <comment>Tab item</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
@@ -285,7 +227,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value> Nm/s</value>
+    <value />
     <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
@@ -293,11 +235,11 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
+    <value />
     <comment>Abbreviation for percent per Newton-meters</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value>%</value>
+    <value />
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="CompressionRate" xml:space="preserve">
@@ -330,19 +272,19 @@
     <value>Kuvveti Otomatik Ayarla</value>
   </data>
   <data name="OtherFeatures_UC" xml:space="preserve">
-    <value>Diğer Özellikler</value>
+    <value>DIĞER ÖZELLIKLER</value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="Switches_UC" xml:space="preserve">
-    <value>Anahtarlar</value>
+    <value>ANAHTARLAR</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CrashProtection_UC" xml:space="preserve">
-    <value>Kaza Koruması</value>
+    <value>KAZA KORUMASI</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value> g</value>
+    <value />
     <comment>Abbreviation for g-force</comment>
   </data>
   <data name="GForce" xml:space="preserve">
@@ -362,11 +304,11 @@
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="ShockVelocityUnits" xml:space="preserve">
-    <value> m/s</value>
+    <value />
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
-    <value>Kerb Koruması</value>
+    <value>KERB KORUMASI</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
@@ -374,7 +316,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>Pedallar</value>
+    <value>PEDALLAR</value>
     <comment>Tab item</comment>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
@@ -390,15 +332,15 @@
     <comment>Pedals device</comment>
   </data>
   <data name="Clutch_UC" xml:space="preserve">
-    <value>Debriyaj</value>
+    <value>DEBRIYAJ</value>
     <comment>Pedals</comment>
   </data>
   <data name="Brake_UC" xml:space="preserve">
-    <value>Fren</value>
+    <value>FREN</value>
     <comment>Pedals</comment>
   </data>
   <data name="Throttle_UC" xml:space="preserve">
-    <value>Gaz</value>
+    <value>GAZ</value>
     <comment>Pedals</comment>
   </data>
   <data name="PedalEffects" xml:space="preserve">
@@ -410,19 +352,19 @@
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value> Hz</value>
+    <value />
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>Frekans</value>
+    <value>FREKANS</value>
     <comment>Pedals</comment>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>Genlik</value>
+    <value>GENLIK</value>
     <comment>Pedals</comment>
   </data>
   <data name="Minimum" xml:space="preserve">
-    <value>Minimum</value>
+    <value />
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
@@ -438,26 +380,26 @@
     <comment>Pedal effects list</comment>
   </data>
   <data name="ClutchSlip_UC" xml:space="preserve">
-    <value>Debriyaj Kayması</value>
+    <value>DEBRIYAJ KAYMASI</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="SteeringEffects_UC" xml:space="preserve">
-    <value>Direksiyon Efektleri</value>
+    <value>DIREKSIYON EFEKTLERI</value>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
     <value>Direksiyon Efektleri</value>
     <comment>Tab item, Pedal effects list</comment>
   </data>
   <data name="WheelLock_UC" xml:space="preserve">
-    <value>Direksiyon Kilidi</value>
+    <value>DIREKSIYON KILIDI</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="WheelSpin_UC" xml:space="preserve">
-    <value>Direksiyon Dönüş</value>
+    <value>DIREKSIYON DÖNÜŞ</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="RPM_UC" xml:space="preserve">
-    <value>Devir</value>
+    <value>DEVIR</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="None" xml:space="preserve">
@@ -557,11 +499,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Output_UC" xml:space="preserve">
-    <value>Çıkış</value>
+    <value>ÇIKIŞ</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="WheelLFE_UC" xml:space="preserve">
-    <value>Direksiyon LFE</value>
+    <value>DIREKSIYON LFE</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
@@ -601,7 +543,7 @@
     <comment>Graph</comment>
   </data>
   <data name="ABSEngaged_UC" xml:space="preserve">
-    <value>ABS Devrede</value>
+    <value>ABS DEVREDE</value>
     <comment>Pedal effects list, Sounds</comment>
   </data>
   <data name="Disabled" xml:space="preserve">
@@ -637,11 +579,11 @@
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
-    <value>Vites Değişimi - Vites Değiştirme</value>
+    <value>VITES DEĞIŞIMI - VITES DEĞIŞTIRME</value>
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
-    <value>Vites Değişimi - Boşta Vites</value>
+    <value>VITES DEĞIŞIMI - BOŞTA VITES</value>
     <comment>Pedals</comment>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
@@ -665,7 +607,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="AppWindow_UC" xml:space="preserve">
-    <value>Uygulama Penceresi</value>
+    <value>UYGULAMA PENCERESI</value>
     <comment>App</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
@@ -673,7 +615,7 @@
     <comment>App</comment>
   </data>
   <data name="CloudService_UC" xml:space="preserve">
-    <value>Bulut Hizmeti</value>
+    <value>BULUT HIZMETI</value>
     <comment>App</comment>
   </data>
   <data name="CheckNow" xml:space="preserve">
@@ -689,7 +631,7 @@
     <comment>Status</comment>
   </data>
   <data name="Contribute_UC" xml:space="preserve">
-    <value>Katkıda bulun</value>
+    <value>KATKIDA BULUN</value>
     <comment>Tab item</comment>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
@@ -701,15 +643,15 @@
     <comment>Contribute</comment>
   </data>
   <data name="Donate_UC" xml:space="preserve">
-    <value>Bağışlar</value>
+    <value>BAĞIŞLAR</value>
     <comment>Contribute</comment>
   </data>
   <data name="Donors_UC" xml:space="preserve">
-    <value>Bağıçşılar</value>
+    <value>BAĞIÇŞILAR</value>
     <comment>Contribute</comment>
   </data>
   <data name="SuperDonors_UC" xml:space="preserve">
-    <value>Super Bağışçılar</value>
+    <value>SUPER BAĞIŞÇILAR</value>
     <comment>Contribute</comment>
   </data>
   <data name="Donate" xml:space="preserve">
@@ -717,11 +659,11 @@
     <comment>Tab item</comment>
   </data>
   <data name="CodeContributions_UC" xml:space="preserve">
-    <value>Kod İçin Katkıda Bulunanlar</value>
+    <value>KOD İÇIN KATKIDA BULUNANLAR</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributions_UC" xml:space="preserve">
-    <value>Çeviri İçin Katkıda Bulunanlar</value>
+    <value>ÇEVIRI İÇIN KATKIDA BULUNANLAR</value>
     <comment>Contribute</comment>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
@@ -737,7 +679,7 @@
     <comment>Contribute</comment>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
-    <value>GitHub Repository</value>
+    <value>GitHub deposu</value>
     <comment>Contribute</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
@@ -781,7 +723,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value> Nm/ms</value>
+    <value />
     <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
@@ -793,7 +735,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Preview_UC" xml:space="preserve">
-    <value>Önizleme</value>
+    <value>ÖNIZLEME</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
@@ -817,7 +759,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DiscordModerators_UC" xml:space="preserve">
-    <value>Discord Moderetörleri</value>
+    <value>DISCORD MODERETÖRLERI</value>
     <comment>Contribute</comment>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
@@ -837,7 +779,7 @@
     <comment>Generic</comment>
   </data>
   <data name="Sounds_UC" xml:space="preserve">
-    <value>Sesler</value>
+    <value>SESLER</value>
     <comment>Tab item</comment>
   </data>
   <data name="Enabled" xml:space="preserve">
@@ -861,11 +803,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value>°</value>
+    <value />
     <comment>Abbreviation for degrees</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
-    <value>Ana Ses</value>
+    <value>ANA SES</value>
     <comment>Sounds</comment>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
@@ -877,7 +819,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="PrivateMessages_UC" xml:space="preserve">
-    <value>Özel Mesajlar</value>
+    <value>ÖZEL MESAJLAR</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
@@ -961,7 +903,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeter_UC" xml:space="preserve">
-    <value>Grip-O-Meter</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeterScale" xml:space="preserve">
@@ -973,7 +915,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>Önden Kayma Titreşim Efekti</value>
+    <value>ÖNDEN KAYMA TITREŞIM EFEKTI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Progress:" xml:space="preserve">
@@ -985,7 +927,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="ParkedEffects_UC" xml:space="preserve">
-    <value>Paark Hali Efektleri</value>
+    <value>PAARK HALI EFEKTLERI</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
@@ -1017,7 +959,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>Önden Kayma Pedal Titreşim Efekti</value>
+    <value>ÖNDEN KAYMA PEDAL TITREŞIM EFEKTI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
@@ -1049,19 +991,19 @@
     <comment>Contribute</comment>
   </data>
   <data name="DegreesPerSecond" xml:space="preserve">
-    <value>°/s</value>
+    <value />
     <comment>Abbreviation for degrees per second</comment>
   </data>
   <data name="CalibrationFile_UC" xml:space="preserve">
-    <value>Kalibrasyon Dosyası</value>
+    <value>KALIBRASYON DOSYASI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Understeer_UC" xml:space="preserve">
-    <value>Önden Kayma</value>
+    <value>ÖNDEN KAYMA</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Oversteer_UC" xml:space="preserve">
-    <value>Arkadan Kayma</value>
+    <value>ARKADAN KAYMA</value>
     <comment>Steering effects</comment>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
@@ -1081,7 +1023,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="Calibration_UC" xml:space="preserve">
-    <value>Kalibrasyon</value>
+    <value>KALIBRASYON</value>
     <comment>Steering effects</comment>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
@@ -1117,7 +1059,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>Önden Kayma Tekerlek Sabit Kuvvet Etkisi</value>
+    <value>ÖNDEN KAYMA TEKERLEK SABIT KUVVET ETKISI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Direction" xml:space="preserve">
@@ -1125,15 +1067,15 @@
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>Arkadan Kayma Titreşim Efekti</value>
+    <value>ARKADAN KAYMA TITREŞIM EFEKTI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>Arkadan Kayma Tekerleği Sabit Kuvvet Etkisi</value>
+    <value>ARKADAN KAYMA TEKERLEĞI SABIT KUVVET ETKISI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>Arkadan Kayma Pedal Titreşim Efekti</value>
+    <value>ARKADAN KAYMA PEDAL TITREŞIM EFEKTI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
@@ -1157,7 +1099,7 @@
     <comment>Speech to text</comment>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
-    <value>Kaplama Penceresi</value>
+    <value>KAPLAMA PENCERESI</value>
     <comment>Speech to text</comment>
   </data>
   <data name="ShowOverlayWindow" xml:space="preserve">
@@ -1188,8 +1130,8 @@
     <value>Konuşmayı Metne Dönüştürmeyi Aktifleştir</value>
     <comment>Speech-to-text bridge</comment>
   </data>
-  <data name="Algorithm_UC" xml:space="preserve">
-    <value>Algoritma</value>
+  <data name="Device_UC" xml:space="preserve">
+    <value>CIHAZ</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>Katkıda bulun</value>
@@ -1198,19 +1140,19 @@
     <value>Discord Moderetörleri</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
-    <value>Uygulama</value>
-  </data>
-  <data name="Simulator_UC" xml:space="preserve">
-    <value>Simulator</value>
+    <value>UYGULAMA</value>
   </data>
   <data name="Graph_UC" xml:space="preserve">
-    <value>Grafik</value>
+    <value>GRAFIK</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>Konuşmayı Metne Dönüştürme</value>
+    <value>KONUŞMAYI METNE DÖNÜŞTÜRME</value>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
     <value>ABS Devrede</value>
+  </data>
+  <data name="Algorithm_UC" xml:space="preserve">
+    <value>ALGORITMA</value>
   </data>
   <data name="Amplitude" xml:space="preserve">
     <value>Genlik</value>
@@ -1220,6 +1162,12 @@
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frekans</value>
+  </data>
+  <data name="OverallStrength_UC" xml:space="preserve">
+    <value>ORTALAMA KUVVET</value>
+  </data>
+  <data name="RacingWheel_UC" xml:space="preserve">
+    <value>DIREKSIYON</value>
   </data>
   <data name="RPM" xml:space="preserve">
     <value>Devir</value>
@@ -1233,29 +1181,4 @@
   <data name="WheelLock" xml:space="preserve">
     <value>Direksiyon Kilidi</value>
   </data>
-  <data name="WheelSpin" xml:space="preserve">
-    <value>Direksiyon Dönüş</value>
-  </data>
-  <data name="GripOMeter" xml:space="preserve">
-    <value>Grip-O-Meter</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MultiCompression" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiSlew" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="EnableSoftLimiter" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiDetailGain" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiSmoothing" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiAdjust" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-</root>
+<data name="FFBDeviceNotSelected"><value>[Force Feedback aygıt seçilmedi]</value></data><data name="ReadyToDonate"><value>Bağış yapmaya hazır mısınız?</value></data><data name="CalibrationFileContributions_UC"><value>KALİBRASYON DOSYASI KATKILARI</value></data><data name="Simulator_UC"><value>SIMÜLATÖR</value></data><data name="Changelog"><value>Değişiklik günlüğü</value></data><data name="GripOMeter"><value /></data></root>

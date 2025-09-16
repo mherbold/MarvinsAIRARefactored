@@ -27,11 +27,11 @@ public partial class Localization : INotifyPropertyChanged
 		{
 			if ( _translations.TryGetValue( key, out var value ) )
 			{
-				return value?.Trim() ?? string.Empty;
+				return value?.TrimEnd() ?? string.Empty;
 			}
 			else if ( _defaults.TryGetValue( key, out value ) )
 			{
-				return value?.Trim() ?? string.Empty;
+				return value?.TrimEnd() ?? string.Empty;
 			}
 			else
 			{

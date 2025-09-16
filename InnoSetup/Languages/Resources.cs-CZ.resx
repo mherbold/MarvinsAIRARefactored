@@ -1,110 +1,51 @@
-<?xml version="1.0" encoding="utf-8"?>
-<root>
-  <!-- 
-    Microsoft ResX Schema 
-    
-    Version 2.0
-    
-    The primary goals of this format is to allow a simple XML format 
-    that is mostly human readable. The generation and parsing of the 
-    various data types are done through the TypeConverter classes 
-    associated with the data types.
-    
-    Example:
-    
-    ... ado.net/XML headers & schema ...
-    <resheader name="resmimetype">text/microsoft-resx</resheader>
-    <resheader name="version">2.0</resheader>
-    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
-    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
-    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
-    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
-    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
-        <value>[base64 mime encoded serialized .NET Framework object]</value>
-    </data>
-    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
-        <comment>This is a comment</comment>
-    </data>
-                
-    There are any number of "resheader" rows that contain simple 
-    name/value pairs.
-    
-    Each data row contains a name, and value. The row also contains a 
-    type or mimetype. Type corresponds to a .NET class that support 
-    text/value conversion through the TypeConverter architecture. 
-    Classes that don't support this are serialized and stored with the 
-    mimetype set.
-    
-    The mimetype is used for serialized objects, and tells the 
-    ResXResourceReader how to depersist the object. This is currently not 
-    extensible. For a given mimetype the value must be set accordingly:
-    
-    Note - application/x-microsoft.net.object.binary.base64 is the format 
-    that the ResXResourceWriter will generate, however the reader can 
-    read any of the formats listed below.
-    
-    mimetype: application/x-microsoft.net.object.binary.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
-            : and then encoded with base64 encoding.
-    
-    mimetype: application/x-microsoft.net.object.soap.base64
-    value   : The object must be serialized with 
-            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
-            : and then encoded with base64 encoding.
-
-    mimetype: application/x-microsoft.net.object.bytearray.base64
-    value   : The object must be serialized into a byte array 
-            : using a System.ComponentModel.TypeConverter
-            : and then encoded with base64 encoding.
-    -->
-  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
-    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xsd:element name="root" msdata:IsDataSet="true">
-      <xsd:complexType>
-        <xsd:choice maxOccurs="unbounded">
-          <xsd:element name="metadata">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" />
-              </xsd:sequence>
-              <xsd:attribute name="name" use="required" type="xsd:string" />
-              <xsd:attribute name="type" type="xsd:string" />
-              <xsd:attribute name="mimetype" type="xsd:string" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="assembly">
-            <xsd:complexType>
-              <xsd:attribute name="alias" type="xsd:string" />
-              <xsd:attribute name="name" type="xsd:string" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="data">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
-              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
-              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
-              <xsd:attribute ref="xml:space" />
-            </xsd:complexType>
-          </xsd:element>
-          <xsd:element name="resheader">
-            <xsd:complexType>
-              <xsd:sequence>
-                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
-              </xsd:sequence>
-              <xsd:attribute name="name" type="xsd:string" use="required" />
-            </xsd:complexType>
-          </xsd:element>
-        </xsd:choice>
-      </xsd:complexType>
-    </xsd:element>
-  </xsd:schema>
+<?xml version='1.0' encoding='utf-8'?>
+<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:schema id="root">
+    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xs:element name="root" ns1:IsDataSet="true">
+      <xs:complexType>
+        <xs:choice maxOccurs="unbounded">
+          <xs:element name="metadata">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" />
+              </xs:sequence>
+              <xs:attribute name="name" use="required" type="xsd:string" />
+              <xs:attribute name="type" type="xsd:string" />
+              <xs:attribute name="mimetype" type="xsd:string" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="assembly">
+            <xs:complexType>
+              <xs:attribute name="alias" type="xsd:string" />
+              <xs:attribute name="name" type="xsd:string" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="data">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
+              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
+              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
+              <xs:attribute ref="xml:space" />
+            </xs:complexType>
+          </xs:element>
+          <xs:element name="resheader">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
+              </xs:sequence>
+              <xs:attribute name="name" type="xsd:string" use="required" />
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -126,7 +67,7 @@
     <comment>Tab item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value>MAIRA</value>
+    <value />
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
@@ -150,11 +91,11 @@
     <comment>Tab item</comment>
   </data>
   <data name="HeaderData_UC" xml:space="preserve">
-    <value>Hlavní data</value>
+    <value>HLAVNÍ DATA</value>
     <comment>Simulator</comment>
   </data>
   <data name="Language_UC" xml:space="preserve">
-    <value>Jazyk</value>
+    <value>JAZYK</value>
     <comment>App</comment>
   </data>
   <data name="DetailBooster" xml:space="preserve">
@@ -162,7 +103,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
-    <value>Delta Limiter</value>
+    <value />
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="MaxForce" xml:space="preserve">
@@ -193,7 +134,7 @@
     <value>Volant</value>
   </data>
   <data name="RacingWheel_UC" xml:space="preserve">
-    <value>Volant</value>
+    <value>VOLANT</value>
     <comment>Tab item</comment>
   </data>
   <data name="SteeringDevice" xml:space="preserve">
@@ -205,7 +146,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SessionInformation_UC" xml:space="preserve">
-    <value>Informace o aktuální jízdě</value>
+    <value>INFORMACE O AKTUÁLNÍ JÍZDĚ</value>
     <comment>Simulator</comment>
   </data>
   <data name="Simulator" xml:space="preserve">
@@ -221,11 +162,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="TelemetryData_UC" xml:space="preserve">
-    <value>Telemetrické data</value>
+    <value>TELEMETRICKÉ DATA</value>
     <comment>Simulator</comment>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Test</value>
+    <value>Otestovat</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
@@ -237,7 +178,7 @@
     <comment>App</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value> Nm</value>
+    <value />
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
@@ -245,7 +186,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
-    <value>AdminBoxx</value>
+    <value />
     <comment>Tab item</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
@@ -281,11 +222,11 @@
     <comment>Button mapping</comment>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value>Delta Limiter</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value> Nm/s</value>
+    <value />
     <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
@@ -293,11 +234,11 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
+    <value />
     <comment>Abbreviation for percent per Newton-meters</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value>%</value>
+    <value />
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="CompressionRate" xml:space="preserve">
@@ -305,11 +246,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
-    <value>Zařízení</value>
+    <value>ZAŘÍZENÍ</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OverallStrength_UC" xml:space="preserve">
-    <value>Celková síla FFB</value>
+    <value>CELKOVÁ SÍLA FFB</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMargin" xml:space="preserve">
@@ -333,19 +274,19 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="OtherFeatures_UC" xml:space="preserve">
-    <value>Jiné nastavení</value>
+    <value>JINÉ NASTAVENÍ</value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="Switches_UC" xml:space="preserve">
-    <value>Přepínače</value>
+    <value>PŘEPÍNAČE</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CrashProtection_UC" xml:space="preserve">
-    <value>Ochrana při nárazu</value>
+    <value>OCHRANA PŘI NÁRAZU</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value> g</value>
+    <value />
     <comment>Abbreviation for g-force</comment>
   </data>
   <data name="GForce" xml:space="preserve">
@@ -361,15 +302,15 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value> sec</value>
+    <value />
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="ShockVelocityUnits" xml:space="preserve">
-    <value> m/s</value>
+    <value />
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
-    <value>Ochrana při přejetí obrubníku</value>
+    <value>OCHRANA PŘI PŘEJETÍ OBRUBNÍKU</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
@@ -377,7 +318,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>Pedály</value>
+    <value>PEDÁLY</value>
     <comment>Tab item</comment>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
@@ -393,15 +334,15 @@
     <comment>Pedals device</comment>
   </data>
   <data name="Clutch_UC" xml:space="preserve">
-    <value>Spojka</value>
+    <value>SPOJKA</value>
     <comment>Pedals</comment>
   </data>
   <data name="Brake_UC" xml:space="preserve">
-    <value>Brzda</value>
+    <value>BRZDA</value>
     <comment>Pedals</comment>
   </data>
   <data name="Throttle_UC" xml:space="preserve">
-    <value>Plyn</value>
+    <value>PLYN</value>
     <comment>Pedals</comment>
   </data>
   <data name="PedalEffects" xml:space="preserve">
@@ -413,15 +354,15 @@
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value> Hz</value>
+    <value />
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>Frekvence</value>
+    <value>FREKVENCE</value>
     <comment>Pedals</comment>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>Amplitude</value>
+    <value>AMPLITUDA</value>
     <comment>Pedals</comment>
   </data>
   <data name="Minimum" xml:space="preserve">
@@ -441,26 +382,26 @@
     <comment>Pedal effects list</comment>
   </data>
   <data name="ClutchSlip_UC" xml:space="preserve">
-    <value>Prokluz spojky</value>
+    <value>PROKLUZ SPOJKY</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="SteeringEffects_UC" xml:space="preserve">
-    <value>Efekty FFB</value>
+    <value>EFEKTY FFB</value>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
     <value>Efekty FFB</value>
     <comment>Tab item, Pedal effects list</comment>
   </data>
   <data name="WheelLock_UC" xml:space="preserve">
-    <value>Zablokování kola</value>
+    <value>ZABLOKOVÁNÍ KOLA</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="WheelSpin_UC" xml:space="preserve">
-    <value>Prokluz kola</value>
+    <value>PROKLUZ KOLA</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="RPM_UC" xml:space="preserve">
-    <value>Otáčky motoru</value>
+    <value>OTÁČKY MOTORU</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="None" xml:space="preserve">
@@ -560,11 +501,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Output_UC" xml:space="preserve">
-    <value>Výstup</value>
+    <value>VÝSTUP</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="WheelLFE_UC" xml:space="preserve">
-    <value>Vibrace volantu (LFE)</value>
+    <value>VIBRACE VOLANTU (LFE)</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
@@ -604,7 +545,7 @@
     <comment>Graph</comment>
   </data>
   <data name="ABSEngaged_UC" xml:space="preserve">
-    <value>ABS aktivováno</value>
+    <value>ABS AKTIVOVÁNO</value>
     <comment>Pedal effects list, Sounds</comment>
   </data>
   <data name="Disabled" xml:space="preserve">
@@ -640,11 +581,11 @@
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
-    <value>Změna převodu - zařadit převod</value>
+    <value>ZMĚNA PŘEVODU - ZAŘADIT PŘEVOD</value>
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
-    <value>Změna převodu - zařazení Neutrálu</value>
+    <value>ZMĚNA PŘEVODU - ZAŘAZENÍ NEUTRÁLU</value>
     <comment>Pedals</comment>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
@@ -668,7 +609,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="AppWindow_UC" xml:space="preserve">
-    <value>Okno aplikace</value>
+    <value>OKNO APLIKACE</value>
     <comment>App</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
@@ -676,7 +617,7 @@
     <comment>App</comment>
   </data>
   <data name="CloudService_UC" xml:space="preserve">
-    <value>Cloud Servis</value>
+    <value>CLOUD SERVIS</value>
     <comment>App</comment>
   </data>
   <data name="CheckNow" xml:space="preserve">
@@ -692,7 +633,7 @@
     <comment>Status</comment>
   </data>
   <data name="Contribute_UC" xml:space="preserve">
-    <value>Podíleli se</value>
+    <value>PODÍLELI SE</value>
     <comment>Tab item</comment>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
@@ -704,15 +645,15 @@
     <comment>Contribute</comment>
   </data>
   <data name="Donate_UC" xml:space="preserve">
-    <value>Příspěvky</value>
+    <value>PŘÍSPĚVKY</value>
     <comment>Contribute</comment>
   </data>
   <data name="Donors_UC" xml:space="preserve">
-    <value>Přispěvatelé</value>
+    <value>PŘISPĚVATELÉ</value>
     <comment>Contribute</comment>
   </data>
   <data name="SuperDonors_UC" xml:space="preserve">
-    <value>Super Přispěvatelé</value>
+    <value>SUPER PŘISPĚVATELÉ</value>
     <comment>Contribute</comment>
   </data>
   <data name="Donate" xml:space="preserve">
@@ -720,11 +661,11 @@
     <comment>Tab item</comment>
   </data>
   <data name="CodeContributions_UC" xml:space="preserve">
-    <value>Pomoc s tvorbou Kódu MAIRA!</value>
+    <value>POMOC S TVORBOU KÓDU MAIRA!</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributions_UC" xml:space="preserve">
-    <value>Pomoc s překladem MAIRA!</value>
+    <value>POMOC S PŘEKLADEM MAIRA!</value>
     <comment>Contribute</comment>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
@@ -736,7 +677,7 @@
     <comment>Contribute</comment>
   </data>
   <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Translations Discord Channel</value>
+    <value>Kanál Discordu pro překlady</value>
     <comment>Contribute</comment>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
@@ -784,7 +725,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value> Nm/ms</value>
+    <value />
     <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
@@ -796,7 +737,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Preview_UC" xml:space="preserve">
-    <value>Náhled křivky FFB</value>
+    <value>NÁHLED KŘIVKY FFB</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
@@ -816,11 +757,11 @@
     <comment>Pedals</comment>
   </data>
   <data name="ZeAlanLeTwist" xml:space="preserve">
-    <value>ZeAlanLeTwist</value>
+    <value>Rychlost změny a celková komprese</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DiscordModerators_UC" xml:space="preserve">
-    <value>Moderátoři na Discordu</value>
+    <value>MODERÁTOŘI NA DISCORDU</value>
     <comment>Contribute</comment>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
@@ -840,7 +781,7 @@
     <comment>Generic</comment>
   </data>
   <data name="Sounds_UC" xml:space="preserve">
-    <value>Zvuky</value>
+    <value>ZVUKY</value>
     <comment>Tab item</comment>
   </data>
   <data name="Enabled" xml:space="preserve">
@@ -864,11 +805,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value>°</value>
+    <value />
     <comment>Abbreviation for degrees</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
-    <value />
+    <value>HLAVNÍ</value>
     <comment>Sounds</comment>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
@@ -880,7 +821,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="PrivateMessages_UC" xml:space="preserve">
-    <value>Soukromé zprávy</value>
+    <value>SOUKROMÉ ZPRÁVY</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
@@ -964,7 +905,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeter_UC" xml:space="preserve">
-    <value>Grip-O-Meter</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeterScale" xml:space="preserve">
@@ -976,7 +917,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>Efekt vibrací volantu při nedotáčivosti</value>
+    <value>EFEKT VIBRACÍ VOLANTU PŘI NEDOTÁČIVOSTI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Progress:" xml:space="preserve">
@@ -988,7 +929,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="ParkedEffects_UC" xml:space="preserve">
-    <value>Efekty u stojícího vozidla</value>
+    <value>EFEKTY U STOJÍCÍHO VOZIDLA</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
@@ -1020,7 +961,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>Vibrace pedálu při nedotáčivosti</value>
+    <value>VIBRACE PEDÁLU PŘI NEDOTÁČIVOSTI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
@@ -1040,7 +981,7 @@
     <comment>Error messages</comment>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>KPH</value>
+    <value />
     <comment>Abbreviation for kilometers per hour</comment>
   </data>
   <data name="CalibrationFileContributors" xml:space="preserve">
@@ -1052,19 +993,19 @@
     <comment>Contribute</comment>
   </data>
   <data name="DegreesPerSecond" xml:space="preserve">
-    <value>°/s</value>
+    <value />
     <comment>Abbreviation for degrees per second</comment>
   </data>
   <data name="CalibrationFile_UC" xml:space="preserve">
-    <value>Kalibrační soubor</value>
+    <value>KALIBRAČNÍ SOUBOR</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Understeer_UC" xml:space="preserve">
-    <value>Nedotáčivost</value>
+    <value>NEDOTÁČIVOST</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Oversteer_UC" xml:space="preserve">
-    <value>Přetáčivost</value>
+    <value>PŘETÁČIVOST</value>
     <comment>Steering effects</comment>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
@@ -1084,7 +1025,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="Calibration_UC" xml:space="preserve">
-    <value>Kalibrace</value>
+    <value>KALIBRACE</value>
     <comment>Steering effects</comment>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
@@ -1120,7 +1061,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>Nedotáčivost - konstatní síla efektu </value>
+    <value>NEDOTÁČIVOST - KONSTATNÍ SÍLA EFEKTU </value>
     <comment>Steering effects</comment>
   </data>
   <data name="Direction" xml:space="preserve">
@@ -1128,15 +1069,15 @@
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>Efekty vibrací při přetáčivosti</value>
+    <value>EFEKTY VIBRACÍ PŘI PŘETÁČIVOSTI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>Přetáčivost - konstatní síla efektu </value>
+    <value>PŘETÁČIVOST - KONSTATNÍ SÍLA EFEKTU </value>
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>Efekt vibrací pedálu při přetáčivosti</value>
+    <value>EFEKT VIBRACÍ PEDÁLU PŘI PŘETÁČIVOSTI</value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
@@ -1148,7 +1089,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="Algorithm_UC" xml:space="preserve">
-    <value>Algoritmus FFB</value>
+    <value>ALGORITMUS FFB</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>Podíleli se</value>
@@ -1157,19 +1098,16 @@
     <value>Moderátoři na Discordu</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
-    <value>Aplikace</value>
+    <value>APLIKACE</value>
   </data>
   <data name="Simulator_UC" xml:space="preserve">
-    <value>Simulátor</value>
+    <value>SIMULÁTOR</value>
   </data>
   <data name="Graph_UC" xml:space="preserve">
-    <value>Graf FFB</value>
+    <value>GRAF FFB</value>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
     <value>ABS aktivováno</value>
-  </data>
-  <data name="Amplitude" xml:space="preserve">
-    <value>Amplitude</value>
   </data>
   <data name="ClutchSlip" xml:space="preserve">
     <value>Prokluz spojky</value>
@@ -1189,29 +1127,16 @@
   <data name="WheelLock" xml:space="preserve">
     <value>Zablokování kola</value>
   </data>
-  <data name="WheelSpin" xml:space="preserve">
-    <value>Prokluz kola</value>
+  <data name="Overlay">
+    <value>Překrytí</value>
   </data>
-  <data name="GripOMeter" xml:space="preserve">
-    <value>Grip-O-Meter</value>
+  <data name="MakeOverlayWindowDraggable">
+    <value>Make the overlay window draggable</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="MultiCompression" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="FFBDeviceNotSelected">
+    <value>[Force Feedback Device Not Selected]</value>
   </data>
-  <data name="MultiSlew" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="Changelog">
+    <value>Seznam změn</value>
   </data>
-  <data name="EnableSoftLimiter" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiDetailGain" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiSmoothing" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="MultiAdjust" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-</root>
+<data name="ConfigurationFileIsInvalid"><value>Konfigurační soubor je neplatný</value></data><data name="SpeechToText"><value>Převod řeči na text</value></data><data name="OverlayWindow_UC"><value>PŘEKRYVNÉ OKNO</value></data><data name="ShowOverlayWindow"><value>Zobrazit překryvné okno</value></data><data name="ResetOverlayWindow"><value>Obnovit pozici překryvného okna</value></data><data name="OverlayWindowScale"><value>Měřítko překryvného okna</value></data><data name="STT_Title"><value>Most MAIRA řeč–text</value></data><data name="STT_Hint"><value>Vyberte zařízení pro záznam zvuku a poté klikněte na tlačítko Povolit.</value></data><data name="STT_Button"><value>Povolit převod řeči na text</value></data><data name="ReadyToDonate"><value>Připraveni přispět?</value></data><data name="CalibrationFileContributions_UC"><value>PŘÍSPĚVKY KE KALIBRAČNÍM SOUBORŮM</value></data><data name="SpeechToText_UC"><value>PŘEVOD ŘEČI NA TEXT</value></data><data name="Amplitude"><value>Amplituda</value></data><data name="GripOMeter"><value /></data></root>
