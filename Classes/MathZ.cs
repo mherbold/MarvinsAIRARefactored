@@ -76,7 +76,7 @@ public class MathZ
 		var valueAbs = MathF.Abs( value );
 		var halfWidth = width / 2f;
 
-		if ( ( valueAbs <= ( threshold - halfWidth ) ) && ( ! limiter ) )
+		if ( ( valueAbs <= ( threshold - halfWidth ) ) && ( !limiter ) )
 		{
 			return value;
 		}
@@ -84,7 +84,7 @@ public class MathZ
 		{
 			var compressedDelta = 0f;
 
-			if ( ! ( limiter && ( valueAbs <= threshold ) ) )
+			if ( !( limiter && ( valueAbs <= threshold ) ) )
 			{
 				compressedDelta = rate / 2f * ( valueAbs - threshold + halfWidth - ( width / MathF.PI * MathF.Sin( MathF.PI * ( valueAbs - threshold + halfWidth ) / width ) ) );
 
@@ -103,14 +103,13 @@ public class MathZ
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public static float SoftLimiter ( float value, float limit )
+	public static float SoftLimiter( float value, float limit )
 	{
- 		var limiterRate = 1f;
+		var limiterRate = 1f;
 		var limiterWidth = 1.13333f;
 		var limiterThreshold = 1f - 0.5f * ( limiterWidth / 2f - limiterWidth / MathF.PI );
 		var normalizedValue = value / limit;
-					
-		return MathZ.Compression( normalizedValue, limiterRate, limiterThreshold, limiterWidth, true ) * limit;
 
+		return Compression( normalizedValue, limiterRate, limiterThreshold, limiterWidth, true ) * limit;
 	}
 }
