@@ -535,8 +535,6 @@ public class Settings : INotifyPropertyChanged
 			{
 				_racingWheelDetailBoostString = value;
 
-				var app = App.Instance!;
-
 				OnPropertyChanged();
 			}
 		}
@@ -587,8 +585,6 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _racingWheelDetailBoostBiasString )
 			{
 				_racingWheelDetailBoostBiasString = value;
-
-				var app = App.Instance!;
 
 				OnPropertyChanged();
 			}
@@ -641,8 +637,6 @@ public class Settings : INotifyPropertyChanged
 			{
 				_racingWheelDeltaLimitString = value;
 
-				var app = App.Instance!;
-
 				OnPropertyChanged();
 			}
 		}
@@ -693,8 +687,6 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _racingWheelDeltaLimiterBiasString )
 			{
 				_racingWheelDeltaLimiterBiasString = value;
-
-				var app = App.Instance!;
 
 				OnPropertyChanged();
 			}
@@ -824,8 +816,6 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _racingWheelSlewCompressionRateString )
 			{
 				_racingWheelSlewCompressionRateString = value;
-
-				var app = App.Instance!;
 
 				OnPropertyChanged();
 			}

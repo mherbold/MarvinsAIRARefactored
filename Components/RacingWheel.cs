@@ -818,10 +818,6 @@ public class RacingWheel
 
 			var outputTorque = ProcessAlgorithm( steeringWheelTorque60Hz, steeringWheelTorque500Hz, curbProtectionLerpFactor );
 
-			// save last 500Hz steering wheel torque
-
-			_algorithmPropertyA = steeringWheelTorque500Hz;
-
 			// understeer constant force effect
 
 			if ( app.SteeringEffects.UndersteerEffect > 0f )
