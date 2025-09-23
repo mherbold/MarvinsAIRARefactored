@@ -1,9 +1,10 @@
 ﻿
-using System.Runtime.CompilerServices;
-
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Controls;
+using MarvinsAIRARefactored.DataContext;
 using MarvinsAIRARefactored.Windows;
+using System.Runtime.CompilerServices;
+using static MarvinsAIRARefactored.Components.RacingWheel;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -36,6 +37,18 @@ public class RacingWheel
 		None,
 		DecreaseForce,
 		IncreaseForce,
+	};
+
+	public static Dictionary<Algorithm, string> AlgorithmNameMap { get; } = new Dictionary<Algorithm, string>
+	{
+		{ Algorithm.Native60Hz, DataContext.DataContext.Instance.Localization[ "Native60Hz" ] },
+		{ Algorithm.Native360Hz, DataContext.DataContext.Instance.Localization[ "Native360Hz" ] },
+		{ Algorithm.DetailBooster, DataContext.DataContext.Instance.Localization[ "DetailBooster" ] },
+		{ Algorithm.DeltaLimiter, DataContext.DataContext.Instance.Localization[ "DeltaLimiter" ] },
+		{ Algorithm.DetailBoosterOn60Hz, DataContext.DataContext.Instance.Localization[ "DetailBoosterOn60Hz" ] },
+		{ Algorithm.DeltaLimiterOn60Hz, DataContext.DataContext.Instance.Localization[ "DeltaLimiterOn60Hz" ] },
+		{ Algorithm.ZeAlanLeTwist, DataContext.DataContext.Instance.Localization[ "ZeAlanLeTwist" ] } ,
+		{ Algorithm.MultiAdjust, DataContext.DataContext.Instance.Localization[ "MultiAdjust" ] }
 	};
 
 	private const int UpdateInterval = 6;
@@ -89,13 +102,13 @@ public class RacingWheel
 
 	private int _updateCounter = UpdateInterval + 4;
 
-	private class AlgorithmVariables
+	private struct AlgorithmVariables
 	{
-		public float multiLastCompressedSteeringTorque500Hz { get; set; } = 0f;
-		public float multiRunningSteadySteeringTorque500Hz { get; set; } = 0f;
+		public float multiLastCompressedSteeringTorque500Hz;
+		public float multiRunningSteadySteeringTorque500Hz;
 	}
 
-	private readonly AlgorithmVariables _algorithmVariables = new();
+	private AlgorithmVariables _algorithmVariables = new();
 
 	public void Initialize()
 	{
@@ -138,26 +151,14 @@ public class RacingWheel
 
 		app.Logger.WriteLine( "[RacingWheel] SetMairaComboBoxItemsSource >>>" );
 
-		var dictionary = new Dictionary<Algorithm, string>
-		{
-			{ Algorithm.Native60Hz, DataContext.DataContext.Instance.Localization[ "Native60Hz" ] },
-			{ Algorithm.Native360Hz, DataContext.DataContext.Instance.Localization[ "Native360Hz" ] },
-			{ Algorithm.DetailBooster, DataContext.DataContext.Instance.Localization[ "DetailBooster" ] },
-			{ Algorithm.DeltaLimiter, DataContext.DataContext.Instance.Localization[ "DeltaLimiter" ] },
-			{ Algorithm.DetailBoosterOn60Hz, DataContext.DataContext.Instance.Localization[ "DetailBoosterOn60Hz" ] },
-			{ Algorithm.DeltaLimiterOn60Hz, DataContext.DataContext.Instance.Localization[ "DeltaLimiterOn60Hz" ] },
-			{ Algorithm.ZeAlanLeTwist, DataContext.DataContext.Instance.Localization[ "ZeAlanLeTwist" ] } ,
-			{ Algorithm.MultiAdjust, DataContext.DataContext.Instance.Localization[ "MultiAdjust" ] }
-		};
-
-		mairaComboBox.ItemsSource = dictionary;
+		mairaComboBox.ItemsSource = AlgorithmNameMap;
 		mairaComboBox.SelectedValue = DataContext.DataContext.Instance.Settings.RacingWheelAlgorithm;
 
 		app.Logger.WriteLine( "[RacingWheel] <<< SetMairaComboBoxItemsSource" );
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	private static float ProcessAlgorithm( ref float runningSteeringWheelTorque500Hz, float lastSteeringWheelTorque500Hz, float steeringWheelTorque60Hz, float steeringWheelTorque500Hz, float curbProtectionLerpFactor, AlgorithmVariables variables )
+	private static float ProcessAlgorithm( ref float runningSteeringWheelTorque500Hz, float lastSteeringWheelTorque500Hz, float steeringWheelTorque60Hz, float steeringWheelTorque500Hz, float curbProtectionLerpFactor, ref AlgorithmVariables variables )
 	{
 		// shortcut to settings
 
@@ -771,6 +772,7 @@ public class RacingWheel
 			// update auto torque
 
 			_autoTorque = _peakTorque * ( 1f + settings.RacingWheelAutoMargin );
+			app.Telemetry.Data.autoRacingWheelMaxForce = _autoTorque;
 
 			// update crash protection
 
@@ -830,7 +832,7 @@ public class RacingWheel
 
 			// process the algorithm
 
-			var outputTorque = ProcessAlgorithm( ref _runningSteeringWheelTorque500Hz, _lastSteeringWheelTorque500Hz, steeringWheelTorque60Hz, steeringWheelTorque500Hz, curbProtectionLerpFactor, _algorithmVariables );
+			var outputTorque = ProcessAlgorithm( ref _runningSteeringWheelTorque500Hz, _lastSteeringWheelTorque500Hz, steeringWheelTorque60Hz, steeringWheelTorque500Hz, curbProtectionLerpFactor, ref _algorithmVariables );
 
 			// save last 500Hz steering wheel torque
 
@@ -1099,7 +1101,7 @@ public class RacingWheel
 						var inputTorque60Hz = recording.Data![ x ].InputTorque60Hz;
 						var inputTorque500Hz = recording.Data![ x ].InputTorque500Hz;
 
-						var outputTorque = ProcessAlgorithm( ref runningTorque, lastTorque500Hz, inputTorque60Hz, inputTorque500Hz, 0f, algorithmVariables );
+						var outputTorque = ProcessAlgorithm( ref runningTorque, lastTorque500Hz, inputTorque60Hz, inputTorque500Hz, 0f, ref algorithmVariables );
 
 						lastTorque500Hz = inputTorque500Hz;
 
