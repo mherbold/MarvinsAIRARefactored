@@ -4,45 +4,14 @@ using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
-using Accord.Genetic;
+
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
-using MarvinsAIRARefactored.Pages;
 
 namespace MarvinsAIRARefactored.DataContext;
 
 public class Settings : INotifyPropertyChanged
 {
-	private enum DetailBoosterParameters
-	{
-		Boost,
-		Bias
-	};
-
-	private enum DeltaLimiterParameters
-	{
-		Limit,
-		Bias
-	};
-
-	private enum ZeAlanLeTwistParameters
-	{
-		SlewThreshold,
-		SlewRate,
-		TotalThreshold,
-		TotalRate,
-		Limiter
-	};
-
-	private enum MultiAdjustParameters
-	{
-		Compression,
-		Slew,
-		Gain,
-		Smoothing,
-		Limiter
-	};
-
 	public static bool SuppressUpdatingOfContextSettings { private get; set; } = false;
 
 	private bool _updatingRacingWheelRelatedSettings = false;
@@ -507,8 +476,6 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			var app = App.Instance!;
-
 			if ( value != _racingWheelAlgorithm )
 			{
 				_racingWheelAlgorithm = value;
@@ -516,157 +483,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
+			var app = App.Instance!;
+
 			app.MainWindow.UpdateRacingWheelAlgorithmControls();
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
-
-			var context = DataContext.Instance;
-			var parameterArrayLength = app.Telemetry.Data.algorithmParameterName.Length;
-
-			app.Telemetry.Data.algorithmName = RacingWheelPage.AlgorithmName[_racingWheelAlgorithm];
-
-			switch ( _racingWheelAlgorithm )
-			{
-				case RacingWheel.Algorithm.Native360Hz:
-				case RacingWheel.Algorithm.Native60Hz:
-				{
-					for ( var i = 0; i < parameterArrayLength; i ++ )
-					{
-						app.Telemetry.Data.algorithmParameterName[i] = string.Empty;
-						app.Telemetry.Data.algorithmParameterValue[i] = string.Empty;
-					}
-					break;
-				}
-
-				case RacingWheel.Algorithm.DetailBooster:
-				case RacingWheel.Algorithm.DetailBoosterOn60Hz:
-				{
-					for ( var i = 0; i < parameterArrayLength; i++ )
-					{
-						switch ( i )
-						{
-							case (int)DetailBoosterParameters.Boost:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "DetailBoost" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelDetailBoostString;
-								break;
-
-							case (int)DetailBoosterParameters.Bias:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "DetailBoostBias" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelDetailBoostBiasString;
-								break;
-
-							default:
-								app.Telemetry.Data.algorithmParameterName[i] = string.Empty;
-								app.Telemetry.Data.algorithmParameterValue[i] = string.Empty;
-								break;
-						}
-					}
-					break;
-				}
-
-				case RacingWheel.Algorithm.DeltaLimiter:
-				case RacingWheel.Algorithm.DeltaLimiterOn60Hz:
-				{
-					for ( var i = 0; i < parameterArrayLength; i++ )
-					{
-						switch ( i )
-						{
-							case (int)DeltaLimiterParameters.Limit:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "DeltaLimiter" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelDeltaLimitString;
-								break;
-
-							case (int)DeltaLimiterParameters.Bias:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "DeltaLimiterBias" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelDeltaLimiterBiasString;
-								break;
-
-							default:
-								app.Telemetry.Data.algorithmParameterName[i] = String.Empty;
-								break;
-						}
-					}
-					break;
-				}
-
-				case RacingWheel.Algorithm.ZeAlanLeTwist:
-				{
-					for ( var i = 0; i < parameterArrayLength; i++ )
-					{
-						switch ( i )
-						{
-							case (int)ZeAlanLeTwistParameters.SlewThreshold:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "SlewCompressionThreshold" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelSlewCompressionThresholdString;
-								break;
-
-							case (int)ZeAlanLeTwistParameters.SlewRate:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "SlewCompressionRate" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelSlewCompressionRateString;
-								break;
-
-							case (int)ZeAlanLeTwistParameters.TotalThreshold:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "TotalCompressionThreshold" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelTotalCompressionThresholdString;
-								break;
-
-							case (int)ZeAlanLeTwistParameters.TotalRate:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "TotalCompressionRate" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelTotalCompressionRateString;
-								break;
-
-							case (int)ZeAlanLeTwistParameters.Limiter:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "EnableSoftLimiter" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelEnableSoftLimiter ? "True" : "False";
-								break;
-
-							default:
-								app.Telemetry.Data.algorithmParameterName[i] = String.Empty;
-								break;
-						}
-					}
-					break;
-				}
-
-				case RacingWheel.Algorithm.MultiAdjust:
-				{
-					for ( var i = 0; i < parameterArrayLength; i++ )
-					{
-						switch ( i )
-						{
-							case (int)MultiAdjustParameters.Compression:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "MultiCompression" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelMultiCompressionString;
-								break;
-
-							case (int)MultiAdjustParameters.Slew:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "MultiSlew" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelMultiSlewString;
-								break;
-
-							case (int)MultiAdjustParameters.Gain:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "MultiDetailGain" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelMultiDetailGainString;
-								break;
-
-							case (int)MultiAdjustParameters.Smoothing:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "MultiSmoothing" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelMultiSmoothingString;
-								break;
-
-							case (int)MultiAdjustParameters.Limiter:
-								app.Telemetry.Data.algorithmParameterName[i] = $"{context.Localization[ "EnableSoftLimiter" ]}";
-								app.Telemetry.Data.algorithmParameterValue[i] = RacingWheelMultiSoftLimiter ? "True" : "False";
-								break;
-
-							default:
-								app.Telemetry.Data.algorithmParameterName[i] = String.Empty;
-								break;
-						}
-					}
-					break;
-				}
-			}
 		}
 	}
 
@@ -715,8 +536,6 @@ public class Settings : INotifyPropertyChanged
 				_racingWheelDetailBoostString = value;
 
 				var app = App.Instance!;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)DetailBoosterParameters.Boost] = _racingWheelDetailBoostString;
 
 				OnPropertyChanged();
 			}
@@ -771,8 +590,6 @@ public class Settings : INotifyPropertyChanged
 
 				var app = App.Instance!;
 
-				app.Telemetry.Data.algorithmParameterValue[(int)DetailBoosterParameters.Bias] = _racingWheelDetailBoostBiasString;
-
 				OnPropertyChanged();
 			}
 		}
@@ -825,8 +642,6 @@ public class Settings : INotifyPropertyChanged
 				_racingWheelDeltaLimitString = value;
 
 				var app = App.Instance!;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)DeltaLimiterParameters.Limit] = _racingWheelDeltaLimitString;
 
 				OnPropertyChanged();
 			}
@@ -881,8 +696,6 @@ public class Settings : INotifyPropertyChanged
 
 				var app = App.Instance!;
 
-				app.Telemetry.Data.algorithmParameterValue[(int)DeltaLimiterParameters.Bias] = _racingWheelDeltaLimiterBiasString;
-
 				OnPropertyChanged();
 			}
 		}
@@ -891,6 +704,33 @@ public class Settings : INotifyPropertyChanged
 	public ContextSwitches RacingWheelDeltaLimiterBiasContextSwitches { get; set; } = new( true, true, false, false, false );
 	public ButtonMappings RacingWheelDeltaLimiterBiasPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelDeltaLimiterBiasMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Enable soft limiter
+
+	private bool _racingWheelEnableSoftLimiter = true;
+
+	public bool RacingWheelEnableSoftLimiter
+	{
+		get => _racingWheelEnableSoftLimiter;
+
+		set
+		{
+			if ( value != _racingWheelEnableSoftLimiter )
+			{
+				_racingWheelEnableSoftLimiter = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.RacingWheel.UpdateAlgorithmPreview = true;
+		}
+	}
+
+	public ContextSwitches RacingWheelEnableSoftLimiterContextSwitches { get; set; } = new( true, true, false, false, false );
 
 	#endregion
 
@@ -928,10 +768,6 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _racingWheelSlewCompressionThresholdString )
 			{
 				_racingWheelSlewCompressionThresholdString = value;
-
-				var app = App.Instance!;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)ZeAlanLeTwistParameters.SlewThreshold] = _racingWheelSlewCompressionThresholdString;
 
 				OnPropertyChanged();
 			}
@@ -991,8 +827,6 @@ public class Settings : INotifyPropertyChanged
 
 				var app = App.Instance!;
 
-				app.Telemetry.Data.algorithmParameterValue[(int)ZeAlanLeTwistParameters.SlewRate] = _racingWheelSlewCompressionRateString;
-
 				OnPropertyChanged();
 			}
 		}
@@ -1001,35 +835,6 @@ public class Settings : INotifyPropertyChanged
 	public ContextSwitches RacingWheelSlewCompressionRateContextSwitches { get; set; } = new( true, true, false, false, false );
 	public ButtonMappings RacingWheelSlewCompressionRatePlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelSlewCompressionRateMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region Racing wheel - Enable Soft Limiter
-
-	private bool _racingWheelEnableSoftLimiter = true;
-
-	public bool RacingWheelEnableSoftLimiter
-	{
-		get => _racingWheelEnableSoftLimiter;
-
-		set
-		{
-			var app = App.Instance!;
-
-			if (value != _racingWheelEnableSoftLimiter)
-			{
-				_racingWheelEnableSoftLimiter = value;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)ZeAlanLeTwistParameters.Limiter] = _racingWheelEnableSoftLimiter ? "True" : "False";
-
-				OnPropertyChanged();
-			}
-
-			app.RacingWheel.UpdateAlgorithmPreview = true;
-		}
-	}
-
-	public ContextSwitches RacingWheelEnableSoftLimiterContextSwitches { get; set; } = new(true, true, false, false, false);
 
 	#endregion
 
@@ -1068,10 +873,6 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _racingWheelTotalCompressionThresholdString )
 			{
 				_racingWheelTotalCompressionThresholdString = value;
-
-				var app = App.Instance!;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)ZeAlanLeTwistParameters.TotalThreshold] = _racingWheelTotalCompressionThresholdString;
 
 				OnPropertyChanged();
 			}
@@ -1129,10 +930,6 @@ public class Settings : INotifyPropertyChanged
 			{
 				_racingWheelTotalCompressionRateString = value;
 
-				var app = App.Instance!;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)ZeAlanLeTwistParameters.TotalRate] = _racingWheelTotalCompressionRateString;
-
 				OnPropertyChanged();
 			}
 		}
@@ -1144,21 +941,48 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Racing wheel - Multi-adjust simple compression
+	#region Racing wheel - Enable multi soft Limiter
 
-	private float _racingWheelMultiCompression = 0f;
+	private bool _racingWheelEnableMultiSoftLimiter = true;
 
-	public float RacingWheelMultiCompression
+	public bool RacingWheelEnableMultiSoftLimiter
 	{
-		get => _racingWheelMultiCompression;
+		get => _racingWheelEnableMultiSoftLimiter;
 
 		set
 		{
-			value = MathF.Round(Math.Clamp(value, 0f, 1f), 2);
-
-			if (value != _racingWheelMultiCompression)
+			if ( value != _racingWheelEnableMultiSoftLimiter )
 			{
-				_racingWheelMultiCompression = value;
+				_racingWheelEnableMultiSoftLimiter = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.RacingWheel.UpdateAlgorithmPreview = true;
+		}
+	}
+
+	public ContextSwitches RacingWheelEnableMultiSoftLimiterContextSwitches { get; set; } = new( true, true, false, false, false );
+
+	#endregion
+
+	#region Racing wheel - Multi torque compression
+
+	private float _racingWheelMultiTorqueCompression = 0f;
+
+	public float RacingWheelMultiTorqueCompression
+	{
+		get => _racingWheelMultiTorqueCompression;
+
+		set
+		{
+			value = MathF.Round( Math.Clamp( value, 0f, 1f ), 2 );
+
+			if ( value != _racingWheelMultiTorqueCompression )
+			{
+				_racingWheelMultiTorqueCompression = value;
 
 				OnPropertyChanged();
 			}
@@ -1167,60 +991,56 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			if ( _racingWheelMultiCompression != 0f )
+			if ( _racingWheelMultiTorqueCompression != 0f )
 			{
-				RacingWheelMultiCompressionString = $"{_racingWheelMultiCompression * 100f:F0}";
+				RacingWheelMultiTorqueCompressionString = $"{_racingWheelMultiTorqueCompression * 100f:F0}";
 			}
 			else
 			{
-				RacingWheelMultiCompressionString = DataContext.Instance.Localization[ "OFF" ];
+				RacingWheelMultiTorqueCompressionString = DataContext.Instance.Localization[ "OFF" ];
 			}
 		}
 	}
 
-	private string _racingWheelMultiCompressionString = string.Empty;
+	private string _racingWheelMultiTorqueCompressionString = string.Empty;
 
 	[XmlIgnore]
-	public string RacingWheelMultiCompressionString
+	public string RacingWheelMultiTorqueCompressionString
 	{
-		get => _racingWheelMultiCompressionString;
+		get => _racingWheelMultiTorqueCompressionString;
 
 		set
 		{
-			if (value != _racingWheelMultiCompressionString)
+			if ( value != _racingWheelMultiTorqueCompressionString )
 			{
-				_racingWheelMultiCompressionString = value;
-
-				var app = App.Instance!;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)MultiAdjustParameters.Compression] = _racingWheelMultiCompressionString;
+				_racingWheelMultiTorqueCompressionString = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	public ContextSwitches RacingWheelMultiCompressionContextSwitches { get; set; } = new(true, true, false, false, false);
-	public ButtonMappings RacingWheelMultiCompressionPlusButtonMappings { get; set; } = new();
-	public ButtonMappings RacingWheelMultiCompressionMinusButtonMappings { get; set; } = new();
+	public ContextSwitches RacingWheelMultiTorqueCompressionContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings RacingWheelMultiTorqueCompressionPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelMultiTorqueCompressionMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
-	#region Racing wheel - Multi-adjust simple slew reduction
+	#region Racing wheel - Multi slew rate reduction
 
-	private float _racingWheelMultiSlew = 0f;
+	private float _racingWheelMultiSlewRateReduction = 0f;
 
-	public float RacingWheelMultiSlew
+	public float RacingWheelMultiSlewRateReduction
 	{
-		get => _racingWheelMultiSlew;
+		get => _racingWheelMultiSlewRateReduction;
 
 		set
 		{
-			value = MathF.Round(Math.Clamp(value, 0f, 1f), 2);
+			value = MathF.Round( Math.Clamp( value, 0f, 1f ), 2 );
 
-			if (value != _racingWheelMultiSlew)
+			if ( value != _racingWheelMultiSlewRateReduction )
 			{
-				_racingWheelMultiSlew = value;
+				_racingWheelMultiSlewRateReduction = value;
 
 				OnPropertyChanged();
 			}
@@ -1229,46 +1049,42 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			if ( _racingWheelMultiSlew != 0f )
+			if ( _racingWheelMultiSlewRateReduction != 0f )
 			{
-				RacingWheelMultiSlewString = $"{_racingWheelMultiSlew * 100f:F0}";
+				RacingWheelMultiSlewRateReductionString = $"{_racingWheelMultiSlewRateReduction * 100f:F0}";
 			}
 			else
 			{
-				RacingWheelMultiSlewString = DataContext.Instance.Localization[ "OFF" ];
+				RacingWheelMultiSlewRateReductionString = DataContext.Instance.Localization[ "OFF" ];
 			}
 		}
 	}
 
-	private string _racingWheelMultiSlewString = string.Empty;
+	private string _racingWheelMultiSlewRateReductionString = string.Empty;
 
 	[XmlIgnore]
-	public string RacingWheelMultiSlewString
+	public string RacingWheelMultiSlewRateReductionString
 	{
-		get => _racingWheelMultiSlewString;
+		get => _racingWheelMultiSlewRateReductionString;
 
 		set
 		{
-			if (value != _racingWheelMultiSlewString)
+			if ( value != _racingWheelMultiSlewRateReductionString )
 			{
-				_racingWheelMultiSlewString = value;
-
-				var app = App.Instance!;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)MultiAdjustParameters.Slew] = _racingWheelMultiSlewString;
+				_racingWheelMultiSlewRateReductionString = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	public ContextSwitches RacingWheelMultiSlewContextSwitches { get; set; } = new(true, true, false, false, false);
-	public ButtonMappings RacingWheelMultiSlewPlusButtonMappings { get; set; } = new();
-	public ButtonMappings RacingWheelMultiSlewMinusButtonMappings { get; set; } = new();
+	public ContextSwitches RacingWheelMultiSlewRateReductionContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings RacingWheelMultiSlewRateReductionPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelMultiSlewRateReductionMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
-	#region Racing wheel - Multi-adjust detail gain
+	#region Racing wheel - Multi detail gain
 
 	private float _racingWheelMultiDetailGain = 0f;
 
@@ -1278,9 +1094,9 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = MathF.Round( Math.Clamp(value, -1f, 2f), 2 );
+			value = MathF.Round( Math.Clamp( value, -1f, 2f ), 2 );
 
-			if (value != _racingWheelMultiDetailGain)
+			if ( value != _racingWheelMultiDetailGain )
 			{
 				_racingWheelMultiDetailGain = value;
 
@@ -1291,7 +1107,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelMultiDetailGainString = $"{_racingWheelMultiDetailGain * 100f:F0}{DataContext.Instance.Localization["Percent"]}";
+			RacingWheelMultiDetailGainString = $"{_racingWheelMultiDetailGain * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -1304,40 +1120,36 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			if (value != _racingWheelMultiDetailGainString)
+			if ( value != _racingWheelMultiDetailGainString )
 			{
 				_racingWheelMultiDetailGainString = value;
-
-				var app = App.Instance!;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)MultiAdjustParameters.Gain] = _racingWheelMultiDetailGainString;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	public ContextSwitches RacingWheelMultiDetailGainContextSwitches { get; set; } = new(true, true, false, false, false);
+	public ContextSwitches RacingWheelMultiDetailGainContextSwitches { get; set; } = new( true, true, false, false, false );
 	public ButtonMappings RacingWheelMultiDetailGainPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelMultiDetailGainMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
-	#region Racing wheel - Multi-adjust smoothing
+	#region Racing wheel - Multi output smoothing
 
-	private float _racingWheelMultiSmoothing = 0f;
+	private float _racingWheelMultiOutputSmoothing = 0f;
 
-	public float RacingWheelMultiSmoothing
+	public float RacingWheelMultiOutputSmoothing
 	{
-		get => _racingWheelMultiSmoothing;
+		get => _racingWheelMultiOutputSmoothing;
 
 		set
 		{
-			value = MathF.Round(Math.Clamp(value, 0f, 1f), 2);
+			value = MathF.Round( Math.Clamp( value, 0f, 1f ), 2 );
 
-			if (value != _racingWheelMultiSmoothing)
+			if ( value != _racingWheelMultiOutputSmoothing )
 			{
-				_racingWheelMultiSmoothing = value;
+				_racingWheelMultiOutputSmoothing = value;
 
 				OnPropertyChanged();
 			}
@@ -1346,71 +1158,38 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			if ( _racingWheelMultiSmoothing != 0f )
+			if ( _racingWheelMultiOutputSmoothing != 0f )
 			{
-				RacingWheelMultiSmoothingString = $"{_racingWheelMultiSmoothing * 100f:F0}";
+				RacingWheelMultiOutputSmoothingString = $"{_racingWheelMultiOutputSmoothing * 100f:F0}";
 			}
 			else
 			{
-				RacingWheelMultiSmoothingString = DataContext.Instance.Localization[ "OFF" ];
+				RacingWheelMultiOutputSmoothingString = DataContext.Instance.Localization[ "OFF" ];
 			}
 		}
 	}
 
-	private string _racingWheelMultiSmoothingString = string.Empty;
+	private string _racingWheelMultiOutputSmoothingString = string.Empty;
 
 	[XmlIgnore]
-	public string RacingWheelMultiSmoothingString
+	public string RacingWheelMultiOutputSmoothingString
 	{
-		get => _racingWheelMultiSmoothingString;
+		get => _racingWheelMultiOutputSmoothingString;
 
 		set
 		{
-			if (value != _racingWheelMultiSmoothingString)
+			if ( value != _racingWheelMultiOutputSmoothingString )
 			{
-				_racingWheelMultiSmoothingString = value;
-
-				var app = App.Instance!;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)MultiAdjustParameters.Smoothing] = _racingWheelMultiSmoothingString;
+				_racingWheelMultiOutputSmoothingString = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	public ContextSwitches RacingWheelMultiSmoothingContextSwitches { get; set; } = new(true, true, false, false, false);
-	public ButtonMappings RacingWheelMultiSmoothingPlusButtonMappings { get; set; } = new();
-	public ButtonMappings RacingWheelMultiSmoothingMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region Racing wheel - Enable Multi-Adjust Soft Limiter
-
-	private bool _racingWheelMultiSoftLimiter = true;
-
-	public bool RacingWheelMultiSoftLimiter
-	{
-		get => _racingWheelMultiSoftLimiter;
-
-		set
-		{
-			var app = App.Instance!;
-
-			if (value != _racingWheelMultiSoftLimiter)
-			{
-				_racingWheelMultiSoftLimiter = value;
-
-				app.Telemetry.Data.algorithmParameterValue[(int)MultiAdjustParameters.Limiter] = _racingWheelMultiSoftLimiter ? "True" : "False";
-
-				OnPropertyChanged();
-			}
-
-			app.RacingWheel.UpdateAlgorithmPreview = true;
-		}
-	}
-
-	public ContextSwitches RacingWheelMultiSoftLimiterContextSwitches { get; set; } = new(true, true, false, false, false);
+	public ContextSwitches RacingWheelMultiOutputSmoothingContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ButtonMappings RacingWheelMultiOutputSmoothingPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelMultiOutputSmoothingMinusButtonMappings { get; set; } = new();
 
 	#endregion
 

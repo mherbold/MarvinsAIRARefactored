@@ -11,18 +11,6 @@ namespace MarvinsAIRARefactored.Pages;
 
 public partial class RacingWheelPage : UserControl
 {
-	public static Dictionary<RacingWheel.Algorithm, string> AlgorithmName { get; } = new Dictionary<RacingWheel.Algorithm, string>
-	{
-		{ RacingWheel.Algorithm.Native60Hz, MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Native60Hz" ] },
-		{ RacingWheel.Algorithm.Native360Hz, MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Native360Hz" ] },
-		{ RacingWheel.Algorithm.DetailBooster, MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "DetailBooster" ] },
-		{ RacingWheel.Algorithm.DeltaLimiter, MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "DeltaLimiter" ] },
-		{ RacingWheel.Algorithm.DetailBoosterOn60Hz, MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "DetailBoosterOn60Hz" ] },
-		{ RacingWheel.Algorithm.DeltaLimiterOn60Hz, MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "DeltaLimiterOn60Hz" ] },
-		{ RacingWheel.Algorithm.ZeAlanLeTwist, MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "ZeAlanLeTwist" ] } ,
-		{ RacingWheel.Algorithm.MultiAdjust, MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "MultiAdjust" ] }
-	};
-	
 	public RacingWheelPage()
 	{
 		InitializeComponent();
@@ -191,9 +179,21 @@ public partial class RacingWheelPage : UserControl
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
+		var dictionary = new Dictionary<RacingWheel.Algorithm, string>
+		{
+			{ RacingWheel.Algorithm.Native60Hz, localization[ "Native60Hz" ] },
+			{ RacingWheel.Algorithm.Native360Hz, localization[ "Native360Hz" ] },
+			{ RacingWheel.Algorithm.DetailBooster, localization[ "DetailBooster" ] },
+			{ RacingWheel.Algorithm.DeltaLimiter, localization[ "DeltaLimiter" ] },
+			{ RacingWheel.Algorithm.DetailBoosterOn60Hz, localization[ "DetailBoosterOn60Hz" ] },
+			{ RacingWheel.Algorithm.DeltaLimiterOn60Hz, localization[ "DeltaLimiterOn60Hz" ] },
+			{ RacingWheel.Algorithm.SlewAndTotalCompression, localization[ "SlewAndTotalCompression" ] },
+			{ RacingWheel.Algorithm.MultiAdjustmentToolkit, localization[ "MultiAdjustmentToolkit" ] }
+		};
+
 		app.Dispatcher.Invoke( () =>
 		{
-			Algorithm_MairaComboBox.ItemsSource = AlgorithmName;
+			Algorithm_MairaComboBox.ItemsSource = dictionary;
 			Algorithm_MairaComboBox.SelectedValue = settings.RacingWheelAlgorithm;
 		} );
 

@@ -47,6 +47,15 @@ public class Pedals
 	private readonly float[] _amplitude = new float[ 3 ];
 	private readonly float[] _cycles = new float[ 3 ];
 
+	public float ClutchFrequency { get => _frequency[ (int) HPR.Channel.Clutch ]; }
+	public float ClutchAmplitude { get => _amplitude[ (int) HPR.Channel.Clutch ]; }
+
+	public float BrakeFrequency { get => _frequency[ (int) HPR.Channel.Brake ]; }
+	public float BrakeAmplitude { get => _amplitude[ (int) HPR.Channel.Brake ]; }
+
+	public float ThrottleFrequency { get => _frequency[ (int) HPR.Channel.Throttle ]; }
+	public float ThrottleAmplitude { get => _amplitude[ (int) HPR.Channel.Throttle ]; }
+
 	public void Initialize()
 	{
 		var app = App.Instance!;
@@ -139,17 +148,6 @@ public class Pedals
 					_cycles[ pedalIndex ] = 0f;
 				}
 
-				// update telemetry
-
-				app.Telemetry.Data.pedalsClutchFrequency = 0f;
-				app.Telemetry.Data.pedalsClutchAmplitude = 0f;
-
-				app.Telemetry.Data.pedalsBrakeFrequency = 0f;
-				app.Telemetry.Data.pedalsBrakeAmplitude = 0f;
-
-				app.Telemetry.Data.pedalsThrottleFrequency = 0f;
-				app.Telemetry.Data.pedalsThrottleAmplitude = 0f;
-
 				return;
 			}
 		}
@@ -241,17 +239,6 @@ public class Pedals
 				_cycles[ pedalIndex ] = 0f;
 			}
 		}
-
-		// update telemetry
-
-		app.Telemetry.Data.pedalsClutchFrequency = _frequency[ (int) HPR.Channel.Clutch ];
-		app.Telemetry.Data.pedalsClutchAmplitude = _amplitude[ (int) HPR.Channel.Clutch ];
-
-		app.Telemetry.Data.pedalsBrakeFrequency = _frequency[ (int) HPR.Channel.Brake ];
-		app.Telemetry.Data.pedalsBrakeAmplitude = _amplitude[ (int) HPR.Channel.Brake ];
-
-		app.Telemetry.Data.pedalsThrottleFrequency = _frequency[ (int) HPR.Channel.Throttle ];
-		app.Telemetry.Data.pedalsThrottleAmplitude = _amplitude[ (int) HPR.Channel.Throttle ];
 
 		// update test just started
 

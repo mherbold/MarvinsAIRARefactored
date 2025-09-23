@@ -147,12 +147,6 @@ public class SteeringEffects
 					break;
 			}
 		}
-
-		// update telemetery
-
-		app.Telemetry.Data.steeringEffectsUndersteerEffect = UndersteerEffect;
-		app.Telemetry.Data.steeringEffectsOversteerEffect = OversteerEffect;
-		app.Telemetry.Data.steeringEffectsSkidSlip = SkidSlip;
 	}
 
 	private void UpdateEffects( App app )

@@ -662,51 +662,51 @@ public partial class App : Application
 				}
 			}
 
-			// racing wheel multi-adjust compression knob
+			// racing wheel multi torque compression knob
 
-			if ( CheckMappedButtons( settings.RacingWheelMultiCompressionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.RacingWheelMultiTorqueCompressionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelMultiCompression += 0.01f;
+				settings.RacingWheelMultiTorqueCompression += 0.01f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiCompressionString );
+					RacingWheel.SendChatMessage( "TorqueCompression", settings.RacingWheelMultiTorqueCompressionString );
 				}
 			}
 
-			if ( CheckMappedButtons( settings.RacingWheelMultiCompressionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.RacingWheelMultiTorqueCompressionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelMultiCompression -= 0.01f;
+				settings.RacingWheelMultiTorqueCompression -= 0.01f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiCompressionString );
+					RacingWheel.SendChatMessage( "TorqueCompression", settings.RacingWheelMultiTorqueCompressionString );
 				}
 			}
 
-			// racing wheel multi-adjust slew knob
+			// racing wheel multi slew rate reduction knob
 
-			if ( CheckMappedButtons( settings.RacingWheelMultiSlewPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.RacingWheelMultiSlewRateReductionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelMultiSlew += 0.01f;
+				settings.RacingWheelMultiSlewRateReduction += 0.01f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiSlewString );
+					RacingWheel.SendChatMessage( "SlewRateReduction", settings.RacingWheelMultiSlewRateReductionString );
 				}
 			}
 
-			if ( CheckMappedButtons( settings.RacingWheelMultiSlewMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.RacingWheelMultiSlewRateReductionMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelMultiSlew -= 0.01f;
+				settings.RacingWheelMultiSlewRateReduction -= 0.01f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiSlewString );
+					RacingWheel.SendChatMessage( "SlewRateReduction", settings.RacingWheelMultiSlewRateReductionString );
 				}
 			}
 
-			// racing wheel multi-adjust detail gain knob
+			// racing wheel multi detail gain knob
 
 			if ( CheckMappedButtons( settings.RacingWheelMultiDetailGainPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
@@ -714,7 +714,7 @@ public partial class App : Application
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiDetailGainString );
+					RacingWheel.SendChatMessage( "DetailGain", settings.RacingWheelMultiDetailGainString );
 				}
 			}
 
@@ -724,29 +724,29 @@ public partial class App : Application
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiDetailGainString );
+					RacingWheel.SendChatMessage( "DetailGain", settings.RacingWheelMultiDetailGainString );
 				}
 			}
 
-			// racing wheel multi-adjust smoothing knob
+			// racing wheel multi output smoothing knob
 
-			if ( CheckMappedButtons( settings.RacingWheelMultiSmoothingPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.RacingWheelMultiOutputSmoothingPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelMultiSmoothing += 0.01f;
+				settings.RacingWheelMultiOutputSmoothing += 0.01f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiSmoothingString );
+					RacingWheel.SendChatMessage( "OutputSmoothing", settings.RacingWheelMultiOutputSmoothingString );
 				}
 			}
 
-			if ( CheckMappedButtons( settings.RacingWheelMultiSmoothingMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.RacingWheelMultiOutputSmoothingMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelMultiSmoothing -= 0.01f;
+				settings.RacingWheelMultiOutputSmoothing -= 0.01f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "TotalCompressionRate", settings.RacingWheelMultiSmoothingString );
+					RacingWheel.SendChatMessage( "OutputSmoothing", settings.RacingWheelMultiOutputSmoothingString );
 				}
 			}
 
