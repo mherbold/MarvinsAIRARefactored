@@ -288,8 +288,14 @@ public partial class MainWindow : Window
 			var racingWheelDeltaLimiterBiasKnobControlVisibility = Visibility.Hidden;
 			var racingWheelSlewCompressionThresholdVisibility = Visibility.Hidden;
 			var racingWheelSlewCompressionRateVisibility = Visibility.Hidden;
+			var racingWheelEnableSoftLimiterVisibility = Visibility.Hidden;
 			var racingWheelTotalCompressionThresholdVisibility = Visibility.Hidden;
 			var racingWheelTotalCompressionRateVisibility = Visibility.Hidden;
+			var racingWheelMultiCompressionVisibility = Visibility.Hidden;
+			var racingWheelMultiSlewVisibility = Visibility.Hidden;
+			var racingWheelMultiDetailGainVisibility = Visibility.Hidden;
+			var racingWheelMultiSmoothingVisibility = Visibility.Hidden;
+			var racingWheelMultiSoftLimiterVisibility = Visibility.Hidden;
 
 			var racingWheelAlgorithmRowTwoGridVisibility = Visibility.Collapsed;
 			var racingWheelCurbProtectionStackPanelVisibility = Visibility.Collapsed;
@@ -313,8 +319,20 @@ public partial class MainWindow : Window
 				case RacingWheel.Algorithm.ZeAlanLeTwist:
 					racingWheelSlewCompressionThresholdVisibility = Visibility.Visible;
 					racingWheelSlewCompressionRateVisibility = Visibility.Visible;
+					racingWheelEnableSoftLimiterVisibility = Visibility.Visible;
 					racingWheelTotalCompressionThresholdVisibility = Visibility.Visible;
 					racingWheelTotalCompressionRateVisibility = Visibility.Visible;
+
+					racingWheelAlgorithmRowTwoGridVisibility = Visibility.Visible;
+					racingWheelCurbProtectionStackPanelVisibility = Visibility.Visible;
+					break;
+
+				case RacingWheel.Algorithm.MultiAdjust:
+					racingWheelMultiCompressionVisibility = Visibility.Visible;
+					racingWheelMultiSlewVisibility = Visibility.Visible;
+					racingWheelMultiDetailGainVisibility = Visibility.Visible;
+					racingWheelMultiSmoothingVisibility = Visibility.Visible;
+					racingWheelMultiSoftLimiterVisibility = Visibility.Visible;
 
 					racingWheelAlgorithmRowTwoGridVisibility = Visibility.Visible;
 					racingWheelCurbProtectionStackPanelVisibility = Visibility.Visible;
@@ -327,8 +345,14 @@ public partial class MainWindow : Window
 			_racingWheelPage.DeltaLimiterBias_MairaKnob.Visibility = racingWheelDeltaLimiterBiasKnobControlVisibility;
 			_racingWheelPage.SlewCompressionThreshold_MairaKnob.Visibility = racingWheelSlewCompressionThresholdVisibility;
 			_racingWheelPage.SlewCompressionRate_MairaKnob.Visibility = racingWheelSlewCompressionRateVisibility;
+			_racingWheelPage.EnableSoftLimiter_MairaSwitch.Visibility = racingWheelEnableSoftLimiterVisibility;
 			_racingWheelPage.TotalCompressionThreshold_MairaKnob.Visibility = racingWheelTotalCompressionThresholdVisibility;
 			_racingWheelPage.TotalCompressionRate_MairaKnob.Visibility = racingWheelTotalCompressionRateVisibility;
+			_racingWheelPage.MultiCompression_MairaKnob.Visibility = racingWheelMultiCompressionVisibility;
+			_racingWheelPage.MultiSlew_MairaKnob.Visibility = racingWheelMultiSlewVisibility;
+			_racingWheelPage.MultiDetailGain_MairaKnob.Visibility = racingWheelMultiDetailGainVisibility;
+			_racingWheelPage.MultiSmoothing_MairaKnob.Visibility = racingWheelMultiSmoothingVisibility;
+			_racingWheelPage.EnableMultiSoftLimiter_MairaSwitch.Visibility = racingWheelMultiSoftLimiterVisibility;
 
 			_racingWheelPage.AlgorithmRowTwo_Grid.Visibility = racingWheelAlgorithmRowTwoGridVisibility;
 			_racingWheelPage.CurbProtection_StackPanel.Visibility = racingWheelCurbProtectionStackPanelVisibility;

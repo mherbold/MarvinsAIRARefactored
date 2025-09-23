@@ -303,7 +303,7 @@
   </data>
   <data name="CompressionRate" xml:space="preserve">
     <value>Compression Rate</value>
-    <comment>Racing wheel</comment>
+    <comment>Compression Rate</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>DEVICE</value>
@@ -770,20 +770,20 @@
     <comment>App settings</comment>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value>Total: Compression Rate</value>
-    <comment>Racing wheel</comment>
+    <value>Total Compression Rate</value>
+    <comment>Total Compression Rate</comment>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Slew: Compression Threshold</value>
-    <comment>Racing wheel</comment>
+    <value>Slew Threshold</value>
+    <comment>Slew Threshold</comment>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Slew: Compression Rate</value>
-    <comment>Racing wheel</comment>
+    <value>Slew Compression Rate</value>
+    <comment>Slew Compression Rate</comment>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value>Total: Compression Threshold</value>
-    <comment>Racing wheel</comment>
+    <value>Total Threshold</value>
+    <comment>Total Threshold</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
     <value> Nm/ms</value>
@@ -1356,5 +1356,29 @@
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
     <value>Marvin's Awesome iRacing App (MAIRA) is not affiliated with Trading Paints</value>
     <comment>Trading Paints</comment>
+  </data>
+  <data name="MultiAdjust" xml:space="preserve">
+    <value>Multi Adjustment Toolkit</value>
+    <comment>Multi Adjustment Toolkit</comment>
+  </data>
+  <data name="MultiCompression" xml:space="preserve">
+    <value>Torque Compression</value>
+    <comment>Torque Compression</comment>
+  </data>
+  <data name="MultiSlew" xml:space="preserve">
+    <value>Slew Rate Reduction</value>
+    <comment>Slew Rate Reduction</comment>
+  </data>
+  <data name="EnableSoftLimiter" xml:space="preserve">
+    <value>Soft Clipping</value>
+    <comment>Soft Clipping</comment>
+  </data>
+  <data name="MultiDetailGain" xml:space="preserve">
+    <value>Adjust Detail Gain</value>
+    <comment>Adjust Detail Gain</comment>
+  </data>
+  <data name="MultiSmoothing" xml:space="preserve">
+    <value>Output Smoothing</value>
+    <comment>Output Smoothing</comment>
   </data>
 </root>
