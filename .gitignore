@@ -396,17 +396,3 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
-/InnoSetup/Languages/Resources.ru-RU.resx
-/InnoSetup/Languages/Resources.tr-TR.resx
-/InnoSetup/Languages/Resources.zh-Hans.resx
-/InnoSetup/Languages/Resources.cs-CZ.resx
-/InnoSetup/Languages/Resources.da-DK.resx
-/InnoSetup/Languages/Resources.de-DE.resx
-/InnoSetup/Languages/Resources.es-ES.resx
-/InnoSetup/Languages/Resources.fr-CA.resx
-/InnoSetup/Languages/Resources.hy-AM.resx
-/InnoSetup/Languages/Resources.it-IT.resx
-/InnoSetup/Languages/Resources.ja-JP.resx
-/InnoSetup/Languages/Resources.nl-NL.resx
-/InnoSetup/Languages/Resources.pl-PL.resx
-/InnoSetup/Languages/Resources.pt-BR.resx

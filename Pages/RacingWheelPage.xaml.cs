@@ -1,10 +1,11 @@
 ﻿
-using MarvinsAIRARefactored.Components;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using static MarvinsAIRARefactored.Components.RacingWheel;
+
 using UserControl = System.Windows.Controls.UserControl;
+
+using MarvinsAIRARefactored.Components;
 
 namespace MarvinsAIRARefactored.Pages;
 
