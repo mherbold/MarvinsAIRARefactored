@@ -22,6 +22,8 @@
     <None Remove="Artwork\Buttons\plus-large.png" />
     <None Remove="Artwork\Buttons\record-orange.png" />
     <None Remove="Artwork\Buttons\record-white.png" />
+    <None Remove="Artwork\Misc\left-drag-handle.png" />
+    <None Remove="Artwork\Misc\right-drag-handle.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -110,6 +112,8 @@
     <Resource Include="Artwork\Misc\github-logo.png" />
     <Resource Include="Artwork\Misc\grip-o-meter-ball.png" />
     <Resource Include="Artwork\Misc\grip-o-meter.png" />
+    <Resource Include="Artwork\Misc\left-drag-handle.png" />
+    <Resource Include="Artwork\Misc\right-drag-handle.png" />
     <Resource Include="Fonts\Aptos-Narrow-Italic.ttf" />
     <Resource Include="Fonts\Aptos-Narrow.ttf" />
     <Resource Include="Artwork\Misc\simagic-logo.png" />
@@ -123,20 +127,22 @@
     <PackageReference Include="Accord.Neuro" Version="3.8.0" />
     <PackageReference Include="Accord.Statistics" Version="3.8.0" />
     <PackageReference Include="CsvHelper" Version="33.1.0" />
-    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.183">
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.205">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="PInvoke.Kernel32" Version="0.7.124" />
     <PackageReference Include="PInvoke.SetupApi" Version="0.7.124" />
     <PackageReference Include="PInvoke.User32" Version="0.7.124" />
     <PackageReference Include="SharpDX.DirectInput" Version="4.2.0" />
     <PackageReference Include="SharpDX.DirectSound" Version="4.2.0" />
     <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
-    <PackageReference Include="System.IO.Ports" Version="9.0.8" />
-    <PackageReference Include="System.Management" Version="9.0.8" />
-    <PackageReference Include="System.Windows.Extensions" Version="9.0.8" />
+    <PackageReference Include="SharpZipLib" Version="1.4.2" />
+    <PackageReference Include="System.IO.Compression.ZipFile" Version="4.3.0" />
+    <PackageReference Include="System.IO.Ports" Version="9.0.9" />
+    <PackageReference Include="System.Management" Version="9.0.9" />
+    <PackageReference Include="System.Windows.Extensions" Version="9.0.9" />
   </ItemGroup>
 
   <ItemGroup>

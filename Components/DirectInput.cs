@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 using SharpDX.DirectInput;
 
-using MarvinsAIRARefactored.Controls;
+using MarvinsAIRARefactored.Windows;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -11,15 +11,14 @@ public class DirectInput
 {
 	private class JoystickInfo
 	{
-		public required Joystick Joystick;
-		public required Guid InstanceGuid;
-		public required string ProductName;
+		public required Joystick _joystick;
+		public required Guid _instanceGuid;
+		public required string _productName;
 
-		public ObjectProperties? XAxisProperties = null;
-		public JoystickState JoystickState = new();
-		public JoystickUpdate[]? JoystickUpdates = null;
-		public bool Defunct = false;
-		public int NextRetryCounter = 0;
+		public ObjectProperties? _xAxisProperties = null;
+		public JoystickState _joystickState = new();
+		public JoystickUpdate[]? _joystickUpdates = null;
+		public bool _isDefunct = false;
 	}
 
 	public const int DI_FFNOMINALMAX = 10000;
@@ -34,22 +33,25 @@ public class DirectInput
 
 	public event Action<string, Guid, int, bool>? OnInput = null;
 
-	private readonly Dictionary<Guid, string> _forceFeedbackDeviceList = [];
+	public Dictionary<Guid, string> ForceFeedbackDeviceList { get; private set; } = [];
 
 	private readonly SharpDX.DirectInput.DirectInput _directInput = new();
 
 	private Keyboard? _keyboard = null;
 	private KeyboardState _keyboardState = new();
 	private KeyboardUpdate[]? _keyboardUpdates = null;
-	private bool _keyboardDefunct = false;
-	private int _keyboardNextRetryCounter = 0;
+	private bool _keyboardIsDefunct = false;
 
-	private readonly Dictionary<Guid, JoystickInfo> _joystickInfoList = [];
+	private readonly Dictionary<Guid, JoystickInfo> _joystickInfoDictionary = [];
 
 	private bool _forceFeedbackInitialized = false;
 	private Guid _forceFeedbackDeviceInstanceGuid = Guid.Empty;
 	private EffectParameters? _forceFeedbackEffectParameters = null;
 	private Effect? _forceFeedbackEffect = null;
+
+	private bool _joystickInfoListNeedsToBeUpdated = false;
+
+	private int _pollMutex = 0;
 
 	public void Initialize()
 	{
@@ -58,6 +60,8 @@ public class DirectInput
 		app.Logger.WriteLine( "[DirectInput] Initialize >>>" );
 
 		EnumerateDevices();
+
+		app.HidHotplugMonitor.DeviceListMightHaveChanged += OnDeviceListMightHaveChanged;
 
 		app.Logger.WriteLine( "[DirectInput] <<< Initialize" );
 	}
@@ -70,11 +74,11 @@ public class DirectInput
 
 		app.Logger.WriteLine( "[DirectInput] Shutdown >>>" );
 
-		foreach ( var keyValuePair in _joystickInfoList )
+		foreach ( var keyValuePair in _joystickInfoDictionary )
 		{
 			var joystickInfo = keyValuePair.Value;
 
-			joystickInfo.Joystick.Dispose();
+			joystickInfo._joystick.Dispose();
 		}
 
 		_keyboard?.Dispose();
@@ -106,6 +110,8 @@ public class DirectInput
 			app.Logger.WriteLine( $"[DirectInput] Exception caught: {exception.Message.Trim()}" );
 
 			app.RacingWheel.NextRacingWheelGuid = Guid.Empty;
+
+			_forceFeedbackDeviceInstanceGuid = Guid.Empty;
 		}
 
 		if ( ForceFeedbackJoystick != null )
@@ -217,53 +223,27 @@ public class DirectInput
 		}
 	}
 
-	public void SetMairaComboBoxItemsSource( MairaComboBox mairaComboBox )
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[DirectInput] SetMairaComboBoxItemsSource >>>" );
-
-		var dictionary = new Dictionary<Guid, string>();
-
-		if ( _forceFeedbackDeviceList.Count == 0 )
-		{
-			dictionary.Add( Guid.Empty, DataContext.DataContext.Instance.Localization[ "NoFFBDevicesFound" ] );
-		}
-		else
-		{
-			dictionary.Add( Guid.Empty, DataContext.DataContext.Instance.Localization[ "FFBDeviceNotSelected" ] );
-		}
-
-		_forceFeedbackDeviceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
-
-		mairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
-		mairaComboBox.SelectedValue = DataContext.DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid;
-		mairaComboBox.OffValue = Guid.Empty;
-
-		app.Logger.WriteLine( "[DirectInput] <<< SetMairaComboBoxItemsSource" );
-	}
-
 	public void PollDevices( float deltaSeconds )
 	{
+		if ( Interlocked.Exchange( ref _pollMutex, 1 ) != 0 )
+		{
+			return;
+		}
+
 		var app = App.Instance!;
+
+		if ( _joystickInfoListNeedsToBeUpdated )
+		{
+			_joystickInfoListNeedsToBeUpdated = false;
+
+			EnumerateDevices();
+		}
 
 		if ( _keyboard != null )
 		{
 			try
 			{
-				if ( _keyboardDefunct )
-				{
-					_keyboardNextRetryCounter--;
-
-					if ( _keyboardNextRetryCounter == 0 )
-					{
-						_keyboard.SetCooperativeLevel( app.MainWindow.WindowHandle, CooperativeLevel.NonExclusive | CooperativeLevel.Background );
-						_keyboard.Acquire();
-
-						_keyboardDefunct = false;
-					}
-				}
-				else
+				if ( !_keyboardIsDefunct )
 				{
 					_keyboard.Poll();
 					_keyboard.GetCurrentState( ref _keyboardState );
@@ -273,44 +253,31 @@ public class DirectInput
 			}
 			catch ( Exception )
 			{
-				_keyboardDefunct = true;
-				_keyboardNextRetryCounter = 120;
+				_keyboardIsDefunct = true;
 				_keyboardUpdates = null;
 			}
 		}
 
-		foreach ( var keyValuePair in _joystickInfoList )
+		foreach ( var keyValuePair in _joystickInfoDictionary )
 		{
 			var joystickInfo = keyValuePair.Value;
 
 			try
 			{
-				if ( joystickInfo.Defunct )
+				if ( !joystickInfo._isDefunct )
 				{
-					joystickInfo.NextRetryCounter--;
+					joystickInfo._joystick.Poll();
+					joystickInfo._joystick.GetCurrentState( ref joystickInfo._joystickState );
 
-					if ( joystickInfo.NextRetryCounter == 0 )
+					joystickInfo._joystickUpdates = joystickInfo._joystick.GetBufferedData();
+
+					if ( joystickInfo._instanceGuid == _forceFeedbackDeviceInstanceGuid )
 					{
-						joystickInfo.Joystick.SetCooperativeLevel( app.MainWindow.WindowHandle, CooperativeLevel.NonExclusive | CooperativeLevel.Background );
-						joystickInfo.Joystick.Acquire();
-
-						joystickInfo.Defunct = false;
-					}
-				}
-				else
-				{
-					joystickInfo.Joystick.Poll();
-					joystickInfo.Joystick.GetCurrentState( ref joystickInfo.JoystickState );
-
-					joystickInfo.JoystickUpdates = joystickInfo.Joystick.GetBufferedData();
-
-					if ( joystickInfo.InstanceGuid == _forceFeedbackDeviceInstanceGuid )
-					{
-						if ( joystickInfo.XAxisProperties != null )
+						if ( joystickInfo._xAxisProperties != null )
 						{
 							var lastForceFeedbackWheelPosition = ForceFeedbackWheelPosition;
 
-							ForceFeedbackWheelPosition = (float) 2f * ( joystickInfo.JoystickState.X - joystickInfo.XAxisProperties.Range.Minimum ) / ( joystickInfo.XAxisProperties.Range.Maximum - joystickInfo.XAxisProperties.Range.Minimum ) - 1f;
+							ForceFeedbackWheelPosition = (float) 2f * ( joystickInfo._joystickState.X - joystickInfo._xAxisProperties.Range.Minimum ) / ( joystickInfo._xAxisProperties.Range.Maximum - joystickInfo._xAxisProperties.Range.Minimum ) - 1f;
 							ForceFeedbackWheelVelocity = ( ForceFeedbackWheelPosition - lastForceFeedbackWheelPosition ) / deltaSeconds;
 						}
 					}
@@ -318,9 +285,8 @@ public class DirectInput
 			}
 			catch ( Exception )
 			{
-				joystickInfo.Defunct = true;
-				joystickInfo.NextRetryCounter = 120;
-				joystickInfo.JoystickUpdates = null;
+				joystickInfo._isDefunct = true;
+				joystickInfo._joystickUpdates = null;
 			}
 		}
 
@@ -334,21 +300,23 @@ public class DirectInput
 			}
 		}
 
-		foreach ( var keyValuePair in _joystickInfoList )
+		foreach ( var keyValuePair in _joystickInfoDictionary )
 		{
 			var joystickInfo = keyValuePair.Value;
 
-			if ( joystickInfo.JoystickUpdates != null )
+			if ( joystickInfo._joystickUpdates != null )
 			{
-				foreach ( var joystickUpdate in joystickInfo.JoystickUpdates )
+				foreach ( var joystickUpdate in joystickInfo._joystickUpdates )
 				{
 					if ( ( joystickUpdate.Offset >= JoystickOffset.Buttons0 ) && ( joystickUpdate.Offset <= JoystickOffset.Buttons127 ) )
 					{
-						OnInput?.Invoke( joystickInfo.ProductName, joystickInfo.InstanceGuid, joystickUpdate.Offset - JoystickOffset.Buttons0, joystickUpdate.Value != 0 );
+						OnInput?.Invoke( joystickInfo._productName, joystickInfo._instanceGuid, joystickUpdate.Offset - JoystickOffset.Buttons0, joystickUpdate.Value != 0 );
 					}
 				}
 			}
 		}
+
+		_pollMutex = 0;
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
@@ -361,9 +329,9 @@ public class DirectInput
 				return true;
 			}
 		}
-		else if ( _joystickInfoList.TryGetValue( deviceInstanceGuid, out var joystickInfo ) )
+		else if ( _joystickInfoDictionary.TryGetValue( deviceInstanceGuid, out var joystickInfo ) )
 		{
-			if ( joystickInfo.JoystickState.Buttons[ buttonNumber ] )
+			if ( joystickInfo._joystickState.Buttons[ buttonNumber ] )
 			{
 				return true;
 			}
@@ -383,14 +351,24 @@ public class DirectInput
 		}
 	}
 
+	private void OnDeviceListMightHaveChanged( object? sender, EventArgs e )
+	{
+		_joystickInfoListNeedsToBeUpdated = true;
+	}
+
 	private void EnumerateDevices()
 	{
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[DirectInput] EnumerateDevices >>>" );
 
-		_joystickInfoList.Clear();
-		_forceFeedbackDeviceList.Clear();
+		foreach ( var joystickInfo in _joystickInfoDictionary )
+		{
+			joystickInfo.Value._joystick.Unacquire();
+		}
+
+		_joystickInfoDictionary.Clear();
+		ForceFeedbackDeviceList.Clear();
 
 		var deviceInstanceList = _directInput.GetDevices( DeviceClass.All, DeviceEnumerationFlags.AttachedOnly );
 
@@ -410,7 +388,7 @@ public class DirectInput
 
 				if ( deviceInstance.ForceFeedbackDriverGuid != Guid.Empty )
 				{
-					_forceFeedbackDeviceList.Add( deviceInstance.InstanceGuid, description );
+					ForceFeedbackDeviceList.Add( deviceInstance.InstanceGuid, description );
 				}
 
 				if ( deviceInstance.Type == DeviceType.Keyboard )
@@ -463,23 +441,31 @@ public class DirectInput
 
 					var joystickInfo = new JoystickInfo()
 					{
-						Joystick = joystick,
-						ProductName = joystick.Information.ProductName,
-						InstanceGuid = deviceInstance.InstanceGuid,
-						XAxisProperties = xAxisProperties
+						_joystick = joystick,
+						_productName = joystick.Information.ProductName,
+						_instanceGuid = deviceInstance.InstanceGuid,
+						_xAxisProperties = xAxisProperties
 					};
 
-					_joystickInfoList.Add( deviceInstance.InstanceGuid, joystickInfo );
+					_joystickInfoDictionary.Add( deviceInstance.InstanceGuid, joystickInfo );
 				}
 
 				app.Logger.WriteLine( $"[DirectInput] ---" );
 			}
 		}
 
-		if ( DataContext.DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid == Guid.Empty )
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		if ( settings.RacingWheelSteeringDeviceGuid == Guid.Empty )
 		{
-			DataContext.DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid = _forceFeedbackDeviceList.FirstOrDefault().Key;
+			settings.RacingWheelSteeringDeviceGuid = ForceFeedbackDeviceList.FirstOrDefault().Key;
 		}
+		else if ( _forceFeedbackDeviceInstanceGuid != settings.RacingWheelSteeringDeviceGuid )
+		{
+			app.RacingWheel.NextRacingWheelGuid = settings.RacingWheelSteeringDeviceGuid;
+		}
+
+		MainWindow._racingWheelPage.UpdateSteeringDeviceOptions();
 
 		app.Logger.WriteLine( "[DirectInput] <<< EnumerateDevices" );
 	}

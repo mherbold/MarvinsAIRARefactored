@@ -10,6 +10,8 @@ using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
+using Point = System.Windows.Point;
+
 using IWshRuntimeLibrary;
 using PInvoke;
 
@@ -238,5 +240,14 @@ public class Misc
 		}
 
 		return null;
+	}
+
+	public static void MoveCursorToElement( FrameworkElement element )
+	{
+		if ( !element.IsLoaded ) return;
+
+		var p = element.PointToScreen( new Point( element.ActualWidth / 2, element.ActualHeight / 2 ) );
+
+		User32.SetCursorPos( (int) Math.Round( p.X ), (int) Math.Round( p.Y ) );
 	}
 }

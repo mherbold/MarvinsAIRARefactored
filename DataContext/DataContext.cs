@@ -46,6 +46,7 @@ public class DataContext : INotifyPropertyChanged
 
 		Localization = new Localization();
 
+		Localization.Initialize();
 		Localization.LoadDefaultLanguage();
 
 		_settings = new Settings();

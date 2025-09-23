@@ -65,6 +65,16 @@ namespace MarvinsAIRARefactored.Controls
 				PageUserControl = _pedalsPage
 			} );
 
+#if DEBUG
+
+			AppMenuItems.Add( new AppMenuItem
+			{
+				AppPage = AppPage.Wind,
+				PageUserControl = _windPage
+			} );
+
+#endif
+
 			AppMenuItems.Add( new AppMenuItem
 			{
 				AppPage = AppPage.Sounds,
@@ -75,6 +85,12 @@ namespace MarvinsAIRARefactored.Controls
 			{
 				AppPage = AppPage.SpeechToText,
 				PageUserControl = _speechToTextPage
+			} );
+
+			AppMenuItems.Add( new AppMenuItem
+			{
+				AppPage = AppPage.TradingPaints,
+				PageUserControl = _tradingPaintsPage
 			} );
 
 			AppMenuItems.Add( new AppMenuItem
@@ -256,12 +272,20 @@ namespace MarvinsAIRARefactored.Controls
 						menuItem.DisplayName = localization[ "Pedals" ];
 						break;
 
+					case AppPage.Wind:
+						menuItem.DisplayName = localization[ "Wind" ];
+						break;
+
 					case AppPage.Sounds:
 						menuItem.DisplayName = localization[ "Sounds" ];
 						break;
 
 					case AppPage.SpeechToText:
 						menuItem.DisplayName = localization[ "SpeechToText" ];
+						break;
+
+					case AppPage.TradingPaints:
+						menuItem.DisplayName = localization[ "TradingPaints" ];
 						break;
 
 					case AppPage.Graph:
@@ -315,12 +339,20 @@ namespace MarvinsAIRARefactored.Controls
 					SelectedAppPageText = localization[ "Pedals_UC" ];
 					break;
 
+				case AppPage.Wind:
+					SelectedAppPageText = localization[ "Wind_UC" ];
+					break;
+
 				case AppPage.Sounds:
 					SelectedAppPageText = localization[ "Sounds_UC" ];
 					break;
 
 				case AppPage.SpeechToText:
 					SelectedAppPageText = localization[ "SpeechToText_UC" ];
+					break;
+
+				case AppPage.TradingPaints:
+					SelectedAppPageText = localization[ "TradingPaints_UC" ];
 					break;
 
 				case AppPage.Graph:

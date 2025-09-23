@@ -115,4 +115,7 @@ public class ContextSettings
 	public float PedalsClutchSlipEnd { get; set; }
 	public float PedalsClutchSlipFrequency { get; set; }
 	public float PedalsNoiseDamper { get; set; }
+	public float WindMasterWindPower { get; set; }
+	public float WindMinimumSpeed { get; set; }
+	public float WindCurving { get; set; }
 }

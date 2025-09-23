@@ -2,13 +2,14 @@
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-using Application = System.Windows.Application;
-
 using Simagic;
+
+using Application = System.Windows.Application;
 
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
@@ -25,8 +26,10 @@ public partial class MainWindow : Window
 		RacingWheel,
 		SteeringEffects,
 		Pedals,
+		Wind,
 		Sounds,
 		SpeechToText,
+		TradingPaints,
 		Graph,
 		Simulator,
 		AdminBoxx,
@@ -41,8 +44,10 @@ public partial class MainWindow : Window
 	public static readonly RacingWheelPage _racingWheelPage = new();
 	public static readonly SteeringEffectsPage _steeringEffectsPage = new();
 	public static readonly PedalsPage _pedalsPage = new();
+	public static readonly WindPage _windPage = new();
 	public static readonly SoundsPage _soundsPage = new();
 	public static readonly SpeechToTextPage _speechToTextPage = new();
+	public static readonly TradingPaintsPage _tradingPaintsPage = new();
 	public static readonly GraphPage _graphPage = new();
 	public static readonly SimulatorPage _simulatorPage = new();
 	public static readonly AdminBoxxPage _adminBoxxPage = new();
@@ -70,7 +75,7 @@ public partial class MainWindow : Window
 
 		app.Logger.WriteLine( $"[MainWindow] Version is {version}" );
 
-		Components.Localization.SetLanguageComboBoxItemsSource( _appSettingsPage.Language_MairaComboBox );
+		MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization.SetLanguageComboBoxItemsSource( _appSettingsPage.Language_MairaComboBox );
 
 #if ADMINBOXX
 
@@ -140,33 +145,18 @@ public partial class MainWindow : Window
 
 			Title = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "AppTitle" ] + " " + Misc.GetVersion();
 
-			app.DirectInput.SetMairaComboBoxItemsSource( _racingWheelPage.SteeringDevice_MairaComboBox );
+			_racingWheelPage.UpdateSteeringDeviceOptions();
+			_racingWheelPage.UpdateLFERecordingDeviceOptions();
+			_racingWheelPage.UpdatePreviewRecordingsOptions();
+			_racingWheelPage.UpdateAlgorithmOptions();
 
-			app.LFE.SetMairaComboBoxItemsSource( _racingWheelPage.LFERecordingDevice_MairaComboBox );
+			_steeringEffectsPage.UpdateCalibrationFileNameOptions();
+			_steeringEffectsPage.UpdateVibrationPatternOptions();
+			_steeringEffectsPage.UpdateConstantForceDirectionOptions();
 
-			app.RecordingManager.SetMairaComboBoxItemsSource( _racingWheelPage.PreviewRecordings_MairaComboBox );
+			_pedalsPage.UpdateEffectOptions();
 
-			RacingWheel.SetMairaComboBoxItemsSource( _racingWheelPage.Algorithm_MairaComboBox );
-
-			Pedals.SetMairaComboBoxItemsSource( _pedalsPage.ClutchEffect1_MairaComboBox );
-			Pedals.SetMairaComboBoxItemsSource( _pedalsPage.ClutchEffect2_MairaComboBox );
-			Pedals.SetMairaComboBoxItemsSource( _pedalsPage.ClutchEffect3_MairaComboBox );
-			Pedals.SetMairaComboBoxItemsSource( _pedalsPage.BrakeEffect1_MairaComboBox );
-			Pedals.SetMairaComboBoxItemsSource( _pedalsPage.BrakeEffect2_MairaComboBox );
-			Pedals.SetMairaComboBoxItemsSource( _pedalsPage.BrakeEffect3_MairaComboBox );
-			Pedals.SetMairaComboBoxItemsSource( _pedalsPage.ThrottleEffect1_MairaComboBox );
-			Pedals.SetMairaComboBoxItemsSource( _pedalsPage.ThrottleEffect2_MairaComboBox );
-			Pedals.SetMairaComboBoxItemsSource( _pedalsPage.ThrottleEffect3_MairaComboBox );
-
-			SteeringEffects.SetCalibrationFileNameMairaComboBoxItemsSource();
-
-			SteeringEffects.SetVibrationPatternMairaComboBoxItemsSource( _steeringEffectsPage.UndersteerWheelVibrationPattern_MairaComboBox );
-			SteeringEffects.SetVibrationPatternMairaComboBoxItemsSource( _steeringEffectsPage.OversteerWheelVibrationPattern_MairaComboBox );
-
-			SteeringEffects.SetConstantForceDirectionMairaComboBoxItemsSource( _steeringEffectsPage.UndersteerWheelConstantForceDirection_MairaComboBox );
-			SteeringEffects.SetConstantForceDirectionMairaComboBoxItemsSource( _steeringEffectsPage.OversteerWheelConstantForceDirection_MairaComboBox );
-
-			SpeechToText.SetMairaComboBoxItemsSource( _speechToTextPage.Language_MairaComboBox );
+			_speechToTextPage.UpdateLanguageOptions();
 
 			app.SpeechToText.UpdateStrings();
 
@@ -565,6 +555,11 @@ public partial class MainWindow : Window
 
 			Process.Start( processStartInfo );
 		}
+	}
+
+	private void PageName_TextBlock_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		AppMenuButton.IsMenuOpen = true;
 	}
 
 	public void Tick( App app )

@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel;
+using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
@@ -11,10 +12,15 @@ namespace MarvinsAIRARefactored.Components;
 
 public partial class Localization : INotifyPropertyChanged
 {
+	private readonly Dictionary<string, string> _languages = new() { { "default", "English" } };
+
 	private Dictionary<string, string> _defaults = [];
 	private Dictionary<string, string> _translations = [];
 
 	public event PropertyChangedEventHandler? PropertyChanged;
+
+	[GeneratedRegex( @"^Resources\.(?<languageCode>[a-z]{2,3}(?:-[A-Za-z0-9]+)*)\.resx$", RegexOptions.IgnoreCase, "en-US" )]
+	private static partial Regex ResourceFileRegex();
 
 	public void OnPropertyChanged( [CallerMemberName] string? propertyName = null )
 	{
@@ -25,17 +31,48 @@ public partial class Localization : INotifyPropertyChanged
 	{
 		get
 		{
-			if ( _translations.TryGetValue( key, out var value ) )
+			if ( _translations.TryGetValue( key, out var value ) && ( value != string.Empty ) )
 			{
 				return value?.TrimEnd() ?? string.Empty;
 			}
-			else if ( _defaults.TryGetValue( key, out value ) )
+			else if ( _defaults.TryGetValue( key, out value ) && ( value != string.Empty ) )
 			{
 				return value?.TrimEnd() ?? string.Empty;
 			}
 			else
 			{
 				return $"!{key}!";
+			}
+		}
+	}
+
+	public void Initialize()
+	{
+		var languagesDirectory = Path.Combine( App.DocumentsFolder, "Languages" );
+
+		if ( !Directory.Exists( languagesDirectory ) )
+		{
+			Directory.CreateDirectory( languagesDirectory );
+		}
+
+		var regex = ResourceFileRegex();
+
+		var files = Directory.GetFiles( languagesDirectory, "*.resx" );
+
+		foreach ( var file in files )
+		{
+			var fileName = Path.GetFileName( file );
+
+			var match = regex.Match( fileName );
+
+			if ( match.Success )
+			{
+				var resxDictionary = Misc.LoadResx( file );
+
+				if ( resxDictionary.TryGetValue( "ThisLanguage", out var value ) )
+				{
+					_languages.Add( match.Groups[ "languageCode" ].Value, value );
+				}
 			}
 		}
 	}
@@ -99,47 +136,36 @@ public partial class Localization : INotifyPropertyChanged
 		app?.Logger.WriteLine( "[Localization] <<< LoadDefaultLanguage" );
 	}
 
-	public static void SetLanguageComboBoxItemsSource( MairaComboBox mairaComboBox )
+	public void SetLanguageComboBoxItemsSource( MairaComboBox mairaComboBox )
 	{
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[Localization] SetLanguageComboBoxItemsSource >>>" );
 
-		var languagesDirectory = Path.Combine( App.DocumentsFolder, "Languages" );
-
-		if ( !Directory.Exists( languagesDirectory ) )
-		{
-			Directory.CreateDirectory( languagesDirectory );
-		}
-
-		var comboBoxItemsDictionary = new Dictionary<string, string> { { "default", "English" } };
-
-		var regex = ResourceFileRegex();
-
-		var files = Directory.GetFiles( languagesDirectory, "*.resx" );
-
-		foreach ( var file in files )
-		{
-			var fileName = Path.GetFileName( file );
-
-			var match = regex.Match( fileName );
-
-			if ( match.Success )
-			{
-				var resxDictionary = Misc.LoadResx( file );
-
-				if ( resxDictionary.TryGetValue( "ThisLanguage", out var value ) )
-				{
-					comboBoxItemsDictionary.Add( match.Groups[ "languageCode" ].Value, value );
-				}
-			}
-		}
-
-		mairaComboBox.ItemsSource = comboBoxItemsDictionary;
+		mairaComboBox.ItemsSource = _languages;
 
 		app.Logger.WriteLine( "[Localization] <<< SetLanguageComboBoxItemsSource" );
 	}
 
-	[GeneratedRegex( @"^Resources\.(?<languageCode>[a-z]{2,3}(?:-[A-Za-z0-9]+)*)\.resx$", RegexOptions.IgnoreCase, "en-US" )]
-	private static partial Regex ResourceFileRegex();
+	public string ChooseInitialLanguage()
+	{
+		var supportedLanguages = _languages.Keys.ToArray();
+
+		var fullLanguageCode = CultureInfo.CurrentUICulture.Name;
+		var twoLetterLanguageCode = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+
+		if ( supportedLanguages.Contains( fullLanguageCode, StringComparer.OrdinalIgnoreCase ) )
+		{
+			return supportedLanguages.First( s => s.Equals( fullLanguageCode, StringComparison.OrdinalIgnoreCase ) );
+		}
+
+		var baseMatch = supportedLanguages.FirstOrDefault( s => s.StartsWith( twoLetterLanguageCode + "-", StringComparison.OrdinalIgnoreCase ) );
+
+		if ( !string.IsNullOrEmpty( baseMatch ) )
+		{
+			return baseMatch!;
+		}
+
+		return "default";
+	}
 }

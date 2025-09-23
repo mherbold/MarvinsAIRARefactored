@@ -1,7 +1,6 @@
 ﻿
 using System.Windows;
 
-using Button = System.Windows.Controls.Button;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace MarvinsAIRARefactored.Controls

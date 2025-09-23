@@ -8,6 +8,9 @@ public class MathZ
 	public const float KPHToMPS = 5f / 18f;
 	public const float MPSToKPH = 18f / 5f;
 
+	public const float MPSToMPH = 2.23693629f;
+	public const float MPHToMPS = 0.44704f;
+
 	public const float RadiansToDegrees = 180f / MathF.PI;
 	public const float DegreesToRadians = MathF.PI / 180f;
 

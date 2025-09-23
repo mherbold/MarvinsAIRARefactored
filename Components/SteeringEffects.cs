@@ -102,114 +102,13 @@ public class SteeringEffects
 		_calibrationGraphMaximumThresholdPen.Freeze();
 	}
 
-	public static void SetCalibrationFileNameMairaComboBoxItemsSource()
-	{
-#if !ADMINBOXX
-
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[SteeringEffects] SetCalibrationFileNameMairaComboBoxItemsSource >>>" );
-
-		app.Logger.WriteLine( "[SteeringEffects] Rebuilding option list" );
-
-		var localization = DataContext.DataContext.Instance.Localization;
-
-		var dictionary = new Dictionary<string, string>()
-		{
-			{ string.Empty, localization[ "CalibrationFileNotSelected" ] }
-		};
-
-		if ( app.Simulator.CarScreenName != string.Empty )
-		{
-			foreach ( var filePath in Directory.GetFiles( CalibrationDirectory, $"{app.Simulator.CarScreenName} - *.csv" ) )
-			{
-				var option = Path.GetFileNameWithoutExtension( filePath );
-
-				dictionary.Add( option, option );
-			}
-		}
-
-		app.Dispatcher.Invoke( () =>
-		{
-			app.Logger.WriteLine( "[SteeringEffects] Setting new option list" );
-
-			MainWindow._steeringEffectsPage.CalibrationFileName_MairaComboBox.ItemsSource = dictionary;
-			MainWindow._steeringEffectsPage.CalibrationFileName_MairaComboBox.SelectedValue = DataContext.DataContext.Instance.Settings.SteeringEffectsCalibrationFileName;
-			MainWindow._steeringEffectsPage.CalibrationFileName_MairaComboBox.OffValue = string.Empty;
-		} );
-
-		app.Logger.WriteLine( "[SteeringEffects] <<< SetCalibrationFileNameMairaComboBoxItemsSource" );
-
-#endif
-	}
-
-	public static void SetVibrationPatternMairaComboBoxItemsSource( MairaComboBox mairaComboBox )
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[SteeringEffects] SetVibrationPatternMairaComboBoxItemsSource >>>" );
-
-		var selectedEffect = mairaComboBox.SelectedValue as RacingWheel.VibrationPattern?;
-
-		var dictionary = new Dictionary<RacingWheel.VibrationPattern, string>
-		{
-			{ RacingWheel.VibrationPattern.None, DataContext.DataContext.Instance.Localization[ "None" ] },
-			{ RacingWheel.VibrationPattern.SineWave, DataContext.DataContext.Instance.Localization[ "SineWave" ] },
-			{ RacingWheel.VibrationPattern.SquareWave, DataContext.DataContext.Instance.Localization[ "SquareWave" ] },
-			{ RacingWheel.VibrationPattern.TriangleWave, DataContext.DataContext.Instance.Localization[ "TriangleWave" ] },
-			{ RacingWheel.VibrationPattern.SawtoothWaveIn, DataContext.DataContext.Instance.Localization[ "SawtoothWaveIn" ] },
-			{ RacingWheel.VibrationPattern.SawtoothWaveOut, DataContext.DataContext.Instance.Localization[ "SawtoothWaveOut" ] }
-		};
-
-		mairaComboBox.ItemsSource = dictionary;
-
-		if ( selectedEffect != null )
-		{
-			mairaComboBox.SelectedValue = selectedEffect;
-		}
-		else
-		{
-			mairaComboBox.SelectedValue = RacingWheel.VibrationPattern.None;
-		}
-
-		app.Logger.WriteLine( "[SteeringEffects] <<< SetVibrationPatternMairaComboBoxItemsSource" );
-	}
-
-	public static void SetConstantForceDirectionMairaComboBoxItemsSource( MairaComboBox mairaComboBox )
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[SteeringEffects] SetConstantForceDirectionMairaComboBoxItemsSource >>>" );
-
-		var selectedEffect = mairaComboBox.SelectedValue as RacingWheel.ConstantForceDirection?;
-
-		var dictionary = new Dictionary<RacingWheel.ConstantForceDirection, string>
-		{
-			{ RacingWheel.ConstantForceDirection.None, DataContext.DataContext.Instance.Localization[ "None" ] },
-			{ RacingWheel.ConstantForceDirection.DecreaseForce, DataContext.DataContext.Instance.Localization[ "DecreaseForce" ] },
-			{ RacingWheel.ConstantForceDirection.IncreaseForce, DataContext.DataContext.Instance.Localization[ "IncreaseForce" ] }
-		};
-
-		mairaComboBox.ItemsSource = dictionary;
-
-		if ( selectedEffect != null )
-		{
-			mairaComboBox.SelectedValue = selectedEffect;
-		}
-		else
-		{
-			mairaComboBox.SelectedValue = RacingWheel.ConstantForceDirection.None;
-		}
-
-		app.Logger.WriteLine( "[SteeringEffects] <<< SetConstantForceDirectionMairaComboBoxItemsSource" );
-	}
-
 	public void SimulatorDisconnected()
 	{
 		DataContext.DataContext.Instance.Settings.SteeringEffectsCalibrationFileName = string.Empty;
 
 		ClearCalibration();
-		SetCalibrationFileNameMairaComboBoxItemsSource();
+
+		MainWindow._steeringEffectsPage.UpdateCalibrationFileNameOptions();
 	}
 
 	public void Update( App app, float deltaSeconds )
@@ -933,7 +832,7 @@ public class SteeringEffects
 
 		// update the combo box options
 
-		SetCalibrationFileNameMairaComboBoxItemsSource();
+		MainWindow._steeringEffectsPage.UpdateCalibrationFileNameOptions();
 
 		// update setting to use this calibration file
 

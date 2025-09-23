@@ -4,7 +4,6 @@ using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Threading;
 
 using Application = System.Windows.Application;
@@ -56,6 +55,9 @@ public partial class App : Application
 	public Telemetry Telemetry { get; private set; }
 	public SpeechToText SpeechToText { get; private set; }
 	public SpeechToTextWindow SpeechToTextWindow { get; private set; }
+	public Wind Wind { get; private set; }
+	public HidHotplugMonitor HidHotplugMonitor { get; private set; }
+	public TradingPaints TradingPaints { get; private set; }
 
 	public const int TimerPeriodInMilliseconds = 17;
 	public const int TimerTicksPerSecond = 1000 / TimerPeriodInMilliseconds;
@@ -105,6 +107,9 @@ public partial class App : Application
 		Telemetry = new();
 		SpeechToText = new();
 		SpeechToTextWindow = new();
+		Wind = new();
+		HidHotplugMonitor = new();
+		TradingPaints = new();
 
 		_timer.Elapsed += OnTimer;
 	}
@@ -228,6 +233,9 @@ public partial class App : Application
 				GripOMeterWindow.Initialize();
 				Telemetry.Initialize();
 				SpeechToTextWindow.Initialize();
+				Wind.Initialize();
+				HidHotplugMonitor.Initialize();
+				TradingPaints.Initialize();
 
 #endif
 
@@ -310,6 +318,7 @@ public partial class App : Application
 		LFE.Shutdown();
 		MultimediaTimer.Shutdown();
 		Telemetry.Shutdown();
+		TradingPaints.Shutdown();
 
 #endif
 
@@ -2047,6 +2056,7 @@ public partial class App : Application
 						app.GripOMeterWindow.Tick( app );
 						app.Telemetry.Tick( app );
 						app.SpeechToTextWindow.Tick( app );
+						app.Wind.Tick( app );
 					}
 					catch ( Exception exception )
 					{

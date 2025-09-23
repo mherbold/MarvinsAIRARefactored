@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace MarvinsAIRARefactored.PInvoke;
 
-public partial class DWMAPI
+public static partial class DWMAPI
 {
 	public enum cbAttribute : uint
 	{

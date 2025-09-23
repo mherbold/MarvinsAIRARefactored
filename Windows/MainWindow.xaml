@@ -43,33 +43,36 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0"
-              Tag="HideWhenGraphIsSoloed">
+              Tag="HideWhenGraphIsSoloed"
+              Margin="20">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
             <controls:MairaAppMenuButton x:Name="AppMenuButton"
                                          Grid.Column="0"
-                                         Margin="20"
-                                         VerticalAlignment="Top"
+                                         VerticalAlignment="Center"
                                          HorizontalAlignment="Left" />
 
             <TextBlock x:Name="PageName_TextBlock"
-                       Grid.Column="1"
+                       Grid.Column="2"
                        Style="{StaticResource MairaTextBlockStyle}"
                        FontSize="40"
                        VerticalAlignment="Center"
                        Foreground="#979797"
-                       Text="{Binding ElementName=AppMenuPopup, Path=SelectedAppPageText, Mode=OneWay}" />
-
+                       Text="{Binding ElementName=AppMenuPopup, Path=SelectedAppPageText, Mode=OneWay}"
+                       PreviewMouseLeftButtonDown="PageName_TextBlock_PreviewMouseLeftButtonDown"
+                       Cursor="Hand" />
+            
             <controls:MairaStatusBar x:Name="StatusBar"
-                                     Grid.Column="2"
-                                     Margin="20"
+                                     Grid.Column="4"
                                      HorizontalAlignment="Right"
-                                     VerticalAlignment="Top"
+                                     VerticalAlignment="Center"
                                      d:StatusText1="Mazda MX-5 Cup"
                                      d:StatusText2="Virginia International Raceway"
                                      d:StatusText3="Grand Course"

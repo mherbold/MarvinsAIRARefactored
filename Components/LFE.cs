@@ -1,10 +1,9 @@
 ﻿
-using System.Runtime.CompilerServices;
-
+using MarvinsAIRARefactored.Controls;
+using MarvinsAIRARefactored.Windows;
 using SharpDX.DirectSound;
 using SharpDX.Multimedia;
-
-using MarvinsAIRARefactored.Controls;
+using System.Runtime.CompilerServices;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -37,7 +36,7 @@ public class LFE
 		}
 	}
 
-	private readonly Dictionary<Guid, string> _captureDeviceList = [];
+	public Dictionary<Guid, string> CaptureDeviceList { get; private set; } = [];
 
 	private DirectSoundCapture? _directSoundCapture = null;
 	private CaptureBuffer? _captureBuffer = null;
@@ -53,22 +52,6 @@ public class LFE
 
 	private readonly byte[] _scratchRead = new byte[ _frameSizeInBytes ];
 	private readonly float[,] _magnitude = new float[ 2, _batchCount ];
-
-	public void SetMairaComboBoxItemsSource( MairaComboBox mairaComboBox )
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[LFE] SetMairaComboBoxItemsSource >>>" );
-
-		var dictionary = new Dictionary<Guid, string>();
-
-		_captureDeviceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
-
-		mairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
-		mairaComboBox.SelectedValue = DataContext.DataContext.Instance.Settings.RacingWheelLFERecordingDeviceGuid;
-
-		app.Logger.WriteLine( "[LFE] <<< SetMairaComboBoxItemsSource" );
-	}
 
 	public void Initialize()
 	{
@@ -106,9 +89,9 @@ public class LFE
 
 		app.Logger.WriteLine( "[LFE] EnumerateCaptureDevices >>>" );
 
-		_captureDeviceList.Clear();
+		CaptureDeviceList.Clear();
 
-		_captureDeviceList.Add( Guid.Empty, DataContext.DataContext.Instance.Localization[ "Disabled" ] );
+		CaptureDeviceList.Add( Guid.Empty, DataContext.DataContext.Instance.Localization[ "Disabled" ] );
 
 		var deviceInformationList = DirectSoundCapture.GetDevices();
 
@@ -120,11 +103,13 @@ public class LFE
 				app.Logger.WriteLine( $"[LFE] Module name: {deviceInformation.ModuleName}" );
 				app.Logger.WriteLine( $"[LFE] Driver GUID: {deviceInformation.DriverGuid}" );
 
-				_captureDeviceList.Add( deviceInformation.DriverGuid, deviceInformation.Description );
+				CaptureDeviceList.Add( deviceInformation.DriverGuid, deviceInformation.Description );
 
 				app.Logger.WriteLine( $"[LFE] ---" );
 			}
 		}
+
+		MainWindow._racingWheelPage.UpdateLFERecordingDeviceOptions();
 
 		app.Logger.WriteLine( "[LFE] <<< EnumerateCaptureDevices" );
 	}

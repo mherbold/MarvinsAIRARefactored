@@ -12,7 +12,7 @@
         <ToggleButton x:Name="ToggleButton"
                       Cursor="Hand"
                       FocusVisualStyle="{x:Null}"
-                      IsChecked="{Binding IsMenuOpen, RelativeSource={RelativeSource AncestorType=UserControl}, Mode=TwoWay}">
+                      IsChecked="{Binding IsMenuOpen, ElementName=Root, Mode=TwoWay}">
 
             <ToggleButton.Template>
 

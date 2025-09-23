@@ -446,7 +446,7 @@
                 <ScrollViewer x:Name="Preview_ScrollViewer"
                               HorizontalScrollBarVisibility="Auto"
                               VerticalScrollBarVisibility="Disabled"
-                              MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=GroupBox}}"
+                              MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
                               PreviewMouseWheel="Preview_ScrollViewer_PreviewMouseWheel"
                               Loaded="Preview_ScrollViewer_Loaded">
 

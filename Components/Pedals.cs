@@ -71,41 +71,6 @@ public class Pedals
 		app.Logger.WriteLine( "[Pedals] <<< Refresh" );
 	}
 
-	public static void SetMairaComboBoxItemsSource( MairaComboBox mairaComboBox )
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[Pedals] SetMairaComboBoxItemsSource >>>" );
-
-		var selectedEffect = mairaComboBox.SelectedValue as Effect?;
-
-		var dictionary = new Dictionary<Effect, string>
-		{
-			{ Effect.None, DataContext.DataContext.Instance.Localization[ "None" ] },
-			{ Effect.GearChange, DataContext.DataContext.Instance.Localization[ "GearChange" ] },
-			{ Effect.ABSEngaged, DataContext.DataContext.Instance.Localization[ "ABSEngaged" ] },
-			{ Effect.RPM, DataContext.DataContext.Instance.Localization[ "RPM" ] },
-			{ Effect.UndersteerEffect, DataContext.DataContext.Instance.Localization[ "UndersteerEffect" ] },
-			{ Effect.OversteerEffect, DataContext.DataContext.Instance.Localization[ "OversteerEffect" ] },
-			{ Effect.WheelLock, DataContext.DataContext.Instance.Localization[ "WheelLock" ] },
-			{ Effect.WheelSpin, DataContext.DataContext.Instance.Localization[ "WheelSpin" ] },
-			{ Effect.ClutchSlip, DataContext.DataContext.Instance.Localization[ "ClutchSlip" ] },
-		};
-
-		mairaComboBox.ItemsSource = dictionary;
-
-		if ( selectedEffect != null )
-		{
-			mairaComboBox.SelectedValue = selectedEffect;
-		}
-		else
-		{
-			mairaComboBox.SelectedValue = Effect.None;
-		}
-
-		app.Logger.WriteLine( "[Pedals] <<< SetMairaComboBoxItemsSource" );
-	}
-
 	public void StartTest( int pedalIndex, int effectIndex )
 	{
 		_testPedalIndex = pedalIndex;

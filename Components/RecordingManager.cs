@@ -6,7 +6,6 @@ using System.Runtime.CompilerServices;
 using CsvHelper;
 
 using MarvinsAIRARefactored.Classes;
-using MarvinsAIRARefactored.Controls;
 using MarvinsAIRARefactored.Windows;
 
 namespace MarvinsAIRARefactored.Components;
@@ -15,13 +14,13 @@ public sealed class RecordingManager : IDisposable
 {
 	private readonly string _recordingsDirectory = Path.Combine( App.DocumentsFolder, "Recordings" );
 
-	private readonly Dictionary<string, Recording> _recordings = [];
+	public Dictionary<string, Recording> Recordings { get; private set; } = [];
 
 	public Recording? Recording
 	{
 		get
 		{
-			if ( _recordings.TryGetValue( DataContext.DataContext.Instance.Settings.RacingWheelSelectedRecording, out var value ) )
+			if ( Recordings.TryGetValue( DataContext.DataContext.Instance.Settings.RacingWheelSelectedRecording, out var value ) )
 			{
 				return value;
 			}
@@ -44,6 +43,8 @@ public sealed class RecordingManager : IDisposable
 
 		app.Logger.WriteLine( "[RecordingManager] Initialize >>>" );
 
+		var settings = DataContext.DataContext.Instance.Settings;
+
 		if ( !Directory.Exists( _recordingsDirectory ) )
 		{
 			Directory.CreateDirectory( _recordingsDirectory );
@@ -56,9 +57,9 @@ public sealed class RecordingManager : IDisposable
 			IncludeSubdirectories = false
 		};
 
-		_fileSystemWatcher.Changed += OnRecordingChanged;
-		_fileSystemWatcher.Created += OnRecordingChanged;
-		_fileSystemWatcher.Renamed += OnRecordingChanged;
+		_fileSystemWatcher.Changed += OnRecordingFilesChanged;
+		_fileSystemWatcher.Created += OnRecordingFilesChanged;
+		_fileSystemWatcher.Renamed += OnRecordingFilesChanged;
 
 		var files = Directory.GetFiles( _recordingsDirectory, "*.csv" );
 
@@ -69,44 +70,17 @@ public sealed class RecordingManager : IDisposable
 			LoadRecording( path );
 		}
 
+		if ( ( settings.RacingWheelSelectedRecording == string.Empty ) || !Recordings.ContainsKey( settings.RacingWheelSelectedRecording ) )
+		{
+			settings.RacingWheelSelectedRecording = Recordings.FirstOrDefault().Key;
+		}
+
 		app.Logger.WriteLine( "[RecordingManager] <<< Initialize" );
 	}
 
-	public void SetMairaComboBoxItemsSource( MairaComboBox mairaComboBox )
+	private void OnRecordingFilesChanged( object sender, FileSystemEventArgs e )
 	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[DirectInput] SetMairaComboBoxItemsSource >>>" );
-
-		var settings = DataContext.DataContext.Instance.Settings;
-
-		var dictionary = new Dictionary<string, string>();
-
-		if ( _recordings.Count == 0 )
-		{
-			dictionary.Add( string.Empty, DataContext.DataContext.Instance.Localization[ "NoRecordingsFound" ] );
-		}
-
-		foreach ( var recording in _recordings )
-		{
-			dictionary.Add( recording.Key, recording.Value.Description! );
-		}
-
-		mairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
-
-		if ( ( settings.RacingWheelSelectedRecording == string.Empty ) || !dictionary.ContainsKey( settings.RacingWheelSelectedRecording ) )
-		{
-			settings.RacingWheelSelectedRecording = dictionary.FirstOrDefault().Key;
-		}
-
-		mairaComboBox.SelectedValue = settings.RacingWheelSelectedRecording;
-
-		app.Logger.WriteLine( "[DirectInput] <<< SetMairaComboBoxItemsSource" );
-	}
-
-	private void OnRecordingChanged( object sender, FileSystemEventArgs e )
-	{
-		Task.Delay( 1000 ).ContinueWith( _ =>
+		Task.Delay( 2000 ).ContinueWith( _ =>
 		{
 			var app = App.Instance!;
 
@@ -116,7 +90,7 @@ public sealed class RecordingManager : IDisposable
 			{
 				LoadRecording( e.FullPath );
 
-				app.RecordingManager.SetMairaComboBoxItemsSource( MainWindow._racingWheelPage.PreviewRecordings_MairaComboBox );
+				MainWindow._racingWheelPage.UpdatePreviewRecordingsOptions();
 
 				app.Logger.WriteLine( $"[RecordingManager] Hot-reloaded recording: {e.FullPath}" );
 			}
@@ -141,7 +115,7 @@ public sealed class RecordingManager : IDisposable
 
 				if ( recording.IsValid )
 				{
-					_recordings[ recording.Path! ] = recording;
+					Recordings[ recording.Path! ] = recording;
 				}
 			}
 		}
@@ -151,7 +125,7 @@ public sealed class RecordingManager : IDisposable
 	{
 		_fileSystemWatcher?.Dispose();
 
-		_recordings.Clear();
+		Recordings.Clear();
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]

@@ -50,6 +50,7 @@ public class Telemetry
 			racingWheelOutputTorque = sourceData.racingWheelOutputTorque;
 			racingWheelOutputTorqueIsClipping = sourceData.racingWheelOutputTorqueIsClipping;
 			racingWheelCrashProtectionIsActive = sourceData.racingWheelCrashProtectionIsActive;
+			racingWheelCurbProtectionIsActive = sourceData.racingWheelCurbProtectionIsActive;
 			racingWheelIsFading = sourceData.racingWheelIsFading;
 			steeringEffectsUndersteerEffect = sourceData.steeringEffectsUndersteerEffect;
 			steeringEffectsOversteerEffect = sourceData.steeringEffectsOversteerEffect;

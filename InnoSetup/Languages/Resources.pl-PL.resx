@@ -1,52 +1,110 @@
-<?xml version='1.0' encoding='utf-8'?>
-<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  
-  <xs:schema id="root">
-    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xs:element name="root" ns1:IsDataSet="true">
-      <xs:complexType>
-        <xs:choice maxOccurs="unbounded">
-          <xs:element name="metadata">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" type="xsd:string" minOccurs="0" />
-              </xs:sequence>
-              <xs:attribute name="name" use="required" type="xsd:string" />
-              <xs:attribute name="type" type="xsd:string" />
-              <xs:attribute name="mimetype" type="xsd:string" />
-              <xs:attribute ref="xml:space" />
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="assembly">
-            <xs:complexType>
-              <xs:attribute name="alias" type="xsd:string" />
-              <xs:attribute name="name" type="xsd:string" />
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="data">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
-                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
-              </xs:sequence>
-              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
-              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
-              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
-              <xs:attribute ref="xml:space" />
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="resheader">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
-              </xs:sequence>
-              <xs:attribute name="name" type="xsd:string" use="required" />
-            </xs:complexType>
-          </xs:element>
-        </xs:choice>
-      </xs:complexType>
-    </xs:element>
-  </xs:schema>
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -82,6 +140,9 @@
   <data name="FadeForceFeedback" xml:space="preserve">
     <value>Stopniowy Zanik Force feedbacku podczas wchodzenia i wychodzenia z auta</value>
     <comment>Baza Kierownicy</comment>
+  </data>
+  <data name="RacingFriction" xml:space="preserve">
+    <value />
   </data>
   <data name="Graph" xml:space="preserve">
     <value>Wykres</value>
@@ -465,7 +526,7 @@
     <value>Automatycznie pobierz Aktualizacje</value>
     <comment>Aplikacja</comment>
   </data>
-  <data name="ConnectOnStartup" xml:space="preserve">
+  <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Połącz się z AdminBoxx podczas uruchamiania</value>
     <comment>AdminBoxx</comment>
   </data>
@@ -835,11 +896,242 @@
     <value>Włącz powiadomienie o aktualizacji ustawień mapowania danych wejściowych</value>
     <comment>Baza Kierownicy</comment>
   </data>
+  <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
+    <value />
+  </data>
+  <data name="RunCalibration" xml:space="preserve">
+    <value />
+  </data>
+  <data name="StopCalibration" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SteeringWheelLeft" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SteeringWheelCenter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SteeringWheelRight" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SteeringWheel90Left" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MinThrottle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MaxThrottle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ShiftUp" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ShiftDown" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MinBrake" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MaxBrake" xml:space="preserve">
+    <value />
+  </data>
+  <data name="NotCalibrating" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ResetCalibration" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ShowGripOMeter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MakeGripOMeterDraggable" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GripOMeter_UC" xml:space="preserve">
+    <value />
+  </data>
+  <data name="GripOMeterScale" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ResetGripOMeter" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Progress:" xml:space="preserve">
+    <value>Postęp:</value>
+  </data>
+  <data name="CalibrationFileNotSelected" xml:space="preserve">
+    <value>[Plik kalibracji nie wybrano]</value>
+  </data>
+  <data name="ParkedEffects_UC" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ForceFeedbackStrength" xml:space="preserve">
+    <value />
+  </data>
+  <data name="WheelCenteringStrength" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CenterWheelWhileRacing" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CenterWheelWhileParked" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ParkedFriction" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ParkedWheelCenteringStrength" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CurrentCarSetup" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Szczegóły</value>
+  </data>
+  <data name="ClassicMAIRAIsRunning" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ExceptionThrown" xml:space="preserve">
+    <value />
+  </data>
+  <data name="KPHUnits" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CalibrationFileContributors" xml:space="preserve">
+    <value>Współautorzy plików kalibracji</value>
+  </data>
+  <data name="CalibrationFilesText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="DegreesPerSecond" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CalibrationFile_UC" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Understeer_UC" xml:space="preserve">
+    <value>PODSTEROWNOŚĆ</value>
+  </data>
+  <data name="Oversteer_UC" xml:space="preserve">
+    <value>NADSTEROWNOŚĆ</value>
+  </data>
+  <data name="MinimumThreshold" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MaximumThreshold" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MinimumFrequency" xml:space="preserve">
+    <value />
+  </data>
+  <data name="MaximumFrequency" xml:space="preserve">
+    <value />
+  </data>
+  <data name="Calibration_UC" xml:space="preserve">
+    <value />
+  </data>
+  <data name="VibrationPattern" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SineWave" xml:space="preserve">
+    <value>Sinusoida</value>
+  </data>
+  <data name="SquareWave" xml:space="preserve">
+    <value>Fala prostokątna</value>
+  </data>
+  <data name="TriangleWave" xml:space="preserve">
+    <value>Fala trójkątna</value>
+  </data>
+  <data name="SawtoothWaveIn" xml:space="preserve">
+    <value>Fala piłokształtna (narastająca)</value>
+  </data>
+  <data name="SawtoothWaveOut" xml:space="preserve">
+    <value>Fala piłokształtna (opadająca)</value>
+  </data>
+  <data name="DecreaseForce" xml:space="preserve">
+    <value />
+  </data>
+  <data name="IncreaseForce" xml:space="preserve">
+    <value />
+  </data>
+  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>EFEKT STAŁEJ SIŁY NA KIEROWNICY (PODSTEROWNOŚĆ)</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value />
+  </data>
+  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>EFEKT WIBRACJI KIEROWNICY (NADSTEROWNOŚĆ)</value>
+  </data>
+  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>EFEKT STAŁEJ SIŁY NA KIEROWNICY (NADSTEROWNOŚĆ)</value>
+  </data>
+  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>EFEKT WIBRACJI PEDAŁU (NADSTEROWNOŚĆ)</value>
+  </data>
+  <data name="UndersteerEffect" xml:space="preserve">
+    <value>Efekt podsterowności</value>
+  </data>
+  <data name="OversteerEffect" xml:space="preserve">
+    <value>Efekt nadsterowności</value>
+  </data>
+  <data name="ConfigurationFileIsInvalid" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SpeechToText" xml:space="preserve">
+    <value>Rozpoznawanie mowy</value>
+  </data>
+  <data name="Overlay" xml:space="preserve">
+    <value>Nakładka</value>
+  </data>
+  <data name="OverlayWindow_UC" xml:space="preserve">
+    <value>OKNO NAKŁADKI</value>
+  </data>
+  <data name="ShowOverlayWindow" xml:space="preserve">
+    <value>Pokaż okno nakładki</value>
+  </data>
+  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
+    <value>Uczyń okno nakładki możliwym do przeciągania</value>
+  </data>
+  <data name="ResetOverlayWindow" xml:space="preserve">
+    <value>Zresetuj pozycję okna nakładki</value>
+  </data>
+  <data name="OverlayWindowScale" xml:space="preserve">
+    <value>Skalowanie okna nakładki</value>
+  </data>
+  <data name="STT_Title" xml:space="preserve">
+    <value>Most MAIRA do rozpoznawania mowy</value>
+  </data>
+  <data name="STT_Hint" xml:space="preserve">
+    <value>Wybierz urządzenie przechwytywania dźwięku, a następnie kliknij przycisk Włącz.</value>
+  </data>
+  <data name="STT_Button" xml:space="preserve">
+    <value>Włącz rozpoznawanie mowy</value>
+  </data>
+  <data name="FFBDeviceNotSelected" xml:space="preserve">
+    <value>[Force Feedback urządzenie nie wybrano]</value>
+  </data>
   <data name="Algorithm_UC" xml:space="preserve">
     <value>ALGORYTM</value>
   </data>
+  <data name="ReadyToDonate" xml:space="preserve">
+    <value>Gotowy, aby przekazać darowiznę?</value>
+  </data>
   <data name="Contribute" xml:space="preserve">
     <value>Współpraca</value>
+  </data>
+  <data name="CalibrationFileContributions_UC" xml:space="preserve">
+    <value>WKŁAD W PLIKI KALIBRACJI</value>
   </data>
   <data name="Moderators" xml:space="preserve">
     <value>Moderatorzy Discord</value>
@@ -852,6 +1144,12 @@
   </data>
   <data name="Graph_UC" xml:space="preserve">
     <value>WYKRES</value>
+  </data>
+  <data name="SpeechToText_UC" xml:space="preserve">
+    <value>ROZPOZNAWANIE MOWY</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Dziennik zmian</value>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
     <value>ABS Włączony</value>
@@ -874,10 +1172,32 @@
   <data name="Pedals" xml:space="preserve">
     <value>Pedały</value>
   </data>
-  <data name="WheelSpin" xml:space="preserve">
-    <value>Poślizg kół</value>
-  </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Zblokowane Koła</value>
   </data>
-<data name="RacingFriction"><value /></data><data name="NotOnCentripetalCircuitTrack"><value /></data><data name="RunCalibration"><value /></data><data name="StopCalibration"><value /></data><data name="SteeringWheelLeft"><value /></data><data name="SteeringWheelCenter"><value /></data><data name="SteeringWheelRight"><value /></data><data name="SteeringWheel90Left"><value /></data><data name="MinThrottle"><value /></data><data name="MaxThrottle"><value /></data><data name="ShiftUp"><value /></data><data name="ShiftDown"><value /></data><data name="MinBrake"><value /></data><data name="MaxBrake"><value /></data><data name="NotCalibrating"><value /></data><data name="ResetCalibration"><value /></data><data name="ShowGripOMeter"><value /></data><data name="MakeGripOMeterDraggable"><value /></data><data name="GripOMeter_UC"><value /></data><data name="GripOMeterScale"><value /></data><data name="ResetGripOMeter"><value /></data><data name="UndersteerWheelVibrationEffect_UC"><value /></data><data name="Progress:"><value>Postęp:</value></data><data name="CalibrationFileNotSelected"><value>[Plik kalibracji nie wybrano]</value></data><data name="ParkedEffects_UC"><value /></data><data name="ForceFeedbackStrength"><value /></data><data name="WheelCenteringStrength"><value /></data><data name="CenterWheelWhileRacing"><value /></data><data name="CenterWheelWhileParked"><value /></data><data name="ParkedFriction"><value /></data><data name="ParkedWheelCenteringStrength"><value /></data><data name="CurrentCarSetup"><value /></data><data name="UndersteerPedalVibrationEffect_UC"><value /></data><data name="ErrorTitle"><value /></data><data name="Details"><value>Szczegóły</value></data><data name="ClassicMAIRAIsRunning"><value /></data><data name="ExceptionThrown"><value /></data><data name="KPHUnits"><value /></data><data name="CalibrationFileContributors"><value>Współautorzy plików kalibracji</value></data><data name="CalibrationFilesText"><value /></data><data name="DegreesPerSecond"><value /></data><data name="CalibrationFile_UC"><value /></data><data name="Understeer_UC"><value>PODSTEROWNOŚĆ</value></data><data name="Oversteer_UC"><value>NADSTEROWNOŚĆ</value></data><data name="MinimumThreshold"><value /></data><data name="MaximumThreshold"><value /></data><data name="MinimumFrequency"><value /></data><data name="MaximumFrequency"><value /></data><data name="Calibration_UC"><value /></data><data name="VibrationPattern"><value /></data><data name="SineWave"><value>Sinusoida</value></data><data name="SquareWave"><value>Fala prostokątna</value></data><data name="TriangleWave"><value>Fala trójkątna</value></data><data name="SawtoothWaveIn"><value>Fala piłokształtna (narastająca)</value></data><data name="SawtoothWaveOut"><value>Fala piłokształtna (opadająca)</value></data><data name="DecreaseForce"><value /></data><data name="IncreaseForce"><value /></data><data name="UndersteerWheelConstantForceEffect_UC"><value>EFEKT STAŁEJ SIŁY NA KIEROWNICY (PODSTEROWNOŚĆ)</value></data><data name="Direction"><value /></data><data name="OversteerWheelVibrationEffect_UC"><value>EFEKT WIBRACJI KIEROWNICY (NADSTEROWNOŚĆ)</value></data><data name="OversteerWheelConstantForceEffect_UC"><value>EFEKT STAŁEJ SIŁY NA KIEROWNICY (NADSTEROWNOŚĆ)</value></data><data name="OversteerPedalVibrationEffect_UC"><value>EFEKT WIBRACJI PEDAŁU (NADSTEROWNOŚĆ)</value></data><data name="UndersteerEffect"><value>Efekt podsterowności</value></data><data name="OversteerEffect"><value>Efekt nadsterowności</value></data><data name="ConfigurationFileIsInvalid"><value /></data><data name="SpeechToText"><value>Rozpoznawanie mowy</value></data><data name="Overlay"><value>Nakładka</value></data><data name="OverlayWindow_UC"><value>OKNO NAKŁADKI</value></data><data name="ShowOverlayWindow"><value>Pokaż okno nakładki</value></data><data name="MakeOverlayWindowDraggable"><value>Uczyń okno nakładki możliwym do przeciągania</value></data><data name="ResetOverlayWindow"><value>Zresetuj pozycję okna nakładki</value></data><data name="OverlayWindowScale"><value>Skalowanie okna nakładki</value></data><data name="STT_Title"><value>Most MAIRA do rozpoznawania mowy</value></data><data name="STT_Hint"><value>Wybierz urządzenie przechwytywania dźwięku, a następnie kliknij przycisk Włącz.</value></data><data name="STT_Button"><value>Włącz rozpoznawanie mowy</value></data><data name="FFBDeviceNotSelected"><value>[Force Feedback urządzenie nie wybrano]</value></data><data name="ReadyToDonate"><value>Gotowy, aby przekazać darowiznę?</value></data><data name="CalibrationFileContributions_UC"><value>WKŁAD W PLIKI KALIBRACJI</value></data><data name="SpeechToText_UC"><value>ROZPOZNAWANIE MOWY</value></data><data name="Changelog"><value>Dziennik zmian</value></data><data name="GripOMeter"><value /></data></root>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Poślizg kół</value>
+  </data>
+  <data name="GripOMeter" xml:space="preserve">
+    <value />
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="MultiAdjust" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MultiCompression" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MultiSlew" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="EnableSoftLimiter" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MultiDetailGain" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="MultiSmoothing" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+</root>

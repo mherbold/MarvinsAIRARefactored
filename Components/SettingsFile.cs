@@ -82,6 +82,8 @@ public class SettingsFile
 		else
 		{
 			app.Logger.WriteLine( "[SettingsFile] Settings file does not exist - we will create a new one" );
+
+			DataContext.DataContext.Instance.Settings.AppCurrentLanguageCode = DataContext.DataContext.Instance.Localization.ChooseInitialLanguage();
 		}
 
 		Settings.SuppressUpdatingOfContextSettings = false;

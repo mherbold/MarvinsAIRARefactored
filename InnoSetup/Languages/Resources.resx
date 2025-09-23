@@ -303,7 +303,7 @@
   </data>
   <data name="CompressionRate" xml:space="preserve">
     <value>Compression Rate</value>
-    <comment>Racing wheel</comment>
+    <comment>Compression Rate</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>DEVICE</value>
@@ -529,7 +529,7 @@
     <value>Automatically Download Updates</value>
     <comment>App settings</comment>
   </data>
-  <data name="ConnectOnStartup" xml:space="preserve">
+  <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Connect to AdminBoxx on App Startup</value>
     <comment>AdminBoxx</comment>
   </data>
@@ -775,7 +775,7 @@
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
     <value>Slew Threshold</value>
-    <comment>Racing wheel</comment>
+    <comment>Slew Threshold</comment>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
     <value>Slew Compression Rate</value>
@@ -783,7 +783,7 @@
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
     <value>Total Threshold</value>
-    <comment>Output Threshold</comment>
+    <comment>Total Threshold</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
     <value> Nm/ms</value>
@@ -1277,28 +1277,108 @@
     <value>Grip-O-Meter</value>
     <comment>Steering effects</comment>
   </data>
+  <data name="MPHUnits" xml:space="preserve">
+    <value> MPH</value>
+    <comment>Abbreviation for miles per hour</comment>
+  </data>
+  <data name="Wind_UC" xml:space="preserve">
+    <value>WIND</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="Wind" xml:space="preserve">
+    <value>Wind</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="ConnectToWindOnStartup" xml:space="preserve">
+    <value>Connect to MAIRA Wind on App Startup</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="ConnectToWind" xml:space="preserve">
+    <value>Connect to MAIRA Wind</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="LeftFan" xml:space="preserve">
+    <value>Left Fan</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="RightFan" xml:space="preserve">
+    <value>Right Fan</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="Connection_UC" xml:space="preserve">
+    <value>CONNECTION</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="Settings_UC" xml:space="preserve">
+    <value>SETTINGS</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="MasterWindPower" xml:space="preserve">
+    <value>Master Wind Power</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="MinimumSpeed" xml:space="preserve">
+    <value>Minimum Speed</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="WindCurving" xml:space="preserve">
+    <value>Wind Curving</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="FanPower_UC" xml:space="preserve">
+    <value>FAN POWER</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Speed</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="FanPower" xml:space="preserve">
+    <value>Fan Power</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="DeviceNotFound" xml:space="preserve">
+    <value>Device Missing</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="IRacingPaintFolder" xml:space="preserve">
+    <value>iRacing Paint Folder</value>
+    <comment>Trading paints</comment>
+  </data>
+  <data name="TradingPaints" xml:space="preserve">
+    <value>Trading Paints</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="TradingPaints_UC" xml:space="preserve">
+    <value>TRADING PAINTS</value>
+    <comment>Trading Paints</comment>
+  </data>
+  <data name="TradingPaintsDisclaimer" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App (MAIRA) is not affiliated with Trading Paints</value>
+    <comment>Trading Paints</comment>
+  </data>
+  <data name="MultiAdjust" xml:space="preserve">
+    <value>Multi Adjustment Toolkit</value>
+    <comment>Multi Adjustment Toolkit</comment>
+  </data>
   <data name="MultiCompression" xml:space="preserve">
     <value>Torque Compression</value>
     <comment>Torque Compression</comment>
   </data>
   <data name="MultiSlew" xml:space="preserve">
-    <value>Reduce Slew Rate</value>
-    <comment>Reduce Slew Rate</comment>
+    <value>Slew Rate Reduction</value>
+    <comment>Slew Rate Reduction</comment>
   </data>
   <data name="EnableSoftLimiter" xml:space="preserve">
     <value>Soft Clipping</value>
     <comment>Soft Clipping</comment>
   </data>
   <data name="MultiDetailGain" xml:space="preserve">
-    <value>Detail Gain Adjustment</value>
-    <comment>Detail Gain Adjustment</comment>
+    <value>Adjust Detail Gain</value>
+    <comment>Adjust Detail Gain</comment>
   </data>
   <data name="MultiSmoothing" xml:space="preserve">
     <value>Output Smoothing</value>
     <comment>Output Smoothing</comment>
-  </data>
-  <data name="MultiAdjust" xml:space="preserve">
-    <value>Multi Adjustment Toolkit</value>
-    <comment>Multiple Adjustments</comment>
   </data>
 </root>

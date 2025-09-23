@@ -1,5 +1,6 @@
 ﻿
 using System.ComponentModel;
+using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
@@ -522,7 +523,7 @@ public class Settings : INotifyPropertyChanged
 			var context = DataContext.Instance;
 			var parameterArrayLength = app.Telemetry.Data.algorithmParameterName.Length;
 
-			app.Telemetry.Data.algorithmName = RacingWheel.AlgorithmNameMap[_racingWheelAlgorithm];
+			app.Telemetry.Data.algorithmName = RacingWheelPage.AlgorithmName[_racingWheelAlgorithm];
 
 			switch ( _racingWheelAlgorithm )
 			{
@@ -5804,6 +5805,1176 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Wind - Connect on startup
+
+	private bool _windConnectOnStartup = false;
+
+	public bool WindConnectOnStartup
+	{
+		get => _windConnectOnStartup;
+
+		set
+		{
+			if ( value != _windConnectOnStartup )
+			{
+				_windConnectOnStartup = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Master wind power
+
+	private float _windMasterWindPower = 0f;
+
+	public float WindMasterWindPower
+	{
+		get => _windMasterWindPower;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windMasterWindPower )
+			{
+				_windMasterWindPower = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _windMasterWindPower == 0f )
+			{
+				WindMasterWindPowerString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				WindMasterWindPowerString = $"{_windMasterWindPower * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _windMasterWindPowerString = string.Empty;
+
+	[XmlIgnore]
+	public string WindMasterWindPowerString
+	{
+		get => _windMasterWindPowerString;
+
+		set
+		{
+			if ( value != _windMasterWindPowerString )
+			{
+				_windMasterWindPowerString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches WindMasterWindPowerContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings WindMasterWindPowerPlusButtonMappings { get; set; } = new();
+	public ButtonMappings WindMasterWindPowerMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Wind - Minimum speed
+
+	private float _windMinimumSpeed = 0f;
+
+	public float WindMinimumSpeed
+	{
+		get => _windMinimumSpeed;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 100f );
+
+			if ( value != _windMinimumSpeed )
+			{
+				_windMinimumSpeed = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _windMinimumSpeed == 0f )
+			{
+				WindMinimumSpeedString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				var app = App.Instance!;
+
+				if ( app.Simulator.DisplayUnits == 0 )
+				{
+					WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToMPH:F0}{DataContext.Instance.Localization[ "MPHUnits" ]}";
+				}
+				else
+				{
+					WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToKPH:F0}{DataContext.Instance.Localization[ "KPHUnits" ]}";
+				}
+			}
+		}
+	}
+
+	private string _windMinimumSpeedString = string.Empty;
+
+	[XmlIgnore]
+	public string WindMinimumSpeedString
+	{
+		get => _windMinimumSpeedString;
+
+		set
+		{
+			if ( value != _windMinimumSpeedString )
+			{
+				_windMinimumSpeedString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches WindMinimumSpeedContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings WindMinimumSpeedPlusButtonMappings { get; set; } = new();
+	public ButtonMappings WindMinimumSpeedMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Wind - Curving
+
+	private float _windCurving = 0.25f;
+
+	public float WindCurving
+	{
+		get => _windCurving;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windCurving )
+			{
+				_windCurving = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _windCurving == 0f )
+			{
+				WindCurvingString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				WindCurvingString = $"{_windCurving * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _windCurvingString = string.Empty;
+
+	[XmlIgnore]
+	public string WindCurvingString
+	{
+		get => _windCurvingString;
+
+		set
+		{
+			if ( value != _windCurvingString )
+			{
+				_windCurvingString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches WindCurvingContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings WindCurvingPlusButtonMappings { get; set; } = new();
+	public ButtonMappings WindCurvingMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Wind - Speed 1
+
+	private float _windSpeed1 = 0f;
+
+	public float WindSpeed1
+	{
+		get => _windSpeed1;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windSpeed1 )
+			{
+				_windSpeed1 = value;
+
+				OnPropertyChanged();
+
+				WindSpeed2 = MathF.Max( WindSpeed2, _windSpeed1 );
+			}
+
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindSpeed1String = $"{_windSpeed1 * 100f * MathZ.MPSToMPH:F0}";
+			}
+			else
+			{
+				WindSpeed1String = $"{_windSpeed1 * 100f * MathZ.MPSToKPH:F0}";
+			}
+		}
+	}
+
+	private string _windSpeed1String = string.Empty;
+
+	[XmlIgnore]
+	public string WindSpeed1String
+	{
+		get => _windSpeed1String;
+
+		set
+		{
+			if ( value != _windSpeed1String )
+			{
+				_windSpeed1String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Fan power 1
+
+	private float _windFanPower1 = 0f;
+
+	public float WindFanPower1
+	{
+		get => _windFanPower1;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windFanPower1 )
+			{
+				_windFanPower1 = value;
+
+				OnPropertyChanged();
+			}
+
+			WindFanPower1String = $"{_windFanPower1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _windFanPower1String = string.Empty;
+
+	[XmlIgnore]
+	public string WindFanPower1String
+	{
+		get => _windFanPower1String;
+
+		set
+		{
+			if ( value != _windFanPower1String )
+			{
+				_windFanPower1String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Speed 2
+
+	private float _windSpeed2 = 0.0675f;
+
+	public float WindSpeed2
+	{
+		get => _windSpeed2;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windSpeed2 )
+			{
+				_windSpeed2 = value;
+
+				OnPropertyChanged();
+
+				WindSpeed1 = MathF.Min( WindSpeed1, _windSpeed2 );
+				WindSpeed3 = MathF.Max( WindSpeed3, _windSpeed2 );
+			}
+
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindSpeed2String = $"{_windSpeed2 * 100f * MathZ.MPSToMPH:F0}";
+			}
+			else
+			{
+				WindSpeed2String = $"{_windSpeed2 * 100f * MathZ.MPSToKPH:F0}";
+			}
+		}
+	}
+
+	private string _windSpeed2String = string.Empty;
+
+	[XmlIgnore]
+	public string WindSpeed2String
+	{
+		get => _windSpeed2String;
+
+		set
+		{
+			if ( value != _windSpeed2String )
+			{
+				_windSpeed2String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Fan power 2
+
+	private float _windFanPower2 = 0.02f;
+
+	public float WindFanPower2
+	{
+		get => _windFanPower2;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windFanPower2 )
+			{
+				_windFanPower2 = value;
+
+				OnPropertyChanged();
+			}
+
+			WindFanPower2String = $"{_windFanPower2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _windFanPower2String = string.Empty;
+
+	[XmlIgnore]
+	public string WindFanPower2String
+	{
+		get => _windFanPower2String;
+
+		set
+		{
+			if ( value != _windFanPower2String )
+			{
+				_windFanPower2String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Speed 3
+
+	private float _windSpeed3 = 0.135f;
+
+	public float WindSpeed3
+	{
+		get => _windSpeed3;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windSpeed3 )
+			{
+				_windSpeed3 = value;
+
+				OnPropertyChanged();
+
+				WindSpeed2 = MathF.Min( WindSpeed2, _windSpeed3 );
+				WindSpeed4 = MathF.Max( WindSpeed4, _windSpeed3 );
+			}
+
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindSpeed3String = $"{_windSpeed3 * 100f * MathZ.MPSToMPH:F0}";
+			}
+			else
+			{
+				WindSpeed3String = $"{_windSpeed3 * 100f * MathZ.MPSToKPH:F0}";
+			}
+		}
+	}
+
+	private string _windSpeed3String = string.Empty;
+
+	[XmlIgnore]
+	public string WindSpeed3String
+	{
+		get => _windSpeed3String;
+
+		set
+		{
+			if ( value != _windSpeed3String )
+			{
+				_windSpeed3String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Fan power 3
+
+	private float _windFanPower3 = 0.04f;
+
+	public float WindFanPower3
+	{
+		get => _windFanPower3;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windFanPower3 )
+			{
+				_windFanPower3 = value;
+
+				OnPropertyChanged();
+			}
+
+			WindFanPower3String = $"{_windFanPower3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _windFanPower3String = string.Empty;
+
+	[XmlIgnore]
+	public string WindFanPower3String
+	{
+		get => _windFanPower3String;
+
+		set
+		{
+			if ( value != _windFanPower3String )
+			{
+				_windFanPower3String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Speed 4
+
+	private float _windSpeed4 = 0.2f;
+
+	public float WindSpeed4
+	{
+		get => _windSpeed4;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windSpeed4 )
+			{
+				_windSpeed4 = value;
+
+				OnPropertyChanged();
+
+				WindSpeed3 = MathF.Min( WindSpeed3, _windSpeed4 );
+				WindSpeed5 = MathF.Max( WindSpeed5, _windSpeed4 );
+			}
+
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindSpeed4String = $"{_windSpeed4 * 100f * MathZ.MPSToMPH:F0}";
+			}
+			else
+			{
+				WindSpeed4String = $"{_windSpeed4 * 100f * MathZ.MPSToKPH:F0}";
+			}
+		}
+	}
+
+	private string _windSpeed4String = string.Empty;
+
+	[XmlIgnore]
+	public string WindSpeed4String
+	{
+		get => _windSpeed4String;
+
+		set
+		{
+			if ( value != _windSpeed4String )
+			{
+				_windSpeed4String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Fan power 4
+
+	private float _windFanPower4 = 0.06f;
+
+	public float WindFanPower4
+	{
+		get => _windFanPower4;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windFanPower4 )
+			{
+				_windFanPower4 = value;
+
+				OnPropertyChanged();
+			}
+
+			WindFanPower4String = $"{_windFanPower4 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _windFanPower4String = string.Empty;
+
+	[XmlIgnore]
+	public string WindFanPower4String
+	{
+		get => _windFanPower4String;
+
+		set
+		{
+			if ( value != _windFanPower4String )
+			{
+				_windFanPower4String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Speed 5
+
+	private float _windSpeed5 = 0.268f;
+
+	public float WindSpeed5
+	{
+		get => _windSpeed5;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windSpeed5 )
+			{
+				_windSpeed5 = value;
+
+				OnPropertyChanged();
+
+				WindSpeed4 = MathF.Min( WindSpeed4, _windSpeed5 );
+				WindSpeed6 = MathF.Max( WindSpeed6, _windSpeed5 );
+			}
+
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindSpeed5String = $"{_windSpeed5 * 100f * MathZ.MPSToMPH:F0}";
+			}
+			else
+			{
+				WindSpeed5String = $"{_windSpeed5 * 100f * MathZ.MPSToKPH:F0}";
+			}
+		}
+	}
+
+	private string _windSpeed5String = string.Empty;
+
+	[XmlIgnore]
+	public string WindSpeed5String
+	{
+		get => _windSpeed5String;
+
+		set
+		{
+			if ( value != _windSpeed5String )
+			{
+				_windSpeed5String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Fan power 5
+
+	private float _windFanPower5 = 0.10f;
+
+	public float WindFanPower5
+	{
+		get => _windFanPower5;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windFanPower5 )
+			{
+				_windFanPower5 = value;
+
+				OnPropertyChanged();
+			}
+
+			WindFanPower5String = $"{_windFanPower5 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _windFanPower5String = string.Empty;
+
+	[XmlIgnore]
+	public string WindFanPower5String
+	{
+		get => _windFanPower5String;
+
+		set
+		{
+			if ( value != _windFanPower5String )
+			{
+				_windFanPower5String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Speed 6
+
+	private float _windSpeed6 = 0.4025f;
+
+	public float WindSpeed6
+	{
+		get => _windSpeed6;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windSpeed6 )
+			{
+				_windSpeed6 = value;
+
+				OnPropertyChanged();
+
+				WindSpeed5 = MathF.Min( WindSpeed5, _windSpeed6 );
+				WindSpeed7 = MathF.Max( WindSpeed7, _windSpeed6 );
+			}
+
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindSpeed6String = $"{_windSpeed6 * 100f * MathZ.MPSToMPH:F0}";
+			}
+			else
+			{
+				WindSpeed6String = $"{_windSpeed6 * 100f * MathZ.MPSToKPH:F0}";
+			}
+		}
+	}
+
+	private string _windSpeed6String = string.Empty;
+
+	[XmlIgnore]
+	public string WindSpeed6String
+	{
+		get => _windSpeed6String;
+
+		set
+		{
+			if ( value != _windSpeed6String )
+			{
+				_windSpeed6String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Fan power 6
+
+	private float _windFanPower6 = 0.15f;
+
+	public float WindFanPower6
+	{
+		get => _windFanPower6;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windFanPower6 )
+			{
+				_windFanPower6 = value;
+
+				OnPropertyChanged();
+			}
+
+			WindFanPower6String = $"{_windFanPower6 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _windFanPower6String = string.Empty;
+
+	[XmlIgnore]
+	public string WindFanPower6String
+	{
+		get => _windFanPower6String;
+
+		set
+		{
+			if ( value != _windFanPower6String )
+			{
+				_windFanPower6String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Speed 7
+
+	private float _windSpeed7 = 0.535f;
+
+	public float WindSpeed7
+	{
+		get => _windSpeed7;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windSpeed7 )
+			{
+				_windSpeed7 = value;
+
+				OnPropertyChanged();
+
+				WindSpeed6 = MathF.Min( WindSpeed6, _windSpeed7 );
+				WindSpeed8 = MathF.Max( WindSpeed8, _windSpeed7 );
+			}
+
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindSpeed7String = $"{_windSpeed7 * 100f * MathZ.MPSToMPH:F0}";
+			}
+			else
+			{
+				WindSpeed7String = $"{_windSpeed7 * 100f * MathZ.MPSToKPH:F0}";
+			}
+		}
+	}
+
+	private string _windSpeed7String = string.Empty;
+
+	[XmlIgnore]
+	public string WindSpeed7String
+	{
+		get => _windSpeed7String;
+
+		set
+		{
+			if ( value != _windSpeed7String )
+			{
+				_windSpeed7String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Fan power 7
+
+	private float _windFanPower7 = 0.25f;
+
+	public float WindFanPower7
+	{
+		get => _windFanPower7;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windFanPower7 )
+			{
+				_windFanPower7 = value;
+
+				OnPropertyChanged();
+			}
+
+			WindFanPower7String = $"{_windFanPower7 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _windFanPower7String = string.Empty;
+
+	[XmlIgnore]
+	public string WindFanPower7String
+	{
+		get => _windFanPower7String;
+
+		set
+		{
+			if ( value != _windFanPower7String )
+			{
+				_windFanPower7String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Speed 8
+
+	private float _windSpeed8 = 0.6725f;
+
+	public float WindSpeed8
+	{
+		get => _windSpeed8;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windSpeed8 )
+			{
+				_windSpeed8 = value;
+
+				OnPropertyChanged();
+
+				WindSpeed7 = MathF.Min( WindSpeed7, _windSpeed8 );
+				WindSpeed9 = MathF.Max( WindSpeed9, _windSpeed8 );
+			}
+
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindSpeed8String = $"{_windSpeed8 * 100f * MathZ.MPSToMPH:F0}";
+			}
+			else
+			{
+				WindSpeed8String = $"{_windSpeed8 * 100f * MathZ.MPSToKPH:F0}";
+			}
+		}
+	}
+
+	private string _windSpeed8String = string.Empty;
+
+	[XmlIgnore]
+	public string WindSpeed8String
+	{
+		get => _windSpeed8String;
+
+		set
+		{
+			if ( value != _windSpeed8String )
+			{
+				_windSpeed8String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Fan power 8
+
+	private float _windFanPower8 = 0.40f;
+
+	public float WindFanPower8
+	{
+		get => _windFanPower8;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windFanPower8 )
+			{
+				_windFanPower8 = value;
+
+				OnPropertyChanged();
+			}
+
+			WindFanPower8String = $"{_windFanPower8 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _windFanPower8String = string.Empty;
+
+	[XmlIgnore]
+	public string WindFanPower8String
+	{
+		get => _windFanPower8String;
+
+		set
+		{
+			if ( value != _windFanPower8String )
+			{
+				_windFanPower8String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Speed 9
+
+	private float _windSpeed9 = 0.805f;
+
+	public float WindSpeed9
+	{
+		get => _windSpeed9;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windSpeed9 )
+			{
+				_windSpeed9 = value;
+
+				OnPropertyChanged();
+
+				WindSpeed8 = MathF.Min( WindSpeed8, _windSpeed9 );
+				WindSpeed10 = MathF.Max( WindSpeed10, _windSpeed9 );
+			}
+
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindSpeed9String = $"{_windSpeed9 * 100f * MathZ.MPSToMPH:F0}";
+			}
+			else
+			{
+				WindSpeed9String = $"{_windSpeed9 * 100f * MathZ.MPSToKPH:F0}";
+			}
+		}
+	}
+
+	private string _windSpeed9String = string.Empty;
+
+	[XmlIgnore]
+	public string WindSpeed9String
+	{
+		get => _windSpeed9String;
+
+		set
+		{
+			if ( value != _windSpeed9String )
+			{
+				_windSpeed9String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Fan power 9
+
+	private float _windFanPower9 = 0.65f;
+
+	public float WindFanPower9
+	{
+		get => _windFanPower9;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windFanPower9 )
+			{
+				_windFanPower9 = value;
+
+				OnPropertyChanged();
+			}
+
+			WindFanPower9String = $"{_windFanPower9 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _windFanPower9String = string.Empty;
+
+	[XmlIgnore]
+	public string WindFanPower9String
+	{
+		get => _windFanPower9String;
+
+		set
+		{
+			if ( value != _windFanPower9String )
+			{
+				_windFanPower9String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Speed 10
+
+	private float _windSpeed10 = 0.94f;
+
+	public float WindSpeed10
+	{
+		get => _windSpeed10;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windSpeed10 )
+			{
+				_windSpeed10 = value;
+
+				OnPropertyChanged();
+
+				WindSpeed9 = MathF.Min( WindSpeed9, _windSpeed10 );
+			}
+
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindSpeed10String = $"{_windSpeed10 * 100f * MathZ.MPSToMPH:F0}";
+			}
+			else
+			{
+				WindSpeed10String = $"{_windSpeed10 * 100f * MathZ.MPSToKPH:F0}";
+			}
+		}
+	}
+
+	private string _windSpeed10String = string.Empty;
+
+	[XmlIgnore]
+	public string WindSpeed10String
+	{
+		get => _windSpeed10String;
+
+		set
+		{
+			if ( value != _windSpeed10String )
+			{
+				_windSpeed10String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Wind - Fan power 10
+
+	private float _windFanPower10 = 1f;
+
+	public float WindFanPower10
+	{
+		get => _windFanPower10;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _windFanPower10 )
+			{
+				_windFanPower10 = value;
+
+				OnPropertyChanged();
+			}
+
+			WindFanPower10String = $"{_windFanPower10 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _windFanPower10String = string.Empty;
+
+	[XmlIgnore]
+	public string WindFanPower10String
+	{
+		get => _windFanPower10String;
+
+		set
+		{
+			if ( value != _windFanPower10String )
+			{
+				_windFanPower10String = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Sounds - Master enabled
 
 	private bool _soundsMasterEnabled = true;
@@ -7276,6 +8447,53 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _appCheckForUpdates )
 			{
 				_appCheckForUpdates = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Trading paints - Enabled
+
+	private bool _tradingPaintsEnabled = false;
+
+	public bool TradingPaintsEnabled
+	{
+		get => _tradingPaintsEnabled;
+
+		set
+		{
+			if ( value != _tradingPaintsEnabled )
+			{
+				_tradingPaintsEnabled = value;
+
+				OnPropertyChanged();
+
+				if ( _tradingPaintsEnabled )
+				{
+					App.Instance?.TradingPaints.Reset();
+				}
+			}
+		}
+	}
+
+	#endregion
+
+	#region Trading paints - Folder
+
+	private string _tradingPaintsFolder = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), "iRacing", "paint" );
+
+	public string TradingPaintsFolder
+	{
+		get => _tradingPaintsFolder;
+
+		set
+		{
+			if ( value != _tradingPaintsFolder )
+			{
+				_tradingPaintsFolder = value;
 
 				OnPropertyChanged();
 			}

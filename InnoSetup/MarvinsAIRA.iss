@@ -39,6 +39,8 @@ OutputDir=userdocs:MarvinsAIRA Refactored
 SetupIconFile=C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\Artwork\AppIcon\maira-universal.ico
 SolidCompression=yes
 WizardStyle=modern
+CloseApplications=yes
+RestartApplications=no
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

@@ -11,6 +11,7 @@ using Timer = System.Timers.Timer;
 using IRSDKSharper;
 
 using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.Windows;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -40,7 +41,7 @@ public partial class AdminBoxx
 	private const int _numColumns = 8;
 	private const int _numRows = 4;
 
-	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( "239A", "80F2" );
+	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( string.Empty, "MI_00", "239A", "80F2" );
 
 	private readonly Color[,] _colors = new Color[ _numRows, _numColumns ];
 
@@ -197,6 +198,8 @@ public partial class AdminBoxx
 
 		_timer.Start();
 
+		_usbSerialPortHelper.Initialize();
+
 		app.Logger.WriteLine( "[AdminBoxx] <<< Initialize" );
 	}
 
@@ -214,6 +217,8 @@ public partial class AdminBoxx
 	public bool Connect()
 	{
 		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AdminBoxx] Connect >>>" );
 
 		IsConnected = _usbSerialPortHelper.Open();
 
@@ -237,8 +242,10 @@ public partial class AdminBoxx
 
 		app.Dispatcher.Invoke( () =>
 		{
-			//FIX app.MainWindow.AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn = IsConnected;
+			MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.IsOn = IsConnected;
 		} );
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< Connect" );
 
 		return IsConnected;
 	}
@@ -247,14 +254,18 @@ public partial class AdminBoxx
 	{
 		var app = App.Instance!;
 
+		app.Logger.WriteLine( "[AdminBoxx] Disconnect >>>" );
+
 		IsConnected = false;
 
 		_usbSerialPortHelper.Close();
 
 		app.Dispatcher.Invoke( () =>
 		{
-			//FIX app.MainWindow.AdminBoxx_ConnectToAdminBoxx_MairaSwitch.IsOn = false;
+			MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.IsOn = false;
 		} );
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< Disconnect" );
 	}
 
 	public void ResendAllLEDs( (int x, int y)[]? pattern = null )

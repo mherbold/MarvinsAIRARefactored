@@ -34,6 +34,7 @@ public partial class Simulator
 	public float CurrentRpmSpeedRatio { get; private set; } = 0f;
 	public int CurrentTireIndex { get; private set; } = -1;
 	public string CurrentTireCompoundType { get; private set; } = string.Empty;
+	public int DisplayUnits { get; private set; } = 0;
 	public int Gear { get; private set; } = 0;
 	public float GForce { get; private set; } = 0f;
 	public bool IsConnected { get => _irsdk.IsConnected; }
@@ -93,6 +94,7 @@ public partial class Simulator
 	private IRacingSdkDatum? _cfShockVel_STDatum = null;
 	private IRacingSdkDatum? _clutchDatum = null;
 	private IRacingSdkDatum? _crShockVel_STDatum = null;
+	private IRacingSdkDatum? _displayUnitsDatum = null;
 	private IRacingSdkDatum? _gearDatum = null;
 	private IRacingSdkDatum? _isOnTrackDatum = null;
 	private IRacingSdkDatum? _isReplayPlayingDatum = null;
@@ -236,6 +238,7 @@ public partial class Simulator
 		CurrentRpmSpeedRatio = 0f;
 		CurrentTireIndex = -1;
 		CurrentTireCompoundType = string.Empty;
+		DisplayUnits = 0;
 		Gear = 0;
 		GForce = 0f;
 		IsOnTrack = false;
@@ -298,6 +301,8 @@ public partial class Simulator
 
 		var sessionInfo = _irsdk.Data.SessionInfo;
 
+		app.TradingPaints.UpdateDrivers( sessionInfo.DriverInfo.Drivers );
+
 		CarSetupName = Path.GetFileNameWithoutExtension( sessionInfo.DriverInfo.DriverSetupName ).ToLower();
 
 		NumForwardGears = sessionInfo.DriverInfo.DriverCarGearNumForward;
@@ -344,7 +349,7 @@ public partial class Simulator
 		{
 			UpdateTireProperties();
 
-			SteeringEffects.SetCalibrationFileNameMairaComboBoxItemsSource();
+			MainWindow._steeringEffectsPage.UpdateCalibrationFileNameOptions();
 
 			DataContext.DataContext.Instance.Settings.UpdateSettings( false );
 
@@ -374,6 +379,7 @@ public partial class Simulator
 			_brakeDatum = _irsdk.Data.TelemetryDataProperties[ "Brake" ];
 			_carIdxTireCompoundDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxTireCompound" ];
 			_clutchDatum = _irsdk.Data.TelemetryDataProperties[ "Clutch" ];
+			_displayUnitsDatum = _irsdk.Data.TelemetryDataProperties[ "DisplayUnits" ];
 			_gearDatum = _irsdk.Data.TelemetryDataProperties[ "Gear" ];
 			_isOnTrackDatum = _irsdk.Data.TelemetryDataProperties[ "IsOnTrack" ];
 			_isReplayPlayingDatum = _irsdk.Data.TelemetryDataProperties[ "IsReplayPlaying" ];
@@ -524,6 +530,10 @@ public partial class Simulator
 
 		SteeringWheelAngle = _irsdk.Data.GetFloat( _steeringWheelAngleDatum );
 		SteeringWheelAngleMax = _irsdk.Data.GetFloat( _steeringWheelAngleMaxDatum );
+
+		// get display units
+
+		DisplayUnits = _irsdk.Data.GetInt( _displayUnitsDatum );
 
 		// get gear
 

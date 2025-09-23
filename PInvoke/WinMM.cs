@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 
 namespace MarvinsAIRARefactored.PInvoke;
 
-partial class WinMM
+public static partial class WinMM
 {
 	[Flags]
 	public enum fuEvent : uint
