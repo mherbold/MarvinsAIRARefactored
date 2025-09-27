@@ -313,7 +313,7 @@ public class RacingWheel
 
 				if ( detailGain != 1f )
 				{
-					if ( ( MathF.Abs( normalizedCompressedTorque - normalizedRunningSteadyTorque ) > MathF.Abs( normalizedLastCompressedTorque - normalizedRunningSteadyTorque ) ) || ( MathF.Sign( normalizedCompressedTorque - normalizedRunningSteadyTorque ) != MathF.Sign( normalizedLastCompressedTorque - normalizedPriorSteadyTorque ) ) || ( normalizedCompressedTorque == normalizedRunningSteadyTorque ) || ( normalizedLastCompressedTorque == normalizedPriorSteadyTorque ) )
+					if ( ( MathF.Abs( normalizedCompressedTorque - normalizedRunningSteadyTorque ) > MathF.Abs( normalizedLastCompressedTorque - normalizedRunningSteadyTorque ) ) || ( MathF.Sign( normalizedCompressedTorque - normalizedRunningSteadyTorque ) != MathF.Sign( normalizedLastCompressedTorque - normalizedPriorSteadyTorque ) ) || ( normalizedLastCompressedTorque == normalizedRunningSteadyTorque ) )
 					{
 						if ( normalizedCompressedTorque > normalizedRunningSteadyTorque )
 						{
