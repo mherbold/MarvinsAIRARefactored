@@ -1,6 +1,4 @@
 ﻿
-using MarvinsAIRARefactored.DataContext;
-using SharpDX.XAudio2;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
 using System.Text;
