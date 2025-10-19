@@ -1,4 +1,6 @@
 ﻿
+using MarvinsAIRARefactored.DataContext;
+using SharpDX.XAudio2;
 using System.IO.MemoryMappedFiles;
 using System.Runtime.InteropServices;
 using System.Text;
@@ -10,7 +12,7 @@ public class Telemetry
 	private const string MemoryMappedFileName = "Local\\MAIRARefactoredTelemetry";
 	private const int MaxStringLengthInBytes = 256;
 
-	private const int Version = 4;
+	private const int Version = 5;
 
 	[StructLayout( LayoutKind.Sequential, Pack = 4 )]
 	public unsafe struct DataBufferStruct
@@ -41,8 +43,52 @@ public class Telemetry
 
 		public bool racingWheelFadingIsActive;
 
+		public fixed byte steeringEffectsCalibrationFileName[ MaxStringLengthInBytes ];
+
+		public float steeringEffectsUndersteerMinThreshold;
+		public float steeringEffectsUndersteerMaxThreshold;
+		public fixed byte steeringEffectsUndersteerVibrationPattern[ MaxStringLengthInBytes ];
+		public float steeringEffectsUndersteerVibrationStrength;
+		public float steeringEffectsUndersteerVibrationMinFrequency;
+		public float steeringEffectsUndersteerVibrationMaxFrequency;
+		public float steeringEffectsUndersteerVibrationCurve;
+		public fixed byte steeringEffectsUndersteerForceDirection[ MaxStringLengthInBytes ];
+		public float steeringEffectsUndersteerForceStrength;
+		public float steeringEffectsUndersteerForceCurve;
+		public float steeringEffectsUndersteerPedalVibrationMinFrequency;
+		public float steeringEffectsUndersteerPedalVibrationMaxFrequency;
+		public float steeringEffectsUndersteerPedalVibrationCurve;
 		public float steeringEffectsUndersteerEffect;
+
+		public float steeringEffectsOversteerMinThreshold;
+		public float steeringEffectsOversteerMaxThreshold;
+		public fixed byte steeringEffectsOversteerVibrationPattern[ MaxStringLengthInBytes ];
+		public float steeringEffectsOversteerVibrationStrength;
+		public float steeringEffectsOversteerVibrationMinFrequency;
+		public float steeringEffectsOversteerVibrationMaxFrequency;
+		public float steeringEffectsOversteerVibrationCurve;
+		public fixed byte steeringEffectsOversteerForceDirection[ MaxStringLengthInBytes ];
+		public float steeringEffectsOversteerForceStrength;
+		public float steeringEffectsOversteerForceCurve;
+		public float steeringEffectsOversteerPedalVibrationMinFrequency;
+		public float steeringEffectsOversteerPedalVibrationMaxFrequency;
+		public float steeringEffectsOversteerPedalVibrationCurve;
 		public float steeringEffectsOversteerEffect;
+
+		public float steeringEffectsSeatOfPantsMinThreshold;
+		public float steeringEffectsSeatOfPantsMaxThreshold;
+		public fixed byte steeringEffectsSeatOfPantsAlgorithm[ MaxStringLengthInBytes ];
+		public fixed byte steeringEffectsSeatOfPantsVibrationPattern[ MaxStringLengthInBytes ];
+		public float steeringEffectsSeatOfPantsVibrationStrength;
+		public float steeringEffectsSeatOfPantsVibrationMinFrequency;
+		public float steeringEffectsSeatOfPantsVibrationMaxFrequency;
+		public float steeringEffectsSeatOfPantsVibrationCurve;
+		public fixed byte steeringEffectsSeatOfPantsForceDirection[ MaxStringLengthInBytes ];
+		public float steeringEffectsSeatOfPantsForceStrength;
+		public float steeringEffectsSeatOfPantsForceCurve;
+		public float steeringEffectsSeatOfPantsPedalVibrationMinFrequency;
+		public float steeringEffectsSeatOfPantsPedalVibrationMaxFrequency;
+		public float steeringEffectsSeatOfPantsPedalVibrationCurve;
 		public float steeringEffectsSeatOfPantsEffect;
 		public float steeringEffectsSkidSlip;
 
@@ -96,6 +142,70 @@ public class Telemetry
 			fixed ( byte* bytePtr = racingWheelAlgorithmSettingValues )
 			{
 				WriteString( bytePtr, index, MaxStringLengthInBytes, value );
+			}
+		}
+
+		public void SetSteeringEffectsCalibrationFileName( string? value )
+		{
+			fixed ( byte* bytePtr = steeringEffectsCalibrationFileName )
+			{
+				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
+			}
+		}
+
+		public void SetSteeringEffectsUndersteerVibrationPattern( string? value )
+		{
+			fixed ( byte* bytePtr = steeringEffectsUndersteerVibrationPattern )
+			{
+				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
+			}
+		}
+
+		public void SetSteeringEffectsUndersteerForceDirection( string? value )
+		{
+  			fixed ( byte* bytePtr = steeringEffectsUndersteerForceDirection )
+			{
+				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
+			}
+		}
+
+		public void SetSteeringEffectsOversteerVibrationPattern( string? value )
+		{
+			fixed ( byte* bytePtr = steeringEffectsOversteerVibrationPattern )
+			{
+				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
+			}
+		}
+
+		public void SetSteeringEffectsOversteerForceDirection( string? value )
+		{
+  			fixed ( byte* bytePtr = steeringEffectsOversteerForceDirection )
+			{
+				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
+			}
+		}
+
+		public void SetSteeringEffectsSeatOfPantsAlgorithm( string? value )
+		{
+			fixed ( byte* bytePtr = steeringEffectsSeatOfPantsAlgorithm )
+			{
+				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
+			}
+		}
+
+		public void SetSteeringEffectsSeatOfPantsVibrationPattern( string? value )
+		{
+			fixed ( byte* bytePtr = steeringEffectsSeatOfPantsVibrationPattern )
+			{
+				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
+			}
+		}
+
+		public void SetSteeringEffectsSeatOfPantsForceDirection( string? value )
+		{
+  			fixed ( byte* bytePtr = steeringEffectsSeatOfPantsForceDirection )
+			{
+				WriteString( bytePtr, 0, MaxStringLengthInBytes, value );
 			}
 		}
 
@@ -304,9 +414,67 @@ public class Telemetry
 
 		// steering effects
 
+		dataBuffer.SetSteeringEffectsCalibrationFileName( settings.SteeringEffectsCalibrationFileName.ToString() );
+
+		dataBuffer.steeringEffectsUndersteerMinThreshold = settings.SteeringEffectsUndersteerMinimumThreshold;
+		dataBuffer.steeringEffectsUndersteerMaxThreshold = settings.SteeringEffectsUndersteerMaximumThreshold;
+		dataBuffer.SetSteeringEffectsUndersteerVibrationPattern( localization[ settings.SteeringEffectsUndersteerWheelVibrationPattern.ToString() ] );
+		dataBuffer.steeringEffectsUndersteerVibrationStrength = settings.SteeringEffectsUndersteerWheelVibrationStrength;
+		dataBuffer.steeringEffectsUndersteerVibrationMinFrequency = settings.SteeringEffectsUndersteerWheelVibrationMinimumFrequency;
+		dataBuffer.steeringEffectsUndersteerVibrationMaxFrequency = settings.SteeringEffectsUndersteerWheelVibrationMaximumFrequency;
+		dataBuffer.steeringEffectsUndersteerVibrationCurve = settings.SteeringEffectsUndersteerWheelVibrationCurve;
+		dataBuffer.SetSteeringEffectsUndersteerForceDirection( localization[ settings.SteeringEffectsUndersteerWheelConstantForceDirection.ToString() ]);
+		dataBuffer.steeringEffectsUndersteerForceStrength = settings.SteeringEffectsUndersteerWheelConstantForceStrength;
+		dataBuffer.steeringEffectsUndersteerForceCurve = settings.SteeringEffectsUndersteerWheelConstantForceCurve;
+		dataBuffer.steeringEffectsUndersteerPedalVibrationMinFrequency = settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequency;
+		dataBuffer.steeringEffectsUndersteerPedalVibrationMaxFrequency = settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequency;
+		dataBuffer.steeringEffectsUndersteerPedalVibrationCurve = settings.SteeringEffectsUndersteerPedalVibrationCurve;
 		dataBuffer.steeringEffectsUndersteerEffect = app.SteeringEffects.UndersteerEffect;
+
+		dataBuffer.steeringEffectsOversteerMinThreshold = settings.SteeringEffectsOversteerMinimumThreshold;
+		dataBuffer.steeringEffectsOversteerMaxThreshold = settings.SteeringEffectsOversteerMaximumThreshold;
+		dataBuffer.SetSteeringEffectsOversteerVibrationPattern( localization[ settings.SteeringEffectsOversteerWheelVibrationPattern.ToString() ] );
+		dataBuffer.steeringEffectsOversteerVibrationStrength = settings.SteeringEffectsOversteerWheelVibrationStrength;
+		dataBuffer.steeringEffectsOversteerVibrationMinFrequency = settings.SteeringEffectsOversteerWheelVibrationMinimumFrequency;
+		dataBuffer.steeringEffectsOversteerVibrationMaxFrequency = settings.SteeringEffectsOversteerWheelVibrationMaximumFrequency;
+		dataBuffer.steeringEffectsOversteerVibrationCurve = settings.SteeringEffectsOversteerWheelVibrationCurve;
+		dataBuffer.SetSteeringEffectsOversteerForceDirection( localization[ settings.SteeringEffectsOversteerWheelConstantForceDirection.ToString() ]);
+		dataBuffer.steeringEffectsOversteerForceStrength = settings.SteeringEffectsOversteerWheelConstantForceStrength;
+		dataBuffer.steeringEffectsOversteerForceCurve = settings.SteeringEffectsOversteerWheelConstantForceCurve;
+		dataBuffer.steeringEffectsOversteerPedalVibrationMinFrequency = settings.SteeringEffectsOversteerPedalVibrationMinimumFrequency;
+		dataBuffer.steeringEffectsOversteerPedalVibrationMaxFrequency = settings.SteeringEffectsOversteerPedalVibrationMaximumFrequency;
+		dataBuffer.steeringEffectsOversteerPedalVibrationCurve = settings.SteeringEffectsOversteerPedalVibrationCurve;
 		dataBuffer.steeringEffectsOversteerEffect = app.SteeringEffects.OversteerEffect;
+
+		dataBuffer.steeringEffectsSeatOfPantsMinThreshold = settings.SteeringEffectsSeatOfPantsMinimumThreshold;
+		dataBuffer.steeringEffectsSeatOfPantsMaxThreshold = settings.SteeringEffectsSeatOfPantsMaximumThreshold;
+		switch ( settings.SteeringEffectsSeatOfPantsAlgorithm )
+		{
+			case SteeringEffects.SeatOfPantsAlgorithm.YAcceleration:
+				dataBuffer.SetSteeringEffectsSeatOfPantsAlgorithm( localization[ "LateralAcceleration" ] );
+				break;
+
+			case SteeringEffects.SeatOfPantsAlgorithm.YVelocity:
+				dataBuffer.SetSteeringEffectsSeatOfPantsAlgorithm( localization[ "LateralVelocity" ] );
+				break;
+
+			case SteeringEffects.SeatOfPantsAlgorithm.YVelocityOverXVelocity:
+				dataBuffer.SetSteeringEffectsSeatOfPantsAlgorithm( localization[ "RatioOfVelocities" ] );
+				break;
+		}
+		dataBuffer.SetSteeringEffectsSeatOfPantsVibrationPattern( localization[ settings.SteeringEffectsSeatOfPantsWheelVibrationPattern.ToString() ] );
+		dataBuffer.steeringEffectsSeatOfPantsVibrationStrength = settings.SteeringEffectsSeatOfPantsWheelVibrationStrength;
+		dataBuffer.steeringEffectsSeatOfPantsVibrationMinFrequency = settings.SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequency;
+		dataBuffer.steeringEffectsSeatOfPantsVibrationMaxFrequency = settings.SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequency;
+		dataBuffer.steeringEffectsSeatOfPantsVibrationCurve = settings.SteeringEffectsSeatOfPantsWheelVibrationCurve;
+		dataBuffer.SetSteeringEffectsSeatOfPantsForceDirection( localization[ settings.SteeringEffectsSeatOfPantsWheelConstantForceDirection.ToString() ]);
+		dataBuffer.steeringEffectsSeatOfPantsForceStrength = settings.SteeringEffectsSeatOfPantsWheelConstantForceStrength;
+		dataBuffer.steeringEffectsSeatOfPantsForceCurve = settings.SteeringEffectsSeatOfPantsWheelConstantForceCurve;
+		dataBuffer.steeringEffectsSeatOfPantsPedalVibrationMinFrequency = settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequency;
+		dataBuffer.steeringEffectsSeatOfPantsPedalVibrationMaxFrequency = settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequency;
+		dataBuffer.steeringEffectsSeatOfPantsPedalVibrationCurve = settings.SteeringEffectsSeatOfPantsPedalVibrationCurve;
 		dataBuffer.steeringEffectsSeatOfPantsEffect = app.SteeringEffects.SeatOfPantsEffect;
+
 		dataBuffer.steeringEffectsSkidSlip = app.SteeringEffects.SkidSlip;
 
 		// let SimHub know this buffer is ready for reading
