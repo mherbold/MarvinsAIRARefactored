@@ -1,76 +1,54 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAIRA — Racing Wheel • Private Messages</title>
-  <link rel="stylesheet" href="maira-docs.css" />
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Racing Wheel — Private Messages</h1>
-        <p class="subtitle">Control which notifications MAIRA sends to you via iRacing’s chat — as <em>private messages</em> to your driver only.</p>
-        <div class="badges">
-          <span class="badge">Racing Wheel</span>
-          <span class="badge">Private Messages</span>
-          <span class="badge">Notifications</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Racing Wheel — Private Messages</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Private Messages</h2>
+					</div>
+					<p class="subtitle">Control which notifications MAIRA sends to you via iRacing’s chat — as <em>private messages</em> to your driver only.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Racing Wheel</span> page • section <span class="ui-label">Private Messages</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Send private chat messages to the driver</h3>
+					<p>Enables all MAIRA private messages. If this is <em>Off</em>, no chat messages are sent, regardless of the other toggles.</p>
+					<p>Default: <span class="important">On</span></p>
+				</section>
 
-          <div class="k">How messages are sent</div>
-          <div class="v">MAIRA sends a private chat line to <em>you</em> using iRacing’s “whisper” format. Messages sent to the chat window looks like <code>/{playerName} (MAIRA) &lt;message&gt;</code>. The master switch must be <span class="important">On</span>, and you must be in‑session (MAIRA reads your driver name from the sim).</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Enable input mapped setting update messages</h3>
+					<p>When you adjust settings via mapped buttons/encoders (e.g., <em>Strength</em>, <em>Max Force</em>, <em>Auto Margin</em>, <em>Curve</em>, etc.), MAIRA sends a short confirmation message showing the new value.</p>
+					<p>Default: <span class="important">On</span></p>
+					<h4>Examples</h4>
+					<p>(MAIRA) Strength 75%<br>(MAIRA) Max Force 12.0 Nm<br>(MAIRA) Curve 10%</p>
+				</section>
 
-      <section class="section">
-        <h2>Send private chat messages to the driver</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">On</span></li>
-          <li><strong>What it does:</strong> Enables all MAIRA private messages. If this is <em>Off</em>, no chat messages are sent, regardless of the other toggles.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>Enable crash protection messages</h3>
+					<p>Sends a one‑time “Crash Protection activated” PM when a high‑g event triggers protection. Messages are rate‑limited: they only send when protection transitions from inactive → active.</p>
+					<p>Default: <span class="important">Off</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Enable input mapped setting update messages</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">On</span></li>
-          <li><strong>What it does:</strong> When you adjust settings via mapped buttons/encoders (e.g., <em>Strength</em>, <em>Max Force</em>, <em>Auto Margin</em>, <em>Curve</em>, etc.), MAIRA sends a short confirmation message showing the new value.</li>
-          <li><strong>Examples:</strong> “(MAIRA) Strength 75%”, “(MAIRA) Max Force 12.0 Nm”, “(MAIRA) Curve 10%”.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>Enable curb protection messages</h3>
+					<p>Sends “Curb Protection activated” when a curb/shock event triggers protection (also sent only on the transition into active).</p>
+					<p>Default: <span class="important">Off</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Enable crash protection messages</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">Off</span></li>
-          <li><strong>What it does:</strong> Sends a one‑time “Crash Protection activated” PM when a high‑g event triggers protection. Messages are rate‑limited: they only send when protection transitions from inactive → active.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Enable curb protection messages</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">Off</span></li>
-          <li><strong>What it does:</strong> Sends “Curb Protection activated” when a curb/shock event triggers protection (also sent only on the transition into active).</li>
-        </ul>
-      </section>
-
-      <div class="tip">
-        <strong class="important">Pro tip:</strong> Keep <span class="ui-label">Enable input mapped setting update messages</span> on while dialing in your setup so you get quick confirmation of changes. Turn the feature off for races if you prefer a clean chat window.
-      </div>
-
-      <hr />
-      <p class="footer">MAIRA Refactored • Racing Wheel — Private Messages</p>
-    </article>
-  </main>
-</body>
+				<div class="tip">
+					Pro tip: Keep <span class="ui-label">Enable input mapped setting update messages</span> on while dialing in your setup so you get quick confirmation of changes. Turn the feature off for races if you prefer a clean chat window.
+				</div>
+			</article>
+		</main>
+	</body>
 </html>

@@ -72,7 +72,7 @@ public class Pedals
 
 		app.Logger.WriteLine( "[Pedals] Refresh >>>" );
 
-		PedalsDevice = _hpr.Initialize( DataContext.DataContext.Instance.Settings.PedalsEnabled );
+		PedalsDevice = _hpr.Initialize( DataContext.DataContext.Instance.Settings.PedalsEnabled, msg => app.Logger.WriteLine( $"[Simagic] {msg}" ) );
 
 		app.Logger.WriteLine( $"[Pedals] Simagic HPR API reports: {PedalsDevice}" );
 

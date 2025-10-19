@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Pedals — Frequency</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Pedals</h1>
+						<h2>Frequency</h2>
+					</div>
+					<p class="subtitle">Set the global vibration frequency range and response curve for all pedal effects.</p>
+				</div>
+			</header>
+
+			<article class="article">
+				<section class="section">
+					<h3>Minimum</h3>
+					<p>The frequency to vibrate at when an effect is at 0% frequency.</p>
+					<p>Default: <span class="important">15 Hz</span></p>
+					<p>Range: 0 → 50 Hz.</p>
+				</section>
+
+				<section class="section">
+					<h3>Maximum</h3>
+					<p>The frequency to vibrate at when an effect is at 100% frequency.</p>
+					<p>Default: <span class="important">50 Hz</span>
+					<p>
+					<p>Range: 0 → 50 Hz.</p>
+				</section>
+
+				<section class="section">
+					<h3>Curve</h3>
+					<p>Shapes how quickly frequency rises from <span class="ui-label">Minimum</span> to <span class="ui-label">Maximum</span> as an effect strengthens.</p>
+					<p>Negative values emphasize early frequency increase; positive values delay it until higher intensity.</p>
+					<p>Default: <span class="important">25%</span></p>
+					<p>Range: −100 → 100%</p>
+				</section>
+			</article>
+		</main>
+	</body>
+</html>

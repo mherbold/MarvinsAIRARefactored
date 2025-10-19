@@ -274,7 +274,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value></value>
+    <value>Pedaler</value>
     <comment>Pedals</comment>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
@@ -1194,7 +1194,7 @@
     <comment>Wind</comment>
   </data>
   <data name="Connection_UC" xml:space="preserve">
-    <value></value>
+    <value>Kobling</value>
     <comment>Wind</comment>
   </data>
   <data name="Settings_UC" xml:space="preserve">
@@ -1300,5 +1300,8 @@
   <data name="RatioOfVelocities" xml:space="preserve">
     <value></value>
     <comment>Steering effects</comment>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>Skjerm</value>
   </data>
 </root>

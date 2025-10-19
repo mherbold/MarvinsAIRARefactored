@@ -274,7 +274,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value></value>
+    <value>Pedales</value>
     <comment>Pedals</comment>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
@@ -602,7 +602,7 @@
     <comment>Donate</comment>
   </data>
   <data name="Donate_UC" xml:space="preserve">
-    <value></value>
+    <value>Donner</value>
     <comment>Donate</comment>
   </data>
   <data name="Donors_UC" xml:space="preserve">
@@ -1110,7 +1110,7 @@
     <comment>App settings</comment>
   </data>
   <data name="Simulator_UC" xml:space="preserve">
-    <value></value>
+    <value>Simulateur</value>
     <comment>Simulator</comment>
   </data>
   <data name="Graph_UC" xml:space="preserve">
@@ -1170,7 +1170,7 @@
     <comment>Abbreviation for miles per hour</comment>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value></value>
+    <value>Vent</value>
     <comment>Wind</comment>
   </data>
   <data name="Wind" xml:space="preserve">
@@ -1300,5 +1300,8 @@
   <data name="RatioOfVelocities" xml:space="preserve">
     <value></value>
     <comment>Steering effects</comment>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>Affichage</value>
   </data>
 </root>

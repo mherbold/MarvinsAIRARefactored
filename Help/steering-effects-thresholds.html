@@ -1,107 +1,81 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>MAIRA — Steering Effects • Thresholds</title>
-  <link rel="stylesheet" href="maira-docs.css"/>
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Steering Effects — Thresholds</h1>
-        <p class="subtitle">Configure the detection bands for <em>Understeer</em>, <em>Oversteer</em>, and <em>Seat of Pants</em> (SOP). Each uses a <strong>Minimum</strong> and <strong>Maximum</strong> threshold to map raw telemetry into a 0→1 effect signal.</p>
-        <div class="badges">
-          <span class="badge">Steering Effects</span>
-          <span class="badge">Thresholds</span>
-          <span class="badge">Detection</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Steering Effects — Thresholds</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Steering Effects</h1>
+						<h2>Thresholds</h2>
+					</div>
+					<p class="subtitle">Configure the detection bands for <em>Understeer</em>, <em>Oversteer</em>, and <em>Seat of Pants</em> (SOP). Each uses a <strong>Minimum</strong> and <strong>Maximum</strong> threshold to map raw telemetry into a 0→1 effect signal.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Steering Effects</span> page • sections <span class="ui-label">Understeer</span>, <span class="ui-label">Oversteer</span>, and <span class="ui-label">Seat of Pants</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Understeer</h3>
+					<p>Understeer is the shortfall in yaw‑rate vs. expected for the current steering input.</p>
+					<p>Thresholds are shown in <span class="ui-label">°/s</span> (degrees per second), derived from the calibration graph.</p>
+					<p>This effect drives the Wheel/Pedal Vibration, Wheel Constant Force, and the related sound on the <span class="ui-label">Sounds</span> page.</p>
+					<p>Use the <em>+/−</em> button mappings to tune the effect in real-time.</p>
+					<p>Defaults: <em>Minimum</em> <span class="important">0.05</span>, <em>Maximum</em> <span class="important">0.15</span>.</p>
+				</section>
 
-          <div class="k">How thresholds work</div>
-          <div class="v">MAIRA compares your <strong>actual</strong> response to the <strong>expected</strong> response from the selected <span class="ui-label">Calibration File</span>. Two thresholds define a linear ramp: below <em>Minimum</em> the effect is 0, above <em>Maximum</em> it’s 1, and in between it’s interpolated.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Oversteer</h3>
+					<p>Oversteer is excess yaw‑rate vs. expected (the car rotates more than the steering angle predicts).</p>
+					<p>Thresholds shown in <span class="ui-label">°/s</span> (degrees per second), derived from the calibration graph.</p>
+					<p>This effect drives the same Wheel/Pedal and related sound effects as Understeer.</p>
+					<p>Use the <em>+/−</em> button mappings to tune the effect in real-time.</p>
+					<p>Defaults: <em>Minimum</em> <span class="important">0.00</span>, <em>Maximum</em> <span class="important">0.50</span>.</p>
+				</section>
 
-      <section class="section">
-        <h2>Understeer</h2>
-        <ul class="list-compact">
-          <li><strong>Signal:</strong> Shortfall in yaw‑rate vs. expected for the current steering input.</li>
-          <li><strong>Units:</strong> Thresholds shown in <span class="ui-label">°/s</span> (degrees per second), derived from the calibration graph.</li>
-          <li><strong>Defaults:</strong> <em>Minimum</em> <span class="important">0.05</span>, <em>Maximum</em> <span class="important">0.15</span>.</li>
-          <li><strong>Links:</strong> Drives Wheel/Pedal Vibration, Wheel Constant Force, and the related sound on the <span class="ui-label">Sounds</span> page.</li>
-          <li><strong>Tuning:</strong> Use the <em>+/−</em> button mappings.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>Seat of Pants (SOP)</h3>
+					<p>Lateral “seat” cue derived from your chosen algorithm (see below).</p>
+					<p>Use the <em>+/−</em> button mappings to tune the effect in real-time.</p>
+					<p>Units &amp; defaults: <em>Minimum</em> <span class="important">0.00</span>, <em>Maximum</em> <span class="important">3.00</span>. Units depend on algorithm:
+					<p><span class="ui-label">Lateral Acceleration (Ay)</span> → <span class="ui-label">g</span></p>
+					<p><span class="ui-label">Lateral Velocity (Vy)</span> → <span class="ui-label">m/s</span></p>
+					<p><span class="ui-label">Ratio of Velocities (Vy/Vx)</span> → unitless ratio</p>
+				</section>
 
-      <section class="section">
-        <h2>Oversteer</h2>
-        <ul class="list-compact">
-          <li><strong>Signal:</strong> Excess yaw‑rate vs. expected (the car rotates more than the steering angle predicts).</li>
-          <li><strong>Units:</strong> Thresholds shown in <span class="ui-label">°/s</span> (degrees per second), derived from the calibration graph.</li>
-          <li><strong>Defaults &amp; range:</strong> <em>Minimum</em> <span class="important">0.00</span>, <em>Maximum</em> <span class="important">0.50</span>.</li>
-          <li><strong>Links:</strong> Drives the same Wheel/Pedal effects as Understeer (with opposite sign where applicable).</li>
-          <li><strong>Tuning:</strong> Plus/minus button mappings.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>SOP Algorithm</h3>
+					<p>Choose how the SOP signal is computed:</p>
+					<p><span class="ui-label">Lateral Acceleration (Ay)</span> — based on lateral g‑force; clearer at steady speeds.</p>
+					<p><span class="ui-label">Lateral Velocity (Vy)</span> — sideways velocity; emphasizes rapid lateral movements.</p>
+					<p><span class="ui-label">Ratio of Velocities (Vy/Vx)</span> (default) — normalizes lateral motion by forward speed for a speed‑independent feel.</p>
+				</section>
 
-      <section class="section">
-        <h2>Seat of Pants (SOP)</h2>
-        <ul class="list-compact">
-          <li><strong>Signal:</strong> Lateral “seat” cue derived from your chosen algorithm (see below).</li>
-          <li><strong>Units &amp; defaults:</strong> <em>Minimum</em> <span class="important">0.00</span>, <em>Maximum</em> <span class="important">3.00</span>. Units depend on algorithm:
-            <ul class="list-compact">
-              <li><span class="ui-label">Lateral Acceleration (Ay)</span> → <span class="ui-label">g</span></li>
-              <li><span class="ui-label">Lateral Velocity (Vy)</span> → <span class="ui-label">m/s</span></li>
-              <li><span class="ui-label">Ratio of Velocities (Vy/Vx)</span> → unitless ratio</li>
-            </ul>
-          </li>
-          <li><strong>Tuning:</strong> Plus/minus button mappings.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>Tuning</h3>
+					<div class="kv">
+						<div class="k"><strong>Experience</strong></div>
+						<div class="v"><strong>What to do</strong></div>
+						<div class="k">Cues trigger too late</div>
+						<div class="v">Lower the minimum threshold</div>
+						<div class="k">Cues trigger too often</div>
+						<div class="v">Raise the minimum threshold</div>
+						<div class="k">Effect ramps up too slowly (or never reaches full strength)</div>
+						<div class="v">Lower the maximum threshold</div>
+						<div class="k">Effect ramps up too fast or is too abrupt</div>
+						<div class="v">Raise the maximum threshold</div>
+					</div>
 
-      <section class="section">
-        <h2>SOP Algorithm</h2>
-        <p>Choose how the SOP signal is computed:</p>
-        <ul class="list-compact">
-          <li><span class="ui-label">Lateral Acceleration (Ay)</span> — based on lateral g‑force; clearer at steady speeds.</li>
-          <li><span class="ui-label">Lateral Velocity (Vy)</span> — sideways velocity; emphasizes rapid lateral movements.</li>
-          <li><span class="ui-label">Ratio of Velocities (Vy/Vx)</span> (default) — normalizes lateral motion by forward speed for a speed‑independent feel.</li>
-        </ul>
-      </section>
+					<div class="tip">
+						Pro tip: If you want the effect to turn on/off instead of ramping up and down, you can set minimum = maximum threshold.
+					</div>
 
-      <section class="section">
-        <h2>Tuning</h2>
-        <div class="kv">
-          <div class="k"><strong>Experience</strong></div>
-          <div class="v"><strong>What to do</strong></div>
-          <div class="k">Cues trigger too late</div>
-          <div class="v">Lower the minimum threshold</div>
-          <div class="k">Cues trigger too often</div>
-          <div class="v">Raise the minimum threshold</div>
-          <div class="k">Effect ramps up too slowly (or never reaches full strength)</div>
-          <div class="v">Lower the maximum threshold</div>
-          <div class="k">Effect ramps up too fast or is too abrupt</div>
-          <div class="v">Raise the maximum threshold</div>
-        </div>
-
-        <div class="tip">
-          <strong class="important">Pro tip:</strong> If you want the effect to turn on/off instead of ramping up and down, you can set minimum = maximum threshold.
-        </div>
-
-      </section>
-
-      <hr/>
-      <p class="footer">MAIRA Refactored • Steering Effects — Thresholds</p>
-    </article>
-  </main>
-</body>
+				</section>
+			</article>
+		</main>
+	</body>
 </html>

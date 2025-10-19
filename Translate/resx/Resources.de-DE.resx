@@ -1147,11 +1147,11 @@ Hier ist der Link zum Spenden:</value>
     <comment>Wind</comment>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
-    <value></value>
+    <value>Hauptwindleistung</value>
     <comment>Wind</comment>
   </data>
   <data name="MinimumSpeed" xml:space="preserve">
-    <value></value>
+    <value>Minimale Geschwindigkeit</value>
     <comment>Wind</comment>
   </data>
   <data name="WindCurving" xml:space="preserve">
@@ -1159,7 +1159,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Wind</comment>
   </data>
   <data name="FanPower_UC" xml:space="preserve">
-    <value></value>
+    <value>VENTILATOR LEISTUNG</value>
     <comment>Wind</comment>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1167,7 +1167,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Wind</comment>
   </data>
   <data name="FanPower" xml:space="preserve">
-    <value></value>
+    <value>Ventilator Leistung</value>
     <comment>Wind</comment>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
@@ -1195,7 +1195,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
-    <value></value>
+    <value>Drehmoment Komprimierung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
@@ -1203,7 +1203,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SoftClipping" xml:space="preserve">
-    <value></value>
+    <value>Sanfte Begrenzung</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DetailGain" xml:space="preserve">
@@ -1235,16 +1235,44 @@ Hier ist der Link zum Spenden:</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value></value>
+    <value>Querbeschleunigung (Ay)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
-    <value></value>
+    <value>Quergeschwindigkeit (Vy)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="RatioOfVelocities" xml:space="preserve">
-    <value></value>
+    <value>Geschwindigkeitsverhältnis (Vy/Vx)</value>
     <comment>Steering effects</comment>
+  </data>
+  <data name="DefaultPage_UC" xml:space="preserve">
+    <value>HAUPTSEITE</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Effects_UC" xml:space="preserve">
+    <value>EFFEKTE</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="VibrateOnGearChange" xml:space="preserve">
+    <value>Vibration bei Gangwechsel</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="VibrateOnABS" xml:space="preserve">
+    <value>Vibration bei aktivem ABS</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>Audio</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>ANZEIGE</value>
+    <comment>AdminBoxx</comment>
+  </data>
+  <data name="AdminBoxx_UC" xml:space="preserve">
+    <value></value>
+    <comment>AdminBoxx</comment>
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>Klick</value>

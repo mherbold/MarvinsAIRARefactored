@@ -1,60 +1,49 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>MAIRA — Steering Effects • Wheel Constant Force Effect</title>
-  <link rel="stylesheet" href="maira-docs.css"/>
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Steering Effects — Wheel Constant Force Effect</h1>
-        <p class="subtitle">Adds a directional constant torque to the wheel based on <span class="ui-label">Understeer</span>, <span class="ui-label">Oversteer</span>, or <span class="ui-label">Seat of Pants</span> signals.</p>
-        <div class="badges">
-          <span class="badge">Steering Effects</span>
-          <span class="badge">Wheel</span>
-          <span class="badge">Constant Force</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Steering Effects — Wheel Constant Force Effect</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Steering Effects</h1>
+						<h2>Wheel Constant Force Effect</h2>
+					</div>
+					<p class="subtitle">Adds a directional constant torque to the wheel based on <span class="ui-label">Understeer</span>, <span class="ui-label">Oversteer</span>, or <span class="ui-label">Seat of Pants</span> signals.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Steering Effects</span> page • sections <span class="ui-label">Understeer — Wheel Constant Force Effect</span>, <span class="ui-label">Oversteer — Wheel Constant Force Effect</span>, and <span class="ui-label">Seat of Pants — Wheel Constant Force Effect</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Direction</h3>
+					<p><span class="ui-label">None</span>, <span class="ui-label">Decrease Force</span>, or <span class="ui-label">Increase Force</span>. Choosing <span class="ui-label">None</span> disables the effect.
+					<p>Defaults: Understeer <span class="important">None</span>, Oversteer <span class="important">Increase Force</span>, Seat of Pants <span class="important">None</span>.</p>
+					<p><em>Decrease Force</em> blends output toward 0; <em>Increase Force</em> pushes in the current torque direction.</p>
+				</section>
 
-          <div class="k">What it does</div>
-          <div class="v">Applies an extra torque that either <em>reduces</em> or <em>increases</em> the current FFB. Select <span class="ui-label">Direction: None</span> to disable this effect. The amount follows the detection signal (0→1), shaped by <span class="ui-label">Curve</span> and scaled by <span class="ui-label">Strength</span>.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Strength</h3>
+					<p>Scale of the added/removed torque at full signal.</p>
+					<p>Defaults: Understeer <span class="important">10%</span>, Oversteer <span class="important">50%</span>, Seat of Pants <span class="important">50%</span></p>
+					<p>Range: 0 → 100%</p>
+				</section>
 
-      <section class="section">
-        <h2>Settings</h2>
-        <ul class="list-compact">
-          <li><span class="ui-label">Direction</span> — <span class="ui-label">None</span>, <span class="ui-label">Decrease Force</span>, or <span class="ui-label">Increase Force</span>. Choosing <span class="ui-label">None</span> disables the effect.
-            <div class="muted">Defaults: Understeer <span class="important">None</span>, Oversteer <span class="important">Increase Force</span>, Seat of Pants <span class="important">None</span>.</div>
-            <div class="muted"><em>Decrease Force</em> blends output toward 0; <em>Increase Force</em> pushes in the current torque direction.</div>
-          </li>
-          <li><span class="ui-label">Strength</span> — scale of the added/removed torque at full signal.
-            <div>Range: <span class="ui-label">0 → 100%</span>. Defaults: Understeer <span class="important">10%</span>, Oversteer <span class="important">50%</span>, Seat of Pants <span class="important">50%</span>.</div>
-          </li>
-          <li><span class="ui-label">Curve</span> — shapes how quickly the force builds with the signal.
-            <div>Range: <span class="ui-label">−100 → +100%</span>. Default: <span class="important">0%</span> (linear).</div>
-          </li>
-        </ul>
-        <p class="muted">Supports <em>+/− button mappings</em> and <em>Context Switches</em> for per‑profile/car/track tuning.</p>
-      </section>
+				<section class="section">
+					<h3>Curve</h3>
+					<p>Shapes how quickly the force builds with the signal.</p>
+					<p>Default: <span class="important">0%</span> <span class="muted">(linear)</span></p>
+					<p>Range: −100 → 100%</p>
+				</section>
 
-      <div class="tip">
-        <strong class="important">Pro tip:</strong> Try <span class="ui-label">Decrease Force</span> for Understeer to “lighten” the wheel as grip is lost, and <span class="ui-label">Increase Force</span> for Oversteer to nudge counter‑steer reactions.
-      </div>
-
-      <hr/>
-      <p class="footer">MAIRA Refactored • Steering Effects — Wheel Constant Force Effect</p>
-    </article>
-  </main>
-</body>
+				<div class="tip">
+					Pro tip: Try <span class="ui-label">Decrease Force</span> for Understeer to “lighten” the wheel as grip is lost, and <span class="ui-label">Increase Force</span> for Oversteer to nudge counter‑steer reactions.
+				</div>
+			</article>
+		</main>
+	</body>
 </html>

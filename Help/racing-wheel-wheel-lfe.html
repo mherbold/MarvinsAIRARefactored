@@ -1,94 +1,73 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAIRA — Racing Wheel • Wheel LFE</title>
-  <link rel="stylesheet" href="maira-docs.css" />
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Racing Wheel — Wheel LFE</h1>
-        <p class="subtitle">Route iRacing’s low‑frequency effects (LFE) into your wheel as gentle vibration — great for immersion, wheel‑slip cues, kerbs, and custom haptics.</p>
-        <div class="badges">
-          <span class="badge">Racing Wheel</span>
-          <span class="badge">Wheel LFE</span>
-          <span class="badge">Audio → FFB</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Racing Wheel — Wheel LFE</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Wheel LFE</h2>
+					</div>
+					<p class="subtitle">Route iRacing’s low‑frequency effects (LFE) into your wheel as gentle vibration — great for immersion, wheel‑slip cues, kerbs, and custom haptics.</p>
+				</div>
+			</header>
 
-    <article class="article">
+			<article class="article">
+				<section class="section">
+					<h3>Requirements</h3>
+					<p><strong>VB‑CABLE</strong> (free virtual audio device). Download and install it, then reboot.</p>
+					<p><strong>iRacing LFE enabled</strong> and set to output to “CABLE Input (VB‑Audio Virtual Cable)”.</p>
+				</section>
 
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Racing Wheel</span> page • section <span class="ui-label">Wheel LFE</span></div>
+				<section class="section">
+					<h3>Setup checklist</h3>
+					<ol class="list-compact">
+						<li><strong>Install VB‑CABLE</strong> — Get it from VB‑AUDIO, run the x64 installer, and reboot. The installer can be found here - <a href="https://vb-audio.com/Cable/">VB-AUDIO Software</a></li>
+						<li><strong>(Optional) Keep your bass shaker working</strong> — In Windows sound settings → <em>Recording</em> → select <span class="ui-label">CABLE Output</span> → <em>Properties</em> → <em>Listen</em> tab → enable <em>Listen to this device</em> and choose the playback device your shaker uses. This pass‑through lets the shaker and the wheel both receive LFE.</li>
+						<li><strong>Configure iRacing</strong> — Options → <em>Misc</em> → check <span class="ui-label">Enable LFE</span>, set the device to <span class="ui-label">CABLE Input (VB‑Audio Virtual Cable)</span>. Adjust LFE sliders to taste (wheel slip is especially useful).</li>
+						<li><strong>Configure MAIRA</strong> — Racing Wheel <span class="ui-label">Wheel LFE</span>:
+							<p><span class="ui-label">LFE Recording Device</span> &mdash; Select <span class="ui-label">CABLE Output (VB‑Audio Virtual Cable)</span>.</p>
+							<p><span class="ui-label">Strength</span> &mdash; Sets how much LFE is mixed into your wheel. Default is <span class="important">5%</span>. Range 0–100%.</p>
+						</li>
+					</ol>
+					<div class="tip">
+						Tip: choose <span class="ui-label">[Disabled]</span> to turn Wheel LFE off.
+					</div>
+				</section>
 
-          <div class="k">What this section does</div>
-          <div class="v">MAIRA captures the LFE audio signal (via a virtual audio cable) and mixes it into your wheel’s force‑feedback. This adds tactile “rumble” information to the wheel without touching your base FFB algorithm.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>How it works (under the hood)</h3>
+					<p>MAIRA captures mono audio at <strong>8&nbsp;kHz / 16‑bit</strong>, averages to ~<strong>500&nbsp;Hz</strong> frames, and mixes the resulting magnitude into your FFB.</p>
+					<p>Typical end‑to‑end latency is about <strong>16–33&nbsp;ms</strong> (≈ 1/60 to 1/30&nbsp;s).</p>
+					<p>The LFE mix happens <em>after</em> the algorithm output and before soft‑lock/other effects.</p>
+				</section>
 
-      <section class="section">
-        <h2>Requirements</h2>
-        <ul class="list-compact">
-          <li><strong>VB‑CABLE</strong> (free virtual audio device). Download and install it, then reboot.</li>
-          <li><strong>iRacing LFE enabled</strong> and set to output to “CABLE Input (VB‑Audio Virtual Cable)”.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>Driving tips</h3>
+					<p>Start around <strong>5–10%</strong> and increase slowly. You want a subtle texture, not a second FFB layer.</p>
+					<p>Bind <span class="ui-label">Strength +/−</span> to wheel buttons so you can trim the effect live.</p>
+					<p>Combine with the <span class="ui-label">Wheel Slip</span> LFE slider in iRacing for clearer “on the limit” feel.</p>
+					<p>Fun extras: route SimHub effects into VB‑CABLE to create custom wheel vibrations, or even select a microphone/webcam to test with your voice.</p>
+				</section>
 
-      <section class="section">
-        <h2>Setup checklist</h2>
-        <ol class="list-compact">
-          <li><strong>Install VB‑CABLE</strong> — Get it from VB‑AUDIO, run the x64 installer, and reboot. The installer can be found here - <a href="https://vb-audio.com/Cable/">VB-AUDIO Software</a></li>
-          <li><strong>(Optional) Keep your bass shaker working</strong> — In Windows sound settings → <em>Recording</em> → select <span class="ui-label">CABLE Output</span> → <em>Properties</em> → <em>Listen</em> tab → enable <em>Listen to this device</em> and choose the playback device your shaker uses. This pass‑through lets the shaker and the wheel both receive LFE.</li>
-          <li><strong>Configure iRacing</strong> — Options → <em>Misc</em> → check <span class="ui-label">Enable LFE</span>, set the device to <span class="ui-label">CABLE Input (VB‑Audio Virtual Cable)</span>. Adjust LFE sliders to taste (wheel slip is especially useful).</li>
-          <li><strong>Configure MAIRA</strong> — Racing Wheel <span class="ui-label">Wheel LFE</span>:
-            <ul class="list-compact">
-              <li><span class="ui-label">LFE Recording Device</span>: Select <span class="ui-label">CABLE Output (VB‑Audio Virtual Cable)</span>. Choose <span class="ui-label">[Disabled]</span> to turn Wheel LFE off.</li>
-              <li><span class="ui-label">Strength</span>: Sets how much LFE is mixed into your wheel. Default is <span class="important">5%</span>. Range 0–100%.</li>
-            </ul>
-          </li>
-        </ol>
-      </section>
+				<section class="section">
+					<h3>Troubleshooting</h3>
+					<h4>No movement</h4>
+					<p>Verify iRacing <em>Enable LFE</em> is on and the device is set to <em>CABLE Input</em>; in MAIRA, choose <em>CABLE Output</em> as the recording device.</p>
+					<h4>Too strong/weak</h4>
+					<p>Adjust <span class="ui-label">Strength</span> in MAIRA and LFE sliders in iRacing. If you use iRacing’s “-10 dB cut”, you may need a higher MAIRA strength.</p>
+				</section>
 
-      <section class="section">
-        <h2>How it works (under the hood)</h2>
-        <ul class="list-compact">
-          <li>MAIRA captures mono audio at <strong>8&nbsp;kHz / 16‑bit</strong>, averages to ~<strong>500&nbsp;Hz</strong> frames, and mixes the resulting magnitude into your FFB.</li>
-          <li>Typical end‑to‑end latency is about <strong>16–33&nbsp;ms</strong> (≈ 1/60 to 1/30&nbsp;s).</li>
-          <li>The LFE mix happens <em>after</em> the algorithm output and before soft‑lock/other effects.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Driving tips</h2>
-        <ul class="list-compact">
-          <li>Start around <strong>5–10%</strong> and increase slowly. You want a subtle texture, not a second FFB layer.</li>
-          <li>Bind <span class="ui-label">Strength +/−</span> to wheel buttons so you can trim the effect live.</li>
-          <li>Combine with the <span class="ui-label">Wheel Slip</span> LFE slider in iRacing for clearer “on the limit” feel.</li>
-          <li>Fun extras: route SimHub effects into VB‑CABLE to create custom wheel vibrations, or even select a microphone/webcam to test with your voice.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Troubleshooting</h2>
-        <ul class="list-compact">
-          <li><strong>No movement:</strong> Verify iRacing <em>Enable LFE</em> is on and the device is set to <em>CABLE Input</em>; in MAIRA, choose <em>CABLE Output</em> as the recording device.</li>
-          <li><strong>Too strong/weak:</strong> Adjust <span class="ui-label">Strength</span> in MAIRA and LFE sliders in iRacing. If you use iRacing’s “-10 dB cut”, you may need a higher MAIRA strength.</li>
-        </ul>
-      </section>
-
-      <div class="tip">
-        <strong class="important">Pro tip:</strong> Keep Wheel LFE subtle. It’s most effective as fine “texture” layered under your main FFB — especially for slip/kerbs — without masking steering weight.
-      </div>
-
-      <hr />
-      <p class="footer">MAIRA Refactored • Racing Wheel — Wheel LFE</p>
-    </article>
-  </main>
-</body>
+				<div class="tip">
+					Pro tip: Keep Wheel LFE subtle. It’s most effective as fine “texture” layered under your main FFB — especially for slip/kerbs — without masking steering weight.
+				</div>
+			</article>
+		</main>
+	</body>
 </html>

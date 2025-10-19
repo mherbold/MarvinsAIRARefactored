@@ -1,67 +1,48 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>MAIRA — Steering Effects — Grip‑O‑Meter</title>
-  <link rel="stylesheet" href="maira-docs.css"/>
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Steering Effects — Grip‑O‑Meter</h1>
-        <p class="subtitle">A lightweight, always‑on‑top overlay that visualizes steering‑related grip and your Seat of Pants cue while you drive.</p>
-        <div class="badges">
-          <span class="badge">Steering Effects</span>
-          <span class="badge">Overlay</span>
-          <span class="badge">Grip</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Steering Effects — Grip‑O‑Meter</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Steering Effects</h1>
+						<h2>Grip‑O‑Meter</h2>
+					</div>
+					<p class="subtitle">A lightweight, always‑on‑top overlay that visualizes steering‑related grip and your Seat of Pants cue while you drive.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Steering Effects</span> page • section <span class="ui-label">Grip-O-Meter</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Show Grip-O-Meter Window</h3>
+					<p>Show or hide the overlay window. The overlay will show up only when your car is on the track.</p>
+					<p>Default: <span class="important">OFF</span></p>
+				</section>
 
-          <div class="k">What it shows</div>
-          <div class="v">
-            <ul class="list-compact">
-              <li><strong>Slip/Grip indicator</strong> — a moving dot that reflects your current combined slip level (0 → max). Further away from the center means more slip.</li>
-              <li><strong>Seat of Pants indicator</strong> — a moving dot that follows your SOP effect. It can move <em>left/right</em> to indicate lateral direction.</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Make the Grip-O-Meter window draggable</h3>
+					<p>When enabled, you can drag the overlay by clicking it. When disabled, the window becomes <em>click‑through</em> so it won’t steal clicks from your sim.</p>
+					<p>Default: <span class="important">OFF</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Settings</h2>
-        <ul class="list-compact">
-          <li><span class="ui-label">Show Grip-O-Meter Window</span> — show or hide the overlay window. <span class="muted">Default: Off</span></li>
-          <li><span class="ui-label">Make the Grip-O-Meter window draggable</span> — when enabled, you can drag the overlay by clicking it. When disabled, the window becomes <em>click‑through</em> so it won’t steal clicks from your sim. <span class="muted">Default: Off</span></li>
-          <li><span class="ui-label">Grip-O-Meter Scale</span> — resizes the overlay via a layout scale transform. <span class="muted">Range: 50 → 200%</span>; <span class="muted">Default: 100%</span></li>
-          <li><span class="ui-label">Reset the Grip-O-Meter window position</span> — moves the window back to the top‑left of your screen. The position is saved automatically whenever you move the window.</li>
-        </ul>
+				<section class="section">
+					<h3>Grip-O-Meter Scale</h3>
+					<p>Range: 50 → 200%</p>
+					<p>Default: <span class="important">100%</span></p>
+					<p>Resizes the overlay via a layout scale transform.</p>
+				</section>
 
-        <div class="tip">
-          <strong class="important">Note:</strong> The overlay will show up only when your car is on the track.
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>How it works</h2>
-        <ul class="list-compact">
-          <li><strong>Always on top:</strong> The overlay is top‑most and hidden from Alt‑Tab.</li>
-          <li><strong>Position memory:</strong> The window’s <span class="ui-label">Position</span> and <span class="ui-label">Scale</span> are stored in your settings and restored next launch.</li>
-          <li><strong>Click‑through mode:</strong> With <span class="ui-label">Make the Grip-O-Meter window draggable</span> off, the window ignores mouse input so you can interact with the sim underneath.</li>
-        </ul>
-      </section>
-
-      <hr/>
-      <p class="footer">MAIRA Refactored • Steering Effects — Grip‑O‑Meter</p>
-    </article>
-  </main>
-</body>
+				<section class="section">
+					<h3>Reset the Grip-O-Meter window position</h3>
+					<p>Moves the window back to the top‑left of your screen. The position is saved automatically whenever you move the window.</p>
+				</section>
+			</article>
+		</main>
+	</body>
 </html>

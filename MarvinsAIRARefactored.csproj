@@ -169,7 +169,6 @@
 
   <ItemGroup>
     <Folder Include="InnoSetup\SimHub\" />
-    <Folder Include="Help\" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

@@ -1,77 +1,52 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAIRA — Racing Wheel • Other Features</title>
-  <link rel="stylesheet" href="maira-docs.css" />
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Racing Wheel — Other Features</h1>
-        <p class="subtitle">Small but mighty refinements for everyday driving: base friction, centering while racing, and soft‑lock near the steering limits.</p>
-        <div class="badges">
-          <span class="badge">Racing Wheel</span>
-          <span class="badge">Other Features</span>
-          <span class="badge">Extras</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Racing Wheel — Other Features</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Other Features</h2>
+					</div>
+					<p class="subtitle">Small but mighty refinements for everyday driving: base friction, centering while racing, and soft‑lock near the steering limits.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Racing Wheel</span> page • section <span class="ui-label">Other Features</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Racing Friction</h3>
+					<p>Adds constant friction <em>while racing</em> to calm micro‑oscillations on straights. Blends with <em>Parked Friction</em> as you slow (0→5&nbsp;mph).</p>
+					<p>Default: <span class="important">OFF (0%)</span></p>
+					<p>Range: 0 → 100% <span class="muted">(OFF when at 0%)</span></p>
+					<div class="tip">
+						Pro tip: If your wheel software already has support for friction, use that instead!
+					</div>
+				</section>
 
-          <div class="k">What this section does</div>
-          <div class="v">Lets you add a touch of friction, keep a gentle centering torque while racing, and apply a progressive “soft lock” as you approach the steering end‑stops.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Wheel Centering Strength</h3>
+					<p>Keeps a gentle centering torque while racing and/or parked (depending on switches). Near 0–5&nbsp;mph it cross‑fades <em>Center wheel while racing</em> with <em>Center wheel while parked</em> so the wheel feels natural at a stop.</p>
+					<p>Default: <span class="important">75%</span></p>
+					<p>Range: 0 → 100% <span class="muted">(OFF when at 0%)</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Racing Friction</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">OFF (0%)</span></li>
-          <li><strong>Range:</strong> 0–100%</li>
-          <li><strong>OFF:</strong> 0% (no extra friction)</li>
-          <li><strong>What it does:</strong> Adds constant friction <em>while racing</em> to calm micro‑oscillations on straights. Blends with <em>Parked Friction</em> as you slow (0→5&nbsp;mph).</li>
-        </ul>
+				<section class="section">
+					<h3>Soft Lock Strength</h3>
+					<p>Adds a progressive resistive torque as you approach the car’s steering range limits (soft end‑stops). Helps prevent over‑rotation.</p>
+					<p>Default: <span class="important">25%</span></p>
+					<p>Range 0 → 100% <span class="muted">(OFF when at 0%)</span></p>
+				</section>
 
-        <div class="tip">
-          <strong class="important">Pro tip:</strong> If your wheel software already has support for friction, use that instead!
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>Wheel Centering Strength</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">75%</span></li>
-          <li><strong>Range:</strong> 0–100%</li>
-          <li><strong>OFF:</strong> 0%</li>
-          <li><strong>What it does:</strong> Keeps a gentle centering torque while racing and/or parked (depending on switches). Near 0–5&nbsp;mph it cross‑fades <em>Center wheel while racing</em> with <em>Center wheel while parked</em> so the wheel feels natural at a stop.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Soft Lock Strength</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">25%</span></li>
-          <li><strong>Range:</strong> 0–100%</li>
-          <li><strong>OFF:</strong> 0% (no soft lock)</li>
-          <li><strong>What it does:</strong> Adds a progressive resistive torque as you approach the car’s steering range limits (soft end‑stops). Helps prevent over‑rotation.</li>
-        </ul>
-      </section>
-
-      <div class="tip">
-        <strong class="important">Pro tip:</strong> Tackle oscillations methodically: start with a small amount of <span class="ui-label">Racing Friction</span> (5–10%).
-      </div>
-
-      <hr />
-      <p class="footer">MAIRA Refactored • Racing Wheel — Other Features</p>
-    </article>
-  </main>
-</body>
+				<div class="tip">
+					Pro tip: Tackle oscillations methodically: start with a small amount of <span class="ui-label">Racing Friction</span> (5–10%).
+				</div>
+			</article>
+		</main>
+	</body>
 </html>

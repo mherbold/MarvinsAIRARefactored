@@ -1,73 +1,49 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAIRA — Racing Wheel • Output</title>
-  <link rel="stylesheet" href="maira-docs.css" />
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Racing Wheel — Output</h1>
-        <p class="subtitle">Final shaping and safety controls applied <em>after</em> your chosen algorithm.</p>
-        <div class="badges">
-          <span class="badge">Racing Wheel</span>
-          <span class="badge">Output</span>
-          <span class="badge">Output Stage</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Racing Wheel — Output</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Output</h2>
+					</div>
+					<p class="subtitle">Final shaping and safety controls applied <em>after</em> your chosen algorithm.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Racing Wheel</span> page • section <span class="ui-label">Output</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Minimum</h3>
+					<p>Raises very small torques up to a floor (and mirrors for negative). This helps overcome static friction and makes subtle forces around center more noticeable.</p>
+					<p>Default: <span class="important">OFF (0%)</span></p>
+					<p>Range: 0 → 10% <span class="muted">(OFF when at 0%)</span></p>
+					<div class="tip">
+						Pro tip: Only use this for gear or belt driven wheels; leave this off for direct drive wheels.
+					</div>
+				</section>
 
-          <div class="k">What this section does</div>
-          <div class="v">Shapes the final torque via <em>Minimum</em>, <em>Maximum</em>, and <em>Curve</em>. It’s the last stop before force reaches your wheel.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Maximum</h3>
+					<p>Caps the absolute torque magnitude symmetrically. Lower this to keep peaks comfortable on powerful bases.</p>
+					<p>Default: <span class="important">OFF (100%)</span></p>
+					<p>Range: 20 → 100% <span class="muted">(OFF when at 100%)</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Minimum</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">0% (OFF)</span></li>
-          <li><strong>Range:</strong> 0%–10%</li>
-          <li><strong>What it does:</strong> Raises very small torques up to a floor (and mirrors for negative). This helps overcome static friction and makes subtle forces around center more noticeable.</li>
-          <li><strong>Display:</strong> OFF when at 0%</li>
-        </ul>
-
-        <div class="tip">
-          <strong class="important">Pro tip:</strong> Only use this for gear or belt driven wheels; leave this off for direct drive wheels.
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>Maximum</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">100% (OFF)</span></li>
-          <li><strong>Range:</strong> 20%–100%</li>
-          <li><strong>What it does:</strong> Caps the absolute torque magnitude symmetrically. Lower this to keep peaks comfortable on powerful bases.</li>
-          <li><strong>Display:</strong> OFF when at 100%</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Curve</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">OFF</span> (linear)</li>
-          <li><strong>What it does:</strong> Shapes how torque grows with input. Increasing the curve applies a non-linear response: more or less sensitivity to mid‑range cues.</li>
-          <li><strong>Order of operations:</strong> Applied <em>before</em> soft clipping and <em>after</em> the algorithm.</li>
-          <li><strong>Display:</strong> OFF when set to 0%</li>
-        </ul>
-      </section>
-
-      <hr />
-      <p class="footer">MAIRA Refactored • Racing Wheel — Output</p>
-    </article>
-  </main>
-</body>
+				<section class="section">
+					<h3>Curve</h3>
+					<p>Shapes how torque grows with input. Increasing the curve applies a non-linear response: more or less sensitivity to mid‑range cues.</p>
+					<p>Applied <em>before</em> soft clipping and <em>after</em> the algorithm.</p>
+					<p>Default: <span class="important">OFF (0%)</span> <span class="muted">(linear)</span></p>
+					<p>Range: -100 → 100% <span class="muted">(OFF when set to 0%)</span></p>
+				</section>
+			</article>
+		</main>
+	</body>
 </html>

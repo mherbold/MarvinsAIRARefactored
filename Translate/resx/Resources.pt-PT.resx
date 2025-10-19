@@ -1305,4 +1305,10 @@
   <data name="Click_UC" xml:space="preserve">
     <value>Clicar</value>
   </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>Áudio</value>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>Ecrã</value>
+  </data>
 </root>

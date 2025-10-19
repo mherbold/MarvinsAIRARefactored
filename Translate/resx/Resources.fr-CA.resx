@@ -1068,7 +1068,7 @@
     <comment>Wind</comment>
   </data>
   <data name="Connection_UC" xml:space="preserve">
-    <value></value>
+    <value>Connexion</value>
     <comment>Wind</comment>
   </data>
   <data name="Settings_UC" xml:space="preserve">
@@ -1177,5 +1177,8 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>Cliquez</value>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>Affichage</value>
   </data>
 </root>

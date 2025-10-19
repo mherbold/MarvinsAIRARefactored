@@ -3,62 +3,49 @@
 	<head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>MAIRA — Racing Wheel • Overall Strength</title>
+		<title>MAIRA — Racing Wheel — Overall Strength</title>
 		<link rel="stylesheet" href="maira-docs.css"/>
 	</head>
 	<body>
 		<main class="container">
 			<header class="header">
 				<div>
-					<h1 class="title">Racing Wheel — Overall Strength</h1>
-					<p class="subtitle">Tune global force levels and safe working limits. This section is your quick‑access to overall feel and headroom.</p>
-					<div class="badges">
-						<span class="badge">Racing Wheel</span>
-						<span class="badge">Overall Strength</span>
-						<span class="badge">FFB Levels</span>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Overall Strength</h2>
 					</div>
+					<p class="subtitle">Tune global force levels and safe working limits. This section is your quick‑access to overall feel and headroom.</p>
 				</div>
 			</header>
 
 			<article class="article">
 				<section class="section">
-					<div class="kv">
-						<div class="k">UI Location</div>
-						<div class="v"><span class="ui-label">Racing Wheel</span> page • section <span class="ui-label">Overall Strength</span></div>
-
-						<div class="k">What this section does</div>
-						<div class="v">Sets MAIRA’s overall “feel” via <em>Wheel Force</em> and <em>Strength</em>, defines the ceiling with <em>Max Force</em>, and provides automatic helpers using <em>Auto Margin</em> plus <em>Set</em>/<em>Clear</em>.</div>
-					</div>
+					<h3>Wheel Force</h3>
+					<p>Sets the maximum physical wheelbase force (Nm).</p>
+					<p>Please this to the actual maximum force specified by the manufacturer.</p>
+					<p>Used across algorithms to scale torques so 1.0 equals your the maximum physical wheel force.</p>
+					<p>Not sure what to set here? Here is a list of common wheel forces - <a href="racing-wheel-list.html">Racing Wheel List</a></p>
+					<p>Default: <span class="important">5 Nm</span></p>
+					<p>Range: 2 → 50 Nm</p>
 				</section>
 
 				<section class="section">
-					<h2>Wheel Force</h2>
-					<ul class="list-compact">
-						<li><strong>Default:</strong> <span class="important">5</span></li>
-						<li><strong>What it does:</strong> Sets the physical wheelbase force (Nm) MAIRA targets when generating FFB.</li>
-						<li><strong>How it works:</strong> Used across algorithms to scale torques so 1.0 equals your selected wheel force.</li>
-						<li><strong>Notes:</strong> Not sure what to set here? Here is a list of common wheel forces - <a href="racing-wheel-list.html">Racing Wheel List</a></li>
-					</ul>
+					<h3>Strength</h3>
+					<p>Global output gain. Think of it as the master “feel” knob for car‑to‑car adjustments.</p>
+					<p>Map <em>+</em>/<em>−</em> buttons for quick tweaks; MAIRA provides separate plus/minus mappings.</p>
+					<p>Default: <span class="important">10%</span></p>
+					<p>Range: 0 → 100%</p>
 				</section>
 
 				<section class="section">
-					<h2>Strength</h2>
-					<ul class="list-compact">
-						<li><strong>Default:</strong> <span class="important">10%</span></li>
-						<li><strong>What it does:</strong> Global output gain. Think of it as the master “feel” knob for car‑to‑car adjustments.</li>
-						<li><strong>Tips:</strong> Map <em>+</em>/<em>−</em> buttons for quick tweaks; MAIRA provides separate plus/minus mappings.</li>
-					</ul>
-				</section>
-
-				<section class="section">
-					<h2>Max Force</h2>
-					<ul class="list-compact">
-						<li><strong>Default:</strong> <span class="important">50</span> Nm</li>
-						<li><strong>What it does:</strong> Sets the raw effective upper steering wheel torque (before scaling).</li>
-						<li><strong>Notes:</strong> Has dedicated <em>+</em>/<em>−</em> mappings for on‑the‑fly changes.</li>
-					</ul>
+					<h3>Max Force</h3>
+					<p>Sets the raw effective simulated steering wheel torque limit.</p>
+					<p>This is the maximum wheel force from the iRacing simulator that will not be clipped.</p>
+					<p>Has dedicated <em>+</em>/<em>−</em> mappings for on‑the‑fly changes.</p>
+					<p>Default: <span class="important">50 Nm</span></p>
+					<p>Range: 0 → 300 Nm</p>
 					<div class="tip">
-						<strong class="important">Tip:</strong> Wheel force, strength, and max force are all related by this equation:
+						Wheel force, strength, and max force are all related by this equation:
 						<math display="inline">
 							<mrow>
 								<mi>maxForce</mi>
@@ -73,21 +60,17 @@
 				</section>
 
 				<section class="section">
-					<h2>Auto Margin</h2>
-					<ul class="list-compact">
-						<li><strong>Default:</strong> <span class="important">0%</span></li>
-						<li><strong>What it does:</strong> Margin that MAIRA uses when auto‑setting headroom. Positive values keep extra room to avoid clipping on spikes. Negative values make the wheel feel stronger at the expense of more clipping.</li>
-						<li><strong>Controls:</strong> <span class="ui-label">Set</span> uses the <span class="ui-label">Auto Max Force</span> value to update the <span class="ui-label">Strength</span> and <span class="ui-label">Max Force</span> settings for you; <span class="ui-label">Clear</span> clears the <span class="ui-label">Auto Max Force</span> so you can re‑measure.</li>
-						<li><strong>Tips:</strong> Map <em>Set</em> and <em>Clear</em> buttons so you can fire them while you are driving.</li>
-					</ul>
+					<h3>Auto Margin</h3>
+					<p>Margin that MAIRA uses when auto‑setting headroom. Positive values keep extra room to avoid clipping on spikes. Negative values make the wheel feel stronger at the expense of more clipping.</p>
+					<p><span class="ui-label">Set</span> uses the <span class="ui-label">Auto Max Force</span> value to update the <span class="ui-label">Strength</span> and <span class="ui-label">Max Force</span> settings for you; <span class="ui-label">Clear</span> clears the <span class="ui-label">Auto Max Force</span> so you can re‑measure.</p>
+					<p>Map <em>Set</em> and <em>Clear</em> buttons so you can fire them while you are driving.</p>
+					<p>Default: <span class="important">0%</span></p>
+					<p>Range: -100 → 100%</p>
 				</section>
 
 				<div class="tip">
-					<strong class="important">Pro tip:</strong> Bind <em>Strength</em> plus/minus to convenient wheel buttons for quick mid‑race adjustments, use <em>Clear</em> at the start of a lap, and use <em>Set</em> after a few corners to capture realistic peaks for your current combo.
+					Pro tip: Bind <em>Strength</em> plus/minus to convenient wheel buttons for quick mid‑race adjustments, use <em>Clear</em> at the start of a lap, and use <em>Set</em> after a few corners to capture realistic peaks for your current combo.
 				</div>
-
-				<hr/>
-				<p class="footer">MAIRA Refactored • Racing Wheel — Overall Strength</p>
 			</article>
 		</main>
 	</body>

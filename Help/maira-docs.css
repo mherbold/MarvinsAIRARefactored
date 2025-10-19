@@ -1,17 +1,146 @@
-/* Dark CSS simplified for MAIRA docs */
-:root {
-    --bg: #313131;
-    --text: #fff;
-    --muted: #aaa;
-    --accent: #ff5b2e;
-    --border: #666
+/* font */
+
+@font-face {
+    font-family: 'Inter Tight';
+    src: url('InterTight-VariableFont_wght.ttf') format('truetype-variations');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
 }
+
+html, body {
+    font: 20px/1.4 'Inter Tight', sans-serif;
+}
+
+button, input, select, textarea {
+    font-family: inherit;
+}
+
+/* color vars */
+
+:root {
+    --bg: #222;
+    --text: #fff;
+    --lightgray: #ccc;
+    --mediumgray: #999;
+    --accent: #ff5b2e;
+    --muted: #aaa;
+    --border: #999;
+    --link: #6affee;
+    --blue: #6aabff;
+}
+
+/* body */
 
 body {
     background: var(--bg);
     color: var(--text);
-    font: 20px/2.0 system-ui;
     margin: 0 1rem;
+}
+
+.container {
+    width: min(980px, 100%);
+    margin: 3rem auto;
+}
+
+/* header block */
+
+.header {
+    margin: 1rem 0;
+}
+
+.subtitle {
+    margin-top: -0.5rem;
+}
+
+/* other blocks */
+
+.section {
+    margin: 1rem 0 2rem 0;
+}
+
+.tip {
+    border: 1px solid var(--border);
+    border-radius: 0.5rem;
+    margin: 1rem 2rem;
+    padding: 0.5rem 2rem;
+}
+
+/* header typography */
+
+h1 {
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 1rem 0;
+    color: var(--mediumgray);
+    text-transform: uppercase;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 1rem 0;
+    color: var(--accent);
+}
+
+h1 + h2 {
+    margin-top: -0.75rem;
+}
+
+h3 {
+    font-size: 1.5rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 1rem 0;
+    color: var(--lightgray);
+    text-transform: uppercase;
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+}
+
+h3::after {
+    content: "";
+    flex: 1;
+    border-bottom: 1px solid var(--muted);
+}
+
+h4 {
+    font-size: 1rem;
+    font-weight: normal;
+    line-height: 1;
+    margin: 1rem 0;
+    color: var(--lightgray);
+}
+
+h4 + p {
+    margin-top: -0.75rem;
+}
+
+/* typography */
+
+p {
+    margin: 1rem 0;
+}
+
+p + p {
+    margin-top: -0.5rem;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.important {
+    color: var(--accent);
+    font-weight: 600
+}
+
+.ui-label {
+    color: var(--blue);
+    font-weight: 600
 }
 
 math {
@@ -24,122 +153,36 @@ mi {
     margin: 0.25rem;
 }
 
-.container {
-    width: min(980px, 100%);
-    margin: 0 auto;
+a {
+    color: var(--link);
+    text-decoration: none;
 }
 
-h1 {
-    font-size: clamp(30px, 4vw, 40px);
-    line-height: 1;
-    margin: 1rem 0;
+a:hover {
+    border-bottom-color: var(--link);
+    border-bottom: 1px dashed var(--link);
 }
 
-.subtitle {
-    color: var(--muted);
-    margin: 1rem 0;
-}
-
-.badges {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin: 1rem 0 2rem 0;
-}
-
-.badge {
-    font-size: 75%;
-    border: 1px solid var(--border);
-    border-radius: 999px;
-    padding: 0.25rem 1rem;
-}
-
-.section {
-    margin: 1rem 0 2rem 0;
-}
+/* tables */
 
 .kv {
     display: grid;
     grid-template-columns:auto 1fr;
     gap: 1rem 2rem;
-    border: 1px dashed var(--border);
-    border-radius: 1rem;
-    padding: 1rem;
-    margin: 1rem 0;
 }
 
-.list3 {
+.vvv {
     display: grid;
     grid-template-columns:auto auto 1fr;
     gap: 0 2rem;
-    border: 1px dashed var(--border);
-    border-radius: 1rem;
-    padding: 1rem;
-    margin: 1rem 0;
 }
 
-.h
-{
+.h {
     color: var(--accent);
 }
 
-.ui-label {
-    color: var(--accent);
-    border: 1px solid color-mix(in srgb, var(--accent) 50%, transparent);
-    padding: 0.25rem 0.5rem;
-    border-radius: 0.5rem;
-    font-size: 90%;
-}
+/* lists */
 
-h2 {
-    font-size: 30px;
-    color: var(--muted);
-    text-transform: uppercase;
-    line-height: 1;
-    margin: 1rem 0;
-    display: flex;
-    align-items: baseline;
-    gap: 0.5em;
-}
-
-h2::after {
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid var(--muted);
-}
-
-p {
-    margin: 1rem 0;
-}
-
-.list-compact {
-    list-style: square;
-    margin-left: 1rem;
-}
-
-.important {
-    color: var(--accent);
-    font-weight: 600
-}
-
-hr {
-    margin-top: 2rem;
-}
-
-.footer {
-    margin: 1rem 0;
-    color: var(--muted);
-    font-size: 75%;
-    text-align: center;
-}
-
-a {
-    color: #6ae1ff;
-    text-decoration: none;
-    border-bottom: 1px dashed rgba(106, 225, 255, .4)
-}
-
-a:hover {
-    opacity: .9;
-    border-bottom-color: #6ae1ff
+ol > li {
+    margin: 0.75rem 0;
 }

@@ -1,101 +1,69 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAIRA — Racing Wheel • Switches</title>
-  <link rel="stylesheet" href="maira-docs.css" />
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Racing Wheel — Switches</h1>
-        <p class="subtitle">Quick on/off toggles for everyday behavior — centering, fade‑in/out, vendor LEDs, UI simplicity, and (optionally) extra headroom for strength.</p>
-        <div class="badges">
-          <span class="badge">Racing Wheel</span>
-          <span class="badge">Switches</span>
-          <span class="badge">Toggles</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Racing Wheel — Switches</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Switches</h2>
+					</div>
+					<p class="subtitle">Quick on/off toggles for everyday behavior — centering, fade‑in/out, vendor LEDs, UI simplicity, and (optionally) extra headroom for strength.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Racing Wheel</span> page • section <span class="ui-label">Switches</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Center wheel while racing</h3>
+					<p>Applies your configured centering torque while <em>racing</em>. Cross‑fades with <span class="ui-label">Center wheel while parked</span> as speed moves through 0→5&nbsp;mph.</p>
+					<p>Default: <span class="important">Off</span></p>
+				</section>
 
-          <div class="k">Context Switches</div>
-          <div class="v">The first three switches below include a <em>Context Switches</em> menu so you can enable/disable them per wheelbase/car/track profile. Others are global.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Center wheel while parked</h3>
+					<p>Keeps a gentle centering torque while <em>parked</em> (0–5&nbsp;mph) to prevent wobble. Uses the same centering strength you set in <span class="ui-label">Other Features → Wheel Centering Strength</span>.</p>
+					<p>Default: <span class="important">On</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Center wheel while racing</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">Off</span></li>
-          <li><strong>What it does:</strong> Applies your configured centering torque while <em>racing</em>. Cross‑fades with <span class="ui-label">Center wheel while parked</span> as speed moves through 0→5&nbsp;mph.</li>
-          <li><strong>Context Switches:</strong> Supported — useful to keep centering off for open‑wheelers but on for GT cars.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>Fade force feedback when entering or exiting car</h3>
+					<p>Smoothly fades force‑feedback when entering/exiting the car, changing sessions, or when MAIRA suspends/unsuspends FFB.</p>
+					<p>Default: <span class="important">On</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Center wheel while parked</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">On</span></li>
-          <li><strong>What it does:</strong> Keeps a gentle centering torque while <em>parked</em> (0–5&nbsp;mph) to prevent wobble. Uses the same centering strength you set in <span class="ui-label">Other Features → Wheel Centering Strength</span>.</li>
-          <li><strong>Context Switches:</strong> Supported — toggle per profile as needed.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>Enable Logitech RPM lights</h3>
+					<p>Drives the LED RPM bar on supported Logitech wheels via the Logitech SDK. Lights scale with engine RPM reported by iRacing.</p>
+					<p>Requires a compatible Logitech wheel and the Logitech driver/runtime.</p>
+					<p>Default: <span class="important">On</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Fade force feedback when entering or exiting car</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">On</span></li>
-          <li><strong>What it does:</strong> Smoothly fades force‑feedback when entering/exiting the car, changing sessions, or when MAIRA suspends/unsuspends FFB.</li>
-          <li><strong>Timing:</strong> Fade‑in ≈ <span class="important">2.0&nbsp;s</span>, Fade‑out ≈ <span class="important">0.5&nbsp;s</span>.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>Allow up to 200% strength (potentially dangerous)</h3>
+					<p>Raises the upper limit for <span class="ui-label">Strength</span> from <strong>100%</strong> to <strong>200%</strong>.</p>
+					<p>High strengths can be <strong class="important">dangerous</strong>. Use with care and keep an emergency <span class="ui-label">Power</span> button mapped.</p>
+					<p>Default: <span class="important">Off</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Enable Logitech RPM lights</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">On</span></li>
-          <li><strong>What it does:</strong> Drives the LED RPM bar on supported Logitech wheels via the Logitech SDK. Lights scale with engine RPM reported by iRacing.</li>
-          <li><strong>Requirements:</strong> A compatible Logitech wheel and the Logitech driver/runtime.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>Enable FFB even if iRacing simulator FFB is on</h3>
+					<p>Allows MAIRA’s FFB to run even when iRacing’s own FFB is <em>enabled</em>. If this is <em>Off</em>, MAIRA will <em>pause</em> its output whenever iRacing’s <span class="ui-label">Enable Force Feedback</span> is on (to avoid double FFB).</p>
+					<p>Leave this <em>Off</em> unless you know you want both systems active (risk of doubled forces / conflicts).</p>
+					<p>Default: <span class="important">Off</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Allow up to 200% strength (potentially dangerous)</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">Off</span></li>
-          <li><strong>What it does:</strong> Raises the upper limit for <span class="ui-label">Strength</span> from <strong>100%</strong> to <strong>200%</strong>.</li>
-          <li><strong>Safety warning:</strong> High strengths can be <strong class="important">dangerous</strong>. Use with care and keep an emergency <span class="ui-label">Power</span> button mapped.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Enable FFB even if iRacing simulator FFB is on</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">Off</span></li>
-          <li><strong>What it does:</strong> Allows MAIRA’s FFB to run even when iRacing’s own FFB is <em>enabled</em>. If this is <em>Off</em>, MAIRA will <em>pause</em> its output whenever iRacing’s <span class="ui-label">Enable Force Feedback</span> is on (to avoid double FFB).</li>
-          <li><strong>Recommendation:</strong> Leave this <em>Off</em> unless you know you want both systems active (risk of doubled forces).</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Enable simple mode</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">Off</span></li>
-          <li><strong>What it does:</strong> Hides advanced controls in the UI to keep things clean.</li>
-        </ul>
-      </section>
-
-      <hr />
-      <p class="footer">MAIRA Refactored • Racing Wheel — Switches</p>
-    </article>
-  </main>
-</body>
+				<section class="section">
+					<h3>Enable simple mode</h3>
+					<p>Hides advanced controls in the UI to keep things clean.</p>
+					<p>Default: <span class="important">Off</span></p>
+				</section>
+			</article>
+		</main>
+	</body>
 </html>

@@ -16,7 +16,8 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Device_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Device_UC]}"
+                                HelpTopic="pedals-device">
 
             <Grid>
 
@@ -48,7 +49,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Frequency_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Frequency_UC]}"
+                                HelpTopic="pedals-frequency">
 
             <Grid>
 
@@ -95,7 +97,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Amplitude_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Amplitude_UC]}"
+                                HelpTopic="pedals-amplitude">
 
             <Grid>
 
@@ -142,7 +145,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Clutch_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Clutch_UC]}"
+                                HelpTopic="pedals-pedal-effects">
 
             <Grid>
 
@@ -267,7 +271,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Brake_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Brake_UC]}"
+                                HelpTopic="pedals-pedal-effects">
 
             <Grid>
 
@@ -388,7 +393,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Throttle_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Throttle_UC]}"
+                                HelpTopic="pedals-pedal-effects">
 
             <Grid>
 
@@ -509,7 +515,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[GearChangeShiftIntoGear_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[GearChangeShiftIntoGear_UC]}"
+                                HelpTopic="pedals-gear-change-shift-into-gear">
 
             <Grid>
 
@@ -555,7 +562,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[GearChangeShiftIntoNeutral_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[GearChangeShiftIntoNeutral_UC]}"
+                                HelpTopic="pedals-gear-change-shift-into-neutral">
 
             <Grid>
 
@@ -601,7 +609,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[ABSEngaged_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[ABSEngaged_UC]}"
+                                HelpTopic="pedals-abs-engaged">
 
             <Grid>
 
@@ -643,7 +652,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[RPM_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[RPM_UC]}"
+                                HelpTopic="pedals-rpm">
 
             <Grid>
 
@@ -681,7 +691,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[WheelLock_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[WheelLock_UC]}"
+                                HelpTopic="pedals-wheel-lock">
 
             <Grid>
 
@@ -701,7 +712,7 @@
                                     ContextSwitches="{Binding Settings.PedalsWheelLockFrequencyContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.PedalsWheelLockFrequencyPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.PedalsWheelLockFrequencyMinusButtonMappings}"
-                                    DefaultValue="0.5" />
+                                    DefaultValue="0.1" />
 
                 <controls:MairaKnob Grid.Column="2"
                                     Label="{Binding Localization[Sensitivity]}"
@@ -711,7 +722,7 @@
                                     ContextSwitches="{Binding Settings.PedalsWheelLockSensitivityContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.PedalsWheelLockSensitivityPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.PedalsWheelLockSensitivityMinusButtonMappings}"
-                                    DefaultValue="1" />
+                                    DefaultValue="0.95" />
 
                 <controls:MairaSwitch Grid.Column="4"
                                       IsOn="{Binding Settings.PedalsWheelLockFadeWithBrakeEnabled, Mode=TwoWay}"
@@ -723,7 +734,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[WheelSpin_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[WheelSpin_UC]}"
+                                HelpTopic="pedals-wheel-spin">
 
             <Grid>
 
@@ -743,7 +755,7 @@
                                     ContextSwitches="{Binding Settings.PedalsWheelSpinFrequencyContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.PedalsWheelSpinFrequencyPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.PedalsWheelSpinFrequencyMinusButtonMappings}"
-                                    DefaultValue="0.5" />
+                                    DefaultValue="1" />
 
                 <controls:MairaKnob Grid.Column="2"
                                     Label="{Binding Localization[Sensitivity]}"
@@ -753,7 +765,7 @@
                                     ContextSwitches="{Binding Settings.PedalsWheelSpinSensitivityContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.PedalsWheelSpinSensitivityPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.PedalsWheelSpinSensitivityMinusButtonMappings}"
-                                    DefaultValue="1" />
+                                    DefaultValue="0.95" />
 
                 <controls:MairaSwitch Grid.Column="4"
                                       IsOn="{Binding Settings.PedalsWheelSpinFadeWithThrottleEnabled, Mode=TwoWay}"
@@ -765,7 +777,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[ClutchSlip_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[ClutchSlip_UC]}"
+                                HelpTopic="pedals-clutch-slip">
 
             <Grid>
 
@@ -811,7 +824,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Understeer_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Understeer_UC]}"
+                                HelpTopic="pedals-understeer">
 
             <Grid>
 
@@ -858,7 +872,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Oversteer_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Oversteer_UC]}"
+                                HelpTopic="pedals-oversteer">
 
             <Grid>
 
@@ -905,7 +920,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[SeatOfPants_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[SeatOfPants_UC]}"
+                                HelpTopic="pedals-seat-of-pants">
 
             <Grid>
 
@@ -952,7 +968,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[OtherFeatures_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[OtherFeatures_UC]}"
+                                HelpTopic="pedals-other-features">
 
             <Grid>
 

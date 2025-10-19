@@ -1,95 +1,78 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAIRA — Racing Wheel • Algorithm</title>
-  <link rel="stylesheet" href="maira-docs.css" />
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Racing Wheel — Algorithm</h1>
-        <p class="subtitle">Choose the force‑feedback shaping algorithm and tune its core parameters.</p>
-        <div class="badges">
-          <span class="badge">Racing Wheel</span>
-          <span class="badge">Algorithm</span>
-          <span class="badge">Signal Shaping</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Racing Wheel — Algorithm</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Algorithm</h2>
+					</div>
+					<p class="subtitle">Choose the force‑feedback shaping algorithm and tune its core parameters.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Racing Wheel</span> page • section <span class="ui-label">Algorithm</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Algorithm</h3>
+					<h4>Native 60&nbsp;Hz</h4>
+					<p>Minimal shaping; normalizes the game’s 60&nbsp;Hz torque straight to your <em>Max Force</em>. Clean, classic feel.</p>
+					<h4>Native 360&nbsp;Hz</h4>
+					<p>Higher‑rate pass‑through normalized to <em>Max Force</em>. Reduces “stepping.”</p>
+					<h4>Detail Booster</h4>
+					<p>Expands high‑frequency detail. Great for curb/road texture without big changes to weight.</p>
+					<h4>Delta Limiter</h4>
+					<p>Caps how fast torque can change (rate‑of‑change limiter) to tame spikes while preserving the base feel.</p>
+					<h4>Detail Booster (on 60&nbsp;Hz)</h4>
+					<p>Same as Detail Booster, but done by expanding the 360&nbsp;Hz details and applying that on top of the 60&nbsp;Hz base for lower latency.</p>
+					<h4>Delta Limiter (on 60&nbsp;Hz)</h4>
+					<p>Same as Delta Limiter, but done by limiting the 360&nbsp;Hz details and applying that on top of the 60&nbsp;Hz base for lower latency.</p>
+					<h4>Slew + Total Compression</h4>
+					<p>Two‑stage compressor: one engages on rapid changes (slew), the other on overall magnitude (total). Smooths big hits without crushing detail.</p>
+					<h4>Multi‑Adjustment Toolkit</h4>
+					<p>A toolbox chain you can tune: add detail, smooth the output, limit slew, and compress peaks — all in one place.</p>
+				</section>
 
-          <div class="k">What this section does</div>
-          <div class="v">Lets you select the active algorithm and adjust its properties for dynamics, clipping behavior, and feel.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>What each setting does</h3>
+					<h4>Detail Booster</h4>
+					<p><span class="ui-label">Detail Boost</span> &mdash; How much high‑frequency detail to blend in. Higher = crisper road feel.</p>
+					<p><span class="ui-label">Detail Boost Bias</span> &mdash; Balance between the steady base vs. added detail. Higher bias = more weight on the base, gentler detail injection.</p>
 
-      <section class="section">
-        <h2>Algorithm</h2>
-        <ul class="list-compact">
-          <li><strong>Native 60&nbsp;Hz:</strong> Minimal shaping; normalizes the game’s 60&nbsp;Hz torque straight to your <em>Max Force</em>. Clean, classic feel.</li>
-          <li><strong>Native 360&nbsp;Hz:</strong> Higher‑rate pass‑through normalized to <em>Max Force</em>. Reduces “stepping.”</li>
-          <li><strong>Detail Booster:</strong> Expands high‑frequency detail. Great for curb/road texture without big changes to weight.</li>
-          <li><strong>Delta Limiter:</strong> Caps how fast torque can change (rate‑of‑change limiter) to tame spikes while preserving the base feel.</li>
-          <li><strong>Detail Booster (on 60&nbsp;Hz):</strong> Same as Detail Booster, but done by expanding the 360&nbsp;Hz details and applying that on top of the 60&nbsp;Hz base for lower latency.</li>
-          <li><strong>Delta Limiter (on 60&nbsp;Hz):</strong> Same as Delta Limiter, but done by limiting the 360&nbsp;Hz details and applying that on top of the 60&nbsp;Hz base for lower latency.</li>
-          <li><strong>Slew + Total Compression:</strong> Two‑stage compressor: one engages on rapid changes (slew), the other on overall magnitude (total). Smooths big hits without crushing detail.</li>
-          <li><strong>Multi‑Adjustment Toolkit:</strong> A toolbox chain you can tune: add detail, smooth the output, limit slew, and compress peaks — all in one place.</li>
-        </ul>
-      </section>
+					<h4>Delta Limiter</h4>
+					<p><span class="ui-label">Delta Limit</span> &mdash; Caps the rate of change of torque (Nm/sec). Stops sudden jumps; smoother transitions.</p>
+					<p><span class="ui-label">Delta Limiter Bias</span> &mdash; Blend between limited vs. original signal. Higher bias = retains more of the original; lower = stronger limiting feel.</p>
 
-      <section class="section">
-        <h2>What each setting does</h2>
-        <h3>Detail Booster</h3>
-        <ul class="list-compact">
-          <li><span class="ui-label">Detail Boost</span>: How much high‑frequency detail to blend in. Higher = crisper road feel.</li>
-          <li><span class="ui-label">Detail Boost Bias</span>: Balance between the steady base vs. added detail. Higher bias = more weight on the base, gentler detail injection.</li>
-        </ul>
+					<h4>Slew + Total Compression</h4>
+					<p><span class="ui-label">Slew Threshold</span> &mdash; When rapid‑change compression kicks in. Lower = engages sooner on spikes.</p>
+					<p><span class="ui-label">Slew Compression Rate</span> &mdash; How strongly those rapid changes are compressed after the threshold.</p>
+					<p><span class="ui-label">Total Threshold</span> &mdash; Overall torque level where peak compression begins.</p>
+					<p><span class="ui-label">Total Compression Rate</span> &mdash; Strength of that overall (peak) compression once engaged.</p>
 
-        <h3>Delta Limiter</h3>
-        <ul class="list-compact">
-          <li><span class="ui-label">Delta Limit</span>: Caps the rate of change of torque (Nm/sec). Stops sudden jumps; smoother transitions.</li>
-          <li><span class="ui-label">Delta Limiter Bias</span>: Blend between limited vs. original signal. Higher bias = retains more of the original; lower = stronger limiting feel.</li>
-        </ul>
+					<h4>Multi‑Adjustment Toolkit</h4>
+					<p><span class="ui-label">Detail Gain</span> &mdash; Adds crispness by mixing in a controlled amount of high‑frequency detail.</p>
+					<p><span class="ui-label">Output Smoothing</span> &mdash; Gently smooths the running torque; reduces chatter and rough edges.</p>
+					<p><span class="ui-label">Slew Rate Reduction</span> &mdash; Limits how fast torque can rise/fall to prevent shocky hits.</p>
+					<p><span class="ui-label">Torque Compression</span> &mdash; Compresses big peaks so strong forces stay controllable.</p>
+				</section>
 
-        <h3>Slew + Total Compression</h3>
-        <ul class="list-compact">
-          <li><span class="ui-label">Slew Threshold</span>: When rapid‑change compression kicks in. Lower = engages sooner on spikes.</li>
-          <li><span class="ui-label">Slew Compression Rate</span>: How strongly those rapid changes are compressed after the threshold.</li>
-          <li><span class="ui-label">Total Threshold</span>: Overall torque level where peak compression begins.</li>
-          <li><span class="ui-label">Total Compression Rate</span>: Strength of that overall (peak) compression once engaged.</li>
-        </ul>
-
-        <h3>Multi‑Adjustment Toolkit</h3>
-        <ul class="list-compact">
-          <li><span class="ui-label">Detail Gain</span>: Adds crispness by mixing in a controlled amount of high‑frequency detail.</li>
-          <li><span class="ui-label">Output Smoothing</span>: Gently smooths the running torque; reduces chatter and rough edges.</li>
-          <li><span class="ui-label">Slew Rate Reduction</span>: Limits how fast torque can rise/fall to prevent shocky hits.</li>
-          <li><span class="ui-label">Torque Compression</span>: Compresses big peaks so strong forces stay controllable.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Soft Clipping</h2>
-        <p>Soft clipping is a <em>gentle</em> saturation that rounds off the very top of the signal instead of chopping it flat. In MAIRA it’s applied <em>after</em> the algorithm, so it works with <strong>every algorithm</strong>. When enabled, it:</p>
-        <ul class="list-compact">
-          <li>Softens harsh peaks that can feel spiky or fatiguing.</li>
-          <li>Preserves most mid‑range detail (unlike a hard limiter).</li>
-          <li>Helps avoid sudden jolts if the signal briefly exceeds your headroom.</li>
-        </ul>
-        <p>You’ll find it in the same section as the algorithm settings. Toggle it on if peaks feel too “square,” or off if you want the full raw punch.</p>
-      </section>
-
-      <hr />
-      <p class="footer">MAIRA Refactored • Racing Wheel — Algorithm</p>
-    </article>
-  </main>
-</body>
+				<section class="section">
+					<h3>Soft Clipping</h3>
+					<p>Soft clipping is a <em>gentle</em> saturation that rounds off the very top of the signal instead of chopping it flat. In MAIRA it’s applied <em>after</em> the algorithm, so it works with <strong>every algorithm</strong>. When enabled, it:</p>
+					<ul>
+						<p>Softens harsh peaks that can feel spiky or fatiguing.</p>
+						<p>Preserves most mid‑range detail (unlike a hard limiter).</p>
+						<p>Helps avoid sudden jolts if the signal briefly exceeds your headroom.</p>
+					</ul>
+					<p>You’ll find it in the same section as the algorithm settings. Toggle it on if peaks feel too “square,” or off if you want the full raw punch.</p>
+				</section>
+			</article>
+		</main>
+	</body>
 </html>

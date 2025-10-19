@@ -1270,4 +1270,13 @@
   <data name="Click_UC" xml:space="preserve">
     <value>Клик</value>
   </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>Звук</value>
+  </data>
+  <data name="Connection_UC" xml:space="preserve">
+    <value>Соединение</value>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>Дисплей</value>
+  </data>
 </root>

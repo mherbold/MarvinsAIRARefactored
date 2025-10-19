@@ -1,71 +1,48 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAIRA — Racing Wheel • Parked Effects</title>
-  <link rel="stylesheet" href="maira-docs.css" />
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Racing Wheel — Parked Effects</h1>
-        <p class="subtitle">Gentle low‑speed behavior: fade overall strength down, add a touch of friction, and optionally keep the wheel centered while stopped.</p>
-        <div class="badges">
-          <span class="badge">Racing Wheel</span>
-          <span class="badge">Parked Effects</span>
-          <span class="badge">Low‑Speed Behavior</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Racing Wheel — Parked Effects</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Parked Effects</h2>
+					</div>
+					<p class="subtitle">Gentle low‑speed behavior: fade overall strength down, add a touch of friction, and optionally keep the wheel centered while stopped.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Racing Wheel</span> page • section <span class="ui-label">Parked Effects</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Strength</h3>
+					<p>Scales the final output torque while stopped. At 10%, parked torque is one‑tenth of your normal strength at 0&nbsp;mph, blending up to full strength by ~5&nbsp;mph.</p>
+					<p>Default: <span class="important">10%</span></p>
+					<p>Range: 0 → 100% <span class="muted">(OFF when at 100%)</span></p>
+				</section>
 
-          <div class="k">What this section does</div>
-          <div class="v">As speed drops from <strong>5&nbsp;mph → 0</strong>, MAIRA cross‑fades from your normal racing feel to a parked profile: overall force is scaled toward a safer value, base friction is swapped for parked friction, and (optionally) a centering force is applied.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Friction</h3>
+					<p>Adds a small friction torque <em>only when stopped</em>, which helps calm micro‑oscillation or wheel wobble in the pits. As you roll away, it blends back to your normal racing friction.</p>
+					<p>Default: <span class="important">OFF (0%)</span></p>
+					<p>Range: 0 → 100% <span class="muted">(OFF when at 0%)</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Strength</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">10%</span></li>
-          <li><strong>Range:</strong> 0–100%</li>
-          <li><strong>OFF:</strong> 100% (no reduction when fully parked)</li>
-          <li><strong>What it does:</strong> Scales the final output torque while stopped. At 10%, parked torque is one‑tenth of your normal strength at 0&nbsp;mph, blending up to full strength by ~5&nbsp;mph.</li>
-        </ul>
-      </section>
+				<section class="section">
+					<h3>Center wheel while parked</h3>
+					<p>Applies the standard wheel‑centering torque when parked (uses your global <em>Centering Strength</em>). It’s blended with the <em>Center wheel while racing</em> setting based on speed.</p>
+					<p>Default: <span class="important">On</span></p>
+				</section>
 
-      <section class="section">
-        <h2>Friction</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">OFF</span> (0%)</li>
-          <li><strong>Range:</strong> 0–100%</li>
-          <li><strong>OFF:</strong> 0% (no added parked friction)</li>
-          <li><strong>What it does:</strong> Adds a small friction torque <em>only when stopped</em>, which helps calm micro‑oscillation or wheel wobble in the pits. As you roll away, it blends back to your normal racing friction.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Center wheel while parked</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">On</span></li>
-          <li><strong>What it does:</strong> Applies the standard wheel‑centering torque when parked (uses your global <em>Centering Strength</em>). It’s blended with the <em>Center wheel while racing</em> setting based on speed.</li>
-        </ul>
-      </section>
-
-      <div class="tip">
-        <strong class="important">Pro tip:</strong> If your wheel oscillates in the pits, increae <span class="ui-label">Friction</span> and enable <span class="ui-label">Center wheel while parked</span>. If the wheel feels too heavy while stopped, lower <span class="ui-label">Strength</span>.
-      </div>
-
-      <hr />
-      <p class="footer">MAIRA Refactored • Racing Wheel — Parked Effects</p>
-    </article>
-  </main>
-</body>
+				<div class="tip">
+					Pro tip: If your wheel oscillates in the pits, increae <span class="ui-label">Friction</span> and enable <span class="ui-label">Center wheel while parked</span>. If the wheel feels too heavy while stopped, lower <span class="ui-label">Strength</span>.
+				</div>
+			</article>
+		</main>
+	</body>
 </html>

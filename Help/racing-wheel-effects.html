@@ -1,58 +1,39 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAIRA — Racing Wheel • Effects</title>
-  <link rel="stylesheet" href="maira-docs.css" />
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Racing Wheel — Effects</h1>
-        <p class="subtitle">Simple, event‑driven vibrations you can layer on top of your main FFB — handy cues without changing your core feel.</p>
-        <div class="badges">
-          <span class="badge">Racing Wheel</span>
-          <span class="badge">Effects</span>
-          <span class="badge">Add‑On Cues</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Racing Wheel — Effects</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Effects</h2>
+					</div>
+					<p class="subtitle">Simple, event‑driven vibrations you can layer on top of your main FFB — handy cues without changing your core feel.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Racing Wheel</span> page • section <span class="ui-label">Effects</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Vibrate on gear change</h3>
+					<p>Triggers a brief vibration burst when a gear change is detected.</p>
+					<p>Helpful if your car’s shifts are silent or you race with low audio — gives a tactile confirmation you’ve up/down‑shifted.</p>
+					<p>This is an overlay cue; it doesn’t alter your base FFB algorithm or output curve.</p>
+					<p>Default: <span class="important">Off</span></p>
+				</section>
 
-          <div class="k">What this section does</div>
-          <div class="v">Adds lightweight, toggleable vibrations when specific events happen — currently gear changes and ABS activity. These effects are mixed <em>after</em> your Algorithm/Output processing.</div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>Vibrate on gear change</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">Off</span></li>
-          <li><strong>What it does:</strong> Triggers a brief vibration burst when a gear change is detected.</li>
-          <li><strong>When to use:</strong> Helpful if your car’s shifts are silent or you race with low audio — gives a tactile confirmation you’ve up/down‑shifted.</li>
-          <li class="muted">Note: This is an overlay cue; it doesn’t alter your base FFB algorithm or output curve.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Vibrate on ABS activation</h2>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">Off</span></li>
-          <li><strong>What it does:</strong> Produces a pulsing vibration while ABS is active, helping you sense brake modulation and impending lock‑up.</li>
-          <li><strong>When to use:</strong> Useful in cars with subtle pedal feedback or when racing on loud setups where ABS audio cues are hard to hear.</li>
-        </ul>
-      </section>
-
-      <hr />
-      <p class="footer">MAIRA Refactored • Racing Wheel — Effects</p>
-    </article>
-  </main>
-</body>
+				<section class="section">
+					<h3>Vibrate on ABS activation</h3>
+					<p>Produces a pulsing vibration while ABS is active, helping you sense brake modulation and impending lock‑up.</p>
+					<p>Useful in cars with subtle pedal feedback or when racing on loud setups where ABS audio cues are hard to hear.</p>
+					<p>Default: <span class="important">Off</span></p>
+				</section>
+			</article>
+		</main>
+	</body>
 </html>

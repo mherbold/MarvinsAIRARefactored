@@ -1167,7 +1167,7 @@
     <comment>Wind</comment>
   </data>
   <data name="Connection_UC" xml:space="preserve">
-    <value></value>
+    <value>Bağlantı</value>
     <comment>Wind</comment>
   </data>
   <data name="Settings_UC" xml:space="preserve">
@@ -1276,5 +1276,11 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>Tıkla</value>
+  </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>Ses</value>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>Ekran</value>
   </data>
 </root>

@@ -6231,7 +6231,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, -1f, 1f );
+			value = Math.Clamp( value, 0f, 1f );
 
 			if ( value != _pedalsNoiseDamper )
 			{

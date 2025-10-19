@@ -1,63 +1,42 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAIRA — Racing Wheel • Preview</title>
-  <link rel="stylesheet" href="maira-docs.css" />
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Racing Wheel — Preview</h1>
-        <p class="subtitle">Load a pre‑recorded force‑feedback (FFB) signal and see how your <em>Overall Strength</em>, <em>Algorithm</em> and <em>Output</em> settings change the resulting torque — without driving.</p>
-        <div class="badges">
-          <span class="badge">Racing Wheel</span>
-          <span class="badge">Preview</span>
-          <span class="badge">Visualization</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Racing Wheel — Preview</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Preview</h2>
+					</div>
+					<p class="subtitle">Load a pre‑recorded force‑feedback (FFB) signal and see how your <em>Overall Strength</em>, <em>Algorithm</em> and <em>Output</em> settings change the resulting torque — without driving.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Racing Wheel</span> page • section <span class="ui-label">Preview</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>How to use</h3>
+					<p><strong>Load</strong> — Select a pre-recorded FFB file from the list of options.</p>
+					<p><strong>Tune</strong> — Adjust <em>Overall Strength</em>, <em>Algorithm</em> and <em>Output</em> settings; the graph updates in real time so you can compare before/after.</p>
+				</section>
 
-          <div class="k">What this section does</div>
-          <div class="v">Lets you load a pre‑recorded FFB trace, then overlays a graph of the <em>native 360&nbsp;Hz</em> vs the <em>processed output</em>. Tweak settings and instantly see the effect.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>What you’ll see</h3>
+					<p><strong>Native 360&nbsp;Hz</strong> — the original FFB signal from the recording, in red color.</p>
+					<p><strong>Output torque</strong> — the signal after Overall Strength → Algorithm → Curve/Min/Max → Soft Clipping, in blue color.</p>
+				</section>
 
-      <section class="section">
-        <h2>How to use</h2>
-        <ol class="list-compact">
-          <li><strong>Load</strong> — Select a pre-recorded FFB file from the list of options.</li>
-          <li><strong>Tune</strong> — Adjust <em>Overall Strength</em>, <em>Algorithm</em> and <em>Output</em> settings; the graph updates in real time so you can compare before/after.</li>
-        </ol>
-      </section>
-
-      <section class="section">
-        <h2>What you’ll see</h2>
-        <ul class="list-compact">
-          <li><strong>Native 360&nbsp;Hz</strong> — the original FFB signal from the recording, in red color.</li>
-          <li><strong>Output torque</strong> — the signal after Overall Strength → Algorithm → Curve/Min/Max → Soft Clipping, in blue color.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Tips</h2>
-        <ul class="list-compact">
-          <li>Use a recording with curbs and braking zones to test both high‑frequency detail and large peaks.</li>
-          <li>Try toggling between algorithms to understand how each shapes the same input.</li>
-        </ul>
-      </section>
-
-      <hr />
-      <p class="footer">MAIRA Refactored • Racing Wheel — Preview</p>
-    </article>
-  </main>
-</body>
+				<section class="section">
+					<h3>Tips</h3>
+					<p>Use a recording with curbs and braking zones to test both high‑frequency detail and large peaks.</p>
+					<p>Try toggling between algorithms to understand how each shapes the same input.</p>
+				</section>
+			</article>
+		</main>
+	</body>
 </html>

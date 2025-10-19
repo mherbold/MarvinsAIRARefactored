@@ -3,7 +3,7 @@
 	<head>
 		<meta charset="utf-8"/>
 		<meta name="viewport" content="width=device-width, initial-scale=1"/>
-		<title>MAIRA — Steering Effects — Pedal Vibration Effect</title>
+		<title>MAIRA — Pedals — Amplitude</title>
 		<link rel="stylesheet" href="maira-docs.css"/>
 	</head>
 	<body>
@@ -11,33 +11,33 @@
 			<header class="header">
 				<div>
 					<div class="title">
-						<h1>Steering Effects</h1>
-						<h2>Pedal Vibration Effect</h2>
+						<h1>Pedals</h1>
+						<h2>Amplitude</h2>
 					</div>
-					<p class="subtitle">Drive pedal haptic motors based on <span class="ui-label">Understeer</span>, <span class="ui-label">Oversteer</span>, or <span class="ui-label">Seat of Pants</span> signals.</p>
+					<p class="subtitle">Define global minimum/maximum motor amplitude and shaping curve used by all pedal effects.</p>
 				</div>
 			</header>
 
 			<article class="article">
 				<section class="section">
-					<h3>Minimum Frequency</h3>
-					<p>Start point for vibration frequency.</p>
-					<p>Default: <span class="important">0%</span></p>
+					<h3>Minimum</h3>
+					<p>Lowest amplitude used at effect onset.</p>
+					<p>Default: <span class="important">10%</span></p>
 					<p>Range: 0 → 100%</p>
 				</section>
 
 				<section class="section">
-					<h3>Maximum Frequency</h3>
-					<p>End point at full signal.</p>
+					<h3>Maximum</h3>
+					<p>Highest amplitude at full intensity.</p>
 					<p>Default: <span class="important">100%</span></p>
 					<p>Range: 0 → 100%</p>
 				</section>
 
 				<section class="section">
 					<h3>Curve</h3>
-					<p>Shapes how frequency increases with the signal.</p>
+					<p>Shapes how quickly amplitude rises from Minimum to Maximum.</p>
 					<p>Default: <span class="important">0%</span> <span class="muted">(linear)</span></p>
-					<p>Range: −100 → 100%</p>
+					<p>Range: -100 → 100%</p>
 				</section>
 			</article>
 		</main>

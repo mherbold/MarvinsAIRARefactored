@@ -538,7 +538,7 @@ public partial class App : Application
 
 			if ( CheckMappedButtons( settings.RacingWheelDeltaLimitPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelDeltaLimit += 0.01f;
+				settings.RacingWheelDeltaLimit += 10f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
@@ -548,7 +548,7 @@ public partial class App : Application
 
 			if ( CheckMappedButtons( settings.RacingWheelDeltaLimitMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelDeltaLimit -= 0.01f;
+				settings.RacingWheelDeltaLimit -= 10f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{

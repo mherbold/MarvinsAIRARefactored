@@ -1,66 +1,62 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>MAIRA — Steering Effects • Wheel Vibration Effect</title>
-  <link rel="stylesheet" href="maira-docs.css"/>
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Steering Effects — Wheel Vibration Effect</h1>
-        <p class="subtitle">Generate patterned vibration on the wheel (selecting <span class="ui-label">Vibration Pattern: None</span> disables this effect) when <span class="ui-label">Understeer</span>, <span class="ui-label">Oversteer</span>, or <span class="ui-label">Seat of Pants</span> signals are active.</p>
-        <div class="badges">
-          <span class="badge">Steering Effects</span>
-          <span class="badge">Wheel</span>
-          <span class="badge">Vibration</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Steering Effects — Wheel Vibration Effect</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Steering Effects</h1>
+						<h2>Wheel Vibration Effect</h2>
+					</div>
+					<p class="subtitle">Generate patterned vibration on the wheel (selecting <span class="ui-label">Vibration Pattern: None</span> disables this effect) when <span class="ui-label">Understeer</span>, <span class="ui-label">Oversteer</span>, or <span class="ui-label">Seat of Pants</span> signals are active.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Steering Effects</span> page • sections <span class="ui-label">Understeer — Wheel Vibration Effect</span>, <span class="ui-label">Oversteer — Wheel Vibration Effect</span>, and <span class="ui-label">Seat of Pants — Wheel Vibration Effect</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Vibration Pattern</h3>
+					<p>Waveform shape. Options: <span class="ui-label">None</span>, <span class="ui-label">Sine Wave</span>, <span class="ui-label">Square Wave</span>, <span class="ui-label">Triangle Wave</span>, <span class="ui-label">Sawtooth Wave (In)</span>, <span class="ui-label">Sawtooth Wave (Out)</span>.</p>
+					<p>Defaults: Understeer <span class="important">Sine Wave</span>, Oversteer <span class="important">None</span>, Seat of Pants <span class="important">None</span>.</p>
+				</section>
 
-          <div class="k">What it does</div>
-          <div class="v">Applies a repeating vibration waveform to the wheel when the corresponding detection signal is above zero. Choose <span class="ui-label">Vibration Pattern: None</span> to disable this effect. Intensity follows the signal (0→1), then passes through a <span class="ui-label">Curve</span> and the chosen <span class="ui-label">Vibration Pattern</span>.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Strength</h3>
+					<p>How strong the vibration can get at full signal.</p>
+					<p>Default: <span class="important">10%</span></p>
+					<p>Range: 0 → 30%</p>
+				</section>
 
-      <section class="section">
-        <h2>Settings</h2>
-        <ul class="list-compact">
-          <li><span class="ui-label">Vibration Pattern</span> — waveform shape. Options: <span class="ui-label">None</span>, <span class="ui-label">Sine Wave</span>, <span class="ui-label">Square Wave</span>, <span class="ui-label">Triangle Wave</span>, <span class="ui-label">Sawtooth Wave (In)</span>, <span class="ui-label">Sawtooth Wave (Out)</span>.
-            <div class="muted">Defaults: Understeer <span class="important">Sine Wave</span>, Oversteer <span class="important">None</span>, Seat of Pants <span class="important">None</span>.</div>
-          </li>
-          <li><span class="ui-label">Strength</span> — how strong the vibration can get at full signal.
-            <div>Range: <span class="ui-label">0 → 30%</span> (<span class="ui-label">%</span> in the UI). Default: <span class="important">10%</span> for all three.</div>
-          </li>
-          <li><span class="ui-label">Minimum Frequency</span> — frequency used as the signal just exceeds the threshold.
-            <div>Range: <span class="ui-label">0 → 50</span> <span class="ui-label">Hz</span>. Default: <span class="important">15 Hz</span>.</div>
-          </li>
-          <li><span class="ui-label">Maximum Frequency</span> — frequency used when the signal reaches 100%.
-            <div>Range: <span class="ui-label">0 → 50</span> <span class="ui-label">Hz</span>. Default: <span class="important">50 Hz</span>.</div>
-          </li>
-          <li><span class="ui-label">Curve</span> — shapes how quickly the effect ramps with the signal.
-            <div>Range: <span class="ui-label">−100 → +100%</span>. Default: <span class="important">25%</span>. Negative values front‑load the response (more feel near threshold); positive values delay it until higher signal.</div>
-          </li>
-        </ul>
-        <p class="muted">All controls support <em>+/− button mappings</em> and <em>Context Switches</em> so you can tune per profile, car, or track.</p>
-      </section>
+				<section class="section">
+					<h3>Minimum Frequency</h3>
+					<p>Frequency used as the signal just exceeds the threshold.</p>
+					<p>Default: <span class="important">15 Hz</span></p>
+					<p>Range: 0 → 50 Hz</p>
+				</section>
 
-      <section class="section">
-        <h2>How frequency is chosen</h2>
-        <p>Only <strong>Strength</strong> is interpolated with the signal. Frequency stays at <span class="ui-label">Minimum Frequency</span> until the signal reaches 100%, then switches to <span class="ui-label">Maximum Frequency</span> instantly. The <span class="ui-label">Curve</span> shapes how Strength grows, not the frequency.</p>
-      </section>
+				<section class="section">
+					<h3>Maximum Frequency</h3>
+					<p>Frequency used when the signal reaches 100%.</p>
+					<p>Default: <span class="important">50 Hz</span></p>
+					<p>Range: 0 → 50 Hz</p>
+				</section>
 
-      <hr/>
-      <p class="footer">MAIRA Refactored • Steering Effects — Wheel Vibration Effect</p>
-    </article>
-  </main>
-</body>
+				<section class="section">
+					<h3>Curve</h3>
+					<p>Shapes how quickly the effect ramps with the signal. Negative values front‑load the response (more feel near threshold); positive values delay it until higher signal.</p>
+					<p>Default: <span class="important">25%</span></p>
+					<p>Range: −100 → 100%</p>
+				</section>
+
+				<div class="tip">
+					<p>Only <strong>Strength</strong> is interpolated with the signal. Frequency stays at <span class="ui-label">Minimum Frequency</span> until the signal reaches 100%, then switches to <span class="ui-label">Maximum Frequency</span> instantly. The <span class="ui-label">Curve</span> shapes how Strength grows, not the frequency.</p>
+				</div>
+			</article>
+		</main>
+	</body>
 </html>

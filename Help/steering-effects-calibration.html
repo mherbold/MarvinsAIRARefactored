@@ -1,77 +1,56 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>MAIRA — Steering Effects • Calibration</title>
-  <link rel="stylesheet" href="maira-docs.css"/>
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Steering Effects — Calibration</h1>
-        <p class="subtitle">Use MAIRA’s built‑in vJoy integration to map iRacing inputs and run the automated calibration process on the <span class="ui-label">Centripetal Circuit</span> test track.</p>
-        <div class="badges">
-          <span class="badge">Steering Effects</span>
-          <span class="badge">Calibration</span>
-          <span class="badge">vJoy</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Steering Effects — Calibration</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Steering Effects</h1>
+						<h2>Calibration</h2>
+					</div>
+					<p class="subtitle">Use MAIRA’s built‑in vJoy integration to map iRacing inputs and run the automated calibration process on the <span class="ui-label">Centripetal Circuit</span> test track.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Steering Effects</span> page • section <span class="ui-label">Calibration</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Part 1 — Map controls in iRacing (using vJoy)</h3>
+					<p>These buttons control a virtual joystick so MAIRA can drive your car in iRacing without you touching the real wheel or pedals.</p>
+					<p><span class="ui-label">Steering Wheel Left</span>, <span class="ui-label">Steering Wheel Center</span>, <span class="ui-label">Steering Wheel Right</span>, <span class="ui-label">Steering Wheel 90° Left</span> — simulate steering positions for assignment/calibration.</p>
+					<p><span class="ui-label">Minimum Throttle</span> / <span class="ui-label">Maximum Throttle</span> — set throttle axis min/max.</p>
+					<p><span class="ui-label">Minimum Brake</span> / <span class="ui-label">Maximum Brake</span> — set brake axis min/max.</p>
+					<p><span class="ui-label">Shift Up</span> / <span class="ui-label">Shift Down</span> — set shifter buttons.</p>
+					<ol class="list-steps">
+						<li>Enter a Test session at <span class="ui-label">Centripetal Circuit</span> and open <em>Settings → Driving → Input Calibration</em> in iRacing.</li>
+						<li>Click on one of the calibrate buttons (e.g., <em>Steering</em>, <em>Pedals</em>, <em>Gearbox</em>)</li>
+						<li>Follow the iRacing instructions, pressing the matching MAIRA buttons to send the vJoy input. Repeat until all three parts are calibrated.</li>
+					</ol>
+					<div class="tip">MAIRA initializes vJoy automatically on this track. If the overlay shows the Centripetal warning, the buttons are disabled until you switch to the correct track.</div>
+				</section>
 
-          <div class="k">Prerequisite</div>
-          <div class="v">You must load a session on the <span class="ui-label">Centripetal Circuit</span> track. If you’re on any other track, MAIRA will hide the controls and show a warning banner: <em>You are not on the Centripetal Circuit track</em>.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Part 2 — Run the automated calibration</h3>
+					<p>Leave the garage and put your car on the track.</p>
+					<p><span class="ui-label">Run Calibration</span> — starts the calibration routine. MAIRA target‑drives at low speed (≈ <span class="ui-label">15 km/h</span>) and sweeps steering across the supported range (±<span class="ui-label">450°</span>), sampling yaw‑rate vs. steering angle.</p>
+					<p><span class="ui-label">Stop Calibration</span> — cancels the routine. Use this if you need to abort early.</p>
+					<p>During the run you’ll see a progress indicator and a live calibration graph building in real time. When finished, MAIRA saves a calibration file for the current car/setup; it appears in the <span class="ui-label">Calibration File</span> dropdown on this page.</p>
+					<div class="tip">
+						Pro tip: Don’t touch the wheel or pedal buttons while calibration is running. Give the car room to drive the circle; if a collision occurs, press <span class="ui-label">Stop Calibration</span>, reset the car, and try again.
+					</div>
+				</section>
 
-      <section class="section">
-        <h2>Part 1 — Map controls in iRacing (using vJoy)</h2>
-        <p>These buttons control a virtual joystick so MAIRA can drive your car in iRacing without you touching the real wheel or pedals.</p>
-        <ul class="list-compact">
-          <li><span class="ui-label">Steering Wheel Left</span>, <span class="ui-label">Steering Wheel Center</span>, <span class="ui-label">Steering Wheel Right</span>, <span class="ui-label">Steering Wheel 90° Left</span> — simulate steering positions for assignment/calibration.</li>
-          <li><span class="ui-label">Minimum Throttle</span> / <span class="ui-label">Maximum Throttle</span> — set throttle axis min/max.</li>
-          <li><span class="ui-label">Minimum Brake</span> / <span class="ui-label">Maximum Brake</span> — set brake axis min/max.</li>
-          <li><span class="ui-label">Shift Up</span> / <span class="ui-label">Shift Down</span> — set shifter buttons.</li>
-        </ul>
-        <ol class="list-steps">
-          <li>Enter a Test session at <span class="ui-label">Centripetal Circuit</span> and open <em>Settings → Driving → Input Calibration</em> in iRacing.</li>
-          <li>Click on one of the calibrate buttons (e.g., <em>Steering</em>, <em>Pedals</em>, <em>Gearbox</em>)</li>
-          <li>Follow the iRacing instructions, pressing the matching MAIRA buttons to send the vJoy input. Repeat until all three parts are calibrated.</li>
-        </ol>
-        <p class="muted">MAIRA initializes vJoy automatically on this track. If the overlay shows the Centripetal warning, the buttons are disabled until you switch to the correct track.</p>
-      </section>
-
-      <section class="section">
-        <h2>Part 2 — Run the automated calibration</h2>
-        <ul class="list-compact">
-          <li>Leave the garage and put your car on the track.</li>
-          <li><span class="ui-label">Run Calibration</span> — starts the calibration routine. MAIRA target‑drives at low speed (≈ <span class="ui-label">15 km/h</span>) and sweeps steering across the supported range (±<span class="ui-label">450°</span>), sampling yaw‑rate vs. steering angle.</li>
-          <li><span class="ui-label">Stop Calibration</span> — cancels the routine. Use this if you need to abort early.</li>
-        </ul>
-        <p>During the run you’ll see a progress indicator and a live calibration graph building in real time. When finished, MAIRA saves a calibration file for the current car/setup; it appears in the <span class="ui-label">Calibration File</span> dropdown on this page.</p>
-        <div class="tip">
-          <strong class="important">Pro tip:</strong> Don’t touch the wheel or pedal buttons while calibration is running. Give the car room to drive the circle; if a collision occurs, press <span class="ui-label">Stop Calibration</span>, reset the car, and try again.
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>Troubleshooting</h2>
-        <ul class="list-compact">
-          <li><strong>No buttons visible?</strong> You’re likely not on <span class="ui-label">Centripetal Circuit</span>. Return to the test track and reopen this page.</li>
-          <li><strong>Inputs don’t register in iRacing?</strong> Make sure iRacing’s control assignment is focused (the row is highlighted) before pressing a MAIRA button; also verify vJoy isn’t claimed by other software.</li>
-        </ul>
-      </section>
-
-      <hr/>
-      <p class="footer">MAIRA Refactored • Steering Effects — Calibration</p>
-    </article>
-  </main>
-</body>
+				<section class="section">
+					<h3>Troubleshooting</h3>
+					<p><strong>No buttons visible?</strong> You’re likely not on <span class="ui-label">Centripetal Circuit</span>. Return to the test track and reopen this page.</p>
+					<p><strong>Inputs don’t register in iRacing?</strong> Make sure iRacing’s control assignment is focused (the row is highlighted) before pressing a MAIRA button; also verify vJoy isn’t claimed by other software.</p>
+				</section>
+			</article>
+		</main>
+	</body>
 </html>

@@ -1104,4 +1104,13 @@
   <data name="Click_UC" xml:space="preserve">
     <value>Clicca</value>
   </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>Suono</value>
+  </data>
+  <data name="Connection_UC" xml:space="preserve">
+    <value>Connessione</value>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>Schermo</value>
+  </data>
 </root>

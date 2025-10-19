@@ -1,96 +1,69 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>MAIRA — Racing Wheel • Device</title>
-  <link rel="stylesheet" href="maira-docs.css" />
-</head>
-<body>
-  <main class="container">
-    <header class="header">
-      <div>
-        <h1 class="title">Racing Wheel — Device</h1>
-        <p class="subtitle">Controls that select your wheelbase and manage basic force‑feedback functions.</p>
-        <div class="badges">
-          <span class="badge">Racing Wheel</span>
-          <span class="badge">Device</span>
-          <span class="badge">FFB Basics</span>
-        </div>
-      </div>
-    </header>
+	<head>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<title>MAIRA — Racing Wheel — Device</title>
+		<link rel="stylesheet" href="maira-docs.css"/>
+	</head>
+	<body>
+		<main class="container">
+			<header class="header">
+				<div>
+					<div class="title">
+						<h1>Racing Wheel</h1>
+						<h2>Device</h2>
+					</div>
+					<p class="subtitle">Controls that select your wheelbase and manage basic force‑feedback functions.</p>
+				</div>
+			</header>
 
-    <article class="article">
-      <section class="section">
-        <div class="kv">
-          <div class="k">UI Location</div>
-          <div class="v"><span class="ui-label">Racing Wheel</span> page • section labeled <span class="ui-label">Device</span></div>
+			<article class="article">
+				<section class="section">
+					<h3>Steering Device</h3>
+					<p>Selects the DirectInput <em>force‑feedback device</em> MAIRA will control.</p>
+					<p>MAIRA lists detected FFB‑capable devices. When you pick one, MAIRA saves the device’s GUID and binds output to it. If the device is offline at launch, the previous selection is preserved and flagged as “Device not found”.</p>
+					<p>Default: <span class="important">Not selected (empty GUID)</span></p>
+				</section>
 
-          <div class="k">What this section does</div>
-          <div class="v">Lets you select which wheel MAIRA controls and provides quick actions to enable/disable output, play a test pulse, and re‑initialize the connection.</div>
-        </div>
-      </section>
+				<section class="section">
+					<h3>Power</h3>
+					<p>When <em>On</em>, MAIRA sends FFB to the selected device; when <em>Off</em>, MAIRA does not output FFB.</p>
+					<p>Supports button mappings and optional context switches (per wheelbase / car / track / layout / wet‑dry).</p>
+					<p>Default: <span class="important">On</span></p>
+					<div class="kv">
+						<div class="k" style="color:red">Red</div>
+						<div class="v">Force-feedback has been manually shut off.</div>
 
-      <section class="section">
-        <h2>Steering Device</h2>
-        <p>Dropdown labeled <span class="ui-label">Steering Device</span>.</p>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">Not selected (empty GUID)</span>.</li>
-          <li><strong>What it does:</strong> selects the DirectInput <em>force‑feedback device</em> MAIRA will control.</li>
-          <li><strong>How it works:</strong> MAIRA lists detected FFB‑capable devices. When you pick one, MAIRA saves the device’s GUID and binds output to it. If the device is offline at launch, the previous selection is preserved and flagged as “Device not found”.</li>
-        </ul>
-      </section>
+						<div class="k" style="color:orange">Orange</div>
+						<div class="v">On, but force-feedback has been automatically disabled due to iRacing simulator not running, or initialization error.</div>
 
-      <section class="section">
-        <h2>Power</h2>
-        <p>Button labeled <span class="ui-label">Power</span>.</p>
-        <ul class="list-compact">
-          <li><strong>Default:</strong> <span class="important">On</span>.</li>
-          <li><strong>What it does:</strong> When <em>On</em>, MAIRA sends FFB to the selected device; when <em>Off</em>, MAIRA does not output FFB.</li>
-          <li><strong>Details:</strong> Supports button mappings and optional context switches (per wheelbase / car / track / layout / wet‑dry).</li>
-        </ul>
-        <div class="tip">
-          <strong class="important">Pro tip:</strong> map an easily reachable button to <span class="ui-label">Power</span> so you can instantly cut FFB if the wheel behaves unexpectedly (e.g., oscillation or runaway force).
-          This gives you a way to perform a quick emergency shut‑off.
-        </div>
-        <div class="kv">
-          <div class="k" style="color:red">Red</div>
-          <div class="v">Force-feedback has been manually shut off.</div>
+						<div class="k" style="color:yellow">Yellow</div>
+						<div class="v">On, but force-feedback has been automatically disabled due to iRacing FFB being enabled.</div>
 
-          <div class="k" style="color:orange">Orange</div>
-          <div class="v">On, but force-feedback has been automatically disabled due to iRacing simulator not running, or initialization error.</div>
+						<div class="k" style="color:green">Green</div>
+						<div class="v">On, and force-feedback is enabled and running normally.</div>
+					</div>
+					<div class="tip">
+						Pro tip: map an easily reachable button to Power so you can instantly cut FFB if the wheel behaves unexpectedly (e.g., oscillation or runaway force).
+						This gives you a way to perform a quick emergency shut‑off.
+					</div>
+				</section>
 
-          <div class="k" style="color:yellow">Yellow</div>
-          <div class="v">On, but force-feedback has been automatically disabled due to iRacing FFB being enabled.</div>
+				<section class="section">
+					<h3>Test</h3>
+					<p>Plays a brief (~2s) vibration pulse to confirm FFB is flowing.</p>
+					<p>Requires Power to be On and green.</p>
+				</section>
 
-          <div class="k" style="color:green">Green</div>
-          <div class="v">On, and force-feedback is enabled and running normally.</div>
-        </div>
-      </section>
-
-      <section class="section">
-        <h2>Test</h2>
-        <p>Button labeled <span class="ui-label">Test</span>.</p>
-        <ul class="list-compact">
-          <li><strong>What it does:</strong> Plays a brief (~2s) vibration pulse to confirm FFB is flowing.</li>
-          <li><strong>Notes:</strong> Requires Power to be On and green.</li>
-        </ul>
-      </section>
-
-      <section class="section">
-        <h2>Reset</h2>
-        <p>Button labeled <span class="ui-label">Reset</span>.</p>
-        <ul class="list-compact">
-          <li><strong>What it does:</strong> Re‑initializes the FFB session with the selected device; useful after hot‑plugging or if output feels stuck.</li>
-        </ul>
-        <div class="tip">
-          <strong class="important">Pro tip:</strong> map a button to <span class="ui-label">Reset</span> so you can quickly reset the connection if the wheel becomes disconnected or uninitialized for some reason.
-        </div>
-      </section>
-
-      <hr />
-      <p class="footer">MAIRA Refactored • Racing Wheel — Device</p>
-    </article>
-  </main>
-</body>
+				<section class="section">
+					<h3>Reset</h3>
+					<p>Re‑initializes the FFB session with the selected device; useful after hot‑plugging or if output feels stuck.</p>
+					<div class="tip">
+						Pro tip: map a button to Reset so you can quickly reset the connection if the wheel becomes disconnected or uninitialized for some reason.
+					</div>
+				</section>
+			</article>
+		</main>
+	</body>
 </html>
