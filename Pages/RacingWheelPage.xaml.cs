@@ -1,13 +1,12 @@
 ﻿
+using MarvinsAIRARefactored.Components;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 using Point = System.Windows.Point;
 using UserControl = System.Windows.Controls.UserControl;
-
-using MarvinsAIRARefactored.Components;
 
 namespace MarvinsAIRARefactored.Pages;
 
@@ -297,6 +296,41 @@ public partial class RacingWheelPage : UserControl
 		} );
 
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateAlgorithmOptions" );
+	}
+
+	public void UpdateFFBSourceOptions()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[RacingWheelPage] UpdateFFBSourceOptions >>>" );
+
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var dictionary = new Dictionary<RacingWheel.MultiFFBSource, string>
+		{
+			{ RacingWheel.MultiFFBSource.Native60Hz, localization[ "Native60Hz" ] },
+			{ RacingWheel.MultiFFBSource.HybridVariable30, localization[ "HybridVariable30" ] },
+			{ RacingWheel.MultiFFBSource.Hybrid10, localization[ "Hybrid10" ] },
+			{ RacingWheel.MultiFFBSource.Native360Hz, localization[ "Native360Hz" ] },
+			{ RacingWheel.MultiFFBSource._Dummy_, "" },
+			{ RacingWheel.MultiFFBSource.DefaultsNative60Hz, localization[ "DefaultsNative60Hz" ] },
+			{ RacingWheel.MultiFFBSource.DefaultsHybridVariable30, localization[ "DefaultsHybridVariable30" ] },
+			{ RacingWheel.MultiFFBSource.DefaultsHybrid10, localization[ "DefaultsHybrid10" ] },
+			{ RacingWheel.MultiFFBSource.DefaultsNative360Hz, localization[ "DefaultsNative360Hz" ] },
+			{ RacingWheel.MultiFFBSource.PresetBasicFFB, localization[ "PresetBasicFFB" ] },
+			{ RacingWheel.MultiFFBSource.PresetBalancedFFB, localization[ "PresetBalancedFFB" ] },
+			{ RacingWheel.MultiFFBSource.PresetBoostDetail, localization[ "PresetBoostDetail" ] },
+			{ RacingWheel.MultiFFBSource.PresetReduceDetail, localization[ "PresetReduceDetail" ] }
+		};
+
+		app.Dispatcher.Invoke( () =>
+		{
+			MultiFFBSource_MairaComboBox.ItemsSource = dictionary;
+			MultiFFBSource_MairaComboBox.SelectedValue = settings.RacingWheelMultiFFBSource;
+		} );
+
+		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateFFBSourceOptions" );
 	}
 
 	#endregion

@@ -10,7 +10,7 @@ public class Telemetry
 	private const string MemoryMappedFileName = "Local\\MAIRARefactoredTelemetry";
 	private const int MaxStringLengthInBytes = 256;
 
-	private const int Version = 6;
+	private const int Version = 7;
 
 	[StructLayout( LayoutKind.Sequential, Pack = 4 )]
 	public unsafe struct DataBufferStruct
@@ -54,9 +54,9 @@ public class Telemetry
 		public fixed byte racingWheelAlgorithmSoftLimiterName[ MaxStringLengthInBytes ];
 		public fixed byte racingWheelAlgorithmSoftLimiterValue[ MaxStringLengthInBytes ];
 
-		public fixed float racingWheelAlgorithmSettings[ 4 ];
-		public fixed byte racingWheelAlgorithmSettingNames[ 4 * MaxStringLengthInBytes ];
-		public fixed byte racingWheelAlgorithmSettingValues[ 4 * MaxStringLengthInBytes ];
+		public fixed float racingWheelAlgorithmSettings[ 7 ];
+		public fixed byte racingWheelAlgorithmSettingNames[ 7 * MaxStringLengthInBytes ];
+		public fixed byte racingWheelAlgorithmSettingValues[ 7 * MaxStringLengthInBytes ];
 
 		// steering effects settings telemetry
 
@@ -133,7 +133,7 @@ public class Telemetry
 
 		public void SetRacingWheelAlgorithmSettingName( int index, string? value )
 		{
-			if ( index < 0 || index >= 5 ) return;
+			if ( index < 0 || index >= 7 ) return;
 
 			fixed ( byte* bytePtr = racingWheelAlgorithmSettingNames )
 			{
@@ -143,7 +143,7 @@ public class Telemetry
 
 		public void SetRacingWheelAlgorithmSettingValue( int index, string? value )
 		{
-			if ( index < 0 || index >= 5 ) return;
+			if ( index < 0 || index >= 7 ) return;
 
 			fixed ( byte* bytePtr = racingWheelAlgorithmSettingValues )
 			{
@@ -413,20 +413,63 @@ public class Telemetry
 
 					case RacingWheel.Algorithm.MultiAdjustmentToolkit:
 
-						dataBuffer.racingWheelAlgorithmSettings[ 0 ] = settings.RacingWheelMultiTorqueCompression;
-						dataBuffer.racingWheelAlgorithmSettings[ 1 ] = settings.RacingWheelMultiSlewRateReduction;
-						dataBuffer.racingWheelAlgorithmSettings[ 2 ] = settings.RacingWheelMultiDetailGain;
-						dataBuffer.racingWheelAlgorithmSettings[ 3 ] = settings.RacingWheelMultiOutputSmoothing;
+						switch ( settings.RacingWheelMultiFFBSource )
+						{
+							case RacingWheel.MultiFFBSource.Native60Hz:
+								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 0f;
+								break;
 
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, localization[ "TorqueCompression" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, localization[ "SlewRateReduction" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 2, localization[ "DetailGain" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 3, localization[ "OutputSmoothing" ] );
+							case RacingWheel.MultiFFBSource.HybridVariable30:
+								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 1f;
+								break;
 
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, settings.RacingWheelMultiTorqueCompressionString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 1, settings.RacingWheelMultiSlewRateReductionString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 2, settings.RacingWheelMultiDetailGainString );
-						dataBuffer.SetRacingWheelAlgorithmSettingValue( 3, settings.RacingWheelMultiOutputSmoothingString );
+							case RacingWheel.MultiFFBSource.Hybrid10:
+								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 2f;
+								break;
+
+							case RacingWheel.MultiFFBSource.Native360Hz:
+								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 3f;
+								break;
+						}
+						dataBuffer.racingWheelAlgorithmSettings[ 1 ] = settings.RacingWheelMulti360HzDetail;
+						dataBuffer.racingWheelAlgorithmSettings[ 2 ] = settings.RacingWheelMultiTorqueCompression;
+						dataBuffer.racingWheelAlgorithmSettings[ 3 ] = ( settings.RacingWheelMultiEnableSlewPeakMode ) ? 1f : 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 4 ] = settings.RacingWheelMultiSlewRateReduction;
+						dataBuffer.racingWheelAlgorithmSettings[ 5 ] = settings.RacingWheelMultiDetailGain;
+						dataBuffer.racingWheelAlgorithmSettings[ 6 ] = settings.RacingWheelMultiOutputSmoothing;
+
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, localization[ "FFBSource" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, localization[ "Multi360HzDetail" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 2, localization[ "TorqueCompression" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 3, localization[ "RacingWheelMultSlewPeakMode" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 4, localization[ "SlewRateReduction" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 5, localization[ "DetailGain" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 6, localization[ "OutputSmoothing" ] );
+
+						switch ( settings.RacingWheelMultiFFBSource )
+						{
+							case RacingWheel.MultiFFBSource.Native60Hz:
+								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "Native60Hz" ] );
+								break;
+
+							case RacingWheel.MultiFFBSource.HybridVariable30:
+								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "HybridVariable30" ] );
+								break;
+
+							case RacingWheel.MultiFFBSource.Hybrid10:
+								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "Hybrid10" ] );
+								break;
+
+							case RacingWheel.MultiFFBSource.Native360Hz:
+								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "Native360Hz" ] );
+								break;
+						}
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 1, settings.RacingWheelMulti360HzDetailString );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 2, settings.RacingWheelMultiTorqueCompressionString );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 3, settings.RacingWheelMultiEnableSlewPeakMode ? localization[ "ON" ] : localization[ "OFF" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 4, settings.RacingWheelMultiSlewRateReductionString );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 5, settings.RacingWheelMultiDetailGainString );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 6, settings.RacingWheelMultiOutputSmoothingString );
 
 						break;
 				}

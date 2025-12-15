@@ -21,8 +21,11 @@ public class ContextSettings
 	public float RacingWheelSlewCompressionRate { get; set; }
 	public float RacingWheelTotalCompressionThreshold { get; set; }
 	public float RacingWheelTotalCompressionRate { get; set; }
+	public float RacingWheelMulti360HzDetail { get; set; }
 	public float RacingWheelMultiTorqueCompression { get; set; }
+	public bool RacingWheelMultiEnableSlewPeakMode { get; set; }
 	public float RacingWheelMultiSlewRateReduction { get; set; }
+	public float RacingWheelMultiFFBSource { get; set; }
 	public float RacingWheelMultiDetailGain { get; set; }
 	public float RacingWheelMultiOutputSmoothing { get; set; }
 	public float RacingWheelOutputMinimum { get; set; }

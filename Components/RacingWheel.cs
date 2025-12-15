@@ -20,6 +20,23 @@ public class RacingWheel
 		MultiAdjustmentToolkit
 	};
 
+	public enum MultiFFBSource
+	{
+		Native60Hz,
+		Native360Hz,
+		Hybrid10,
+		HybridVariable30,
+		DefaultsNative60Hz,
+		DefaultsNative360Hz,
+		DefaultsHybrid10,
+		DefaultsHybridVariable30,
+		PresetBoostDetail,
+		PresetReduceDetail,
+		PresetBasicFFB,
+		PresetBalancedFFB,
+		_Dummy_
+	};
+
 	public enum VibrationPattern
 	{
 		None,
@@ -82,9 +99,9 @@ public class RacingWheel
 
 	private readonly float[] _steeringWheelTorque360Hz = new float[ Simulator.SamplesPerFrame360Hz + 2 ];
 
-	private float[] _algorithmPropertyA = [ 0f, 0f ];
-	private float[] _algorithmPropertyB = [ 0f, 0f ];
-	private float[] _algorithmPropertyC = [ 0f, 0f ];
+	private readonly float[ , ] _algorithmProperties = new float[2, 12];
+
+	private readonly Algorithm[] _lastAlgorithm = new Algorithm[2];
 
 	private float _outputTorque = 0f;
 	private float _peakTorque = 0f;
@@ -167,10 +184,10 @@ public class RacingWheel
 			{
 				var detailBoost = MathZ.Lerp( 1f + settings.RacingWheelDetailBoost, 1f, curbProtectionLerpFactor );
 
-				_algorithmPropertyB[ algorithmPropertyIndex ] = MathZ.Lerp( _algorithmPropertyB[ algorithmPropertyIndex ] + ( steeringWheelTorque500Hz - _algorithmPropertyA[ algorithmPropertyIndex ] ) * detailBoost, steeringWheelTorque500Hz, settings.RacingWheelDetailBoostBias );
-				_algorithmPropertyA[ algorithmPropertyIndex ] = steeringWheelTorque500Hz;
+				_algorithmProperties[ algorithmPropertyIndex, 1 ] = MathZ.Lerp( _algorithmProperties[ algorithmPropertyIndex, 1 ] + ( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, 0 ] ) * detailBoost, steeringWheelTorque500Hz, settings.RacingWheelDetailBoostBias );
+				_algorithmProperties[ algorithmPropertyIndex, 0 ] = steeringWheelTorque500Hz;
 
-				outputTorque = _algorithmPropertyB[ algorithmPropertyIndex ] / settings.RacingWheelMaxForce;
+				outputTorque = _algorithmProperties[ algorithmPropertyIndex, 1 ] / settings.RacingWheelMaxForce;
 
 				break;
 			}
@@ -179,12 +196,12 @@ public class RacingWheel
 			{
 				var deltaLimit = MathZ.Lerp( settings.RacingWheelDeltaLimit / 500f, 0f, curbProtectionLerpFactor );
 
-				var limitedDeltaSteeringWheelTorque500Hz = Math.Clamp( steeringWheelTorque500Hz - _algorithmPropertyA[ algorithmPropertyIndex ], -deltaLimit, deltaLimit );
+				var limitedDeltaSteeringWheelTorque500Hz = Math.Clamp( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, 0 ], -deltaLimit, deltaLimit );
 
-				_algorithmPropertyB[ algorithmPropertyIndex ] = MathZ.Lerp( _algorithmPropertyB[ algorithmPropertyIndex ] + limitedDeltaSteeringWheelTorque500Hz, steeringWheelTorque500Hz, settings.RacingWheelDeltaLimiterBias );
-				_algorithmPropertyA[ algorithmPropertyIndex ] = steeringWheelTorque500Hz;
+				_algorithmProperties[ algorithmPropertyIndex, 1 ] = MathZ.Lerp( _algorithmProperties[ algorithmPropertyIndex, 1 ] + limitedDeltaSteeringWheelTorque500Hz, steeringWheelTorque500Hz, settings.RacingWheelDeltaLimiterBias );
+				_algorithmProperties[ algorithmPropertyIndex, 0 ] = steeringWheelTorque500Hz;
 
-				outputTorque = _algorithmPropertyB[ algorithmPropertyIndex ] / settings.RacingWheelMaxForce;
+				outputTorque = _algorithmProperties[ algorithmPropertyIndex, 1 ] / settings.RacingWheelMaxForce;
 
 				break;
 			}
@@ -193,10 +210,10 @@ public class RacingWheel
 			{
 				var detailBoost = MathZ.Lerp( 1f + settings.RacingWheelDetailBoost, 1f, curbProtectionLerpFactor );
 
-				_algorithmPropertyB[ algorithmPropertyIndex ] = MathZ.Lerp( _algorithmPropertyB[ algorithmPropertyIndex ] + ( steeringWheelTorque500Hz - _algorithmPropertyA[ algorithmPropertyIndex ] ) * detailBoost, steeringWheelTorque60Hz, settings.RacingWheelDetailBoostBias );
-				_algorithmPropertyA[ algorithmPropertyIndex ] = steeringWheelTorque500Hz;
+				_algorithmProperties[ algorithmPropertyIndex, 1 ] = MathZ.Lerp( _algorithmProperties[ algorithmPropertyIndex, 1 ] + ( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, 0 ] ) * detailBoost, steeringWheelTorque60Hz, settings.RacingWheelDetailBoostBias );
+				_algorithmProperties[ algorithmPropertyIndex, 0 ] = steeringWheelTorque500Hz;
 
-				outputTorque = _algorithmPropertyB[ algorithmPropertyIndex ] / settings.RacingWheelMaxForce;
+				outputTorque = _algorithmProperties[ algorithmPropertyIndex, 1 ] / settings.RacingWheelMaxForce;
 
 				break;
 			}
@@ -205,21 +222,21 @@ public class RacingWheel
 			{
 				var deltaLimit = MathZ.Lerp( settings.RacingWheelDeltaLimit / 500f, 0f, curbProtectionLerpFactor );
 
-				var limitedDeltaSteeringWheelTorque500Hz = Math.Clamp( steeringWheelTorque500Hz - _algorithmPropertyA[ algorithmPropertyIndex ], -deltaLimit, deltaLimit );
+				var limitedDeltaSteeringWheelTorque500Hz = Math.Clamp( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, 0 ], -deltaLimit, deltaLimit );
 
-				_algorithmPropertyB[ algorithmPropertyIndex ] = MathZ.Lerp( _algorithmPropertyB[ algorithmPropertyIndex ] + limitedDeltaSteeringWheelTorque500Hz, steeringWheelTorque60Hz, settings.RacingWheelDeltaLimiterBias );
-				_algorithmPropertyA[ algorithmPropertyIndex ] = steeringWheelTorque500Hz;
+				_algorithmProperties[ algorithmPropertyIndex, 1 ] = MathZ.Lerp( _algorithmProperties[ algorithmPropertyIndex, 1 ] + limitedDeltaSteeringWheelTorque500Hz, steeringWheelTorque60Hz, settings.RacingWheelDeltaLimiterBias );
+				_algorithmProperties[ algorithmPropertyIndex, 0 ] = steeringWheelTorque500Hz;
 
-				outputTorque = _algorithmPropertyB[ algorithmPropertyIndex ] / settings.RacingWheelMaxForce;
+				outputTorque = _algorithmProperties[ algorithmPropertyIndex, 1 ] / settings.RacingWheelMaxForce;
 
 				break;
 			}
 
 			case Algorithm.SlewAndTotalCompression:
 			{
-				var normalizedRunningTorque = _algorithmPropertyB[ algorithmPropertyIndex ] / settings.RacingWheelMaxForce;
+				var normalizedRunningTorque = _algorithmProperties[ algorithmPropertyIndex, 1 ] / settings.RacingWheelMaxForce;
 
-				var normalizedDelta = ( steeringWheelTorque500Hz - _algorithmPropertyB[ algorithmPropertyIndex ] ) / settings.RacingWheelMaxForce;
+				var normalizedDelta = ( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, 1 ] ) / settings.RacingWheelMaxForce;
 				var normalizedDeltaAbs = MathF.Abs( normalizedDelta );
 
 				var deltaLimit = settings.RacingWheelSlewCompressionThreshold / 500f;
@@ -249,8 +266,8 @@ public class RacingWheel
 					normalizedRunningTorque = MathZ.Compression( normalizedRunningTorque, settings.RacingWheelTotalCompressionRate, settings.RacingWheelTotalCompressionThreshold, settings.RacingWheelTotalCompressionThreshold );
 				}
 
-				_algorithmPropertyB[ algorithmPropertyIndex ] = normalizedRunningTorque * settings.RacingWheelMaxForce;
-				_algorithmPropertyA[ algorithmPropertyIndex ] = steeringWheelTorque500Hz;
+				_algorithmProperties[ algorithmPropertyIndex, 1 ] = normalizedRunningTorque * settings.RacingWheelMaxForce;
+				_algorithmProperties[ algorithmPropertyIndex, 0 ] = steeringWheelTorque500Hz;
 
 				outputTorque = normalizedRunningTorque;
 
@@ -259,102 +276,187 @@ public class RacingWheel
 
 			case Algorithm.MultiAdjustmentToolkit:
 			{
-				var steadyBias = 0.08f;
+				const int index60HzLastTorque = 0;
+				const int index360HzLastTorque = 1;
+				const int indexHybridLastTorque = 2;
+				const int indexHybridLastVelocitySign = 3;
+				const int indexNormalizedLastCompressedTorque = 4;
+				const int indexNormalizedLastSlewReducedTorque = 5;
+				const int indexNormalizedLastDetailGainLpfTorque = 6;
+				const int indexNormalizedLastDetailGainTorque = 7;
+				const int indexNormalizedLastSmoothingLpfTorque = 8;
+				const int indexNormalizedLastSmoothedTorque = 9;
+				const int indexTicksSinceLast60Hz = 10;
+				const int indexPeakCountdown = 11;
 
-				var normalizedLastCompressedTorque = _algorithmPropertyA[ algorithmPropertyIndex ];
-				var normalizedPriorRunningTorque = _algorithmPropertyB[ algorithmPropertyIndex ];
-				var normalizedPriorSteadyTorque = _algorithmPropertyC[ algorithmPropertyIndex ];
+				var app = App.Instance!;
 
-				var normalizedTorque500Hz = steeringWheelTorque500Hz / settings.RacingWheelMaxForce;
-				var normalizedTorque60Hz = steeringWheelTorque60Hz / settings.RacingWheelMaxForce;
+				var lastTorque60Hz = 0f;
+				var ticksSinceLast60Hz = 0f;
+				var peakCountdown = MathF.Max( 0f, _algorithmProperties[ algorithmPropertyIndex, indexPeakCountdown ] - 1f );
+				var hybridLastTorque = 0f;
+				if ( settings.RacingWheelAlgorithm == _lastAlgorithm[ algorithmPropertyIndex ] )
+				{
+					lastTorque60Hz = _algorithmProperties[ algorithmPropertyIndex, index60HzLastTorque ];
+					ticksSinceLast60Hz = ( lastTorque60Hz == steeringWheelTorque60Hz ) ? ( _algorithmProperties[ algorithmPropertyIndex, indexTicksSinceLast60Hz ] + 1f ) : 0f;
+					hybridLastTorque = _algorithmProperties[ algorithmPropertyIndex, indexHybridLastTorque ];
+				}
 
+				var hfScaledDelta = ( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, index360HzLastTorque ] ) * settings.RacingWheelMulti360HzDetail;
+				var hybridTorque = 0f;
+
+				switch ( settings.RacingWheelMultiFFBSource )
+				{
+					case MultiFFBSource.Native60Hz:
+						hybridTorque = steeringWheelTorque60Hz;
+						break;
+
+					case MultiFFBSource.HybridVariable30:
+						var preliminaryHybridTorque = MathZ.Lerp( hybridLastTorque + hfScaledDelta, steeringWheelTorque60Hz, 0.3f - 0.2f * peakCountdown / 10f );
+
+						if ( MathF.Sign( preliminaryHybridTorque - hybridLastTorque ) != _algorithmProperties[ algorithmPropertyIndex, indexHybridLastVelocitySign ] )
+						{
+							peakCountdown = 10f;
+							hybridTorque = MathZ.Lerp( hybridLastTorque + hfScaledDelta, steeringWheelTorque60Hz, 0.3f - 0.2f * peakCountdown / 10f );
+						}
+						else
+						{
+							hybridTorque = preliminaryHybridTorque;
+						}
+						
+						break;
+
+					case MultiFFBSource.Hybrid10:
+						hybridTorque = MathZ.Lerp( hybridLastTorque + hfScaledDelta, steeringWheelTorque60Hz, 0.1f );
+						break;
+
+					case MultiFFBSource.Native360Hz:
+						hybridTorque = steeringWheelTorque500Hz;
+						break;
+				}
+
+				var normalizedHybridTorque = hybridTorque / settings.RacingWheelMaxForce;
+
+				var normalizedCompressedTorque = normalizedHybridTorque;
 				var compressionAmount = settings.RacingWheelMultiTorqueCompression;
-				var slewAmount = settings.RacingWheelMultiSlewRateReduction;
-				var detailGain = MathZ.Lerp( 1f + settings.RacingWheelMultiDetailGain, 1f, curbProtectionLerpFactor );
-				var smoothingAmount = settings.RacingWheelMultiOutputSmoothing;
-
-				var normalizedCompressedTorque = normalizedTorque500Hz;
-
 				if ( compressionAmount > 0f )
 				{
 					var compressionRate = MathF.Min( 2f * compressionAmount, 0.75f );
 					var compressionThreshold = 1f - 0.75f * compressionAmount;
 					var compressionWidth = MathF.Min( compressionAmount, 0.5f );
 
-					normalizedCompressedTorque = MathZ.Compression( normalizedTorque500Hz, compressionRate, compressionThreshold, compressionWidth );
+					normalizedCompressedTorque = MathZ.Compression( normalizedHybridTorque, compressionRate, compressionThreshold, compressionWidth );
 				}
-
+				
+				var normalizedLastCompressedTorque = _algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastCompressedTorque ];
+				var normalizedLastSlewReducedTorque = _algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastSlewReducedTorque ];
+				var slewAmount = settings.RacingWheelMultiSlewRateReduction;
+				var normalizedSlewReducedTorque = normalizedCompressedTorque;
 				if ( slewAmount > 0f )
 				{
-					float slewRateMultiplier;
+					var absNormalizedCompressedTorque = MathF.Abs( normalizedCompressedTorque );
+					var absNormalizedLastCompressedTorque = MathF.Abs( normalizedLastCompressedTorque );
+					var absNormalizedLastSlewReducedTorque = MathF.Abs( normalizedLastSlewReducedTorque );
 
-					if ( ( MathF.Abs( normalizedCompressedTorque ) > MathF.Abs( normalizedLastCompressedTorque ) ) || ( MathF.Sign( normalizedCompressedTorque ) != MathF.Sign( normalizedLastCompressedTorque ) ) )
+					if( settings.RacingWheelMultiEnableSlewPeakMode && ( absNormalizedCompressedTorque < absNormalizedLastCompressedTorque ) && ( MathF.Abs( normalizedLastCompressedTorque ) != 0f ) )
 					{
-						slewRateMultiplier = 1f;
+						var targetScaledTorque = normalizedLastSlewReducedTorque * normalizedCompressedTorque / normalizedLastCompressedTorque;
+						var targetBlendedTorque = targetScaledTorque * 0.5f + normalizedCompressedTorque * 0.5f;
+
+						if( MathF.Abs( targetBlendedTorque ) < absNormalizedLastSlewReducedTorque )
+						{
+							normalizedSlewReducedTorque = normalizedLastSlewReducedTorque + ( targetBlendedTorque - normalizedLastSlewReducedTorque );
+						}
+						else
+						{
+							normalizedSlewReducedTorque = normalizedLastSlewReducedTorque + ( targetScaledTorque - normalizedLastSlewReducedTorque );
+						}
 					}
 					else
 					{
-						slewRateMultiplier = 0.8f;
+						var normalizedSlewDelta = normalizedCompressedTorque - normalizedLastSlewReducedTorque;
+						var slewThreshold = 0.01f - 0.0095f * slewAmount;
+						var slewWidth = MathF.Min( MathF.Pow( slewAmount, 0.005f ), 0.0025f );
+
+						if ( MathF.Abs( normalizedSlewDelta ) > slewThreshold )
+						{
+							var slewRate = MathF.Min( MathF.Pow( slewAmount, 0.55f ), 0.9f );
+							var slewRateMultiplier = ( absNormalizedCompressedTorque < absNormalizedLastSlewReducedTorque ) ? 0.8f : 1f;
+
+							normalizedSlewReducedTorque = normalizedLastSlewReducedTorque + MathZ.Compression( normalizedSlewDelta, slewRate * slewRateMultiplier, slewThreshold, slewWidth );
+						}
+						else
+						{
+							normalizedSlewReducedTorque = normalizedCompressedTorque;
+						}
 					}
-
-					var slewRate = MathF.Min( MathF.Pow( slewAmount, 0.35f ), 0.9f ) * slewRateMultiplier;
-					var slewThreshold = 0.01f - 0.0095f * slewAmount;
-					var slewWidth = MathF.Min( MathF.Pow( slewAmount, 0.005f ), 0.0025f );
-
-					var delta = normalizedCompressedTorque - normalizedLastCompressedTorque;
-					var compressedDelta = MathZ.Compression( delta, slewRate, slewThreshold, slewWidth );
-
-					normalizedCompressedTorque = normalizedLastCompressedTorque + compressedDelta;
 				}
 
-				var normalizedRunningSteadyTorque = MathZ.Lerp( normalizedPriorSteadyTorque, ( normalizedCompressedTorque + normalizedTorque60Hz ) * 0.5f, steadyBias );
-				var normalizedRunningTorque = normalizedCompressedTorque;
-
+				var normalizedDetailGainTorque = normalizedSlewReducedTorque;
+				var normalizedDetailGainLpfTorque = 0f;
+				var detailGain = MathZ.Lerp( 1f + settings.RacingWheelMultiDetailGain, 1f, curbProtectionLerpFactor );
 				if ( detailGain != 1f )
 				{
 					const float epsilonGuard = 1e-6f;
 
-					var currentDeviation = normalizedCompressedTorque - normalizedRunningSteadyTorque;
-					var lastDeviation = normalizedLastCompressedTorque - normalizedRunningSteadyTorque;
-					var priorDeviationSign = normalizedLastCompressedTorque - normalizedPriorSteadyTorque;
+					var normalizedLastDetailGainLpfTorque = _algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastDetailGainLpfTorque ];
+					normalizedDetailGainLpfTorque = MathZ.Lerp( normalizedLastDetailGainLpfTorque, normalizedSlewReducedTorque, 0.11809f );
+					var currentDeviation = normalizedSlewReducedTorque - normalizedDetailGainLpfTorque;
+					var lastDeviation = normalizedLastSlewReducedTorque - normalizedDetailGainLpfTorque;
+					var priorDeviation = normalizedLastSlewReducedTorque - normalizedLastDetailGainLpfTorque;
 
-					if ( MathF.Abs( currentDeviation ) > MathF.Abs( lastDeviation ) || MathF.Sign( currentDeviation ) != MathF.Sign( priorDeviationSign ) || MathF.Abs( lastDeviation ) < epsilonGuard )
+					if ( MathF.Abs( currentDeviation ) > MathF.Abs( lastDeviation ) || MathF.Sign( currentDeviation ) != MathF.Sign( priorDeviation ) || MathF.Abs( lastDeviation ) < epsilonGuard )
 					{
 						if ( currentDeviation > 0f )
 						{
-							normalizedRunningTorque = MathF.Max( normalizedRunningSteadyTorque + currentDeviation * detailGain, normalizedRunningSteadyTorque );
+							normalizedDetailGainTorque = MathF.Max( normalizedDetailGainLpfTorque + currentDeviation * detailGain, normalizedDetailGainLpfTorque );
 						}
 						else
 						{
-							normalizedRunningTorque = MathF.Min( normalizedRunningSteadyTorque + currentDeviation * detailGain, normalizedRunningSteadyTorque );
+							normalizedDetailGainTorque = MathF.Min( normalizedDetailGainLpfTorque + currentDeviation * detailGain, normalizedDetailGainLpfTorque );
 						}
 					}
 					else
 					{
 						var ratio = currentDeviation / lastDeviation;
-						var carried = ratio * ( normalizedPriorRunningTorque - normalizedRunningSteadyTorque );
-						var candidate = normalizedRunningSteadyTorque + carried;
+						var carried = ratio * ( _algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastDetailGainTorque ] - normalizedDetailGainLpfTorque );
+						var candidate = normalizedDetailGainLpfTorque + carried;
 
-						normalizedRunningTorque = ( currentDeviation > 0f ) ? MathF.Max( candidate, normalizedRunningSteadyTorque ) : MathF.Min( candidate, normalizedRunningSteadyTorque );
+						normalizedDetailGainTorque = ( currentDeviation > 0f ) ? MathF.Max( candidate, normalizedDetailGainLpfTorque ) : MathF.Min( candidate, normalizedDetailGainLpfTorque );
 					}
 				}
 
-				if ( smoothingAmount != 0f )
+				var normalizedSmoothedTorque = normalizedDetailGainTorque;
+				var normalizedSmoothingLpfTorque = 0f;
+				if ( settings.RacingWheelMultiOutputSmoothing > 0f )
 				{
-					var smoothingRate = 0.8f * MathF.Pow( smoothingAmount, 0.3f );
-
-					normalizedRunningTorque = MathZ.Lerp( normalizedRunningTorque, normalizedPriorRunningTorque + normalizedRunningSteadyTorque - normalizedPriorSteadyTorque, smoothingRate );
+					var normalizedLastSmoothingLpfTorque = _algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastSmoothingLpfTorque ];
+					normalizedSmoothingLpfTorque = MathZ.Lerp(normalizedLastSmoothingLpfTorque, normalizedDetailGainTorque, 0.22223f );
+					var smoothingRate = 0.9f * MathF.Pow( settings.RacingWheelMultiOutputSmoothing, 0.5f );
+					var lpfDeltaAdjustedTorque = _algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastSmoothedTorque ] + normalizedSmoothingLpfTorque - normalizedLastSmoothingLpfTorque;
+					normalizedSmoothedTorque = MathZ.Lerp( normalizedDetailGainTorque, lpfDeltaAdjustedTorque, smoothingRate );
 				}
 
-				_algorithmPropertyA[ algorithmPropertyIndex ] = normalizedCompressedTorque;
-				_algorithmPropertyB[ algorithmPropertyIndex ] = normalizedRunningTorque;
-				_algorithmPropertyC[ algorithmPropertyIndex ] = normalizedRunningSteadyTorque;
+				outputTorque = normalizedSmoothedTorque;
 
-				outputTorque = normalizedRunningTorque;
+				_algorithmProperties[ algorithmPropertyIndex, indexHybridLastTorque ] = hybridTorque;
+				_algorithmProperties[ algorithmPropertyIndex, indexHybridLastVelocitySign ] = MathF.Sign( hybridTorque - hybridLastTorque );
+				_algorithmProperties[ algorithmPropertyIndex, index60HzLastTorque ] = steeringWheelTorque60Hz;
+				_algorithmProperties[ algorithmPropertyIndex, index360HzLastTorque ] = steeringWheelTorque500Hz;
+				_algorithmProperties[ algorithmPropertyIndex, indexTicksSinceLast60Hz ] = ticksSinceLast60Hz;
+				_algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastCompressedTorque ] = normalizedCompressedTorque;
+				_algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastSlewReducedTorque ] = normalizedSlewReducedTorque;
+				_algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastDetailGainLpfTorque ] = normalizedDetailGainLpfTorque;
+				_algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastDetailGainTorque ] = normalizedDetailGainTorque;
+				_algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastSmoothingLpfTorque ] = normalizedSmoothingLpfTorque;
+				_algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastSmoothedTorque ] = normalizedSmoothedTorque;
+				_algorithmProperties[ algorithmPropertyIndex, indexPeakCountdown ] = peakCountdown;
 
 				break;
 			}
 		}
+
+		_lastAlgorithm[ algorithmPropertyIndex ] = settings.RacingWheelAlgorithm;
 
 		// apply output curve
 
@@ -1197,9 +1299,10 @@ public class RacingWheel
 
 				var recording = app.RecordingManager.Recording;
 
-				_algorithmPropertyA[ 1 ] = 0f;
-				_algorithmPropertyB[ 1 ] = 0f;
-				_algorithmPropertyC[ 1 ] = 0f;
+				for ( var x = 0; x < 12; x++ )
+				{
+					_algorithmProperties[ 1, x ] = 0f;
+				}
 
 				for ( var x = 0; x < _algorithmPreviewGraphBase.BitmapWidth; x++ )
 				{

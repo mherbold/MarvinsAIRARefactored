@@ -145,6 +145,7 @@ public partial class MainWindow : Window
 			_racingWheelPage.UpdateLFERecordingDeviceOptions();
 			_racingWheelPage.UpdatePreviewRecordingsOptions();
 			_racingWheelPage.UpdateAlgorithmOptions();
+			_racingWheelPage.UpdateFFBSourceOptions();
 
 			_steeringEffectsPage.UpdateCalibrationFileNameOptions();
 			_steeringEffectsPage.UpdateVibrationPatternOptions();
@@ -295,8 +296,11 @@ public partial class MainWindow : Window
 			var racingWheelTotalCompressionThresholdVisibility = Visibility.Hidden;
 			var racingWheelTotalCompressionRateVisibility = Visibility.Hidden;
 
+			var racingWheelMulti360HzDetailVisibility = Visibility.Hidden;
 			var racingWheelMultiTorqueCompressionVisibility = Visibility.Hidden;
+			var racingWheelMultiEnableSlewPeakModeVisibility = Visibility.Hidden;
 			var racingWheelMultiSlewRateReductionVisibility = Visibility.Hidden;
+			var racingWheelMultiFFBSourceVisibility = Visibility.Hidden;
 			var racingWheelMultiDetailGainVisibility = Visibility.Hidden;
 			var racingWheelMultiOutputSmoothingVisibility = Visibility.Hidden;
 
@@ -327,11 +331,13 @@ public partial class MainWindow : Window
 					break;
 
 				case RacingWheel.Algorithm.MultiAdjustmentToolkit:
+					racingWheelMulti360HzDetailVisibility = Visibility.Visible;
 					racingWheelMultiTorqueCompressionVisibility = Visibility.Visible;
+					racingWheelMultiEnableSlewPeakModeVisibility = Visibility.Visible;
 					racingWheelMultiSlewRateReductionVisibility = Visibility.Visible;
+					racingWheelMultiFFBSourceVisibility = Visibility.Visible;
 					racingWheelMultiDetailGainVisibility = Visibility.Visible;
 					racingWheelMultiOutputSmoothingVisibility = Visibility.Visible;
-					racingWheelCurbProtectionMairaGroupBoxVisibility = Visibility.Visible;
 					break;
 			}
 
@@ -346,8 +352,11 @@ public partial class MainWindow : Window
 			_racingWheelPage.TotalCompressionThreshold_MairaKnob.Visibility = racingWheelTotalCompressionThresholdVisibility;
 			_racingWheelPage.TotalCompressionRate_MairaKnob.Visibility = racingWheelTotalCompressionRateVisibility;
 
+			_racingWheelPage.Multi360HzDetail_MairaKnob.Visibility = racingWheelMulti360HzDetailVisibility;
 			_racingWheelPage.MultiTorqueCompression_MairaKnob.Visibility = racingWheelMultiTorqueCompressionVisibility;
+			_racingWheelPage.MultiEnableSlewPeakMode_MairaSwitch.Visibility = racingWheelMultiEnableSlewPeakModeVisibility;
 			_racingWheelPage.MultiSlewRateReduction_MairaKnob.Visibility = racingWheelMultiSlewRateReductionVisibility;
+			_racingWheelPage.MultiFFBSource_MairaComboBox.Visibility = racingWheelMultiFFBSourceVisibility;
 			_racingWheelPage.MultiDetailGain_MairaKnob.Visibility = racingWheelMultiDetailGainVisibility;
 			_racingWheelPage.MultiOutputSmoothing_MairaKnob.Visibility = racingWheelMultiOutputSmoothingVisibility;
 
