@@ -1943,6 +1943,42 @@ public partial class App : Application
 				settings.PedalsNoiseDamper -= 0.01f;
 			}
 
+			// wind master wind power
+
+			if ( CheckMappedButtons( settings.WindMasterWindPowerPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.WindMasterWindPower += 0.01f;
+			}
+
+			if ( CheckMappedButtons( settings.WindMasterWindPowerMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.WindMasterWindPower -= 0.01f;
+			}
+
+			// wind minimum speed
+
+			if ( CheckMappedButtons( settings.WindMinimumSpeedPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.WindMinimumSpeed += 0.01f;
+			}
+
+			if ( CheckMappedButtons( settings.WindMinimumSpeedMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.WindMinimumSpeed-= 0.01f;
+			}
+
+			// wind curving
+
+			if ( CheckMappedButtons( settings.WindCurvingPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.WindCurving += 0.01f;
+			}
+
+			if ( CheckMappedButtons( settings.WindCurvingMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.WindCurving -= 0.01f;
+			}
+
 			// sounds master volume
 
 			if ( CheckMappedButtons( settings.SoundsMasterVolumePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )

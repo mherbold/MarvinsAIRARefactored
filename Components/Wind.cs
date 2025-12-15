@@ -15,6 +15,9 @@ public partial class Wind
 
 	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( "MAIRA WIND" );
 
+	private float _leftFanPower = 0f;
+	private float _rightFanPower = 0f;
+
 	private int _leftFanRPM = 0;
 	private int _rightFanRPM = 0;
 
@@ -163,9 +166,11 @@ public partial class Wind
 			settings.WindFanPower10,
 		};
 
-		var speed = MathF.Max( app.Simulator.VelocityX, settings.WindMinimumSpeed ) / 100f;
+		var velocity = MathF.Sqrt( app.Simulator.VelocityX * app.Simulator.VelocityX + app.Simulator.VelocityY * app.Simulator.VelocityY );
 
-		var fanPower = 0f;
+		var speed = MathF.Max( velocity, settings.WindMinimumSpeed ) / 100f;
+
+		var fanPower = settings.WindFanPower10;
 
 		for ( var speedIndex = 0; speedIndex < speedArray.Length; speedIndex++ )
 		{
@@ -196,10 +201,18 @@ public partial class Wind
 			}
 		}
 
-		var curveFactor = Math.Clamp( app.Simulator.VelocityY * 0.2f * settings.WindCurving + app.Simulator.YawRate * 2f * settings.WindCurving, -1f, 1f );
+		// VelocityY * 0.08f means that at 12.5 m/s (45 km/h) sideways velocity, the wind will be fully curved
+		// YawRate * 1.91f means that at 0.523 rad/s (30 deg/s) yaw rate, the wind will be fully curved
 
-		var rightFanPower = fanPower * ( 1f + MathF.Min( 0, curveFactor ) ) * settings.WindMasterWindPower * 320f;
-		var leftFanPower = fanPower * ( 1f - MathF.Max( 0, curveFactor ) ) * settings.WindMasterWindPower * 320f;
+		var curveFactor = Math.Clamp( app.Simulator.VelocityY * 0.08f * settings.WindCurving + app.Simulator.YawRate * 1.91f * settings.WindCurving, -1f, 1f );
+
+		// Negative curveFactor biases wind towards the left fan, positive towards the right fan
+
+		_leftFanPower = fanPower * ( 1f + MathF.Min( 0, curveFactor ) ) * settings.WindMasterWindPower * 320f;
+		_rightFanPower = fanPower * ( 1f - MathF.Max( 0, curveFactor ) ) * settings.WindMasterWindPower * 320f;
+
+		var leftFanPower = Math.Max( 1f, _leftFanPower );
+		var rightFanPower = Math.Max( 1f, _rightFanPower );
 
 		_usbSerialPortHelper.WriteLine( $"L{leftFanPower:F0}R{rightFanPower:F0}" );
 	}
@@ -213,6 +226,9 @@ public partial class Wind
 			_updateCounter = UpdateInterval;
 
 			Update( app );
+
+			MainWindow._windPage.LeftFanPower_TextBlock.Text = $"{_leftFanPower * 100f / 320f:F0}";
+			MainWindow._windPage.RightFanPower_TextBlock.Text = $"{_rightFanPower * 100f / 320f:F0}";
 
 			MainWindow._windPage.LeftFanRPM_TextBlock.Text = $"{_leftFanRPM}";
 			MainWindow._windPage.RightFanRPM_TextBlock.Text = $"{_rightFanRPM}";

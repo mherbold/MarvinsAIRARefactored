@@ -1493,4 +1493,8 @@
     <value>Simagic P700 Pedals</value>
     <comment>Pedals device</comment>
   </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>FAN STATUS</value>
+    <comment>Wind</comment>
+  </data>
 </root>

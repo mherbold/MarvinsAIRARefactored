@@ -646,7 +646,7 @@
                                     ContextSwitches="{Binding Settings.RacingWheelCrashProtectionDurationContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationMinusButtonMappings}"
-                                    DefaultValue="5" />
+                                    DefaultValue="1" />
                 <controls:MairaKnob Grid.Column="4"
                                     Label="{Binding Localization[ForceReduction]}"
                                     Value="{Binding Settings.RacingWheelCrashProtectionForceReduction, Mode=TwoWay}"

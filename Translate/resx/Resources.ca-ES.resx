@@ -14,307 +14,311 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Algorithm" xml:space="preserve">
-    <value>Algoritma</value>
+    <value>Algoritme</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AppSettings" xml:space="preserve">
-    <value>Uygulama</value>
-    <comment>Tab item</comment>
+    <value>Configuració de l'aplicatiu</value>
+    <comment>App menu item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value>Marvin'in Muhteşem iRacing Uygulaması</value>
+    <value></value>
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
-    <value>Detay Güçlendirme Eğilimi</value>
+    <value>Biaix de detalls d'augment</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DetailBoost" xml:space="preserve">
-    <value>Detay Güçlendirme</value>
+    <value>Augment de detalls</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
-    <value>Araca binerken veya inerken force feedback azalır</value>
+    <value>Esvair la retroalimentació de força en entrar o sortir del cotxe</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="RacingFriction" xml:space="preserve">
-    <value>Yarış Sürtünmesi</value>
+    <value>Fricció a les curses</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Graph" xml:space="preserve">
-    <value>Grafik</value>
-    <comment>Tab item</comment>
+    <value>Gràfic</value>
+    <comment>App menu item</comment>
   </data>
   <data name="HeaderData_UC" xml:space="preserve">
-    <value>BAŞLIK VERILERI</value>
+    <value></value>
     <comment>Simulator</comment>
   </data>
   <data name="Language_UC" xml:space="preserve">
-    <value>DIL</value>
-    <comment>App</comment>
+    <value>IDIOMA</value>
+    <comment>App settings</comment>
   </data>
   <data name="DetailBooster" xml:space="preserve">
-    <value>Detay Güçlendirme</value>
+    <value></value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
-    <value>Delta Sınırlayıcı</value>
+    <value></value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="MaxForce" xml:space="preserve">
-    <value>Maksimum Güç</value>
+    <value>Força màxima</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Native60Hz" xml:space="preserve">
-    <value>Doğal 60 Hz</value>
+    <value></value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="Native360Hz" xml:space="preserve">
-    <value>Doğal 360 Hz</value>
+    <value></value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="NoFFBDevicesFound" xml:space="preserve">
-    <value>[Force Feedback Cihazı Bulunamadı]</value>
-    <comment>Steering device list</comment>
+    <value></value>
+    <comment>Steering devices list</comment>
   </data>
   <data name="OFF" xml:space="preserve">
-    <value>KAPALI</value>
+    <value>APAGAT</value>
     <comment>Generic</comment>
   </data>
   <data name="Power" xml:space="preserve">
-    <value>Güç</value>
+    <value>Potència</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="RacingWheel" xml:space="preserve">
-    <value>Direksiyon</value>
-    <comment>Tab item</comment>
+    <value>Volant de carreres</value>
+    <comment>App menu item</comment>
   </data>
   <data name="RacingWheel_UC" xml:space="preserve">
-    <value>DIREKSIYON</value>
+    <value>VOLANT DE CARRERES</value>
+    <comment>Page title</comment>
   </data>
   <data name="SteeringDevice" xml:space="preserve">
-    <value>Direksiyon</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Sıfırla</value>
+    <value>Restablir</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SessionInformation_UC" xml:space="preserve">
-    <value>OTURUM BILGILERI</value>
+    <value></value>
     <comment>Simulator</comment>
   </data>
   <data name="Simulator" xml:space="preserve">
-    <value>Simülatör</value>
-    <comment>Tab item</comment>
+    <value>Simulador</value>
+    <comment>App menu item</comment>
   </data>
   <data name="SimulatorNotRunning" xml:space="preserve">
-    <value>iRacing çalışmıyor</value>
+    <value>El simulador d'iRacing no està funcionant</value>
     <comment>Generic</comment>
   </data>
   <data name="SoftLockStrength" xml:space="preserve">
-    <value>Yumuşak Kilitleme Kuvveti</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="TelemetryData_UC" xml:space="preserve">
-    <value>TELEMETRI VERISI</value>
+    <value></value>
     <comment>Simulator</comment>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Test et</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
-    <value>Türkçe (Türkiye) - Turkish (Türkiye)</value>
+    <value>Català (Espanya) - Catalán (España)</value>
     <comment>App language list</comment>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
-    <value>En Üstteki Pencere</value>
-    <comment>App</comment>
+    <value>Finestra principal</value>
+    <comment>App settings</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value></value>
+    <value>Nm</value>
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value>60 Hz Detay Güçlendirme</value>
+    <value></value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
-    <value></value>
-    <comment>Tab item</comment>
+    <value>AdminBoxx</value>
+    <comment>App menu item</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
-    <value>AdminBoxx Bağlan</value>
+    <value>Connexió a Adminboxx</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="UpdateButtonMappings" xml:space="preserve">
-    <value>Giriş Eşleşmesini Güncelle</value>
+    <value></value>
     <comment>Window title</comment>
   </data>
   <data name="PressTheRecordButton" xml:space="preserve">
-    <value>[Kaydetme Butonuna Basın]</value>
+    <value>[Pitjar el botó d'enregistrar]</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Button" xml:space="preserve">
-    <value>Buton</value>
+    <value>Botó</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Click" xml:space="preserve">
-    <value>Tıkla</value>
+    <value>Clic</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Hold" xml:space="preserve">
-    <value>Basılı Tut</value>
+    <value>Mantenir</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Keyboard" xml:space="preserve">
-    <value>Klavye</value>
+    <value>Teclat</value>
     <comment>Button mapping</comment>
   </data>
   <data name="WaitingForInput" xml:space="preserve">
-    <value>[Tuşa Basma Bekleniyor]</value>
+    <value>[Esperant entrada]</value>
     <comment>Button mapping</comment>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value>Delta Sınırlayıcı</value>
+    <value>Límit Delta</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value></value>
-    <comment>Abbreviation for Newton-meters per millisecond</comment>
+    <value>Nm/s</value>
+    <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
-    <value>Delta Sınırlayıcı 60 Hz</value>
+    <value></value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
-    <value></value>
+    <value>%/Nm</value>
     <comment>Abbreviation for percent per Newton-meters</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value></value>
+    <value>%</value>
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="CompressionRate" xml:space="preserve">
-    <value>Sıkıştırma Oranı</value>
+    <value>Taxa de compressió</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
-    <value>CIHAZ</value>
+    <value>DISPOSITIU</value>
+    <comment>Racing wheel</comment>
   </data>
   <data name="OverallStrength_UC" xml:space="preserve">
-    <value>ORTALAMA KUVVET</value>
+    <value>FORÇA GENERAL</value>
+    <comment>Racing wheel</comment>
   </data>
   <data name="AutoMargin" xml:space="preserve">
-    <value>Otomatik Marj</value>
+    <value>Marge automàtic</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Temizle</value>
+    <value>Deixa en blanc</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentForce" xml:space="preserve">
-    <value>Şu Anki Kuvvet</value>
+    <value>Força actual</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="PeakForce" xml:space="preserve">
-    <value>Maksimum Kuvvet</value>
+    <value>Força pic màxima</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
-    <value>Kuvveti Otomatik Ayarla</value>
+    <value>Força màxima automàtica</value>
+    <comment>Racing wheel</comment>
   </data>
   <data name="OtherFeatures_UC" xml:space="preserve">
-    <value>DIĞER ÖZELLIKLER</value>
+    <value></value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="Switches_UC" xml:space="preserve">
-    <value>ANAHTARLAR</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CrashProtection_UC" xml:space="preserve">
-    <value>KAZA KORUMASI</value>
+    <value>PROTECCIÓ CONTRA XOCS</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value></value>
+    <value>G</value>
     <comment>Abbreviation for g-force</comment>
   </data>
   <data name="GForce" xml:space="preserve">
-    <value>G-Kuvveti</value>
+    <value>Força G</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Duration" xml:space="preserve">
-    <value>Süre</value>
+    <value>Durada</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceReduction" xml:space="preserve">
-    <value>Kuvvet Azaltması</value>
+    <value>Reducció de força</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value> san</value>
+    <value>s</value>
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value></value>
+    <value>m/s</value>
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
-    <value>KERB KORUMASI</value>
+    <value>PROTECCIÓ DE VORERES</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
-    <value>Şok Hızı</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>PEDALLAR</value>
-    <comment>Tab item</comment>
+    <value>PEDALS</value>
+    <comment>Page title</comment>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
-    <value>Simagic P1000 Pedalı</value>
+    <value>Pedals Simagic P1000</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsP2000" xml:space="preserve">
-    <value>Simagic P2000 Pedalı</value>
+    <value>Pedals Simagic P2000</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsNone" xml:space="preserve">
-    <value>[Uyumlu simagic pedalı bulunamadı]</value>
+    <value>[No s'han trobat pedals Simagic compatibles]</value>
     <comment>Pedals device</comment>
   </data>
   <data name="Clutch_UC" xml:space="preserve">
-    <value>DEBRIYAJ</value>
+    <value>EMBRAGATGE</value>
     <comment>Pedals</comment>
   </data>
   <data name="Brake_UC" xml:space="preserve">
-    <value>FREN</value>
+    <value>FRE</value>
     <comment>Pedals</comment>
   </data>
   <data name="Throttle_UC" xml:space="preserve">
-    <value>GAZ</value>
+    <value>ACCELERADOR</value>
     <comment>Pedals</comment>
   </data>
   <data name="PedalEffects" xml:space="preserve">
-    <value>Pedal Efektleri</value>
+    <value>Efectes de pedal</value>
     <comment>Pedals</comment>
   </data>
   <data name="Strength" xml:space="preserve">
-    <value>Kuvvet</value>
+    <value></value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value></value>
+    <value>Hz</value>
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>FREKANS</value>
+    <value>FREQÜÈNCIA</value>
     <comment>Pedals</comment>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>GENLIK</value>
+    <value>AMPLITUD</value>
     <comment>Pedals</comment>
   </data>
   <data name="Minimum" xml:space="preserve">
@@ -322,533 +326,535 @@
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
-    <value>Maksimum</value>
+    <value></value>
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Curve" xml:space="preserve">
-    <value>Eğri</value>
+    <value></value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="GearChange" xml:space="preserve">
-    <value>Vites Değişikliği</value>
+    <value>Canvi de marxa</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="ClutchSlip_UC" xml:space="preserve">
-    <value>DEBRIYAJ KAYMASI</value>
-    <comment>Pedal effects list</comment>
+    <value>LLISCAMENT DE L'EMBRAGATGE</value>
+    <comment>Pedals</comment>
   </data>
   <data name="SteeringEffects_UC" xml:space="preserve">
-    <value>DIREKSIYON EFEKTLERI</value>
+    <value>EFECTES DE DIRECCIÓ</value>
+    <comment>Page title</comment>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
-    <value>Direksiyon Efektleri</value>
-    <comment>Tab item, Pedal effects list</comment>
+    <value>Efectes de direcció</value>
+    <comment>App menu item</comment>
   </data>
   <data name="WheelLock_UC" xml:space="preserve">
-    <value>DIREKSIYON KILIDI</value>
-    <comment>Pedal effects list</comment>
+    <value>BLOQUEIG DE RODA</value>
+    <comment>Pedals</comment>
   </data>
   <data name="WheelSpin_UC" xml:space="preserve">
-    <value>DIREKSIYON DÖNÜŞ</value>
-    <comment>Pedal effects list</comment>
+    <value>GIR DE RODA</value>
+    <comment>Pedals</comment>
   </data>
   <data name="RPM_UC" xml:space="preserve">
-    <value>DEVIR</value>
-    <comment>Pedal effects list</comment>
+    <value>RPM</value>
+    <comment>Pedals</comment>
   </data>
   <data name="None" xml:space="preserve">
-    <value>Yok</value>
+    <value>Cap</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value>Direksiyon Seti Başına</value>
+    <value></value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerCar" xml:space="preserve">
-    <value>Araç Başına</value>
+    <value></value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerTrack" xml:space="preserve">
-    <value>Pist Başına</value>
+    <value></value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerTrackConfiguration" xml:space="preserve">
-    <value>Pist Ayarlaması Başına</value>
+    <value></value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerWetDry" xml:space="preserve">
-    <value>Islak/Kuru Başına</value>
+    <value></value>
     <comment>Save conditions</comment>
   </data>
   <data name="Wet" xml:space="preserve">
-    <value>Islak</value>
+    <value></value>
     <comment>Status</comment>
   </data>
   <data name="Dry" xml:space="preserve">
-    <value>Kuru</value>
+    <value></value>
     <comment>Status</comment>
   </data>
   <data name="Default" xml:space="preserve">
-    <value>Varsayılan</value>
+    <value></value>
     <comment>Status</comment>
   </data>
   <data name="SaveThisSetting" xml:space="preserve">
-    <value>Ayarları Kaydet</value>
+    <value></value>
     <comment>Window title</comment>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>Yeni Versiyon Var!</value>
+    <value></value>
     <comment>Window title</comment>
   </data>
   <data name="DownloadQuestion" xml:space="preserve">
-    <value>Şimdi indirmek ister misiniz?</value>
+    <value>Vols descarregar-ho ara?</value>
     <comment>Cloud service</comment>
   </data>
   <data name="RunInstaller" xml:space="preserve">
-    <value>Yükleyiciyi çalıştırmak ister misiniz?</value>
+    <value></value>
     <comment>Window title</comment>
   </data>
   <data name="RunInstallerQuestion" xml:space="preserve">
-    <value>Yükleyiciyi şimdi çalıştırmak ister misiniz?</value>
+    <value>Vols iniciar l'instal·lador ara?</value>
     <comment>Cloud service</comment>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
-    <value>Başlangıçta Güncellemeleri Kontrol Et</value>
-    <comment>App</comment>
+    <value>Comprova actualitzacions a l'inici</value>
+    <comment>App settings</comment>
   </data>
   <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Güncellemeleri Otomatik Olarak İndir</value>
-    <comment>App</comment>
+    <value>Descarrega automàticament les actualitzacions</value>
+    <comment>App settings</comment>
   </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
-    <value>Uygulama Başlangıcında AdminBoxx Bağlan</value>
+    <value>Connecta a Adminboxx a l'inici de l'aplicatiu</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Brightness" xml:space="preserve">
-    <value>Parlaklık</value>
+    <value>Brillantor</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Ses Seviyesi</value>
+    <value>Volum</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Ses Cihazı Bulunamadı]</value>
-    <comment>Audio device list</comment>
+    <value>[No s'han trobat dispositius d'àudio]</value>
+    <comment>Audio devices list</comment>
   </data>
   <data name="Connection" xml:space="preserve">
-    <value>Bağlantı</value>
+    <value>Connexió</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Display" xml:space="preserve">
-    <value>Ekran</value>
+    <value>Pantalla</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>Ses</value>
+    <value>Àudio</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Delta Sınırlayıcı Eğilimi</value>
+    <value>Biaix del limitador Delta</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Output_UC" xml:space="preserve">
-    <value>ÇIKIŞ</value>
+    <value>SORTIDA</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="WheelLFE_UC" xml:space="preserve">
-    <value>DIREKSIYON LFE</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
-    <value>LFE Kaydedici Cihaz</value>
+    <value>Dispositiu de gravació LFE</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Average" xml:space="preserve">
-    <value>Ortalama</value>
+    <value>Mitjana</value>
     <comment>Graph</comment>
   </data>
   <data name="Variance" xml:space="preserve">
-    <value>Varyans</value>
+    <value>Variància</value>
     <comment>Graph</comment>
   </data>
   <data name="StandardDeviation" xml:space="preserve">
-    <value>Standart Sapma</value>
+    <value>Desviació estàndard</value>
     <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
-    <value>Giriş Torku (60 Hz)</value>
+    <value>Parell d'entrada (60 Hz)</value>
     <comment>Graph</comment>
   </data>
   <data name="InputTorque" xml:space="preserve">
-    <value>Giriş Torku</value>
+    <value>Parell d'entrada</value>
     <comment>Graph</comment>
   </data>
   <data name="OutputTorque" xml:space="preserve">
-    <value>Çıkış Torku</value>
+    <value>Parell de sortida</value>
     <comment>Graph</comment>
   </data>
   <data name="TimerJitter" xml:space="preserve">
-    <value>Zamanlayıcı Titreşimi</value>
+    <value>Temporitzador de Jitter</value>
     <comment>Graph</comment>
   </data>
   <data name="InputLFE" xml:space="preserve">
-    <value>Giriş LFE</value>
+    <value>Entrada LFE</value>
     <comment>Graph</comment>
   </data>
   <data name="ABSEngaged_UC" xml:space="preserve">
-    <value>ABS DEVREDE</value>
-    <comment>Pedal effects list, Sounds</comment>
+    <value></value>
+    <comment>Sounds</comment>
   </data>
   <data name="Disabled" xml:space="preserve">
-    <value>[Devre Dışı]</value>
-    <comment>LFE device list</comment>
+    <value>[Desactivat]</value>
+    <comment>LFE devices list</comment>
   </data>
   <data name="RememberWindowPositionAndSize" xml:space="preserve">
-    <value>Pencere Konumunu ve Boyutunu Hatırla</value>
-    <comment>App</comment>
+    <value>Recorda la posició i grandària de la finestra</value>
+    <comment>App settings</comment>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
-    <value>Fren Zayıflaması</value>
+    <value>Esvaïment amb fre</value>
     <comment>Pedals</comment>
   </data>
   <data name="StartingRPM" xml:space="preserve">
-    <value>Başlangıç Devri</value>
+    <value>RPM inicials</value>
     <comment>Pedals</comment>
   </data>
   <data name="VibrateInTopGear" xml:space="preserve">
-    <value>Son Viteste Titreme</value>
+    <value>Vibra en alta marxa</value>
     <comment>Pedals</comment>
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
-    <value>Gaz Zayıflaması</value>
+    <value>Esvaïment amb accelerador</value>
     <comment>Pedals</comment>
   </data>
   <data name="StartingPoint" xml:space="preserve">
-    <value>Başlangıç Noktası</value>
+    <value>Punt de partida</value>
     <comment>Pedals</comment>
   </data>
   <data name="EndingPoint" xml:space="preserve">
-    <value>Bitiş Noktası</value>
+    <value>Punt final</value>
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
-    <value>VITES DEĞIŞIMI - VITES DEĞIŞTIRME</value>
+    <value>CANVI DE MARXA - ENTRAR EN MARXA</value>
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
-    <value>VITES DEĞIŞIMI - BOŞTA VITES</value>
+    <value>CANVI DE MARXA - CANVI A PUNT NEUTRE</value>
     <comment>Pedals</comment>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
-    <value>iRacing FFB açık olsa bile FFB etkinleştir</value>
+    <value>Habilita FFB fins i tot si el simulador FFB de l'iRacing està activat</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ClutchPedalHaptics" xml:space="preserve">
-    <value>Debriyaj Pedal Titreşimi</value>
+    <value>Hàptica del pedal d'embragatge</value>
     <comment>Graph</comment>
   </data>
   <data name="BrakePedalHaptics" xml:space="preserve">
-    <value>Fren Pedal Titreşimi</value>
+    <value>Hàptica del pedal de fre</value>
     <comment>Graph</comment>
   </data>
   <data name="ThrottlePedalHaptics" xml:space="preserve">
-    <value>Gaz Pedal Titreşimi</value>
+    <value>Hàptica del pedal de l'accelerador</value>
     <comment>Graph</comment>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
-    <value>Gürültü Sönümleyici</value>
+    <value>Amortidor de soroll</value>
     <comment>Pedals</comment>
   </data>
   <data name="AppWindow_UC" xml:space="preserve">
-    <value>UYGULAMA PENCERESI</value>
-    <comment>App</comment>
+    <value>FINESTRA DE L'APLICATIU</value>
+    <comment>App settings</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
-    <value>UI Ölçeği</value>
-    <comment>App</comment>
+    <value>Escala de la interfície gràfica</value>
+    <comment>App settings</comment>
   </data>
   <data name="CloudService_UC" xml:space="preserve">
-    <value>BULUT HIZMETI</value>
-    <comment>App</comment>
+    <value>SERVEI AL NÚVOL</value>
+    <comment>App settings</comment>
   </data>
   <data name="CheckNow" xml:space="preserve">
-    <value>Şimdi Kontrol Et</value>
-    <comment>App</comment>
+    <value>Comprova ara</value>
+    <comment>App settings</comment>
   </data>
   <data name="CheckingForUpdate" xml:space="preserve">
-    <value>Güncelleme kontrol ediliyor...</value>
+    <value></value>
     <comment>Status</comment>
   </data>
   <data name="DownloadingUpdate" xml:space="preserve">
-    <value>Güncelleme indiriliyor...</value>
+    <value></value>
     <comment>Status</comment>
   </data>
   <data name="Contribute_UC" xml:space="preserve">
-    <value>KATKIDA BULUN</value>
-    <comment>Tab item</comment>
+    <value>CONTRIBUIR</value>
+    <comment>Page title</comment>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
-    <value>Bana bir kahve ısmarla!</value>
+    <value>Convida'm a un cafè!</value>
     <comment>Contribute</comment>
   </data>
   <data name="DonationsText" xml:space="preserve">
-    <value>Bağışlar tamamen isteğe bağlıdır. MAIRA'yı kullanmak için hiçbir zaman ücret talep etmeyeceğim. Bununla birlikte, bağışlar bana sıcak ve mutlu hissettiriyor ve MAIRA üzerinde çalışmaya devam etmem için büyük bir motivasyon kaynağı oluyor. Bağışta bulunan herkese çok teşekkür ederim! Bağış yapmak için link:</value>
-    <comment>Contribute</comment>
+    <value>Els donatius són completament opcionals. Mai cobraré cap comissió per utilitzar MAIRA. Dit això, els donatius em fan sentir recolçat i feliç, i són una gran motivació per a mi per continuar treballant en MAIRA. Un ENORME agraïment a tothom que ja ha donat!</value>
+    <comment>Donate</comment>
   </data>
   <data name="Donate_UC" xml:space="preserve">
-    <value>BAĞIŞLAR</value>
-    <comment>Contribute</comment>
+    <value>DONACIÓ</value>
+    <comment>Page title</comment>
   </data>
   <data name="Donors_UC" xml:space="preserve">
-    <value>BAĞIÇŞILAR</value>
+    <value>DONANTS</value>
     <comment>Contribute</comment>
   </data>
   <data name="SuperDonors_UC" xml:space="preserve">
-    <value>SUPER BAĞIŞÇILAR</value>
-    <comment>Contribute</comment>
+    <value>SUPERDONANTS</value>
+    <comment>Donate</comment>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>Bağış Yap</value>
-    <comment>Tab item</comment>
+    <value>Donació</value>
+    <comment>App menu item</comment>
   </data>
   <data name="CodeContributions_UC" xml:space="preserve">
-    <value>KOD İÇIN KATKIDA BULUNANLAR</value>
+    <value>CONTRIBUCIONS DE CODI</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributions_UC" xml:space="preserve">
-    <value>ÇEVIRI İÇIN KATKIDA BULUNANLAR</value>
+    <value>CONTRIBUCIONS DE TRADUCCIÓ</value>
     <comment>Contribute</comment>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
-    <value>C# geliştiricisiyseniz ve bu projeye kod katkısında bulunmak istiyorsanız, GitHub deposuna buradan ulaşabilirsiniz:</value>
+    <value>Ets desenvolupador de C#? Aquest projecte està obert a contribucions!! Més informació visitant el repositori de GitHub.</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Birden fazla dilde okuma ve yazma biliyorsanız, bu uygulamayı dünyadaki tüm dillere çevirmek için yardımınıza ihtiyacımız var! Bunun nasıl yapılacağı hakkında daha fazla bilgi için şu Discord kanalını ziyaret edin:</value>
+    <value>Pots llegir i escriure en diversos idiomes? Necessitem ajuda per a idiomes d'arreu del món. Aprèn-ne més visitant el nostre servidor Discord.</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Çeviriler Discord Kanalı</value>
+    <value>Servidor de traduccions al Discord</value>
     <comment>Contribute</comment>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
-    <value>GitHub deposu</value>
+    <value>Repositori de GitHub</value>
     <comment>Contribute</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
-    <value>Katkıda bulunanlar</value>
+    <value>Contribuïdors</value>
     <comment>Contribute</comment>
   </data>
   <data name="ShowWindow" xml:space="preserve">
-    <value>Pencereyi Görüntüle</value>
+    <value></value>
     <comment>System tray icon</comment>
   </data>
   <data name="ExitApp" xml:space="preserve">
-    <value>Uygulamayı Kapat</value>
+    <value></value>
     <comment>System tray icon</comment>
   </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
-    <value>Sitem Tepsisine Küçült</value>
-    <comment>App</comment>
+    <value>Minimitzar a la barra de tasques</value>
+    <comment>App settings</comment>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Küçültülmüş Halde Başlat</value>
-    <comment>App</comment>
+    <value>Arrenca minimitzat</value>
+    <comment>App settings</comment>
   </data>
   <data name="StartWithWindows" xml:space="preserve">
-    <value>Başlangıçta Çalıştır</value>
-    <comment>App</comment>
+    <value>Arrenca en iniciar Windows</value>
+    <comment>App settings</comment>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value>Toplam: Sıkıştırma Oranı</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Slew: Sıkıştırma Eşiği</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Slew: Sıkıştırma Oranı</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value>Toplam: Sıkıştırma Eşiği</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value></value>
-    <comment>Abbreviation for Newton-meters per second</comment>
+    <value>Nm/ms</value>
+    <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
-    <value>Direksiyon Kuvveti</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Set" xml:space="preserve">
-    <value>Ayarla</value>
+    <value>Establir</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Preview_UC" xml:space="preserve">
-    <value>ÖNIZLEME</value>
+    <value>PREVISUALITZACIÓ</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
-    <value>[Kayıt Bulunamadı]</value>
+    <value>[No s'han trobat enregistraments]</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SimpleMode" xml:space="preserve">
-    <value>Basit modu etkinleştir</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Sensitivity" xml:space="preserve">
-    <value>Hassasiyet</value>
+    <value>Sensibilitat</value>
     <comment>Pedals</comment>
   </data>
   <data name="SlewAndTotalCompression" xml:space="preserve">
-    <value>Slew ve Toplam Sıkıştırma</value>
+    <value></value>
+    <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DiscordModerators_UC" xml:space="preserve">
-    <value>DISCORD MODERETÖRLERI</value>
+    <value>MODERADORS DE DISCORD</value>
     <comment>Contribute</comment>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
-    <value>I want to thank these volunteer moderators for helping answer the many questions posed by MAIRA users, allowing me to have more time to focus on the development of MAIRA!MAIRA kullanıcılarının sorduğu birçok soruyu yanıtlamaya yardımcı olan bu gönüllü moderatörlere teşekkür etmek istiyorum. Bu sayede MAIRA'nın geliştirilmesine daha fazla zaman ayırabiliyorum!</value>
+    <value>Vull agrair a aquests moderadors voluntaris que m'hagin ajudat a respondre les moltes preguntes plantejades pels usuaris de MAIRA, cosa que m'ha permès tenir més temps per centrar-me en el desenvolupament de MAIRA!</value>
     <comment>Contribute</comment>
   </data>
   <data name="AdminBoxxIsUpdating" xml:space="preserve">
-    <value>AdminBoxx ürün yazılımı güncelleniyor</value>
+    <value>El firmware de Adminboxx s'està actualitzant</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="AllowSuperStrength" xml:space="preserve">
-    <value>%200'e kadar güç izin verin (tehlikeli olabilir))</value>
+    <value>Permetre fins a un 200% de força (potencialment perillós)</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ON" xml:space="preserve">
-    <value>AÇIK</value>
+    <value>ENCÈS</value>
     <comment>Generic</comment>
   </data>
   <data name="Sounds_UC" xml:space="preserve">
-    <value>SESLER</value>
-    <comment>Tab item</comment>
+    <value>SONS</value>
+    <comment>Page title</comment>
   </data>
   <data name="Enabled" xml:space="preserve">
-    <value>Aktif</value>
+    <value></value>
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Frekans Oranı</value>
+    <value></value>
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
-    <value>Zayıflatmak</value>
+    <value></value>
     <comment>Sounds</comment>
   </data>
   <data name="SendChatMessages" xml:space="preserve">
-    <value>Sürücüye özel sohbet mesajları gönderin</value>
+    <value>Enviar missatges de xat privats al conductor</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Logitech RPM ışıklarını etkinleştir</value>
+    <value>Activa les llums RPM de Logitech</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value>°</value>
+    <value>º</value>
     <comment>Abbreviation for degrees</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
-    <value>ANA SES</value>
+    <value></value>
     <comment>Sounds</comment>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
-    <value>Çarpışma koruması etkinleştirildi!</value>
+    <value>S'ha activat la protecció contra xocs!</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>Kerb koruması etkinleştirildi!</value>
+    <value>La protecció de voreres s'ha activat!</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="PrivateMessages_UC" xml:space="preserve">
-    <value>ÖZEL MESAJLAR</value>
+    <value>MISSATGES PRIVATS</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value>Kerb koruma mesajlarını etkinleştir</value>
+    <value>Activa els missatges de protecció de voreres</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
-    <value>Çarpışma koruması mesajlarını etkinleştir</value>
+    <value>Activa els missatges de protecció contra xocs</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="InputMappedSettingUpdateEnabled" xml:space="preserve">
-    <value>Giriş eşlemesi ayar güncelleme mesajlarını etkinleştir</value>
+    <value>Activa els missatges d'actualització de la configuració assignada a l'entrada</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
-    <value>Centripetal Circuit pistinde değilsiniz</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="RunCalibration" xml:space="preserve">
-    <value>Kalibrasyonu Başlat</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="StopCalibration" xml:space="preserve">
-    <value>Kalibrasyonu Durdur</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheelLeft" xml:space="preserve">
-    <value>Direksiyon Simidi Sol</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheelCenter" xml:space="preserve">
-    <value>Direksiyon Simidi Merkez</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheelRight" xml:space="preserve">
-    <value>Direksiyon Simidi Sağ</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheel90Left" xml:space="preserve">
-    <value>Direksiyon Simidi 90° Sol</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="MinThrottle" xml:space="preserve">
-    <value>Minimum Gaz</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="MaxThrottle" xml:space="preserve">
-    <value>Maksimum Gaz</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="ShiftUp" xml:space="preserve">
-    <value>Vites Yükselt</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="ShiftDown" xml:space="preserve">
-    <value>Vites Düşür</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="MinBrake" xml:space="preserve">
-    <value>Minimum Fren</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="MaxBrake" xml:space="preserve">
-    <value>Maksimum Fren</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="NotCalibrating" xml:space="preserve">
-    <value>Kalibre Edilmiyor</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="ResetCalibration" xml:space="preserve">
-    <value>Kalibrasyonu Sıfırla</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="ShowGripOMeter" xml:space="preserve">
-    <value>Grip-O-Meter penceresini göster</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Grip-O-Meter penceresini sürüklenebilir hale getirin</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeter_UC" xml:space="preserve">
@@ -856,215 +862,215 @@
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeterScale" xml:space="preserve">
-    <value>Grip-O-Meter Ölçeği</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="ResetGripOMeter" xml:space="preserve">
-    <value>Grip-O-Meter pencere konumunu sıfırla</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>ÖNDEN KAYMA TITREŞIM EFEKTI</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="Progress:" xml:space="preserve">
-    <value>İlerleme:</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Kalibrasyon Dosyası Seçilmedi]</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="ParkedEffects_UC" xml:space="preserve">
-    <value>PAARK HALI EFEKTLERI</value>
+    <value>EFECTES APARCAT</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
-    <value>Force Feedback Kuvveti</value>
+    <value>Força de retroalimentació</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="WheelCenteringStrength" xml:space="preserve">
-    <value>Merkezleme Kuvveti</value>
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CenterWheelWhileRacing" xml:space="preserve">
-    <value>Yarışırken merkezleme yap</value>
+    <value>Centrar volant mentre es corre</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CenterWheelWhileParked" xml:space="preserve">
-    <value>Park edildiğinde merkezleme yap</value>
+    <value>Centrar volant mentre està aparcat</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ParkedFriction" xml:space="preserve">
-    <value>Park Halinde Sürtünme</value>
+    <value>Fricció aparcat</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Şu Anki Araç Ayarı:</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>ÖNDEN KAYMA PEDAL TITREŞIM EFEKTI</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value>Bişeyler Ters Gitti</value>
+    <value>Alguna cosa va anar malament</value>
     <comment>Error window</comment>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Detaylar</value>
+    <value>Detalls</value>
     <comment>Error window</comment>
   </data>
   <data name="ClassicMAIRAIsRunning" xml:space="preserve">
-    <value>Klasik MAIRA şu anda çalışıyor - lütfen bu MAIRA sürümünü çalıştırmadan önce klasik MAIRA'dan çıkın!</value>
-    <comment>Error message</comment>
+    <value>La versió clàssica de MAIRA s'està executant actualment. Si us plau, sortiu de la versió clàssica de MAIRA abans d'executar aquesta versió de MAIRA.</value>
+    <comment>Error messages</comment>
   </data>
   <data name="ExceptionThrown" xml:space="preserve">
-    <value>Beklenmeyen Bir Hata Meydana Geldi</value>
+    <value>S'ha generat una excepció</value>
     <comment>Error messages</comment>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value> KMH</value>
+    <value>km/h</value>
     <comment>Abbreviation for kilometers per hour</comment>
   </data>
   <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Kalibrasyon Dosyası Katkıda Bulunanlar</value>
+    <value>Contribuïdors d'arxius de calibratge</value>
     <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
-    <value>Bunlar, boş zamanlarının bir kısmını cömertçe ayırarak, en sevdikleri arabalarda direksiyon etkisi kalibrasyonları gerçekleştiren ve bu kalibrasyon dosyalarını yükleyen kişilerdir!</value>
+    <value>Aquestes són les persones que han contribuït generosament amb part del seu temps lliure per executar calibratges d'efectes de direcció en alguns dels seus cotxes favorits i per carregar aquests fitxers de calibratge.</value>
     <comment>Contribute</comment>
   </data>
   <data name="DegreesPerSecond" xml:space="preserve">
-    <value>°/s</value>
+    <value>º/s</value>
     <comment>Abbreviation for degrees per second</comment>
   </data>
   <data name="CalibrationFile_UC" xml:space="preserve">
-    <value>KALIBRASYON DOSYASI</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="Understeer_UC" xml:space="preserve">
-    <value>ÖNDEN KAYMA</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="Oversteer_UC" xml:space="preserve">
-    <value>ARKADAN KAYMA</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
-    <value>Minimum Eşik</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="MaximumThreshold" xml:space="preserve">
-    <value>Maksimum Eşik</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="MinimumFrequency" xml:space="preserve">
-    <value>Minimum Frekans</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="MaximumFrequency" xml:space="preserve">
-    <value>Maksimum Frekans</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="Calibration_UC" xml:space="preserve">
-    <value>KALIBRASYON</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
-    <value>Titreşim Deseni</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="SineWave" xml:space="preserve">
-    <value>Sinüs Dalgası</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="SquareWave" xml:space="preserve">
-    <value>Düzgen Dalga</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="TriangleWave" xml:space="preserve">
-    <value>Üçgen Dalga</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="SawtoothWaveIn" xml:space="preserve">
-    <value>Testere Dişi Dalga (İç)</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="SawtoothWaveOut" xml:space="preserve">
-    <value>Testere Dişi Dalga (Dış)</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="DecreaseForce" xml:space="preserve">
-    <value>Kuvveti Azalt</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="IncreaseForce" xml:space="preserve">
-    <value>Kuvveti Artır</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>ÖNDEN KAYMA TEKERLEK SABIT KUVVET ETKISI</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="Direction" xml:space="preserve">
-    <value>Yön</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>ARKADAN KAYMA TITREŞIM EFEKTI</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>ARKADAN KAYMA TEKERLEĞI SABIT KUVVET ETKISI</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>ARKADAN KAYMA PEDAL TITREŞIM EFEKTI</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
-    <value>Önden Kayma Efekti</value>
-    <comment>Pedals</comment>
+    <value>Efecte de subviratge</value>
+    <comment>Pedal effects list</comment>
   </data>
   <data name="OversteerEffect" xml:space="preserve">
-    <value>Arkadan Kayma Efekti</value>
-    <comment>Pedals</comment>
+    <value>Efecte de sobreviratge</value>
+    <comment>Pedal effects list</comment>
   </data>
   <data name="ConfigurationFileIsInvalid" xml:space="preserve">
-    <value>Yapılandırma Dosyası Geçersiz!</value>
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>Konuşmayı Metne Dönüştürme</value>
-    <comment>Speech to text</comment>
+    <value>Parla a text</value>
+    <comment>App menu item</comment>
   </data>
   <data name="Overlay" xml:space="preserve">
-    <value>Kaplama</value>
+    <value></value>
     <comment>Speech to text</comment>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
-    <value>KAPLAMA PENCERESI</value>
+    <value></value>
     <comment>Speech to text</comment>
   </data>
   <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Kaplama penceresini göster</value>
+    <value></value>
     <comment>Speech to text</comment>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Kaplama penceresini sürüklenebilir hale getir</value>
+    <value></value>
     <comment>Speech to text</comment>
   </data>
   <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Kaplama penceresinin pozisyonunu sıfırla</value>
+    <value></value>
     <comment>Speech to text</comment>
   </data>
   <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Kaplama Penceresi Ölçeği</value>
+    <value></value>
     <comment>Speech to text</comment>
   </data>
   <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA Konuşma-Metin Köprüsü</value>
+    <value></value>
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="STT_Hint" xml:space="preserve">
@@ -1072,82 +1078,103 @@
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="STT_Button" xml:space="preserve">
-    <value>Konuşmayı Metne Dönüştürmeyi Aktifleştir</value>
+    <value></value>
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
-    <value>[Force Feedback aygıt seçilmedi]</value>
+    <value>[Dispositiu de retroalimentació de força no seleccionat]</value>
+    <comment>Racing wheel</comment>
   </data>
   <data name="Algorithm_UC" xml:space="preserve">
-    <value>ALGORITMA</value>
+    <value>ALGORITME</value>
+    <comment>Racing wheel</comment>
   </data>
   <data name="ReadyToDonate" xml:space="preserve">
-    <value>Bağış yapmaya hazır mısınız?</value>
+    <value>Preparat per una donació?</value>
+    <comment>Donate</comment>
   </data>
   <data name="Contribute" xml:space="preserve">
-    <value>Katkıda bulun</value>
+    <value>Contribueix</value>
+    <comment>App menu item</comment>
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
-    <value>KALİBRASYON DOSYASI KATKILARI</value>
+    <value>CONTRIBUCIÓ D'ARXIUS DE CALIBRATGE</value>
+    <comment>Contribute</comment>
   </data>
   <data name="Moderators" xml:space="preserve">
-    <value>Discord Moderetörleri</value>
+    <value>Moderadors</value>
+    <comment>Contribute</comment>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
-    <value>UYGULAMA</value>
+    <value>CONFIGURACIÓ DE L'APP</value>
+    <comment>Page title</comment>
   </data>
   <data name="Simulator_UC" xml:space="preserve">
-    <value>SIMÜLATÖR</value>
+    <value>SIMULADOR</value>
+    <comment>Page title</comment>
   </data>
   <data name="Graph_UC" xml:space="preserve">
-    <value>GRAFIK</value>
+    <value>GRÀFIC</value>
+    <comment>Page title</comment>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>KONUŞMAYI METNE DÖNÜŞTÜRME</value>
+    <value>PARLA A TEXT</value>
+    <comment>Page title</comment>
   </data>
   <data name="Changelog" xml:space="preserve">
-    <value>Değişiklik günlüğü</value>
+    <value>Registre de canvis</value>
+    <comment>Cloud service</comment>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
-    <value>ABS Devrede</value>
+    <value>ABS activat</value>
+    <comment>Pedal effects list</comment>
   </data>
   <data name="Amplitude" xml:space="preserve">
-    <value>Genlik</value>
+    <value>Amplitud</value>
+    <comment>Pedals</comment>
   </data>
   <data name="ClutchSlip" xml:space="preserve">
-    <value>Debriyaj Kayması</value>
+    <value>Lliscament de l'embragatge</value>
+    <comment>Pedal effects list</comment>
   </data>
   <data name="Frequency" xml:space="preserve">
-    <value>Frekans</value>
+    <value>Freqüència</value>
+    <comment>Pedals</comment>
   </data>
   <data name="RPM" xml:space="preserve">
-    <value>Devir</value>
+    <value>RPM</value>
+    <comment>Pedal effects list</comment>
   </data>
   <data name="Sounds" xml:space="preserve">
-    <value>Sesler</value>
+    <value>Sons</value>
+    <comment>App menu item</comment>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Pedallar</value>
+    <value>Pedals</value>
+    <comment>App menu item</comment>
   </data>
   <data name="WheelLock" xml:space="preserve">
-    <value>Direksiyon Kilidi</value>
+    <value>Bloqueig de roda</value>
+    <comment>Pedal effects list</comment>
   </data>
   <data name="WheelSpin" xml:space="preserve">
-    <value>Direksiyon Dönüş</value>
+    <value>Gir de roda</value>
+    <comment>Pedal effects list</comment>
   </data>
   <data name="GripOMeter" xml:space="preserve">
     <value></value>
+    <comment>Steering effects</comment>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value></value>
+    <value>mi/h</value>
     <comment>Abbreviation for miles per hour</comment>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value></value>
-    <comment>Wind</comment>
+    <value>VENT</value>
+    <comment>Page title</comment>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value></value>
+    <value>Vent</value>
     <comment>App menu item</comment>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
@@ -1167,7 +1194,7 @@
     <comment>Wind</comment>
   </data>
   <data name="Connection_UC" xml:space="preserve">
-    <value>Bağlantı</value>
+    <value></value>
     <comment>Wind</comment>
   </data>
   <data name="Settings_UC" xml:space="preserve">
@@ -1199,7 +1226,7 @@
     <comment>Wind</comment>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value></value>
+    <value>No s'ha trobat el dispositiu</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
@@ -1207,12 +1234,12 @@
     <comment>Trading paints</comment>
   </data>
   <data name="TradingPaints" xml:space="preserve">
-    <value></value>
+    <value>Trading Paints</value>
     <comment>App menu item</comment>
   </data>
   <data name="TradingPaints_UC" xml:space="preserve">
-    <value></value>
-    <comment>Trading Paints</comment>
+    <value>TRADING PAINTS</value>
+    <comment>Page title</comment>
   </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
     <value></value>
@@ -1235,11 +1262,11 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="DetailGain" xml:space="preserve">
-    <value></value>
+    <value>Guany de detall</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OutputSmoothing" xml:space="preserve">
-    <value></value>
+    <value>Suavitzat de sortida</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SeatOfPants_UC" xml:space="preserve">
@@ -1259,7 +1286,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value></value>
+    <value>Efecte Seat-of-Pants</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
@@ -1275,11 +1302,11 @@
     <comment>Steering effects</comment>
   </data>
   <data name="DefaultPage_UC" xml:space="preserve">
-    <value>VARSAYILAN SAYFA</value>
+    <value>PÀGINA PER DEFECTE</value>
     <comment>App settings</comment>
   </data>
   <data name="Effects_UC" xml:space="preserve">
-    <value></value>
+    <value>EFECTES</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="VibrateOnGearChange" xml:space="preserve">
@@ -1291,72 +1318,75 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Audio_UC" xml:space="preserve">
-    <value>Ses</value>
+    <value>AUDIO</value>
+    <comment>AdminBoxx</comment>
   </data>
   <data name="Display_UC" xml:space="preserve">
-    <value>Ekran</value>
+    <value>PANTALLA</value>
+    <comment>AdminBoxx</comment>
   </data>
   <data name="AdminBoxx_UC" xml:space="preserve">
-    <value></value>
+    <value>ADMINBOXX</value>
     <comment>Page title</comment>
   </data>
   <data name="Click_UC" xml:space="preserve">
-    <value>Tıkla</value>
+    <value></value>
+    <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value></value>
+    <value>Pedals Simagic P500</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsPrototype" xml:space="preserve">
-    <value></value>
+    <value>Pedals Prototip</value>
     <comment>Pedals device</comment>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Yardım</value>
+    <value>Ajuda</value>
     <comment>App menu item</comment>
   </data>
   <data name="Help_UC" xml:space="preserve">
-    <value></value>
+    <value>AJUDA</value>
     <comment>Page title</comment>
   </data>
   <data name="Documentation_UC" xml:space="preserve">
-    <value></value>
+    <value>DOCUMENTACIÓ</value>
     <comment>Help</comment>
   </data>
   <data name="Discord_UC" xml:space="preserve">
-    <value></value>
+    <value>DISCORD</value>
     <comment>Help</comment>
   </data>
   <data name="Forums_UC" xml:space="preserve">
-    <value></value>
+    <value>FÒRUMS</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
-    <value></value>
+    <value>Servidor de documentació</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordServer" xml:space="preserve">
-    <value></value>
+    <value>Servidor de Discord</value>
     <comment>Help</comment>
   </data>
   <data name="iRacingForums" xml:space="preserve">
-    <value></value>
+    <value>Fòrums d'iRacing</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationText" xml:space="preserve">
-    <value></value>
+    <value>Aquest lloc web de documentació és un treball en constant progrés, perquè constantment s'afegeixen noves funcions a aquesta aplicació. Actualitzo la documentació tan sovint com puc, però si la informació que busqueu encara no hi és, podeu intentar buscar les respostes a les vostres preguntes al servidor Discord o als fòrums d'iRacing.</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordText" xml:space="preserve">
-    <value></value>
+    <value>El servidor Discord de MAIRA és la manera més ràpida d'obtenir respostes a les vostres preguntes, si no les podeu trobar a la documentació. Hi ha voluntaris que ajuden, i jo també intento ajudar.</value>
     <comment>Help</comment>
   </data>
   <data name="ForumsText" xml:space="preserve">
-    <value></value>
+    <value>Aquí és on tot va començar. Podeu buscar respostes aquí, però ja no sóc tan actiu aquí com abans. Visitar el servidor de Discord és la millor manera de fer preguntes.</value>
     <comment>Help</comment>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value></value>
+    <value>Pedals Simagic P700</value>
     <comment>Pedals device</comment>
   </data>
 </root>

@@ -60,7 +60,7 @@
                                     Label="{Binding Localization[MinimumSpeed]}"
                                     Value="{Binding Settings.WindMinimumSpeed, Mode=TwoWay}"
                                     ValueString="{Binding Settings.WindMinimumSpeedString}"
-                                    StepSize="1"
+                                    StepSize="0.01"
                                     ContextSwitches="{Binding Settings.WindMinimumSpeedContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.WindMinimumSpeedPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.WindMinimumSpeedMinusButtonMappings}"
@@ -199,35 +199,6 @@
 
                 </Grid>
 
-                <StackPanel Grid.Row="1"
-                            Grid.Column="0"
-                            VerticalAlignment="Center">
-
-                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
-                               Text="{Binding Localization[LeftFan]}"
-                               HorizontalAlignment="Center" />
-
-                    <TextBlock x:Name="LeftFanRPM_TextBlock"
-                               Style="{StaticResource MairaTextBlockStyle}"
-                               d:Text="1250"
-                               FontSize="30"
-                               Foreground="#ff5b2e"
-                               HorizontalAlignment="Center" />
-
-                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
-                               Text="{Binding Localization[RightFan]}"
-                               HorizontalAlignment="Center"
-                               Margin="0,20,0,0" />
-
-                    <TextBlock x:Name="RightFanRPM_TextBlock"
-                               Style="{StaticResource MairaTextBlockStyle}"
-                               d:Text="1250"
-                               FontSize="30"
-                               Foreground="#ff5b2e"
-                               HorizontalAlignment="Center" />
-
-                </StackPanel>
-
                 <TextBlock Grid.Row="0"
                            Grid.Column="4"
                            Style="{StaticResource MairaTextBlockStyle}"
@@ -237,6 +208,95 @@
                            Grid.Column="4"
                            Style="{StaticResource MairaTextBlockStyle}"
                            Text="{Binding Localization[FanPower]}" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[FanStatus_UC]}">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Row="0"
+                            Grid.Column="0"
+                            VerticalAlignment="Center">
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               Text="{Binding Localization[LeftFan]}"
+                               HorizontalAlignment="Center" />
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               HorizontalAlignment="Center">
+                        
+                        <Run x:Name="LeftFanPower_TextBlock"
+                             FontSize="30"
+                             Foreground="#ff5b2e"
+                             d:Text="35" />
+                        
+                        <Run Text="{Binding Localization[Percent], Mode=OneWay}"
+                             FontSize="20"
+                             Foreground="#979797" />
+
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               HorizontalAlignment="Center">
+                        
+                        <Run x:Name="LeftFanRPM_TextBlock"
+                             FontSize="30"
+                             Foreground="#ff5b2e"
+                             d:Text="1250" />
+                        
+                        <Run Text="{Binding Localization[RPM], Mode=OneWay}"
+                             FontSize="20"
+                             Foreground="#979797" />
+
+                    </TextBlock>
+
+                </StackPanel>
+
+                <StackPanel Grid.Row="0"
+                            Grid.Column="1"
+                            VerticalAlignment="Center">
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               Text="{Binding Localization[RightFan]}"
+                               HorizontalAlignment="Center" />
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               HorizontalAlignment="Center">
+                        
+                        <Run x:Name="RightFanPower_TextBlock"
+                             FontSize="30"
+                             Foreground="#ff5b2e"
+                             d:Text="35" />
+                        
+                        <Run Text="{Binding Localization[Percent], Mode=OneWay}"
+                             FontSize="20"
+                             Foreground="#979797" />
+
+                    </TextBlock>
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               HorizontalAlignment="Center">
+
+                        <Run x:Name="RightFanRPM_TextBlock"
+                             FontSize="30"
+                             Foreground="#ff5b2e"
+                             d:Text="1250" />
+                        
+                        <Run Text="{Binding Localization[RPM], Mode=OneWay}"
+                             FontSize="20"
+                             Foreground="#979797" />
+
+                    </TextBlock>
+
+                </StackPanel>
 
             </Grid>
 

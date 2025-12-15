@@ -244,12 +244,15 @@ public partial class SteeringEffectsPage : UserControl
 
 		if ( comboBox is not null )
 		{
-			var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
+			if ( comboBox.SelectedValue is not null )
+			{
+				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
 
-			var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
+				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
 
-			UndersteerWheelVibrationStrength_MairaKnob.Visibility = visibility;
-			UndersteerWheelVibrationRow2_Grid.Visibility = visibility;
+				UndersteerWheelVibrationStrength_MairaKnob.Visibility = visibility;
+				UndersteerWheelVibrationRow2_Grid.Visibility = visibility;
+			}
 		}
 	}
 
@@ -259,12 +262,15 @@ public partial class SteeringEffectsPage : UserControl
 
 		if ( comboBox is not null )
 		{
-			var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
+			if ( comboBox.SelectedValue is not null )
+			{
+				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
 
-			var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
+				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
 
-			UndersteerWheelConstantForceStrength_MairaKnob.Visibility = visibility;
-			UndersteerWheelConstantForceCurve_MairaKnob.Visibility = visibility;
+				UndersteerWheelConstantForceStrength_MairaKnob.Visibility = visibility;
+				UndersteerWheelConstantForceCurve_MairaKnob.Visibility = visibility;
+			}
 		}
 	}
 
@@ -274,12 +280,15 @@ public partial class SteeringEffectsPage : UserControl
 
 		if ( comboBox is not null )
 		{
-			var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
+			if ( comboBox.SelectedValue is not null )
+			{
+				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
 
-			var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
+				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
 
-			OversteerWheelVibrationStrength_MairaKnob.Visibility = visibility;
-			OversteerWheelVibrationRow2_Grid.Visibility = visibility;
+				OversteerWheelVibrationStrength_MairaKnob.Visibility = visibility;
+				OversteerWheelVibrationRow2_Grid.Visibility = visibility;
+			}
 		}
 	}
 
@@ -289,12 +298,15 @@ public partial class SteeringEffectsPage : UserControl
 
 		if ( comboBox is not null )
 		{
-			var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
+			if ( comboBox.SelectedValue is not null )
+			{
+				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
 
-			var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
+				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
 
-			OversteerWheelConstantForceStrength_MairaKnob.Visibility = visibility;
-			OversteerWheelConstantForceCurve_MairaKnob.Visibility = visibility;
+				OversteerWheelConstantForceStrength_MairaKnob.Visibility = visibility;
+				OversteerWheelConstantForceCurve_MairaKnob.Visibility = visibility;
+			}
 		}
 	}
 
@@ -304,12 +316,15 @@ public partial class SteeringEffectsPage : UserControl
 
 		if ( comboBox is not null )
 		{
-			var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
+			if ( comboBox.SelectedValue is not null )
+			{
+				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
 
-			var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
+				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
 
-			SeatOfPantsWheelVibrationStrength_MairaKnob.Visibility = visibility;
-			SeatOfPantsWheelVibrationRow2_Grid.Visibility = visibility;
+				SeatOfPantsWheelVibrationStrength_MairaKnob.Visibility = visibility;
+				SeatOfPantsWheelVibrationRow2_Grid.Visibility = visibility;
+			}
 		}
 	}
 
@@ -319,12 +334,15 @@ public partial class SteeringEffectsPage : UserControl
 
 		if ( comboBox is not null )
 		{
-			var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
+			if ( comboBox.SelectedValue is not null )
+			{
+				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
 
-			var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
+				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
 
-			SeatOfPantsWheelConstantForceStrength_MairaKnob.Visibility = visibility;
-			SeatOfPantsWheelConstantForceCurve_MairaKnob.Visibility = visibility;
+				SeatOfPantsWheelConstantForceStrength_MairaKnob.Visibility = visibility;
+				SeatOfPantsWheelConstantForceCurve_MairaKnob.Visibility = visibility;
+			}
 		}
 	}
 

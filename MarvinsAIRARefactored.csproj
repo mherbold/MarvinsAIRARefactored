@@ -17,6 +17,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
+  <ItemGroup>
+    <None Remove="Artwork\Flags\hungary_fluttering_flag_64.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
@@ -91,6 +94,7 @@
     <Resource Include="Artwork\Flags\denmark_fluttering_flag_64.png" />
     <Resource Include="Artwork\Flags\france_fluttering_flag_64.png" />
     <Resource Include="Artwork\Flags\germany_fluttering_flag_64.png" />
+    <Resource Include="Artwork\Flags\hungary_fluttering_flag_64.png" />
     <Resource Include="Artwork\Flags\italy_fluttering_flag_64.png" />
     <Resource Include="Artwork\Flags\netherlands_fluttering_flag_64.png" />
     <Resource Include="Artwork\Flags\poland_fluttering_flag_64.png" />

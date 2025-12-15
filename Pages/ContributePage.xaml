@@ -130,236 +130,237 @@
 
                         <!-- Flag icons from https://www.freeflagicons.com/buy/fluttering_flag/ -->
 
+                        <!--ca-ES-->
+                        <!--Cvillena-->
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/spain_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Català"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
+                            <TextBlock Text="Cvillena" />
+                        </StackPanel>
+
                         <!--cs-CZ-->
                         <!--Jakub Trinkl-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/czech_republic_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Čestina"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
                             <TextBlock Text="Jakub Trinkl" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/czech_republic_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Čestina"
-                                       Grid.Column="1" />
-                        </Grid>
+                        </StackPanel>
 
                         <!--da-DK-->
                         <!--DKBjorn-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/denmark_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Dansk"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
                             <TextBlock Text="DKBjorn" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/denmark_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Dansk"
-                                       Grid.Column="1" />
-                        </Grid>
+                        </StackPanel>
 
                         <!--de-DE-->
                         <!--Rene-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Rene Stangl" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/germany_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Deutsch"
-                                       Grid.Column="1" />
-                        </Grid>
+                        <!--Alpha-Xray-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/germany_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Deutsch"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
+                            <TextBlock Text="Rene Stangl &amp; Alpha-Xray" />
+                        </StackPanel>
 
                         <!--es-ES-->
                         <!--Rodas007-->
                         <!--DrCrazy-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Rodas007 &amp; DrCrazy" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/spain_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Español"
-                                       Grid.Column="1" />
-                        </Grid>
+                        <!--danmargar-->
+                        <!--Cvillena-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/spain_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Español"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
+                            <TextBlock Text="Rodas007, DrCrazy, danmargar &amp; Cvillena" />
+                        </StackPanel>
+
+                        <!--fr-FR-->
+                        <!--Stéphane-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/france_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Français"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
+                            <TextBlock Text="Stéphane" />
+                        </StackPanel>
 
                         <!--fr-CA-->
-                        <!--LAS-Zeppelin83-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <!--LAS-Zeppelin83 (Michael Marcotte)-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/france_fluttering_flag_64.png"
+                                       Height="32" />
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/canada_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Français (Canada)"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
                             <TextBlock Text="Michael Marcotte" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/france_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right"
-                                   Margin="0,0,27,0" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/canada_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Français (Canada)"
-                                       Grid.Column="1" />
-                        </Grid>
+                        </StackPanel>
 
                         <!--hu-HU-->
                         <!--Tamás Kovács-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/hungary_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Magyar (Magyarország)"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
                             <TextBlock Text="Tamás Kovács" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/hungary_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Magyar (Magyarország)"
-                                       Grid.Column="1" />
-                        </Grid>
+                        </StackPanel>
 
                         <!--it-IT-->
-                        <!--Valerio.exe-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Valerio Pasqua" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/italy_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Italiano"
-                                       Grid.Column="1" />
-                        </Grid>
+                        <!--Valerio.exe (Valerio Pasqua)-->
+                        <!--Luca Leoni-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/italy_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Italiano"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
+                            <TextBlock Text="Valerio Pasqua &amp; Luca Leoni" />
+                        </StackPanel>
 
                         <!--nl-NL-->
                         <!--Jordi Koller-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Jordi Koller" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/netherlands_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Nederlands"
-                                       Grid.Column="1" />
-                        </Grid>
+                        <!--Marco Roos-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/netherlands_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Nederlands"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
+                            <TextBlock Text="Jordi Koller &amp; Marco Roos" />
+                        </StackPanel>
 
                         <!--pl-PL-->
                         <!--Jarek_iRek-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Jarek_iRek" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/poland_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Polski"
-                                       Grid.Column="1" />
-                        </Grid>
+                        <!--Pan_Mar1an-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/poland_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Polski"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
+                            <TextBlock Text="Jarek_iRek &amp; Pan_Mar1an" />
+                        </StackPanel>
 
                         <!--pt-BR-->
-                        <!--XKRamires-->
+                        <!--XKRamires (Paul Ramires)-->
                         <!--Thiago Oliveira-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/brazil_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Português (Brazil)"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
                             <TextBlock Text="Raul Ramires &amp; Thiago Oliveira" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/brazil_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Português (Brazil)"
-                                       Grid.Column="1" />
-                        </Grid>
+                        </StackPanel>
 
                         <!--pt-PT-->
                         <!--mitt42 (Mitt)-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/portugal_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Português (Portugal)"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
                             <TextBlock Text="Vitor Diogo" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/portugal_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Português (Portugal)"
-                                       Grid.Column="1" />
-                        </Grid>
+                        </StackPanel>
 
                         <!--tr-TR-->
                         <!--0xBATUDEV-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/turkey_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Türkçe"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
                             <TextBlock Text="BATUDEV" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/turkey_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Türkçe"
-                                       Grid.Column="1" />
-                        </Grid>
+                        </StackPanel>
 
                         <!--hy-AM-->
                         <!--Slavik-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/armenia_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="հայերեն"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
                             <TextBlock Text="Slavik Mikoyan" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/armenia_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="հայերեն"
-                                       Grid.Column="1" />
-                        </Grid>
+                        </StackPanel>
 
                         <!--ru-RU-->
-                        <!--Vpolne-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Stepan Kutyrev" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/russia_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="Русский"
-                                       Grid.Column="1" />
-                        </Grid>
+                        <!--Vpolne (Stepan Kutyrev)-->
+                        <!--Old Pepper-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/russia_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Русский"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
+                            <TextBlock Text="Stepan Kutyrev &amp; Old Pepper" />
+                        </StackPanel>
 
                         <!--zh-Hans-->
                         <!--Barry@simagic-->
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="275" />
-                                <ColumnDefinition Width="Auto" />
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Text="Barry Lee @ Simagic" />
-                            <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/china_fluttering_flag_64.png"
-                                   Height="20"
-                                   HorizontalAlignment="Right" />
-                            <TextBlock Text="简体中文"
-                                       Grid.Column="1" />
-                        </Grid>
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/china_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="简体中文"
+                                           FontSize="30"
+                                           Foreground="#979797"/>
+                            </StackPanel>
+                            <TextBlock Text="Barry Lee and Zephyr @ Simagic" />
+                        </StackPanel>
 
                     </UniformGrid>
 

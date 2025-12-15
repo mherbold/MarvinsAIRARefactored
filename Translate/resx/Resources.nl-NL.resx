@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -22,7 +22,7 @@
     <comment>Tab item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value></value>
+    <value>Marvin's Awesome iRacing App</value>
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
@@ -121,7 +121,7 @@
     <comment>Simulator</comment>
   </data>
   <data name="Test" xml:space="preserve">
-    <value></value>
+    <value>Test</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
@@ -321,7 +321,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="Minimum" xml:space="preserve">
-    <value></value>
+    <value>Minimum</value>
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
@@ -329,7 +329,7 @@
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Curve" xml:space="preserve">
-    <value></value>
+    <value>Curve</value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="GearChange" xml:space="preserve">
@@ -440,7 +440,7 @@
     <comment>Audio device list</comment>
   </data>
   <data name="Connection" xml:space="preserve">
-    <value>Connectie</value>
+    <value>Verbinding</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Display" xml:space="preserve">
@@ -542,13 +542,13 @@
     <value>Schakel FFB in, ook als iRacing FFB actief is.</value>
   </data>
   <data name="ClutchPedalHaptics" xml:space="preserve">
-    <value></value>
+    <value>Koppelingspedaal feedback</value>
   </data>
   <data name="BrakePedalHaptics" xml:space="preserve">
-    <value></value>
+    <value>Rempedaal feedback</value>
   </data>
   <data name="ThrottlePedalHaptics" xml:space="preserve">
-    <value></value>
+    <value>Gaspedaal feedback</value>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
     <value></value>
@@ -767,10 +767,10 @@
     <value>Zet calibratie terug naar standaardwaarden</value>
   </data>
   <data name="ShowGripOMeter" xml:space="preserve">
-    <value></value>
+    <value>Toon het Grip-O-Meter scherm</value>
   </data>
   <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value></value>
+    <value>Maak het Grip-O-Meter scherm verplaatsbaar</value>
   </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value></value>
@@ -779,7 +779,7 @@
     <value></value>
   </data>
   <data name="ResetGripOMeter" xml:space="preserve">
-    <value></value>
+    <value>Reset de Grip-O-Meter schermpositie</value>
   </data>
   <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
     <value>onderstuur stuur vibratie effect</value>
@@ -1017,11 +1017,11 @@
     <comment>App menu item</comment>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value></value>
+    <value>Verbind met MAIRA Wind tijdens opstarten</value>
     <comment>Wind</comment>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value></value>
+    <value>Verbind met MAIRA Wind</value>
     <comment>Wind</comment>
   </data>
   <data name="LeftFan" xml:space="preserve">
@@ -1129,24 +1129,100 @@
     <comment>Pedal effects list</comment>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value></value>
+    <value>Laterale Acceleratie</value>
     <comment>Steering effects</comment>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
-    <value></value>
+    <value>Laterale snelheid</value>
     <comment>Steering effects</comment>
   </data>
   <data name="RatioOfVelocities" xml:space="preserve">
-    <value></value>
+    <value>Snelheidsverhoudingen</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="Click_UC" xml:space="preserve">
-    <value>Klik</value>
+  <data name="DefaultPage_UC" xml:space="preserve">
+    <value></value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Effects_UC" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="VibrateOnGearChange" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="VibrateOnABS" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
   </data>
   <data name="Audio_UC" xml:space="preserve">
     <value>Geluid</value>
   </data>
   <data name="Display_UC" xml:space="preserve">
     <value>Beeld</value>
+  </data>
+  <data name="AdminBoxx_UC" xml:space="preserve">
+    <value></value>
+    <comment>Page title</comment>
+  </data>
+  <data name="Click_UC" xml:space="preserve">
+    <value>Klik</value>
+  </data>
+  <data name="PedalsP500" xml:space="preserve">
+    <value></value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="PedalsPrototype" xml:space="preserve">
+    <value></value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value></value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value></value>
+    <comment>Page title</comment>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value>DOCUMENTATIE</value>
+    <comment>Help</comment>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value>DISCORD</value>
+    <comment>Help</comment>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value>Documentatie website</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value>Deze documentatie website is permanent aan veranderig onderhevig, omdat er doorlopend nieuwe opties are de app worden toegevoegd. Ik werk de informatie zoveel mogelijk bij. Mocht je niet kunnen vinden wat je zoekt, kijk dan op de Discord server, of in the iRacing forums. </value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value>De MAIRA Discord server is de snelste manier op antwoorden te krijgen op je vragen, mocht je het antwoord niet in de documentatie kunnen vinden. Er zijn vrijwilligers actief en ikzelf probeer ook te helpen. </value>
+    <comment>Help</comment>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value>Hier is het allemaal begonnen. Je kunt hier antwoorden vinden op je vragen, ik ben hier echter niet meer zo actief als vroeger. De Discord server is de beste plek om vragen te stellen. </value>
+    <comment>Help</comment>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value></value>
+    <comment>Pedals device</comment>
   </data>
 </root>

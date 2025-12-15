@@ -1,7 +1,8 @@
 {
     "es-ES": [
         "DrCrazy",
-        "danmargar"
+        "danmargar",
+        "Cvillena"
     ],
     "de-DE": [
         "Rene Stangl",
@@ -47,6 +48,16 @@
         "Marvin"
     ],
     "fr-FR": [
-        "Marvin"
+        "Marvin",
+        "Stéphane"
+    ],
+    "ca-ES": [
+        "Cvillena"
+    ],
+    "tr-TR": [
+        "Kerem Kartal"
+    ],
+    "nl-NL": [
+        "Marco Roos"
     ]
 }
