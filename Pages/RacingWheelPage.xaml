@@ -359,7 +359,7 @@
 
                     <controls:MairaSwitch x:Name="MultiEnableSlewPeakMode_MairaSwitch"
                                           Grid.Column="2"
-                                          Label="{Binding Localization[RacingWheelMultSlewPeakMode]}"
+                                          Label="{Binding Localization[SlewPeakMode]}"
                                           IsOn="{Binding Settings.RacingWheelMultiEnableSlewPeakMode, Mode=TwoWay}"
                                           ContextSwitches="{Binding Settings.RacingWheelMultiEnableSlewPeakModeContextSwitches}" />
 

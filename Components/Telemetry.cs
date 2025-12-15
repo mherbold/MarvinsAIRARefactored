@@ -364,17 +364,60 @@ public class Telemetry
 
 				switch ( settings.RacingWheelAlgorithm )
 				{
+					case RacingWheel.Algorithm.Native60Hz:
+					case RacingWheel.Algorithm.Native360Hz:
+						dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 1 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 2 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 3 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 4 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 5 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 6 ] = 0f;
+
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 2, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 3, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 4, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 5, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 6, "" );
+
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 1, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 2, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 3, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 4, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 5, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 6, "" );
+
+						break;
+
 					case RacingWheel.Algorithm.DetailBooster:
 					case RacingWheel.Algorithm.DetailBoosterOn60Hz:
 
 						dataBuffer.racingWheelAlgorithmSettings[ 0 ] = settings.RacingWheelDetailBoost;
 						dataBuffer.racingWheelAlgorithmSettings[ 1 ] = settings.RacingWheelDetailBoostBias;
+						dataBuffer.racingWheelAlgorithmSettings[ 2 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 3 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 4 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 5 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 6 ] = 0f;
 
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, localization[ "DetailBoost" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, localization[ "DetailBoostBias" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 2, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 3, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 4, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 5, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 6, "" );
 
 						dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, settings.RacingWheelDetailBoostString );
 						dataBuffer.SetRacingWheelAlgorithmSettingValue( 1, settings.RacingWheelDetailBoostBiasString );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 2, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 3, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 4, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 5, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 6, "" );
 
 						break;
 
@@ -383,12 +426,27 @@ public class Telemetry
 
 						dataBuffer.racingWheelAlgorithmSettings[ 0 ] = settings.RacingWheelDeltaLimit;
 						dataBuffer.racingWheelAlgorithmSettings[ 1 ] = settings.RacingWheelDeltaLimiterBias;
+						dataBuffer.racingWheelAlgorithmSettings[ 2 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 3 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 4 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 5 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 6 ] = 0f;
 
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, localization[ "DeltaLimit" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, localization[ "DeltaLimiterBias" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 2, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 3, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 4, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 5, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 6, "" );
 
 						dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, settings.RacingWheelDeltaLimitString );
 						dataBuffer.SetRacingWheelAlgorithmSettingValue( 1, settings.RacingWheelDeltaLimiterBiasString );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 2, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 3, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 4, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 5, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 6, "" );
 
 						break;
 
@@ -398,16 +456,25 @@ public class Telemetry
 						dataBuffer.racingWheelAlgorithmSettings[ 1 ] = settings.RacingWheelSlewCompressionRate;
 						dataBuffer.racingWheelAlgorithmSettings[ 2 ] = settings.RacingWheelTotalCompressionThreshold;
 						dataBuffer.racingWheelAlgorithmSettings[ 3 ] = settings.RacingWheelTotalCompressionRate;
+						dataBuffer.racingWheelAlgorithmSettings[ 4 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 5 ] = 0f;
+						dataBuffer.racingWheelAlgorithmSettings[ 6 ] = 0f;
 
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, localization[ "SlewCompressionThreshold" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, localization[ "SlewCompressionRate" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 2, localization[ "TotalCompressionThreshold" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 3, localization[ "TotalCompressionRate" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 4, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 5, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 6, "" );
 
 						dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, settings.RacingWheelSlewCompressionThresholdString );
 						dataBuffer.SetRacingWheelAlgorithmSettingValue( 1, settings.RacingWheelSlewCompressionRateString );
 						dataBuffer.SetRacingWheelAlgorithmSettingValue( 2, settings.RacingWheelTotalCompressionThresholdString );
 						dataBuffer.SetRacingWheelAlgorithmSettingValue( 3, settings.RacingWheelTotalCompressionRateString );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 4, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 5, "" );
+						dataBuffer.SetRacingWheelAlgorithmSettingValue( 6, "" );
 
 						break;
 
@@ -441,7 +508,7 @@ public class Telemetry
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 0, localization[ "FFBSource" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 1, localization[ "Multi360HzDetail" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 2, localization[ "TorqueCompression" ] );
-						dataBuffer.SetRacingWheelAlgorithmSettingName( 3, localization[ "RacingWheelMultSlewPeakMode" ] );
+						dataBuffer.SetRacingWheelAlgorithmSettingName( 3, localization[ "SlewPeakMode" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 4, localization[ "SlewRateReduction" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 5, localization[ "DetailGain" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 6, localization[ "OutputSmoothing" ] );
