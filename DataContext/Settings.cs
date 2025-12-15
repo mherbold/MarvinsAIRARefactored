@@ -1361,7 +1361,6 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			var settings = DataContext.Instance.Settings;
 			float newValue;
 
 			if ( value != -1f )
@@ -1370,7 +1369,7 @@ public class Settings : INotifyPropertyChanged
 			}
 			else
 			{
-				switch ( settings.RacingWheelMultiFFBSource )
+				switch ( RacingWheelMultiFFBSource )
 				{
 					case RacingWheel.MultiFFBSource.Native60Hz:
 					case RacingWheel.MultiFFBSource.DefaultsNative60Hz:
