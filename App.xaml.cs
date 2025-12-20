@@ -880,25 +880,47 @@ public partial class App : Application
 				}
 			}
 
-			// racing wheel crash protection g force knob
+			// racing wheel crash protection longitudal g force knob
 
-			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionGForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionLongitudalGForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelCrashProtectionGForce += 0.5f;
+				settings.RacingWheelCrashProtectionLongitudalGForce += 0.5f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "GForce", settings.RacingWheelCrashProtectionGForceString );
+					RacingWheel.SendChatMessage( "LongitudalGForce", settings.RacingWheelCrashProtectionLongitudalGForceString );
 				}
 			}
 
-			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionGForceMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionLongitudalGForceMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelCrashProtectionGForce -= 0.5f;
+				settings.RacingWheelCrashProtectionLongitudalGForce -= 0.5f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "GForce", settings.RacingWheelCrashProtectionGForceString );
+					RacingWheel.SendChatMessage( "LongitudalGForce", settings.RacingWheelCrashProtectionLongitudalGForceString );
+				}
+			}
+
+			// racing wheel crash protection lateral g force knob
+
+			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionLateralGForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelCrashProtectionLateralGForce += 0.5f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "LateralGForce", settings.RacingWheelCrashProtectionLateralGForceString );
+				}
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionLateralGForceMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelCrashProtectionLateralGForce -= 0.5f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "LateralGForce", settings.RacingWheelCrashProtectionLateralGForceString );
 				}
 			}
 

@@ -38,92 +38,99 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 		app.Logger.WriteLine( "[UsbSerialPortHelper] Initialize >>>" );
 
-		using var searcher = new ManagementObjectSearcher( "SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'" );
-
-		var fallbackPortName = string.Empty;
-
-		foreach ( var device in searcher.Get() )
+		try
 		{
-			var name = device[ "Name" ]?.ToString();
-			var deviceId = device[ "PNPDeviceID" ]?.ToString();
+			using var searcher = new ManagementObjectSearcher( "SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'" );
 
-			if ( !string.IsNullOrEmpty( name ) && !string.IsNullOrEmpty( deviceId ) )
+			var fallbackPortName = string.Empty;
+
+			foreach ( var device in searcher.Get() )
 			{
-				if ( ( _deviceIdMustContain == string.Empty ) || !deviceId.Contains( _deviceIdMustContain, StringComparison.OrdinalIgnoreCase ) )
+				var name = device[ "Name" ]?.ToString();
+				var deviceId = device[ "PNPDeviceID" ]?.ToString();
+
+				if ( !string.IsNullOrEmpty( name ) && !string.IsNullOrEmpty( deviceId ) )
 				{
-					var start = name.IndexOf( "(COM" );
-
-					if ( start >= 0 )
+					if ( ( _deviceIdMustContain == string.Empty ) || !deviceId.Contains( _deviceIdMustContain, StringComparison.OrdinalIgnoreCase ) )
 					{
-						var end = name.IndexOf( ')', start );
+						var start = name.IndexOf( "(COM" );
 
-						if ( end >= 0 )
+						if ( start >= 0 )
 						{
-							var portName = name.Substring( start + 1, end - start - 1 );
+							var end = name.IndexOf( ')', start );
 
-							// try handshake first
-
-							try
+							if ( end >= 0 )
 							{
-								using var testPort = new SerialPort( portName, _baudRate, _parity, _dataBits, _stopBits )
+								var portName = name.Substring( start + 1, end - start - 1 );
+
+								// try handshake first
+
+								try
 								{
-									Handshake = Handshake.None,
-									Encoding = Encoding.ASCII,
-									ReadTimeout = 500,
-									WriteTimeout = 500,
-									NewLine = "\n"
-								};
+									using var testPort = new SerialPort( portName, _baudRate, _parity, _dataBits, _stopBits )
+									{
+										Handshake = Handshake.None,
+										Encoding = Encoding.ASCII,
+										ReadTimeout = 500,
+										WriteTimeout = 500,
+										NewLine = "\n"
+									};
 
-								testPort.Open();
-								testPort.DiscardInBuffer();
-								testPort.DiscardOutBuffer();
-								testPort.WriteLine( "WHAT ARE YOU?" );
+									testPort.Open();
+									testPort.DiscardInBuffer();
+									testPort.DiscardOutBuffer();
+									testPort.WriteLine( "WHAT ARE YOU?" );
 
-								Thread.Sleep( 200 );
+									Thread.Sleep( 200 );
 
-								var response = testPort.ReadExisting()?.Trim();
+									var response = testPort.ReadExisting()?.Trim();
 
-								if ( !string.IsNullOrEmpty( response ) && response.Contains( _handshake, StringComparison.OrdinalIgnoreCase ) )
-								{
-									app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake successful on {portName}" );
+									if ( !string.IsNullOrEmpty( response ) && response.Contains( _handshake, StringComparison.OrdinalIgnoreCase ) )
+									{
+										app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake successful on {portName}" );
 
-									_portName = portName;
+										_portName = portName;
 
-									break;
+										break;
+									}
 								}
-							}
-							catch ( Exception exception )
-							{
-								app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake failed on {portName}: {exception.Message}" );
-							}
-
-							// try VID/PID second (and use as fallback)
-
-							if ( ( _fallbackVid != string.Empty ) && ( _fallbackPid != string.Empty ) )
-							{
-								if ( deviceId.Contains( $"VID_{_fallbackVid}", StringComparison.OrdinalIgnoreCase ) && deviceId.Contains( $"PID_{_fallbackPid}", StringComparison.OrdinalIgnoreCase ) )
+								catch ( Exception exception )
 								{
-									fallbackPortName = portName;
+									app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake failed on {portName}: {exception.Message}" );
+								}
+
+								// try VID/PID second (and use as fallback)
+
+								if ( ( _fallbackVid != string.Empty ) && ( _fallbackPid != string.Empty ) )
+								{
+									if ( deviceId.Contains( $"VID_{_fallbackVid}", StringComparison.OrdinalIgnoreCase ) && deviceId.Contains( $"PID_{_fallbackPid}", StringComparison.OrdinalIgnoreCase ) )
+									{
+										fallbackPortName = portName;
+									}
 								}
 							}
 						}
 					}
 				}
 			}
+
+			if ( _portName == string.Empty )
+			{
+				if ( fallbackPortName != string.Empty )
+				{
+					app.Logger.WriteLine( $"[UsbSerialPortHelper] Device found on port {fallbackPortName} (using fallback method)" );
+
+					_portName = fallbackPortName;
+				}
+				else
+				{
+					app.Logger.WriteLine( "[UsbSerialPortHelper] Device not found" );
+				}
+			}
 		}
-
-		if ( _portName == string.Empty )
+		catch ( Exception exception )
 		{
-			if ( fallbackPortName != string.Empty )
-			{
-				app.Logger.WriteLine( $"[UsbSerialPortHelper] Device found on port {fallbackPortName} (using fallback method)" );
-
-				_portName = fallbackPortName;
-			}
-			else
-			{
-				app.Logger.WriteLine( "[UsbSerialPortHelper] Device not found" );
-			}
+			app.Logger.WriteLine( $"[UsbSerialPortHelper] Unexpected error during device search: {exception.Message}" );
 		}
 
 		app.Logger.WriteLine( "[UsbSerialPortHelper] <<< Initialize" );

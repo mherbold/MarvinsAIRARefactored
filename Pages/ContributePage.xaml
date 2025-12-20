@@ -285,6 +285,7 @@
                         <!--pt-BR-->
                         <!--XKRamires (Paul Ramires)-->
                         <!--Thiago Oliveira-->
+                        <!--Felipe FD-->
                         <StackPanel Margin="0,10,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/brazil_fluttering_flag_64.png"
@@ -293,7 +294,7 @@
                                            FontSize="30"
                                            Foreground="#979797"/>
                             </StackPanel>
-                            <TextBlock Text="Raul Ramires &amp; Thiago Oliveira" />
+                            <TextBlock Text="Raul Ramires, Thiago Oliveira &amp; Felipe FD" />
                         </StackPanel>
 
                         <!--pt-PT-->
@@ -359,7 +360,7 @@
                                            FontSize="30"
                                            Foreground="#979797"/>
                             </StackPanel>
-                            <TextBlock Text="Barry Lee and Zephyr @ Simagic" />
+                            <TextBlock Text="Barry Lee &amp; Zephyr @ Simagic" />
                         </StackPanel>
 
                     </UniformGrid>

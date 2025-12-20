@@ -36,7 +36,8 @@ public partial class Simulator
 	public string CurrentTireCompoundType { get; private set; } = string.Empty;
 	public int DisplayUnits { get; private set; } = 0;
 	public int Gear { get; private set; } = 0;
-	public float GForce { get; private set; } = 0f;
+	public float LongitudalGForce { get; private set; } = 0f;
+	public float LateralGForce { get; private set; } = 0f;
 	public bool IsConnected { get => _irsdk.IsConnected; }
 	public bool IsOnTrack { get; private set; } = false;
 	public bool IsReplayPlaying { get; private set; } = false;
@@ -251,7 +252,8 @@ public partial class Simulator
 		CurrentTireCompoundType = string.Empty;
 		DisplayUnits = 0;
 		Gear = 0;
-		GForce = 0f;
+		LongitudalGForce = 0f;
+		LateralGForce = 0f;
 		IsOnTrack = false;
 		IsReplayPlaying = false;
 		LapDistPct = 0f;
@@ -651,19 +653,31 @@ public partial class Simulator
 		YawNorth = _irsdk.Data.GetFloat( _yawNorthDatum );
 		YawRate = _irsdk.Data.GetFloat( _yawRateDatum );
 
-		// calculate g force
+		// calculate g forces
 
-		GForce = MathF.Sqrt( LatAccel * LatAccel + LongAccel * LongAccel ) * MathZ.OneOverG;
+		LongitudalGForce = MathF.Sqrt( LongAccel * LongAccel ) * MathZ.OneOverG;
+		LateralGForce = MathF.Sqrt( LatAccel * LatAccel ) * MathZ.OneOverG;
 
 		// crash protection processing
 
 		if ( IsOnTrack )
 		{
-			if ( ( settings.RacingWheelCrashProtectionGForce < 20f ) && ( settings.RacingWheelCrashProtectionDuration > 0f ) && ( settings.RacingWheelCrashProtectionForceReduction > 0f ) )
+			if ( ( settings.RacingWheelCrashProtectionDuration > 0f ) && ( settings.RacingWheelCrashProtectionForceReduction > 0f ) )
 			{
-				if ( MathF.Abs( GForce ) >= settings.RacingWheelCrashProtectionGForce )
+				if ( settings.RacingWheelCrashProtectionLongitudalGForce < 20f )
 				{
-					app.RacingWheel.ActivateCrashProtection = true;
+					if ( MathF.Abs( LongitudalGForce ) >= settings.RacingWheelCrashProtectionLongitudalGForce )
+					{
+						app.RacingWheel.ActivateCrashProtection = true;
+					}
+				}
+
+				if ( settings.RacingWheelCrashProtectionLateralGForce < 20f )
+				{
+					if ( MathF.Abs( LateralGForce ) >= settings.RacingWheelCrashProtectionLateralGForce )
+					{
+						app.RacingWheel.ActivateCrashProtection = true;
+					}
 				}
 			}
 		}

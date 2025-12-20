@@ -349,8 +349,8 @@
     <value> g</value>
     <comment>Abbreviation for g-force</comment>
   </data>
-  <data name="GForce" xml:space="preserve">
-    <value>G-Force</value>
+  <data name="LongitudalGForce" xml:space="preserve">
+    <value>Longitudial G-Force</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Duration" xml:space="preserve">
@@ -1548,5 +1548,9 @@
   <data name="FFBSource" xml:space="preserve">
     <value>FFB Type + Presets</value>
     <comment>FFB type selection plus preset options</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>Lateral G-Force</value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

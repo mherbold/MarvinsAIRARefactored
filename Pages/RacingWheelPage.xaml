@@ -621,6 +621,12 @@
 
             <Grid>
 
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
@@ -629,16 +635,18 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <controls:MairaKnob Grid.Column="0"
-                                    Label="{Binding Localization[GForce]}"
-                                    Value="{Binding Settings.RacingWheelCrashProtectionGForce, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.RacingWheelCrashProtectionGForceString}"
+                <controls:MairaKnob Grid.Row="0"
+                                    Grid.Column="0"
+                                    Label="{Binding Localization[LongitudalGForce]}"
+                                    Value="{Binding Settings.RacingWheelCrashProtectionLongitudalGForce, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.RacingWheelCrashProtectionLongitudalGForceString}"
                                     StepSize="0.5"
-                                    ContextSwitches="{Binding Settings.RacingWheelCrashProtectionGForceContextSwitches}"
-                                    PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionGForcePlusButtonMappings}"
-                                    MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionGForceMinusButtonMappings}"
+                                    ContextSwitches="{Binding Settings.RacingWheelCrashProtectionLongitudalGForceContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionLongitudalGForcePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionLongitudalGForceMinusButtonMappings}"
                                     DefaultValue="8" />
-                <controls:MairaKnob Grid.Column="2"
+                <controls:MairaKnob Grid.Row="0"
+                                    Grid.Column="2"
                                     Label="{Binding Localization[Duration]}"
                                     Value="{Binding Settings.RacingWheelCrashProtectionDuration, Mode=TwoWay}"
                                     ValueString="{Binding Settings.RacingWheelCrashProtectionDurationString}"
@@ -647,7 +655,8 @@
                                     PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionDurationMinusButtonMappings}"
                                     DefaultValue="1" />
-                <controls:MairaKnob Grid.Column="4"
+                <controls:MairaKnob Grid.Row="0"
+                                    Grid.Column="4"
                                     Label="{Binding Localization[ForceReduction]}"
                                     Value="{Binding Settings.RacingWheelCrashProtectionForceReduction, Mode=TwoWay}"
                                     ValueString="{Binding Settings.RacingWheelCrashProtectionForceReductionString}"
@@ -656,7 +665,16 @@
                                     PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionForceReductionPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionForceReductionMinusButtonMappings}"
                                     DefaultValue="0.95" />
-
+                <controls:MairaKnob Grid.Row="2"
+                                    Grid.Column="0"
+                                    Label="{Binding Localization[LateralGForce]}"
+                                    Value="{Binding Settings.RacingWheelCrashProtectionLateralGForce, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.RacingWheelCrashProtectionLateralGForceString}"
+                                    StepSize="0.5"
+                                    ContextSwitches="{Binding Settings.RacingWheelCrashProtectionLateralGForceContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.RacingWheelCrashProtectionLateralGForcePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.RacingWheelCrashProtectionLateralGForceMinusButtonMappings}"
+                                    DefaultValue="6" />
             </Grid>
 
         </controls:MairaGroupBox>

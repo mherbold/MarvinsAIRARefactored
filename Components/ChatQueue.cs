@@ -1,6 +1,7 @@
 ﻿
-using IRSDKSharper;
+using MarvinsAIRARefactored.Classes;
 
+using IRSDKSharper;
 using PInvoke;
 
 using static PInvoke.User32;
@@ -85,8 +86,8 @@ public partial class ChatQueue
 				{
 					var message = _messageList[ 0 ];
 
-					var stringToSend = $"{message.MessageTemplate}";
-
+					var stringToSend = Misc.ToBestEffortLatin1( message.MessageTemplate );
+					
 					if ( message.Value != null )
 					{
 						stringToSend += $" = {message.Value}";

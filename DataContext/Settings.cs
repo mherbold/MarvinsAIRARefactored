@@ -1846,57 +1846,111 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Racing wheel - Crash protection g-force
+	#region Racing wheel - Crash protection longitudal g-force
 
-	private float _racingWheelCrashProtectionGForce = 8f;
+	private float _racingWheelCrashProtectionLongitudalGForce = 8f;
 
-	public float RacingWheelCrashProtectionGForce
+	public float RacingWheelCrashProtectionLongitudalGForce
 	{
-		get => _racingWheelCrashProtectionGForce;
+		get => _racingWheelCrashProtectionLongitudalGForce;
 
 		set
 		{
 			value = Math.Clamp( value, 2f, 20f );
 
-			if ( value != _racingWheelCrashProtectionGForce )
+			if ( value != _racingWheelCrashProtectionLongitudalGForce )
 			{
-				_racingWheelCrashProtectionGForce = value;
+				_racingWheelCrashProtectionLongitudalGForce = value;
 
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelCrashProtectionGForce == 20f )
+			if ( _racingWheelCrashProtectionLongitudalGForce == 20f )
 			{
-				RacingWheelCrashProtectionGForceString = DataContext.Instance.Localization[ "OFF" ];
+				RacingWheelCrashProtectionLongitudalGForceString = DataContext.Instance.Localization[ "OFF" ];
 			}
 			else
 			{
-				RacingWheelCrashProtectionGForceString = $"{_racingWheelCrashProtectionGForce:F1} {DataContext.Instance.Localization[ "GForceUnits" ]}";
+				RacingWheelCrashProtectionLongitudalGForceString = $"{_racingWheelCrashProtectionLongitudalGForce:F1} {DataContext.Instance.Localization[ "GForceUnits" ]}";
 			}
 		}
 	}
 
-	private string _racingWheelCrashProtectionGForceString = string.Empty;
+	private string _racingWheelCrashProtectionLongitudalGForceString = string.Empty;
 
 	[XmlIgnore]
-	public string RacingWheelCrashProtectionGForceString
+	public string RacingWheelCrashProtectionLongitudalGForceString
 	{
-		get => _racingWheelCrashProtectionGForceString;
+		get => _racingWheelCrashProtectionLongitudalGForceString;
 
 		set
 		{
-			if ( value != _racingWheelCrashProtectionGForceString )
+			if ( value != _racingWheelCrashProtectionLongitudalGForceString )
 			{
-				_racingWheelCrashProtectionGForceString = value;
+				_racingWheelCrashProtectionLongitudalGForceString = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	public ContextSwitches RacingWheelCrashProtectionGForceContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings RacingWheelCrashProtectionGForcePlusButtonMappings { get; set; } = new();
-	public ButtonMappings RacingWheelCrashProtectionGForceMinusButtonMappings { get; set; } = new();
+	public ContextSwitches RacingWheelCrashProtectionLongitudalGForceContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings RacingWheelCrashProtectionLongitudalGForcePlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelCrashProtectionLongitudalGForceMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Crash protection lateral g-force
+
+	private float _racingWheelCrashProtectionLateralGForce = 6f;
+
+	public float RacingWheelCrashProtectionLateralGForce
+	{
+		get => _racingWheelCrashProtectionLateralGForce;
+
+		set
+		{
+			value = Math.Clamp( value, 2f, 20f );
+
+			if ( value != _racingWheelCrashProtectionLateralGForce )
+			{
+				_racingWheelCrashProtectionLateralGForce = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _racingWheelCrashProtectionLateralGForce == 20f )
+			{
+				RacingWheelCrashProtectionLateralGForceString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				RacingWheelCrashProtectionLateralGForceString = $"{_racingWheelCrashProtectionLateralGForce:F1} {DataContext.Instance.Localization[ "GForceUnits" ]}";
+			}
+		}
+	}
+
+	private string _racingWheelCrashProtectionLateralGForceString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelCrashProtectionLateralGForceString
+	{
+		get => _racingWheelCrashProtectionLateralGForceString;
+
+		set
+		{
+			if ( value != _racingWheelCrashProtectionLateralGForceString )
+			{
+				_racingWheelCrashProtectionLateralGForceString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches RacingWheelCrashProtectionLateralGForceContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings RacingWheelCrashProtectionLateralGForcePlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelCrashProtectionLateralGForceMinusButtonMappings { get; set; } = new();
 
 	#endregion
 

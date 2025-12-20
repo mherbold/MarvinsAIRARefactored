@@ -2,18 +2,20 @@
 using System.Collections;
 using System.ComponentModel.Design;
 using System.Diagnostics;
+using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
-using Point = System.Windows.Point;
-
 using IWshRuntimeLibrary;
 using PInvoke;
+
+using Point = System.Windows.Point;
 
 namespace MarvinsAIRARefactored.Classes;
 
@@ -249,5 +251,35 @@ public class Misc
 		var p = element.PointToScreen( new Point( element.ActualWidth / 2, element.ActualHeight / 2 ) );
 
 		User32.SetCursorPos( (int) Math.Round( p.X ), (int) Math.Round( p.Y ) );
+	}
+
+	private static readonly Encoding Latin1Encoding = Encoding.GetEncoding( "iso-8859-1", new EncoderReplacementFallback( "?" ), new DecoderReplacementFallback( "?" ) );
+
+	public static string ToBestEffortLatin1( string input )
+	{
+		// 1) Decompose accented letters into base letter + combining marks
+		var normalized = input.Normalize( NormalizationForm.FormD );
+
+		// 2) Remove combining marks (diacritics)
+		var stringBuilder = new StringBuilder( normalized.Length );
+
+		foreach ( var ch in normalized )
+		{
+			var category = CharUnicodeInfo.GetUnicodeCategory( ch );
+
+			if ( ( category != UnicodeCategory.NonSpacingMark ) && ( category != UnicodeCategory.SpacingCombiningMark ) && ( category != UnicodeCategory.EnclosingMark ) )
+			{
+				stringBuilder.Append( ch );
+			}
+		}
+
+		// 3) Re-compose (optional but tidy)
+		var noDiacritics = stringBuilder.ToString().Normalize( NormalizationForm.FormC );
+
+		// 4) Encode to Latin-1 with '?' replacement for anything still unsupported
+		var bytes = Latin1Encoding.GetBytes( noDiacritics );
+
+		// 5) Convert back to a .NET string that contains only U+0000..U+00FF chars
+		return Latin1Encoding.GetString( bytes );
 	}
 }
