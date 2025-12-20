@@ -25,16 +25,7 @@ public class RacingWheel
 		Native60Hz,
 		Native360Hz,
 		Hybrid10,
-		HybridVariable30,
-		DefaultsNative60Hz,
-		DefaultsNative360Hz,
-		DefaultsHybrid10,
-		DefaultsHybridVariable30,
-		PresetBoostDetail,
-		PresetReduceDetail,
-		PresetBasicFFB,
-		PresetBalancedFFB,
-		_Dummy_
+		HybridVariable30
 	};
 
 	public enum VibrationPattern

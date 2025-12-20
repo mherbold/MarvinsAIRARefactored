@@ -675,6 +675,28 @@ public partial class App : Application
 				}
 			}
 
+			// racing wheel 360 Hz detail knob
+
+			if ( CheckMappedButtons( settings.RacingWheelMulti360HzDetailPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelMulti360HzDetail += 0.01f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "Multi360HzDetail", settings.RacingWheelMulti360HzDetailString );
+				}
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelMulti360HzDetailMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelMulti360HzDetail -= 0.01f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "Multi360HzDetail", settings.RacingWheelMulti360HzDetailString );
+				}
+			}
+
 			// racing wheel multi torque compression knob
 
 			if ( CheckMappedButtons( settings.RacingWheelMultiTorqueCompressionPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )

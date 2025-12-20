@@ -401,8 +401,8 @@
                     <controls:MairaComboBox x:Name="MultiFFBSource_MairaComboBox"
                                             Grid.Column="0"
                                             Label="{Binding Localization[FFBSource]}"
-                                            SelectedValue="{Binding Settings.RacingWheelMultiFFBSource, Mode=TwoWay}"
-                                            ContextSwitches="{Binding Settings.RacingWheelMultiFFBSourceContextSwitches}" />
+                                            SelectedValue="{Binding Settings.RacingWheelMultiFFBSourceSelection, Mode=TwoWay}"
+                                            ContextSwitches="{Binding Settings.RacingWheelMultiFFBSourceSelectionContextSwitches}" />
 
                     <controls:MairaKnob x:Name="MultiDetailGain_MairaKnob"
                                         Grid.Column="2"
