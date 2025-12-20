@@ -244,7 +244,7 @@
     <value>g</value>
     <comment>Abbreviation for G-Force</comment>
   </data>
-  <data name="GForce" xml:space="preserve">
+  <data name="LongitudalGForce" xml:space="preserve">
     <value>Forza G</value>
     <comment>Racing wheel</comment>
   </data>
@@ -769,7 +769,7 @@
     <value>MESSAGGI PRIVATI</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value></value>
+    <value>Abilita Messaggi Protezione Cordoli</value>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
     <value>Abilita Messaggi Protezione Incidenti</value>
@@ -880,7 +880,7 @@
     <value>MAIRA classic è attualmente in esecuzione. Per favore, esci da MAIRA classic prima di avviare questa versione di MAIRA!</value>
   </data>
   <data name="ExceptionThrown" xml:space="preserve">
-    <value></value>
+    <value>Qualcosa è andato storto</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
     <value>Km/h</value>
@@ -1231,5 +1231,61 @@
   <data name="PedalsPrototype" xml:space="preserve">
     <value>Pedali prototipo</value>
     <comment>Pedals device</comment>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Aiuto</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value>AIUTO</value>
+    <comment>Page title</comment>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value>DOCUMENTAZIONE</value>
+    <comment>Help</comment>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value>DISCORD</value>
+    <comment>Help</comment>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value>FORUM</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value>Sito Web Della Documentazione</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value>Server Discord</value>
+    <comment>Help</comment>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value>Forum di iRacing</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value>Il server Discord di MAIRA è il modo più rapido per avere risposte alle vostre domande, se non le trovate nella documentazione. Lì ci sono volontari che possono aiutarvi e io stesso posso provare a darvi una mano.</value>
+    <comment>Help</comment>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value>Qui è dove tutto è iniziato. Puoi cercare le risposte qui, ma non sono attivo come lo ero in passato. Il miglior modo per avere risposte è visitare il server Discord.</value>
+    <comment>Help</comment>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value>Pedaliera Simagic P700</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>STATO DELLA VENTOLA</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>Forza G Laterale</value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

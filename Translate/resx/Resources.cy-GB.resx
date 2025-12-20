@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -245,7 +245,7 @@
     <value>g</value>
     <comment>Abbreviation for g-force</comment>
   </data>
-  <data name="GForce" xml:space="preserve">
+  <data name="LongitudalGForce" xml:space="preserve">
     <value></value>
     <comment>Racing wheel</comment>
   </data>

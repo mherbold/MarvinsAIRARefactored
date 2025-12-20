@@ -289,7 +289,7 @@
     <value />
     <comment>Abbreviation for G-Force</comment>
   </data>
-  <data name="GForce" xml:space="preserve">
+  <data name="LongitudalGForce" xml:space="preserve">
     <value>G值</value>
     <comment>Racing wheel</comment>
   </data>

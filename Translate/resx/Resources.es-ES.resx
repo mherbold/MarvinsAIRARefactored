@@ -244,7 +244,7 @@
     <value>G</value>
     <comment>Abbreviation for G-Force</comment>
   </data>
-  <data name="GForce" xml:space="preserve">
+  <data name="LongitudalGForce" xml:space="preserve">
     <value>Fuerza-G</value>
     <comment>Racing wheel</comment>
   </data>
@@ -1283,5 +1283,9 @@
   <data name="PedalsP700" xml:space="preserve">
     <value>Pedales Simagic P700</value>
     <comment>Pedals device</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>ESTADO DEL VENTILADOR</value>
+    <comment>Wind</comment>
   </data>
 </root>

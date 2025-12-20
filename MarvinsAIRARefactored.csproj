@@ -127,8 +127,9 @@
     <PackageReference Include="Accord.Neuro" Version="3.8.0" />
     <PackageReference Include="Accord.Statistics" Version="3.8.0" />
     <PackageReference Include="CsvHelper" Version="33.1.0" />
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
-    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.236">
+    <PackageReference Include="IRSDKSharper" Version="1.1.4" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3650.58" />
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.264">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
@@ -141,8 +142,8 @@
     <PackageReference Include="SharpDX.XAudio2" Version="4.2.0" />
     <PackageReference Include="SharpZipLib" Version="1.4.2" />
     <PackageReference Include="StreamDeckSharp" Version="6.1.0" />
-    <PackageReference Include="System.IO.Ports" Version="9.0.10" />
-    <PackageReference Include="System.Management" Version="9.0.10" />
+    <PackageReference Include="System.IO.Ports" Version="10.0.1" />
+    <PackageReference Include="System.Management" Version="10.0.1" />
   </ItemGroup>
 
   <ItemGroup>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -18,7 +18,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="AppSettings" xml:space="preserve">
-    <value>Program</value>
+    <value>Program indstillinger </value>
     <comment>Tab item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
@@ -133,7 +133,7 @@
     <comment>App</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value></value>
+    <value>Nm</value>
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
@@ -181,7 +181,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value></value>
+    <value>Nm/s</value>
     <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
@@ -189,11 +189,11 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
-    <value></value>
+    <value>%/Nm</value>
     <comment>Abbreviation for percent per Newton-meters</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value></value>
+    <value>%</value>
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="CompressionRate" xml:space="preserve">
@@ -241,10 +241,10 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value></value>
+    <value>Gforce</value>
     <comment>Abbreviation for g-force</comment>
   </data>
-  <data name="GForce" xml:space="preserve">
+  <data name="LongitudalGForce" xml:space="preserve">
     <value>G-Kraft</value>
     <comment>Racing wheel</comment>
   </data>
@@ -261,7 +261,7 @@
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value></value>
+    <value>m/s</value>
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
@@ -309,7 +309,7 @@
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value></value>
+    <value>Hz</value>
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
@@ -680,7 +680,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value></value>
+    <value>Nm/ms</value>
     <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
@@ -755,7 +755,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value></value>
+    <value>°</value>
     <comment>Abbreviation for degrees</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
@@ -927,7 +927,7 @@
     <comment>Error messages</comment>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value></value>
+    <value>Km/t</value>
     <comment>Abbreviation for kilometers per hour</comment>
   </data>
   <data name="CalibrationFileContributors" xml:space="preserve">
@@ -939,7 +939,7 @@
     <comment>Contribute</comment>
   </data>
   <data name="DegreesPerSecond" xml:space="preserve">
-    <value></value>
+    <value>°/s</value>
     <comment>Abbreviation for degrees per second</comment>
   </data>
   <data name="CalibrationFile_UC" xml:space="preserve">
@@ -1079,7 +1079,7 @@
     <value>Klar til at donere?</value>
   </data>
   <data name="Contribute" xml:space="preserve">
-    <value>Bidrag</value>
+    <value>Støt</value>
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>BIDRAG TIL KALIBRERINGSFILER</value>
@@ -1133,7 +1133,7 @@
     <value></value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value></value>
+    <value>MPH</value>
     <comment>Abbreviation for miles per hour</comment>
   </data>
   <data name="Wind_UC" xml:space="preserve">
@@ -1304,5 +1304,57 @@
   <data name="PedalsPrototype" xml:space="preserve">
     <value>Prototype Pedaler</value>
     <comment>Pedals device</comment>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Hjælp</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value></value>
+    <comment>Page title</comment>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value>Simagic P700 Pedals</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
   </data>
 </root>

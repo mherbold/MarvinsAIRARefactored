@@ -245,7 +245,7 @@
     <value>g</value>
     <comment>Abbreviation for g-force</comment>
   </data>
-  <data name="GForce" xml:space="preserve">
+  <data name="LongitudalGForce" xml:space="preserve">
     <value>Força G</value>
     <comment>Racing wheel</comment>
   </data>
@@ -1303,19 +1303,19 @@
     <comment>Steering effects</comment>
   </data>
   <data name="DefaultPage_UC" xml:space="preserve">
-    <value></value>
+    <value>Página Padrão</value>
     <comment>App settings</comment>
   </data>
   <data name="Effects_UC" xml:space="preserve">
-    <value></value>
+    <value>EFEITOS</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="VibrateOnGearChange" xml:space="preserve">
-    <value></value>
+    <value>Vibrar com alteração de mudança</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="VibrateOnABS" xml:space="preserve">
-    <value></value>
+    <value>Vibrar na ativação do ABS</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Audio_UC" xml:space="preserve">
@@ -1325,18 +1325,70 @@
     <value>Ecrã</value>
   </data>
   <data name="AdminBoxx_UC" xml:space="preserve">
-    <value></value>
+    <value>ADMINBOXX</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>Clicar</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value></value>
+    <value>Pedais Simagic P500</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsPrototype" xml:space="preserve">
-    <value></value>
+    <value>Pedais Prototipo</value>
     <comment>Pedals device</comment>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Ajuda</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value>AJUDA</value>
+    <comment>Page title</comment>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value>DOCUMENTAÇÃO</value>
+    <comment>Help</comment>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value>DISCORD</value>
+    <comment>Help</comment>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value>FORUMS</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value>Website de Documentação</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value>Servidor Discord</value>
+    <comment>Help</comment>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value>Forums iRacing</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value>A documentação neste website é um trabalho constante, porque novas funções estão constantemente a ser adicionadas à aplicação. Eu tento atualizar a documentação frequentemente mas se a informação que procuras não está disponivel, podes tentar procurar resposta no servidor Discord, ou no forum iRacing.</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value>O servidor de Discord MAIRA é a forma mais rápida de conseguir respostas para as questões que não consigas encontrar na documentação. Há voluntários a ajudar e eu também o tento fazer.</value>
+    <comment>Help</comment>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value>Foi aqui que tudo começou. Podes procurar respostas aqui, mas não estou tão ativo como antes. Visitar o servidor Discord é a melhor forma de procurar respostas a questões.</value>
+    <comment>Help</comment>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value>Pedais Simagic P700</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>ESTADO DA VENTOINHA</value>
+    <comment>Wind</comment>
   </data>
 </root>

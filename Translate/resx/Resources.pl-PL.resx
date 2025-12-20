@@ -243,7 +243,7 @@
     <value>g</value>
     <comment>skrót dla siły G</comment>
   </data>
-  <data name="GForce" xml:space="preserve">
+  <data name="LongitudalGForce" xml:space="preserve">
     <value>Siła G (przeciążenie)</value>
     <comment>Baza Kierownicy</comment>
   </data>

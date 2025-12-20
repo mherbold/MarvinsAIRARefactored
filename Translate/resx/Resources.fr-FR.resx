@@ -249,7 +249,7 @@
     <value>G</value>
     <comment>Abbreviation for g-force</comment>
   </data>
-  <data name="GForce" xml:space="preserve">
+  <data name="LongitudalGForce" xml:space="preserve">
     <value>Force G</value>
     <comment>Racing wheel</comment>
   </data>

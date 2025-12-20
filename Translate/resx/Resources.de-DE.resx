@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -238,7 +238,7 @@
     <value>g</value>
     <comment>Abbreviation for g-force</comment>
   </data>
-  <data name="GForce" xml:space="preserve">
+  <data name="LongitudalGForce" xml:space="preserve">
     <value>G-Kraft</value>
     <comment>Racing wheel</comment>
   </data>
@@ -1302,7 +1302,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Help</comment>
   </data>
   <data name="Forums_UC" xml:space="preserve">
-    <value></value>
+    <value>Forum</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
@@ -1332,5 +1332,9 @@ Hier ist der Link zum Spenden:</value>
   <data name="PedalsP700" xml:space="preserve">
     <value></value>
     <comment>Pedals device</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
   </data>
 </root>
