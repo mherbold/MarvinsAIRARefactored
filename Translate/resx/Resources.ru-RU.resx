@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -126,7 +126,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
-    <value>Русский (Россия) - Russian</value>
+    <value>Русский (Россия) - Russian (Russia)</value>
     <comment>App language list</comment>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
@@ -209,8 +209,8 @@
     <value>Общая сила</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>Погрешность для автонастройки</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -1304,14 +1304,6 @@
   </data>
   <data name="Effects_UC" xml:space="preserve">
     <value>ЭФФЕКТЫ</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnGearChange" xml:space="preserve">
-    <value>Вибрировать при смене передачи</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnABS" xml:space="preserve">
-    <value>Вибрировать при активации АБС</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Audio_UC" xml:space="preserve">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -86,7 +86,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="RacingWheel" xml:space="preserve">
-    <value>Volant de course</value>
+    <value>Volant</value>
     <comment>App menu item</comment>
   </data>
   <data name="RacingWheel_UC" xml:space="preserve">
@@ -176,7 +176,7 @@
     <comment>Button mapping</comment>
   </data>
   <data name="WaitingForInput" xml:space="preserve">
-    <value>En attente d'une entrée</value>
+    <value>En attente d'une commande utilisateur</value>
     <comment>Button mapping</comment>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
@@ -211,8 +211,8 @@
     <value>FORCE GLOBALE</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>Marge automatique</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -314,7 +314,7 @@
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>HZ</value>
+    <value>Hz</value>
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
@@ -574,7 +574,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="AppWindow_UC" xml:space="preserve">
-    <value>Application windows</value>
+    <value>FENETRE APPLI</value>
     <comment>App settings</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
@@ -582,7 +582,7 @@
     <comment>App settings</comment>
   </data>
   <data name="CloudService_UC" xml:space="preserve">
-    <value>SERVICE NUAGE</value>
+    <value>SERVICE CLOUD</value>
     <comment>App settings</comment>
   </data>
   <data name="CheckNow" xml:space="preserve">
@@ -1136,7 +1136,7 @@
     <comment>Speech to text</comment>
   </data>
   <data name="Changelog" xml:space="preserve">
-    <value>Journal des modifications</value>
+    <value>Historique des modifications</value>
     <comment>Cloud service</comment>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
@@ -1164,7 +1164,7 @@
     <comment>App menu item</comment>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Pedales</value>
+    <value>Pédales</value>
     <comment>App menu item</comment>
   </data>
   <data name="WheelLock" xml:space="preserve">
@@ -1323,14 +1323,6 @@
     <value>EFFETS</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="VibrateOnGearChange" xml:space="preserve">
-    <value>Vibrations lors du changement de vitesse</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnABS" xml:space="preserve">
-    <value>Vibration lors de l'activation de l'ABS</value>
-    <comment>Racing wheel</comment>
-  </data>
   <data name="Audio_UC" xml:space="preserve">
     <value>Audio</value>
     <comment>AdminBoxx</comment>
@@ -1403,5 +1395,49 @@
   <data name="PedalsP700" xml:space="preserve">
     <value>Pédales Simagic P700</value>
     <comment>Pedals device</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>ÉTAT DU VENTILATEUR</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>Accélération latérale</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value>POV</value>
+    <comment>Button</comment>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value></value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value></value>
+    <comment>Prediction mode list</comment>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value></value>
+    <comment>Prediction mode list</comment>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

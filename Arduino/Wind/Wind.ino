@@ -28,8 +28,8 @@ unsigned long       lastLRCommandMs  = 0;
 bool                idleZeroApplied  = true;        // start in idle (0%)
 
 // -------- Tachometer / RPM measurement --------
-const uint8_t       TACH_L_PIN       = 2;           // D2 = INT0
-const uint8_t       TACH_R_PIN       = 3;           // D3 = INT1
+const uint8_t       TACH_L_PIN       = 3;           // D3 = INT0
+const uint8_t       TACH_R_PIN       = 2;           // D2 = INT1
 const uint8_t       PULSES_PER_REV   = 2;           // typical PC fan
 const uint8_t       MEAS_PULSES      = 50;          // pulses per measurement window
 const uint32_t      STALL_TIMEOUT_US = 500000UL;    // 0.5 s without pulses -> treat as 0 RPM

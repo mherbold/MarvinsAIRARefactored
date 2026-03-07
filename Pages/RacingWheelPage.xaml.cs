@@ -4,6 +4,8 @@ using MarvinsAIRARefactored.DataContext;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 using Point = System.Windows.Point;
 using UserControl = System.Windows.Controls.UserControl;
@@ -205,67 +207,12 @@ public partial class RacingWheelPage : UserControl
 
 		app.Dispatcher.Invoke( () =>
 		{
-			SteeringDevice_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
+			SteeringDevice_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value ).ToList();
 			SteeringDevice_MairaComboBox.SelectedValue = settings.RacingWheelSteeringDeviceGuid;
 			SteeringDevice_MairaComboBox.OffValue = Guid.Empty;
 		} );
 
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateSteeringDeviceOptions" );
-	}
-
-	public void UpdateLFERecordingDeviceOptions()
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[RacingWheelPage] UpdateLFERecordingDeviceOptions >>>" );
-
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
-		var dictionary = new Dictionary<Guid, string>();
-
-		app.LFE.CaptureDeviceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
-
-		if ( !dictionary.ContainsKey( settings.RacingWheelLFERecordingDeviceGuid ) )
-		{
-			dictionary.Add( settings.RacingWheelLFERecordingDeviceGuid, $"{localization[ "DeviceNotFound" ]} [{settings.RacingWheelLFERecordingDeviceGuid}]" );
-		}
-
-		app.Dispatcher.Invoke( () =>
-		{
-			LFERecordingDevice_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
-			LFERecordingDevice_MairaComboBox.OffValue = Guid.Empty;
-		} );
-
-		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateLFERecordingDeviceOptions" );
-	}
-
-	public void UpdatePreviewRecordingsOptions()
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[RacingWheelPage] UpdatePreviewRecordingsOptions >>>" );
-
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-
-		var dictionary = new Dictionary<string, string>();
-
-		if ( app.RecordingManager.Recordings.Count == 0 )
-		{
-			dictionary.Add( string.Empty, localization[ "NoRecordingsFound" ] );
-		}
-
-		foreach ( var recording in app.RecordingManager.Recordings )
-		{
-			dictionary.Add( recording.Key, recording.Value.Description! );
-		}
-
-		app.Dispatcher.Invoke( () =>
-		{
-			PreviewRecordings_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value );
-		} );
-
-		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdatePreviewRecordingsOptions" );
 	}
 
 	public void UpdateAlgorithmOptions()
@@ -291,11 +238,181 @@ public partial class RacingWheelPage : UserControl
 
 		app.Dispatcher.Invoke( () =>
 		{
-			Algorithm_MairaComboBox.ItemsSource = dictionary;
+			Algorithm_MairaComboBox.ItemsSource = dictionary.ToList();
 			Algorithm_MairaComboBox.SelectedValue = settings.RacingWheelAlgorithm;
 		} );
 
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateAlgorithmOptions" );
+	}
+
+	public void UpdatePredictionModeOptions()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[RacingWheelPage] UpdatePredictionModeOptions >>>" );
+
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var dictionary = new Dictionary<RacingWheel.PredictionMode, string>
+		{
+			{ RacingWheel.PredictionMode.Disabled, localization[ "Disabled" ] },
+			{ RacingWheel.PredictionMode.PredictK1, localization[ "PredictK1" ] },
+			{ RacingWheel.PredictionMode.PredictK2, localization[ "PredictK2" ] }
+		};
+
+		app.Dispatcher.Invoke( () =>
+		{
+			PredictionMode_MairaComboBox.ItemsSource = dictionary.ToList();
+			PredictionMode_MairaComboBox.SelectedValue = settings.RacingWheelPredictionMode;
+		} );
+
+		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdatePredictionModeOptions" );
+	}
+
+	public void UpdatePreviewRecordingsOptions()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[RacingWheelPage] UpdatePreviewRecordingsOptions >>>" );
+
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		var dictionary = new Dictionary<string, string>();
+
+		if ( app.RecordingManager.Recordings.Count == 0 )
+		{
+			dictionary.Add( string.Empty, localization[ "NoRecordingsFound" ] );
+		}
+
+		foreach ( var recording in app.RecordingManager.Recordings )
+		{
+			dictionary.Add( recording.Key, recording.Value.Description! );
+		}
+
+		app.Dispatcher.Invoke( () =>
+		{
+			PreviewRecordings_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value ).ToList();
+		} );
+
+		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdatePreviewRecordingsOptions" );
+	}
+
+	public void UpdateLFERecordingDeviceOptions()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[RacingWheelPage] UpdateLFERecordingDeviceOptions >>>" );
+
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var dictionary = new Dictionary<Guid, string>();
+
+		app.LFE.CaptureDeviceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
+
+		if ( !dictionary.ContainsKey( settings.RacingWheelLFERecordingDeviceGuid ) )
+		{
+			dictionary.Add( settings.RacingWheelLFERecordingDeviceGuid, $"{localization[ "DeviceNotFound" ]} [{settings.RacingWheelLFERecordingDeviceGuid}]" );
+		}
+
+		app.Dispatcher.Invoke( () =>
+		{
+			LFERecordingDevice_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value ).ToList();
+			LFERecordingDevice_MairaComboBox.SelectedValue = settings.RacingWheelLFERecordingDeviceGuid;
+			LFERecordingDevice_MairaComboBox.OffValue = Guid.Empty;
+		} );
+
+		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateLFERecordingDeviceOptions" );
+	}
+
+	public void UpdateSteeringDeviceSection()
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		app.Dispatcher.Invoke( () =>
+		{
+			// update power button
+
+			ImageSource? imageSource;
+
+			var blink = false;
+
+			if ( !settings.RacingWheelEnableForceFeedback )
+			{
+				imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Buttons/power-red.png" ) as ImageSource;
+
+				blink = true;
+			}
+			else if ( !app.Simulator.IsConnected )
+			{
+				imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Buttons/power-blue.png" ) as ImageSource;
+			}
+			else if ( !app.DirectInput.ForceFeedbackInitialized )
+			{
+				imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Buttons/power-yellow.png" ) as ImageSource;
+			}
+			else
+			{
+				imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Buttons/power-green.png" ) as ImageSource;
+			}
+
+			if ( imageSource != null )
+			{
+				Power_MairaMappableButton.Icon = imageSource;
+				Power_MairaMappableButton.Blink = blink;
+			}
+
+			// update test, reset, set, and clear buttons
+
+			var disabled = !app.DirectInput.ForceFeedbackInitialized;
+
+			Test_MairaMappableButton.Disabled = disabled;
+			Reset_MairaMappableButton.Disabled = disabled;
+			Set_MairaMappableButton.Disabled = disabled;
+			Clear_MairaMappableButton.Disabled = disabled;
+
+			// update steering device error message
+
+			if ( app.DirectInput.ForceFeedbackInitialized )
+			{
+				SteeringDeviceFaultReason_TextBlock.Visibility = Visibility.Collapsed;
+			}
+			else
+			{
+				if ( !settings.RacingWheelEnableForceFeedback )
+				{
+					SteeringDeviceFaultReason_TextBlock.Text = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "FFBIsDisabled" ];
+				}
+				else if ( !app.Simulator.IsConnected )
+				{
+					SteeringDeviceFaultReason_TextBlock.Text = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "SimulatorNotRunning" ];
+				}
+				else if ( app.Simulator.SimMode != "full" )
+				{
+					SteeringDeviceFaultReason_TextBlock.Text = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "SimModeIsNotFull" ];
+				}
+				else if ( app.RacingWheel.SuspendForceFeedback )
+				{
+					if ( app.SteeringEffects.IsCalibrating )
+					{
+						SteeringDeviceFaultReason_TextBlock.Text = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "CalibrationIsRunning" ];
+					}
+					else
+					{
+						SteeringDeviceFaultReason_TextBlock.Text = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "FFBIsEnabledInSimulator" ];
+					}
+				}
+				else
+				{
+					SteeringDeviceFaultReason_TextBlock.Text = app.DirectInput.ForceFeedbackErrorMessage;
+				}
+
+				SteeringDeviceFaultReason_TextBlock.Visibility = Visibility.Visible;
+			}
+		} );
 	}
 
 	public void UpdateFFBSourceOptions()

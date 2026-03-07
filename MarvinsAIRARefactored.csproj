@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows10.0.26100.0</TargetFramework>
+    <TargetFramework>net9.0-windows10.0.19041.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
@@ -11,6 +11,7 @@
     <Platforms>AnyCPU;x64</Platforms>
     <UseWindowsForms>True</UseWindowsForms>
     <ApplicationHighDpiMode>PerMonitorV2</ApplicationHighDpiMode>
+    <SupportedOSPlatformVersion>10.0.19041.0</SupportedOSPlatformVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
@@ -18,7 +19,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <ItemGroup>
+    <None Remove="Artwork\Buttons\power-blue.png" />
     <None Remove="Artwork\Flags\hungary_fluttering_flag_64.png" />
+    <None Remove="Artwork\Flags\ukraine_fluttering_flag_64.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -57,6 +60,7 @@
     <Resource Include="Artwork\Buttons\pedal-minimum.png" />
     <Resource Include="Artwork\Buttons\plus-large.png" />
     <Resource Include="Artwork\Buttons\plus.png" />
+    <Resource Include="Artwork\Buttons\power-blue.png" />
     <Resource Include="Artwork\Buttons\power-default.png" />
     <Resource Include="Artwork\Buttons\power-green.png" />
     <Resource Include="Artwork\Buttons\power-orange.png" />
@@ -102,6 +106,7 @@
     <Resource Include="Artwork\Flags\russia_fluttering_flag_64.png" />
     <Resource Include="Artwork\Flags\spain_fluttering_flag_64.png" />
     <Resource Include="Artwork\Flags\turkey_fluttering_flag_64.png" />
+    <Resource Include="Artwork\Flags\ukraine_fluttering_flag_64.png" />
     <Resource Include="Artwork\Misc\adminboxx-logo.png" />
     <Resource Include="Artwork\Misc\app-menu-logo.png" />
     <Resource Include="Artwork\Misc\buy-me-a-coffee-logo.png" />
@@ -170,6 +175,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="InnoSetup\Calibration\" />
     <Folder Include="InnoSetup\SimHub\" />
   </ItemGroup>
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -208,8 +208,8 @@
     <value>INTENSIDAD GENERAL</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>Margen Automático</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -1205,14 +1205,6 @@
     <value>EFECTOS</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="VibrateOnGearChange" xml:space="preserve">
-    <value>Vibrar al cambiar de marcha</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnABS" xml:space="preserve">
-    <value>Vibrar al activarse el ABS</value>
-    <comment>Racing wheel</comment>
-  </data>
   <data name="Audio_UC" xml:space="preserve">
     <value>AUDIO</value>
     <comment>AdminBoxx</comment>
@@ -1287,5 +1279,9 @@
   <data name="FanStatus_UC" xml:space="preserve">
     <value>ESTADO DEL VENTILADOR</value>
     <comment>Wind</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>Fuerza-G Lateral</value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

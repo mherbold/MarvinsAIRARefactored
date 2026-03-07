@@ -55,6 +55,26 @@
 
             </Style>
 
+            <!-- TextBox -->
+
+            <Style TargetType="{x:Type TextBox}"
+                   x:Key="MairaTextBoxStyle">
+
+                <Setter Property="FontFamily"
+                        Value="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow" />
+                <Setter Property="Typography.NumeralAlignment"
+                        Value="Tabular" />
+                <Setter Property="Typography.NumeralStyle"
+                        Value="Lining" />
+                <Setter Property="Typography.SlashedZero"
+                        Value="True" />
+                <Setter Property="FontSize"
+                        Value="20" />
+                <Setter Property="Foreground"
+                        Value="#ffffff" />
+
+            </Style>
+
             <!-- ToggleButton -->
 
             <Style TargetType="{x:Type ToggleButton}"

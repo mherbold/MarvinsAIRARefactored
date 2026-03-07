@@ -209,7 +209,7 @@
     <value></value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
+  <data name="AutoTarget" xml:space="preserve">
     <value></value>
     <comment>Racing wheel</comment>
   </data>

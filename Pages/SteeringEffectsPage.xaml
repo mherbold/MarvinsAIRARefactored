@@ -17,7 +17,7 @@
     <StackPanel>
 
         <controls:MairaGroupBox Label="{Binding Localization[CalibrationFile_UC]}"
-                                HelpTopic="steering-effects-calibration-file">
+                                HelpTopic="advanced/steering-effects/#calibration-file">
 
             <StackPanel>
 
@@ -48,6 +48,7 @@
                                Grid.Row="2"
                                Grid.Column="0"
                                Grid.ColumnSpan="3"
+                               FontSize="20"
                                d:Text="Just a test to see what this line looks like."
                                Foreground="#ff5b2e" />
 
@@ -59,22 +60,22 @@
                             BorderBrush="#666"
                             Background="#222"
                             CornerRadius="5"
-                            Padding="0,20,0,20">
+                            Padding="0,0,0,0">
 
                         <Grid>
 
                             <Image x:Name="Calibration_Image"
-                                   Height="400"
-                                   Width="900"
+                                   Height="450"
+                                   Width="1080"
                                    RenderOptions.BitmapScalingMode="HighQuality" />
 
                             <Border x:Name="CalibrationDot_Border"
                                     Background="White"
                                     BorderBrush="Black"
                                     BorderThickness="1"
-                                    Width="6"
-                                    Height="6"
-                                    CornerRadius="5"
+                                    Width="12"
+                                    Height="12"
+                                    CornerRadius="6"
                                     VerticalAlignment="Bottom">
 
                                 <Border.RenderTransform>
@@ -122,13 +123,31 @@
 
                     </Border>
 
+                    <Border x:Name="LiveInfo_Border"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Padding="10,1"
+                            Background="#222"
+                            BorderBrush="#666"
+                            BorderThickness="2"
+                            CornerRadius="8"
+                            Margin="0,122,0,0"
+                            Visibility="Hidden">
+
+                        <TextBlock x:Name="LiveInfo_TextBlock"
+                                   Style="{StaticResource MairaTextBlockStyle}"
+                                   Text="Live Info"
+                                   Foreground="#eee" />
+
+                    </Border>
+
                 </Grid>
 
             </StackPanel>
 
         </controls:MairaGroupBox>
 
-        <Grid>
+        <Grid MinHeight="220">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -166,7 +185,7 @@
             <StackPanel Grid.Column="2">
 
                 <controls:MairaGroupBox Label="{Binding Localization[Understeer_UC]}"
-                                        HelpTopic="steering-effects-thresholds">
+                                        HelpTopic="advanced/steering-effects/#enable-thresholds">
 
                     <Grid>
 
@@ -178,7 +197,31 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Name="Understeer_CalibrationFileWarning"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="5"
+                                   FontSize="20"
+                                   Text="{Binding Localization[SteeringEffectsCalibrationFileNotSelected]}"
+                                   Foreground="#ff5b2e"
+                                   Margin="0,0,0,20" />
+
+                        <controls:MairaSwitch Grid.Column="0"
+                                              Grid.Row="1"
+                                              Label="{Binding Localization[Enabled]}"
+                                              IsOn="{Binding Settings.SteeringEffectsUndersteerEnabled, Mode=TwoWay}"
+                                              ContextSwitches="{Binding Settings.SteeringEffectsUndersteerEnabledContextSwitches}"
+                                              Toggled="UndersteerEnabled_Toggled" />
+
                         <controls:MairaKnob Grid.Column="0"
+                                            Grid.Row="3"
                                             Label="{Binding Localization[MinimumThreshold]}"
                                             Value="{Binding Settings.SteeringEffectsUndersteerMinimumThreshold, Mode=TwoWay}"
                                             ValueString="{Binding Settings.SteeringEffectsUndersteerMinimumThresholdString}"
@@ -186,9 +229,11 @@
                                             ContextSwitches="{Binding Settings.SteeringEffectsUndersteerMinimumThresholdContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsUndersteerMinimumThresholdPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsUndersteerMinimumThresholdMinusButtonMappings}"
-                                            DefaultValue="0.05" />
+                                            DefaultValue="0.05"
+                                            Tag="Understeer" />
 
                         <controls:MairaKnob Grid.Column="2"
+                                            Grid.Row="3"
                                             Label="{Binding Localization[MaximumThreshold]}"
                                             Value="{Binding Settings.SteeringEffectsUndersteerMaximumThreshold, Mode=TwoWay}"
                                             ValueString="{Binding Settings.SteeringEffectsUndersteerMaximumThresholdString}"
@@ -196,14 +241,16 @@
                                             ContextSwitches="{Binding Settings.SteeringEffectsUndersteerMaximumThresholdContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsUndersteerMaximumThresholdPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsUndersteerMaximumThresholdMinusButtonMappings}"
-                                            DefaultValue="0.15" />
+                                            DefaultValue="0.15"
+                                            Tag="Understeer" />
 
                     </Grid>
 
                 </controls:MairaGroupBox>
 
                 <controls:MairaGroupBox Label="{Binding Localization[UndersteerWheelVibrationEffect_UC]}"
-                                        HelpTopic="steering-effects-wheel-vibration-effect">
+                                        HelpTopic="advanced/steering-effects/#wheel-vibration-effect"
+                                        Tag="Understeer">
 
                     <StackPanel>
 
@@ -286,7 +333,8 @@
                 </controls:MairaGroupBox>
 
                 <controls:MairaGroupBox Label="{Binding Localization[UndersteerWheelConstantForceEffect_UC]}"
-                                        HelpTopic="steering-effects-wheel-constant-force-effect">
+                                        HelpTopic="advanced/steering-effects/#wheel-constant-force-effect"
+                                        Tag="Understeer">
 
                     <Grid>
 
@@ -333,7 +381,8 @@
                 </controls:MairaGroupBox>
 
                 <controls:MairaGroupBox Label="{Binding Localization[UndersteerPedalVibrationEffect_UC]}"
-                                        HelpTopic="steering-effects-pedal-vibration-effect">
+                                        HelpTopic="advanced/steering-effects/#pedal-vibration-effect"
+                                        Tag="Understeer">
 
                     <Grid>
 
@@ -353,7 +402,7 @@
                                             ContextSwitches="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyMinusButtonMappings}"
-                                            DefaultValue="0" />
+                                            DefaultValue="0.1" />
 
                         <controls:MairaKnob Grid.Column="2"
                                             Label="{Binding Localization[MaximumFrequency]}"
@@ -384,7 +433,7 @@
 
         </Grid>
 
-        <Grid>
+        <Grid MinHeight="220">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -422,7 +471,7 @@
             <StackPanel Grid.Column="2">
 
                 <controls:MairaGroupBox Label="{Binding Localization[Oversteer_UC]}"
-                                        HelpTopic="steering-effects-thresholds">
+                                        HelpTopic="advanced/steering-effects/#enable-thresholds">
 
                     <Grid>
 
@@ -434,7 +483,31 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <TextBlock x:Name="Oversteer_CalibrationFileWarning"
+                                   Grid.Row="0"
+                                   Grid.Column="0"
+                                   Grid.ColumnSpan="5"
+                                   FontSize="20"
+                                   Text="{Binding Localization[SteeringEffectsCalibrationFileNotSelected]}"
+                                   Foreground="#ff5b2e"
+                                   Margin="0,0,0,20" />
+
+                        <controls:MairaSwitch Grid.Column="0"
+                                              Grid.Row="1"
+                                              Label="{Binding Localization[Enabled]}"
+                                              IsOn="{Binding Settings.SteeringEffectsOversteerEnabled, Mode=TwoWay}"
+                                              ContextSwitches="{Binding Settings.SteeringEffectsOversteerEnabledContextSwitches}"
+                                              Toggled="OversteerEnabled_Toggled" />
+
                         <controls:MairaKnob Grid.Column="0"
+                                            Grid.Row="3"
                                             Label="{Binding Localization[MinimumThreshold]}"
                                             Value="{Binding Settings.SteeringEffectsOversteerMinimumThreshold, Mode=TwoWay}"
                                             ValueString="{Binding Settings.SteeringEffectsOversteerMinimumThresholdString}"
@@ -442,9 +515,11 @@
                                             ContextSwitches="{Binding Settings.SteeringEffectsOversteerMinimumThresholdContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsOversteerMinimumThresholdPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsOversteerMinimumThresholdMinusButtonMappings}"
-                                            DefaultValue="0" />
+                                            DefaultValue="0"
+                                            Tag="Oversteer" />
 
                         <controls:MairaKnob Grid.Column="2"
+                                            Grid.Row="3"
                                             Label="{Binding Localization[MaximumThreshold]}"
                                             Value="{Binding Settings.SteeringEffectsOversteerMaximumThreshold, Mode=TwoWay}"
                                             ValueString="{Binding Settings.SteeringEffectsOversteerMaximumThresholdString}"
@@ -452,14 +527,16 @@
                                             ContextSwitches="{Binding Settings.SteeringEffectsOversteerMaximumThresholdContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsOversteerMaximumThresholdPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsOversteerMaximumThresholdMinusButtonMappings}"
-                                            DefaultValue="0.5" />
+                                            DefaultValue="0.5"
+                                            Tag="Oversteer" />
 
                     </Grid>
 
                 </controls:MairaGroupBox>
 
                 <controls:MairaGroupBox Label="{Binding Localization[OversteerWheelVibrationEffect_UC]}"
-                                        HelpTopic="steering-effects-wheel-vibration-effect">
+                                        HelpTopic="advanced/steering-effects/#wheel-vibration-effect"
+                                        Tag="Oversteer">
 
                     <StackPanel>
 
@@ -542,7 +619,8 @@
                 </controls:MairaGroupBox>
 
                 <controls:MairaGroupBox Label="{Binding Localization[OversteerWheelConstantForceEffect_UC]}"
-                                        HelpTopic="steering-effects-wheel-constant-force-effect">
+                                        HelpTopic="advanced/steering-effects/#wheel-constant-force-effect"
+                                        Tag="Oversteer">
 
                     <Grid>
 
@@ -570,7 +648,7 @@
                                             ContextSwitches="{Binding Settings.SteeringEffectsOversteerWheelConstantForceStrengthContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsOversteerWheelConstantForceStrengthPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsOversteerWheelConstantForceStrengthMinusButtonMappings}"
-                                            DefaultValue="0.5" />
+                                            DefaultValue="0.1" />
 
                         <controls:MairaKnob x:Name="OversteerWheelConstantForceCurve_MairaKnob"
                                             Grid.Column="4"
@@ -589,7 +667,8 @@
                 </controls:MairaGroupBox>
 
                 <controls:MairaGroupBox Label="{Binding Localization[OversteerPedalVibrationEffect_UC]}"
-                                        HelpTopic="steering-effects-pedal-vibration-effect">
+                                        HelpTopic="advanced/steering-effects/#pedal-vibration-effect"
+                                        Tag="Oversteer">
 
                     <Grid>
 
@@ -609,7 +688,7 @@
                                             ContextSwitches="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyMinusButtonMappings}"
-                                            DefaultValue="0" />
+                                            DefaultValue="0.1" />
 
                         <controls:MairaKnob Grid.Column="2"
                                             Label="{Binding Localization[MaximumFrequency]}"
@@ -640,7 +719,7 @@
 
         </Grid>
 
-        <Grid>
+        <Grid MinHeight="220">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -678,7 +757,7 @@
             <StackPanel Grid.Column="2">
 
                 <controls:MairaGroupBox Label="{Binding Localization[SeatOfPants_UC]}"
-                                        HelpTopic="steering-effects-thresholds">
+                                        HelpTopic="advanced/steering-effects/#enable-thresholds">
 
                     <Grid>
 
@@ -690,38 +769,58 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
 
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="20" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <controls:MairaSwitch Grid.Column="0"
+                                              Grid.Row="0"
+                                              Label="{Binding Localization[Enabled]}"
+                                              IsOn="{Binding Settings.SteeringEffectsSeatOfPantsEnabled, Mode=TwoWay}"
+                                              ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsEnabledContextSwitches}"
+                                              Toggled="SeatOfPantsEnabled_Toggled" />
+
                         <controls:MairaKnob Grid.Column="0"
+                                            Grid.Row="2"
                                             Label="{Binding Localization[MinimumThreshold]}"
                                             Value="{Binding Settings.SteeringEffectsSeatOfPantsMinimumThreshold, Mode=TwoWay}"
                                             ValueString="{Binding Settings.SteeringEffectsSeatOfPantsMinimumThresholdString}"
-                                            StepSize="0.01"
+                                            StepSize="0.1"
                                             ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsMinimumThresholdContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsMinimumThresholdPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsMinimumThresholdMinusButtonMappings}"
-                                            DefaultValue="0" />
+                                            DefaultValue="0"
+                                            Tag="SeatOfPants" />
 
                         <controls:MairaKnob Grid.Column="2"
+                                            Grid.Row="2"
                                             Label="{Binding Localization[MaximumThreshold]}"
                                             Value="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThreshold, Mode=TwoWay}"
                                             ValueString="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThresholdString}"
-                                            StepSize="0.01"
+                                            StepSize="0.1"
                                             ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThresholdContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThresholdPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThresholdMinusButtonMappings}"
-                                            DefaultValue="3" />
+                                            DefaultValue="3"
+                                            Tag="SeatOfPants" />
 
                         <controls:MairaComboBox x:Name="SeatOfPantsAlgorithm_MairaComboBox"
                                                 Grid.Column="4"
+                                                Grid.Row="2"
                                                 Label="{Binding Localization[Algorithm]}"
                                                 SelectedValue="{Binding Settings.SteeringEffectsSeatOfPantsAlgorithm, Mode=TwoWay}"
-                                                ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsAlgorithmContextSwitches}" />
+                                                ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsAlgorithmContextSwitches}"
+                                                Tag="SeatOfPants" />
 
                     </Grid>
 
                 </controls:MairaGroupBox>
 
                 <controls:MairaGroupBox Label="{Binding Localization[SeatOfPantsWheelVibrationEffect_UC]}"
-                                        HelpTopic="steering-effects-wheel-vibration-effect">
+                                        HelpTopic="advanced/steering-effects/#wheel-vibration-effect"
+                                        Tag="SeatOfPants">
 
                     <StackPanel>
 
@@ -804,7 +903,8 @@
                 </controls:MairaGroupBox>
 
                 <controls:MairaGroupBox Label="{Binding Localization[SeatOfPantsWheelConstantForceEffect_UC]}"
-                                        HelpTopic="steering-effects-wheel-constant-force-effect">
+                                        HelpTopic="advanced/steering-effects/#wheel-constant-force-effect"
+                                        Tag="SeatOfPants">
 
                     <Grid>
 
@@ -832,7 +932,7 @@
                                             ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsWheelConstantForceStrengthContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsWheelConstantForceStrengthPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsWheelConstantForceStrengthMinusButtonMappings}"
-                                            DefaultValue="0.5" />
+                                            DefaultValue="0.1" />
 
                         <controls:MairaKnob x:Name="SeatOfPantsWheelConstantForceCurve_MairaKnob"
                                             Grid.Column="4"
@@ -844,14 +944,15 @@
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsWheelConstantForceCurvePlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsWheelConstantForceCurveMinusButtonMappings}"
                                             ShowCurve="True"
-                                            DefaultValue="0" />
+                                            DefaultValue="0.25" />
 
                     </Grid>
 
                 </controls:MairaGroupBox>
 
                 <controls:MairaGroupBox Label="{Binding Localization[SeatOfPantsPedalVibrationEffect_UC]}"
-                                        HelpTopic="steering-effects-pedal-vibration-effect">
+                                        HelpTopic="advanced/steering-effects/#pedal-vibration-effect"
+                                        Tag="SeatOfPants">
 
                     <Grid>
 
@@ -871,7 +972,7 @@
                                             ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyContextSwitches}"
                                             PlusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyPlusButtonMappings}"
                                             MinusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyMinusButtonMappings}"
-                                            DefaultValue="0" />
+                                            DefaultValue="0.1" />
 
                         <controls:MairaKnob Grid.Column="2"
                                             Label="{Binding Localization[MaximumFrequency]}"
@@ -903,7 +1004,7 @@
         </Grid>
 
         <controls:MairaGroupBox Label="{Binding Localization[GripOMeter_UC]}"
-                                HelpTopic="steering-effects-grip-o-meter">
+                                HelpTopic="advanced/steering-effects/#grip-o-meter">
 
             <Grid>
 
@@ -927,6 +1028,10 @@
 
                     <controls:MairaSwitch IsOn="{Binding Settings.SteeringEffectsShowGripOMeterWindow, Mode=TwoWay}"
                                           Label="{Binding Localization[ShowGripOMeter]}" />
+
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          IsOn="{Binding Settings.SteeringEffectsShowGripOMeterTitle, Mode=TwoWay}"
+                                          Label="{Binding Localization[ShowGripOMeterTitle]}" />
 
                     <controls:MairaSwitch Margin="0,10,0,0"
                                           IsOn="{Binding Settings.SteeringEffectsMakeGripOMeterDraggable, Mode=TwoWay}"
@@ -954,10 +1059,12 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Calibration_UC]}"
-                                HelpTopic="steering-effects-calibration">
+        <controls:MairaGroupBox x:Name="Calibration_MairaGroupBox"
+                                Label="{Binding Localization[Calibration_UC]}"
+                                HelpTopic="advanced/steering-effects/#calibration">
 
             <StackPanel>
+
                 <Border x:Name="NotOnCentripetalCircuitTrack_Border"
                         BorderBrush="#993030"
                         BorderThickness="2"

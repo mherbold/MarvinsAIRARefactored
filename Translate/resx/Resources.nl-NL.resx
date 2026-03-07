@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -208,8 +208,8 @@
     <value>ALGEMENE STERKTE</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>Marge bij automatische instelling</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -698,7 +698,7 @@
     <value>Enable Logitech omw/min lights</value>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value></value>
+    <value>Graden</value>
   </data>
   <data name="Master_UC" xml:space="preserve">
     <value>HOOFDNIVEAU</value>
@@ -1148,14 +1148,6 @@
     <value></value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="VibrateOnGearChange" xml:space="preserve">
-    <value></value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnABS" xml:space="preserve">
-    <value></value>
-    <comment>Racing wheel</comment>
-  </data>
   <data name="Audio_UC" xml:space="preserve">
     <value>Geluid</value>
   </data>
@@ -1224,5 +1216,21 @@
   <data name="PedalsP700" xml:space="preserve">
     <value></value>
     <comment>Pedals device</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value></value>
+    <comment>Button</comment>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value></value>
+    <comment>Steering effects</comment>
   </data>
 </root>

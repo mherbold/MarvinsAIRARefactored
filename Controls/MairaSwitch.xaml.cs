@@ -15,6 +15,8 @@ public partial class MairaSwitch : UserControl
 	public MairaSwitch()
 	{
 		InitializeComponent();
+
+		Loaded += MairaSwitch_Loaded;
 	}
 
 	#region Dependency Properties
@@ -62,6 +64,13 @@ public partial class MairaSwitch : UserControl
 		IsOn = !IsOn;
 
 		Toggled?.Invoke( this, e );
+	}
+
+	private void MairaSwitch_Loaded( object sender, RoutedEventArgs e )
+	{
+		Loaded -= MairaSwitch_Loaded;
+
+		Toggled?.Invoke( this, EventArgs.Empty );
 	}
 
 	private void TextBlock_PreviewMouseRightButtonDown( object sender, MouseButtonEventArgs e )

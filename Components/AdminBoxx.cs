@@ -230,7 +230,7 @@ public partial class AdminBoxx
 
 		if ( IsConnected )
 		{
-			app.Dispatcher.Invoke( () => MainWindow._adminBoxxPage.Test.IsEnabled = true );
+			app.Dispatcher.Invoke( () => MainWindow._adminBoxxPage.Test.Disabled = false );
 
 			_pingCounter = 100;
 
@@ -270,7 +270,7 @@ public partial class AdminBoxx
 
 		app.Dispatcher.Invoke( () =>
 		{
-			MainWindow._adminBoxxPage.Test.IsEnabled = false;
+			MainWindow._adminBoxxPage.Test.Disabled = true;
 			MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.IsOn = false;
 		} );
 

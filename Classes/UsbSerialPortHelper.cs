@@ -2,6 +2,7 @@
 using System.IO.Ports;
 using System.Management;
 using System.Text;
+using System;
 
 namespace MarvinsAIRARefactored.Classes;
 
@@ -227,6 +228,17 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		}
 	}
 
+	public void Write( ReadOnlySpan<byte> data )
+	{
+		using ( _lock.EnterScope() )
+		{
+			if ( _serialPort != null && _serialPort.IsOpen )
+			{
+				_serialPort.BaseStream.Write( data );
+			}
+		}
+	}
+
 	public void WriteLine( string data )
 	{
 		using ( _lock.EnterScope() )
@@ -234,6 +246,22 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			if ( _serialPort != null && _serialPort.IsOpen )
 			{
 				_serialPort.WriteLine( data );
+			}
+		}
+	}
+
+	public void WriteLine( ReadOnlySpan<byte> data )
+	{
+		using ( _lock.EnterScope() )
+		{
+			if ( _serialPort != null && _serialPort.IsOpen )
+			{
+				_serialPort.BaseStream.Write( data );
+
+				if ( data.Length == 0 || data[ ^1 ] != (byte) '\n' )
+				{
+					_serialPort.BaseStream.WriteByte( (byte) '\n' );
+				}
 			}
 		}
 	}

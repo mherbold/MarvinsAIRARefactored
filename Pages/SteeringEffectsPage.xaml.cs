@@ -1,12 +1,15 @@
 ﻿
 using System.IO;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
 using ComboBox = System.Windows.Controls.ComboBox;
 using UserControl = System.Windows.Controls.UserControl;
 
+using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
+using MarvinsAIRARefactored.Controls;
 
 namespace MarvinsAIRARefactored.Pages;
 
@@ -15,6 +18,12 @@ public partial class SteeringEffectsPage : UserControl
 	public SteeringEffectsPage()
 	{
 		InitializeComponent();
+
+#if DEBUG
+		Calibration_MairaGroupBox.Visibility = Visibility.Visible;
+#else
+		Calibration_MairaGroupBox.Visibility = Visibility.Collapsed;
+#endif
 	}
 
 	#region User Control Events
@@ -65,7 +74,7 @@ public partial class SteeringEffectsPage : UserControl
 	{
 		var app = App.Instance!;
 
-		app.VirtualJoystick.Steering = -( 90f / 450f );
+		app.VirtualJoystick.Steering = -( 90f / 540f );
 	}
 
 	private void MinThrottle_MairaButton_Click( object sender, RoutedEventArgs e )
@@ -128,6 +137,8 @@ public partial class SteeringEffectsPage : UserControl
 			{ string.Empty, localization[ "CalibrationFileNotSelected" ] }
 		};
 
+		var autoSelectedValue = string.Empty;
+
 		if ( app.Simulator.CarScreenName != string.Empty )
 		{
 			foreach ( var filePath in Directory.GetFiles( SteeringEffects.CalibrationDirectory, $"{app.Simulator.CarScreenName} - *.csv" ) )
@@ -135,12 +146,23 @@ public partial class SteeringEffectsPage : UserControl
 				var option = Path.GetFileNameWithoutExtension( filePath );
 
 				dictionary.Add( option, option );
+
+				if ( settings.SteeringEffectsCalibrationFileName == string.Empty )
+				{
+					autoSelectedValue = option;
+				}
 			}
 		}
 
 		app.Dispatcher.Invoke( () =>
 		{
-			CalibrationFileName_MairaComboBox.ItemsSource = dictionary;
+			CalibrationFileName_MairaComboBox.ItemsSource = dictionary.ToList();
+
+			if ( autoSelectedValue != string.Empty )
+			{
+				settings.SteeringEffectsCalibrationFileName = autoSelectedValue;
+			}
+
 			CalibrationFileName_MairaComboBox.SelectedValue = settings.SteeringEffectsCalibrationFileName;
 			CalibrationFileName_MairaComboBox.OffValue = string.Empty;
 		} );
@@ -169,13 +191,13 @@ public partial class SteeringEffectsPage : UserControl
 
 		app.Dispatcher.Invoke( () =>
 		{
-			UndersteerWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary;
+			UndersteerWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
 			UndersteerWheelVibrationPattern_MairaComboBox.SelectedValue = settings.SteeringEffectsUndersteerWheelVibrationPattern;
 
-			OversteerWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary;
+			OversteerWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
 			OversteerWheelVibrationPattern_MairaComboBox.SelectedValue = settings.SteeringEffectsOversteerWheelVibrationPattern;
 
-			SeatOfPantsWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary;
+			SeatOfPantsWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
 			SeatOfPantsWheelVibrationPattern_MairaComboBox.SelectedValue = settings.SteeringEffectsSeatOfPantsWheelVibrationPattern;
 		} );
 
@@ -200,13 +222,13 @@ public partial class SteeringEffectsPage : UserControl
 
 		app.Dispatcher.Invoke( () =>
 		{
-			UndersteerWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary;
+			UndersteerWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
 			UndersteerWheelConstantForceDirection_MairaComboBox.SelectedValue = settings.SteeringEffectsUndersteerWheelConstantForceDirection;
 
-			OversteerWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary;
+			OversteerWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
 			OversteerWheelConstantForceDirection_MairaComboBox.SelectedValue = settings.SteeringEffectsOversteerWheelConstantForceDirection;
 
-			SeatOfPantsWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary;
+			SeatOfPantsWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
 			SeatOfPantsWheelConstantForceDirection_MairaComboBox.SelectedValue = settings.SteeringEffectsSeatOfPantsWheelConstantForceDirection;
 		} );
 
@@ -231,11 +253,32 @@ public partial class SteeringEffectsPage : UserControl
 
 		app.Dispatcher.Invoke( () =>
 		{
-			SeatOfPantsAlgorithm_MairaComboBox.ItemsSource = dictionary;
+			SeatOfPantsAlgorithm_MairaComboBox.ItemsSource = dictionary.ToList();
 			SeatOfPantsAlgorithm_MairaComboBox.SelectedValue = settings.SteeringEffectsSeatOfPantsAlgorithm;
 		} );
 
 		app.Logger.WriteLine( "[SteeringEffectsPage] <<< UpdateSeatOfPantsAlgorithmOptions" );
+	}
+
+	public void CalibrationFileNameChanged( bool isSelected )
+	{
+		var app = App.Instance!;
+
+		app.Dispatcher.InvokeAsync( () =>
+		{
+			Understeer_CalibrationFileWarning.Visibility = isSelected ? Visibility.Collapsed : Visibility.Visible;
+			Oversteer_CalibrationFileWarning.Visibility = isSelected ? Visibility.Collapsed : Visibility.Visible;
+		} );
+	}
+
+	private void UndersteerEnabled_Toggled( object sender, EventArgs e )
+	{
+		var mairaSwitch = sender as MairaSwitch;
+
+		if ( mairaSwitch is not null )
+		{
+			Misc.ApplyToTaggedElements( Root, "Understeer", element => element.Visibility = ( ( mairaSwitch.IsOn == true ) ? Visibility.Visible : Visibility.Collapsed ) );
+		}
 	}
 
 	private void UndersteerWheelVibrationPattern_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
@@ -274,6 +317,16 @@ public partial class SteeringEffectsPage : UserControl
 		}
 	}
 
+	private void OversteerEnabled_Toggled( object sender, EventArgs e )
+	{
+		var mairaSwitch = sender as MairaSwitch;
+
+		if ( mairaSwitch is not null )
+		{
+			Misc.ApplyToTaggedElements( Root, "Oversteer", element => element.Visibility = ( ( mairaSwitch.IsOn == true ) ? Visibility.Visible : Visibility.Collapsed ) );
+		}
+	}
+
 	private void OversteerWheelVibrationPattern_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
 		var comboBox = sender as ComboBox;
@@ -307,6 +360,16 @@ public partial class SteeringEffectsPage : UserControl
 				OversteerWheelConstantForceStrength_MairaKnob.Visibility = visibility;
 				OversteerWheelConstantForceCurve_MairaKnob.Visibility = visibility;
 			}
+		}
+	}
+
+	private void SeatOfPantsEnabled_Toggled( object sender, EventArgs e )
+	{
+		var mairaSwitch = sender as MairaSwitch;
+
+		if ( mairaSwitch is not null )
+		{
+			Misc.ApplyToTaggedElements( Root, "SeatOfPants", element => element.Visibility = ( ( mairaSwitch.IsOn == true ) ? Visibility.Visible : Visibility.Collapsed ) );
 		}
 	}
 

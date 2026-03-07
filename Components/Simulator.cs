@@ -3,11 +3,16 @@ using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
 
-using IRSDKSharper;
+using YamlDotNet.Serialization;
+using YamlDotNet.Serialization.NamingConventions;
+
 using PInvoke;
+using IRSDKSharper;
 
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Windows;
+
+using static MarvinsAIRARefactored.Windows.MainWindow;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -36,11 +41,12 @@ public partial class Simulator
 	public string CurrentTireCompoundType { get; private set; } = string.Empty;
 	public int DisplayUnits { get; private set; } = 0;
 	public int Gear { get; private set; } = 0;
-	public float LongitudalGForce { get; private set; } = 0f;
+	public float LongitudinalGForce { get; private set; } = 0f;
 	public float LateralGForce { get; private set; } = 0f;
 	public bool IsConnected { get => _irsdk.IsConnected; }
 	public bool IsOnTrack { get; private set; } = false;
 	public bool IsReplayPlaying { get; private set; } = false;
+	public float LapDist { get; private set; } = 0;
 	public float LapDistPct { get; private set; } = 0f;
 	public int LastRadioTransmitCarIdx { get; private set; } = -1;
 	public float LatAccel { get; private set; } = 0f;
@@ -53,6 +59,7 @@ public partial class Simulator
 	public IRacingSdkEnum.PaceMode PaceMode { get; private set; } = IRacingSdkEnum.PaceMode.NotPacing;
 	public int PlayerCarIdx { get; private set; } = 0;
 	public IRacingSdkEnum.TrkLoc PlayerTrackSurface { get; private set; } = IRacingSdkEnum.TrkLoc.NotInWorld;
+	public IRacingSdkEnum.TrkSurf PlayerTrackSurfaceMaterial { get; private set; } = IRacingSdkEnum.TrkSurf.SurfaceNotInWorld;
 	public int RadioTransmitCarIdx { get; private set; } = -1;
 	public int ReplayFrameNumEnd { get; private set; } = 1;
 	public bool ReplayPlaySlowMotion { get; private set; } = false;
@@ -70,6 +77,7 @@ public partial class Simulator
 	public float Speed { get; private set; } = 0f;
 	public bool SteeringFFBEnabled { get; private set; } = false;
 	public float SteeringOffsetInDegrees { get; private set; } = 0f;
+	public float SteeringRatio { get; private set; } = 10f;
 	public float SteeringWheelAngle { get; private set; } = 0f;
 	public float SteeringWheelAngleMax { get; private set; } = 0f;
 	public float[] SteeringWheelTorque_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
@@ -105,6 +113,7 @@ public partial class Simulator
 	private IRacingSdkDatum? _gearDatum = null;
 	private IRacingSdkDatum? _isOnTrackDatum = null;
 	private IRacingSdkDatum? _isReplayPlayingDatum = null;
+	private IRacingSdkDatum? _lapDistDatum = null;
 	private IRacingSdkDatum? _lapDistPctDatum = null;
 	private IRacingSdkDatum? _latAccelDatum = null;
 	private IRacingSdkDatum? _lfShockVel_STDatum = null;
@@ -114,6 +123,7 @@ public partial class Simulator
 	private IRacingSdkDatum? _paceModeDatum = null;
 	private IRacingSdkDatum? _playerCarIdxDatum = null;
 	private IRacingSdkDatum? _playerTrackSurfaceDatum = null;
+	private IRacingSdkDatum? _playerTrackSurfaceMaterialDatum = null;
 	private IRacingSdkDatum? _radioTransmitCarIdxDatum = null;
 	private IRacingSdkDatum? _replayFrameNumEndDatum = null;
 	private IRacingSdkDatum? _replayPlaySlowMotionDatum = null;
@@ -252,10 +262,11 @@ public partial class Simulator
 		CurrentTireCompoundType = string.Empty;
 		DisplayUnits = 0;
 		Gear = 0;
-		LongitudalGForce = 0f;
+		LongitudinalGForce = 0f;
 		LateralGForce = 0f;
 		IsOnTrack = false;
 		IsReplayPlaying = false;
+		LapDist = 0f;
 		LapDistPct = 0f;
 		LastRadioTransmitCarIdx = -1;
 		LatAccel = 0f;
@@ -265,6 +276,7 @@ public partial class Simulator
 		PaceMode = IRacingSdkEnum.PaceMode.NotPacing;
 		PlayerCarIdx = 0;
 		PlayerTrackSurface = IRacingSdkEnum.TrkLoc.NotInWorld;
+		PlayerTrackSurfaceMaterial = IRacingSdkEnum.TrkSurf.SurfaceNotInWorld;
 		RadioTransmitCarIdx = -1;
 		ReplayFrameNumEnd = 1;
 		ReplayPlaySlowMotion = false;
@@ -278,6 +290,7 @@ public partial class Simulator
 		SimMode = string.Empty;
 		SteeringFFBEnabled = false;
 		SteeringOffsetInDegrees = 0f;
+		SteeringRatio = 10f;
 		SteeringWheelAngle = 0f;
 		SteeringWheelAngleMax = 0f;
 		Throttle = 0f;
@@ -307,6 +320,8 @@ public partial class Simulator
 		_sessionFlagsLastFrame = null;
 		_currentTireIndexLastFrame = null;
 
+		DataContext.DataContext.Instance.Settings.UpdateSettings( false );
+
 		app.AdminBoxx.SimulatorDisconnected();
 
 #if !ADMINBOXX
@@ -316,10 +331,11 @@ public partial class Simulator
 
 #endif
 
-		app.RacingWheel.SuspendForceFeedback = true;
 		app.MultimediaTimer.Suspend = true;
 
 		app.MainWindow.UpdateStatus();
+
+		_racingWheelPage.UpdateSteeringDeviceSection();
 
 		app.Logger.WriteLine( "[Simulator] <<< OnDisconnected" );
 	}
@@ -336,6 +352,11 @@ public partial class Simulator
 
 		ShiftLightsFirstRPM = sessionInfo.DriverInfo.DriverCarSLFirstRPM;
 		ShiftLightsShiftRPM = sessionInfo.DriverInfo.DriverCarSLShiftRPM;
+
+		if ( ShiftLightsShiftRPM <= ShiftLightsFirstRPM )
+		{
+			ShiftLightsShiftRPM = sessionInfo.DriverInfo.DriverCarSLBlinkRPM;
+		}
 
 		SimMode = sessionInfo.WeekendInfo.SimMode;
 
@@ -370,6 +391,24 @@ public partial class Simulator
 			SteeringOffsetInDegrees = 0f;
 		}
 
+		if ( sessionInfo.CarSetup?.Chassis?.Front?.SteeringRatio != null )
+		{
+			var numericPart = SteeringRatioRegex().Replace( sessionInfo.CarSetup.Chassis.Front.SteeringRatio, "" ).Trim();
+
+			if ( float.TryParse( numericPart, NumberStyles.Float | NumberStyles.AllowLeadingSign, CultureInfo.InvariantCulture, out var result ) )
+			{
+				SteeringRatio = result;
+			}
+			else
+			{
+				SteeringRatio = 10f;
+			}
+		}
+		else
+		{
+			SteeringRatio = 10f;
+		}
+
 		SeriesID = sessionInfo.WeekendInfo.SeriesID;
 		LeagueID = sessionInfo.WeekendInfo.LeagueID;
 		TimeOfDay = sessionInfo.WeekendInfo.WeekendOptions.TimeOfDay;
@@ -378,6 +417,8 @@ public partial class Simulator
 
 		if ( _waitingForFirstSessionInfo )
 		{
+			DataContext.DataContext.Instance.Settings.UpdateSettings( false );
+
 			UpdateTireProperties();
 
 #if !ADMINBOXX
@@ -385,8 +426,6 @@ public partial class Simulator
 			MainWindow._steeringEffectsPage.UpdateCalibrationFileNameOptions();
 
 #endif
-
-			DataContext.DataContext.Instance.Settings.UpdateSettings( false );
 
 			_waitingForFirstSessionInfo = false;
 		}
@@ -402,11 +441,23 @@ public partial class Simulator
 
 #if DEBUG
 
+		// Write out SessionInfo.yaml file
+
 		var sessionInfoYaml = _irsdk.Data.SessionInfoYaml;
 
 		var filePath = Path.Combine( App.DocumentsFolder, "SessionInfo.yaml" );
 
 		File.WriteAllText( filePath, sessionInfoYaml );
+
+		// Write out TelemetryData.yaml file
+
+		filePath = Path.Combine( App.DocumentsFolder, "TelemetryData.yaml" );
+
+		var serializer = new SerializerBuilder().WithNamingConvention( CamelCaseNamingConvention.Instance ).Build();
+
+		var yaml = serializer.Serialize( _irsdk.Data.TelemetryDataProperties );
+
+		File.WriteAllText( filePath, yaml );
 
 #endif
 	}
@@ -427,6 +478,7 @@ public partial class Simulator
 			_gearDatum = _irsdk.Data.TelemetryDataProperties[ "Gear" ];
 			_isOnTrackDatum = _irsdk.Data.TelemetryDataProperties[ "IsOnTrack" ];
 			_isReplayPlayingDatum = _irsdk.Data.TelemetryDataProperties[ "IsReplayPlaying" ];
+			_lapDistDatum = _irsdk.Data.TelemetryDataProperties[ "LapDist" ];
 			_lapDistPctDatum = _irsdk.Data.TelemetryDataProperties[ "LapDistPct" ];
 			_latAccelDatum = _irsdk.Data.TelemetryDataProperties[ "LatAccel" ];
 			_loadNumTexturesDatum = _irsdk.Data.TelemetryDataProperties[ "LoadNumTextures" ];
@@ -434,6 +486,7 @@ public partial class Simulator
 			_paceModeDatum = _irsdk.Data.TelemetryDataProperties[ "PaceMode" ];
 			_playerCarIdxDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerCarIdx" ];
 			_playerTrackSurfaceDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerTrackSurface" ];
+			_playerTrackSurfaceMaterialDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerTrackSurfaceMaterial" ];
 			_radioTransmitCarIdxDatum = _irsdk.Data.TelemetryDataProperties[ "RadioTransmitCarIdx" ];
 			_replayFrameNumEndDatum = _irsdk.Data.TelemetryDataProperties[ "ReplayFrameNumEnd" ];
 			_replayPlaySlowMotionDatum = _irsdk.Data.TelemetryDataProperties[ "ReplayPlaySlowMotion" ];
@@ -492,6 +545,16 @@ public partial class Simulator
 			return;
 		}
 
+		// poll directinput devices right before we process the algorithm
+
+		app.DirectInput.PollDevices( deltaSeconds );
+
+		// get next 360 Hz steering wheel torque samples
+
+		_irsdk.Data.GetFloatArray( _steeringWheelTorque_STDatum, SteeringWheelTorque_ST, 0, SteeringWheelTorque_ST.Length );
+
+		app.RacingWheel.UpdateSteeringWheelTorqueBuffer = true;
+
 		// update brake abs active
 
 		BrakeABSactive = _irsdk.Data.GetBool( _brakeABSactiveDatum );
@@ -525,19 +588,18 @@ public partial class Simulator
 
 		_isReplayPlayingLastFrame = IsReplayPlaying;
 
-		// update lap dist pct
+		// update lap dist and lap dist pct
 
+		LapDist = _irsdk.Data.GetFloat( _lapDistDatum );
 		LapDistPct = _irsdk.Data.GetFloat( _lapDistPctDatum );
 
 		// load num textures
 
 		LoadNumTextures = _irsdk.Data.GetBool( _loadNumTexturesDatum );
 
-		// suspend racing wheel force feedback if iracing ffb is enabled
+		// update steering ffb enabled
 
 		SteeringFFBEnabled = _irsdk.Data.GetBool( _steeringFFBEnabledDatum );
-
-		app.RacingWheel.SuspendForceFeedback = SteeringFFBEnabled && !settings.RacingWheelAlwaysEnableFFB;
 
 		// get the session flags
 
@@ -561,6 +623,10 @@ public partial class Simulator
 		// get the player track surface
 
 		PlayerTrackSurface = (IRacingSdkEnum.TrkLoc) _irsdk.Data.GetInt( _playerTrackSurfaceDatum );
+
+		// get the player track surface material
+
+		PlayerTrackSurfaceMaterial = (IRacingSdkEnum.TrkSurf) _irsdk.Data.GetInt( _playerTrackSurfaceMaterialDatum );
 
 		// get the car index using the radio
 
@@ -589,12 +655,6 @@ public partial class Simulator
 		// get gear
 
 		Gear = _irsdk.Data.GetInt( _gearDatum );
-
-		// get next 360 Hz steering wheel torque samples
-
-		_irsdk.Data.GetFloatArray( _steeringWheelTorque_STDatum, SteeringWheelTorque_ST, 0, SteeringWheelTorque_ST.Length );
-
-		app.RacingWheel.UpdateSteeringWheelTorqueBuffer = true;
 
 		// get car body speed and velocities
 
@@ -655,8 +715,8 @@ public partial class Simulator
 
 		// calculate g forces
 
-		LongitudalGForce = MathF.Sqrt( LongAccel * LongAccel ) * MathZ.OneOverG;
-		LateralGForce = MathF.Sqrt( LatAccel * LatAccel ) * MathZ.OneOverG;
+		LongitudinalGForce = MathF.Abs( LongAccel ) * MathZ.OneOverG;
+		LateralGForce = MathF.Abs( LatAccel ) * MathZ.OneOverG;
 
 		// crash protection processing
 
@@ -666,7 +726,7 @@ public partial class Simulator
 			{
 				if ( settings.RacingWheelCrashProtectionLongitudalGForce < 20f )
 				{
-					if ( MathF.Abs( LongitudalGForce ) >= settings.RacingWheelCrashProtectionLongitudalGForce )
+					if ( LongitudinalGForce >= settings.RacingWheelCrashProtectionLongitudalGForce )
 					{
 						app.RacingWheel.ActivateCrashProtection = true;
 					}
@@ -674,7 +734,7 @@ public partial class Simulator
 
 				if ( settings.RacingWheelCrashProtectionLateralGForce < 20f )
 				{
-					if ( MathF.Abs( LateralGForce ) >= settings.RacingWheelCrashProtectionLateralGForce )
+					if ( LateralGForce >= settings.RacingWheelCrashProtectionLateralGForce )
 					{
 						app.RacingWheel.ActivateCrashProtection = true;
 					}
@@ -786,10 +846,6 @@ public partial class Simulator
 
 		app.SteeringEffects.Update( app, deltaSeconds );
 
-		// poll direct input devices
-
-		app.DirectInput.PollDevices( deltaSeconds );
-
 		// trigger the app worker thread
 
 		app.TriggerWorkerThread();
@@ -845,10 +901,13 @@ public partial class Simulator
 		{
 			_updateCounter = UpdateInterval;
 
-			MainWindow._racingWheelPage.CurrentForce_TextBlock.Text = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F1} {DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
+			_racingWheelPage.CurrentForce_TextBlock.Text = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F1} {DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
 		}
 	}
 
 	[GeneratedRegex( @"\s*deg\s*$", RegexOptions.IgnoreCase, "en-US" )]
 	private static partial Regex SteeringOffsetRegex();
+
+	[GeneratedRegex( @"\s*:1\s*$", RegexOptions.IgnoreCase, "en-US" )]
+	private static partial Regex SteeringRatioRegex();
 }

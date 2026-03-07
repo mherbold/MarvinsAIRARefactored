@@ -64,6 +64,60 @@ namespace MarvinsAIRARefactored.Controls
 
 		#endregion
 
+		private void ListBoxItem_PreviewMouseLeftButtonUp( object sender, System.Windows.Input.MouseButtonEventArgs e )
+		{
+			if ( sender is System.Windows.Controls.ListBoxItem listBoxItem )
+			{
+				if ( listBoxItem.DataContext is AppMenuItem clickedItem )
+				{
+					if ( Equals( clickedItem, SelectedAppMenuItem ) )
+					{
+						IsMenuOpen = false;
+						e.Handled = true;
+					}
+				}
+			}
+		}
+
+		private static string? GetHelpTopicForAppPage( AppPage appPage )
+		{
+			switch ( appPage )
+			{
+				case AppPage.RacingWheel:
+					return "advanced/racing-wheel/";
+
+				case AppPage.SteeringEffects:
+					return "advanced/steering-effects/";
+
+				case AppPage.Pedals:
+					return "advanced/pedals/";
+
+				case AppPage.Wind:
+					return "advanced/wind/";
+
+				case AppPage.Sounds:
+					return "advanced/sounds/";
+
+				case AppPage.SpeechToText:
+					return "advanced/speech-to-text/";
+
+				case AppPage.TradingPaints:
+					return "advanced/trading-paints/";
+
+				case AppPage.Graph:
+					return "advanced/graph/";
+
+				case AppPage.Simulator:
+					return "advanced/simulator/";
+
+				case AppPage.AppSettings:
+					return "advanced/app-settings/";
+
+				default:
+					return null;
+			}
+		}
+
 		#region Dependency Properties
 
 		public static readonly DependencyProperty SelectedAppPageProperty = DependencyProperty.Register( nameof( SelectedAppPage ), typeof( AppPage ), typeof( MairaAppMenuPopup ), new FrameworkPropertyMetadata( default( AppPage ), FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedAppPageChanged ) );
@@ -426,6 +480,10 @@ namespace MarvinsAIRARefactored.Controls
 					SelectedAppPageText = "DEBUG";
 					break;
 			}
+
+			var helpTopic = GetHelpTopicForAppPage( SelectedAppPage );
+
+			Classes.HelpService.SetHelpTopic( App.Instance!.MainWindow, helpTopic );
 		}
 
 		#endregion

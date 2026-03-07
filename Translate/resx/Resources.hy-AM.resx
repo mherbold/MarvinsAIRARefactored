@@ -253,8 +253,8 @@
     <value>ԸՆԴՀԱՆՈՒՐ ՈՒԺ</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>Ավտոմատ Սահմանաչափ</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">

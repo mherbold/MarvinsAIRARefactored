@@ -54,7 +54,7 @@
                                       Label="{Binding Localization[Test]}"
                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                       Click="Test_Click"
-                                      IsEnabled="False" />
+                                      Disabled="True" />
 
             </Grid>
 

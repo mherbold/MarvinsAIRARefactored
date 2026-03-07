@@ -78,6 +78,11 @@ public sealed class RecordingManager : IDisposable
 			settings.RacingWheelSelectedRecording = Recordings.FirstOrDefault().Key;
 		}
 
+		for ( var i = 0; i < _recordingData.Length; i++ )
+		{
+			_recordingData[ i ] = new RecordingData();
+		}
+
 		app.Logger.WriteLine( "[RecordingManager] <<< Initialize" );
 	}
 
@@ -144,11 +149,12 @@ public sealed class RecordingManager : IDisposable
 			}
 			else
 			{
-				_recordingData[ _recordingDataIndex++ ] = new RecordingData()
-				{
-					InputTorque60Hz = inputTorque60Hz,
-					InputTorque500Hz = inputTorque500Hz,
-				};
+				ref var recordingData = ref _recordingData[ _recordingDataIndex++ ];
+
+				recordingData.InputTorque60Hz = inputTorque60Hz;
+				recordingData.InputTorque500Hz = inputTorque500Hz;
+
+				_recordingDataIndex++;
 
 				if ( _recordingDataIndex == _recordingData.Length / 2 )
 				{
@@ -188,7 +194,7 @@ public sealed class RecordingManager : IDisposable
 
 		app.Logger.WriteLine( "[RecordingManager] SaveRecording >>>" );
 
-		var fileName = $"{app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {_trackPosition}";
+		var fileName = $"{app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {app.Simulator.TrackConfigName} ({_trackPosition}%)";
 
 		var filePath = Path.Combine( _recordingsDirectory, $"{fileName}.csv" );
 

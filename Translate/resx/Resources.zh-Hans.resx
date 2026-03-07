@@ -1,51 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:schema id="root">
-    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xs:element name="root" ns1:IsDataSet="true">
-      <xs:complexType>
-        <xs:choice maxOccurs="unbounded">
-          <xs:element name="metadata">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" type="xsd:string" minOccurs="0" />
-              </xs:sequence>
-              <xs:attribute name="name" use="required" type="xsd:string" />
-              <xs:attribute name="type" type="xsd:string" />
-              <xs:attribute name="mimetype" type="xsd:string" />
-              <xs:attribute ref="xml:space" />
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="assembly">
-            <xs:complexType>
-              <xs:attribute name="alias" type="xsd:string" />
-              <xs:attribute name="name" type="xsd:string" />
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="data">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
-                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
-              </xs:sequence>
-              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
-              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
-              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
-              <xs:attribute ref="xml:space" />
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="resheader">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
-              </xs:sequence>
-              <xs:attribute name="name" type="xsd:string" use="required" />
-            </xs:complexType>
-          </xs:element>
-        </xs:choice>
-      </xs:complexType>
-    </xs:element>
-  </xs:schema>
+<root>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -67,7 +22,7 @@
     <comment>Tab item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value />
+    <value></value>
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
@@ -178,7 +133,7 @@
     <comment>App</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value />
+    <value></value>
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
@@ -226,7 +181,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value />
+    <value></value>
     <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
@@ -234,11 +189,11 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
-    <value />
+    <value></value>
     <comment>Abbreviation for percent per Newton-meters</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value />
+    <value></value>
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="CompressionRate" xml:space="preserve">
@@ -253,8 +208,8 @@
     <value>总力度</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>自动边缘值</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -286,7 +241,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value />
+    <value></value>
     <comment>Abbreviation for G-Force</comment>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
@@ -306,7 +261,7 @@
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value />
+    <value></value>
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
@@ -354,7 +309,7 @@
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value />
+    <value></value>
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
@@ -725,7 +680,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value />
+    <value></value>
     <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
@@ -751,6 +706,9 @@
   <data name="Sensitivity" xml:space="preserve">
     <value>灵敏度</value>
     <comment>Pedals</comment>
+  </data>
+  <data name="SlewAndTotalCompression" xml:space="preserve">
+    <value>转换速率与总体压缩</value>
   </data>
   <data name="DiscordModerators_UC" xml:space="preserve">
     <value>DISCORD版主</value>
@@ -797,7 +755,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value />
+    <value></value>
     <comment>Steering effects</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
@@ -827,10 +785,6 @@
   <data name="InputMappedSettingUpdateEnabled" xml:space="preserve">
     <value>启用按键绑定设置更新提示信息</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="UndersteerEffect" xml:space="preserve">
-    <value>转向不足效果</value>
-    <comment>Steering effects</comment>
   </data>
   <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
     <value>你当前未在向心的赛道</value>
@@ -973,7 +927,7 @@
     <comment>Error messages</comment>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value />
+    <value>公里每小时</value>
     <comment>Abbreviation for Kilometers per Hour</comment>
   </data>
   <data name="CalibrationFileContributors" xml:space="preserve">
@@ -984,20 +938,145 @@
     <value>这些转向效果校准文件为慷慨的贡献者在他们所偏好的车辆上测试和体验后提供</value>
     <comment>Contribute</comment>
   </data>
+  <data name="DegreesPerSecond" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="CalibrationFile_UC" xml:space="preserve">
+    <value>校准文件</value>
+  </data>
+  <data name="Understeer_UC" xml:space="preserve">
+    <value>转向不足</value>
+  </data>
+  <data name="Oversteer_UC" xml:space="preserve">
+    <value>转向过度</value>
+  </data>
+  <data name="MinimumThreshold" xml:space="preserve">
+    <value>最小阈值</value>
+  </data>
+  <data name="MaximumThreshold" xml:space="preserve">
+    <value>最大阈值</value>
+  </data>
+  <data name="MinimumFrequency" xml:space="preserve">
+    <value>最小频率</value>
+  </data>
+  <data name="MaximumFrequency" xml:space="preserve">
+    <value>最大频率</value>
+  </data>
+  <data name="Calibration_UC" xml:space="preserve">
+    <value>校准</value>
+  </data>
+  <data name="VibrationPattern" xml:space="preserve">
+    <value>振动模式</value>
+  </data>
+  <data name="SineWave" xml:space="preserve">
+    <value>正弦波</value>
+  </data>
+  <data name="SquareWave" xml:space="preserve">
+    <value>方波</value>
+  </data>
+  <data name="TriangleWave" xml:space="preserve">
+    <value>三角波</value>
+  </data>
+  <data name="SawtoothWaveIn" xml:space="preserve">
+    <value>锯齿波（上升）</value>
+  </data>
+  <data name="SawtoothWaveOut" xml:space="preserve">
+    <value>锯齿波（下降）</value>
+  </data>
+  <data name="DecreaseForce" xml:space="preserve">
+    <value>降低力度</value>
+  </data>
+  <data name="IncreaseForce" xml:space="preserve">
+    <value>增加力度</value>
+  </data>
+  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>转向不足 方向盘恒定力效果</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value>方向</value>
+  </data>
+  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>转向过度 方向盘震动效果</value>
+  </data>
+  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>转向过度 方向盘恒定力效果</value>
+  </data>
+  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>转向过度 踏板震动效果</value>
+  </data>
+  <data name="UndersteerEffect" xml:space="preserve">
+    <value>转向不足效果</value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="OversteerEffect" xml:space="preserve">
+    <value>转向过度效果</value>
+  </data>
+  <data name="ConfigurationFileIsInvalid" xml:space="preserve">
+    <value>配置文件无效！</value>
+  </data>
+  <data name="SpeechToText" xml:space="preserve">
+    <value>语音转文字</value>
+  </data>
+  <data name="Overlay" xml:space="preserve">
+    <value>覆盖层</value>
+  </data>
+  <data name="OverlayWindow_UC" xml:space="preserve">
+    <value>覆盖窗口</value>
+  </data>
+  <data name="ShowOverlayWindow" xml:space="preserve">
+    <value>显示覆盖窗口</value>
+  </data>
+  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
+    <value>使覆盖窗口可拖动</value>
+  </data>
+  <data name="ResetOverlayWindow" xml:space="preserve">
+    <value>重置覆盖窗口位置</value>
+  </data>
+  <data name="OverlayWindowScale" xml:space="preserve">
+    <value>覆盖窗口比例</value>
+  </data>
+  <data name="STT_Title" xml:space="preserve">
+    <value>MAIRA 语音转文字桥接</value>
+  </data>
+  <data name="STT_Hint" xml:space="preserve">
+    <value></value>
+    <comment>Speech-to-text bridge</comment>
+  </data>
+  <data name="STT_Button" xml:space="preserve">
+    <value>启用语音转文字</value>
+  </data>
+  <data name="FFBDeviceNotSelected" xml:space="preserve">
+    <value>[力反馈 设备 未选择]</value>
+  </data>
   <data name="Algorithm_UC" xml:space="preserve">
     <value>算法</value>
+  </data>
+  <data name="ReadyToDonate" xml:space="preserve">
+    <value>准备好捐赠了吗？</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>贡献</value>
   </data>
+  <data name="CalibrationFileContributions_UC" xml:space="preserve">
+    <value>校准文件贡献</value>
+  </data>
   <data name="Moderators" xml:space="preserve">
     <value>Discord版主</value>
+  </data>
+  <data name="AppSettings_UC" xml:space="preserve">
+    <value>程序设置</value>
   </data>
   <data name="Simulator_UC" xml:space="preserve">
     <value>模拟器</value>
   </data>
   <data name="Graph_UC" xml:space="preserve">
     <value>图标</value>
+  </data>
+  <data name="SpeechToText_UC" xml:space="preserve">
+    <value>语音转文字</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>更新日志</value>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
     <value>ABS介入</value>
@@ -1020,148 +1099,256 @@
   <data name="Pedals" xml:space="preserve">
     <value>踏板</value>
   </data>
-  <data name="WheelSpin" xml:space="preserve">
-    <value>车轮打滑</value>
-  </data>
   <data name="WheelLock" xml:space="preserve">
     <value>车轮锁死</value>
+  </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>车轮打滑</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
     <value>抓地力测量计</value>
   </data>
-  <data name="Overlay">
-    <value>覆盖层</value>
+  <data name="MPHUnits" xml:space="preserve">
+    <value></value>
+    <comment>Abbreviation for miles per hour</comment>
   </data>
-  <data name="STT_Title">
-    <value>MAIRA 语音转文字桥接</value>
+  <data name="Wind_UC" xml:space="preserve">
+    <value></value>
+    <comment>Page title</comment>
   </data>
-  <data name="STT_Button">
-    <value>启用语音转文字</value>
+  <data name="Wind" xml:space="preserve">
+    <value></value>
+    <comment>App menu item</comment>
   </data>
-  <data name="FFBDeviceNotSelected">
-    <value>[力反馈 设备 未选择]</value>
+  <data name="ConnectToWindOnStartup" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
   </data>
-  <data name="ReadyToDonate">
-    <value>准备好捐赠了吗？</value>
+  <data name="ConnectToWind" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
   </data>
-  <data name="CalibrationFileContributions_UC">
-    <value>校准文件贡献</value>
+  <data name="LeftFan" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
   </data>
-  <data name="SpeechToText_UC">
-    <value>语音转文字</value>
-  </data>
-  <data name="Changelog">
-    <value>更新日志</value>
-  </data>
-  <data name="DegreesPerSecond">
-    <value />
-  </data>
-  <data name="CalibrationFile_UC">
-    <value>校准文件</value>
-  </data>
-  <data name="Understeer_UC">
-    <value>转向不足</value>
-  </data>
-  <data name="Oversteer_UC">
-    <value>转向过度</value>
-  </data>
-  <data name="MinimumThreshold">
-    <value>最小阈值</value>
-  </data>
-  <data name="MaximumThreshold">
-    <value>最大阈值</value>
-  </data>
-  <data name="MinimumFrequency">
-    <value>最小频率</value>
-  </data>
-  <data name="MaximumFrequency">
-    <value>最大频率</value>
-  </data>
-  <data name="Calibration_UC">
-    <value>校准</value>
-  </data>
-  <data name="VibrationPattern">
-    <value>振动模式</value>
-  </data>
-  <data name="SineWave">
-    <value>正弦波</value>
-  </data>
-  <data name="SquareWave">
-    <value>方波</value>
-  </data>
-  <data name="TriangleWave">
-    <value>三角波</value>
-  </data>
-  <data name="SawtoothWaveIn">
-    <value>锯齿波（上升）</value>
-  </data>
-  <data name="SawtoothWaveOut">
-    <value>锯齿波（下降）</value>
-  </data>
-  <data name="DecreaseForce">
-    <value>降低力度</value>
-  </data>
-  <data name="IncreaseForce">
-    <value>增加力度</value>
-  </data>
-  <data name="UndersteerWheelConstantForceEffect_UC">
-    <value>转向不足 方向盘恒定力效果</value>
-  </data>
-  <data name="Direction">
-    <value>方向</value>
-  </data>
-  <data name="OversteerWheelVibrationEffect_UC">
-    <value>转向过度 方向盘震动效果</value>
-  </data>
-  <data name="OversteerWheelConstantForceEffect_UC">
-    <value>转向过度 方向盘恒定力效果</value>
-  </data>
-  <data name="OversteerPedalVibrationEffect_UC">
-    <value>转向过度 踏板震动效果</value>
-  </data>
-  <data name="OversteerEffect">
-    <value>转向过度效果</value>
-  </data>
-  <data name="ConfigurationFileIsInvalid">
-    <value>配置文件无效！</value>
-  </data>
-  <data name="SpeechToText">
-    <value>语音转文字</value>
-  </data>
-  <data name="OverlayWindow_UC">
-    <value>覆盖窗口</value>
-  </data>
-  <data name="ShowOverlayWindow">
-    <value>显示覆盖窗口</value>
-  </data>
-  <data name="MakeOverlayWindowDraggable">
-    <value>使覆盖窗口可拖动</value>
-  </data>
-  <data name="ResetOverlayWindow">
-    <value>重置覆盖窗口位置</value>
-  </data>
-  <data name="OverlayWindowScale">
-    <value>覆盖窗口比例</value>
-  </data>
-  <data name="AppSettings_UC">
-    <value>程序设置</value>
-  </data>
-  <data name="SlewAndTotalCompression" xml:space="preserve">
-    <value>转换速率与总体压缩</value>
-  </data>
-  <data name="Click_UC" xml:space="preserve">
-    <value>单击</value>
-  </data>
-  <data name="Audio_UC" xml:space="preserve">
-    <value>音频</value>
-  </data>
-  <data name="AdminBoxx_UC" xml:space="preserve">
-    <value>管理员Boxx</value>
+  <data name="RightFan" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
   </data>
   <data name="Connection_UC" xml:space="preserve">
     <value>连接状态</value>
   </data>
+  <data name="Settings_UC" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
+  </data>
+  <data name="MasterWindPower" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
+  </data>
+  <data name="MinimumSpeed" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
+  </data>
+  <data name="WindCurving" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
+  </data>
+  <data name="FanPower_UC" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
+  </data>
+  <data name="FanPower" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
+  </data>
+  <data name="DeviceNotFound" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="IRacingPaintFolder" xml:space="preserve">
+    <value></value>
+    <comment>Trading paints</comment>
+  </data>
+  <data name="TradingPaints" xml:space="preserve">
+    <value></value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="TradingPaints_UC" xml:space="preserve">
+    <value></value>
+    <comment>Page title</comment>
+  </data>
+  <data name="TradingPaintsDisclaimer" xml:space="preserve">
+    <value></value>
+    <comment>Trading Paints</comment>
+  </data>
+  <data name="MultiAdjustmentToolkit" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="TorqueCompression" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SlewRateReduction" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SoftClipping" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="DetailGain" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="OutputSmoothing" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SeatOfPants_UC" xml:space="preserve">
+    <value></value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
+    <value></value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
+    <value></value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
+    <value></value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="SeatOfPantsEffect" xml:space="preserve">
+    <value></value>
+    <comment>Pedal effects list</comment>
+  </data>
+  <data name="LateralAcceleration" xml:space="preserve">
+    <value></value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="LateralVelocity" xml:space="preserve">
+    <value></value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="RatioOfVelocities" xml:space="preserve">
+    <value></value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="DefaultPage_UC" xml:space="preserve">
+    <value></value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Effects_UC" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>音频</value>
+  </data>
   <data name="Display_UC" xml:space="preserve">
     <value>显示</value>
+  </data>
+  <data name="AdminBoxx_UC" xml:space="preserve">
+    <value>管理员Boxx</value>
+  </data>
+  <data name="Click_UC" xml:space="preserve">
+    <value>单击</value>
+  </data>
+  <data name="PedalsP500" xml:space="preserve">
+    <value></value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="PedalsPrototype" xml:space="preserve">
+    <value></value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value></value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value></value>
+    <comment>Page title</comment>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value></value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value></value>
+    <comment>Button</comment>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value></value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value></value>
+    <comment>Prediction mode list</comment>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value></value>
+    <comment>Prediction mode list</comment>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

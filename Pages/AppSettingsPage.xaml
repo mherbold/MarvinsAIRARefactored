@@ -17,7 +17,8 @@
     <StackPanel>
 
         <controls:MairaGroupBox Label="{Binding Localization[Language_UC]}"
-                                Tag="HideIfAdminBoxx">
+                                Tag="HideIfAdminBoxx"
+                                HelpTopic="advanced/app-settings/#language">
 
             <Grid>
 
@@ -39,7 +40,8 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[DefaultPage_UC]}"
-                                Tag="HideIfAdminBoxx">
+                                Tag="HideIfAdminBoxx"
+                                HelpTopic="advanced/app-settings/#default-page">
 
             <Grid>
 
@@ -60,7 +62,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[AppWindow_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[AppWindow_UC]}"
+                                HelpTopic="advanced/app-settings/#app-window">
 
             <Grid>
 
@@ -129,7 +132,8 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[CloudService_UC]}"
-                                Tag="HideIfAdminBoxx">
+                                Tag="HideIfAdminBoxx"
+                                HelpTopic="advanced/app-settings/#cloud-service">
 
             <Grid>
 

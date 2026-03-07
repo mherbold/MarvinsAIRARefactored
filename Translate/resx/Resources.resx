@@ -313,8 +313,8 @@
     <value>OVERALL STRENGTH</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>Auto Margin</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value>Auto Target</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -982,7 +982,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Steering Effects Disabled]</value>
+    <value>[Calibration File Not Selected]</value>
     <comment>Steering effects</comment>
   </data>
   <data name="ParkedEffects_UC" xml:space="preserve">
@@ -1413,14 +1413,6 @@
     <value>EFFECTS</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="VibrateOnGearChange" xml:space="preserve">
-    <value>Vibrate on gear change</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnABS" xml:space="preserve">
-    <value>Vibrate on ABS activation</value>
-    <comment>Racing wheel</comment>
-  </data>
   <data name="Audio_UC" xml:space="preserve">
     <value>AUDIO</value>
     <comment>AdminBoxx</comment>
@@ -1552,5 +1544,57 @@
   <data name="LateralGForce" xml:space="preserve">
     <value>Lateral G-Force</value>
     <comment>Racing wheel</comment>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value>POV</value>
+    <comment>Button</comment>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value>You must select a calibration file for this effect to work.</value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value>Prediction Mode</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value>K1 (Predict 1/60s ahead)</value>
+    <comment>Prediction mode list</comment>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value>K2 (Predict 2/60s ahead)</value>
+    <comment>Prediction mode list</comment>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value>Prediction Blend</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>Force feedback has been manually shut off (emergency stop)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>The iRacing simulator is in replay mode</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>Force feedback is enabled in the iRacing simulator</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>FFB is disabled because calibration is running</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value>Gear Change Vibrate Strength</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value>ABS Vibrate Strength</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ShowGripOMeterTitle" xml:space="preserve">
+    <value>Show the Grip-O-Meter window title</value>
+    <comment>Steering effects</comment>
   </data>
 </root>

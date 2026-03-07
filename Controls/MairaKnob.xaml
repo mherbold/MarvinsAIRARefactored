@@ -58,9 +58,24 @@
                        FontSize="30"
                        Foreground="#ff5b2e"
                        Text="{Binding ValueString, ElementName=Root, FallbackValue='10.0 Nm'}"
+                       PreviewMouseLeftButtonDown="Value_TextBlock_PreviewMouseLeftButtonDown"
                        PreviewMouseRightButtonDown="Value_TextBlock_PreviewMouseRightButtonDown"
                        PreviewMouseRightButtonUp="Value_TextBlock_PreviewMouseRightButtonUp"
                        MouseLeave="Value_TextBlock_MouseLeave" />
+
+            <TextBox x:Name="Value_TextBox"
+                     Style="{StaticResource MairaTextBoxStyle}"
+                     Grid.Column="0"
+                     FontSize="30"
+                     Foreground="#ff5b2e"
+                     CaretBrush="#ff5b2e"
+                     Background="Transparent"
+                     BorderThickness="0"
+                     Padding="0"
+                     VerticalContentAlignment="Center"
+                     Visibility="Collapsed"
+                     KeyDown="Value_TextBox_KeyDown"
+                     LostKeyboardFocus="Value_TextBox_LostKeyboardFocus" />
 
             <Grid x:Name="Curve_Grid"
                   Grid.Column="1"

@@ -9,6 +9,24 @@
 
     <classes:HelpIconVisibilityConverter x:Key="HelpIconVisibility" />
 
+    <Style x:Key="MairaGroupBoxHeaderTextStyle"
+           TargetType="{x:Type TextBlock}">
+        
+        <Setter Property="FontFamily"
+                Value="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow" />
+        <Setter Property="Typography.NumeralAlignment"
+                Value="Tabular" />
+        <Setter Property="Typography.NumeralStyle"
+                Value="Lining" />
+        <Setter Property="Typography.SlashedZero"
+                Value="True" />
+        <Setter Property="FontSize"
+                Value="20" />
+        <Setter Property="Foreground"
+                Value="#ffffff" />
+        
+    </Style>
+    
     <Style TargetType="{x:Type controls:MairaGroupBox}">
 
         <Setter Property="Template">
@@ -37,7 +55,7 @@
                             </Grid.ColumnDefinitions>
 
                             <TextBlock Grid.Column="0"
-                                       Style="{DynamicResource MairaTextBlockStyle}">
+                                       Style="{StaticResource MairaGroupBoxHeaderTextStyle}">
                                 
                                 <Run Text="{TemplateBinding Label}"
                                      Foreground="#979797" />

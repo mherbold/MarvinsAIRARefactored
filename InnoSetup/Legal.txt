@@ -1,0 +1,11 @@
+
+This app has been downloaded and used by thousands of users without any issues, and a lot of effort has been spent in making sure it works.
+
+This app controls the force feedback of your wheelbase. If you have a very strong wheelbase, this app can and will cause injuries if you are not careful.
+
+This app does not do any automatic modifications to iRacing, but may require you to modify iRacing settings including disabling Force Feedback, and possibly also modify your iRacing app.ini file, if you have a Logitech wheel.
+
+The app may require you to update your wheelbase firmware and/or software in order to work. This app does sometimes require additional components to be installed directly from Microsoft, depending on your system. These modifications and updates may cause iRacing or your wheel or your computer to stop functioning as expected.
+
+I can’t be held responsible for any issues to your system, wheelbase, or to your body. If you do not agree with this, then please don’t use this software.
+

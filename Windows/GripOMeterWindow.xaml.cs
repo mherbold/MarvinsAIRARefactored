@@ -2,6 +2,9 @@
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
+
+using Color = System.Windows.Media.Color;
 
 using PInvoke;
 
@@ -13,6 +16,13 @@ public partial class GripOMeterWindow : Window
 {
 	private bool _initialized = false;
 	private bool _isDraggable = false;
+
+	private float _smoothedSkidSlip = 0f;
+	private float _smoothedSeatOfPants = 0f;
+
+	private const float SmoothingFactor = 0.15f;
+
+	private readonly SolidColorBrush[] _backgroundBrushes = new SolidColorBrush[ 16 ];
 
 	public GripOMeterWindow()
 	{
@@ -41,6 +51,19 @@ public partial class GripOMeterWindow : Window
 		WindowStartupLocation = WindowStartupLocation.Manual;
 
 		_initialized = true;
+
+		// Create 16 brushes with channel values from 0..255 in 16 steps and freeze them to avoid allocations during high-frequency Tick calls
+
+		for ( var i = 0; i < _backgroundBrushes.Length; i++ )
+		{
+			var gradientValue = (byte) Math.Round( i * 255.0 / ( _backgroundBrushes.Length - 1 ) );
+
+			var brush = new SolidColorBrush( Color.FromRgb( 255, gradientValue, gradientValue ) );
+
+			brush.Freeze();
+
+			_backgroundBrushes[ i ] = brush;
+		}
 
 		UpdateVisibility();
 
@@ -134,13 +157,19 @@ public partial class GripOMeterWindow : Window
 	{
 		if ( Visibility == Visibility.Visible )
 		{
-			var offsetX = app.SteeringEffects.SkidSlip * 144f;
+			_smoothedSkidSlip += ( app.SteeringEffects.SkidSlip - _smoothedSkidSlip ) * SmoothingFactor;
+			_smoothedSeatOfPants += ( app.SteeringEffects.SeatOfPantsEffect - _smoothedSeatOfPants ) * SmoothingFactor;
 
-			GripOMeter_Ball_Transform.X = offsetX;
+			GripOMeter_Ball_Transform.X = _smoothedSkidSlip * 144f;
+			GripOMeter_SeatOfPants_Transform.X = _smoothedSeatOfPants * 144f;
 
-			offsetX = app.SteeringEffects.SeatOfPantsEffect * 144f;
+			var intensity = Math.Abs( _smoothedSkidSlip );
 
-			GripOMeter_SeatOfPants_Transform.X = offsetX;
+			var brushIndex = (int) Math.Round( ( 1.0 - intensity ) * ( _backgroundBrushes.Length - 1 ) );
+
+			brushIndex = Math.Clamp( brushIndex, 0, _backgroundBrushes.Length - 1 );
+
+			GripOMeter_Background.Background = _backgroundBrushes[ brushIndex ];
 		}
 	}
 }

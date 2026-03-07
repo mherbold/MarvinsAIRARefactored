@@ -126,7 +126,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
-    <value>Català (Espanya) - Catalán (España)</value>
+    <value>Català (Espanya) - Catalán (Spain)</value>
     <comment>App language list</comment>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
@@ -209,8 +209,8 @@
     <value>FORÇA GENERAL</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>Marge automàtic</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -1307,14 +1307,6 @@
   </data>
   <data name="Effects_UC" xml:space="preserve">
     <value>EFECTES</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnGearChange" xml:space="preserve">
-    <value></value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnABS" xml:space="preserve">
-    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Audio_UC" xml:space="preserve">

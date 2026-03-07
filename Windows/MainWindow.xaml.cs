@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Controls;
 
 using Simagic;
 
@@ -96,8 +97,7 @@ public partial class MainWindow : Window
 
 		app.Logger.WriteLine( "[MainWindow] Initialize >>>" );
 
-		UpdateRacingWheelPowerButton();
-		UpdateRacingWheelForceFeedbackButtons();
+		_racingWheelPage.UpdateSteeringDeviceSection();
 
 		AppMenuPopup.Initialize();
 
@@ -142,10 +142,11 @@ public partial class MainWindow : Window
 			Title = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "AppTitle" ] + " " + Misc.GetVersion();
 
 			_racingWheelPage.UpdateSteeringDeviceOptions();
-			_racingWheelPage.UpdateLFERecordingDeviceOptions();
-			_racingWheelPage.UpdatePreviewRecordingsOptions();
 			_racingWheelPage.UpdateAlgorithmOptions();
 			_racingWheelPage.UpdateFFBSourceOptions();
+			_racingWheelPage.UpdatePredictionModeOptions();
+			_racingWheelPage.UpdatePreviewRecordingsOptions();
+			_racingWheelPage.UpdateLFERecordingDeviceOptions();
 
 			_steeringEffectsPage.UpdateCalibrationFileNameOptions();
 			_steeringEffectsPage.UpdateVibrationPatternOptions();
@@ -228,73 +229,19 @@ public partial class MainWindow : Window
 		} );
 	}
 
-	public void UpdateRacingWheelPowerButton()
-	{
-		var app = App.Instance!;
-
-		Dispatcher.Invoke( () =>
-		{
-			ImageSource? imageSource;
-			var blink = false;
-
-			if ( !MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelEnableForceFeedback )
-			{
-				imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Buttons/power-red.png" ) as ImageSource;
-			}
-			else if ( !app.Simulator.IsConnected || !app.DirectInput.ForceFeedbackInitialized )
-			{
-				imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Buttons/power-orange.png" ) as ImageSource;
-
-				blink = true;
-			}
-			else if ( app.RacingWheel.SuspendForceFeedback )
-			{
-				imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Buttons/power-yellow.png" ) as ImageSource;
-
-				blink = true;
-			}
-			else
-			{
-				imageSource = new ImageSourceConverter().ConvertFromString( "pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Buttons/power-green.png" ) as ImageSource;
-			}
-
-			if ( imageSource != null )
-			{
-				_racingWheelPage.Power_MairaMappableButton.Icon = imageSource;
-				_racingWheelPage.Power_MairaMappableButton.Blink = blink;
-			}
-		} );
-	}
-
-	public void UpdateRacingWheelForceFeedbackButtons()
-	{
-		var app = App.Instance!;
-
-		Dispatcher.Invoke( () =>
-		{
-			var isEnabled = app.DirectInput.ForceFeedbackInitialized;
-
-			_racingWheelPage.Test_MairaMappableButton.IsEnabled = isEnabled;
-			_racingWheelPage.Reset_MairaMappableButton.IsEnabled = isEnabled;
-			_racingWheelPage.Set_MairaMappableButton.IsEnabled = isEnabled;
-			_racingWheelPage.Clear_MairaMappableButton.IsEnabled = isEnabled;
-		} );
-	}
-
 	public void UpdateRacingWheelAlgorithmControls()
 	{
 		Dispatcher.Invoke( () =>
 		{
-			var racingWheelDetailBoostKnobControlVisibility = Visibility.Hidden;
-			var racingWheelDetailBoostBiasKnobControlVisibility = Visibility.Hidden;
+			var racingWheelPredictionModeComboBoxVisibility = Visibility.Collapsed;
+			var racingWheelPredictionBlendKnobControlVisibility = Visibility.Collapsed;
+			var racingWheelPredictionControlsRow = 0;
 
-			var racingWheelDeltaLimitKnobControlVisibility = Visibility.Hidden;
-			var racingWheelDeltaLimiterBiasKnobControlVisibility = Visibility.Hidden;
+			var racingWheelDetailBoostKnobControlVisibility = Visibility.Collapsed;
+			var racingWheelDetailBoostBiasKnobControlVisibility = Visibility.Collapsed;
 
-			var racingWheelSlewCompressionThresholdVisibility = Visibility.Hidden;
-			var racingWheelSlewCompressionRateVisibility = Visibility.Hidden;
-			var racingWheelTotalCompressionThresholdVisibility = Visibility.Hidden;
-			var racingWheelTotalCompressionRateVisibility = Visibility.Hidden;
+			var racingWheelDeltaLimitKnobControlVisibility = Visibility.Collapsed;
+			var racingWheelDeltaLimiterBiasKnobControlVisibility = Visibility.Collapsed;
 
 			var racingWheelMulti360HzDetailVisibility = Visibility.Hidden;
 			var racingWheelMultiTorqueCompressionVisibility = Visibility.Hidden;
@@ -308,18 +255,40 @@ public partial class MainWindow : Window
 
 			switch ( MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelAlgorithm )
 			{
+				case RacingWheel.Algorithm.Native60Hz:
+					racingWheelPredictionModeComboBoxVisibility = Visibility.Visible;
+					racingWheelPredictionBlendKnobControlVisibility = Visibility.Visible;
+					racingWheelPredictionControlsRow = 0;
+					break;
+
 				case RacingWheel.Algorithm.DetailBooster:
-				case RacingWheel.Algorithm.DetailBoosterOn60Hz:
 					racingWheelDetailBoostKnobControlVisibility = Visibility.Visible;
 					racingWheelDetailBoostBiasKnobControlVisibility = Visibility.Visible;
 					racingWheelCurbProtectionMairaGroupBoxVisibility = Visibility.Visible;
 					break;
 
+				case RacingWheel.Algorithm.DetailBoosterOn60Hz:
+					racingWheelDetailBoostKnobControlVisibility = Visibility.Visible;
+					racingWheelDetailBoostBiasKnobControlVisibility = Visibility.Visible;
+					racingWheelCurbProtectionMairaGroupBoxVisibility = Visibility.Visible;
+					racingWheelPredictionModeComboBoxVisibility = Visibility.Visible;
+					racingWheelPredictionBlendKnobControlVisibility = Visibility.Visible;
+					racingWheelPredictionControlsRow = 2;
+					break;
+
 				case RacingWheel.Algorithm.DeltaLimiter:
+					racingWheelDeltaLimitKnobControlVisibility = Visibility.Visible;
+					racingWheelDeltaLimiterBiasKnobControlVisibility = Visibility.Visible;
+					racingWheelCurbProtectionMairaGroupBoxVisibility = Visibility.Visible;
+					break;
+
 				case RacingWheel.Algorithm.DeltaLimiterOn60Hz:
 					racingWheelDeltaLimitKnobControlVisibility = Visibility.Visible;
 					racingWheelDeltaLimiterBiasKnobControlVisibility = Visibility.Visible;
 					racingWheelCurbProtectionMairaGroupBoxVisibility = Visibility.Visible;
+					racingWheelPredictionModeComboBoxVisibility = Visibility.Visible;
+					racingWheelPredictionBlendKnobControlVisibility = Visibility.Visible;
+					racingWheelPredictionControlsRow = 2;
 					break;
 
 				case RacingWheel.Algorithm.SlewAndTotalCompression:
@@ -340,6 +309,14 @@ public partial class MainWindow : Window
 					racingWheelMultiOutputSmoothingVisibility = Visibility.Visible;
 					break;
 			}
+
+			_racingWheelPage.PredictionMode_MairaComboBox.Visibility = racingWheelPredictionModeComboBoxVisibility;
+			_racingWheelPage.PredictionBlend_MairaKnob.Visibility = racingWheelPredictionBlendKnobControlVisibility;
+
+			Grid.SetRow( _racingWheelPage.PredictionMode_MairaComboBox, racingWheelPredictionControlsRow );
+			Grid.SetRow( _racingWheelPage.PredictionBlend_MairaKnob, racingWheelPredictionControlsRow );
+
+			_racingWheelPage.AlgorithmThirdRowSpacer_RowDefinition.Height = new GridLength( ( racingWheelPredictionControlsRow == 4 ) ? 20 : 0 );
 
 			_racingWheelPage.DetailBoost_MairaKnob.Visibility = racingWheelDetailBoostKnobControlVisibility;
 			_racingWheelPage.DetailBoostBias_MairaKnob.Visibility = racingWheelDetailBoostBiasKnobControlVisibility;

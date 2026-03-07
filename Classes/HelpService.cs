@@ -6,7 +6,7 @@ namespace MarvinsAIRARefactored.Classes;
 
 public static class HelpService
 {
-	public static string BaseUrl { get; set; } = "https://herboldracing.com/help/";
+	public static string BaseUrl { get; set; } = "https://mairapp.com/home/documentation/";
 
 	public static readonly DependencyProperty HelpTopicProperty = DependencyProperty.RegisterAttached( "HelpTopic", typeof( string ), typeof( HelpService ), new FrameworkPropertyMetadata( null, FrameworkPropertyMetadataOptions.Inherits ) );
 
@@ -21,9 +21,7 @@ public static class HelpService
 
 		if ( string.IsNullOrWhiteSpace( topic ) ) return;
 
-		var url = topic!.EndsWith( ".html", StringComparison.OrdinalIgnoreCase ) ? $"{BaseUrl}{topic}" : $"{BaseUrl}{topic}.html";
-
-		var helpWindow = new Windows.HelpWindow( url )
+		var helpWindow = new Windows.HelpWindow( $"{BaseUrl}{topic}" )
 		{
 			Owner = App.Instance!.MainWindow
 		};

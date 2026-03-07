@@ -253,33 +253,154 @@ public class Misc
 		User32.SetCursorPos( (int) Math.Round( p.X ), (int) Math.Round( p.Y ) );
 	}
 
-	private static readonly Encoding Latin1Encoding = Encoding.GetEncoding( "iso-8859-1", new EncoderReplacementFallback( "?" ), new DecoderReplacementFallback( "?" ) );
-
-	public static string ToBestEffortLatin1( string input )
+	private static readonly Dictionary<char, string> IracingChatMap = new()
 	{
-		// 1) Decompose accented letters into base letter + combining marks
-		var normalized = input.Normalize( NormalizationForm.FormD );
+		// German (and friends)
+		[ 'Ä' ] = "Ae",
+		[ 'Ö' ] = "Oe",
+		[ 'Ü' ] = "Ue",
+		[ 'ä' ] = "ae",
+		[ 'ö' ] = "oe",
+		[ 'ü' ] = "ue",
+		[ 'ß' ] = "ss",
 
-		// 2) Remove combining marks (diacritics)
+		// Turkish
+		[ 'İ' ] = "I",
+		[ 'ı' ] = "i",
+		[ 'Ş' ] = "S",
+		[ 'ş' ] = "s",
+		[ 'Ğ' ] = "G",
+		[ 'ğ' ] = "g",
+
+		// Romanian (comma-below forms)
+		[ 'Ș' ] = "S",
+		[ 'ș' ] = "s",
+		[ 'Ț' ] = "T",
+		[ 'ț' ] = "t",
+
+		// Polish
+		[ 'Ł' ] = "L",
+		[ 'ł' ] = "l",
+		[ 'Ą' ] = "A",
+		[ 'ą' ] = "a",
+		[ 'Ę' ] = "E",
+		[ 'ę' ] = "e",
+		[ 'Ń' ] = "N",
+		[ 'ń' ] = "n",
+		[ 'Ś' ] = "S",
+		[ 'ś' ] = "s",
+		[ 'Ź' ] = "Z",
+		[ 'ź' ] = "z",
+		[ 'Ż' ] = "Z",
+		[ 'ż' ] = "z",
+		[ 'Ć' ] = "C",
+		[ 'ć' ] = "c",
+		[ 'Ó' ] = "O",
+		[ 'ó' ] = "o",
+
+		// Czech
+		[ 'Č' ] = "C",
+		[ 'č' ] = "c",
+		[ 'Ď' ] = "D",
+		[ 'ď' ] = "d",
+		[ 'Ě' ] = "E",
+		[ 'ě' ] = "e",
+		[ 'Ň' ] = "N",
+		[ 'ň' ] = "n",
+		[ 'Ř' ] = "R",
+		[ 'ř' ] = "r",
+		[ 'Š' ] = "S",
+		[ 'š' ] = "s",
+		[ 'Ť' ] = "T",
+		[ 'ť' ] = "t",
+		[ 'Ů' ] = "U",
+		[ 'ů' ] = "u",
+		[ 'Ž' ] = "Z",
+		[ 'ž' ] = "z",
+
+		// Hungarian
+		[ 'Ő' ] = "O",
+		[ 'ő' ] = "o",
+		[ 'Ű' ] = "U",
+		[ 'ű' ] = "u",
+	};
+
+	private static bool IsLatin1( char ch ) => ch <= '\u00FF';
+
+	public static string ToIracingChatSafeText( string input )
+	{
+		if ( string.IsNullOrEmpty( input ) )
+		{
+			return input;
+		}
+
+		var output = new StringBuilder( input.Length );
+
+		foreach ( var ch in input )
+		{
+			// Try language-aware mapping first (Ł->L, Ş->S, etc.)
+
+			if ( IracingChatMap.TryGetValue( ch, out var mapped ) )
+			{
+				output.Append( mapped );
+
+				continue;
+			}
+
+			// Keep true Latin-1 as-is (ä stays ä)
+
+			if ( IsLatin1( ch ) )
+			{
+				output.Append( ch );
+
+				continue;
+			}
+
+			// Try diacritic stripping for remaining Latin letters
+
+			var stripped = StripDiacritics( ch.ToString() );
+
+			var appendedAnything = false;
+
+			foreach ( var strippedChar in stripped )
+			{
+				if ( IsLatin1( strippedChar ) )
+				{
+					output.Append( strippedChar );
+
+					appendedAnything = true;
+				}
+			}
+
+			if ( appendedAnything )
+			{
+				continue;
+			}
+
+			// Non-Latin scripts (ru-RU, hy-AM, ja-JP, zh-Hans) -> no good in iRacing chat
+
+			output.Append( '?' );
+		}
+
+		return output.ToString();
+	}
+
+	private static string StripDiacritics( string value )
+	{
+		var normalized = value.Normalize( NormalizationForm.FormD );
+
 		var stringBuilder = new StringBuilder( normalized.Length );
 
-		foreach ( var ch in normalized )
+		foreach ( var c in normalized )
 		{
-			var category = CharUnicodeInfo.GetUnicodeCategory( ch );
+			var category = CharUnicodeInfo.GetUnicodeCategory( c );
 
-			if ( ( category != UnicodeCategory.NonSpacingMark ) && ( category != UnicodeCategory.SpacingCombiningMark ) && ( category != UnicodeCategory.EnclosingMark ) )
+			if ( category != UnicodeCategory.NonSpacingMark && category != UnicodeCategory.SpacingCombiningMark && category != UnicodeCategory.EnclosingMark )
 			{
-				stringBuilder.Append( ch );
+				stringBuilder.Append( c );
 			}
 		}
 
-		// 3) Re-compose (optional but tidy)
-		var noDiacritics = stringBuilder.ToString().Normalize( NormalizationForm.FormC );
-
-		// 4) Encode to Latin-1 with '?' replacement for anything still unsupported
-		var bytes = Latin1Encoding.GetBytes( noDiacritics );
-
-		// 5) Convert back to a .NET string that contains only U+0000..U+00FF chars
-		return Latin1Encoding.GetString( bytes );
+		return stringBuilder.ToString().Normalize( NormalizationForm.FormC );
 	}
 }

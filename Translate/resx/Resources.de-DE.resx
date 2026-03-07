@@ -22,7 +22,7 @@
     <comment>Tab item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value></value>
+    <value>Marvin's Awesome iRacing App</value>
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
@@ -141,7 +141,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
-    <value></value>
+    <value>Admin Box</value>
     <comment>Tab item</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
@@ -206,8 +206,8 @@
   <data name="OverallStrength_UC" xml:space="preserve">
     <value>GESAMTKRAFT</value>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>Spielraum bei Autoeinstellung</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -305,14 +305,14 @@
     <value>FREQUENZ</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value></value>
+    <value>AMPLITUDE</value>
   </data>
   <data name="Minimum" xml:space="preserve">
-    <value></value>
+    <value>Minimum</value>
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
-    <value></value>
+    <value>Maximum</value>
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Curve" xml:space="preserve">
@@ -829,7 +829,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeter_UC" xml:space="preserve">
-    <value></value>
+    <value>Lenkungseffekte</value>
   </data>
   <data name="GripOMeterScale" xml:space="preserve">
     <value>Grip-O-Meter Skalierung </value>
@@ -1005,7 +1005,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Speech to text</comment>
   </data>
   <data name="Overlay" xml:space="preserve">
-    <value></value>
+    <value>Overlay</value>
     <comment>Speech to text</comment>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
@@ -1108,7 +1108,7 @@ Hier ist der Link zum Spenden:</value>
     <value>Reifenschlupf</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value></value>
+    <value>Lenkungseffekte</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
     <value>MPH</value>
@@ -1183,7 +1183,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>App menu item</comment>
   </data>
   <data name="TradingPaints_UC" xml:space="preserve">
-    <value></value>
+    <value>TRADING PAINTS</value>
     <comment>Trading Paints</comment>
   </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
@@ -1191,7 +1191,7 @@ Hier ist der Link zum Spenden:</value>
     <comment>Trading Paints</comment>
   </data>
   <data name="MultiAdjustmentToolkit" xml:space="preserve">
-    <value></value>
+    <value>Multi-Einstellungs-Toolkit</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
@@ -1219,11 +1219,11 @@ Hier ist der Link zum Spenden:</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>Vibrationseffekt </value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>KONSTANTE KRAFTWIRKUNG</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
@@ -1254,14 +1254,6 @@ Hier ist der Link zum Spenden:</value>
     <value>EFFEKTE</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="VibrateOnGearChange" xml:space="preserve">
-    <value>Vibration bei Gangwechsel</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnABS" xml:space="preserve">
-    <value>Vibration bei aktivem ABS</value>
-    <comment>Racing wheel</comment>
-  </data>
   <data name="Audio_UC" xml:space="preserve">
     <value>Audio</value>
     <comment>AdminBoxx</comment>
@@ -1278,7 +1270,7 @@ Hier ist der Link zum Spenden:</value>
     <value>Klick</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value></value>
+    <value>Simagic P500 Pedale</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsPrototype" xml:space="preserve">
@@ -1290,15 +1282,15 @@ Hier ist der Link zum Spenden:</value>
     <comment>App menu item</comment>
   </data>
   <data name="Help_UC" xml:space="preserve">
-    <value></value>
+    <value>Hilfe</value>
     <comment>Page title</comment>
   </data>
   <data name="Documentation_UC" xml:space="preserve">
-    <value></value>
+    <value>DOCUMENTATION</value>
     <comment>Help</comment>
   </data>
   <data name="Discord_UC" xml:space="preserve">
-    <value></value>
+    <value>DISCORD</value>
     <comment>Help</comment>
   </data>
   <data name="Forums_UC" xml:space="preserve">
@@ -1306,35 +1298,80 @@ Hier ist der Link zum Spenden:</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
-    <value></value>
+    <value>Documentation Website</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordServer" xml:space="preserve">
-    <value></value>
+    <value>Discord Server</value>
     <comment>Help</comment>
   </data>
   <data name="iRacingForums" xml:space="preserve">
-    <value></value>
+    <value>iRacing Forums</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationText" xml:space="preserve">
-    <value></value>
+    <value>Diese Dokumentationswebsite befindet sich ständig im Aufbau, da dieser App ständig neue Funktionen hinzugefügt werden. Ich aktualisiere die Dokumentation so oft wie möglich, aber wenn die gesuchten Informationen noch nicht vorhanden sind, können Sie versuchen, auf dem Discord-Server oder in den iRacing-Foren nach Antworten auf Ihre Fragen zu suchen.</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordText" xml:space="preserve">
-    <value></value>
+    <value>Der MAIRA Discord-Server ist der schnellste Weg, um Antworten auf deine Fragen zu erhalten, wenn du diese nicht in der Dokumentation finden kannst. Es gibt Freiwillige, die dir helfen, und auch ich versuche, dir zu helfen.</value>
     <comment>Help</comment>
   </data>
   <data name="ForumsText" xml:space="preserve">
-    <value></value>
+    <value>Hier hat alles angefangen. Hier kannst du nach Antworten suchen, aber ich bin hier nicht mehr so aktiv wie früher. Am besten stellst du deine Fragen auf dem Discord-Server.
+</value>
     <comment>Help</comment>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value></value>
+    <value>Simagic P700 Pedale</value>
     <comment>Pedals device</comment>
   </data>
   <data name="FanStatus_UC" xml:space="preserve">
-    <value></value>
+    <value>Wind Status</value>
     <comment>Wind</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>Seitliche G-Kraft</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value>POV</value>
+    <comment>Button</comment>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value>Sie müssen eine Kalibrierungsdatei auswählen, damit dieser Effekt funktioniert.</value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value>Vorhersagemodus</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value>K1 (Vorhersage 1/60 s im Voraus)</value>
+    <comment>Prediction mode list</comment>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value>K2 (Vorhersage 2/60 Sekunden im Voraus)</value>
+    <comment>Prediction mode list</comment>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value>Vorhersagekombination</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>Force Feedback wurde manuell ausgeschaltet (Not-Stopp)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>iRacing ist im Replaymodus</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>Force Feedback ist in iRacing eingeschaltet</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>FFB ist wegen laufender Kalibrierung ausgeschaltet.</value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

@@ -16,7 +16,8 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Settings_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Settings_UC]}"
+                                HelpTopic="advanced/trading-paints/#settings">
 
             <StackPanel>
 

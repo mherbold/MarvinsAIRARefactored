@@ -5,6 +5,7 @@ using System.Windows.Controls;
 using UserControl = System.Windows.Controls.UserControl;
 
 using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.Components;
 
 namespace MarvinsAIRARefactored.Controls;
 
@@ -108,15 +109,15 @@ public partial class MairaButtonMapping : UserControl
 			}
 			else if ( MappedButton.HoldButton.DeviceInstanceGuid == Guid.Empty )
 			{
-				FirstButton_Label.Text = $"{MappedButton.ClickButton.DeviceProductName} {MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Button" ]} {MappedButton.ClickButton.ButtonNumber} {MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Click" ]}";
+				FirstButton_Label.Text = $"{MappedButton.ClickButton.DeviceProductName} {GetFriendlyButtonName( MappedButton.ClickButton.ButtonNumber )} {MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Click" ]}";
 
 				FirstButton_Label.Visibility = Visibility.Visible;
 				SecondButton_Label.Visibility = Visibility.Collapsed;
 			}
 			else
 			{
-				FirstButton_Label.Text = $"{MappedButton.HoldButton.DeviceProductName} {MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Button" ]} {MappedButton.HoldButton.ButtonNumber} {MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Hold" ]}";
-				SecondButton_Label.Text = $"{MappedButton.ClickButton.DeviceProductName} {MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Button" ]} {MappedButton.ClickButton.ButtonNumber} {MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Click" ]}";
+				FirstButton_Label.Text = $"{MappedButton.HoldButton.DeviceProductName} {GetFriendlyButtonName( MappedButton.HoldButton.ButtonNumber )} {MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Hold" ]}";
+				SecondButton_Label.Text = $"{MappedButton.ClickButton.DeviceProductName} {GetFriendlyButtonName( MappedButton.ClickButton.ButtonNumber )} {MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Click" ]}";
 
 				FirstButton_Label.Visibility = Visibility.Visible;
 				SecondButton_Label.Visibility = Visibility.Visible;
@@ -157,5 +158,29 @@ public partial class MairaButtonMapping : UserControl
 				};
 			}
 		}
+	}
+
+	private static string GetFriendlyButtonName( int buttonNumber )
+	{
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		if ( ( buttonNumber < DirectInput.PovButtonBase ) || ( buttonNumber >= ( DirectInput.PovButtonBase + DirectInput.PovVirtualButtonCount ) ) )
+		{
+			return $"{localization[ "Button" ]} {buttonNumber}";
+		}
+
+		var povIndex = ( buttonNumber - DirectInput.PovButtonBase ) / DirectInput.ButtonsPerPovHat;
+		var directionIndex = ( buttonNumber - DirectInput.PovButtonBase ) % DirectInput.ButtonsPerPovHat;
+
+		var directionIcon = directionIndex switch
+		{
+			0 => "↑",
+			1 => "→",
+			2 => "↓",
+			3 => "←",
+			_ => "?"
+		};
+
+		return $"{localization[ "POV" ]} {povIndex} {directionIcon}";
 	}
 }

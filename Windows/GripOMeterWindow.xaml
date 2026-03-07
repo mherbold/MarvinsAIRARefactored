@@ -17,6 +17,10 @@
         LocationChanged="Window_LocationChanged"
         Cursor="SizeAll">
 
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis" />
+    </Window.Resources>
+
     <Window.DataContext>
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />
     </Window.DataContext>
@@ -41,10 +45,12 @@
             <RowDefinition Height="8" />
         </Grid.RowDefinitions>
 
-        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+        <TextBlock x:Name="GripOMeter_Title"
+                   Style="{StaticResource MairaTextBlockStyle}"
                    Grid.Row="0"
                    Grid.Column="0"
                    Text="{Binding Localization[GripOMeter]}"
+                   Visibility="{Binding Settings.SteeringEffectsShowGripOMeterTitle, Converter={StaticResource BoolToVis}}"
                    HorizontalAlignment="Center"
                    FontSize="30" />
 
@@ -55,6 +61,15 @@
                Width="384"
                Height="96"
                RenderOptions.BitmapScalingMode="HighQuality" />
+
+        <Border x:Name="GripOMeter_Background"
+                Grid.Row="2"
+                Grid.RowSpan="3"
+                Grid.Column="0"
+                Width="376"
+                Height="88"
+                CornerRadius="44"
+                IsHitTestVisible="False" />
 
         <Border Grid.Row="3"
                 Grid.Column="0"

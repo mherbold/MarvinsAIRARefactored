@@ -16,7 +16,8 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Master_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Master_UC]}"
+                                HelpTopic="advanced/sounds/#master">
 
             <Grid>
 
@@ -52,7 +53,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Click_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Click_UC]}"
+                                HelpTopic="advanced/sounds/#click">
 
             <Grid>
 
@@ -103,7 +105,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[ABSEngaged_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[ABSEngaged_UC]}"
+                                HelpTopic="advanced/sounds/#abs-engaged">
 
             <Grid>
 
@@ -159,7 +162,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[WheelLock_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[WheelLock_UC]}"
+                                HelpTopic="advanced/sounds/#wheel-lock">
 
             <Grid>
 
@@ -207,7 +211,7 @@
                                     StepSize="0.01"
                                     PlusButtonMappings="{Binding Settings.SoundsWheelLockSensitivityPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsWheelLockSensitivityMinusButtonMappings}"
-                                    DefaultValue="0.95" />
+                                    DefaultValue="0.85" />
 
                 <controls:MairaSwitch Grid.Column="8"
                                       IsOn="{Binding Settings.SoundsWheelLockFadeWithBrake, Mode=TwoWay}"
@@ -224,7 +228,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[WheelSpin_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[WheelSpin_UC]}"
+                                HelpTopic="advanced/sounds/#wheel-spin">
 
             <Grid>
 
@@ -272,7 +277,7 @@
                                     StepSize="0.01"
                                     PlusButtonMappings="{Binding Settings.SoundsWheelSpinSensitivityPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsWheelSpinSensitivityMinusButtonMappings}"
-                                    DefaultValue="0.95" />
+                                    DefaultValue="0.85" />
 
                 <controls:MairaSwitch Grid.Column="8"
                                       IsOn="{Binding Settings.SoundsWheelSpinFadeWithThrottle, Mode=TwoWay}"
@@ -289,7 +294,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Understeer_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Understeer_UC]}"
+                                HelpTopic="advanced/sounds/#understeer">
 
             <Grid>
 
@@ -340,7 +346,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Oversteer_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[Oversteer_UC]}"
+                                HelpTopic="advanced/sounds/#oversteer">
 
             <Grid>
 
@@ -391,7 +398,8 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[SeatOfPants_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization[SeatOfPants_UC]}"
+                                HelpTopic="advanced/sounds/#seat-of-pants">
 
             <Grid>
 

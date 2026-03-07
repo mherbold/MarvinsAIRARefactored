@@ -29,7 +29,7 @@ public partial class App : Application
 #endif
 
 	public static string DocumentsFolder { get; } = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), AppName );
-	
+
 	public static readonly string DevRootPath = GetDevRootPath();
 
 	private static string GetDevRootPath( [CallerFilePath] string callerFile = "" )
@@ -37,36 +37,39 @@ public partial class App : Application
 		return Path.GetDirectoryName( callerFile ) ?? string.Empty;
 	}
 
-	public static App? Instance { get; private set; }
+	private static bool IsInDesignMode => System.ComponentModel.DesignerProperties.GetIsInDesignMode( new DependencyObject() );
 
-	public Logger Logger { get; private set; }
-	public TopLevelWindow TopLevelWindow { get; private set; }
-	public CloudService CloudService { get; private set; }
-	public SettingsFile SettingsFile { get; private set; }
-	public Graph Graph { get; private set; }
-	public Pedals Pedals { get; private set; }
-	public AdminBoxx AdminBoxx { get; private set; }
-	public Debug Debug { get; private set; }
-	public new MainWindow MainWindow { get; private set; }
-	public RacingWheel RacingWheel { get; private set; }
-	public ChatQueue ChatQueue { get; private set; }
-	public AudioManager AudioManager { get; private set; }
-	public Sounds Sounds { get; private set; }
-	public DirectInput DirectInput { get; private set; }
-	public StreamDeck StreamDeck { get; private set; }
-	public LFE LFE { get; private set; }
-	public MultimediaTimer MultimediaTimer { get; private set; }
-	public Simulator Simulator { get; private set; }
-	public RecordingManager RecordingManager { get; private set; }
-	public SteeringEffects SteeringEffects { get; private set; }
-	public VirtualJoystick VirtualJoystick { get; private set; }
-	public GripOMeterWindow GripOMeterWindow { get; private set; }
-	public Telemetry Telemetry { get; private set; }
-	public SpeechToText SpeechToText { get; private set; }
-	public SpeechToTextWindow SpeechToTextWindow { get; private set; }
-	public Wind Wind { get; private set; }
-	public HidHotplugMonitor HidHotplugMonitor { get; private set; }
-	public TradingPaints TradingPaints { get; private set; }
+	public static App? Instance { get; private set; }
+	public bool Ready { get; private set; } = false;
+
+	public Logger Logger { get; private set; } = null!;
+	public TopLevelWindow TopLevelWindow { get; private set; } = null!;
+	public CloudService CloudService { get; private set; } = null!;
+	public SettingsFile SettingsFile { get; private set; } = null!;
+	public Graph Graph { get; private set; } = null!;
+	public Pedals Pedals { get; private set; } = null!;
+	public AdminBoxx AdminBoxx { get; private set; } = null!;
+	public Debug Debug { get; private set; } = null!;
+	public new MainWindow MainWindow { get; private set; } = null!;
+	public RacingWheel RacingWheel { get; private set; } = null!;
+	public ChatQueue ChatQueue { get; private set; } = null!;
+	public AudioManager AudioManager { get; private set; } = null!;
+	public Sounds Sounds { get; private set; } = null!;
+	public DirectInput DirectInput { get; private set; } = null!;
+	public StreamDeck StreamDeck { get; private set; } = null!;
+	public LFE LFE { get; private set; } = null!;
+	public MultimediaTimer MultimediaTimer { get; private set; } = null!;
+	public Simulator Simulator { get; private set; } = null!;
+	public RecordingManager RecordingManager { get; private set; } = null!;
+	public SteeringEffects SteeringEffects { get; private set; } = null!;
+	public VirtualJoystick VirtualJoystick { get; private set; } = null!;
+	public GripOMeterWindow GripOMeterWindow { get; private set; } = null!;
+	public Telemetry Telemetry { get; private set; } = null!;
+	public SpeechToText SpeechToText { get; private set; } = null!;
+	public SpeechToTextWindow SpeechToTextWindow { get; private set; } = null!;
+	public Wind Wind { get; private set; } = null!;
+	public HidHotplugMonitor HidHotplugMonitor { get; private set; } = null!;
+	public TradingPaints TradingPaints { get; private set; } = null!;
 
 	public const int TimerPeriodInMilliseconds = 17;
 	public const int TimerTicksPerSecond = 1000 / TimerPeriodInMilliseconds;
@@ -92,7 +95,10 @@ public partial class App : Application
 		Instance = this;
 
 		InitializeComponent();
+	}
 
+	private void InitializeRuntimeComponents()
+	{
 		Logger = new();
 		TopLevelWindow = new();
 		CloudService = new();
@@ -133,11 +139,14 @@ public partial class App : Application
 
 	public void ShowFatalError( string? message = null, Exception? exception = null )
 	{
-		message ??= DataContext.DataContext.Instance.Localization[ "ExceptionThrown" ];
-
 		var app = App.Instance!;
 
+		app.Logger.WriteLine( "[App] ShowFatalError >>>" );
+		app.Logger.WriteLine( $"\r\n\r\n{exception?.ToString() ?? string.Empty}\r\n" );
+
 		var uiDispatcher = app.Dispatcher;
+
+		message ??= DataContext.DataContext.Instance.Localization[ "ExceptionThrown" ];
 
 		void ShowAndExit()
 		{
@@ -163,6 +172,8 @@ public partial class App : Application
 		{
 			uiDispatcher.Invoke( ShowAndExit, DispatcherPriority.Send );
 		}
+
+		app.Logger.WriteLine( "[App] <<< ShowFatalError" );
 	}
 
 #if !ADMINBOXX
@@ -171,12 +182,19 @@ public partial class App : Application
 	private void App_Startup( object sender, StartupEventArgs e )
 #endif
 	{
-		DispatcherUnhandledException += ( sender, args ) =>
+		if ( IsInDesignMode )
 		{
-			args.Handled = true;
+			return;
+		}
 
-			ShowFatalError( null, args.Exception );
-		};
+		InitializeRuntimeComponents();
+
+		DispatcherUnhandledException += ( sender, args ) =>
+			{
+				args.Handled = true;
+
+				ShowFatalError( null, args.Exception );
+			};
 
 		AppDomain.CurrentDomain.UnhandledException += ( sender, args ) =>
 		{
@@ -249,6 +267,10 @@ public partial class App : Application
 
 				DirectInput.OnInput += OnInput;
 
+				DataContext.DataContext.Instance.Settings.UpdateSettings( false );
+
+				Ready = true;
+
 				GC.Collect();
 
 				MainWindow.Resources = Current.Resources;
@@ -275,6 +297,11 @@ public partial class App : Application
 				if ( DataContext.DataContext.Instance.Settings.AdminBoxxConnectOnStartup )
 				{
 					AdminBoxx.Connect();
+				}
+
+				if ( DataContext.DataContext.Instance.Settings.WindConnectOnStartup )
+				{
+					Wind.Connect();
 				}
 
 #if !ADMINBOXX
@@ -455,7 +482,7 @@ public partial class App : Application
 
 			if ( CheckMappedButtons( settings.RacingWheelAutoMarginPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelAutoMargin += 1f;
+				settings.RacingWheelAutoMargin -= 0.01f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
@@ -465,7 +492,7 @@ public partial class App : Application
 
 			if ( CheckMappedButtons( settings.RacingWheelAutoMarginMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.RacingWheelAutoMargin -= 1f;
+				settings.RacingWheelAutoMargin += 0.01f;
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
@@ -496,6 +523,28 @@ public partial class App : Application
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
 					RacingWheel.SendChatMessage( "Clear" );
+				}
+			}
+
+			// racing wheel prediction blend knob
+
+			if ( CheckMappedButtons( settings.RacingWheelPredictionBlendPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelPredictionBlend += 0.05f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "PredictionBlend", settings.RacingWheelPredictionBlendString );
+				}
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelPredictionBlendMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelPredictionBlend -= 0.05f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "PredictionBlend", settings.RacingWheelPredictionBlendString );
 				}
 			}
 
@@ -880,7 +929,7 @@ public partial class App : Application
 				}
 			}
 
-			// racing wheel crash protection longitudal g force knob
+			// racing wheel crash protection longitudinal g force knob
 
 			if ( CheckMappedButtons( settings.RacingWheelCrashProtectionLongitudalGForcePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
@@ -1042,7 +1091,7 @@ public partial class App : Application
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "ParkedStrength", settings.RacingWheelParkedStrengthString );
+					RacingWheel.SendChatMessage( "ForceFeedbackStrength", settings.RacingWheelParkedStrengthString );
 				}
 			}
 
@@ -1052,7 +1101,7 @@ public partial class App : Application
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "ParkedStrength", settings.RacingWheelParkedStrengthString );
+					RacingWheel.SendChatMessage( "ForceFeedbackStrength", settings.RacingWheelParkedStrengthString );
 				}
 			}
 
@@ -1141,6 +1190,50 @@ public partial class App : Application
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
 					RacingWheel.SendChatMessage( "WheelCenteringStrength", settings.RacingWheelWheelCenteringStrengthString );
+				}
+			}
+
+			// racing wheel gear change vibrate strength knob
+
+			if ( CheckMappedButtons( settings.RacingWheelGearChangeVibrateStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelGearChangeVibrateStrength += 0.05f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "GearChangeVibrateStrength", settings.RacingWheelGearChangeVibrateStrengthString );
+				}
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelGearChangeVibrateStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelGearChangeVibrateStrength -= 0.05f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "GearChangeVibrateStrength", settings.RacingWheelGearChangeVibrateStrengthString );
+				}
+			}
+
+			// racing wheel abs vibrate strength knob
+
+			if ( CheckMappedButtons( settings.RacingWheelABSVibrateStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelABSVibrateStrength += 0.05f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "ABSVibrateStrength", settings.RacingWheelABSVibrateStrengthString );
+				}
+			}
+
+			if ( CheckMappedButtons( settings.RacingWheelABSVibrateStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.RacingWheelABSVibrateStrength -= 0.05f;
+
+				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
+				{
+					RacingWheel.SendChatMessage( "ABSVibrateStrength", settings.RacingWheelABSVibrateStrengthString );
 				}
 			}
 
@@ -1412,24 +1505,24 @@ public partial class App : Application
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsMinimumThresholdPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsSeatOfPantsMinimumThreshold += 0.01f;
+				settings.SteeringEffectsSeatOfPantsMinimumThreshold += 0.5f;
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsMinimumThresholdMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsSeatOfPantsMinimumThreshold -= 0.01f;
+				settings.SteeringEffectsSeatOfPantsMinimumThreshold -= 0.5f;
 			}
 
 			// steering effects seat-of-pants maximum threshold
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsMaximumThresholdPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsSeatOfPantsMaximumThreshold += 0.01f;
+				settings.SteeringEffectsSeatOfPantsMaximumThreshold += 0.5f;
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsMaximumThresholdMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.SteeringEffectsSeatOfPantsMaximumThreshold -= 0.01f;
+				settings.SteeringEffectsSeatOfPantsMaximumThreshold -= 0.5f;
 			}
 
 			// steering effects seat-of-pants wheel vibration strength
@@ -2008,7 +2101,7 @@ public partial class App : Application
 
 			if ( CheckMappedButtons( settings.WindMinimumSpeedMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.WindMinimumSpeed-= 0.01f;
+				settings.WindMinimumSpeed -= 0.01f;
 			}
 
 			// wind curving

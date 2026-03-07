@@ -73,6 +73,8 @@ public partial class MairaDualSlider : UserControl
 
 	private void RightDragHandle_Image_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
 	{
+		var app = App.Instance!;
+
 		if ( e.LeftButton == MouseButtonState.Pressed )
 		{
 			IsDragging = true;
@@ -84,6 +86,8 @@ public partial class MairaDualSlider : UserControl
 			_ = User32.ShowCursor( false );
 
 			RightDragHandle_Image.CaptureMouse();
+
+			app.Wind.StartPreview( RightValue );
 
 			e.Handled = true;
 		}
@@ -116,6 +120,8 @@ public partial class MairaDualSlider : UserControl
 
 	private void RightDragHandle_Image_PreviewMouseMove( object sender, MouseEventArgs e )
 	{
+		var app = App.Instance!;
+
 		if ( IsDragging )
 		{
 			User32.GetCursorPos( out POINT current );
@@ -125,6 +131,8 @@ public partial class MairaDualSlider : UserControl
 			if ( delta != 0 )
 			{
 				RightValue = MathZ.Saturate( RightValue - delta * 0.001f );
+
+				app.Wind.StartPreview( RightValue );
 
 				User32.SetCursorPos( _draggingCenter.x, _draggingCenter.y );
 			}
@@ -209,6 +217,8 @@ public partial class MairaDualSlider : UserControl
 
 	private void EndDrag()
 	{
+		var app = App.Instance!;
+
 		IsDragging = false;
 
 		Misc.MoveCursorToElement( _isDraggingLeftHandle ? LeftDragHandle_Image : RightDragHandle_Image );
@@ -216,6 +226,11 @@ public partial class MairaDualSlider : UserControl
 		_ = User32.ShowCursor( true );
 
 		Mouse.Capture( null );
+
+		if ( !_isDraggingLeftHandle )
+		{
+			app.Wind.StopPreview();
+		}
 	}
 
 	private void UpdateDragHandleVisuals()

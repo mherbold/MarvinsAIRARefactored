@@ -80,21 +80,26 @@ public class GraphBase
 
 			y = y * -0.5f + 0.5f;
 
-			var iy = _bitmapHeightMinusOne / 2;
-			var delta = (int) Math.Round( y * ( BitmapHeight - GutterSize ) ) - iy;
+			var iY1 = _bitmapHeightMinusOne / 2;
+			var iY2 = (int) Math.Round( y * ( BitmapHeight - GutterSize * 2 ) ) + GutterSize;
+
+			var delta = iY2 - iY1;
+
 			var sign = Math.Sign( delta );
 			var range = Math.Abs( delta );
+
+			var iY = iY1;
 
 			for ( var i = 1; i <= range; i++ )
 			{
 				var multiplier = MathF.Pow( (float) i / range, 4f );
 
-				_colorMixArray[ iy, 0 ] = 1f;
-				_colorMixArray[ iy, 1 ] += r * multiplier;
-				_colorMixArray[ iy, 2 ] += g * multiplier;
-				_colorMixArray[ iy, 3 ] += b * multiplier;
+				_colorMixArray[ iY, 0 ] = 1f;
+				_colorMixArray[ iY, 1 ] += r * multiplier;
+				_colorMixArray[ iY, 2 ] += g * multiplier;
+				_colorMixArray[ iY, 3 ] += b * multiplier;
 
-				iy += sign;
+				iY += sign;
 			}
 		}
 	}

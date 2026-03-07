@@ -1,4 +1,6 @@
 ﻿
+using System.Globalization;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
@@ -7,6 +9,7 @@ using System.Windows.Threading;
 
 using Color = System.Windows.Media.Color;
 using Cursors = System.Windows.Input.Cursors;
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 using Pen = System.Windows.Media.Pen;
 using Point = System.Windows.Point;
@@ -36,6 +39,9 @@ public partial class MairaKnob : UserControl
 	private readonly DispatcherTimer _resetDispatcherTimer = new() { Interval = TimeSpan.FromMilliseconds( 20 ) };
 	private DateTime _resetStartTime;
 	private bool _isResetting;
+	private bool _isEditingValue;
+	private bool _isEditingPercent;
+	private float _valueBeforeEdit;
 
 	static MairaKnob()
 	{
@@ -90,7 +96,14 @@ public partial class MairaKnob : UserControl
 
 			if ( delta != 0 )
 			{
-				AdjustValue( delta * 0.01f );
+				var amount = delta * 0.01f;
+
+				if ( Reverse )
+				{
+					amount = -amount;
+				}
+
+				AdjustValue( amount );
 
 				User32.SetCursorPos( _draggingCenter.x, _draggingCenter.y );
 			}
@@ -107,6 +120,18 @@ public partial class MairaKnob : UserControl
 
 	private void Plus_MairaMappableButton_Click( object sender, RoutedEventArgs e ) => AdjustValue( 1f );
 	private void Minus_MairaMappableButton_Click( object sender, RoutedEventArgs e ) => AdjustValue( -1f );
+
+	private void Value_TextBlock_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		if ( Keyboard.Modifiers != ModifierKeys.None )
+		{
+			return;
+		}
+
+		e.Handled = true;
+
+		BeginValueEdit();
+	}
 
 	private void Label_TextBlock_PreviewMouseRightButtonDown( object sender, MouseButtonEventArgs e )
 	{
@@ -239,6 +264,14 @@ public partial class MairaKnob : UserControl
 	{
 		get => (float?) GetValue( DefaultValueProperty );
 		set => SetValue( DefaultValueProperty, value );
+	}
+
+	public static readonly DependencyProperty ReverseProperty = DependencyProperty.Register( nameof( Reverse ), typeof( bool ), typeof( MairaKnob ), new PropertyMetadata( false ) );
+
+	public bool Reverse
+	{
+		get => (bool) GetValue( ReverseProperty );
+		set => SetValue( ReverseProperty, value );
 	}
 
 	#endregion
@@ -381,6 +414,145 @@ public partial class MairaKnob : UserControl
 		CursorCountdownOverlay.Stop();
 
 		Mouse.OverrideCursor = null;
+	}
+
+	private void BeginValueEdit()
+	{
+		if ( _isEditingValue )
+		{
+			return;
+		}
+
+		_isEditingValue = true;
+		_isEditingPercent = IsPercentValueString();
+		_valueBeforeEdit = Value;
+
+		var editValue = _isEditingPercent ? ( Value * 100f ) : Value;
+
+		Value_TextBox.Text = editValue.ToString( "0.###", CultureInfo.CurrentCulture );
+
+		Value_TextBlock.Visibility = Visibility.Collapsed;
+		Value_TextBox.Visibility = Visibility.Visible;
+
+		Value_TextBox.Focus();
+		Value_TextBox.SelectAll();
+	}
+
+	private bool IsPercentValueString()
+	{
+		var percentSuffix = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "Percent" ];
+
+		if ( string.IsNullOrWhiteSpace( percentSuffix ) )
+		{
+			return false;
+		}
+
+		return ( ValueString ?? string.Empty ).TrimEnd().EndsWith( percentSuffix, StringComparison.CurrentCulture );
+	}
+
+	private void Value_TextBox_KeyDown( object sender, KeyEventArgs e )
+	{
+		if ( e.Key == Key.Enter )
+		{
+			e.Handled = true;
+
+			CommitValueEdit();
+
+			return;
+		}
+
+		if ( e.Key == Key.Escape )
+		{
+			e.Handled = true;
+
+			CancelValueEdit();
+
+			return;
+		}
+	}
+
+	private void Value_TextBox_LostKeyboardFocus( object sender, KeyboardFocusChangedEventArgs e )
+	{
+		if ( _isEditingValue )
+		{
+			CommitValueEdit();
+		}
+	}
+
+	private void CommitValueEdit()
+	{
+		if ( !_isEditingValue )
+		{
+			return;
+		}
+
+		var text = Value_TextBox.Text?.Trim() ?? string.Empty;
+
+		var parsed = TryParseFirstFloat( text, out var newValue );
+
+		if ( parsed )
+		{
+			if ( _isEditingPercent )
+			{
+				newValue /= 100f;
+			}
+
+			Value = newValue;
+
+			ValueChangedCallback?.Invoke( newValue );
+		}
+		else
+		{
+			Value = _valueBeforeEdit;
+		}
+
+		EndValueEdit();
+	}
+
+	private void CancelValueEdit()
+	{
+		if ( !_isEditingValue )
+		{
+			return;
+		}
+
+		Value = _valueBeforeEdit;
+
+		EndValueEdit();
+	}
+
+	private void EndValueEdit()
+	{
+		_isEditingValue = false;
+		_isEditingPercent = false;
+
+		Value_TextBox.Visibility = Visibility.Collapsed;
+		Value_TextBlock.Visibility = Visibility.Visible;
+
+		Keyboard.ClearFocus();
+	}
+
+	private static bool TryParseFirstFloat( string text, out float value )
+	{
+		var match = Regex.Match( text, @"[-+]?\d+(?:[.,]\d+)?" );
+
+		if ( !match.Success )
+		{
+			value = 0f;
+
+			return false;
+		}
+
+		var token = match.Value;
+
+		if ( float.TryParse( token, NumberStyles.Float, CultureInfo.CurrentCulture, out value ) )
+		{
+			return true;
+		}
+
+		token = token.Replace( ',', '.' );
+
+		return float.TryParse( token, NumberStyles.Float, CultureInfo.InvariantCulture, out value );
 	}
 
 	#endregion

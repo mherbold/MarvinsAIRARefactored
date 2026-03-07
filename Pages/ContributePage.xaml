@@ -172,6 +172,8 @@
                         <!--de-DE-->
                         <!--Rene-->
                         <!--Alpha-Xray-->
+                        <!--Italoboy9-->
+                        <!--Bodo-->
                         <StackPanel Margin="0,10,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/germany_fluttering_flag_64.png"
@@ -180,7 +182,7 @@
                                            FontSize="30"
                                            Foreground="#979797"/>
                             </StackPanel>
-                            <TextBlock Text="Rene Stangl &amp; Alpha-Xray" />
+                            <TextBlock Text="Rene Stangl, Alpha-Xray, Italoboy9 &amp; Bodo" />
                         </StackPanel>
 
                         <!--es-ES-->
@@ -271,6 +273,7 @@
                         <!--pl-PL-->
                         <!--Jarek_iRek-->
                         <!--Pan_Mar1an-->
+                        <!--M Murawski-->
                         <StackPanel Margin="0,10,0,0">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/poland_fluttering_flag_64.png"
@@ -279,7 +282,7 @@
                                            FontSize="30"
                                            Foreground="#979797"/>
                             </StackPanel>
-                            <TextBlock Text="Jarek_iRek &amp; Pan_Mar1an" />
+                            <TextBlock Text="Jarek_iRek, Pan_Mar1an &amp; M Murawski" />
                         </StackPanel>
 
                         <!--pt-BR-->
@@ -321,6 +324,19 @@
                                            Foreground="#979797"/>
                             </StackPanel>
                             <TextBlock Text="BATUDEV" />
+                        </StackPanel>
+
+                        <!--uk-UA-->
+                        <!--Giaval-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/ukraine_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Українська"
+                                           FontSize="30"
+                                           Foreground="#979797" />
+                            </StackPanel>
+                            <TextBlock Text="Giaval" />
                         </StackPanel>
 
                         <!--hy-AM-->

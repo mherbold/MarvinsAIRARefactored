@@ -46,6 +46,8 @@
 
                         <Style TargetType="ListBoxItem">
 
+                            <EventSetter Event="PreviewMouseLeftButtonUp" Handler="ListBoxItem_PreviewMouseLeftButtonUp" />
+
                             <Setter Property="FocusVisualStyle"
                                     Value="{x:Null}" />
 

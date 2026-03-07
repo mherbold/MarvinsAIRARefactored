@@ -28,9 +28,11 @@
             
             <TextBlock x:Name="Glyph"
                        Text="?"
+                       FontSize="14"
                        FontWeight="Bold"
                        HorizontalAlignment="Center"
                        VerticalAlignment="Center"
+                       Padding="0,0,0,1"
                        Foreground="#ff5b2e"/>
             
           </Grid>

@@ -2,7 +2,6 @@
 using Simagic;
 
 using MarvinsAIRARefactored.Classes;
-using MarvinsAIRARefactored.Controls;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -305,15 +304,13 @@ public class Pedals
 		{
 			var rpm = app.Simulator.RPM;
 
-			var shiftLightsShiftRPM = app.Simulator.ShiftLightsShiftRPM > 0f ? app.Simulator.ShiftLightsShiftRPM : 8000f;
-
 			if ( _testing )
 			{
-				rpm = _testTimer / TestDuration * shiftLightsShiftRPM;
+				rpm = _testTimer / TestDuration * app.Simulator.ShiftLightsShiftRPM;
 			}
 
-			var startingRPM = shiftLightsShiftRPM * settings.PedalsStartingRPM;
-			var rpmRange = shiftLightsShiftRPM - startingRPM;
+			var startingRPM = app.Simulator.ShiftLightsShiftRPM * settings.PedalsStartingRPM;
+			var rpmRange = app.Simulator.ShiftLightsShiftRPM - startingRPM;
 
 			if ( rpm >= startingRPM )
 			{
@@ -343,7 +340,7 @@ public class Pedals
 
 		var factor = app.SteeringEffects.UndersteerEffect;
 
-		if ( _testing || ( factor > 0f ) )
+		if ( _testing || ( settings.SteeringEffectsUndersteerEnabled && ( factor > 0f ) ) )
 		{
 			if ( _testing )
 			{
@@ -370,7 +367,7 @@ public class Pedals
 
 		var factor = app.SteeringEffects.OversteerEffect;
 
-		if ( _testing || ( factor > 0f ) )
+		if ( _testing || ( settings.SteeringEffectsOversteerEnabled && ( factor > 0f ) ) )
 		{
 			if ( _testing )
 			{
@@ -397,7 +394,7 @@ public class Pedals
 
 		var factor = MathF.Abs( app.SteeringEffects.SeatOfPantsEffect );
 
-		if ( _testing || ( factor > 0f ) )
+		if ( _testing || ( settings.SteeringEffectsSeatOfPantsEnabled && ( factor > 0f ) ) )
 		{
 			if ( _testing )
 			{

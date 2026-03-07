@@ -1,0 +1,61 @@
+{
+  "AutomaticReconnect": false,
+  "SerialPortName": "COM6",
+  "StartupDelayMs": 0,
+  "IsConnecting": false,
+  "IsEnabled": true,
+  "LogIncomingData": false,
+  "IsConnected": true,
+  "BaudRate": 115200,
+  "DtrEnable": true,
+  "RtsEnable": true,
+  "EditorExpanded": true,
+  "Name": "Custom Serial device",
+  "Description": "Serial device",
+  "LastErrorDate": "0001-01-01T00:00:00",
+  "LastErrorMessage": null,
+  "IsFreezed": true,
+  "SettingsBuilder": {
+    "Settings": [
+      {
+        "Maximum": 300,
+        "Minimum": 50,
+        "PropertyName": "FullWindKmh",
+        "CurrentValue": 175,
+        "Name": null,
+        "TypeName": "SliderEntry",
+        "Label": "Max Fan Speed at Car Speed (KMH)",
+        "Id": "c88f870e-e95e-47ee-9333-a14fc0688f89"
+      },
+      {
+        "Maximum": 100,
+        "Minimum": 0,
+        "PropertyName": "WindCurving",
+        "CurrentValue": 100,
+        "Name": null,
+        "TypeName": "SliderEntry",
+        "Label": "Wind Curving (%)",
+        "Id": "71ab6e85-c5d7-4f57-9020-9aad85159b29"
+      }
+    ],
+    "IsEditMode": false
+  },
+  "OnConnectMessage": {
+    "Expression": "'WHAT ARE YOU?\\n'"
+  },
+  "OnDisconnectMessage": {
+    "Expression": ""
+  },
+  "UpdateMessages": [
+    {
+      "Message": {
+        "JSExt": 0,
+        "Interpreter": 1,
+        "Expression": "const speedKmh = $prop('SpeedKmh');\r\nconst yawRate  = $prop('OrientationYawVelocity') * 0.0174533;\r\n\r\nconst fullWindKmh = $prop('Settings.FullWindKmh');\r\nconst windCurving = $prop('Settings.WindCurving');\r\n\r\nconst fanPower = Math.pow(clamp(speedKmh / fullWindKmh, 0, 1), SPEED_EXP);\r\n\r\nconst curveFactor = clamp(yawRate * 1.91 * windCurving * 0.01, -1, 1);\r\n\r\nconst leftFanPower  = Math.round(fanPower * (1 + Math.min( 0, curveFactor)) * PWM_TOP);\r\nconst rightFanPower = Math.round(fanPower * (1 - Math.max( 0, curveFactor)) * PWM_TOP);\r\n\r\nreturn `L${leftFanPower}R${rightFanPower}\\n`;",
+        "PreExpression": "const PWM_TOP = 320;\r\nconst SPEED_EXP = 1.35;\r\n\r\nfunction clamp(x, lo, hi) {\r\n  return Math.min(Math.max(x, lo), hi);\r\n}"
+      },
+      "IsEnabled": true,
+      "MaximumFrequency": 10
+    }
+  ]
+}

@@ -45,7 +45,7 @@ public partial class AppSettingsPage : UserControl
 
 		app.Logger.WriteLine( "[AppSettingsPage] UpdateLanguageOptions >>>" );
 
-		Language_MairaComboBox.ItemsSource = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization.Languages;
+		Language_MairaComboBox.ItemsSource = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization.Languages.ToList();
 
 		app.Logger.WriteLine( "[AppSettingsPage] <<< UpdateLanguageOptions" );
 	}
@@ -75,7 +75,7 @@ public partial class AppSettingsPage : UserControl
 			{ MainWindow.AppPage.Donate, localization[ "Donate" ] }
 		};
 
-		DefaultPage_MairaComboBox.ItemsSource = defaultPageOptions;
+		DefaultPage_MairaComboBox.ItemsSource = defaultPageOptions.ToList();
 		DefaultPage_MairaComboBox.SelectedValue = settings.AppDefaultPage;
 
 		app.Logger.WriteLine( "[AppSettingsPage] <<< UpdateDefaultPageOptions" );

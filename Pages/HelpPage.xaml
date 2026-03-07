@@ -33,7 +33,7 @@
                         <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                                    Padding="15,5">
 
-                        <Hyperlink NavigateUri="https://herboldracing.com/help/index.html"
+                        <Hyperlink NavigateUri="https://mairapp.com/home/documentation/"
                                    RequestNavigate="Hyperlink_RequestNavigate"
                                    Foreground="#fff"
                                    TextDecorations="None">

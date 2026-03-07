@@ -29,6 +29,20 @@
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />
     </Window.DataContext>
 
+    <Window.Resources>
+
+        <ResourceDictionary>
+
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/MarvinsAIRARefactored;component/Themes/SharedHelpIcon.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+            <classes:HelpIconVisibilityConverter x:Key="HelpIconVisibility" />
+
+        </ResourceDictionary>
+
+    </Window.Resources>
+
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static classes:HelpService.OpenHelpCommand}"
                         Executed="OpenHelp_Executed" />
@@ -65,15 +79,39 @@
                                          VerticalAlignment="Center"
                                          HorizontalAlignment="Left" />
 
-            <TextBlock x:Name="PageName_TextBlock"
-                       Grid.Column="2"
-                       Style="{StaticResource MairaTextBlockStyle}"
-                       FontSize="40"
-                       VerticalAlignment="Center"
-                       Foreground="#979797"
-                       Text="{Binding ElementName=AppMenuPopup, Path=SelectedAppPageText, Mode=OneWay}"
-                       PreviewMouseLeftButtonDown="PageName_TextBlock_PreviewMouseLeftButtonDown"
-                       Cursor="Hand" />
+            <Grid Grid.Column="2"
+                  VerticalAlignment="Center">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock x:Name="PageName_TextBlock"
+                           Grid.Column="0"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="40"
+                           VerticalAlignment="Center"
+                           Foreground="#979797"
+                           Text="{Binding ElementName=AppMenuPopup, Path=SelectedAppPageText, Mode=OneWay}"
+                           PreviewMouseLeftButtonDown="PageName_TextBlock_PreviewMouseLeftButtonDown"
+                           Cursor="Hand" />
+
+                <Button Grid.Column="1"
+                        Style="{StaticResource HelpIconCommandMixin}"
+                        CommandParameter="{Binding ElementName=Root, Path=(classes:HelpService.HelpTopic)}"
+                        VerticalAlignment="Center"
+                        Margin="20,0,0,0">
+
+                    <Button.Visibility>
+                        <MultiBinding Converter="{StaticResource HelpIconVisibility}">
+                            <Binding ElementName="Root"
+                                     Path="(classes:HelpService.HelpTopic)" />
+                        </MultiBinding>
+                    </Button.Visibility>
+
+                </Button>
+            </Grid>
 
             <controls:MairaStatusBar x:Name="StatusBar"
                                      Grid.Column="4"

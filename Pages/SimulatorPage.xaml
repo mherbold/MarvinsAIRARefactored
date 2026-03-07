@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:MarvinsAIRARefactored.Pages"
              xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
              xmlns:viewers="clr-namespace:MarvinsAIRARefactored.Viewers"
+             xmlns:classes="clr-namespace:MarvinsAIRARefactored.Classes"
              xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
              mc:Ignorable="d"
              d:DesignWidth="800">
@@ -31,62 +32,103 @@
 
             <TabControl.Resources>
 
-                <Style TargetType="TabItem">
+                <ResourceDictionary>
 
-                    <Setter Property="Foreground"
-                            Value="#979797" />
-                    <Setter Property="FontSize"
-                            Value="20" />
-                    <Setter Property="Cursor"
-                            Value="Hand" />
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/MarvinsAIRARefactored;component/Themes/SharedHelpIcon.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
 
-                    <Setter Property="Template">
+                    <classes:HelpIconVisibilityConverter x:Key="HelpIconVisibility" />
 
-                        <Setter.Value>
+                    <Style TargetType="{x:Type controls:MairaTabItem}">
 
-                            <ControlTemplate TargetType="TabItem">
+                        <Setter Property="Foreground"
+                                Value="#979797" />
+                        <Setter Property="FontSize"
+                                Value="20" />
+                        <Setter Property="Cursor"
+                                Value="Hand" />
 
-                                <Border x:Name="Border"
-                                        Background="Transparent"
-                                        BorderBrush="Transparent"
-                                        BorderThickness="0"
-                                        Margin="0,0,40,0"
-                                        SnapsToDevicePixels="True">
+                        <Setter Property="Template">
 
-                                    <ContentPresenter ContentSource="Header"
-                                                      HorizontalAlignment="Center"
-                                                      RecognizesAccessKey="True" />
+                            <Setter.Value>
 
-                                </Border>
+                                <ControlTemplate TargetType="TabItem">
 
-                                <ControlTemplate.Triggers>
+                                    <Border x:Name="Border"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            BorderThickness="0"
+                                            Margin="0,0,40,0"
+                                            SnapsToDevicePixels="True">
 
-                                    <Trigger Property="IsSelected"
-                                             Value="True">
-                                        <Setter Property="Foreground"
-                                                Value="#eee" />
-                                        <Setter Property="Panel.ZIndex"
-                                                Value="1" />
-                                    </Trigger>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="10" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
 
-                                    <Trigger Property="IsMouseOver"
-                                             Value="True">
-                                    </Trigger>
+                                            <ContentPresenter Grid.Column="0"
+                                                              ContentSource="Header"
+                                                              HorizontalAlignment="Center"
+                                                              RecognizesAccessKey="True" />
 
-                                </ControlTemplate.Triggers>
+                                            <Button Grid.Column="2"
+                                                    Style="{StaticResource HelpIconCommandMixin}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HelpTopic}"
+                                                    VerticalAlignment="Center"
+                                                    Margin="6,0,0,0"
+                                                    Panel.ZIndex="2">
 
-                            </ControlTemplate>
+                                                <Button.Visibility>
 
-                        </Setter.Value>
+                                                    <MultiBinding Converter="{StaticResource HelpIconVisibility}">
 
-                    </Setter>
+                                                        <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                                                 Path="HelpTopic" />
 
-                </Style>
+                                                    </MultiBinding>
+
+                                                </Button.Visibility>
+
+                                            </Button>
+
+                                        </Grid>
+
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+
+                                        <Trigger Property="IsSelected"
+                                                 Value="True">
+                                            <Setter Property="Foreground"
+                                                    Value="#eee" />
+                                            <Setter Property="Panel.ZIndex"
+                                                    Value="1" />
+                                        </Trigger>
+
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                        </Trigger>
+
+                                    </ControlTemplate.Triggers>
+
+                                </ControlTemplate>
+
+                            </Setter.Value>
+
+                        </Setter>
+
+                    </Style>
+
+                </ResourceDictionary>
 
             </TabControl.Resources>
 
-            <TabItem x:Name="HeaderData_TabItem"
-                     Header="{Binding Localization[HeaderData_UC]}">
+            <controls:MairaTabItem x:Name="HeaderData_TabItem"
+                                  Header="{Binding Localization[HeaderData_UC]}"
+                                  HelpTopic="advanced/simulator/#header-data">
 
                 <Grid Margin="0,40,0,0">
 
@@ -110,10 +152,11 @@
 
                 </Grid>
 
-            </TabItem>
+            </controls:MairaTabItem>
 
-            <TabItem x:Name="SessionInfo_TabItem"
-                     Header="{Binding Localization[SessionInformation_UC]}">
+            <controls:MairaTabItem x:Name="SessionInfo_TabItem"
+                                  Header="{Binding Localization[SessionInformation_UC]}"
+                                  HelpTopic="advanced/simulator/#session-information">
 
                 <Grid Margin="0,40,0,0">
 
@@ -137,10 +180,11 @@
 
                 </Grid>
 
-            </TabItem>
+            </controls:MairaTabItem>
 
-            <TabItem x:Name="TelemetryData_TabItem"
-                     Header="{Binding Localization[TelemetryData_UC]}">
+            <controls:MairaTabItem x:Name="TelemetryData_TabItem"
+                                  Header="{Binding Localization[TelemetryData_UC]}"
+                                  HelpTopic="advanced/simulator/#telemetry-data">
 
                 <Grid Margin="0,40,0,0">
 
@@ -164,7 +208,7 @@
 
                 </Grid>
 
-            </TabItem>
+            </controls:MairaTabItem>
 
         </TabControl>
 

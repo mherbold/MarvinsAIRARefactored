@@ -1,8 +1,14 @@
 ﻿
+using System.Globalization;
+using System.IO;
 using System.Runtime.CompilerServices;
+
+using CsvHelper;
 
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Windows;
+
+using static MarvinsAIRARefactored.Windows.MainWindow;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -27,6 +33,13 @@ public class RacingWheel
 		Hybrid10,
 		HybridVariable30
 	};
+  
+	public enum PredictionMode
+	{
+		Disabled,
+		PredictK1,
+		PredictK2
+	}
 
 	public enum VibrationPattern
 	{
@@ -50,7 +63,7 @@ public class RacingWheel
 
 	private const float UnsuspendTimeMS = 1000f;
 	private const float FadeInTimeMS = 2000f;
-	private const float FadeOutTimeMS = 500f;
+	private const float FadeOutTimeMS = 750f;
 	private const float TestSignalTimeMS = 2000f;
 	private const float CrashProtectionRecoveryTime = 1000f;
 
@@ -60,7 +73,7 @@ public class RacingWheel
 	private bool _usingSteeringWheelTorqueData = false;
 
 	public Guid? NextRacingWheelGuid { private get; set; } = null;
-	public bool SuspendForceFeedback { get; set; } = true; // true if simulator is disconnected or if FFB is enabled in the simulator
+	public bool SuspendForceFeedback { get; private set; } = true; // true if we want to suspend FFB (for various reasons)
 	public bool ResetForceFeedback { private get; set; } = false; // set to true manually (via reset button)
 	public bool UseSteeringWheelTorqueData { private get; set; } = false; // false if simulator is disconnected or if driver is not on track
 	public bool UpdateSteeringWheelTorqueBuffer { private get; set; } = false; // true when simulator has new torque data to be copied
@@ -109,6 +122,33 @@ public class RacingWheel
 	private int _updateCounter = UpdateInterval + 4;
 	private int _lastGear = 0;
 
+#if DEBUG
+
+	private struct PredictorSample
+	{
+		public int TickCount { get; set; }
+
+		public float InputFFBSample { get; set; }
+		public float WheelVelocity { get; set; }
+		public PredictionMode PredictionMode { get; set; }
+		public float PredictionBlend { get; set; }
+		public float PredictedValue { get; set; }
+		public bool DeltaClamped { get; set; }
+		public float OutputFFBSample { get; set; }
+	}
+
+	private float _lastLapDistPct = 0f;
+	private int _lapNumber = 0;
+	private readonly PredictorSample[] _predictorSampleArray = new PredictorSample[ 65536 ]; // enough for 18+ minutes a lap at 60 Hz
+	private int _predictorSampleCount = 0;
+
+#endif
+
+	private readonly RlsWheelVelocityPredictor _ffbPredictorK1 = new( horizon: 1 );
+	private readonly RlsWheelVelocityPredictor _ffbPredictorK2 = new( horizon: 2 );
+
+	private float _predictedSteeringWheelTorque60Hz = 0f;
+
 	public void Initialize()
 	{
 		var app = App.Instance!;
@@ -121,6 +161,15 @@ public class RacingWheel
 		app.Graph.SetLayerColors( Graph.LayerIndex.OutputTorque, 0f, 1f, 1f, 0f, 1f, 1f );
 
 		_algorithmPreviewGraphBase.Initialize( MainWindow._racingWheelPage.AlgorithmPreview_Image );
+
+#if DEBUG
+
+		for ( var i = 0; i < _predictorSampleArray.Length; i++ )
+		{
+			_predictorSampleArray[ i ] = new PredictorSample();
+		}
+
+#endif
 
 		app.Logger.WriteLine( "[RacingWheel] <<< Initialize" );
 	}
@@ -532,7 +581,7 @@ public class RacingWheel
 
 			// understeer vibration effect
 
-			if ( app.SteeringEffects.UndersteerEffect > 0f )
+			if ( settings.SteeringEffectsUndersteerEnabled && ( app.SteeringEffects.UndersteerEffect > 0f ) )
 			{
 				var isUndersteering = ( app.SteeringEffects.UndersteerEffect == 1f );
 
@@ -570,7 +619,7 @@ public class RacingWheel
 					case VibrationPattern.SawtoothWaveIn:
 					{
 						var phase = ( timeInSeconds * frequency ) % 1f;
-						understeerEffectTorque = ( phase - 1f ) * -MathF.Sign( app.Simulator.SteeringWheelAngle );
+						understeerEffectTorque = ( 1f - phase ) * MathF.Sign( app.Simulator.SteeringWheelAngle );
 						break;
 					}
 
@@ -596,7 +645,7 @@ public class RacingWheel
 
 			// oversteer vibration effect
 
-			if ( app.SteeringEffects.OversteerEffect > 0f )
+			if ( settings.SteeringEffectsOversteerEnabled && ( app.SteeringEffects.OversteerEffect > 0f ) )
 			{
 				var isOversteering = ( app.SteeringEffects.OversteerEffect == 1f );
 
@@ -660,7 +709,7 @@ public class RacingWheel
 
 			// seat-of-pants vibration effect
 
-			if ( app.SteeringEffects.SeatOfPantsEffect != 0f )
+			if ( settings.SteeringEffectsSeatOfPantsEnabled && ( app.SteeringEffects.SeatOfPantsEffect != 0f ) )
 			{
 				var absSeatOfPantsEffect = MathF.Abs( app.SteeringEffects.SeatOfPantsEffect );
 
@@ -726,7 +775,7 @@ public class RacingWheel
 
 			// gear change vibration effect
 
-			if ( settings.RacingWheelVibrateOnGearChange )
+			if ( settings.RacingWheelGearChangeVibrateStrength > 0f )
 			{
 				if ( app.Simulator.Gear != _lastGear )
 				{
@@ -744,7 +793,7 @@ public class RacingWheel
 					var timeInSeconds = _vibrateOnGearChangeTimerMS * 0.001f;
 					var sine = MathF.Sin( timeInSeconds * MathF.Tau * frequency );
 
-					vibrationTorque += ( sine >= 0f ) ? 0.05f : -0.05f;
+					vibrationTorque += ( sine >= 0f ) ? settings.RacingWheelGearChangeVibrateStrength : -settings.RacingWheelGearChangeVibrateStrength;
 
 					_vibrateOnGearChangeTimerMS -= deltaMilliseconds;
 				}
@@ -752,7 +801,7 @@ public class RacingWheel
 
 			// abs vibration effect
 
-			if ( settings.RacingWheelVibrateOnABS )
+			if ( settings.RacingWheelABSVibrateStrength > 0f )
 			{
 				if ( app.Simulator.BrakeABSactive )
 				{
@@ -760,7 +809,7 @@ public class RacingWheel
 					var timeInSeconds = _vibrateOnABSTimerMS * 0.001f;
 					var phase = ( timeInSeconds * frequency ) % 1f;
 
-					vibrationTorque += 0.05f * ( 4f * MathF.Abs( phase - 0.5f ) - 1f );
+					vibrationTorque += settings.RacingWheelABSVibrateStrength * ( 4f * MathF.Abs( phase - 0.5f ) - 1f );
 
 					var periodMS = 1000f / frequency;
 
@@ -790,7 +839,7 @@ public class RacingWheel
 					app.Logger.WriteLine( "[RacingWheel] Requesting resumption of force feedback" );
 				}
 
-				app.MainWindow.UpdateRacingWheelPowerButton();
+				_racingWheelPage.UpdateSteeringDeviceSection();
 			}
 
 			// check if we want to fade in or out the steering wheel torque data
@@ -798,8 +847,6 @@ public class RacingWheel
 			if ( UseSteeringWheelTorqueData != _usingSteeringWheelTorqueData )
 			{
 				_usingSteeringWheelTorqueData = UseSteeringWheelTorqueData;
-
-				app.MainWindow.UpdateRacingWheelPowerButton();
 
 				if ( settings.RacingWheelFadeEnabled )
 				{
@@ -830,19 +877,19 @@ public class RacingWheel
 
 					app.Logger.WriteLine( "[RacingWheel] Requesting reset of force feedback device" );
 				}
-
-				app.MainWindow.UpdateRacingWheelPowerButton();
 			}
 
-			// if power button is off, or suspend is requested, or unsuspend counter is still counting down, then suspend the racing wheel force feedback
+			// if power button is off, or suspend is requested, or unsuspend counter is still counting down, or if sim mode is not "full", then suspend the racing wheel force feedback
 
-			if ( !settings.RacingWheelEnableForceFeedback || _isSuspended || ( _unsuspendTimerMS > 0f ) )
+			if ( !settings.RacingWheelEnableForceFeedback || _isSuspended || ( _unsuspendTimerMS > 0f ) || ( app.Simulator.SimMode != "full" ) )
 			{
 				if ( _currentRacingWheelGuid != null )
 				{
 					app.Logger.WriteLine( "[RacingWheel] Suspending racing wheel force feedback" );
 
 					app.DirectInput.ShutdownForceFeedback();
+
+					_racingWheelPage.UpdateSteeringDeviceSection();
 
 					NextRacingWheelGuid = _currentRacingWheelGuid;
 
@@ -864,6 +911,8 @@ public class RacingWheel
 
 					app.DirectInput.ShutdownForceFeedback();
 
+					_racingWheelPage.UpdateSteeringDeviceSection();
+
 					_currentRacingWheelGuid = null;
 				}
 
@@ -876,9 +925,12 @@ public class RacingWheel
 					NextRacingWheelGuid = null;
 
 					app.DirectInput.InitializeForceFeedback( (Guid) _currentRacingWheelGuid );
+
+					_racingWheelPage.UpdateSteeringDeviceSection();
 				}
 
-				app.MainWindow.UpdateRacingWheelPowerButton();
+				_ffbPredictorK1.Reset();
+				_ffbPredictorK2.Reset();
 			}
 
 			// check if we want to auto set max force
@@ -911,6 +963,65 @@ public class RacingWheel
 					_steeringWheelTorque360Hz[ 5 ] = app.Simulator.SteeringWheelTorque_ST[ 4 ];
 					_steeringWheelTorque360Hz[ 6 ] = app.Simulator.SteeringWheelTorque_ST[ 5 ];
 					_steeringWheelTorque360Hz[ 7 ] = app.Simulator.SteeringWheelTorque_ST[ 5 ];
+
+					// Run 60 Hz predictor
+
+					var predictedValue = settings.RacingWheelPredictionMode switch
+					{
+						PredictionMode.PredictK1 => _ffbPredictorK1.Step( _steeringWheelTorque360Hz[ 6 ], app.DirectInput.ForceFeedbackWheelVelocity ),
+						PredictionMode.PredictK2 => _ffbPredictorK2.Step( _steeringWheelTorque360Hz[ 6 ], app.DirectInput.ForceFeedbackWheelVelocity ),
+						_ => _steeringWheelTorque360Hz[ 6 ],
+					};
+
+					var unclampedDelta = predictedValue - _steeringWheelTorque360Hz[ 6 ];
+					var clampedDelta = Math.Clamp( unclampedDelta, -0.5f, 0.5f );
+
+					_predictedSteeringWheelTorque60Hz = MathZ.Lerp( _steeringWheelTorque360Hz[ 6 ], _steeringWheelTorque360Hz[ 6 ] + clampedDelta, settings.RacingWheelPredictionBlend );
+
+#if DEBUG
+
+					if ( ( _lastLapDistPct > 0.95f ) && ( app.Simulator.LapDistPct < 0.05f ) )
+					{
+						_lapNumber++;
+
+						var lapNumber = _lapNumber;
+
+						var snapshot = _predictorSampleArray.AsSpan( 0, _predictorSampleCount ).ToArray();
+
+						_predictorSampleCount = 0;
+
+						_ = Task.Run( async () =>
+						{
+							var path = Path.Combine( App.DocumentsFolder, "Predictor Data", $"Lap-{lapNumber}.csv" );
+
+							try
+							{
+								await DumpLapAsync( snapshot, path );
+							}
+							catch ( Exception exception )
+							{
+								app.Logger.WriteLine( $"[RacingWheel] Exception while dumping predictor data: {exception}" );
+							}
+						} );
+					}
+
+					if ( _predictorSampleCount < _predictorSampleArray.Length )
+					{
+						ref var predictorSample = ref _predictorSampleArray[ _predictorSampleCount++ ];
+
+						predictorSample.TickCount = app.Simulator.IRSDK.Data.TickCount;
+						predictorSample.InputFFBSample = app.Simulator.SteeringWheelTorque_ST[ 5 ];
+						predictorSample.WheelVelocity = app.DirectInput.ForceFeedbackWheelVelocity;
+						predictorSample.PredictionMode = settings.RacingWheelPredictionMode;
+						predictorSample.PredictionBlend = settings.RacingWheelPredictionBlend;
+						predictorSample.PredictedValue = predictedValue;
+						predictorSample.DeltaClamped = clampedDelta != unclampedDelta;
+						predictorSample.OutputFFBSample = _predictedSteeringWheelTorque60Hz;
+					}
+
+					_lastLapDistPct = app.Simulator.LapDistPct;
+
+#endif
 				}
 				else
 				{
@@ -922,6 +1033,8 @@ public class RacingWheel
 					_steeringWheelTorque360Hz[ 5 ] = 0f;
 					_steeringWheelTorque360Hz[ 6 ] = 0f;
 					_steeringWheelTorque360Hz[ 7 ] = 0f;
+
+					_predictedSteeringWheelTorque60Hz = 0f;
 				}
 
 				_elapsedMilliseconds = 0f;
@@ -957,7 +1070,7 @@ public class RacingWheel
 				ClearPeakTorque = false;
 			}
 
-			if ( app.Simulator.IsOnTrack && ( app.Simulator.PlayerTrackSurface == IRSDKSharper.IRacingSdkEnum.TrkLoc.OnTrack ) )
+			if ( app.Simulator.IsOnTrack && ( app.Simulator.PlayerTrackSurface == IRSDKSharper.IRacingSdkEnum.TrkLoc.OnTrack ) && ( app.Simulator.PlayerTrackSurfaceMaterial >= IRSDKSharper.IRacingSdkEnum.TrkSurf.Asphalt1Material ) && ( app.Simulator.PlayerTrackSurfaceMaterial <= IRSDKSharper.IRacingSdkEnum.TrkSurf.RacingDirt2Material ) )
 			{
 				_peakTorque = MathF.Max( _peakTorque, MathZ.Lerp( _peakTorque, MathF.Abs( steeringWheelTorque500Hz ), 0.01f ) );
 			}
@@ -1024,11 +1137,11 @@ public class RacingWheel
 
 			// process the algorithm
 
-			var outputTorque = ProcessAlgorithm( 0, steeringWheelTorque60Hz, steeringWheelTorque500Hz, curbProtectionLerpFactor );
+			var outputTorque = ProcessAlgorithm( 0, _predictedSteeringWheelTorque60Hz, steeringWheelTorque500Hz, curbProtectionLerpFactor );
 
 			// understeer constant force effect
 
-			if ( app.SteeringEffects.UndersteerEffect > 0f )
+			if ( settings.SteeringEffectsUndersteerEnabled && ( app.SteeringEffects.UndersteerEffect > 0f ) )
 			{
 				var constantForceTorque = settings.SteeringEffectsUndersteerWheelConstantForceStrength * MathF.Pow( app.SteeringEffects.UndersteerEffect, MathZ.CurveToPower( settings.SteeringEffectsUndersteerWheelConstantForceCurve ) );
 
@@ -1050,7 +1163,7 @@ public class RacingWheel
 
 			// oversteer constant force effect
 
-			if ( app.SteeringEffects.OversteerEffect > 0f )
+			if ( settings.SteeringEffectsOversteerEnabled && ( app.SteeringEffects.OversteerEffect > 0f ) )
 			{
 				var constantForceTorque = settings.SteeringEffectsOversteerWheelConstantForceStrength * MathF.Pow( app.SteeringEffects.OversteerEffect, MathZ.CurveToPower( settings.SteeringEffectsOversteerWheelConstantForceCurve ) );
 
@@ -1072,7 +1185,7 @@ public class RacingWheel
 
 			// seat-of-pants constant force effect
 
-			if ( app.SteeringEffects.SeatOfPantsEffect != 0f )
+			if ( settings.SteeringEffectsSeatOfPantsEnabled && ( app.SteeringEffects.SeatOfPantsEffect != 0f ) )
 			{
 				var constantForceTorque = settings.SteeringEffectsSeatOfPantsWheelConstantForceStrength * MathF.CopySign( MathF.Pow( MathF.Abs( app.SteeringEffects.SeatOfPantsEffect ), MathZ.CurveToPower( settings.SteeringEffectsSeatOfPantsWheelConstantForceCurve ) ), app.SteeringEffects.SeatOfPantsEffect );
 
@@ -1111,7 +1224,7 @@ public class RacingWheel
 
 			// add wheel LFE
 
-			if ( settings.RacingWheelLFEStrength > 0f )
+			if ( ( settings.RacingWheelLFEStrength > 0f ) && app.Simulator.IsOnTrack )
 			{
 				outputTorque += inputLFEMagnitude * settings.RacingWheelLFEStrength;
 			}
@@ -1253,7 +1366,7 @@ public class RacingWheel
 
 			// update auto force label
 
-			MainWindow._racingWheelPage.AutoForce_TextBlock.Text = $"{_autoTorque:F1} {DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
+			_racingWheelPage.AutoForce_TextBlock.Text = $"{_autoTorque:F1} {DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
 
 			// update logitech rpm lights
 
@@ -1329,8 +1442,38 @@ public class RacingWheel
 
 			// update record button
 
-			MainWindow._racingWheelPage.Record_MairaMappableButton.IsEnabled = app.Simulator.IsOnTrack;
-			MainWindow._racingWheelPage.Record_MairaMappableButton.Blink = app.RecordingManager.IsRecording;
+			_racingWheelPage.Record_MairaMappableButton.Disabled = !app.Simulator.IsOnTrack;
+			_racingWheelPage.Record_MairaMappableButton.Blink = app.RecordingManager.IsRecording;
+
+			// suspend racing wheel force feedback if iracing ffb is enabled or we are calibrating
+
+			SuspendForceFeedback = !app.Simulator.IsConnected || ( app.Simulator.SteeringFFBEnabled && !settings.RacingWheelAlwaysEnableFFB ) || app.SteeringEffects.IsCalibrating;
+
+			/*
+			app.Debug.Label_1 = $"FadingIsActive: {FadingIsActive}";
+			app.Debug.Label_2 = $"_fadeTimerMS: {_fadeTimerMS:F0} ms";
+			app.Debug.Label_4 = $"_outputTorque: {_outputTorque * 100f:F0}%";
+			*/
 		}
 	}
+
+#if DEBUG
+
+	private static async Task DumpLapAsync( PredictorSample[] samples, string path )
+	{
+		var directoryPath = Path.GetDirectoryName( path );
+
+		if ( !string.IsNullOrEmpty( directoryPath ) )
+		{
+			Directory.CreateDirectory( directoryPath );
+		}
+
+		await using var stream = new FileStream( path, FileMode.Create, FileAccess.Write, FileShare.Read, 64 * 1024, useAsync: true );
+		await using var writer = new StreamWriter( stream );
+		await using var csv = new CsvWriter( writer, CultureInfo.InvariantCulture );
+
+		await csv.WriteRecordsAsync( samples );
+	}
+
+#endif
 }

@@ -9,6 +9,13 @@
           </advancedOptions>
         </fileTransfer>
       </webServer>
+      <webServer id="1ccc21d5-c555-4171-95f1-488cd7245a66" name="AWS" url="http://mairapp.com">
+        <fileTransfer rootFolder="/home/bitnami" accessType="SFTP" host="100.23.1.111" port="22" sshConfigId="eb8c3b72-411f-4633-a71d-540a5a4bdbd1" sshConfig="bitnami@100.23.1.111:22 key" keyPair="true">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
     </option>
   </component>
 </project>

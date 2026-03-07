@@ -74,7 +74,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="NoFFBDevicesFound" xml:space="preserve">
-    <value>[No Force Feedback デバイスs Found]</value>
+    <value>[フォースフィードバックのあるデバイスが見つかりませんでした]</value>
     <comment>Steering device list</comment>
   </data>
   <data name="OFF" xml:space="preserve">
@@ -126,7 +126,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
-    <value>日本語（日本） - Japanese</value>
+    <value>日本語（日本） - Japanese (Japan)</value>
     <comment>App language list</comment>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
@@ -209,8 +209,8 @@
     <value></value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>自動マージン</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value></value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -438,7 +438,7 @@
     <comment>AdminBoxx</comment>
   </data>
   <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[No Audio デバイスs Found]</value>
+    <value>[有効なオーディオデバイスが見つかりませんでした]</value>
     <comment>Audio device list</comment>
   </data>
   <data name="Connection" xml:space="preserve">
@@ -570,7 +570,7 @@
     <comment>App settings</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
-    <value></value>
+    <value>UI拡大率</value>
     <comment>App settings</comment>
   </data>
   <data name="CloudService_UC" xml:space="preserve">
@@ -586,7 +586,7 @@
     <comment>Status</comment>
   </data>
   <data name="DownloadingUpdate" xml:space="preserve">
-    <value></value>
+    <value>アップデートをダウンロードしています…</value>
     <comment>Status</comment>
   </data>
   <data name="Contribute_UC" xml:space="preserve">
@@ -598,7 +598,9 @@
     <comment>Contribute</comment>
   </data>
   <data name="DonationsText" xml:space="preserve">
-    <value></value>
+    <value>ドネーション(寄付）は完全に任意です。このソフトの使用料を要求するつもりは一切ありません。
+とはいえ、寄付していただけると非常にありがたいですし、今後のソフト開発をする上で大きなモチベーションにもなります。
+既にしていただいた方々には、多大なる感謝を申し上げますm(__)m</value>
     <comment>Donate</comment>
   </data>
   <data name="Donate_UC" xml:space="preserve">
@@ -1029,7 +1031,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
-    <value>アンダーステア効果</value>
+    <value>アンダーステア エフェクト</value>
     <comment>Pedals</comment>
   </data>
   <data name="OversteerEffect" xml:space="preserve">
@@ -1153,7 +1155,7 @@
     <comment>App menu item</comment>
   </data>
   <data name="WheelLock" xml:space="preserve">
-    <value></value>
+    <value>ホイールロック</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="WheelSpin" xml:space="preserve">
@@ -1233,7 +1235,7 @@
     <comment>Trading paints</comment>
   </data>
   <data name="TradingPaints" xml:space="preserve">
-    <value></value>
+    <value>トレーディングペイント</value>
     <comment>App menu item</comment>
   </data>
   <data name="TradingPaints_UC" xml:space="preserve">
@@ -1300,7 +1302,92 @@
     <value></value>
     <comment>Steering effects</comment>
   </data>
+  <data name="DefaultPage_UC" xml:space="preserve">
+    <value></value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Effects_UC" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value></value>
+    <comment>AdminBoxx</comment>
+  </data>
   <data name="Display_UC" xml:space="preserve">
     <value>表示</value>
+  </data>
+  <data name="AdminBoxx_UC" xml:space="preserve">
+    <value></value>
+    <comment>Page title</comment>
+  </data>
+  <data name="Click_UC" xml:space="preserve">
+    <value></value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="PedalsP500" xml:space="preserve">
+    <value></value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="PedalsPrototype" xml:space="preserve">
+    <value></value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value></value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value></value>
+    <comment>Page title</comment>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value></value>
+    <comment>Help</comment>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value>ここがいわゆる”原点”です。
+こちらのフォーラムでも質問など投げていただいて構いませんが、以前ほどアクティブではないので、Discordサーバーの参加をしていただく事をお勧めします！</value>
+    <comment>Help</comment>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value></value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value></value>
+    <comment>Wind</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

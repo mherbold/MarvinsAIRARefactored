@@ -1,11 +1,15 @@
 ﻿
 using System.Windows;
+
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace MarvinsAIRARefactored.Pages;
 
 public partial class WindPage : UserControl
 {
+	bool _testingLeft = false;
+	bool _testingRight = false;
+
 	public WindPage()
 	{
 		InitializeComponent();
@@ -19,7 +23,7 @@ public partial class WindPage : UserControl
 
 		if ( ConnectToWind_MairaSwitch.IsOn )
 		{
-			if ( !app.AdminBoxx.IsConnected )
+			if ( !app.Wind.IsConnected )
 			{
 				app.Wind.Connect();
 			}
@@ -28,6 +32,24 @@ public partial class WindPage : UserControl
 		{
 			app.Wind.Disconnect();
 		}
+	}
+
+	private void LeftTest_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		_testingLeft = !_testingLeft;
+
+		app.Wind.TestLeft( _testingLeft );
+	}
+
+	private void RightTest_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		_testingRight = !_testingRight;
+
+		app.Wind.TestRight( _testingRight );
 	}
 
 	#endregion

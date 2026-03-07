@@ -61,7 +61,7 @@ public partial class MairaComboBox : UserControl
 		set => SetValue( LabelProperty, value );
 	}
 
-	public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register( nameof( ItemsSource ), typeof( object ), typeof( MairaComboBox ) );
+	public static readonly DependencyProperty ItemsSourceProperty = DependencyProperty.Register( nameof( ItemsSource ), typeof( object ), typeof( MairaComboBox ), new PropertyMetadata( null, ItemsSourceChanged ) );
 
 	public object ItemsSource
 	{
@@ -96,6 +96,30 @@ public partial class MairaComboBox : UserControl
 	#endregion
 
 	#region Dependency Property Changed Events
+
+	private static void ItemsSourceChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
+	{
+		if ( App.Instance!.Ready )
+		{
+			if ( d is MairaComboBox mairaComboBox )
+			{
+				mairaComboBox.Dispatcher.BeginInvoke( (Action) ( () =>
+				{
+					if ( mairaComboBox.ComboBox is null )
+					{
+						return;
+					}
+
+					var selectedValue = mairaComboBox.SelectedValue;
+
+					mairaComboBox.ComboBox.SelectedValue = null;
+					mairaComboBox.ComboBox.SelectedValue = selectedValue;
+
+				mairaComboBox.UpdateSelectedValueVisuals();
+				} ), System.Windows.Threading.DispatcherPriority.DataBind );
+			}
+		}
+	}
 
 	private static void SelectedValueChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
 	{

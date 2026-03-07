@@ -25,6 +25,8 @@ public class TradingPaints
 	private readonly AutoResetEvent _autoResetEvent = new( false );
 	private Task? _processDriversTask;
 
+	private bool _faulted = false;
+
 	public void Initialize()
 	{
 		var app = App.Instance!;
@@ -33,9 +35,21 @@ public class TradingPaints
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		Directory.CreateDirectory( settings.TradingPaintsFolder );
+		try
+		{
+			Directory.CreateDirectory( settings.TradingPaintsFolder );
+		}
+		catch ( Exception ex )
+		{
+			app.Logger.WriteLine( $"[TradingPaints] ERROR: Could not create Trading Paints folder '{settings.TradingPaintsFolder}': {ex.Message}" );
 
-		_processDriversTask = Task.Run( () => UpdateAsync() );
+			_faulted = true;
+		}
+
+		if ( !_faulted )
+		{
+			_processDriversTask = Task.Run( () => UpdateAsync() );
+		}
 
 		app.Logger.WriteLine( "[TradingPaints] <<< Initialize" );
 	}
@@ -61,6 +75,11 @@ public class TradingPaints
 		app.Logger.WriteLine( "[TradingPaints] <<< Shutdown" );
 	}
 
+	public void Update()
+	{
+		_autoResetEvent.Set();
+	}
+
 	public void Reset()
 	{
 		var app = App.Instance!;
@@ -78,16 +97,11 @@ public class TradingPaints
 
 			if ( app.Simulator.IsConnected )
 			{
-				_autoResetEvent.Set();
+				Update();
 			}
 
 			app.Logger.WriteLine( "[TradingPaints] <<< Reset" );
 		}
-	}
-
-	public void Update()
-	{
-		_autoResetEvent.Set();
 	}
 
 	private async Task UpdateAsync()
@@ -204,15 +218,24 @@ public class TradingPaints
 
 		foreach ( var asset in assets )
 		{
-			// add this guy to the reload list
-
-			reloadUserIDHashSet.Add( asset.UserID );
-
 			// prepare download folder for this car
 
 			var carFolderFullPath = Path.Combine( settings.TradingPaintsFolder, asset.Directory );
 
-			Directory.CreateDirectory( carFolderFullPath );
+			try
+			{
+				Directory.CreateDirectory( carFolderFullPath );
+			}
+			catch ( Exception ex )
+			{
+				app.Logger.WriteLine( $"[TradingPaints] ERROR: Could not create car folder '{carFolderFullPath}': {ex.Message}" );
+
+				continue;
+			}
+
+			// add this guy to the reload list
+
+			reloadUserIDHashSet.Add( asset.UserID );
 
 			// figure out the start of the file name
 
@@ -270,6 +293,7 @@ public class TradingPaints
 					else
 					{
 						File.Delete( temporaryPath );
+
 						continue;
 					}
 				}

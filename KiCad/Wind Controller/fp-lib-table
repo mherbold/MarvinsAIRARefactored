@@ -1,4 +1,0 @@
-(fp_lib_table
-  (version 7)
-  (lib (name "Logos")(type "KiCad")(uri "${KIPRJMOD}/MyLogos.pretty")(options "")(descr ""))
-)

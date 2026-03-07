@@ -24,14 +24,19 @@ public sealed class HidHotplugMonitor : IDisposable
 		{
 			var hwnd = new WindowInteropHelper( app.MainWindow ).Handle;
 
-			_hwndSource = HwndSource.FromHwnd( hwnd );
-			_hwndSource?.AddHook( WndProc );
-
-			RegisterForHidNotifications( hwnd );
-
-			_debounceTimer = new System.Timers.Timer( 2000 ) { AutoReset = false };
-			_debounceTimer.Elapsed += ( _, __ ) => DeviceListMightHaveChanged?.Invoke( this, EventArgs.Empty );
+			SetupForHwnd( hwnd );
 		};
+
+		// In some startup scenarios (start with Windows + start minimized) the
+		// window handle may never be created via the normal show path, so
+		// SourceInitialized may not fire. Ensure the HWND exists and register
+		// for device notifications immediately on the UI thread.
+		app.Dispatcher.BeginInvoke( () =>
+		{
+			var hwnd = new WindowInteropHelper( app.MainWindow ).EnsureHandle();
+
+			SetupForHwnd( hwnd );
+		} );
 
 		app.MainWindow.Closed += ( _, __ ) => Dispose();
 	}
@@ -45,12 +50,9 @@ public sealed class HidHotplugMonitor : IDisposable
 			_deviceNotifyHandle = IntPtr.Zero;
 		}
 
-		if ( _hwndSource is not null )
-		{
-			_hwndSource.RemoveHook( WndProc );
+		_hwndSource?.RemoveHook( WndProc );
 
-			_hwndSource = null;
-		}
+		_hwndSource = null;
 
 		_debounceTimer?.Dispose();
 	}
@@ -65,6 +67,26 @@ public sealed class HidHotplugMonitor : IDisposable
 		};
 
 		_deviceNotifyHandle = User32.RegisterDeviceNotification( hwnd, ref dbi, User32.DeviceNotificationFlags.DEVICE_NOTIFY_WINDOW_HANDLE );
+	}
+
+	private void SetupForHwnd( IntPtr hwnd )
+	{
+		if ( ( hwnd == IntPtr.Zero ) || ( _hwndSource is not null ) )
+		{
+			return;
+		}
+
+		_hwndSource = HwndSource.FromHwnd( hwnd );
+		_hwndSource?.AddHook( WndProc );
+
+		RegisterForHidNotifications( hwnd );
+
+		if ( _debounceTimer is null )
+		{
+			_debounceTimer = new System.Timers.Timer( 2000 ) { AutoReset = false };
+
+			_debounceTimer.Elapsed += ( _, __ ) => DeviceListMightHaveChanged?.Invoke( this, EventArgs.Empty );
+		}
 	}
 
 	private IntPtr WndProc( IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled )

@@ -17,7 +17,7 @@
     <StackPanel>
 
         <controls:MairaGroupBox Label="{Binding Localization[Device_UC]}"
-                                HelpTopic="pedals-device">
+                                HelpTopic="advanced/pedals/#device">
 
             <Grid>
 
@@ -50,7 +50,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[Frequency_UC]}"
-                                HelpTopic="pedals-frequency">
+                                HelpTopic="advanced/pedals/#frequency">
 
             <Grid>
 
@@ -70,7 +70,7 @@
                                     ContextSwitches="{Binding Settings.PedalsMinimumFrequencyContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.PedalsMinimumFrequencyPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.PedalsMinimumFrequencyMinusButtonMappings}"
-                                    DefaultValue="15" />
+                                    DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Column="2"
                                     Label="{Binding Localization[Maximum]}"
@@ -98,7 +98,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[Amplitude_UC]}"
-                                HelpTopic="pedals-amplitude">
+                                HelpTopic="advanced/pedals/#amplitude">
 
             <Grid>
 
@@ -146,7 +146,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[Clutch_UC]}"
-                                HelpTopic="pedals-pedal-effects">
+                                HelpTopic="advanced/pedals/#brake-clutch-throttle">
 
             <Grid>
 
@@ -272,7 +272,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[Brake_UC]}"
-                                HelpTopic="pedals-pedal-effects">
+                                HelpTopic="advanced/pedals/#brake-clutch-throttle">
 
             <Grid>
 
@@ -394,7 +394,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[Throttle_UC]}"
-                                HelpTopic="pedals-pedal-effects">
+                                HelpTopic="advanced/pedals/#brake-clutch-throttle">
 
             <Grid>
 
@@ -516,7 +516,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[GearChangeShiftIntoGear_UC]}"
-                                HelpTopic="pedals-gear-change-shift-into-gear">
+                                HelpTopic="advanced/pedals/#gear-change-shift-into-gear">
 
             <Grid>
 
@@ -563,7 +563,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[GearChangeShiftIntoNeutral_UC]}"
-                                HelpTopic="pedals-gear-change-shift-into-neutral">
+                                HelpTopic="advanced/pedals/#gear-change-shift-into-neutral">
 
             <Grid>
 
@@ -610,7 +610,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[ABSEngaged_UC]}"
-                                HelpTopic="pedals-abs-engaged">
+                                HelpTopic="advanced/pedals/#abs-engaged">
 
             <Grid>
 
@@ -653,7 +653,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[RPM_UC]}"
-                                HelpTopic="pedals-rpm">
+                                HelpTopic="advanced/pedals/#rpm">
 
             <Grid>
 
@@ -673,7 +673,7 @@
                                     ContextSwitches="{Binding Settings.PedalsStartingRPMContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.PedalsStartingRPMPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.PedalsStartingRPMMinusButtonMappings}"
-                                    DefaultValue="0" />
+                                    DefaultValue="1" />
 
                 <controls:MairaSwitch Grid.Column="2"
                                       IsOn="{Binding Settings.PedalsRPMVibrateInTopGearEnabled, Mode=TwoWay}"
@@ -692,7 +692,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[WheelLock_UC]}"
-                                HelpTopic="pedals-wheel-lock">
+                                HelpTopic="advanced/pedals/#wheel-lock">
 
             <Grid>
 
@@ -712,7 +712,7 @@
                                     ContextSwitches="{Binding Settings.PedalsWheelLockFrequencyContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.PedalsWheelLockFrequencyPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.PedalsWheelLockFrequencyMinusButtonMappings}"
-                                    DefaultValue="0.1" />
+                                    DefaultValue="0.2" />
 
                 <controls:MairaKnob Grid.Column="2"
                                     Label="{Binding Localization[Sensitivity]}"
@@ -735,7 +735,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[WheelSpin_UC]}"
-                                HelpTopic="pedals-wheel-spin">
+                                HelpTopic="advanced/pedals/#wheel-spin">
 
             <Grid>
 
@@ -778,7 +778,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[ClutchSlip_UC]}"
-                                HelpTopic="pedals-clutch-slip">
+                                HelpTopic="advanced/pedals/#clutch-slip">
 
             <Grid>
 
@@ -825,7 +825,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[Understeer_UC]}"
-                                HelpTopic="pedals-understeer">
+                                HelpTopic="advanced/pedals/#understeer-oversteer-seat-of-pants">
 
             <Grid>
 
@@ -845,7 +845,7 @@
                                     ContextSwitches="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyMinusButtonMappings}"
-                                    DefaultValue="0" />
+                                    DefaultValue="0.1" />
 
                 <controls:MairaKnob Grid.Column="2"
                                     Label="{Binding Localization[MaximumFrequency]}"
@@ -873,7 +873,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[Oversteer_UC]}"
-                                HelpTopic="pedals-oversteer">
+                                HelpTopic="advanced/pedals/#understeer-oversteer-seat-of-pants">
 
             <Grid>
 
@@ -893,7 +893,7 @@
                                     ContextSwitches="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyMinusButtonMappings}"
-                                    DefaultValue="0" />
+                                    DefaultValue="0.1" />
 
                 <controls:MairaKnob Grid.Column="2"
                                     Label="{Binding Localization[MaximumFrequency]}"
@@ -921,7 +921,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[SeatOfPants_UC]}"
-                                HelpTopic="pedals-seat-of-pants">
+                                HelpTopic="advanced/pedals/#understeer-oversteer-seat-of-pants">
 
             <Grid>
 
@@ -941,7 +941,7 @@
                                     ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyMinusButtonMappings}"
-                                    DefaultValue="0" />
+                                    DefaultValue="0.1" />
 
                 <controls:MairaKnob Grid.Column="2"
                                     Label="{Binding Localization[MaximumFrequency]}"
@@ -969,7 +969,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[OtherFeatures_UC]}"
-                                HelpTopic="pedals-other-features">
+                                HelpTopic="advanced/pedals/#other-features">
 
             <Grid>
 

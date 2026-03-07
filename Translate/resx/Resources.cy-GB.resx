@@ -209,7 +209,7 @@
     <value></value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
+  <data name="AutoTarget" xml:space="preserve">
     <value></value>
     <comment>Racing wheel</comment>
   </data>
@@ -1306,14 +1306,6 @@
     <comment>App settings</comment>
   </data>
   <data name="Effects_UC" xml:space="preserve">
-    <value></value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnGearChange" xml:space="preserve">
-    <value></value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnABS" xml:space="preserve">
     <value></value>
     <comment>Racing wheel</comment>
   </data>

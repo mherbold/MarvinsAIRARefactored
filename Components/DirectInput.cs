@@ -18,14 +18,21 @@ public class DirectInput
 		public ObjectProperties? _xAxisProperties = null;
 		public JoystickState _joystickState = new();
 		public JoystickUpdate[]? _joystickUpdates = null;
+		public bool[] _povButtons = new bool[ PovVirtualButtonCount ];
 		public bool _isDefunct = false;
 	}
 
 	public const int DI_FFNOMINALMAX = 10000;
 	private const int DIEB_NOTRIGGER = -1;
 
+	public const int PovButtonBase = 1000;
+	public const int MaxPovHats = 4;
+	public const int ButtonsPerPovHat = 4;
+	public const int PovVirtualButtonCount = MaxPovHats * ButtonsPerPovHat;
+
 	private static readonly Guid KeyboardGuid = new( "6f1d2b61-d5a0-11cf-bfc7-444553540000" );
 
+	public string ForceFeedbackErrorMessage { get; private set; } = string.Empty;
 	public bool ForceFeedbackInitialized { get => _forceFeedbackInitialized; }
 	public Joystick? ForceFeedbackJoystick { get; private set; } = null;
 	public float ForceFeedbackWheelPosition { get; private set; } = 0f;
@@ -111,64 +118,64 @@ public class DirectInput
 			_forceFeedbackDeviceInstanceGuid = deviceGuid;
 
 			ForceFeedbackJoystick = new Joystick( _directInput, _forceFeedbackDeviceInstanceGuid );
+
+			if ( ForceFeedbackJoystick != null )
+			{
+				app.Logger.WriteLine( "[DirectInput] Setting the cooperative level to exclusive and background mode" );
+
+				ForceFeedbackJoystick.SetCooperativeLevel( app.TopLevelWindow.WindowHandle, CooperativeLevel.Exclusive | CooperativeLevel.Background );
+
+				app.Logger.WriteLine( "[DirectInput] Acquiring the joystick" );
+
+				ForceFeedbackJoystick.Acquire();
+
+				foreach ( var effectInfo in ForceFeedbackJoystick.GetEffects() )
+				{
+					if ( ( effectInfo.Type & EffectType.Hardware ) == EffectType.ConstantForce )
+					{
+						_forceFeedbackEffectParameters = new EffectParameters
+						{
+							Flags = EffectFlags.ObjectOffsets | EffectFlags.Cartesian,
+							Duration = -1,
+							Gain = DI_FFNOMINALMAX,
+							SamplePeriod = 0,
+							StartDelay = 0,
+							TriggerButton = DIEB_NOTRIGGER,
+							TriggerRepeatInterval = 0,
+							Axes = [ 0 ],
+							Directions = [ 1 ],
+							Envelope = new Envelope(),
+							Parameters = new ConstantForce { Magnitude = 0 }
+						};
+
+						app.Logger.WriteLine( "[DirectInput] Creating the constant force effect" );
+
+						_forceFeedbackEffect = new Effect( ForceFeedbackJoystick, effectInfo.Guid, _forceFeedbackEffectParameters );
+
+						_forceFeedbackEffect.Download();
+						_forceFeedbackEffect.Start();
+
+						break;
+					}
+				}
+
+				if ( _forceFeedbackEffect == null )
+				{
+					app.Logger.WriteLine( "[DirectInput] Warning - constant force effect was not created (not supported?)" );
+				}
+
+				_forceFeedbackInitialized = true;
+			}
 		}
 		catch ( Exception exception )
 		{
-			app.Logger.WriteLine( $"[DirectInput] Exception caught: {exception.Message.Trim()}" );
+			ForceFeedbackErrorMessage = exception.Message.Trim();
+
+			app.Logger.WriteLine( $"[DirectInput] Exception caught: {ForceFeedbackErrorMessage}" );
 
 			app.RacingWheel.NextRacingWheelGuid = Guid.Empty;
 
 			_forceFeedbackDeviceInstanceGuid = Guid.Empty;
-		}
-
-		if ( ForceFeedbackJoystick != null )
-		{
-			app.Logger.WriteLine( "[DirectInput] Setting the cooperative level to exclusive and background mode" );
-
-			ForceFeedbackJoystick.SetCooperativeLevel( app.TopLevelWindow.WindowHandle, CooperativeLevel.Exclusive | CooperativeLevel.Background );
-
-			app.Logger.WriteLine( "[DirectInput] Acquiring the joystick" );
-
-			ForceFeedbackJoystick.Acquire();
-
-			foreach ( var effectInfo in ForceFeedbackJoystick.GetEffects() )
-			{
-				if ( ( effectInfo.Type & EffectType.Hardware ) == EffectType.ConstantForce )
-				{
-					_forceFeedbackEffectParameters = new EffectParameters
-					{
-						Flags = EffectFlags.ObjectOffsets | EffectFlags.Cartesian,
-						Duration = -1,
-						Gain = DI_FFNOMINALMAX,
-						SamplePeriod = 0,
-						StartDelay = 0,
-						TriggerButton = DIEB_NOTRIGGER,
-						TriggerRepeatInterval = 0,
-						Axes = [ 0 ],
-						Directions = [ 1 ],
-						Envelope = new Envelope(),
-						Parameters = new ConstantForce { Magnitude = 0 }
-					};
-
-					app.Logger.WriteLine( "[DirectInput] Creating the constant force effect" );
-
-					_forceFeedbackEffect = new Effect( ForceFeedbackJoystick, effectInfo.Guid, _forceFeedbackEffectParameters );
-
-					_forceFeedbackEffect.Download();
-					_forceFeedbackEffect.Start();
-
-					break;
-				}
-			}
-
-			if ( _forceFeedbackEffect == null )
-			{
-				app.Logger.WriteLine( "[DirectInput] Warning - constant force effect was not created (not supported?)" );
-			}
-
-			_forceFeedbackInitialized = true;
-
-			app.MainWindow.UpdateRacingWheelForceFeedbackButtons();
 		}
 
 		app.Logger.WriteLine( "[DirectInput] <<< InitializeForceFeedback" );
@@ -185,8 +192,6 @@ public class DirectInput
 			app.Logger.WriteLine( "[DirectInput] ShutdownForceFeedback >>>" );
 
 			_forceFeedbackInitialized = false;
-
-			app.MainWindow.UpdateRacingWheelForceFeedbackButtons();
 
 			ForceFeedbackWheelPosition = 0f;
 			ForceFeedbackWheelVelocity = 0f;
@@ -320,11 +325,108 @@ public class DirectInput
 					{
 						OnInput?.Invoke( joystickInfo._productName, joystickInfo._instanceGuid, joystickUpdate.Offset - JoystickOffset.Buttons0, joystickUpdate.Value != 0 );
 					}
+					else if ( TryGetPovHatIndex( joystickUpdate.Offset, out var hatIndex ) )
+					{
+						ProcessPovUpdate( joystickInfo, hatIndex, joystickUpdate.Value );
+					}
 				}
 			}
 		}
 
 		_pollMutex = 0;
+	}
+
+	[MethodImpl( MethodImplOptions.AggressiveInlining )]
+	private static bool TryGetPovHatIndex( JoystickOffset offset, out int hatIndex )
+	{
+		hatIndex = offset switch
+		{
+			JoystickOffset.PointOfViewControllers0 => 0,
+			JoystickOffset.PointOfViewControllers1 => 1,
+			JoystickOffset.PointOfViewControllers2 => 2,
+			JoystickOffset.PointOfViewControllers3 => 3,
+			_ => -1
+		};
+
+		return hatIndex >= 0;
+	}
+
+	private void ProcessPovUpdate( JoystickInfo joystickInfo, int hatIndex, int povValue )
+	{
+		var isUp = false;
+		var isRight = false;
+		var isDown = false;
+		var isLeft = false;
+
+		if ( povValue >= 0 )
+		{
+			var angle = povValue % 36000;
+
+			if ( ( angle >= 33750 ) || ( angle < 2250 ) )
+			{
+				isUp = true;
+			}
+			else if ( angle < 6750 )
+			{
+				isUp = true;
+				isRight = true;
+			}
+			else if ( angle < 11250 )
+			{
+				isRight = true;
+			}
+			else if ( angle < 15750 )
+			{
+				isRight = true;
+				isDown = true;
+			}
+			else if ( angle < 20250 )
+			{
+				isDown = true;
+			}
+			else if ( angle < 24750 )
+			{
+				isDown = true;
+				isLeft = true;
+			}
+			else if ( angle < 29250 )
+			{
+				isLeft = true;
+			}
+			else
+			{
+				isLeft = true;
+				isUp = true;
+			}
+		}
+
+		UpdatePovButton( joystickInfo, hatIndex, 0, isUp );    // Up
+		UpdatePovButton( joystickInfo, hatIndex, 1, isRight ); // Right
+		UpdatePovButton( joystickInfo, hatIndex, 2, isDown );  // Down
+		UpdatePovButton( joystickInfo, hatIndex, 3, isLeft );  // Left
+	}
+
+	private void UpdatePovButton( JoystickInfo joystickInfo, int hatIndex, int directionIndex, bool newIsPressed )
+	{
+		var localIndex = ( hatIndex * ButtonsPerPovHat ) + directionIndex;
+
+		if ( (uint) localIndex >= (uint) joystickInfo._povButtons.Length )
+		{
+			return;
+		}
+
+		var oldIsPressed = joystickInfo._povButtons[ localIndex ];
+
+		if ( oldIsPressed == newIsPressed )
+		{
+			return;
+		}
+
+		joystickInfo._povButtons[ localIndex ] = newIsPressed;
+
+		var virtualButtonNumber = PovButtonBase + localIndex;
+
+		OnInput?.Invoke( joystickInfo._productName, joystickInfo._instanceGuid, virtualButtonNumber, newIsPressed );
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
@@ -349,9 +451,24 @@ public class DirectInput
 		}
 		else if ( _joystickInfoDictionary.TryGetValue( deviceInstanceGuid, out var joystickInfo ) )
 		{
-			if ( joystickInfo._joystickState.Buttons[ buttonNumber ] )
+			if ( ( buttonNumber >= PovButtonBase ) && ( buttonNumber < ( PovButtonBase + PovVirtualButtonCount ) ) )
 			{
-				return true;
+				var povIndex = buttonNumber - PovButtonBase;
+
+				if ( joystickInfo._povButtons[ povIndex ] )
+				{
+					return true;
+				}
+			}
+			else
+			{
+				if ( (uint) buttonNumber < (uint) joystickInfo._joystickState.Buttons.Length )
+				{
+					if ( joystickInfo._joystickState.Buttons[ buttonNumber ] )
+					{
+						return true;
+					}
+				}
 			}
 		}
 

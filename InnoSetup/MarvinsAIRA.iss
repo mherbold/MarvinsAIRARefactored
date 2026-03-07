@@ -41,6 +41,7 @@ SolidCompression=yes
 WizardStyle=modern
 CloseApplications=yes
 RestartApplications=yes
+LicenseFile=Legal.txt
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"

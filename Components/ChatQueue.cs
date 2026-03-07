@@ -1,9 +1,8 @@
 ﻿
-using MarvinsAIRARefactored.Classes;
-
 using IRSDKSharper;
+using MarvinsAIRARefactored.Classes;
 using PInvoke;
-
+using System.Text;
 using static PInvoke.User32;
 
 namespace MarvinsAIRARefactored.Components;
@@ -31,6 +30,8 @@ public partial class ChatQueue
 	private int _chatWindowClosingCounter = 0;
 
 	private int _updateCounter = UpdateInterval + 0;
+
+	private static readonly Encoding Latin1Encoding = Encoding.GetEncoding( "iso-8859-1", new EncoderReplacementFallback( "?" ), new DecoderReplacementFallback( "?" ) );
 
 	public void SendMessage( string messageTemplate, string? value = null )
 	{
@@ -86,21 +87,23 @@ public partial class ChatQueue
 				{
 					var message = _messageList[ 0 ];
 
-					var stringToSend = Misc.ToBestEffortLatin1( message.MessageTemplate );
-					
+					var stringToSend = Misc.ToIracingChatSafeText( message.MessageTemplate );
+
 					if ( message.Value != null )
 					{
 						stringToSend += $" = {message.Value}";
 					}
 
+					stringToSend += '\r';
+
 					app.Logger.WriteLine( $"[ChatQueue] Sending message: {stringToSend}" );
 
-					foreach ( var ch in stringToSend )
-					{
-						SendKey( app, ch );
-					}
+					var latin1Bytes = Latin1Encoding.GetBytes( stringToSend );
 
-					SendKey( app, '\r' );
+					foreach ( var latin1Byte in latin1Bytes )
+					{
+						SendKey( app, latin1Byte );
+					}
 
 					_messageList.RemoveAt( 0 );
 
@@ -138,11 +141,11 @@ public partial class ChatQueue
 		}
 	}
 
-	private static void SendKey( App app, char key )
+	private static void SendKey( App app, byte key )
 	{
 		if ( key == '\r' )
 		{
-			var virtualKey = PInvoke.User32.VkKeyScanW( key );
+			var virtualKey = PInvoke.User32.VkKeyScanW( '\r' );
 
 			var scanCode = User32.MapVirtualKey( virtualKey, MapVirtualKeyTranslation.MAPVK_VK_TO_VSC );
 
@@ -156,7 +159,7 @@ public partial class ChatQueue
 		}
 		else
 		{
-			User32.PostMessage( (IntPtr) app.Simulator.WindowHandle!, User32.WindowMessage.WM_CHAR, key, IntPtr.Zero );
+			User32.PostMessage( (IntPtr) app.Simulator.WindowHandle!, User32.WindowMessage.WM_CHAR, (IntPtr) key, IntPtr.Zero );
 		}
 	}
 

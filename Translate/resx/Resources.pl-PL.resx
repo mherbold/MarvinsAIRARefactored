@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -22,7 +22,7 @@
     <comment>Zakładka</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value></value>
+    <value>Marvin's Awesome iRacing App</value>
     <comment>Tytuł Okna</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
@@ -85,7 +85,7 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="RacingWheel" xml:space="preserve">
-    <value>Baza Kierownicy</value>
+    <value>Kierownica</value>
   </data>
   <data name="RacingWheel_UC" xml:space="preserve">
     <value>BAZA KIEROWNICY</value>
@@ -140,11 +140,11 @@
     <comment>Lista Algorytmów Bazy Kierownicy</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
-    <value></value>
+    <value>AdminBoxx</value>
     <comment>Zakładka</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
-    <value>Połącz się z AdminBoxx</value>
+    <value>Połącz z AdminBoxx</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="UpdateButtonMappings" xml:space="preserve">
@@ -207,8 +207,8 @@
     <value>OGÓLNA SIŁA</value>
     <comment>Baza Kierownicy</comment>
   </data>
-  <data name="AutoMargin" xml:space="preserve">
-    <value>Auto Margines Zapobiegania Przesterowi</value>
+  <data name="AutoTarget" xml:space="preserve">
+    <value></value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -419,11 +419,11 @@
     <comment>Aplikacja</comment>
   </data>
   <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Automatycznie pobierz Aktualizacje</value>
+    <value>Automatycznie pobieraj Aktualizacje</value>
     <comment>Aplikacja</comment>
   </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
-    <value>Połącz się z AdminBoxx podczas uruchamiania</value>
+    <value>Połącz z AdminBoxx podczas uruchamiania</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Brightness" xml:space="preserve">
@@ -467,7 +467,7 @@
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="Average" xml:space="preserve">
-    <value>Przeciętna</value>
+    <value>Średnia</value>
     <comment>Wykres</comment>
   </data>
   <data name="Variance" xml:space="preserve">
@@ -559,7 +559,7 @@
     <comment>Wykres</comment>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
-    <value>Tłumienie Hałasu</value>
+    <value>Tłumienie Szumów</value>
     <comment>Pedały</comment>
   </data>
   <data name="AppWindow_UC" xml:space="preserve">
@@ -567,7 +567,7 @@
     <comment>Aplikacja</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
-    <value>Skala UI</value>
+    <value>Skala interfejsu</value>
     <comment>Aplikacja</comment>
   </data>
   <data name="CloudService_UC" xml:space="preserve">
@@ -1047,7 +1047,7 @@
     <value>Amplituda</value>
   </data>
   <data name="ClutchSlip" xml:space="preserve">
-    <value>Poślizg Sprzęgła</value>
+    <value>Uślizg Sprzęgła</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Częstotliwość</value>
@@ -1214,14 +1214,6 @@
     <value>DODATKOWE EFEKTY</value>
     <comment>Racing wheel</comment>
   </data>
-  <data name="VibrateOnGearChange" xml:space="preserve">
-    <value>Wibrój przy zmianie biegu</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="VibrateOnABS" xml:space="preserve">
-    <value>Wibrój przy Aktywacji ABS</value>
-    <comment>Racing wheel</comment>
-  </data>
   <data name="Audio_UC" xml:space="preserve">
     <value>AUDIO</value>
     <comment>AdminBoxx</comment>
@@ -1235,15 +1227,107 @@
     <comment>AdminBoxx</comment>
   </data>
   <data name="Click_UC" xml:space="preserve">
-    <value></value>
+    <value>KLIK</value>
     <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value></value>
+    <value>Pedały Simagic P500</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsPrototype" xml:space="preserve">
-    <value></value>
+    <value>Pedały prototypowe</value>
     <comment>Pedals device</comment>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Pomoc</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value>POMOC</value>
+    <comment>Page title</comment>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value>DOKUMENTACJA</value>
+    <comment>Help</comment>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value>DISCORD</value>
+    <comment>Help</comment>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value>FORUM</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value>Strona z dokumentacją</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value>Serwer DISCORD</value>
+    <comment>Help</comment>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value>Forum iRacing</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value>Strona dokumentacji jest w fazie wiecznego rozwoju, ponieważ nowe funkcjonalności są ciągle wdrażane. Uaktualniam dokumentację tak często jak mogę, jeśli jednak informacja której szukasz nie jest jescze dostępna, możesz spróbować poszukać oddpowiedzi na serwerze Discord oraz na forach iRacing.</value>
+    <comment>Help</comment>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value>Serwer MARIA na Discord jest najszybszym sposobem aby uzyskać odpowiedzi na swoje pytania, jeśli nie możesz ich znaleźć w dokumentacji. Pomagają tam wolontariusze, ja również staram się udzielać pomocy.</value>
+    <comment>Help</comment>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value>To tutaj wszytsko się zaczęło. Możesz spróbować poszukać tu odpowiedzi na pytania, ale nie jestem już tak aktywny jak byłem kiedyś. Odwiedzenie serwera na Discord jest najlepszym sposobem na zadanie pytania.</value>
+    <comment>Help</comment>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value>Pedały Simagic P700</value>
+    <comment>Pedals device</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>STATUS WENTYLATORA</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>Przeciążenie boczne</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value></value>
+    <comment>Button</comment>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value>Należy wybrać plik kalibracyjny aby ten efekt zadziałał.</value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value></value>
+    <comment>Prediction mode list</comment>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value></value>
+    <comment>Prediction mode list</comment>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>FFB został manualnie wyłączony (zatrzymanie awaryjne)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>Symulator iRacing jest w trybie powtórki</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>FFB jest włączony w symulatorze iracing</value>
+    <comment>Racing wheel</comment>
   </data>
 </root>

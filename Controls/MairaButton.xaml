@@ -115,8 +115,8 @@
                     </Setter>
 
                     <Style.Triggers>
-                        <DataTrigger Binding="{Binding IsEnabled, ElementName=Root}"
-                                     Value="False">
+                        <DataTrigger Binding="{Binding Disabled, ElementName=Root}"
+                                     Value="True">
                             <Setter Property="Cursor"
                                     Value="Arrow" />
                         </DataTrigger>
@@ -182,11 +182,27 @@
                                             Value="32" />
                                 </DataTrigger>
 
-                                <DataTrigger Binding="{Binding IsEnabled, ElementName=Root}"
-                                             Value="False">
+                                <DataTrigger Binding="{Binding Disabled, ElementName=Root}"
+                                             Value="True">
                                     <Setter Property="Visibility"
                                             Value="Visible" />
                                 </DataTrigger>
+
+                                <MultiDataTrigger>
+
+                                    <MultiDataTrigger.Conditions>
+
+                                        <Condition Binding="{Binding Disabled, ElementName=Root}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding IsMapped, ElementName=Root}"
+                                                   Value="False" />
+
+                                    </MultiDataTrigger.Conditions>
+
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+
+                                </MultiDataTrigger>
 
                             </Style.Triggers>
 
@@ -227,8 +243,8 @@
 
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding IsEnabled, ElementName=Root}"
-                                                   Value="True" />
+                                        <Condition Binding="{Binding Disabled, ElementName=Root}"
+                                                   Value="False" />
                                         <Condition Binding="{Binding IsPressed, ElementName=Button}"
                                                    Value="True" />
                                     </MultiDataTrigger.Conditions>
@@ -238,8 +254,8 @@
 
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding IsEnabled, ElementName=Root}"
-                                                   Value="True" />
+                                        <Condition Binding="{Binding Disabled, ElementName=Root}"
+                                                   Value="False" />
                                         <Condition Binding="{Binding IsPressed, ElementName=Root}"
                                                    Value="True" />
                                     </MultiDataTrigger.Conditions>
@@ -286,8 +302,6 @@
 
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding IsEnabled, ElementName=Root}"
-                                                   Value="True" />
                                         <Condition Binding="{Binding IsMapped, ElementName=Root}"
                                                    Value="True" />
                                         <Condition Binding="{Binding IsPressed, ElementName=Root}"
@@ -338,8 +352,8 @@
 
                                 <MultiDataTrigger>
                                     <MultiDataTrigger.Conditions>
-                                        <Condition Binding="{Binding IsEnabled, ElementName=Root}"
-                                                   Value="True" />
+                                        <Condition Binding="{Binding Disabled, ElementName=Root}"
+                                                   Value="False" />
                                         <Condition Binding="{Binding IsMapped, ElementName=Root}"
                                                    Value="False" />
                                         <Condition Binding="{Binding IsPressed, ElementName=Root}"
@@ -378,8 +392,8 @@
 
                             <Style.Triggers>
 
-                                <DataTrigger Binding="{Binding IsEnabled, ElementName=Root}"
-                                             Value="False">
+                                <DataTrigger Binding="{Binding Disabled, ElementName=Root}"
+                                             Value="True">
                                     <Setter Property="Opacity"
                                             Value="0.25" />
                                 </DataTrigger>
