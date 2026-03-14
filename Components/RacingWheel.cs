@@ -7,7 +7,7 @@ using CsvHelper;
 
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Windows;
-
+using Windows.Media.Devices;
 using static MarvinsAIRARefactored.Windows.MainWindow;
 
 namespace MarvinsAIRARefactored.Components;
@@ -24,14 +24,6 @@ public class RacingWheel
 		DeltaLimiterOn60Hz,
 		SlewAndTotalCompression,
 		MultiAdjustmentToolkit
-	};
-
-	public enum MultiFFBSource
-	{
-		Native60Hz,
-		Native360Hz,
-		Hybrid10,
-		HybridVariable30
 	};
 
 	public enum MultiFFBSourceOptions
@@ -211,65 +203,6 @@ public class RacingWheel
 		}
 	}
 
-	public static MultiFFBSource GetMultiFFBSource()
-	{
-		var settings = DataContext.DataContext.Instance.Settings;
-
-		var multiFFBSource = settings.RacingWheelMultiFFBSourceSelection switch
-		{
-			RacingWheel.MultiFFBSourceOptions.Native60Hz or RacingWheel.MultiFFBSourceOptions.DefaultsNative60Hz => RacingWheel.MultiFFBSource.Native60Hz,
-			RacingWheel.MultiFFBSourceOptions.Native360Hz or RacingWheel.MultiFFBSourceOptions.DefaultsNative360Hz => RacingWheel.MultiFFBSource.Native360Hz,
-			RacingWheel.MultiFFBSourceOptions.Hybrid10 or RacingWheel.MultiFFBSourceOptions.DefaultsHybrid10 => RacingWheel.MultiFFBSource.Hybrid10,
-			_ => RacingWheel.MultiFFBSource.HybridVariable30,
-		};
-
-		return multiFFBSource;
-	}
-
-	public static bool MultiAdjustAlgorithmSourceIsCanned()
-	{
-		var settings = DataContext.DataContext.Instance.Settings;
-
-		return settings.RacingWheelMultiFFBSourceSelection > MultiFFBSourceOptions.HybridVariable30;
-	}
-
-	public void SwitchToNonCannedMultiAdjustAlgorithmSource()
-	{
-		if ( _preventSwitchToNonCannedMultiAdjustAlgorithmSource )
-		{
-			return;
-		}
-
-		var multiFFBSource = GetMultiFFBSource();
-
-		var settings = DataContext.DataContext.Instance.Settings;
-
-		settings.RacingWheelMultiFFBSourceSelection = settings.RacingWheelMultiFFBSourceSelection switch
-		{
-			MultiFFBSourceOptions.Native60Hz => MultiFFBSourceOptions.Native60Hz,
-			MultiFFBSourceOptions.Native360Hz => MultiFFBSourceOptions.Native360Hz,
-			MultiFFBSourceOptions.Hybrid10 => MultiFFBSourceOptions.Hybrid10,
-			MultiFFBSourceOptions.HybridVariable30 => MultiFFBSourceOptions.HybridVariable30,
-
-			RacingWheel.MultiFFBSourceOptions.DefaultsNative60Hz => RacingWheel.MultiFFBSourceOptions.Native60Hz,
-			RacingWheel.MultiFFBSourceOptions.DefaultsNative360Hz => RacingWheel.MultiFFBSourceOptions.Native360Hz,
-			RacingWheel.MultiFFBSourceOptions.DefaultsHybrid10 => RacingWheel.MultiFFBSourceOptions.Hybrid10,
-			RacingWheel.MultiFFBSourceOptions.DefaultsHybridVariable30 => RacingWheel.MultiFFBSourceOptions.HybridVariable30,
-
-			RacingWheel.MultiFFBSourceOptions.PresetBasicFFB => RacingWheel.MultiFFBSourceOptions.HybridVariable30,
-			RacingWheel.MultiFFBSourceOptions.PresetBalancedFFB => RacingWheel.MultiFFBSourceOptions.HybridVariable30,
-			RacingWheel.MultiFFBSourceOptions.PresetBoostDetail or RacingWheel.MultiFFBSourceOptions.PresetReduceDetail => multiFFBSource switch
-			{
-				RacingWheel.MultiFFBSource.Native60Hz => RacingWheel.MultiFFBSourceOptions.Native60Hz,
-				RacingWheel.MultiFFBSource.HybridVariable30 => RacingWheel.MultiFFBSourceOptions.HybridVariable30,
-				RacingWheel.MultiFFBSource.Hybrid10 => RacingWheel.MultiFFBSourceOptions.Hybrid10,
-				RacingWheel.MultiFFBSource.Native360Hz => RacingWheel.MultiFFBSourceOptions.Native360Hz,
-				_ => throw new NotImplementedException()
-			},
-			_ => throw new NotImplementedException()
-		};
-	}
-
 	public void SetCannedMultiAdjustAlgorithmValues()
 	{
 		_preventSwitchToNonCannedMultiAdjustAlgorithmSource = true;
@@ -279,9 +212,7 @@ public class RacingWheel
 		switch ( settings.RacingWheelMultiFFBSourceSelection )
 		{
 			case MultiFFBSourceOptions.Native60Hz:
-				settings.RacingWheelMulti360HzDetail = 1f;
-				settings.RacingWheelMultiOutputSmoothing = 0.25f;
-				settings.RacingWheelMultiSlewRateReduction = 0.1f;
+				settings.RacingWheelMulti360HzDetail = 0f;
 				break;
 
 			case MultiFFBSourceOptions.Native360Hz:
@@ -292,8 +223,6 @@ public class RacingWheel
 				break;
 
 			case MultiFFBSourceOptions.HybridVariable30:
-				settings.RacingWheelMultiOutputSmoothing = 0.1f;
-				settings.RacingWheelMultiSlewRateReduction = 0.1f * ( 1f - MathZ.Saturate( ( 8f - settings.RacingWheelWheelForce ) / 6f ) );
 				break;
 
 			case MultiFFBSourceOptions.DefaultsNative60Hz:
@@ -345,7 +274,7 @@ public class RacingWheel
 			case MultiFFBSourceOptions.PresetBasicFFB:
 				settings.RacingWheelMulti360HzDetail = 0.3f;
 				settings.RacingWheelMultiEnableSlewPeakMode = true;
-				settings.RacingWheelMultiSlewRateReduction = 0f;
+				settings.RacingWheelMultiSlewRateReduction = 0.1f * ( 1f - MathZ.Saturate( ( 8f - settings.RacingWheelWheelForce ) / 6f ) );
 				settings.RacingWheelMultiDetailGain = 0f;
 				settings.RacingWheelMultiOutputSmoothing = 0f;
 				break;
@@ -353,9 +282,9 @@ public class RacingWheel
 			case MultiFFBSourceOptions.PresetBalancedFFB:
 				settings.RacingWheelMulti360HzDetail = 0.55f;
 				settings.RacingWheelMultiEnableSlewPeakMode = true;
-				settings.RacingWheelMultiSlewRateReduction = 0f;
+				settings.RacingWheelMultiSlewRateReduction = 0.1f * ( 1f - MathZ.Saturate( ( 8f - settings.RacingWheelWheelForce ) / 6f ) );
 				settings.RacingWheelMultiDetailGain = 0f;
-				settings.RacingWheelMultiOutputSmoothing = 0f;
+				settings.RacingWheelMultiOutputSmoothing = 0.08f;
 				break;
 		}
 
@@ -512,15 +441,13 @@ public class RacingWheel
 				var hfScaledDelta = ( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, index360HzLastTorque ] ) * settings.RacingWheelMulti360HzDetail;
 				var hybridTorque = 0f;
 
-				var multiFFBSource = GetMultiFFBSource();
-
-				switch ( multiFFBSource )
+				switch ( settings.RacingWheelMultiFFBSourceSelection )
 				{
-					case MultiFFBSource.Native60Hz:
+					case MultiFFBSourceOptions.Native60Hz:
 						hybridTorque = steeringWheelTorque60Hz;
 						break;
 
-					case MultiFFBSource.HybridVariable30:
+					case MultiFFBSourceOptions.HybridVariable30:
 						var preliminaryHybridTorque = MathZ.Lerp( hybridLastTorque + hfScaledDelta, steeringWheelTorque60Hz, 0.3f - 0.2f * peakCountdown / 10f );
 
 						if ( MathF.Sign( preliminaryHybridTorque - hybridLastTorque ) != _algorithmProperties[ algorithmPropertyIndex, indexHybridLastVelocitySign ] )
@@ -535,11 +462,11 @@ public class RacingWheel
 
 						break;
 
-					case MultiFFBSource.Hybrid10:
+					case MultiFFBSourceOptions.Hybrid10:
 						hybridTorque = MathZ.Lerp( hybridLastTorque + hfScaledDelta, steeringWheelTorque60Hz, 0.1f );
 						break;
 
-					case MultiFFBSource.Native360Hz:
+					case MultiFFBSourceOptions.Native360Hz:
 						hybridTorque = steeringWheelTorque500Hz;
 						break;
 				}

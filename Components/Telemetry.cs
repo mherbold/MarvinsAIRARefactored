@@ -414,23 +414,21 @@ public class Telemetry
 
 					case RacingWheel.Algorithm.MultiAdjustmentToolkit:
 
-						var multiFFBSource = RacingWheel.GetMultiFFBSource();
-
-						switch ( multiFFBSource )
+						switch ( settings.RacingWheelMultiFFBSourceSelection )
 						{
-							case RacingWheel.MultiFFBSource.Native60Hz:
+							case RacingWheel.MultiFFBSourceOptions.Native60Hz:
 								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 0f;
 								break;
 
-							case RacingWheel.MultiFFBSource.HybridVariable30:
+							case RacingWheel.MultiFFBSourceOptions.HybridVariable30:
 								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 1f;
 								break;
 
-							case RacingWheel.MultiFFBSource.Hybrid10:
+							case RacingWheel.MultiFFBSourceOptions.Hybrid10:
 								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 2f;
 								break;
 
-							case RacingWheel.MultiFFBSource.Native360Hz:
+							case RacingWheel.MultiFFBSourceOptions.Native360Hz:
 								dataBuffer.racingWheelAlgorithmSettings[ 0 ] = 3f;
 								break;
 						}
@@ -450,21 +448,21 @@ public class Telemetry
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 5, localization[ "DetailGain" ] );
 						dataBuffer.SetRacingWheelAlgorithmSettingName( 6, localization[ "OutputSmoothing" ] );
 
-						switch ( multiFFBSource )
+						switch ( settings.RacingWheelMultiFFBSourceSelection )
 						{
-							case RacingWheel.MultiFFBSource.Native60Hz:
+							case RacingWheel.MultiFFBSourceOptions.Native60Hz:
 								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "Native60Hz" ] );
 								break;
 
-							case RacingWheel.MultiFFBSource.HybridVariable30:
+							case RacingWheel.MultiFFBSourceOptions.HybridVariable30:
 								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "HybridVariable30" ] );
 								break;
 
-							case RacingWheel.MultiFFBSource.Hybrid10:
+							case RacingWheel.MultiFFBSourceOptions.Hybrid10:
 								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "Hybrid10" ] );
 								break;
 
-							case RacingWheel.MultiFFBSource.Native360Hz:
+							case RacingWheel.MultiFFBSourceOptions.Native360Hz:
 								dataBuffer.SetRacingWheelAlgorithmSettingValue( 0, localization[ "Native360Hz" ] );
 								break;
 						}

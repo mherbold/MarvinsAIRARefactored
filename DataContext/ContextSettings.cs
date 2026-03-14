@@ -26,7 +26,6 @@ public class ContextSettings
 	public bool RacingWheelMultiEnableSlewPeakMode { get; set; } = true;
 	public float RacingWheelMultiSlewRateReduction { get; set; } = 0f;
 	public RacingWheel.MultiFFBSourceOptions RacingWheelMultiFFBSourceSelection { get; set; } = RacingWheel.MultiFFBSourceOptions.Native360Hz;
-	public RacingWheel.MultiFFBSource RacingWheelMultiFFBSource { get; set; } = RacingWheel.MultiFFBSource.Native360Hz;
 	public float RacingWheelMultiDetailGain { get; set; } = 0f;
 	public float RacingWheelMultiOutputSmoothing { get; set; } = 0f;
 	public float RacingWheelOutputMinimum { get; set; } = 0f;

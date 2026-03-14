@@ -20,6 +20,7 @@ public class Settings : INotifyPropertyChanged
 
 	private bool _updatingRacingWheelRelatedSettings = false;
 	private bool _updatingPedalsRelatedSettings = false;
+	private bool _updatingRacingWheelMultiSettings = false;
 
 	#region INotifyProperty stuff
 
@@ -1066,15 +1067,17 @@ public class Settings : INotifyPropertyChanged
 		{
 			var app = App.Instance!;
 
-			var multiFFBSource = RacingWheel.GetMultiFFBSource();
-
-			if ( ( multiFFBSource != RacingWheel.MultiFFBSource.Native60Hz ) && ( multiFFBSource != RacingWheel.MultiFFBSource.Native360Hz ) )
+			if ( RacingWheelMultiFFBSourceSelection == RacingWheel.MultiFFBSourceOptions.Native60Hz )
 			{
-				value = Math.Clamp( value, 0f, 3f );
+				value = 0f;
+			}
+			else if ( RacingWheelMultiFFBSourceSelection == RacingWheel.MultiFFBSourceOptions.Native360Hz )
+			{
+				value = 1f;
 			}
 			else
 			{
-				value = 1f;
+				value = Math.Clamp( value, 0f, 3f );
 			}
 
 			if ( value != _racingWheelMulti360HzDetail )
@@ -1082,11 +1085,6 @@ public class Settings : INotifyPropertyChanged
 				_racingWheelMulti360HzDetail = value;
 
 				OnPropertyChanged();
-
-				if ( RacingWheel.MultiAdjustAlgorithmSourceIsCanned() )
-				{
-					app.RacingWheel.SwitchToNonCannedMultiAdjustAlgorithmSource();
-				}
 			}
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
@@ -1145,11 +1143,6 @@ public class Settings : INotifyPropertyChanged
 				_racingWheelMultiTorqueCompression = value;
 
 				OnPropertyChanged();
-
-				if ( RacingWheel.MultiAdjustAlgorithmSourceIsCanned() )
-				{
-					app.RacingWheel.SwitchToNonCannedMultiAdjustAlgorithmSource();
-				}
 			}
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
@@ -1206,11 +1199,6 @@ public class Settings : INotifyPropertyChanged
 				_racingWheelMultiEnableSlewPeakMode = value;
 
 				OnPropertyChanged();
-
-				if ( RacingWheel.MultiAdjustAlgorithmSourceIsCanned() )
-				{
-					app.RacingWheel.SwitchToNonCannedMultiAdjustAlgorithmSource();
-				}
 			}
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
@@ -1240,11 +1228,6 @@ public class Settings : INotifyPropertyChanged
 				_racingWheelMultiSlewRateReduction = value;
 
 				OnPropertyChanged();
-
-				if ( RacingWheel.MultiAdjustAlgorithmSourceIsCanned() )
-				{
-					app.RacingWheel.SwitchToNonCannedMultiAdjustAlgorithmSource();
-				}
 			}
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
@@ -1296,14 +1279,58 @@ public class Settings : INotifyPropertyChanged
 		{
 			if ( value != _racingWheelMultiFFBSourceSelection )
 			{
+				var oldValue = _racingWheelMultiFFBSourceSelection;
+
 				_racingWheelMultiFFBSourceSelection = value;
 
 				OnPropertyChanged();
 
 				var app = App.Instance!;
 
-				app.RacingWheel.SetCannedMultiAdjustAlgorithmValues();
+				if ( ! _updatingRacingWheelMultiSettings )
+				{
+					app.RacingWheel.SetCannedMultiAdjustAlgorithmValues();
 
+					_updatingRacingWheelMultiSettings = true;
+
+					switch ( RacingWheelMultiFFBSourceSelection )
+					{
+						case RacingWheel.MultiFFBSourceOptions.DefaultsNative60Hz:
+							RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Native60Hz;
+							break;
+
+						case RacingWheel.MultiFFBSourceOptions.DefaultsNative360Hz:
+							RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Native360Hz;
+							break;
+
+						case RacingWheel.MultiFFBSourceOptions.DefaultsHybrid10:
+							RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Hybrid10;
+							break;
+
+						case RacingWheel.MultiFFBSourceOptions.DefaultsHybridVariable30:
+						case RacingWheel.MultiFFBSourceOptions.PresetBasicFFB:
+						case RacingWheel.MultiFFBSourceOptions.PresetBalancedFFB:
+							RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.HybridVariable30;
+							break;
+
+						case RacingWheel.MultiFFBSourceOptions.PresetBoostDetail:
+						case RacingWheel.MultiFFBSourceOptions.PresetReduceDetail:
+							RacingWheelMultiFFBSourceSelection = oldValue;
+							break;
+					}
+
+					_updatingRacingWheelMultiSettings = false;
+
+				}
+				else
+				{
+					System.Windows.Application.Current.Dispatcher.BeginInvoke(
+					DispatcherPriority.Loaded,
+					new Action(() =>
+					{
+						PropertyChanged?.Invoke(this, new PropertyChangedEventArgs( nameof( RacingWheelMultiFFBSourceSelection ) ) );
+					}));
+				}
 				app.RacingWheel.UpdateAlgorithmPreview = true;
 			}
 		}
@@ -1332,11 +1359,6 @@ public class Settings : INotifyPropertyChanged
 				_racingWheelMultiDetailGain = value;
 
 				OnPropertyChanged();
-
-				if ( RacingWheel.MultiAdjustAlgorithmSourceIsCanned() )
-				{
-					app.RacingWheel.SwitchToNonCannedMultiAdjustAlgorithmSource();
-				}
 			}
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
@@ -1388,11 +1410,6 @@ public class Settings : INotifyPropertyChanged
 				_racingWheelMultiOutputSmoothing = value;
 
 				OnPropertyChanged();
-
-				if ( RacingWheel.MultiAdjustAlgorithmSourceIsCanned() )
-				{
-					app.RacingWheel.SwitchToNonCannedMultiAdjustAlgorithmSource();
-				}
 			}
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
