@@ -269,7 +269,8 @@ public partial class RacingWheelPage : UserControl
 			{ RacingWheel.MultiFFBSourceOptions.PresetBasicFFB, localization[ "PresetBasicFFB" ] },
 			{ RacingWheel.MultiFFBSourceOptions.PresetBalancedFFB, localization[ "PresetBalancedFFB" ] },
 			{ RacingWheel.MultiFFBSourceOptions.PresetBoostDetail, localization[ "PresetBoostDetail" ] },
-			{ RacingWheel.MultiFFBSourceOptions.PresetReduceDetail, localization[ "PresetReduceDetail" ] }
+			{ RacingWheel.MultiFFBSourceOptions.PresetReduceDetail, localization[ "PresetReduceDetail" ] },
+			{ RacingWheel.MultiFFBSourceOptions.PresetReduceBigBumps, localization[ "PresetReduceBigBumps" ] }
 		};
 
 		app.Dispatcher.Invoke( () =>

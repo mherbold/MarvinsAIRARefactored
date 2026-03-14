@@ -38,6 +38,7 @@ public class RacingWheel
 		DefaultsHybridVariable30,
 		PresetBoostDetail,
 		PresetReduceDetail,
+		PresetReduceBigBumps,
 		PresetBasicFFB,
 		PresetBalancedFFB,
 		_Dummy1_,
@@ -269,6 +270,10 @@ public class RacingWheel
 			case MultiFFBSourceOptions.PresetReduceDetail:
 				settings.RacingWheelMultiDetailGain = -0.3f;
 				settings.RacingWheelMultiOutputSmoothing = 0f;
+				break;
+
+			case MultiFFBSourceOptions.PresetReduceBigBumps:
+				settings.RacingWheelMultiTorqueCompression = 0.5f;
 				break;
 
 			case MultiFFBSourceOptions.PresetBasicFFB:

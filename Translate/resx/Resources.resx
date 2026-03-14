@@ -1609,4 +1609,8 @@
     <value>CPU Affinity</value>
     <comment>App settings</comment>
   </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>(Preset) Reduce Big Bumps</value>
+    <comment>Settings to decrease the impact of big bumps</comment>
+  </data>
 </root>
