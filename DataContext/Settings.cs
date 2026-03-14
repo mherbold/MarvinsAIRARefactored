@@ -5,7 +5,6 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Threading;
 using System.Xml.Serialization;
-using Accord.Genetic;
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
 using MarvinsAIRARefactored.Windows;
@@ -1115,6 +1114,8 @@ public class Settings : INotifyPropertyChanged
                 }
                 else
                 {
+					// Force the combo box's displayed selection to update when the user selected a preset
+
                     System.Windows.Application.Current.Dispatcher.BeginInvoke(
                     DispatcherPriority.Loaded,
                     new Action(() =>

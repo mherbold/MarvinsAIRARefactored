@@ -7,7 +7,6 @@ using CsvHelper;
 
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Windows;
-using Windows.Media.Devices;
 using static MarvinsAIRARefactored.Windows.MainWindow;
 
 namespace MarvinsAIRARefactored.Components;
@@ -221,10 +220,18 @@ public class RacingWheel
 				break;
 
 			case MultiFFBSourceOptions.Hybrid10:
+				if ( settings.RacingWheelMulti360HzDetail == 0f )
+				{
+					settings.RacingWheelMulti360HzDetail = 1f;
+				}
 				break;
 
 			case MultiFFBSourceOptions.HybridVariable30:
-				break;
+                if (settings.RacingWheelMulti360HzDetail == 0f)
+                {
+                    settings.RacingWheelMulti360HzDetail = 1f;
+                }
+                break;
 
 			case MultiFFBSourceOptions.DefaultsNative60Hz:
 				settings.RacingWheelMulti360HzDetail = 1f;
