@@ -99,6 +99,7 @@ public partial class Simulator
 	public float Velocity { get; private set; } = 0f;
 	public float VelocityX { get; private set; } = 0f;
 	public float VelocityY { get; private set; } = 0f;
+	public float VertAccel { get; private set; } = 0f;
 	public bool WasOnTrack { get; private set; } = false;
 	public bool WeatherDeclaredWet { get; private set; } = false;
 	public float YawNorth { get; private set; } = 0f;
@@ -159,6 +160,7 @@ public partial class Simulator
 	private IRacingSdkDatum? _throttleDatum = null;
 	private IRacingSdkDatum? _velocityXDatum = null;
 	private IRacingSdkDatum? _velocityYDatum = null;
+	private IRacingSdkDatum? _vertAccelDatum = null;
 	private IRacingSdkDatum? _weatherDeclaredWetDatum = null;
 	private IRacingSdkDatum? _yawNorthDatum = null;
 	private IRacingSdkDatum? _yawRateDatum = null;
@@ -333,6 +335,7 @@ public partial class Simulator
 		Velocity = 0f;
 		VelocityX = 0f;
 		VelocityY = 0f;
+		VertAccel = 0f;
 		WasOnTrack = false;
 		WeatherDeclaredWet = false;
 		YawNorth = 0f;
@@ -572,6 +575,7 @@ public partial class Simulator
 			_throttleDatum = _irsdk.Data.TelemetryDataProperties[ "Throttle" ];
 			_velocityXDatum = _irsdk.Data.TelemetryDataProperties[ "VelocityX" ];
 			_velocityYDatum = _irsdk.Data.TelemetryDataProperties[ "VelocityY" ];
+			_vertAccelDatum = _irsdk.Data.TelemetryDataProperties[ "VertAccel" ];
 			_weatherDeclaredWetDatum = _irsdk.Data.TelemetryDataProperties[ "WeatherDeclaredWet" ];
 			_yawNorthDatum = _irsdk.Data.TelemetryDataProperties[ "YawNorth" ];
 			_yawRateDatum = _irsdk.Data.TelemetryDataProperties[ "YawRate" ];
@@ -666,6 +670,7 @@ public partial class Simulator
 		Throttle = _irsdk.Data.GetFloat( _throttleDatum );
 		VelocityX = _irsdk.Data.GetFloat( _velocityXDatum );
 		VelocityY = _irsdk.Data.GetFloat( _velocityYDatum );
+		VertAccel = _irsdk.Data.GetFloat( _vertAccelDatum );
 		WeatherDeclaredWet = _irsdk.Data.GetBool( _weatherDeclaredWetDatum );
 		YawNorth = _irsdk.Data.GetFloat( _yawNorthDatum );
 		YawRate = _irsdk.Data.GetFloat( _yawRateDatum );
