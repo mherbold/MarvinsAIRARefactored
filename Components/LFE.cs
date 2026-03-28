@@ -41,6 +41,7 @@ public class LFE
 
 	private DirectSoundCapture? _directSoundCapture = null;
 	private CaptureBuffer? _captureBuffer = null;
+	private bool _captureDeviceCreated = false;
 	private readonly AutoResetEvent _autoResetEvent = new( false );
 
 	private readonly Thread _workerThread = new( WorkerThread ) { IsBackground = true, Priority = ThreadPriority.Highest, Name = "MAIRA LFE Worker Thread" };
@@ -53,6 +54,8 @@ public class LFE
 
 	private readonly byte[] _scratchRead = new byte[ _frameSizeInBytes ];
 	private readonly float[,] _magnitude = new float[ 2, _batchCount ];
+
+	private Guid? _configuredCaptureDeviceGuid = null;
 
 	public void Initialize()
 	{
@@ -124,13 +127,13 @@ public class LFE
 
 		app.Logger.WriteLine( "[LFE] CreateCaptureDevice >>>" );
 
-		if ( ( NextCaptureDeviceGuid != null ) && ( NextCaptureDeviceGuid != Guid.Empty ) )
+		if ( ( _configuredCaptureDeviceGuid != null ) && ( _configuredCaptureDeviceGuid != Guid.Empty ) )
 		{
 			try
 			{
 				app.Logger.WriteLine( "[LFE] Creating the new direct sound capture device" );
 
-				_directSoundCapture = new DirectSoundCapture( (Guid) NextCaptureDeviceGuid );
+				_directSoundCapture = new DirectSoundCapture( (Guid) _configuredCaptureDeviceGuid );
 
 				var captureBufferDescription = new CaptureBufferDescription
 				{
@@ -165,6 +168,8 @@ public class LFE
 				_pingPongIndex = 0;
 
 				_captureBuffer.Start( true );
+
+				_captureDeviceCreated = true;
 			}
 			catch ( Exception exception )
 			{
@@ -189,7 +194,16 @@ public class LFE
 			_captureBuffer = null;
 		}
 
+		if ( _directSoundCapture != null )
+		{
+			_directSoundCapture.Dispose();
+
+			_directSoundCapture = null;
+		}
+
 		Array.Clear( _magnitude );
+
+		_captureDeviceCreated = false;
 
 		app.Logger.WriteLine( "[LFE] <<< ReleaseCaptureDevice" );
 	}
@@ -201,12 +215,29 @@ public class LFE
 		{
 			app.Logger.WriteLine( $"[LFE] Switching to the next capture device: {NextCaptureDeviceGuid}" );
 
-			ReleaseCaptureDevice();
-			CreateCaptureDevice();
+			_configuredCaptureDeviceGuid = NextCaptureDeviceGuid;
 
 			NextCaptureDeviceGuid = null;
 
+			if ( app.Simulator.IsOnTrack )
+			{
+				ReleaseCaptureDevice();
+				CreateCaptureDevice();
+			}
+
 			signalReceived = false;
+		}
+		else if ( app.Simulator.IsOnTrack && !_captureDeviceCreated )
+		{
+			app.Logger.WriteLine( "[LFE] Went on track - creating capture device" );
+
+			CreateCaptureDevice();
+		}
+		else if ( !app.Simulator.IsOnTrack && _captureDeviceCreated )
+		{
+			app.Logger.WriteLine( "[LFE] Went off track - releasing capture device" );
+
+			ReleaseCaptureDevice();
 		}
 
 		if ( signalReceived && ( _captureBuffer != null ) )
