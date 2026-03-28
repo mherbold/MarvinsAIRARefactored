@@ -417,7 +417,7 @@ public class Pedals
 
 	private (bool, float, float) DoWheelLockEffect( App app, float amplitude )
 	{
-		if ( _testing || ( ( app.Simulator.CurrentRpmSpeedRatio > 0f ) && ( app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] > 0f ) ) )
+		if ( _testing || ( ( app.Simulator.CurrentRpmSpeedRatio > 0f ) && ( app.Simulator.Gear > 0 ) && ( app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] > 0f ) ) )
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
@@ -450,7 +450,7 @@ public class Pedals
 
 	private (bool, float, float) DoWheelSpinEffect( App app, float amplitude )
 	{
-		if ( _testing || ( ( app.Simulator.CurrentRpmSpeedRatio > 0f ) && ( app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] > 0f ) ) )
+		if ( _testing || ( ( app.Simulator.CurrentRpmSpeedRatio > 0f ) && ( app.Simulator.Gear > 0 ) && ( app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] > 0f ) ) )
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
