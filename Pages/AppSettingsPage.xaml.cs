@@ -72,6 +72,7 @@ public partial class AppSettingsPage : UserControl
 			{ MainWindow.AppPage.SteeringEffects, localization[ "SteeringEffects" ] },
 			{ MainWindow.AppPage.Pedals, localization[ "Pedals" ] },
 			{ MainWindow.AppPage.Wind, localization[ "Wind" ] },
+			{ MainWindow.AppPage.SeatBeltTensioner, localization[ "SeatBeltTensioner" ] },
 			{ MainWindow.AppPage.Sounds, localization[ "Sounds" ] },
 			{ MainWindow.AppPage.SpeechToText, localization[ "SpeechToText" ] },
 			{ MainWindow.AppPage.TradingPaints, localization[ "TradingPaints" ] },

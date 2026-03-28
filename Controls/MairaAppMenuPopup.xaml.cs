@@ -95,6 +95,9 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.Wind:
 					return "advanced/wind/";
 
+				case AppPage.SeatBeltTensioner:
+					return "advanced/seat-belt-tensioner/";
+
 				case AppPage.Overlays:
 					return "advanced/overlays/";
 
@@ -241,6 +244,12 @@ namespace MarvinsAIRARefactored.Controls
 
 			AppMenuItems.Add( new AppMenuItem
 			{
+				AppPage = AppPage.SeatBeltTensioner,
+				PageUserControl = _seatBeltTensionerPage
+			} );
+
+			AppMenuItems.Add( new AppMenuItem
+			{
 				AppPage = AppPage.Overlays,
 				PageUserControl = _overlaysPage
 			} );
@@ -328,6 +337,7 @@ namespace MarvinsAIRARefactored.Controls
 				AppPage.SteeringEffects => _steeringEffectsPage,
 				AppPage.Pedals => _pedalsPage,
 				AppPage.Wind => _windPage,
+				AppPage.SeatBeltTensioner => _seatBeltTensionerPage,
 				AppPage.Overlays => _overlaysPage,
 				AppPage.Sounds => _soundsPage,
 				AppPage.SpeechToText => _speechToTextPage,
@@ -377,6 +387,10 @@ namespace MarvinsAIRARefactored.Controls
 
 					case AppPage.Wind:
 						menuItem.DisplayName = localization[ "Wind" ];
+						break;
+
+					case AppPage.SeatBeltTensioner:
+						menuItem.DisplayName = localization[ "SeatBeltTensioner" ];
 						break;
 
 					case AppPage.Overlays:
@@ -452,6 +466,10 @@ namespace MarvinsAIRARefactored.Controls
 
 				case AppPage.Wind:
 					SelectedAppPageText = localization[ "Wind_UC" ];
+					break;
+
+				case AppPage.SeatBeltTensioner:
+					SelectedAppPageText = localization[ "SeatBeltTensioner_UC" ];
 					break;
 
 				case AppPage.Overlays:

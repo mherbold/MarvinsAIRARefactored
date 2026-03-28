@@ -27,6 +27,7 @@ public partial class MainWindow : Window
 		SteeringEffects,
 		Pedals,
 		Wind,
+		SeatBeltTensioner,
 		Overlays,
 		Sounds,
 		SpeechToText,
@@ -47,6 +48,7 @@ public partial class MainWindow : Window
 	public static readonly SteeringEffectsPage _steeringEffectsPage = new();
 	public static readonly PedalsPage _pedalsPage = new();
 	public static readonly WindPage _windPage = new();
+	public static readonly SeatBeltTensionerPage _seatBeltTensionerPage = new();
 	public static readonly OverlaysPage _overlaysPage = new();
 	public static readonly SoundsPage _soundsPage = new();
 	public static readonly SpeechToTextPage _speechToTextPage = new();
