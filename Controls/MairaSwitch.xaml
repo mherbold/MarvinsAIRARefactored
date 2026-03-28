@@ -9,6 +9,18 @@
 
     <Grid x:Name="LayoutRoot">
 
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding IsEnabled, ElementName=Root}"
+                                 Value="False">
+                        <Setter Property="Opacity"
+                                Value="0.35" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
