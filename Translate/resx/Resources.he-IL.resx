@@ -126,7 +126,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
-    <value></value>
+    <value>עברית (ישראל) - Hebrew (Israel)</value>
     <comment>App language list</comment>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
@@ -328,6 +328,10 @@
   <data name="Maximum" xml:space="preserve">
     <value></value>
     <comment>Racing wheel, Pedals, Graph</comment>
+  </data>
+  <data name="Neutral" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="Curve" xml:space="preserve">
     <value></value>
@@ -1165,6 +1169,42 @@
     <value></value>
     <comment>App menu item</comment>
   </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value></value>
+    <comment>Page title</comment>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value></value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Tuning_UC" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="SurgeMaxG" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="SwayMaxG" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="HeaveMaxG" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value></value>
     <comment>Wind</comment>
@@ -1500,5 +1540,13 @@
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value></value>
     <comment>Overlays</comment>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value></value>
+    <comment>App settings</comment>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value></value>
+    <comment>Settings to decrease the impact of big bumps</comment>
   </data>
 </root>

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -329,6 +329,10 @@
   <data name="Maximum" xml:space="preserve">
     <value>Максимум</value>
     <comment>Racing wheel, Pedals, Graph</comment>
+  </data>
+  <data name="Neutral" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="Curve" xml:space="preserve">
     <value>Крива</value>
@@ -1170,6 +1174,42 @@
     <value>Вітер</value>
     <comment>App menu item</comment>
   </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value></value>
+    <comment>Page title</comment>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value></value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Tuning_UC" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="SurgeMaxG" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="SwayMaxG" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="HeaveMaxG" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value></value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Підключення до MAIRA Wind під час запуску програми</value>
     <comment>Wind</comment>
@@ -1380,6 +1420,58 @@
     <value>СТАН ВЕНТИЛЯТОРА</value>
     <comment>Wind</comment>
   </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value></value>
+    <comment>360 Hz Detail Amount</comment>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value></value>
+    <comment>Slew Reduction Peak Aware Mode</comment>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value></value>
+    <comment>On 60 Hz with variable 10-30% Bias</comment>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value></value>
+    <comment>On 60 Hz with 10% bias</comment>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value></value>
+    <comment>Load default values for Native 60 Hz</comment>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value></value>
+    <comment>Load default values for 360 Hz on 60 Hz, 10-30% Bias</comment>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value></value>
+    <comment>Load default values for 360 Hz on 60 Hz, 10% Bias</comment>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value></value>
+    <comment>Load default values for Native 360 Hz</comment>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value></value>
+    <comment>Settings targeting core tire feedback</comment>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value></value>
+    <comment>Settings targeting a balance between tire feedback and surface detail</comment>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value></value>
+    <comment>Settings to boost FFB Dynamics</comment>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value></value>
+    <comment>Settings to decrease FFB dynamics</comment>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value></value>
+    <comment>FFB type selection plus preset options</comment>
+  </data>
   <data name="LateralGForce" xml:space="preserve">
     <value>Бічна сила-G</value>
     <comment>Racing wheel</comment>
@@ -1407,5 +1499,61 @@
   <data name="PredictionBlend" xml:space="preserve">
     <value>Суміш прогнозів</value>
     <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value></value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GapMonitor" xml:space="preserve">
+    <value></value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value></value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value></value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="Overlays" xml:space="preserve">
+    <value></value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="EnableOverlayWindow" xml:space="preserve">
+    <value></value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value></value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value></value>
+    <comment>App settings</comment>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value></value>
+    <comment>Settings to decrease the impact of big bumps</comment>
   </data>
 </root>

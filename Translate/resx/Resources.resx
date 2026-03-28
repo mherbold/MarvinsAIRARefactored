@@ -427,11 +427,15 @@
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
-    <comment>Racing wheel, Pedals, Graph</comment>
+    <comment>Racing wheel, Pedals, Graph, Seat Belt Tensioner</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
     <value>Maximum</value>
-    <comment>Racing wheel, Pedals, Graph</comment>
+    <comment>Racing wheel, Pedals, Graph, Seat Belt Tensioner</comment>
+  </data>
+  <data name="Neutral" xml:space="preserve">
+    <value>Neutral</value>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="Curve" xml:space="preserve">
     <value>Curve</value>
@@ -1067,7 +1071,7 @@
   </data>
   <data name="Calibration_UC" xml:space="preserve">
     <value>CALIBRATION</value>
-    <comment>Steering effects</comment>
+    <comment>Steering effects, Seat Belt Tensioner</comment>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
     <value>Vibration Pattern</value>
@@ -1268,6 +1272,42 @@
   <data name="Wind" xml:space="preserve">
     <value>Wind</value>
     <comment>App menu item</comment>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>SEAT BELT TENSIONER</value>
+    <comment>Page title</comment>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>Seat Belt Tensioner</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>Connect to MAIRA Seat Belt Tensioner</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>Connect to MAIRA Seat Belt Tensioner on App Startup</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Tuning_UC" xml:space="preserve">
+    <value>TUNING</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="SurgeMaxG" xml:space="preserve">
+    <value>Surge Max G</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="SwayMaxG" xml:space="preserve">
+    <value>Sway Max G</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="HeaveMaxG" xml:space="preserve">
+    <value>Heave Max G</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>Max Motor Speed</value>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Connect to MAIRA Wind on App Startup</value>

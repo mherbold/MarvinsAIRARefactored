@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -14,131 +118,131 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Algorithm" xml:space="preserve">
-    <value>Алгоритм</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="AppSettings" xml:space="preserve">
-    <value>Настройки</value>
+    <value>การตั้งค่าแอป</value>
     <comment>App menu item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value>Marvin's Awesome iRacing App</value>
+    <value />
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
-    <value>Смещение (Detail Boost Bias)</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="DetailBoost" xml:space="preserve">
-    <value>Усиление деталей</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
-    <value>Уменьшать усилие при входе/выходе из машины</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="RacingFriction" xml:space="preserve">
-    <value>Трение (friction)</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Graph" xml:space="preserve">
-    <value>График</value>
+    <value>กราฟ</value>
     <comment>App menu item</comment>
   </data>
   <data name="HeaderData_UC" xml:space="preserve">
-    <value>Header данные</value>
+    <value />
     <comment>Simulator</comment>
   </data>
   <data name="Language_UC" xml:space="preserve">
-    <value>Язык</value>
+    <value>ภาษา</value>
     <comment>App settings</comment>
   </data>
   <data name="DetailBooster" xml:space="preserve">
-    <value>Усиление деталей</value>
+    <value />
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
-    <value>Уменьшение деталей (delta limit)</value>
+    <value />
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="MaxForce" xml:space="preserve">
-    <value>Максимальная сила (Max Force)</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Native60Hz" xml:space="preserve">
-    <value>Нативные 60гц</value>
+    <value />
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="Native360Hz" xml:space="preserve">
-    <value>Нативные 360гц</value>
+    <value />
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="NoFFBDevicesFound" xml:space="preserve">
-    <value>[Устройство с обратной связью не найдено]</value>
-    <comment>Steering device list</comment>
+    <value />
+    <comment>Steering devices list</comment>
   </data>
   <data name="OFF" xml:space="preserve">
-    <value>ВЫКЛ</value>
+    <value>ปิด</value>
     <comment>Generic</comment>
   </data>
   <data name="Power" xml:space="preserve">
-    <value>ВКЛ</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="RacingWheel" xml:space="preserve">
-    <value>Руль</value>
+    <value>พวงมาลัย</value>
     <comment>App menu item</comment>
   </data>
   <data name="RacingWheel_UC" xml:space="preserve">
-    <value>Руль</value>
-    <comment>Racing wheel</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="SteeringDevice" xml:space="preserve">
-    <value>Устройство ввода</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Reset" xml:space="preserve">
-    <value>Сброс</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="SessionInformation_UC" xml:space="preserve">
-    <value>Информация о сессии</value>
+    <value />
     <comment>Simulator</comment>
   </data>
   <data name="Simulator" xml:space="preserve">
-    <value>Симулятор</value>
+    <value>ซิมมูเลเตอร์</value>
     <comment>App menu item</comment>
   </data>
   <data name="SimulatorNotRunning" xml:space="preserve">
-    <value>iRacing не запущен</value>
+    <value>iRacing simulator ไม่ได้ทำงานอยู่</value>
     <comment>Generic</comment>
   </data>
   <data name="SoftLockStrength" xml:space="preserve">
-    <value>Ограничение soft lock</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="TelemetryData_UC" xml:space="preserve">
-    <value>Данные телеметрии</value>
+    <value />
     <comment>Simulator</comment>
   </data>
   <data name="Test" xml:space="preserve">
-    <value>Тест</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
-    <value>Русский (Россия) - Russian (Russia)</value>
+    <value>ไทย (ประเทศไทย) - Thai (Thailand)</value>
     <comment>App language list</comment>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
-    <value>Поверх всех окон</value>
+    <value>หน้าต่างบนสุด</value>
     <comment>App settings</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value> Нм</value>
+    <value>นิวตันเมตร</value>
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value>Усиление деталей (на 60гц)</value>
+    <value />
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
@@ -146,51 +250,51 @@
     <comment>App menu item</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
-    <value>Подключиться к AdminBoxx</value>
+    <value>เชื่อมต่อกับ AdminBoxx</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="UpdateButtonMappings" xml:space="preserve">
-    <value>Обновить назначения клавиш</value>
+    <value />
     <comment>Window title</comment>
   </data>
   <data name="PressTheRecordButton" xml:space="preserve">
-    <value>[Нажмите кнопку "запись"]</value>
+    <value>[กดปุ่มเพื่อบันทึก]</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Button" xml:space="preserve">
-    <value>Кнопка</value>
+    <value>ปุ่ม</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Click" xml:space="preserve">
-    <value>Клик</value>
+    <value>คลิก</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Hold" xml:space="preserve">
-    <value>Удерживать</value>
+    <value>กดค้าง</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Keyboard" xml:space="preserve">
-    <value>Клавиатура</value>
+    <value>คีย์บอร์ด</value>
     <comment>Button mapping</comment>
   </data>
   <data name="WaitingForInput" xml:space="preserve">
-    <value>[Ожидается ввод]</value>
+    <value>[รอการกดปุ่ม]</value>
     <comment>Button mapping</comment>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value>Уменьшение деталей(delta limit)</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value> Нм/с</value>
-    <comment>Abbreviation for Newton-meters per millisecond</comment>
+    <value>นิวตันเมตร/วินาที</value>
+    <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
-    <value>Уменьшение деталей (на 60гц)</value>
+    <value />
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Нм</value>
+    <value>%/นิวตันเมตร</value>
     <comment>Abbreviation for percent per Newton-meters</comment>
   </data>
   <data name="Percent" xml:space="preserve">
@@ -198,561 +302,563 @@
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="CompressionRate" xml:space="preserve">
-    <value>Степень сжатия</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
-    <value>Устройство</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="OverallStrength_UC" xml:space="preserve">
-    <value>Общая сила</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoTarget" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value>Сброс</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentForce" xml:space="preserve">
-    <value>Текущая сила</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="PeakForce" xml:space="preserve">
-    <value>Максимальная сила</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
-    <value>Авто сила</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="OtherFeatures_UC" xml:space="preserve">
-    <value>Иное</value>
+    <value />
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="Switches_UC" xml:space="preserve">
-    <value>Переключатели</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="CrashProtection_UC" xml:space="preserve">
-    <value>Защита от аварий</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value> g</value>
+    <value>g</value>
     <comment>Abbreviation for g-force</comment>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>Ускорение</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Duration" xml:space="preserve">
-    <value>Длительность</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceReduction" xml:space="preserve">
-    <value>Уменьшение усилия</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value> сек</value>
+    <value>วินาที</value>
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value> м/с</value>
+    <value>เมตร/วินาที</value>
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
-    <value>Защита от поребриков</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
-    <value>Скорость удара</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>Педали</value>
-    <comment>Pedals</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
-    <value>Педали Simagic P1000 </value>
+    <value />
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsP2000" xml:space="preserve">
-    <value>Педали Simagic P2000</value>
+    <value />
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsNone" xml:space="preserve">
-    <value>[Не найдено совместимых педалей Simagic]</value>
+    <value />
     <comment>Pedals device</comment>
   </data>
   <data name="Clutch_UC" xml:space="preserve">
-    <value>Сцепление</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="Brake_UC" xml:space="preserve">
-    <value>Тормоз</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="Throttle_UC" xml:space="preserve">
-    <value>Газ</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="PedalEffects" xml:space="preserve">
-    <value>Эффекты педалей</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="Strength" xml:space="preserve">
-    <value>Сила</value>
+    <value />
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value> Гц</value>
+    <value>เฮิรตซ์</value>
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>Частота</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>Амплитуда</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="Minimum" xml:space="preserve">
-    <value>Минимум</value>
+    <value />
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
-    <value>Максимум</value>
+    <value />
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Curve" xml:space="preserve">
-    <value>Кривая</value>
+    <value />
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="GearChange" xml:space="preserve">
-    <value>Переключение передачи</value>
+    <value />
     <comment>Pedal effects list</comment>
   </data>
   <data name="ClutchSlip_UC" xml:space="preserve">
-    <value>Пробуксовка сцепления (clutch slip)</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="SteeringEffects_UC" xml:space="preserve">
-    <value>Эффекты руля</value>
-    <comment>Steering effects</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
-    <value>Эффекты руля</value>
+    <value>เอฟเฟกต์พวงมาลัย</value>
     <comment>App menu item</comment>
   </data>
   <data name="WheelLock_UC" xml:space="preserve">
-    <value>Блокировка колёс</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="WheelSpin_UC" xml:space="preserve">
-    <value>Пробуксовка колёс</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="RPM_UC" xml:space="preserve">
-    <value>Обороты (RPM)</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="None" xml:space="preserve">
-    <value>Выкл</value>
+    <value />
     <comment>Pedal effects list</comment>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value>Для базы</value>
+    <value />
     <comment>Save conditions</comment>
   </data>
   <data name="PerCar" xml:space="preserve">
-    <value>для машины</value>
+    <value />
     <comment>Save conditions</comment>
   </data>
   <data name="PerTrack" xml:space="preserve">
-    <value>для трека</value>
+    <value />
     <comment>Save conditions</comment>
   </data>
   <data name="PerTrackConfiguration" xml:space="preserve">
-    <value>для конфигурации трека</value>
+    <value />
     <comment>Save conditions</comment>
   </data>
   <data name="PerWetDry" xml:space="preserve">
-    <value>для влажной/сухой</value>
+    <value />
     <comment>Save conditions</comment>
   </data>
   <data name="Wet" xml:space="preserve">
-    <value>Влажно</value>
+    <value />
     <comment>Status</comment>
   </data>
   <data name="Dry" xml:space="preserve">
-    <value>Сухо</value>
+    <value />
     <comment>Status</comment>
   </data>
   <data name="Default" xml:space="preserve">
-    <value>По-умолчанию</value>
+    <value />
     <comment>Status</comment>
   </data>
   <data name="SaveThisSetting" xml:space="preserve">
-    <value>Сохранить эту настройку</value>
+    <value />
     <comment>Window title</comment>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>Доступна новая версия!</value>
+    <value />
     <comment>Window title</comment>
   </data>
   <data name="DownloadQuestion" xml:space="preserve">
-    <value>Хотите скачать сейчас?</value>
+    <value>ต้องการดาวน์โหลดตอนนี้หรือไม่?</value>
     <comment>Cloud service</comment>
   </data>
   <data name="RunInstaller" xml:space="preserve">
-    <value>Запустить обновление?</value>
+    <value />
     <comment>Window title</comment>
   </data>
   <data name="RunInstallerQuestion" xml:space="preserve">
-    <value>Установить обновление сейчас?</value>
+    <value>ต้องการรันตัวติดตั้งตอนนี้หรือไม่?</value>
     <comment>Cloud service</comment>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
-    <value>Проверять обновления</value>
+    <value>ตรวจสอบอัปเดตเมื่อเริ่มต้น</value>
     <comment>App settings</comment>
   </data>
   <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Автоматически загружать обновления</value>
+    <value>ดาวน์โหลดอัปเดตอัตโนมัติ</value>
     <comment>App settings</comment>
   </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
-    <value>Подключаться к AdminBoxx при запуске приложения</value>
+    <value>เชื่อมต่อกับ AdminBoxx เมื่อเริ่มแอป</value>
+    <comment>AdminBoxx</comment>
   </data>
   <data name="Brightness" xml:space="preserve">
-    <value>Яркость</value>
+    <value>ความสว่าง</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Громкость</value>
+    <value>ระดับเสียง</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Звуковые устройства не найдены]</value>
-    <comment>Audio device list</comment>
+    <value>[ไม่พบอุปกรณ์เสียง]</value>
+    <comment>Audio devices list</comment>
   </data>
   <data name="Connection" xml:space="preserve">
-    <value>Соединение</value>
+    <value>การเชื่อมต่อ</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Display" xml:space="preserve">
-    <value>Дисплей</value>
+    <value>จอแสดงผล</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Audio" xml:space="preserve">
-    <value>Звук</value>
+    <value>เสียง</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Смещение (Delta Limiter Bias)</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Output_UC" xml:space="preserve">
-    <value>Вывод</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="WheelLFE_UC" xml:space="preserve">
-    <value>Вибрация руля (LFE)</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
-    <value>Устройство записи LFE</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Average" xml:space="preserve">
-    <value>Среднее</value>
+    <value>ค่าเฉลี่ย</value>
     <comment>Graph</comment>
   </data>
   <data name="Variance" xml:space="preserve">
-    <value>Разброс</value>
+    <value>ความแปรปรวน</value>
     <comment>Graph</comment>
   </data>
   <data name="StandardDeviation" xml:space="preserve">
-    <value>Стандартное отклонение</value>
+    <value>ส่วนเบี่ยงเบนมาตรฐาน</value>
     <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
-    <value>60 Гц Torque вход</value>
+    <value>แรงบิด ขาเข้า (60Hz)</value>
     <comment>Graph</comment>
   </data>
   <data name="InputTorque" xml:space="preserve">
-    <value>Torque вход</value>
+    <value>แรงบิด ขาเข้า</value>
     <comment>Graph</comment>
   </data>
   <data name="OutputTorque" xml:space="preserve">
-    <value>Torque выход</value>
+    <value>แรงบิด ขาออก</value>
     <comment>Graph</comment>
   </data>
   <data name="TimerJitter" xml:space="preserve">
-    <value>Timer Jitter</value>
+    <value />
     <comment>Graph</comment>
   </data>
   <data name="InputLFE" xml:space="preserve">
-    <value>LFE вход</value>
+    <value>LFE ขาเข้า</value>
     <comment>Graph</comment>
   </data>
   <data name="ABSEngaged_UC" xml:space="preserve">
-    <value>Работа АБС </value>
+    <value />
     <comment>Sounds</comment>
   </data>
   <data name="Disabled" xml:space="preserve">
-    <value>[Выкл]</value>
-    <comment>LFE device list</comment>
+    <value>[ปิดใช้งาน]</value>
+    <comment>LFE devices list</comment>
   </data>
   <data name="RememberWindowPositionAndSize" xml:space="preserve">
-    <value>Запоминать положение и размер окна</value>
+    <value>จดจำตำแหน่งและขนาดหน้าต่าง</value>
     <comment>App settings</comment>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
-    <value>Уменьшать с нажатием тормоза</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="StartingRPM" xml:space="preserve">
-    <value>Начальные обороты</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="VibrateInTopGear" xml:space="preserve">
-    <value>Вибрировать на максимальной передаче</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
-    <value>Уменьшать с нажатием газа</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="StartingPoint" xml:space="preserve">
-    <value>Начальная точка</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="EndingPoint" xml:space="preserve">
-    <value>Конечная точка</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
-    <value>Переключение передачи - включение передачи</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
-    <value>Переключение передачи - включение нейтральной</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
-    <value>Выдавать FFB даже если оно включено в iRacing</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="ClutchPedalHaptics" xml:space="preserve">
-    <value>Хаптика сцепления</value>
+    <value>แรงสั่นแป้นคลัตช์</value>
     <comment>Graph</comment>
   </data>
   <data name="BrakePedalHaptics" xml:space="preserve">
-    <value>Хаптика тормоза</value>
+    <value>แรงสั่นแป้นเบรก</value>
     <comment>Graph</comment>
   </data>
   <data name="ThrottlePedalHaptics" xml:space="preserve">
-    <value>Хаптика газа</value>
+    <value>แรงสั่นแป้นคันเร่ง</value>
     <comment>Graph</comment>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
-    <value>Снижение шумов</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="AppWindow_UC" xml:space="preserve">
-    <value>Окно приложения</value>
+    <value>หน้าต่างแอป</value>
     <comment>App settings</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
-    <value>Масштаб интерфейса</value>
+    <value>ขนาด UI</value>
     <comment>App settings</comment>
   </data>
   <data name="CloudService_UC" xml:space="preserve">
-    <value>Облачный сервис</value>
+    <value>บริการคลาวด์</value>
     <comment>App settings</comment>
   </data>
   <data name="CheckNow" xml:space="preserve">
-    <value>Проверить сейчас</value>
+    <value>ตรวจสอบตอนนี้</value>
     <comment>App settings</comment>
   </data>
   <data name="CheckingForUpdate" xml:space="preserve">
-    <value>Проверка обновлений...</value>
+    <value />
     <comment>Status</comment>
   </data>
   <data name="DownloadingUpdate" xml:space="preserve">
-    <value>Загрузка обновления...</value>
+    <value />
     <comment>Status</comment>
   </data>
   <data name="Contribute_UC" xml:space="preserve">
-    <value>Помочь</value>
-    <comment>Contribute</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
-    <value>Купить мне кофе!</value>
+    <value>เลี้ยงกาแฟ</value>
     <comment>Contribute</comment>
   </data>
   <data name="DonationsText" xml:space="preserve">
-    <value>Пожертвования абсолютно добровольные.Я никогда не буду брать плату за использование MAIRA. Но всё же они очень приятны и хорошо мотивируют продолжать работать над приложением. Большое спасибо всем, кто уже сделал пожертвование! Это можно сделать по ссылке:</value>
+    <value>การบริจาคเป็นทางเลือกเท่านั้น ผมจะไม่เก็บค่าบริการใดใดสำหรับกับใช้งาน MAIRA แต่ถึงอย่างนั้น การบริจาคก็ทำให้ผมอบอุ่นและรู้สึกดี และมันก็ยังเป็นกำลังใจให้ผมอย่างมากในการที่จะพัฒนา MAIRA ต่อ ขอขอบคุณทุกๆคนที่ได้ทำการบริจาคเข้ามา</value>
     <comment>Donate</comment>
   </data>
   <data name="Donate_UC" xml:space="preserve">
-    <value>Пожертвование</value>
-    <comment>Donate</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="Donors_UC" xml:space="preserve">
-    <value>Доноры</value>
+    <value>ผู้สนับสนุน</value>
     <comment>Contribute</comment>
   </data>
   <data name="SuperDonors_UC" xml:space="preserve">
-    <value>Супер Доноры</value>
+    <value>ผู้สนับสนุนระดับสูง</value>
     <comment>Donate</comment>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>Пожертвовать</value>
+    <value>สนับสนุน</value>
     <comment>App menu item</comment>
   </data>
   <data name="CodeContributions_UC" xml:space="preserve">
-    <value>Программисты</value>
+    <value>การมีส่วนร่วมด้านโค้ด</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributions_UC" xml:space="preserve">
-    <value>Переводчики</value>
+    <value>การแปลภาษา</value>
     <comment>Contribute</comment>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
-    <value>Если вы разрабатываете на C# и хотите помочь с кодом, то вот ссылка на GitHub репозиторий:</value>
+    <value>คุณเป็นนักพัฒนา C# หรือไม่? โปรเจกต์นี้เปิดให้ร่วมพัฒนา ดูเพิ่มเติมได้ที่ GitHub</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Если вы знаете несколько языков, то можете помочь с переводом приложения на все языки мира! Больше информации как это сделать в Дискорде:</value>
+    <value>คุณสามารถอ่านเขียนหลายภาษาได้หรือไม่? เราต้องการความช่วยเหลือด้านภาษา ดูเพิ่มเติมใน Discord</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Канал Дискорда про переводы</value>
+    <value>ช่อง Discord สำหรับแปลภาษา</value>
     <comment>Contribute</comment>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
-    <value>Репозиторий GitHub</value>
+    <value>คลัง GitHub</value>
     <comment>Contribute</comment>
   </data>
   <data name="Contributors" xml:space="preserve">
-    <value>Участники</value>
+    <value>ผู้มีส่วนร่วม</value>
     <comment>Contribute</comment>
   </data>
   <data name="ShowWindow" xml:space="preserve">
-    <value>Показать окно</value>
+    <value />
     <comment>System tray icon</comment>
   </data>
   <data name="ExitApp" xml:space="preserve">
-    <value>Выйти из приложения</value>
+    <value />
     <comment>System tray icon</comment>
   </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
-    <value>Сворачивать в трей вместо панели задач</value>
+    <value>ย่อไปที่ System Tray</value>
     <comment>App settings</comment>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Запускать свёрнутым</value>
+    <value>เริ่มแบบย่อ</value>
     <comment>App settings</comment>
   </data>
   <data name="StartWithWindows" xml:space="preserve">
-    <value>Запускать со стартом Windows</value>
+    <value>เริ่มพร้อม Windows</value>
     <comment>App settings</comment>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value>Общий: коэффициент сжатия</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Slew: Предел для сжатия</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Slew: Коэффициент сжатия</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value>Общий: Предел для сжатия</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>Нм/мс</value>
-    <comment>Abbreviation for Newton-meters per second</comment>
+    <value>นิวตันเมตร/มิลลิวินาที</value>
+    <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
-    <value>Сила руля (Wheel Force)</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Set" xml:space="preserve">
-    <value>Задать</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Preview_UC" xml:space="preserve">
-    <value>Предпросмотр</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
-    <value>[Записей не найдено]</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="SimpleMode" xml:space="preserve">
-    <value>Включить простой режим настройки</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Sensitivity" xml:space="preserve">
-    <value>Чувствительность</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="SlewAndTotalCompression" xml:space="preserve">
-    <value>Скорость нарастания момента(Slew) и сжатие</value>
+    <value />
+    <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DiscordModerators_UC" xml:space="preserve">
-    <value>Модераторы Дискорда</value>
+    <value>ผู้ดูแล Discord</value>
     <comment>Contribute</comment>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
-    <value>Хочу поблагодарить модераторов, которые помогают отвечать на многочисленные вопросы пользователям MAIRA, что позволяет мне сосредоточиться на разработке!</value>
+    <value>ขอขอบคุณผู้ดูแลอาสาสมัครที่ช่วยตอบคำถามผู้ใช้ MAIRA ทำให้ผมมีเวลาพัฒนาแอปมากขึ้น</value>
     <comment>Contribute</comment>
   </data>
   <data name="AdminBoxxIsUpdating" xml:space="preserve">
-    <value>Прошивка AdminBoxx обновляется</value>
+    <value>เฟิร์มแวร์ของ AdminBoxx ได้รับการอัพเดต</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="AllowSuperStrength" xml:space="preserve">
-    <value>Увеличить максимальную силу до 200% (будьте аккуратны - может быть опасно)</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="ON" xml:space="preserve">
-    <value>ВКЛ</value>
+    <value>เปิด</value>
     <comment>Generic</comment>
   </data>
   <data name="Sounds_UC" xml:space="preserve">
-    <value>Звуки</value>
-    <comment>Sounds</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="Enabled" xml:space="preserve">
-    <value>Включено</value>
+    <value />
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Частота</value>
+    <value />
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
-    <value>Затихание</value>
+    <value />
     <comment>Sounds</comment>
   </data>
   <data name="SendChatMessages" xml:space="preserve">
-    <value>Направлять водителю личные сообщения</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Включить RPM лампы Logitech</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
@@ -760,462 +866,463 @@
     <comment>Abbreviation for degrees</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
-    <value>Общая громкость</value>
+    <value />
     <comment>Sounds</comment>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
-    <value>Защита от аварий включена!</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>Защита от поребриков включена!</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="PrivateMessages_UC" xml:space="preserve">
-    <value>Личные сообщения</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value>Включить сообщения о срабатывании защиты от поребриков</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
-    <value>Включить сообщения о срабатывании защиты от аварий</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="InputMappedSettingUpdateEnabled" xml:space="preserve">
-    <value>Включить сообщения об обновлении настроек ввода</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
-    <value>Вы не находитесь на треке 'Centripetal Circuit'</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="RunCalibration" xml:space="preserve">
-    <value>Запустить калибровку</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="StopCalibration" xml:space="preserve">
-    <value>Остановить калибровку</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheelLeft" xml:space="preserve">
-    <value>Руль влево</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheelCenter" xml:space="preserve">
-    <value>Руль по центру</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheelRight" xml:space="preserve">
-    <value>Руль вправо</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheel90Left" xml:space="preserve">
-    <value>Руль на 90° влево</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="MinThrottle" xml:space="preserve">
-    <value>Минимальный газ</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="MaxThrottle" xml:space="preserve">
-    <value>Максимальный газ</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="ShiftUp" xml:space="preserve">
-    <value>Повышение передачи</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="ShiftDown" xml:space="preserve">
-    <value>Понижение передачи</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="MinBrake" xml:space="preserve">
-    <value>Минимальный тормоз</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="MaxBrake" xml:space="preserve">
-    <value>Максимальный тормоз</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="NotCalibrating" xml:space="preserve">
-    <value>Не калибруется</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="ResetCalibration" xml:space="preserve">
-    <value>Сбросить калибровку</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Разрешить перетаскивания окна Grip-O-Meter</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeter_UC" xml:space="preserve">
-    <value>Grip-O-Meter</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>Эффект вибрации андерстира</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="Progress:" xml:space="preserve">
-    <value>Прогресс:</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Файл калибровки не выбран]</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="ParkedEffects_UC" xml:space="preserve">
-    <value>Эффект на парковке</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
-    <value>Сила фидбека</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="WheelCenteringStrength" xml:space="preserve">
-    <value>Сила центровки руля</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="CenterWheelWhileRacing" xml:space="preserve">
-    <value>Центровать руль при езде</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="CenterWheelWhileParked" xml:space="preserve">
-    <value>Центровать руль на парковке</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="ParkedFriction" xml:space="preserve">
-    <value>Трение на паркове</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Текущие настройки автомобиля:</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>Эффект андерстира педали</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value>Что-то пошло не так</value>
+    <value>เกิดข้อผิดพลาดบางอย่าง</value>
     <comment>Error window</comment>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>Подробнее</value>
+    <value>รายละเอียด</value>
     <comment>Error window</comment>
   </data>
   <data name="ClassicMAIRAIsRunning" xml:space="preserve">
-    <value>Запущена классическая MAIRA - пожалуйста, закройте её прежде чем запускать эту версию.</value>
+    <value>Classic MAIRA กำลังทำงานอยู่ กรุณาปิด Classic MAIRA ก่อนใช้งาน MAIRA เวอร์ชันนี้</value>
     <comment>Error messages</comment>
   </data>
   <data name="ExceptionThrown" xml:space="preserve">
-    <value>Возникло исключение</value>
+    <value />
     <comment>Error messages</comment>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>К/МЧ</value>
+    <value>กม./ชม.</value>
     <comment>Abbreviation for kilometers per hour</comment>
   </data>
   <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Создатели файлов калибровки</value>
+    <value>ผู้มีส่วนร่วมไฟล์คาลิเบรต</value>
     <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
-    <value>Эти люди великодушно уделили своё время для проведения тестов, создания и загрузки файлов калибровки для их любимых машин.</value>
+    <value>บุคคลเหล่านี้ได้สละเวลาช่วยคาลิเบรตเอฟเฟกต์พวงมาลัยกับรถที่พวกเขาชื่นชอบ และอัปโหลดไฟล์คาลิเบรต</value>
     <comment>Contribute</comment>
   </data>
   <data name="DegreesPerSecond" xml:space="preserve">
-    <value>°/s</value>
+    <value>°/วินาที</value>
     <comment>Abbreviation for degrees per second</comment>
   </data>
   <data name="CalibrationFile_UC" xml:space="preserve">
-    <value>ФАЙЛ КАЛИБРОВКИ</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="Understeer_UC" xml:space="preserve">
-    <value>АНДЕРСТИР</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="Oversteer_UC" xml:space="preserve">
-    <value>ОВЕРСТИР</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
-    <value>Минимальный предел</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="MaximumThreshold" xml:space="preserve">
-    <value>Максимальный предел</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="MinimumFrequency" xml:space="preserve">
-    <value>Минимальная частота</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="MaximumFrequency" xml:space="preserve">
-    <value>Максимальная частота</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="Calibration_UC" xml:space="preserve">
-    <value>КАЛИБРОВКУ</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
-    <value>Шаблон вибрации</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SineWave" xml:space="preserve">
-    <value>Синусоида</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SquareWave" xml:space="preserve">
-    <value>Прямоугольный сигнал</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="TriangleWave" xml:space="preserve">
-    <value>Треугольная волна</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SawtoothWaveIn" xml:space="preserve">
-    <value>Пилообразная волна (вход)</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SawtoothWaveOut" xml:space="preserve">
-    <value>Пилообразная волна (выход)</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="DecreaseForce" xml:space="preserve">
-    <value>Уменьшить силу</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="IncreaseForce" xml:space="preserve">
-    <value>Увеличить силу</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>Эффект постоянного усилия от андерстира на руле</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="Direction" xml:space="preserve">
-    <value>Направление</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>Эффект вибрации от оверстира на руле</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>Эффект постоянного усилия от оверстира на руле</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>Эффект вибрации от оверстира на педали</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
-    <value>Эффект андерстира</value>
-    <comment>Pedals</comment>
+    <value />
+    <comment>Pedal effects list</comment>
   </data>
   <data name="OversteerEffect" xml:space="preserve">
-    <value>Эффект оверстира</value>
-    <comment>Pedals</comment>
+    <value />
+    <comment>Pedal effects list</comment>
   </data>
   <data name="ConfigurationFileIsInvalid" xml:space="preserve">
-    <value>Файл конфигурации некорректен!</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>Распознавание речи</value>
+    <value>แปลงเสียงเป็นข้อความ</value>
     <comment>App menu item</comment>
   </data>
   <data name="Overlay" xml:space="preserve">
-    <value>Оверлей</value>
+    <value />
     <comment>Speech to text</comment>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
-    <value>ОКНО ОВЕРЛЕЯ</value>
+    <value />
     <comment>Speech to text</comment>
   </data>
   <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Показать окно оверлея</value>
+    <value />
     <comment>Speech to text</comment>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Включить перемещение окна оверлея</value>
+    <value />
     <comment>Speech to text</comment>
   </data>
   <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Сбросить положение окна оверлея</value>
+    <value />
     <comment>Speech to text</comment>
   </data>
   <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Размер окна оверлея</value>
+    <value />
     <comment>Speech to text</comment>
   </data>
   <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA мост для распознавания речи</value>
+    <value />
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="STT_Hint" xml:space="preserve">
-    <value>Нажмите кнопку для активации. Проверьте, что в браузере выбрано правильное устройство, нажав на иконку микрофона в адресной строке!</value>
+    <value />
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="STT_Button" xml:space="preserve">
-    <value>Включить распознавание речи</value>
+    <value />
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
-    <value>[Устройство с обратной связью на выбрано]</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Algorithm_UC" xml:space="preserve">
-    <value>Алгоритм</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="ReadyToDonate" xml:space="preserve">
-    <value>Готовы задонатить?</value>
+    <value>พร้อมจะบริจาคหรือยัง?</value>
     <comment>Donate</comment>
   </data>
   <data name="Contribute" xml:space="preserve">
-    <value>Помочь</value>
+    <value>มีส่วนร่วม</value>
     <comment>App menu item</comment>
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
-    <value>Помогали с файлами калибровки</value>
+    <value>การมีส่วนร่วมไฟล์คาลิเบรต</value>
     <comment>Contribute</comment>
   </data>
   <data name="Moderators" xml:space="preserve">
-    <value>Модераторы Дискорда</value>
+    <value>ผู้ดูแล</value>
     <comment>Contribute</comment>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
-    <value>Настройки</value>
-    <comment>App settings</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="Simulator_UC" xml:space="preserve">
-    <value>Симулятор</value>
-    <comment>Simulator</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="Graph_UC" xml:space="preserve">
-    <value>График</value>
-    <comment>Graph</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>Распознавание речи</value>
-    <comment>Speech to text</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="Changelog" xml:space="preserve">
-    <value>Список изменений</value>
+    <value>บันทึกการเปลี่ยนแปลง</value>
     <comment>Cloud service</comment>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
-    <value>Работа АБС </value>
+    <value />
     <comment>Pedal effects list</comment>
   </data>
   <data name="Amplitude" xml:space="preserve">
-    <value>Амплитуда</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="ClutchSlip" xml:space="preserve">
-    <value>Пробуксовка сцепления (clutch slip)</value>
+    <value />
     <comment>Pedal effects list</comment>
   </data>
   <data name="Frequency" xml:space="preserve">
-    <value>Частота</value>
+    <value />
     <comment>Pedals</comment>
   </data>
   <data name="RPM" xml:space="preserve">
-    <value>Обороты (RPM)</value>
-    <comment>Pedal effect list</comment>
+    <value />
+    <comment>Pedal effects list</comment>
   </data>
   <data name="Sounds" xml:space="preserve">
-    <value>Звуки</value>
+    <value>เสียง</value>
     <comment>App menu item</comment>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Педали</value>
+    <value>แป้นเหยียบ</value>
     <comment>App menu item</comment>
   </data>
   <data name="WheelLock" xml:space="preserve">
-    <value>Блокировка колёс</value>
+    <value />
     <comment>Pedal effects list</comment>
   </data>
   <data name="WheelSpin" xml:space="preserve">
-    <value>Пробуксовка колёс</value>
+    <value />
     <comment>Pedal effects list</comment>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value>Grip-O-Meter</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>Миля/ч</value>
+    <value>ไมล์/ชม.</value>
     <comment>Abbreviation for miles per hour</comment>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value>ВЕТЕР</value>
-    <comment>Wind</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value>Ветер</value>
+    <value>ลม</value>
     <comment>App menu item</comment>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Присоединяться к MAIRA Ветер при запуске приложения</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Присоединиться к MAIRA Ветер</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="LeftFan" xml:space="preserve">
-    <value>Левый вентилятор</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="RightFan" xml:space="preserve">
-    <value>Правый вентилятор</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="Connection_UC" xml:space="preserve">
-    <value>Соединение</value>
+    <value />
+    <comment>Wind</comment>
   </data>
   <data name="Settings_UC" xml:space="preserve">
-    <value>НАСТРОЙКИ</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
-    <value>Общая сила ветра</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="MinimumSpeed" xml:space="preserve">
-    <value>Минимальная Скорость</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="WindCurving" xml:space="preserve">
-    <value>Кривая ветра</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="FanPower_UC" xml:space="preserve">
-    <value>СИЛА ВЕНТИЛЯТОРА</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value>Скорость</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="FanPower" xml:space="preserve">
-    <value>Сила вентилятора</value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value>Устройство не найдено</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
-    <value>Папка с ливреями iRacing</value>
+    <value />
     <comment>Trading paints</comment>
   </data>
   <data name="TradingPaints" xml:space="preserve">
@@ -1223,280 +1330,283 @@
     <comment>App menu item</comment>
   </data>
   <data name="TradingPaints_UC" xml:space="preserve">
-    <value>TRADING PAINTS</value>
-    <comment>Trading Paints</comment>
+    <value />
+    <comment>Page title</comment>
   </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
-    <value>Приложение Marvin's Awesome iRacing (MAIRA) не связано с Trading Paints.</value>
+    <value />
     <comment>Trading Paints</comment>
   </data>
   <data name="MultiAdjustmentToolkit" xml:space="preserve">
-    <value>Многофункциональная настройка</value>
+    <value />
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
-    <value>Комрессия сигнала</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
-    <value>Уменьшение Slew Rate</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="SoftClipping" xml:space="preserve">
-    <value>Мягкий клиппинг</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="DetailGain" xml:space="preserve">
-    <value>Прирост Деталей</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="OutputSmoothing" xml:space="preserve">
-    <value>Сглаживание выходного сигнала</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="SeatOfPants_UC" xml:space="preserve">
-    <value>SEAT-OF-PANTS</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
-    <value>ЭФФЕКТ ВИБРАЦИИ ОТ SEAT-OF_PANTS НА РУЛЕ</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>ЭФФЕКТ ПОСТОЯННОГО УСИЛИЯ ОТ SEAT-OF-PANTS НА РУЛЕ</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
-    <value>ЭФФЕКТ ВИБРАЦИИ ОТ SEAT-OF-PANTS НА ПЕДАЛЯХ</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value>Эффект Seat-of-Pants</value>
+    <value />
     <comment>Pedal effects list</comment>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value>Боковое ускорение (Ay)</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
-    <value>Боковая скорость (Vy)</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="RatioOfVelocities" xml:space="preserve">
-    <value>Отношение скоростей (Vy/Vx)</value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="DefaultPage_UC" xml:space="preserve">
-    <value>СТРАНИЦА ПО-УМОЛЧАНИЮ</value>
+    <value>หน้าเริ่มต้น</value>
     <comment>App settings</comment>
   </data>
   <data name="Effects_UC" xml:space="preserve">
-    <value>ЭФФЕКТЫ</value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="Audio_UC" xml:space="preserve">
-    <value>Звук</value>
+    <value>เสียง</value>
+    <comment>AdminBoxx</comment>
   </data>
   <data name="Display_UC" xml:space="preserve">
-    <value>Дисплей</value>
+    <value>จอแสดงผล</value>
+    <comment>AdminBoxx</comment>
   </data>
   <data name="AdminBoxx_UC" xml:space="preserve">
     <value>ADMINBOXX</value>
-    <comment>AdminBoxx</comment>
+    <comment>Page title</comment>
   </data>
   <data name="Click_UC" xml:space="preserve">
-    <value>Клик</value>
+    <value />
+    <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value>Педали Simagic P500</value>
+    <value />
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsPrototype" xml:space="preserve">
-    <value>Прототип педалей</value>
+    <value />
     <comment>Pedals device</comment>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Помощь</value>
+    <value>ช่วยเหลือ</value>
     <comment>App menu item</comment>
   </data>
   <data name="Help_UC" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Page title</comment>
   </data>
   <data name="Documentation_UC" xml:space="preserve">
-    <value>ДОКУМЕНТАЦИЯ</value>
+    <value>เอกสาร</value>
     <comment>Help</comment>
   </data>
   <data name="Discord_UC" xml:space="preserve">
-    <value></value>
+    <value>DISCORD</value>
     <comment>Help</comment>
   </data>
   <data name="Forums_UC" xml:space="preserve">
-    <value></value>
+    <value>ฟอรั่ม</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
-    <value>Сайт с Документацией</value>
+    <value>เว็บไซต์เอกสาร</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordServer" xml:space="preserve">
-    <value>Сервер в Discord</value>
+    <value>เซิร์ฟเวอร์ Discord</value>
     <comment>Help</comment>
   </data>
   <data name="iRacingForums" xml:space="preserve">
-    <value></value>
+    <value>ฟอรั่ม iRacing</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationText" xml:space="preserve">
-    <value>Этот сайт с документацией постоянно находится в процессе доработки, потому что в приложение всё время добавляются новые функции. Я обновляю документацию так часто, как только могу, но если нужной вам информации там пока нет, попробуйте поискать ответы на свои вопросы на сервере Discord или на форумах iRacing.</value>
+    <value>เอกสารนี้จะอยู่ในสถานะพัฒนาอยู่เสมอเพราะเราได้เพิ่ม features ใหม่ๆอยู่ตลอดเวลา ผมจะอัพเดตเอกสารนี้อย่างบ่อยครั้งที่สุดเท่าที่จะทำได้ หากไม่พบข้อมูลที่ต้องการในเอกสาร ลองดูใน Discord หรือฟอรั่ม iRacing เพื่อหาคำตอบดู</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordText" xml:space="preserve">
-    <value>Сервер MAIRA в Discord — самый быстрый способ получить ответы на ваши вопросы, если вы не смогли найти их в документации. Там помогают волонтёры, и я тоже стараюсь по возможности помогать.</value>
+    <value>Discord ของ MAIRA เป็นวิธีที่เร็วที่สุดในการหาคำตอบถ้าคุณหาในเอกสารไม่เจอ ที่นั่นมีอาสาสมัครคอยช่วยเหลืออยู่ และผมจะช่วยหาทางช่วยเหลือด้วยเช่นกัน</value>
     <comment>Help</comment>
   </data>
   <data name="ForumsText" xml:space="preserve">
-    <value>С этого всё и началось. Вы можете поискать ответы здесь, но я уже не так активен здесь, как раньше. Лучший способ задать вопросы — зайти на Discord-сервер.</value>
+    <value>ที่นี่คือจุดเริ่มต้น คุณสามารถค้นหาคำตอบได้แต่ผมอาจจะไม่ได้ active เหมือนสมัยก่อน การเข้า Discord เซิร์ฟเวอร์จะเป็นทางที่ดีที่สุดในการหาคำตอบ</value>
     <comment>Help</comment>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Pedals device</comment>
   </data>
   <data name="FanStatus_UC" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Wind</comment>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
-    <value>Детализация 360 Hz</value>
+    <value>ความละเอียด 360 Hz</value>
     <comment>360 Hz Detail Amount</comment>
   </data>
   <data name="SlewPeakMode" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Slew Reduction Peak Aware Mode</comment>
   </data>
   <data name="HybridVariable30" xml:space="preserve">
-    <value></value>
+    <value>360 Hz บน 60 Hz, ไบแอส 10-30%</value>
     <comment>On 60 Hz with variable 10-30% Bias</comment>
   </data>
   <data name="Hybrid10" xml:space="preserve">
-    <value></value>
+    <value>360 Hz บน 60 Hz, ไบแอส 10%</value>
     <comment>On 60 Hz with 10% bias</comment>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value></value>
+    <value>(ค่าเริ่มต้น) Native 60 Hz</value>
     <comment>Load default values for Native 60 Hz</comment>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
-    <value></value>
+    <value>(ค่าเริ่มต้น) 360 Hz บน 60 Hz, ไบแอส 10-30%</value>
     <comment>Load default values for 360 Hz on 60 Hz, 10-30% Bias</comment>
   </data>
   <data name="DefaultsHybrid10" xml:space="preserve">
-    <value></value>
+    <value>(ค่าเริ่มต้น) 360 Hz บน 60 Hz, ไบแอส 10%</value>
     <comment>Load default values for 360 Hz on 60 Hz, 10% Bias</comment>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value></value>
+    <value>(ค่าเริ่มต้น) Native 360 Hz</value>
     <comment>Load default values for Native 360 Hz</comment>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Settings targeting core tire feedback</comment>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Settings targeting a balance between tire feedback and surface detail</comment>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Settings to boost FFB Dynamics</comment>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Settings to decrease FFB dynamics</comment>
   </data>
   <data name="FFBSource" xml:space="preserve">
-    <value></value>
+    <value>ประเภท FFB + ค่าพรีเซ็ต</value>
     <comment>FFB type selection plus preset options</comment>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="POV" xml:space="preserve">
-    <value></value>
+    <value>POV</value>
     <comment>Button</comment>
   </data>
   <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Steering effects</comment>
   </data>
   <data name="PredictionMode" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Prediction mode list</comment>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Prediction mode list</comment>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="FFBIsDisabled" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="SimModeIsNotFull" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="FFBIsEnabledInSimulator" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="CalibrationIsRunning" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="ABSVibrateStrength" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Racing wheel</comment>
   </data>
   <data name="GapMonitor" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Overlays</comment>
   </data>
   <data name="Overlays_UC" xml:space="preserve">
-    <value></value>
+    <value>โอเวอร์เลย์</value>
     <comment>Overlays</comment>
   </data>
   <data name="GapMonitor_UC" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Overlays</comment>
   </data>
   <data name="Overlays" xml:space="preserve">
-    <value>Оверелеи</value>
+    <value>โอเวอร์เลย์</value>
     <comment>App menu item</comment>
   </data>
   <data name="EnableOverlayWindow" xml:space="preserve">
-    <value></value>
+    <value>เปิดใช้งานหน้าต่างโอเวอร์เลย์</value>
     <comment>Overlays</comment>
   </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
-    <value></value>
+    <value>แสดงชื่อหน้าต่างโอเวอร์เลย์</value>
     <comment>Overlays</comment>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
-    <value>Привязка к Процессору</value>
+    <value>CPU Affinity</value>
     <comment>App settings</comment>
   </data>
 </root>
