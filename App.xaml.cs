@@ -68,6 +68,7 @@ public partial class App : Application
 	public Telemetry Telemetry { get; private set; } = null!;
 	public SpeechToText SpeechToText { get; private set; } = null!;
 	public Wind Wind { get; private set; } = null!;
+	public SeatBeltTensioner SeatBeltTensioner { get; private set; } = null!;
 	public HidHotplugMonitor HidHotplugMonitor { get; private set; } = null!;
 	public TradingPaints TradingPaints { get; private set; } = null!;
 
@@ -129,6 +130,7 @@ public partial class App : Application
 		Telemetry = new();
 		SpeechToText = new();
 		Wind = new();
+		SeatBeltTensioner = new();
 		HidHotplugMonitor = new();
 		TradingPaints = new();
 
@@ -263,6 +265,7 @@ public partial class App : Application
 				TimingMarkers.Initialize();
 				Telemetry.Initialize();
 				Wind.Initialize();
+				SeatBeltTensioner.Initialize();
 				HidHotplugMonitor.Initialize();
 				TradingPaints.Initialize();
 
@@ -305,6 +308,11 @@ public partial class App : Application
 				if ( DataContext.DataContext.Instance.Settings.WindConnectOnStartup )
 				{
 					Wind.Connect();
+				}
+
+				if ( DataContext.DataContext.Instance.Settings.SeatBeltTensionerEnabled )
+				{
+					SeatBeltTensioner.Connect();
 				}
 
 #if !ADMINBOXX
@@ -482,7 +490,7 @@ public partial class App : Application
 				}
 			}
 
-			// racing wheel auto margin knob
+			// racing wheel auto target knob
 
 			if ( CheckMappedButtons( settings.RacingWheelAutoMarginPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
@@ -490,7 +498,7 @@ public partial class App : Application
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "AutoMargin", settings.RacingWheelAutoMarginString );
+					RacingWheel.SendChatMessage( "AutoTarget", settings.RacingWheelAutoMarginString );
 				}
 			}
 
@@ -500,7 +508,7 @@ public partial class App : Application
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( "AutoMargin", settings.RacingWheelAutoMarginString );
+					RacingWheel.SendChatMessage( "AutoTarget", settings.RacingWheelAutoMarginString );
 				}
 			}
 
@@ -2439,6 +2447,7 @@ public partial class App : Application
 						app.TimingMarkers.Tick( app );
 						app.Telemetry.Tick( app );
 						app.Wind.Tick( app );
+						app.SeatBeltTensioner.Tick( app );
 
 						app.GripOMeterWindow?.Tick( app );
 						app.GapMonitorWindow?.Tick( app );
