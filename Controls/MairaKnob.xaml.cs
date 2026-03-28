@@ -118,8 +118,8 @@ public partial class MairaKnob : UserControl
 		}
 	}
 
-	private void Plus_MairaMappableButton_Click( object sender, RoutedEventArgs e ) => AdjustValue( 1f );
-	private void Minus_MairaMappableButton_Click( object sender, RoutedEventArgs e ) => AdjustValue( -1f );
+	private void Plus_MairaMappableButton_Click( object sender, RoutedEventArgs e ) => AdjustValue( Reverse ? -1f : 1f );
+	private void Minus_MairaMappableButton_Click( object sender, RoutedEventArgs e ) => AdjustValue( Reverse ? 1f : -1f );
 
 	private void Value_TextBlock_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
 	{
