@@ -687,7 +687,7 @@ public class RacingWheel
 
 			// understeer vibration effect
 
-			if ( settings.SteeringEffectsUndersteerEnabled && ( app.SteeringEffects.UndersteerEffect > 0f ) )
+			if ( settings.SteeringEffectsUndersteerEnabled && _usingSteeringWheelTorqueData && ( app.SteeringEffects.UndersteerEffect > 0f ) )
 			{
 				var isUndersteering = ( app.SteeringEffects.UndersteerEffect == 1f );
 
@@ -751,7 +751,7 @@ public class RacingWheel
 
 			// oversteer vibration effect
 
-			if ( settings.SteeringEffectsOversteerEnabled && ( app.SteeringEffects.OversteerEffect > 0f ) )
+			if ( settings.SteeringEffectsOversteerEnabled && _usingSteeringWheelTorqueData && ( app.SteeringEffects.OversteerEffect > 0f ) )
 			{
 				var isOversteering = ( app.SteeringEffects.OversteerEffect == 1f );
 
@@ -815,7 +815,7 @@ public class RacingWheel
 
 			// seat-of-pants vibration effect
 
-			if ( settings.SteeringEffectsSeatOfPantsEnabled && ( app.SteeringEffects.SeatOfPantsEffect != 0f ) )
+			if ( settings.SteeringEffectsSeatOfPantsEnabled && _usingSteeringWheelTorqueData && ( app.SteeringEffects.SeatOfPantsEffect != 0f ) )
 			{
 				var absSeatOfPantsEffect = MathF.Abs( app.SteeringEffects.SeatOfPantsEffect );
 
@@ -881,7 +881,7 @@ public class RacingWheel
 
 			// gear change vibration effect
 
-			if ( settings.RacingWheelGearChangeVibrateStrength > 0f )
+			if ( _usingSteeringWheelTorqueData && ( settings.RacingWheelGearChangeVibrateStrength > 0f ) )
 			{
 				if ( app.Simulator.Gear != _lastGear )
 				{
@@ -903,11 +903,11 @@ public class RacingWheel
 
 					_vibrateOnGearChangeTimerMS -= deltaMilliseconds;
 				}
-			}
+			} 
 
 			// abs vibration effect
 
-			if ( settings.RacingWheelABSVibrateStrength > 0f )
+			if ( _usingSteeringWheelTorqueData && ( settings.RacingWheelABSVibrateStrength > 0f ) )
 			{
 				if ( app.Simulator.BrakeABSactive )
 				{
