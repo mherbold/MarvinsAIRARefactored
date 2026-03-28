@@ -55,6 +55,18 @@ public partial class Wind
 
 		_usbSerialPortHelper.Initialize();
 
+		if ( !_usbSerialPortHelper.DeviceFound )
+		{
+			app.Logger.WriteLine( "[Wind] Device not found - disabling WindConnectOnStartup" );
+
+			DataContext.DataContext.Instance.Settings.WindConnectOnStartup = false;
+
+			app.Dispatcher.Invoke( () =>
+			{
+				MainWindow._windPage.ConnectToWind_MairaSwitch.IsEnabled = false;
+			} );
+		}
+
 		app.Logger.WriteLine( "[Wind] <<< Initialize" );
 	}
 
