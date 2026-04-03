@@ -177,12 +177,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include=".github\" />
     <Folder Include="InnoSetup\Calibration\" />
     <Folder Include="InnoSetup\SimHub\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include=".github\copilot-instructions.md" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
@@ -193,6 +190,7 @@
     <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\Recordings\*.csv&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\Recordings\&quot; /Y /I" />
     <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\Calibration\*.csv&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\Calibration\&quot; /Y /I" />
     <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\STT\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\STT\&quot; /Y /I" />
+    <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\SBT\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\SBT\&quot; /Y /I" />
   </Target>
 
   <Choose>

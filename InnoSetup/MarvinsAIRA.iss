@@ -69,6 +69,7 @@ Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\Translat
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Sounds\*.wav"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Sounds"; Flags: ignoreversion recursesubdirs
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Recordings\*.csv"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Recordings"; Flags: ignoreversion
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Calibration\*.csv"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Calibration"; Flags: ignoreversion
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SBT\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\SBT"; Flags: ignoreversion
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\STT\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\STT"; Flags: ignoreversion
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\SimHub"; Flags: ignoreversion recursesubdirs createallsubdirs
 

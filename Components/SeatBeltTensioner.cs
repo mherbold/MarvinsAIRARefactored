@@ -160,7 +160,7 @@ public class SeatBeltTensioner
 	{
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		if ( !settings.SeatBeltTensionerEnabled || !IsConnected /*|| !app.Simulator.IsOnTrack*/ )
+		if ( !settings.SeatBeltTensionerEnabled || !IsConnected || !app.Simulator.IsOnTrack )
 		{
 			return;
 		}
