@@ -10,127 +10,231 @@
              mc:Ignorable="d"
              d:DesignWidth="800">
 
-  <UserControl.DataContext>
-    <Binding Source="{x:Static datacontext:DataContext.Instance}" />
-  </UserControl.DataContext>
+    <UserControl.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </UserControl.DataContext>
 
-  <StackPanel>
+    <StackPanel>
 
-    <controls:MairaGroupBox Label="{Binding Localization[Connection_UC]}"
-                            HelpTopic="advanced/seat-belt-tensioner/#connection">
+        <controls:MairaGroupBox Label="{Binding Localization[Connection_UC]}"
+                                HelpTopic="advanced/seat-belt-tensioner/#connection">
 
-      <StackPanel>
-        <controls:MairaSwitch x:Name="ConnectToSbt_MairaSwitch"
-                              Label="{Binding Localization[ConnectToSBT]}"
-                              Toggled="ConnectToSbt_MairaSwitch_Toggled" />
+            <StackPanel>
+                <controls:MairaSwitch x:Name="ConnectToSbt_MairaSwitch"
+                                      Label="{Binding Localization[ConnectToSBT]}"
+                                      Toggled="ConnectToSbt_MairaSwitch_Toggled" />
 
-        <controls:MairaSwitch x:Name="ConnectOnStartup_MairaSwitch"
-                              Margin="0,10,0,0"
-                              Label="{Binding Localization[ConnectToSBTOnStartup]}"
-                              IsOn="{Binding Settings.SeatBeltTensionerEnabled, Mode=TwoWay}" />
-      </StackPanel>
+                <controls:MairaSwitch x:Name="ConnectOnStartup_MairaSwitch"
+                                      Margin="0,10,0,0"
+                                      Label="{Binding Localization[ConnectToSBTOnStartup]}"
+                                      IsOn="{Binding Settings.SeatBeltTensionerEnabled, Mode=TwoWay}" />
+            </StackPanel>
 
-    </controls:MairaGroupBox>
+        </controls:MairaGroupBox>
 
-    <controls:MairaGroupBox Label="{Binding Localization[Calibration_UC]}"
-                            HelpTopic="advanced/seat-belt-tensioner/#calibration">
+        <controls:MairaGroupBox Label="{Binding Localization[Calibration_UC]}"
+                                HelpTopic="advanced/seat-belt-tensioner/#calibration">
 
-      <Grid>
+            <StackPanel>
 
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="40" />
-          <ColumnDefinition Width="*" />
-          <ColumnDefinition Width="40" />
-          <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
+                <Grid>
 
-        <controls:MairaKnob Grid.Column="0"
-                            Label="{Binding Localization[Minimum]}"
-                            Value="{Binding Settings.SeatBeltTensionerMinimum, Mode=TwoWay}"
-                            ValueString="{Binding Settings.SeatBeltTensionerMinimumString}"
-                            StepSize="1"
-                            DefaultValue="45" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-        <controls:MairaKnob Grid.Column="2"
-                            Label="{Binding Localization[Neutral]}"
-                            Value="{Binding Settings.SeatBeltTensionerNeutral, Mode=TwoWay}"
-                            ValueString="{Binding Settings.SeatBeltTensionerNeutralString}"
-                            StepSize="1"
-                            DefaultValue="60" />
+                    <controls:MairaKnob Grid.Column="0"
+                                        Label="{Binding Localization[Minimum]}"
+                                        Value="{Binding Settings.SeatBeltTensionerMinimum, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerMinimumString}"
+                                        StepSize="1"
+                                        DefaultValue="45" />
 
-        <controls:MairaKnob Grid.Column="4"
-                            Label="{Binding Localization[Maximum]}"
-                            Value="{Binding Settings.SeatBeltTensionerMaximum, Mode=TwoWay}"
-                            ValueString="{Binding Settings.SeatBeltTensionerMaximumString}"
-                            StepSize="1"
-                            DefaultValue="135" />
+                    <controls:MairaKnob Grid.Column="2"
+                                        Label="{Binding Localization[Neutral]}"
+                                        Value="{Binding Settings.SeatBeltTensionerNeutral, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerNeutralString}"
+                                        StepSize="1"
+                                        DefaultValue="60" />
 
-      </Grid>
+                    <controls:MairaKnob Grid.Column="4"
+                                        Label="{Binding Localization[Maximum]}"
+                                        Value="{Binding Settings.SeatBeltTensionerMaximum, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerMaximumString}"
+                                        StepSize="1"
+                                        DefaultValue="135" />
 
-    </controls:MairaGroupBox>
+                </Grid>
 
-    <controls:MairaGroupBox Label="{Binding Localization[Tuning_UC]}"
-                            HelpTopic="advanced/seat-belt-tensioner/#tuning">
+                <Grid Margin="0,20,0,0">
 
-      <StackPanel>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-        <Grid>
+                    <controls:MairaKnob Grid.Column="0"
+                                        Label="{Binding Localization[MaxMotorSpeed]}"
+                                        Value="{Binding Settings.SeatBeltTensionerMaxMotorSpeed, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerMaxMotorSpeedString}"
+                                        StepSize="1"
+                                        DefaultValue="25" />
 
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
+                </Grid>
 
-          <controls:MairaKnob Grid.Column="0"
-                              Label="{Binding Localization[SurgeMaxG]}"
-                              Value="{Binding Settings.SeatBeltTensionerSurgeMaxG, Mode=TwoWay}"
-                              ValueString="{Binding Settings.SeatBeltTensionerSurgeMaxGString}"
-                              StepSize="0.1"
-                              DefaultValue="6" />
+            </StackPanel>
 
-          <controls:MairaKnob Grid.Column="2"
-                              Label="{Binding Localization[SwayMaxG]}"
-                              Value="{Binding Settings.SeatBeltTensionerSwayMaxG, Mode=TwoWay}"
-                              ValueString="{Binding Settings.SeatBeltTensionerSwayMaxGString}"
-                              StepSize="0.1"
-                              DefaultValue="12" />
+        </controls:MairaGroupBox>
 
-          <controls:MairaKnob Grid.Column="4"
-                              Label="{Binding Localization[HeaveMaxG]}"
-                              Value="{Binding Settings.SeatBeltTensionerHeaveMaxG, Mode=TwoWay}"
-                              ValueString="{Binding Settings.SeatBeltTensionerHeaveMaxGString}"
-                              StepSize="0.1"
-                              DefaultValue="12" />
+        <controls:MairaGroupBox Label="{Binding Localization[Tuning_UC]}"
+                                HelpTopic="advanced/seat-belt-tensioner/#tuning">
 
-        </Grid>
+            <StackPanel>
 
-        <Grid Margin="0,20,0,0">
+                <Grid>
 
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="40" />
-            <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
 
-          <controls:MairaKnob Grid.Column="0"
-                              Label="{Binding Localization[MaxMotorSpeed]}"
-                              Value="{Binding Settings.SeatBeltTensionerMaxMotorSpeed, Mode=TwoWay}"
-                              ValueString="{Binding Settings.SeatBeltTensionerMaxMotorSpeedString}"
-                              StepSize="1"
-                              DefaultValue="25" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-        </Grid>
+                    <controls:MairaKnob Grid.Row="0"
+                                        Grid.Column="0"
+                                        Label="{Binding Localization[SurgeMaxG]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSurgeMaxG, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSurgeMaxGString}"
+                                        StepSize="0.1"
+                                        DefaultValue="6" />
 
-      </StackPanel>
+                    <controls:MairaKnob Grid.Row="0"
+                                        Grid.Column="2"
+                                        Label="{Binding Localization[SwayMaxG]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSwayMaxG, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSwayMaxGString}"
+                                        StepSize="0.1"
+                                        DefaultValue="12" />
 
-    </controls:MairaGroupBox>
+                    <controls:MairaKnob Grid.Row="0"
+                                        Grid.Column="4"
+                                        Label="{Binding Localization[HeaveMaxG]}"
+                                        Value="{Binding Settings.SeatBeltTensionerHeaveMaxG, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerHeaveMaxGString}"
+                                        StepSize="0.1"
+                                        DefaultValue="12" />
 
-  </StackPanel>
+                    <controls:MairaSwitch Grid.Row="2"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="5"
+                                          HorizontalAlignment="Center"
+                                          Label="{Binding Localization[SBTSubtractFullGravity]}"
+                                          IsOn="{Binding Settings.SeatBeltTensionerSubtractFullGravity, Mode=TwoWay}" />
+
+                    <Border Grid.Row="4"
+                            Grid.Column="0"
+                            BorderThickness="2"
+                            BorderBrush="#666"
+                            Background="#222"
+                            CornerRadius="5">
+
+                        <Image x:Name="SurgeGraph_Image"
+                               Width="251"
+                               Height="251"
+                               HorizontalAlignment="Right"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+
+                    </Border>
+
+                    <Border Grid.Row="4"
+                            Grid.Column="2"
+                            BorderThickness="2"
+                            BorderBrush="#666"
+                            Background="#222"
+                            CornerRadius="5">
+
+                        <Image x:Name="SwayGraph_Image"
+                               Width="251"
+                               Height="251"
+                               HorizontalAlignment="Right"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+
+                    </Border>
+
+                    <Border Grid.Row="4"
+                            Grid.Column="4"
+                            BorderThickness="2"
+                            BorderBrush="#666"
+                            Background="#222"
+                            CornerRadius="5">
+
+                        <Image x:Name="HeaveGraph_Image"
+                               Width="251"
+                               Height="251"
+                               HorizontalAlignment="Right"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+
+                    </Border>
+
+                    <StackPanel Grid.Row="6"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="5"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Center">
+
+                        <Border BorderThickness="2"
+                                BorderBrush="#666"
+                                Background="#222"
+                                CornerRadius="5">
+
+                            <Image x:Name="LeftShoulderGraph_Image"
+                                   Width="251"
+                                   Height="251"
+                                   HorizontalAlignment="Right"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+
+                        </Border>
+
+                        <Border BorderThickness="2"
+                                BorderBrush="#666"
+                                Background="#222"
+                                CornerRadius="5"
+                                Margin="20,0,0,0">
+
+                            <Image x:Name="RightShoulderGraph_Image"
+                                   Width="251"
+                                   Height="251"
+                                   HorizontalAlignment="Right"
+                                   RenderOptions.BitmapScalingMode="HighQuality" />
+
+                        </Border>
+
+                    </StackPanel>
+
+                </Grid>
+
+            </StackPanel>
+
+        </controls:MairaGroupBox>
+
+    </StackPanel>
 
 </UserControl>

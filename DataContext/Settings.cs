@@ -10053,6 +10053,27 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Seat Belt Tensioner - Subtract Full Gravity
+
+	private bool _seatBeltTensionerSubtractFullGravity = false;
+
+	public bool SeatBeltTensionerSubtractFullGravity
+	{
+		get => _seatBeltTensionerSubtractFullGravity;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSubtractFullGravity )
+			{
+				_seatBeltTensionerSubtractFullGravity = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Seat Belt Tensioner - Minimum
 
 	private float _seatBeltTensionerMinimum = 45f;

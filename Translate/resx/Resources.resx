@@ -1289,6 +1289,10 @@
     <value>Connect to MAIRA Seat Belt Tensioner on App Startup</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
+  <data name="SBTSubtractFullGravity" xml:space="preserve">
+    <value>Subtract gravity from all axes (surge, sway, and heave)</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="Tuning_UC" xml:space="preserve">
     <value>TUNING</value>
     <comment>Seat Belt Tensioner</comment>
