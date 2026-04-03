@@ -51,8 +51,8 @@
 
 // --- Pin assignments ---
 
-const int LEFT_SERVO_PIN = 10;    // Left servo signal wire on D9
-const int RIGHT_SERVO_PIN = 9;  // Right servo signal wire on D10
+const int LEFT_SERVO_PIN = 10;  // Left servo signal wire on D10
+const int RIGHT_SERVO_PIN = 9;  // Right servo signal wire on D9
 
 // --- Serial settings ---
 
@@ -60,7 +60,7 @@ const long SERIAL_BAUD_RATE = 115200;
 
 // --- Timing constants ---
 
-const unsigned long SERIAL_TIMEOUT_MS = 1000;        // Timeout before returning to neutral
+const unsigned long SERIAL_TIMEOUT_MS = 1000;         // Timeout before returning to neutral
 const unsigned long MOTION_UPDATE_INTERVAL_MS = 10;   // Milliseconds between motion updates
 
 // --- Motion defaults ---
