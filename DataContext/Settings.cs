@@ -10053,24 +10053,141 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Seat Belt Tensioner - Subtract Full Gravity
+	#region Seat Belt Tensioner - Surge Subtract Gravity
 
-	private bool _seatBeltTensionerSubtractFullGravity = false;
+	private bool _seatBeltTensionerSurgeSubtractGravity = false;
 
-	public bool SeatBeltTensionerSubtractFullGravity
+	public bool SeatBeltTensionerSurgeSubtractGravity
 	{
-		get => _seatBeltTensionerSubtractFullGravity;
+		get => _seatBeltTensionerSurgeSubtractGravity;
 
 		set
 		{
-			if ( value != _seatBeltTensionerSubtractFullGravity )
+			if ( value != _seatBeltTensionerSurgeSubtractGravity )
 			{
-				_seatBeltTensionerSubtractFullGravity = value;
+				_seatBeltTensionerSurgeSubtractGravity = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
+
+	public ContextSwitches SeatBeltTensionerSurgeSubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Sway Subtract Gravity
+
+	private bool _seatBeltTensionerSwaySubtractGravity = false;
+
+	public bool SeatBeltTensionerSwaySubtractGravity
+	{
+		get => _seatBeltTensionerSwaySubtractGravity;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSwaySubtractGravity )
+			{
+				_seatBeltTensionerSwaySubtractGravity = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerSwaySubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Heave Subtract Gravity
+
+	private bool _seatBeltTensionerHeaveSubtractGravity = true;
+
+	public bool SeatBeltTensionerHeaveSubtractGravity
+	{
+		get => _seatBeltTensionerHeaveSubtractGravity;
+
+		set
+		{
+			if ( value != _seatBeltTensionerHeaveSubtractGravity )
+			{
+				_seatBeltTensionerHeaveSubtractGravity = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerHeaveSubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Surge Invert
+
+	private bool _seatBeltTensionerSurgeInvert = false;
+
+	public bool SeatBeltTensionerSurgeInvert
+	{
+		get => _seatBeltTensionerSurgeInvert;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSurgeInvert )
+			{
+				_seatBeltTensionerSurgeInvert = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerSurgeInvertContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Sway Invert
+
+	private bool _seatBeltTensionerSwayInvert = false;
+
+	public bool SeatBeltTensionerSwayInvert
+	{
+		get => _seatBeltTensionerSwayInvert;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSwayInvert )
+			{
+				_seatBeltTensionerSwayInvert = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerSwayInvertContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Heave Invert
+
+	private bool _seatBeltTensionerHeaveInvert = false;
+
+	public bool SeatBeltTensionerHeaveInvert
+	{
+		get => _seatBeltTensionerHeaveInvert;
+
+		set
+		{
+			if ( value != _seatBeltTensionerHeaveInvert )
+			{
+				_seatBeltTensionerHeaveInvert = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerHeaveInvertContextSwitches { get; set; } = new( false, true, false, false, false );
 
 	#endregion
 
@@ -10215,7 +10332,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Surge Max G
 
-	private float _seatBeltTensionerSurgeMaxG = 6.0f;
+	private float _seatBeltTensionerSurgeMaxG = 10f;
 
 	public float SeatBeltTensionerSurgeMaxG
 	{
@@ -10254,11 +10371,13 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	public ContextSwitches SeatBeltTensionerSurgeMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
+
 	#endregion
 
 	#region Seat Belt Tensioner - Sway Max G
 
-	private float _seatBeltTensionerSwayMaxG = 12.0f;
+	private float _seatBeltTensionerSwayMaxG = 10f;
 
 	public float SeatBeltTensionerSwayMaxG
 	{
@@ -10297,11 +10416,13 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	public ContextSwitches SeatBeltTensionerSwayMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
+
 	#endregion
 
 	#region Seat Belt Tensioner - Heave Max G
 
-	private float _seatBeltTensionerHeaveMaxG = 12.0f;
+	private float _seatBeltTensionerHeaveMaxG = 10f;
 
 	public float SeatBeltTensionerHeaveMaxG
 	{
@@ -10339,6 +10460,8 @@ public class Settings : INotifyPropertyChanged
 			}
 		}
 	}
+
+	public ContextSwitches SeatBeltTensionerHeaveMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
 
 	#endregion
 

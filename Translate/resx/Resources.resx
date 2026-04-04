@@ -1289,24 +1289,52 @@
     <value>Connect to MAIRA Seat Belt Tensioner on App Startup</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
-  <data name="SBTSubtractFullGravity" xml:space="preserve">
-    <value>Subtract gravity from all axes (surge, sway, and heave)</value>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>Minimum Angle</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
-  <data name="Tuning_UC" xml:space="preserve">
-    <value>TUNING</value>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>Neutral Angle</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
-  <data name="SurgeMaxG" xml:space="preserve">
-    <value>Surge Max G</value>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>Maximum Angle</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
-  <data name="SwayMaxG" xml:space="preserve">
-    <value>Sway Max G</value>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>Max G Force</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
-  <data name="HeaveMaxG" xml:space="preserve">
-    <value>Heave Max G</value>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>Subtract gravity</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Invert" xml:space="preserve">
+    <value>Invert</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>SURGE</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>SWAY</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>HEAVE</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>MOTOR OUTPUT</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>Left Shoulder</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>Right Shoulder</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="MaxMotorSpeed" xml:space="preserve">

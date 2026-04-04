@@ -194,4 +194,18 @@ public class ContextSettings
 	public float WindCurving { get; set; } = 1f;
 
 	#endregion
+
+	#region Seat Belt Tensioner
+
+	public float SeatBeltTensionerSurgeMaxG { get; set; } = 10f;
+	public float SeatBeltTensionerSwayMaxG { get; set; } = 10f;
+	public float SeatBeltTensionerHeaveMaxG { get; set; } = 10f;
+	public bool SeatBeltTensionerSurgeSubtractGravity { get; set; } = false;
+	public bool SeatBeltTensionerSwaySubtractGravity { get; set; } = false;
+	public bool SeatBeltTensionerHeaveSubtractGravity { get; set; } = true;
+	public bool SeatBeltTensionerSurgeInvert { get; set; } = false;
+	public bool SeatBeltTensionerSwayInvert { get; set; } = false;
+	public bool SeatBeltTensionerHeaveInvert { get; set; } = false;
+
+	#endregion
 }

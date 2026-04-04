@@ -29,7 +29,7 @@ public class SeatBeltTensioner
 	private float _vertAccelSum = 0f;
 	private float _pitchSum = 0f;
 	private float _rollSum = 0f;
-	private int _accelSampleCount = 0;
+	private int _sampleCount = 0;
 
 	public SeatBeltTensioner()
 	{
@@ -184,17 +184,17 @@ public class SeatBeltTensioner
 	{
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		if ( _accelSampleCount == 0 )
+		if ( !IsConnected || !settings.SeatBeltTensionerEnabled || _sampleCount == 0 )
 		{
 			return;
 		}
 
-		var longAccelAvg = _longAccelSum / _accelSampleCount;
-		var latAccelAvg = _latAccelSum / _accelSampleCount;
-		var vertAccelAvg = _vertAccelSum / _accelSampleCount;
+		var longAccelAvg = _longAccelSum / _sampleCount;
+		var latAccelAvg = _latAccelSum / _sampleCount;
+		var vertAccelAvg = _vertAccelSum / _sampleCount;
 
-		var pitch = _pitchSum / _accelSampleCount;
-		var roll = _rollSum / _accelSampleCount;
+		var pitch = _pitchSum / _sampleCount;
+		var roll = _rollSum / _sampleCount;
 
 		_longAccelSum = 0f;
 		_latAccelSum = 0f;
@@ -203,12 +203,7 @@ public class SeatBeltTensioner
 		_pitchSum = 0f;
 		_rollSum = 0f;
 
-		_accelSampleCount = 0;
-
-		if ( !settings.SeatBeltTensionerEnabled || !IsConnected )
-		{
-			return;
-		}
+		_sampleCount = 0;
 
 		// Get and sanitize settings
 		var minimumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMinimum * 10f ), 0, 900 );
@@ -231,29 +226,15 @@ public class SeatBeltTensioner
 		var sinRoll = MathF.Sin( roll );
 
 		// Gravity component along each body axis (what iRacing adds to raw acceleration)
+		var gravLong = MathZ.OneG * -sinPitch;
+		var gravLat = MathZ.OneG * cosPitch * sinRoll;
 		var gravVert = MathZ.OneG * cosPitch * cosRoll;
 
-		float longAccel;
-		float latAccel;
-		float vertAccel;
+		var longAccel = settings.SeatBeltTensionerSurgeSubtractGravity ? longAccelAvg - gravLong : longAccelAvg;
+		var latAccel = settings.SeatBeltTensionerSwaySubtractGravity ? latAccelAvg - gravLat : latAccelAvg;
+		var vertAccel = settings.SeatBeltTensionerHeaveSubtractGravity ? vertAccelAvg - gravVert : vertAccelAvg;
 
-		if ( settings.SeatBeltTensionerSubtractFullGravity )
-		{
-			var gravLong = MathZ.OneG * -sinPitch;
-			var gravLat = MathZ.OneG * cosPitch * sinRoll;
-
-			longAccel = longAccelAvg - gravLong;
-			latAccel = latAccelAvg - gravLat;
-			vertAccel = vertAccelAvg - gravVert;
-		}
-		else
-		{
-			longAccel = longAccelAvg;
-			latAccel = latAccelAvg;
-			vertAccel = vertAccelAvg - gravVert;
-		}
-
-		// Surge normalized [-1..1]:
+		// Surge normalized [-1..1]: braking tightens both belts, acceleration loosens both belts
 		var surgeNormalized = Math.Clamp( -longAccel / MathZ.OneG / settings.SeatBeltTensionerSurgeMaxG, -1f, 1f );
 
 		// Sway normalized [-1..1]: positive biases right belt tighter, left belt looser
@@ -262,6 +243,12 @@ public class SeatBeltTensioner
 		// Heave normalized [-1..1]: bumps and crests both tighten both belts
 		var heaveNormalized = Math.Clamp( -vertAccel / MathZ.OneG / settings.SeatBeltTensionerHeaveMaxG, -1f, 1f );
 
+		// Apply inversion settings
+		if ( settings.SeatBeltTensionerSurgeInvert ) surgeNormalized = -surgeNormalized;
+		if ( settings.SeatBeltTensionerSwayInvert ) swayNormalized = -swayNormalized;
+		if ( settings.SeatBeltTensionerHeaveInvert ) heaveNormalized = -heaveNormalized;
+
+		// Update graphs if on the SBT page
 		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.SeatBeltTensioner )
 		{
 			_surgeGraph.Advance( surgeNormalized );
@@ -273,28 +260,42 @@ public class SeatBeltTensioner
 			_heaveGraph.WritePixels();
 		}
 
-		// Combine into per-arm normalized signal and offset by neutral position
-		var leftCombinedNormalized = surgeNormalized + heaveNormalized - swayNormalized + neutralPositionNormalized;
-		var rightCombinedNormalized = surgeNormalized + heaveNormalized + swayNormalized + neutralPositionNormalized;
+		// Combine into per-arm normalized signal
+		var leftCombinedNormalized = surgeNormalized + heaveNormalized - swayNormalized;
+		var rightCombinedNormalized = surgeNormalized + heaveNormalized + swayNormalized;
 
 		// Apply soft limiter
 		var limitedLeftNormalized = MathZ.SoftLimiter( leftCombinedNormalized );
 		var limitedRightNormalized = MathZ.SoftLimiter( rightCombinedNormalized );
 
 		// Map to tenths of degrees and clamp to minimum / maximum
-		var leftTargetPositionTenths = Math.Clamp( (int) MathF.Round( limitedLeftNormalized * rangeTenths + 900 ), minimumTenths, maximumTenths );
-		var rightTargetPositionTenths = Math.Clamp( (int) MathF.Round( limitedRightNormalized * rangeTenths + 900 ), minimumTenths, maximumTenths );
+		int leftTargetPositionTenths;
+		int rightTargetPositionTenths;
 
+		if ( limitedLeftNormalized >= 0f )
+		{
+			leftTargetPositionTenths = Math.Clamp( (int) MathF.Round( limitedLeftNormalized * ( maximumTenths - neutralTenths ) + neutralTenths ), minimumTenths, maximumTenths );
+		}
+		else
+		{
+			leftTargetPositionTenths = Math.Clamp( (int) MathF.Round( limitedLeftNormalized * ( neutralTenths - minimumTenths ) + neutralTenths ), minimumTenths, maximumTenths );
+		}
+
+		if ( rightCombinedNormalized >= 0f )
+		{
+			rightTargetPositionTenths = Math.Clamp( (int) MathF.Round( limitedRightNormalized * ( maximumTenths - neutralTenths ) + neutralTenths ), minimumTenths, maximumTenths );
+		}
+		else
+		{
+			rightTargetPositionTenths = Math.Clamp( (int) MathF.Round( limitedRightNormalized * ( neutralTenths - minimumTenths ) + neutralTenths ), minimumTenths, maximumTenths );
+		}
+
+		// Update shoulder graphs if on the SBT page
 		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.SeatBeltTensioner )
 		{
 			// Remap tenths to [-1..1]: -1=minimum, 0=neutral, +1=maximum (piecewise linear)
-			var leftShoulderNormalized = leftTargetPositionTenths <= neutralTenths
-				? (float) ( leftTargetPositionTenths - neutralTenths ) / ( neutralTenths - minimumTenths )
-				: (float) ( leftTargetPositionTenths - neutralTenths ) / ( maximumTenths - neutralTenths );
-
-			var rightShoulderNormalized = rightTargetPositionTenths <= neutralTenths
-				? (float) ( rightTargetPositionTenths - neutralTenths ) / ( neutralTenths - minimumTenths )
-				: (float) ( rightTargetPositionTenths - neutralTenths ) / ( maximumTenths - neutralTenths );
+			var leftShoulderNormalized = leftTargetPositionTenths <= neutralTenths ? (float) ( leftTargetPositionTenths - neutralTenths ) / ( neutralTenths - minimumTenths ) : (float) ( leftTargetPositionTenths - neutralTenths ) / ( maximumTenths - neutralTenths );
+			var rightShoulderNormalized = rightTargetPositionTenths <= neutralTenths ? (float) ( rightTargetPositionTenths - neutralTenths ) / ( neutralTenths - minimumTenths ) : (float) ( rightTargetPositionTenths - neutralTenths ) / ( maximumTenths - neutralTenths );
 
 			_leftShoulderGraph.Advance( leftShoulderNormalized );
 			_rightShoulderGraph.Advance( rightShoulderNormalized );
@@ -314,7 +315,7 @@ public class SeatBeltTensioner
 
 	public void Tick( App app )
 	{
-		if ( app.Simulator.IsOnTrack )
+		if ( app.Simulator.IsOnTrack || app.Simulator.IsReplayPlaying )
 		{
 			_longAccelSum += app.Simulator.LongAccel;
 			_latAccelSum += app.Simulator.LatAccel;
@@ -323,7 +324,7 @@ public class SeatBeltTensioner
 			_pitchSum += app.Simulator.Pitch;
 			_rollSum += app.Simulator.Roll;
 
-			_accelSampleCount++;
+			_sampleCount++;
 		}
 
 		_updateCounter--;
