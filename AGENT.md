@@ -235,6 +235,8 @@ Settings can be overridden per context. A `Context` is a key composed of:
 
 `ContextSwitches` flags determine which axes are active. `ContextSettings` holds the per-context overrides. `Settings.UpdateSettings()` is called whenever the context might have changed (connection, weather change, etc.).
 
+For full details on the design and how to add new per-context settings, see the **[Per-Context Settings System](#per-context-settings-system)** section below.
+
 ### Settings Persistence
 Settings are serialized to XML at `My Documents\MarvinsAIRA Refactored\Settings.xml` via `SettingsFile`. Serialization is queued (not immediate) to avoid excessive I/O. The `Serializer` class handles XML serialization using `XmlSerializer`.
 
@@ -308,3 +310,83 @@ TelemetryData.yaml        # (DEBUG only) last telemetry property dump
 Two named mutexes prevent multiple instances and conflict with the classic MAIRA version:
 - `MarvinsAIRARefactoredMutex` — prevents duplicate Refactored instances
 - `MarvinsAIRA Mutex` — prevents running alongside classic MAIRA
+
+---
+
+## Per-Context Settings System
+
+Per-context settings allow individual settings to be overridden based on the active racing context (wheelbase, car, track, track configuration, wet/dry). This section documents the full design and the exact steps required to add a new per-context setting.
+
+### Key Types
+
+| Type | File | Purpose |
+|---|---|---|
+| `Context` | `DataContext\Context.cs` | Immutable key: wheelbase GUID + car + track + track config + wet/dry |
+| `ContextSwitches` | `DataContext\ContextSwitches.cs` | 5 booleans controlling which axes create a unique context for a given setting |
+| `ContextSettings` | `DataContext\ContextSettings.cs` | Flat class of auto-properties — one per context-capable setting — holding the current context's override value |
+| `Settings` | `DataContext\Settings.cs` | All persistent settings; also hosts the companion `ContextSwitches` property and the `ContextSettingsDictionary` |
+
+### How It Works
+
+1. **`ContextSwitches`** has 5 boolean flags in constructor order:
+   ```csharp
+   new ContextSwitches( wheelbaseGuid, carName, trackName, trackConfigurationName, wetDry )
+   ```
+   Each flag controls whether that axis is included when building the `Context` key for that setting. The common default for "per-car only" is:
+   ```csharp
+   new( false, true, false, false, false )
+   ```
+
+2. **Companion property convention in `Settings.cs`**: Every context-capable property `Foo` must have a companion property named exactly `FooContextSwitches` of type `ContextSwitches`:
+   ```csharp
+   public float Foo { get; set; } = 1.0f;
+   public ContextSwitches FooContextSwitches { get; set; } = new( false, true, false, false, false );
+   ```
+
+3. **`ContextSettings.cs`** contains a matching auto-property with the **same name and same default value** as the setting in `Settings.cs`:
+   ```csharp
+   public float Foo { get; set; } = 1.0f;
+   ```
+   This class holds the **active context's** current value and is read by components during processing.
+
+4. **`Settings.UpdateSettings()`** uses **reflection** to scan `Settings` for all `*ContextSwitches` properties, builds the appropriate `Context` key for each one, looks up (or creates) the matching entry in `ContextSettingsDictionary`, and copies the stored context value into the corresponding `ContextSettings` property — or writes the current setting value back if no override exists yet. This is called whenever the context may have changed.
+
+5. **UI binding**: In XAML pages, each context-capable control gets a `ContextSwitches` attribute bound to the companion property:
+   ```xml
+   <controls:MairaKnob Value="{Binding Settings.Foo, Mode=TwoWay}"
+                        ContextSwitches="{Binding Settings.FooContextSwitches}" />
+
+   <controls:MairaSwitch IsOn="{Binding Settings.Bar, Mode=TwoWay}"
+                          ContextSwitches="{Binding Settings.BarContextSwitches}" />
+   ```
+   The binding does **not** need `Mode=TwoWay` because `ContextSwitches` is a reference type and the window modifies its properties in place.
+
+6. **Right-click to configure**: `MairaKnob` and `MairaSwitch` detect a right-click on their label and, if `ContextSwitches != null`, open `UpdateContextSwitchesWindow` to let the user configure which axes create a context for that setting.
+
+### Adding a New Per-Context Setting — Checklist
+
+Follow these steps every time a setting needs per-context support:
+
+**1. `DataContext\Settings.cs`** — add the companion property immediately after the setting property:
+```csharp
+public float MySetting { get; set; } = 5.0f;
+public ContextSwitches MySettingContextSwitches { get; set; } = new( false, true, false, false, false );
+```
+
+**2. `DataContext\ContextSettings.cs`** — add a matching auto-property with the same name and default:
+```csharp
+public float MySetting { get; set; } = 5.0f;
+```
+
+**3. XAML page** — add `ContextSwitches` binding to the control:
+```xml
+<controls:MairaKnob Value="{Binding Settings.MySetting, Mode=TwoWay}"
+                     ContextSwitches="{Binding Settings.MySettingContextSwitches}" />
+```
+
+**Important rules:**
+- The companion property name **must** be exactly `[SettingName]ContextSwitches` — `UpdateSettings()` finds it by reflection using this naming convention.
+- The `ContextSettings` property name **must** exactly match the setting name in `Settings.cs`.
+- Do **not** add `Mode=TwoWay` to the `ContextSwitches` XAML binding.
+- Always use `new( false, true, false, false, false )` (per-car-only) as the default unless there is a specific reason to use a different default.
+- Group the companion property directly below its paired setting in `Settings.cs` and in the same `#region` block in `ContextSettings.cs`.
