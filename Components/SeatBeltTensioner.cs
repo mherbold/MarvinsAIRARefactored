@@ -315,7 +315,7 @@ public class SeatBeltTensioner
 
 	public void Tick( App app )
 	{
-		if ( app.Simulator.IsOnTrack || app.Simulator.IsReplayPlaying )
+		if ( app.Simulator.IsOnTrack )
 		{
 			_longAccelSum += app.Simulator.LongAccel;
 			_latAccelSum += app.Simulator.LatAccel;
