@@ -8084,6 +8084,597 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Seat Belt Tensioner - Enabled
+
+	private bool _seatBeltTensionerEnabled = false;
+
+	public bool SeatBeltTensionerEnabled
+	{
+		get => _seatBeltTensionerEnabled;
+
+		set
+		{
+			if ( value != _seatBeltTensionerEnabled )
+			{
+				_seatBeltTensionerEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Seat Belt Tensioner - Surge Subtract Gravity
+
+	private bool _seatBeltTensionerSurgeSubtractGravity = false;
+
+	public bool SeatBeltTensionerSurgeSubtractGravity
+	{
+		get => _seatBeltTensionerSurgeSubtractGravity;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSurgeSubtractGravity )
+			{
+				_seatBeltTensionerSurgeSubtractGravity = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerSurgeSubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Sway Subtract Gravity
+
+	private bool _seatBeltTensionerSwaySubtractGravity = false;
+
+	public bool SeatBeltTensionerSwaySubtractGravity
+	{
+		get => _seatBeltTensionerSwaySubtractGravity;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSwaySubtractGravity )
+			{
+				_seatBeltTensionerSwaySubtractGravity = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerSwaySubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Heave Subtract Gravity
+
+	private bool _seatBeltTensionerHeaveSubtractGravity = true;
+
+	public bool SeatBeltTensionerHeaveSubtractGravity
+	{
+		get => _seatBeltTensionerHeaveSubtractGravity;
+
+		set
+		{
+			if ( value != _seatBeltTensionerHeaveSubtractGravity )
+			{
+				_seatBeltTensionerHeaveSubtractGravity = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerHeaveSubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Surge Invert
+
+	private bool _seatBeltTensionerSurgeInvert = false;
+
+	public bool SeatBeltTensionerSurgeInvert
+	{
+		get => _seatBeltTensionerSurgeInvert;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSurgeInvert )
+			{
+				_seatBeltTensionerSurgeInvert = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerSurgeInvertContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Sway Invert
+
+	private bool _seatBeltTensionerSwayInvert = false;
+
+	public bool SeatBeltTensionerSwayInvert
+	{
+		get => _seatBeltTensionerSwayInvert;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSwayInvert )
+			{
+				_seatBeltTensionerSwayInvert = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerSwayInvertContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Heave Invert
+
+	private bool _seatBeltTensionerHeaveInvert = false;
+
+	public bool SeatBeltTensionerHeaveInvert
+	{
+		get => _seatBeltTensionerHeaveInvert;
+
+		set
+		{
+			if ( value != _seatBeltTensionerHeaveInvert )
+			{
+				_seatBeltTensionerHeaveInvert = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerHeaveInvertContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Minimum
+
+	private float _seatBeltTensionerMinimum = 60f;
+
+	public float SeatBeltTensionerMinimum
+	{
+		get => _seatBeltTensionerMinimum;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 90f );
+
+			if ( value != _seatBeltTensionerMinimum )
+			{
+				_seatBeltTensionerMinimum = value;
+
+				OnPropertyChanged();
+
+				SeatBeltTensionerNeutral = MathF.Max( SeatBeltTensionerNeutral, _seatBeltTensionerMinimum );
+
+				App.Instance?.SeatBeltTensioner.SendCalibration();
+			}
+
+			SeatBeltTensionerMinimumString = $"{_seatBeltTensionerMinimum:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+		}
+	}
+
+	private string _seatBeltTensionerMinimumString = string.Empty;
+
+	[XmlIgnore]
+	public string SeatBeltTensionerMinimumString
+	{
+		get => _seatBeltTensionerMinimumString;
+
+		set
+		{
+			if ( value != _seatBeltTensionerMinimumString )
+			{
+				_seatBeltTensionerMinimumString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Seat Belt Tensioner - Neutral
+
+	private float _seatBeltTensionerNeutral = 90f;
+
+	public float SeatBeltTensionerNeutral
+	{
+		get => _seatBeltTensionerNeutral;
+
+		set
+		{
+			value = Math.Clamp( value, _seatBeltTensionerMinimum, _seatBeltTensionerMaximum );
+
+			if ( value != _seatBeltTensionerNeutral )
+			{
+				_seatBeltTensionerNeutral = value;
+
+				OnPropertyChanged();
+
+				App.Instance?.SeatBeltTensioner.SendCalibration();
+			}
+
+			SeatBeltTensionerNeutralString = $"{_seatBeltTensionerNeutral:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+		}
+	}
+
+	private string _seatBeltTensionerNeutralString = string.Empty;
+
+	[XmlIgnore]
+	public string SeatBeltTensionerNeutralString
+	{
+		get => _seatBeltTensionerNeutralString;
+
+		set
+		{
+			if ( value != _seatBeltTensionerNeutralString )
+			{
+				_seatBeltTensionerNeutralString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Seat Belt Tensioner - Maximum
+
+	private float _seatBeltTensionerMaximum = 120f;
+
+	public float SeatBeltTensionerMaximum
+	{
+		get => _seatBeltTensionerMaximum;
+
+		set
+		{
+			value = Math.Clamp( value, 90f, 180f );
+
+			if ( value != _seatBeltTensionerMaximum )
+			{
+				_seatBeltTensionerMaximum = value;
+
+				OnPropertyChanged();
+
+				SeatBeltTensionerNeutral = MathF.Min( SeatBeltTensionerNeutral, _seatBeltTensionerMaximum );
+
+				App.Instance?.SeatBeltTensioner.SendCalibration();
+			}
+
+			SeatBeltTensionerMaximumString = $"{_seatBeltTensionerMaximum:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+		}
+	}
+
+	private string _seatBeltTensionerMaximumString = string.Empty;
+
+	[XmlIgnore]
+	public string SeatBeltTensionerMaximumString
+	{
+		get => _seatBeltTensionerMaximumString;
+
+		set
+		{
+			if ( value != _seatBeltTensionerMaximumString )
+			{
+				_seatBeltTensionerMaximumString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Seat Belt Tensioner - Surge Max G
+
+	private float _seatBeltTensionerSurgeMaxG = 10f;
+
+	public float SeatBeltTensionerSurgeMaxG
+	{
+		get => _seatBeltTensionerSurgeMaxG;
+
+		set
+		{
+			value = Math.Clamp( value, 0.1f, 50f );
+
+			if ( value != _seatBeltTensionerSurgeMaxG )
+			{
+				_seatBeltTensionerSurgeMaxG = value;
+
+				OnPropertyChanged();
+			}
+
+			SeatBeltTensionerSurgeMaxGString = $"{_seatBeltTensionerSurgeMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
+		}
+	}
+
+	private string _seatBeltTensionerSurgeMaxGString = string.Empty;
+
+	[XmlIgnore]
+	public string SeatBeltTensionerSurgeMaxGString
+	{
+		get => _seatBeltTensionerSurgeMaxGString;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSurgeMaxGString )
+			{
+				_seatBeltTensionerSurgeMaxGString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerSurgeMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Sway Max G
+
+	private float _seatBeltTensionerSwayMaxG = 10f;
+
+	public float SeatBeltTensionerSwayMaxG
+	{
+		get => _seatBeltTensionerSwayMaxG;
+
+		set
+		{
+			value = Math.Clamp( value, 0.1f, 50f );
+
+			if ( value != _seatBeltTensionerSwayMaxG )
+			{
+				_seatBeltTensionerSwayMaxG = value;
+
+				OnPropertyChanged();
+			}
+
+			SeatBeltTensionerSwayMaxGString = $"{_seatBeltTensionerSwayMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
+		}
+	}
+
+	private string _seatBeltTensionerSwayMaxGString = string.Empty;
+
+	[XmlIgnore]
+	public string SeatBeltTensionerSwayMaxGString
+	{
+		get => _seatBeltTensionerSwayMaxGString;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSwayMaxGString )
+			{
+				_seatBeltTensionerSwayMaxGString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerSwayMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Heave Max G
+
+	private float _seatBeltTensionerHeaveMaxG = 10f;
+
+	public float SeatBeltTensionerHeaveMaxG
+	{
+		get => _seatBeltTensionerHeaveMaxG;
+
+		set
+		{
+			value = Math.Clamp( value, 0.1f, 50f );
+
+			if ( value != _seatBeltTensionerHeaveMaxG )
+			{
+				_seatBeltTensionerHeaveMaxG = value;
+
+				OnPropertyChanged();
+			}
+
+			SeatBeltTensionerHeaveMaxGString = $"{_seatBeltTensionerHeaveMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
+		}
+	}
+
+	private string _seatBeltTensionerHeaveMaxGString = string.Empty;
+
+	[XmlIgnore]
+	public string SeatBeltTensionerHeaveMaxGString
+	{
+		get => _seatBeltTensionerHeaveMaxGString;
+
+		set
+		{
+			if ( value != _seatBeltTensionerHeaveMaxGString )
+			{
+				_seatBeltTensionerHeaveMaxGString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerHeaveMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
+
+	#endregion
+
+	#region Seat Belt Tensioner - Max Motor Speed
+
+	private float _seatBeltTensionerMaxMotorSpeed = 25f;
+
+	public float SeatBeltTensionerMaxMotorSpeed
+	{
+		get => _seatBeltTensionerMaxMotorSpeed;
+
+		set
+		{
+			value = Math.Clamp( value, 5f, 50f );
+
+			if ( value != _seatBeltTensionerMaxMotorSpeed )
+			{
+				_seatBeltTensionerMaxMotorSpeed = value;
+
+				OnPropertyChanged();
+
+				App.Instance?.SeatBeltTensioner.SendMaxMovement();
+			}
+
+			SeatBeltTensionerMaxMotorSpeedString = $"{(int) MathF.Round( _seatBeltTensionerMaxMotorSpeed )}";
+		}
+	}
+
+	private string _seatBeltTensionerMaxMotorSpeedString = string.Empty;
+
+	[XmlIgnore]
+	public string SeatBeltTensionerMaxMotorSpeedString
+	{
+		get => _seatBeltTensionerMaxMotorSpeedString;
+
+		set
+		{
+			if ( value != _seatBeltTensionerMaxMotorSpeedString )
+			{
+				_seatBeltTensionerMaxMotorSpeedString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region AdminBoxx - Connect on startup
+
+	private bool _adminBoxxConnectOnStartup = false;
+
+	public bool AdminBoxxConnectOnStartup
+	{
+		get => _adminBoxxConnectOnStartup;
+
+		set
+		{
+			if ( value != _adminBoxxConnectOnStartup )
+			{
+				_adminBoxxConnectOnStartup = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region AdminBoxx - Brightness
+
+	private float _adminBoxxBrightness = 0.15f;
+
+	public float AdminBoxxBrightness
+	{
+		get => _adminBoxxBrightness;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _adminBoxxBrightness )
+			{
+				_adminBoxxBrightness = value;
+
+				OnPropertyChanged();
+			}
+
+			AdminBoxxBrightnessString = $"{_adminBoxxBrightness * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _adminBoxxBrightnessString = string.Empty;
+
+	[XmlIgnore]
+	public string AdminBoxxBrightnessString
+	{
+		get => _adminBoxxBrightnessString;
+
+		set
+		{
+			if ( value != _adminBoxxBrightnessString )
+			{
+				_adminBoxxBrightnessString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings AdminBoxxBrightnessPlusButtonMappings { get; set; } = new();
+	public ButtonMappings AdminBoxxBrightnessMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region AdminBoxx - Volume
+
+	private float _adminBoxxVolume = 0.75f;
+
+	public float AdminBoxxVolume
+	{
+		get => _adminBoxxVolume;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _adminBoxxVolume )
+			{
+				_adminBoxxVolume = value;
+
+				OnPropertyChanged();
+			}
+
+			AdminBoxxVolumeString = $"{_adminBoxxVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _adminBoxxVolumeString = string.Empty;
+
+	[XmlIgnore]
+	public string AdminBoxxVolumeString
+	{
+		get => _adminBoxxVolumeString;
+
+		set
+		{
+			if ( value != _adminBoxxBrightnessString )
+			{
+				_adminBoxxVolumeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings AdminBoxxVolumePlusButtonMappings { get; set; } = new();
+	public ButtonMappings AdminBoxxVolumeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
 	#region Overlays - Show Gap monitor window
 
 	private bool _overlaysShowGapMonitorWindow = false;
@@ -9417,6 +10008,93 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Trading paints - Enabled
+
+	private bool _tradingPaintsEnabled = false;
+
+	public bool TradingPaintsEnabled
+	{
+		get => _tradingPaintsEnabled;
+
+		set
+		{
+			if ( value != _tradingPaintsEnabled )
+			{
+				_tradingPaintsEnabled = value;
+
+				OnPropertyChanged();
+
+				App.Instance?.TradingPaints.Reset();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Trading paints - Folder
+
+	private string _tradingPaintsFolder = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), "iRacing", "paint" );
+
+	public string TradingPaintsFolder
+	{
+		get => _tradingPaintsFolder;
+
+		set
+		{
+			if ( value != _tradingPaintsFolder )
+			{
+				_tradingPaintsFolder = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Trading paints - Max Download Speed
+
+	private float _tradingPaintsMaxDownloadSpeedKbps = 1024f;
+
+	public float TradingPaintsMaxDownloadSpeedKbps
+	{
+		get => _tradingPaintsMaxDownloadSpeedKbps;
+
+		set
+		{
+			value = Math.Clamp( value, 64f, 10240f );
+
+			if ( value != _tradingPaintsMaxDownloadSpeedKbps )
+			{
+				_tradingPaintsMaxDownloadSpeedKbps = value;
+
+				OnPropertyChanged();
+			}
+
+			TradingPaintsMaxDownloadSpeedKbpsString = $"{(int) MathF.Round( _tradingPaintsMaxDownloadSpeedKbps )} KB/s";
+		}
+	}
+
+	private string _tradingPaintsMaxDownloadSpeedKbpsString = "1024 KB/s";
+
+	[XmlIgnore]
+	public string TradingPaintsMaxDownloadSpeedKbpsString
+	{
+		get => _tradingPaintsMaxDownloadSpeedKbpsString;
+
+		set
+		{
+			if ( value != _tradingPaintsMaxDownloadSpeedKbpsString )
+			{
+				_tradingPaintsMaxDownloadSpeedKbpsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Graph - Statistics
 
 	private Graph.LayerIndex _graphStatisticsLayerIndex = Graph.LayerIndex.TimerJitter;
@@ -9603,119 +10281,6 @@ public class Settings : INotifyPropertyChanged
 			}
 		}
 	}
-
-	#endregion
-
-	#region AdminBoxx - Connect on startup
-
-	private bool _adminBoxxConnectOnStartup = false;
-
-	public bool AdminBoxxConnectOnStartup
-	{
-		get => _adminBoxxConnectOnStartup;
-
-		set
-		{
-			if ( value != _adminBoxxConnectOnStartup )
-			{
-				_adminBoxxConnectOnStartup = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region AdminBoxx - Brightness
-
-	private float _adminBoxxBrightness = 0.15f;
-
-	public float AdminBoxxBrightness
-	{
-		get => _adminBoxxBrightness;
-
-		set
-		{
-			value = MathZ.Saturate( value );
-
-			if ( value != _adminBoxxBrightness )
-			{
-				_adminBoxxBrightness = value;
-
-				OnPropertyChanged();
-			}
-
-			AdminBoxxBrightnessString = $"{_adminBoxxBrightness * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-		}
-	}
-
-	private string _adminBoxxBrightnessString = string.Empty;
-
-	[XmlIgnore]
-	public string AdminBoxxBrightnessString
-	{
-		get => _adminBoxxBrightnessString;
-
-		set
-		{
-			if ( value != _adminBoxxBrightnessString )
-			{
-				_adminBoxxBrightnessString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ButtonMappings AdminBoxxBrightnessPlusButtonMappings { get; set; } = new();
-	public ButtonMappings AdminBoxxBrightnessMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region AdminBoxx - Volume
-
-	private float _adminBoxxVolume = 0.75f;
-
-	public float AdminBoxxVolume
-	{
-		get => _adminBoxxVolume;
-
-		set
-		{
-			value = MathZ.Saturate( value );
-
-			if ( value != _adminBoxxVolume )
-			{
-				_adminBoxxVolume = value;
-
-				OnPropertyChanged();
-			}
-
-			AdminBoxxVolumeString = $"{_adminBoxxVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-		}
-	}
-
-	private string _adminBoxxVolumeString = string.Empty;
-
-	[XmlIgnore]
-	public string AdminBoxxVolumeString
-	{
-		get => _adminBoxxVolumeString;
-
-		set
-		{
-			if ( value != _adminBoxxBrightnessString )
-			{
-				_adminBoxxVolumeString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ButtonMappings AdminBoxxVolumePlusButtonMappings { get; set; } = new();
-	public ButtonMappings AdminBoxxVolumeMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
@@ -10003,571 +10568,6 @@ public class Settings : INotifyPropertyChanged
 
 					app.Logger.WriteLine( $"[Settings] Failed to set CPU affinity: {ex.Message}" );
 				}
-			}
-		}
-	}
-
-	#endregion
-
-	#region Trading paints - Enabled
-
-	private bool _tradingPaintsEnabled = false;
-
-	public bool TradingPaintsEnabled
-	{
-		get => _tradingPaintsEnabled;
-
-		set
-		{
-			if ( value != _tradingPaintsEnabled )
-			{
-				_tradingPaintsEnabled = value;
-
-				OnPropertyChanged();
-
-				App.Instance?.TradingPaints.Reset();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Seat Belt Tensioner - Enabled
-
-	private bool _seatBeltTensionerEnabled = false;
-
-	public bool SeatBeltTensionerEnabled
-	{
-		get => _seatBeltTensionerEnabled;
-
-		set
-		{
-			if ( value != _seatBeltTensionerEnabled )
-			{
-				_seatBeltTensionerEnabled = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Seat Belt Tensioner - Surge Subtract Gravity
-
-	private bool _seatBeltTensionerSurgeSubtractGravity = false;
-
-	public bool SeatBeltTensionerSurgeSubtractGravity
-	{
-		get => _seatBeltTensionerSurgeSubtractGravity;
-
-		set
-		{
-			if ( value != _seatBeltTensionerSurgeSubtractGravity )
-			{
-				_seatBeltTensionerSurgeSubtractGravity = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches SeatBeltTensionerSurgeSubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
-	#region Seat Belt Tensioner - Sway Subtract Gravity
-
-	private bool _seatBeltTensionerSwaySubtractGravity = false;
-
-	public bool SeatBeltTensionerSwaySubtractGravity
-	{
-		get => _seatBeltTensionerSwaySubtractGravity;
-
-		set
-		{
-			if ( value != _seatBeltTensionerSwaySubtractGravity )
-			{
-				_seatBeltTensionerSwaySubtractGravity = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches SeatBeltTensionerSwaySubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
-	#region Seat Belt Tensioner - Heave Subtract Gravity
-
-	private bool _seatBeltTensionerHeaveSubtractGravity = true;
-
-	public bool SeatBeltTensionerHeaveSubtractGravity
-	{
-		get => _seatBeltTensionerHeaveSubtractGravity;
-
-		set
-		{
-			if ( value != _seatBeltTensionerHeaveSubtractGravity )
-			{
-				_seatBeltTensionerHeaveSubtractGravity = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches SeatBeltTensionerHeaveSubtractGravityContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
-	#region Seat Belt Tensioner - Surge Invert
-
-	private bool _seatBeltTensionerSurgeInvert = false;
-
-	public bool SeatBeltTensionerSurgeInvert
-	{
-		get => _seatBeltTensionerSurgeInvert;
-
-		set
-		{
-			if ( value != _seatBeltTensionerSurgeInvert )
-			{
-				_seatBeltTensionerSurgeInvert = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches SeatBeltTensionerSurgeInvertContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
-	#region Seat Belt Tensioner - Sway Invert
-
-	private bool _seatBeltTensionerSwayInvert = false;
-
-	public bool SeatBeltTensionerSwayInvert
-	{
-		get => _seatBeltTensionerSwayInvert;
-
-		set
-		{
-			if ( value != _seatBeltTensionerSwayInvert )
-			{
-				_seatBeltTensionerSwayInvert = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches SeatBeltTensionerSwayInvertContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
-	#region Seat Belt Tensioner - Heave Invert
-
-	private bool _seatBeltTensionerHeaveInvert = false;
-
-	public bool SeatBeltTensionerHeaveInvert
-	{
-		get => _seatBeltTensionerHeaveInvert;
-
-		set
-		{
-			if ( value != _seatBeltTensionerHeaveInvert )
-			{
-				_seatBeltTensionerHeaveInvert = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches SeatBeltTensionerHeaveInvertContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
-	#region Seat Belt Tensioner - Minimum
-
-	private float _seatBeltTensionerMinimum = 45f;
-
-	public float SeatBeltTensionerMinimum
-	{
-		get => _seatBeltTensionerMinimum;
-
-		set
-		{
-			value = Math.Clamp( value, 0f, 90f );
-
-			if ( value != _seatBeltTensionerMinimum )
-			{
-				_seatBeltTensionerMinimum = value;
-
-				OnPropertyChanged();
-
-				SeatBeltTensionerNeutral = MathF.Max( SeatBeltTensionerNeutral, _seatBeltTensionerMinimum );
-
-				App.Instance?.SeatBeltTensioner.SendCalibration();
-			}
-
-			SeatBeltTensionerMinimumString = $"{_seatBeltTensionerMinimum:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
-		}
-	}
-
-	private string _seatBeltTensionerMinimumString = string.Empty;
-
-	[XmlIgnore]
-	public string SeatBeltTensionerMinimumString
-	{
-		get => _seatBeltTensionerMinimumString;
-
-		set
-		{
-			if ( value != _seatBeltTensionerMinimumString )
-			{
-				_seatBeltTensionerMinimumString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Seat Belt Tensioner - Neutral
-
-	private float _seatBeltTensionerNeutral = 60f;
-
-	public float SeatBeltTensionerNeutral
-	{
-		get => _seatBeltTensionerNeutral;
-
-		set
-		{
-			value = Math.Clamp( value, _seatBeltTensionerMinimum, _seatBeltTensionerMaximum );
-
-			if ( value != _seatBeltTensionerNeutral )
-			{
-				_seatBeltTensionerNeutral = value;
-
-				OnPropertyChanged();
-
-				App.Instance?.SeatBeltTensioner.SendCalibration();
-			}
-
-			SeatBeltTensionerNeutralString = $"{_seatBeltTensionerNeutral:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
-		}
-	}
-
-	private string _seatBeltTensionerNeutralString = string.Empty;
-
-	[XmlIgnore]
-	public string SeatBeltTensionerNeutralString
-	{
-		get => _seatBeltTensionerNeutralString;
-
-		set
-		{
-			if ( value != _seatBeltTensionerNeutralString )
-			{
-				_seatBeltTensionerNeutralString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Seat Belt Tensioner - Maximum
-
-	private float _seatBeltTensionerMaximum = 135f;
-
-	public float SeatBeltTensionerMaximum
-	{
-		get => _seatBeltTensionerMaximum;
-
-		set
-		{
-			value = Math.Clamp( value, 90f, 180f );
-
-			if ( value != _seatBeltTensionerMaximum )
-			{
-				_seatBeltTensionerMaximum = value;
-
-				OnPropertyChanged();
-
-				SeatBeltTensionerNeutral = MathF.Min( SeatBeltTensionerNeutral, _seatBeltTensionerMaximum );
-
-				App.Instance?.SeatBeltTensioner.SendCalibration();
-			}
-
-			SeatBeltTensionerMaximumString = $"{_seatBeltTensionerMaximum:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
-		}
-	}
-
-	private string _seatBeltTensionerMaximumString = string.Empty;
-
-	[XmlIgnore]
-	public string SeatBeltTensionerMaximumString
-	{
-		get => _seatBeltTensionerMaximumString;
-
-		set
-		{
-			if ( value != _seatBeltTensionerMaximumString )
-			{
-				_seatBeltTensionerMaximumString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Seat Belt Tensioner - Surge Max G
-
-	private float _seatBeltTensionerSurgeMaxG = 10f;
-
-	public float SeatBeltTensionerSurgeMaxG
-	{
-		get => _seatBeltTensionerSurgeMaxG;
-
-		set
-		{
-			value = Math.Clamp( value, 0.1f, 50f );
-
-			if ( value != _seatBeltTensionerSurgeMaxG )
-			{
-				_seatBeltTensionerSurgeMaxG = value;
-
-				OnPropertyChanged();
-			}
-
-			SeatBeltTensionerSurgeMaxGString = $"{_seatBeltTensionerSurgeMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
-		}
-	}
-
-	private string _seatBeltTensionerSurgeMaxGString = string.Empty;
-
-	[XmlIgnore]
-	public string SeatBeltTensionerSurgeMaxGString
-	{
-		get => _seatBeltTensionerSurgeMaxGString;
-
-		set
-		{
-			if ( value != _seatBeltTensionerSurgeMaxGString )
-			{
-				_seatBeltTensionerSurgeMaxGString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches SeatBeltTensionerSurgeMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
-	#region Seat Belt Tensioner - Sway Max G
-
-	private float _seatBeltTensionerSwayMaxG = 10f;
-
-	public float SeatBeltTensionerSwayMaxG
-	{
-		get => _seatBeltTensionerSwayMaxG;
-
-		set
-		{
-			value = Math.Clamp( value, 0.1f, 50f );
-
-			if ( value != _seatBeltTensionerSwayMaxG )
-			{
-				_seatBeltTensionerSwayMaxG = value;
-
-				OnPropertyChanged();
-			}
-
-			SeatBeltTensionerSwayMaxGString = $"{_seatBeltTensionerSwayMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
-		}
-	}
-
-	private string _seatBeltTensionerSwayMaxGString = string.Empty;
-
-	[XmlIgnore]
-	public string SeatBeltTensionerSwayMaxGString
-	{
-		get => _seatBeltTensionerSwayMaxGString;
-
-		set
-		{
-			if ( value != _seatBeltTensionerSwayMaxGString )
-			{
-				_seatBeltTensionerSwayMaxGString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches SeatBeltTensionerSwayMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
-	#region Seat Belt Tensioner - Heave Max G
-
-	private float _seatBeltTensionerHeaveMaxG = 10f;
-
-	public float SeatBeltTensionerHeaveMaxG
-	{
-		get => _seatBeltTensionerHeaveMaxG;
-
-		set
-		{
-			value = Math.Clamp( value, 0.1f, 50f );
-
-			if ( value != _seatBeltTensionerHeaveMaxG )
-			{
-				_seatBeltTensionerHeaveMaxG = value;
-
-				OnPropertyChanged();
-			}
-
-			SeatBeltTensionerHeaveMaxGString = $"{_seatBeltTensionerHeaveMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
-		}
-	}
-
-	private string _seatBeltTensionerHeaveMaxGString = string.Empty;
-
-	[XmlIgnore]
-	public string SeatBeltTensionerHeaveMaxGString
-	{
-		get => _seatBeltTensionerHeaveMaxGString;
-
-		set
-		{
-			if ( value != _seatBeltTensionerHeaveMaxGString )
-			{
-				_seatBeltTensionerHeaveMaxGString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches SeatBeltTensionerHeaveMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
-	#region Seat Belt Tensioner - Max Motor Speed
-
-	private float _seatBeltTensionerMaxMotorSpeed = 25f;
-
-	public float SeatBeltTensionerMaxMotorSpeed
-	{
-		get => _seatBeltTensionerMaxMotorSpeed;
-
-		set
-		{
-			value = Math.Clamp( value, 5f, 50f );
-
-			if ( value != _seatBeltTensionerMaxMotorSpeed )
-			{
-				_seatBeltTensionerMaxMotorSpeed = value;
-
-				OnPropertyChanged();
-
-				App.Instance?.SeatBeltTensioner.SendMaxMovement();
-			}
-
-			SeatBeltTensionerMaxMotorSpeedString = $"{(int) MathF.Round( _seatBeltTensionerMaxMotorSpeed )}";
-		}
-	}
-
-	private string _seatBeltTensionerMaxMotorSpeedString = string.Empty;
-
-	[XmlIgnore]
-	public string SeatBeltTensionerMaxMotorSpeedString
-	{
-		get => _seatBeltTensionerMaxMotorSpeedString;
-
-		set
-		{
-			if ( value != _seatBeltTensionerMaxMotorSpeedString )
-			{
-				_seatBeltTensionerMaxMotorSpeedString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Trading paints - Folder
-
-	private string _tradingPaintsFolder = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), "iRacing", "paint" );
-
-	public string TradingPaintsFolder
-	{
-		get => _tradingPaintsFolder;
-
-		set
-		{
-			if ( value != _tradingPaintsFolder )
-			{
-				_tradingPaintsFolder = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Trading paints - Max Download Speed
-
-	private float _tradingPaintsMaxDownloadSpeedKbps = 1024f;
-
-	public float TradingPaintsMaxDownloadSpeedKbps
-	{
-		get => _tradingPaintsMaxDownloadSpeedKbps;
-
-		set
-		{
-			value = Math.Clamp( value, 64f, 10240f );
-
-			if ( value != _tradingPaintsMaxDownloadSpeedKbps )
-			{
-				_tradingPaintsMaxDownloadSpeedKbps = value;
-
-				OnPropertyChanged();
-			}
-
-			TradingPaintsMaxDownloadSpeedKbpsString = $"{(int) MathF.Round( _tradingPaintsMaxDownloadSpeedKbps )} KB/s";
-		}
-	}
-
-	private string _tradingPaintsMaxDownloadSpeedKbpsString = "1024 KB/s";
-
-	[XmlIgnore]
-	public string TradingPaintsMaxDownloadSpeedKbpsString
-	{
-		get => _tradingPaintsMaxDownloadSpeedKbpsString;
-
-		set
-		{
-			if ( value != _tradingPaintsMaxDownloadSpeedKbpsString )
-			{
-				_tradingPaintsMaxDownloadSpeedKbpsString = value;
-
-				OnPropertyChanged();
 			}
 		}
 	}
