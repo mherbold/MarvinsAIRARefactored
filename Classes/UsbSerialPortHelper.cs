@@ -2,13 +2,13 @@
 using System.IO.Ports;
 using System.Management;
 using System.Text;
-using System;
 
 namespace MarvinsAIRARefactored.Classes;
 
-public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdMustContain = "", string fallbackVid = "", string fallbackPid = "", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One ) : IDisposable
+public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdMustContain = "", string vid = "", string pid = "", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One ) : IDisposable
 {
 	public bool DeviceFound { get => _portName != string.Empty; }
+	public string LastErrorMessage { get; private set; } = string.Empty;
 
 	public event EventHandler<string>? DataReceived = null;
 	public event EventHandler? PortClosed = null;
@@ -16,8 +16,8 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 	private readonly string _handshake = handshake;
 	private readonly string _deviceIdMustContain = deviceIdMustContain;
 
-	private readonly string _fallbackVid = fallbackVid.ToUpper();
-	private readonly string _fallbackPid = fallbackPid.ToUpper();
+	private readonly string _vid = vid.ToUpper();
+	private readonly string _pid = pid.ToUpper();
 
 	private readonly int _baudRate = baudRate;
 	private readonly Parity _parity = parity;
@@ -43,8 +43,6 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		{
 			using var searcher = new ManagementObjectSearcher( "SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'" );
 
-			var fallbackPortName = string.Empty;
-
 			foreach ( var device in searcher.Get() )
 			{
 				var name = device[ "Name" ]?.ToString();
@@ -52,19 +50,19 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 				if ( !string.IsNullOrEmpty( name ) && !string.IsNullOrEmpty( deviceId ) )
 				{
-					if ( ( _deviceIdMustContain == string.Empty ) || !deviceId.Contains( _deviceIdMustContain, StringComparison.OrdinalIgnoreCase ) )
+					var start = name.IndexOf( "(COM" );
+
+					if ( start >= 0 )
 					{
-						var start = name.IndexOf( "(COM" );
+						var end = name.IndexOf( ')', start );
 
-						if ( start >= 0 )
+						if ( end >= 0 )
 						{
-							var end = name.IndexOf( ')', start );
+							var portName = name.Substring( start + 1, end - start - 1 );
 
-							if ( end >= 0 )
+							if ( _handshake != string.Empty )
 							{
-								var portName = name.Substring( start + 1, end - start - 1 );
-
-								// try handshake first
+								// use handshake method
 
 								try
 								{
@@ -99,14 +97,21 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 								{
 									app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake failed on {portName}: {exception.Message}" );
 								}
+							}
+							else
+							{
+								// use VID/PID method
 
-								// try VID/PID second (and use as fallback)
-
-								if ( ( _fallbackVid != string.Empty ) && ( _fallbackPid != string.Empty ) )
+								if ( ( _deviceIdMustContain == string.Empty ) || !deviceId.Contains( _deviceIdMustContain, StringComparison.OrdinalIgnoreCase ) )
 								{
-									if ( deviceId.Contains( $"VID_{_fallbackVid}", StringComparison.OrdinalIgnoreCase ) && deviceId.Contains( $"PID_{_fallbackPid}", StringComparison.OrdinalIgnoreCase ) )
+									if ( ( _vid != string.Empty ) && ( _pid != string.Empty ) )
 									{
-										fallbackPortName = portName;
+										if ( deviceId.Contains( $"VID_{_vid}", StringComparison.OrdinalIgnoreCase ) && deviceId.Contains( $"PID_{_pid}", StringComparison.OrdinalIgnoreCase ) )
+										{
+											_portName = portName;
+
+											break;
+										}
 									}
 								}
 							}
@@ -117,16 +122,7 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 			if ( _portName == string.Empty )
 			{
-				if ( fallbackPortName != string.Empty )
-				{
-					app.Logger.WriteLine( $"[UsbSerialPortHelper] Device found on port {fallbackPortName} (using fallback method)" );
-
-					_portName = fallbackPortName;
-				}
-				else
-				{
-					app.Logger.WriteLine( "[UsbSerialPortHelper] Device not found" );
-				}
+				app.Logger.WriteLine( "[UsbSerialPortHelper] Device not found" );
 			}
 		}
 		catch ( Exception exception )
@@ -145,31 +141,53 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 		var serialPortOpened = false;
 
+		LastErrorMessage = string.Empty;
+
 		if ( DeviceFound )
 		{
 			using ( _lock.EnterScope() )
 			{
-				_serialPort = new SerialPort( _portName, _baudRate, _parity, _dataBits, _stopBits )
+				try
 				{
-					Handshake = Handshake.None,
-					Encoding = Encoding.ASCII,
-					ReadTimeout = 3000,
-					WriteTimeout = 3000,
-					NewLine = "\n"
-				};
+					_serialPort = new SerialPort( _portName, _baudRate, _parity, _dataBits, _stopBits )
+					{
+						Handshake = Handshake.None,
+						Encoding = Encoding.ASCII,
+						ReadTimeout = 3000,
+						WriteTimeout = 3000,
+						NewLine = "\n"
+					};
 
-				_serialPort.DataReceived += OnDataReceived;
+					_serialPort.DataReceived += OnDataReceived;
 
-				_serialPort.Open();
-				_serialPort.DiscardInBuffer();
-				_serialPort.DiscardOutBuffer();
+					_serialPort.Open();
+					_serialPort.DiscardInBuffer();
+					_serialPort.DiscardOutBuffer();
 
-				_cancellationTokenSource = new();
+					_cancellationTokenSource = new();
 
-				_ = Task.Run( () => MonitorPort( _cancellationTokenSource.Token ) );
+					_ = Task.Run( () => MonitorPort( _cancellationTokenSource.Token ) );
 
-				serialPortOpened = true;
+					serialPortOpened = true;
+				}
+				catch ( Exception exception )
+				{
+					app.Logger.WriteLine( $"[UsbSerialPortHelper] Failed to open serial port {_portName}: {exception.Message}" );
+
+					LastErrorMessage = exception.Message;
+
+					if ( _serialPort != null )
+					{
+						_serialPort.DataReceived -= OnDataReceived;
+						_serialPort.Dispose();
+						_serialPort = null;
+					}
+				}
 			}
+		}
+		else
+		{
+			LastErrorMessage = "Device not found";
 		}
 
 		app.Logger.WriteLine( "[UsbSerialPortHelper] <<< Open" );
@@ -223,7 +241,14 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		{
 			if ( _serialPort != null && _serialPort.IsOpen )
 			{
-				_serialPort.Write( data, 0, data.Length );
+				try
+				{
+					_serialPort.Write( data, 0, data.Length );
+				}
+				catch ( Exception exception )
+				{
+					App.Instance?.Logger.WriteLine( $"[UsbSerialPortHelper] Write failed: {exception.Message}" );
+				}
 			}
 		}
 	}
@@ -234,7 +259,14 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		{
 			if ( _serialPort != null && _serialPort.IsOpen )
 			{
-				_serialPort.BaseStream.Write( data );
+				try
+				{
+					_serialPort.BaseStream.Write( data );
+				}
+				catch ( Exception exception )
+				{
+					App.Instance?.Logger.WriteLine( $"[UsbSerialPortHelper] Write failed: {exception.Message}" );
+				}
 			}
 		}
 	}
@@ -245,7 +277,14 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		{
 			if ( _serialPort != null && _serialPort.IsOpen )
 			{
-				_serialPort.WriteLine( data );
+				try
+				{
+					_serialPort.WriteLine( data );
+				}
+				catch ( Exception exception )
+				{
+					App.Instance?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine failed: {exception.Message}" );
+				}
 			}
 		}
 	}
@@ -256,11 +295,18 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		{
 			if ( _serialPort != null && _serialPort.IsOpen )
 			{
-				_serialPort.BaseStream.Write( data );
-
-				if ( data.Length == 0 || data[ ^1 ] != (byte) '\n' )
+				try
 				{
-					_serialPort.BaseStream.WriteByte( (byte) '\n' );
+					_serialPort.BaseStream.Write( data );
+
+					if ( data.Length == 0 || data[ ^1 ] != (byte) '\n' )
+					{
+						_serialPort.BaseStream.WriteByte( (byte) '\n' );
+					}
+				}
+				catch ( Exception exception )
+				{
+					App.Instance?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine failed: {exception.Message}" );
 				}
 			}
 		}
@@ -297,7 +343,14 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 	{
 		while ( !token.IsCancellationRequested )
 		{
-			await Task.Delay( 1000, token );
+			try
+			{
+				await Task.Delay( 1000, token );
+			}
+			catch ( OperationCanceledException )
+			{
+				break;
+			}
 
 			using ( _lock.EnterScope() )
 			{
