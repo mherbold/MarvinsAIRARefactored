@@ -74,6 +74,8 @@ Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetu
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\SimHub"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\MarvinsAIRARefactoredSimHub.dll"; DestDir: "{code:SimHubRoot}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\MairaTyphoonWindSimHubPlugin.dll"; DestDir: "{code:SimHubRoot}"; Flags: ignoreversion recursesubdirs createallsubdirs
+Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\MairaSbtSimHubPlugin.dll"; DestDir: "{code:SimHubRoot}"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 ; NOTE: Don't use "Flags: ignoreversion" on any shared system files
 
