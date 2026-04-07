@@ -1,5 +1,6 @@
 ﻿
 using System.Windows;
+
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace MarvinsAIRARefactored.Pages;
@@ -26,7 +27,10 @@ public partial class AdminBoxxPage : UserControl
 		}
 		else
 		{
-			app.AdminBoxx.Disconnect();
+			if ( app.AdminBoxx.IsConnected )
+			{
+				app.AdminBoxx.Disconnect();
+			}
 		}
 	}
 

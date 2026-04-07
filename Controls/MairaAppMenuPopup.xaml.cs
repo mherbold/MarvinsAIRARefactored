@@ -248,6 +248,16 @@ namespace MarvinsAIRARefactored.Controls
 				PageUserControl = _seatBeltTensionerPage
 			} );
 
+#endif
+
+			AppMenuItems.Add( new AppMenuItem
+			{
+				AppPage = AppPage.AdminBoxx,
+				PageUserControl = _adminBoxxPage
+			} );
+
+#if !ADMINBOXX
+
 			AppMenuItems.Add( new AppMenuItem
 			{
 				AppPage = AppPage.Overlays,
@@ -282,16 +292,6 @@ namespace MarvinsAIRARefactored.Controls
 			{
 				AppPage = AppPage.Simulator,
 				PageUserControl = _simulatorPage
-			} );
-
-#endif
-
-#if ADMINBOXX
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.AdminBoxx,
-				PageUserControl = _adminBoxxPage
 			} );
 
 #endif
@@ -338,13 +338,13 @@ namespace MarvinsAIRARefactored.Controls
 				AppPage.Pedals => _pedalsPage,
 				AppPage.Wind => _windPage,
 				AppPage.SeatBeltTensioner => _seatBeltTensionerPage,
+				AppPage.AdminBoxx => _adminBoxxPage,
 				AppPage.Overlays => _overlaysPage,
 				AppPage.Sounds => _soundsPage,
 				AppPage.SpeechToText => _speechToTextPage,
 				AppPage.TradingPaints => _tradingPaintsPage,
 				AppPage.Graph => _graphPage,
 				AppPage.Simulator => _simulatorPage,
-				AppPage.AdminBoxx => _adminBoxxPage,
 				AppPage.AppSettings => _appSettingsPage,
 				AppPage.Contribute => _contributePage,
 				AppPage.Donate => _donatePage,
@@ -393,6 +393,10 @@ namespace MarvinsAIRARefactored.Controls
 						menuItem.DisplayName = localization[ "SeatBeltTensioner" ];
 						break;
 
+					case AppPage.AdminBoxx:
+						menuItem.DisplayName = localization[ "AdminBoxx" ];
+						break;
+
 					case AppPage.Overlays:
 						menuItem.DisplayName = localization[ "Overlays" ];
 						break;
@@ -415,10 +419,6 @@ namespace MarvinsAIRARefactored.Controls
 
 					case AppPage.Simulator:
 						menuItem.DisplayName = localization[ "Simulator" ];
-						break;
-
-					case AppPage.AdminBoxx:
-						menuItem.DisplayName = localization[ "AdminBoxx" ];
 						break;
 
 					case AppPage.AppSettings:
@@ -472,6 +472,10 @@ namespace MarvinsAIRARefactored.Controls
 					SelectedAppPageText = localization[ "SeatBeltTensioner_UC" ];
 					break;
 
+				case AppPage.AdminBoxx:
+					SelectedAppPageText = localization[ "AdminBoxx_UC" ];
+					break;
+
 				case AppPage.Overlays:
 					SelectedAppPageText = localization[ "Overlays_UC" ];
 					break;
@@ -494,10 +498,6 @@ namespace MarvinsAIRARefactored.Controls
 
 				case AppPage.Simulator:
 					SelectedAppPageText = localization[ "Simulator_UC" ];
-					break;
-
-				case AppPage.AdminBoxx:
-					SelectedAppPageText = localization[ "AdminBoxx_UC" ];
 					break;
 
 				case AppPage.AppSettings:

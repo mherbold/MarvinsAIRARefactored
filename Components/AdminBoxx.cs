@@ -206,6 +206,17 @@ public partial class AdminBoxx
 
 		_usbSerialPortHelper.Initialize();
 
+		if ( !_usbSerialPortHelper.DeviceFound )
+		{
+			app.Logger.WriteLine( "[AdminBoxx] Device not found - disabling AdminBoxxConnectOnStartup" );
+
+			app.Dispatcher.Invoke( () =>
+			{
+				MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.IsEnabled = false;
+				MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.ErrorMessage = "Device not found";
+			} );
+		}
+
 		app.Logger.WriteLine( "[AdminBoxx] <<< Initialize" );
 	}
 
@@ -251,6 +262,7 @@ public partial class AdminBoxx
 		app.Dispatcher.Invoke( () =>
 		{
 			MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.IsOn = IsConnected;
+			MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.ErrorMessage = IsConnected ? string.Empty : _usbSerialPortHelper.LastErrorMessage;
 		} );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< Connect" );
@@ -272,6 +284,7 @@ public partial class AdminBoxx
 		{
 			MainWindow._adminBoxxPage.Test.Disabled = true;
 			MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.IsOn = false;
+			MainWindow._adminBoxxPage.ConnectToAdminBoxx_MairaSwitch.ErrorMessage = string.Empty;
 		} );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< Disconnect" );

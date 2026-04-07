@@ -300,11 +300,6 @@ public partial class App : Application
 					MainWindow.Show();
 				}
 
-				if ( DataContext.DataContext.Instance.Settings.AdminBoxxConnectOnStartup )
-				{
-					AdminBoxx.Connect();
-				}
-
 				if ( DataContext.DataContext.Instance.Settings.WindConnectOnStartup )
 				{
 					Wind.Connect();
@@ -313,6 +308,11 @@ public partial class App : Application
 				if ( DataContext.DataContext.Instance.Settings.SeatBeltTensionerEnabled )
 				{
 					SeatBeltTensioner.Connect();
+				}
+
+				if ( DataContext.DataContext.Instance.Settings.AdminBoxxConnectOnStartup )
+				{
+					AdminBoxx.Connect();
 				}
 
 #if !ADMINBOXX
