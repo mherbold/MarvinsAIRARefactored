@@ -59,11 +59,10 @@ public partial class Wind
 		{
 			app.Logger.WriteLine( "[Wind] Device not found - disabling WindConnectOnStartup" );
 
-			DataContext.DataContext.Instance.Settings.WindConnectOnStartup = false;
-
 			app.Dispatcher.Invoke( () =>
 			{
 				MainWindow._windPage.ConnectToWind_MairaSwitch.IsEnabled = false;
+				MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = "Device not found";
 			} );
 		}
 
@@ -92,6 +91,7 @@ public partial class Wind
 		app.Dispatcher.Invoke( () =>
 		{
 			MainWindow._windPage.ConnectToWind_MairaSwitch.IsOn = IsConnected;
+			MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = IsConnected ? string.Empty : _usbSerialPortHelper.LastErrorMessage;
 		} );
 
 		app.Logger.WriteLine( "[Wind] <<< Connect" );
@@ -111,6 +111,11 @@ public partial class Wind
 
 		_leftFanRPM = 0;
 		_rightFanRPM = 0;
+
+		app.Dispatcher.Invoke( () =>
+		{
+			MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = string.Empty;
+		} );
 
 		app.Logger.WriteLine( "[Wind] <<< Disconnect" );
 	}

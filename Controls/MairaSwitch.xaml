@@ -7,7 +7,15 @@
              xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
              mc:Ignorable="d">
 
-    <Grid x:Name="LayoutRoot">
+    <Grid>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="Auto" />
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="LayoutRoot"
+              Grid.Column="0">
 
         <Grid.Style>
             <Style TargetType="Grid">
@@ -163,6 +171,39 @@
                 
             </TextBlock.Style>
             
+        </TextBlock>
+
+    </Grid>
+
+        <TextBlock Grid.Column="1"
+                   Text="{Binding ErrorMessage, ElementName=Root}"
+                   Foreground="#ff5b2e"
+                   Margin="12,0,0,0"
+                   VerticalAlignment="Center"
+                   TextWrapping="Wrap">
+
+            <TextBlock.Style>
+
+                <Style TargetType="TextBlock"
+                       BasedOn="{StaticResource MairaTextBlockStyle}">
+
+                    <Setter Property="Visibility"
+                            Value="Visible" />
+
+                    <Style.Triggers>
+
+                        <DataTrigger Binding="{Binding ErrorMessage, ElementName=Root}"
+                                     Value="">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed" />
+                        </DataTrigger>
+
+                    </Style.Triggers>
+
+                </Style>
+
+            </TextBlock.Style>
+
         </TextBlock>
 
     </Grid>

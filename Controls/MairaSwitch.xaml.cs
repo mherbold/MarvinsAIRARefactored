@@ -45,6 +45,14 @@ public partial class MairaSwitch : UserControl
 		set => SetValue( LabelPositionProperty, value );
 	}
 
+	public static readonly DependencyProperty ErrorMessageProperty = DependencyProperty.Register( nameof( ErrorMessage ), typeof( string ), typeof( MairaSwitch ), new PropertyMetadata( string.Empty ) );
+
+	public string ErrorMessage
+	{
+		get => (string) GetValue( ErrorMessageProperty );
+		set => SetValue( ErrorMessageProperty, value );
+	}
+
 	public static readonly DependencyProperty ContextSwitchesProperty = DependencyProperty.Register( nameof( ContextSwitches ), typeof( ContextSwitches ), typeof( MairaSwitch ), new PropertyMetadata( null ) );
 
 	public ContextSwitches ContextSwitches

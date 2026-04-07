@@ -30,7 +30,10 @@ public partial class WindPage : UserControl
 		}
 		else
 		{
-			app.Wind.Disconnect();
+			if ( app.Wind.IsConnected )
+			{
+				app.Wind.Disconnect();
+			}
 		}
 	}
 

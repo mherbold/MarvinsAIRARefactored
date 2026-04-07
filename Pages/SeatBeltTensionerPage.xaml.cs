@@ -24,7 +24,10 @@ public partial class SeatBeltTensionerPage : UserControl
 		}
 		else
 		{
-			app.SeatBeltTensioner.Disconnect();
+			if ( app.SeatBeltTensioner.IsConnected )
+			{
+				app.SeatBeltTensioner.Disconnect();
+			}
 		}
 	}
 
