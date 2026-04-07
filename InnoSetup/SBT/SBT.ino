@@ -14,7 +14,7 @@
 //                          yyyy = right tenths-of-a-degree (0000-1800)
 //                          Values are clamped to configured min/max limits.
 //
-//   NLxxxxRyyyy         -> Set neutral positions (used by timeout-to-neutral)
+//   NLxxxxRyyyy         -> Set neutral positions
 //                          Values are clamped to configured min/max limits.
 //
 //   ALxxxxRyyyy         -> Set minimum position limits
@@ -30,11 +30,11 @@
 //                          Values are clamped to 5-50 and persisted to EEPROM.
 //
 // ---------------------------------------------------------------------------
-// Timeout-to-neutral behavior:
+// Timeout-to-minimum-position behavior:
 //
 //   If no valid S command is received for SERIAL_TIMEOUT_MS milliseconds the
-//   controller automatically targets both servos to their saved neutral
-//   positions. The servos stay at neutral until new S commands arrive.
+//   controller automatically targets both servos to their saved minimum
+//   positions. The servos stay at minimum until new S commands arrive.
 //
 // ---------------------------------------------------------------------------
 // Motion model (velocity-limited):
@@ -60,7 +60,7 @@ const long SERIAL_BAUD_RATE = 115200;
 
 // --- Timing constants ---
 
-const unsigned long SERIAL_TIMEOUT_MS = 1000;         // Timeout before returning to neutral
+const unsigned long SERIAL_TIMEOUT_MS = 1000;         // Timeout before returning to min position
 const unsigned long MOTION_UPDATE_INTERVAL_MS = 10;   // Milliseconds between motion updates
 
 // --- Motion defaults ---
@@ -114,12 +114,12 @@ const byte EEPROM_VERSION   = 0x02;  // Increment this if the EEPROM layout chan
 //   Applied when EEPROM data is missing, has the wrong signature/version,
 //   or fails the range/ordering validity checks.
 
-const int DEFAULT_LEFT_MIN      = 450;
-const int DEFAULT_LEFT_NEUTRAL  = 600;
-const int DEFAULT_LEFT_MAX      = 1350;
-const int DEFAULT_RIGHT_MIN     = 450;
-const int DEFAULT_RIGHT_NEUTRAL = 600;
-const int DEFAULT_RIGHT_MAX     = 1350;
+const int DEFAULT_LEFT_MIN      = 600;
+const int DEFAULT_LEFT_NEUTRAL  = 900;
+const int DEFAULT_LEFT_MAX      = 1200;
+const int DEFAULT_RIGHT_MIN     = 600;
+const int DEFAULT_RIGHT_NEUTRAL = 900;
+const int DEFAULT_RIGHT_MAX     = 1200;
 
 // --- Servo inversion configuration ---
 //
@@ -158,11 +158,11 @@ int rightMaxPosition = DEFAULT_RIGHT_MAX;
 int leftNeutralPosition = DEFAULT_LEFT_NEUTRAL;
 int rightNeutralPosition = DEFAULT_RIGHT_NEUTRAL;
 
-int leftCurrentPosition = leftNeutralPosition;
-int rightCurrentPosition = rightNeutralPosition;
+int leftCurrentPosition = leftMinPosition;
+int rightCurrentPosition = rightMinPosition;
 
-int leftTargetPosition = leftNeutralPosition;
-int rightTargetPosition = rightNeutralPosition;
+int leftTargetPosition = leftMinPosition;
+int rightTargetPosition = rightMinPosition;
 
 // --- Timing state ---
 
@@ -536,15 +536,15 @@ void readSerialInput() {
 }
 
 // ===========================
-// Check for serial timeout and target neutral if needed
+// Check for serial timeout and target min position if needed
 // ===========================
 
 void checkSerialTimeout() {
   unsigned long elapsed = millis() - lastSetCommandTime;
 
   if (elapsed >= SERIAL_TIMEOUT_MS) {
-    leftTargetPosition = leftNeutralPosition;
-    rightTargetPosition = rightNeutralPosition;
+    leftTargetPosition = leftMinPosition;
+    rightTargetPosition = rightMinPosition;
   }
 }
 
@@ -576,20 +576,20 @@ void setup() {
   loadCalibrationFromEEPROM();
 
   // Initialise current and target positions from the loaded neutral values
-  leftCurrentPosition  = leftNeutralPosition;
-  rightCurrentPosition = rightNeutralPosition;
-  leftTargetPosition   = leftNeutralPosition;
-  rightTargetPosition  = rightNeutralPosition;
+  leftCurrentPosition  = leftMinPosition;
+  rightCurrentPosition = rightMinPosition;
+  leftTargetPosition   = leftMinPosition;
+  rightTargetPosition  = rightMinPosition;
 
   // Attach both servos
   leftServo.attach(LEFT_SERVO_PIN);
   rightServo.attach(RIGHT_SERVO_PIN);
 
-  // Initialize timing so timeout-to-neutral is active from the start
+  // Initialize timing so timeout-to-min-position is active from the start
   lastSetCommandTime = 0;
   lastMotionUpdateTime = millis();
 
-  // Move both servos to neutral immediately
+  // Move both servos to min position immediately
   applyServoOutputs();
 }
 

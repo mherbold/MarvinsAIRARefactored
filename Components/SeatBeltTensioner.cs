@@ -9,6 +9,9 @@ public class SeatBeltTensioner
 	// Telemetry → SBT update rate: 60fps source / 3 = 20 updates per second
 	private const int UpdateInterval = 3;
 
+	// SBT sleeps after 1s with no S packet - force a resend every 0.5s (10 updates × 3 ticks @ 60fps)
+	private const int ForceSendInterval = 10;
+
 	public bool IsConnected { get; private set; } = false;
 
 	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( "MAIRA SBT" );
@@ -23,6 +26,7 @@ public class SeatBeltTensioner
 	private int _updateCounter = UpdateInterval + 2;
 	private int _lastSentLeftTenths = -1;
 	private int _lastSentRightTenths = -1;
+	private int _forceSendCounter = 0;
 
 	private float _longAccelSum = 0f;
 	private float _latAccelSum = 0f;
@@ -63,11 +67,10 @@ public class SeatBeltTensioner
 		{
 			app.Logger.WriteLine( "[SeatBeltTensioner] Device not found - disabling SeatBeltTensionerEnabled" );
 
-			DataContext.DataContext.Instance.Settings.SeatBeltTensionerEnabled = false;
-
 			app.Dispatcher.Invoke( () =>
 			{
 				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.IsEnabled = false;
+				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = "Device not found";
 			} );
 		}
 
@@ -102,6 +105,7 @@ public class SeatBeltTensioner
 		app.Dispatcher.Invoke( () =>
 		{
 			MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.IsOn = IsConnected;
+			MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = IsConnected ? string.Empty : _usbSerialPortHelper.LastErrorMessage;
 		} );
 
 		app.Logger.WriteLine( "[SeatBeltTensioner] <<< Connect" );
@@ -119,8 +123,14 @@ public class SeatBeltTensioner
 
 		_lastSentLeftTenths = -1;
 		_lastSentRightTenths = -1;
+		_forceSendCounter = 0;
 
 		_usbSerialPortHelper.Close();
+
+		app.Dispatcher.Invoke( () =>
+		{
+			MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = string.Empty;
+		} );
 
 		app.Logger.WriteLine( "[SeatBeltTensioner] <<< Disconnect" );
 	}
@@ -169,11 +179,14 @@ public class SeatBeltTensioner
 		leftTargetPositionTenths = Math.Clamp( leftTargetPositionTenths, minimumTenths, maximumTenths );
 		rightTargetPositionTenths = Math.Clamp( rightTargetPositionTenths, minimumTenths, maximumTenths );
 
-		if ( ( leftTargetPositionTenths == _lastSentLeftTenths ) && ( rightTargetPositionTenths == _lastSentRightTenths ) )
+		_forceSendCounter++;
+
+		if ( _forceSendCounter < ForceSendInterval && ( leftTargetPositionTenths == _lastSentLeftTenths ) && ( rightTargetPositionTenths == _lastSentRightTenths ) )
 		{
 			return;
 		}
 
+		_forceSendCounter = 0;
 		_lastSentLeftTenths = leftTargetPositionTenths;
 		_lastSentRightTenths = rightTargetPositionTenths;
 

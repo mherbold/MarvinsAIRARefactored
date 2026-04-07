@@ -52,21 +52,21 @@
                                         Value="{Binding Settings.SeatBeltTensionerMinimum, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerMinimumString}"
                                         StepSize="1"
-                                        DefaultValue="45" />
+                                        DefaultValue="60" />
 
                     <controls:MairaKnob Grid.Column="2"
                                         Label="{Binding Localization[NeutralAngle]}"
                                         Value="{Binding Settings.SeatBeltTensionerNeutral, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerNeutralString}"
                                         StepSize="1"
-                                        DefaultValue="60" />
+                                        DefaultValue="90" />
 
                     <controls:MairaKnob Grid.Column="4"
                                         Label="{Binding Localization[MaximumAngle]}"
                                         Value="{Binding Settings.SeatBeltTensionerMaximum, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerMaximumString}"
                                         StepSize="1"
-                                        DefaultValue="135" />
+                                        DefaultValue="120" />
 
                 </Grid>
 
