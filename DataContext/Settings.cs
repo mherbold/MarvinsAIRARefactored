@@ -1,10 +1,11 @@
-﻿
+
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows.Threading;
 using System.Xml.Serialization;
+
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
 using MarvinsAIRARefactored.Windows;
@@ -10281,6 +10282,39 @@ public class Settings : INotifyPropertyChanged
 			}
 		}
 	}
+
+	#endregion
+
+	#region App Manager - Enabled
+
+	private bool _appManagerEnabled = true;
+
+	public bool AppManagerEnabled
+	{
+		get => _appManagerEnabled;
+
+		set
+		{
+			if ( value != _appManagerEnabled )
+			{
+				_appManagerEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region App Manager - Start list
+
+	public List<AppManagerStartEntry> AppManagerStartList { get; set; } = [];
+
+	#endregion
+
+	#region App Manager - Terminate list
+
+	public List<AppManagerTerminateEntry> AppManagerTerminateList { get; set; } = [];
 
 	#endregion
 

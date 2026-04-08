@@ -1,4 +1,4 @@
-﻿
+
 using System.Windows;
 
 using UserControl = System.Windows.Controls.UserControl;
@@ -76,6 +76,7 @@ public partial class AppSettingsPage : UserControl
 			{ MainWindow.AppPage.Sounds, localization[ "Sounds" ] },
 			{ MainWindow.AppPage.SpeechToText, localization[ "SpeechToText" ] },
 			{ MainWindow.AppPage.TradingPaints, localization[ "TradingPaints" ] },
+			{ MainWindow.AppPage.AppManager, localization[ "AppManager" ] },
 			{ MainWindow.AppPage.Graph, localization[ "Graph" ] },
 			{ MainWindow.AppPage.Simulator, localization[ "Simulator" ] },
 			{ MainWindow.AppPage.AppSettings, localization[ "AppSettings" ] },

@@ -1,4 +1,4 @@
-﻿
+
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -268,6 +268,7 @@ public partial class Simulator
 #if !ADMINBOXX
 
 		app.SpeechToText.SimulatorConnected();
+		app.AppManager.SimulatorConnected();
 
 #endif
 
@@ -390,6 +391,8 @@ public partial class Simulator
 
 		app.SteeringEffects.SimulatorDisconnected();
 		app.SpeechToText.SimulatorDisconnected();
+		app.AppManager.SimulatorDisconnected();
+
 		app.TimingMarkers.Reset();
 
 		app.UpdateGripOMeterWindowVisibility();

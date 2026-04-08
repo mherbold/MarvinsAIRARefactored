@@ -1,4 +1,4 @@
-﻿
+
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -115,6 +115,9 @@ namespace MarvinsAIRARefactored.Controls
 
 				case AppPage.Simulator:
 					return "advanced/simulator/";
+
+				case AppPage.AppManager:
+					return "advanced/app-launcher/";
 
 				case AppPage.AppSettings:
 					return "advanced/app-settings/";
@@ -294,6 +297,12 @@ namespace MarvinsAIRARefactored.Controls
 				PageUserControl = _simulatorPage
 			} );
 
+			AppMenuItems.Add( new AppMenuItem
+			{
+				AppPage = AppPage.AppManager,
+				PageUserControl = _appManagerPage
+			} );
+
 #endif
 
 			AppMenuItems.Add( new AppMenuItem
@@ -345,6 +354,7 @@ namespace MarvinsAIRARefactored.Controls
 				AppPage.TradingPaints => _tradingPaintsPage,
 				AppPage.Graph => _graphPage,
 				AppPage.Simulator => _simulatorPage,
+				AppPage.AppManager => _appManagerPage,
 				AppPage.AppSettings => _appSettingsPage,
 				AppPage.Contribute => _contributePage,
 				AppPage.Donate => _donatePage,
@@ -421,6 +431,10 @@ namespace MarvinsAIRARefactored.Controls
 						menuItem.DisplayName = localization[ "Simulator" ];
 						break;
 
+					case AppPage.AppManager:
+						menuItem.DisplayName = localization[ "AppManager" ];
+						break;
+
 					case AppPage.AppSettings:
 						menuItem.DisplayName = localization[ "AppSettings" ];
 						break;
@@ -491,7 +505,6 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.TradingPaints:
 					SelectedAppPageText = localization[ "TradingPaints_UC" ];
 					break;
-
 				case AppPage.Graph:
 					SelectedAppPageText = localization[ "Graph_UC" ];
 					break;
@@ -499,6 +512,11 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.Simulator:
 					SelectedAppPageText = localization[ "Simulator_UC" ];
 					break;
+
+				case AppPage.AppManager:
+					SelectedAppPageText = localization[ "AppManager_UC" ];
+					break;
+
 
 				case AppPage.AppSettings:
 					SelectedAppPageText = localization[ "AppSettings_UC" ];

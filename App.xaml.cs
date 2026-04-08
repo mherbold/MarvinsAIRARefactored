@@ -1,4 +1,4 @@
-﻿
+
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -71,6 +71,7 @@ public partial class App : Application
 	public SeatBeltTensioner SeatBeltTensioner { get; private set; } = null!;
 	public HidHotplugMonitor HidHotplugMonitor { get; private set; } = null!;
 	public TradingPaints TradingPaints { get; private set; } = null!;
+	public AppManager AppManager { get; private set; } = null!;
 
 	public GripOMeterWindow? GripOMeterWindow { get; set; }
 	public GapMonitorWindow? GapMonitorWindow { get; set; }
@@ -133,6 +134,7 @@ public partial class App : Application
 		SeatBeltTensioner = new();
 		HidHotplugMonitor = new();
 		TradingPaints = new();
+		AppManager = new();
 
 		_timer.Elapsed += OnTimer;
 	}
@@ -369,6 +371,7 @@ public partial class App : Application
 		VirtualJoystick.Shutdown();
 		Telemetry.Shutdown();
 		TradingPaints.Shutdown();
+		AppManager.Shutdown();
 
 #endif
 

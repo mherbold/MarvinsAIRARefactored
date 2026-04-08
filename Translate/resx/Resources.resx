@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -293,17 +293,9 @@
     <value>Delta Limiter (Low Latency)</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Compression Rate</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>DEVICE</value>
@@ -323,10 +315,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Current Force</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Peak Force</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -433,10 +421,6 @@
     <value>Maximum</value>
     <comment>Racing wheel, Pedals, Graph, Seat Belt Tensioner</comment>
   </data>
-  <data name="Neutral" xml:space="preserve">
-    <value>Neutral</value>
-    <comment>Seat Belt Tensioner</comment>
-  </data>
   <data name="Curve" xml:space="preserve">
     <value>Curve</value>
     <comment>Racing wheel, Pedals</comment>
@@ -529,10 +513,6 @@
     <value>Check For Updates On Startup</value>
     <comment>App settings</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Automatically Download Updates</value>
-    <comment>App settings</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Connect to AdminBoxx on App Startup</value>
     <comment>AdminBoxx</comment>
@@ -543,22 +523,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Volume</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[No Audio Devices Found]</value>
-    <comment>Audio devices list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Connection</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Display</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -576,18 +540,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>LFE Recording Device</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Average</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Variance</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Standard Deviation</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Input Torque (60 Hz)</value>
@@ -949,18 +901,6 @@
     <value>Maximum Brake</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>Not Calibrating</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Reset Calibration</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Make the Grip-O-Meter window draggable</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value>GRIP-O-METER</value>
     <comment>Steering effects</comment>
@@ -1028,10 +968,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value> KPH</value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Calibration File Contributors</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>These are the folks who have generously contributed some of their spare time, to run steering effects calibrations on some of their favorite cars, and to upload those calibration files!</value>
@@ -1141,16 +1077,8 @@
     <value>Speech to Text</value>
     <comment>App menu item</comment>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Overlay</value>
-    <comment>Speech to text</comment>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY WINDOW</value>
-    <comment>Speech to text</comment>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Show the overlay window</value>
     <comment>Speech to text</comment>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
@@ -1195,10 +1123,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>CALIBRATION FILE CONTRIBUTIONS</value>
-    <comment>Contribute</comment>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Moderators</value>
     <comment>Contribute</comment>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
@@ -1688,5 +1612,81 @@
   <data name="PresetReduceBigBumps" xml:space="preserve">
     <value>(Preset) Reduce Big Bumps</value>
     <comment>Settings to decrease the impact of big bumps</comment>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>App Manager</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>APP MANAGER</value>
+    <comment>App Manager page header</comment>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>APPS TO START</value>
+    <comment>App Manager group label</comment>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>APPS TO TERMINATE</value>
+    <comment>App Manager group label</comment>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>Executable Path</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>Arguments</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>Delay After Start (sec)</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>CPU Priority</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>Window Style</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>Terminate on Simulator Disconnect</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>Idle</value>
+    <comment>App Manager CPU priority level</comment>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>Below Normal</value>
+    <comment>App Manager CPU priority level</comment>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>Normal</value>
+    <comment>App Manager CPU priority level</comment>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>Above Normal</value>
+    <comment>App Manager CPU priority level</comment>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>High</value>
+    <comment>App Manager CPU priority level</comment>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>Normal</value>
+    <comment>App Manager window style</comment>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>Minimized</value>
+    <comment>App Manager window style</comment>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>Maximized</value>
+    <comment>App Manager window style</comment>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>Hidden</value>
+    <comment>App Manager window style</comment>
   </data>
 </root>

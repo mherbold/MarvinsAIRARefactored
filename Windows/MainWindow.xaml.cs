@@ -1,9 +1,8 @@
-﻿
+
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 
@@ -35,6 +34,7 @@ public partial class MainWindow : Window
 		TradingPaints,
 		Graph,
 		Simulator,
+		AppManager,
 		AppSettings,
 		Contribute,
 		Donate,
@@ -56,6 +56,7 @@ public partial class MainWindow : Window
 	public static readonly GraphPage _graphPage = new();
 	public static readonly SimulatorPage _simulatorPage = new();
 	public static readonly AdminBoxxPage _adminBoxxPage = new();
+	public static readonly AppManagerPage _appManagerPage = new();
 	public static readonly AppSettingsPage _appSettingsPage = new();
 	public static readonly ContributePage _contributePage = new();
 	public static readonly DonatePage _donatePage = new();
@@ -162,6 +163,8 @@ public partial class MainWindow : Window
 			_speechToTextPage.UpdateLanguageOptions();
 
 			app.SpeechToText.UpdateStrings();
+
+			_appManagerPage.UpdateComboBoxOptions();
 
 			_appSettingsPage.UpdateDefaultPageOptions();
 

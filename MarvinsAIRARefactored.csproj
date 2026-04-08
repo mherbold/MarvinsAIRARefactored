@@ -42,6 +42,7 @@
     <Resource Include="Artwork\AppIcon\adminboxx.ico" />
     <Resource Include="Artwork\AppIcon\maira-universal.ico" />
     <Resource Include="Artwork\Buttons\app-menu.png" />
+    <Resource Include="Artwork\Buttons\browse.png" />
     <Resource Include="Artwork\Buttons\clear.png" />
     <Resource Include="Artwork\Buttons\combo-box-checked.png" />
     <Resource Include="Artwork\Buttons\combo-box-default.png" />
@@ -68,6 +69,7 @@
     <Resource Include="Artwork\Buttons\power-red.png" />
     <Resource Include="Artwork\Buttons\power-white.png" />
     <Resource Include="Artwork\Buttons\power-yellow.png" />
+    <Resource Include="Artwork\Buttons\processes.png" />
     <Resource Include="Artwork\Buttons\record-orange.png" />
     <Resource Include="Artwork\Buttons\record-white.png" />
     <Resource Include="Artwork\Buttons\reset.png" />
