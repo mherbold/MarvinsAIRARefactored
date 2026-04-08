@@ -390,3 +390,389 @@ public float MySetting { get; set; } = 5.0f;
 - Do **not** add `Mode=TwoWay` to the `ContextSwitches` XAML binding.
 - Always use `new( false, true, false, false, false )` (per-car-only) as the default unless there is a specific reason to use a different default.
 - Group the companion property directly below its paired setting in `Settings.cs` and in the same `#region` block in `ContextSettings.cs`.
+
+---
+
+## UI Controls — Always Use Custom Maira Variants
+
+**Never use plain WPF controls when a Maira equivalent exists.** Always prefer the custom controls in `Controls/` — they enforce the app's visual style, support localization labels, and integrate with the data context.
+
+| Instead of… | Use… |
+|---|---|
+| `TextBox` | `controls:MairaTextBox` |
+| `ComboBox` | `controls:MairaComboBox` |
+| `Button` | `controls:MairaButton` |
+| `CheckBox` / toggle | `controls:MairaSwitch` |
+| `Slider` | `controls:MairaDualSlider` or `controls:MairaKnob` |
+| `GroupBox` | `controls:MairaGroupBox` |
+| `TabItem` | `controls:MairaTabItem` |
+
+---
+
+## MairaTextBox
+
+`MairaTextBox` is a labeled text input. It replaces every plain `TextBox` in pages and windows.
+
+**Dependency Properties:**
+| Property | Type | Notes |
+|---|---|---|
+| `Label` | `string` | Displayed above the input field; bind to `Localization[Key]` |
+| `Value` | `string` | Two-way bound to the data source |
+| `IsNumericOnly` | `bool` | Restricts input to numeric characters |
+
+**Binding pattern:**
+```xml
+<controls:MairaTextBox Label="{Binding DataContext.Localization[MyLabel], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                        Value="{Binding MyProperty, Mode=TwoWay, UpdateSourceTrigger=LostFocus}" />
+```
+
+**Key behaviors:**
+- Pressing **Enter** commits the binding (`UpdateSource()`) and moves focus to the next field automatically — no extra code needed.
+- Use `UpdateSourceTrigger=LostFocus` (not `PropertyChanged`) for numeric fields to allow in-progress editing without triggering side effects.
+- Inside a `DataTemplate`, pass the data item via `Tag="{Binding}"` and use the `LostFocus` routed event to sync settings after edits.
+
+---
+
+## MairaComboBox
+
+`MairaComboBox` is a labeled combo box. It replaces every plain `ComboBox`.
+
+**Dependency Properties:**
+| Property | Type | Notes |
+|---|---|---|
+| `Label` | `string` | Displayed above the control |
+| `SelectedValue` | `object` | Two-way bound to the enum/value property |
+| `ItemsSource` | `IEnumerable` | List of `KeyValuePair<TEnum, string>` items |
+| `SelectionChanged` | event | Routed event fired on user selection |
+
+**General XAML pattern (outside DataTemplates):**
+```xml
+<controls:MairaComboBox Label="{Binding Localization[MyLabel]}"
+                         SelectedValue="{Binding Settings.MyEnumProperty, Mode=TwoWay}"
+                         ItemsSource="{Binding MyOptionsProperty}" />
+```
+
+### MairaComboBox Inside DataTemplates — Initialization Pattern
+
+When a `MairaComboBox` is inside a `DataTemplate` bound to an `ItemsControl` or `ListBox`, you **cannot** set `ItemsSource` directly in XAML (the items are generated and the control is not in the visual tree during normal data binding). Use this pattern instead:
+
+**XAML:**
+```xml
+<controls:MairaComboBox Label="{Binding DataContext.Localization[CpuPriority], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                         SelectedValue="{Binding CpuPriority, Mode=TwoWay}"
+                         Loaded="CpuPriorityComboBox_Loaded"
+                         Tag="{Binding}"
+                         SelectionChanged="Entry_SelectionChanged" />
+```
+- `Tag="{Binding}"` — passes the data item (the list entry object) to the `Loaded` handler.
+- **Do not** set `ItemsSource` in XAML.
+
+**Code-behind `Loaded` handler:**
+```csharp
+private void CpuPriorityComboBox_Loaded( object sender, RoutedEventArgs e )
+{
+    if ( sender is MairaComboBox combo && combo.ItemsSource == null )
+    {
+        combo.ItemsSource = _cpuPriorityOptions;
+
+        if ( combo.Tag is MyEntryClass entry )
+        {
+            combo.SelectedValue = entry.CpuPriority;
+        }
+    }
+}
+```
+- **Check `combo.ItemsSource == null`** — this prevents re-initialization when the control is recycled by the virtualizing panel.
+- Restore `SelectedValue` from `Tag` after setting `ItemsSource`, because setting `ItemsSource` clears the current selection.
+
+### Localized ComboBox Items
+
+Build the options list in a `UpdateComboBoxOptions()` method (called from `App` when the language changes) using the `Localization` indexer:
+
+```csharp
+private List<KeyValuePair<ProcessPriorityClass, string>> _cpuPriorityOptions = [];
+
+public void UpdateComboBoxOptions()
+{
+    var localization = DataContext.DataContext.Instance.Localization;
+
+    var dict = new Dictionary<ProcessPriorityClass, string>
+    {
+        { ProcessPriorityClass.Normal,      localization[ "CpuPriorityNormal" ] },
+        { ProcessPriorityClass.AboveNormal, localization[ "CpuPriorityAboveNormal" ] },
+        { ProcessPriorityClass.High,        localization[ "CpuPriorityHigh" ] },
+    };
+
+    _cpuPriorityOptions = dict.ToList();
+
+    RefreshLists(); // re-bind ItemsControls so Loaded fires again with new strings
+}
+```
+
+- The options list is `List<KeyValuePair<TEnum, string>>` — the enum value is the key, the localized string is the value.
+- Call `RefreshLists()` (or equivalent) after rebuilding options so the `Loaded` event fires again and picks up the new strings.
+- `UpdateComboBoxOptions()` must be called by `App` whenever the language is changed.
+
+---
+
+## MairaButton
+
+`MairaButton` is a circular icon button with two size variants.
+
+**Dependency Properties:**
+| Property | Type | Default | Notes |
+|---|---|---|---|
+| `Label` | `string` | `""` | Optional text label |
+| `LabelOnRight` | `bool` | `false` | Places label to the right of the button ring |
+| `Icon` | `ImageSource` | — | The icon displayed inside the ring |
+| `BlinkIcon` | `ImageSource` | — | Alternate icon used for blinking state |
+| `DefaultFrame` | `ImageSource` | `ring-large-default.png` | Overridable ring frame |
+| `MappedFrame` | `ImageSource` | `ring-large-mapped.png` | Ring when a button mapping is active |
+| `PressedFrame` | `ImageSource` | `ring-large-pressed.png` | Ring when pressed |
+| `IconWidth` | `double` | `48.0` | WPF units |
+| `IconHeight` | `double` | `48.0` | WPF units |
+| `IsPressed` | `bool` | `false` | Programmatic pressed state |
+| `IsSmall` | `bool` | `false` | Use small ring assets instead of large |
+| `Disabled` | `bool` | `false` | Disables the button |
+| `Click` | event | — | `RoutedEventHandler`; sender is the `MairaButton` itself |
+
+**Sizing rules:**
+- **Omit `IsSmall`** (or set `IsSmall="False"`) for standalone action buttons (e.g., "Add Application").
+- **Set `IsSmall="True"`** for inline buttons that sit alongside text inputs in a row (e.g., Browse, Pick Process, Remove).
+
+**Icon resource path format:**
+```xml
+Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/my-icon.png"
+```
+
+**DataTemplate pattern — passing the data item through Click:**
+```xml
+<controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/browse.png"
+                       IsSmall="True"
+                       Tag="{Binding}"
+                       Click="BrowseButton_Click"
+                       VerticalAlignment="Bottom" />
+```
+```csharp
+private void BrowseButton_Click( object sender, RoutedEventArgs e )
+{
+    if ( sender is MairaButton button && button.Tag is MyEntryClass entry )
+    {
+        // use entry ...
+    }
+}
+```
+- The `Click` event sender is the `MairaButton` itself, not the inner button element.
+- `Tag="{Binding}"` is the standard way to pass the current data item to the handler.
+
+**Standalone "Add" button pattern:**
+```xml
+<controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus-large.png"
+                       Click="AddItem_Click"
+                       HorizontalAlignment="Left"
+                       Margin="0,16,0,0" />
+```
+
+---
+
+## Artwork / Icon PNGs
+
+### Creation Conventions
+
+All button icon PNGs follow a strict layout so they align correctly inside the ring frames:
+
+| Property | Value |
+|---|---|
+| Canvas size | 96 × 96 px |
+| Background | Transparent |
+| Stroke color | White (`Color.White`) |
+| Pen width | 4.0 – 4.5 px |
+| Content footprint | ~40 × 40 px, centered at (48, 48) — roughly x: 28–68, y: 28–68 |
+| Smoothing | `SmoothingMode.AntiAlias` |
+| Line caps/joins | `LineCap.Round`, `LineJoin.Round` |
+| Save format | PNG 32-bit with alpha |
+
+Icons are generated via **GDI+ PowerShell scripts** using `System.Drawing`. See existing scripts in the session history for reference patterns (folder icon, crosshair/target icon, etc.).
+
+### Registering a New Icon in the Project
+
+After creating a PNG, add it to `MarvinsAIRARefactored.csproj` in **alphabetical order** within the existing `<ItemGroup>` of button artwork resources:
+
+```xml
+<Resource Include="Artwork\Buttons\my-new-icon.png" />
+```
+
+Failing to register the resource causes a runtime `IOException` when the XAML tries to load the pack URI.
+
+---
+
+## List Entries with Colored Left Bar
+
+The standard layout for editable list entries (e.g., `AppLauncherPage`) uses a 3-column `Grid` with a narrow colored `Border` in the first column:
+
+```xml
+<Grid Margin="0,0,0,20">
+  <Grid.ColumnDefinitions>
+    <ColumnDefinition Width="4" />
+    <ColumnDefinition Width="12" />
+    <ColumnDefinition Width="*" />
+  </Grid.ColumnDefinitions>
+
+  <!-- Colored left bar -->
+  <Border Grid.Column="0"
+          Background="#e04040"
+          CornerRadius="2"
+          Opacity="0.75" />
+
+  <!-- Entry content -->
+  <Grid Grid.Column="2">
+    <!-- controls go here -->
+  </Grid>
+</Grid>
+```
+
+**Color conventions:**
+| List type | Color | Hex |
+|---|---|---|
+| Terminate / stop / danger | Red | `#e04040` |
+| Start / launch / positive | Green | `#44b060` |
+
+Always use `CornerRadius="2"` and `Opacity="0.75"` on the bar `Border`.
+
+---
+
+## Dialog Windows — Template
+
+All modal dialogs follow this window template:
+
+```xml
+<Window x:Class="MarvinsAIRARefactored.Windows.MyDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="My Dialog"
+        Width="600"
+        Height="480"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner"
+        Icon="/Artwork/AppIcon/maira-universal.ico">
+```
+
+Opening from a `UserControl`:
+```csharp
+var dialog = new MyDialog { Owner = Window.GetWindow( this ) };
+dialog.ShowDialog();
+```
+
+---
+
+## Async Window Loading Pattern
+
+When a dialog needs to enumerate data on open (e.g., running processes, device lists), use this pattern to keep the window responsive:
+
+1. Show a "Searching…" status overlay in the same grid row as the results list.
+2. In the constructor, hook `Loaded` with an `async` lambda.
+3. Use `Task.Run` to enumerate on a background thread.
+4. After `await`, collapse the overlay and populate the list.
+
+```csharp
+public MyDialog()
+{
+    InitializeComponent();
+
+    Loaded += async ( _, _ ) =>
+    {
+        SearchBox.Focus();
+        await LoadDataAsync();
+    };
+}
+
+private async Task LoadDataAsync()
+{
+    var items = await Task.Run( () =>
+    {
+        // enumerate here — runs on thread pool
+        return GetItems();
+    } );
+
+    _allItems = items;
+
+    SearchingText.Visibility = Visibility.Collapsed; // hide overlay
+
+    ApplyFilter(); // populate results
+}
+```
+
+**XAML overlay (same Grid row as results):**
+```xml
+<TextBlock x:Name="SearchingText"
+           Text="Searching..."
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"
+           IsHitTestVisible="False" />
+```
+
+---
+
+## Search/Filter Text Box with Watermark Placeholder
+
+The standard pattern for a filter box with a placeholder hint:
+
+```xml
+<Grid>
+  <TextBox x:Name="SearchBox"
+           TextChanged="SearchBox_TextChanged" />
+  <TextBlock IsHitTestVisible="False"
+             FontStyle="Italic"
+             Foreground="#80ffffff">
+    <TextBlock.Style>
+      <Style TargetType="TextBlock">
+        <Setter Property="Visibility" Value="Collapsed" />
+        <Style.Triggers>
+          <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
+            <Setter Property="Visibility" Value="Visible" />
+          </DataTrigger>
+        </Style.Triggers>
+      </Style>
+    </TextBlock.Style>
+    Filter by name...
+  </TextBlock>
+</Grid>
+```
+
+---
+
+## KeyEventArgs Disambiguation
+
+The project references both `System.Windows.Forms` and `System.Windows.Input`. Any code-behind file that handles keyboard events will get a **CS0104 ambiguous reference** error unless you add a `using` alias at the top of the file:
+
+```csharp
+using KeyEventArgs = System.Windows.Input.KeyEventArgs;
+```
+
+Add this alias to every `.xaml.cs` file that handles `KeyDown`, `KeyUp`, or `PreviewKey*` events.
+
+---
+
+## XAML Files — Write Without BOM
+
+When writing or overwriting `.xaml` files via PowerShell, **never use `Set-Content -Encoding UTF8`** — it writes a UTF-8 BOM which breaks the XAML code-generator and causes `CS0103` errors for all `x:Name` fields.
+
+Always use:
+```powershell
+[System.IO.File]::WriteAllText($path, $content, [System.Text.UTF8Encoding]::new($false))
+```
+
+This writes UTF-8 without BOM, which is required for XAML files.
+
+---
+
+## Excluding the Current App from Process Lists
+
+When enumerating running processes and the list should not include the current application, use `Environment.ProcessPath` (.NET 6+):
+
+```csharp
+.Where( p => !string.Equals( p.Path, Environment.ProcessPath, StringComparison.OrdinalIgnoreCase ) )
+```
+
+This returns the full path of the currently executing process and handles the comparison case-insensitively.
