@@ -11,6 +11,7 @@ public class AppManagerStartEntry
 	public float DelayAfterStartSeconds { get; set; } = 0f;
 	public ProcessPriorityClass CpuPriority { get; set; } = ProcessPriorityClass.Normal;
 	public ProcessWindowStyle WindowStyle { get; set; } = ProcessWindowStyle.Normal;
+	public bool AvoidPrimaryCpuCores { get; set; } = false;
 	public bool TerminateOnSimulatorDisconnect { get; set; } = false;
 }
 
@@ -18,4 +19,5 @@ public class AppManagerStartEntry
 public class AppManagerTerminateEntry
 {
 	public string ExecutablePath { get; set; } = string.Empty;
+	public bool LaunchOnSimulatorDisconnect { get; set; } = false;
 }

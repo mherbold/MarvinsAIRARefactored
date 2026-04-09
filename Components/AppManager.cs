@@ -59,6 +59,7 @@ public class AppManager
 		if ( settings.AppManagerEnabled )
 		{
 			TerminateStartedApps();
+			LaunchTerminatedApps();
 		}
 
 		app.Logger.WriteLine( "[AppManager] <<< SimulatorDisconnected" );
@@ -157,6 +158,61 @@ public class AppManager
 		}
 	}
 
+	private void LaunchTerminatedApps()
+	{
+		var app = App.Instance!;
+
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		foreach ( var entry in settings.AppManagerTerminateList )
+		{
+			if ( !entry.LaunchOnSimulatorDisconnect )
+			{
+				continue;
+			}
+
+			if ( string.IsNullOrWhiteSpace( entry.ExecutablePath ) )
+			{
+				continue;
+			}
+
+			var processName = Path.GetFileNameWithoutExtension( entry.ExecutablePath );
+
+			var existingProcesses = Process.GetProcessesByName( processName );
+
+			if ( existingProcesses.Length > 0 )
+			{
+				app.Logger.WriteLine( $"[AppManager] '{processName}' is already running - skipping launch on disconnect" );
+
+				foreach ( var p in existingProcesses )
+				{
+					p.Dispose();
+				}
+			}
+			else
+			{
+				app.Logger.WriteLine( $"[AppManager] Launching '{entry.ExecutablePath}' on simulator disconnect" );
+
+				try
+				{
+					var startInfo = new ProcessStartInfo
+					{
+						FileName = entry.ExecutablePath,
+						UseShellExecute = true
+					};
+
+					var process = Process.Start( startInfo );
+
+					process?.Dispose();
+				}
+				catch ( Exception ex )
+				{
+					app.Logger.WriteLine( $"[AppManager] ERROR launching '{entry.ExecutablePath}' on disconnect: {ex.Message}" );
+				}
+			}
+		}
+	}
+
 	private async Task StartAppsAsync( CancellationToken cancellationToken )
 	{
 		var app = App.Instance!;
@@ -215,6 +271,22 @@ public class AppManager
 							process.WaitForInputIdle( 5000 );
 
 							process.PriorityClass = entry.CpuPriority;
+
+							if ( entry.AvoidPrimaryCpuCores )
+							{
+								if ( Environment.ProcessorCount > 2 )
+								{
+									var affinityMask = ( ( 1L << Environment.ProcessorCount ) - 1L ) & ~3L;
+
+									process.ProcessorAffinity = (nint) affinityMask;
+
+									app.Logger.WriteLine( $"[AppManager] Set CPU affinity for '{processName}' to mask 0x{affinityMask:X} (avoiding cores 0 & 1)" );
+								}
+								else
+								{
+									app.Logger.WriteLine( $"[AppManager] WARNING: Cannot avoid primary CPU cores for '{processName}' - system has only {Environment.ProcessorCount} logical processor(s)" );
+								}
+							}
 
 							app.Logger.WriteLine( $"[AppManager] Started '{processName}' (PID {process.Id}), priority={entry.CpuPriority}, windowStyle={entry.WindowStyle}" );
 						}

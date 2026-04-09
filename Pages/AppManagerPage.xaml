@@ -7,254 +7,300 @@
              xmlns:local="clr-namespace:MarvinsAIRARefactored.Pages"
              xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
              xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+             xmlns:converters="clr-namespace:MarvinsAIRARefactored.Converters"
              mc:Ignorable="d"
              d:DesignWidth="800">
 
-  <UserControl.DataContext>
-    <Binding Source="{x:Static datacontext:DataContext.Instance}" />
-  </UserControl.DataContext>
+    <UserControl.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </UserControl.DataContext>
 
-  <StackPanel>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityCollapsedConverter x:Key="BooleanToVisibilityCollapsedConverter" />
+    </UserControl.Resources>
 
-    <!-- Master enable switch -->
-    <controls:MairaGroupBox Label="{Binding Localization[AppManager_UC]}"
-                            HelpTopic="advanced/app-launcher/">
+    <StackPanel>
 
-      <controls:MairaSwitch IsOn="{Binding Settings.AppManagerEnabled, Mode=TwoWay}"
-                            Label="{Binding Localization[Enabled]}" />
+        <!-- Master enable switch -->
+        <controls:MairaGroupBox Label="{Binding Localization[AppManager_UC]}"
+                                HelpTopic="advanced/app-launcher/">
 
-    </controls:MairaGroupBox>
+            <controls:MairaSwitch IsOn="{Binding Settings.AppManagerEnabled, Mode=TwoWay}"
+                                  Label="{Binding Localization[Enabled]}" />
 
-    <!-- Apps to Terminate -->
-    <controls:MairaGroupBox Label="{Binding Localization[AppsToTerminate_UC]}"
-                            HelpTopic="advanced/app-launcher/#apps-to-terminate">
+        </controls:MairaGroupBox>
 
-      <StackPanel>
+        <!-- Apps to Terminate -->
+        <controls:MairaGroupBox Label="{Binding Localization[AppsToTerminate_UC]}"
+                                HelpTopic="advanced/app-launcher/#apps-to-terminate">
 
-        <ItemsControl x:Name="TerminateList_ItemsControl">
+            <StackPanel>
 
-          <ItemsControl.ItemTemplate>
+                <ItemsControl x:Name="TerminateList_ItemsControl">
 
-            <DataTemplate>
+                    <ItemsControl.ItemTemplate>
 
-              <Grid Margin="0,0,0,20">
+                        <DataTemplate>
 
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="4" />
-                  <ColumnDefinition Width="12" />
-                  <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                            <Grid Margin="0,0,0,20">
 
-                <Border Grid.Column="0"
-                        Background="#e04040"
-                        CornerRadius="2"
-                        Opacity="0.75" />
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4" />
+                                    <ColumnDefinition Width="12" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="2">
+                                <Border Grid.Column="0"
+                                        Background="#e04040"
+                                        CornerRadius="2"
+                                        Opacity="0.75" />
 
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="10" />
-                    <ColumnDefinition Width="Auto" />
-                  </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="2">
 
-                  <controls:MairaTextBox Grid.Column="0"
-                                         Label="{Binding DataContext.Localization[ExecutablePath], RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                         Value="{Binding ExecutablePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                         Tag="{Binding}"
-                                         LostFocus="TerminateEntry_LostFocus" />
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                  <controls:MairaButton Grid.Column="2"
-                                        Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/processes.png"
-                                        IsSmall="True"
-                                        Tag="{Binding}"
-                                        Click="TerminatePickProcess_Click"
-                                        VerticalAlignment="Bottom" />
+                                    <!-- Row 0: Path + Browse + Remove -->
+                                    <Grid Grid.Row="0">
 
-                  <controls:MairaButton Grid.Column="4"
-                                        Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/browse.png"
-                                        IsSmall="True"
-                                        Tag="{Binding}"
-                                        Click="TerminateBrowse_Click"
-                                        VerticalAlignment="Bottom" />
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="Auto" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
 
-                  <controls:MairaButton Grid.Column="6"
-                                        Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
-                                        IsSmall="True"
-                                        Tag="{Binding}"
-                                        Click="TerminateRemove_Click"
-                                        VerticalAlignment="Bottom" />
+                                        <controls:MairaTextBox Grid.Column="0"
+                                                               Label="{Binding DataContext.Localization[ExecutablePath], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                               Value="{Binding ExecutablePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                               Tag="{Binding}"
+                                                               LostFocus="TerminateEntry_LostFocus" />
 
-                </Grid>
+                                        <controls:MairaButton Grid.Column="2"
+                                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/processes.png"
+                                                              IsSmall="True"
+                                                              Tag="{Binding}"
+                                                              Click="TerminatePickProcess_Click"
+                                                              VerticalAlignment="Bottom" />
 
-              </Grid>
+                                        <controls:MairaButton Grid.Column="4"
+                                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/browse.png"
+                                                              IsSmall="True"
+                                                              Tag="{Binding}"
+                                                              Click="TerminateBrowse_Click"
+                                                              VerticalAlignment="Bottom" />
 
-            </DataTemplate>
+                                        <controls:MairaButton Grid.Column="6"
+                                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                                              IsSmall="True"
+                                                              Tag="{Binding}"
+                                                              Click="TerminateRemove_Click"
+                                                              VerticalAlignment="Bottom" />
 
-          </ItemsControl.ItemTemplate>
+                                    </Grid>
 
-        </ItemsControl>
+                                    <!-- Row 2: Launch on disconnect -->
+                                    <controls:MairaSwitch Grid.Row="2"
+                                                          IsOn="{Binding LaunchOnSimulatorDisconnect, Mode=TwoWay}"
+                                                          Label="{Binding DataContext.Localization[LaunchOnDisconnect], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                          Toggled="TerminateEntry_Toggled" />
 
-        <controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus-large.png"
-                               Click="AddTerminateApp_Click"
-                               HorizontalAlignment="Left"
-                               Margin="0,16,0,0" />
+                                </Grid>
 
-      </StackPanel>
+                            </Grid>
 
-    </controls:MairaGroupBox>
+                        </DataTemplate>
 
-    <!-- Apps to Start -->
-    <controls:MairaGroupBox Label="{Binding Localization[AppsToStart_UC]}"
-                            HelpTopic="advanced/app-launcher/#apps-to-start">
+                    </ItemsControl.ItemTemplate>
 
-      <StackPanel>
+                </ItemsControl>
 
-        <ItemsControl x:Name="StartList_ItemsControl">
+                <controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus-large.png"
+                                      Click="AddTerminateApp_Click"
+                                      HorizontalAlignment="Left"
+                                      Margin="0,16,0,0" />
 
-          <ItemsControl.ItemTemplate>
+            </StackPanel>
 
-            <DataTemplate>
+        </controls:MairaGroupBox>
 
-              <Grid Margin="0,0,0,20">
+        <!-- Apps to Start -->
+        <controls:MairaGroupBox Label="{Binding Localization[AppsToStart_UC]}"
+                                HelpTopic="advanced/app-launcher/#apps-to-start">
 
-                <Grid.ColumnDefinitions>
-                  <ColumnDefinition Width="4" />
-                  <ColumnDefinition Width="12" />
-                  <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+            <StackPanel>
 
-                <Border Grid.Column="0"
-                        Background="#44b060"
-                        CornerRadius="2"
-                        Opacity="0.75" />
+                <ItemsControl x:Name="StartList_ItemsControl">
 
-                <Grid Grid.Column="2">
+                    <ItemsControl.ItemTemplate>
 
-                  <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="Auto" />
-                  </Grid.RowDefinitions>
+                        <DataTemplate>
 
-                  <!-- Row 1: Path + Browse + Remove -->
-                  <Grid Grid.Row="0">
+                            <Grid Margin="0,0,0,20">
 
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="*" />
-                      <ColumnDefinition Width="10" />
-                      <ColumnDefinition Width="Auto" />
-                      <ColumnDefinition Width="10" />
-                      <ColumnDefinition Width="Auto" />
-                      <ColumnDefinition Width="10" />
-                      <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="4" />
+                                    <ColumnDefinition Width="12" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                    <controls:MairaTextBox Grid.Column="0"
-                                           Label="{Binding DataContext.Localization[ExecutablePath], RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                           Value="{Binding ExecutablePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                           Tag="{Binding}"
-                                           LostFocus="StartEntry_LostFocus" />
+                                <Border Grid.Column="0"
+                                        Background="#44b060"
+                                        CornerRadius="2"
+                                        Opacity="0.75" />
 
-                    <controls:MairaButton Grid.Column="2"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/processes.png"
-                                          IsSmall="True"
-                                          Tag="{Binding}"
-                                          Click="StartPickProcess_Click"
-                                          VerticalAlignment="Bottom" />
+                                <Grid Grid.Column="2">
 
-                    <controls:MairaButton Grid.Column="4"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/browse.png"
-                                          IsSmall="True"
-                                          Tag="{Binding}"
-                                          Click="StartBrowse_Click"
-                                          VerticalAlignment="Bottom" />
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="20" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
 
-                    <controls:MairaButton Grid.Column="6"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
-                                          IsSmall="True"
-                                          Tag="{Binding}"
-                                          Click="StartRemove_Click"
-                                          VerticalAlignment="Bottom" />
+                                    <!-- Row 1: Path + Browse + Move Up + Move Down + Remove -->
+                                    <Grid Grid.Row="0">
 
-                  </Grid>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
+                                        </Grid.ColumnDefinitions>
 
-                  <!-- Row 2: Arguments + Delay + Priority + WindowStyle -->
-                  <Grid Grid.Row="2">
+                                        <controls:MairaTextBox Grid.Column="0"
+                                                               Label="{Binding DataContext.Localization[ExecutablePath], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                               Value="{Binding Entry.ExecutablePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                               Tag="{Binding}"
+                                                               LostFocus="StartEntry_LostFocus" />
 
-                    <Grid.ColumnDefinitions>
-                      <ColumnDefinition Width="2*" />
-                      <ColumnDefinition Width="10" />
-                      <ColumnDefinition Width="*" />
-                      <ColumnDefinition Width="10" />
-                      <ColumnDefinition Width="*" />
-                      <ColumnDefinition Width="10" />
-                      <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
+                                        <StackPanel Orientation="Horizontal"
+                                                    Grid.Column="1">
 
-                    <!-- Arguments -->
-                    <controls:MairaTextBox Grid.Column="0"
-                                          Label="{Binding DataContext.Localization[Arguments], RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                          Value="{Binding Arguments, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                          Tag="{Binding}"
-                                          LostFocus="StartEntry_LostFocus" />
+                                            <controls:MairaButton Margin="10,0,0,0"
+                                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/processes.png"
+                                                                  IsSmall="True"
+                                                                  Tag="{Binding}"
+                                                                  Click="StartPickProcess_Click"
+                                                                  VerticalAlignment="Bottom" />
 
-                    <!-- Delay After Start -->
-                    <controls:MairaTextBox Grid.Column="2"
-                                          Label="{Binding DataContext.Localization[DelayAfterStart], RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                          Value="{Binding DelayAfterStartSeconds, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=F1}"
-                                          Tag="{Binding}"
-                                          LostFocus="StartEntry_LostFocus" />
+                                            <controls:MairaButton Margin="10,0,0,0"
+                                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/browse.png"
+                                                                  IsSmall="True"
+                                                                  Tag="{Binding}"
+                                                                  Click="StartBrowse_Click"
+                                                                  VerticalAlignment="Bottom" />
 
-                    <!-- CPU Priority -->
-                    <controls:MairaComboBox Grid.Column="4"
-                                            Label="{Binding DataContext.Localization[CpuPriority], RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                            SelectedValue="{Binding CpuPriority, Mode=TwoWay}"
-                                            Loaded="CpuPriorityComboBox_Loaded"
-                                            Tag="{Binding}"
-                                            SelectionChanged="StartEntry_SelectionChanged" />
+                                            <controls:MairaButton Margin="10,0,0,0"
+                                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/shift-up.png"
+                                                                  IsSmall="True"
+                                                                  Tag="{Binding}"
+                                                                  Click="StartMoveUp_Click"
+                                                                  Visibility="{Binding IsNotFirst, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"
+                                                                  VerticalAlignment="Bottom" />
 
-                    <!-- Window Style -->
-                    <controls:MairaComboBox Grid.Column="6"
-                                            Label="{Binding DataContext.Localization[AppWindowStyle], RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                            SelectedValue="{Binding WindowStyle, Mode=TwoWay}"
-                                            Loaded="WindowStyleComboBox_Loaded"
-                                            Tag="{Binding}"
-                                            SelectionChanged="StartEntry_SelectionChanged" />
+                                            <controls:MairaButton Margin="10,0,0,0"
+                                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/shift-down.png"
+                                                                  IsSmall="True"
+                                                                  Tag="{Binding}"
+                                                                  Click="StartMoveDown_Click"
+                                                                  Visibility="{Binding IsNotLast, Converter={StaticResource BooleanToVisibilityCollapsedConverter}}"
+                                                                  VerticalAlignment="Bottom" />
 
-                  </Grid>
+                                            <controls:MairaButton Margin="10,0,0,0"
+                                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                                                  IsSmall="True"
+                                                                  Tag="{Binding}"
+                                                                  Click="StartRemove_Click"
+                                                                  VerticalAlignment="Bottom" />
 
-                  <!-- Row 3: Terminate on disconnect -->
-                  <controls:MairaSwitch Grid.Row="4"
-                                        IsOn="{Binding TerminateOnSimulatorDisconnect, Mode=TwoWay}"
-                                        Label="{Binding DataContext.Localization[TerminateOnDisconnect], RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                        Toggled="StartEntry_Toggled" />
+                                        </StackPanel>
 
-                </Grid>
+                                    </Grid>
 
-              </Grid>
+                                    <!-- Row 2: Arguments + Delay + Priority + WindowStyle -->
+                                    <Grid Grid.Row="2">
 
-            </DataTemplate>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="2*" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="10" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
 
-          </ItemsControl.ItemTemplate>
+                                        <!-- Arguments -->
+                                        <controls:MairaTextBox Grid.Column="0"
+                                                               Label="{Binding DataContext.Localization[Arguments], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                               Value="{Binding Entry.Arguments, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                               Tag="{Binding}"
+                                                               LostFocus="StartEntry_LostFocus" />
 
-        </ItemsControl>
+                                        <!-- Delay After Start -->
+                                        <controls:MairaTextBox Grid.Column="2"
+                                                               Label="{Binding DataContext.Localization[DelayAfterStart], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                               Value="{Binding Entry.DelayAfterStartSeconds, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=F1}"
+                                                               Tag="{Binding}"
+                                                               LostFocus="StartEntry_LostFocus" />
 
-        <controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus-large.png"
-                               Click="AddStartApp_Click"
-                               HorizontalAlignment="Left"
-                               Margin="0,16,0,0" />
+                                        <!-- CPU Priority -->
+                                        <controls:MairaComboBox Grid.Column="4"
+                                                                Label="{Binding DataContext.Localization[CpuPriority], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                SelectedValue="{Binding Entry.CpuPriority, Mode=TwoWay}"
+                                                                Loaded="CpuPriorityComboBox_Loaded"
+                                                                Tag="{Binding}"
+                                                                SelectionChanged="StartEntry_SelectionChanged" />
 
-      </StackPanel>
+                                        <!-- Window Style -->
+                                        <controls:MairaComboBox Grid.Column="6"
+                                                                Label="{Binding DataContext.Localization[AppWindowStyle], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                SelectedValue="{Binding Entry.WindowStyle, Mode=TwoWay}"
+                                                                Loaded="WindowStyleComboBox_Loaded"
+                                                                Tag="{Binding}"
+                                                                SelectionChanged="StartEntry_SelectionChanged" />
 
-    </controls:MairaGroupBox>
+                                    </Grid>
 
-  </StackPanel>
+                                    <!-- Row 3: Avoid primary CPU cores -->
+                                    <controls:MairaSwitch Grid.Row="4"
+                                                          IsOn="{Binding Entry.AvoidPrimaryCpuCores, Mode=TwoWay}"
+                                                          Label="{Binding DataContext.Localization[AvoidPrimaryCpuCores], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                          Toggled="StartEntry_Toggled" />
+
+                                    <!-- Row 4: Terminate on disconnect -->
+                                    <controls:MairaSwitch Grid.Row="6"
+                                                          IsOn="{Binding Entry.TerminateOnSimulatorDisconnect, Mode=TwoWay}"
+                                                          Label="{Binding DataContext.Localization[TerminateOnDisconnect], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                          Toggled="StartEntry_Toggled" />
+
+                                </Grid>
+
+                            </Grid>
+
+                        </DataTemplate>
+
+                    </ItemsControl.ItemTemplate>
+
+                </ItemsControl>
+
+                <controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus-large.png"
+                                      Click="AddStartApp_Click"
+                                      HorizontalAlignment="Left"
+                                      Margin="0,16,0,0" />
+
+            </StackPanel>
+
+        </controls:MairaGroupBox>
+
+    </StackPanel>
 
 </UserControl>

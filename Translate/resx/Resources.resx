@@ -1622,7 +1622,7 @@
     <comment>App Manager page header</comment>
   </data>
   <data name="AppsToStart_UC" xml:space="preserve">
-    <value>APPS TO START</value>
+    <value>APPS TO LAUNCH</value>
     <comment>App Manager group label</comment>
   </data>
   <data name="AppsToTerminate_UC" xml:space="preserve">
@@ -1651,6 +1651,14 @@
   </data>
   <data name="TerminateOnDisconnect" xml:space="preserve">
     <value>Terminate on Simulator Disconnect</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>Avoid Primary CPU Cores</value>
+    <comment>App Manager - sets CPU affinity to exclude cores 0 and 1</comment>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>Launch on Simulator Disconnect</value>
     <comment>App Manager</comment>
   </data>
   <data name="CpuPriorityIdle" xml:space="preserve">

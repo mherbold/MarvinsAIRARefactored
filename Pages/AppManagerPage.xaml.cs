@@ -1,4 +1,3 @@
-
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows;
@@ -15,7 +14,7 @@ namespace MarvinsAIRARefactored.Pages;
 
 public partial class AppManagerPage : UserControl
 {
-	private readonly ObservableCollection<AppManagerStartEntry> _startEntries = [];
+	private readonly ObservableCollection<AppManagerStartEntryViewModel> _startEntries = [];
 	private readonly ObservableCollection<AppManagerTerminateEntry> _terminateEntries = [];
 
 	private List<KeyValuePair<ProcessPriorityClass, string>> _cpuPriorityOptions = [];
@@ -62,8 +61,10 @@ public partial class AppManagerPage : UserControl
 
 		foreach ( var entry in settings.AppManagerStartList )
 		{
-			_startEntries.Add( entry );
+			_startEntries.Add( new AppManagerStartEntryViewModel( entry ) );
 		}
+
+		UpdateStartEntryFlags();
 
 		_terminateEntries.Clear();
 
@@ -76,6 +77,15 @@ public partial class AppManagerPage : UserControl
 		TerminateList_ItemsControl.ItemsSource = _terminateEntries;
 	}
 
+	private void UpdateStartEntryFlags()
+	{
+		for ( var i = 0; i < _startEntries.Count; i++ )
+		{
+			_startEntries[ i ].IsFirst = ( i == 0 );
+			_startEntries[ i ].IsLast = ( i == _startEntries.Count - 1 );
+		}
+	}
+
 	#region ComboBox Loaded handlers (set ItemsSource inside DataTemplate)
 
 	private void CpuPriorityComboBox_Loaded( object sender, RoutedEventArgs e )
@@ -84,9 +94,9 @@ public partial class AppManagerPage : UserControl
 		{
 			combo.ItemsSource = _cpuPriorityOptions;
 
-			if ( combo.Tag is AppManagerStartEntry entry )
+			if ( combo.Tag is AppManagerStartEntryViewModel vm )
 			{
-				combo.SelectedValue = entry.CpuPriority;
+				combo.SelectedValue = vm.Entry.CpuPriority;
 			}
 		}
 	}
@@ -97,9 +107,9 @@ public partial class AppManagerPage : UserControl
 		{
 			combo.ItemsSource = _windowStyleOptions;
 
-			if ( combo.Tag is AppManagerStartEntry entry )
+			if ( combo.Tag is AppManagerStartEntryViewModel vm )
 			{
-				combo.SelectedValue = entry.WindowStyle;
+				combo.SelectedValue = vm.Entry.WindowStyle;
 			}
 		}
 	}
@@ -110,18 +120,20 @@ public partial class AppManagerPage : UserControl
 
 	private void AddStartApp_Click( object sender, RoutedEventArgs e )
 	{
-		var entry = new AppManagerStartEntry();
+		_startEntries.Add( new AppManagerStartEntryViewModel( new AppManagerStartEntry() ) );
 
-		_startEntries.Add( entry );
+		UpdateStartEntryFlags();
 
 		SyncStartListToSettings();
 	}
 
 	private void StartRemove_Click( object sender, RoutedEventArgs e )
 	{
-		if ( sender is MairaButton button && button.Tag is AppManagerStartEntry entry )
+		if ( sender is MairaButton button && button.Tag is AppManagerStartEntryViewModel vm )
 		{
-			_startEntries.Remove( entry );
+			_startEntries.Remove( vm );
+
+			UpdateStartEntryFlags();
 
 			SyncStartListToSettings();
 		}
@@ -129,13 +141,13 @@ public partial class AppManagerPage : UserControl
 
 	private void StartBrowse_Click( object sender, RoutedEventArgs e )
 	{
-		if ( sender is MairaButton button && button.Tag is AppManagerStartEntry entry )
+		if ( sender is MairaButton button && button.Tag is AppManagerStartEntryViewModel vm )
 		{
 			var filePath = BrowseForExecutable();
 
 			if ( filePath != null )
 			{
-				entry.ExecutablePath = filePath;
+				vm.Entry.ExecutablePath = filePath;
 
 				RefreshLists();
 
@@ -146,7 +158,7 @@ public partial class AppManagerPage : UserControl
 
 	private void StartPickProcess_Click( object sender, RoutedEventArgs e )
 	{
-		if ( sender is MairaButton button && button.Tag is AppManagerStartEntry entry )
+		if ( sender is MairaButton button && button.Tag is AppManagerStartEntryViewModel vm )
 		{
 			var window = new PickProcessWindow { Owner = Window.GetWindow( this ) };
 
@@ -154,9 +166,43 @@ public partial class AppManagerPage : UserControl
 
 			if ( window.SelectedPath != null )
 			{
-				entry.ExecutablePath = window.SelectedPath;
+				vm.Entry.ExecutablePath = window.SelectedPath;
 
 				RefreshLists();
+
+				SyncStartListToSettings();
+			}
+		}
+	}
+
+	private void StartMoveUp_Click( object sender, RoutedEventArgs e )
+	{
+		if ( sender is MairaButton button && button.Tag is AppManagerStartEntryViewModel vm )
+		{
+			var index = _startEntries.IndexOf( vm );
+
+			if ( index > 0 )
+			{
+				_startEntries.Move( index, index - 1 );
+
+				UpdateStartEntryFlags();
+
+				SyncStartListToSettings();
+			}
+		}
+	}
+
+	private void StartMoveDown_Click( object sender, RoutedEventArgs e )
+	{
+		if ( sender is MairaButton button && button.Tag is AppManagerStartEntryViewModel vm )
+		{
+			var index = _startEntries.IndexOf( vm );
+
+			if ( index < _startEntries.Count - 1 )
+			{
+				_startEntries.Move( index, index + 1 );
+
+				UpdateStartEntryFlags();
 
 				SyncStartListToSettings();
 			}
@@ -242,6 +288,11 @@ public partial class AppManagerPage : UserControl
 		SyncTerminateListToSettings();
 	}
 
+	private void TerminateEntry_Toggled( object? sender, EventArgs e )
+	{
+		SyncTerminateListToSettings();
+	}
+
 	#endregion
 
 	#region Helpers
@@ -264,9 +315,9 @@ public partial class AppManagerPage : UserControl
 
 		settings.AppManagerStartList.Clear();
 
-		foreach ( var entry in _startEntries )
+		foreach ( var vm in _startEntries )
 		{
-			settings.AppManagerStartList.Add( entry );
+			settings.AppManagerStartList.Add( vm.Entry );
 		}
 
 		App.Instance!.SettingsFile.QueueForSerialization = true;
