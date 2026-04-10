@@ -198,6 +198,7 @@ public class AppManager
 					var startInfo = new ProcessStartInfo
 					{
 						FileName = entry.ExecutablePath,
+						WorkingDirectory = Path.GetDirectoryName( entry.ExecutablePath ) ?? string.Empty,
 						UseShellExecute = true
 					};
 
@@ -258,6 +259,7 @@ public class AppManager
 					{
 						FileName = entry.ExecutablePath,
 						Arguments = entry.Arguments,
+						WorkingDirectory = Path.GetDirectoryName( entry.ExecutablePath ) ?? string.Empty,
 						WindowStyle = entry.WindowStyle,
 						UseShellExecute = true
 					};
