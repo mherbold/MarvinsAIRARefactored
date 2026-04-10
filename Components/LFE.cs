@@ -227,7 +227,7 @@ public class LFE
 
 			signalReceived = false;
 		}
-		else if ( app.Simulator.IsOnTrack && !_captureDeviceCreated )
+		else if ( app.Simulator.IsOnTrack && !_captureDeviceCreated && ( _configuredCaptureDeviceGuid != null ) && ( _configuredCaptureDeviceGuid != Guid.Empty ) )
 		{
 			app.Logger.WriteLine( "[LFE] Went on track - creating capture device" );
 
