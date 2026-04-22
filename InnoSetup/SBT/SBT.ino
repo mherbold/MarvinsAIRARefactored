@@ -29,6 +29,14 @@
 //                          yyyy = right max tenths-of-a-degree per update (0005-0050)
 //                          Values are clamped to 5-50 and persisted to EEPROM.
 //
+//   ELXXxxRYYyy         -> Set vibration effect
+//                          XX = left effect frequency (00-50)
+//                          xx = left effect amplitude in degrees (00-60)
+//                          YY = right effect frequency (00-50)
+//                          yy = right effect amplitude in degrees (00-60)
+//                          The effect is a sine wave overlay on top of the target position.
+//                          Setting a frequency of 0 turns the effect off for that arm.
+//
 // ---------------------------------------------------------------------------
 // Timeout-to-minimum-position behavior:
 //
@@ -37,9 +45,11 @@
 //   positions. The servos stay at minimum until new S commands arrive.
 //
 // ---------------------------------------------------------------------------
-// Motion model (velocity-limited):
+// Motion model (sine effect overlay + velocity-limited):
 //
 //   Positions are represented internally in tenths of a degree (0-1800).
+//   A sine wave overlay is added per arm when an E command has set a non-zero
+//   frequency and amplitude for that arm.
 //   Each MOTION_UPDATE_INTERVAL_MS the current position moves toward the
 //   target position by at most MAX_MOVEMENT_PER_UPDATE tenths of a degree.
 //   This prevents sudden jumps and provides smooth belt tensioning.
@@ -48,6 +58,7 @@
 
 #include <Servo.h>
 #include <EEPROM.h>
+#include <math.h>
 
 // --- Pin assignments ---
 
@@ -107,7 +118,7 @@ const int EEPROM_ADDR_LEFT_MAX_MOVE   = 14;
 const int EEPROM_ADDR_RIGHT_MAX_MOVE  = 16;
 
 const byte EEPROM_SIGNATURE = 0x4D;  // 'M' for MAIRA — identifies this firmware
-const byte EEPROM_VERSION   = 0x02;  // Increment this if the EEPROM layout changes
+const byte EEPROM_VERSION   = 0x03;  // Increment this if the EEPROM layout changes
 
 // --- Default calibration values ---
 //
@@ -147,6 +158,19 @@ Servo rightServo;
 int leftMaxMovementPerUpdate  = DEFAULT_MAX_MOVEMENT_PER_UPDATE;
 int rightMaxMovementPerUpdate = DEFAULT_MAX_MOVEMENT_PER_UPDATE;
 
+// --- Vibration effect state ---
+//
+//   Per-arm frequency and half-amplitude (in tenths of a degree).
+//   halfAmplitudeTenths = amplitudeDegrees * 5  (e.g. 10 deg -> 50 tenths -> ±5 deg)
+//   Both are set by the E command; 0 freq means effect is off for that arm.
+
+int   leftEffectFreqHz               = 0;    // 0 = effect off for left arm
+int   rightEffectFreqHz              = 0;    // 0 = effect off for right arm
+int   leftEffectHalfAmplitudeTenths  = 0;    // half-amplitude for left arm
+int   rightEffectHalfAmplitudeTenths = 0;    // half-amplitude for right arm
+float leftEffectPhase                = 0.0f; // radians
+float rightEffectPhase               = 0.0f; // radians
+
 // --- Position state (all in tenths of a degree, 0-1800) ---
 
 int leftMinPosition = DEFAULT_LEFT_MIN;
@@ -161,8 +185,8 @@ int rightNeutralPosition = DEFAULT_RIGHT_NEUTRAL;
 int leftCurrentPosition = leftMinPosition;
 int rightCurrentPosition = rightMinPosition;
 
-int leftTargetPosition = leftMinPosition;
-int rightTargetPosition = rightMinPosition;
+int leftTargetPosition = leftCurrentPosition;
+int rightTargetPosition = rightCurrentPosition;
 
 // --- Timing state ---
 
@@ -465,6 +489,32 @@ void processCommand(const char* command) {
       break;
     }
 
+    // --- E command: set per-arm vibration effect (frequency + amplitude) ---
+    // Format: ELXXxxRYYyy
+    //   XXxx: first 2 digits = frequency Hz (00-50), last 2 digits = amplitude degrees (00-60)
+    //   YYyy: same encoding for right arm
+    case 'E': {
+      int leftFreq  = leftParsedValue  / 100;
+      int leftAmp   = leftParsedValue  % 100;
+      int rightFreq = rightParsedValue / 100;
+      int rightAmp  = rightParsedValue % 100;
+
+      leftFreq  = constrain(leftFreq,  0, 50);
+      leftAmp   = constrain(leftAmp,   0, 60);
+      rightFreq = constrain(rightFreq, 0, 50);
+      rightAmp  = constrain(rightAmp,  0, 60);
+
+      // Reset phase when a new non-zero frequency is set
+      if (leftFreq != leftEffectFreqHz && leftFreq != 0)   leftEffectPhase  = 0.0f;
+      if (rightFreq != rightEffectFreqHz && rightFreq != 0) rightEffectPhase = 0.0f;
+
+      leftEffectFreqHz               = leftFreq;
+      leftEffectHalfAmplitudeTenths  = leftAmp * 5;
+      rightEffectFreqHz              = rightFreq;
+      rightEffectHalfAmplitudeTenths = rightAmp * 5;
+      break;
+    }
+
     // --- N command: set neutral positions ---
     case 'N': {
       leftNeutralPosition = clampValue(leftParsedValue, leftMinPosition, leftMaxPosition);
@@ -543,8 +593,12 @@ void checkSerialTimeout() {
   unsigned long elapsed = millis() - lastSetCommandTime;
 
   if (elapsed >= SERIAL_TIMEOUT_MS) {
-    leftTargetPosition = leftMinPosition;
-    rightTargetPosition = rightMinPosition;
+    leftTargetPosition              = leftMinPosition;
+    rightTargetPosition             = rightMinPosition;
+    leftEffectFreqHz                = 0;
+    rightEffectFreqHz               = 0;
+    leftEffectHalfAmplitudeTenths   = 0;
+    rightEffectHalfAmplitudeTenths  = 0;
   }
 }
 
@@ -559,10 +613,46 @@ void updateMotion() {
 
   lastMotionUpdateTime = now;
 
-  leftCurrentPosition  = moveToward(leftCurrentPosition,  leftTargetPosition,  leftMaxMovementPerUpdate);
-  rightCurrentPosition = moveToward(rightCurrentPosition, rightTargetPosition, rightMaxMovementPerUpdate);
+  // --- Sine wave effect overlay ---
+  // Advance the phase accumulator and add the sine offset to the target position
+  // *before* the velocity limiter and min/max clamping are applied, so that the
+  // full motion pipeline sees the effect-modified target.
+  const float TWO_PI_F = 6.283185307f;
+  const float DT = 0.01f; // 10 ms
 
-  applyServoOutputs();
+  int leftEffectiveTarget  = leftTargetPosition;
+  int rightEffectiveTarget = rightTargetPosition;
+
+  if (leftEffectFreqHz > 0 && leftEffectHalfAmplitudeTenths > 0) {
+    leftEffectPhase += TWO_PI_F * (float)leftEffectFreqHz * DT;
+    if (leftEffectPhase > TWO_PI_F) leftEffectPhase -= TWO_PI_F;
+    leftEffectiveTarget += (int)(sin(leftEffectPhase) * leftEffectHalfAmplitudeTenths);
+  } else {
+    leftEffectPhase = 0.0f;
+  }
+
+  if (rightEffectFreqHz > 0 && rightEffectHalfAmplitudeTenths > 0) {
+    rightEffectPhase += TWO_PI_F * (float)rightEffectFreqHz * DT;
+    if (rightEffectPhase > TWO_PI_F) rightEffectPhase -= TWO_PI_F;
+    rightEffectiveTarget += (int)(sin(rightEffectPhase) * rightEffectHalfAmplitudeTenths);
+  } else {
+    rightEffectPhase = 0.0f;
+  }
+
+  // Clamp the effect-modified targets to configured min/max bounds
+  leftEffectiveTarget  = constrain(leftEffectiveTarget,  leftMinPosition,  leftMaxPosition);
+  rightEffectiveTarget = constrain(rightEffectiveTarget, rightMinPosition, rightMaxPosition);
+
+  // Velocity-limited motion toward the sine-modified targets
+  leftCurrentPosition  = moveToward(leftCurrentPosition,  leftEffectiveTarget,  leftMaxMovementPerUpdate);
+  rightCurrentPosition = moveToward(rightCurrentPosition, rightEffectiveTarget, rightMaxMovementPerUpdate);
+
+  // Write to servos
+  int leftMicroseconds  = tenthsToMicroseconds(applyServoInversion(leftCurrentPosition,  true));
+  int rightMicroseconds = tenthsToMicroseconds(applyServoInversion(rightCurrentPosition, false));
+
+  leftServo.writeMicroseconds(leftMicroseconds);
+  rightServo.writeMicroseconds(rightMicroseconds);
 }
 
 // ===========================

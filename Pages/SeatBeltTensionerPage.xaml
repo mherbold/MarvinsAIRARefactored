@@ -27,7 +27,7 @@
                 <controls:MairaSwitch x:Name="ConnectOnStartup_MairaSwitch"
                                       Margin="0,10,0,0"
                                       Label="{Binding Localization[ConnectToSBTOnStartup]}"
-                                      IsOn="{Binding Settings.SeatBeltTensionerEnabled, Mode=TwoWay}" />
+                                      IsOn="{Binding Settings.SeatBeltTensionerConnectOnStartup, Mode=TwoWay}" />
             </StackPanel>
 
         </controls:MairaGroupBox>
@@ -106,40 +106,113 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <controls:MairaKnob Grid.Column="0"
-                                    Label="{Binding Localization[MaxGForce]}"
-                                    Value="{Binding Settings.SeatBeltTensionerSurgeMaxG, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.SeatBeltTensionerSurgeMaxGString}"
-                                    StepSize="0.1"
-                                    DefaultValue="10"
-                                    ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeMaxGContextSwitches}" />
+                <StackPanel Grid.Column="0">
 
-                <StackPanel Grid.Column="2">
+                    <controls:MairaComboBox x:Name="SurgeMode_MairaComboBox"
+                                            Label="{Binding Localization[AxisMode]}"
+                                            ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeModeContextSwitches}"
+                                            SelectionChanged="SurgeMode_MairaComboBox_SelectionChanged"
+                                            SelectedValue="{Binding Settings.SeatBeltTensionerSurgeMode, Mode=TwoWay}"/>
 
-                    <controls:MairaSwitch Label="{Binding Localization[SubtractGravity]}"
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          Label="{Binding Localization[SubtractGravity]}"
                                           IsOn="{Binding Settings.SeatBeltTensionerSurgeSubtractGravity, Mode=TwoWay}"
                                           ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeSubtractGravityContextSwitches}" />
 
-                    <controls:MairaSwitch Margin="0,10,0,0"
-                                          Label="{Binding Localization[Invert]}"
-                                          IsOn="{Binding Settings.SeatBeltTensionerSurgeInvert, Mode=TwoWay}"
-                                          ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeInvertContextSwitches}" />
+                    <controls:MairaButton x:Name="SurgeTest_MairaButton"
+                                          Margin="0,50,0,0"
+                                          Label="{Binding Localization[Test]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/run-calibration.png"
+                                          Click="SurgeTest_MairaButton_Click" />
 
                 </StackPanel>
 
-                <Border Grid.Column="4"
-                        BorderThickness="2"
-                        BorderBrush="#666"
-                        Background="#222"
-                        CornerRadius="5">
+                <StackPanel Grid.Column="2">
 
-                    <Image x:Name="SurgeGraph_Image"
-                           Width="1200"
-                           Height="251"
-                           HorizontalAlignment="Right"
-                           RenderOptions.BitmapScalingMode="HighQuality" />
+                    <controls:MairaKnob Label="{Binding Localization[MaxGForce]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSurgeMaxG, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSurgeMaxGString}"
+                                        StepSize="0.1"
+                                        DefaultValue="10"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeMaxGContextSwitches}" />
 
-                </Border>
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[DeadZone]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSurgeDeadZone, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSurgeDeadZoneString}"
+                                        StepSize="0.01"
+                                        DefaultValue="0"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeDeadZoneContextSwitches}" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Smoothing]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSurgeSmoothing, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSurgeSmoothingString}"
+                                        StepSize="0.01"
+                                        DefaultValue="0"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeSmoothingContextSwitches}" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Curve]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSurgeCurve, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSurgeCurveString}"
+                                        StepSize="0.01"
+                                        DefaultValue="0"
+                                        ShowCurve="True"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeCurveContextSwitches}" />
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="4">
+
+                    <Border BorderThickness="2"
+                            BorderBrush="#666"
+                            Background="#222"
+                            CornerRadius="5">
+
+                        <Image x:Name="SurgeGraph_Image"
+                               Width="1200"
+                               Height="251"
+                               HorizontalAlignment="Right"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+
+                    </Border>
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal">
+
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Text="{Binding Localization[MinG]}" />
+                            
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Margin="10,0,0,0"
+                                       Text="{Binding SurgeMinGString, ElementName=Root}" />
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2"
+                                    Orientation="Horizontal">
+
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Text="{Binding Localization[MaxG]}" />
+                            
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Margin="10,0,0,0"
+                                       Text="{Binding SurgeMaxGString, ElementName=Root}" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </StackPanel>
 
             </Grid>
 
@@ -158,40 +231,113 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <controls:MairaKnob Grid.Column="0"
-                                    Label="{Binding Localization[MaxGForce]}"
-                                    Value="{Binding Settings.SeatBeltTensionerSwayMaxG, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.SeatBeltTensionerSwayMaxGString}"
-                                    StepSize="0.1"
-                                    DefaultValue="10"
-                                    ContextSwitches="{Binding Settings.SeatBeltTensionerSwayMaxGContextSwitches}" />
+                <StackPanel Grid.Column="0">
 
-                <StackPanel Grid.Column="2">
+                    <controls:MairaComboBox x:Name="SwayMode_MairaComboBox"
+                                            Label="{Binding Localization[AxisMode]}"
+                                            ContextSwitches="{Binding Settings.SeatBeltTensionerSwayModeContextSwitches}"
+                                            SelectionChanged="SwayMode_MairaComboBox_SelectionChanged"
+                                            SelectedValue="{Binding Settings.SeatBeltTensionerSwayMode, Mode=TwoWay}"/>
 
-                    <controls:MairaSwitch Label="{Binding Localization[SubtractGravity]}"
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          Label="{Binding Localization[SubtractGravity]}"
                                           IsOn="{Binding Settings.SeatBeltTensionerSwaySubtractGravity, Mode=TwoWay}"
                                           ContextSwitches="{Binding Settings.SeatBeltTensionerSwaySubtractGravityContextSwitches}" />
 
-                    <controls:MairaSwitch Margin="0,10,0,0"
-                                          Label="{Binding Localization[Invert]}"
-                                          IsOn="{Binding Settings.SeatBeltTensionerSwayInvert, Mode=TwoWay}"
-                                          ContextSwitches="{Binding Settings.SeatBeltTensionerSwayInvertContextSwitches}" />
+                    <controls:MairaButton x:Name="SwayTest_MairaButton"
+                                          Margin="0,50,0,0"
+                                          Label="{Binding Localization[Test]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/run-calibration.png"
+                                          Click="SwayTest_MairaButton_Click" />
 
                 </StackPanel>
 
-                <Border Grid.Column="4"
-                        BorderThickness="2"
-                        BorderBrush="#666"
-                        Background="#222"
-                        CornerRadius="5">
+                <StackPanel Grid.Column="2">
 
-                    <Image x:Name="SwayGraph_Image"
-                           Width="1200"
-                           Height="251"
-                           HorizontalAlignment="Right"
-                           RenderOptions.BitmapScalingMode="HighQuality" />
+                    <controls:MairaKnob Label="{Binding Localization[MaxGForce]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSwayMaxG, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSwayMaxGString}"
+                                        StepSize="0.1"
+                                        DefaultValue="10"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSwayMaxGContextSwitches}" />
 
-                </Border>
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[DeadZone]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSwayDeadZone, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSwayDeadZoneString}"
+                                        StepSize="0.01"
+                                        DefaultValue="0"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSwayDeadZoneContextSwitches}" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Smoothing]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSwaySmoothing, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSwaySmoothingString}"
+                                        StepSize="0.01"
+                                        DefaultValue="0"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSwaySmoothingContextSwitches}" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Curve]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSwayCurve, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSwayCurveString}"
+                                        StepSize="0.01"
+                                        DefaultValue="0"
+                                        ShowCurve="True"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSwayCurveContextSwitches}" />
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="4">
+
+                    <Border BorderThickness="2"
+                            BorderBrush="#666"
+                            Background="#222"
+                            CornerRadius="5">
+
+                        <Image x:Name="SwayGraph_Image"
+                               Width="1200"
+                               Height="251"
+                               HorizontalAlignment="Right"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+
+                    </Border>
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal">
+
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Text="{Binding Localization[MinG]}" />
+
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Margin="10,0,0,0"
+                                       Text="{Binding SwayMinGString, ElementName=Root}" />
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2"
+                                    Orientation="Horizontal">
+
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Text="{Binding Localization[MaxG]}" />
+
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Margin="10,0,0,0"
+                                       Text="{Binding SwayMaxGString, ElementName=Root}" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </StackPanel>
 
             </Grid>
 
@@ -210,40 +356,113 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <controls:MairaKnob Grid.Column="0"
-                                    Label="{Binding Localization[MaxGForce]}"
-                                    Value="{Binding Settings.SeatBeltTensionerHeaveMaxG, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.SeatBeltTensionerHeaveMaxGString}"
-                                    StepSize="0.1"
-                                    DefaultValue="10"
-                                    ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveMaxGContextSwitches}" />
+                <StackPanel Grid.Column="0">
 
-                <StackPanel Grid.Column="2">
+                    <controls:MairaComboBox x:Name="HeaveMode_MairaComboBox"
+                                            Label="{Binding Localization[AxisMode]}"
+                                            ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveModeContextSwitches}"
+                                            SelectionChanged="HeaveMode_MairaComboBox_SelectionChanged"
+                                            SelectedValue="{Binding Settings.SeatBeltTensionerHeaveMode, Mode=TwoWay}"/>
 
-                    <controls:MairaSwitch Label="{Binding Localization[SubtractGravity]}"
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          Label="{Binding Localization[SubtractGravity]}"
                                           IsOn="{Binding Settings.SeatBeltTensionerHeaveSubtractGravity, Mode=TwoWay}"
                                           ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveSubtractGravityContextSwitches}" />
 
-                    <controls:MairaSwitch Margin="0,10,0,0"
-                                          Label="{Binding Localization[Invert]}"
-                                          IsOn="{Binding Settings.SeatBeltTensionerHeaveInvert, Mode=TwoWay}"
-                                          ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveInvertContextSwitches}" />
+                    <controls:MairaButton x:Name="HeaveTest_MairaButton"
+                                          Margin="0,50,0,0"
+                                          Label="{Binding Localization[Test]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/run-calibration.png"
+                                          Click="HeaveTest_MairaButton_Click" />
 
                 </StackPanel>
 
-                <Border Grid.Column="4"
-                        BorderThickness="2"
-                        BorderBrush="#666"
-                        Background="#222"
-                        CornerRadius="5">
+                <StackPanel Grid.Column="2">
 
-                    <Image x:Name="HeaveGraph_Image"
-                           Width="1200"
-                           Height="251"
-                           HorizontalAlignment="Right"
-                           RenderOptions.BitmapScalingMode="HighQuality" />
+                    <controls:MairaKnob Label="{Binding Localization[MaxGForce]}"
+                                        Value="{Binding Settings.SeatBeltTensionerHeaveMaxG, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerHeaveMaxGString}"
+                                        StepSize="0.1"
+                                        DefaultValue="10"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveMaxGContextSwitches}" />
 
-                </Border>
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[DeadZone]}"
+                                        Value="{Binding Settings.SeatBeltTensionerHeaveDeadZone, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerHeaveDeadZoneString}"
+                                        StepSize="0.01"
+                                        DefaultValue="0"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveDeadZoneContextSwitches}" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Smoothing]}"
+                                        Value="{Binding Settings.SeatBeltTensionerHeaveSmoothing, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerHeaveSmoothingString}"
+                                        StepSize="0.01"
+                                        DefaultValue="0"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveSmoothingContextSwitches}" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Curve]}"
+                                        Value="{Binding Settings.SeatBeltTensionerHeaveCurve, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerHeaveCurveString}"
+                                        StepSize="0.01"
+                                        DefaultValue="0"
+                                        ShowCurve="True"
+                                        ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveCurveContextSwitches}" />
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="4">
+
+                    <Border BorderThickness="2"
+                            BorderBrush="#666"
+                            Background="#222"
+                            CornerRadius="5">
+
+                        <Image x:Name="HeaveGraph_Image"
+                               Width="1200"
+                               Height="251"
+                               HorizontalAlignment="Right"
+                               RenderOptions.BitmapScalingMode="HighQuality" />
+
+                    </Border>
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal">
+
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Text="{Binding Localization[MinG]}" />
+
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Margin="10,0,0,0"
+                                       Text="{Binding HeaveMinGString, ElementName=Root}" />
+
+                        </StackPanel>
+
+                        <StackPanel Grid.Column="2"
+                                    Orientation="Horizontal">
+
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Text="{Binding Localization[MaxG]}" />
+
+                            <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                       Margin="10,0,0,0"
+                                       Text="{Binding HeaveMaxGString, ElementName=Root}" />
+
+                        </StackPanel>
+
+                    </Grid>
+
+                </StackPanel>
 
             </Grid>
 
@@ -301,6 +520,136 @@
                                Text="{Binding Localization[RightShoulder]}"
                                HorizontalAlignment="Center"
                                Margin="0,5,0,0" />
+
+                </StackPanel>
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[SeatOfPantsEffect_UC]}"
+                                HelpTopic="advanced/seat-belt-tensioner/#seat-of-pants-effect">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+
+                    <controls:MairaSwitch Label="{Binding Localization[Enabled]}"
+                                          IsOn="{Binding Settings.SeatBeltTensionerSeatOfPantsEnabled, Mode=TwoWay}" />
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+
+                    <controls:MairaKnob Label="{Binding Localization[Amplitude]}"
+                                        Value="{Binding Settings.SeatBeltTensionerSeatOfPantsAmplitude, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerSeatOfPantsAmplitudeString}"
+                                        StepSize="1"
+                                        DefaultValue="10" />
+
+                </StackPanel>
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[VibrationEffects_UC]}"
+                                HelpTopic="advanced/seat-belt-tensioner/#vibration-effects">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+
+                    <controls:MairaSwitch Label="{Binding Localization[ABSWheelLock]}"
+                                          IsOn="{Binding Settings.SeatBeltTensionerABSEnabled, Mode=TwoWay}" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Frequency]}"
+                                        Value="{Binding Settings.SeatBeltTensionerABSFrequency, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerABSFrequencyString}"
+                                        StepSize="1"
+                                        DefaultValue="20" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Amplitude]}"
+                                        Value="{Binding Settings.SeatBeltTensionerABSAmplitude, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerABSAmplitudeString}"
+                                        StepSize="1"
+                                        DefaultValue="10" />
+
+                    <controls:MairaButton x:Name="ABSTest_MairaButton"
+                                          Margin="0,10,0,0"
+                                          Label="{Binding Localization[Test]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/run-calibration.png"
+                                          Click="ABSTest_MairaButton_Click" />
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+
+                    <controls:MairaSwitch Label="{Binding Localization[WheelSlip]}"
+                                          IsOn="{Binding Settings.SeatBeltTensionerWheelSlipEnabled, Mode=TwoWay}" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Frequency]}"
+                                        Value="{Binding Settings.SeatBeltTensionerWheelSlipFrequency, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerWheelSlipFrequencyString}"
+                                        StepSize="1"
+                                        DefaultValue="15" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Amplitude]}"
+                                        Value="{Binding Settings.SeatBeltTensionerWheelSlipAmplitude, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerWheelSlipAmplitudeString}"
+                                        StepSize="1"
+                                        DefaultValue="10" />
+
+                    <controls:MairaButton x:Name="WheelSlipTest_MairaButton"
+                                          Margin="0,10,0,0"
+                                          Label="{Binding Localization[Test]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/run-calibration.png"
+                                          Click="WheelSlipTest_MairaButton_Click" />
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="4">
+
+                    <controls:MairaSwitch Label="{Binding Localization[RumbleStrip]}"
+                                          IsOn="{Binding Settings.SeatBeltTensionerRumbleEnabled, Mode=TwoWay}" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Frequency]}"
+                                        Value="{Binding Settings.SeatBeltTensionerRumbleFrequency, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerRumbleFrequencyString}"
+                                        StepSize="1"
+                                        DefaultValue="20" />
+
+                    <controls:MairaKnob Margin="0,10,0,0"
+                                        Label="{Binding Localization[Amplitude]}"
+                                        Value="{Binding Settings.SeatBeltTensionerRumbleAmplitude, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.SeatBeltTensionerRumbleAmplitudeString}"
+                                        StepSize="1"
+                                        DefaultValue="10" />
+
+                    <controls:MairaButton x:Name="RumbleTest_MairaButton"
+                                          Margin="0,10,0,0"
+                                          Label="{Binding Localization[Test]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/run-calibration.png"
+                                          Click="RumbleTest_MairaButton_Click" />
 
                 </StackPanel>
 

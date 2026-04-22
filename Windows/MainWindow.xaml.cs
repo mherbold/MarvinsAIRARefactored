@@ -166,6 +166,8 @@ public partial class MainWindow : Window
 
 			_appManagerPage.UpdateComboBoxOptions();
 
+			_seatBeltTensionerPage.UpdateAxisModeOptions();
+
 			_appSettingsPage.UpdateDefaultPageOptions();
 
 #endif

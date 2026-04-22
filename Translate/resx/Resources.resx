@@ -1233,9 +1233,65 @@
     <value>Subtract gravity</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
-  <data name="Invert" xml:space="preserve">
-    <value>Invert</value>
+  <data name="AxisMode" xml:space="preserve">
+    <value>Mode</value>
+    <comment>Seat Belt Tensioner axis mode label</comment>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>Disabled</value>
+    <comment>Seat Belt Tensioner axis mode</comment>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>Normal</value>
+    <comment>Seat Belt Tensioner axis mode</comment>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>Inverted</value>
+    <comment>Seat Belt Tensioner axis mode</comment>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Dead Zone</value>
     <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>Smoothing</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>Min G</value>
+    <comment>Seat Belt Tensioner G force readout</comment>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>Max G</value>
+    <comment>Seat Belt Tensioner G force readout</comment>
+  </data>
+  <data name="TestStatusIdle" xml:space="preserve">
+    <value>Idle</value>
+    <comment>Seat Belt Tensioner test status</comment>
+  </data>
+  <data name="TestStatusTesting" xml:space="preserve">
+    <value>Testing: {0}</value>
+    <comment>Seat Belt Tensioner test status - {0} is axis name</comment>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>SEAT OF PANTS EFFECT</value>
+    <comment>Seat Belt Tensioner - Seat of Pants effect section header</comment>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>VIBRATION EFFECTS</value>
+    <comment>Seat Belt Tensioner - Vibration effects section header</comment>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / Wheel Lock</value>
+    <comment>Seat Belt Tensioner - ABS and wheel lock vibration effect</comment>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>Wheel Slip</value>
+    <comment>Seat Belt Tensioner - wheel slip vibration effect</comment>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>Rumble Strip</value>
+    <comment>Seat Belt Tensioner - rumble strip vibration effect</comment>
   </data>
   <data name="Surge_UC" xml:space="preserve">
     <value>SURGE</value>

@@ -307,7 +307,7 @@ public partial class App : Application
 					Wind.Connect();
 				}
 
-				if ( DataContext.DataContext.Instance.Settings.SeatBeltTensionerEnabled )
+				if ( DataContext.DataContext.Instance.Settings.SeatBeltTensionerConnectOnStartup )
 				{
 					SeatBeltTensioner.Connect();
 				}
