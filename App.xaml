@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:MarvinsAIRARefactored"
              xmlns:classes="clr-namespace:MarvinsAIRARefactored.Classes"
+             xmlns:converters="clr-namespace:MarvinsAIRARefactored.Converters"
              xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
              xmlns:theme="clr-namespace:Microsoft.Windows.Themes;assembly=PresentationFramework.Aero2"
              Startup="App_Startup"
@@ -16,6 +17,7 @@
             <!-- Converters -->
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
+            <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
 
             <!-- Colors -->
 
