@@ -188,17 +188,9 @@
     <value>Delta begrenzer op 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value></value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value></value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Compressiesnelheid</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>APPARAAT</value>
@@ -218,10 +210,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Huidige sterkte</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Maximale sterkte</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -419,10 +407,6 @@
     <value>Controleer op updates</value>
     <comment>App</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Updates automatisch downloaden</value>
-    <comment>App</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Verbind met AdminBoxx bij App opstarten</value>
     <comment>AdminBoxx</comment>
@@ -433,22 +417,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Volume</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Geen geluidsapparaat gevonden]</value>
-    <comment>Audio device list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Verbinding</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Beeld</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Geluid</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -466,18 +434,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>LFE Opname apparaat</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Gemiddelde</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Verschil</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Standaard afwijking</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value></value>
@@ -760,15 +716,6 @@
   <data name="MaxBrake" xml:space="preserve">
     <value>Maximale remkracht</value>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>Niet aan het calibreren</value>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Zet calibratie terug naar standaardwaarden</value>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Maak het Grip-O-Meter scherm verplaatsbaar</value>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value></value>
   </data>
@@ -819,9 +766,6 @@
   </data>
   <data name="KPHUnits" xml:space="preserve">
     <value></value>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Bijdragers aan kalibratiebestanden</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Dit zijn de personen die de tijd hebben genomen om enkele van hun favoriete auto's te calibreren en te uploaden!</value>
@@ -904,14 +848,8 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>Spraak naar tekst</value>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value></value>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY-VENSTER</value>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Overlay-venster weergeven</value>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
     <value>Overlay-venster versleepbaar maken</value>
@@ -946,9 +884,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>KALIBRATIEBESTANDSBĲDRAGEN</value>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Beheerders</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>INSTELLINGEN</value>

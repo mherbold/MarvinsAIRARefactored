@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -191,17 +191,9 @@
     <value>Limiteur Delta activé à 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Taux de compression</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>APPAREIL</value>
@@ -221,10 +213,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Force actuelle</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Force maximale</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -427,10 +415,6 @@
     <value>Vérification des mises à jours au démarrage</value>
     <comment>App settings</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Téléchargement automatique des mises à jour</value>
-    <comment>App settings</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Connection à l'AdminBoxx au démarrage de l'application</value>
     <comment>AdminBoxx</comment>
@@ -441,22 +425,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Volume</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Aucun périphérique audio détecté]</value>
-    <comment>Audio devices list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Connexion</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Affichage</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -474,18 +442,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Appareil d'enregistrement LFE</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Moyenne</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Variance</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Écart type</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Couple d'entrée (60 Hz)</value>
@@ -853,18 +809,6 @@
     <value>Freinage maximal</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>Pas de calibrage</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Réinitialiser l'étalonnage</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Rendre la fenêtre Grip-O-Meter déplaçable</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value>GRIP-O-METER</value>
     <comment>Steering effects</comment>
@@ -932,10 +876,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value>KPH</value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Contributeurs aux fichiers d'étalonnage</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Ce sont ces personnes qui ont généreusement donné de leur temps libre pour effectuer des étalonnages des effets de direction sur certaines de leurs voitures préférées et pour télécharger ces fichiers d'étalonnage !</value>
@@ -1047,16 +987,8 @@
     <value>Reconnaissance vocale</value>
     <comment>App menu item</comment>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Fenêtre de superposition</value>
-    <comment>Speech to text</comment>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>FENÊTRE DE SUPERPOSITION</value>
-    <comment>Speech to text</comment>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Afficher la fenêtre de superposition</value>
     <comment>Speech to text</comment>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
@@ -1101,10 +1033,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>CONTRIBUTIONS AUX FICHIERS D'ÉTALONNAGE</value>
-    <comment>Contribute</comment>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Modérateurs</value>
     <comment>Contribute</comment>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">

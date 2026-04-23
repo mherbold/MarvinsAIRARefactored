@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -188,17 +188,9 @@
     <value>Delta Begrenzer bei 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Kompressionsrate</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>AUSGABE-GERÄT</value>
@@ -207,7 +199,7 @@
     <value>GESAMTKRAFT</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
-    <value></value>
+    <value>Automatisches Ziel</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -216,10 +208,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Aktuelle Kraft</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Maximale Kraft</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -402,10 +390,6 @@
     <value>Beim Start nach Updates suchen</value>
     <comment>App</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Updates automatisch herunterladen</value>
-    <comment>App</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Verbinde zur AdminBoxx beim App-Start</value>
     <comment>AdminBoxx</comment>
@@ -416,22 +400,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Lautstärke</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Keine Audiogeräte gefunden]</value>
-    <comment>Audio device list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Verbindung</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Anzeige</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -447,18 +415,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>LFE Aufnahmegerät</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Durchschnitt</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Abweichung</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Standardabweichung</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Eingangs-Drehmoment (60 Hz)</value>
@@ -812,18 +768,6 @@ Hier ist der Link zum Spenden:</value>
     <value>Maximale Bremse</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>kalibriert nicht</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Kalibrierung zurücksetzen</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Grip-O-Meter Fenster verschiebbar machen</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value>Lenkungseffekte</value>
   </data>
@@ -887,10 +831,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="KPHUnits" xml:space="preserve">
     <value>Km/h</value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Beitragende zur Kalibrierungsdatei</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Das sind die Personen, die großzügig einen Teil ihrer Freizeit investiert haben, um Lenkeffekt-Kalibrierungen an einigen ihrer Lieblingsautos durchzuführen und diese Kalibrierungsdateien hochzuladen!</value>
@@ -992,16 +932,8 @@ Hier ist der Link zum Spenden:</value>
     <value>Sprache zu Text</value>
     <comment>Speech to text</comment>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Overlay</value>
-    <comment>Speech to text</comment>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY-FENSTER</value>
-    <comment>Speech to text</comment>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Zeige das Overlay-Fenster</value>
     <comment>Speech to text</comment>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
@@ -1043,9 +975,6 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>BEITRÄGE ZUR KALIBRIERUNGSDATEI</value>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Discord Moderatoren</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>EINSTELLUNGEN</value>
@@ -1110,6 +1039,70 @@ Hier ist der Link zum Spenden:</value>
     <value>Wind</value>
     <comment>App menu item</comment>
   </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>GURTSTRAFFER</value>
+    <comment>Page title</comment>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>Gurtstraffer</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>Verbinde mit MAIRA Gurtstraffer</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>Verbinde mit MAIRA Gurtstraffer bei App-Start</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>Minimaler Winkel</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>Neutraler Winkel</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>Maximaler Winkel</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>Maximale G-Kraft</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>Gravitation herausrechnen</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>SPITZENWERT</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>SEITWÄRTSBEWEGUNG</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>HEBEN</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>MOTOR LEISTUNG</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>Linke Schulter</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>Rechte Schulter</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>Maximale Motoren-Geschwindigkeit</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Verbinde zu MAIRA-Wind bei App-Start</value>
     <comment>Wind</comment>
@@ -1164,6 +1157,10 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
     <value>iRacing Paint Ordner</value>
+    <comment>Trading paints</comment>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>Maximale Downloadgeschwindigkeit</value>
     <comment>Trading paints</comment>
   </data>
   <data name="TradingPaints" xml:space="preserve">
@@ -1320,55 +1317,55 @@ Hier ist der Link zum Spenden:</value>
     <comment>Wind</comment>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
-    <value></value>
+    <value>360 Hz Detail</value>
     <comment>360 Hz Detail Amount</comment>
   </data>
   <data name="SlewPeakMode" xml:space="preserve">
-    <value></value>
+    <value>Spitzenwertabhängige Schwenkreduzierung</value>
     <comment>Slew Reduction Peak Aware Mode</comment>
   </data>
   <data name="HybridVariable30" xml:space="preserve">
-    <value></value>
+    <value>360 Hz bei 60 Hz, 10%-30% Verteilung</value>
     <comment>On 60 Hz with variable 10-30% Bias</comment>
   </data>
   <data name="Hybrid10" xml:space="preserve">
-    <value></value>
+    <value>360 Hz bei 60 Hz, 10% Verteilung</value>
     <comment>On 60 Hz with 10% bias</comment>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value></value>
+    <value>(Standardwerte) Nativ 60 Hz</value>
     <comment>Load default values for Native 60 Hz</comment>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
-    <value></value>
+    <value>(Standardwerte) 360 Hz bei 60 Hz, 10-30 % Verteilung</value>
     <comment>Load default values for 360 Hz on 60 Hz, 10-30% Bias</comment>
   </data>
   <data name="DefaultsHybrid10" xml:space="preserve">
-    <value></value>
+    <value>(Standardwerte) 360 Hz bei 60 Hz, 10 % Verteilung</value>
     <comment>Load default values for 360 Hz on 60 Hz, 10% Bias</comment>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value></value>
+    <value>(Standardwerte) Nativ 360 Hz</value>
     <comment>Load default values for Native 360 Hz</comment>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value></value>
+    <value>(Voreinstellung) Grundlegendes Reifen-Feedback, minimale Oberflächendetails</value>
     <comment>Settings targeting core tire feedback</comment>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value></value>
+    <value>(Voreinstellung) Grundlegendes Reifen-Feedback, mittlere Oberflächendetails</value>
     <comment>Settings targeting a balance between tire feedback and surface detail</comment>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value></value>
+    <value>(Voreinstellung) FFB-Dynamik verstärken</value>
     <comment>Settings to boost FFB Dynamics</comment>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value></value>
+    <value>(Voreinstellung) FFB-Dynamik verringern</value>
     <comment>Settings to decrease FFB dynamics</comment>
   </data>
   <data name="FFBSource" xml:space="preserve">
-    <value></value>
+    <value>FFB-Typ + Voreinstellungen</value>
     <comment>FFB type selection plus preset options</comment>
   </data>
   <data name="LateralGForce" xml:space="preserve">
@@ -1424,27 +1421,119 @@ Hier ist der Link zum Spenden:</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="GapMonitor" xml:space="preserve">
-    <value></value>
+    <value>Abstandsüberwachung</value>
     <comment>Overlays</comment>
   </data>
   <data name="Overlays_UC" xml:space="preserve">
-    <value></value>
+    <value>OVERLAYS</value>
     <comment>Overlays</comment>
   </data>
   <data name="GapMonitor_UC" xml:space="preserve">
-    <value></value>
+    <value>ABSTANDSÜBERWACHUNG</value>
     <comment>Overlays</comment>
   </data>
   <data name="Overlays" xml:space="preserve">
-    <value>Überlagerungen</value>
+    <value>Overlays</value>
     <comment>App menu item</comment>
   </data>
   <data name="EnableOverlayWindow" xml:space="preserve">
-    <value></value>
+    <value>Overlay-Fenster aktivieren</value>
     <comment>Overlays</comment>
   </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
-    <value></value>
+    <value>Overlay-Fenstertitel anzeigen</value>
     <comment>Overlays</comment>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>CPU-Zuweisung</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>(Voreinstellung) Starke Unebenheiten reduzieren</value>
+    <comment>Settings to decrease the impact of big bumps</comment>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>App Manager</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>APP MANAGER</value>
+    <comment>App Manager page header</comment>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>ZU STARTENDE ANWENDUNGEN</value>
+    <comment>App Manager group label</comment>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>ZU BEENDENDE ANWENDUNGEN</value>
+    <comment>App Manager group label</comment>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>Ausführbarer Pfad</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>Argumente</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>Verzögerung nach dem Start (Sek.)</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>CPU Priorität</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>Fenster Stil</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>Beim Trennen des Simulators beenden</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>Primäre CPU-Kerne vermeiden</value>
+    <comment>App Manager - sets CPU affinity to exclude cores 0 and 1</comment>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>Beim Trennen des Simulators starten</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>Leerlauf</value>
+    <comment>App Manager CPU priority level</comment>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>Unter Normal</value>
+    <comment>App Manager CPU priority level</comment>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>Normal</value>
+    <comment>App Manager CPU priority level</comment>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>Über Normal</value>
+    <comment>App Manager CPU priority level</comment>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>Hoch</value>
+    <comment>App Manager CPU priority level</comment>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>Normal</value>
+    <comment>App Manager window style</comment>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>Minimiert</value>
+    <comment>App Manager window style</comment>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>Maximiert</value>
+    <comment>App Manager window style</comment>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>Versteckt</value>
+    <comment>App Manager window style</comment>
   </data>
 </root>

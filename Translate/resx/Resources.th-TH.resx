@@ -293,17 +293,9 @@
     <value />
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/นิวตันเมตร</value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value />
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value />
@@ -322,10 +314,6 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentForce" xml:space="preserve">
-    <value />
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
     <value />
     <comment>Racing wheel</comment>
   </data>
@@ -525,10 +513,6 @@
     <value>ตรวจสอบอัปเดตเมื่อเริ่มต้น</value>
     <comment>App settings</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>ดาวน์โหลดอัปเดตอัตโนมัติ</value>
-    <comment>App settings</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>เชื่อมต่อกับ AdminBoxx เมื่อเริ่มแอป</value>
     <comment>AdminBoxx</comment>
@@ -539,22 +523,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>ระดับเสียง</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[ไม่พบอุปกรณ์เสียง]</value>
-    <comment>Audio devices list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>การเชื่อมต่อ</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>จอแสดงผล</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>เสียง</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -572,18 +540,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value />
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>ค่าเฉลี่ย</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>ความแปรปรวน</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>ส่วนเบี่ยงเบนมาตรฐาน</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>แรงบิด ขาเข้า (60Hz)</value>
@@ -945,18 +901,6 @@
     <value />
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value />
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value />
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value />
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value />
     <comment>Steering effects</comment>
@@ -1024,10 +968,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value>กม./ชม.</value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>ผู้มีส่วนร่วมไฟล์คาลิเบรต</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>บุคคลเหล่านี้ได้สละเวลาช่วยคาลิเบรตเอฟเฟกต์พวงมาลัยกับรถที่พวกเขาชื่นชอบ และอัปโหลดไฟล์คาลิเบรต</value>
@@ -1137,15 +1077,7 @@
     <value>แปลงเสียงเป็นข้อความ</value>
     <comment>App menu item</comment>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value />
-    <comment>Speech to text</comment>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
-    <value />
-    <comment>Speech to text</comment>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
     <value />
     <comment>Speech to text</comment>
   </data>
@@ -1191,10 +1123,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>การมีส่วนร่วมไฟล์คาลิเบรต</value>
-    <comment>Contribute</comment>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>ผู้ดูแล</value>
     <comment>Contribute</comment>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">

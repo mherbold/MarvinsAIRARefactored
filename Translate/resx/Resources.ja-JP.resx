@@ -189,17 +189,9 @@
     <value></value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value></value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value></value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>圧縮レート</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>デバイス</value>
@@ -218,10 +210,6 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentForce" xml:space="preserve">
-    <value></value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
     <value></value>
     <comment>Racing wheel</comment>
   </data>
@@ -421,10 +409,6 @@
     <value></value>
     <comment>App settings</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value></value>
-    <comment>App settings</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value></value>
     <comment>AdminBoxx</comment>
@@ -434,22 +418,6 @@
     <comment>AdminBoxx</comment>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value></value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[有効なオーディオデバイスが見つかりませんでした]</value>
-    <comment>Audio device list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value></value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>表示</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
     <value></value>
     <comment>AdminBoxx</comment>
   </data>
@@ -468,18 +436,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value></value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value></value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value></value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value></value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value></value>
@@ -842,18 +798,6 @@
     <value></value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value></value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value></value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value></value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value></value>
     <comment>Steering effects</comment>
@@ -921,10 +865,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value></value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>キャリブレーション ファイルの貢献者</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value></value>
@@ -1034,16 +974,8 @@
     <value>音声認識</value>
     <comment>App menu item</comment>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>オーバーレイ</value>
-    <comment>Speech to text</comment>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>オーバーレイウィンドウ</value>
-    <comment>Speech to text</comment>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>オーバーレイウィンドウを表示</value>
     <comment>Speech to text</comment>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
@@ -1088,10 +1020,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>キャリブレーション ファイルへの貢献</value>
-    <comment>Contribute</comment>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>モデレーター</value>
     <comment>Contribute</comment>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">

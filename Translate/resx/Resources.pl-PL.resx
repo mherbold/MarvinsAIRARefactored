@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -187,17 +187,9 @@
     <value>Limit Delty Przy 60 Hz</value>
     <comment>Lista Algorytmów Bazy Kierownicy</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
-    <comment>Skrót dla procentu na niutonometr</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
     <comment>Skrót dla procentu</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Stopień Kompresji</value>
-    <comment>Baza Kierownicy</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>URZĄDZENIE </value>
@@ -217,10 +209,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Moc Aktualna</value>
-    <comment>Baza Kierownicy</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Moc Szczytowa</value>
     <comment>Baza Kierownicy</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -418,10 +406,6 @@
     <value>Sprawdź Aktualizacje Podczas Uruchamiania</value>
     <comment>Aplikacja</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Automatycznie pobieraj Aktualizacje</value>
-    <comment>Aplikacja</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Połącz z AdminBoxx podczas uruchamiania</value>
     <comment>AdminBoxx</comment>
@@ -432,22 +416,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Głośność</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Nie Znaleziono Urządzeń Audio]</value>
-    <comment>Lista Urządzeń Audio</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Połączenie</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Wyświetlacz</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Audio</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -465,18 +433,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Urządzenie Zapisu Sygnału LFE</value>
     <comment>Baza Kierownicy</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Średnia</value>
-    <comment>Wykres</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Zmienna</value>
-    <comment>Wykres</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Odchylenie Standardowe</value>
-    <comment>Wykres</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Moment Wejściowy (60 Hz)</value>
@@ -826,15 +782,6 @@
   <data name="MaxBrake" xml:space="preserve">
     <value>Maksimum Hamulca</value>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>Nie Kalibruję</value>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Resetuj Kalibrację</value>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Umożliwiaj przeciąganie okna Odczuć Przyczepności</value>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value>ODCZUCIA PRZYCZEPNOŚCI</value>
   </data>
@@ -885,9 +832,6 @@
   </data>
   <data name="KPHUnits" xml:space="preserve">
     <value>km/h</value>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Współautorzy plików kalibracji</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>To ci ludzie poświęcili swój wolny czas, by przeprowadzić kalibrację efektów układu kierowniczego w swoich ulubionych samochodach i przesłać pliki kalibracyjne!</value>
@@ -970,14 +914,8 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>Rozpoznawanie mowy</value>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Nakładka</value>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OKNO NAKŁADKI</value>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Pokaż okno nakładki</value>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
     <value>Uczyń okno nakładki możliwym do przeciągania</value>
@@ -1012,9 +950,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>WKŁAD W PLIKI KALIBRACJI</value>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Moderatorzy Discord</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>APLIKACJA</value>

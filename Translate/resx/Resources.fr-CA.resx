@@ -188,17 +188,9 @@
     <value>Limiteur du niveau de à 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value></value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value></value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Taux de compression</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>PÉRIPHÉRIQUE</value>
@@ -218,10 +210,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Force actuel</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Force maximale</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -419,10 +407,6 @@
     <value>Rechercher les mises à jour</value>
     <comment>App</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Télécharger automatiquement les mises à jour</value>
-    <comment>App</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Connectez-vous à AdminBoxx au démarrage de l'application</value>
     <comment>AdminBoxx</comment>
@@ -432,22 +416,6 @@
     <comment>AdminBoxx</comment>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value></value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Aucun périphérique audio trouvé]</value>
-    <comment>Audio device list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Connexion</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Affichage</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
     <value></value>
     <comment>AdminBoxx</comment>
   </data>
@@ -466,18 +434,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value></value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Moyenne</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Variance</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Écart type</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value></value>
@@ -795,15 +751,6 @@
   <data name="MaxBrake" xml:space="preserve">
     <value></value>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Réinitialiser Calibration</value>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value></value>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value></value>
   </data>
@@ -854,9 +801,6 @@
   </data>
   <data name="KPHUnits" xml:space="preserve">
     <value></value>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Contributeurs des fichiers d’étalonnage</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Ce sont ces personnes qui ont généreusement donné de leur temps libre pour effectuer des étalonnages des effets de direction sur certaines de leurs voitures préférées et pour télécharger ces fichiers d'étalonnage !</value>
@@ -939,14 +883,8 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>Reconnaissance vocale</value>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Superposition</value>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>FENÊTRE DE SUPERPOSITION</value>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Afficher la fenêtre de superposition</value>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
     <value>Rendre la fenêtre de superposition déplaçable</value>
@@ -981,9 +919,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>CONTRIBUTIONS DE FICHIERS D’ÉTALONNAGE</value>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Modérateurs</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>PARAMÈTRES DU PROGRAMME</value>

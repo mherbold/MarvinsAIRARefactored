@@ -188,17 +188,9 @@
     <value>变量限制器(60 Hz)</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value></value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value></value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>压缩比例</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>设备</value>
@@ -218,10 +210,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>当前力度</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>峰值力矩</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -419,10 +407,6 @@
     <value>每次启动时检查更新</value>
     <comment>App</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>自动下载更新包</value>
-    <comment>App</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>当App启动时连接到管理员Boxx</value>
     <comment>AdminBoxx</comment>
@@ -433,22 +417,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>音量</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[未找到音频设备]</value>
-    <comment>Audio device list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>连接状态</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>显示</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>音频</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -466,18 +434,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>LFE录制设备</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>平均</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>变化幅度</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>默认偏差值</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>输入扭矩(60 Hz)</value>
@@ -838,18 +794,6 @@
     <value>刹车最大值</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>未校准</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>重置校准</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>使抓地力测量计窗口可拖动</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value>抓地力测量计</value>
     <comment>Steering effects</comment>
@@ -917,10 +861,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value>公里每小时</value>
     <comment>Abbreviation for Kilometers per Hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>校准文件贡献者</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>这些转向效果校准文件为慷慨的贡献者在他们所偏好的车辆上测试和体验后提供</value>
@@ -1005,14 +945,8 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>语音转文字</value>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>覆盖层</value>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>覆盖窗口</value>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>显示覆盖窗口</value>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
     <value>使覆盖窗口可拖动</value>
@@ -1047,9 +981,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>校准文件贡献</value>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Discord版主</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>程序设置</value>

@@ -233,17 +233,9 @@
     <value>Դելտայի Սահմանափակիչ (60 Հց)</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Ն·մ</value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value />
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Սեղմման Արագություն</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>ՍԱՐՔ</value>
@@ -263,10 +255,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Ընթացիկ Ուժ</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Գագաթնակետային Ուժ</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -464,10 +452,6 @@
     <value>Ստուգել թարմացումները</value>
     <comment>App</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Ավտոմատ ներբեռնել թարմացումները</value>
-    <comment>App</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Միանալ գործարկման պահին</value>
     <comment>AdminBoxx</comment>
@@ -478,22 +462,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Ձայնի բարձրություն</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>Ձայնային սարքեր չեն գտնվել</value>
-    <comment>Audio device list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Միացում</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Էկրան</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Աուդիո</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -511,18 +479,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>LFE ձայնագրման սարք</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Միջին</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Տատանում</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Ստանդարտ շեղում</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Մուտքային Մոմենտ (60 Հց)</value>
@@ -880,18 +836,6 @@
     <value>Արգելակի Առավելագույն</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>Կալիբրացիա չի ընթանում</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Վերականգնել Կալիբրացիան</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Թույլ տալ տեղափոխել Grip-O-Meter պատուհանը</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value />
     <comment>Steering effects</comment>
@@ -959,10 +903,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value>կմ/ժ</value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Կալիբրացիոն ֆայլերի ներդրողները</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Սրանք մարդիկ են, ովքեր մեծահոգաբար տրամադրել են իրենց սիրելի մեքենաների կալիբրացիոն ֆայլերը… Խնդրում ենք նաև կիսվել ձեր սիրելի մեքենաների կալիբրացիաներով և վերբեռնել այդ ֆայլերը։</value>
@@ -1078,9 +1018,6 @@
   <data name="Contribute" xml:space="preserve">
     <value>Ներդրում կատարել</value>
   </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Discord մոդերատորներ</value>
-  </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>ՀԱՎԵԼՎԱԾ</value>
   </data>
@@ -1117,9 +1054,6 @@
   <data name="WheelLock" xml:space="preserve">
     <value>Անիվների արգելափակում</value>
   </data>
-  <data name="Overlay">
-    <value>Վերածրագրում</value>
-  </data>
   <data name="OverlayWindow_UC">
     <value>OVERLAY WINDOW</value>
   </data>
@@ -1146,9 +1080,6 @@
   </data>
   <data name="Changelog">
     <value>Փոփոխությունների ցուցակ</value>
-  </data>
-  <data name="ShowOverlayWindow">
-    <value>Ցուցադրել վերածրագրի պատուհանը</value>
   </data>
   <data name="ResetOverlayWindow">
     <value>Վերականգնել վերածրագրի պատուհանի դիրքը</value>

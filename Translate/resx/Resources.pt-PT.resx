@@ -189,17 +189,9 @@
     <value>Limite do Delta 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Taxa de Compressão</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>DISPOSITIVO</value>
@@ -219,10 +211,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Intensidade Atual</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Pico da Intensidade</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -421,10 +409,6 @@
     <value>Verificar Atualizações no Arranque</value>
     <comment>App settings</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Descarrega Atualizações Automáticamente</value>
-    <comment>App settings</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Conectar à AdminBoxx ao Iniciar</value>
     <comment>AdminBoxx</comment>
@@ -435,22 +419,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Volume</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Não foram encontrados dispositivos de áudio]</value>
-    <comment>Audio devices list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Conexão</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Ecrã</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Áudio</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -468,18 +436,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Dispositivo de Gravação LFE</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Média</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Variação</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Desvio Padrão</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Input do Torque (60 Hz)</value>
@@ -842,18 +798,6 @@
     <value>Máximo de Travagem</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>Não está a Calibrar</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Repor Calibração</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Fazer a Janela do Nível de Aderência Arrastável</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value>NÍVEL DE ADERÊNCIA</value>
     <comment>Steering effects</comment>
@@ -921,10 +865,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value>KPH</value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Contribuidores de ficheiros de calibração</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Estas são as pessoas que generosamente contribuíram com parte do seu tempo livre para executar calibrações de efeitos de condução em alguns dos seus carros favoritos e enviar estes ficheiros de calibração!</value>
@@ -1034,16 +974,8 @@
     <value>Voz para Texto</value>
     <comment>App menu item</comment>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Sobreposição</value>
-    <comment>Speech to text</comment>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>JANELA DA SOBREPOSIÇÃO</value>
-    <comment>Speech to text</comment>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Mostrar a janela da sobreposição</value>
     <comment>Speech to text</comment>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
@@ -1088,10 +1020,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>CONTRIBUIÇÕES DE FICHEIROS DE CALIBRAÇÃO</value>
-    <comment>Contribute</comment>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Moderadores</value>
     <comment>Contribute</comment>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">

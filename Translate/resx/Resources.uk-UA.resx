@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata"/>
+  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -190,17 +190,9 @@
     <value>Дельта-лімітер увімкнено на 60 Гц</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Коефіцієнт стиснення</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>ПРИСТРІЙ</value>
@@ -220,10 +212,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Поточна сила</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Пікова сила</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -330,10 +318,6 @@
     <value>Максимум</value>
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
-  <data name="Neutral" xml:space="preserve">
-    <value></value>
-    <comment>Seat Belt Tensioner</comment>
-  </data>
   <data name="Curve" xml:space="preserve">
     <value>Крива</value>
     <comment>Racing wheel, Pedals</comment>
@@ -426,10 +410,6 @@
     <value>Перевірка оновлень під час запуску</value>
     <comment>App settings</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Автоматичне завантаження оновлень</value>
-    <comment>App settings</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Підключення до AdminBoxx під час запуску програми</value>
     <comment>AdminBoxx</comment>
@@ -440,22 +420,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Гучність</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Аудіопристрої не знайдено]</value>
-    <comment>Audio devices list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>З'єднання</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Дисплей</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Аудіо</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -473,18 +437,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Пристрій запису LFE</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Середній</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Дисперсія</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Стандартне відхилення</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Вхідний крутний момент (60 Гц)</value>
@@ -850,18 +802,6 @@
     <value>Максимальне гальмування</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>Не калібрується</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Скинути калібрування</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Зробіть вікно Grip-O-Meter перетягуваним</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value>Grip-O-Meter</value>
     <comment>Steering effects</comment>
@@ -929,10 +869,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value>Км/год</value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Автори файлів калібрування</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Це люди, які щедро пожертвували трохи свого вільного часу, щоб провести калібрування ефектів керування на деяких своїх улюблених автомобілях та завантажити ці файли калібрування!</value>
@@ -1042,16 +978,8 @@
     <value>Перетворення мовлення на текст</value>
     <comment>App menu item</comment>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Накладання</value>
-    <comment>Speech to text</comment>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>ВІКНО НАКЛАДАННЯ</value>
-    <comment>Speech to text</comment>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Показати вікно накладання</value>
     <comment>Speech to text</comment>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
@@ -1096,10 +1024,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>ВНЕСОК У ФАЙЛ КАЛІБРУВАННЯ</value>
-    <comment>Contribute</comment>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Модератори</value>
     <comment>Contribute</comment>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
@@ -1187,22 +1111,6 @@
     <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value></value>
-    <comment>Seat Belt Tensioner</comment>
-  </data>
-  <data name="Tuning_UC" xml:space="preserve">
-    <value></value>
-    <comment>Seat Belt Tensioner</comment>
-  </data>
-  <data name="SurgeMaxG" xml:space="preserve">
-    <value></value>
-    <comment>Seat Belt Tensioner</comment>
-  </data>
-  <data name="SwayMaxG" xml:space="preserve">
-    <value></value>
-    <comment>Seat Belt Tensioner</comment>
-  </data>
-  <data name="HeaveMaxG" xml:space="preserve">
     <value></value>
     <comment>Seat Belt Tensioner</comment>
   </data>

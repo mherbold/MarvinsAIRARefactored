@@ -188,17 +188,9 @@
     <value>Limitatore Delta a 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Rateo di Compressione</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>PERIFERICA</value>
@@ -218,10 +210,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Forza Attuale</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Forza di Picco</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -419,10 +407,6 @@
     <value>Controlla Aggiornamenti all'Avvio</value>
     <comment>App</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Installa Aggiornamenti Automaticamente</value>
-    <comment>App</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Connettiti all'AdminBoxx all'Avvio</value>
     <comment>AdminBoxx</comment>
@@ -433,22 +417,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Volume</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Nessuna Periferica Audio Individuata]</value>
-    <comment>Audio device list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Connessione</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Schermo</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Suono</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -466,18 +434,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Dispositivo di Registrazione LFE </value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Media</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Varianza</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Deviazione Standard</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Coppia in Ingresso (60 Hz)</value>
@@ -816,15 +772,6 @@
   <data name="MaxBrake" xml:space="preserve">
     <value></value>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value></value>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Reimposta Calibrazione</value>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Permettii il trascinamento della finestra Grip-O-Meter </value>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value>GRIP-O-METER</value>
   </data>
@@ -875,9 +822,6 @@
   </data>
   <data name="KPHUnits" xml:space="preserve">
     <value>Km/h</value>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Collaboratori dei file di calibrazione</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Queste persone hanno generosamente contribuito, utilizzando il proprio tempo libero, a calibrare gli effetti di sovrasterzo e sottosterzo su alcune delle loro auto preferite e hanno fatto l'upload dei file di calibrazione!</value>
@@ -960,14 +904,8 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>Riconoscimento vocale</value>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Overlay</value>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>FINESTRA OVERLAY</value>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Mostra la finestra overlay</value>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
     <value>Rendi trascinabile la finestra overlay</value>
@@ -1002,9 +940,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>CONTRIBUTI AI FILE DI CALIBRAZIONE</value>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Moderatori Discord</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>IMPOSTAZIONI DEL PROGRAMMA</value>

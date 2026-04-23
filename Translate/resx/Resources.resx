@@ -1235,19 +1235,19 @@
   </data>
   <data name="AxisMode" xml:space="preserve">
     <value>Mode</value>
-    <comment>Seat Belt Tensioner axis mode label</comment>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="AxisModeDisabled" xml:space="preserve">
     <value>Disabled</value>
-    <comment>Seat Belt Tensioner axis mode</comment>
+    <comment>Seat Belt Tensioner axis mode list</comment>
   </data>
   <data name="AxisModeNormal" xml:space="preserve">
     <value>Normal</value>
-    <comment>Seat Belt Tensioner axis mode</comment>
+    <comment>Seat Belt Tensioner axis mode list</comment>
   </data>
   <data name="AxisModeInverted" xml:space="preserve">
     <value>Inverted</value>
-    <comment>Seat Belt Tensioner axis mode</comment>
+    <comment>Seat Belt Tensioner axis mode list</comment>
   </data>
   <data name="DeadZone" xml:space="preserve">
     <value>Dead Zone</value>
@@ -1259,39 +1259,31 @@
   </data>
   <data name="MinG" xml:space="preserve">
     <value>Min G</value>
-    <comment>Seat Belt Tensioner G force readout</comment>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="MaxG" xml:space="preserve">
     <value>Max G</value>
-    <comment>Seat Belt Tensioner G force readout</comment>
-  </data>
-  <data name="TestStatusIdle" xml:space="preserve">
-    <value>Idle</value>
-    <comment>Seat Belt Tensioner test status</comment>
-  </data>
-  <data name="TestStatusTesting" xml:space="preserve">
-    <value>Testing: {0}</value>
-    <comment>Seat Belt Tensioner test status - {0} is axis name</comment>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="SeatOfPantsEffect_UC" xml:space="preserve">
     <value>SEAT OF PANTS EFFECT</value>
-    <comment>Seat Belt Tensioner - Seat of Pants effect section header</comment>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="VibrationEffects_UC" xml:space="preserve">
     <value>VIBRATION EFFECTS</value>
-    <comment>Seat Belt Tensioner - Vibration effects section header</comment>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
     <value>ABS / Wheel Lock</value>
-    <comment>Seat Belt Tensioner - ABS and wheel lock vibration effect</comment>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Wheel Slip</value>
-    <comment>Seat Belt Tensioner - wheel slip vibration effect</comment>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="RumbleStrip" xml:space="preserve">
     <value>Rumble Strip</value>
-    <comment>Seat Belt Tensioner - rumble strip vibration effect</comment>
+    <comment>Seat Belt Tensioner</comment>
   </data>
   <data name="Surge_UC" xml:space="preserve">
     <value>SURGE</value>
@@ -1371,7 +1363,11 @@
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
     <value>Device Missing</value>
-    <comment>Racing wheel</comment>
+    <comment>Racing wheel, SBT, AdminBoxx, Wind</comment>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Retry</value>
+    <comment>Racing wheel, SBT, AdminBoxx, Wind</comment>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
     <value>iRacing Paint Folder</value>
@@ -1535,55 +1531,55 @@
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>360 Hz Detail</value>
-    <comment>360 Hz Detail Amount</comment>
+    <comment>Racing Wheel</comment>
   </data>
   <data name="SlewPeakMode" xml:space="preserve">
     <value>Peak Aware Slew Reduction</value>
-    <comment>Slew Reduction Peak Aware Mode</comment>
+    <comment>Racing Wheel</comment>
   </data>
   <data name="HybridVariable30" xml:space="preserve">
     <value>360 Hz on 60 Hz, 10-30% Bias</value>
-    <comment>On 60 Hz with variable 10-30% Bias</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="Hybrid10" xml:space="preserve">
     <value>360 Hz on 60 Hz, 10% Bias</value>
-    <comment>On 60 Hz with 10% bias</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
     <value>(Default Values) Native 60 Hz</value>
-    <comment>Load default values for Native 60 Hz</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Default Values) 360 Hz on 60 Hz, 10-30% Bias</value>
-    <comment>Load default values for 360 Hz on 60 Hz, 10-30% Bias</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="DefaultsHybrid10" xml:space="preserve">
     <value>(Default Values) 360 Hz on 60 Hz, 10% Bias</value>
-    <comment>Load default values for 360 Hz on 60 Hz, 10% Bias</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
     <value>(Default Values) Native 360 Hz</value>
-    <comment>Load default values for Native 360 Hz</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
     <value>(Preset) Core tire feedback, minimal surface detail</value>
-    <comment>Settings targeting core tire feedback</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
     <value>(Preset) Core tire feedback, moderate surface detail</value>
-    <comment>Settings targeting a balance between tire feedback and surface detail</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
     <value>(Preset) Moderately boost FFB Dynamics</value>
-    <comment>Settings to boost FFB Dynamics</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
     <value>(Preset) Moderately reduce FFB dynamics</value>
-    <comment>Settings to decrease FFB dynamics</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>FFB Type + Presets</value>
-    <comment>FFB type selection plus preset options</comment>
+    <comment>Racing Wheel</comment>
   </data>
   <data name="LateralGForce" xml:space="preserve">
     <value>Lateral G-Force</value>
@@ -1667,7 +1663,7 @@
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
     <value>(Preset) Reduce Big Bumps</value>
-    <comment>Settings to decrease the impact of big bumps</comment>
+    <comment>Multi adjustment toolkit option list</comment>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>App Manager</value>
@@ -1675,15 +1671,15 @@
   </data>
   <data name="AppManager_UC" xml:space="preserve">
     <value>APP MANAGER</value>
-    <comment>App Manager page header</comment>
+    <comment>Page title</comment>
   </data>
   <data name="AppsToStart_UC" xml:space="preserve">
     <value>APPS TO LAUNCH</value>
-    <comment>App Manager group label</comment>
+    <comment>App Manager</comment>
   </data>
   <data name="AppsToTerminate_UC" xml:space="preserve">
     <value>APPS TO TERMINATE</value>
-    <comment>App Manager group label</comment>
+    <comment>App Manager</comment>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Executable Path</value>
@@ -1711,7 +1707,7 @@
   </data>
   <data name="AvoidPrimaryCpuCores" xml:space="preserve">
     <value>Avoid Primary CPU Cores</value>
-    <comment>App Manager - sets CPU affinity to exclude cores 0 and 1</comment>
+    <comment>App Manager</comment>
   </data>
   <data name="LaunchOnDisconnect" xml:space="preserve">
     <value>Launch on Simulator Disconnect</value>
@@ -1719,38 +1715,38 @@
   </data>
   <data name="CpuPriorityIdle" xml:space="preserve">
     <value>Idle</value>
-    <comment>App Manager CPU priority level</comment>
+    <comment>App Manager CPU priority level list</comment>
   </data>
   <data name="CpuPriorityBelowNormal" xml:space="preserve">
     <value>Below Normal</value>
-    <comment>App Manager CPU priority level</comment>
+    <comment>App Manager CPU priority level list</comment>
   </data>
   <data name="CpuPriorityNormal" xml:space="preserve">
     <value>Normal</value>
-    <comment>App Manager CPU priority level</comment>
+    <comment>App Manager CPU priority level list</comment>
   </data>
   <data name="CpuPriorityAboveNormal" xml:space="preserve">
     <value>Above Normal</value>
-    <comment>App Manager CPU priority level</comment>
+    <comment>App Manager CPU priority level list</comment>
   </data>
   <data name="CpuPriorityHigh" xml:space="preserve">
     <value>High</value>
-    <comment>App Manager CPU priority level</comment>
+    <comment>App Manager CPU priority level list</comment>
   </data>
   <data name="WindowStyleNormal" xml:space="preserve">
     <value>Normal</value>
-    <comment>App Manager window style</comment>
+    <comment>App Manager window style list</comment>
   </data>
   <data name="WindowStyleMinimized" xml:space="preserve">
     <value>Minimized</value>
-    <comment>App Manager window style</comment>
+    <comment>App Manager window style list</comment>
   </data>
   <data name="WindowStyleMaximized" xml:space="preserve">
     <value>Maximized</value>
-    <comment>App Manager window style</comment>
+    <comment>App Manager window style list</comment>
   </data>
   <data name="WindowStyleHidden" xml:space="preserve">
     <value>Hidden</value>
-    <comment>App Manager window style</comment>
+    <comment>App Manager window style list</comment>
   </data>
 </root>

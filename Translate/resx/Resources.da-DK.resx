@@ -188,17 +188,9 @@
     <value>Delta begrænser tændt 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Kompressions hastighed</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>ENHED</value>
@@ -218,10 +210,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Nuværende kraft</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Peak Kraft</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -419,10 +407,6 @@
     <value>Søg efter opdateringer ved opstart</value>
     <comment>App</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Download automatisk opdateringer</value>
-    <comment>App</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Opret forbindelse til AdminBoxx ved program start</value>
     <comment>AdminBoxx</comment>
@@ -433,22 +417,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Lyd Styrke</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Ingen lyd enheder fundet]</value>
-    <comment>Audio device list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Forbindelse</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Skærm</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Lyd</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -466,18 +434,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>LFE-optage enhed</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Gennemsnit</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Varians</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Standard afvigelse</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Indgangs moment (60 Hz)</value>
@@ -838,18 +794,6 @@
     <value>Maximum Brems</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>Ingen Kalibrering</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Nulstil Kalibrering</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Gør Grip-O-Meter-vinduet flytbart</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value></value>
     <comment>Steering effects</comment>
@@ -917,10 +861,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value>Km/t</value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Creator's af kalibrerings filer</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Det er de folk, der generøst har bidraget med noget af deres fritid til at lave kalibreringer filer på nogle af deres yndlingsbiler og derefter uploader dem...</value>
@@ -1029,14 +969,8 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>Tale til tekst</value>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Overlejring</value>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLEJRINGSVINDUE</value>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Vis overlejringsvinduet</value>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
     <value>Gør overlejrings vinduet flytbart</value>
@@ -1071,9 +1005,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>BIDRAG TIL KALIBRERINGSFILER</value>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Moderatorer</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>PROGRAM</value>

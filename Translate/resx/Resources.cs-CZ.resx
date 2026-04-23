@@ -188,17 +188,9 @@
     <value>Delta Limiter při 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value>%/Nm</value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Velikost komprese</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>ZAŘÍZENÍ</value>
@@ -218,10 +210,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Aktuální síla FFB</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Vrchol síly FFB</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -419,10 +407,6 @@
     <value>Kontrola aktualizací.</value>
     <comment>App</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Automaticky stahovat aktualizace</value>
-    <comment>App</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Připojit k AdminBoxx při spuštění</value>
     <comment>AdminBoxx</comment>
@@ -433,22 +417,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Hlasitost</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Žádné zvuková zařízení]</value>
-    <comment>Audio device list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Připojení</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Zobrazení</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Zvuk</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -466,18 +434,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Nahrávací zařízení (LFE)</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Průměrný</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Rozptyl</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Standartní odchylka</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Vstupní síla (60 Hz)</value>
@@ -838,18 +794,6 @@
     <value>Maximum brzdy</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>Nezkalibrováno</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Reset kalibrace</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Nechat Grip-O-Meter posouvatelné</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value></value>
     <comment>Steering effects</comment>
@@ -917,10 +861,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value>km/h</value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Autoři kalibračních souborů</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>To jsou lidé, kteří štědře věnovali část svého volného času kalibrací efektů řízení na některých svých oblíbených autech a nahráli tyto kalibrační soubory.</value>
@@ -1028,14 +968,8 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>Převod řeči na text</value>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Překrytí</value>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>PŘEKRYVNÉ OKNO</value>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Zobrazit překryvné okno</value>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
     <value>Make the overlay window draggable</value>
@@ -1070,9 +1004,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>PŘÍSPĚVKY KE KALIBRAČNÍM SOUBORŮM</value>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Moderátoři na Discordu</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>APLIKACE</value>

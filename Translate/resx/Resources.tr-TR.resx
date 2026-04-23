@@ -188,17 +188,9 @@
     <value>Delta Sınırlayıcı 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
-  <data name="CompressionRateUnits" xml:space="preserve">
-    <value></value>
-    <comment>Abbreviation for percent per Newton-meters</comment>
-  </data>
   <data name="Percent" xml:space="preserve">
     <value></value>
     <comment>Abbreviation for percent</comment>
-  </data>
-  <data name="CompressionRate" xml:space="preserve">
-    <value>Sıkıştırma Oranı</value>
-    <comment>Racing wheel</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
     <value>CIHAZ</value>
@@ -216,10 +208,6 @@
   </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Şu Anki Kuvvet</value>
-    <comment>Racing wheel</comment>
-  </data>
-  <data name="PeakForce" xml:space="preserve">
-    <value>Maksimum Kuvvet</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
@@ -416,10 +404,6 @@
     <value>Başlangıçta Güncellemeleri Kontrol Et</value>
     <comment>App</comment>
   </data>
-  <data name="AutomaticallyDownloadUpdates" xml:space="preserve">
-    <value>Güncellemeleri Otomatik Olarak İndir</value>
-    <comment>App</comment>
-  </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Uygulama Başlangıcında AdminBoxx Bağlan</value>
     <comment>AdminBoxx</comment>
@@ -430,22 +414,6 @@
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Ses Seviyesi</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="NoAudioDevicesFound" xml:space="preserve">
-    <value>[Ses Cihazı Bulunamadı]</value>
-    <comment>Audio device list</comment>
-  </data>
-  <data name="Connection" xml:space="preserve">
-    <value>Bağlantı</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Display" xml:space="preserve">
-    <value>Ekran</value>
-    <comment>AdminBoxx</comment>
-  </data>
-  <data name="Audio" xml:space="preserve">
-    <value>Ses</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
@@ -463,18 +431,6 @@
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>LFE Kaydedici Cihaz</value>
     <comment>Racing wheel</comment>
-  </data>
-  <data name="Average" xml:space="preserve">
-    <value>Ortalama</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="Variance" xml:space="preserve">
-    <value>Varyans</value>
-    <comment>Graph</comment>
-  </data>
-  <data name="StandardDeviation" xml:space="preserve">
-    <value>Standart Sapma</value>
-    <comment>Graph</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Giriş Torku (60 Hz)</value>
@@ -835,18 +791,6 @@
     <value>Maksimum Fren</value>
     <comment>Steering effects</comment>
   </data>
-  <data name="NotCalibrating" xml:space="preserve">
-    <value>Kalibre Edilmiyor</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="ResetCalibration" xml:space="preserve">
-    <value>Kalibrasyonu Sıfırla</value>
-    <comment>Steering effects</comment>
-  </data>
-  <data name="MakeGripOMeterDraggable" xml:space="preserve">
-    <value>Grip-O-Meter penceresini sürüklenebilir hale getirin</value>
-    <comment>Steering effects</comment>
-  </data>
   <data name="GripOMeter_UC" xml:space="preserve">
     <value></value>
     <comment>Steering effects</comment>
@@ -914,10 +858,6 @@
   <data name="KPHUnits" xml:space="preserve">
     <value> KMH</value>
     <comment>Abbreviation for kilometers per hour</comment>
-  </data>
-  <data name="CalibrationFileContributors" xml:space="preserve">
-    <value>Kalibrasyon Dosyası Katkıda Bulunanlar</value>
-    <comment>Contribute</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Bunlar, boş zamanlarının bir kısmını cömertçe ayırarak, en sevdikleri arabalarda direksiyon etkisi kalibrasyonları gerçekleştiren ve bu kalibrasyon dosyalarını yükleyen kişilerdir!</value>
@@ -1027,16 +967,8 @@
     <value>Konuşmayı Metne Dönüştürme</value>
     <comment>Speech to text</comment>
   </data>
-  <data name="Overlay" xml:space="preserve">
-    <value>Kaplama</value>
-    <comment>Speech to text</comment>
-  </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>KAPLAMA PENCERESI</value>
-    <comment>Speech to text</comment>
-  </data>
-  <data name="ShowOverlayWindow" xml:space="preserve">
-    <value>Kaplama penceresini göster</value>
     <comment>Speech to text</comment>
   </data>
   <data name="MakeOverlayWindowDraggable" xml:space="preserve">
@@ -1077,9 +1009,6 @@
   </data>
   <data name="CalibrationFileContributions_UC" xml:space="preserve">
     <value>KALİBRASYON DOSYASI KATKILARI</value>
-  </data>
-  <data name="Moderators" xml:space="preserve">
-    <value>Discord Moderetörleri</value>
   </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>UYGULAMA</value>
