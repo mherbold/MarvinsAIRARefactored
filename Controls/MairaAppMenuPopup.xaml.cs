@@ -117,7 +117,7 @@ namespace MarvinsAIRARefactored.Controls
 					return "advanced/simulator/";
 
 				case AppPage.AppManager:
-					return "advanced/app-launcher/";
+					return "advanced/app-manager/";
 
 				case AppPage.AppSettings:
 					return "advanced/app-settings/";
