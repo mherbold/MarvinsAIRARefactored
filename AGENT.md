@@ -776,3 +776,41 @@ When enumerating running processes and the list should not include the current a
 ```
 
 This returns the full path of the currently executing process and handles the comparison case-insensitively.
+
+---
+
+## Localized Strings in the UI
+
+**Always use localization keys** for any text that appears in the UI, including unit strings in value formatters in `Settings.cs`. Do **not** hardcode unit strings or labels directly in C# code.
+
+**Correct:**
+```csharp
+SomeValueString = $"{value} {DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
+```
+
+**Wrong:**
+```csharp
+SomeValueString = $"{value} °/s";
+```
+
+Check the existing `.resx` localization files for available keys before introducing new ones. Common unit keys include `"Degrees"`, `"DegreesPerSecond"`, `"Percent"`, `"Hz"`, `"GForceUnits"`, `"MPSUnits"`, `"OFF"`, etc.
+
+---
+
+## Settings.cs — Property Ordering
+
+Settings in `DataContext/Settings.cs` must appear in the **same order as the controls appear in the UI page**. Read columns left-to-right, top-to-bottom.
+
+**Example:** if the SoP section has Column 0 = Mode, Column 4 = Amplitude then Curve, the properties in Settings.cs must appear as: Mode, Amplitude, Curve.
+
+---
+
+## ContextSettings.cs — What Belongs Here and Ordering
+
+`DataContext/ContextSettings.cs` is a flat list of per-context saveable settings. The rules are:
+
+1. **Only settings that have a `ContextSwitches` companion property in `Settings.cs` should appear in `ContextSettings.cs`.** Having a `ContextSwitches` property means the setting can be saved/restored as part of a context preset.
+2. The order of properties in `ContextSettings.cs` must match the order they appear in `Settings.cs` (and therefore the UI order).
+3. When you add a new setting with a `ContextSwitches` companion property in `Settings.cs`, you **must** also add a matching property to `ContextSettings.cs` in the correct position.
+
+See the **Per-Context Settings System** section above for the full checklist and reflection-based mechanism.
