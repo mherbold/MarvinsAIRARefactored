@@ -40,15 +40,21 @@
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="TextBlock"
-                   Text="{Binding Label, ElementName=Root, FallbackValue=Label}"
-                   TextTrimming="CharacterEllipsis">
+        <Button x:Name="LabelButton"
+                Focusable="False"
+                IsTabStop="False"
+                Background="Transparent"
+                BorderThickness="0"
+                Click="Button_Click">
 
-            <TextBlock.Style>
+            <Button.Style>
 
-                <Style TargetType="TextBlock"
-                       BasedOn="{StaticResource MairaTextBlockStyle}">
+                <Style TargetType="Button">
 
+                    <Setter Property="OverridesDefaultStyle"
+                            Value="True" />
+                    <Setter Property="Cursor"
+                            Value="Hand" />
                     <Setter Property="Visibility"
                             Value="Visible" />
                     <Setter Property="Grid.Row"
@@ -60,12 +66,34 @@
                     <Setter Property="Margin"
                             Value="0,0,0,2" />
 
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <ContentPresenter />
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+
                     <Style.Triggers>
 
                         <DataTrigger Binding="{Binding Label, ElementName=Root}"
                                      Value="">
                             <Setter Property="Visibility"
                                     Value="Collapsed" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Icon, ElementName=Root, Converter={StaticResource NullToVisibilityConverter}}"
+                                     Value="Visible">
+                            <Setter Property="Cursor"
+                                    Value="Arrow" />
+                            <Setter Property="IsHitTestVisible"
+                                    Value="False" />
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Disabled, ElementName=Root}"
+                                     Value="True">
+                            <Setter Property="Cursor"
+                                    Value="Arrow" />
                         </DataTrigger>
 
                         <DataTrigger Binding="{Binding LabelOnRight, ElementName=Root}"
@@ -84,9 +112,14 @@
 
                 </Style>
 
-            </TextBlock.Style>
+            </Button.Style>
 
-        </TextBlock>
+            <TextBlock x:Name="TextBlock"
+                       Text="{Binding Label, ElementName=Root, FallbackValue=Label}"
+                       TextTrimming="CharacterEllipsis"
+                       Style="{StaticResource MairaTextBlockStyle}" />
+
+        </Button>
 
         <Button x:Name="Button"
                 Grid.Row="1"
@@ -136,6 +169,8 @@
                                 Value="{Binding IconWidth, ElementName=Root}" />
                         <Setter Property="Height"
                                 Value="{Binding IconHeight, ElementName=Root}" />
+                        <Setter Property="Visibility"
+                                Value="Collapsed" />
 
                         <Style.Triggers>
 
@@ -145,6 +180,12 @@
                                         Value="32" />
                                 <Setter Property="Height"
                                         Value="32" />
+                            </DataTrigger>
+
+                            <DataTrigger Binding="{Binding Icon, ElementName=Root, Converter={StaticResource NullToVisibilityConverter}}"
+                                         Value="Visible">
+                                <Setter Property="Visibility"
+                                        Value="Visible" />
                             </DataTrigger>
 
                         </Style.Triggers>
