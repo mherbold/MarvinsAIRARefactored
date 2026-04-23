@@ -20,10 +20,22 @@
                                 HelpTopic="advanced/wind/#connection">
 
             <StackPanel>
-                <controls:MairaSwitch x:Name="ConnectToWind_MairaSwitch"
-                                      Grid.Row="0"
-                                      Label="{Binding Localization[ConnectToWind]}"
-                                      Toggled="ConnectToWind_MairaSwitch_Toggled" />
+
+                <StackPanel Orientation="Horizontal">
+
+                    <controls:MairaSwitch x:Name="ConnectToWind_MairaSwitch"
+                                          Grid.Row="0"
+                                          Label="{Binding Localization[ConnectToWind]}"
+                                          Toggled="ConnectToWind_MairaSwitch_Toggled" />
+
+                    <controls:MairaButton x:Name="RetryDevice_MairaButton"
+                                          Margin="20,0,0,0"
+                                          Label="{Binding Localization[Retry]}"
+                                          Visibility="Collapsed"
+                                          d:Visibility="Visible"
+                                          Click="RetryDevice_MairaButton_Click" />
+
+                </StackPanel>
 
                 <controls:MairaSwitch x:Name="ConnectOnStartup_MairaSwitch"
                                       Grid.Row="1"
@@ -319,7 +331,7 @@
                                       Label="{Binding Localization[Test]}"
                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-white.png"
                                       BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-orange.png"
-                                      Click="LeftTest_MairaButton_Click"/>
+                                      Click="LeftTest_MairaButton_Click" />
 
                 <controls:MairaButton Grid.Column="1"
                                       Grid.Row="5"

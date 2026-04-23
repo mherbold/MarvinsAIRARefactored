@@ -24,10 +24,11 @@
 //   BLxxxxRyyyy         -> Set maximum position limits
 //                          Same re-clamping behavior as the A command.
 //
-//   MLxxxxRyyyy         -> Set maximum movement per update (velocity limiter)
-//                          xxxx = left max tenths-of-a-degree per update (0005-0050)
-//                          yyyy = right max tenths-of-a-degree per update (0005-0050)
-//                          Values are clamped to 5-50 and persisted to EEPROM.
+//   MLxxxxRyyyy         -> Set maximum movement speed (velocity limiter)
+//                          xxxx = left max tenths-of-a-degree per second (0050-5000)
+//                          yyyy = right max tenths-of-a-degree per second (0050-5000)
+//                          (e.g. 2500 = 250 deg/sec)
+//                          Values are clamped to 50-5000 and persisted to EEPROM.
 //
 //   ELXXxxRYYyy         -> Set vibration effect
 //                          XX = left effect frequency (00-50)
@@ -50,8 +51,10 @@
 //   Positions are represented internally in tenths of a degree (0-1800).
 //   A sine wave overlay is added per arm when an E command has set a non-zero
 //   frequency and amplitude for that arm.
+//   The M command stores speed in tenths-of-a-degree per second (50-5000).
 //   Each MOTION_UPDATE_INTERVAL_MS the current position moves toward the
-//   target position by at most MAX_MOVEMENT_PER_UPDATE tenths of a degree.
+//   target position by at most (speedTenthsPerSec * MOTION_UPDATE_INTERVAL_MS / 1000)
+//   tenths of a degree.
 //   This prevents sudden jumps and provides smooth belt tensioning.
 //
 // ---------------------------------------------------------------------------
@@ -76,7 +79,7 @@ const unsigned long MOTION_UPDATE_INTERVAL_MS = 10;   // Milliseconds between mo
 
 // --- Motion defaults ---
 
-const int DEFAULT_MAX_MOVEMENT_PER_UPDATE = 10;  // Default tenths-of-a-degree per motion update
+const int DEFAULT_MAX_MOVEMENT_PER_UPDATE = 18;  // Default tenths-of-a-degree per motion update (= 1800 tenths/sec / 100)
 
 // --- Pulse width mapping constants (microseconds) ---
 
@@ -118,7 +121,7 @@ const int EEPROM_ADDR_LEFT_MAX_MOVE   = 14;
 const int EEPROM_ADDR_RIGHT_MAX_MOVE  = 16;
 
 const byte EEPROM_SIGNATURE = 0x4D;  // 'M' for MAIRA — identifies this firmware
-const byte EEPROM_VERSION   = 0x03;  // Increment this if the EEPROM layout changes
+const byte EEPROM_VERSION   = 0x04;  // Increment this if the EEPROM layout changes
 
 // --- Default calibration values ---
 //
@@ -153,10 +156,11 @@ const ServoInversionMode servoInversionMode = ServoInversionMode_Left;
 Servo leftServo;
 Servo rightServo;
 
-// --- Velocity limiter state (tenths-of-a-degree per motion update, 5-50) ---
+// --- Velocity limiter state (stored as tenths-of-a-degree per second, 50-5000;
+//     converted to tenths-per-update at use time) ---
 
-int leftMaxMovementPerUpdate  = DEFAULT_MAX_MOVEMENT_PER_UPDATE;
-int rightMaxMovementPerUpdate = DEFAULT_MAX_MOVEMENT_PER_UPDATE;
+int leftMaxSpeedTenthsPerSec  = DEFAULT_MAX_MOVEMENT_PER_UPDATE * 100;  // = 1800
+int rightMaxSpeedTenthsPerSec = DEFAULT_MAX_MOVEMENT_PER_UPDATE * 100;  // = 1800
 
 // --- Vibration effect state ---
 //
@@ -391,8 +395,8 @@ void saveCalibrationToEEPROM() {
   eepromWriteInt16(EEPROM_ADDR_RIGHT_MIN,      rightMinPosition);
   eepromWriteInt16(EEPROM_ADDR_RIGHT_NEUTRAL,  rightNeutralPosition);
   eepromWriteInt16(EEPROM_ADDR_RIGHT_MAX,      rightMaxPosition);
-  eepromWriteInt16(EEPROM_ADDR_LEFT_MAX_MOVE,  leftMaxMovementPerUpdate);
-  eepromWriteInt16(EEPROM_ADDR_RIGHT_MAX_MOVE, rightMaxMovementPerUpdate);
+  eepromWriteInt16(EEPROM_ADDR_LEFT_MAX_MOVE,  leftMaxSpeedTenthsPerSec);
+  eepromWriteInt16(EEPROM_ADDR_RIGHT_MAX_MOVE, rightMaxSpeedTenthsPerSec);
 }
 
 // ===========================
@@ -451,8 +455,8 @@ void loadCalibrationFromEEPROM() {
   rightMaxPosition     = loadedRightMax;
 
   // Apply max movement values, falling back to defaults if out of range
-  leftMaxMovementPerUpdate  = (loadedLeftMaxMove  >= 5 && loadedLeftMaxMove  <= 50) ? loadedLeftMaxMove  : DEFAULT_MAX_MOVEMENT_PER_UPDATE;
-  rightMaxMovementPerUpdate = (loadedRightMaxMove >= 5 && loadedRightMaxMove <= 50) ? loadedRightMaxMove : DEFAULT_MAX_MOVEMENT_PER_UPDATE;
+  leftMaxSpeedTenthsPerSec  = (loadedLeftMaxMove  >= 50 && loadedLeftMaxMove  <= 5000) ? loadedLeftMaxMove  : DEFAULT_MAX_MOVEMENT_PER_UPDATE * 100;
+  rightMaxSpeedTenthsPerSec = (loadedRightMaxMove >= 50 && loadedRightMaxMove <= 5000) ? loadedRightMaxMove : DEFAULT_MAX_MOVEMENT_PER_UPDATE * 100;
 
   // Defensive re-clamp after loading
   reclampAllPositions();
@@ -541,10 +545,10 @@ void processCommand(const char* command) {
       break;
     }
 
-    // --- M command: set maximum movement per update (velocity limiter) ---
+    // --- M command: set maximum movement speed (velocity limiter) ---
     case 'M': {
-      leftMaxMovementPerUpdate  = clampValue(leftParsedValue,  5, 50);
-      rightMaxMovementPerUpdate = clampValue(rightParsedValue, 5, 50);
+      leftMaxSpeedTenthsPerSec  = clampValue(leftParsedValue,  50, 5000);
+      rightMaxSpeedTenthsPerSec = clampValue(rightParsedValue, 50, 5000);
       saveCalibrationToEEPROM();
       break;
     }
@@ -644,8 +648,11 @@ void updateMotion() {
   rightEffectiveTarget = constrain(rightEffectiveTarget, rightMinPosition, rightMaxPosition);
 
   // Velocity-limited motion toward the sine-modified targets
-  leftCurrentPosition  = moveToward(leftCurrentPosition,  leftEffectiveTarget,  leftMaxMovementPerUpdate);
-  rightCurrentPosition = moveToward(rightCurrentPosition, rightEffectiveTarget, rightMaxMovementPerUpdate);
+  int leftMaxStep  = max(1, (int)((long)leftMaxSpeedTenthsPerSec  * MOTION_UPDATE_INTERVAL_MS / 1000));
+  int rightMaxStep = max(1, (int)((long)rightMaxSpeedTenthsPerSec * MOTION_UPDATE_INTERVAL_MS / 1000));
+
+  leftCurrentPosition  = moveToward(leftCurrentPosition,  leftEffectiveTarget,  leftMaxStep);
+  rightCurrentPosition = moveToward(rightCurrentPosition, rightEffectiveTarget, rightMaxStep);
 
   // Write to servos
   int leftMicroseconds  = tenthsToMicroseconds(applyServoInversion(leftCurrentPosition,  true));

@@ -8247,7 +8247,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Max Motor Speed
 
-	private float _seatBeltTensionerMaxMotorSpeed = 25f;
+	private float _seatBeltTensionerMaxMotorSpeed = 180f;
 
 	public float SeatBeltTensionerMaxMotorSpeed
 	{
@@ -8255,7 +8255,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 5f, 50f );
+			value = Math.Clamp( value, 5f, 240f );
 
 			if ( value != _seatBeltTensionerMaxMotorSpeed )
 			{
@@ -8266,7 +8266,7 @@ public class Settings : INotifyPropertyChanged
 				App.Instance?.SeatBeltTensioner.SendMaxMovement();
 			}
 
-			SeatBeltTensionerMaxMotorSpeedString = $"{(int) MathF.Round( _seatBeltTensionerMaxMotorSpeed )}";
+			SeatBeltTensionerMaxMotorSpeedString = $"{(int) MathF.Round( _seatBeltTensionerMaxMotorSpeed )}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
 		}
 	}
 
@@ -8525,7 +8525,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Sway Mode
 
-	private Components.SeatBeltTensioner.AxisMode _seatBeltTensionerSwayMode = Components.SeatBeltTensioner.AxisMode.Normal;
+	private Components.SeatBeltTensioner.AxisMode _seatBeltTensionerSwayMode = Components.SeatBeltTensioner.AxisMode.Disabled;
 
 	public Components.SeatBeltTensioner.AxisMode SeatBeltTensionerSwayMode
 	{
@@ -8991,24 +8991,26 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Seat of Pants Effect
 
-	private bool _seatBeltTensionerSeatOfPantsEnabled = false;
+	private Components.SeatBeltTensioner.AxisMode _seatBeltTensionerSeatOfPantsMode = Components.SeatBeltTensioner.AxisMode.Normal;
 
-	public bool SeatBeltTensionerSeatOfPantsEnabled
+	public Components.SeatBeltTensioner.AxisMode SeatBeltTensionerSeatOfPantsMode
 	{
-		get => _seatBeltTensionerSeatOfPantsEnabled;
+		get => _seatBeltTensionerSeatOfPantsMode;
 
 		set
 		{
-			if ( value != _seatBeltTensionerSeatOfPantsEnabled )
+			if ( value != _seatBeltTensionerSeatOfPantsMode )
 			{
-				_seatBeltTensionerSeatOfPantsEnabled = value;
+				_seatBeltTensionerSeatOfPantsMode = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	private float _seatBeltTensionerSeatOfPantsAmplitude = 10f;
+	public ContextSwitches SeatBeltTensionerSeatOfPantsModeContextSwitches { get; set; } = new( false, false, false, false, false );
+
+	private float _seatBeltTensionerSeatOfPantsAmplitude = 30f;
 
 	public float SeatBeltTensionerSeatOfPantsAmplitude
 	{
@@ -9047,11 +9049,59 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	private float _seatBeltTensionerSeatOfPantsCurve = 0f;
+
+	public float SeatBeltTensionerSeatOfPantsCurve
+	{
+		get => _seatBeltTensionerSeatOfPantsCurve;
+
+		set
+		{
+			value = Math.Clamp( value, -1f, 1f );
+
+			if ( value != _seatBeltTensionerSeatOfPantsCurve )
+			{
+				_seatBeltTensionerSeatOfPantsCurve = value;
+
+				OnPropertyChanged();
+			}
+
+			if ( _seatBeltTensionerSeatOfPantsCurve == 0f )
+			{
+				SeatBeltTensionerSeatOfPantsCurveString = DataContext.Instance.Localization[ "OFF" ];
+			}
+			else
+			{
+				SeatBeltTensionerSeatOfPantsCurveString = $"{_seatBeltTensionerSeatOfPantsCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			}
+		}
+	}
+
+	private string _seatBeltTensionerSeatOfPantsCurveString = string.Empty;
+
+	[XmlIgnore]
+	public string SeatBeltTensionerSeatOfPantsCurveString
+	{
+		get => _seatBeltTensionerSeatOfPantsCurveString;
+
+		set
+		{
+			if ( value != _seatBeltTensionerSeatOfPantsCurveString )
+			{
+				_seatBeltTensionerSeatOfPantsCurveString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches SeatBeltTensionerSeatOfPantsCurveContextSwitches { get; set; } = new( false, true, false, false, false );
+
 	#endregion
 
 	#region Seat Belt Tensioner - ABS / Wheel Lock Effect
 
-	private bool _seatBeltTensionerABSEnabled = false;
+	private bool _seatBeltTensionerABSEnabled = true;
 
 	public bool SeatBeltTensionerABSEnabled
 	{
@@ -9068,7 +9118,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private float _seatBeltTensionerABSFrequency = 20f;
+	private float _seatBeltTensionerABSFrequency = 10f;
 
 	public float SeatBeltTensionerABSFrequency
 	{
@@ -9076,7 +9126,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 50f );
+			value = Math.Clamp( value, 0f, 15f );
 
 			if ( value != _seatBeltTensionerABSFrequency )
 			{
@@ -9107,7 +9157,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private float _seatBeltTensionerABSAmplitude = 10f;
+	private float _seatBeltTensionerABSAmplitude = 30f;
 
 	public float SeatBeltTensionerABSAmplitude
 	{
@@ -9150,7 +9200,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Wheel Slip Effect
 
-	private bool _seatBeltTensionerWheelSlipEnabled = false;
+	private bool _seatBeltTensionerWheelSlipEnabled = true;
 
 	public bool SeatBeltTensionerWheelSlipEnabled
 	{
@@ -9167,7 +9217,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private float _seatBeltTensionerWheelSlipFrequency = 15f;
+	private float _seatBeltTensionerWheelSlipFrequency = 11f;
 
 	public float SeatBeltTensionerWheelSlipFrequency
 	{
@@ -9175,7 +9225,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 50f );
+			value = Math.Clamp( value, 0f, 15f );
 
 			if ( value != _seatBeltTensionerWheelSlipFrequency )
 			{
@@ -9206,7 +9256,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private float _seatBeltTensionerWheelSlipAmplitude = 10f;
+	private float _seatBeltTensionerWheelSlipAmplitude = 30f;
 
 	public float SeatBeltTensionerWheelSlipAmplitude
 	{
@@ -9249,7 +9299,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Rumble Strip Effect
 
-	private bool _seatBeltTensionerRumbleEnabled = false;
+	private bool _seatBeltTensionerRumbleEnabled = true;
 
 	public bool SeatBeltTensionerRumbleEnabled
 	{
@@ -9266,7 +9316,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private float _seatBeltTensionerRumbleFrequency = 20f;
+	private float _seatBeltTensionerRumbleFrequency = 12f;
 
 	public float SeatBeltTensionerRumbleFrequency
 	{
@@ -9274,7 +9324,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 50f );
+			value = Math.Clamp( value, 0f, 15f );
 
 			if ( value != _seatBeltTensionerRumbleFrequency )
 			{
@@ -9305,7 +9355,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private float _seatBeltTensionerRumbleAmplitude = 10f;
+	private float _seatBeltTensionerRumbleAmplitude = 30f;
 
 	public float SeatBeltTensionerRumbleAmplitude
 	{

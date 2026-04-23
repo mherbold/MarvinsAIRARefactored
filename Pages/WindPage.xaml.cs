@@ -55,5 +55,12 @@ public partial class WindPage : UserControl
 		app.Wind.TestRight( _testingRight );
 	}
 
+	private void RetryDevice_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Wind.RetryDevice();
+	}
+
 	#endregion
 }

@@ -55,5 +55,12 @@ public partial class AdminBoxxPage : UserControl
 		app.AdminBoxx.StartTestCycle();
 	}
 
+	private void RetryDevice_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.AdminBoxx.RetryDevice();
+	}
+
 	#endregion
 }

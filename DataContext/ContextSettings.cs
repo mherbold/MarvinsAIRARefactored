@@ -215,6 +215,8 @@ public class ContextSettings
 	public float SeatBeltTensionerHeaveDeadZone { get; set; } = 0f;
 	public float SeatBeltTensionerHeaveSmoothing { get; set; } = 0f;
 	public float SeatBeltTensionerHeaveCurve { get; set; } = 0f;
+	public Components.SeatBeltTensioner.AxisMode SeatBeltTensionerSeatOfPantsMode { get; set; } = Components.SeatBeltTensioner.AxisMode.Disabled;
+	public float SeatBeltTensionerSeatOfPantsCurve { get; set; } = 0f;
 
 	#endregion
 }

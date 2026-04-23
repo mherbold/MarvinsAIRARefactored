@@ -59,10 +59,13 @@ public partial class Wind
 		{
 			app.Logger.WriteLine( "[Wind] Device not found - disabling WindConnectOnStartup" );
 
+			var localization = DataContext.DataContext.Instance.Localization;
+
 			app.Dispatcher.Invoke( () =>
 			{
 				MainWindow._windPage.ConnectToWind_MairaSwitch.IsEnabled = false;
-				MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = "Device not found";
+				MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
+				MainWindow._windPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
 			} );
 		}
 
@@ -78,6 +81,31 @@ public partial class Wind
 		Disconnect();
 
 		app.Logger.WriteLine( "[Wind] <<< Shutdown" );
+	}
+
+	public void RetryDevice()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[Wind] RetryDevice >>>" );
+
+		_usbSerialPortHelper.Initialize();
+
+		app.Dispatcher.Invoke( () =>
+		{
+			if ( _usbSerialPortHelper.DeviceFound )
+			{
+				MainWindow._windPage.ConnectToWind_MairaSwitch.IsEnabled = true;
+				MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = string.Empty;
+				MainWindow._windPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Collapsed;
+			}
+			else
+			{
+				MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = _usbSerialPortHelper.LastErrorMessage;
+			}
+		} );
+
+		app.Logger.WriteLine( "[Wind] <<< RetryDevice" );
 	}
 
 	public bool Connect()

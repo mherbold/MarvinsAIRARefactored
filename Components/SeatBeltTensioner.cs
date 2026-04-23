@@ -19,7 +19,8 @@ public class SeatBeltTensioner
 		None,
 		Surge,
 		Sway,
-		Heave
+		Heave,
+		CalibrationSweep
 	}
 
 	public enum TestVibrationEffect
@@ -117,6 +118,11 @@ public class SeatBeltTensioner
 	private TestVibrationEffect _vibrationTestEffect = TestVibrationEffect.None;
 	private int _vibrationTestStep = 0;
 
+	// Calibration sweep state
+	private bool _calibrationSweepGoingUp = true;
+	private int _calibrationSweepLeftPos = 0;
+	private int _calibrationSweepRightPos = 0;
+
 	public SeatBeltTensioner()
 	{
 		var app = App.Instance!;
@@ -149,10 +155,13 @@ public class SeatBeltTensioner
 		{
 			app.Logger.WriteLine( "[SeatBeltTensioner] Device not found - disabling SeatBeltTensionerEnabled" );
 
+			var localization = DataContext.DataContext.Instance.Localization;
+
 			app.Dispatcher.Invoke( () =>
 			{
 				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.IsEnabled = false;
-				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = "Device not found";
+				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
+				MainWindow._seatBeltTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
 			} );
 		}
 
@@ -168,6 +177,31 @@ public class SeatBeltTensioner
 		Disconnect();
 
 		app.Logger.WriteLine( "[SeatBeltTensioner] <<< Shutdown" );
+	}
+
+	public void RetryDevice()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[SeatBeltTensioner] RetryDevice >>>" );
+
+		_usbSerialPortHelper.Initialize();
+
+		app.Dispatcher.Invoke( () =>
+		{
+			if ( _usbSerialPortHelper.DeviceFound )
+			{
+				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.IsEnabled = true;
+				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = string.Empty;
+				MainWindow._seatBeltTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Collapsed;
+			}
+			else
+			{
+				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = _usbSerialPortHelper.LastErrorMessage;
+			}
+		} );
+
+		app.Logger.WriteLine( "[SeatBeltTensioner] <<< RetryDevice" );
 	}
 
 	public bool Connect()
@@ -252,9 +286,10 @@ public class SeatBeltTensioner
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		var maxMovement = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerMaxMotorSpeed ), 5, 50 );
+		// Settings stores deg/sec; Nano expects tenths-of-a-degree/sec
+		var maxMovementTenthsPerSec = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerMaxMotorSpeed * 10f ), 50, 5000 );
 
-		_usbSerialPortHelper.WriteLine( $"ML{maxMovement:D4}R{maxMovement:D4}" );
+		_usbSerialPortHelper.WriteLine( $"ML{maxMovementTenthsPerSec:D4}R{maxMovementTenthsPerSec:D4}" );
 	}
 
 	public void SendVibrationEffect( int leftFreqHz, int leftAmplitudeDeg, int rightFreqHz, int rightAmplitudeDeg )
@@ -322,7 +357,14 @@ public class SeatBeltTensioner
 		// Handle test sweep (runs even when simulator is not connected)
 		if ( _testAxis != TestAxis.None )
 		{
-			UpdateTest( app, settings );
+			if ( _testAxis == TestAxis.CalibrationSweep )
+			{
+				UpdateCalibrationSweepTest( app, settings );
+			}
+			else
+			{
+				UpdateTest( app, settings );
+			}
 			return;
 		}
 
@@ -468,24 +510,17 @@ public class SeatBeltTensioner
 			rightTargetPositionTenths = Math.Clamp( (int) MathF.Round( limitedRightNormalized * ( neutralTenths - minimumTenths ) + neutralTenths ), minimumTenths, maximumTenths );
 		}
 
-		// Update shoulder graphs if on the SBT page
-		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.SeatBeltTensioner )
-		{
-			// Remap tenths to [-1..1]: -1=minimum, 0=neutral, +1=maximum (piecewise linear)
-			var leftShoulderNormalized = leftTargetPositionTenths <= neutralTenths ? (float) ( leftTargetPositionTenths - neutralTenths ) / ( neutralTenths - minimumTenths ) : (float) ( leftTargetPositionTenths - neutralTenths ) / ( maximumTenths - neutralTenths );
-			var rightShoulderNormalized = rightTargetPositionTenths <= neutralTenths ? (float) ( rightTargetPositionTenths - neutralTenths ) / ( neutralTenths - minimumTenths ) : (float) ( rightTargetPositionTenths - neutralTenths ) / ( maximumTenths - neutralTenths );
-
-			_leftShoulderGraph.Advance( leftShoulderNormalized );
-			_rightShoulderGraph.Advance( rightShoulderNormalized );
-
-			_leftShoulderGraph.WritePixels();
-			_rightShoulderGraph.WritePixels();
-		}
-
 		// --- Seat of Pants effect (effect 1): tighten-only SoP offset added directly to positions ---
-		if ( settings.SeatBeltTensionerSeatOfPantsEnabled )
+		if ( settings.SeatBeltTensionerSeatOfPantsMode != AxisMode.Disabled )
 		{
-			var sop = App.Instance!.SteeringEffects.SeatOfPantsEffect;
+			var rawSop = App.Instance!.SteeringEffects.SeatOfPantsEffect;
+
+			// Apply mode (Normal or Inverted)
+			var sop = ApplyAxisMode( rawSop, settings.SeatBeltTensionerSeatOfPantsMode );
+
+			// Apply curve
+			sop = ApplyCurve( sop, settings.SeatBeltTensionerSeatOfPantsCurve );
+
 			var amplitudeTenths = settings.SeatBeltTensionerSeatOfPantsAmplitude * 10f;
 
 			// Positive SoP = right lateral force → tighten right belt, negative SoP → tighten left belt
@@ -502,6 +537,32 @@ public class SeatBeltTensioner
 			}
 		}
 
+		// Update shoulder graphs if on the SBT page
+		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.SeatBeltTensioner )
+		{
+			// Remap tenths to [-1..1]: -1=minimum, 0=neutral, +1=maximum (piecewise linear)
+			var leftShoulderNormalized = leftTargetPositionTenths <= neutralTenths ? (float) ( leftTargetPositionTenths - neutralTenths ) / ( neutralTenths - minimumTenths ) : (float) ( leftTargetPositionTenths - neutralTenths ) / ( maximumTenths - neutralTenths );
+			var rightShoulderNormalized = rightTargetPositionTenths <= neutralTenths ? (float) ( rightTargetPositionTenths - neutralTenths ) / ( neutralTenths - minimumTenths ) : (float) ( rightTargetPositionTenths - neutralTenths ) / ( maximumTenths - neutralTenths );
+
+			_leftShoulderGraph.Advance( leftShoulderNormalized );
+			_rightShoulderGraph.Advance( rightShoulderNormalized );
+
+			_leftShoulderGraph.WritePixels();
+			_rightShoulderGraph.WritePixels();
+
+			// Update overlay text for active vibration effects
+			var absActive = settings.SeatBeltTensionerABSEnabled && IsABSOrWheelLockActive( app );
+			var wheelSlipActive = settings.SeatBeltTensionerWheelSlipEnabled && IsWheelSpinActive( app );
+			var rumbleLeftActive = settings.SeatBeltTensionerRumbleEnabled && IsRumbleActiveLeft( app );
+			var rumbleRightActive = settings.SeatBeltTensionerRumbleEnabled && IsRumbleActiveRight( app );
+
+			app.Dispatcher.InvokeAsync( () =>
+			{
+				var page = MainWindow._seatBeltTensionerPage;
+				page.UpdateShoulderOverlays( absActive, wheelSlipActive, rumbleLeftActive, rumbleRightActive );
+			} );
+		}
+
 		// --- Vibration effects 2/3/4: determine which effect is active (priority: ABS > WheelSlip > Rumble) ---
 		var leftEffectFreqHz = 0;
 		var leftEffectAmplitudeDeg = 0;
@@ -510,17 +571,17 @@ public class SeatBeltTensioner
 
 		if ( settings.SeatBeltTensionerABSEnabled && IsABSOrWheelLockActive( app ) )
 		{
-			leftEffectFreqHz = rightEffectFreqHz = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerABSFrequency ), 0, 50 );
+			leftEffectFreqHz = rightEffectFreqHz = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerABSFrequency ), 0, 15 );
 			leftEffectAmplitudeDeg = rightEffectAmplitudeDeg = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerABSAmplitude ), 0, 60 );
 		}
 		else if ( settings.SeatBeltTensionerWheelSlipEnabled && IsWheelSpinActive( app ) )
 		{
-			leftEffectFreqHz = rightEffectFreqHz = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerWheelSlipFrequency ), 0, 50 );
+			leftEffectFreqHz = rightEffectFreqHz = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerWheelSlipFrequency ), 0, 15 );
 			leftEffectAmplitudeDeg = rightEffectAmplitudeDeg = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerWheelSlipAmplitude ), 0, 60 );
 		}
 		else if ( settings.SeatBeltTensionerRumbleEnabled )
 		{
-			var rumbleFreqHz = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerRumbleFrequency ), 0, 50 );
+			var rumbleFreqHz = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerRumbleFrequency ), 0, 15 );
 			var rumbleAmplitudeDeg = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerRumbleAmplitude ), 0, 60 );
 
 			if ( IsRumbleActiveLeft( app ) )
@@ -698,6 +759,64 @@ public class SeatBeltTensioner
 		_testStep = 0;
 
 		UpdateTestStatusUI();
+	}
+
+	public void StartCalibrationSweepTest()
+	{
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		var minimumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMinimum * 10f ), 0, 900 );
+
+		_calibrationSweepGoingUp = true;
+		_calibrationSweepLeftPos = minimumTenths;
+		_calibrationSweepRightPos = minimumTenths;
+		_testAxis = TestAxis.CalibrationSweep;
+		_testStep = 0;
+
+		UpdateTestStatusUI();
+	}
+
+	private void UpdateCalibrationSweepTest( App app, DataContext.Settings settings )
+	{
+		var minimumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMinimum * 10f ), 0, 900 );
+		var maximumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMaximum * 10f ), 900, 1800 );
+
+		// Step size per update (20 Hz): deg/sec → tenths/sec → tenths/update
+		var stepTenths = Math.Max( 1, (int) MathF.Round( settings.SeatBeltTensionerMaxMotorSpeed * 10f / 20f ) );
+
+		if ( _calibrationSweepGoingUp )
+		{
+			_calibrationSweepLeftPos = Math.Min( _calibrationSweepLeftPos + stepTenths, maximumTenths );
+			_calibrationSweepRightPos = Math.Min( _calibrationSweepRightPos + stepTenths, maximumTenths );
+
+			if ( _calibrationSweepLeftPos >= maximumTenths && _calibrationSweepRightPos >= maximumTenths )
+			{
+				_calibrationSweepGoingUp = false;
+			}
+		}
+		else
+		{
+			_calibrationSweepLeftPos = Math.Max( _calibrationSweepLeftPos - stepTenths, minimumTenths );
+			_calibrationSweepRightPos = Math.Max( _calibrationSweepRightPos - stepTenths, minimumTenths );
+
+			if ( _calibrationSweepLeftPos <= minimumTenths && _calibrationSweepRightPos <= minimumTenths )
+			{
+				_testAxis = TestAxis.None;
+				_testStep = 0;
+
+				UpdateTestStatusUI();
+				return;
+			}
+		}
+
+		UpdateTestStatusUI();
+
+		if ( !IsConnected )
+		{
+			return;
+		}
+
+		SendSetPosition( _calibrationSweepLeftPos, _calibrationSweepRightPos );
 	}
 
 	public void StartVibrationTest( TestVibrationEffect effect )

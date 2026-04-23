@@ -36,10 +36,23 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <controls:MairaSwitch x:Name="ConnectToAdminBoxx_MairaSwitch"
-                                          Grid.Row="0"
-                                          Label="{Binding Localization[ConnectToAdminBoxx]}"
-                                          Toggled="ConnectToAdminBoxx_MairaSwitch_Toggled" />
+                    <StackPanel Grid.Row="0"
+                                Orientation="Horizontal"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center">
+
+                        <controls:MairaSwitch x:Name="ConnectToAdminBoxx_MairaSwitch"
+                                              Label="{Binding Localization[ConnectToAdminBoxx]}"
+                                              Toggled="ConnectToAdminBoxx_MairaSwitch_Toggled" />
+
+                        <controls:MairaButton x:Name="RetryDevice_MairaButton"
+                                Margin="20,0,0,0"
+                                Label="{Binding Localization[Retry]}"
+                                Visibility="Collapsed"
+                                d:Visibility="Visible"
+                                Click="RetryDevice_MairaButton_Click" />
+
+                    </StackPanel>
 
                     <controls:MairaSwitch x:Name="ConnectOnStartup_MairaSwitch"
                                           Grid.Row="1"

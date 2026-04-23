@@ -49,6 +49,28 @@ public partial class SeatBeltTensionerPage : UserControl
 
 			HeaveMode_MairaComboBox.ItemsSource = _axisModeOptions;
 			HeaveMode_MairaComboBox.SelectedValue = settings.SeatBeltTensionerHeaveMode;
+
+			SeatOfPantsMode_MairaComboBox.ItemsSource = _axisModeOptions;
+			SeatOfPantsMode_MairaComboBox.SelectedValue = settings.SeatBeltTensionerSeatOfPantsMode;
+		} );
+	}
+
+	public void UpdateSeatOfPantsAlgorithmOptions()
+	{
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var dictionary = new Dictionary<Components.SteeringEffects.SeatOfPantsAlgorithm, string>
+		{
+			{ Components.SteeringEffects.SeatOfPantsAlgorithm.YAcceleration,          localization[ "LateralAcceleration" ] },
+			{ Components.SteeringEffects.SeatOfPantsAlgorithm.YVelocity,              localization[ "LateralVelocity" ] },
+			{ Components.SteeringEffects.SeatOfPantsAlgorithm.YVelocityOverXVelocity, localization[ "RatioOfVelocities" ] }
+		};
+
+		Dispatcher.Invoke( () =>
+		{
+			SeatOfPantsAlgorithm_MairaComboBox.ItemsSource = dictionary.ToList();
+			SeatOfPantsAlgorithm_MairaComboBox.SelectedValue = settings.SteeringEffectsSeatOfPantsAlgorithm;
 		} );
 	}
 
@@ -65,6 +87,21 @@ public partial class SeatBeltTensionerPage : UserControl
 		ABSTest_MairaButton.IsEnabled = !isRunning;
 		WheelSlipTest_MairaButton.IsEnabled = !isRunning;
 		RumbleTest_MairaButton.IsEnabled = !isRunning;
+
+		CalibrationSweepTest_MairaButton.IsEnabled = !isRunning;
+	}
+
+	public void UpdateShoulderOverlays( bool absActive, bool wheelSlipActive, bool rumbleLeftActive, bool rumbleRightActive )
+	{
+		using var _ = Dispatcher.DisableProcessing();
+
+		LeftShoulderABS_TextBlock.Visibility    = ( absActive )       ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+		LeftShoulderWheelSlip_TextBlock.Visibility = ( wheelSlipActive ) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+		LeftShoulderRumble_TextBlock.Visibility  = ( rumbleLeftActive )  ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+
+		RightShoulderABS_TextBlock.Visibility    = ( absActive )        ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+		RightShoulderWheelSlip_TextBlock.Visibility = ( wheelSlipActive )  ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+		RightShoulderRumble_TextBlock.Visibility  = ( rumbleRightActive )  ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
 	}
 
 	#region User Control Events
@@ -89,6 +126,13 @@ public partial class SeatBeltTensionerPage : UserControl
 		}
 	}
 
+	private void RetryDevice_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.SeatBeltTensioner.RetryDevice();
+	}
+
 	private void SurgeMode_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
 		if ( sender is MairaComboBox combo && combo.SelectedValue is SeatBeltTensioner.AxisMode mode )
@@ -110,6 +154,14 @@ public partial class SeatBeltTensionerPage : UserControl
 		if ( sender is MairaComboBox combo && combo.SelectedValue is SeatBeltTensioner.AxisMode mode )
 		{
 			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.SeatBeltTensionerHeaveMode = mode;
+		}
+	}
+
+	private void SeatOfPantsMode_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
+	{
+		if ( sender is MairaComboBox combo && combo.SelectedValue is SeatBeltTensioner.AxisMode mode )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.SeatBeltTensionerSeatOfPantsMode = mode;
 		}
 	}
 
@@ -158,6 +210,13 @@ public partial class SeatBeltTensionerPage : UserControl
 	private void RumbleTest_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		App.Instance!.SeatBeltTensioner.StartVibrationTest( SeatBeltTensioner.TestVibrationEffect.Rumble );
+
+		UpdateTestStatus();
+	}
+
+	private void CalibrationSweepTest_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		App.Instance!.SeatBeltTensioner.StartCalibrationSweepTest();
 
 		UpdateTestStatus();
 	}
