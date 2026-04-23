@@ -123,6 +123,8 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			if ( _portName == string.Empty )
 			{
 				app.Logger.WriteLine( "[UsbSerialPortHelper] Device not found" );
+
+				LastErrorMessage = DataContext.DataContext.Instance.Localization[ "DeviceNotFound" ];
 			}
 		}
 		catch ( Exception exception )
@@ -187,7 +189,7 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		}
 		else
 		{
-			LastErrorMessage = "Device not found";
+			LastErrorMessage = DataContext.DataContext.Instance.Localization[ "DeviceNotFound" ];
 		}
 
 		app.Logger.WriteLine( "[UsbSerialPortHelper] <<< Open" );
