@@ -157,15 +157,24 @@ public class Misc
 
 	public static bool IsWindowBoundsVisible( Rectangle bounds )
 	{
-		foreach ( var screen in Screen.AllScreens )
+		var totalWindowArea = bounds.Width * bounds.Height;
+
+		if ( totalWindowArea <= 0 )
 		{
-			if ( screen.WorkingArea.IntersectsWith( bounds ) )
-			{
-				return true;
-			}
+			return false;
 		}
 
-		return false;
+		var totalVisibleArea = 0;
+
+		foreach ( var screen in Screen.AllScreens )
+		{
+			var intersection = Rectangle.Intersect( screen.WorkingArea, bounds );
+
+			totalVisibleArea += intersection.Width * intersection.Height;
+		}
+
+		// Require at least 10% of the window to be visible on screen
+		return totalVisibleArea >= totalWindowArea * 0.10;
 	}
 
 	public static void BringExistingInstanceToFront()
