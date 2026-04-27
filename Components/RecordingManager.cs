@@ -154,8 +154,6 @@ public sealed class RecordingManager : IDisposable
 				recordingData.InputTorque60Hz = inputTorque60Hz;
 				recordingData.InputTorque500Hz = inputTorque500Hz;
 
-				_recordingDataIndex++;
-
 				if ( _recordingDataIndex == _recordingData.Length / 2 )
 				{
 					_trackPosition = (int) MathF.Round( app.Simulator.LapDistPct * 100f );
