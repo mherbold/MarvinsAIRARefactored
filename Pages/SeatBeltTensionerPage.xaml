@@ -184,8 +184,8 @@
                 <StackPanel Grid.Column="4">
 
                     <Border BorderThickness="2"
-                            BorderBrush="#666"
-                            Background="#222"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
                             CornerRadius="5">
 
                         <Image x:Name="SurgeGraph_Image"
@@ -309,8 +309,8 @@
                 <StackPanel Grid.Column="4">
 
                     <Border BorderThickness="2"
-                            BorderBrush="#666"
-                            Background="#222"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
                             CornerRadius="5">
 
                         <Image x:Name="SwayGraph_Image"
@@ -434,8 +434,8 @@
                 <StackPanel Grid.Column="4">
 
                     <Border BorderThickness="2"
-                            BorderBrush="#666"
-                            Background="#222"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
                             CornerRadius="5">
 
                         <Image x:Name="HeaveGraph_Image"
@@ -669,8 +669,8 @@
                 <StackPanel Grid.Column="0">
 
                     <Border BorderThickness="2"
-                            BorderBrush="#666"
-                            Background="#222"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
                             CornerRadius="5">
 
                         <Grid>
@@ -722,8 +722,8 @@
                 <StackPanel Grid.Column="2">
 
                     <Border BorderThickness="2"
-                            BorderBrush="#666"
-                            Background="#222"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
                             CornerRadius="5">
 
                         <Grid>

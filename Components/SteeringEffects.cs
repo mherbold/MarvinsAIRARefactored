@@ -637,8 +637,14 @@ public class SteeringEffects
 
 			const double labelFontSize = 14.0;
 
-			var labelBgBrush = new SolidColorBrush( Color.FromArgb( 255, 0, 0, 0 ) );
-			var labelBorderBrush = new SolidColorBrush( Color.FromArgb( 255, 255, 255, 255 ) );
+			var isLightTheme = DataContext.DataContext.Instance.Settings.AppLightThemeEnabled;
+
+			var labelBgColor = isLightTheme ? Color.FromArgb( 220, 240, 240, 240 ) : Color.FromArgb( 255, 0, 0, 0 );
+			var labelBorderColor = isLightTheme ? Color.FromArgb( 255, 80, 80, 80 ) : Color.FromArgb( 255, 255, 255, 255 );
+			var labelTextBrush = isLightTheme ? new SolidColorBrush( Color.FromArgb( 255, 20, 20, 20 ) ) : Brushes.White;
+
+			var labelBgBrush = new SolidColorBrush( labelBgColor );
+			var labelBorderBrush = new SolidColorBrush( labelBorderColor );
 			var labelBorderPen = new Pen( labelBorderBrush, 1.0 );
 
 			labelBgBrush.Freeze();
@@ -651,7 +657,7 @@ public class SteeringEffects
 
 			void DrawLabel( string text, int t, bool left )
 			{
-				var formatted = new FormattedText( text, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, labelTypeface, labelFontSize, Brushes.White, 1.0 );
+				var formatted = new FormattedText( text, CultureInfo.InvariantCulture, FlowDirection.LeftToRight, labelTypeface, labelFontSize, labelTextBrush, 1.0 );
 
 				double labelX, labelY;
 
@@ -678,8 +684,12 @@ public class SteeringEffects
 
 			// pen brushes
 
-			var thinPenBrush = new SolidColorBrush( Color.FromArgb( 32, 255, 255, 255 ) );
-			var thickPenBrush = new SolidColorBrush( Color.FromArgb( 96, 255, 255, 255 ) );
+			var thinPenBrush = isLightTheme
+				? new SolidColorBrush( Color.FromArgb( 48, 0, 0, 0 ) )
+				: new SolidColorBrush( Color.FromArgb( 32, 255, 255, 255 ) );
+			var thickPenBrush = isLightTheme
+				? new SolidColorBrush( Color.FromArgb( 128, 0, 0, 0 ) )
+				: new SolidColorBrush( Color.FromArgb( 96, 255, 255, 255 ) );
 
 			thinPenBrush.Freeze();
 			thickPenBrush.Freeze();

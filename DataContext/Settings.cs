@@ -11409,6 +11409,31 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region App - Light theme enabled
+
+	private bool _appLightThemeEnabled = false;
+
+	public bool AppLightThemeEnabled
+	{
+		get => _appLightThemeEnabled;
+
+		set
+		{
+			if ( value != _appLightThemeEnabled )
+			{
+				_appLightThemeEnabled = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.ApplyTheme( _appLightThemeEnabled );
+		}
+	}
+
+	#endregion
+
 	#region App - CPU affinity
 
 	private ulong _appAffinityMaskBits = 0xFFFFFFFFFFFFFFFF;

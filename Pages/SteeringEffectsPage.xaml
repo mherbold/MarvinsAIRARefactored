@@ -57,8 +57,8 @@
                 <Grid Margin="0,20,0,0">
 
                     <Border BorderThickness="2"
-                            BorderBrush="#666"
-                            Background="#222"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
                             CornerRadius="5"
                             Padding="0,0,0,0">
 
@@ -94,8 +94,8 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Padding="10,1"
-                            Background="#222"
-                            BorderBrush="#993030"
+                            Background="{DynamicResource Brush.Background.Popup}"
+                            BorderBrush="{DynamicResource Brush.Status.Error}"
                             BorderThickness="2"
                             CornerRadius="8"
                             Margin="0,82,0,0"
@@ -103,7 +103,7 @@
 
                         <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                                    Text="{Binding Localization[ConfigurationFileIsInvalid]}"
-                                   Foreground="#ff2e2e" />
+                                   Foreground="{DynamicResource Brush.Status.Error.Text}" />
 
                     </Border>
 
@@ -111,8 +111,8 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Padding="10,1"
-                            Background="#222"
-                            BorderBrush="#666"
+                            Background="{DynamicResource Brush.Background.Popup}"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
                             BorderThickness="2"
                             CornerRadius="8"
                             Margin="0,82,0,0"
@@ -120,8 +120,7 @@
 
                         <TextBlock x:Name="CalibrationProgress_TextBlock"
                                    Style="{StaticResource MairaTextBlockStyle}"
-                                   Text="Progress: 100%"
-                                   Foreground="#eee" />
+                                   Text="Progress: 100%" />
 
                     </Border>
 
@@ -129,8 +128,8 @@
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
                             Padding="10,1"
-                            Background="#222"
-                            BorderBrush="#666"
+                            Background="{DynamicResource Brush.Background.Popup}"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
                             BorderThickness="2"
                             CornerRadius="8"
                             Margin="0,122,0,0"
@@ -138,8 +137,7 @@
 
                         <TextBlock x:Name="LiveInfo_TextBlock"
                                    Style="{StaticResource MairaTextBlockStyle}"
-                                   Text="Live Info"
-                                   Foreground="#eee" />
+                                   Text="Live Info" />
 
                     </Border>
 
@@ -166,7 +164,7 @@
 
                 <Grid>
 
-                    <Border BorderBrush="#6aabff"
+                    <Border BorderBrush="{DynamicResource Brush.SteeringEffects.Understeer}"
                             BorderThickness="2"
                             Height="4"
                             CornerRadius="1"
@@ -177,7 +175,7 @@
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Padding="10,0"
-                               Foreground="#6aabff"
+                               Foreground="{DynamicResource Brush.SteeringEffects.Understeer}"
                                Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
 
                 </Grid>
@@ -452,7 +450,7 @@
 
                 <Grid>
 
-                    <Border BorderBrush="#6ae1ff"
+                    <Border BorderBrush="{DynamicResource Brush.SteeringEffects.Oversteer}"
                             BorderThickness="2"
                             Height="4"
                             CornerRadius="1"
@@ -463,7 +461,7 @@
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Padding="10,0"
-                               Foreground="#6ae1ff"
+                               Foreground="{DynamicResource Brush.SteeringEffects.Oversteer}"
                                Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
 
                 </Grid>
@@ -738,7 +736,7 @@
 
                 <Grid>
 
-                    <Border BorderBrush="#6affee"
+                    <Border BorderBrush="{DynamicResource Brush.SteeringEffects.SeatOfPants}"
                             BorderThickness="2"
                             Height="4"
                             CornerRadius="1"
@@ -749,7 +747,7 @@
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Padding="10,0"
-                               Foreground="#6affee"
+                               Foreground="{DynamicResource Brush.SteeringEffects.SeatOfPants}"
                                Background="{DynamicResource {x:Static SystemColors.WindowBrushKey}}" />
 
                 </Grid>
@@ -1068,7 +1066,7 @@
             <StackPanel>
 
                 <Border x:Name="NotOnCentripetalCircuitTrack_Border"
-                        BorderBrush="#993030"
+                        BorderBrush="{DynamicResource Brush.Status.Error}"
                         BorderThickness="2"
                         CornerRadius="8"
                         Padding="10,1"
@@ -1077,7 +1075,7 @@
 
                     <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                                Text="{Binding Localization[NotOnCentripetalCircuitTrack]}"
-                               Foreground="#ff2e2e" />
+                               Foreground="{DynamicResource Brush.Status.Error.Text}" />
 
                 </Border>
 

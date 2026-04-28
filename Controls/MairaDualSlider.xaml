@@ -42,9 +42,9 @@
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0"
                                      EndPoint="0,1">
-                    <GradientStop Color="#ff5b2e"
+                    <GradientStop Color="{DynamicResource Color.Accent}"
                                   Offset="0" />
-                    <GradientStop Color="#983418"
+                    <GradientStop Color="{DynamicResource Color.Accent.Dark}"
                                   Offset="1" />
                 </LinearGradientBrush>
             </Border.Background>
@@ -62,9 +62,9 @@
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,0"
                                      EndPoint="0,1">
-                    <GradientStop Color="#a8cdff"
+                    <GradientStop Color="{DynamicResource Color.Accent.Blue}"
                                   Offset="0" />
-                    <GradientStop Color="#426da8"
+                    <GradientStop Color="{DynamicResource Color.Accent.BlueDark}"
                                   Offset="1" />
                 </LinearGradientBrush>
             </Border.Background>

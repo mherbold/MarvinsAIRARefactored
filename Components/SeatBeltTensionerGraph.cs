@@ -8,31 +8,23 @@ namespace MarvinsAIRARefactored.Components;
 
 public class SeatBeltTensionerGraph : GraphBase
 {
-	private float _minR;
-	private float _minG;
-	private float _minB;
+	private float r;
+	private float g;
+	private float b;
 
-	private float _maxR;
-	private float _maxG;
-	private float _maxB;
-
-	public void Initialize( Image image, float minR, float minG, float minB, float maxR, float maxG, float maxB )
+	public void Initialize( Image image, float r, float g, float b )
 	{
 		Initialize( image );
 
-		_minR = minR;
-		_minG = minG;
-		_minB = minB;
-
-		_maxR = maxR;
-		_maxG = maxG;
-		_maxB = maxB;
+		this.r = r;
+		this.g = g;
+		this.b = b;
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	public void Advance( float value )
 	{
-		Update( value, _minR, _minG, _minB, _maxR, _maxG, _maxB );
+		Update( value, r, g, b );
 		FinishUpdates();
 	}
 }

@@ -12,10 +12,10 @@
                 Opacity="0.75"
                 MouseDown="Scrim_MouseDown" />
 
-        <Border Background="#222"
+        <Border Background="{DynamicResource Brush.Background.Menu}"
                 Margin="20"
                 Padding="0,5"
-                BorderBrush="#444"
+                BorderBrush="{DynamicResource Brush.Border.Subtle}"
                 BorderThickness="2"
                 CornerRadius="10"
                 SnapsToDevicePixels="True"
@@ -29,12 +29,19 @@
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
 
-                <Image x:Name="Image"
-                       Grid.Row="0"
-                       Source="/MarvinsAIRARefactored;component/Artwork/Misc/app-menu-logo.png"
-                       HorizontalAlignment="Center"
-                       Height="96"
-                       Margin="20" />
+                <Rectangle x:Name="Image"
+                           Grid.Row="0"
+                           HorizontalAlignment="Center"
+                           Height="96"
+                           Width="342"
+                           Margin="20"
+                           Fill="{DynamicResource Brush.Foreground.Primary}"
+                           RenderOptions.BitmapScalingMode="HighQuality">
+                    <Rectangle.OpacityMask>
+                        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Misc/app-menu-logo.png"
+                                    Stretch="Uniform" />
+                    </Rectangle.OpacityMask>
+                </Rectangle>
 
                 <ListBox Grid.Row="1"
                          ItemsSource="{Binding AppMenuItems, ElementName=Root}"
@@ -74,7 +81,7 @@
                                                      Value="True">
                                                 <Setter TargetName="Border"
                                                         Property="Background"
-                                                        Value="#10ffffff" />
+                                                        Value="{DynamicResource Brush.ListItem.Hover}" />
                                             </Trigger>
 
                                         </ControlTemplate.Triggers>
@@ -119,13 +126,13 @@
                                                 <DataTrigger  Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
                                                               Value="True">
                                                     <Setter Property="BorderBrush"
-                                                            Value="#666" />
+                                                            Value="{DynamicResource Brush.ComboItem.Stripe}" />
                                                 </DataTrigger>
 
                                                 <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
                                                              Value="True">
                                                     <Setter Property="BorderBrush"
-                                                            Value="#ff5b2e" />
+                                                            Value="{DynamicResource Brush.Accent}" />
                                                 </DataTrigger>
 
                                             </Style.Triggers>
@@ -140,7 +147,7 @@
                                            Style="{StaticResource MairaTextBlockStyle}"
                                            Text="{Binding DisplayName}"
                                            FontSize="30"
-                                           Foreground="#ddd"
+                                           Foreground="{DynamicResource Brush.Foreground.Secondary}"
                                            Padding="0,5" />
 
                             </Grid>

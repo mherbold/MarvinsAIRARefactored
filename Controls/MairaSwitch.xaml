@@ -80,7 +80,7 @@
                     <Style TargetType="Border">
 
                         <Setter Property="BorderBrush"
-                                Value="#666" />
+                                Value="{DynamicResource Brush.Border.Normal}" />
                         <Setter Property="Background"
                                 Value="Transparent" />
 
@@ -89,9 +89,9 @@
                             <DataTrigger Binding="{Binding IsOn, ElementName=Root}"
                                          Value="True">
                                 <Setter Property="BorderBrush"
-                                        Value="#eee" />
+                                        Value="{DynamicResource Brush.Border.Active}" />
                                 <Setter Property="Background"
-                                        Value="#ff5b2e" />
+                                        Value="{DynamicResource Brush.Accent}" />
                             </DataTrigger>
 
                         </Style.Triggers>
@@ -111,6 +111,8 @@
 
                             <Setter Property="Text"
                                     Value="" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource Brush.Foreground.Primary}" />
 
                             <Style.Triggers>
 
@@ -118,6 +120,8 @@
                                              Value="True">
                                     <Setter Property="Text"
                                             Value="✓" />
+                                    <Setter Property="Foreground"
+                                            Value="White" />
                                 </DataTrigger>
 
                             </Style.Triggers>
@@ -136,7 +140,7 @@
                    Text="{Binding Label, ElementName=Root, FallbackValue='Just a test to see what this looks like'}"
                    TextTrimming="CharacterEllipsis"
                    VerticalAlignment="Center"
-                   Foreground="#fff"
+                   Foreground="{DynamicResource Brush.Foreground.Primary}"
                    Cursor="Hand"
                    TextWrapping="Wrap"
                    MouseDown="Button_Click"
@@ -177,7 +181,7 @@
 
         <TextBlock Grid.Column="1"
                    Text="{Binding ErrorMessage, ElementName=Root}"
-                   Foreground="#ff5b2e"
+                   Foreground="{DynamicResource Brush.Accent}"
                    Margin="20,0,0,0"
                    VerticalAlignment="Center"
                    TextWrapping="Wrap">

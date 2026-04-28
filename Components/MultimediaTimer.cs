@@ -56,7 +56,7 @@ public class MultimediaTimer
 
 		app.Logger.WriteLine( "[MultimediaTimer] Initialize >>>" );
 
-		app.Graph.SetLayerColors( Graph.LayerIndex.TimerJitter, 0.25f, 1f, 0.25f, 1f, 0.25f, 0.25f );
+		app.Graph.SetLayerColors( Graph.LayerIndex.TimerJitter, 0f, 1f, 0f );
 
 		_stopwatch.Start();
 
@@ -167,7 +167,7 @@ public class MultimediaTimer
 
 						var y = Math.Clamp( jitterMilliseconds / 2f, -1f, 1f );
 
-						app.Graph.UpdateLayer( Graph.LayerIndex.TimerJitter, jitterMilliseconds, y );
+						app.Graph.UpdateLayer( Graph.LayerIndex.TimerJitter, y );
 
 						// update the graph
 

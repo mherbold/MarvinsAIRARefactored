@@ -27,12 +27,32 @@ public partial class MairaKnob : UserControl
 {
 	private const int ResetHoldMilliseconds = 1000;
 
-	private static readonly SolidColorBrush _curveBackgroundBrush = new( Color.FromArgb( 255, 49, 49, 49 ) );
-	private static readonly SolidColorBrush _curveGridLinesBrush = new( Color.FromArgb( 255, 68, 68, 68 ) );
+	private static SolidColorBrush _curveBackgroundBrush = new( Color.FromArgb( 255, 49, 49, 49 ) );
+	private static SolidColorBrush _curveGridLinesBrush = new( Color.FromArgb( 255, 68, 68, 68 ) );
 	private static readonly SolidColorBrush _curveForegroundBrush = new( Color.FromArgb( 255, 255, 91, 46 ) );
 
 	private static Pen _curveGridLinesPen = new( _curveGridLinesBrush, 1.5 );
 	private static Pen _curveForegroundPen = new( _curveForegroundBrush, 6 );
+
+	private static readonly System.Runtime.CompilerServices.ConditionalWeakTable<MairaKnob, object?> _instances = new();
+
+	public static void UpdateThemeColors( bool lightTheme )
+	{
+		_curveBackgroundBrush = lightTheme
+			? new SolidColorBrush( Color.FromArgb( 255, 230, 230, 230 ) )
+			: new SolidColorBrush( Color.FromArgb( 255, 49, 49, 49 ) );
+
+		_curveGridLinesBrush = lightTheme
+			? new SolidColorBrush( Color.FromArgb( 255, 190, 190, 190 ) )
+			: new SolidColorBrush( Color.FromArgb( 255, 68, 68, 68 ) );
+
+		_curveGridLinesPen = new Pen( _curveGridLinesBrush, 1.5 );
+
+		foreach ( var instance in _instances )
+		{
+			instance.Key.UpdateKnobVisual();
+		}
+	}
 
 	private POINT _draggingCenter;
 
@@ -45,11 +65,7 @@ public partial class MairaKnob : UserControl
 
 	static MairaKnob()
 	{
-		_curveBackgroundBrush.Freeze();
-		_curveGridLinesBrush.Freeze();
 		_curveForegroundBrush.Freeze();
-
-		_curveGridLinesPen.Freeze();
 		_curveForegroundPen.Freeze();
 	}
 
@@ -58,6 +74,8 @@ public partial class MairaKnob : UserControl
 		InitializeComponent();
 
 		_resetDispatcherTimer.Tick += ResetDispatcherTimer_Tick;
+
+		_instances.Add( this, null );
 	}
 
 	#region User Control Events

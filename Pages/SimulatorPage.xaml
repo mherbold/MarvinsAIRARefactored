@@ -43,7 +43,7 @@
                     <Style TargetType="{x:Type controls:MairaTabItem}">
 
                         <Setter Property="Foreground"
-                                Value="#979797" />
+                                Value="{DynamicResource Brush.Foreground.Muted}" />
                         <Setter Property="FontSize"
                                 Value="20" />
                         <Setter Property="Cursor"
@@ -103,7 +103,7 @@
                                         <Trigger Property="IsSelected"
                                                  Value="True">
                                             <Setter Property="Foreground"
-                                                    Value="#eee" />
+                                                    Value="{DynamicResource Brush.Accent}" />
                                             <Setter Property="Panel.ZIndex"
                                                     Value="1" />
                                         </Trigger>

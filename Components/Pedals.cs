@@ -60,9 +60,9 @@ public class Pedals
 	{
 		var app = App.Instance!;
 
-		app.Graph.SetLayerColors( Graph.LayerIndex.ClutchPedalHaptics, 0f, 0f, 0.5f, 0f, 0f, 1f );
-		app.Graph.SetLayerColors( Graph.LayerIndex.BrakePedalHaptics, 0.5f, 0f, 0f, 1f, 0f, 0f );
-		app.Graph.SetLayerColors( Graph.LayerIndex.ThrottlePedalHaptics, 0f, 0.5f, 0f, 0f, 1f, 0f );
+		app.Graph.SetLayerColors( Graph.LayerIndex.ClutchPedalHaptics, 0f, 0f, 1f );
+		app.Graph.SetLayerColors( Graph.LayerIndex.BrakePedalHaptics, 1f, 0f, 0f );
+		app.Graph.SetLayerColors( Graph.LayerIndex.ThrottlePedalHaptics, 0f, 1f, 0f );
 	}
 
 	public void Refresh()
@@ -99,7 +99,7 @@ public class Pedals
 
 			var amplitude = MathF.Sin( _cycles[ i ] ) * _amplitude[ i ];
 
-			app.Graph.UpdateLayer( Graph.LayerIndex.ClutchPedalHaptics + i, amplitude, amplitude );
+			app.Graph.UpdateLayer( Graph.LayerIndex.ClutchPedalHaptics + i, amplitude );
 		}
 	}
 
@@ -239,7 +239,7 @@ public class Pedals
 			{
 				_hpr.VibratePedal( (HPR.Channel) pedalIndex, HPR.State.Off, 0f, 0f );
 
-				app.Graph.UpdateLayer( Graph.LayerIndex.ClutchPedalHaptics + pedalIndex, 0f, 0f );
+				app.Graph.UpdateLayer( Graph.LayerIndex.ClutchPedalHaptics + pedalIndex, 0f );
 
 				_frequency[ pedalIndex ] = 0f;
 				_amplitude[ pedalIndex ] = 0f;

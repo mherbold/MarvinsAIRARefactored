@@ -23,8 +23,8 @@
         <Setter Property="FontSize"
                 Value="20" />
         <Setter Property="Foreground"
-                Value="#ffffff" />
-        
+                Value="{DynamicResource Brush.Foreground.Primary}" />
+
     </Style>
     
     <Style TargetType="{x:Type controls:MairaGroupBox}">
@@ -58,9 +58,9 @@
                                        Style="{StaticResource MairaGroupBoxHeaderTextStyle}">
                                 
                                 <Run Text="{TemplateBinding Label}"
-                                     Foreground="#979797" />
+                                     Foreground="{DynamicResource Brush.GroupBox.Label}" />
                                 <Run Text="{TemplateBinding SubLabel}"
-                                     Foreground="#ff5b2e" />
+                                     Foreground="{DynamicResource Brush.GroupBox.SubLabel}" />
 
                             </TextBlock>
 
@@ -84,7 +84,7 @@
 
                             <Border Grid.Column="2"
                                     BorderThickness="0,0,0,1"
-                                    BorderBrush="#979797"
+                                    BorderBrush="{DynamicResource Brush.GroupBox.Label}"
                                     Margin="10,0,0,5" />
 
                         </Grid>

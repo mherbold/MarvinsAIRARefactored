@@ -629,6 +629,10 @@
     <value>APP WINDOW</value>
     <comment>App settings</comment>
   </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Light Theme</value>
+    <comment>App settings</comment>
+  </data>
   <data name="UIScale" xml:space="preserve">
     <value>UI Scale</value>
     <comment>App settings</comment>

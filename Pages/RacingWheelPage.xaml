@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MarvinsAIRARefactored.Pages.RacingWheelPage"
+<UserControl x:Class="MarvinsAIRARefactored.Pages.RacingWheelPage"
              x:Name="Root"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -58,6 +58,7 @@
                                                   Label="{Binding Localization[Power]}"
                                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/power-white.png"
                                                   BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/power-default.png"
+                                                  IsColorIcon="True"
                                                   ContextSwitches="{Binding Settings.RacingWheelEnableForceFeedbackContextSwitches}"
                                                   ButtonMappings="{Binding Settings.RacingWheelEnableForceFeedbackButtonMappings}"
                                                   Click="Power_MairaMappableButton_Click" />
@@ -194,13 +195,13 @@
 
                             <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                                        Text="{Binding Localization[CurrentForce]}"
-                                       Foreground="#979797"
+                                       Foreground="{DynamicResource Brush.Foreground.Muted}"
                                        HorizontalAlignment="Center" />
 
                             <TextBlock x:Name="CurrentForce_TextBlock"
                                        Style="{StaticResource MairaTextBlockStyle}"
                                        Text="0.0 Nm"
-                                       Foreground="#8f8f8f"
+                                       Foreground="{DynamicResource Brush.Foreground.Muted}"
                                        HorizontalAlignment="Center"
                                        FontSize="30" />
 
@@ -210,13 +211,13 @@
 
                             <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                                        Text="{Binding Localization[AutoMaxForce]}"
-                                       Foreground="#979797"
+                                       Foreground="{DynamicResource Brush.Foreground.Muted}"
                                        HorizontalAlignment="Center" />
 
                             <TextBlock x:Name="AutoForce_TextBlock"
                                        Style="{StaticResource MairaTextBlockStyle}"
                                        Text="0.0 Nm"
-                                       Foreground="#8f8f8f"
+                                       Foreground="{DynamicResource Brush.Foreground.Muted}"
                                        HorizontalAlignment="Center"
                                        FontSize="30" />
 
@@ -546,8 +547,8 @@
 
                 <Border Grid.Row="0"
                         BorderThickness="2"
-                        BorderBrush="#666"
-                        Background="#222"
+                        BorderBrush="{DynamicResource Brush.Border.Normal}"
+                        Background="{DynamicResource Brush.Background.Popup}"
                         CornerRadius="5"
                         Padding="0,0,0,6">
 
@@ -581,7 +582,7 @@
                     <Border Width="256"
                             Height="256"
                             CornerRadius="16"
-                            Background="#222"
+                            Background="{DynamicResource Brush.Background.Popup}"
                             BorderBrush="#FFF"
                             BorderThickness="1"
                             SnapsToDevicePixels="True"

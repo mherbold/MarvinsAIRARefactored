@@ -44,9 +44,11 @@
     <Resource Include="Artwork\Buttons\app-menu.png" />
     <Resource Include="Artwork\Buttons\browse.png" />
     <Resource Include="Artwork\Buttons\clear.png" />
+    <Resource Include="Artwork\Buttons\combo-box-caret.png" />
     <Resource Include="Artwork\Buttons\combo-box-checked.png" />
     <Resource Include="Artwork\Buttons\combo-box-default.png" />
     <Resource Include="Artwork\Buttons\combo-box-hover.png" />
+    <Resource Include="Artwork\Buttons\combo-box-ring.png" />
     <Resource Include="Artwork\Buttons\copy.png" />
     <Resource Include="Artwork\Buttons\drag.png" />
     <Resource Include="Artwork\Buttons\knob-middle-default.png" />
@@ -121,11 +123,13 @@
     <Resource Include="Artwork\Misc\orange-stripes.png" />
     <Resource Include="Artwork\Misc\right-drag-handle.png" />
     <Resource Include="Artwork\Misc\trading-paints.png" />
+    <Resource Include="Artwork\Misc\trading-paints-light.png" />
     <Resource Include="Artwork\Misc\world-wide-web.png" />
     <Resource Include="Artwork\Misc\yellow-stripes.png" />
     <Resource Include="Fonts\Aptos-Narrow-Italic.ttf" />
     <Resource Include="Fonts\Aptos-Narrow.ttf" />
     <Resource Include="Artwork\Misc\simagic-logo.png" />
+    <Resource Include="Artwork\Misc\simagic-logo-light.png" />
     <Resource Include="InnoSetup\STT\app-menu-logo.png" />
     <Resource Include="InnoSetup\STT\favicon.ico" />
   </ItemGroup>
@@ -179,9 +183,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include=".github\" />
     <Folder Include="InnoSetup\Calibration\" />
     <Folder Include="InnoSetup\SimHub\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include=".github\copilot-instructions.md" />
   </ItemGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">

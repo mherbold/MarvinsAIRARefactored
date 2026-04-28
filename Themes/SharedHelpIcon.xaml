@@ -23,8 +23,8 @@
             
             <Ellipse x:Name="Ring"
                      StrokeThickness="1"
-                     Stroke="#979797"
-                     Fill="#313131"/>
+                     Stroke="{DynamicResource Brush.Border.Normal}"
+                     Fill="{DynamicResource Brush.Background.Default}"/>
             
             <TextBlock x:Name="Glyph"
                        Text="?"

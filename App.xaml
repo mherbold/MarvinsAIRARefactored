@@ -14,26 +14,23 @@
 
         <ResourceDictionary>
 
+            <ResourceDictionary.MergedDictionaries>
+                <!-- Active theme: replaced at runtime by App.ApplyTheme() -->
+                <ResourceDictionary x:Name="ThemeDictionary"
+                                    Source="/MarvinsAIRARefactored;component/Themes/DarkTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
             <!-- Converters -->
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
-
-            <!-- Colors -->
-
-            <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}"
-                             Color="#313131" />
-            <SolidColorBrush x:Key="Background.Default"
-                             Color="#313131" />
-            <SolidColorBrush x:Key="Foreground.Normal"
-                             Color="#979797" />
 
             <!-- Window -->
 
             <Style TargetType="{x:Type Window}">
 
                 <Setter Property="Background"
-                        Value="{StaticResource Background.Default}" />
+                        Value="{DynamicResource Brush.Background.Default}" />
 
             </Style>
 
@@ -53,7 +50,7 @@
                 <Setter Property="FontSize"
                         Value="20" />
                 <Setter Property="Foreground"
-                        Value="#ffffff" />
+                        Value="{DynamicResource Brush.Foreground.Primary}" />
 
             </Style>
 
@@ -73,7 +70,7 @@
                 <Setter Property="FontSize"
                         Value="20" />
                 <Setter Property="Foreground"
-                        Value="#ffffff" />
+                        Value="{DynamicResource Brush.Foreground.Primary}" />
 
             </Style>
 
@@ -85,7 +82,7 @@
                 <Setter Property="Background"
                         Value="Transparent" />
                 <Setter Property="BorderBrush"
-                        Value="#444" />
+                        Value="{DynamicResource Brush.ToggleButton.Border}" />
                 <Setter Property="BorderThickness"
                         Value="0,0,0,2" />
                 <Setter Property="FontSize"
@@ -123,13 +120,36 @@
 
                                 </Border>
 
-                                <Image x:Name="Glyph"
-                                       Grid.Column="2"
-                                       Source="/MarvinsAIRARefactored;component/Artwork/Buttons/combo-box-default.png"
-                                       Width="32"
-                                       Height="32"
-                                       HorizontalAlignment="Right"
-                                       RenderOptions.BitmapScalingMode="HighQuality" />
+                                <Grid Grid.Column="2"
+                                      Width="32"
+                                      Height="32"
+                                      HorizontalAlignment="Right">
+
+                                    <!-- Ring: Border.Normal (medium gray) in default; Border.Hover on hover; Border.Active when open -->
+                                    <Rectangle x:Name="GlyphRing"
+                                               Width="32"
+                                               Height="32"
+                                               Fill="{DynamicResource Brush.Border.Normal}"
+                                               RenderOptions.BitmapScalingMode="HighQuality">
+                                        <Rectangle.OpacityMask>
+                                            <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Buttons/combo-box-ring.png"
+                                                        RenderOptions.BitmapScalingMode="HighQuality" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+
+                                    <!-- Caret: Foreground.Primary (black/white per theme) in default and hover; Border.Active when open -->
+                                    <Rectangle x:Name="GlyphCaret"
+                                               Width="32"
+                                               Height="32"
+                                               Fill="{DynamicResource Brush.Foreground.Primary}"
+                                               RenderOptions.BitmapScalingMode="HighQuality">
+                                        <Rectangle.OpacityMask>
+                                            <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Buttons/combo-box-caret.png"
+                                                        RenderOptions.BitmapScalingMode="HighQuality" />
+                                        </Rectangle.OpacityMask>
+                                    </Rectangle>
+
+                                </Grid>
 
                             </Grid>
 
@@ -138,19 +158,22 @@
                                 <Trigger Property="IsMouseOver"
                                          Value="True">
                                     <Setter Property="BorderBrush"
-                                            Value="#666666" />
-                                    <Setter TargetName="Glyph"
-                                            Property="Source"
-                                            Value="pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Buttons/combo-box-hover.png" />
+                                            Value="{DynamicResource Brush.ToggleButton.Border.Hover}" />
+                                    <Setter TargetName="GlyphRing"
+                                            Property="Fill"
+                                            Value="{DynamicResource Brush.Border.Hover}" />
                                 </Trigger>
 
                                 <Trigger Property="IsChecked"
                                          Value="True">
                                     <Setter Property="BorderBrush"
                                             Value="Transparent" />
-                                    <Setter TargetName="Glyph"
-                                            Property="Source"
-                                            Value="pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Buttons/combo-box-checked.png" />
+                                    <Setter TargetName="GlyphRing"
+                                            Property="Fill"
+                                            Value="{DynamicResource Brush.Border.Active}" />
+                                    <Setter TargetName="GlyphCaret"
+                                            Property="Fill"
+                                            Value="{DynamicResource Brush.Border.Active}" />
                                 </Trigger>
 
                             </ControlTemplate.Triggers>
@@ -168,7 +191,7 @@
             <Style TargetType="{x:Type ComboBoxItem}">
 
                 <Setter Property="Foreground"
-                        Value="#dddddd" />
+                        Value="{DynamicResource Brush.Foreground.Secondary}" />
                 <Setter Property="Padding"
                         Value="10,5" />
                 <Setter Property="FontSize"
@@ -201,7 +224,7 @@
                                                 <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
                                                              Value="True">
                                                     <Setter Property="Background"
-                                                            Value="#10ffffff" />
+                                                            Value="{DynamicResource Brush.ListItem.Hover}" />
                                                 </DataTrigger>
 
                                             </Style.Triggers>
@@ -238,13 +261,13 @@
                                                     <DataTrigger Binding="{Binding IsMouseOver, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
                                                                  Value="True">
                                                         <Setter Property="BorderBrush"
-                                                                Value="#666" />
+                                                                Value="{DynamicResource Brush.ComboItem.Stripe}" />
                                                     </DataTrigger>
 
                                                     <DataTrigger Binding="{Binding IsSelected, RelativeSource={RelativeSource AncestorType=ListBoxItem}}"
                                                                  Value="True">
                                                         <Setter Property="BorderBrush"
-                                                                Value="#ff5b2e" />
+                                                                Value="{DynamicResource Brush.Accent}" />
                                                     </DataTrigger>
 
                                                 </Style.Triggers>
@@ -257,7 +280,7 @@
 
                                     <TextBlock Grid.Column="3"
                                                Style="{StaticResource MairaTextBlockStyle}"
-                                               Foreground="#ddd"
+                                               Foreground="{DynamicResource Brush.Foreground.Secondary}"
                                                Padding="0,5">
 
                                 <ContentPresenter VerticalAlignment="Center"
@@ -283,6 +306,9 @@
 
                 <EventSetter Event="PreviewMouseWheel"
                              Handler="ComboBox_PreviewMouseWheel" />
+
+                <Setter Property="Foreground"
+                        Value="{DynamicResource Brush.Foreground.Primary}" />
 
                 <Setter Property="ScrollViewer.HorizontalScrollBarVisibility"
                         Value="Auto" />
@@ -326,9 +352,9 @@
                                        AllowsTransparency="True"
                                        Focusable="False">
 
-                                    <Border Background="#222"
+                                    <Border Background="{DynamicResource Brush.Background.Popup}"
                                             Padding="0,5"
-                                            BorderBrush="#444"
+                                            BorderBrush="{DynamicResource Brush.Border.Subtle}"
                                             BorderThickness="2"
                                             SnapsToDevicePixels="True">
 
@@ -363,8 +389,8 @@
 
                             <Border x:Name="ThumbBorder"
                                     CornerRadius="6"
-                                    Background="#666"
-                                    BorderBrush="#444"
+                                    Background="{DynamicResource Brush.ScrollBar.Thumb}"
+                                    BorderBrush="{DynamicResource Brush.Border.Subtle}"
                                     BorderThickness="1" />
 
                             <ControlTemplate.Triggers>
@@ -373,17 +399,17 @@
                                          Value="True">
                                     <Setter TargetName="ThumbBorder"
                                             Property="Background"
-                                            Value="#888" />
+                                            Value="{DynamicResource Brush.ScrollBar.Thumb.Hover}" />
                                 </Trigger>
 
                                 <Trigger Property="IsDragging"
                                          Value="True">
                                     <Setter TargetName="ThumbBorder"
                                             Property="Background"
-                                            Value="#eee" />
+                                            Value="{DynamicResource Brush.ScrollBar.Thumb.Drag}" />
                                     <Setter TargetName="ThumbBorder"
                                             Property="BorderBrush"
-                                            Value="#666" />
+                                            Value="{DynamicResource Brush.ScrollBar.Thumb.DragBorder}" />
                                 </Trigger>
 
                             </ControlTemplate.Triggers>
@@ -506,11 +532,11 @@
                         <Setter Property="FontSize"
                                 Value="18" />
                         <Setter Property="Foreground"
-                                Value="#dddddd" />
+                                Value="{DynamicResource Brush.Foreground.Secondary}" />
                         <Setter Property="Background"
-                                Value="#333" />
+                                Value="{DynamicResource Brush.ListButton.Background}" />
                         <Setter Property="BorderBrush"
-                                Value="#555" />
+                                Value="{DynamicResource Brush.Border.Normal}" />
                         <Setter Property="BorderThickness"
                                 Value="1" />
                         <Setter Property="Padding"
@@ -542,20 +568,20 @@
                                                  Value="True">
                                             <Setter TargetName="Border"
                                                     Property="Background"
-                                                    Value="#444" />
+                                                    Value="{DynamicResource Brush.ListButton.Hover}" />
                                             <Setter TargetName="Border"
                                                     Property="BorderBrush"
-                                                    Value="#888" />
+                                                    Value="{DynamicResource Brush.Border.Hover}" />
                                         </Trigger>
 
                                         <Trigger Property="IsPressed"
                                                  Value="True">
                                             <Setter TargetName="Border"
                                                     Property="Background"
-                                                    Value="#ff5b2e" />
+                                                    Value="{DynamicResource Brush.Accent}" />
                                             <Setter TargetName="Border"
                                                     Property="BorderBrush"
-                                                    Value="#ff5b2e" />
+                                                    Value="{DynamicResource Brush.Accent}" />
                                         </Trigger>
 
                                     </ControlTemplate.Triggers>

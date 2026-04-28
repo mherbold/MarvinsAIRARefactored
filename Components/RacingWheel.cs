@@ -165,10 +165,10 @@ public class RacingWheel
 
 		app.Logger.WriteLine( "[RacingWheel] Initialize >>>" );
 
-		app.Graph.SetLayerColors( Graph.LayerIndex.InputTorque60Hz, 1f, 0f, 0f, 1f, 0f, 0f );
-		app.Graph.SetLayerColors( Graph.LayerIndex.InputTorque, 1f, 0f, 1f, 1f, 0f, 1f );
-		app.Graph.SetLayerColors( Graph.LayerIndex.InputLFE, 0.1f, 0.5f, 1f, 1f, 1f, 1f );
-		app.Graph.SetLayerColors( Graph.LayerIndex.OutputTorque, 0f, 1f, 1f, 0f, 1f, 1f );
+		app.Graph.SetLayerColors( Graph.LayerIndex.InputTorque60Hz, 1f, 0f, 0f );
+		app.Graph.SetLayerColors( Graph.LayerIndex.InputTorque, 1f, 0f, 0f );
+		app.Graph.SetLayerColors( Graph.LayerIndex.InputLFE, 0f, 0f, 1f );
+		app.Graph.SetLayerColors( Graph.LayerIndex.OutputTorque, 0f, 1f, 1f );
 
 		_algorithmPreviewGraphBase.Initialize( MainWindow._racingWheelPage.AlgorithmPreview_Image );
 
@@ -1414,10 +1414,10 @@ public class RacingWheel
 
 			// update graph
 
-			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque60Hz, steeringWheelTorque60Hz, steeringWheelTorque60Hz / settings.RacingWheelMaxForce );
-			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque, steeringWheelTorque500Hz, steeringWheelTorque500Hz / settings.RacingWheelMaxForce );
-			app.Graph.UpdateLayer( Graph.LayerIndex.InputLFE, inputLFEMagnitude, inputLFEMagnitude );
-			app.Graph.UpdateLayer( Graph.LayerIndex.OutputTorque, outputTorque, outputTorque );
+			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque60Hz	, steeringWheelTorque60Hz / settings.RacingWheelMaxForce );
+			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque, steeringWheelTorque500Hz / settings.RacingWheelMaxForce );
+			app.Graph.UpdateLayer( Graph.LayerIndex.InputLFE, inputLFEMagnitude );
+			app.Graph.UpdateLayer( Graph.LayerIndex.OutputTorque, outputTorque );
 
 			var protectionForegroundColor = 0u;
 			var protectionBackgroundColor = 0u;
@@ -1433,11 +1433,11 @@ public class RacingWheel
 				protectionBackgroundColor = 0xFF000000;
 			}
 
-			if ( outputTorque < -1f )
+			if ( outputTorque <= -0.99f )
 			{
 				app.Graph.SetGutterColors( protectionForegroundColor, protectionBackgroundColor, 0xFFFF0000, 0xFFFF0000 );
 			}
-			else if ( outputTorque > 1f )
+			else if ( outputTorque >= 0.99f )
 			{
 				app.Graph.SetGutterColors( 0xFFFF0000, 0xFFFF0000, protectionForegroundColor, protectionBackgroundColor );
 			}
@@ -1523,14 +1523,14 @@ public class RacingWheel
 
 						var outputTorque = ProcessAlgorithm( 1, inputTorque60Hz, inputTorque500Hz, 0f );
 
-						_algorithmPreviewGraphBase.Update( inputTorque500Hz / settings.RacingWheelMaxForce, 0.5f, 0f, 0f, 1f, 0.25f, 0.25f );
-						_algorithmPreviewGraphBase.Update( outputTorque, 0f, 0.5f, 0.5f, 0.25f, 1f, 1f );
+						_algorithmPreviewGraphBase.Update( inputTorque500Hz / settings.RacingWheelMaxForce, 1f, 0f, 0f );
+						_algorithmPreviewGraphBase.Update( outputTorque, 0f, 1f, 1f );
 
-						if ( outputTorque < -1f )
+						if ( outputTorque <= -0.99f )
 						{
 							_algorithmPreviewGraphBase.SetGutterColors( 0, 0, 0xFFFF0000, 0xFFFF0000 );
 						}
-						else if ( outputTorque > 1f )
+						else if ( outputTorque >= 0.99f )
 						{
 							_algorithmPreviewGraphBase.SetGutterColors( 0xFFFF0000, 0xFFFF0000, 0, 0 );
 						}

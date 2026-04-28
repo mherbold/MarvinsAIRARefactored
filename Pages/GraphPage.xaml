@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MarvinsAIRARefactored.Pages.GraphPage"
+<UserControl x:Class="MarvinsAIRARefactored.Pages.GraphPage"
              x:Name="Root"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -20,8 +20,8 @@
 
             <Border x:Name="Border"
                     BorderThickness="2"
-                    BorderBrush="#666"
-                    Background="#222"
+                    BorderBrush="{DynamicResource Brush.Border.Normal}"
+                    Background="{DynamicResource Brush.Background.Popup}"
                     CornerRadius="5"
                     PreviewMouseLeftButtonDown="Border_PreviewMouseLeftButtonDown">
 

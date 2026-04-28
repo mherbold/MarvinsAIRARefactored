@@ -159,6 +159,15 @@ public partial class MairaButton : UserControl
 		set => SetValue( DisabledProperty, value );
 	}
 
+	public static readonly DependencyProperty IsColorIconProperty = DependencyProperty.Register( nameof( IsColorIcon ), typeof( bool ), typeof( MairaButton ), new PropertyMetadata( false ) );
+
+	/// <summary>When true, the icon image is rendered as-is (preserving original colors) rather than being tinted to the theme foreground color.</summary>
+	public bool IsColorIcon
+	{
+		get => (bool) GetValue( IsColorIconProperty );
+		set => SetValue( IsColorIconProperty, value );
+	}
+
 	#endregion
 
 	#region Dependency Property Changed Events

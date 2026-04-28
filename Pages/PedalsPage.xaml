@@ -41,7 +41,7 @@
                            VerticalAlignment="Center" />
 
                 <Image Grid.Column="4"
-                       Source="/MarvinsAIRARefactored;component/Artwork/Misc/simagic-logo.png"
+                       Source="{DynamicResource Image.SimagicLogo}"
                        Height="32"
                        VerticalAlignment="Center" />
 

@@ -37,6 +37,37 @@ public class GraphBase
 		0xFF884444
 	];
 
+	private static readonly uint[] _gridLineColorsDark = [
+		0xFF884444,
+		0xFF444444,
+		0xFF666688,
+		0xFF444444,
+		0xFFFFFFFF,
+		0xFF444444,
+		0xFF666688,
+		0xFF444444,
+		0xFF884444
+	];
+
+	private static readonly uint[] _gridLineColorsLight = [
+		0xFFAA4444,
+		0xFFAAAAAA,
+		0xFF7777AA,
+		0xFFAAAAAA,
+		0xFF333333,
+		0xFFAAAAAA,
+		0xFF7777AA,
+		0xFFAAAAAA,
+		0xFFAA4444
+	];
+
+	public void UpdateThemeColors( bool lightTheme )
+	{
+		var source = lightTheme ? _gridLineColorsLight : _gridLineColorsDark;
+
+		Array.Copy( source, _gridLineColorArray, source.Length );
+	}
+
 	private uint _topGutterBackgroundColor = 0;
 	private uint _topGutterForegroundColor = 0;
 
@@ -66,20 +97,17 @@ public class GraphBase
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void Update( float value, float minR, float minG, float minB, float maxR, float maxG, float maxB )
+	public void Update( float value, float r, float g, float b )
 	{
 		if ( _colorMixArray != null )
 		{
+			// clamp y value to -1..1 range, where -1 is the bottom of the graph, 0 is the middle and 1 is the top
 			var y = Math.Clamp( value, -1f, 1f );
 
-			var absY = Math.Abs( y );
-
-			var r = MathZ.Lerp( minR, maxR, absY );
-			var g = MathZ.Lerp( minG, maxG, absY );
-			var b = MathZ.Lerp( minB, maxB, absY );
-
+			// invert y value and shift it to 0..1 range, where 0 is the top of the graph and 1 is the bottom
 			y = y * -0.5f + 0.5f;
 
+			// calculate the y position of the value on the graph
 			var iY1 = _bitmapHeightMinusOne / 2;
 			var iY2 = (int) Math.Round( y * ( BitmapHeight - GutterSize * 2 ) ) + GutterSize;
 
@@ -92,12 +120,10 @@ public class GraphBase
 
 			for ( var i = 1; i <= range; i++ )
 			{
-				var multiplier = MathF.Pow( (float) i / range, 4f );
-
 				_colorMixArray[ iY, 0 ] = 1f;
-				_colorMixArray[ iY, 1 ] += r * multiplier;
-				_colorMixArray[ iY, 2 ] += g * multiplier;
-				_colorMixArray[ iY, 3 ] += b * multiplier;
+				_colorMixArray[ iY, 1 ] += r;
+				_colorMixArray[ iY, 2 ] += g;
+				_colorMixArray[ iY, 3 ] += b;
 
 				iY += sign;
 			}

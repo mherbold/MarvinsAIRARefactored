@@ -144,12 +144,12 @@ public class SeatBeltTensioner
 
 		var sbtPage = MainWindow._seatBeltTensionerPage;
 
-		_surgeGraph.Initialize( sbtPage.SurgeGraph_Image, 0.3f, 0f, 0.2f, 1f, 0.08f, 0.58f );
-		_swayGraph.Initialize( sbtPage.SwayGraph_Image, 0.1f, 0.3f, 0f, 0.5f, 1f, 0f );
-		_heaveGraph.Initialize( sbtPage.HeaveGraph_Image, 0.1f, 0.2f, 0.3f, 0.3f, 0.7f, 1f );
+		_surgeGraph.Initialize( sbtPage.SurgeGraph_Image, 1f, 0.08f, 0.58f );
+		_swayGraph.Initialize( sbtPage.SwayGraph_Image, 0.5f, 1f, 0f );
+		_heaveGraph.Initialize( sbtPage.HeaveGraph_Image, 0.3f, 0.7f, 1f );
 
-		_leftShoulderGraph.Initialize( sbtPage.LeftShoulderGraph_Image, 0f, 0f, 0.2f, 0f, 0f, 1f );
-		_rightShoulderGraph.Initialize( sbtPage.RightShoulderGraph_Image, 0.2f, 0f, 0f, 1f, 0f, 0f );
+		_leftShoulderGraph.Initialize( sbtPage.LeftShoulderGraph_Image, 0f, 0f, 1f );
+		_rightShoulderGraph.Initialize( sbtPage.RightShoulderGraph_Image, 1f, 0f, 0f );
 
 		if ( !_usbSerialPortHelper.DeviceFound )
 		{

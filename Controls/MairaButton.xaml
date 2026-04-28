@@ -196,14 +196,13 @@
 
                 <!-- Disabled -->
 
-                <Image RenderOptions.BitmapScalingMode="HighQuality">
+                <Rectangle Fill="{DynamicResource Brush.Border.Normal}"
+                           RenderOptions.BitmapScalingMode="HighQuality">
 
-                    <Image.Style>
+                    <Rectangle.Style>
 
-                        <Style TargetType="Image">
+                        <Style TargetType="Rectangle">
 
-                            <Setter Property="Source"
-                                    Value="{Binding DefaultFrame, ElementName=Root}" />
                             <Setter Property="Width"
                                     Value="{Binding IconWidth, ElementName=Root}" />
                             <Setter Property="Height"
@@ -215,8 +214,6 @@
 
                                 <DataTrigger Binding="{Binding IsSmall, ElementName=Root}"
                                              Value="True">
-                                    <Setter Property="Source"
-                                            Value="/MarvinsAIRARefactored;component/Artwork/Buttons/ring-small-default.png" />
                                     <Setter Property="Width"
                                             Value="32" />
                                     <Setter Property="Height"
@@ -230,39 +227,38 @@
                                 </DataTrigger>
 
                                 <MultiDataTrigger>
-
                                     <MultiDataTrigger.Conditions>
-
                                         <Condition Binding="{Binding Disabled, ElementName=Root}"
                                                    Value="True" />
                                         <Condition Binding="{Binding IsMapped, ElementName=Root}"
                                                    Value="False" />
-
                                     </MultiDataTrigger.Conditions>
-
                                     <Setter Property="Visibility"
                                             Value="Visible" />
-
                                 </MultiDataTrigger>
 
                             </Style.Triggers>
 
                         </Style>
 
-                    </Image.Style>
+                    </Rectangle.Style>
 
-                </Image>
+                    <Rectangle.OpacityMask>
+                        <ImageBrush ImageSource="{Binding DefaultFrame, ElementName=Root}"
+                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                    </Rectangle.OpacityMask>
+
+                </Rectangle>
 
                 <!-- Pressed -->
 
-                <Image RenderOptions.BitmapScalingMode="HighQuality">
+                <Rectangle Fill="{DynamicResource Brush.Border.Active}"
+                           RenderOptions.BitmapScalingMode="HighQuality">
 
-                    <Image.Style>
+                    <Rectangle.Style>
 
-                        <Style TargetType="Image">
+                        <Style TargetType="Rectangle">
 
-                            <Setter Property="Source"
-                                    Value="{Binding PressedFrame, ElementName=Root}" />
                             <Setter Property="Width"
                                     Value="{Binding IconWidth, ElementName=Root}" />
                             <Setter Property="Height"
@@ -274,8 +270,6 @@
 
                                 <DataTrigger Binding="{Binding IsSmall, ElementName=Root}"
                                              Value="True">
-                                    <Setter Property="Source"
-                                            Value="/MarvinsAIRARefactored;component/Artwork/Buttons/ring-small-pressed.png" />
                                     <Setter Property="Width"
                                             Value="32" />
                                     <Setter Property="Height"
@@ -308,20 +302,24 @@
 
                         </Style>
 
-                    </Image.Style>
+                    </Rectangle.Style>
 
-                </Image>
+                    <Rectangle.OpacityMask>
+                        <ImageBrush ImageSource="{Binding PressedFrame, ElementName=Root}"
+                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                    </Rectangle.OpacityMask>
+
+                </Rectangle>
 
                 <!-- Mapped -->
 
-                <Image RenderOptions.BitmapScalingMode="HighQuality">
+                <Rectangle Fill="{DynamicResource Brush.Accent}"
+                           RenderOptions.BitmapScalingMode="HighQuality">
 
-                    <Image.Style>
+                    <Rectangle.Style>
 
-                        <Style TargetType="Image">
+                        <Style TargetType="Rectangle">
 
-                            <Setter Property="Source"
-                                    Value="{Binding MappedFrame, ElementName=Root}" />
                             <Setter Property="Width"
                                     Value="{Binding IconWidth, ElementName=Root}" />
                             <Setter Property="Height"
@@ -333,8 +331,6 @@
 
                                 <DataTrigger Binding="{Binding IsSmall, ElementName=Root}"
                                              Value="True">
-                                    <Setter Property="Source"
-                                            Value="/MarvinsAIRARefactored;component/Artwork/Buttons/ring-small-mapped.png" />
                                     <Setter Property="Width"
                                             Value="32" />
                                     <Setter Property="Height"
@@ -358,20 +354,24 @@
 
                         </Style>
 
-                    </Image.Style>
+                    </Rectangle.Style>
 
-                </Image>
+                    <Rectangle.OpacityMask>
+                        <ImageBrush ImageSource="{Binding MappedFrame, ElementName=Root}"
+                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                    </Rectangle.OpacityMask>
+
+                </Rectangle>
 
                 <!-- Default -->
 
-                <Image RenderOptions.BitmapScalingMode="HighQuality">
+                <Rectangle Fill="{DynamicResource Brush.Border.Normal}"
+                           RenderOptions.BitmapScalingMode="HighQuality">
 
-                    <Image.Style>
+                    <Rectangle.Style>
 
-                        <Style TargetType="Image">
+                        <Style TargetType="Rectangle">
 
-                            <Setter Property="Source"
-                                    Value="{Binding DefaultFrame, ElementName=Root}" />
                             <Setter Property="Width"
                                     Value="{Binding IconWidth, ElementName=Root}" />
                             <Setter Property="Height"
@@ -383,8 +383,6 @@
 
                                 <DataTrigger Binding="{Binding IsSmall, ElementName=Root}"
                                              Value="True">
-                                    <Setter Property="Source"
-                                            Value="/MarvinsAIRARefactored;component/Artwork/Buttons/ring-small-default.png" />
                                     <Setter Property="Width"
                                             Value="32" />
                                     <Setter Property="Height"
@@ -410,14 +408,71 @@
 
                         </Style>
 
-                    </Image.Style>
+                    </Rectangle.Style>
 
-                </Image>
+                    <Rectangle.OpacityMask>
+                        <ImageBrush ImageSource="{Binding DefaultFrame, ElementName=Root}"
+                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                    </Rectangle.OpacityMask>
 
-                <!-- Icon -->
+                </Rectangle>
 
-                <Image x:Name="Icon_Image"
-                       Source="{Binding Icon, ElementName=Root}"
+                <!-- Icon (tinted) -->
+
+                <Rectangle Fill="{DynamicResource Brush.Foreground.Primary}"
+                           RenderOptions.BitmapScalingMode="HighQuality">
+
+                    <Rectangle.Style>
+
+                        <Style TargetType="Rectangle">
+
+                            <Setter Property="Opacity"
+                                    Value="1" />
+                            <Setter Property="Width"
+                                    Value="{Binding IconWidth, ElementName=Root}" />
+                            <Setter Property="Height"
+                                    Value="{Binding IconHeight, ElementName=Root}" />
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding Disabled, ElementName=Root}"
+                                             Value="True">
+                                    <Setter Property="Opacity"
+                                            Value="0.25" />
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding IsSmall, ElementName=Root}"
+                                             Value="True">
+                                    <Setter Property="Width"
+                                            Value="32" />
+                                    <Setter Property="Height"
+                                            Value="32" />
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding IsColorIcon, ElementName=Root}"
+                                             Value="True">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+
+                            </Style.Triggers>
+
+                        </Style>
+
+                    </Rectangle.Style>
+
+                    <Rectangle.OpacityMask>
+                        <ImageBrush ImageSource="{Binding Icon, ElementName=Root}"
+                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                    </Rectangle.OpacityMask>
+
+                </Rectangle>
+
+                <!-- Icon (color) -->
+
+                <Image Source="{Binding Icon, ElementName=Root}"
                        RenderOptions.BitmapScalingMode="HighQuality">
 
                     <Image.Style>
@@ -430,8 +485,16 @@
                                     Value="{Binding IconWidth, ElementName=Root}" />
                             <Setter Property="Height"
                                     Value="{Binding IconHeight, ElementName=Root}" />
+                            <Setter Property="Visibility"
+                                    Value="Collapsed" />
 
                             <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding IsColorIcon, ElementName=Root}"
+                                             Value="True">
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </DataTrigger>
 
                                 <DataTrigger Binding="{Binding Disabled, ElementName=Root}"
                                              Value="True">

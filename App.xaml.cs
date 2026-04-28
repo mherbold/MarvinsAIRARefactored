@@ -277,7 +277,9 @@ public partial class App : Application
 
 				DataContext.DataContext.Instance.Settings.UpdateSettings( false );
 
-				Ready = true;
+					ApplyTheme( DataContext.DataContext.Instance.Settings.AppLightThemeEnabled );
+
+					Ready = true;
 
 				GC.Collect();
 
@@ -337,6 +339,43 @@ public partial class App : Application
 		}
 
 		Logger.WriteLine( "[App] <<< App_Startup" );
+	}
+
+	/// <summary>
+	/// Swaps the active theme resource dictionary between dark and light.
+	/// Safe to call from any thread; marshals to the UI dispatcher if needed.
+	/// </summary>
+	public void ApplyTheme( bool lightTheme )
+	{
+		if ( !Dispatcher.CheckAccess() )
+		{
+			Dispatcher.Invoke( () => ApplyTheme( lightTheme ) );
+			return;
+		}
+
+		var themeUri = lightTheme
+			? new Uri( "/MarvinsAIRARefactored;component/Themes/LightTheme.xaml", UriKind.Relative )
+			: new Uri( "/MarvinsAIRARefactored;component/Themes/DarkTheme.xaml", UriKind.Relative );
+
+		var mergedDicts = Current.Resources.MergedDictionaries;
+
+		// Replace the first merged dictionary (the theme slot)
+		if ( mergedDicts.Count > 0 )
+		{
+			mergedDicts[ 0 ] = new ResourceDictionary { Source = themeUri };
+		}
+		else
+		{
+			mergedDicts.Add( new ResourceDictionary { Source = themeUri } );
+		}
+
+		// Update programmatic renderers that cannot use DynamicResource
+		Controls.MairaKnob.UpdateThemeColors( lightTheme );
+
+		if ( Graph != null )
+		{
+			Graph.UpdateThemeColors( lightTheme );
+		}
 	}
 
 	private void App_Exit( object sender, EventArgs e )

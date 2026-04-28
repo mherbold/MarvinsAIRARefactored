@@ -1,0 +1,139 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- =====================================================================
+         MAIRA Dark Theme
+         Background: #313131 (dark gray)
+         Accent:     #ff5b2e (MAIRA orange) - unchanged in both themes
+         ===================================================================== -->
+
+    <!-- Window / Page background -->
+    <Color x:Key="Color.Background.Default">#313131</Color>
+    <SolidColorBrush x:Key="Brush.Background.Default" Color="{StaticResource Color.Background.Default}" />
+
+    <!-- Popup / ComboBox dropdown background -->
+    <Color x:Key="Color.Background.Popup">#222222</Color>
+    <SolidColorBrush x:Key="Brush.Background.Popup" Color="{StaticResource Color.Background.Popup}" />
+
+    <!-- App-menu overlay background -->
+    <Color x:Key="Color.Background.Menu">#222222</Color>
+    <SolidColorBrush x:Key="Brush.Background.Menu" Color="{StaticResource Color.Background.Menu}" />
+
+    <!-- Section header / muted label foreground -->
+    <Color x:Key="Color.Foreground.Muted">#979797</Color>
+    <SolidColorBrush x:Key="Brush.Foreground.Muted" Color="{StaticResource Color.Foreground.Muted}" />
+
+    <!-- Primary text foreground -->
+    <Color x:Key="Color.Foreground.Primary">#ffffff</Color>
+    <SolidColorBrush x:Key="Brush.Foreground.Primary" Color="{StaticResource Color.Foreground.Primary}" />
+
+    <!-- Secondary text (combo items, status) -->
+    <Color x:Key="Color.Foreground.Secondary">#dddddd</Color>
+    <SolidColorBrush x:Key="Brush.Foreground.Secondary" Color="{StaticResource Color.Foreground.Secondary}" />
+
+    <!-- Status / info text (bright white-ish) -->
+    <Color x:Key="Color.Foreground.Status">#eeeeee</Color>
+    <SolidColorBrush x:Key="Brush.Foreground.Status" Color="{StaticResource Color.Foreground.Status}" />
+
+    <!-- Accent (MAIRA orange) - same in both themes -->
+    <Color x:Key="Color.Accent">#ff5b2e</Color>
+    <SolidColorBrush x:Key="Brush.Accent" Color="{StaticResource Color.Accent}" />
+
+    <!-- Accent dark (for gradients) -->
+    <Color x:Key="Color.Accent.Dark">#983418</Color>
+    <SolidColorBrush x:Key="Brush.Accent.Dark" Color="{StaticResource Color.Accent.Dark}" />
+
+    <!-- Blue accent (dual-slider right side) -->
+    <Color x:Key="Color.Accent.Blue">#a8cdff</Color>
+    <SolidColorBrush x:Key="Brush.Accent.Blue" Color="{StaticResource Color.Accent.Blue}" />
+
+    <!-- Blue accent dark (for gradient) -->
+    <Color x:Key="Color.Accent.BlueDark">#426da8</Color>
+    <SolidColorBrush x:Key="Brush.Accent.BlueDark" Color="{StaticResource Color.Accent.BlueDark}" />
+
+    <!-- Border - normal / idle -->
+    <Color x:Key="Color.Border.Normal">#666666</Color>
+    <SolidColorBrush x:Key="Brush.Border.Normal" Color="{StaticResource Color.Border.Normal}" />
+
+    <!-- Border - subtle (text box underlines, combo box default) -->
+    <Color x:Key="Color.Border.Subtle">#444444</Color>
+    <SolidColorBrush x:Key="Brush.Border.Subtle" Color="{StaticResource Color.Border.Subtle}" />
+
+    <!-- Border - hover -->
+    <Color x:Key="Color.Border.Hover">#888888</Color>
+    <SolidColorBrush x:Key="Brush.Border.Hover" Color="{StaticResource Color.Border.Hover}" />
+
+    <!-- Border - active / checked (bright) -->
+    <Color x:Key="Color.Border.Active">#eeeeee</Color>
+    <SolidColorBrush x:Key="Brush.Border.Active" Color="{StaticResource Color.Border.Active}" />
+
+    <!-- Switch checked highlight (combo-item selected stripe) -->
+    <Color x:Key="Color.Highlight.Selected">#ff5b2e</Color>
+    <SolidColorBrush x:Key="Brush.Highlight.Selected" Color="{StaticResource Color.Highlight.Selected}" />
+
+    <!-- List item hover background -->
+    <Color x:Key="Color.ListItem.Hover">#1affffff</Color>
+    <SolidColorBrush x:Key="Brush.ListItem.Hover" Color="{StaticResource Color.ListItem.Hover}" />
+
+    <!-- MairaListButton background / hover -->
+    <Color x:Key="Color.ListButton.Background">#333333</Color>
+    <SolidColorBrush x:Key="Brush.ListButton.Background" Color="{StaticResource Color.ListButton.Background}" />
+    <Color x:Key="Color.ListButton.Hover">#444444</Color>
+    <SolidColorBrush x:Key="Brush.ListButton.Hover" Color="{StaticResource Color.ListButton.Hover}" />
+
+    <!-- ScrollBar thumb -->
+    <Color x:Key="Color.ScrollBar.Thumb">#666666</Color>
+    <SolidColorBrush x:Key="Brush.ScrollBar.Thumb" Color="{StaticResource Color.ScrollBar.Thumb}" />
+    <Color x:Key="Color.ScrollBar.Thumb.Hover">#888888</Color>
+    <SolidColorBrush x:Key="Brush.ScrollBar.Thumb.Hover" Color="{StaticResource Color.ScrollBar.Thumb.Hover}" />
+    <Color x:Key="Color.ScrollBar.Thumb.Drag">#eeeeee</Color>
+    <SolidColorBrush x:Key="Brush.ScrollBar.Thumb.Drag" Color="{StaticResource Color.ScrollBar.Thumb.Drag}" />
+    <Color x:Key="Color.ScrollBar.Thumb.DragBorder">#666666</Color>
+    <SolidColorBrush x:Key="Brush.ScrollBar.Thumb.DragBorder" Color="{StaticResource Color.ScrollBar.Thumb.DragBorder}" />
+
+    <!-- Status bar: warning / error colors (semantic - same both themes) -->
+    <Color x:Key="Color.Status.Warning">#997330</Color>
+    <SolidColorBrush x:Key="Brush.Status.Warning" Color="{StaticResource Color.Status.Warning}" />
+    <Color x:Key="Color.Status.Error">#993030</Color>
+    <SolidColorBrush x:Key="Brush.Status.Error" Color="{StaticResource Color.Status.Error}" />
+    <Color x:Key="Color.Status.Warning.Text">#ffb22e</Color>
+    <SolidColorBrush x:Key="Brush.Status.Warning.Text" Color="{StaticResource Color.Status.Warning.Text}" />
+    <Color x:Key="Color.Status.Error.Text">#ff2e2e</Color>
+    <SolidColorBrush x:Key="Brush.Status.Error.Text" Color="{StaticResource Color.Status.Error.Text}" />
+
+    <!-- GroupBox header sub-label (MAIRA orange, same both themes) -->
+    <Color x:Key="Color.GroupBox.SubLabel">#ff5b2e</Color>
+    <SolidColorBrush x:Key="Brush.GroupBox.SubLabel" Color="{StaticResource Color.GroupBox.SubLabel}" />
+
+    <!-- GroupBox header label -->
+    <Color x:Key="Color.GroupBox.Label">#979797</Color>
+    <SolidColorBrush x:Key="Brush.GroupBox.Label" Color="{StaticResource Color.GroupBox.Label}" />
+
+    <!-- Combo-box stripe hover (left-side colored border in item) -->
+    <Color x:Key="Color.ComboItem.Stripe">#666666</Color>
+    <SolidColorBrush x:Key="Brush.ComboItem.Stripe" Color="{StaticResource Color.ComboItem.Stripe}" />
+
+    <!-- Backward-compat aliases used directly in App.xaml and controls -->
+    <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}" Color="{StaticResource Color.Background.Default}" />
+    <SolidColorBrush x:Key="Background.Default" Color="{StaticResource Color.Background.Default}" />
+    <SolidColorBrush x:Key="Foreground.Normal" Color="{StaticResource Color.Foreground.Muted}" />
+
+    <!-- ToggleButton border (normal / hover) in combo box header -->
+    <Color x:Key="Color.ToggleButton.Border">#444444</Color>
+    <SolidColorBrush x:Key="Brush.ToggleButton.Border" Color="{StaticResource Color.ToggleButton.Border}" />
+    <Color x:Key="Color.ToggleButton.Border.Hover">#666666</Color>
+    <SolidColorBrush x:Key="Brush.ToggleButton.Border.Hover" Color="{StaticResource Color.ToggleButton.Border.Hover}" />
+
+    <!-- Steering effects indicator colors -->
+    <Color x:Key="Color.SteeringEffects.Understeer">#6aabff</Color>
+    <SolidColorBrush x:Key="Brush.SteeringEffects.Understeer" Color="{StaticResource Color.SteeringEffects.Understeer}" />
+    <Color x:Key="Color.SteeringEffects.Oversteer">#6ae1ff</Color>
+    <SolidColorBrush x:Key="Brush.SteeringEffects.Oversteer" Color="{StaticResource Color.SteeringEffects.Oversteer}" />
+    <Color x:Key="Color.SteeringEffects.SeatOfPants">#6affee</Color>
+    <SolidColorBrush x:Key="Brush.SteeringEffects.SeatOfPants" Color="{StaticResource Color.SteeringEffects.SeatOfPants}" />
+
+    <!-- Original logos with white text for dark theme -->
+    <BitmapImage x:Key="Image.SimagicLogo" UriSource="/MarvinsAIRARefactored;component/Artwork/Misc/simagic-logo.png" />
+    <BitmapImage x:Key="Image.TradingPaintsLogo" UriSource="/MarvinsAIRARefactored;component/Artwork/Misc/trading-paints.png" />
+
+</ResourceDictionary>

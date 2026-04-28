@@ -16,14 +16,12 @@ namespace MarvinsAIRARefactored.Controls;
 public partial class MairaComboBox : UserControl
 {
 	private readonly SolidColorBrush _normalSelectedValueBrush = new( (Color) ColorConverter.ConvertFromString( "#ff5b2e" ) );
-	private readonly SolidColorBrush _offSelectedValueBrush = new( (Color) ColorConverter.ConvertFromString( "#eeeeee" ) );
 
 	public MairaComboBox()
 	{
 		InitializeComponent();
 
 		_normalSelectedValueBrush.Freeze();
-		_offSelectedValueBrush.Freeze();
 
 		UpdateSelectedValueVisuals();
 	}
@@ -151,7 +149,7 @@ public partial class MairaComboBox : UserControl
 	{
 		if ( SelectedValue?.ToString() == OffValue?.ToString() )
 		{
-			ComboBox.Foreground = _offSelectedValueBrush;
+			ComboBox.Foreground = (System.Windows.Media.Brush) System.Windows.Application.Current.FindResource( "Brush.Foreground.Muted" );
 		}
 		else
 		{

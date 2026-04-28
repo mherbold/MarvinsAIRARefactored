@@ -44,24 +44,18 @@ public class Graph : GraphBase
 		app.Logger.WriteLine( "[Graph] <<< Initialize" );
 	}
 
-	public void SetLayerColors( LayerIndex layerIndex, float minR, float minG, float minB, float maxR, float maxG, float maxB )
+	public void SetLayerColors( LayerIndex layerIndex, float r, float g, float b )
 	{
 		var layer = _layerArray[ (int) layerIndex ];
 
-		layer.minR = minR;
-		layer.minG = minG;
-		layer.minB = minB;
-
-		layer.maxR = maxR;
-		layer.maxG = maxG;
-		layer.maxB = maxB;
+		layer.r = r;
+		layer.g = g;
+		layer.b = b;
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void UpdateLayer( LayerIndex layerIndex, float rawValue, float normalizedValue )
+	public void UpdateLayer( LayerIndex layerIndex, float normalizedValue )
 	{
-		var app = App.Instance!;
-
 		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.Graph )
 		{
 			_layerArray[ (int) layerIndex ].value = normalizedValue;
@@ -70,8 +64,6 @@ public class Graph : GraphBase
 
 	public void Update()
 	{
-		var app = App.Instance!;
-
 		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.Graph )
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
@@ -95,7 +87,7 @@ public class Graph : GraphBase
 				{
 					var layer = _layerArray[ (int) layerIndex ];
 
-					Update( layer.value, layer.minR, layer.minG, layer.minB, layer.maxR, layer.maxG, layer.maxB );
+					Update( layer.value, layer.r, layer.g, layer.b );
 				}
 			}
 
@@ -122,12 +114,8 @@ public class Graph : GraphBase
 	{
 		public float value;
 
-		public float minR;
-		public float minG;
-		public float minB;
-
-		public float maxR;
-		public float maxG;
-		public float maxB;
+		public float r;
+		public float g;
+		public float b;
 	}
 }

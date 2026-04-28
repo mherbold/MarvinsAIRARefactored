@@ -7,7 +7,7 @@
         Width="1024"
         WindowStartupLocation="CenterOwner">
 
-    <Grid>
+    <Grid Background="#313131">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -29,7 +29,7 @@
                     <Style TargetType="Hyperlink">
                         
                         <Setter Property="Foreground"
-                                Value="White" />
+                                Value="{DynamicResource Brush.Accent}" />
                         
                         <Setter Property="TextDecorations"
                                 Value="{x:Null}" />
