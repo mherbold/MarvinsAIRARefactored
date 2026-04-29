@@ -9,6 +9,7 @@ namespace MarvinsAIRARefactored.Components;
 public class SettingsFile
 {
 	private static string SettingsFilePath { get; } = Path.Combine( App.DocumentsFolder, "Settings.xml" );
+	private static string SettingsBackupFilePath { get; } = Path.Combine( App.DocumentsFolder, "Settings.xml.bak" );
 
 	private bool _pauseSerialization = false;
 	public bool PauseSerialization
@@ -66,7 +67,40 @@ public class SettingsFile
 
 		if ( File.Exists( SettingsFilePath ) )
 		{
-			DataContext.DataContext.Instance.Settings = (Settings) Serializer.Load<Settings>( SettingsFilePath );
+			var loaded = false;
+
+			try
+			{
+				DataContext.DataContext.Instance.Settings = (Settings) Serializer.Load<Settings>( SettingsFilePath );
+
+				loaded = true;
+			}
+			catch ( Exception ex )
+			{
+				app.Logger.WriteLine( $"[SettingsFile] Failed to load settings file: {ex.Message}" );
+			}
+
+			if ( !loaded && File.Exists( SettingsBackupFilePath ) )
+			{
+				app.Logger.WriteLine( "[SettingsFile] Attempting to restore settings from backup" );
+
+				try
+				{
+					File.Copy( SettingsBackupFilePath, SettingsFilePath, overwrite: true );
+
+					DataContext.DataContext.Instance.Settings = (Settings) Serializer.Load<Settings>( SettingsFilePath );
+
+					app.Logger.WriteLine( "[SettingsFile] Settings restored from backup successfully" );
+				}
+				catch ( Exception ex )
+				{
+					app.Logger.WriteLine( $"[SettingsFile] Failed to restore settings from backup: {ex.Message}" );
+				}
+			}
+			else if ( !loaded )
+			{
+				app.Logger.WriteLine( "[SettingsFile] No backup available - starting with default settings" );
+			}
 		}
 		else
 		{
@@ -102,6 +136,13 @@ public class SettingsFile
 
 			if ( _serializationCounter == 0 )
 			{
+				if ( File.Exists( SettingsFilePath ) )
+				{
+					File.Copy( SettingsFilePath, SettingsBackupFilePath, overwrite: true );
+
+					app.Logger.WriteLine( "[SettingsFile] Settings.xml backup created" );
+				}
+
 				Serializer.Save( SettingsFilePath, DataContext.DataContext.Instance.Settings );
 
 				app.Logger.WriteLine( "[SettingsFile] Settings.xml file updated" );
