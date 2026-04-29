@@ -42,6 +42,18 @@ public partial class AppSettingsPage : UserControl
 		await app.CloudService.CheckForUpdates( true );
 	}
 
+	private void LaunchWizard_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var wizardWindow = new Windows.WizardWindow
+		{
+			Owner = app.MainWindow
+		};
+
+		wizardWindow.ShowDialog();
+	}
+
 	#endregion
 
 	#region Logic

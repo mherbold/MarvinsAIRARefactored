@@ -619,6 +619,14 @@ public class DirectInput
 
 		MainWindow._racingWheelPage.UpdateSteeringDeviceOptions();
 
+		app.MainWindow.Dispatcher.Invoke( () =>
+		{
+			foreach ( var window in System.Windows.Application.Current.Windows.OfType<MarvinsAIRARefactored.Windows.WizardWindow>() )
+			{
+				window.UpdateSteeringDeviceOptions();
+			}
+		} );
+
 		app.Logger.WriteLine( "[DirectInput] <<< EnumerateDevices" );
 	}
 }

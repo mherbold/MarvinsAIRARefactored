@@ -182,6 +182,16 @@
 
         </controls:MairaGroupBox>
 
+        <controls:MairaGroupBox Label="Wizard"
+                                HelpTopic="advanced/app-settings/#wizard">
+
+            <controls:MairaButton x:Name="LaunchWizard_MairaButton"
+                                  Label="Launch Wizard"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Click="LaunchWizard_MairaButton_Click" />
+
+        </controls:MairaGroupBox>
+
     </StackPanel>
 
 </UserControl>

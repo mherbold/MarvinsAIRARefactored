@@ -462,7 +462,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, -0.5f, 1.5f );
+			value = Math.Clamp( value, -0.5f, 6f );
 
 			if ( value != _racingWheelAutoMargin )
 			{
@@ -11429,6 +11429,27 @@ public class Settings : INotifyPropertyChanged
 			var app = App.Instance!;
 
 			app.ApplyTheme( _appLightThemeEnabled );
+		}
+	}
+
+	#endregion
+
+	#region App - Wizard has run
+
+	private bool _appWizardHasRun = false;
+
+	public bool AppWizardHasRun
+	{
+		get => _appWizardHasRun;
+
+		set
+		{
+			if ( value != _appWizardHasRun )
+			{
+				_appWizardHasRun = value;
+
+				OnPropertyChanged();
+			}
 		}
 	}
 

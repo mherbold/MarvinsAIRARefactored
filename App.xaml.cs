@@ -304,6 +304,16 @@ public partial class App : Application
 					MainWindow.Show();
 				}
 
+				if ( showWindow && !DataContext.DataContext.Instance.Settings.AppWizardHasRun )
+				{
+					var wizardWindow = new Windows.WizardWindow
+					{
+						Owner = MainWindow
+					};
+
+					wizardWindow.ShowDialog();
+				}
+
 				if ( DataContext.DataContext.Instance.Settings.WindConnectOnStartup )
 				{
 					Wind.Connect();

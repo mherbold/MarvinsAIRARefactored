@@ -19,10 +19,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <ItemGroup>
+    <None Remove="Artwork\Buttons\next.png" />
     <None Remove="Artwork\Buttons\power-blue.png" />
+    <None Remove="Artwork\Buttons\prev.png" />
     <None Remove="Artwork\Flags\hungary_fluttering_flag_64.png" />
     <None Remove="Artwork\Flags\thailand_fluttering_flag_64.png" />
     <None Remove="Artwork\Flags\ukraine_fluttering_flag_64.png" />
+    <None Remove="Artwork\Misc\wizard-two-thumbs-up.png" />
+    <None Remove="Artwork\Misc\wizard.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -60,6 +64,7 @@
     <Resource Include="Artwork\Buttons\knob-plus-mapped.png" />
     <Resource Include="Artwork\Buttons\knob-plus-pressed.png" />
     <Resource Include="Artwork\Buttons\minus.png" />
+    <Resource Include="Artwork\Buttons\next.png" />
     <Resource Include="Artwork\Buttons\pedal-maximum.png" />
     <Resource Include="Artwork\Buttons\pedal-minimum.png" />
     <Resource Include="Artwork\Buttons\plus-large.png" />
@@ -71,6 +76,7 @@
     <Resource Include="Artwork\Buttons\power-red.png" />
     <Resource Include="Artwork\Buttons\power-white.png" />
     <Resource Include="Artwork\Buttons\power-yellow.png" />
+    <Resource Include="Artwork\Buttons\prev.png" />
     <Resource Include="Artwork\Buttons\processes.png" />
     <Resource Include="Artwork\Buttons\record-orange.png" />
     <Resource Include="Artwork\Buttons\record-white.png" />
@@ -124,6 +130,8 @@
     <Resource Include="Artwork\Misc\right-drag-handle.png" />
     <Resource Include="Artwork\Misc\trading-paints.png" />
     <Resource Include="Artwork\Misc\trading-paints-light.png" />
+    <Resource Include="Artwork\Misc\wizard-two-thumbs-up.png" />
+    <Resource Include="Artwork\Misc\wizard.png" />
     <Resource Include="Artwork\Misc\world-wide-web.png" />
     <Resource Include="Artwork\Misc\yellow-stripes.png" />
     <Resource Include="Fonts\Aptos-Narrow-Italic.ttf" />
