@@ -182,11 +182,11 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="Wizard"
+        <controls:MairaGroupBox Label="{Binding Localization[Wizard_UC]}"
                                 HelpTopic="advanced/app-settings/#wizard">
 
             <controls:MairaButton x:Name="LaunchWizard_MairaButton"
-                                  Label="Launch Wizard"
+                                  Label="{Binding Localization[LaunchWizard]}"
                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
                                   Click="LaunchWizard_MairaButton_Click" />
 

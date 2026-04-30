@@ -1133,6 +1133,14 @@
     <value>APP SETTINGS</value>
     <comment>Page title</comment>
   </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>Wizard</value>
+    <comment>App settings group box header</comment>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Launch Wizard</value>
+    <comment>App settings button label</comment>
+  </data>
   <data name="Simulator_UC" xml:space="preserve">
     <value>SIMULATOR</value>
     <comment>Page title</comment>
