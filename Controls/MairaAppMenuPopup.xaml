@@ -53,7 +53,8 @@
 
                         <Style TargetType="ListBoxItem">
 
-                            <EventSetter Event="PreviewMouseLeftButtonUp" Handler="ListBoxItem_PreviewMouseLeftButtonUp" />
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
 
                             <Setter Property="FocusVisualStyle"
                                     Value="{x:Null}" />
@@ -91,6 +92,18 @@
                                 </Setter.Value>
 
                             </Setter>
+
+                            <EventSetter Event="PreviewMouseLeftButtonUp" Handler="ListBoxItem_PreviewMouseLeftButtonUp" />
+
+                            <Style.Triggers>
+
+                                <DataTrigger Binding="{Binding IsVisible}"
+                                             Value="False">
+                                    <Setter Property="Visibility"
+                                            Value="Collapsed" />
+                                </DataTrigger>
+
+                            </Style.Triggers>
 
                         </Style>
 

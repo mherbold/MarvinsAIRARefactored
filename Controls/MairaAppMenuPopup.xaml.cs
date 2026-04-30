@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 using static MarvinsAIRARefactored.Windows.MainWindow;
 
@@ -20,6 +19,7 @@ namespace MarvinsAIRARefactored.Controls
 			public AppPage AppPage { get; init; }
 			public UserControl PageUserControl { get; init; } = new UserControl();
 			private string _displayName = string.Empty;
+			private bool _isVisible = true;
 
 			public string DisplayName
 			{
@@ -30,6 +30,21 @@ namespace MarvinsAIRARefactored.Controls
 					if ( _displayName != value )
 					{
 						_displayName = value;
+
+						OnPropertyChanged();
+					}
+				}
+			}
+
+			public bool IsVisible
+			{
+				get => _isVisible;
+
+				set
+				{
+					if ( _isVisible != value )
+					{
+						_isVisible = value;
 
 						OnPropertyChanged();
 					}
@@ -374,6 +389,8 @@ namespace MarvinsAIRARefactored.Controls
 		public void RelocalizeAppMenuItems()
 		{
 			var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+			var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+			var isEnglish = settings.AppCurrentLanguageCode == "default";
 
 			foreach ( var menuItem in AppMenuItems )
 			{
@@ -405,6 +422,7 @@ namespace MarvinsAIRARefactored.Controls
 
 					case AppPage.AdminBoxx:
 						menuItem.DisplayName = localization[ "AdminBoxx" ];
+						menuItem.IsVisible = isEnglish;
 						break;
 
 					case AppPage.Overlays:
