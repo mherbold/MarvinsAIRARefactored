@@ -481,16 +481,6 @@ public partial class MainWindow : Window
 		}
 
 		Focus();
-
-		if ( !MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.AppWizardHasRun )
-		{
-			var wizardWindow = new WizardWindow
-			{
-				Owner = this
-			};
-
-			wizardWindow.ShowDialog();
-		}
 	}
 
 	private void ExitApp()
