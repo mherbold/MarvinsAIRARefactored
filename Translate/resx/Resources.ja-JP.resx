@@ -14,7 +14,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Algorithm" xml:space="preserve">
-    <value></value>
+    <value>アルゴリズム</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AppSettings" xml:space="preserve">
@@ -22,55 +22,55 @@
     <comment>App menu item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value></value>
+    <value>Marvinの素晴らしいiRacingアプリ</value>
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
-    <value></value>
+    <value>ディテールブーストバイアス</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DetailBoost" xml:space="preserve">
-    <value></value>
+    <value>ディテールブースト</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
-    <value></value>
+    <value>乗降車時にフォースフィードバックをフェードする</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="RacingFriction" xml:space="preserve">
-    <value></value>
+    <value>レーシングフリクション</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Graph" xml:space="preserve">
-    <value></value>
+    <value>グラフ</value>
     <comment>App menu item</comment>
   </data>
   <data name="HeaderData_UC" xml:space="preserve">
-    <value></value>
+    <value>ヘッダーデータ</value>
     <comment>Simulator</comment>
   </data>
   <data name="Language_UC" xml:space="preserve">
-    <value></value>
+    <value>言語</value>
     <comment>App settings</comment>
   </data>
   <data name="DetailBooster" xml:space="preserve">
-    <value></value>
+    <value>ディテールブースター</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
-    <value></value>
+    <value>デルタリミッター</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="MaxForce" xml:space="preserve">
-    <value></value>
+    <value>最大フォース</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Native60Hz" xml:space="preserve">
-    <value></value>
+    <value>ネイティブ 60 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="Native360Hz" xml:space="preserve">
-    <value></value>
+    <value>ネイティブ 360 Hz</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="NoFFBDevicesFound" xml:space="preserve">
@@ -78,7 +78,7 @@
     <comment>Steering device list</comment>
   </data>
   <data name="OFF" xml:space="preserve">
-    <value></value>
+    <value>オフ</value>
     <comment>Generic</comment>
   </data>
   <data name="Power" xml:space="preserve">
@@ -86,15 +86,15 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="RacingWheel" xml:space="preserve">
-    <value></value>
+    <value>レーシングホイール</value>
     <comment>App menu item</comment>
   </data>
   <data name="RacingWheel_UC" xml:space="preserve">
-    <value></value>
+    <value>レーシングホイール</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SteeringDevice" xml:space="preserve">
-    <value></value>
+    <value>ステアリングデバイス</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Reset" xml:space="preserve">
@@ -110,15 +110,15 @@
     <comment>App menu item</comment>
   </data>
   <data name="SimulatorNotRunning" xml:space="preserve">
-    <value></value>
+    <value>iRacingシミュレーターが起動していません</value>
     <comment>Generic</comment>
   </data>
   <data name="SoftLockStrength" xml:space="preserve">
-    <value></value>
+    <value>ソフトロック強度</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="TelemetryData_UC" xml:space="preserve">
-    <value></value>
+    <value>テレメトリーデータ</value>
     <comment>Simulator</comment>
   </data>
   <data name="Test" xml:space="preserve">
@@ -130,67 +130,67 @@
     <comment>App language list</comment>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
-    <value></value>
+    <value>常に最前面に表示</value>
     <comment>App settings</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value></value>
+    <value> Nm</value>
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value></value>
+    <value>ディテールブースター（低遅延）</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
-    <value></value>
+    <value>AdminBoxx</value>
     <comment>App menu item</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
-    <value></value>
+    <value>AdminBoxxに接続</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="UpdateButtonMappings" xml:space="preserve">
-    <value></value>
+    <value>入力マッピングの更新</value>
     <comment>Window title</comment>
   </data>
   <data name="PressTheRecordButton" xml:space="preserve">
-    <value></value>
+    <value>[録音ボタンを押してください]</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Button" xml:space="preserve">
-    <value></value>
+    <value>ボタン</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Click" xml:space="preserve">
-    <value></value>
+    <value>クリック</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Hold" xml:space="preserve">
-    <value></value>
+    <value>ホールド</value>
     <comment>Button mapping</comment>
   </data>
   <data name="Keyboard" xml:space="preserve">
-    <value></value>
+    <value>キーボード</value>
     <comment>Button mapping</comment>
   </data>
   <data name="WaitingForInput" xml:space="preserve">
-    <value></value>
+    <value>[入力待ち]</value>
     <comment>Button mapping</comment>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value></value>
+    <value>デルタ上限</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value></value>
+    <value> Nm/s</value>
     <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
-    <value></value>
+    <value>デルタリミッター（低遅延）</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value></value>
+    <value>%</value>
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
@@ -198,111 +198,111 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="OverallStrength_UC" xml:space="preserve">
-    <value></value>
+    <value>全体強度</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoTarget" xml:space="preserve">
-    <value></value>
+    <value>自動ターゲット</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
-    <value></value>
+    <value>クリア</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentForce" xml:space="preserve">
-    <value></value>
+    <value>現在のフォース</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
-    <value></value>
+    <value>自動最大フォース</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OtherFeatures_UC" xml:space="preserve">
-    <value></value>
+    <value>その他の機能</value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="Switches_UC" xml:space="preserve">
-    <value></value>
+    <value>スイッチ</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CrashProtection_UC" xml:space="preserve">
-    <value></value>
+    <value>クラッシュ保護</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value></value>
+    <value> g</value>
     <comment>Abbreviation for g-force</comment>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value></value>
+    <value>縦方向Gフォース</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Duration" xml:space="preserve">
-    <value></value>
+    <value>持続時間</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceReduction" xml:space="preserve">
-    <value></value>
+    <value>フォース低減</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value></value>
+    <value> 秒</value>
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value></value>
+    <value> m/s</value>
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
-    <value></value>
+    <value>カーブ保護</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
-    <value></value>
+    <value>ショック速度</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value></value>
+    <value>ペダル</value>
     <comment>Pedals</comment>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
-    <value></value>
+    <value>Simagic P1000 ペダル</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsP2000" xml:space="preserve">
-    <value></value>
+    <value>Simagic P2000 ペダル</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsNone" xml:space="preserve">
-    <value></value>
+    <value>[対応するSimagicペダルが見つかりません]</value>
     <comment>Pedals device</comment>
   </data>
   <data name="Clutch_UC" xml:space="preserve">
-    <value></value>
+    <value>クラッチ</value>
     <comment>Pedals</comment>
   </data>
   <data name="Brake_UC" xml:space="preserve">
-    <value></value>
+    <value>ブレーキ</value>
     <comment>Pedals</comment>
   </data>
   <data name="Throttle_UC" xml:space="preserve">
-    <value></value>
+    <value>スロットル</value>
     <comment>Pedals</comment>
   </data>
   <data name="PedalEffects" xml:space="preserve">
-    <value></value>
+    <value>ペダルエフェクト</value>
     <comment>Pedals</comment>
   </data>
   <data name="Strength" xml:space="preserve">
-    <value></value>
+    <value>強度</value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value></value>
+    <value> Hz</value>
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value></value>
+    <value>周波数</value>
     <comment>Pedals</comment>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
@@ -318,31 +318,31 @@
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Curve" xml:space="preserve">
-    <value></value>
+    <value>カーブ</value>
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="GearChange" xml:space="preserve">
-    <value></value>
+    <value>ギアチェンジ</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="ClutchSlip_UC" xml:space="preserve">
-    <value></value>
+    <value>クラッチスリップ</value>
     <comment>Pedals</comment>
   </data>
   <data name="SteeringEffects_UC" xml:space="preserve">
-    <value></value>
+    <value>ステアリングエフェクト</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
-    <value></value>
+    <value>ステアリングエフェクト</value>
     <comment>App menu item</comment>
   </data>
   <data name="WheelLock_UC" xml:space="preserve">
-    <value></value>
+    <value>ホイールロック</value>
     <comment>Pedals</comment>
   </data>
   <data name="WheelSpin_UC" xml:space="preserve">
-    <value></value>
+    <value>ホイールスピン</value>
     <comment>Pedals</comment>
   </data>
   <data name="RPM_UC" xml:space="preserve">
@@ -350,35 +350,35 @@
     <comment>Pedals</comment>
   </data>
   <data name="None" xml:space="preserve">
-    <value></value>
+    <value>なし</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value></value>
+    <value>ホイールベースごと</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerCar" xml:space="preserve">
-    <value></value>
+    <value>車ごと</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerTrack" xml:space="preserve">
-    <value></value>
+    <value>コースごと</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerTrackConfiguration" xml:space="preserve">
-    <value></value>
+    <value>コース設定ごと</value>
     <comment>Save conditions</comment>
   </data>
   <data name="PerWetDry" xml:space="preserve">
-    <value></value>
+    <value>晴雨ごと</value>
     <comment>Save conditions</comment>
   </data>
   <data name="Wet" xml:space="preserve">
-    <value></value>
+    <value>雨</value>
     <comment>Status</comment>
   </data>
   <data name="Dry" xml:space="preserve">
-    <value></value>
+    <value>晴れ</value>
     <comment>Status</comment>
   </data>
   <data name="Default" xml:space="preserve">
@@ -386,43 +386,43 @@
     <comment>Status</comment>
   </data>
   <data name="SaveThisSetting" xml:space="preserve">
-    <value></value>
+    <value>この設定を保存</value>
     <comment>Window title</comment>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value></value>
+    <value>新しいバージョンが利用可能です！</value>
     <comment>Window title</comment>
   </data>
   <data name="DownloadQuestion" xml:space="preserve">
-    <value></value>
+    <value>今すぐダウンロードしますか？</value>
     <comment>Cloud service</comment>
   </data>
   <data name="RunInstaller" xml:space="preserve">
-    <value></value>
+    <value>インストーラーを実行しますか？</value>
     <comment>Window title</comment>
   </data>
   <data name="RunInstallerQuestion" xml:space="preserve">
-    <value></value>
+    <value>今すぐインストーラーを実行しますか？</value>
     <comment>Cloud service</comment>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
-    <value></value>
+    <value>起動時にアップデートを確認する</value>
     <comment>App settings</comment>
   </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
-    <value></value>
+    <value>起動時にAdminBoxxに接続する</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Brightness" xml:space="preserve">
-    <value></value>
+    <value>輝度</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value></value>
+    <value>音量</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value></value>
+    <value>デルタリミッターバイアス</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Output_UC" xml:space="preserve">
@@ -430,23 +430,23 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="WheelLFE_UC" xml:space="preserve">
-    <value></value>
+    <value>ホイールLFE</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
-    <value></value>
+    <value>LFE録音デバイス</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
-    <value></value>
+    <value>入力トルク（60 Hz）</value>
     <comment>Graph</comment>
   </data>
   <data name="InputTorque" xml:space="preserve">
-    <value></value>
+    <value>入力トルク</value>
     <comment>Graph</comment>
   </data>
   <data name="OutputTorque" xml:space="preserve">
-    <value></value>
+    <value>出力トルク</value>
     <comment>Graph</comment>
   </data>
   <data name="TimerJitter" xml:space="preserve">
@@ -454,75 +454,75 @@
     <comment>Graph</comment>
   </data>
   <data name="InputLFE" xml:space="preserve">
-    <value></value>
+    <value>入力LFE</value>
     <comment>Graph</comment>
   </data>
   <data name="ABSEngaged_UC" xml:space="preserve">
-    <value></value>
+    <value>ABS作動中</value>
     <comment>Sounds</comment>
   </data>
   <data name="Disabled" xml:space="preserve">
-    <value></value>
+    <value>[無効]</value>
     <comment>LFE device list</comment>
   </data>
   <data name="RememberWindowPositionAndSize" xml:space="preserve">
-    <value></value>
+    <value>ウィンドウの位置とサイズを記憶する</value>
     <comment>App settings</comment>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
-    <value></value>
+    <value>ブレーキでフェード</value>
     <comment>Pedals</comment>
   </data>
   <data name="StartingRPM" xml:space="preserve">
-    <value>Starting 回転/分</value>
+    <value>開始回転数</value>
     <comment>Pedals</comment>
   </data>
   <data name="VibrateInTopGear" xml:space="preserve">
-    <value></value>
+    <value>トップギアで振動する</value>
     <comment>Pedals</comment>
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
-    <value></value>
+    <value>スロットルでフェード</value>
     <comment>Pedals</comment>
   </data>
   <data name="StartingPoint" xml:space="preserve">
-    <value></value>
+    <value>開始点</value>
     <comment>Pedals</comment>
   </data>
   <data name="EndingPoint" xml:space="preserve">
-    <value></value>
+    <value>終了点</value>
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
-    <value></value>
+    <value>ギアチェンジ - ギアに入れる</value>
     <comment>Pedals</comment>
   </data>
   <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
-    <value></value>
+    <value>ギアチェンジ - ニュートラルに入れる</value>
     <comment>Pedals</comment>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
-    <value></value>
+    <value>iRacingのFFBがオンでもFFBを有効にする</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ClutchPedalHaptics" xml:space="preserve">
-    <value></value>
+    <value>クラッチペダルハプティクス</value>
     <comment>Graph</comment>
   </data>
   <data name="BrakePedalHaptics" xml:space="preserve">
-    <value></value>
+    <value>ブレーキペダルハプティクス</value>
     <comment>Graph</comment>
   </data>
   <data name="ThrottlePedalHaptics" xml:space="preserve">
-    <value></value>
+    <value>スロットルペダルハプティクス</value>
     <comment>Graph</comment>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
-    <value></value>
+    <value>ノイズダンパー</value>
     <comment>Pedals</comment>
   </data>
   <data name="AppWindow_UC" xml:space="preserve">
-    <value></value>
+    <value>アプリウィンドウ</value>
     <comment>App settings</comment>
   </data>
   <data name="UIScale" xml:space="preserve">
@@ -534,11 +534,11 @@
     <comment>App settings</comment>
   </data>
   <data name="CheckNow" xml:space="preserve">
-    <value></value>
+    <value>今すぐ確認</value>
     <comment>App settings</comment>
   </data>
   <data name="CheckingForUpdate" xml:space="preserve">
-    <value></value>
+    <value>アップデートを確認しています…</value>
     <comment>Status</comment>
   </data>
   <data name="DownloadingUpdate" xml:space="preserve">
@@ -546,11 +546,11 @@
     <comment>Status</comment>
   </data>
   <data name="Contribute_UC" xml:space="preserve">
-    <value>貢献する</value>
+    <value>貢献</value>
     <comment>Contribute</comment>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
-    <value></value>
+    <value>コーヒーをおごる</value>
     <comment>Contribute</comment>
   </data>
   <data name="DonationsText" xml:space="preserve">
@@ -560,39 +560,39 @@
     <comment>Donate</comment>
   </data>
   <data name="Donate_UC" xml:space="preserve">
-    <value></value>
+    <value>寄付</value>
     <comment>Donate</comment>
   </data>
   <data name="Donors_UC" xml:space="preserve">
-    <value></value>
+    <value>寄付者</value>
     <comment>Contribute</comment>
   </data>
   <data name="SuperDonors_UC" xml:space="preserve">
-    <value></value>
+    <value>スーパー寄付者</value>
     <comment>Donate</comment>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value></value>
+    <value>寄付</value>
     <comment>App menu item</comment>
   </data>
   <data name="CodeContributions_UC" xml:space="preserve">
-    <value></value>
+    <value>コードへの貢献</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributions_UC" xml:space="preserve">
-    <value></value>
+    <value>翻訳への貢献</value>
     <comment>Contribute</comment>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
-    <value></value>
+    <value>C#開発者ですか？このプロジェクトはコード貢献を歓迎しています。詳細はGitHubリポジトリをご覧ください。</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value></value>
+    <value>複数の言語を読み書きできますか？世界各国の言語のサポートが必要です。詳細はDiscordサーバーをご覧ください。</value>
     <comment>Contribute</comment>
   </data>
   <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value></value>
+    <value>翻訳Discordチャンネル</value>
     <comment>Contribute</comment>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
@@ -604,43 +604,43 @@
     <comment>Contribute</comment>
   </data>
   <data name="ShowWindow" xml:space="preserve">
-    <value></value>
+    <value>ウィンドウを表示</value>
     <comment>System tray icon</comment>
   </data>
   <data name="ExitApp" xml:space="preserve">
-    <value></value>
+    <value>アプリを終了</value>
     <comment>System tray icon</comment>
   </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
-    <value></value>
+    <value>システムトレイに最小化</value>
     <comment>App settings</comment>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value></value>
+    <value>最小化で起動</value>
     <comment>App settings</comment>
   </data>
   <data name="StartWithWindows" xml:space="preserve">
-    <value></value>
+    <value>Windowsと一緒に起動</value>
     <comment>App settings</comment>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value>Total: 圧縮レート</value>
+    <value>総圧縮レート</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>スルーレート: 圧縮しきい値</value>
+    <value>スルーレート圧縮しきい値</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>スルーレート: 圧縮レート</value>
+    <value>スルーレート圧縮レート</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value>Total: 圧縮しきい値</value>
+    <value>総圧縮しきい値</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value></value>
+    <value> Nm/ms</value>
     <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
@@ -660,7 +660,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SimpleMode" xml:space="preserve">
-    <value></value>
+    <value>シンプルモードを有効にする</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Sensitivity" xml:space="preserve">
@@ -675,15 +675,15 @@
     <comment>Contribute</comment>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
-    <value></value>
+    <value>MAIRAユーザーからの多くの質問に答えてくれるボランティアモデレーターの皆さんに感謝します。おかげでMAIRAの開発に集中できています！</value>
     <comment>Contribute</comment>
   </data>
   <data name="AdminBoxxIsUpdating" xml:space="preserve">
-    <value></value>
+    <value>AdminBoxxのファームウェアを更新中です</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="AllowSuperStrength" xml:space="preserve">
-    <value></value>
+    <value>強度200%まで許可する（危険な場合があります）</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ON" xml:space="preserve">
@@ -695,11 +695,11 @@
     <comment>Sounds</comment>
   </data>
   <data name="Enabled" xml:space="preserve">
-    <value></value>
+    <value>有効</value>
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value></value>
+    <value>周波数比</value>
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
@@ -707,103 +707,103 @@
     <comment>Sounds</comment>
   </data>
   <data name="SendChatMessages" xml:space="preserve">
-    <value></value>
+    <value>ドライバーにプライベートチャットメッセージを送信する</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Enable Logitech 回転/分 lights</value>
+    <value>Logitech RPMライトを有効にする</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value></value>
+    <value>°</value>
     <comment>Abbreviation for degrees</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
-    <value>マスターレベル</value>
+    <value>マスター</value>
     <comment>Sounds</comment>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
-    <value></value>
+    <value>クラッシュ保護が作動しました！</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value></value>
+    <value>カーブ保護が作動しました！</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="PrivateMessages_UC" xml:space="preserve">
-    <value></value>
+    <value>プライベートメッセージ</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value></value>
+    <value>カーブ保護メッセージを有効にする</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
-    <value></value>
+    <value>クラッシュ保護メッセージを有効にする</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="InputMappedSettingUpdateEnabled" xml:space="preserve">
-    <value></value>
+    <value>入力マッピング設定更新メッセージを有効にする</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
-    <value></value>
+    <value>Centripetal Circuitコースにいません</value>
     <comment>Steering effects</comment>
   </data>
   <data name="RunCalibration" xml:space="preserve">
-    <value></value>
+    <value>キャリブレーション開始</value>
     <comment>Steering effects</comment>
   </data>
   <data name="StopCalibration" xml:space="preserve">
-    <value></value>
+    <value>キャリブレーション停止</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheelLeft" xml:space="preserve">
-    <value></value>
+    <value>ステアリング 左</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheelCenter" xml:space="preserve">
-    <value></value>
+    <value>ステアリング センター</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheelRight" xml:space="preserve">
-    <value></value>
+    <value>ステアリング 右</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SteeringWheel90Left" xml:space="preserve">
-    <value></value>
+    <value>ステアリング 90° 左</value>
     <comment>Steering effects</comment>
   </data>
   <data name="MinThrottle" xml:space="preserve">
-    <value></value>
+    <value>最小スロットル</value>
     <comment>Steering effects</comment>
   </data>
   <data name="MaxThrottle" xml:space="preserve">
-    <value></value>
+    <value>最大スロットル</value>
     <comment>Steering effects</comment>
   </data>
   <data name="ShiftUp" xml:space="preserve">
-    <value></value>
+    <value>シフトアップ</value>
     <comment>Steering effects</comment>
   </data>
   <data name="ShiftDown" xml:space="preserve">
-    <value></value>
+    <value>シフトダウン</value>
     <comment>Steering effects</comment>
   </data>
   <data name="MinBrake" xml:space="preserve">
-    <value></value>
+    <value>最小ブレーキ</value>
     <comment>Steering effects</comment>
   </data>
   <data name="MaxBrake" xml:space="preserve">
-    <value></value>
+    <value>最大ブレーキ</value>
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeter_UC" xml:space="preserve">
-    <value></value>
+    <value>グリップメーター</value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>ステアリング振動効果（アンダーステア）</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Progress:" xml:space="preserve">
@@ -815,39 +815,39 @@
     <comment>Steering effects</comment>
   </data>
   <data name="ParkedEffects_UC" xml:space="preserve">
-    <value></value>
+    <value>駐車中エフェクト</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
-    <value></value>
+    <value>フォースフィードバック強度</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="WheelCenteringStrength" xml:space="preserve">
-    <value></value>
+    <value>ホイールセンタリング強度</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CenterWheelWhileRacing" xml:space="preserve">
-    <value></value>
+    <value>走行中にホイールをセンタリングする</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CenterWheelWhileParked" xml:space="preserve">
-    <value></value>
+    <value>駐車中にホイールをセンタリングする</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ParkedFriction" xml:space="preserve">
-    <value></value>
+    <value>駐車中フリクション</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CurrentCarSetup" xml:space="preserve">
-    <value></value>
+    <value>現在のカーセットアップ：</value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>ペダル振動効果（アンダーステア）</value>
     <comment>Steering effects</comment>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value></value>
+    <value>問題が発生しました</value>
     <comment>Error window</comment>
   </data>
   <data name="Details" xml:space="preserve">
@@ -855,27 +855,27 @@
     <comment>Error window</comment>
   </data>
   <data name="ClassicMAIRAIsRunning" xml:space="preserve">
-    <value></value>
+    <value>クラシックMAIRAが起動中です。このバージョンを起動する前にクラシックMAIRAを終了してください！</value>
     <comment>Error messages</comment>
   </data>
   <data name="ExceptionThrown" xml:space="preserve">
-    <value></value>
+    <value>例外が発生しました</value>
     <comment>Error messages</comment>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value></value>
+    <value> KPH</value>
     <comment>Abbreviation for kilometers per hour</comment>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
-    <value></value>
+    <value>自分のお気に入りの車でキャリブレーションを実行し、そのファイルをアップロードしてくださった皆さんに感謝します！</value>
     <comment>Contribute</comment>
   </data>
   <data name="DegreesPerSecond" xml:space="preserve">
-    <value></value>
+    <value>°/s</value>
     <comment>Abbreviation for degrees per second</comment>
   </data>
   <data name="CalibrationFile_UC" xml:space="preserve">
-    <value></value>
+    <value>キャリブレーションファイル</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Understeer_UC" xml:space="preserve">
@@ -887,23 +887,23 @@
     <comment>Steering effects</comment>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
-    <value></value>
+    <value>最小しきい値</value>
     <comment>Steering effects</comment>
   </data>
   <data name="MaximumThreshold" xml:space="preserve">
-    <value></value>
+    <value>最大しきい値</value>
     <comment>Steering effects</comment>
   </data>
   <data name="MinimumFrequency" xml:space="preserve">
-    <value></value>
+    <value>最小周波数</value>
     <comment>Steering effects</comment>
   </data>
   <data name="MaximumFrequency" xml:space="preserve">
-    <value></value>
+    <value>最大周波数</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Calibration_UC" xml:space="preserve">
-    <value></value>
+    <value>キャリブレーション</value>
     <comment>Steering effects</comment>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
@@ -931,11 +931,11 @@
     <comment>Steering effects</comment>
   </data>
   <data name="DecreaseForce" xml:space="preserve">
-    <value></value>
+    <value>フォースを下げる</value>
     <comment>Steering effects</comment>
   </data>
   <data name="IncreaseForce" xml:space="preserve">
-    <value></value>
+    <value>フォースを上げる</value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
@@ -943,7 +943,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="Direction" xml:space="preserve">
-    <value></value>
+    <value>方向</value>
     <comment>Steering effects</comment>
   </data>
   <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
@@ -967,7 +967,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="ConfigurationFileIsInvalid" xml:space="preserve">
-    <value></value>
+    <value>設定ファイルが無効です！</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SpeechToText" xml:space="preserve">
@@ -995,7 +995,7 @@
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="STT_Hint" xml:space="preserve">
-    <value></value>
+    <value>有効ボタンをクリックしてください。アドレスバー左側のマイクアイコンをクリックして、ブラウザで正しい音声デバイスが選択されているか確認してください！</value>
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="STT_Button" xml:space="preserve">
@@ -1003,11 +1003,11 @@
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
-    <value>[Force Feedback デバイス 未選択]</value>
+    <value>[フォースフィードバックデバイスが選択されていません]</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Algorithm_UC" xml:space="preserve">
-    <value></value>
+    <value>アルゴリズム</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ReadyToDonate" xml:space="preserve">
@@ -1031,7 +1031,7 @@
     <comment>Simulator</comment>
   </data>
   <data name="Graph_UC" xml:space="preserve">
-    <value></value>
+    <value>グラフ</value>
     <comment>Graph</comment>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
@@ -1043,7 +1043,7 @@
     <comment>Cloud service</comment>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
-    <value></value>
+    <value>ABS作動</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="Amplitude" xml:space="preserve">
@@ -1051,11 +1051,11 @@
     <comment>Pedals</comment>
   </data>
   <data name="ClutchSlip" xml:space="preserve">
-    <value></value>
+    <value>クラッチスリップ</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="Frequency" xml:space="preserve">
-    <value></value>
+    <value>周波数</value>
     <comment>Pedals</comment>
   </data>
   <data name="RPM" xml:space="preserve">
@@ -1067,7 +1067,7 @@
     <comment>App menu item</comment>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value></value>
+    <value>ペダル</value>
     <comment>App menu item</comment>
   </data>
   <data name="WheelLock" xml:space="preserve">
@@ -1075,79 +1075,79 @@
     <comment>Pedal effects list</comment>
   </data>
   <data name="WheelSpin" xml:space="preserve">
-    <value></value>
+    <value>ホイールスピン</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value></value>
+    <value>グリップメーター</value>
     <comment>Steering effects</comment>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value></value>
+    <value> MPH</value>
     <comment>Abbreviation for miles per hour</comment>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value></value>
+    <value>ウィンド</value>
     <comment>Wind</comment>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value></value>
+    <value>ウィンド</value>
     <comment>App menu item</comment>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value></value>
+    <value>起動時にMAIRA Windに接続する</value>
     <comment>Wind</comment>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value></value>
+    <value>MAIRA Windに接続</value>
     <comment>Wind</comment>
   </data>
   <data name="LeftFan" xml:space="preserve">
-    <value></value>
+    <value>左ファン</value>
     <comment>Wind</comment>
   </data>
   <data name="RightFan" xml:space="preserve">
-    <value></value>
+    <value>右ファン</value>
     <comment>Wind</comment>
   </data>
   <data name="Connection_UC" xml:space="preserve">
-    <value></value>
+    <value>接続</value>
     <comment>Wind</comment>
   </data>
   <data name="Settings_UC" xml:space="preserve">
-    <value></value>
+    <value>設定</value>
     <comment>Wind</comment>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
-    <value></value>
+    <value>マスター風量</value>
     <comment>Wind</comment>
   </data>
   <data name="MinimumSpeed" xml:space="preserve">
-    <value></value>
+    <value>最低速度</value>
     <comment>Wind</comment>
   </data>
   <data name="WindCurving" xml:space="preserve">
-    <value></value>
+    <value>風カーブ</value>
     <comment>Wind</comment>
   </data>
   <data name="FanPower_UC" xml:space="preserve">
-    <value></value>
+    <value>ファンパワー</value>
     <comment>Wind</comment>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value></value>
+    <value>速度</value>
     <comment>Wind</comment>
   </data>
   <data name="FanPower" xml:space="preserve">
-    <value></value>
+    <value>ファンパワー</value>
     <comment>Wind</comment>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value></value>
+    <value>デバイスが見つかりません</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
-    <value></value>
+    <value>iRacingペイントフォルダ</value>
     <comment>Trading paints</comment>
   </data>
   <data name="TradingPaints" xml:space="preserve">
@@ -1155,138 +1155,138 @@
     <comment>App menu item</comment>
   </data>
   <data name="TradingPaints_UC" xml:space="preserve">
-    <value></value>
+    <value>トレーディングペイント</value>
     <comment>Trading Paints</comment>
   </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
-    <value></value>
+    <value>Marvinの素晴らしいiRacingアプリ（MAIRA）はTrading Paintsとは無関係です</value>
     <comment>Trading Paints</comment>
   </data>
   <data name="MultiAdjustmentToolkit" xml:space="preserve">
-    <value></value>
+    <value>マルチ調整ツールキット</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
-    <value></value>
+    <value>トルク圧縮</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
-    <value></value>
+    <value>スルーレート低減</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SoftClipping" xml:space="preserve">
-    <value></value>
+    <value>ソフトクリッピング</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DetailGain" xml:space="preserve">
-    <value></value>
+    <value>ディテールゲイン +/- 調整</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OutputSmoothing" xml:space="preserve">
-    <value></value>
+    <value>出力スムージング</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SeatOfPants_UC" xml:space="preserve">
-    <value></value>
+    <value>シートオブパンツ</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>ステアリング振動効果（シートオブパンツ）</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>ステアリング定常力効果（シートオブパンツ）</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>ペダル振動効果（シートオブパンツ）</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value></value>
+    <value>シートオブパンツエフェクト</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value></value>
+    <value>横方向加速度（Ay）</value>
     <comment>Steering effects</comment>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
-    <value></value>
+    <value>横方向速度（Vy）</value>
     <comment>Steering effects</comment>
   </data>
   <data name="RatioOfVelocities" xml:space="preserve">
-    <value></value>
+    <value>速度比（Vy/Vx）</value>
     <comment>Steering effects</comment>
   </data>
   <data name="DefaultPage_UC" xml:space="preserve">
-    <value></value>
+    <value>デフォルトページ</value>
     <comment>App settings</comment>
   </data>
   <data name="Effects_UC" xml:space="preserve">
-    <value></value>
+    <value>エフェクト</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Audio_UC" xml:space="preserve">
-    <value></value>
+    <value>オーディオ</value>
     <comment>AdminBoxx</comment>
   </data>
   <data name="Display_UC" xml:space="preserve">
     <value>表示</value>
   </data>
   <data name="AdminBoxx_UC" xml:space="preserve">
-    <value></value>
+    <value>ADMINBOXX</value>
     <comment>Page title</comment>
   </data>
   <data name="Click_UC" xml:space="preserve">
-    <value></value>
+    <value>クリック</value>
     <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value></value>
+    <value>Simagic P500 ペダル</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsPrototype" xml:space="preserve">
-    <value></value>
+    <value>プロトタイプ ペダル</value>
     <comment>Pedals device</comment>
   </data>
   <data name="Help" xml:space="preserve">
-    <value></value>
+    <value>ヘルプ</value>
     <comment>App menu item</comment>
   </data>
   <data name="Help_UC" xml:space="preserve">
-    <value></value>
+    <value>ヘルプ</value>
     <comment>Page title</comment>
   </data>
   <data name="Documentation_UC" xml:space="preserve">
-    <value></value>
+    <value>ドキュメント</value>
     <comment>Help</comment>
   </data>
   <data name="Discord_UC" xml:space="preserve">
-    <value></value>
+    <value>DISCORD</value>
     <comment>Help</comment>
   </data>
   <data name="Forums_UC" xml:space="preserve">
-    <value></value>
+    <value>フォーラム</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
-    <value></value>
+    <value>ドキュメントウェブサイト</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordServer" xml:space="preserve">
-    <value></value>
+    <value>Discordサーバー</value>
     <comment>Help</comment>
   </data>
   <data name="iRacingForums" xml:space="preserve">
-    <value></value>
+    <value>iRacingフォーラム</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationText" xml:space="preserve">
-    <value></value>
+    <value>このドキュメントウェブサイトは常に更新中です。新機能が追加されるたびにできる限り更新していますが、お探しの情報がない場合はDiscordサーバーやiRacingフォーラムで質問してみてください。</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordText" xml:space="preserve">
-    <value></value>
+    <value>MAIRAのDiscordサーバーはドキュメントで見つからない質問への最速の回答手段です。ボランティアの皆さんと私自身も回答しています。</value>
     <comment>Help</comment>
   </data>
   <data name="ForumsText" xml:space="preserve">
@@ -1295,15 +1295,611 @@
     <comment>Help</comment>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value></value>
+    <value>Simagic P700 ペダル</value>
     <comment>Pedals device</comment>
   </data>
   <data name="FanStatus_UC" xml:space="preserve">
-    <value></value>
+    <value>ファンの状態</value>
     <comment>Wind</comment>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value></value>
+    <value>横方向Gフォース</value>
     <comment>Racing wheel</comment>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>ライトテーマ</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>シートベルトテンショナー</value>
+    <comment>Page title</comment>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>シートベルトテンショナー</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>MAIRAシートベルトテンショナーに接続</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>起動時にMAIRAシートベルトテンショナーに接続する</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>最小角度</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>ニュートラル角度</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>最大角度</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>最大Gフォース</value>
+    <comment>Seat belt tensioner / Sway / Heave</comment>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>重力を除く</value>
+    <comment>Seat belt tensioner / Sway / Heave</comment>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>モード</value>
+    <comment>Seat belt tensioner axis mode</comment>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>無効</value>
+    <comment>Seat belt tensioner axis mode list</comment>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>通常</value>
+    <comment>Seat belt tensioner axis mode list</comment>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>反転</value>
+    <comment>Seat belt tensioner axis mode list</comment>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>デッドゾーン</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>スムージング</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>最小G</value>
+    <comment>Seat belt tensioner graph axis</comment>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>最大G</value>
+    <comment>Seat belt tensioner graph axis</comment>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>シートオブパンツエフェクト</value>
+    <comment>Seat belt tensioner group header</comment>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>振動エフェクト</value>
+    <comment>Seat belt tensioner group header</comment>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / ホイールロック</value>
+    <comment>Seat belt tensioner vibration effect</comment>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>ホイールスリップ</value>
+    <comment>Seat belt tensioner vibration effect</comment>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>ランブルストリップ</value>
+    <comment>Seat belt tensioner vibration effect</comment>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>サージ</value>
+    <comment>Seat belt tensioner group header</comment>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>スウェイ</value>
+    <comment>Seat belt tensioner group header</comment>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>ヒーブ</value>
+    <comment>Seat belt tensioner group header</comment>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>モーター出力</value>
+    <comment>Seat belt tensioner group header</comment>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>左ショルダー</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>右ショルダー</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>最大モーター速度</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>再試行</value>
+    <comment>Misc</comment>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>最大ダウンロード速度</value>
+    <comment>Trading Paints</comment>
+  </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value>360 Hz ディテール</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value>ピーク対応スルーレート低減</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value>360 Hz on 60 Hz、10〜30% バイアス</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value>360 Hz on 60 Hz、10% バイアス</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value>（デフォルト値）ネイティブ 60 Hz</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value>（デフォルト値）360 Hz on 60 Hz、10〜30% バイアス</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value>（デフォルト値）360 Hz on 60 Hz、10% バイアス</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value>（デフォルト値）ネイティブ 360 Hz</value>
+    <comment>Racing wheel algorithms list</comment>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value>（プリセット）コアタイヤフィードバック、路面ディテール最小</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value>（プリセット）コアタイヤフィードバック、路面ディテール中程度</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value>（プリセット）FFBダイナミクスを適度にブースト</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value>（プリセット）FFBダイナミクスを適度に低減</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value>FFBタイプとプリセット</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value>POV</value>
+    <comment>Racing wheel button input type</comment>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value>このエフェクトを機能させるにはキャリブレーションファイルを選択してください。</value>
+    <comment>Steering effects</comment>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value>予測モード</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value>K1（1/60秒先を予測）</value>
+    <comment>Racing wheel prediction mode list</comment>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value>K2（2/60秒先を予測）</value>
+    <comment>Racing wheel prediction mode list</comment>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value>予測ブレンド</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>フォースフィードバックが手動で無効化されています（緊急停止）</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>iRacingシミュレーターはリプレイモードです</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>iRacingシミュレーターでフォースフィードバックが有効になっています</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>キャリブレーション実行中のためFFBは無効です</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value>ギアチェンジ振動強度</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value>ABS振動強度</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GapMonitor" xml:space="preserve">
+    <value>ギャップモニター</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value>オーバーレイ</value>
+    <comment>Page title</comment>
+  </data>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value>ギャップモニター</value>
+    <comment>Overlays group header</comment>
+  </data>
+  <data name="Overlays" xml:space="preserve">
+    <value>オーバーレイ</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="EnableOverlayWindow" xml:space="preserve">
+    <value>オーバーレイウィンドウを有効にする</value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value>オーバーレイウィンドウのタイトルを表示する</value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>CPUアフィニティ</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>（プリセット）大きな衝撃を低減</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>アプリマネージャー</value>
+    <comment>App menu item</comment>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>アプリマネージャー</value>
+    <comment>Page title</comment>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>起動するアプリ</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>終了するアプリ</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>実行ファイルのパス</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>引数</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>起動後の遅延（秒）</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>CPU優先度</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>ウィンドウスタイル</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>シミュレーター切断時に終了</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>メインCPUコアを回避する</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>シミュレーター切断時に起動</value>
+    <comment>App Manager</comment>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>アイドル</value>
+    <comment>App Manager CPU priority level list</comment>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>通常以下</value>
+    <comment>App Manager CPU priority level list</comment>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>通常</value>
+    <comment>App Manager CPU priority level list</comment>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>通常以上</value>
+    <comment>App Manager CPU priority level list</comment>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>高</value>
+    <comment>App Manager CPU priority level list</comment>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>通常</value>
+    <comment>App Manager window style list</comment>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>最小化</value>
+    <comment>App Manager window style list</comment>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>最大化</value>
+    <comment>App Manager window style list</comment>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>非表示</value>
+    <comment>App Manager window style list</comment>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>ウィザード</value>
+    <comment>App settings group box header</comment>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>ウィザードを起動</value>
+    <comment>App settings button label</comment>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>さあ始めよう！</value>
+    <comment>Wizard welcome step button</comment>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>スキップ</value>
+    <comment>Wizard skip button</comment>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>前へ</value>
+    <comment>Wizard previous step button</comment>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>次へ</value>
+    <comment>Wizard next step button</comment>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>はい</value>
+    <comment>Wizard yes button</comment>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>いいえ</value>
+    <comment>Wizard no button</comment>
+  </data>
+  <data name="Wizard_ApplyAndNext" xml:space="preserve">
+    <value>次へ</value>
+    <comment>Wizard apply and advance button on Algorithm step</comment>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>閉じる</value>
+    <comment>Wizard close button on final step</comment>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>ようこそ、レーサー！</value>
+    <comment>Wizard step 0 title</comment>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>私はウィザードのマービンです。強大なMAIRAを使いこなすお手伝いをします！</value>
+    <comment>Wizard step 0 line 1</comment>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>チェッカーフラッグを振って、できるだけ早くコースに出られるよう最も重要な設定をご案内します。</value>
+    <comment>Wizard step 0 line 2</comment>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>さっそく始めますか？それとも経験豊富なドライバーとして手動で設定しますか？</value>
+    <comment>Wizard step 0 line 3</comment>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>アプリテーマ</value>
+    <comment>Wizard step 1 title</comment>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>ライトテーマまたはダークテーマをお選びください。下のスイッチを切り替えてリアルタイムでプレビューできます。</value>
+    <comment>Wizard step 1 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>ステアリングホイール</value>
+    <comment>Wizard step 2 title</comment>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>下のリストからフォースフィードバック付きステアリングホイールを選択してください。</value>
+    <comment>Wizard step 2 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value>ホイールが表示されない場合は、電源を入れて接続されているか確認してください。リストは自動的に更新されます。</value>
+    <comment>Wizard step 2 hint 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value>Fanatecユーザーへ：Fanatecホイールはリストに2つのデバイスとして表示されることがあります。選択したものが動作しない場合は、もう一方を試してみてください！</value>
+    <comment>Wizard step 2 hint 2</comment>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>最大ホイールフォース</value>
+    <comment>Wizard step 3 title</comment>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>ホイールベースが出力できる最大フォースをニュートンメートル（Nm）で入力してください。MAIRAはこの値を使ってフォースフィードバック出力をハードウェアに合わせてスケーリングします。</value>
+    <comment>Wizard step 3 line 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value>選択したホイールに基づいて最善の推測値を設定しましたが、必要に応じて調整してください。</value>
+    <comment>Wizard step 3 hint 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value>重要：ホイールメーカーのソフトウェアでホイールの最大トルク出力をすでに制限している場合は、ハードウェアの物理的な最大値ではなく、その制限値をここに入力してください。MAIRAはホイールが実際に出力する値を知る必要があります。</value>
+    <comment>Wizard step 3 hint 2</comment>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>強度コントロール</value>
+    <comment>Wizard step 4 title</comment>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRAではホイールやコントローラーの物理ボタンにフォースフィードバック強度の増減を割り当てることができます。コックピットを離れることなくいつでも調整できます。</value>
+    <comment>Wizard step 4 line 1</comment>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>下の - と + ボタンをクリックして各ボタンに入力を割り当ててください。このステップはオプションです。スキップしてレーシングホイールページで後から設定することもできます。</value>
+    <comment>Wizard step 4 line 2</comment>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value>入力がマッピングされると、ボタンの枠がオレンジ色に変わって確認できます。</value>
+    <comment>Wizard step 4 hint 1</comment>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>強度</value>
+    <comment>Wizard step 4 strength label</comment>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>自動最大フォース設定</value>
+    <comment>Wizard step 5 title</comment>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>走行中、MAIRAはホイールが出力する実際のピークトルクを継続的に計測します。その計測値を使って、信号をクリップせずにホイールの全範囲を使用できる最適な最大フォース値を提案します。</value>
+    <comment>Wizard step 5 line 1</comment>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>自動設定機能を使うと、ホイールやコントローラーの物理ボタンを「設定」アクションに割り当てることができます。セッション中いつでもそのボタンを押すだけで、MAIRAが計測ピーク値に合わせて最大フォースを即座に更新します。メニュー操作は不要です。</value>
+    <comment>Wizard step 5 line 2</comment>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>クリアボタンは計測値をリセットして新しい計測を開始します。コースアウトや接触後などに便利です。</value>
+    <comment>Wizard step 5 line 3</comment>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>自動設定機能を設定しますか？</value>
+    <comment>Wizard step 5 question</comment>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>自動設定のセットアップ</value>
+    <comment>Wizard step 6 title</comment>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>まず自動ターゲットのヘッドルームをお好みに調整し、次に設定ボタンとクリアボタンをマッピングしてください。</value>
+    <comment>Wizard step 6 line 1</comment>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value>自動ターゲットは計測ピーク値がホイールのフォース範囲のどこに収まるかを設定します。ターゲットを下げるとピークより上のヘッドルームが増え、上げるとホイールの範囲をより多く使用します。</value>
+    <comment>Wizard step 6 hint 1</comment>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>アルゴリズム</value>
+    <comment>Wizard step 7 title</comment>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>フォースフィードバックの感触はいかがですか？下のスライダーを動かして好みを教えてください。MAIRAがアルゴリズム、ディテール、スムージングの設定を自動で合わせます。</value>
+    <comment>Wizard step 7 line 1</comment>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>後でレーシングホイールページから手動で細かく調整することもできます。</value>
+    <comment>Wizard step 7 line 2</comment>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>なめらかな感触</value>
+    <comment>Wizard step 7 slider left label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>普通</value>
+    <comment>Wizard step 7 slider center label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>ディテールブースト</value>
+    <comment>Wizard step 7 slider right label</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>極なめらか</value>
+    <comment>Wizard step 7 preset name at -3</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>250 Nm/sの強いデルタリミット。非常に落ち着いた丸みのあるフィードバック。</value>
+    <comment>Wizard step 7 preset description at -3</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>なめらか</value>
+    <comment>Wizard step 7 preset name at -2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>500 Nm/sのデルタリミット。エッジが柔らかく鋭さが抑えられます。</value>
+    <comment>Wizard step 7 preset description at -2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>少しなめらか</value>
+    <comment>Wizard step 7 preset name at -1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>1000 Nm/sの軽いデルタリミット。過渡的な鋭さがわずかに緩和されます。</value>
+    <comment>Wizard step 7 preset description at -1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>普通</value>
+    <comment>Wizard step 7 preset name at 0</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>ディテールとなめらかさのバランスが取れています。</value>
+    <comment>Wizard step 7 preset description at 0</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>少しブースト</value>
+    <comment>Wizard step 7 preset name at +1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>50%ブーストで微妙なディテール強調。</value>
+    <comment>Wizard step 7 preset description at +1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>ブースト</value>
+    <comment>Wizard step 7 preset name at +2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>100%ブーストで明確なディテール強調。</value>
+    <comment>Wizard step 7 preset description at +2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>強ブースト</value>
+    <comment>Wizard step 7 preset name at +3</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>150%ブーストで積極的なディテール強調。</value>
+    <comment>Wizard step 7 preset description at +3</comment>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>設定完了！</value>
+    <comment>Wizard final step title</comment>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>MAIRAをお試しいただきありがとうございます！ウィザードが完了しました。</value>
+    <comment>Wizard final step line 1</comment>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>アプリ設定ページの「ウィザードを起動」ボタンからいつでも再実行できます。</value>
+    <comment>Wizard final step line 2</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>MAIRAが初めての方は</value>
+    <comment>Wizard final step documentation link prefix text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>こちら</value>
+    <comment>Wizard final step documentation hyperlink anchor text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>をクリックしてドキュメントを開き、基本的な操作を確認してください。</value>
+    <comment>Wizard final step documentation link suffix text</comment>
   </data>
 </root>
