@@ -6,7 +6,7 @@
         xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
         xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
         mc:Ignorable="d"
-        Title="MAIRA Setup Wizard"
+        Title="{Binding Localization[Wizard_Step0_Title]}"
         Icon="/Artwork/AppIcon/maira-universal.ico"
         Width="850"
         SizeToContent="Height"
@@ -36,23 +36,23 @@
                            FontSize="28"
                            FontWeight="Bold"
                            TextWrapping="Wrap"
-                           Text="Greetings, Racer!"
+                           Text="{Binding Localization[Wizard_Step0_Title]}"
                            Margin="0,0,0,16" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,10"
-                           Text="I'm Marvin the Wizard, and I'm here to help you tame the mighty MAIRA!" />
+                           Text="{Binding Localization[Wizard_Step0_Line1]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,24"
-                           Text="With a wave of my checkered flag, I'll guide you through the most important settings so you can get on track as fast as possible. &#x1F3C1;&#x2728;" />
+                           Text="{Binding Localization[Wizard_Step0_Line2]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,30"
-                           Text="Shall we begin, or are you an experienced wizard yourself and prefer to configure everything manually?" />
+                           Text="{Binding Localization[Wizard_Step0_Line3]}" />
 
                 <Grid HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
@@ -63,13 +63,13 @@
 
                     <controls:MairaButton Grid.Column="0"
                                           x:Name="UseWizard_MairaButton"
-                                          Label="Let's go!"
+                                          Label="{Binding Localization[Wizard_LetsGo]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
                                           Click="UseWizard_MairaButton_Click" />
 
                     <controls:MairaButton Grid.Column="2"
                                           x:Name="SkipWizard_MairaButton"
-                                          Label="Skip"
+                                          Label="{Binding Localization[Wizard_Skip]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
                                           Click="SkipWizard_MairaButton_Click" />
                 </Grid>
@@ -83,13 +83,13 @@
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            FontSize="28"
                            FontWeight="Bold"
-                           Text="App Theme"
+                           Text="{Binding Localization[Wizard_Step1_Title]}"
                            Margin="0,0,0,20" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,24"
-                           Text="Choose whether you prefer a light or dark theme. Toggle the switch below to preview the change live." />
+                           Text="{Binding Localization[Wizard_Step1_Line1]}" />
 
                 <controls:MairaSwitch x:Name="LightTheme_MairaSwitch"
                                       Margin="0,0,0,30"
@@ -104,13 +104,13 @@
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaButton Grid.Column="0"
-                                          Label="Prev"
+                                          Label="{Binding Localization[Wizard_Prev]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
                                           Click="Prev_MairaButton_Click" />
 
                     <controls:MairaButton Grid.Column="2"
                                           x:Name="Step1Next_MairaButton"
-                                          Label="Next"
+                                          Label="{Binding Localization[Wizard_Next]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
                                           Click="Next_MairaButton_Click" />
                 </Grid>
@@ -124,26 +124,26 @@
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            FontSize="28"
                            FontWeight="Bold"
-                           Text="Steering Wheel"
+                           Text="{Binding Localization[Wizard_Step2_Title]}"
                            Margin="0,0,0,20" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
-                           Text="Select your force-feedback steering wheel from the list below." />
+                           Text="{Binding Localization[Wizard_Step2_Line1]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12">
                     <Run Foreground="{StaticResource Brush.Accent}"
-                         Text="&#x1F4A1;" /><Run Text=" Don't see your wheel? Make sure it is powered on and connected, then the list will refresh automatically." />
+                         Text="&#x1F4A1;" /><Run Text="{Binding Localization[Wizard_Step2_Hint1], Mode=OneWay}" />
                 </TextBlock>
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,24">
                     <Run Foreground="{StaticResource Brush.Accent}"
-                         Text="&#x1F4A1;" /><Run Text=" Fanatec users: Fanatec wheels typically appear as two separate devices in the list. If the one you selected doesn't work, try selecting the other one!" />
+                         Text="&#x1F4A1;" /><Run Text="{Binding Localization[Wizard_Step2_Hint2], Mode=OneWay}" />
                 </TextBlock>
 
                 <controls:MairaComboBox x:Name="WizardSteeringDevice_MairaComboBox"
@@ -159,12 +159,12 @@
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaButton Grid.Column="0"
-                                          Label="Prev"
+                                          Label="{Binding Localization[Wizard_Prev]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
                                           Click="Prev_MairaButton_Click" />
 
                     <controls:MairaButton Grid.Column="2"
-                                          Label="Next"
+                                          Label="{Binding Localization[Wizard_Next]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
                                           Click="Next_MairaButton_Click" />
                 </Grid>
@@ -178,26 +178,26 @@
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            FontSize="28"
                            FontWeight="Bold"
-                           Text="Maximum Wheel Force"
+                           Text="{Binding Localization[Wizard_Step3_Title]}"
                            Margin="0,0,0,20" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
-                           Text="Enter the maximum force your wheelbase is capable of producing, in Newton-meters (Nm). MAIRA uses this value to correctly scale all force feedback output for your hardware." />
+                           Text="{Binding Localization[Wizard_Step3_Line1]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12">
                     <Run Foreground="{StaticResource Brush.Accent}"
-                         Text="&#x1F4A1;" /><Run Text=" We've made our best guess based on your selected wheel — but feel free to adjust it if needed." />
+                         Text="&#x1F4A1;" /><Run Text="{Binding Localization[Wizard_Step3_Hint1], Mode=OneWay}" />
                 </TextBlock>
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,24">
                     <Run Foreground="{StaticResource Brush.Accent}"
-                         Text="&#x26A0;" /><Run Text=" Important: If you have already limited your wheel's maximum torque output inside your wheel manufacturer's software (e.g., Fanatec Wheel Control Panel, Moza Pit House, etc.), enter that reduced value here instead of the hardware's physical maximum. MAIRA needs to know what your wheel will actually deliver, not what it's capable of in theory." />
+                         Text="&#x26A0;" /><Run Text="{Binding Localization[Wizard_Step3_Hint2], Mode=OneWay}" />
                 </TextBlock>
 
                 <Grid Margin="0,0,0,30">
@@ -224,12 +224,12 @@
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaButton Grid.Column="0"
-                                          Label="Prev"
+                                          Label="{Binding Localization[Wizard_Prev]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
                                           Click="Prev_MairaButton_Click" />
 
                     <controls:MairaButton Grid.Column="2"
-                                          Label="Next"
+                                          Label="{Binding Localization[Wizard_Next]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
                                           Click="Next_MairaButton_Click" />
                 </Grid>
@@ -243,24 +243,24 @@
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            FontSize="28"
                            FontWeight="Bold"
-                           Text="Strength Controls"
+                           Text="{Binding Localization[Wizard_Step4_Title]}"
                            Margin="0,0,0,20" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
-                           Text="MAIRA lets you bind physical buttons on your wheel or controller to raise and lower the Force Feedback Strength on the fly — without ever leaving the cockpit." />
+                           Text="{Binding Localization[Wizard_Step4_Line1]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,24"
-                           Text="Click the - and + buttons below to assign inputs to each one. This step is optional — you can skip it and set up bindings later from the Racing Wheel page." />
+                           Text="{Binding Localization[Wizard_Step4_Line2]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12">
                     <Run Foreground="{StaticResource Brush.Accent}"
-                         Text="&#x1F4A1;" /><Run Text=" Once an input is mapped, the button border will turn orange to confirm it." />
+                         Text="&#x1F4A1;" /><Run Text="{Binding Localization[Wizard_Step4_Hint1], Mode=OneWay}" />
                 </TextBlock>
 
                 <Grid HorizontalAlignment="Left"
@@ -289,7 +289,7 @@
 
                         <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                                    TextWrapping="Wrap"
-                                   Text="Strength"
+                                   Text="{Binding Localization[Wizard_Step4_StrengthLabel]}"
                                    VerticalAlignment="Center" />
                     </Border>
 
@@ -312,12 +312,12 @@
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaButton Grid.Column="0"
-                                          Label="Prev"
+                                          Label="{Binding Localization[Wizard_Prev]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
                                           Click="Prev_MairaButton_Click" />
 
                     <controls:MairaButton Grid.Column="2"
-                                          Label="Next"
+                                          Label="{Binding Localization[Wizard_Next]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
                                           Click="Next_MairaButton_Click" />
                 </Grid>
@@ -331,28 +331,28 @@
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            FontSize="28"
                            FontWeight="Bold"
-                           Text="Auto-Set Max Force"
+                           Text="{Binding Localization[Wizard_Step5_Title]}"
                            Margin="0,0,0,20" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
-                           Text="While you are driving on track, MAIRA continuously measures the actual peak torque your wheel produces. It uses that measurement to suggest the ideal Max Force value — one that uses your wheel's full range without ever clipping the signal." />
+                           Text="{Binding Localization[Wizard_Step5_Line1]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
-                           Text="With the Auto-Set feature, you can bind a physical button on your wheel or controller to the Set action. Press it at any moment during a session and MAIRA will instantly update Max Force to match your measured peak — no menus, no interruptions." />
+                           Text="{Binding Localization[Wizard_Step5_Line2]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,24"
-                           Text="A companion Clear button resets the running measurement so you can start a fresh reading — useful if your car has gone off track or hit something." />
+                           Text="{Binding Localization[Wizard_Step5_Line3]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,30">
-                    <Run Text="Would you like to set up the Auto-Set feature?" />
+                    <Run Text="{Binding Localization[Wizard_Step5_Question], Mode=OneWay}" />
                 </TextBlock>
 
                 <Grid HorizontalAlignment="Center">
@@ -365,43 +365,43 @@
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaButton Grid.Column="0"
-                                          Label="Prev"
+                                          Label="{Binding Localization[Wizard_Prev]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
                                           Click="Prev_MairaButton_Click" />
 
                     <controls:MairaButton Grid.Column="2"
-                                          Label="Yes"
+                                          Label="{Binding Localization[Wizard_Yes]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
                                           Click="Step5Yes_MairaButton_Click" />
 
                     <controls:MairaButton Grid.Column="4"
-                                          Label="No"
+                                          Label="{Binding Localization[Wizard_No]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
                                           Click="Step5No_MairaButton_Click" />
                 </Grid>
 
             </StackPanel>
 
-            <!-- Step 6: Auto-Set setup (Set / Clear / AutoTarget) -->
+            <!-- Step 6: Auto-Set setup (Set, Clear, AutoTarget) -->
             <StackPanel x:Name="Step6_Panel"
                         Visibility="Collapsed">
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            FontSize="28"
                            FontWeight="Bold"
-                           Text="Auto-Set Setup"
+                           Text="{Binding Localization[Wizard_Step6_Title]}"
                            Margin="0,0,0,20" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
-                           Text="First, adjust the Auto Target headroom to taste, then map your Set and Clear buttons." />
+                           Text="{Binding Localization[Wizard_Step6_Line1]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,24">
                     <Run Foreground="{StaticResource Brush.Accent}"
-                         Text="&#x1F4A1;" /><Run Text=" Auto Target sets where in your wheel's force range the measured peak should land. Lower the target to keep more headroom above the peak; raise it to use more of the wheel's range." />
+                         Text="&#x1F4A1;" /><Run Text="{Binding Localization[Wizard_Step6_Hint1], Mode=OneWay}" />
                 </TextBlock>
 
                 <Grid Margin="0,0,0,30">
@@ -450,12 +450,12 @@
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaButton Grid.Column="0"
-                                          Label="Prev"
+                                          Label="{Binding Localization[Wizard_Prev]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
                                           Click="Prev_MairaButton_Click" />
 
                     <controls:MairaButton Grid.Column="2"
-                                          Label="Next"
+                                          Label="{Binding Localization[Wizard_Next]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
                                           Click="Next_MairaButton_Click" />
                 </Grid>
@@ -469,18 +469,18 @@
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            FontSize="28"
                            FontWeight="Bold"
-                           Text="Algorithm"
+                           Text="{Binding Localization[Wizard_Step7_Title]}"
                            Margin="0,0,0,20" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,12"
-                           Text="How do you like your force feedback to feel? Move the slider below to tell MAIRA your preference and it will configure the algorithm, detail and smoothing settings to match." />
+                           Text="{Binding Localization[Wizard_Step7_Line1]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,24"
-                           Text="Don't worry — you can always fine-tune everything manually on the Racing Wheel page later." />
+                           Text="{Binding Localization[Wizard_Step7_Line2]}" />
 
                 <!-- Slider labels row -->
                 <Grid Margin="0,0,0,4">
@@ -492,17 +492,17 @@
 
                     <TextBlock Grid.Column="0"
                                Style="{StaticResource MairaTextBlockStyle}"
-                               Text="&#x1F4A4; Smooth Feeling"
+                               Text="{Binding Localization[Wizard_Step7_SliderLeft]}"
                                HorizontalAlignment="Left" />
 
                     <TextBlock Grid.Column="1"
                                Style="{StaticResource MairaTextBlockStyle}"
-                               Text="Normal"
+                               Text="{Binding Localization[Wizard_Step7_SliderCenter]}"
                                HorizontalAlignment="Center" />
 
                     <TextBlock Grid.Column="2"
                                Style="{StaticResource MairaTextBlockStyle}"
-                               Text="Boost Details &#x26A1;"
+                               Text="{Binding Localization[Wizard_Step7_SliderRight]}"
                                HorizontalAlignment="Right" />
                 </Grid>
 
@@ -524,13 +524,13 @@
                            Style="{StaticResource MairaTextBlockStyle}"
                            FontWeight="Bold"
                            Margin="0,0,0,4"
-                           Text="Normal" />
+                           Text="{Binding Localization[Wizard_Step7_Preset_Normal_Name]}" />
 
                 <TextBlock x:Name="FfbStyleDescription_TextBlock"
                            Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,30"
-                           Text="Balanced detail and smoothness." />
+                           Text="{Binding Localization[Wizard_Step7_Preset_Normal_Desc]}" />
 
                 <Grid HorizontalAlignment="Center">
                     <Grid.ColumnDefinitions>
@@ -542,17 +542,17 @@
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaButton Grid.Column="0"
-                                          Label="Prev"
+                                          Label="{Binding Localization[Wizard_Prev]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
                                           Click="Prev_MairaButton_Click" />
 
                     <controls:MairaButton Grid.Column="2"
-                                          Label="Next"
+                                          Label="{Binding Localization[Wizard_Next]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
                                           Click="Step7Apply_MairaButton_Click" />
 
                     <controls:MairaButton Grid.Column="4"
-                                          Label="Skip"
+                                          Label="{Binding Localization[Wizard_Skip]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
                                           Click="Next_MairaButton_Click" />
                 </Grid>
@@ -566,28 +566,34 @@
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            FontSize="28"
                            FontWeight="Bold"
-                           Text="You're all set!"
+                           Text="{Binding Localization[Wizard_Final_Title]}"
                            Margin="0,0,0,20" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,16"
-                           Text="Thank you for trying MAIRA! The wizard is now complete." />
+                           Text="{Binding Localization[Wizard_Final_Line1]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,30"
-                           Text="You can re-run this wizard at any time by visiting the App Settings page and clicking the &quot;Launch Wizard&quot; button." />
+                           Text="{Binding Localization[Wizard_Final_Line2]}" />
 
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            TextWrapping="Wrap"
                            Margin="0,0,0,30">
-                    <Run Text="New to MAIRA? Click " /><Hyperlink Click="DocumentationLink_Click"><Run Text="here" /></Hyperlink><Run Text=" to open the documentation and learn about the common controls." />
+                    <Run Text="{Binding Localization[Wizard_Final_DocLinkPrefix], Mode=OneWay}" />
+                    <Run Text=" " />
+                    <Hyperlink Click="DocumentationLink_Click">
+                        <Run Text="{Binding Localization[Wizard_Final_DocLinkAnchor], Mode=OneWay}" />
+                    </Hyperlink>
+                    <Run Text=" " />
+                    <Run Text="{Binding Localization[Wizard_Final_DocLinkSuffix], Mode=OneWay}" />
                 </TextBlock>
 
                 <controls:MairaButton HorizontalAlignment="Center"
                                       x:Name="Close_MairaButton"
-                                      Label="Close"
+                                      Label="{Binding Localization[Wizard_Close]}"
                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
                                       Click="Close_MairaButton_Click" />
 

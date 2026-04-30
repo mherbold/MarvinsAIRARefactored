@@ -1,5 +1,4 @@
-using System.Collections.Generic;
-using System.Linq;
+
 using System.Windows;
 using System.Windows.Controls;
 
@@ -309,15 +308,17 @@ public partial class WizardWindow : Window
 			return;
 		}
 
+		var loc = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
 		(FfbStyleName_TextBlock.Text, FfbStyleDescription_TextBlock.Text) = (int) FfbStyle_Slider.Value switch
 		{
-			-3 => ("Silky Smooth", "Heavy delta limiting at 250 Nm/s. Very calm, rounded feedback."),
-			-2 => ("Smooth", "Delta limiting at 500 Nm/s. Softer edges and reduced sharpness."),
-			-1 => ("Slightly Smooth", "Light delta limiting at 1000 Nm/s. Minor transient softening."),
-			0 => ("Normal", "Balanced detail and smoothness."),
-			1 => ("Slightly Boosted", "Subtle detail enhancement at 50% boost."),
-			2 => ("Boosted", "Clear detail enhancement at 100% boost."),
-			3 => ("A Lot of Boost", "Aggressive detail enhancement at 150% boost."),
+			-3 => (loc[ "Wizard_Step7_Preset_MaxSmooth_Name" ], loc[ "Wizard_Step7_Preset_MaxSmooth_Desc" ]),
+			-2 => (loc[ "Wizard_Step7_Preset_Smooth_Name" ], loc[ "Wizard_Step7_Preset_Smooth_Desc" ]),
+			-1 => (loc[ "Wizard_Step7_Preset_SlightlySmooth_Name" ], loc[ "Wizard_Step7_Preset_SlightlySmooth_Desc" ]),
+			0 => (loc[ "Wizard_Step7_Preset_Normal_Name" ], loc[ "Wizard_Step7_Preset_Normal_Desc" ]),
+			1 => (loc[ "Wizard_Step7_Preset_SlightlyBoosted_Name" ], loc[ "Wizard_Step7_Preset_SlightlyBoosted_Desc" ]),
+			2 => (loc[ "Wizard_Step7_Preset_Boosted_Name" ], loc[ "Wizard_Step7_Preset_Boosted_Desc" ]),
+			3 => (loc[ "Wizard_Step7_Preset_MaxBoosted_Name" ], loc[ "Wizard_Step7_Preset_MaxBoosted_Desc" ]),
 			_ => (string.Empty, string.Empty)
 		};
 	}
