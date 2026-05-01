@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:schema id="root">
     <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
@@ -234,7 +234,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value />
+    <value>%</value>
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
@@ -246,7 +246,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoTarget" xml:space="preserve">
-    <value></value>
+    <value>Ավտո թիրախ</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -274,7 +274,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value />
+    <value> g</value>
     <comment>Abbreviation for g-force</comment>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
@@ -753,7 +753,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value />
+    <value>°</value>
     <comment>Abbreviation for degrees</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
@@ -837,7 +837,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeter_UC" xml:space="preserve">
-    <value />
+    <value>GRIP-O-METER</value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
@@ -1088,7 +1088,7 @@
     <value>պտ/ր</value>
   </data>
   <data name="GripOMeter">
-    <value />
+    <value>Grip-O-Meter</value>
   </data>
   <data name="SlewAndTotalCompression" xml:space="preserve">
     <value>Փոփոխության արագություն և ընդհանուր սեղմում</value>
@@ -1107,5 +1107,809 @@
   </data>
   <data name="Display_UC" xml:space="preserve">
     <value>Էկրան</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Բաց թեմա</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="STT_Hint" xml:space="preserve">
+    <value>Սեղմեք «Միացնել» կոճակը: Հարկավոր է ստուգել, որ բրաուզերը ընտրված ունի ճիշտ աուդիո սարք՝ հասցեի տողի ձախ կողմում գտնվող միկրոֆոնի պատկերակին սեղմելով:</value>
+    <comment>STT hint</comment>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>ՀՐԱՁԻԳ</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Գործարկել հրաձիգը</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="MPHUnits" xml:space="preserve">
+    <value> Մ/Ժ</value>
+    <comment>Units</comment>
+  </data>
+  <data name="Wind_UC" xml:space="preserve">
+    <value>ՔԱՄԻ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Wind" xml:space="preserve">
+    <value>Քամի</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>ԿՐԾՔԱԿԱԼ ՁԳԻՉ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>Կրծքակալ ձգիչ</value>
+    <comment>Device name</comment>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>Միանալ ձգիչին</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>Միանալ հավելվածի գործարկմանը</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>Նվազագույն անկյուն</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>Չեզոք անկյուն</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>Առավելագույն անկյուն</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>Առավելագույն G ուժ</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>Հանել ձգողականությունը</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>Առանցքի ռեժիմ</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>Անջատված</value>
+    <comment>Seat belt tensioner axis mode</comment>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>Նորմալ</value>
+    <comment>Seat belt tensioner axis mode</comment>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>Շրջված</value>
+    <comment>Seat belt tensioner axis mode</comment>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Մեռած գոտի</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>Հարթեցում</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>G նվազ</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>G առավ</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>ԱԹՈՌԻ ԱԶԴԵՑՈՒԹՅՈՒՆ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>ԹՐԹՌՄԱՆ ԱԶԴԵՑՈՒԹՅՈՒՆՆԵՐ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / Անվի արգելափակում</value>
+    <comment>Vibration effect</comment>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>Անվի սայթաքում</value>
+    <comment>Vibration effect</comment>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>Ռումբ-շերտ</value>
+    <comment>Vibration effect</comment>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>ՀՐՈՒՄ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>ՏԱՏԱՆՈՒՄ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>ԲԱՐՁՐԱՑՈՒՄ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>ՇԱՐԺԻՉԻ ԵԼՔ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>Ձախ ուս</value>
+    <comment>Motor output</comment>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>Աջ ուս</value>
+    <comment>Motor output</comment>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>Շարժիչի առավելագույն արագություն</value>
+    <comment>Motor output</comment>
+  </data>
+  <data name="ConnectToWindOnStartup" xml:space="preserve">
+    <value>Միանալ MAIRA Wind-ին հավելվածի գործարկմանը</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="ConnectToWind" xml:space="preserve">
+    <value>Միանալ MAIRA Wind-ին</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="LeftFan" xml:space="preserve">
+    <value>Ձախ օդախույզ</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="RightFan" xml:space="preserve">
+    <value>Աջ օդախույզ</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="Settings_UC" xml:space="preserve">
+    <value>ԿԱՐԳԱՎՈՐՈՒՄՆԵՐ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="MasterWindPower" xml:space="preserve">
+    <value>Հիմնական քամու հզորություն</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="MinimumSpeed" xml:space="preserve">
+    <value>Նվազագույն արագություն</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="WindCurving" xml:space="preserve">
+    <value>Քամու կոր</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="FanPower_UC" xml:space="preserve">
+    <value>ՕԴԱԽՈՒՅԶԻ ՀԶՈՐՈՒԹՅՈՒՆ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Արագություն</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="FanPower" xml:space="preserve">
+    <value>Օդախույզի հզորություն</value>
+    <comment>Wind</comment>
+  </data>
+  <data name="DeviceNotFound" xml:space="preserve">
+    <value>Սարքը բացակայում է</value>
+    <comment>Status</comment>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Կրկին փորձել</value>
+    <comment>Button</comment>
+  </data>
+  <data name="IRacingPaintFolder" xml:space="preserve">
+    <value>iRacing Paint թղթապանակ</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>Ներբեռնման առավելագույն արագություն</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="TradingPaints" xml:space="preserve">
+    <value>Trading Paints</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="TradingPaints_UC" xml:space="preserve">
+    <value>TRADING PAINTS</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="TradingPaintsDisclaimer" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App (MAIRA)-ը կապ չունի Trading Paints-ի հետ</value>
+    <comment>Trading paints disclaimer</comment>
+  </data>
+  <data name="MultiAdjustmentToolkit" xml:space="preserve">
+    <value>Բազմակի կարգավորման գործիքակազմ</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="TorqueCompression" xml:space="preserve">
+    <value>Ոլորող ճնշման սեղմում</value>
+    <comment>Multi adjustment toolkit</comment>
+  </data>
+  <data name="SlewRateReduction" xml:space="preserve">
+    <value>Slew արագության կրճատում</value>
+    <comment>Multi adjustment toolkit</comment>
+  </data>
+  <data name="SoftClipping" xml:space="preserve">
+    <value>Մեղմ կտրատում</value>
+    <comment>Multi adjustment toolkit</comment>
+  </data>
+  <data name="DetailGain" xml:space="preserve">
+    <value>Մանրամասնի ուժեղացում +/- Կարգավորում</value>
+    <comment>Multi adjustment toolkit</comment>
+  </data>
+  <data name="OutputSmoothing" xml:space="preserve">
+    <value>Ելքի հարթեցում</value>
+    <comment>Multi adjustment toolkit</comment>
+  </data>
+  <data name="SeatOfPants_UC" xml:space="preserve">
+    <value>ԱԹՈՌԻ ԶԳԱՑՈՂՈՒԹՅՈՒՆ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
+    <value>ԱԹՈՌԻ ԶԳԱՑՈՂՈՒԹՅՈՒՆ ԱՆԻՎԻ ԹՐԹՌՈՒՄ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>ԱԹՈՌԻ ԶԳԱՑՈՂՈՒԹՅՈՒՆ ԱՆԻՎԻ ՀԱՍՏԱՏՈՒՆ ՈՒԺ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
+    <value>ԱԹՈՌԻ ԶԳԱՑՈՂՈՒԹՅՈՒՆ ՈՏՆԱԿԻ ԹՐԹՌՈՒՄ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="SeatOfPantsEffect" xml:space="preserve">
+    <value>Աթոռի զգացողության ազդեցություն</value>
+    <comment>Seat of pants</comment>
+  </data>
+  <data name="LateralAcceleration" xml:space="preserve">
+    <value>Կողային արագացում (Ay)</value>
+    <comment>Seat of pants</comment>
+  </data>
+  <data name="LateralVelocity" xml:space="preserve">
+    <value>Կողային արագություն (Vy)</value>
+    <comment>Seat of pants</comment>
+  </data>
+  <data name="RatioOfVelocities" xml:space="preserve">
+    <value>Արագությունների հարաբերակցություն (Vy/Vx)</value>
+    <comment>Seat of pants</comment>
+  </data>
+  <data name="DefaultPage_UC" xml:space="preserve">
+    <value>ԿԱՆԽԱԴՐՎԱԾ ԷՋ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Effects_UC" xml:space="preserve">
+    <value>ԱԶԴԵՑՈՒԹՅՈՒՆՆԵՐ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="PedalsP500" xml:space="preserve">
+    <value>Simagic P500 ոտնակներ</value>
+    <comment>Pedals option</comment>
+  </data>
+  <data name="PedalsPrototype" xml:space="preserve">
+    <value>Նախատիպ ոտնակներ</value>
+    <comment>Pedals option</comment>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Օգնություն</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value>ՕԳՆՈՒԹՅՈՒՆ</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value>ՓԱՍՏԱԹՂԹԱՎՈՐՈՒՄ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value>DISCORD</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value>ՖՈՐՈՒՄՆԵՐ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value>Փաստաթղթավորման կայք</value>
+    <comment>Help page</comment>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value>Discord սերվեր</value>
+    <comment>Help page</comment>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value>iRacing ֆորումներ</value>
+    <comment>Help page</comment>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value>Փաստաթղթավորման կայքը մշտական կատարելագործման մեջ է, քանի որ հավելվածին անընդհատ ավելացվում են նոր գործառույթներ: Փաստաթղթավորումն արդիականացնում եմ հնարավոր հաճախ, բայց եթե փնտրած տեղեկությունը դեռ չկա, կարող եք փնտրել Discord սերվերում կամ iRacing ֆորումներում:</value>
+    <comment>Help page</comment>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value>MAIRA-ի Discord սերվերը ամենաարագ ճանապարհն է հարցերի պատասխաններ ստանալու, եթե դրանք չեք գտնում փաստաթղթավորման մեջ: Կան կամավորներ, ովքեր օգնում են, և ես ինձ ևս փորձում եմ ներգրավել:</value>
+    <comment>Help page</comment>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value>Այստեղ ամեն ինչ սկսվեց: Կարող եք պատասխաններ փնտրել այստեղ, բայց ես այնքան ակտիվ չեմ, որքան կաշխատեի: Discord սերվեր այցելելն ավելի լավ ճանապարհ է հարցեր տալու համար:</value>
+    <comment>Help page</comment>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value>Simagic P700 ոտնակներ</value>
+    <comment>Pedals option</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>ՕԴԱԽՈՒՅԶԻ ԿԱՐԳԱՎԻՃԱԿ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value>360 Հց մանրամասն</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value>Գագաթ-գիտակ slew սահմանափակում</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value>360 Հց 60 Հց-ով, կողմնակալ 10-30%</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value>360 Հց 60 Հց-ով, կողմնակալ 10%</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value>(Կանխադրված արժեքներ) Բնիկ 60 Հց</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value>(Կանխադրված արժեքներ) 360 Հց 60 Հց-ով, կողմնակալ 10-30%</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value>(Կանխադրված արժեքներ) 360 Հց 60 Հց-ով, կողմնակալ 10%</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value>(Կանխադրված արժեքներ) Բնիկ 360 Հց</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value>(Կաղապար) Հիմնական շղթայական հետադարձ կապ, նվազագույն մակերեսի մանրամասնություն</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value>(Կաղապար) Հիմնական շղթայական հետադարձ կապ, չափավոր մակերեսի մանրամասնություն</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value>(Կաղապար) Չափավոր ավելացնել FFB դինամիկան</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value>(Կաղապար) Չափավոր նվազեցնել FFB դինամիկան</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value>FFB տեսակ + կաղապարներ</value>
+    <comment>Racing wheel section header</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>Կողային G ուժ</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value>POV</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value>Այս ազդեցությունն ակտիվացնելու համար պետք է ընտրել չափաբերման ֆայլ:</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value>Կանխատեսման ռեժիմ</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value>K1 (Կանխատեսել 1/60 վ-ով առաջ)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value>K2 (Կանխատեսել 2/60 վ-ով առաջ)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value>Կանխատեսման խառնուրդ</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>Ուժային հետադարձ կապն անջատված է ձեռնով (արտակարգ կանգ)</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>iRacing սիմուլյատորը վերարտադրման ռեժիմում է</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>Ուժային հետադարձ կապը միացված է iRacing սիմուլյատորում</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>FFB-ն անջատված է, քանի որ չափաբերումն ընթացքի մեջ է</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value>Հաղորդագրության թրթռման ուժ փոխման ժամանակ</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value>ABS թրթռման ուժ</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GapMonitor" xml:space="preserve">
+    <value>Բացի մոնիտոր</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value>ՇԵՐՏ ԾԱԾԿՈՆՆԵՐ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value>ԲԱՑԻ ՄՈՆԻՏՈՐ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Overlays" xml:space="preserve">
+    <value>Շերտ ծածկոններ</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="EnableOverlayWindow" xml:space="preserve">
+    <value>Միացնել ծածկույթի պատուհանը</value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value>Ցույց տալ ծածկույթի պատուհանի վերնագիրը</value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>ՊՄ ԿԱՊՎԱԾՈՒԹՅՈՒՆ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>(Կաղապար) Նվազեցնել մեծ ցնցումները</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>Հավելվածների կառավարիչ</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>ՀԱՎԵԼՎԱԾՆԵՐԻ ԿԱՌԱՎԱՐԻՉ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>ԳՈՐԾԱՐԿՎՈՂ ՀԱՎԵԼՎԱԾՆԵՐ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>ԴԱԴԱՐԵՑՎՈՂ ՀԱՎԵԼՎԱԾՆԵՐ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>Գործարկվող ֆայլի ուղի</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>Արգումենտներ</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>Ուշացում գործարկումից հետո (վ)</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>ՊՄ առաջնայնություն</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>Պատուհանի ոճ</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>Դադարեցնել սիմուլյատորից անջատման ժամանակ</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>Խուսափել հիմնական ՊՄ միջուկներից</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>Գործարկել սիմուլյատորից անջատման ժամանակ</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>Պարապ</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>Նորմալից ցածր</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>Նորմալ</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>Նորմալից բարձր</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>Բարձր</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>Նորմալ</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>Նվազագույնացված</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>Առավելագույնացված</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>Թաքնված</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>Սկսե՛նք!</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>Բաց թողնել</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>Նախ</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>Հաջ</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>Այո</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>Ոչ</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_ApplyAndNext" xml:space="preserve">
+    <value>Հաջ</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>Փակել</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>Բարի գալուստ, Վարորդ!</value>
+    <comment>Wizard step 0 title</comment>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>Ես Մարվին Օգնականն եմ, այստեղ՝ MAIRA-ն ձեզ ծանոթացնելու!</value>
+    <comment>Wizard step 0 line 1</comment>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>Իմ շախմատաձև դրոշը թափահարելով՝ ձեզ կուղղորդեմ ամենակարևոր կարգավորումների միջով, որպեսզի հնարավորինս արագ հասնեք մրցավայր: 🏁✨</value>
+    <comment>Wizard step 0 line 2</comment>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>Սկսե՞նք, թե արդեն փորձառու օգտատեր եք եւ նախընտրում եք ամեն ինչ ձեռքով կարգավորել:</value>
+    <comment>Wizard step 0 line 3</comment>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>Հավելվածի թեմա</value>
+    <comment>Wizard step 1 title</comment>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>Ընտրեք՝ նախընտրո՞ւմ եք բաց, թե մուգ թեմա: Ուղիղ նախադիտման համար օգտագործեք ստորև բերված ջկան:</value>
+    <comment>Wizard step 1 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>Ղեկ</value>
+    <comment>Wizard step 2 title</comment>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>Ընտրեք ձեր ուժային հետադարձ կապի ղեկը ստորև բերված ցանկից:</value>
+    <comment>Wizard step 2 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value> Չե՞ք տեսնում ձեր ղեկը: Համոզվեք, որ այն միացված և կցված է, ցանկն ավտոմատ կերպով կթարմացվի:</value>
+    <comment>Wizard step 2 hint 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value> Fanatec-ի օգտատերեր. Fanatec ղեկները սովորաբար ցանկում երևում են երկու առանձին սարքի տեսքով: Եթե ընտրվածը չի աշխատում, փորձեք մյուսը!</value>
+    <comment>Wizard step 2 hint 2</comment>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>Ղեկի առավելագույն ուժ</value>
+    <comment>Wizard step 3 title</comment>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>Մուտքագրեք ձեր հիմքի կողմից կարողանալ արտադրվող առավելագույն ուժը Նյուտոն-մետրով (Նm): MAIRA-ն այս արժեքն օգտագործում է ապարատային սարքի ուժային հետադարձ կապի բոլոր ելքերի ճիշտ մեծացման համար:</value>
+    <comment>Wizard step 3 line 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value> Ընտրված ղեկի հիման վրա ամենալավ կանխատեսումն արել ենք, բայց ազատ եք կարգավորել, եթե անհրաժեշտ է:</value>
+    <comment>Wizard step 3 hint 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value> Կարևոր. Եթե արտադրողի ծրագրաշարում (օր.՝ Fanatec Wheel Control Panel, Moza Pit House) արդեն սահմանափակել եք ղեկի առավելագույն ոլորող ուժը, մուտքագրեք այդ նվազեցված արժեքը, ոչ թե ապարատի ֆիզիկական առավելագույնը: MAIRA-ն պետք է իմանա, թե ձեր ղեկն իրականում ինչ կտա, ոչ թե ինչի ընդունակ է տեսականորեն:</value>
+    <comment>Wizard step 3 hint 2</comment>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>Ուժի կառավարում</value>
+    <comment>Wizard step 4 title</comment>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRA-ն թույլ է տալիս ֆիզիկական կոճակներ հատկացնել ղեկի կամ կարգավարի վրա՝ Ուժային Հետադարձ Կապի ուժն ավելացնելու կամ նվազեցնելու համար վարելու ժամանակ, առանց խցիկը լքելու:</value>
+    <comment>Wizard step 4 line 1</comment>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>Ստորև բերված - և + կոճակներին սեղմեք՝ մուտք հատկացնելու համար: Այս քայլն ըստ ցանկության է. կարող եք բաց թողնել և կարգավորել կախումները ավելի ուշ Ղեկ էջից:</value>
+    <comment>Wizard step 4 line 2</comment>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value> Հենց մուտք հատկացվի, կոճակի եզրը կդառնա նարնջագույն՝ հաստատելու համար:</value>
+    <comment>Wizard step 4 hint 1</comment>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>Ուժ</value>
+    <comment>Wizard step 4 strength label</comment>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>Առավելագույն ուժի ավտոկարգավորում</value>
+    <comment>Wizard step 5 title</comment>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>Մրցավայրում վարելիս MAIRA-ն անընդհատ չափում է ձեր ղեկի փաստացի գագաթային ոլորող ուժը: Այն օգտագործում է այս չափումը, որպեսզի առաջարկի Առավելագույն ուժի իդեալական արժեքը՝ մի արժեք, որն ամբողջությամբ օգտագործում է ղեկի հզորության ամբողջ շրջանակը, առանց երբևէ հագեցնելու ազդանշանը:</value>
+    <comment>Wizard step 5 line 1</comment>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>Ավտոկարգավորման ֆունկցիայի օգնությամբ կարող եք ֆիզիկական կոճակ կապել «Սահմանել» գործողությանը: Սեղմեք այն ցանկացած պահի սեանսի ընթացքում, և MAIRA-ն անմիջապես կթարմացնի Առավելագույն ուժը ձեր չափված գագաթին համապատասխան, առանց ընտրացանկերի կամ ընդհատումների:</value>
+    <comment>Wizard step 5 line 2</comment>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>«Մաքրել» կոճակը վերականգնում է ընթացիկ չափումը, որպեսզի կարողանաք նոր սկսել. օգտակար է, եթե ավտոն դուրս է եկել կամ ինչ-որ բանի է բախվել:</value>
+    <comment>Wizard step 5 line 3</comment>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>Ցանկանո՞ւմ եք կարգավորել ավտոկարգավորման ֆունկցիան:</value>
+    <comment>Wizard step 5 question</comment>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>Ավտոկարգավորման կոնֆիգուրացիա</value>
+    <comment>Wizard step 6 title</comment>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>Նախ կարգավորեք ավտոմատ թիրախ-մարժինը ըստ նախընտրության, ապա հատկացրեք «Սահմանել» և «Մաքրել» կոճակները:</value>
+    <comment>Wizard step 6 line 1</comment>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value> Ավտոմատ թիրախը սահմանում է, թե ղեկի ուժի շրջանակի որ կետում պետք է ընկնի չափված գագաթը: Թիրախն իջեցրեք՝ գագաթից վերև ավելի շատ մարժին պահելու համար. բարձրացրեք՝ ղեկի ուժի ավելի մեծ մասն օգտագործելու համար:</value>
+    <comment>Wizard step 6 hint 1</comment>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>Ալգորիթմ</value>
+    <comment>Wizard step 7 title</comment>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>Ինչպե՞ս եք սիրում զգալ ուժային հետադարձ կապը: Ձեր նախընտրությունը MAIRA-ին հաղորդելու համար քաշեք ստորև բերված սահիկը, և այն կարգավորելու է ալգորիթմը, մանրամասնությունը և հարթեցման կարգավորումները:</value>
+    <comment>Wizard step 7 line 1</comment>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>Մի անհանգստացեք, ամեն ինչ կարող եք ձեռքով կարգավորել Ղեկ էջում:</value>
+    <comment>Wizard step 7 line 2</comment>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>💤 Մեղմ զգացողություն</value>
+    <comment>Wizard step 7 slider left label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>Նորմալ</value>
+    <comment>Wizard step 7 slider center label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>Ընդգծել մանրամասները ⚡</value>
+    <comment>Wizard step 7 slider right label</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>Մետաքսե</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>Ուժեղ delta-սահմանափակում 250 Nm/s-ում: Շատ հանգիստ, կլոր հետադարձ կապ:</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>Մեղմ</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>Delta-սահմանափակում 500 Nm/s-ում: Ավելի մեղմ եզրեր, կրճատված սրություն:</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>Մի փոքր մեղմ</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>Թեթև delta-սահմանափակում 1000 Nm/s-ում: Անցողական պրոցեսների թեթև մարում:</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>Նորմալ</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>Մանրամասնության և հարթեցման հավասարակշռություն:</value>
+    <comment>Wizard step 7 preset description at 0</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>Մի փոքր ուժեղացված</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>50% ուժեղացումով մանրամասնության նուրբ բարելավում:</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>Ուժեղացված</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>100% ուժեղացումով մանրամասնության հստակ բարելավում:</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>Մեծ ուժեղացում</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>150% ուժեղացումով ագրեսիվ մանրամասնության բարելավում:</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>Պատրաստ եք!</value>
+    <comment>Wizard final step title</comment>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>Շնորհակալություն MAIRA-ն փորձելու համար: Հրաձիգն ավարտված է:</value>
+    <comment>Wizard final step line 1</comment>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>Կարող եք ցանկացած ժամանակ կրկին գործարկել այս հրաձիգը՝ այցելելով Հավելվածի Կարգավորումներ էջ և սեղմելով «Գործարկել հրաձիգը» կոճակը:</value>
+    <comment>Wizard final step line 2</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>Նոր եք MAIRA-ում: Սեղմեք</value>
+    <comment>Wizard final step documentation link prefix text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>այստեղ</value>
+    <comment>Wizard final step documentation hyperlink anchor text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>բացելու փաստաթղթավորումը և ծանոթանալու ընդհանուր կառավարիչներին:</value>
+    <comment>Wizard final step documentation link suffix text</comment>
   </data>
 </root>

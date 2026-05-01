@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -22,7 +22,7 @@
     <comment>Tab item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value></value>
+    <value>Marvin's Awesome iRacing App</value>
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
@@ -133,7 +133,7 @@
     <comment>App</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value></value>
+    <value> Nm</value>
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
@@ -181,7 +181,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value></value>
+    <value> Nm/s</value>
     <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
@@ -189,7 +189,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value></value>
+    <value>%</value>
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
@@ -201,7 +201,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoTarget" xml:space="preserve">
-    <value></value>
+    <value>自动目标</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -229,7 +229,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value></value>
+    <value> g</value>
     <comment>Abbreviation for G-Force</comment>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
@@ -249,7 +249,7 @@
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value></value>
+    <value> m/s</value>
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
@@ -297,7 +297,7 @@
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value></value>
+    <value> Hz</value>
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
@@ -636,7 +636,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value></value>
+    <value> Nm/ms</value>
     <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
@@ -711,7 +711,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value></value>
+    <value>°</value>
     <comment>Steering effects</comment>
   </data>
   <data name="Master_UC" xml:space="preserve">
@@ -867,7 +867,7 @@
     <comment>Contribute</comment>
   </data>
   <data name="DegreesPerSecond" xml:space="preserve">
-    <value></value>
+    <value>°/s</value>
   </data>
   <data name="CalibrationFile_UC" xml:space="preserve">
     <value>校准文件</value>
@@ -961,7 +961,7 @@
     <value>MAIRA 语音转文字桥接</value>
   </data>
   <data name="STT_Hint" xml:space="preserve">
-    <value></value>
+    <value>单击启用按钮。您必须通过单击地址栏左侧的麦克风图标，确认浏览器选择了正确的音频设备！</value>
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="STT_Button" xml:space="preserve">
@@ -1028,146 +1028,146 @@
     <value>抓地力测量计</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value></value>
+    <value> MPH</value>
     <comment>Abbreviation for miles per hour</comment>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value></value>
+    <value>风</value>
     <comment>Page title</comment>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value></value>
+    <value>风</value>
     <comment>App menu item</comment>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value></value>
+    <value>启动时连接到 MAIRA Wind</value>
     <comment>Wind</comment>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value></value>
+    <value>连接到 MAIRA Wind</value>
     <comment>Wind</comment>
   </data>
   <data name="LeftFan" xml:space="preserve">
-    <value></value>
+    <value>左风扇</value>
     <comment>Wind</comment>
   </data>
   <data name="RightFan" xml:space="preserve">
-    <value></value>
+    <value>右风扇</value>
     <comment>Wind</comment>
   </data>
   <data name="Connection_UC" xml:space="preserve">
     <value>连接状态</value>
   </data>
   <data name="Settings_UC" xml:space="preserve">
-    <value></value>
+    <value>设置</value>
     <comment>Wind</comment>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
-    <value></value>
+    <value>主风力</value>
     <comment>Wind</comment>
   </data>
   <data name="MinimumSpeed" xml:space="preserve">
-    <value></value>
+    <value>最低速度</value>
     <comment>Wind</comment>
   </data>
   <data name="WindCurving" xml:space="preserve">
-    <value></value>
+    <value>风速曲线</value>
     <comment>Wind</comment>
   </data>
   <data name="FanPower_UC" xml:space="preserve">
-    <value></value>
+    <value>风扇功率</value>
     <comment>Wind</comment>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value></value>
+    <value>速度</value>
     <comment>Wind</comment>
   </data>
   <data name="FanPower" xml:space="preserve">
-    <value></value>
+    <value>风扇功率</value>
     <comment>Wind</comment>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value></value>
+    <value>设备丢失</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
-    <value></value>
+    <value>iRacing 涂装文件夹</value>
     <comment>Trading paints</comment>
   </data>
   <data name="TradingPaints" xml:space="preserve">
-    <value></value>
+    <value>Trading Paints</value>
     <comment>App menu item</comment>
   </data>
   <data name="TradingPaints_UC" xml:space="preserve">
-    <value></value>
+    <value>TRADING PAINTS</value>
     <comment>Page title</comment>
   </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
-    <value></value>
+    <value>Marvin's Awesome iRacing App (MAIRA) 与 Trading Paints 没有关联</value>
     <comment>Trading Paints</comment>
   </data>
   <data name="MultiAdjustmentToolkit" xml:space="preserve">
-    <value></value>
+    <value>多重调整工具包</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
-    <value></value>
+    <value>扭矩压缩</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
-    <value></value>
+    <value>转换速率降低</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SoftClipping" xml:space="preserve">
-    <value></value>
+    <value>软限幅</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DetailGain" xml:space="preserve">
-    <value></value>
+    <value>细节增益 +/- 调整</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OutputSmoothing" xml:space="preserve">
-    <value></value>
+    <value>输出平滑</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SeatOfPants_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS 方向盘振动效果</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS 方向盘恒力效果</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS 踏板振动效果</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value></value>
+    <value>Seat-of-Pants 效果</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value></value>
+    <value>侧向加速度 (Ay)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
-    <value></value>
+    <value>侧向速度 (Vy)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="RatioOfVelocities" xml:space="preserve">
-    <value></value>
+    <value>速度比 (Vy/Vx)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="DefaultPage_UC" xml:space="preserve">
-    <value></value>
+    <value>默认页面</value>
     <comment>App settings</comment>
   </data>
   <data name="Effects_UC" xml:space="preserve">
-    <value></value>
+    <value>效果</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Audio_UC" xml:space="preserve">
@@ -1183,91 +1183,520 @@
     <value>单击</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value></value>
+    <value>Simagic P500 踏板</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsPrototype" xml:space="preserve">
-    <value></value>
+    <value>原型踏板</value>
     <comment>Pedals device</comment>
   </data>
   <data name="Help" xml:space="preserve">
-    <value></value>
+    <value>帮助</value>
     <comment>App menu item</comment>
   </data>
   <data name="Help_UC" xml:space="preserve">
-    <value></value>
+    <value>帮助</value>
     <comment>Page title</comment>
   </data>
   <data name="Documentation_UC" xml:space="preserve">
-    <value></value>
+    <value>文档</value>
     <comment>Help</comment>
   </data>
   <data name="Discord_UC" xml:space="preserve">
-    <value></value>
+    <value>DISCORD</value>
     <comment>Help</comment>
   </data>
   <data name="Forums_UC" xml:space="preserve">
-    <value></value>
+    <value>论坛</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
-    <value></value>
+    <value>文档网站</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordServer" xml:space="preserve">
-    <value></value>
+    <value>Discord 服务器</value>
     <comment>Help</comment>
   </data>
   <data name="iRacingForums" xml:space="preserve">
-    <value></value>
+    <value>iRacing 论坛</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationText" xml:space="preserve">
-    <value></value>
+    <value>这个文档网站一直在持续更新，因为应用程序不断添加新功能。我尽可能经常更新文档，但如果您要找的信息还没有，可以在 Discord 服务器或 iRacing 论坛中查找答案。</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordText" xml:space="preserve">
-    <value></value>
+    <value>如果您在文档中找不到答案，MAIRA Discord 服务器是获得解答的最快方式。有志愿者在提供帮助，我也尽力提供帮助。</value>
     <comment>Help</comment>
   </data>
   <data name="ForumsText" xml:space="preserve">
-    <value></value>
+    <value>这里是一切开始的地方。您可以在这里寻找答案，但我现在不像以前那样活跃。访问 Discord 服务器是提问的最佳方式。</value>
     <comment>Help</comment>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value></value>
+    <value>Simagic P700 踏板</value>
     <comment>Pedals device</comment>
   </data>
   <data name="FanStatus_UC" xml:space="preserve">
-    <value></value>
+    <value>风扇状态</value>
     <comment>Wind</comment>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value></value>
+    <value>侧向 G 力</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="POV" xml:space="preserve">
-    <value></value>
+    <value>POV</value>
     <comment>Button</comment>
   </data>
   <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value></value>
+    <value>您必须选择一个校准文件才能使此效果工作。</value>
     <comment>Steering effects</comment>
   </data>
   <data name="PredictionMode" xml:space="preserve">
-    <value></value>
+    <value>预测模式</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value></value>
+    <value>K1（预测 1/60 秒后）</value>
     <comment>Prediction mode list</comment>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value></value>
+    <value>K2（预测 2/60 秒后）</value>
     <comment>Prediction mode list</comment>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
-    <value></value>
+    <value>预测混合</value>
     <comment>Racing wheel</comment>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>浅色主题</value>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>向导</value>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>启动向导</value>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>安全带张紧器</value>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>安全带张紧器</value>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>连接到 MAIRA 安全带张紧器</value>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>启动时连接到 MAIRA 安全带张紧器</value>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>最小角度</value>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>中立角度</value>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>最大角度</value>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>最大 G 力</value>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>减去重力</value>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>反转</value>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>死区</value>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>平滑</value>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>最小 G</value>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>最大 G</value>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>SEAT OF PANTS 效果</value>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>振动效果</value>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / 车轮锁死</value>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>轮胎打滑</value>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>震动带</value>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>纵向冲击</value>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>横向摇摆</value>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>垂直起伏</value>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>电机输出</value>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>左肩</value>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>右肩</value>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>最大电机转速</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>重试</value>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>最大下载速度</value>
+  </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value>360 Hz 细节</value>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value>峰值感知转换速率降低</value>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value>360 Hz 在 60 Hz 上，10-30% 偏置</value>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value>360 Hz 在 60 Hz 上，10% 偏置</value>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value>（默认值）原生 60 Hz</value>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value>（默认值）360 Hz 在 60 Hz 上，10-30% 偏置</value>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value>（默认值）360 Hz 在 60 Hz 上，10% 偏置</value>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value>（默认值）原生 360 Hz</value>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value>（预设）核心轮胎反馈，最少表面细节</value>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value>（预设）核心轮胎反馈，适度表面细节</value>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value>（预设）适度增强 FFB 动态</value>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value>（预设）适度降低 FFB 动态</value>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value>FFB 类型 + 预设</value>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>力反馈已手动关闭（紧急停止）</value>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>iRacing 模拟器处于回放模式</value>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>iRacing 模拟器中已启用力反馈</value>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>FFB 已禁用，因为校准正在运行</value>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value>换挡振动强度</value>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value>ABS 振动强度</value>
+  </data>
+  <data name="GapMonitor" xml:space="preserve">
+    <value>间距监控</value>
+  </data>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value>叠加层</value>
+  </data>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value>间距监控</value>
+  </data>
+  <data name="Overlays" xml:space="preserve">
+    <value>叠加层</value>
+  </data>
+  <data name="EnableOverlayWindow" xml:space="preserve">
+    <value>启用叠加层窗口</value>
+  </data>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value>显示叠加层窗口标题</value>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>CPU 亲和性</value>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>（预设）减少大颠簸</value>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>应用管理器</value>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>应用管理器</value>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>要启动的应用</value>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>要终止的应用</value>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>可执行文件路径</value>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>参数</value>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>启动后延迟（秒）</value>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>CPU 优先级</value>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>窗口样式</value>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>断开模拟器时终止</value>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>避免主要 CPU 核心</value>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>模拟器断开时启动</value>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>空闲</value>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>低于正常</value>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>高于正常</value>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>高</value>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>最小化</value>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>最大化</value>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>隐藏</value>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>出发吧！</value>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>跳过</value>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>上一步</value>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="Wizard_ApplyAndNext" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>关闭</value>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>你好，赛车手！</value>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>我是向导马文，我来帮助你驾驭强大的 MAIRA！</value>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>挥动我的方格旗，我将引导你完成最重要的设置，让你尽快上赛道。🏁✨</value>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>我们开始吧，还是你本身就是经验丰富的向导，更愿意手动配置一切？</value>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>应用主题</value>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>选择你喜欢浅色还是深色主题。切换下方开关可实时预览效果。</value>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>方向盘</value>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>从下面的列表中选择你的力反馈方向盘。</value>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value> 没有看到你的方向盘？确保它已开机并已连接，列表将自动刷新。</value>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value> Fanatec 用户：Fanatec 方向盘通常在列表中显示为两个独立的设备。如果选择的一个不起作用，请尝试选择另一个！</value>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>最大方向盘力</value>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>输入你的方向盘底座能够产生的最大力，单位为牛顿米（Nm）。MAIRA 使用此值来正确缩放所有力反馈输出以适应你的硬件。</value>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value> 我们已根据你选择的方向盘做出了最佳猜测——但你可以根据需要进行调整。</value>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value> 重要提示：如果你已在方向盘制造商的软件中（例如 Fanatec Wheel Control Panel、Moza Pit House 等）限制了方向盘的最大扭矩输出，请在此处输入减小后的值，而不是硬件的物理最大值。MAIRA 需要知道你的方向盘实际能输出多少，而不是理论上的极限。</value>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>强度控制</value>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRA 允许你将方向盘或控制器上的物理按钮绑定到即时调整力反馈强度的功能——无需离开驾驶座。</value>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>单击下面的 - 和 + 按钮为每个功能分配输入。此步骤是可选的——你可以跳过它，稍后在赛车方向盘页面设置绑定。</value>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value> 一旦映射了输入，按钮边框将变为橙色以确认。</value>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>强度</value>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>自动设置最大力</value>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>当你在赛道上行驶时，MAIRA 会持续测量方向盘产生的实际峰值扭矩。它利用该测量值建议理想的最大力值——该值充分利用方向盘的全部范围而不会截断信号。</value>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>使用自动设置功能，你可以将方向盘或控制器上的物理按钮绑定到设置操作。在比赛期间的任何时刻按下它，MAIRA 将立即更新最大力以匹配你测量的峰值——无需菜单，不中断驾驶。</value>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>配套的清除按钮会重置运行测量，以便你开始新的读数——在你的车辆偏出赛道或撞到什么东西时非常有用。</value>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>你想设置自动设置功能吗？</value>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>自动设置配置</value>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>首先，根据喜好调整自动目标余量，然后映射你的设置和清除按钮。</value>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value> 自动目标设置测量峰值在方向盘力范围中的位置。降低目标可在峰值上方保留更多余量；提高目标可使用更多方向盘范围。</value>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>算法</value>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>你希望力反馈有怎样的感觉？移动下面的滑块告诉 MAIRA 你的偏好，它将配置算法、细节和平滑设置以匹配。</value>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>别担心——你随时可以在赛车方向盘页面手动微调所有设置。</value>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>💤 平滑感觉</value>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>增强细节 ⚡</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>极度平滑</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>250 Nm/s 的大量 delta 限制，非常平静、圆润的反馈。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>平滑</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>500 Nm/s 的 delta 限制，边缘更柔和，锐利度降低。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>略微平滑</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>1000 Nm/s 的轻微 delta 限制，轻微的瞬态软化。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>普通</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>细节与平滑度的平衡。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>略微增强</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>50% 增强的微妙细节增强。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>增强</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>100% 增强的明显细节增强。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>大量增强</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>150% 增强的激进细节增强。</value>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>一切就绪！</value>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>感谢你尝试 MAIRA！向导现已完成。</value>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>你可以随时通过访问应用设置页面并单击启动向导按钮重新运行此向导。</value>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>MAIRA 新手？点击</value>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>这里</value>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>打开文档并了解常用控件。</value>
   </data>
 </root>

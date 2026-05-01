@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -22,7 +22,7 @@
     <comment>Tab item</comment>
   </data>
   <data name="AppTitle" xml:space="preserve">
-    <value></value>
+    <value>Marvin's Awesome iRacing App</value>
     <comment>Window title</comment>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
@@ -58,7 +58,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
-    <value></value>
+    <value>Omezovač delta</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="MaxForce" xml:space="preserve">
@@ -141,7 +141,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
-    <value></value>
+    <value>AdminBoxx</value>
     <comment>Tab item</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
@@ -177,7 +177,7 @@
     <comment>Button mapping</comment>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value></value>
+    <value>Limit delta</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
@@ -201,7 +201,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoTarget" xml:space="preserve">
-    <value></value>
+    <value>Automatický cíl</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -795,7 +795,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeter_UC" xml:space="preserve">
-    <value></value>
+    <value>GRIP-O-METER</value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
@@ -984,7 +984,7 @@
     <value>Most MAIRA řeč–text</value>
   </data>
   <data name="STT_Hint" xml:space="preserve">
-    <value></value>
+    <value>Klikněte na tlačítko povolit. Musíte zkontrolovat, zda má prohlížeč vybrané správné zvukové zařízení, kliknutím na ikonu mikrofonu vlevo od adresního řádku!</value>
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="STT_Button" xml:space="preserve">
@@ -1048,14 +1048,14 @@
     <value>Prokluz kola</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value></value>
+    <value>Grip-O-Meter</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
     <value>mph</value>
     <comment>Abbreviation for miles per hour</comment>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value></value>
+    <value>VÍTR</value>
     <comment>Page title</comment>
   </data>
   <data name="Wind" xml:space="preserve">
@@ -1063,134 +1063,134 @@
     <comment>App menu item</comment>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value></value>
+    <value>Připojit se k MAIRA Wind při spuštění aplikace</value>
     <comment>Wind</comment>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value></value>
+    <value>Připojit se k MAIRA Wind</value>
     <comment>Wind</comment>
   </data>
   <data name="LeftFan" xml:space="preserve">
-    <value></value>
+    <value>Levý ventilátor</value>
     <comment>Wind</comment>
   </data>
   <data name="RightFan" xml:space="preserve">
-    <value></value>
+    <value>Pravý ventilátor</value>
     <comment>Wind</comment>
   </data>
   <data name="Connection_UC" xml:space="preserve">
     <value>Připojení</value>
   </data>
   <data name="Settings_UC" xml:space="preserve">
-    <value></value>
+    <value>NASTAVENÍ</value>
     <comment>Wind</comment>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
-    <value></value>
+    <value>Hlavní výkon větru</value>
     <comment>Wind</comment>
   </data>
   <data name="MinimumSpeed" xml:space="preserve">
-    <value></value>
+    <value>Minimální rychlost</value>
     <comment>Wind</comment>
   </data>
   <data name="WindCurving" xml:space="preserve">
-    <value></value>
+    <value>Křivka větru</value>
     <comment>Wind</comment>
   </data>
   <data name="FanPower_UC" xml:space="preserve">
-    <value></value>
+    <value>VÝKON VENTILÁTORU</value>
     <comment>Wind</comment>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value></value>
+    <value>Rychlost</value>
     <comment>Wind</comment>
   </data>
   <data name="FanPower" xml:space="preserve">
-    <value></value>
+    <value>Výkon ventilátoru</value>
     <comment>Wind</comment>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value></value>
+    <value>Zařízení nenalezeno</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
-    <value></value>
+    <value>Složka barev iRacing</value>
     <comment>Trading paints</comment>
   </data>
   <data name="TradingPaints" xml:space="preserve">
-    <value></value>
+    <value>Trading Paints</value>
     <comment>App menu item</comment>
   </data>
   <data name="TradingPaints_UC" xml:space="preserve">
-    <value></value>
+    <value>TRADING PAINTS</value>
     <comment>Page title</comment>
   </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
-    <value></value>
+    <value>Marvin's Awesome iRacing App (MAIRA) není spojena s Trading Paints</value>
     <comment>Trading Paints</comment>
   </data>
   <data name="MultiAdjustmentToolkit" xml:space="preserve">
-    <value></value>
+    <value>Sada pro vícenásobné úpravy</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
-    <value></value>
+    <value>Komprese točivého momentu</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
-    <value></value>
+    <value>Snížení rychlosti náběhu</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SoftClipping" xml:space="preserve">
-    <value></value>
+    <value>Měkké oříznutí</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DetailGain" xml:space="preserve">
-    <value></value>
+    <value>Úprava zisku detailů +/-</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OutputSmoothing" xml:space="preserve">
-    <value></value>
+    <value>Vyhlazení výstupu</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SeatOfPants_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS VIBRAČNÍ EFEKT VOLANTU</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS EFEKT KONSTANTNÍ SÍLY VOLANTU</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS VIBRAČNÍ EFEKT PEDÁLU</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value></value>
+    <value>Efekt Seat-of-Pants</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value></value>
+    <value>Boční zrychlení (Ay)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
-    <value></value>
+    <value>Boční rychlost (Vy)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="RatioOfVelocities" xml:space="preserve">
-    <value></value>
+    <value>Poměr rychlostí (Vy/Vx)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="DefaultPage_UC" xml:space="preserve">
-    <value></value>
+    <value>VÝCHOZÍ STRÁNKA</value>
     <comment>App settings</comment>
   </data>
   <data name="Effects_UC" xml:space="preserve">
-    <value></value>
+    <value>EFEKTY</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Audio_UC" xml:space="preserve">
@@ -1200,98 +1200,670 @@
     <value>Zobrazení</value>
   </data>
   <data name="AdminBoxx_UC" xml:space="preserve">
-    <value></value>
+    <value>ADMINBOXX</value>
     <comment>Page title</comment>
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>Stiskněte</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value></value>
+    <value>Pedály Simagic P500</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsPrototype" xml:space="preserve">
-    <value></value>
+    <value>Prototypové pedály</value>
     <comment>Pedals device</comment>
   </data>
   <data name="Help" xml:space="preserve">
-    <value></value>
+    <value>Nápověda</value>
     <comment>App menu item</comment>
   </data>
   <data name="Help_UC" xml:space="preserve">
-    <value></value>
+    <value>NÁPOVĚDA</value>
     <comment>Page title</comment>
   </data>
   <data name="Documentation_UC" xml:space="preserve">
-    <value></value>
+    <value>DOKUMENTACE</value>
     <comment>Help</comment>
   </data>
   <data name="Discord_UC" xml:space="preserve">
-    <value></value>
+    <value>DISCORD</value>
     <comment>Help</comment>
   </data>
   <data name="Forums_UC" xml:space="preserve">
-    <value></value>
+    <value>FÓRA</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
-    <value></value>
+    <value>Web dokumentace</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordServer" xml:space="preserve">
-    <value></value>
+    <value>Discord server</value>
     <comment>Help</comment>
   </data>
   <data name="iRacingForums" xml:space="preserve">
-    <value></value>
+    <value>Fóra iRacing</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationText" xml:space="preserve">
-    <value></value>
+    <value>Tento web s dokumentací je neustále ve vývoji, protože do aplikace jsou neustále přidávány nové funkce. Dokumentaci aktualizuji co nejčastěji, ale pokud hledané informace ještě nejsou k dispozici, zkuste hledat na Discord serveru nebo ve fórech iRacing.</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordText" xml:space="preserve">
-    <value></value>
+    <value>Discord server MAIRA je nejrychlejší způsob, jak získat odpovědi na vaše otázky, pokud je nenajdete v dokumentaci. Pomáhají dobrovolníci a já se také snažím pomáhat.</value>
     <comment>Help</comment>
   </data>
   <data name="ForumsText" xml:space="preserve">
-    <value></value>
+    <value>Zde to všechno začalo. Zde můžete hledat odpovědi, ale nejsem zde tak aktivní jako dříve. Navštívení Discord serveru je nejlepší způsob, jak pokládat otázky.</value>
     <comment>Help</comment>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value></value>
+    <value>Pedály Simagic P700</value>
     <comment>Pedals device</comment>
   </data>
   <data name="FanStatus_UC" xml:space="preserve">
-    <value></value>
+    <value>STAV VENTILÁTORU</value>
     <comment>Wind</comment>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value></value>
+    <value>Boční přetížení G</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="POV" xml:space="preserve">
-    <value></value>
+    <value>POV</value>
     <comment>Button</comment>
   </data>
   <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value></value>
+    <value>Pro fungování tohoto efektu musíte vybrat kalibrační soubor.</value>
     <comment>Steering effects</comment>
   </data>
   <data name="PredictionMode" xml:space="preserve">
-    <value></value>
+    <value>Režim predikce</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value></value>
+    <value>K1 (Predikce 1/60 s dopředu)</value>
     <comment>Prediction mode list</comment>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value></value>
+    <value>K2 (Predikce 2/60 s dopředu)</value>
     <comment>Prediction mode list</comment>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
-    <value></value>
+    <value>Míchání predikce</value>
     <comment>Racing wheel</comment>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Světlý motiv</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>PRŮVODCE</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Spustit průvodce</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>NAPÍNAČ BEZPEČNOSTNÍHO PÁSU</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>Napínač bezpečnostního pásu</value>
+    <comment>Device name</comment>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>Připojit k napínači</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>Připojit při spuštění aplikace</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>Minimální úhel</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>Neutrální úhel</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>Maximální úhel</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>Maximální síla G</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>Odečíst gravitaci</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>Režim osy</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>Zakázáno</value>
+    <comment>Seat belt tensioner axis mode</comment>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>Normální</value>
+    <comment>Seat belt tensioner axis mode</comment>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>Invertované</value>
+    <comment>Seat belt tensioner axis mode</comment>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Mrtvá zóna</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>Vyhlazování</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>G min</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>G max</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>EFEKT SEDADLA</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>VIBRAČNÍ EFEKTY</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / Zablokování kola</value>
+    <comment>Vibration effect</comment>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>Prokluzu kola</value>
+    <comment>Vibration effect</comment>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>Varovné pruhy</value>
+    <comment>Vibration effect</comment>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>PŘÍDECH</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>KÝVÁNÍ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>ZDVIHÁNÍ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>VÝSTUP MOTORU</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>Levé rameno</value>
+    <comment>Motor output</comment>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>Pravé rameno</value>
+    <comment>Motor output</comment>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>Maximální rychlost motoru</value>
+    <comment>Motor output</comment>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Zkusit znovu</value>
+    <comment>Button</comment>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>Maximální rychlost stahování</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value>Detail 360 Hz</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value>Omezení slew s detekcí vrcholu</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value>360 Hz na 60 Hz, předpojatost 10-30%</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value>360 Hz na 60 Hz, předpojatost 10%</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value>(Výchozí hodnoty) Nativní 60 Hz</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value>(Výchozí hodnoty) 360 Hz na 60 Hz, předpojatost 10-30%</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value>(Výchozí hodnoty) 360 Hz na 60 Hz, předpojatost 10%</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value>(Výchozí hodnoty) Nativní 360 Hz</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value>(Přednastavení) Základní pneumatická zpětná vazba, minimální detail povrchu</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value>(Přednastavení) Základní pneumatická zpětná vazba, střední detail povrchu</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value>(Přednastavení) Mírně zvýšit dynamiku FFB</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value>(Přednastavení) Mírně snížit dynamiku FFB</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value>Typ FFB + přednastavení</value>
+    <comment>Racing wheel section header</comment>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>Silová zpětná vazba byla ručně zakázána (nouzové zastavení)</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>Simulátor iRacing je v režimu přehrávání</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>Silová zpětná vazba je povolena v simulátoru iRacing</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>FFB je zakázáno, protože probíhá kalibrace</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value>Intenzita vibrace při řazení</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value>Intenzita vibrace ABS</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GapMonitor" xml:space="preserve">
+    <value>Monitor mezery</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value>PŘEKRYVY</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value>MONITOR MEZERY</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Overlays" xml:space="preserve">
+    <value>Překryvy</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="EnableOverlayWindow" xml:space="preserve">
+    <value>Povolit okno překryvu</value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value>Zobrazit titulek okna překryvu</value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>AFINITA CPU</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>(Přednastavení) Snížit velké výmoly</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>Správce aplikací</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>SPRÁVCE APLIKACÍ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>APLIKACE KE SPUŠTĚNÍ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>APLIKACE K UKONČENÍ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>Cesta ke spustitelnému souboru</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>Argumenty</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>Zpoždění po spuštění (sek)</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>Priorita CPU</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>Styl okna</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>Ukončit při odpojení od simulátoru</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>Vyhnout se primárním jádrům CPU</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>Spustit při odpojení od simulátoru</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>Nečinný</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>Pod normální</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>Normální</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>Nad normální</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>Vysoká</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>Normální</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>Minimalizovaný</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>Maximalizovaný</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>Skrytý</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>Jedeme!</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>Přeskočit</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>Předch</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>Další</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>Ano</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>Ne</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_ApplyAndNext" xml:space="preserve">
+    <value>Další</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>Zavřít</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>Vítej, Závodníku!</value>
+    <comment>Wizard step 0 title</comment>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>Jsem Marvin Asistent, zde abych ti pomohl zkrotit výkonný MAIRA!</value>
+    <comment>Wizard step 0 line 1</comment>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>Máváním mou šachovnicovou vlajkou tě provedu nejdůležitějšími nastaveními, abys mohl co nejrychleji vyjet na trať. 🏁✨</value>
+    <comment>Wizard step 0 line 2</comment>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>Začneme, nebo jsi zkušený uživatel a raději si vše nastavíš ručně?</value>
+    <comment>Wizard step 0 line 3</comment>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>Motiv aplikace</value>
+    <comment>Wizard step 1 title</comment>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>Vyber si, zda dáváš přednost světlému nebo tmavému motivu. Pomocí přepínače níže si zobraz živý náhled.</value>
+    <comment>Wizard step 1 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>Volant</value>
+    <comment>Wizard step 2 title</comment>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>Vyber svůj volant se silovou zpětnou vazbou ze seznamu níže.</value>
+    <comment>Wizard step 2 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value> Nevidíš svůj volant? Ujisti se, že je zapnutý a připojený a seznam se automaticky aktualizuje.</value>
+    <comment>Wizard step 2 hint 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value> Uživatelé Fanatec: volanty Fanatec se v seznamu obvykle zobrazují jako dvě samostatná zařízení. Pokud vybraný nefunguje, zkus ten druhý!</value>
+    <comment>Wizard step 2 hint 2</comment>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>Maximální síla volantu</value>
+    <comment>Wizard step 3 title</comment>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>Zadej maximální sílu, kterou tvoje základna dokáže vyprodukovatt, v Newton-metrech (Nm). MAIRA používá tuto hodnotu ke správnému škálování veškerého výstupu silové zpětné vazby pro tvůj hardware.</value>
+    <comment>Wizard step 3 line 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value> Udělali jsme náš nejlepší odhad na základě vybraného volantu, ale klidně ho upravte, pokud je to potřeba.</value>
+    <comment>Wizard step 3 hint 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value> Důležité: pokud jsi již omezil maximální točivý moment volantu v softwaru výrobce (např. Fanatec Wheel Control Panel, Moza Pit House atd.), zadej zde tuto sníženou hodnotu namísto fyzického maxima hardwaru. MAIRA potřebuje vědět, co tvůj volant skutečně vydá, nikoli čeho je teoreticky schopen.</value>
+    <comment>Wizard step 3 hint 2</comment>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>Ovládání síly</value>
+    <comment>Wizard step 4 title</comment>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRA ti umožňuje přiřadit fyzická tlačítka na volantu nebo ovladači pro zvýšení a snížení intenzity silové zpětné vazby za jízdy, aniž bys musel opustit kokpit.</value>
+    <comment>Wizard step 4 line 1</comment>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>Klikni na tlačítka - a + níže pro přiřazení vstupů každému z nich. Tento krok je volitelný; můžeš ho přeskočit a přiřazení nastavit později na stránce Volant.</value>
+    <comment>Wizard step 4 line 2</comment>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value> Jakmile je vstup přiřazen, okraj tlačítka se změní na oranžový jako potvrzení.</value>
+    <comment>Wizard step 4 hint 1</comment>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>Síla</value>
+    <comment>Wizard step 4 strength label</comment>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>Automatické nastavení maximální síly</value>
+    <comment>Wizard step 5 title</comment>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>Při jízdě na trati MAIRA nepřetržitě měří skutečný maximální točivý moment tvého volantu. Toto měření používá k navržení ideální hodnoty Maximální síly, která využívá celý rozsah volantu bez saturace signálu.</value>
+    <comment>Wizard step 5 line 1</comment>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>Pomocí funkce automatického nastavení můžeš přiřadit fyzické tlačítko akci Nastavit. Stiskni ho kdykoli během relace a MAIRA okamžitě aktualizuje Maximální sílu na tvůj naměřený vrchol, bez menu nebo přerušení.</value>
+    <comment>Wizard step 5 line 2</comment>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>Tlačítko Vymazat resetuje aktuální měření, abys mohl začít znovu, což je užitečné, pokud auto vyjelo mimo trať nebo do něčeho narazilo.</value>
+    <comment>Wizard step 5 line 3</comment>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>Chceš nakonfigurovat funkci automatického nastavení?</value>
+    <comment>Wizard step 5 question</comment>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>Nastavení automatického nastavení</value>
+    <comment>Wizard step 6 title</comment>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>Nejprve upravte automatickou cílovou marži dle libosti, poté přiřaďte tlačítka Nastavit a Vymazat.</value>
+    <comment>Wizard step 6 line 1</comment>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value> Automatický cíl nastavuje, kde v rozsahu síly volantu má spadnout naměřený vrchol. Snižte cíl, aby byl nad vrcholem větší okraj; zvyšte ho pro větší využití rozsahu volantu.</value>
+    <comment>Wizard step 6 hint 1</comment>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>Algoritmus</value>
+    <comment>Wizard step 7 title</comment>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>Jak rád cítíš silovou zpětnou vazbu? Posuň posuvník níže, abys sdělil svoji preferenci MAIRA, a ta nakonfiguruje algoritmus, detail a nastavení vyhlazování.</value>
+    <comment>Wizard step 7 line 1</comment>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>Neboj se, vše můžeš kdykoli ručně upravit na stránce Volant.</value>
+    <comment>Wizard step 7 line 2</comment>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>💤 Jemný pocit</value>
+    <comment>Wizard step 7 slider left label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>Normální</value>
+    <comment>Wizard step 7 slider center label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>Zdůraznit detaily ⚡</value>
+    <comment>Wizard step 7 slider right label</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>Hedvábný</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>Silné omezení delty na 250 Nm/s. Velmi klidná a zaoblená zpětná vazba.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>Jemný</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>Omezení delty na 500 Nm/s. Měkčí hrany a menší ostrost.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>Mírně jemný</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>Mírné omezení delty na 1000 Nm/s. Jemné tlumení přechodů.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>Normální</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>Rovnováha mezi detailem a vyhlazováním.</value>
+    <comment>Wizard step 7 preset description at 0</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>Mírně posílený</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>Jemné zlepšení detailu s 50% posílením.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>Posílený</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>Výrazné zlepšení detailu se 100% posílením.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>Velmi posílený</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>Agresivní zlepšení detailu se 150% posílením.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>Jsi připraven!</value>
+    <comment>Wizard final step title</comment>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>Děkujeme za vyzkoušení MAIRA! Průvodce je nyní dokončen.</value>
+    <comment>Wizard final step line 1</comment>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>Tohoto průvodce můžeš kdykoli spustit znovu na stránce Nastavení aplikace kliknutím na tlačítko Spustit průvodce.</value>
+    <comment>Wizard final step line 2</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>Nový v MAIRA? Klikni</value>
+    <comment>Wizard final step documentation link prefix text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>zde</value>
+    <comment>Wizard final step documentation hyperlink anchor text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>pro otevření dokumentace a získání informací o běžných ovládacích prvcích.</value>
+    <comment>Wizard final step documentation link suffix text</comment>
   </data>
 </root>

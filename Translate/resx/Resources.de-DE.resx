@@ -1536,4 +1536,315 @@ Hier ist der Link zum Spenden:</value>
     <value>Versteckt</value>
     <comment>App Manager window style</comment>
   </data>
-</root>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Helles Design</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>ASSISTENT</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Assistent starten</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>Achsenmodus</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>Deaktiviert</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>Normal</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>Invertiert</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Totzone</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>Glättung</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>Min G</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>Max G</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>SITZEFFEKT</value>
+    <comment>Seat of pants</comment>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>VIBRATIONSEFFEKTE</value>
+    <comment>Vibration effects</comment>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / Radblockierung</value>
+    <comment>Vibration effects</comment>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>Radschlupf</value>
+    <comment>Vibration effects</comment>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>Rüttelstreifen</value>
+    <comment>Vibration effects</comment>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Wiederholen</value>
+    <comment>General</comment>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>Los geht's!</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>Überspringen</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>Zurück</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>Weiter</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>Ja</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>Nein</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_ApplyAndNext" xml:space="preserve">
+    <value>Übernehmen &amp; Weiter</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>Schließen</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>Willkommen bei MAIRA!</value>
+    <comment>Wizard step 0 title</comment>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>Dieser Assistent führt dich durch die grundlegende Einrichtung von MAIRA.</value>
+    <comment>Wizard step 0 line 1</comment>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>Du kannst jeden Schritt überspringen und alles später manuell anpassen.</value>
+    <comment>Wizard step 0 line 2</comment>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>Bereit? Dann lass uns beginnen!</value>
+    <comment>Wizard step 0 line 3</comment>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>Lenkrad auswählen</value>
+    <comment>Wizard step 1 title</comment>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>Wähle dein Lenkrad aus der Liste unten aus.</value>
+    <comment>Wizard step 1 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>Kraftfeedback-Modus</value>
+    <comment>Wizard step 2 title</comment>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>Wähle den Modus, der am besten zu deinem Setup passt.</value>
+    <comment>Wizard step 2 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value>Native 60 Hz ist der Standardmodus für die meisten Lenkräder.</value>
+    <comment>Wizard step 2 hint 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value>360 Hz ist nur für kompatible Direkt-Antriebs-Lenkräder verfügbar.</value>
+    <comment>Wizard step 2 hint 2</comment>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>Max. Kraft kalibrieren</value>
+    <comment>Wizard step 3 title</comment>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>Stelle die maximale Kraft deines Lenkrads ein.</value>
+    <comment>Wizard step 3 line 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value>Ein zu niedriger Wert bedeutet schwaches Kraftfeedback; ein zu hoher Wert kann das Signal abschneiden.</value>
+    <comment>Wizard step 3 hint 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value>Beginne mit dem empfohlenen Wert und passe ihn nach Bedarf an.</value>
+    <comment>Wizard step 3 hint 2</comment>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>iRacing FFB-Stärke</value>
+    <comment>Wizard step 4 title</comment>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRA kann die FFB-Stärke in iRacing automatisch auf den empfohlenen Wert setzen.</value>
+    <comment>Wizard step 4 line 1</comment>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>Soll MAIRA die iRacing FFB-Stärke für dich anpassen?</value>
+    <comment>Wizard step 4 line 2</comment>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value>Der empfohlene Wert beträgt 100 %, damit MAIRA die volle Kontrolle über das Kraftfeedback hat.</value>
+    <comment>Wizard step 4 hint 1</comment>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>FFB-Stärke</value>
+    <comment>Wizard step 4 strength label</comment>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>Automatische Max-Kraft-Einstellung</value>
+    <comment>Wizard step 5 title</comment>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>Während du auf der Strecke fährst, misst MAIRA kontinuierlich das tatsächliche Spitzendrehmoment deines Lenkrads und schlägt den idealen Max-Kraft-Wert vor — ohne Signal-Clipping.</value>
+    <comment>Wizard step 5 line 1</comment>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>Mit der Auto-Einstellungsfunktion kannst du eine physische Taste an deinem Lenkrad belegen, um Max Kraft sofort zu aktualisieren — ohne Menüs, ohne Unterbrechungen.</value>
+    <comment>Wizard step 5 line 2</comment>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>Eine Löschen-Taste setzt die laufende Messung zurück, damit du einen frischen Wert erfassen kannst.</value>
+    <comment>Wizard step 5 line 3</comment>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>Möchtest du die Auto-Einstellungsfunktion konfigurieren?</value>
+    <comment>Wizard step 5 yes/no question</comment>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>Auto-Einstellungs-Setup</value>
+    <comment>Wizard step 6 title</comment>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>Passe den Auto-Ziel-Spielraum nach Geschmack an und weise dann deine Einstell- und Lösch-Tasten zu.</value>
+    <comment>Wizard step 6 line 1</comment>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value>Auto-Ziel legt fest, wo im Kraftbereich der Spitzenwert landen soll. Niedriger = mehr Spielraum; höher = mehr Bereichsnutzung.</value>
+    <comment>Wizard step 6 hint 1</comment>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>Algorithmus</value>
+    <comment>Wizard step 7 title</comment>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>Wie soll sich das Kraftfeedback anfühlen? Bewege den Schieberegler, um MAIRA deine Präferenz mitzuteilen.</value>
+    <comment>Wizard step 7 line 1</comment>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>Keine Sorge — du kannst alles jederzeit auf der Seite „Lenkrad" manuell feinjustieren.</value>
+    <comment>Wizard step 7 line 2</comment>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>💤 Sanftes Gefühl</value>
+    <comment>Wizard step 7 slider left label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>Normal</value>
+    <comment>Wizard step 7 slider center label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>Details verstärken ⚡</value>
+    <comment>Wizard step 7 slider right label</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>Seidig Glatt</value>
+    <comment>Wizard step 7 preset name at -3</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>Starke Delta-Begrenzung bei 250 Nm/s. Sehr ruhiges, rundes Feedback.</value>
+    <comment>Wizard step 7 preset description at -3</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>Glatt</value>
+    <comment>Wizard step 7 preset name at -2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>Delta-Begrenzung bei 500 Nm/s. Weichere Kanten, reduzierte Schärfe.</value>
+    <comment>Wizard step 7 preset description at -2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>Leicht Glatt</value>
+    <comment>Wizard step 7 preset name at -1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>Leichte Delta-Begrenzung bei 1000 Nm/s. Minimale Transientenglättung.</value>
+    <comment>Wizard step 7 preset description at -1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>Normal</value>
+    <comment>Wizard step 7 preset name at 0</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>Ausgewogenes Detail und Glättung.</value>
+    <comment>Wizard step 7 preset description at 0</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>Leicht Verstärkt</value>
+    <comment>Wizard step 7 preset name at +1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>Subtile Detailverbesserung bei 50 % Boost.</value>
+    <comment>Wizard step 7 preset description at +1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>Verstärkt</value>
+    <comment>Wizard step 7 preset name at +2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>Deutliche Detailverbesserung bei 100 % Boost.</value>
+    <comment>Wizard step 7 preset description at +2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>Sehr Stark Verstärkt</value>
+    <comment>Wizard step 7 preset name at +3</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>Aggressive Detailverbesserung bei 150 % Boost.</value>
+    <comment>Wizard step 7 preset description at +3</comment>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>Alles eingerichtet!</value>
+    <comment>Wizard final step title</comment>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>Danke, dass du MAIRA ausprobierst! Der Assistent ist nun abgeschlossen.</value>
+    <comment>Wizard final step line 1</comment>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>Du kannst diesen Assistenten jederzeit erneut starten, indem du die App-Einstellungen öffnest und auf „Assistent starten" klickst.</value>
+    <comment>Wizard final step line 2</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>Neu bei MAIRA? Klicke</value>
+    <comment>Wizard final step documentation link prefix text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>hier</value>
+    <comment>Wizard final step documentation hyperlink anchor text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>, um die Dokumentation zu öffnen und mehr über die allgemeinen Steuerelemente zu erfahren.</value>
+    <comment>Wizard final step documentation link suffix text</comment>
+  </data></root>

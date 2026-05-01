@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -202,7 +202,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="AutoTarget" xml:space="preserve">
-    <value></value>
+    <value>Автоцель</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -1248,7 +1248,7 @@
     <comment>App menu item</comment>
   </data>
   <data name="Help_UC" xml:space="preserve">
-    <value></value>
+    <value>ПОМОЩЬ</value>
     <comment>Page title</comment>
   </data>
   <data name="Documentation_UC" xml:space="preserve">
@@ -1256,11 +1256,11 @@
     <comment>Help</comment>
   </data>
   <data name="Discord_UC" xml:space="preserve">
-    <value></value>
+    <value>DISCORD</value>
     <comment>Help</comment>
   </data>
   <data name="Forums_UC" xml:space="preserve">
-    <value></value>
+    <value>ФОРУМЫ</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
@@ -1272,7 +1272,7 @@
     <comment>Help</comment>
   </data>
   <data name="iRacingForums" xml:space="preserve">
-    <value></value>
+    <value>Форумы iRacing</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationText" xml:space="preserve">
@@ -1288,11 +1288,11 @@
     <comment>Help</comment>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value></value>
+    <value>Педали Simagic P700</value>
     <comment>Pedals device</comment>
   </data>
   <data name="FanStatus_UC" xml:space="preserve">
-    <value></value>
+    <value>СТАТУС ВЕНТИЛЯТОРА</value>
     <comment>Wind</comment>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
@@ -1300,115 +1300,115 @@
     <comment>360 Hz Detail Amount</comment>
   </data>
   <data name="SlewPeakMode" xml:space="preserve">
-    <value></value>
+    <value>Снижение скорости с учётом пика</value>
     <comment>Slew Reduction Peak Aware Mode</comment>
   </data>
   <data name="HybridVariable30" xml:space="preserve">
-    <value></value>
+    <value>360 Гц на 60 Гц, смещение 10-30%</value>
     <comment>On 60 Hz with variable 10-30% Bias</comment>
   </data>
   <data name="Hybrid10" xml:space="preserve">
-    <value></value>
+    <value>360 Гц на 60 Гц, смещение 10%</value>
     <comment>On 60 Hz with 10% bias</comment>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value></value>
+    <value>(Значения по умолчанию) Нативный 60 Гц</value>
     <comment>Load default values for Native 60 Hz</comment>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
-    <value></value>
+    <value>(Значения по умолчанию) 360 Гц на 60 Гц, смещение 10-30%</value>
     <comment>Load default values for 360 Hz on 60 Hz, 10-30% Bias</comment>
   </data>
   <data name="DefaultsHybrid10" xml:space="preserve">
-    <value></value>
+    <value>(Значения по умолчанию) 360 Гц на 60 Гц, смещение 10%</value>
     <comment>Load default values for 360 Hz on 60 Hz, 10% Bias</comment>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value></value>
+    <value>(Значения по умолчанию) Нативный 360 Гц</value>
     <comment>Load default values for Native 360 Hz</comment>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value></value>
+    <value>(Пресет) Базовая обратная связь шин, минимальная детализация поверхности</value>
     <comment>Settings targeting core tire feedback</comment>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value></value>
+    <value>(Пресет) Базовая обратная связь шин, умеренная детализация поверхности</value>
     <comment>Settings targeting a balance between tire feedback and surface detail</comment>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value></value>
+    <value>(Пресет) Умеренное усиление динамики FFB</value>
     <comment>Settings to boost FFB Dynamics</comment>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value></value>
+    <value>(Пресет) Умеренное снижение динамики FFB</value>
     <comment>Settings to decrease FFB dynamics</comment>
   </data>
   <data name="FFBSource" xml:space="preserve">
-    <value></value>
+    <value>Тип FFB + пресеты</value>
     <comment>FFB type selection plus preset options</comment>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value></value>
+    <value>Боковая перегрузка</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="POV" xml:space="preserve">
-    <value></value>
+    <value>POV</value>
     <comment>Button</comment>
   </data>
   <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value></value>
+    <value>Необходимо выбрать файл калибровки для работы этого эффекта.</value>
     <comment>Steering effects</comment>
   </data>
   <data name="PredictionMode" xml:space="preserve">
-    <value></value>
+    <value>Режим предсказания</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value></value>
+    <value>K1 (предсказание на 1/60 с вперёд)</value>
     <comment>Prediction mode list</comment>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value></value>
+    <value>K2 (предсказание на 2/60 с вперёд)</value>
     <comment>Prediction mode list</comment>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
-    <value></value>
+    <value>Смешивание предсказания</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="FFBIsDisabled" xml:space="preserve">
-    <value></value>
+    <value>Обратная связь вручную отключена (аварийная остановка)</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SimModeIsNotFull" xml:space="preserve">
-    <value></value>
+    <value>Симулятор iRacing находится в режиме повтора</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="FFBIsEnabledInSimulator" xml:space="preserve">
-    <value></value>
+    <value>Обратная связь включена в симуляторе iRacing</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="CalibrationIsRunning" xml:space="preserve">
-    <value></value>
+    <value>FFB отключён, так как выполняется калибровка</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
-    <value></value>
+    <value>Сила вибрации при переключении передач</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="ABSVibrateStrength" xml:space="preserve">
-    <value></value>
+    <value>Сила вибрации ABS</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="GapMonitor" xml:space="preserve">
-    <value></value>
+    <value>Монитор разрывов</value>
     <comment>Overlays</comment>
   </data>
   <data name="Overlays_UC" xml:space="preserve">
-    <value></value>
+    <value>НАЛОЖЕНИЯ</value>
     <comment>Overlays</comment>
   </data>
   <data name="GapMonitor_UC" xml:space="preserve">
-    <value></value>
+    <value>МОНИТОР РАЗРЫВОВ</value>
     <comment>Overlays</comment>
   </data>
   <data name="Overlays" xml:space="preserve">
@@ -1416,15 +1416,483 @@
     <comment>App menu item</comment>
   </data>
   <data name="EnableOverlayWindow" xml:space="preserve">
-    <value></value>
+    <value>Включить окно наложения</value>
     <comment>Overlays</comment>
   </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
-    <value></value>
+    <value>Показать заголовок окна наложения</value>
     <comment>Overlays</comment>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>Привязка к Процессору</value>
     <comment>App settings</comment>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Светлая тема</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>МАСТЕР НАСТРОЙКИ</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Запустить мастер</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>НАТЯЖИТЕЛЬ РЕМНЯ</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>Натяжитель ремня</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>Подключить к натяжителю</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>Подключать при запуске</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>Минимальный угол</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>Нейтральный угол</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>Максимальный угол</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>Макс. перегрузка G</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>Вычесть гравитацию</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>Режим оси</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>Отключён</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>Нормальный</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>Инвертированный</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Мёртвая зона</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>Сглаживание</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>Мин G</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>Макс G</value>
+    <comment>Seat of pants / belt tensioner</comment>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>ЭФФЕКТ ТАКТИЛЬНОГО ОЩУЩЕНИЯ</value>
+    <comment>Seat of pants</comment>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>ЭФФЕКТЫ ВИБРАЦИИ</value>
+    <comment>Vibration effects</comment>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / Блокировка колеса</value>
+    <comment>Vibration effects</comment>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>Пробуксовка колеса</value>
+    <comment>Vibration effects</comment>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>Шумовая полоса</value>
+    <comment>Vibration effects</comment>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>ПРОДОЛЬНОЕ УСКОРЕНИЕ</value>
+    <comment>Seat of pants axis</comment>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>БОКОВОЕ УСКОРЕНИЕ</value>
+    <comment>Seat of pants axis</comment>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>ВЕРТИКАЛЬНОЕ УСКОРЕНИЕ</value>
+    <comment>Seat of pants axis</comment>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>ВЫХОД МОТОРА</value>
+    <comment>Seat of pants</comment>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>Левое плечо</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>Правое плечо</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>Макс. скорость мотора</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Повторить</value>
+    <comment>General</comment>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>Макс. скорость загрузки</value>
+    <comment>Trading Paints</comment>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>(Пресет) Уменьшить крупные удары</value>
+    <comment>Racing wheel preset</comment>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>Менеджер приложений</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>МЕНЕДЖЕР ПРИЛОЖЕНИЙ</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>ПРИЛОЖЕНИЯ ДЛЯ ЗАПУСКА</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>ПРИЛОЖЕНИЯ ДЛЯ ЗАВЕРШЕНИЯ</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>Путь к файлу</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>Аргументы</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>Задержка после запуска</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>Приоритет CPU</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>Стиль окна</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>Завершить при отключении</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>Не использовать основные ядра CPU</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>Запустить при отключении</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>Простой</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>Ниже нормального</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>Нормальный</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>Выше нормального</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>Высокий</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>Нормальный</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>Свёрнутый</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>Развёрнутый</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>Скрытый</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>Поехали!</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>Пропустить</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>Назад</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>Далее</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>Да</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>Нет</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_ApplyAndNext" xml:space="preserve">
+    <value>Применить и далее</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>Закрыть</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>Добро пожаловать в MAIRA!</value>
+    <comment>Wizard step 0 title</comment>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>Этот мастер проведёт вас через базовую настройку MAIRA.</value>
+    <comment>Wizard step 0 line 1</comment>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>Вы можете пропустить любой шаг и настроить всё вручную позже.</value>
+    <comment>Wizard step 0 line 2</comment>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>Готовы? Начнём!</value>
+    <comment>Wizard step 0 line 3</comment>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>Выбор руля</value>
+    <comment>Wizard step 1 title</comment>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>Выберите ваш руль из списка ниже.</value>
+    <comment>Wizard step 1 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>Режим силовой обратной связи</value>
+    <comment>Wizard step 2 title</comment>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>Выберите режим, наиболее подходящий для вашей системы.</value>
+    <comment>Wizard step 2 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value>Нативный 60 Гц — стандартный режим для большинства рулей.</value>
+    <comment>Wizard step 2 hint 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value>360 Гц доступен только для совместимых рулей с прямым приводом.</value>
+    <comment>Wizard step 2 hint 2</comment>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>Калибровка максимальной силы</value>
+    <comment>Wizard step 3 title</comment>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>Установите максимальную силу вашего руля.</value>
+    <comment>Wizard step 3 line 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value>Слишком низкое значение даёт слабый FFB; слишком высокое может обрезать сигнал.</value>
+    <comment>Wizard step 3 hint 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value>Начните с рекомендуемого значения и настройте по необходимости.</value>
+    <comment>Wizard step 3 hint 2</comment>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>Сила FFB в iRacing</value>
+    <comment>Wizard step 4 title</comment>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRA может автоматически установить силу FFB в iRacing на рекомендуемое значение.</value>
+    <comment>Wizard step 4 line 1</comment>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>Хотите, чтобы MAIRA настроила силу FFB iRacing за вас?</value>
+    <comment>Wizard step 4 line 2</comment>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value>Рекомендуемое значение — 100%, чтобы MAIRA имела полный контроль над силовой обратной связью.</value>
+    <comment>Wizard step 4 hint 1</comment>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>Сила FFB</value>
+    <comment>Wizard step 4 strength label</comment>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>Автонастройка максимальной силы</value>
+    <comment>Wizard step 5 title</comment>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>Во время езды MAIRA непрерывно измеряет пиковый крутящий момент вашего руля и предлагает идеальное значение макс. силы без обрезки сигнала.</value>
+    <comment>Wizard step 5 line 1</comment>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>С помощью функции автонастройки вы можете назначить физическую кнопку на руле для мгновенного обновления макс. силы — без меню и перерывов.</value>
+    <comment>Wizard step 5 line 2</comment>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>Кнопка «Сброс» сбрасывает текущее измерение, чтобы начать заново.</value>
+    <comment>Wizard step 5 line 3</comment>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>Хотите настроить функцию автонастройки?</value>
+    <comment>Wizard step 5 yes/no question</comment>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>Настройка автонастройки</value>
+    <comment>Wizard step 6 title</comment>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>Отрегулируйте запас авто-цели по вкусу, затем назначьте кнопки «Установить» и «Сбросить».</value>
+    <comment>Wizard step 6 line 1</comment>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value>Авто-цель задаёт, в какой части диапазона силы должен оказаться пиковый показатель. Ниже = больше запаса; выше = больше использования диапазона.</value>
+    <comment>Wizard step 6 hint 1</comment>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>Алгоритм</value>
+    <comment>Wizard step 7 title</comment>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>Каким должен быть силовой отклик? Переместите ползунок, чтобы сообщить MAIRA о ваших предпочтениях.</value>
+    <comment>Wizard step 7 line 1</comment>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>Не беспокойтесь — вы всегда можете тонко настроить всё вручную на странице «Руль».</value>
+    <comment>Wizard step 7 line 2</comment>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>💤 Мягкое ощущение</value>
+    <comment>Wizard step 7 slider left label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>Нормальный</value>
+    <comment>Wizard step 7 slider center label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>Усилить детали ⚡</value>
+    <comment>Wizard step 7 slider right label</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>Шелковисто гладкий</value>
+    <comment>Wizard step 7 preset name at -3</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>Сильное ограничение дельты при 250 Нм/с. Очень спокойная, округлая обратная связь.</value>
+    <comment>Wizard step 7 preset description at -3</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>Гладкий</value>
+    <comment>Wizard step 7 preset name at -2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>Ограничение дельты при 500 Нм/с. Мягкие края и сниженная резкость.</value>
+    <comment>Wizard step 7 preset description at -2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>Слегка гладкий</value>
+    <comment>Wizard step 7 preset name at -1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>Лёгкое ограничение дельты при 1000 Нм/с. Минимальное сглаживание переходных процессов.</value>
+    <comment>Wizard step 7 preset description at -1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>Нормальный</value>
+    <comment>Wizard step 7 preset name at 0</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>Баланс деталей и гладкости.</value>
+    <comment>Wizard step 7 preset description at 0</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>Слегка усиленный</value>
+    <comment>Wizard step 7 preset name at +1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>Тонкое усиление деталей при 50% буста.</value>
+    <comment>Wizard step 7 preset description at +1</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>Усиленный</value>
+    <comment>Wizard step 7 preset name at +2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>Заметное усиление деталей при 100% буста.</value>
+    <comment>Wizard step 7 preset description at +2</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>Максимальный буст</value>
+    <comment>Wizard step 7 preset name at +3</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>Агрессивное усиление деталей при 150% буста.</value>
+    <comment>Wizard step 7 preset description at +3</comment>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>Всё готово!</value>
+    <comment>Wizard final step title</comment>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>Спасибо, что попробовали MAIRA! Мастер настройки завершён.</value>
+    <comment>Wizard final step line 1</comment>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>Вы можете перезапустить этот мастер в любое время, открыв страницу «Настройки приложения» и нажав кнопку «Запустить мастер».</value>
+    <comment>Wizard final step line 2</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>Впервые в MAIRA? Нажмите</value>
+    <comment>Wizard final step documentation link prefix text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>здесь</value>
+    <comment>Wizard final step documentation hyperlink anchor text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>, чтобы открыть документацию и узнать об основных элементах управления.</value>
+    <comment>Wizard final step documentation link suffix text</comment>
   </data>
 </root>

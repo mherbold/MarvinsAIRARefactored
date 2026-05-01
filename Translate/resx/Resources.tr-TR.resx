@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -133,7 +133,7 @@
     <comment>App</comment>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value></value>
+    <value> Nm</value>
     <comment>Abbreviation for Newton-meters</comment>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
@@ -141,7 +141,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
-    <value></value>
+    <value>AdminBoxx</value>
     <comment>Tab item</comment>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
@@ -181,7 +181,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value></value>
+    <value> Nm/s</value>
     <comment>Abbreviation for Newton-meters per millisecond</comment>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
@@ -189,7 +189,7 @@
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="Percent" xml:space="preserve">
-    <value></value>
+    <value>%</value>
     <comment>Abbreviation for percent</comment>
   </data>
   <data name="Device_UC" xml:space="preserve">
@@ -199,7 +199,7 @@
     <value>ORTALAMA KUVVET</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
-    <value></value>
+    <value>Otomatik hedef</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Clear" xml:space="preserve">
@@ -226,7 +226,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value></value>
+    <value> g</value>
     <comment>Abbreviation for g-force</comment>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
@@ -246,7 +246,7 @@
     <comment>Abbreviation for seconds (time)</comment>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value></value>
+    <value> m/s</value>
     <comment>Abbreviation for meters per second</comment>
   </data>
   <data name="CurbProtection_UC" xml:space="preserve">
@@ -294,7 +294,7 @@
     <comment>Racing wheel, Pedals</comment>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value></value>
+    <value> Hz</value>
     <comment>Abbreviation for Hertz</comment>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
@@ -306,7 +306,7 @@
     <comment>Pedals</comment>
   </data>
   <data name="Minimum" xml:space="preserve">
-    <value></value>
+    <value>Minimum</value>
     <comment>Racing wheel, Pedals, Graph</comment>
   </data>
   <data name="Maximum" xml:space="preserve">
@@ -633,7 +633,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value></value>
+    <value> Nm/ms</value>
     <comment>Abbreviation for Newton-meters per second</comment>
   </data>
   <data name="WheelForce" xml:space="preserve">
@@ -792,7 +792,7 @@
     <comment>Steering effects</comment>
   </data>
   <data name="GripOMeter_UC" xml:space="preserve">
-    <value></value>
+    <value>GRIP-O-METRE</value>
     <comment>Steering effects</comment>
   </data>
   <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
@@ -988,7 +988,7 @@
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="STT_Hint" xml:space="preserve">
-    <value></value>
+    <value>Etkinleştir düğmesine tıklayın. Adres çubuğunun solundaki mikrofon simgesine tıklayarak tarayıcının doğru ses cihazının seçili olduğunu kontrol etmeniz gerekir!</value>
     <comment>Speech-to-text bridge</comment>
   </data>
   <data name="STT_Button" xml:space="preserve">
@@ -1053,34 +1053,34 @@
     <value>Direksiyon Dönüş</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value></value>
+    <value>Grip-O-Metre</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value></value>
+    <value> MPH</value>
     <comment>Abbreviation for miles per hour</comment>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value></value>
+    <value>RÜZGAR</value>
     <comment>Wind</comment>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value></value>
+    <value>Rüzgar</value>
     <comment>App menu item</comment>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value></value>
+    <value>Uygulama başlangıcında MAIRA Wind'e bağlan</value>
     <comment>Wind</comment>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value></value>
+    <value>MAIRA Wind'e bağlan</value>
     <comment>Wind</comment>
   </data>
   <data name="LeftFan" xml:space="preserve">
-    <value></value>
+    <value>Sol Fan</value>
     <comment>Wind</comment>
   </data>
   <data name="RightFan" xml:space="preserve">
-    <value></value>
+    <value>Sağ Fan</value>
     <comment>Wind</comment>
   </data>
   <data name="Connection_UC" xml:space="preserve">
@@ -1088,107 +1088,107 @@
     <comment>Wind</comment>
   </data>
   <data name="Settings_UC" xml:space="preserve">
-    <value></value>
+    <value>AYARLAR</value>
     <comment>Wind</comment>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
-    <value></value>
+    <value>Ana Rüzgar Gücü</value>
     <comment>Wind</comment>
   </data>
   <data name="MinimumSpeed" xml:space="preserve">
-    <value></value>
+    <value>Minimum Hız</value>
     <comment>Wind</comment>
   </data>
   <data name="WindCurving" xml:space="preserve">
-    <value></value>
+    <value>Rüzgar Eğrisi</value>
     <comment>Wind</comment>
   </data>
   <data name="FanPower_UC" xml:space="preserve">
-    <value></value>
+    <value>FAN GÜCÜ</value>
     <comment>Wind</comment>
   </data>
   <data name="Speed" xml:space="preserve">
-    <value></value>
+    <value>Hız</value>
     <comment>Wind</comment>
   </data>
   <data name="FanPower" xml:space="preserve">
-    <value></value>
+    <value>Fan Gücü</value>
     <comment>Wind</comment>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value></value>
+    <value>Cihaz Bulunamadı</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
-    <value></value>
+    <value>iRacing Boya Klasörü</value>
     <comment>Trading paints</comment>
   </data>
   <data name="TradingPaints" xml:space="preserve">
-    <value></value>
+    <value>Trading Paints</value>
     <comment>App menu item</comment>
   </data>
   <data name="TradingPaints_UC" xml:space="preserve">
-    <value></value>
+    <value>TRADING PAINTS</value>
     <comment>Trading Paints</comment>
   </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
-    <value></value>
+    <value>Marvin's Awesome iRacing App (MAIRA), Trading Paints ile bağlantılı değildir</value>
     <comment>Trading Paints</comment>
   </data>
   <data name="MultiAdjustmentToolkit" xml:space="preserve">
-    <value></value>
+    <value>Çoklu Ayar Araç Seti</value>
     <comment>Racing wheel algorithms list</comment>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
-    <value></value>
+    <value>Tork Sıkıştırma</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
-    <value></value>
+    <value>Slew Hızı Azaltma</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SoftClipping" xml:space="preserve">
-    <value></value>
+    <value>Yumuşak Kırpma</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="DetailGain" xml:space="preserve">
-    <value></value>
+    <value>Ayrıntı Kazancı +/- Ayarı</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="OutputSmoothing" xml:space="preserve">
-    <value></value>
+    <value>Çıkış Yumuşatma</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="SeatOfPants_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS DİREKSİYON VİBRASYON ETKİSİ</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS DİREKSİYON SABİT KUVVETİ ETKİSİ</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
-    <value></value>
+    <value>SEAT-OF-PANTS PEDAL VİBRASYON ETKİSİ</value>
     <comment>Steering effects</comment>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value></value>
+    <value>Seat-of-Pants Etkisi</value>
     <comment>Pedal effects list</comment>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value></value>
+    <value>Yanal İvme (Ay)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
-    <value></value>
+    <value>Yanal Hız (Vy)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="RatioOfVelocities" xml:space="preserve">
-    <value></value>
+    <value>Hız Oranı (Vy/Vx)</value>
     <comment>Steering effects</comment>
   </data>
   <data name="DefaultPage_UC" xml:space="preserve">
@@ -1196,7 +1196,7 @@
     <comment>App settings</comment>
   </data>
   <data name="Effects_UC" xml:space="preserve">
-    <value></value>
+    <value>ETKİLER</value>
     <comment>Racing wheel</comment>
   </data>
   <data name="Audio_UC" xml:space="preserve">
@@ -1206,18 +1206,18 @@
     <value>Ekran</value>
   </data>
   <data name="AdminBoxx_UC" xml:space="preserve">
-    <value></value>
+    <value>ADMINBOXX</value>
     <comment>Page title</comment>
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>Tıkla</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value></value>
+    <value>Simagic P500 Pedalları</value>
     <comment>Pedals device</comment>
   </data>
   <data name="PedalsPrototype" xml:space="preserve">
-    <value></value>
+    <value>Prototip Pedallar</value>
     <comment>Pedals device</comment>
   </data>
   <data name="Help" xml:space="preserve">
@@ -1225,47 +1225,651 @@
     <comment>App menu item</comment>
   </data>
   <data name="Help_UC" xml:space="preserve">
-    <value></value>
+    <value>YARDIM</value>
     <comment>Page title</comment>
   </data>
   <data name="Documentation_UC" xml:space="preserve">
-    <value></value>
+    <value>DOKÜMANTASYON</value>
     <comment>Help</comment>
   </data>
   <data name="Discord_UC" xml:space="preserve">
-    <value></value>
+    <value>DISCORD</value>
     <comment>Help</comment>
   </data>
   <data name="Forums_UC" xml:space="preserve">
-    <value></value>
+    <value>FORUMLAR</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
-    <value></value>
+    <value>Dokümantasyon Web Sitesi</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordServer" xml:space="preserve">
-    <value></value>
+    <value>Discord Sunucusu</value>
     <comment>Help</comment>
   </data>
   <data name="iRacingForums" xml:space="preserve">
-    <value></value>
+    <value>iRacing Forumları</value>
     <comment>Help</comment>
   </data>
   <data name="DocumentationText" xml:space="preserve">
-    <value></value>
+    <value>Bu dokümantasyon web sitesi sürekli geliştirilmektedir çünkü uygulamaya her zaman yeni özellikler eklenmektedir. Dokümantasyonu mümkün olduğunca sık güncelliyorum; ancak aradığınız bilgi henüz orada değilse Discord sunucusuna veya iRacing forumlarına bakabilirsiniz.</value>
     <comment>Help</comment>
   </data>
   <data name="DiscordText" xml:space="preserve">
-    <value></value>
+    <value>MAIRA Discord sunucusu, dokümantasyonda bulamadığınız sorularınıza en hızlı yanıt almanın yoludur. Gönüllüler yardım ediyor ve ben de elimden geleni yapmaya çalışıyorum.</value>
     <comment>Help</comment>
   </data>
   <data name="ForumsText" xml:space="preserve">
-    <value></value>
+    <value>Her şeyin başladığı yer burasıdır. Burada cevap arayabilirsiniz ancak eskisi kadar aktif değilim. Soru sormak için Discord sunucusunu ziyaret etmek en iyi yoldur.</value>
     <comment>Help</comment>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value></value>
+    <value>Simagic P700 Pedalları</value>
     <comment>Pedals device</comment>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Açık Tema</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>SİHİRBAZ</value>
+    <comment>Menu item</comment>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Sihirbazı başlat</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>KEMER GERGİSİ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>Kemer gergisi</value>
+    <comment>Device name</comment>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>Kemer gergisine bağlan</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>Uygulama başlangıcında bağlan</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>Minimum açı</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>Nötr açı</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>Maksimum açı</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>Maksimum G kuvveti</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>Yerçekimini çıkar</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>Eksen modu</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>Devre dışı</value>
+    <comment>Seat belt tensioner axis mode</comment>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>Normal</value>
+    <comment>Seat belt tensioner axis mode</comment>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>Ters çevrilmiş</value>
+    <comment>Seat belt tensioner axis mode</comment>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Ölü bölge</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>Yumuşatma</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>G min</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>G maks</value>
+    <comment>Seat belt tensioner</comment>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>KOLTUK ETKİSİ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>TİTREŞİM ETKİLERİ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / Tekerlek kilitlenmesi</value>
+    <comment>Vibration effect</comment>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>Tekerlek kayması</value>
+    <comment>Vibration effect</comment>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>Gürültü şeridi</value>
+    <comment>Vibration effect</comment>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>İTME</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>SALLANMA</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>KALKMA</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>MOTOR ÇIKIŞI</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>Sol omuz</value>
+    <comment>Motor output</comment>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>Sağ omuz</value>
+    <comment>Motor output</comment>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>Maksimum motor hızı</value>
+    <comment>Motor output</comment>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Yeniden dene</value>
+    <comment>Button</comment>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>Maksimum indirme hızı</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>FAN DURUMU</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value>360 Hz Ayrıntı</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value>Tepe noktası farkında slew sınırlaması</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value>60 Hz üzerinde 360 Hz, önyargı %10-30</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value>60 Hz üzerinde 360 Hz, önyargı %10</value>
+    <comment>Multi adjustment toolkit option</comment>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value>(Varsayılanlar) Yerel 60 Hz</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value>(Varsayılanlar) 60 Hz üzerinde 360 Hz, önyargı %10-30</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value>(Varsayılanlar) 60 Hz üzerinde 360 Hz, önyargı %10</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value>(Varsayılanlar) Yerel 360 Hz</value>
+    <comment>Multi adjustment toolkit option list</comment>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value>(Önayar) Temel lastik geri bildirimi, minimum yüzey ayrıntısı</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value>(Önayar) Temel lastik geri bildirimi, orta yüzey ayrıntısı</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value>(Önayar) FFB dinamiğini orta düzeyde artır</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value>(Önayar) FFB dinamiğini orta düzeyde azalt</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value>FFB türü + önayarlar</value>
+    <comment>Racing wheel section header</comment>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>Yanal G kuvveti</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value>POV</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value>Bu etkinin çalışması için bir kalibrasyon dosyası seçmeniz gerekir.</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value>Tahmin modu</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value>K1 (1/60 s ilerisini tahmin et)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value>K2 (2/60 s ilerisini tahmin et)</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value>Tahmin karışımı</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>Kuvvet geri bildirimi manuel olarak devre dışı bırakıldı (acil durdurma)</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>iRacing simülatörü tekrar oynatma modunda</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>iRacing simülatöründe kuvvet geri bildirimi etkin</value>
+    <comment>Racing wheel status</comment>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>Kalibrasyon devam ettiğinden FFB devre dışı</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value>Vites değişiminde titreşim şiddeti</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value>ABS titreşim şiddeti</value>
+    <comment>Racing wheel</comment>
+  </data>
+  <data name="GapMonitor" xml:space="preserve">
+    <value>Aralık monitörü</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value>KATMANLAR</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value>ARALIK MONİTÖRÜ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="Overlays" xml:space="preserve">
+    <value>Katmanlar</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="EnableOverlayWindow" xml:space="preserve">
+    <value>Katman penceresini etkinleştir</value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value>Katman penceresi başlığını göster</value>
+    <comment>Overlays</comment>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>CPU AFFİNİTESİ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>(Önayar) Büyük tümsekleri azalt</value>
+    <comment>FFB preset option</comment>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>Uygulama yöneticisi</value>
+    <comment>App settings</comment>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>UYGULAMA YÖNETİCİSİ</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>BAŞLATILACAK UYGULAMALAR</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>SONLANDIRILACAK UYGULAMALAR</value>
+    <comment>Section header</comment>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>Yürütülebilir dosya yolu</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>Bağımsız değişkenler</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>Başlatma sonrası gecikme (sn)</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>CPU önceliği</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>Pencere stili</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>Simülatörden bağlantı kesilince sonlandır</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>Birincil CPU çekirdeklerinden kaçın</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>Simülatörden bağlantı kesilince başlat</value>
+    <comment>App manager</comment>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>Boşta</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>Normalin altı</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>Normal</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>Normalin üstü</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>Yüksek</value>
+    <comment>App manager CPU priority</comment>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>Normal</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>Simge durumuna küçültülmüş</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>Ekranı kaplamış</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>Gizli</value>
+    <comment>App manager window style</comment>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>Hadi gidelim!</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>Atla</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>Önceki</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>İleri</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>Evet</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>Hayır</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_ApplyAndNext" xml:space="preserve">
+    <value>İleri</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>Kapat</value>
+    <comment>Wizard button</comment>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>Merhaba, Sürücü!</value>
+    <comment>Wizard step 0 title</comment>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>Ben Asistan Marvin, güçlü MAIRA'yı ehlileştirmenize yardımcı olmak için buradayım!</value>
+    <comment>Wizard step 0 line 1</comment>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>Kareli bayrağımı sallayarak, sizi en önemli ayarlar boyunca yönlendireceğim ve mümkün olan en kısa sürede piste inmenizi sağlayacağım. 🏁✨</value>
+    <comment>Wizard step 0 line 2</comment>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>Başlayalım mı, yoksa zaten deneyimli bir kullanıcı mısınız ve her şeyi manuel olarak yapılandırmayı mı tercih edersiniz?</value>
+    <comment>Wizard step 0 line 3</comment>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>Uygulama teması</value>
+    <comment>Wizard step 1 title</comment>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>Açık mı yoksa koyu temayı mı tercih ettiğinizi seçin. Canlı önizleme için aşağıdaki geçişi kullanın.</value>
+    <comment>Wizard step 1 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>Direksiyon</value>
+    <comment>Wizard step 2 title</comment>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>Kuvvet geri bildirimli direksiyon simidini aşağıdaki listeden seçin.</value>
+    <comment>Wizard step 2 line 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value> Direksiyonunuzu görmüyor musunuz? Açık ve bağlı olduğundan emin olun, liste otomatik olarak güncellenecektir.</value>
+    <comment>Wizard step 2 hint 1</comment>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value> Fanatec kullanıcıları: Fanatec direksiyonları genellikle listede iki ayrı cihaz olarak görünür. Seçilen çalışmıyorsa diğerini deneyin!</value>
+    <comment>Wizard step 2 hint 2</comment>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>Maksimum direksiyon kuvveti</value>
+    <comment>Wizard step 3 title</comment>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>Tabanınızın üretebileceği maksimum kuvveti Newton-metre (Nm) cinsinden girin. MAIRA, tüm kuvvet geri bildirim çıkışını donanımınız için doğru şekilde ölçeklendirmek amacıyla bu değeri kullanır.</value>
+    <comment>Wizard step 3 line 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value> Seçilen direksiyona göre en iyi tahminimizi yaptık, ancak gerekirse ayarlamaktan çekinmeyin.</value>
+    <comment>Wizard step 3 hint 1</comment>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value> Önemli: üretici yazılımında (ör.: Fanatec Wheel Control Panel, Moza Pit House vb.) direksiyonun maksimum torkunu zaten sınırladıysanız, donanımın fiziksel maksimumu yerine azaltılmış değeri buraya girin. MAIRA'nın direksiyonunuzun teorik kapasitesini değil, gerçekte ne teslim edeceğini bilmesi gerekir.</value>
+    <comment>Wizard step 3 hint 2</comment>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>Kuvvet kontrolleri</value>
+    <comment>Wizard step 4 title</comment>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRA, sürüş sırasında Kuvvet Geri Bildirim Yoğunluğunu artırmak ve azaltmak için direksiyonunuzdaki veya denetleyicinizdeki fiziksel düğmeleri atayabilmenizi sağlar, kokpitten hiç çıkmadan.</value>
+    <comment>Wizard step 4 line 1</comment>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>Her birine girdi atamak için aşağıdaki - ve + düğmelerine tıklayın. Bu adım isteğe bağlıdır; atlayabilir ve atamaları daha sonra Direksiyon sayfasından yapılandırabilirsiniz.</value>
+    <comment>Wizard step 4 line 2</comment>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value> Bir girdi atandıktan sonra, düğmenin kenarı onay olarak turuncu renk alacaktır.</value>
+    <comment>Wizard step 4 hint 1</comment>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>Kuvvet</value>
+    <comment>Wizard step 4 strength label</comment>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>Maksimum kuvveti otomatik ayarlama</value>
+    <comment>Wizard step 5 title</comment>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>Pistte sürerken MAIRA, direksiyonunuzun gerçek tepe torkunu sürekli olarak ölçer. Sinyali hiç doyurmadan direksiyonun tam aralığını kullanan ideal Maksimum Kuvvet değerini önermek için bu ölçümü kullanır.</value>
+    <comment>Wizard step 5 line 1</comment>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>Otomatik ayarlama özelliği sayesinde fiziksel bir düğmeyi Ayarla eylemine bağlayabilirsiniz. Bir seans sırasında istediğiniz zaman basın; MAIRA, menüler veya kesintiler olmadan Maksimum Kuvveti ölçülen tepe değerinizle eşleşecek şekilde anında güncelleyecektir.</value>
+    <comment>Wizard step 5 line 2</comment>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>Temizle düğmesi mevcut ölçümü sıfırlar, böylece yeniden başlayabilirsiniz; araba pistten çıktıysa veya bir şeye çarptıysa kullanışlıdır.</value>
+    <comment>Wizard step 5 line 3</comment>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>Otomatik ayarlama özelliğini yapılandırmak ister misiniz?</value>
+    <comment>Wizard step 5 question</comment>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>Otomatik ayarlama yapılandırması</value>
+    <comment>Wizard step 6 title</comment>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>Önce otomatik hedef marjını istediğiniz gibi ayarlayın, ardından Ayarla ve Temizle düğmelerini atayın.</value>
+    <comment>Wizard step 6 line 1</comment>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value> Otomatik hedef, ölçülen tepe değerinin direksiyonun kuvvet aralığında nereye düşmesi gerektiğini belirler. Tepe değerinin üzerinde daha fazla marj bırakmak için hedefi düşürün; direksiyonun daha fazla aralığını kullanmak için artırın.</value>
+    <comment>Wizard step 6 hint 1</comment>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>Algoritma</value>
+    <comment>Wizard step 7 title</comment>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>Kuvvet geri bildirimini nasıl hissetmek istersiniz? Tercihlerinizi MAIRA'ya iletmek için aşağıdaki kaydırıcıyı hareket ettirin; algoritma, ayrıntı ve yumuşatma ayarlarını buna göre yapılandırır.</value>
+    <comment>Wizard step 7 line 1</comment>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>Endişelenmeyin, her şeyi daha sonra Direksiyon sayfasında her zaman manuel olarak ayarlayabilirsiniz.</value>
+    <comment>Wizard step 7 line 2</comment>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>💤 Yumuşak his</value>
+    <comment>Wizard step 7 slider left label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>Normal</value>
+    <comment>Wizard step 7 slider center label</comment>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>Ayrıntıları öne çıkar ⚡</value>
+    <comment>Wizard step 7 slider right label</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>İpeksi</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>250 Nm/s'de güçlü delta sınırlama. Çok sakin ve yuvarlatılmış geri bildirim.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>Yumuşak</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>500 Nm/s'de delta sınırlama. Daha yumuşak kenarlar ve azaltılmış keskinlik.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>Hafif yumuşak</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>1000 Nm/s'de hafif delta sınırlama. Geçicilerin hafif yumuşatılması.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>Normal</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>Ayrıntı ve yumuşatma arasında denge.</value>
+    <comment>Wizard step 7 preset description at 0</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>Hafif güçlendirilmiş</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>%50 güçlendirme ile ince ayrıntı geliştirme.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>Güçlendirilmiş</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>%100 güçlendirme ile belirgin ayrıntı geliştirme.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>Çok güçlendirilmiş</value>
+    <comment>Wizard step 7 preset name</comment>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>%150 güçlendirme ile agresif ayrıntı geliştirme.</value>
+    <comment>Wizard step 7 preset description</comment>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>Hazırsınız!</value>
+    <comment>Wizard final step title</comment>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>MAIRA'yı denediğiniz için teşekkürler! Sihirbaz artık tamamlandı.</value>
+    <comment>Wizard final step line 1</comment>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>Uygulama Ayarları sayfasını ziyaret edip Sihirbazı başlat düğmesine tıklayarak bu sihirbazı istediğiniz zaman yeniden çalıştırabilirsiniz.</value>
+    <comment>Wizard final step line 2</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>MAIRA'ya yeni misiniz? Tıklayın</value>
+    <comment>Wizard final step documentation link prefix text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>buraya</value>
+    <comment>Wizard final step documentation hyperlink anchor text</comment>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>belgeleri açmak ve yaygın kontroller hakkında bilgi edinmek için.</value>
+    <comment>Wizard final step documentation link suffix text</comment>
   </data>
 </root>
