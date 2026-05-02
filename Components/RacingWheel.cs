@@ -97,6 +97,7 @@ public class RacingWheel
 
 	public float AutoTorque { get => _autoTorque; }
 	public float OutputTorque { get => _outputTorque; }
+	public bool IsFFBClipping { get => !_isSuspended && MathF.Abs( _outputTorque ) >= 0.99f; }
 	public bool CrashProtectionIsActive { get => _crashProtectionTimerMS > 0f; }
 	public bool CurbProtectionIsActive { get => _curbProtectionTimerMS > 0f; }
 	public bool FadingIsActive { get => _fadeTimerMS > 0f; }

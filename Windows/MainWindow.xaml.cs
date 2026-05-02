@@ -106,10 +106,6 @@ public partial class MainWindow : Window
 
 		AppMenuPopup.Initialize();
 
-		RefreshWindow();
-
-		Misc.ForcePropertySetters( MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings );
-
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
 		if ( settings.AppRememberWindowPositionAndSize )
@@ -129,11 +125,18 @@ public partial class MainWindow : Window
 
 		_initialized = true;
 
+		RefreshWindow();
+
 		app.Logger.WriteLine( "[MainWindow] <<< Initialize" );
 	}
 
 	public void RefreshWindow()
 	{
+		if ( !_initialized )
+		{
+			return;
+		}
+
 		Dispatcher.Invoke( () =>
 		{
 			var app = App.Instance!;
@@ -160,14 +163,16 @@ public partial class MainWindow : Window
 
 			_pedalsPage.UpdateEffectOptions();
 
+			_seatBeltTensionerPage.UpdateAxisModeOptions();
+			_seatBeltTensionerPage.UpdateSeatOfPantsAlgorithmOptions();
+
+			_soundsPage.UpdateOutputDeviceOptions();
+
 			_speechToTextPage.UpdateLanguageOptions();
 
 			app.SpeechToText.UpdateStrings();
 
 			_appManagerPage.UpdateComboBoxOptions();
-
-			_seatBeltTensionerPage.UpdateAxisModeOptions();
-			_seatBeltTensionerPage.UpdateSeatOfPantsAlgorithmOptions();
 
 			_appSettingsPage.UpdateDefaultPageOptions();
 

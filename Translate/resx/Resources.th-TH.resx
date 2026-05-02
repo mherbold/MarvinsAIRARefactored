@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -802,7 +802,7 @@
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>อัตราส่วนความถี่</value>
+    <value>ระดับเสียง</value>
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
@@ -1343,6 +1343,18 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>คลิก</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>อนุญาตเสียงระหว่างการเล่นซ้ำ</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>เตือน เบรก + คันเร่ง</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>FFB คลิปปิ้ง</value>
     <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
@@ -2004,5 +2016,23 @@
   <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
     <value>เพื่อเปิดเอกสารและเรียนรู้เกี่ยวกับตัวควบคุมทั่วไป</value>
     <comment>Wizard final step documentation link suffix text</comment>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>อุปกรณ์เอาต์พุต</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>อุปกรณ์เอาต์พุต</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[อุปกรณ์เสียงเริ่มต้นของ Windows]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>จุดเริ่มต้นลูป</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>จุดสิ้นสุดลูป</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
   </data>
 </root>

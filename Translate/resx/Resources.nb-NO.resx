@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -698,7 +698,7 @@
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Frekvensforhold</value>
+    <value>Tonehøyde</value>
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
@@ -1238,6 +1238,18 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>KLIKK</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Tillat lyder under avspillinger</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>ADVARSEL BREMS + GASS</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>FFB KLIPPING</value>
     <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
@@ -1899,5 +1911,23 @@
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>CPU-AFFINITET</value>
     <comment>Section header</comment>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Utgangsenhet</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>UTGANGSENHET</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Standard Windows-lydenhet]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Løkkestart</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Løkkeslutt</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
   </data>
 </root>

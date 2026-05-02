@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -699,7 +699,7 @@
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Relación de frecuencia</value>
+    <value>Tono</value>
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
@@ -1240,6 +1240,18 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>CLIC</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Permitir sonidos durante repeticiones</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>AVISO FRENO + ACELERADOR</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>RECORTE FFB</value>
     <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
@@ -1901,5 +1913,23 @@
   <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
     <value>para abrir la documentación y aprender sobre los controles comunes.</value>
     <comment>Wizard final step documentation link suffix text</comment>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Dispositivo de salida</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>DISPOSITIVO DE SALIDA</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Dispositivo de sonido predeterminado de Windows]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Inicio de bucle</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Fin de bucle</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
   </data>
 </root>

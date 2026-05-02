@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -692,7 +692,7 @@
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Frekans Oranı</value>
+    <value>Perde</value>
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
@@ -1211,6 +1211,18 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>Tıkla</value>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Tekrar oynatmalar sırasında seslere izin ver</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>UYARI FREN + GAZ</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>FFB KESMESI</value>
+    <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 Pedalları</value>
@@ -1871,5 +1883,23 @@
   <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
     <value>belgeleri açmak ve yaygın kontroller hakkında bilgi edinmek için.</value>
     <comment>Wizard final step documentation link suffix text</comment>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Çıkış aygıtı</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>ÇIKIS AYGITI</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Varsayılan Windows Ses Aygıtı]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Döngü başlangıcı</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Döngü sonu</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
   </data>
 </root>

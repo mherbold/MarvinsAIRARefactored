@@ -530,7 +530,7 @@
     <value>Käytössä</value>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Taajuussuhde</value>
+    <value>Sävelkorkeus</value>
   </data>
   <data name="Fade" xml:space="preserve">
     <value>Häivytys</value>
@@ -1036,6 +1036,18 @@
   <data name="Click_UC" xml:space="preserve">
     <value>NAPSAUTUS</value>
   </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Salli äänet toistojen aikana</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>VAROITUS JARRU + KAASU</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>FFB-LEIKKAUS</value>
+    <comment>Sounds</comment>
+  </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 -polkimet</value>
   </data>
@@ -1428,5 +1440,23 @@
   </data>
   <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
     <value>avataksesi dokumentaation ja oppiaksesi yleisistä säätimistä.</value>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Lähtölaite</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>LÄHTÖLAITE</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Windowsin oletussäänilaite]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Silmukan alku</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Silmukan loppu</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
   </data>
 </root>

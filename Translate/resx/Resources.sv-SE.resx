@@ -530,7 +530,7 @@
     <value>Aktiverad</value>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Frekvensförhållande</value>
+    <value>Tonhöjd</value>
   </data>
   <data name="Fade" xml:space="preserve">
     <value>Tona</value>
@@ -1036,6 +1036,18 @@
   <data name="Click_UC" xml:space="preserve">
     <value>KLICK</value>
   </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Tillåt ljud under uppspelningar</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>VARNING BROMS + GAS</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>FFB KLIPPNING</value>
+    <comment>Sounds</comment>
+  </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500-pedaler</value>
   </data>
@@ -1428,5 +1440,23 @@
   </data>
   <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
     <value>för att öppna dokumentationen och lär dig om de vanliga kontrollerna.</value>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Utmatningsenhet</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>UTMATNINGSENHET</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Standardljudenhet för Windows]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Loopstart</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Loopslut</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
   </data>
 </root>

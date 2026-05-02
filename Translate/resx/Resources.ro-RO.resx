@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -698,7 +698,7 @@
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Raport frecvență</value>
+    <value>Înălțime sunet</value>
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
@@ -1239,6 +1239,18 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>CLIC</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Permite sunete în timpul reluărilor</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>AVERTISMENT FRÂNĂ + ACCELERAȚIE</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>TĂIERE FFB</value>
     <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
@@ -1888,5 +1900,23 @@
   </data>
   <data name="PedalsP700" xml:space="preserve">
     <value>Pedale Simagic P700</value>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Dispozitiv de ieșire</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>DISPOZITIV DE IEȘIRE</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Dispozitiv audio implicit Windows]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Început buclă</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Sfârșit buclă</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
   </data>
 </root>

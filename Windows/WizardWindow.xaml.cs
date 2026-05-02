@@ -148,7 +148,6 @@ public partial class WizardWindow : Window
 		app.Dispatcher.Invoke( () =>
 		{
 			WizardSteeringDevice_MairaComboBox.ItemsSource = dictionary.OrderBy( kv => kv.Value ).ToList();
-			WizardSteeringDevice_MairaComboBox.SelectedValue = settings.RacingWheelSteeringDeviceGuid;
 			WizardSteeringDevice_MairaComboBox.OffValue = Guid.Empty;
 		} );
 	}

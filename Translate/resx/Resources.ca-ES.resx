@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -698,7 +698,7 @@
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Relació de freqüència</value>
+    <value>Tonalitat</value>
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
@@ -1239,6 +1239,18 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>FEU CLIC</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Permet Sons Durant les Reproduccions</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>AVÍS FREN + ACCELERADOR</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>RETALL FFB</value>
     <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
@@ -1900,5 +1912,23 @@
   <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
     <value>per obrir la documentació i aprendre sobre els controls habituals.</value>
     <comment>Wizard final step documentation link suffix text</comment>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Dispositiu de sortida</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>DISPOSITIU DE SORTIDA</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Dispositiu de so predeterminat de Windows]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Inici del bucle</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Fi del bucle</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
   </data>
 </root>

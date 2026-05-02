@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -698,7 +698,7 @@
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Cymhareb Amlder</value>
+    <value>Traw</value>
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
@@ -1239,6 +1239,18 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>CLICIO</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Caniatáu Synau yn ystod Atchwarediadau</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>RHYBUDD BRÊC + SBARDUN</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>CLIPIO FFB</value>
     <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
@@ -1900,5 +1912,23 @@
   <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
     <value>i agor y ddogfennaeth a dysgu am y rheolaethau cyffredin.</value>
     <comment>Wizard final step documentation link suffix text</comment>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Dyfais allbwn</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>DYFAIS ALLBWN</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Dyfais sain rhagosodedig Windows]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Dechrau dolen</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Diwedd dolen</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
   </data>
 </root>

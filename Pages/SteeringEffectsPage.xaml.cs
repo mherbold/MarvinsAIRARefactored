@@ -163,7 +163,6 @@ public partial class SteeringEffectsPage : UserControl
 				settings.SteeringEffectsCalibrationFileName = autoSelectedValue;
 			}
 
-			CalibrationFileName_MairaComboBox.SelectedValue = settings.SteeringEffectsCalibrationFileName;
 			CalibrationFileName_MairaComboBox.OffValue = string.Empty;
 		} );
 
@@ -177,7 +176,6 @@ public partial class SteeringEffectsPage : UserControl
 		app.Logger.WriteLine( "[SteeringEffectsPage] SetVibrationPatternMairaComboBoxItemsSource >>>" );
 
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
 		var dictionary = new Dictionary<RacingWheel.VibrationPattern, string>
 		{
@@ -189,17 +187,11 @@ public partial class SteeringEffectsPage : UserControl
 			{ RacingWheel.VibrationPattern.SawtoothWaveOut, localization[ "SawtoothWaveOut" ] }
 		};
 
-		app.Dispatcher.Invoke( () =>
-		{
-			UndersteerWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
-			UndersteerWheelVibrationPattern_MairaComboBox.SelectedValue = settings.SteeringEffectsUndersteerWheelVibrationPattern;
+		UndersteerWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
 
-			OversteerWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
-			OversteerWheelVibrationPattern_MairaComboBox.SelectedValue = settings.SteeringEffectsOversteerWheelVibrationPattern;
+		OversteerWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
 
-			SeatOfPantsWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
-			SeatOfPantsWheelVibrationPattern_MairaComboBox.SelectedValue = settings.SteeringEffectsSeatOfPantsWheelVibrationPattern;
-		} );
+		SeatOfPantsWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
 
 		app.Logger.WriteLine( "[SteeringEffectsPage] <<< SetVibrationPatternMairaComboBoxItemsSource" );
 	}
@@ -211,7 +203,6 @@ public partial class SteeringEffectsPage : UserControl
 		app.Logger.WriteLine( "[SteeringEffectsPage] SetConstantForceDirectionMairaComboBoxItemsSource >>>" );
 
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
 		var dictionary = new Dictionary<RacingWheel.ConstantForceDirection, string>
 		{
@@ -220,17 +211,11 @@ public partial class SteeringEffectsPage : UserControl
 			{ RacingWheel.ConstantForceDirection.IncreaseForce, localization[ "IncreaseForce" ] }
 		};
 
-		app.Dispatcher.Invoke( () =>
-		{
-			UndersteerWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
-			UndersteerWheelConstantForceDirection_MairaComboBox.SelectedValue = settings.SteeringEffectsUndersteerWheelConstantForceDirection;
+		UndersteerWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
 
-			OversteerWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
-			OversteerWheelConstantForceDirection_MairaComboBox.SelectedValue = settings.SteeringEffectsOversteerWheelConstantForceDirection;
+		OversteerWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
 
-			SeatOfPantsWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
-			SeatOfPantsWheelConstantForceDirection_MairaComboBox.SelectedValue = settings.SteeringEffectsSeatOfPantsWheelConstantForceDirection;
-		} );
+		SeatOfPantsWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
 
 		app.Logger.WriteLine( "[SteeringEffectsPage] <<< SetConstantForceDirectionMairaComboBoxItemsSource" );
 	}
@@ -242,7 +227,6 @@ public partial class SteeringEffectsPage : UserControl
 		app.Logger.WriteLine( "[SteeringEffectsPage] UpdateSeatOfPantsAlgorithmOptions >>>" );
 
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
 		var dictionary = new Dictionary<SteeringEffects.SeatOfPantsAlgorithm, string>
 		{
@@ -251,11 +235,7 @@ public partial class SteeringEffectsPage : UserControl
 			{ SteeringEffects.SeatOfPantsAlgorithm.YVelocityOverXVelocity, localization[ "RatioOfVelocities" ] }
 		};
 
-		app.Dispatcher.Invoke( () =>
-		{
-			SeatOfPantsAlgorithm_MairaComboBox.ItemsSource = dictionary.ToList();
-			SeatOfPantsAlgorithm_MairaComboBox.SelectedValue = settings.SteeringEffectsSeatOfPantsAlgorithm;
-		} );
+		SeatOfPantsAlgorithm_MairaComboBox.ItemsSource = dictionary.ToList();
 
 		app.Logger.WriteLine( "[SteeringEffectsPage] <<< UpdateSeatOfPantsAlgorithmOptions" );
 	}

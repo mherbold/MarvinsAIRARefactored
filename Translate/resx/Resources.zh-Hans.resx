@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -695,7 +695,7 @@
     <comment>Sounds</comment>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>频率比例</value>
+    <value>音调</value>
     <comment>Sounds</comment>
   </data>
   <data name="Fade" xml:space="preserve">
@@ -1181,6 +1181,18 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>单击</value>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>允许在回放期间播放声音</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>刹车+油门警告</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>FFB削波</value>
+    <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 踏板</value>
@@ -1698,5 +1710,23 @@
   </data>
   <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
     <value>打开文档并了解常用控件。</value>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>输出设备</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>输出设备</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Windows默认声音设备]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>循环开始</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>循环结束</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>毫秒</value>
   </data>
 </root>

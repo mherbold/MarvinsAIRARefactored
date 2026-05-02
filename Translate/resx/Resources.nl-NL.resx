@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
   <resheader name="resmimetype">
@@ -642,7 +642,7 @@
     <value>Ingeschakeld</value>
   </data>
   <data name="FrequencyRatio" xml:space="preserve">
-    <value>Radio frequentie</value>
+    <value>Toonhoogte</value>
   </data>
   <data name="Fade" xml:space="preserve">
     <value>Verzwakken</value>
@@ -1086,6 +1086,18 @@
   </data>
   <data name="Click_UC" xml:space="preserve">
     <value>Klik</value>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Sta geluiden toe tijdens herhalingen</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>WAARSCHUWING REM + GAS</value>
+    <comment>Sounds</comment>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>FFB CLIPPING</value>
+    <comment>Sounds</comment>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500-pedalen</value>
@@ -1746,5 +1758,23 @@
   <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
     <value>om de documentatie te openen en meer te leren over de veelgebruikte besturingselementen.</value>
     <comment>Wizard final step documentation link suffix text</comment>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Uitvoerapparaat</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>UITVOERAPPARAAT</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Standaard Windows-geluidsapparaat]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Lus begin</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Lus einde</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
   </data>
 </root>

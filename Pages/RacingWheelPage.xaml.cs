@@ -205,12 +205,8 @@ public partial class RacingWheelPage : UserControl
 			dictionary.Add( settings.RacingWheelSteeringDeviceGuid, $"{localization[ "DeviceNotFound" ]} [{settings.RacingWheelSteeringDeviceGuid}]" );
 		}
 
-		app.Dispatcher.Invoke( () =>
-		{
-			SteeringDevice_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value ).ToList();
-			SteeringDevice_MairaComboBox.SelectedValue = settings.RacingWheelSteeringDeviceGuid;
-			SteeringDevice_MairaComboBox.OffValue = Guid.Empty;
-		} );
+		SteeringDevice_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value ).ToList();
+		SteeringDevice_MairaComboBox.OffValue = Guid.Empty;
 
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateSteeringDeviceOptions" );
 	}
@@ -222,7 +218,6 @@ public partial class RacingWheelPage : UserControl
 		app.Logger.WriteLine( "[RacingWheelPage] UpdateAlgorithmOptions >>>" );
 
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
 		var dictionary = new Dictionary<RacingWheel.Algorithm, string>
 		{
@@ -236,11 +231,7 @@ public partial class RacingWheelPage : UserControl
 			{ RacingWheel.Algorithm.MultiAdjustmentToolkit, localization[ "MultiAdjustmentToolkit" ] }
 		};
 
-		app.Dispatcher.Invoke( () =>
-		{
-			Algorithm_MairaComboBox.ItemsSource = dictionary.ToList();
-			Algorithm_MairaComboBox.SelectedValue = settings.RacingWheelAlgorithm;
-		} );
+		Algorithm_MairaComboBox.ItemsSource = dictionary.ToList();
 
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateAlgorithmOptions" );
 	}
@@ -252,7 +243,6 @@ public partial class RacingWheelPage : UserControl
 		app.Logger.WriteLine( "[RacingWheelPage] UpdateFFBSourceOptions >>>" );
 
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
 		var dictionary = new Dictionary<RacingWheel.MultiFFBSourceOptions, string>
 		{
@@ -273,11 +263,7 @@ public partial class RacingWheelPage : UserControl
 			{ RacingWheel.MultiFFBSourceOptions.PresetReduceBigBumps, localization[ "PresetReduceBigBumps" ] }
 		};
 
-		app.Dispatcher.Invoke( () =>
-		{
-			MultiFFBSource_MairaComboBox.ItemsSource = dictionary;
-			MultiFFBSource_MairaComboBox.SelectedValue = settings.RacingWheelMultiFFBSourceSelection;
-		} );
+		MultiFFBSource_MairaComboBox.ItemsSource = dictionary;
 
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateFFBSourceOptions" );
 	}
@@ -289,7 +275,6 @@ public partial class RacingWheelPage : UserControl
 		app.Logger.WriteLine( "[RacingWheelPage] UpdatePredictionModeOptions >>>" );
 
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
 		var dictionary = new Dictionary<RacingWheel.PredictionMode, string>
 		{
@@ -298,11 +283,7 @@ public partial class RacingWheelPage : UserControl
 			{ RacingWheel.PredictionMode.PredictK2, localization[ "PredictK2" ] }
 		};
 
-		app.Dispatcher.Invoke( () =>
-		{
-			PredictionMode_MairaComboBox.ItemsSource = dictionary.ToList();
-			PredictionMode_MairaComboBox.SelectedValue = settings.RacingWheelPredictionMode;
-		} );
+		PredictionMode_MairaComboBox.ItemsSource = dictionary.ToList();
 
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdatePredictionModeOptions" );
 	}
@@ -356,12 +337,8 @@ public partial class RacingWheelPage : UserControl
 			dictionary.Add( settings.RacingWheelLFERecordingDeviceGuid, $"{localization[ "DeviceNotFound" ]} [{settings.RacingWheelLFERecordingDeviceGuid}]" );
 		}
 
-		app.Dispatcher.Invoke( () =>
-		{
-			LFERecordingDevice_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value ).ToList();
-			LFERecordingDevice_MairaComboBox.SelectedValue = settings.RacingWheelLFERecordingDeviceGuid;
-			LFERecordingDevice_MairaComboBox.OffValue = Guid.Empty;
-		} );
+		LFERecordingDevice_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value ).ToList();
+		LFERecordingDevice_MairaComboBox.OffValue = Guid.Empty;
 
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateLFERecordingDeviceOptions" );
 	}

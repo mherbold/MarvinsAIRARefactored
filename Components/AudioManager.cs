@@ -1,5 +1,5 @@
-﻿
-using SharpDX.XAudio2;
+
+using System.Collections.ObjectModel;
 using System.IO;
 
 using MarvinsAIRARefactored.Classes;
@@ -12,15 +12,23 @@ public sealed class AudioManager : IDisposable
 
 	private readonly string _soundsDirectory = Path.Combine( App.DocumentsFolder, "Sounds" );
 
-	private readonly Dictionary<string, CachedSound> _soundCache = [];
-	private readonly Dictionary<string, CachedSoundPlayer> _soundPlayerCache = [];
+	// Key = lowercase filename-without-extension (e.g. "click", "click_custom")
+	private readonly Dictionary<string, FmodSound> _soundCache = [];
+	private readonly Dictionary<string, FmodChannel> _channelCache = [];
 
 	private FileSystemWatcher? _fileSystemWatcher = null;
 
-	private XAudio2? _xaudio2;
-	private MasteringVoice? _masteringVoice;
+	private FMOD.System? _fmodSystem;
 
 	private readonly Dictionary<string, DateTime> _debounceMap = [];
+
+	/// <summary>
+	/// List of available output device names. First entry is always the default-device placeholder.
+	/// Populated in <see cref="OpenDevice"/> and exposed for binding to the UI.
+	/// </summary>
+	public ObservableCollection<string> OutputDevices { get; } = [];
+
+	public const string DefaultDeviceName = "[Default Windows Sound Device]";
 
 	public AudioManager()
 	{
@@ -35,7 +43,7 @@ public sealed class AudioManager : IDisposable
 	{
 		using ( _lock.EnterScope() )
 		{
-			if ( _xaudio2 != null )
+			if ( _fmodSystem != null )
 			{
 				return; // Already open
 			}
@@ -46,26 +54,44 @@ public sealed class AudioManager : IDisposable
 
 			try
 			{
-				_xaudio2 = new XAudio2();
-				_masteringVoice = new MasteringVoice( _xaudio2 );
+				FMOD.Factory.System_Create( out var system );
 
-				// Reload all cached sounds
-				var soundPaths = _soundCache.Keys.ToList();
+				_fmodSystem = system;
 
-				foreach ( var key in soundPaths )
+				// Select driver before init so the chosen device is used from the start
+				ApplyOutputDeviceSetting( app );
+
+				var result = _fmodSystem.Value.init( 512, FMOD.INITFLAGS.NORMAL, IntPtr.Zero );
+
+				if ( result != FMOD.RESULT.OK )
 				{
-					var sound = _soundCache[ key ];
-					var player = new CachedSoundPlayer( sound, _xaudio2 );
+					throw new InvalidOperationException( $"FMOD init failed: {result}" );
+				}
 
-					_soundPlayerCache[ key ] = player;
+				// Populate the device list after FMOD is up
+				RefreshOutputDevices();
+
+				// Reload all cached sounds on the new device
+				var paths = _soundCache.Values.Select( s => s.FilePath ).ToList();
+
+				foreach ( var fmodSound in _soundCache.Values )
+				{
+					fmodSound.Dispose();
+				}
+
+				_soundCache.Clear();
+				_channelCache.Clear();
+
+				foreach ( var path in paths )
+				{
+					LoadSoundFromPath( path );
 				}
 
 				app.Logger.WriteLine( "[AudioManager] Audio device opened successfully" );
 			}
 			catch ( Exception exception )
 			{
-				_xaudio2 = null;
-				_masteringVoice = null;
+				_fmodSystem = null;
 
 				app.Logger.WriteLine( $"[AudioManager] Failed to open audio device: {exception.Message}" );
 			}
@@ -78,7 +104,7 @@ public sealed class AudioManager : IDisposable
 	{
 		using ( _lock.EnterScope() )
 		{
-			if ( _xaudio2 == null )
+			if ( _fmodSystem == null )
 			{
 				return; // Already closed
 			}
@@ -87,19 +113,18 @@ public sealed class AudioManager : IDisposable
 
 			app.Logger.WriteLine( "[AudioManager] CloseDevice >>>" );
 
-			// Dispose all sound players
-			foreach ( var player in _soundPlayerCache.Values )
+			StopAll();
+
+			foreach ( var fmodSound in _soundCache.Values )
 			{
-				player.Dispose();
+				fmodSound.Dispose();
 			}
-			_soundPlayerCache.Clear();
 
-			// Dispose XAudio2 resources
-			_masteringVoice?.Dispose();
-			_xaudio2?.Dispose();
+			_soundCache.Clear();
+			_channelCache.Clear();
 
-			_masteringVoice = null;
-			_xaudio2 = null;
+			_fmodSystem.Value.release();
+			_fmodSystem = null;
 
 			app.Logger.WriteLine( "[AudioManager] Audio device closed" );
 
@@ -129,7 +154,6 @@ public sealed class AudioManager : IDisposable
 		_fileSystemWatcher.Created += OnSoundFileChanged;
 		_fileSystemWatcher.Renamed += OnSoundFileChanged;
 
-		// Open device if master sound is enabled
 		if ( DataContext.DataContext.Instance.Settings.SoundsMasterEnabled )
 		{
 			OpenDevice();
@@ -137,6 +161,111 @@ public sealed class AudioManager : IDisposable
 
 		app.Logger.WriteLine( "[AudioManager] <<< Initialize" );
 	}
+
+	/// <summary>
+	/// Must be called once per timer tick so FMOD can process streaming, callbacks, etc.
+	/// </summary>
+	public void Update()
+	{
+		using ( _lock.EnterScope() )
+		{
+			if ( _fmodSystem.HasValue ) _fmodSystem.Value.update();
+		}
+	}
+
+	/// <summary>
+	/// Switches output to the device named <paramref name="deviceName"/>.
+	/// Closes and reopens the FMOD system so the change takes effect.
+	/// </summary>
+	public void SetOutputDevice( string deviceName )
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( $"[AudioManager] SetOutputDevice: {deviceName}" );
+
+		// Snapshot which sound file paths were loaded so we can reload them after reopen
+		List<string> loadedPaths;
+
+		using ( _lock.EnterScope() )
+		{
+			loadedPaths = _soundCache.Values.Select( s => s.FilePath ).ToList();
+		}
+
+		CloseDevice();
+		OpenDevice();
+
+		// Re-load the sounds that were in the cache before the device change
+		foreach ( var path in loadedPaths )
+		{
+			LoadSoundFromPath( path );
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Device enumeration helpers
+	// -------------------------------------------------------------------------
+
+	private void RefreshOutputDevices()
+	{
+		App.Instance!.Dispatcher.Invoke( () =>
+		{
+			OutputDevices.Clear();
+
+			if ( _fmodSystem == null )
+			{
+				return;
+			}
+
+			_fmodSystem.Value.getNumDrivers( out int count );
+
+			for ( int i = 0; i < count; i++ )
+			{
+				_fmodSystem.Value.getDriverInfo( i, out string name, 256, out _, out _, out _, out _ );
+				OutputDevices.Add( name );
+			}
+		} );
+	}
+
+	/// <summary>
+	/// Maps the current <see cref="DataContext.Settings.SoundsOutputDevice"/> name to an FMOD driver
+	/// index and calls <c>setDriver</c>. Must be called before <c>init</c>.
+	/// </summary>
+	private void ApplyOutputDeviceSetting( App app )
+	{
+		if ( _fmodSystem == null )
+		{
+			return;
+		}
+
+		var desiredName = DataContext.DataContext.Instance.Settings.SoundsOutputDevice;
+
+		if ( string.IsNullOrEmpty( desiredName ) || desiredName == DefaultDeviceName )
+		{
+			_fmodSystem.Value.setDriver( 0 );
+			return;
+		}
+
+		_fmodSystem.Value.getNumDrivers( out int count );
+
+		for ( int i = 0; i < count; i++ )
+		{
+			_fmodSystem.Value.getDriverInfo( i, out string name, 256, out _, out _, out _, out _ );
+
+			if ( string.Equals( name, desiredName, StringComparison.OrdinalIgnoreCase ) )
+			{
+				_fmodSystem.Value.setDriver( i );
+				app.Logger.WriteLine( $"[AudioManager] Using output driver {i}: {name}" );
+				return;
+			}
+		}
+
+		app.Logger.WriteLine( $"[AudioManager] Output device '{desiredName}' not found, falling back to default" );
+		_fmodSystem.Value.setDriver( 0 );
+	}
+
+	// -------------------------------------------------------------------------
+	// Sound loading
+	// -------------------------------------------------------------------------
 
 	public void LoadSounds( string directory, string[] soundKeys )
 	{
@@ -149,12 +278,10 @@ public sealed class AudioManager : IDisposable
 	public void LoadSound( string directory, string soundKey )
 	{
 		var path = Path.Combine( _soundsDirectory, directory, $"{soundKey}.wav" );
-
-		LoadSound( path );
+		LoadSoundFromPath( path );
 
 		path = Path.Combine( _soundsDirectory, directory, $"{soundKey}_custom.wav" );
-
-		LoadSound( path );
+		LoadSoundFromPath( path );
 	}
 
 	private void OnSoundFileChanged( object sender, FileSystemEventArgs e )
@@ -163,7 +290,10 @@ public sealed class AudioManager : IDisposable
 		{
 			var now = DateTime.Now;
 
-			var expiredKeys = _debounceMap.Where( kvp => ( now - kvp.Value ).TotalSeconds > 10 ).Select( kvp => kvp.Key ).ToList();
+			var expiredKeys = _debounceMap
+				.Where( kvp => ( now - kvp.Value ).TotalSeconds > 10 )
+				.Select( kvp => kvp.Key )
+				.ToList();
 
 			foreach ( var key in expiredKeys )
 			{
@@ -193,7 +323,7 @@ public sealed class AudioManager : IDisposable
 
 			try
 			{
-				LoadSound( e.FullPath );
+				LoadSoundFromPath( e.FullPath );
 
 				app.Logger.WriteLine( $"[AudioManager] Hot-reloaded sound: {e.FullPath}" );
 			}
@@ -206,53 +336,57 @@ public sealed class AudioManager : IDisposable
 		} );
 	}
 
-	private void LoadSound( string path )
+	private void LoadSoundFromPath( string path )
 	{
-		if ( File.Exists( path ) )
+		if ( !File.Exists( path ) )
 		{
-			var key = Path.GetFileNameWithoutExtension( path )?.ToLower();
+			return;
+		}
 
-			if ( key != null )
+		var key = Path.GetFileNameWithoutExtension( path )?.ToLowerInvariant();
+
+		if ( key == null )
+		{
+			return;
+		}
+
+		using ( _lock.EnterScope() )
+		{
+			if ( _fmodSystem == null )
 			{
-				var sound = new CachedSound( path );
-
-				using ( _lock.EnterScope() )
-				{
-					_soundCache[ key ] = sound;
-
-					// Only create player if device is open
-					if ( _xaudio2 != null )
-					{
-						var player = new CachedSoundPlayer( sound, _xaudio2 );
-
-						if ( _soundPlayerCache.TryGetValue( key, out var existing ) )
-						{
-							existing.Stop();
-							existing.Dispose();
-						}
-
-						_soundPlayerCache[ key ] = player;
-					}
-				}
+				return;
 			}
+
+			// Release the old sound if present
+			if ( _soundCache.TryGetValue( key, out var existing ) )
+			{
+				_channelCache.Remove( key );
+				existing.Dispose();
+			}
+
+			var fmodSound = new FmodSound( path, _fmodSystem.Value );
+			var fmodChannel = new FmodChannel( fmodSound, _fmodSystem.Value );
+
+			_soundCache[ key ] = fmodSound;
+			_channelCache[ key ] = fmodChannel;
 		}
 	}
 
-	public void Play( string key, float volume, float frequencyRatio = 1f, bool loop = false )
+	// -------------------------------------------------------------------------
+	// Playback
+	// -------------------------------------------------------------------------
+
+	public void Play( string key, float volume, float frequencyRatio = 1f, bool loop = false, uint loopStartMs = 0, uint loopEndMs = 0 )
 	{
 		using ( _lock.EnterScope() )
 		{
-			if ( !_soundPlayerCache.TryGetValue( $"{key}_custom", out var player ) )
+			if ( !TryGetChannel( key, out var channel ) )
 			{
-				if ( !_soundPlayerCache.TryGetValue( key, out player ) )
-				{
-					player = null;
-
-					App.Instance!.Logger.WriteLine( $"[AudioManager] Trying to play sound {key} but it was not loaded" );
-				}
+				App.Instance!.Logger.WriteLine( $"[AudioManager] Trying to play sound '{key}' but it was not loaded" );
+				return;
 			}
 
-			player?.Play( volume, frequencyRatio, loop );
+			channel!.Play( volume, frequencyRatio, loop, loopStartMs, loopEndMs );
 		}
 	}
 
@@ -260,15 +394,10 @@ public sealed class AudioManager : IDisposable
 	{
 		using ( _lock.EnterScope() )
 		{
-			if ( !_soundPlayerCache.TryGetValue( $"{key}_custom", out var player ) )
+			if ( TryGetChannel( key, out var channel ) )
 			{
-				if ( !_soundPlayerCache.TryGetValue( key, out player ) )
-				{
-					player = null;
-				}
+				channel!.Update( volume, frequencyRatio );
 			}
-
-			player?.Update( volume, frequencyRatio );
 		}
 	}
 
@@ -276,14 +405,14 @@ public sealed class AudioManager : IDisposable
 	{
 		using ( _lock.EnterScope() )
 		{
-			if ( _soundPlayerCache.TryGetValue( $"{key}_custom", out var player ) )
+			if ( _channelCache.TryGetValue( $"{key}_custom", out var custom ) )
 			{
-				player?.Stop();
+				custom.Stop();
 			}
 
-			if ( _soundPlayerCache.TryGetValue( key, out player ) )
+			if ( _channelCache.TryGetValue( key, out var channel ) )
 			{
-				player?.Stop();
+				channel.Stop();
 			}
 		}
 	}
@@ -292,16 +421,34 @@ public sealed class AudioManager : IDisposable
 	{
 		using ( _lock.EnterScope() )
 		{
-			if ( !_soundPlayerCache.TryGetValue( $"{key}_custom", out var player ) )
+			if ( TryGetChannel( key, out var channel ) )
 			{
-				if ( !_soundPlayerCache.TryGetValue( key, out player ) )
-				{
-					player = null;
-				}
+				return channel!.IsPlaying();
 			}
 
-			return player?.IsPlaying() ?? false;
+			return false;
 		}
+	}
+
+	private void StopAll()
+	{
+		foreach ( var channel in _channelCache.Values )
+		{
+			channel.Stop();
+		}
+	}
+
+	/// <summary>
+	/// Prefers the _custom variant when present, falls back to the base key.
+	/// </summary>
+	private bool TryGetChannel( string key, out FmodChannel? channel )
+	{
+		if ( _channelCache.TryGetValue( $"{key}_custom", out channel ) )
+		{
+			return true;
+		}
+
+		return _channelCache.TryGetValue( key, out channel );
 	}
 
 	public void Dispose()

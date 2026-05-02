@@ -1,39 +1,32 @@
 ﻿
-using System.IO;
-
-using SharpDX;
-using SharpDX.Multimedia;
-using SharpDX.XAudio2;
-
 namespace MarvinsAIRARefactored.Classes;
 
-public sealed class CachedSound : IDisposable
+/// <summary>
+/// Holds a loaded FMOD sound and the file path it was created from.
+/// </summary>
+public sealed class FmodSound : IDisposable
 {
-	public WaveFormat WaveFormat { get; }
-	public AudioBuffer AudioBuffer { get; }
-	public uint[]? DecodedPacketsInfo { get; } = null;
+	/// <summary>The absolute path the sound was loaded from, kept so it can be reloaded after a device change.</summary>
+	public string FilePath { get; }
 
-	private readonly DataStream _stream;
+	public FMOD.Sound Sound { get; private set; }
 
-	public void Dispose() => _stream?.Dispose();
-
-	public CachedSound( string path )
+	public FmodSound( string filePath, FMOD.System fmodSystem )
 	{
-		using var soundStream = new SoundStream( File.OpenRead( path ) );
+		FilePath = filePath;
 
-		WaveFormat = soundStream.Format;
-		_stream = soundStream.ToDataStream();
+		var result = fmodSystem.createSound( filePath, FMOD.MODE.DEFAULT, out var sound );
 
-		AudioBuffer = new AudioBuffer
+		if ( result != FMOD.RESULT.OK )
 		{
-			Stream = _stream,
-			AudioBytes = (int) soundStream.Length,
-			Flags = BufferFlags.EndOfStream
-		};
-
-		if ( soundStream.DecodedPacketsInfo != null )
-		{
-			DecodedPacketsInfo = Array.ConvertAll( soundStream.DecodedPacketsInfo, x => (uint) x );
+			throw new InvalidOperationException( $"FMOD createSound failed ({result}): {filePath}" );
 		}
+
+		Sound = sound;
+	}
+
+	public void Dispose()
+	{
+		Sound.release();
 	}
 }

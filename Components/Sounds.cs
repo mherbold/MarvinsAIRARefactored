@@ -1,6 +1,5 @@
-﻿
+
 using MarvinsAIRARefactored.Classes;
-using static MarvinsAIRARefactored.Components.Sounds;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -14,15 +13,19 @@ public class Sounds
 		WheelSpin,
 		Understeer,
 		Oversteer,
-		SeatOfPants
+		SeatOfPants,
+		BrakeThrottleWarning,
+		FfbClipping
 	}
 
-	public class SoundEffect( string SoundKey, Func<float> volumeProvider, Func<float> frequencyRatioProvider, bool loopSound )
+	public class SoundEffect( string SoundKey, Func<float> volumeProvider, Func<float> frequencyRatioProvider, bool loopSound, Func<float>? loopStartMsProvider = null, Func<float>? loopEndMsProvider = null )
 	{
 		public string SoundKey { get; } = SoundKey;
 		public Func<float> GetVolume { get; } = volumeProvider;
 		public Func<float> GetFrequencyRatio { get; } = frequencyRatioProvider;
 		public bool LoopSound { get; } = loopSound;
+		public uint GetLoopStartMs() => (uint)(loopStartMsProvider?.Invoke() ?? 0f);
+		public uint GetLoopEndMs() => (uint)(loopEndMsProvider?.Invoke() ?? 0f);
 
 		public bool IsPlaying { get; set; } = false;
 		public bool ShouldBePlaying { get; set; } = false;
@@ -30,13 +33,15 @@ public class Sounds
 	}
 
 	private readonly Dictionary<SoundEffectType, SoundEffect> _soundEffects = new() {
-		{ SoundEffectType.Click, new SoundEffect( "click", () => DataContext.DataContext.Instance.Settings.SoundsClickVolume, () => DataContext.DataContext.Instance.Settings.SoundsClickFrequencyRatio, false ) },
-		{ SoundEffectType.ABSEngaged, new SoundEffect( "abs_engaged",() => DataContext.DataContext.Instance.Settings.SoundsABSEngagedVolume,() => DataContext.DataContext.Instance.Settings.SoundsABSEngagedFrequencyRatio, true ) },
-		{ SoundEffectType.WheelLock, new SoundEffect( "wheel_lock",() => DataContext.DataContext.Instance.Settings.SoundsWheelLockVolume,() => DataContext.DataContext.Instance.Settings.SoundsWheelLockFrequencyRatio, true ) },
-		{ SoundEffectType.WheelSpin, new SoundEffect( "wheel_spin",() => DataContext.DataContext.Instance.Settings.SoundsWheelSpinVolume,() => DataContext.DataContext.Instance.Settings.SoundsWheelSpinFrequencyRatio, true ) },
-		{ SoundEffectType.Understeer, new SoundEffect( "understeer",() => DataContext.DataContext.Instance.Settings.SoundsUndersteerVolume,() => DataContext.DataContext.Instance.Settings.SoundsUndersteerFrequencyRatio, true ) },
-		{ SoundEffectType.Oversteer, new SoundEffect( "oversteer",() => DataContext.DataContext.Instance.Settings.SoundsOversteerVolume,() => DataContext.DataContext.Instance.Settings.SoundsOversteerFrequencyRatio, true ) },
-		{ SoundEffectType.SeatOfPants, new SoundEffect( "seat_of_pants",() => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsVolume,() => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsFrequencyRatio, true ) }
+		{ SoundEffectType.Click,      new SoundEffect( "click",       () => DataContext.DataContext.Instance.Settings.SoundsClickVolume,       () => DataContext.DataContext.Instance.Settings.SoundsClickFrequencyRatio,      false ) },
+		{ SoundEffectType.ABSEngaged, new SoundEffect( "abs_engaged", () => DataContext.DataContext.Instance.Settings.SoundsABSEngagedVolume,  () => DataContext.DataContext.Instance.Settings.SoundsABSEngagedFrequencyRatio, true,  () => DataContext.DataContext.Instance.Settings.SoundsABSEngagedLoopStartMs,  () => DataContext.DataContext.Instance.Settings.SoundsABSEngagedLoopEndMs ) },
+		{ SoundEffectType.WheelLock,  new SoundEffect( "wheel_lock",  () => DataContext.DataContext.Instance.Settings.SoundsWheelLockVolume,   () => DataContext.DataContext.Instance.Settings.SoundsWheelLockFrequencyRatio,  true,  () => DataContext.DataContext.Instance.Settings.SoundsWheelLockLoopStartMs,   () => DataContext.DataContext.Instance.Settings.SoundsWheelLockLoopEndMs ) },
+		{ SoundEffectType.WheelSpin,  new SoundEffect( "wheel_spin",  () => DataContext.DataContext.Instance.Settings.SoundsWheelSpinVolume,   () => DataContext.DataContext.Instance.Settings.SoundsWheelSpinFrequencyRatio,  true,  () => DataContext.DataContext.Instance.Settings.SoundsWheelSpinLoopStartMs,   () => DataContext.DataContext.Instance.Settings.SoundsWheelSpinLoopEndMs ) },
+		{ SoundEffectType.Understeer, new SoundEffect( "understeer",  () => DataContext.DataContext.Instance.Settings.SoundsUndersteerVolume,  () => DataContext.DataContext.Instance.Settings.SoundsUndersteerFrequencyRatio, true,  () => DataContext.DataContext.Instance.Settings.SoundsUndersteerLoopStartMs,  () => DataContext.DataContext.Instance.Settings.SoundsUndersteerLoopEndMs ) },
+		{ SoundEffectType.Oversteer,  new SoundEffect( "oversteer",   () => DataContext.DataContext.Instance.Settings.SoundsOversteerVolume,   () => DataContext.DataContext.Instance.Settings.SoundsOversteerFrequencyRatio,  true,  () => DataContext.DataContext.Instance.Settings.SoundsOversteerLoopStartMs,   () => DataContext.DataContext.Instance.Settings.SoundsOversteerLoopEndMs ) },
+		{ SoundEffectType.SeatOfPants,       new SoundEffect( "seat_of_pants",          () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsVolume,           () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsFrequencyRatio,           true,  () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsLoopStartMs,           () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsLoopEndMs ) },
+		{ SoundEffectType.BrakeThrottleWarning, new SoundEffect( "brake_throttle_warning", () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningVolume, () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningFrequencyRatio, true,  () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningLoopStartMs, () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningLoopEndMs ) },
+		{ SoundEffectType.FfbClipping,        new SoundEffect( "ffb_clipping",           () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingVolume,           () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingFrequencyRatio,           true,  () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingLoopStartMs,           () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingLoopEndMs ) },
 	};
 
 	private SoundEffectType? _testSoundEffectType = null;
@@ -103,13 +108,17 @@ public class Sounds
 			}
 		}
 
+		// suppress all non-click sounds during replays if not allowed
+
+		var isReplayActive = app.Simulator.IsReplayPlaying && !settings.SoundsAllowDuringReplays;
+
 		// master sound switch can disable everything
 
 		if ( settings.SoundsMasterEnabled )
 		{
 			// abs engaged
 
-			if ( settings.SoundsABSEngagedEnabled )
+			if ( settings.SoundsABSEngagedEnabled && !isReplayActive )
 			{
 				if ( app.Simulator.BrakeABSactive )
 				{
@@ -120,7 +129,7 @@ public class Sounds
 
 			// wheel lock
 
-			if ( settings.SoundsWheelLockEnabled )
+			if ( settings.SoundsWheelLockEnabled && !isReplayActive )
 			{
 				if ( ( app.Simulator.CurrentRpmSpeedRatio > 0f ) && ( app.Simulator.Gear > 0 ) && ( app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] > 0f ) )
 				{
@@ -137,7 +146,7 @@ public class Sounds
 
 			// wheel spin
 
-			if ( settings.SoundsWheelSpinEnabled )
+			if ( settings.SoundsWheelSpinEnabled && !isReplayActive )
 			{
 				if ( ( app.Simulator.CurrentRpmSpeedRatio > 0f ) && ( app.Simulator.Gear > 0 ) && ( app.Simulator.RPMSpeedRatios[ app.Simulator.Gear ] > 0f ) )
 				{
@@ -154,7 +163,7 @@ public class Sounds
 
 			// understeer
 
-			if ( settings.SoundsUndersteerEnabled )
+			if ( settings.SoundsUndersteerEnabled && !isReplayActive )
 			{
 				if ( app.SteeringEffects.UndersteerEffect > 0f )
 				{
@@ -165,7 +174,7 @@ public class Sounds
 
 			// oversteer
 
-			if ( settings.SoundsOversteerEnabled )
+			if ( settings.SoundsOversteerEnabled && !isReplayActive )
 			{
 				if ( app.SteeringEffects.OversteerEffect > 0f )
 				{
@@ -176,12 +185,34 @@ public class Sounds
 
 			// seat-of-pants
 
-			if ( settings.SoundsSeatOfPantsEnabled )
+			if ( settings.SoundsSeatOfPantsEnabled && !isReplayActive )
 			{
 				if ( app.SteeringEffects.SeatOfPantsEffect != 0f )
 				{
 					_soundEffects[ SoundEffectType.SeatOfPants ].ShouldBePlaying = true;
 					_soundEffects[ SoundEffectType.SeatOfPants ].Volume = MathF.Abs( app.SteeringEffects.SeatOfPantsEffect );
+				}
+			}
+
+			// brake + throttle warning
+
+			if ( settings.SoundsBrakeThrottleWarningEnabled && !isReplayActive )
+			{
+				if ( app.Simulator.Brake > 0f && app.Simulator.Throttle > 0f )
+				{
+					_soundEffects[ SoundEffectType.BrakeThrottleWarning ].ShouldBePlaying = true;
+					_soundEffects[ SoundEffectType.BrakeThrottleWarning ].Volume = 1f;
+				}
+			}
+
+			// FFB clipping
+
+			if ( settings.SoundsFfbClippingEnabled && !isReplayActive )
+			{
+				if ( app.RacingWheel.IsFFBClipping )
+				{
+					_soundEffects[ SoundEffectType.FfbClipping ].ShouldBePlaying = true;
+					_soundEffects[ SoundEffectType.FfbClipping ].Volume = 1f;
 				}
 			}
 		}
@@ -202,7 +233,7 @@ public class Sounds
 				}
 				else
 				{
-					app.AudioManager.Play( soundEffect.SoundKey, finalVolume, soundEffect.GetFrequencyRatio(), soundEffect.LoopSound );
+					app.AudioManager.Play( soundEffect.SoundKey, finalVolume, soundEffect.GetFrequencyRatio(), soundEffect.LoopSound, soundEffect.GetLoopStartMs(), soundEffect.GetLoopEndMs() );
 
 					soundEffect.IsPlaying = true;
 				}
@@ -221,5 +252,8 @@ public class Sounds
 				}
 			}
 		}
+
+		// FMOD requires a per-tick update call for streaming, callbacks, and 3D processing
+		app.AudioManager.Update();
 	}
 }

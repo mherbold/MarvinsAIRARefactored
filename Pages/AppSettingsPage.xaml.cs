@@ -75,7 +75,6 @@ public partial class AppSettingsPage : UserControl
 
 		app.Logger.WriteLine( "[AppSettingsPage] UpdateDefaultPageOptions >>>" );
 
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
 
 		var defaultPageOptions = new Dictionary<MainWindow.AppPage, string>
@@ -97,7 +96,6 @@ public partial class AppSettingsPage : UserControl
 		};
 
 		DefaultPage_MairaComboBox.ItemsSource = defaultPageOptions.ToList();
-		DefaultPage_MairaComboBox.SelectedValue = settings.AppDefaultPage;
 
 		app.Logger.WriteLine( "[AppSettingsPage] <<< UpdateDefaultPageOptions" );
 	}

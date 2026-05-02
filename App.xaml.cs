@@ -247,7 +247,6 @@ public partial class App : Application
 
 				Logger.Initialize();
 				TopLevelWindow.Initialize();
-				SettingsFile.Initialize();
 				AdminBoxx.Initialize();
 				AudioManager.Initialize();
 				Simulator.Initialize();
@@ -273,13 +272,19 @@ public partial class App : Application
 
 #endif
 
+				SettingsFile.Initialize();
+
+				var settings = DataContext.DataContext.Instance.Settings;
+
+				Misc.ForcePropertySetters( settings );
+
+				settings.UpdateSettings( false );
+
+				ApplyTheme( settings.AppLightThemeEnabled );
+
 				DirectInput.OnInput += OnInput;
 
-				DataContext.DataContext.Instance.Settings.UpdateSettings( false );
-
-					ApplyTheme( DataContext.DataContext.Instance.Settings.AppLightThemeEnabled );
-
-					Ready = true;
+				Ready = true;
 
 				GC.Collect();
 

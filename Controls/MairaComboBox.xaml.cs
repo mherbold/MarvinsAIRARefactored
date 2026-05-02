@@ -110,12 +110,24 @@ public partial class MairaComboBox : UserControl
 						return;
 					}
 
-					// Replacing ItemsSource causes the internal ComboBox to temporarily clear
-					// SelectedValue to null, which propagates back through the TwoWay binding.
-					// Restore the captured value so the correct item is re-selected.
-					if ( mairaComboBox.SelectedValue is null && valueToRestore is not null )
+					// Replacing ItemsSource leaves the inner ComboBox with SelectedValue set but
+					// SelectedItem null (WPF orphaned-SelectedValue state). UpdateTarget() and
+					// re-setting SelectedValue are both no-ops when the value hasn't changed.
+					// Directly find the matching item and set SelectedItem to force the display.
+					if ( mairaComboBox.ComboBox.SelectedItem is null && valueToRestore is not null )
 					{
-						mairaComboBox.SelectedValue = valueToRestore;
+						var selectedValuePath = mairaComboBox.ComboBox.SelectedValuePath;
+
+						foreach ( var item in mairaComboBox.ComboBox.Items )
+						{
+							var itemKeyValue = item?.GetType().GetProperty( selectedValuePath )?.GetValue( item );
+
+							if ( Equals( itemKeyValue, valueToRestore ) )
+							{
+								mairaComboBox.ComboBox.SelectedItem = item;
+								break;
+							}
+						}
 					}
 
 					mairaComboBox.UpdateSelectedValueVisuals();

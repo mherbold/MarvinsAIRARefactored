@@ -125,7 +125,6 @@ public partial class SpeechToTextPage : UserControl
 		};
 
 		Language_MairaComboBox.ItemsSource = dictionary.ToList();
-		Language_MairaComboBox.SelectedValue = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.SpeechToTextLanguageCode;
 
 		app.Logger.WriteLine( "[SpeechToTextPage] <<< UpdateLanguageOptions" );
 	}

@@ -9648,6 +9648,38 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Sounds - Output device
+
+	private string _soundsOutputDevice = Components.AudioManager.DefaultDeviceName;
+
+	public string SoundsOutputDevice
+	{
+		get => _soundsOutputDevice;
+
+		set
+		{
+			if ( value == null )
+			{
+				// Notify WPF binding to read back the current value so the UI restores correctly.
+				// Without this, string null guards silently swallow the null without firing
+				// PropertyChanged, leaving the bound ComboBox with a blank selection.
+				OnPropertyChanged();
+				return;
+			}
+
+			if ( value != _soundsOutputDevice )
+			{
+				_soundsOutputDevice = value;
+
+				OnPropertyChanged();
+
+				App.Instance!.AudioManager.SetOutputDevice( value );
+			}
+		}
+	}
+
+	#endregion
+
 	#region Sounds - Master enabled
 
 	private bool _soundsMasterEnabled = true;
@@ -9723,6 +9755,27 @@ public class Settings : INotifyPropertyChanged
 
 	public ButtonMappings SoundsMasterVolumePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SoundsMasterVolumeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Allow during replays
+
+	private bool _soundsAllowDuringReplays = false;
+
+	public bool SoundsAllowDuringReplays
+	{
+		get => _soundsAllowDuringReplays;
+
+		set
+		{
+			if ( value != _soundsAllowDuringReplays )
+			{
+				_soundsAllowDuringReplays = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
 
 	#endregion
 
@@ -9803,7 +9856,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0.25f, 4f );
+			value = Math.Clamp( value, 0.25f, 2f );
 
 			if ( value != _soundsClickFrequencyRatio )
 			{
@@ -9812,7 +9865,8 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsClickFrequencyRatioString = $"{_soundsClickFrequencyRatio * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			var clickPitchShift = _soundsClickFrequencyRatio * 100f - 100f;
+			SoundsClickFrequencyRatioString = clickPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( clickPitchShift >= 0f ? "+" : "" )}{clickPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -9852,6 +9906,27 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _soundsABSEngagedEnabled )
 			{
 				_soundsABSEngagedEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - ABS engaged fade with brake
+
+	private bool _soundsABSEngagedFadeWithBrake = false;
+
+	public bool SoundsABSEngagedFadeWithBrake
+	{
+		get => _soundsABSEngagedFadeWithBrake;
+
+		set
+		{
+			if ( value != _soundsABSEngagedFadeWithBrake )
+			{
+				_soundsABSEngagedFadeWithBrake = value;
 
 				OnPropertyChanged();
 			}
@@ -9916,7 +9991,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0.25f, 4f );
+			value = Math.Clamp( value, 0.25f, 2f );
 
 			if ( value != _soundsABSEngagedFrequencyRatio )
 			{
@@ -9925,7 +10000,8 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsABSEngagedFrequencyRatioString = $"{_soundsABSEngagedFrequencyRatio * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			var absEngagedPitchShift = _soundsABSEngagedFrequencyRatio * 100f - 100f;
+			SoundsABSEngagedFrequencyRatioString = absEngagedPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( absEngagedPitchShift >= 0f ? "+" : "" )}{absEngagedPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -9952,19 +10028,94 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Sounds - ABS engaged fade with brake
+	#region Sounds - ABS engaged loop start ms
 
-	private bool _soundsABSEngagedFadeWithBrake = false;
+	private float _soundsABSEngagedLoopStartMs = 0f;
 
-	public bool SoundsABSEngagedFadeWithBrake
+	public float SoundsABSEngagedLoopStartMs
 	{
-		get => _soundsABSEngagedFadeWithBrake;
+		get => _soundsABSEngagedLoopStartMs;
 
 		set
 		{
-			if ( value != _soundsABSEngagedFadeWithBrake )
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsABSEngagedLoopStartMs )
 			{
-				_soundsABSEngagedFadeWithBrake = value;
+				_soundsABSEngagedLoopStartMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsABSEngagedLoopEndMs < _soundsABSEngagedLoopStartMs )
+				{
+					SoundsABSEngagedLoopEndMs = _soundsABSEngagedLoopStartMs;
+				}
+			}
+
+			SoundsABSEngagedLoopStartMsString = $"{_soundsABSEngagedLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsABSEngagedLoopStartMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsABSEngagedLoopStartMsString
+	{
+		get => _soundsABSEngagedLoopStartMsString;
+
+		set
+		{
+			if ( value != _soundsABSEngagedLoopStartMsString )
+			{
+				_soundsABSEngagedLoopStartMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - ABS engaged loop end ms
+
+	private float _soundsABSEngagedLoopEndMs = 0f;
+
+	public float SoundsABSEngagedLoopEndMs
+	{
+		get => _soundsABSEngagedLoopEndMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsABSEngagedLoopEndMs )
+			{
+				_soundsABSEngagedLoopEndMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsABSEngagedLoopStartMs > _soundsABSEngagedLoopEndMs )
+				{
+					SoundsABSEngagedLoopStartMs = _soundsABSEngagedLoopEndMs;
+				}
+			}
+
+			SoundsABSEngagedLoopEndMsString = $"{_soundsABSEngagedLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsABSEngagedLoopEndMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsABSEngagedLoopEndMsString
+	{
+		get => _soundsABSEngagedLoopEndMsString;
+
+		set
+		{
+			if ( value != _soundsABSEngagedLoopEndMsString )
+			{
+				_soundsABSEngagedLoopEndMsString = value;
 
 				OnPropertyChanged();
 			}
@@ -9986,6 +10137,27 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _soundsWheelLockEnabled )
 			{
 				_soundsWheelLockEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Wheel lock fade with brake
+
+	private bool _soundsWheelLockFadeWithBrake = true;
+
+	public bool SoundsWheelLockFadeWithBrake
+	{
+		get => _soundsWheelLockFadeWithBrake;
+
+		set
+		{
+			if ( value != _soundsWheelLockFadeWithBrake )
+			{
+				_soundsWheelLockFadeWithBrake = value;
 
 				OnPropertyChanged();
 			}
@@ -10050,7 +10222,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0.25f, 4f );
+			value = Math.Clamp( value, 0.25f, 2f );
 
 			if ( value != _soundsWheelLockFrequencyRatio )
 			{
@@ -10059,7 +10231,8 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsWheelLockFrequencyRatioString = $"{_soundsWheelLockFrequencyRatio * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			var wheelLockPitchShift = _soundsWheelLockFrequencyRatio * 100f - 100f;
+			SoundsWheelLockFrequencyRatioString = wheelLockPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( wheelLockPitchShift >= 0f ? "+" : "" )}{wheelLockPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -10083,6 +10256,102 @@ public class Settings : INotifyPropertyChanged
 
 	public ButtonMappings SoundsWheelLockFrequencyRatioPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SoundsWheelLockFrequencyRatioMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Wheel lock loop start ms
+
+	private float _soundsWheelLockLoopStartMs = 0f;
+
+	public float SoundsWheelLockLoopStartMs
+	{
+		get => _soundsWheelLockLoopStartMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsWheelLockLoopStartMs )
+			{
+				_soundsWheelLockLoopStartMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsWheelLockLoopEndMs < _soundsWheelLockLoopStartMs )
+				{
+					SoundsWheelLockLoopEndMs = _soundsWheelLockLoopStartMs;
+				}
+			}
+
+			SoundsWheelLockLoopStartMsString = $"{_soundsWheelLockLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsWheelLockLoopStartMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsWheelLockLoopStartMsString
+	{
+		get => _soundsWheelLockLoopStartMsString;
+
+		set
+		{
+			if ( value != _soundsWheelLockLoopStartMsString )
+			{
+				_soundsWheelLockLoopStartMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Wheel lock loop end ms
+
+	private float _soundsWheelLockLoopEndMs = 0f;
+
+	public float SoundsWheelLockLoopEndMs
+	{
+		get => _soundsWheelLockLoopEndMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsWheelLockLoopEndMs )
+			{
+				_soundsWheelLockLoopEndMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsWheelLockLoopStartMs > _soundsWheelLockLoopEndMs )
+				{
+					SoundsWheelLockLoopStartMs = _soundsWheelLockLoopEndMs;
+				}
+			}
+
+			SoundsWheelLockLoopEndMsString = $"{_soundsWheelLockLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsWheelLockLoopEndMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsWheelLockLoopEndMsString
+	{
+		get => _soundsWheelLockLoopEndMsString;
+
+		set
+		{
+			if ( value != _soundsWheelLockLoopEndMsString )
+			{
+				_soundsWheelLockLoopEndMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
 
 	#endregion
 
@@ -10132,27 +10401,6 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Sounds - Wheel lock fade with brake
-
-	private bool _soundsWheelLockFadeWithBrake = true;
-
-	public bool SoundsWheelLockFadeWithBrake
-	{
-		get => _soundsWheelLockFadeWithBrake;
-
-		set
-		{
-			if ( value != _soundsWheelLockFadeWithBrake )
-			{
-				_soundsWheelLockFadeWithBrake = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
 	#region Sounds - Wheel spin enabled
 
 	private bool _soundsWheelSpinEnabled = false;
@@ -10166,6 +10414,27 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _soundsWheelSpinEnabled )
 			{
 				_soundsWheelSpinEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Wheel spin fade with throttle
+
+	private bool _soundsWheelSpinFadeWithThrottle = true;
+
+	public bool SoundsWheelSpinFadeWithThrottle
+	{
+		get => _soundsWheelSpinFadeWithThrottle;
+
+		set
+		{
+			if ( value != _soundsWheelSpinFadeWithThrottle )
+			{
+				_soundsWheelSpinFadeWithThrottle = value;
 
 				OnPropertyChanged();
 			}
@@ -10230,7 +10499,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0.25f, 4f );
+			value = Math.Clamp( value, 0.25f, 2f );
 
 			if ( value != _soundsWheelSpinFrequencyRatio )
 			{
@@ -10239,7 +10508,8 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsWheelSpinFrequencyRatioString = $"{_soundsWheelSpinFrequencyRatio * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			var wheelSpinPitchShift = _soundsWheelSpinFrequencyRatio * 100f - 100f;
+			SoundsWheelSpinFrequencyRatioString = wheelSpinPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( wheelSpinPitchShift >= 0f ? "+" : "" )}{wheelSpinPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -10263,6 +10533,102 @@ public class Settings : INotifyPropertyChanged
 
 	public ButtonMappings SoundsWheelSpinFrequencyRatioPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SoundsWheelSpinFrequencyRatioMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Wheel spin loop start ms
+
+	private float _soundsWheelSpinLoopStartMs = 0f;
+
+	public float SoundsWheelSpinLoopStartMs
+	{
+		get => _soundsWheelSpinLoopStartMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsWheelSpinLoopStartMs )
+			{
+				_soundsWheelSpinLoopStartMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsWheelSpinLoopEndMs < _soundsWheelSpinLoopStartMs )
+				{
+					SoundsWheelSpinLoopEndMs = _soundsWheelSpinLoopStartMs;
+				}
+			}
+
+			SoundsWheelSpinLoopStartMsString = $"{_soundsWheelSpinLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsWheelSpinLoopStartMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsWheelSpinLoopStartMsString
+	{
+		get => _soundsWheelSpinLoopStartMsString;
+
+		set
+		{
+			if ( value != _soundsWheelSpinLoopStartMsString )
+			{
+				_soundsWheelSpinLoopStartMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Wheel spin loop end ms
+
+	private float _soundsWheelSpinLoopEndMs = 0f;
+
+	public float SoundsWheelSpinLoopEndMs
+	{
+		get => _soundsWheelSpinLoopEndMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsWheelSpinLoopEndMs )
+			{
+				_soundsWheelSpinLoopEndMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsWheelSpinLoopStartMs > _soundsWheelSpinLoopEndMs )
+				{
+					SoundsWheelSpinLoopStartMs = _soundsWheelSpinLoopEndMs;
+				}
+			}
+
+			SoundsWheelSpinLoopEndMsString = $"{_soundsWheelSpinLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsWheelSpinLoopEndMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsWheelSpinLoopEndMsString
+	{
+		get => _soundsWheelSpinLoopEndMsString;
+
+		set
+		{
+			if ( value != _soundsWheelSpinLoopEndMsString )
+			{
+				_soundsWheelSpinLoopEndMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
 
 	#endregion
 
@@ -10309,27 +10675,6 @@ public class Settings : INotifyPropertyChanged
 
 	public ButtonMappings SoundsWheelSpinSensitivityPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SoundsWheelSpinSensitivityMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region Sounds - Wheel spin fade with throttle
-
-	private bool _soundsWheelSpinFadeWithThrottle = true;
-
-	public bool SoundsWheelSpinFadeWithThrottle
-	{
-		get => _soundsWheelSpinFadeWithThrottle;
-
-		set
-		{
-			if ( value != _soundsWheelSpinFadeWithThrottle )
-			{
-				_soundsWheelSpinFadeWithThrottle = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
 
 	#endregion
 
@@ -10410,7 +10755,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0.25f, 4f );
+			value = Math.Clamp( value, 0.25f, 2f );
 
 			if ( value != _soundsUndersteerFrequencyRatio )
 			{
@@ -10419,7 +10764,8 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsUndersteerFrequencyRatioString = $"{_soundsUndersteerFrequencyRatio * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			var understeerPitchShift = _soundsUndersteerFrequencyRatio * 100f - 100f;
+			SoundsUndersteerFrequencyRatioString = understeerPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( understeerPitchShift >= 0f ? "+" : "" )}{understeerPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -10443,6 +10789,102 @@ public class Settings : INotifyPropertyChanged
 
 	public ButtonMappings SoundsUndersteerFrequencyRatioPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SoundsUndersteerFrequencyRatioMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Understeer loop start ms
+
+	private float _soundsUndersteerLoopStartMs = 0f;
+
+	public float SoundsUndersteerLoopStartMs
+	{
+		get => _soundsUndersteerLoopStartMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsUndersteerLoopStartMs )
+			{
+				_soundsUndersteerLoopStartMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsUndersteerLoopEndMs < _soundsUndersteerLoopStartMs )
+				{
+					SoundsUndersteerLoopEndMs = _soundsUndersteerLoopStartMs;
+				}
+			}
+
+			SoundsUndersteerLoopStartMsString = $"{_soundsUndersteerLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsUndersteerLoopStartMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsUndersteerLoopStartMsString
+	{
+		get => _soundsUndersteerLoopStartMsString;
+
+		set
+		{
+			if ( value != _soundsUndersteerLoopStartMsString )
+			{
+				_soundsUndersteerLoopStartMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Understeer loop end ms
+
+	private float _soundsUndersteerLoopEndMs = 0f;
+
+	public float SoundsUndersteerLoopEndMs
+	{
+		get => _soundsUndersteerLoopEndMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsUndersteerLoopEndMs )
+			{
+				_soundsUndersteerLoopEndMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsUndersteerLoopStartMs > _soundsUndersteerLoopEndMs )
+				{
+					SoundsUndersteerLoopStartMs = _soundsUndersteerLoopEndMs;
+				}
+			}
+
+			SoundsUndersteerLoopEndMsString = $"{_soundsUndersteerLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsUndersteerLoopEndMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsUndersteerLoopEndMsString
+	{
+		get => _soundsUndersteerLoopEndMsString;
+
+		set
+		{
+			if ( value != _soundsUndersteerLoopEndMsString )
+			{
+				_soundsUndersteerLoopEndMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
 
 	#endregion
 
@@ -10523,7 +10965,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0.25f, 4f );
+			value = Math.Clamp( value, 0.25f, 2f );
 
 			if ( value != _soundsOversteerFrequencyRatio )
 			{
@@ -10532,7 +10974,8 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsOversteerFrequencyRatioString = $"{_soundsOversteerFrequencyRatio * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			var oversteerPitchShift = _soundsOversteerFrequencyRatio * 100f - 100f;
+			SoundsOversteerFrequencyRatioString = oversteerPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( oversteerPitchShift >= 0f ? "+" : "" )}{oversteerPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -10556,6 +10999,102 @@ public class Settings : INotifyPropertyChanged
 
 	public ButtonMappings SoundsOversteerFrequencyRatioPlusButtonMappings { get; set; } = new();
 	public ButtonMappings SoundsOversteerFrequencyRatioMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Oversteer loop start ms
+
+	private float _soundsOversteerLoopStartMs = 0f;
+
+	public float SoundsOversteerLoopStartMs
+	{
+		get => _soundsOversteerLoopStartMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsOversteerLoopStartMs )
+			{
+				_soundsOversteerLoopStartMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsOversteerLoopEndMs < _soundsOversteerLoopStartMs )
+				{
+					SoundsOversteerLoopEndMs = _soundsOversteerLoopStartMs;
+				}
+			}
+
+			SoundsOversteerLoopStartMsString = $"{_soundsOversteerLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsOversteerLoopStartMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsOversteerLoopStartMsString
+	{
+		get => _soundsOversteerLoopStartMsString;
+
+		set
+		{
+			if ( value != _soundsOversteerLoopStartMsString )
+			{
+				_soundsOversteerLoopStartMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Oversteer loop end ms
+
+	private float _soundsOversteerLoopEndMs = 0f;
+
+	public float SoundsOversteerLoopEndMs
+	{
+		get => _soundsOversteerLoopEndMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsOversteerLoopEndMs )
+			{
+				_soundsOversteerLoopEndMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsOversteerLoopStartMs > _soundsOversteerLoopEndMs )
+				{
+					SoundsOversteerLoopStartMs = _soundsOversteerLoopEndMs;
+				}
+			}
+
+			SoundsOversteerLoopEndMsString = $"{_soundsOversteerLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsOversteerLoopEndMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsOversteerLoopEndMsString
+	{
+		get => _soundsOversteerLoopEndMsString;
+
+		set
+		{
+			if ( value != _soundsOversteerLoopEndMsString )
+			{
+				_soundsOversteerLoopEndMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
 
 	#endregion
 
@@ -10636,7 +11175,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0.25f, 4f );
+			value = Math.Clamp( value, 0.25f, 2f );
 
 			if ( value != _soundsSeatOfPantsFrequencyRatio )
 			{
@@ -10645,7 +11184,8 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsSeatOfPantsFrequencyRatioString = $"{_soundsSeatOfPantsFrequencyRatio * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			var seatOfPantsPitchShift = _soundsSeatOfPantsFrequencyRatio * 100f - 100f;
+			SoundsSeatOfPantsFrequencyRatioString = seatOfPantsPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( seatOfPantsPitchShift >= 0f ? "+" : "" )}{seatOfPantsPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -10672,7 +11212,523 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Speech to text - Enabled
+	#region Sounds - Seat-of-pants loop start ms
+
+	private float _soundsSeatOfPantsLoopStartMs = 0f;
+
+	public float SoundsSeatOfPantsLoopStartMs
+	{
+		get => _soundsSeatOfPantsLoopStartMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsSeatOfPantsLoopStartMs )
+			{
+				_soundsSeatOfPantsLoopStartMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsSeatOfPantsLoopEndMs < _soundsSeatOfPantsLoopStartMs )
+				{
+					SoundsSeatOfPantsLoopEndMs = _soundsSeatOfPantsLoopStartMs;
+				}
+			}
+
+			SoundsSeatOfPantsLoopStartMsString = $"{_soundsSeatOfPantsLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsSeatOfPantsLoopStartMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsSeatOfPantsLoopStartMsString
+	{
+		get => _soundsSeatOfPantsLoopStartMsString;
+
+		set
+		{
+			if ( value != _soundsSeatOfPantsLoopStartMsString )
+			{
+				_soundsSeatOfPantsLoopStartMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Seat-of-pants loop end ms
+
+	private float _soundsSeatOfPantsLoopEndMs = 0f;
+
+	public float SoundsSeatOfPantsLoopEndMs
+	{
+		get => _soundsSeatOfPantsLoopEndMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsSeatOfPantsLoopEndMs )
+			{
+				_soundsSeatOfPantsLoopEndMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsSeatOfPantsLoopStartMs > _soundsSeatOfPantsLoopEndMs )
+				{
+					SoundsSeatOfPantsLoopStartMs = _soundsSeatOfPantsLoopEndMs;
+				}
+			}
+
+			SoundsSeatOfPantsLoopEndMsString = $"{_soundsSeatOfPantsLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsSeatOfPantsLoopEndMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsSeatOfPantsLoopEndMsString
+	{
+		get => _soundsSeatOfPantsLoopEndMsString;
+
+		set
+		{
+			if ( value != _soundsSeatOfPantsLoopEndMsString )
+			{
+				_soundsSeatOfPantsLoopEndMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Brake + throttle warning enabled
+
+	private bool _soundsBrakeThrottleWarningEnabled = false;
+
+	public bool SoundsBrakeThrottleWarningEnabled
+	{
+		get => _soundsBrakeThrottleWarningEnabled;
+
+		set
+		{
+			if ( value != _soundsBrakeThrottleWarningEnabled )
+			{
+				_soundsBrakeThrottleWarningEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Brake + throttle warning volume
+
+	private float _soundsBrakeThrottleWarningVolume = 0.75f;
+
+	public float SoundsBrakeThrottleWarningVolume
+	{
+		get => _soundsBrakeThrottleWarningVolume;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _soundsBrakeThrottleWarningVolume )
+			{
+				_soundsBrakeThrottleWarningVolume = value;
+
+				OnPropertyChanged();
+			}
+
+			SoundsBrakeThrottleWarningVolumeString = $"{_soundsBrakeThrottleWarningVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _soundsBrakeThrottleWarningVolumeString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakeThrottleWarningVolumeString
+	{
+		get => _soundsBrakeThrottleWarningVolumeString;
+
+		set
+		{
+			if ( value != _soundsBrakeThrottleWarningVolumeString )
+			{
+				_soundsBrakeThrottleWarningVolumeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings SoundsBrakeThrottleWarningVolumePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsBrakeThrottleWarningVolumeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Brake + throttle warning frequency ratio
+
+	private float _soundsBrakeThrottleWarningFrequencyRatio = 1f;
+
+	public float SoundsBrakeThrottleWarningFrequencyRatio
+	{
+		get => _soundsBrakeThrottleWarningFrequencyRatio;
+
+		set
+		{
+			value = Math.Clamp( value, 0.25f, 2f );
+
+			if ( value != _soundsBrakeThrottleWarningFrequencyRatio )
+			{
+				_soundsBrakeThrottleWarningFrequencyRatio = value;
+
+				OnPropertyChanged();
+			}
+
+			var pitchShift = _soundsBrakeThrottleWarningFrequencyRatio * 100f - 100f;
+			SoundsBrakeThrottleWarningFrequencyRatioString = pitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( pitchShift >= 0f ? "+" : "" )}{pitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _soundsBrakeThrottleWarningFrequencyRatioString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakeThrottleWarningFrequencyRatioString
+	{
+		get => _soundsBrakeThrottleWarningFrequencyRatioString;
+
+		set
+		{
+			if ( value != _soundsBrakeThrottleWarningFrequencyRatioString )
+			{
+				_soundsBrakeThrottleWarningFrequencyRatioString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings SoundsBrakeThrottleWarningFrequencyRatioPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsBrakeThrottleWarningFrequencyRatioMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Brake throttle warning loop start ms
+
+	private float _soundsBrakeThrottleWarningLoopStartMs = 0f;
+
+	public float SoundsBrakeThrottleWarningLoopStartMs
+	{
+		get => _soundsBrakeThrottleWarningLoopStartMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsBrakeThrottleWarningLoopStartMs )
+			{
+				_soundsBrakeThrottleWarningLoopStartMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsBrakeThrottleWarningLoopEndMs < _soundsBrakeThrottleWarningLoopStartMs )
+				{
+					SoundsBrakeThrottleWarningLoopEndMs = _soundsBrakeThrottleWarningLoopStartMs;
+				}
+			}
+
+			SoundsBrakeThrottleWarningLoopStartMsString = $"{_soundsBrakeThrottleWarningLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsBrakeThrottleWarningLoopStartMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakeThrottleWarningLoopStartMsString
+	{
+		get => _soundsBrakeThrottleWarningLoopStartMsString;
+
+		set
+		{
+			if ( value != _soundsBrakeThrottleWarningLoopStartMsString )
+			{
+				_soundsBrakeThrottleWarningLoopStartMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Brake throttle warning loop end ms
+
+	private float _soundsBrakeThrottleWarningLoopEndMs = 0f;
+
+	public float SoundsBrakeThrottleWarningLoopEndMs
+	{
+		get => _soundsBrakeThrottleWarningLoopEndMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsBrakeThrottleWarningLoopEndMs )
+			{
+				_soundsBrakeThrottleWarningLoopEndMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsBrakeThrottleWarningLoopStartMs > _soundsBrakeThrottleWarningLoopEndMs )
+				{
+					SoundsBrakeThrottleWarningLoopStartMs = _soundsBrakeThrottleWarningLoopEndMs;
+				}
+			}
+
+			SoundsBrakeThrottleWarningLoopEndMsString = $"{_soundsBrakeThrottleWarningLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsBrakeThrottleWarningLoopEndMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsBrakeThrottleWarningLoopEndMsString
+	{
+		get => _soundsBrakeThrottleWarningLoopEndMsString;
+
+		set
+		{
+			if ( value != _soundsBrakeThrottleWarningLoopEndMsString )
+			{
+				_soundsBrakeThrottleWarningLoopEndMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - FFB clipping enabled
+
+	private bool _soundsFfbClippingEnabled = false;
+
+	public bool SoundsFfbClippingEnabled
+	{
+		get => _soundsFfbClippingEnabled;
+
+		set
+		{
+			if ( value != _soundsFfbClippingEnabled )
+			{
+				_soundsFfbClippingEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - FFB clipping volume
+
+	private float _soundsFfbClippingVolume = 0.75f;
+
+	public float SoundsFfbClippingVolume
+	{
+		get => _soundsFfbClippingVolume;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _soundsFfbClippingVolume )
+			{
+				_soundsFfbClippingVolume = value;
+
+				OnPropertyChanged();
+			}
+
+			SoundsFfbClippingVolumeString = $"{_soundsFfbClippingVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _soundsFfbClippingVolumeString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsFfbClippingVolumeString
+	{
+		get => _soundsFfbClippingVolumeString;
+
+		set
+		{
+			if ( value != _soundsFfbClippingVolumeString )
+			{
+				_soundsFfbClippingVolumeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings SoundsFfbClippingVolumePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsFfbClippingVolumeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - FFB clipping frequency ratio
+
+	private float _soundsFfbClippingFrequencyRatio = 1f;
+
+	public float SoundsFfbClippingFrequencyRatio
+	{
+		get => _soundsFfbClippingFrequencyRatio;
+
+		set
+		{
+			value = Math.Clamp( value, 0.25f, 2f );
+
+			if ( value != _soundsFfbClippingFrequencyRatio )
+			{
+				_soundsFfbClippingFrequencyRatio = value;
+
+				OnPropertyChanged();
+			}
+
+			var pitchShift = _soundsFfbClippingFrequencyRatio * 100f - 100f;
+			SoundsFfbClippingFrequencyRatioString = pitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( pitchShift >= 0f ? "+" : "" )}{pitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _soundsFfbClippingFrequencyRatioString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsFfbClippingFrequencyRatioString
+	{
+		get => _soundsFfbClippingFrequencyRatioString;
+
+		set
+		{
+			if ( value != _soundsFfbClippingFrequencyRatioString )
+			{
+				_soundsFfbClippingFrequencyRatioString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ButtonMappings SoundsFfbClippingFrequencyRatioPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsFfbClippingFrequencyRatioMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - FFB clipping loop start ms
+
+	private float _soundsFfbClippingLoopStartMs = 0f;
+
+	public float SoundsFfbClippingLoopStartMs
+	{
+		get => _soundsFfbClippingLoopStartMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsFfbClippingLoopStartMs )
+			{
+				_soundsFfbClippingLoopStartMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsFfbClippingLoopEndMs < _soundsFfbClippingLoopStartMs )
+				{
+					SoundsFfbClippingLoopEndMs = _soundsFfbClippingLoopStartMs;
+				}
+			}
+
+			SoundsFfbClippingLoopStartMsString = $"{_soundsFfbClippingLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsFfbClippingLoopStartMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsFfbClippingLoopStartMsString
+	{
+		get => _soundsFfbClippingLoopStartMsString;
+
+		set
+		{
+			if ( value != _soundsFfbClippingLoopStartMsString )
+			{
+				_soundsFfbClippingLoopStartMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - FFB clipping loop end ms
+
+	private float _soundsFfbClippingLoopEndMs = 0f;
+
+	public float SoundsFfbClippingLoopEndMs
+	{
+		get => _soundsFfbClippingLoopEndMs;
+
+		set
+		{
+			value = Math.Max( 0f, value );
+
+			if ( value != _soundsFfbClippingLoopEndMs )
+			{
+				_soundsFfbClippingLoopEndMs = value;
+
+				OnPropertyChanged();
+
+				if ( _soundsFfbClippingLoopStartMs > _soundsFfbClippingLoopEndMs )
+				{
+					SoundsFfbClippingLoopStartMs = _soundsFfbClippingLoopEndMs;
+				}
+			}
+
+			SoundsFfbClippingLoopEndMsString = $"{_soundsFfbClippingLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		}
+	}
+
+	private string _soundsFfbClippingLoopEndMsString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsFfbClippingLoopEndMsString
+	{
+		get => _soundsFfbClippingLoopEndMsString;
+
+		set
+		{
+			if ( value != _soundsFfbClippingLoopEndMsString )
+			{
+				_soundsFfbClippingLoopEndMsString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Speech to text
 
 	private bool _speechToTextEnabled = false;
 
@@ -11172,8 +12228,6 @@ public class Settings : INotifyPropertyChanged
 				var app = App.Instance!;
 
 				app.MainWindow.RefreshWindow();
-
-				Misc.ForcePropertySetters( this );
 			}
 		}
 	}
