@@ -101,6 +101,8 @@ public partial class MairaComboBox : UserControl
 		{
 			if ( d is MairaComboBox mairaComboBox )
 			{
+				var valueToRestore = mairaComboBox.SelectedValue;
+
 				mairaComboBox.Dispatcher.BeginInvoke( (Action) ( () =>
 				{
 					if ( mairaComboBox.ComboBox is null )
@@ -108,12 +110,15 @@ public partial class MairaComboBox : UserControl
 						return;
 					}
 
-					var selectedValue = mairaComboBox.SelectedValue;
+					// Replacing ItemsSource causes the internal ComboBox to temporarily clear
+					// SelectedValue to null, which propagates back through the TwoWay binding.
+					// Restore the captured value so the correct item is re-selected.
+					if ( mairaComboBox.SelectedValue is null && valueToRestore is not null )
+					{
+						mairaComboBox.SelectedValue = valueToRestore;
+					}
 
-					mairaComboBox.ComboBox.SelectedValue = null;
-					mairaComboBox.ComboBox.SelectedValue = selectedValue;
-
-				mairaComboBox.UpdateSelectedValueVisuals();
+					mairaComboBox.UpdateSelectedValueVisuals();
 				} ), System.Windows.Threading.DispatcherPriority.DataBind );
 			}
 		}
