@@ -269,9 +269,6 @@ All custom hardware communicates via **USB serial port** abstracted by `UsbSeria
 
 **vJoy** virtual joystick output uses `vJoyInterfaceWrap.dll`.
 
-### Localization
-Resource strings are stored in `.resx` files under `Translate\resx\`. The `Localization` component loads these and exposes them as an indexer: `DataContext.Instance.Localization["KeyName"]`. The post-build event copies `.resx` files to the user's documents folder so translations can be updated independently.
-
 ---
 
 ## Coding Conventions
@@ -846,3 +843,18 @@ Several XAML and resource files in this project contain **non-ASCII Unicode char
    ```
 
 5. **If corruption is detected** (U+FFFD `?` replacement character, or bytes like `0xEF 0xBF 0xBD`), restore the file from Git and redo the replacement using the safe `[System.IO.File]` approach above.
+
+---
+
+## Localization
+
+Resource strings are stored in `.resx` files under `Translate\resx\`.
+The `Localization` component loads these and exposes them as an indexer: `DataContext.Instance.Localization["KeyName"]`.
+The post-build event copies `.resx` files to the user's documents folder so translations can be updated independently.
+
+All user-facing strings displayed in the UI **must** have proper localization support:
+
+- Add every new string as a named entry in `Translate\resx\Resources.resx` (the English base resource file).
+- Reference the string in XAML via `{Binding Localization[KeyName]}` — never use hard-coded string literals in XAML.
+- Reference the string in C# via `DataContext.DataContext.Instance.Localization["KeyName"]`.
+- **Always** add translations for every new string to all other language `.resx` files.
