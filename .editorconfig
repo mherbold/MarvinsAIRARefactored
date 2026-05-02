@@ -1,0 +1,7 @@
+root = true
+
+# Suppress nullable reference warnings in FMOD-supplied third-party wrapper files
+[FMOD/*.cs]
+dotnet_diagnostic.CS8600.severity = none
+dotnet_diagnostic.CS8603.severity = none
+dotnet_diagnostic.CS8625.severity = none
