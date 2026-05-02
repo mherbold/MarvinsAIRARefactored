@@ -98,8 +98,6 @@ public class LFE
 
 		CaptureDeviceList.Clear();
 
-		CaptureDeviceList.Add( Guid.Empty, DataContext.DataContext.Instance.Localization[ "Disabled" ] );
-
 		var deviceInformationList = DirectSoundCapture.GetDevices();
 
 		foreach ( var deviceInformation in deviceInformationList )

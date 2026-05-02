@@ -344,7 +344,10 @@ public partial class RacingWheelPage : UserControl
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var dictionary = new Dictionary<Guid, string>();
+		var dictionary = new Dictionary<Guid, string>
+		{
+			{ Guid.Empty, localization[ "Disabled" ] }
+		};
 
 		app.LFE.CaptureDeviceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
 
