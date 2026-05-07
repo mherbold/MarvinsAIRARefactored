@@ -20,6 +20,12 @@
 
     <Window.Resources>
         <converters:BooleanToVisibilityHiddenConverter x:Key="BoolToVis" />
+        <!-- GapMonitorWindow always has a black background, so force light text/icon colors regardless of theme -->
+        <SolidColorBrush x:Key="Brush.Foreground.Primary" Color="#ffffff" />
+        <SolidColorBrush x:Key="Brush.Foreground.Secondary" Color="#eeeeee" />
+        <SolidColorBrush x:Key="Brush.Border.Normal" Color="#aaaaaa" />
+        <SolidColorBrush x:Key="Brush.Border.Hover" Color="#ffffff" />
+        <SolidColorBrush x:Key="Brush.Border.Active" Color="#ff5b2e" />
     </Window.Resources>
 
     <Window.DataContext>

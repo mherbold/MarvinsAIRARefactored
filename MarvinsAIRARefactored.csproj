@@ -18,16 +18,6 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
-  <ItemGroup>
-    <None Remove="Artwork\Buttons\next.png" />
-    <None Remove="Artwork\Buttons\power-blue.png" />
-    <None Remove="Artwork\Buttons\prev.png" />
-    <None Remove="Artwork\Flags\hungary_fluttering_flag_64.png" />
-    <None Remove="Artwork\Flags\thailand_fluttering_flag_64.png" />
-    <None Remove="Artwork\Flags\ukraine_fluttering_flag_64.png" />
-    <None Remove="Artwork\Misc\wizard-two-thumbs-up.png" />
-    <None Remove="Artwork\Misc\wizard.png" />
-  </ItemGroup>
 
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">

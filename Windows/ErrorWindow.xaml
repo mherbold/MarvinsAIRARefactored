@@ -19,6 +19,14 @@
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />
     </Window.DataContext>
 
+    <Window.Resources>
+        <!-- ErrorWindow always has a dark red background, so force light icon colors regardless of theme -->
+        <SolidColorBrush x:Key="Brush.Foreground.Primary" Color="#eeeeee" />
+        <SolidColorBrush x:Key="Brush.Border.Normal" Color="#aaaaaa" />
+        <SolidColorBrush x:Key="Brush.Border.Hover" Color="#ffffff" />
+        <SolidColorBrush x:Key="Brush.Border.Active" Color="#ff5b2e" />
+    </Window.Resources>
+
     <Border Padding="20">
 
         <Grid>
@@ -50,6 +58,7 @@
                        Grid.Column="2"
                        Style="{StaticResource MairaTextBlockStyle}"
                        FontSize="30"
+                       Foreground="#eee"
                        Text="{Binding Localization[ErrorTitle]}"
                        VerticalAlignment="Center" />
 
@@ -58,6 +67,7 @@
                        Grid.Column="2"
                        Style="{StaticResource MairaTextBlockStyle}"
                        TextWrapping="Wrap"
+                       Foreground="#eee"
                        d:Text="This is an example message that can be displayed inside of this error window. This text can be wrapped as well."
                        VerticalAlignment="Center" />
 
@@ -71,6 +81,7 @@
                     
                     <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                                Text="{Binding Localization[Details]}"
+                               Foreground="#eee"
                                Margin="10,0,0,0" />
                     
                 </Expander.Header>
@@ -98,6 +109,7 @@
                         <TextBlock x:Name="Details_TextBlock"
                                    Style="{StaticResource MairaTextBlockStyle}"
                                    TextWrapping="NoWrap"
+                                   Foreground="#eee"
                                    d:Text="Example details text" />
 
                     </ScrollViewer>

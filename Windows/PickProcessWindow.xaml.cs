@@ -1,9 +1,7 @@
 
 using System.Diagnostics;
-using System.Runtime.InteropServices;
 using System.Text;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
@@ -12,16 +10,6 @@ namespace MarvinsAIRARefactored.Windows;
 
 public partial class PickProcessWindow : Window
 {
-	[DllImport( "kernel32.dll", SetLastError = true )]
-	private static extern IntPtr OpenProcess( uint dwDesiredAccess, bool bInheritHandle, int dwProcessId );
-
-	[DllImport( "kernel32.dll", SetLastError = true )]
-	[return: MarshalAs( UnmanagedType.Bool )]
-	private static extern bool CloseHandle( IntPtr hObject );
-
-	[DllImport( "kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode )]
-	private static extern bool QueryFullProcessImageName( IntPtr hProcess, uint dwFlags, StringBuilder lpExeName, ref uint lpdwSize );
-
 	private const uint PROCESS_QUERY_LIMITED_INFORMATION = 0x1000;
 
 	private record ProcessItem( string Name, string Path );
@@ -33,6 +21,11 @@ public partial class PickProcessWindow : Window
 	public PickProcessWindow()
 	{
 		InitializeComponent();
+
+		if ( System.ComponentModel.DesignerProperties.GetIsInDesignMode( this ) )
+		{
+			return;
+		}
 
 		Loaded += async ( _, _ ) =>
 		{

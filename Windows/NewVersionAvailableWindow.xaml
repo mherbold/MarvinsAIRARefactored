@@ -39,8 +39,8 @@
                     Margin="0,10,0,60">
 
                 <TextBlock x:Name="ChangeLog_TextBlock"
+                           Style="{StaticResource MairaTextBlockStyle}"
                            Text="This is just a test."
-                           Foreground="#eee"
                            FontSize="20"
                            TextWrapping="Wrap" />
 

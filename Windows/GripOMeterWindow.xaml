@@ -20,6 +20,9 @@
 
     <Window.Resources>
         <converters:BooleanToVisibilityHiddenConverter x:Key="BoolToVis" />
+        <!-- GripOMeterWindow is a transparent overlay, so force light text color regardless of theme -->
+        <SolidColorBrush x:Key="Brush.Foreground.Primary" Color="#ffffff" />
+        <SolidColorBrush x:Key="Brush.Foreground.Secondary" Color="#eeeeee" />
     </Window.Resources>
 
     <Window.DataContext>

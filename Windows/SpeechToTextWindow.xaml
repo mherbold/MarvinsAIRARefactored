@@ -47,6 +47,7 @@
                    Text="{Binding Localization[SpeechToText]}"
                    Visibility="{Binding Settings.SpeechToTextShowOverlayWindowTitle, Converter={StaticResource BoolToVis}}"
                    HorizontalAlignment="Center"
+                   Foreground="White"
                    FontSize="30" />
 
         <Border Grid.Row="1"
@@ -66,26 +67,32 @@
                            d:Text="Person speaking"
                            FontSize="18"
                            Foreground="Yellow"
-                           Visibility="Collapsed" />
+                           Visibility="Collapsed"
+                           d:Visibility="Visible" />
+
                 <TextBlock x:Name="Final_Message_TextBlock"
                            d:Text="This is some text inside the border. The border will always be 1024 pixels wide, but its height grows automatically to wrap the text content."
                            TextWrapping="Wrap"
                            FontSize="24"
                            Foreground="White"
-                           Visibility="Collapsed" />
+                           Visibility="Collapsed"
+                           d:Visibility="Visible" />
 
                 <TextBlock x:Name="Partial_Driver_TextBlock"
                            Margin="0,20,0,0"
                            d:Text="Person speaking"
                            FontSize="18"
                            Foreground="Yellow"
-                           Visibility="Collapsed" />
+                           Visibility="Collapsed"
+                           d:Visibility="Visible" />
+
                 <TextBlock x:Name="Partial_Message_TextBlock"
                            d:Text="This is some text inside the border. The border will always be 1024 pixels wide, but its height grows automatically to wrap the text content."
                            TextWrapping="Wrap"
                            FontSize="24"
                            Foreground="White"
-                           Visibility="Collapsed" />
+                           Visibility="Collapsed"
+                           d:Visibility="Visible" />
 
             </StackPanel>
 

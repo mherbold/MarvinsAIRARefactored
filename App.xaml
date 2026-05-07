@@ -17,7 +17,7 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- Active theme: replaced at runtime by App.ApplyTheme() -->
                 <ResourceDictionary x:Name="ThemeDictionary"
-                                    Source="/MarvinsAIRARefactored;component/Themes/DarkTheme.xaml" />
+                                    Source="/MarvinsAIRARefactored;component/Themes/LightTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Converters -->
