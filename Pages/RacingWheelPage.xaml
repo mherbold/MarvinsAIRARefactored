@@ -953,10 +953,38 @@
                                           ContextSwitches="{Binding Settings.RacingWheelFadeEnabledContextSwitches}"
                                           Tag="Complex" />
 
-                    <controls:MairaSwitch Margin="0,10,0,0"
-                                          IsOn="{Binding Settings.RacingWheelEnableLogitechRPMLights, Mode=TwoWay}"
-                                          Label="{Binding Localization[EnableLogitechRPMLights]}"
-                                          Tag="Complex" />
+                    <Grid Margin="0,10,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <controls:MairaSwitch Grid.Column="0"
+                                              HorizontalAlignment="Left"
+                                              IsOn="{Binding Settings.RacingWheelPassFFBThroughTF4ALL, Mode=TwoWay}"
+                                              Label="Pass FFB through TF4ALL for Trueforce haptics + Logitech rev lights"
+                                              Tag="Complex">
+                            <controls:MairaSwitch.ToolTip>
+                                <ToolTip MaxWidth="320">
+                                    <TextBlock TextWrapping="Wrap"
+                                               Text="Routes MAIRA's force feedback through TF4ALL so you also get Trueforce haptics and your rim rev/shift LEDs in iRacing. Needs the free TF4ALL plugin running. Off by default." />
+                                </ToolTip>
+                            </controls:MairaSwitch.ToolTip>
+                        </controls:MairaSwitch>
+
+                        <TextBlock Grid.Column="1"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"
+                                   Style="{StaticResource MairaTextBlockStyle}">
+                            <Hyperlink NavigateUri="https://github.com/Mhytee/Trueforce-For-All"
+                                       RequestNavigate="Hyperlink_RequestNavigate"
+                                       Foreground="#FF4DA3FF"
+                                       TextDecorations="Underline">
+                                <Run Text="Get TF4ALL" />
+                            </Hyperlink>
+                        </TextBlock>
+                    </Grid>
 
                     <controls:MairaSwitch Margin="0,10,0,0"
                                           IsOn="{Binding Settings.RacingWheelAllowSuperStrength, Mode=TwoWay}"

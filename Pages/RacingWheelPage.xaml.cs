@@ -1,4 +1,6 @@
 ﻿
+using System.Diagnostics;
+
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -430,6 +432,17 @@ public partial class RacingWheelPage : UserControl
 				SteeringDeviceFaultReason_TextBlock.Visibility = Visibility.Visible;
 			}
 		} );
+	}
+
+	#endregion
+
+	#region Hyperlinks
+
+	private void Hyperlink_RequestNavigate( object sender, System.Windows.Navigation.RequestNavigateEventArgs e )
+	{
+		Process.Start( new ProcessStartInfo( e.Uri.AbsoluteUri ) { UseShellExecute = true } );
+
+		e.Handled = true;
 	}
 
 	#endregion

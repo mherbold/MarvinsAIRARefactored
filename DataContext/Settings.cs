@@ -2647,19 +2647,26 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Racing wheel - Enable Logitech RPM lights
+	#region Racing wheel - Pass FFB signal through TF4ALL
 
-	private bool _racingWheelEnableLogitechRPMLights = true;
+	private bool _racingWheelPassFFBThroughTF4ALL = false;
 
-	public bool RacingWheelEnableLogitechRPMLights
+	// When on (Logitech G PRO / RS50 + TrueForce-For-All), MAIRA stops
+	// sending PID force feedback to the wheel and instead publishes its
+	// force + RPM to TF4ALL via shared memory. TF4ALL renders the force
+	// through the Trueforce endpoint and drives the rim rev LEDs. This is
+	// the only way the rev LEDs and force feedback can coexist on the
+	// G PRO (the wheel serializes LED vs PID writes at the firmware level).
+	// Off = normal MAIRA behaviour (PID FFB straight to the wheel).
+	public bool RacingWheelPassFFBThroughTF4ALL
 	{
-		get => _racingWheelEnableLogitechRPMLights;
+		get => _racingWheelPassFFBThroughTF4ALL;
 
 		set
 		{
-			if ( value != _racingWheelEnableLogitechRPMLights )
+			if ( value != _racingWheelPassFFBThroughTF4ALL )
 			{
-				_racingWheelEnableLogitechRPMLights = value;
+				_racingWheelPassFFBThroughTF4ALL = value;
 
 				OnPropertyChanged();
 			}

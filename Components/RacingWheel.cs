@@ -128,7 +128,7 @@ public class RacingWheel
 
 	private readonly GraphBase _algorithmPreviewGraphBase = new();
 
-	private bool _logiPlayLedsNotWorking = false;
+	private readonly TF4ALLPassthrough _tf4allPassthrough = new();
 
 	private int _updateCounter = UpdateInterval + 4;
 	private int _lastGear = 0;
@@ -1411,7 +1411,22 @@ public class RacingWheel
 
 			// update force feedback torque
 
-			app.DirectInput.UpdateForceFeedbackEffect( outputTorque );
+			if ( settings.RacingWheelPassFFBThroughTF4ALL )
+			{
+				// Pass FFB through TF4ALL: do NOT send PID to the wheel.
+				// Publish only the force to TF4ALL, which renders it via the
+				// Trueforce endpoint and owns the rim LEDs from its own
+				// telemetry (no PID on the HID++ pipe => LEDs and FFB stop
+				// fighting). Zero the DInput constant force so no stale PID
+				// torque lingers.
+				_tf4allPassthrough.Write( outputTorque );
+
+				app.DirectInput.UpdateForceFeedbackEffect( 0f );
+			}
+			else
+			{
+				app.DirectInput.UpdateForceFeedbackEffect( outputTorque );
+			}
 
 			// update graph
 
@@ -1475,30 +1490,12 @@ public class RacingWheel
 
 			_racingWheelPage.AutoForce_TextBlock.Text = $"{_autoTorque:F1} {DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
 
-			// update logitech rpm lights
-
-			if ( settings.RacingWheelEnableLogitechRPMLights )
-			{
-				if ( !_logiPlayLedsNotWorking && app.Simulator.IsConnected && ( app.DirectInput.ForceFeedbackJoystick != null ) )
-				{
-					try
-					{
-						if ( !LogitechGSDK.LogiPlayLedsDInput( app.DirectInput.ForceFeedbackJoystick.NativePointer, app.Simulator.RPM, app.Simulator.ShiftLightsFirstRPM, app.Simulator.ShiftLightsShiftRPM ) )
-						{
-							_logiPlayLedsNotWorking = true;
-						}
-					}
-					catch ( Exception )
-					{
-						_logiPlayLedsNotWorking = true;
-					}
-
-					if ( _logiPlayLedsNotWorking )
-					{
-						app.Logger.WriteLine( "[RacingWheel] The Logitech G SDK doesn't seem to be working, so we are temporarily disabling Logitech RPM lights support." );
-					}
-				}
-			}
+			// Rim rev lights: TF4ALL owns them entirely (from its own SimHub
+			// telemetry, over HID++) whenever FFB passthrough is on, which is
+			// the only supported config for Logitech rev lights now. MAIRA no
+			// longer drives the LEDs at all (a second HID++ writer stalls FFB
+			// ~1.5 s per write, a device-level limit), so there is nothing to
+			// do here. The old Logitech-G-SDK path and its toggle were removed.
 
 			// update algorithm preview
 
