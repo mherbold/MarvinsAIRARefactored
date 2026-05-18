@@ -99,8 +99,14 @@
                                         StepSize="5"
                                         DefaultValue="180" />
 
+                    <controls:MairaSwitch Grid.Column="2"
+                                          Label="{Binding Localization[InvertedArms]}"
+                                          HorizontalAlignment="Center"
+                                          VerticalAlignment="Center"
+                                          IsOn="{Binding Settings.SeatBeltTensionerInvertedArms, Mode=TwoWay}" />
+
                     <controls:MairaButton x:Name="CalibrationSweepTest_MairaButton"
-                                          Grid.Column="2"
+                                          Grid.Column="4"
                                           Label="{Binding Localization[Test]}"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/run-calibration.png"
                                           Click="CalibrationSweepTest_MairaButton_Click" />

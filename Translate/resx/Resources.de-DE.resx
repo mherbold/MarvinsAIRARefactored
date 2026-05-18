@@ -1103,6 +1103,10 @@ Hier ist der Link zum Spenden:</value>
     <value>Maximale Motoren-Geschwindigkeit</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Invertierte Arme</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Verbinde zu MAIRA-Wind bei App-Start</value>
     <comment>Wind</comment>

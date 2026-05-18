@@ -1197,6 +1197,10 @@
     <value>ลม</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>แขนกลับด้าน</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>เชื่อมต่อ MAIRA Wind เมื่อเปิดแอป</value>
     <comment>Wind</comment>

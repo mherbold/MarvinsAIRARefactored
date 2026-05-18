@@ -1062,6 +1062,10 @@
     <value>Vítr</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Převrácená ramena</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Připojit se k MAIRA Wind při spuštění aplikace</value>
     <comment>Wind</comment>

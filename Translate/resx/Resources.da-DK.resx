@@ -1063,6 +1063,10 @@
     <value>Vind</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Inverterede arme</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Tilslut til MAIRA ved App Start</value>
     <comment>Wind</comment>

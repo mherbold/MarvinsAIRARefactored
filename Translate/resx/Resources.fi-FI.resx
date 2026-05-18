@@ -919,6 +919,10 @@
   <data name="MaxMotorSpeed" xml:space="preserve">
     <value>Moottorin maksimaalinen nopeus</value>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Käännetyt varret</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Yhdistä MAIRA Wind -laitteeseen sovelluksen käynnistyessä</value>
   </data>

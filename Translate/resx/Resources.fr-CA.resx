@@ -977,6 +977,10 @@
     <value>Vent</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Bras inversés</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Connecter à MAIRA Wind au démarrage de l'application</value>
     <comment>Wind</comment>

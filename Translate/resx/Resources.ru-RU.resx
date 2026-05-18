@@ -1091,6 +1091,10 @@
     <value>Ветер</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Перевёрнутые плечи</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Присоединяться к MAIRA Ветер при запуске приложения</value>
     <comment>Wind</comment>

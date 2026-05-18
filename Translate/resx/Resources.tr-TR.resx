@@ -1067,6 +1067,10 @@
     <value>Rüzgar</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Ters Kollar</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Uygulama başlangıcında MAIRA Wind'e bağlan</value>
     <comment>Wind</comment>

@@ -1008,6 +1008,10 @@
     <value>Wiatr</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Odwrócone ramiona</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Połącz z MAIRA Wind przy Starcie Aplikacji</value>
     <comment>Wind</comment>

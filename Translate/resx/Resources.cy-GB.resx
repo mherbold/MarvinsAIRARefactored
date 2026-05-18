@@ -1093,6 +1093,10 @@
     <value>Gwynt</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Breichiau Gwrthdro</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Cysylltu â MAIRA Wind wrth Gychwyn yr Ap</value>
     <comment>Wind</comment>

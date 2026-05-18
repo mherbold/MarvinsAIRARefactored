@@ -1264,6 +1264,10 @@
     <value>Շարժիչի առավելագույն արագություն</value>
     <comment>Motor output</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Շրջված թևեր</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Միանալ MAIRA Wind-ին հավելվածի գործարկմանը</value>
     <comment>App settings</comment>

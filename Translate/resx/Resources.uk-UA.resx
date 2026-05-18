@@ -1118,6 +1118,10 @@
     <value>Максимальна швидкість двигуна</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Перевернуті важелі</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Підключення до MAIRA Wind під час запуску програми</value>
     <comment>Wind</comment>

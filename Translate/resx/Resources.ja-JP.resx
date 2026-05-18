@@ -1094,6 +1094,10 @@
     <value>ウィンド</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>アーム反転</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>起動時にMAIRA Windに接続する</value>
     <comment>Wind</comment>

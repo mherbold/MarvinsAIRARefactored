@@ -1093,6 +1093,10 @@
     <value>Szél</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Fordított karok</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Csatlakozás a MAIRA Windhez az alkalmazás indításakor</value>
     <comment>Wind</comment>

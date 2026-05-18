@@ -1093,6 +1093,10 @@
     <value>Vânt</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Brațe inversate</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Conectare la MAIRA Wind la pornirea aplicației</value>
     <comment>Wind</comment>

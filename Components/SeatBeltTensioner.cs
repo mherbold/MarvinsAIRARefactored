@@ -216,6 +216,7 @@ public class SeatBeltTensioner
 		{
 			SendCalibration();
 			SendMaxMovement();
+			SendInvertedArms();
 			SendVibrationEffect( 0, 0, 0, 0 );
 		}
 
@@ -290,6 +291,20 @@ public class SeatBeltTensioner
 		var maxMovementTenthsPerSec = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerMaxMotorSpeed * 10f ), 50, 5000 );
 
 		_usbSerialPortHelper.WriteLine( $"ML{maxMovementTenthsPerSec:D4}R{maxMovementTenthsPerSec:D4}" );
+	}
+
+	public void SendInvertedArms()
+	{
+		if ( !IsConnected )
+		{
+			return;
+		}
+
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		var value = settings.SeatBeltTensionerInvertedArms ? 1 : 0;
+
+		_usbSerialPortHelper.WriteLine( $"IL{value:D4}R{value:D4}" );
 	}
 
 	public void SendVibrationEffect( int leftFreqHz, int leftAmplitudeDeg, int rightFreqHz, int rightAmplitudeDeg )

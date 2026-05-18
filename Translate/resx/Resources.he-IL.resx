@@ -1113,6 +1113,10 @@
     <value>מהירות מנוע מקסימלית</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>זרועות הפוכות</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>התחבר ל-MAIRA Wind בעת הפעלת האפליקציה</value>
     <comment>Wind</comment>

@@ -8290,6 +8290,29 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Seat Belt Tensioner - Inverted Arms
+
+	private bool _seatBeltTensionerInvertedArms = false;
+
+	public bool SeatBeltTensionerInvertedArms
+	{
+		get => _seatBeltTensionerInvertedArms;
+
+		set
+		{
+			if ( value != _seatBeltTensionerInvertedArms )
+			{
+				_seatBeltTensionerInvertedArms = value;
+
+				OnPropertyChanged();
+
+				App.Instance?.SeatBeltTensioner.SendInvertedArms();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Seat Belt Tensioner - Surge Mode
 
 	private Components.SeatBeltTensioner.AxisMode _seatBeltTensionerSurgeMode = Components.SeatBeltTensioner.AxisMode.Normal;
@@ -9018,7 +9041,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 60f );
+			value = Math.Clamp( value, 0f, 120f );
 
 			if ( value != _seatBeltTensionerSeatOfPantsAmplitude )
 			{

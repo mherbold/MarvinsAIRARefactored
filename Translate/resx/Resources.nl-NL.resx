@@ -942,6 +942,10 @@
     <value>Wind</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Omgekeerde armen</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Verbind met MAIRA Wind tijdens opstarten</value>
     <comment>Wind</comment>

@@ -1039,6 +1039,10 @@
     <value>风</value>
     <comment>App menu item</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>手臂反转</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>启动时连接到 MAIRA Wind</value>
     <comment>Wind</comment>

@@ -1325,6 +1325,10 @@
     <value>Max Motor Speed</value>
     <comment>Seat Belt Tensioner</comment>
   </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Inverted Arms</value>
+    <comment>Seat Belt Tensioner</comment>
+  </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Connect to MAIRA Wind on App Startup</value>
     <comment>Wind</comment>

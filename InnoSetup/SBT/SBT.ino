@@ -30,6 +30,11 @@
 //                          (e.g. 2500 = 250 deg/sec)
 //                          Values are clamped to 50-5000 and persisted to EEPROM.
 //
+//   ILxxxxRyyyy         -> Set inverted arms mode
+//                          xxxx = 0001 to enable inverted mode, 0000 to disable
+//                          (left value used; right value is ignored)
+//                          Persisted to EEPROM so it survives power cycles.
+//
 //   ELXXxxRYYyy         -> Set vibration effect
 //                          XX = left effect frequency (00-50)
 //                          xx = left effect amplitude in degrees (00-60)
@@ -108,6 +113,7 @@ const int PULSE_US_AT_1800 = 2500; // Pulse width at 1800 tenths (180.0 degrees)
 //   12       2     Right maximum position
 //   14       2     Left max movement per update
 //   16       2     Right max movement per update
+//   18       1     Inverted arms flag (0 = normal, 1 = inverted)
 
 const int EEPROM_ADDR_SIGNATURE       = 0;
 const int EEPROM_ADDR_VERSION         = 1;
@@ -119,9 +125,10 @@ const int EEPROM_ADDR_RIGHT_NEUTRAL   = 10;
 const int EEPROM_ADDR_RIGHT_MAX       = 12;
 const int EEPROM_ADDR_LEFT_MAX_MOVE   = 14;
 const int EEPROM_ADDR_RIGHT_MAX_MOVE  = 16;
+const int EEPROM_ADDR_INVERTED_ARMS   = 18;
 
 const byte EEPROM_SIGNATURE = 0x4D;  // 'M' for MAIRA — identifies this firmware
-const byte EEPROM_VERSION   = 0x04;  // Increment this if the EEPROM layout changes
+const byte EEPROM_VERSION   = 0x05;  // Increment this if the EEPROM layout changes
 
 // --- Default calibration values ---
 //
@@ -150,6 +157,15 @@ enum ServoInversionMode {
 };
 
 const ServoInversionMode servoInversionMode = ServoInversionMode_Left;
+
+// --- Inverted arms state ---
+//
+//   When true, the left and right arm logical roles are swapped before servo
+//   output.  This allows users who have mounted the SBT device inverted on
+//   their sim rig to get the correct belt-tensioning behaviour.
+//   Toggled by the I command and persisted to EEPROM.
+
+bool invertedArms = false;
 
 // --- Servo objects ---
 
@@ -243,9 +259,16 @@ int moveToward(int currentValue, int targetValue, int maxStep) {
 // Helper: apply position inversion for a servo side if configured
 // Inversion mirrors the position: 0 becomes 1800, 1800 becomes 0, 900 stays 900
 // All other logic (min, max, neutral, target) stays in logical non-inverted space
+// When invertedArms is true the left and right positions are swapped before
+// the per-servo mirror is applied, correcting for an upside-down rig mounting.
 // ===========================
 
-int applyServoInversion(int logicalPositionTenths, bool isLeftServo) {
+int applyServoInversion(int leftPositionTenths, int rightPositionTenths, bool isLeftServo) {
+  // Swap left/right positions when device is mounted inverted on the rig
+  int logicalPositionTenths = isLeftServo
+    ? (invertedArms ? rightPositionTenths : leftPositionTenths)
+    : (invertedArms ? leftPositionTenths  : rightPositionTenths);
+
   bool shouldInvert = (servoInversionMode == ServoInversionMode_Left && isLeftServo) ||
                       (servoInversionMode == ServoInversionMode_Right && !isLeftServo);
 
@@ -261,8 +284,8 @@ int applyServoInversion(int logicalPositionTenths, bool isLeftServo) {
 // ===========================
 
 void applyServoOutputs() {
-  int leftMicroseconds = tenthsToMicroseconds(applyServoInversion(leftCurrentPosition, true));
-  int rightMicroseconds = tenthsToMicroseconds(applyServoInversion(rightCurrentPosition, false));
+  int leftMicroseconds  = tenthsToMicroseconds(applyServoInversion(leftCurrentPosition,  rightCurrentPosition, true));
+  int rightMicroseconds = tenthsToMicroseconds(applyServoInversion(leftCurrentPosition,  rightCurrentPosition, false));
 
   leftServo.writeMicroseconds(leftMicroseconds);
   rightServo.writeMicroseconds(rightMicroseconds);
@@ -397,6 +420,7 @@ void saveCalibrationToEEPROM() {
   eepromWriteInt16(EEPROM_ADDR_RIGHT_MAX,      rightMaxPosition);
   eepromWriteInt16(EEPROM_ADDR_LEFT_MAX_MOVE,  leftMaxSpeedTenthsPerSec);
   eepromWriteInt16(EEPROM_ADDR_RIGHT_MAX_MOVE, rightMaxSpeedTenthsPerSec);
+  EEPROM.update(EEPROM_ADDR_INVERTED_ARMS,     invertedArms ? 1 : 0);
 }
 
 // ===========================
@@ -458,8 +482,26 @@ void loadCalibrationFromEEPROM() {
   leftMaxSpeedTenthsPerSec  = (loadedLeftMaxMove  >= 50 && loadedLeftMaxMove  <= 5000) ? loadedLeftMaxMove  : DEFAULT_MAX_MOVEMENT_PER_UPDATE * 100;
   rightMaxSpeedTenthsPerSec = (loadedRightMaxMove >= 50 && loadedRightMaxMove <= 5000) ? loadedRightMaxMove : DEFAULT_MAX_MOVEMENT_PER_UPDATE * 100;
 
+  // Load inverted arms flag
+  invertedArms = (EEPROM.read(EEPROM_ADDR_INVERTED_ARMS) == 1);
+
   // Defensive re-clamp after loading
   reclampAllPositions();
+}
+
+// ===========================
+// Process an inverted-arms toggle command: IL0000R0000 (0) or IL0001R0001 (1)
+// The parsed left value is used as the boolean: 0 = normal, non-zero = inverted.
+// ===========================
+
+void processInvertedArmsCommand(const char* command) {
+  int leftParsedValue  = 0;
+  int rightParsedValue = 0;
+
+  if (!parseLR(command, 1, &leftParsedValue, &rightParsedValue)) return;
+
+  invertedArms = (leftParsedValue != 0);
+  saveCalibrationToEEPROM();
 }
 
 // ===========================
@@ -477,6 +519,12 @@ void processCommand(const char* command) {
   int commandLength = strlen(command);
 
   if (commandLength < 11) return;
+
+  // --- I command: set inverted arms mode ---
+  if (command[0] == 'I') {
+    processInvertedArmsCommand(command);
+    return;
+  }
 
   char commandType = command[0];
   int leftParsedValue = 0;
