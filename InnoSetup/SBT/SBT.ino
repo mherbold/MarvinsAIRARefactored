@@ -269,8 +269,14 @@ int applyServoInversion(int leftPositionTenths, int rightPositionTenths, bool is
     ? (invertedArms ? rightPositionTenths : leftPositionTenths)
     : (invertedArms ? leftPositionTenths  : rightPositionTenths);
 
-  bool shouldInvert = (servoInversionMode == ServoInversionMode_Left && isLeftServo) ||
-                      (servoInversionMode == ServoInversionMode_Right && !isLeftServo);
+  // When the device is flipped upside-down the physical orientation of each servo
+  // is also reversed, so the servo that normally needs hardware-inversion correction
+  // no longer does (the flip cancels it), and the other servo now needs it instead.
+  // Achieve this by treating the servo identity as flipped when invertedArms is true.
+  bool isEffectiveLeftServo = invertedArms ? !isLeftServo : isLeftServo;
+
+  bool shouldInvert = (servoInversionMode == ServoInversionMode_Left  &&  isEffectiveLeftServo) ||
+                      (servoInversionMode == ServoInversionMode_Right  && !isEffectiveLeftServo);
 
   if (shouldInvert) {
     return 1800 - logicalPositionTenths;
@@ -703,8 +709,8 @@ void updateMotion() {
   rightCurrentPosition = moveToward(rightCurrentPosition, rightEffectiveTarget, rightMaxStep);
 
   // Write to servos
-  int leftMicroseconds  = tenthsToMicroseconds(applyServoInversion(leftCurrentPosition,  true));
-  int rightMicroseconds = tenthsToMicroseconds(applyServoInversion(rightCurrentPosition, false));
+  int leftMicroseconds  = tenthsToMicroseconds(applyServoInversion(leftCurrentPosition,  rightCurrentPosition, true));
+  int rightMicroseconds = tenthsToMicroseconds(applyServoInversion(leftCurrentPosition, rightCurrentPosition, false));
 
   leftServo.writeMicroseconds(leftMicroseconds);
   rightServo.writeMicroseconds(rightMicroseconds);
