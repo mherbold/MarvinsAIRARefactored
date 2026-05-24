@@ -1504,4 +1504,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>Տեքստ ձայնի</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>ՏԵՔՍՏ ՁԱՅՆԻ</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>ՀԱՇԻՎ</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>ՁԱՅՆԵՐԻ ՑՈՒՑԱԿ</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>ԱՆՁՆԱԿԱԶՄԻ ՂԵԿԱՎԱՐԻ ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>SPOTTERԻ ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>ՄԱՐԶԱԿԱՆ ՄԵԿՆԱԲԱՆ 1 ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>ՄԱՐԶԱԿԱՆ ՄԵԿՆԱԲԱՆ 2 ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>ՓԻԹ ՌԵՊՈՐՏԵՐԻ ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>API բանալի</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>Հաստատել բանալին</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  Բանալին հաստատված է</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  Բանալին անվավեր է</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[Ընտրեք ձայն]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  Բանալին ճանաչված է</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>Ձայներ — Կարդալ</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>Մոդելներ — Հասանելիություն</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>Տեքստ ձայնի — Հասանելիություն</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>Օգտատեր — Կարդալ</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Մոդել</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>Հիմնական ձայնի մակարդակ</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>Բաժանորդագրության օգտագործումը բեռնվում է…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>Պլանի օգտագործում:  {0:N0} / {1:N0} նիշ օգտագործված  ({2:F1}%)  —  {3:N0} մնացած</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>Պլանի օգտագործումն անհասանելի է</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>Ձայն</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>Հետևողականություն</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>Դրամատիկ</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>Նմանության ուժեղացում</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>Բարձրախոսի ուժեղացում</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>Բնիկի ձայնի մակարդակ</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>Փորձարկում</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>Առաջ անցնել / Դիրքի փոփոխություն</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>Մոտ մրցամարտ</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>Ամենաարագ շրջան</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>Փիթ-ստոպ</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>Զգուշություն / Դեղին դրոշ</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>Սեսիայի սկիզբ / ավարտ</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>Վարորդի դեպք</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>Վառելիքի նախազգուշացում</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>Անվադողի նախազգուշացում</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>Վնասի նախազգուշացում</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>Մոտության ազդանշաններ</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>Փիթ պատուհանը բաց է</value>
+  </data>
 </root>

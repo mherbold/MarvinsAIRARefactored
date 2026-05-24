@@ -1562,4 +1562,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>แปลงข้อความเป็นเสียง</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>แปลงข้อความเป็นเสียง</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>บัญชี</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>รายชื่อเสียง</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>คำบรรยายหัวหน้าทีม</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>คำบรรยายสปอตเตอร์</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>คำบรรยายนักวิจารณ์กีฬา 1</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>คำบรรยายนักวิจารณ์กีฬา 2</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>คำบรรยายนักรายงานพิท</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>คีย์ API</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>ยืนยันคีย์</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  ยืนยันคีย์แล้ว</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  คีย์ไม่ถูกต้อง</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[เลือกเสียง]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  รู้จักคีย์แล้ว</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>เสียง — อ่าน</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>โมเดล — เข้าถึง</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>แปลงข้อความเป็นเสียง — เข้าถึง</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>ผู้ใช้ — อ่าน</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>โมเดล</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>ระดับเสียงหลัก</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>กำลังดึงข้อมูลการใช้งานการสมัครสมาชิก…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>การใช้งานแผน:  {0:N0} / {1:N0} ตัวอักษรที่ใช้  ({2:F1}%)  —  {3:N0} คงเหลือ</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>ไม่มีข้อมูลการใช้งานแผน</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>เสียง</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>ความสม่ำเสมอ</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>ดราม่า</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>เพิ่มความคล้ายคลึง</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>เพิ่มความดังของผู้พูด</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>ระดับเสียงช่อง</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>ทดสอบ</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>แซงหน้า / เปลี่ยนตำแหน่ง</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>การต่อสู้ใกล้ชิด</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>รอบที่เร็วที่สุด</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>พิทสต็อป</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>ระวัง / ธงเหลือง</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>เริ่ม / สิ้นสุดรอบ</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>เหตุการณ์ผู้ขับ</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>แจ้งเตือนเชื้อเพลิง</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>แจ้งเตือนยาง</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>แจ้งเตือนความเสียหาย</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>สัญญาณความใกล้ชิด</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>หน้าต่างพิทเปิดอยู่</value>
+  </data>
 </root>

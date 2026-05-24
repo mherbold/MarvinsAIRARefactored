@@ -1459,4 +1459,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>毫秒</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>文字转语音</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>文字转语音</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>账户</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>声音列表</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>车队长解说</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>观察员解说</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>体育解说员1解说</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>体育解说员2解说</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>维修站记者解说</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>API 密钥</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>验证密钥</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  密钥已验证</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  密钥无效</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[选择声音]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  密钥已识别</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>声音 — 读取</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>模型 — 访问</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>文字转语音 — 访问</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>用户 — 读取</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>模型</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>主音量</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>正在获取订阅用量…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>套餐用量:  {0:N0} / {1:N0} 个字符已使用  ({2:F1}%)  —  剩余 {3:N0}</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>套餐用量不可用</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>声音</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>一致性</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>戏剧性</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>相似度增强</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>说话人增强</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>槽位音量</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>测试</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>超车 / 位置变化</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>近距离角逐</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>最快圈速</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>进站</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>注意 / 黄旗</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>赛段开始 / 结束</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>车手事故</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>燃油警告</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>轮胎警告</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>损伤警告</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>接近提示</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>进站窗口开放</value>
+  </data>
 </root>

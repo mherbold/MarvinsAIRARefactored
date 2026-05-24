@@ -1459,4 +1459,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>Testun i Leferydd</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>TESTUN I LEFERYDD</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>CYFRIF</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>RHESTR LLEISIAU</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>SYLWEBAETH PENNAETH CRIW</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>SYLWEBAETH Y SPOTTER</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>SYLWEBAETH SYLWEBYDD CHWARAEON 1</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>SYLWEBAETH SYLWEBYDD CHWARAEON 2</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>SYLWEBAETH GOHEBYDD Y PIT</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>Allwedd API</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>Gwirio Allwedd</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  Allwedd wedi'i gwirio</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  Allwedd annilys</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[Dewis Llais]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  Allwedd wedi'i hadnabod</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>Lleisiau — Darllen</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>Modelau — Mynediad</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>Testun i Leferydd — Mynediad</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>Defnyddiwr — Darllen</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>Prif Sain</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>Yn nôl defnydd tanysgrifiad…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>Defnydd cynllun:  {0:N0} / {1:N0} nod wedi'u defnyddio  ({2:F1}%)  —  {3:N0} yn weddill</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>Defnydd cynllun ddim ar gael</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>Llais</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>Cysondeb</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>Dramatig</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>Hwb Tebygrwydd</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>Hwb Siaradwr</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>Cyfaint Slot</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>Prawf</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>Goddiweddyd / Newid Safle</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>Brwydr Agos</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>Lap Gyflymaf</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>Pit Stop</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>Rhybudd / Baner Felen</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>Dechrau / Diwedd Sesiwn</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>Digwyddiad Gyrrwr</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>Rhybudd Tanwydd</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>Rhybudd Teiars</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>Rhybudd Difrod</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>Galwadau Agosrwydd</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>Ffenestr Pit Ar Agor</value>
+  </data>
 </root>

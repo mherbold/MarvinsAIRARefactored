@@ -1459,4 +1459,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>טקסט לדיבור</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>טקסט לדיבור</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>חשבון</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>רשימת קולות</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>פרשנות ראש הצוות</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>פרשנות ה-SPOTTER</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>פרשנות הפרשן הספורטיבי 1</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>פרשנות הפרשן הספורטיבי 2</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>פרשנות כתב הפיט</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>מפתח API</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>אמת מפתח</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  מפתח אומת</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  מפתח לא תקין</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[בחר קול]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  מפתח זוהה</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>קולות — קריאה</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>מודלים — גישה</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>טקסט לדיבור — גישה</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>משתמש — קריאה</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>מודל</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>עוצמת קול ראשית</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>טוען נתוני שימוש…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>שימוש בתוכנית:  {0:N0} / {1:N0} תווים בשימוש  ({2:F1}%)  —  {3:N0} נותרו</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>שימוש בתוכנית אינו זמין</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>קול</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>עקביות</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>דרמטי</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>הגברת דמיון</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>הגברת דובר</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>עוצמת ערוץ</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>בדיקה</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>עקיפה / שינוי עמדה</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>קרב צמוד</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>הסיבוב המהיר ביותר</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>עצירת פיט</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>זהירות / דגל צהוב</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>תחילת / סיום מפגש</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>תקרית נהג</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>אזהרת דלק</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>אזהרת צמיגים</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>אזהרת נזק</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>קריאות קרבה</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>חלון פיט פתוח</value>
+  </data>
 </root>

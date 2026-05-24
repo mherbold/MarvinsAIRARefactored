@@ -1466,4 +1466,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>мс</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>Текст у мовлення</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>ТЕКСТ У МОВЛЕННЯ</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>ОБЛІКОВИЙ ЗАПИС</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>СПИСОК ГОЛОСІВ</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР ШЕФА МЕХАНІКІВ</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР СПОТТЕРА</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР СПОРТИВНОГО КОМЕНТАТОРА 1</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР СПОРТИВНОГО КОМЕНТАТОРА 2</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР РЕПОРТЕРА З ПІТЛЕЙНУ</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>Ключ API</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>Перевірити ключ</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  Ключ підтверджено</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  Ключ недійсний</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[Оберіть голос]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  Ключ розпізнано</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>Голоси — Читання</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>Моделі — Доступ</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>Текст у мовлення — Доступ</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>Користувач — Читання</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Модель</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>Основна гучність</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>Завантаження даних використання підписки…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>Використання плану:  {0:N0} / {1:N0} символів використано  ({2:F1}%)  —  {3:N0} залишилось</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>Дані використання плану недоступні</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>Голос</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>Стабільність</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>Драматичність</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>Посилення схожості</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>Посилення диктора</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>Гучність слота</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>Тест</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>Обгін / Зміна позиції</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>Щільна боротьба</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>Найшвидше коло</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>Піт-стоп</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>Обережно / Жовтий прапор</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>Початок / Кінець сесії</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>Інцидент гонщика</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>Попередження про паливо</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>Попередження про шини</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>Попередження про пошкодження</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>Сигнали близькості</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>Вікно піт-лейну відкрито</value>
+  </data>
 </root>

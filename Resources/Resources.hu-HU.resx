@@ -1459,4 +1459,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>Szövegfelolvasás</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>SZÖVEGFELOLVASÁS</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>FIÓK</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>HANGLISTA</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>CSAPATVEZETŐ KOMMENTÁR</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>SPOTTER KOMMENTÁR</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>SPORTKOMMENTÁTOR 1 KOMMENTÁR</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>SPORTKOMMENTÁTOR 2 KOMMENTÁR</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>PIT RIPORTER KOMMENTÁR</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>API kulcs</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>Kulcs ellenőrzése</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  Kulcs hitelesítve</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  Kulcs érvénytelen</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[Hang kiválasztása]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  Kulcs felismert</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>Hangok — Olvasás</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>Modellek — Hozzáférés</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>Szövegfelolvasás — Hozzáférés</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>Felhasználó — Olvasás</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Modell</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>Főhangszint</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>Előfizetés-használat lekérése…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>Terv-felhasználás:  {0:N0} / {1:N0} karakter felhasználva  ({2:F1}%)  —  {3:N0} marad</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>Terv-felhasználás nem elérhető</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>Hang</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>Következetesség</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>Drámai</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>Hasonlóság-erősítés</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>Hangszóró-erősítés</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>Slot hangerő</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>Teszt</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>Előzés / Helyzetváltozás</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>Szoros csata</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>Leggyorsabb kör</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>Boxkiállás</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>Vigyázat / Sárga zászló</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>Menet kezdete / vége</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>Vezető incidens</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>Üzemanyag figyelmeztetés</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>Gumiabroncs figyelmeztetés</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>Kár figyelmeztetés</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>Közelségi figyelmeztetések</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>Box ablak nyitva</value>
+  </data>
 </root>

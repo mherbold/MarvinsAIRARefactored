@@ -1459,4 +1459,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>Text till tal</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>TEXT TILL TAL</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>KONTO</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>RÖSTLISTA</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>CREW CHIEF-KOMMENTAR</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>SPOTTER-KOMMENTAR</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>SPORTKOMMENTATOR 1-KOMMENTAR</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>SPORTKOMMENTATOR 2-KOMMENTAR</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>PIT-REPORTER-KOMMENTAR</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>API-nyckel</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>Verifiera nyckel</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  Nyckel verifierad</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  Nyckel ogiltig</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[Välj en röst]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  Nyckel igenkänd</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>Röster — Läsning</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>Modeller — Åtkomst</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>Text till tal — Åtkomst</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>Användare — Läsning</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Modell</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>Huvudvolym</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>Hämtar prenumerationsanvändning…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>Plananvändning:  {0:N0} / {1:N0} tecken använda  ({2:F1}%)  —  {3:N0} kvar</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>Plananvändning ej tillgänglig</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>Röst</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>Konsekvens</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>Dramatisk</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>Likhetsförstärkning</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>Talarförstärkning</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>Slot­volym</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>Testa</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>Omkörning / Positionsbyte</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>Tight kamp</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>Snabbaste varv</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>Pit­stopp</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>Varning / Gul flagg</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>Session start / slut</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>Förarincident</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>Bränslevarning</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>Däckvarning</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>Skadevarning</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>Närhetsanrop</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>Pit­fönster öppet</value>
+  </data>
 </root>

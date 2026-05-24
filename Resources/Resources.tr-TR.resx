@@ -1459,4 +1459,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>Metinden Sese</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>METİNDEN SESE</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>HESAP</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>SES LİSTESİ</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>EKİP ŞEFİ YORUMU</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>SPOTTER YORUMU</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>SPOR YORUMCUSU 1 YORUMU</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>SPOR YORUMCUSU 2 YORUMU</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>PİT MUHABİRİ YORUMU</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>API Anahtarı</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>Anahtarı Doğrula</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  Anahtar doğrulandı</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  Anahtar geçersiz</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[Ses Seç]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  Anahtar tanındı</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>Sesler — Okuma</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>Modeller — Erişim</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>Metinden Sese — Erişim</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>Kullanıcı — Okuma</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>Ana Ses Seviyesi</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>Abonelik kullanımı alınıyor…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>Plan kullanımı:  {0:N0} / {1:N0} karakter kullanıldı  ({2:F1}%)  —  {3:N0} kaldı</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>Plan kullanımı kullanılamıyor</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>Ses</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>Tutarlılık</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>Dramatik</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>Benzerlik Güçlendirme</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>Hoparlör Güçlendirme</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>Yuva Ses Seviyesi</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>Test Et</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>Geçiş / Pozisyon Değişimi</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>Yakın Mücadele</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>En Hızlı Tur</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>Pit Durağı</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>Dikkat / Sarı Bayrak</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>Seans Başlangıcı / Sonu</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>Sürücü Olayı</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>Yakıt Uyarısı</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>Lastik Uyarısı</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>Hasar Uyarısı</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>Yakınlık Çağrıları</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>Pit Penceresi Açık</value>
+  </data>
 </root>

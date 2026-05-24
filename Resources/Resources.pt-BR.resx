@@ -1459,4 +1459,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>Texto para fala</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>TEXTO PARA FALA</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>CONTA</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>LISTA DE VOZES</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>COMENTÁRIO DO CHEFE DA EQUIPE</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>COMENTÁRIO DO SPOTTER</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>COMENTÁRIO DO COMENTARISTA ESPORTIVO 1</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>COMENTÁRIO DO COMENTARISTA ESPORTIVO 2</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>COMENTÁRIO DO REPÓRTER DO PIT</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>Chave API</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>Verificar chave</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  Chave verificada</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  Chave inválida</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[Selecionar uma voz]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  Chave reconhecida</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>Vozes — Leitura</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>Modelos — Acesso</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>Texto para fala — Acesso</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>Usuário — Leitura</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Modelo</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>Volume principal</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>Buscando uso da assinatura…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>Uso do plano:  {0:N0} / {1:N0} caracteres usados  ({2:F1}%)  —  {3:N0} restantes</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>Uso do plano indisponível</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>Voz</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>Consistência</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>Dramático</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>Amplificação de similaridade</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>Amplificação do locutor</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>Volume do slot</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>Testar</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>Ultrapassagem / Mudança de posição</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>Batalha acirrada</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>Volta mais rápida</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>Pit stop</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>Cuidado / Bandeira amarela</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>Início / Fim da sessão</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>Incidente de piloto</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>Aviso de combustível</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>Aviso de pneus</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>Aviso de danos</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>Chamadas de proximidade</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>Janela do pit aberta</value>
+  </data>
 </root>
