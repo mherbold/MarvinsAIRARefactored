@@ -854,10 +854,10 @@ public class SeatBeltTensioner
 	{
 		return _vibrationTestEffect switch
 		{
-			TestVibrationEffect.ABS => ( (int) MathF.Round( settings.SeatBeltTensionerABSFrequency ), (int) MathF.Round( settings.SeatBeltTensionerABSAmplitude ) ),
-			TestVibrationEffect.WheelSlip => ( (int) MathF.Round( settings.SeatBeltTensionerWheelSlipFrequency ), (int) MathF.Round( settings.SeatBeltTensionerWheelSlipAmplitude ) ),
-			TestVibrationEffect.Rumble => ( (int) MathF.Round( settings.SeatBeltTensionerRumbleFrequency ), (int) MathF.Round( settings.SeatBeltTensionerRumbleAmplitude ) ),
-			_ => ( 0, 0 )
+			TestVibrationEffect.ABS => ((int) MathF.Round( settings.SeatBeltTensionerABSFrequency ), (int) MathF.Round( settings.SeatBeltTensionerABSAmplitude )),
+			TestVibrationEffect.WheelSlip => ((int) MathF.Round( settings.SeatBeltTensionerWheelSlipFrequency ), (int) MathF.Round( settings.SeatBeltTensionerWheelSlipAmplitude )),
+			TestVibrationEffect.Rumble => ((int) MathF.Round( settings.SeatBeltTensionerRumbleFrequency ), (int) MathF.Round( settings.SeatBeltTensionerRumbleAmplitude )),
+			_ => (0, 0)
 		};
 	}
 
@@ -912,7 +912,7 @@ public class SeatBeltTensioner
 			_lastSentRightEffectFreqHz = -1;
 			_lastSentRightEffectAmplitudeDeg = -1;
 
-			var ( freq, amp ) = GetVibrationTestParams( settings );
+			var (freq, amp) = GetVibrationTestParams( settings );
 
 			SendVibrationEffect( freq, amp, freq, amp );
 		}

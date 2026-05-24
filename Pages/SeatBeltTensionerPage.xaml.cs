@@ -95,13 +95,13 @@ public partial class SeatBeltTensionerPage : UserControl
 	{
 		using var _ = Dispatcher.DisableProcessing();
 
-		LeftShoulderABS_TextBlock.Visibility    = ( absActive )       ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+		LeftShoulderABS_TextBlock.Visibility = ( absActive ) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
 		LeftShoulderWheelSlip_TextBlock.Visibility = ( wheelSlipActive ) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-		LeftShoulderRumble_TextBlock.Visibility  = ( rumbleLeftActive )  ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+		LeftShoulderRumble_TextBlock.Visibility = ( rumbleLeftActive ) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
 
-		RightShoulderABS_TextBlock.Visibility    = ( absActive )        ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-		RightShoulderWheelSlip_TextBlock.Visibility = ( wheelSlipActive )  ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
-		RightShoulderRumble_TextBlock.Visibility  = ( rumbleRightActive )  ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+		RightShoulderABS_TextBlock.Visibility = ( absActive ) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+		RightShoulderWheelSlip_TextBlock.Visibility = ( wheelSlipActive ) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+		RightShoulderRumble_TextBlock.Visibility = ( rumbleRightActive ) ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
 	}
 
 	#region User Control Events

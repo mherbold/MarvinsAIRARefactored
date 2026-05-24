@@ -1,0 +1,80 @@
+﻿{
+  "Overtake": [
+    "[nadšeně] {attacker} útočí — projíždí na P{position}!",
+    "[nadšeně] Jaký manévr od {attacker}! Přejíždí {defender} a bere P{position}!",
+    "[překvapeně] Ó! {attacker} to dokázal — je za {defender} a na P{position}!"
+  ],
+  "CloseBattle": [
+    "Neuvěřitelně těsný souboj mezi {driver1} a {driver2} — méně než sekunda je dělí!",
+    "{driver1} a {driver2} jedou doslova bok po boku — to je senzace!"
+  ],
+  "FastestLap": [
+    "[ohromeně] {driver} jede nejrychlejší kolo závodu — {lapTime}!",
+    "[nadšeně] Nové nejrychlejší kolo od {driver} — {lapTime}!"
+  ],
+  "PitStopEntry": [
+    "{driver} zajíždí do boxů — posádka je připravena.",
+    "{driver} míří do pitlane."
+  ],
+  "PitStopExit": [
+    "{driver} vyjíždí z boxů — čistý stop.",
+    "{driver} se vrací do závodu."
+  ],
+  "Caution": [
+    "[naléhavě] Žlutá vlajka! Pozor na trati!",
+    "[naléhavě] Safety car — zpomalit a sevřít pole."
+  ],
+  "RedFlag": [
+    "[vážně] Červená vlajka! Červená vlajka! Závod byl zastaven.",
+    "[vážně] Červená vlajka — všechna auta se musí okamžitě vrátit do boxů."
+  ],
+  "SessionStart": [
+    "[nadšeně] Zelené světlo — a jedeme! Závod začíná!",
+    "[nadšeně] Zelená vlajka! Závodíme!"
+  ],
+  "SessionEnd": [
+    "[dojatě] Kostkovaná vlajka — {driver} vítězí!",
+    "[dojatě] Je po závodu — jaký to byl zážitek!"
+  ],
+  "Incident": [
+    "{driver} obdržel trest {seconds} sekund za tento incident.",
+    "Komisaři udělili {driver} trest {seconds} sekund."
+  ],
+  "SpotterCarLeft": [
+    "Auto vlevo.",
+    "Vlevo."
+  ],
+  "SpotterCarRight": [
+    "Auto vpravo.",
+    "Vpravo."
+  ],
+  "SpotterClear": [
+    "Volno.",
+    "Máš volno."
+  ],
+  "SpotterOverlap": [
+    "Překrytí.",
+    "Stále překrytí."
+  ],
+  "CrewFuelWarning": [
+    "Palivo docházní — zbývá asi {laps} kol.",
+    "Pozor na palivo — přibližně {laps} kol v nádrži."
+  ],
+  "CrewTireWarning": [
+    "Pneumatiky se opotřebovávají — grip klesá.",
+    "Opotřebení pneumatik — uvažuj brzy o zastávce v boxech."
+  ],
+  "CrewPitWindowOpen": [
+    "Okno pro boxy je otevřené — můžeš zajet kdykoliv.",
+    "Můžeš zajet do boxů — okno je otevřené."
+  ],
+  "CrewDamage": [
+    "Máš poškození — zkontroluj zrcátka.",
+    "Hlášeno poškození vozu — dávej pozor."
+  ],
+  "TestPhrase0": [ "Okno zastávky se otevírá za tři kola. Palivo vypadá dobře." ],
+  "TestPhrase1": [ "Auto vlevo. Auto vlevo. Jeď výše." ],
+  "TestPhrase2": [ "Jaký manévr! Prošel na druhé místo!" ],
+  "TestPhrase3": [ "Byl velmi uvážlivý při vjezdu — to zachránilo auto." ],
+  "TestPhrase4": [ "Undercut fungoval perfektně. Vyjíždí před svým hlavním soupeřem!" ]
+}

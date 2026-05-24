@@ -17,13 +17,15 @@
             <ResourceDictionary.MergedDictionaries>
                 <!-- Active theme: replaced at runtime by App.ApplyTheme() -->
                 <ResourceDictionary x:Name="ThemeDictionary"
-                                    Source="/MarvinsAIRARefactored;component/Themes/LightTheme.xaml" />
+                                    Source="/MarvinsAIRARefactored;component/Themes/DarkTheme.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
             <!-- Converters -->
 
             <BooleanToVisibilityConverter x:Key="BooleanToVisibility" />
             <converters:NullToVisibilityConverter x:Key="NullToVisibilityConverter" />
+            <converters:BoolNegationConverter x:Key="BoolNegationConverter" />
+            <converters:BoolAllTrueNegationConverter x:Key="BoolAllTrueNegationConverter" />
 
             <!-- Window -->
 

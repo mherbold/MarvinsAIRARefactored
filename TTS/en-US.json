@@ -1,0 +1,93 @@
+{
+  "Overtake": [
+    "[excitedly] {attacker} makes the move — he's through into P{position}!",
+    "[excitedly] What a move by {attacker}! He dives past {defender} for P{position}!",
+    "[excited] {attacker} goes for it and it sticks — P{position} is his!",
+    "[surprised] Oh! {attacker} has done it — he's past {defender} and into P{position}!"
+  ],
+  "CloseBattle": [
+    "Incredibly close racing between {driver1} and {driver2} — less than a second in it!",
+    "{driver1} and {driver2} are absolutely glued together out there — this is sensational!",
+    "What a battle! {driver1} and {driver2} have been trading paint for the last few laps."
+  ],
+  "FastestLap": [
+    "[impressed] {driver} sets the fastest lap of the race — a {lapTime}!",
+    "[excited] Purple sector for {driver} — and that is the fastest lap! {lapTime}!",
+    "[impressed] {driver} finds another tenth — new fastest lap, a {lapTime}."
+  ],
+  "PitStopEntry": [
+    "And {driver} ducks into the pits — the crew is ready.",
+    "{driver} peels off into the pit lane.",
+    "In comes {driver} for service — let's see how long this stop takes."
+  ],
+  "PitStopExit": [
+    "{driver} back out of the pits — clean stop.",
+    "And {driver} rejoins the circuit.",
+    "{driver} is back in the race after a quick stop."
+  ],
+  "Caution": [
+    "[urgently] Caution is out on the track — yellow flags waving.",
+    "[urgently] We've got a yellow flag — caution period begins.",
+    "Caution! Slow down and bunch up — yellow is out."
+  ],
+  "RedFlag": [
+    "[seriously] Red flag! Red flag! The session has been stopped.",
+    "[seriously] We have a red flag — all cars must return to the pits immediately."
+  ],
+  "SessionStart": [
+    "[excitedly] Lights out — and we are GO! The race is underway!",
+    "[excitedly] Green flag! Green flag! We are racing!",
+    "[excited] And they're away! The race has begun — let the battle commence!"
+  ],
+  "SessionEnd": [
+    "[emotionally] And that is the checkered flag — {driver} wins!",
+    "[emotionally] The checkered flag flies — what a race it has been!",
+    "[emotionally] And it's over! {driver} takes the victory!"
+  ],
+  "Incident": [
+    "{driver} has been given a {seconds}-second penalty for that incident.",
+    "Stewards have handed {driver} a {seconds}-second penalty.",
+    "A {seconds}-second time penalty for {driver} following that contact."
+  ],
+  "SpotterCarLeft": [
+    "Car left.",
+    "Car to your left."
+  ],
+  "SpotterCarRight": [
+    "Car right.",
+    "Car to your right."
+  ],
+  "SpotterClear": [
+    "Clear.",
+    "You're clear."
+  ],
+  "SpotterOverlap": [
+    "Overlap.",
+    "Still overlap."
+  ],
+  "CrewFuelWarning": [
+    "Fuel getting low — you've got about {laps} laps worth left.",
+    "Heads up — fuel is running low, roughly {laps} laps remaining.",
+    "Watch your fuel — about {laps} laps left in the tank."
+  ],
+  "CrewTireWarning": [
+    "Tires are going off — push is fading.",
+    "Your tires are worn — you may want to consider pitting soon.",
+    "Grip is dropping off — tires are done."
+  ],
+  "CrewPitWindowOpen": [
+    "Pit window is open — you're free to come in any time.",
+    "You can pit now — the window is open.",
+    "Pit window open. Come in when you're ready."
+  ],
+  "CrewDamage": [
+    "You've taken some damage — check your mirrors.",
+    "Damage reported — may affect your handling.",
+    "You've got damage on the car — keep an eye on it."
+  ],
+  "TestPhrase0": [ "Pit window opens in three laps. Fuel looks good." ],
+  "TestPhrase1": [ "Car left. Car left. Go high." ],
+  "TestPhrase2": [ "What a move! He's through into second!" ],
+  "TestPhrase3": [ "He was very measured on entry — that's what saved the car." ],
+  "TestPhrase4": [ "The undercut worked perfectly. He comes out ahead of his main rival!" ]
+}

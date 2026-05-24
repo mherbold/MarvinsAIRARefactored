@@ -122,6 +122,9 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.SpeechToText:
 					return "advanced/speech-to-text/";
 
+				case AppPage.TextToSpeech:
+					return "advanced/text-to-speech/";
+
 				case AppPage.TradingPaints:
 					return "advanced/trading-paints/";
 
@@ -296,6 +299,12 @@ namespace MarvinsAIRARefactored.Controls
 
 			AppMenuItems.Add( new AppMenuItem
 			{
+				AppPage = AppPage.TextToSpeech,
+				PageUserControl = _textToSpeechPage
+			} );
+
+			AppMenuItems.Add( new AppMenuItem
+			{
 				AppPage = AppPage.TradingPaints,
 				PageUserControl = _tradingPaintsPage
 			} );
@@ -366,6 +375,7 @@ namespace MarvinsAIRARefactored.Controls
 				AppPage.Overlays => _overlaysPage,
 				AppPage.Sounds => _soundsPage,
 				AppPage.SpeechToText => _speechToTextPage,
+				AppPage.TextToSpeech => _textToSpeechPage,
 				AppPage.TradingPaints => _tradingPaintsPage,
 				AppPage.Graph => _graphPage,
 				AppPage.Simulator => _simulatorPage,
@@ -435,6 +445,10 @@ namespace MarvinsAIRARefactored.Controls
 
 					case AppPage.SpeechToText:
 						menuItem.DisplayName = localization[ "SpeechToText" ];
+						break;
+
+					case AppPage.TextToSpeech:
+						menuItem.DisplayName = localization[ "TextToSpeech" ];
 						break;
 
 					case AppPage.TradingPaints:
@@ -518,6 +532,10 @@ namespace MarvinsAIRARefactored.Controls
 
 				case AppPage.SpeechToText:
 					SelectedAppPageText = localization[ "SpeechToText_UC" ];
+					break;
+
+				case AppPage.TextToSpeech:
+					SelectedAppPageText = localization[ "TextToSpeech_UC" ];
 					break;
 
 				case AppPage.TradingPaints:

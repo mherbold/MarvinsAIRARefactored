@@ -230,7 +230,7 @@
     <comment>Racing wheel</comment>
   </data>
   <data name="ThisLanguage" xml:space="preserve">
-    <value>English</value>
+    <value>English (United States)</value>
     <comment>App language list</comment>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
@@ -2044,5 +2044,197 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
     <comment>Abbreviation for milliseconds, used as a unit suffix in value display strings</comment>
+  </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>Text to Speech</value>
+    <comment>Menu item name for the ElevenLabs TTS settings page</comment>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>TEXT TO SPEECH</value>
+    <comment>Upper-case header for the ElevenLabs TTS settings page</comment>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>ACCOUNT</value>
+    <comment>ElevenLabs TTS — account section heading</comment>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>VOICE ROSTER</value>
+    <comment>ElevenLabs TTS — voice roster section heading</comment>
+  </data>
+  <data name="Commentary_UC" xml:space="preserve">
+    <value>COMMENTARY</value>
+    <comment>ElevenLabs TTS — commentary section heading</comment>
+  </data>
+  <data name="SpotterAndCrewChief_UC" xml:space="preserve">
+    <value>SPOTTER &amp; CREW CHIEF</value>
+    <comment>ElevenLabs TTS — spotter and crew chief section heading</comment>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>API Key</value>
+    <comment>ElevenLabs TTS — API key label</comment>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>Verify Key</value>
+    <comment>ElevenLabs TTS — button to verify the API key</comment>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>Key verified ✓</value>
+    <comment>ElevenLabs TTS — shown after successful key verification</comment>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>Key invalid ✗</value>
+    <comment>ElevenLabs TTS — shown after failed key verification</comment>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[Select a Voice]</value>
+    <comment>ElevenLabs TTS — placeholder shown in voice dropdown when no voice is selected</comment>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>Key recognized ✓</value>
+    <comment>ElevenLabs TTS — shown when key is valid but one or more permissions are missing</comment>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+    <comment>ElevenLabs TTS — permission check passed symbol</comment>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+    <comment>ElevenLabs TTS — permission check failed symbol</comment>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>Voices — Read</value>
+    <comment>ElevenLabs TTS — label for the voice_read permission check; matches ElevenLabs API key UI wording</comment>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>Models — Access</value>
+    <comment>ElevenLabs TTS — label for the models_read permission check; matches ElevenLabs API key UI wording</comment>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>Text to Speech — Access</value>
+    <comment>ElevenLabs TTS — label for the text_to_speech permission check; matches ElevenLabs API key UI wording</comment>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Model</value>
+    <comment>ElevenLabs TTS — model selector label</comment>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>Master Volume</value>
+    <comment>ElevenLabs TTS — master TTS volume label</comment>
+  </data>
+  <data name="SessionCharactersUsed" xml:space="preserve">
+    <value>Session Characters Used</value>
+    <comment>ElevenLabs TTS — label for character usage counter</comment>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>Voice</value>
+    <comment>ElevenLabs TTS — voice selector combo box label</comment>
+  </data>
+  <data name="VoiceId" xml:space="preserve">
+    <value>Voice ID</value>
+    <comment>ElevenLabs TTS — voice ID text box label</comment>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>Consistency</value>
+    <comment>ElevenLabs TTS — stability knob label (low = expressive, high = consistent)</comment>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>Dramatic</value>
+    <comment>ElevenLabs TTS — style knob label</comment>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>Similarity Boost</value>
+    <comment>ElevenLabs TTS — similarity boost knob label</comment>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>Speaker Boost</value>
+    <comment>ElevenLabs TTS — speaker boost toggle label</comment>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>Slot Volume</value>
+    <comment>ElevenLabs TTS — per-slot volume knob label</comment>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>Test</value>
+    <comment>ElevenLabs TTS — button to test a voice slot</comment>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>Overtake / Position Change</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>Close Battle</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>Fastest Lap</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>Pit Stop</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>Caution / Yellow Flag</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>Session Start / End</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>Driver Incident</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>Fuel Warning</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>Tire Warning</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>Damage Warning</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>Pit Window Open</value>
+    <comment>ElevenLabs TTS — commentary event toggle label</comment>
+  </data>
+  <data name="PregeneratePhraseCache" xml:space="preserve">
+    <value>Pre-generate Phrase Cache</value>
+    <comment>ElevenLabs TTS — button to pre-generate the spotter/crew-chief phrase cache</comment>
+  </data>
+  <data name="ClearPhraseCache" xml:space="preserve">
+    <value>Clear Phrase Cache</value>
+    <comment>ElevenLabs TTS — button to clear the spotter/crew-chief phrase cache</comment>
+  </data>
+  <data name="PregenRunning" xml:space="preserve">
+    <value>Generating… ({0} phrases cached)</value>
+    <comment>ElevenLabs TTS — progress text shown while pre-generating phrases; {0} = count so far</comment>
+  </data>
+  <data name="PregenDone" xml:space="preserve">
+    <value>Done — {0} phrases cached.</value>
+    <comment>ElevenLabs TTS — shown when pre-generation finishes; {0} = total count</comment>
+  </data>
+  <data name="CacheClearedMsg" xml:space="preserve">
+    <value>Cache cleared.</value>
+    <comment>ElevenLabs TTS — shown after the phrase cache is deleted</comment>
+  </data>
+  <data name="SpotterEnabled" xml:space="preserve">
+    <value>Spotter Enabled</value>
+    <comment>ElevenLabs TTS — toggle to enable the MAIRA spotter voice</comment>
+  </data>
+  <data name="CrewChiefEnabled" xml:space="preserve">
+    <value>Crew Chief Enabled</value>
+    <comment>ElevenLabs TTS — toggle to enable the MAIRA crew chief voice</comment>
+  </data>
+  <data name="CommentaryEnabled" xml:space="preserve">
+    <value>Commentary Enabled</value>
+    <comment>ElevenLabs TTS — master toggle for sportscaster commentary</comment>
+  </data>
+  <data name="TtsLanguage_UC" xml:space="preserve">
+    <value>COMMENTARY LANGUAGE</value>
+    <comment>ElevenLabs TTS — section heading for commentary language selector</comment>
   </data>
 </root>

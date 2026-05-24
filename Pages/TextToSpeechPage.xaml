@@ -1,0 +1,744 @@
+<UserControl x:Class="MarvinsAIRARefactored.Pages.TextToSpeechPage"
+             x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MarvinsAIRARefactored.Pages"
+             xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+             xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+             mc:Ignorable="d"
+             d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </UserControl.DataContext>
+
+    <StackPanel>
+
+        <!-- ================================================================ -->
+        <!-- ENABLED + LANGUAGE + MASTER VOLUME                               -->
+        <!-- ================================================================ -->
+
+        <controls:MairaGroupBox Label="{Binding Localization[Master_UC]}"
+                                HelpTopic="advanced/text-to-speech/">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaSwitch IsOn="{Binding Settings.TtsEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[Enabled]}" />
+
+                <controls:MairaComboBox x:Name="TtsLanguage_MairaComboBox"
+                                        Grid.Column="2"
+                                        Label="{Binding Localization[Language_UC]}"
+                                        SelectedValue="{Binding Settings.TtsLanguage, Mode=TwoWay}" />
+
+                <controls:MairaKnob Grid.Column="4"
+                                    Label="{Binding Localization[MasterVolume]}"
+                                    Value="{Binding Settings.MasterVolume, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.MasterVolumeString}"
+                                    StepSize="0.01"
+                                    DefaultValue="0.85" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <!-- ================================================================ -->
+        <!-- ACCOUNT                                                          -->
+        <!-- ================================================================ -->
+
+        <controls:MairaGroupBox Label="{Binding Localization[Account_UC]}"
+                                HelpTopic="advanced/text-to-speech/#account">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- Row 0: API key + Verify button -->
+                <Grid Grid.Row="0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaTextBox Grid.Column="0"
+                                           x:Name="ApiKey_MairaTextBox"
+                                           Label="{Binding Localization[ApiKey]}"
+                                           IsPassword="True"
+                                           ValueChanged="ApiKey_MairaTextBox_ValueChanged"
+                                           FontSize="20" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          x:Name="VerifyKey_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/power-blue.png"
+                                          Label="{Binding Localization[VerifyKey]}"
+                                          Click="VerifyKey_MairaButton_Click"
+                                          IsSmall="True"
+                                          VerticalAlignment="Bottom" />
+
+                </Grid>
+
+                <!-- Row 1: API key status -->
+
+                <TextBlock x:Name="VerifyResult_TextBlock"
+                           Grid.Row="1"
+                           Style="{DynamicResource MairaTextBlockStyle}"
+                           Foreground="#ff5b2e"
+                           Margin="0,5,0,0"
+                           d:Text="Just a test" />
+
+                <!-- Row 2: Model -->
+                <controls:MairaComboBox x:Name="Model_MairaComboBox"
+                                        Grid.Row="3"
+                                        Label="{Binding Localization[Model]}"
+                                        SelectedValue="{Binding Settings.ModelId, Mode=TwoWay}" />
+
+                <!-- Row 4: Session character usage -->
+                <StackPanel Grid.Row="4"
+                            Orientation="Horizontal"
+                            Margin="0,5,0,0">
+
+                    <TextBlock Text="{Binding Localization[SessionCharactersUsed]}"
+                               Style="{DynamicResource MairaTextBlockStyle}"
+                               Margin="0,0,8,0" />
+
+                    <TextBlock Text="{Binding Settings.SessionCharactersUsed}"
+                               Style="{DynamicResource MairaTextBlockStyle}" />
+
+                </StackPanel>
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <!-- ================================================================ -->
+        <!-- VOICE ROSTER — slot 0: Crew Chief                               -->
+        <!-- ================================================================ -->
+
+        <controls:MairaGroupBox Label="{Binding Localization[VoiceRoster_UC]}"
+                                HelpTopic="advanced/text-to-speech/#voices">
+
+            <StackPanel>
+
+                <!-- Slot 0 — Crew Chief -->
+                <controls:MairaExpander x:Name="Slot0_Expander"
+                                        Label="{Binding Settings.VoiceSlots[0].RoleLabel}"
+                                        Margin="0,0,0,20">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <controls:MairaComboBox Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="5"
+                                                Label="{Binding Localization[Voice]}"
+                                                SelectedValue="{Binding Settings.VoiceSlots[0].VoiceId, Mode=TwoWay}" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[Consistency]}"
+                                            Value="{Binding Settings.VoiceSlots[0].Stability, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[0].StabilityString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.75" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="2"
+                                            Label="{Binding Localization[Dramatic]}"
+                                            Value="{Binding Settings.VoiceSlots[0].Style, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[0].StyleString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.30" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="4"
+                                            Label="{Binding Localization[SimilarityBoost]}"
+                                            Value="{Binding Settings.VoiceSlots[0].SimilarityBoost, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[0].SimilarityBoostString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.80" />
+
+                        <controls:MairaKnob Grid.Row="4"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[SlotVolume]}"
+                                            Value="{Binding Settings.VoiceSlots[0].Volume, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[0].VolumeString}"
+                                            StepSize="0.05"
+                                            DefaultValue="1.0" />
+
+                        <StackPanel Grid.Row="4"
+                                    Grid.Column="2">
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.VoiceSlots[0].Enabled, Mode=TwoWay}"
+                                                  Label="{Binding Localization[Enabled]}"
+                                                  Margin="0,0,0,10" />
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.VoiceSlots[0].SpeakerBoost, Mode=TwoWay}"
+                                                  Label="{Binding Localization[SpeakerBoost]}" />
+
+                        </StackPanel>
+
+                        <controls:MairaButton Grid.Row="4"
+                                              Grid.Column="4"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              Label="{Binding Localization[TestVoice]}"
+                                              Click="Slot0Test_MairaButton_Click"
+                                              IsSmall="True">
+                            <controls:MairaButton.Disabled>
+                                <MultiBinding Converter="{StaticResource BoolAllTrueNegationConverter}">
+                                    <Binding Path="Settings.TtsEnabled" />
+                                    <Binding Path="Settings.VoiceSlots[0].Enabled" />
+                                </MultiBinding>
+                            </controls:MairaButton.Disabled>
+                        </controls:MairaButton>
+
+                    </Grid>
+
+                </controls:MairaExpander>
+
+                <!-- Slot 1 — Spotter -->
+                <controls:MairaExpander x:Name="Slot1_Expander"
+                                        Label="{Binding Settings.VoiceSlots[1].RoleLabel}"
+                                        Margin="0,0,0,20">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <controls:MairaComboBox Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="5"
+                                                Label="{Binding Localization[Voice]}"
+                                                SelectedValue="{Binding Settings.VoiceSlots[1].VoiceId, Mode=TwoWay}" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[Consistency]}"
+                                            Value="{Binding Settings.VoiceSlots[1].Stability, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[1].StabilityString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.90" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="2"
+                                            Label="{Binding Localization[Dramatic]}"
+                                            Value="{Binding Settings.VoiceSlots[1].Style, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[1].StyleString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.15" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="4"
+                                            Label="{Binding Localization[SimilarityBoost]}"
+                                            Value="{Binding Settings.VoiceSlots[1].SimilarityBoost, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[1].SimilarityBoostString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.75" />
+
+                        <controls:MairaKnob Grid.Row="4"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[SlotVolume]}"
+                                            Value="{Binding Settings.VoiceSlots[1].Volume, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[1].VolumeString}"
+                                            StepSize="0.05"
+                                            DefaultValue="1.0" />
+
+                        <StackPanel Grid.Row="4"
+                                    Grid.Column="2">
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.VoiceSlots[1].Enabled, Mode=TwoWay}"
+                                                  Label="{Binding Localization[Enabled]}"
+                                                  Margin="0,0,0,10" />
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.VoiceSlots[1].SpeakerBoost, Mode=TwoWay}"
+                                                  Label="{Binding Localization[SpeakerBoost]}" />
+
+                        </StackPanel>
+
+                        <controls:MairaButton Grid.Row="4"
+                                              Grid.Column="4"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              Label="{Binding Localization[TestVoice]}"
+                                              Click="Slot1Test_MairaButton_Click"
+                                              IsSmall="True">
+                            <controls:MairaButton.Disabled>
+                                <MultiBinding Converter="{StaticResource BoolAllTrueNegationConverter}">
+                                    <Binding Path="Settings.TtsEnabled" />
+                                    <Binding Path="Settings.VoiceSlots[1].Enabled" />
+                                </MultiBinding>
+                            </controls:MairaButton.Disabled>
+                        </controls:MairaButton>
+
+                    </Grid>
+                </controls:MairaExpander>
+
+                <!-- Slot 2 — Sportscaster 1 (Lead) -->
+                <controls:MairaExpander x:Name="Slot2_Expander"
+                                        Label="{Binding Settings.VoiceSlots[2].RoleLabel}"
+                                        Margin="0,0,0,20">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <controls:MairaComboBox Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="5"
+                                                Label="{Binding Localization[Voice]}"
+                                                SelectedValue="{Binding Settings.VoiceSlots[2].VoiceId, Mode=TwoWay}" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[Consistency]}"
+                                            Value="{Binding Settings.VoiceSlots[2].Stability, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[2].StabilityString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.35" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="2"
+                                            Label="{Binding Localization[Dramatic]}"
+                                            Value="{Binding Settings.VoiceSlots[2].Style, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[2].StyleString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.75" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="4"
+                                            Label="{Binding Localization[SimilarityBoost]}"
+                                            Value="{Binding Settings.VoiceSlots[2].SimilarityBoost, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[2].SimilarityBoostString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.75" />
+
+                        <controls:MairaKnob Grid.Row="4"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[SlotVolume]}"
+                                            Value="{Binding Settings.VoiceSlots[2].Volume, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[2].VolumeString}"
+                                            StepSize="0.05"
+                                            DefaultValue="1.0" />
+
+                        <StackPanel Grid.Row="4"
+                                    Grid.Column="2">
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.VoiceSlots[2].Enabled, Mode=TwoWay}"
+                                                  Label="{Binding Localization[Enabled]}"
+                                                  Margin="0,0,0,10" />
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.VoiceSlots[2].SpeakerBoost, Mode=TwoWay}"
+                                                  Label="{Binding Localization[SpeakerBoost]}" />
+
+                        </StackPanel>
+
+                        <controls:MairaButton Grid.Row="4"
+                                              Grid.Column="4"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              Label="{Binding Localization[TestVoice]}"
+                                              Click="Slot2Test_MairaButton_Click"
+                                              IsSmall="True">
+                            <controls:MairaButton.Disabled>
+                                <MultiBinding Converter="{StaticResource BoolAllTrueNegationConverter}">
+                                    <Binding Path="Settings.TtsEnabled" />
+                                    <Binding Path="Settings.VoiceSlots[2].Enabled" />
+                                </MultiBinding>
+                            </controls:MairaButton.Disabled>
+                        </controls:MairaButton>
+
+                    </Grid>
+                </controls:MairaExpander>
+
+                <!-- Slot 3 — Sportscaster 2 (Color) -->
+                <controls:MairaExpander x:Name="Slot3_Expander"
+                                        Label="{Binding Settings.VoiceSlots[3].RoleLabel}"
+                                        Margin="0,0,0,20">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <controls:MairaComboBox Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="5"
+                                                Label="{Binding Localization[Voice]}"
+                                                SelectedValue="{Binding Settings.VoiceSlots[3].VoiceId, Mode=TwoWay}" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[Consistency]}"
+                                            Value="{Binding Settings.VoiceSlots[3].Stability, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[3].StabilityString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.55" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="2"
+                                            Label="{Binding Localization[Dramatic]}"
+                                            Value="{Binding Settings.VoiceSlots[3].Style, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[3].StyleString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.50" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="4"
+                                            Label="{Binding Localization[SimilarityBoost]}"
+                                            Value="{Binding Settings.VoiceSlots[3].SimilarityBoost, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[3].SimilarityBoostString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.75" />
+
+                        <controls:MairaKnob Grid.Row="4"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[SlotVolume]}"
+                                            Value="{Binding Settings.VoiceSlots[3].Volume, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[3].VolumeString}"
+                                            StepSize="0.05"
+                                            DefaultValue="1.0" />
+
+                        <StackPanel Grid.Row="4"
+                                    Grid.Column="2">
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.VoiceSlots[3].Enabled, Mode=TwoWay}"
+                                                  Label="{Binding Localization[Enabled]}"
+                                                  Margin="0,0,0,10" />
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.VoiceSlots[3].SpeakerBoost, Mode=TwoWay}"
+                                                  Label="{Binding Localization[SpeakerBoost]}" />
+
+                        </StackPanel>
+
+                        <controls:MairaButton Grid.Row="4"
+                                              Grid.Column="4"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              Label="{Binding Localization[TestVoice]}"
+                                              Click="Slot3Test_MairaButton_Click"
+                                              IsSmall="True">
+                            <controls:MairaButton.Disabled>
+                                <MultiBinding Converter="{StaticResource BoolAllTrueNegationConverter}">
+                                    <Binding Path="Settings.TtsEnabled" />
+                                    <Binding Path="Settings.VoiceSlots[3].Enabled" />
+                                </MultiBinding>
+                            </controls:MairaButton.Disabled>
+                        </controls:MairaButton>
+
+                    </Grid>
+                </controls:MairaExpander>
+
+                <!-- Slot 4 — Pit Reporter -->
+                <controls:MairaExpander x:Name="Slot4_Expander"
+                                        Label="{Binding Settings.VoiceSlots[4].RoleLabel}">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <controls:MairaComboBox Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="5"
+                                                Label="{Binding Localization[Voice]}"
+                                                SelectedValue="{Binding Settings.VoiceSlots[4].VoiceId, Mode=TwoWay}" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[Consistency]}"
+                                            Value="{Binding Settings.VoiceSlots[4].Stability, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[4].StabilityString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.45" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="2"
+                                            Label="{Binding Localization[Dramatic]}"
+                                            Value="{Binding Settings.VoiceSlots[4].Style, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[4].StyleString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.65" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="4"
+                                            Label="{Binding Localization[SimilarityBoost]}"
+                                            Value="{Binding Settings.VoiceSlots[4].SimilarityBoost, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[4].SimilarityBoostString}"
+                                            StepSize="0.05"
+                                            DefaultValue="0.80" />
+
+                        <controls:MairaKnob Grid.Row="4"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[SlotVolume]}"
+                                            Value="{Binding Settings.VoiceSlots[4].Volume, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.VoiceSlots[4].VolumeString}"
+                                            StepSize="0.05"
+                                            DefaultValue="1.0" />
+
+                        <StackPanel Grid.Row="4"
+                                    Grid.Column="2">
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.VoiceSlots[4].Enabled, Mode=TwoWay}"
+                                                  Label="{Binding Localization[Enabled]}"
+                                                  Margin="0,0,0,10" />
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.VoiceSlots[4].SpeakerBoost, Mode=TwoWay}"
+                                                  Label="{Binding Localization[SpeakerBoost]}" />
+
+                        </StackPanel>
+
+                        <controls:MairaButton Grid.Row="4"
+                                              Grid.Column="4"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              Label="{Binding Localization[TestVoice]}"
+                                              Click="Slot4Test_MairaButton_Click"
+                                              IsSmall="True">
+                            <controls:MairaButton.Disabled>
+                                <MultiBinding Converter="{StaticResource BoolAllTrueNegationConverter}">
+                                    <Binding Path="Settings.TtsEnabled" />
+                                    <Binding Path="Settings.VoiceSlots[4].Enabled" />
+                                </MultiBinding>
+                            </controls:MairaButton.Disabled>
+                        </controls:MairaButton>
+
+                    </Grid>
+                </controls:MairaExpander>
+
+            </StackPanel>
+
+        </controls:MairaGroupBox>
+
+        <!-- ================================================================ -->
+        <!-- COMMENTARY                                                       -->
+        <!-- ================================================================ -->
+
+        <controls:MairaGroupBox Label="{Binding Localization[Commentary_UC]}"
+                                HelpTopic="advanced/text-to-speech/#commentary">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- master commentary toggle -->
+                <controls:MairaSwitch Grid.Row="0"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="5"
+                                      IsOn="{Binding Settings.CommentaryEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[CommentaryEnabled]}" />
+
+                <!-- row 2: overtake / close battle / fastest lap -->
+                <controls:MairaSwitch Grid.Row="2"
+                                      Grid.Column="0"
+                                      IsOn="{Binding Settings.CommentaryOvertake, Mode=TwoWay}"
+                                      Label="{Binding Localization[Overtake]}" />
+
+                <controls:MairaSwitch Grid.Row="2"
+                                      Grid.Column="2"
+                                      IsOn="{Binding Settings.CommentaryCloseBattle, Mode=TwoWay}"
+                                      Label="{Binding Localization[CloseBattle]}" />
+
+                <controls:MairaSwitch Grid.Row="2"
+                                      Grid.Column="4"
+                                      IsOn="{Binding Settings.CommentaryFastestLap, Mode=TwoWay}"
+                                      Label="{Binding Localization[FastestLap]}" />
+
+                <!-- row 4: pit stop / caution / session start-end -->
+                <controls:MairaSwitch Grid.Row="4"
+                                      Grid.Column="0"
+                                      IsOn="{Binding Settings.CommentaryPitStop, Mode=TwoWay}"
+                                      Label="{Binding Localization[PitStop]}" />
+
+                <controls:MairaSwitch Grid.Row="4"
+                                      Grid.Column="2"
+                                      IsOn="{Binding Settings.CommentaryCaution, Mode=TwoWay}"
+                                      Label="{Binding Localization[Caution]}" />
+
+                <controls:MairaSwitch Grid.Row="4"
+                                      Grid.Column="4"
+                                      IsOn="{Binding Settings.CommentarySessionStartEnd, Mode=TwoWay}"
+                                      Label="{Binding Localization[SessionStartEnd]}" />
+
+                <!-- row 6: incident / fuel warning / tire warning -->
+                <controls:MairaSwitch Grid.Row="6"
+                                      Grid.Column="0"
+                                      IsOn="{Binding Settings.CommentaryIncident, Mode=TwoWay}"
+                                      Label="{Binding Localization[DriverIncident]}" />
+
+                <controls:MairaSwitch Grid.Row="6"
+                                      Grid.Column="2"
+                                      IsOn="{Binding Settings.CommentaryCrewFuelWarning, Mode=TwoWay}"
+                                      Label="{Binding Localization[FuelWarning]}" />
+
+                <controls:MairaSwitch Grid.Row="6"
+                                      Grid.Column="4"
+                                      IsOn="{Binding Settings.CommentaryCrewTireWarning, Mode=TwoWay}"
+                                      Label="{Binding Localization[TireWarning]}" />
+
+                <!-- row 8: damage warning / pit window open -->
+                <controls:MairaSwitch Grid.Row="8"
+                                      Grid.Column="0"
+                                      IsOn="{Binding Settings.CommentaryCrewDamageWarning, Mode=TwoWay}"
+                                      Label="{Binding Localization[DamageWarning]}" />
+
+                <controls:MairaSwitch Grid.Row="8"
+                                      Grid.Column="2"
+                                      IsOn="{Binding Settings.CommentaryCrewPitWindowOpen, Mode=TwoWay}"
+                                      Label="{Binding Localization[PitWindowOpen]}" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <!-- ================================================================ -->
+        <!-- SPOTTER AND CREW CHIEF                                           -->
+        <!-- ================================================================ -->
+
+        <controls:MairaGroupBox Label="{Binding Localization[SpotterAndCrewChief_UC]}"
+                                HelpTopic="advanced/text-to-speech/#spotter">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <!-- enabled toggles -->
+                <controls:MairaSwitch Grid.Row="0"
+                                      Grid.Column="0"
+                                      IsOn="{Binding Settings.SpotterEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[SpotterEnabled]}" />
+
+                <controls:MairaSwitch Grid.Row="0"
+                                      Grid.Column="2"
+                                      IsOn="{Binding Settings.CrewChiefEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[CrewChiefEnabled]}" />
+
+                <!-- cache management -->
+                <controls:MairaButton Grid.Row="0"
+                                      Grid.Column="4"
+                                      x:Name="ClearCache_MairaButton"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                      Label="{Binding Localization[ClearPhraseCache]}"
+                                      Click="ClearCache_MairaButton_Click" />
+
+                <TextBlock x:Name="CacheStatus_TextBlock"
+                           Grid.Row="2"
+                           Grid.Column="0"
+                           Grid.ColumnSpan="5"
+                           TextWrapping="Wrap"
+                           Style="{DynamicResource MairaTextBlockStyle}"
+                           d:Text="Just a test..." />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+    </StackPanel>
+
+</UserControl>

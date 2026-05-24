@@ -5,7 +5,7 @@ namespace MarvinsAIRARefactored.PInvoke;
 
 public static partial class UXTheme
 {
-	[LibraryImport( "UXTheme.dll", EntryPoint = "#138", SetLastError = true)]
+	[LibraryImport( "UXTheme.dll", EntryPoint = "#138", SetLastError = true )]
 	[return: MarshalAs( UnmanagedType.Bool )]
 	public static partial bool ShouldSystemUseDarkMode();
 }

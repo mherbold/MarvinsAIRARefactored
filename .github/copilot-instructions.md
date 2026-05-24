@@ -1,4 +1,4 @@
 # Copilot Instructions
 
 ## Project Guidelines
-- When doing bulk string replacements in XAML or resx files that contain non-ASCII Unicode characters (e.g., Català, Français, Čestina, Русский, 简体中文), always use [System.IO.File]::ReadAllText / .Replace() / [System.IO.File]::WriteAllText with [System.Text.UTF8Encoding]::new($false) in PowerShell. Never use Get-Content/Set-Content without explicit encoding — it silently corrupts non-ASCII characters. Never use replace_string_in_file for bulk multi-occurrence substitutions across Unicode-containing files.
+- Only use the editor's built-in edit/apply tool (replace_string_in_file, multi_replace_string_in_file, create_file) to modify files. Do not use PowerShell, terminal commands, or shell scripts to write file content under any circumstances. If an edit cannot be applied directly, explain why and stop.

@@ -66,6 +66,8 @@ public partial class App : Application
 	public Drivers Drivers { get; private set; } = null!;
 	public TimingMarkers TimingMarkers { get; private set; } = null!;
 	public Telemetry Telemetry { get; private set; } = null!;
+	public TextToSpeech TextToSpeech { get; private set; } = null!;
+	public Commentary Commentary { get; private set; } = null!;
 	public SpeechToText SpeechToText { get; private set; } = null!;
 	public Wind Wind { get; private set; } = null!;
 	public SeatBeltTensioner SeatBeltTensioner { get; private set; } = null!;
@@ -129,6 +131,8 @@ public partial class App : Application
 		Drivers = new();
 		TimingMarkers = new();
 		Telemetry = new();
+		TextToSpeech = new();
+		Commentary = new();
 		SpeechToText = new();
 		Wind = new();
 		SeatBeltTensioner = new();
@@ -249,6 +253,8 @@ public partial class App : Application
 				TopLevelWindow.Initialize();
 				AdminBoxx.Initialize();
 				AudioManager.Initialize();
+				TextToSpeech.Initialize();
+				Commentary.Initialize();
 				Simulator.Initialize();
 				DirectInput.Initialize();
 				StreamDeck.Initialize();
@@ -413,6 +419,7 @@ public partial class App : Application
 		GapMonitorWindow?.Close();
 
 		_ = SpeechToText.DisableAsync();
+		TextToSpeech.Dispose();
 
 		Simulator.Shutdown();
 		AdminBoxx.Shutdown();
@@ -2503,6 +2510,7 @@ public partial class App : Application
 						app.VirtualJoystick.Tick( app );
 						app.TimingMarkers.Tick( app );
 						app.Telemetry.Tick( app );
+						app.Commentary.Tick( app );
 						app.Wind.Tick( app );
 						app.SeatBeltTensioner.Tick( app );
 

@@ -79,7 +79,7 @@ public class TimingMarkers
 		}
 
 		var trackPositionInMeters = lapPct * trackLengthInMeters;
-		
+
 		markerIndex = (int) Math.Floor( trackPositionInMeters / markerSpacingInMeters );
 
 		if ( markerIndex < 0 )

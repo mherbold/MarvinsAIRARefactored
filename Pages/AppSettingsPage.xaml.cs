@@ -86,6 +86,7 @@ public partial class AppSettingsPage : UserControl
 			{ MainWindow.AppPage.SeatBeltTensioner, localization[ "SeatBeltTensioner" ] },
 			{ MainWindow.AppPage.Sounds, localization[ "Sounds" ] },
 			{ MainWindow.AppPage.SpeechToText, localization[ "SpeechToText" ] },
+			{ MainWindow.AppPage.TextToSpeech, localization[ "TextToSpeech" ] },
 			{ MainWindow.AppPage.TradingPaints, localization[ "TradingPaints" ] },
 			{ MainWindow.AppPage.AppManager, localization[ "AppManager" ] },
 			{ MainWindow.AppPage.Graph, localization[ "Graph" ] },

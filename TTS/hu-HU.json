@@ -1,0 +1,80 @@
+﻿{
+  "Overtake": [
+    "[lelkesen] {attacker} támad — beelőzte, P{position}!",
+    "[lelkesen] Micsoda manőver {attacker}tól! Megelőzi {defender}t és P{position} az övé!",
+    "[meglepetten] Ó! {attacker} megtette — túljutott {defender}en és P{position} van!"
+  ],
+  "CloseBattle": [
+    "Hihetetlen szoros harc {driver1} és {driver2} között — egy másodpercnél is kevesebb köztük!",
+    "{driver1} és {driver2} szó szerint egymás hátán vannak — ez szenzációs!"
+  ],
+  "FastestLap": [
+    "[lenyűgözve] {driver} beállítja a verseny leggyorsabb körét — {lapTime}!",
+    "[lelkesen] Új leggyorsabb kör {driver}től — {lapTime}!"
+  ],
+  "PitStopEntry": [
+    "{driver} behajtja a bokszba — a csapat kész.",
+    "{driver} bekanyarodik a bokszutcába."
+  ],
+  "PitStopExit": [
+    "{driver} elhagyja a bokszot — tiszta megállás.",
+    "{driver} visszatér a versenybe."
+  ],
+  "Caution": [
+    "[sürgősen] Sárga zászló! Vigyázat a pályán!",
+    "[sürgősen] Safety car — lassíts és zárkózz fel."
+  ],
+  "RedFlag": [
+    "[komolyan] Piros zászló! Piros zászló! A futamot leállították.",
+    "[komolyan] Piros zászló — minden autónak azonnal vissza kell térnie a bokszba."
+  ],
+  "SessionStart": [
+    "[lelkesen] Zöld lámpa — és rajtoltunk! A verseny elkezdődött!",
+    "[lelkesen] Zöld zászló! Versenyezünk!"
+  ],
+  "SessionEnd": [
+    "[meghatottan] Kockás zászló — {driver} győz!",
+    "[meghatottan] Vége! Micsoda verseny volt!"
+  ],
+  "Incident": [
+    "{driver} {seconds} másodperces büntetést kapott ezért az eseményért.",
+    "A bírák {seconds} másodperces büntetést szabtak ki {driver}re."
+  ],
+  "SpotterCarLeft": [
+    "Autó balra.",
+    "Balra."
+  ],
+  "SpotterCarRight": [
+    "Autó jobbra.",
+    "Jobbra."
+  ],
+  "SpotterClear": [
+    "Szabad.",
+    "Szabad vagy."
+  ],
+  "SpotterOverlap": [
+    "Átfedés.",
+    "Még átfedés."
+  ],
+  "CrewFuelWarning": [
+    "Kevés az üzemanyag — kb. {laps} kör maradt.",
+    "Figyeld az üzemanyagot — kb. {laps} környi van a tankban."
+  ],
+  "CrewTireWarning": [
+    "A gumiabroncsok kopnak — a tapadás csökken.",
+    "Gumiabroncs-kopás — gondolj hamarosan a bokszra."
+  ],
+  "CrewPitWindowOpen": [
+    "A boksz ablak nyitva — bármikor bejöhetsz.",
+    "Most jöhetsz be — az ablak nyitva van."
+  ],
+  "CrewDamage": [
+    "Sérülésed van — ellenőrizd a tükröket.",
+    "Sérülés jelentve — tartsd szemmel."
+  ],
+  "TestPhrase0": [ "A boxablak három körön belül nyílik. Az üzemanyag rendben van." ],
+  "TestPhrase1": [ "Autó balra. Autó balra. Menj fel." ],
+  "TestPhrase2": [ "Micsoda manőver! Átjutott a második helyre!" ],
+  "TestPhrase3": [ "Nagyon kimért volt a beférkezésben — ez mentette meg a kocsit." ],
+  "TestPhrase4": [ "Az undercut tökéletesen működött. A fő riválisa előtt jön ki!" ]
+}

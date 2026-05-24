@@ -31,6 +31,7 @@ public partial class MainWindow : Window
 		Overlays,
 		Sounds,
 		SpeechToText,
+		TextToSpeech,
 		TradingPaints,
 		Graph,
 		Simulator,
@@ -52,6 +53,7 @@ public partial class MainWindow : Window
 	public static readonly OverlaysPage _overlaysPage = new();
 	public static readonly SoundsPage _soundsPage = new();
 	public static readonly SpeechToTextPage _speechToTextPage = new();
+	public static readonly TextToSpeechPage _textToSpeechPage = new();
 	public static readonly TradingPaintsPage _tradingPaintsPage = new();
 	public static readonly GraphPage _graphPage = new();
 	public static readonly SimulatorPage _simulatorPage = new();
@@ -171,6 +173,8 @@ public partial class MainWindow : Window
 			_speechToTextPage.UpdateLanguageOptions();
 
 			app.SpeechToText.UpdateStrings();
+
+			_textToSpeechPage.OnPageActivated();
 
 			_appManagerPage.UpdateComboBoxOptions();
 

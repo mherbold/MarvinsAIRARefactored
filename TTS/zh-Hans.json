@@ -1,0 +1,80 @@
+﻿{
+  "Overtake": [
+    "[兴奋地] {attacker}发动超车——他已经进入P{position}！",
+    "[激动地] {attacker}的精彩操作！超越{defender}，占据P{position}！",
+    "[惊讶地] 哦！{attacker}做到了——超过{defender}，现在是P{position}！"
+  ],
+  "CloseBattle": [
+    "{driver1}和{driver2}之间竞争难以置信地激烈——差距不足一秒！",
+    "{driver1}和{driver2}几乎并驾齐驱——这场面太精彩了！"
+  ],
+  "FastestLap": [
+    "[印象深刻地] {driver}创造了比赛最快圈速——{lapTime}！",
+    "[激动地] {driver}刷新最快圈速——{lapTime}！"
+  ],
+  "PitStopEntry": [
+    "{driver}进入维修站——团队已准备就绪。",
+    "{driver}驶入进站通道。"
+  ],
+  "PitStopExit": [
+    "{driver}离开维修站——停站干净利落。",
+    "{driver}重返比赛。"
+  ],
+  "Caution": [
+    "[紧急地] 黄旗！赛道上注意安全！",
+    "[紧急地] 安全车出动——减速并收缩队列。"
+  ],
+  "RedFlag": [
+    "[严肃地] 红旗！红旗！赛事已中止。",
+    "[严肃地] 红旗——所有赛车必须立即返回维修站。"
+  ],
+  "SessionStart": [
+    "[兴奋地] 绿灯亮起——出发！比赛开始了！",
+    "[兴奋地] 绿旗！比赛开始！"
+  ],
+  "SessionEnd": [
+    "[感动地] 方格旗挥舞——{driver}获胜！",
+    "[感动地] 比赛结束！多么精彩的一场角逐！"
+  ],
+  "Incident": [
+    "{driver}因那次事故被罚时{seconds}秒。",
+    "裁判对{driver}处以{seconds}秒的处罚。"
+  ],
+  "SpotterCarLeft": [
+    "左侧有车。",
+    "左侧。"
+  ],
+  "SpotterCarRight": [
+    "右侧有车。",
+    "右侧。"
+  ],
+  "SpotterClear": [
+    "前方清晰。",
+    "已清晰。"
+  ],
+  "SpotterOverlap": [
+    "车身交叠。",
+    "仍有交叠。"
+  ],
+  "CrewFuelWarning": [
+    "燃油不足——大约还剩{laps}圈。",
+    "注意燃油——油箱中大约还有{laps}圈的油量。"
+  ],
+  "CrewTireWarning": [
+    "轮胎正在磨损——抓地力下降。",
+    "轮胎磨损——请考虑尽快进站。"
+  ],
+  "CrewPitWindowOpen": [
+    "进站窗口已开放——随时可以进站。",
+    "现在可以进站——窗口已开放。"
+  ],
+  "CrewDamage": [
+    "车辆受损——请检查后视镜。",
+    "已报告损伤——请多加注意。"
+  ],
+  "TestPhrase0": [ "进站窗口将在三圈后开放。油量看起来没问题。" ],
+  "TestPhrase1": [ "左侧有车。左侧有车。向右靠。" ],
+  "TestPhrase2": [ "多么精彩的超车！他已经跃升至第二位！" ],
+  "TestPhrase3": [ "他在入弯时非常沉稳——正是这一点救了车。" ],
+  "TestPhrase4": [ "内线策略完美奏效。他从主要对手前方驶出！" ]
+}

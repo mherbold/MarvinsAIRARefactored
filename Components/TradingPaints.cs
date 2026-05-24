@@ -171,7 +171,7 @@ public class TradingPaints
 
 		foreach ( var driver in driverList )
 		{
-			stringBuilder.Append( $"{Math.Abs(driver.UserID)}={driver.CarPath}={driver.TeamID}={driver.CarNumber}={ss}," );
+			stringBuilder.Append( $"{Math.Abs( driver.UserID )}={driver.CarPath}={driver.TeamID}={driver.CarNumber}={ss}," );
 		}
 
 		var loadNumTexturesString = app.Simulator.LoadNumTextures ? "True" : "False";

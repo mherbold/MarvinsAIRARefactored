@@ -149,7 +149,7 @@ public class GraphBase
 
 			var topGutterColor = oddEven ? _topGutterForegroundColor : _topGutterBackgroundColor;
 
-			for ( var y = 1; y  < GutterSize - 1; y++ )
+			for ( var y = 1; y < GutterSize - 1; y++ )
 			{
 				_colorArray[ y, _x ] = topGutterColor;
 			}
@@ -177,7 +177,7 @@ public class GraphBase
 			{
 				var y = gridSize * i + GutterSize;
 
-				if ( ( _colorArray[ y, _x ] == 0 ) || ( ( i & 3 ) == 0 )  )
+				if ( ( _colorArray[ y, _x ] == 0 ) || ( ( i & 3 ) == 0 ) )
 				{
 					_colorArray[ y, _x ] = _gridLineColorArray[ i ];
 				}

@@ -1,5 +1,6 @@
 ﻿<UserControl x:Class="MarvinsAIRARefactored.Controls.MairaTextBox"
              x:Name="Root"
+             FontSize="30"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -14,6 +15,36 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
+
+        <PasswordBox x:Name="InnerPasswordBox"
+                     Grid.Row="1"
+                     Height="34"
+                     VerticalContentAlignment="Center"
+                     VerticalAlignment="Bottom"
+                     FontSize="{Binding FontSize, ElementName=Root}"
+                     Foreground="{DynamicResource Brush.Accent}"
+                     Background="Transparent"
+                     CaretBrush="{DynamicResource Brush.Accent}"
+                     BorderBrush="{DynamicResource Brush.Border.Subtle}"
+                     BorderThickness="0,0,0,2"
+                     FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
+                     PasswordChanged="InnerPasswordBox_PasswordChanged">
+
+            <PasswordBox.Style>
+                <Style TargetType="PasswordBox">
+                    <Setter Property="Visibility"
+                            Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsPassword, ElementName=Root}"
+                                     Value="True">
+                            <Setter Property="Visibility"
+                                    Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </PasswordBox.Style>
+
+        </PasswordBox>
 
         <TextBlock x:Name="TextBlock"
                    Grid.Row="0"
@@ -45,7 +76,10 @@
 
         <TextBox x:Name="TextBox"
                  Grid.Row="1"
-                 FontSize="30"
+                 Height="34"
+                 VerticalContentAlignment="Center"
+                 VerticalAlignment="Bottom"
+                 FontSize="{Binding FontSize, ElementName=Root}"
                  Foreground="{DynamicResource Brush.Accent}"
                  Background="Transparent"
                  CaretBrush="{DynamicResource Brush.Accent}"
@@ -53,7 +87,23 @@
                  BorderThickness="0,0,0,2"
                  FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
                  Text="{Binding Value, ElementName=Root, FallbackValue='Some example text for the text box user control'}"
-                 classes:TextBoxBehaviors.IsNumericOnly="{Binding IsNumericOnly, ElementName=Root}" />
+                 classes:TextBoxBehaviors.IsNumericOnly="{Binding IsNumericOnly, ElementName=Root}">
+
+            <TextBox.Style>
+                <Style TargetType="TextBox">
+                    <Setter Property="Visibility"
+                            Value="Visible" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsPassword, ElementName=Root}"
+                                     Value="True">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBox.Style>
+
+        </TextBox>
 
     </Grid>
 

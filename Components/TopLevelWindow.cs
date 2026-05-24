@@ -28,9 +28,9 @@ public class TopLevelWindow
 				(uint) WindowStyles.WS_CLIPCHILDREN
 			)),
 			ExtendedWindowStyle = unchecked((int) (
-				(uint) WindowStylesEx.WS_EX_TOOLWINDOW |	// hides from Alt+Tab
-				(uint) WindowStylesEx.WS_EX_NOACTIVATE		// don’t steal focus
-															// intentionally NOT WS_EX_APPWINDOW
+				(uint) WindowStylesEx.WS_EX_TOOLWINDOW | // hides from Alt+Tab
+				(uint) WindowStylesEx.WS_EX_NOACTIVATE       // don’t steal focus
+															 // intentionally NOT WS_EX_APPWINDOW
 			))
 		};
 

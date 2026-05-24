@@ -1,0 +1,80 @@
+﻿{
+  "Overtake": [
+    "[avec excitation] {attacker} tente la manœuvre — il passe en P{position} !",
+    "[excité] Quel dépassement de {attacker} ! Il dépasse {defender} pour la P{position} !",
+    "[surpris] Oh ! {attacker} l'a fait — il est devant {defender} et prend la P{position} !"
+  ],
+  "CloseBattle": [
+    "Duel incroyablement serré entre {driver1} et {driver2} — moins d'une seconde d'écart !",
+    "{driver1} et {driver2} sont collés en piste — c'est spectaculaire !"
+  ],
+  "FastestLap": [
+    "[impressionné] {driver} signe le meilleur tour en course — un {lapTime} !",
+    "[excité] Nouveau meilleur tour pour {driver} — {lapTime} !"
+  ],
+  "PitStopEntry": [
+    "Et {driver} rentre aux stands — l'équipe est prête.",
+    "{driver} s'engage dans la voie des stands."
+  ],
+  "PitStopExit": [
+    "{driver} ressort des stands — arrêt propre.",
+    "{driver} est de retour en piste."
+  ],
+  "Caution": [
+    "[urgent] Drapeau jaune ! Prudence sur la piste !",
+    "[urgent] Période de neutralisation — ralentir et se regrouper."
+  ],
+  "RedFlag": [
+    "[sérieux] Drapeau rouge ! Drapeau rouge ! La session est interrompue.",
+    "[sérieux] Drapeau rouge — tous les véhicules doivent rentrer immédiatement aux stands."
+  ],
+  "SessionStart": [
+    "[excité] Feu vert — c'est parti ! La course est lancée !",
+    "[excité] Drapeau vert ! Nous sommes en course !"
+  ],
+  "SessionEnd": [
+    "[avec émotion] Drapeau à damier — {driver} remporte la victoire !",
+    "[avec émotion] C'est terminé ! Quelle course nous avons vécue !"
+  ],
+  "Incident": [
+    "{driver} écope d'une pénalité de {seconds} secondes pour cet incident.",
+    "Les commissaires infligent une pénalité de {seconds} secondes à {driver}."
+  ],
+  "SpotterCarLeft": [
+    "Voiture à gauche.",
+    "Gauche."
+  ],
+  "SpotterCarRight": [
+    "Voiture à droite.",
+    "Droite."
+  ],
+  "SpotterClear": [
+    "Dégagé.",
+    "Tu es libre."
+  ],
+  "SpotterOverlap": [
+    "Chevauchement.",
+    "Toujours en chevauchement."
+  ],
+  "CrewFuelWarning": [
+    "Carburant bas — il reste environ {laps} tours.",
+    "Attention au carburant — approximativement {laps} tours restants dans le réservoir."
+  ],
+  "CrewTireWarning": [
+    "Les pneus se dégradent — l'adhérence diminue.",
+    "Usure des pneus — envisage un arrêt aux stands prochainement."
+  ],
+  "CrewPitWindowOpen": [
+    "La fenêtre d'arrêt est ouverte — tu peux rentrer quand tu veux.",
+    "Tu peux t'arrêter maintenant — la fenêtre est ouverte."
+  ],
+  "CrewDamage": [
+    "Tu as subi des dégâts — vérifie tes rétroviseurs.",
+    "Dégâts signalés sur la voiture — surveille ça."
+  ],
+  "TestPhrase0": [ "La fenêtre des stands s'ouvre dans trois tours. Le carburant est bon." ],
+  "TestPhrase1": [ "Voiture à gauche. Voiture à gauche. Monte haut." ],
+  "TestPhrase2": [ "Quelle manœuvre ! Il est passé en deuxième position !" ],
+  "TestPhrase3": [ "Il était très maîtrisé à l'entrée — c'est ce qui a sauvé la voiture." ],
+  "TestPhrase4": [ "L'undercut a parfaitement fonctionné. Il ressort devant son principal rival !" ]
+}

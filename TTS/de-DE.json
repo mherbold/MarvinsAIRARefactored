@@ -1,0 +1,87 @@
+﻿{
+  "Overtake": [
+    "[aufgeregt] {attacker} setzt zum Überholmanöver an — er ist vorbei und liegt auf P{position}!",
+    "[aufgeregt] Was für eine Aktion von {attacker}! Er zieht an {defender} vorbei — P{position}!",
+    "[überrascht] Oh! {attacker} hat es geschafft — er ist an {defender} vorbeigekommen und liegt auf P{position}!"
+  ],
+  "CloseBattle": [
+    "Unglaublich enger Kampf zwischen {driver1} und {driver2} — weniger als eine Sekunde trennt sie!",
+    "{driver1} und {driver2} liefern sich ein packendes Duell — das ist spektakulär!"
+  ],
+  "FastestLap": [
+    "[beeindruckt] {driver} setzt die schnellste Runde des Rennens — eine {lapTime}!",
+    "[aufgeregt] Neue schnellste Runde von {driver} — {lapTime}!"
+  ],
+  "PitStopEntry": [
+    "Und {driver} biegt in die Boxengasse ab — die Crew ist bereit.",
+    "{driver} kommt zum Boxenstopp herein."
+  ],
+  "PitStopExit": [
+    "{driver} verlässt die Box — sauberer Stopp.",
+    "{driver} ist zurück auf der Strecke."
+  ],
+  "Caution": [
+    "[dringend] Gelbe Flagge! Achtung auf der Strecke!",
+    "[dringend] Gelbphase — verlangsamen und aufschließen."
+  ],
+  "RedFlag": [
+    "[ernst] Rote Flagge! Rote Flagge! Die Session wurde unterbrochen.",
+    "[ernst] Rote Flagge — alle Fahrzeuge müssen sofort in die Box."
+  ],
+  "SessionStart": [
+    "[aufgeregt] Grünes Licht — los geht's! Das Rennen hat begonnen!",
+    "[aufgeregt] Grüne Flagge! Wir fahren!"
+  ],
+  "SessionEnd": [
+    "[emotional] Die karierte Flagge — {driver} gewinnt!",
+    "[emotional] Das Rennen ist beendet — was für ein Spektakel!"
+  ],
+  "Incident": [
+    "{driver} erhält eine {seconds}-Sekunden-Strafe für diesen Vorfall.",
+    "Die Stewards verhängen eine {seconds}-Sekunden-Strafe gegen {driver}."
+  ],
+  "SpotterCarLeft": [
+    "Auto links.",
+    "Fahrzeug links."
+  ],
+  "SpotterCarRight": [
+    "Auto rechts.",
+    "Fahrzeug rechts."
+  ],
+  "SpotterClear": [
+    "Frei.",
+    "Du bist frei."
+  ],
+  "SpotterOverlap": [
+    "Überlappung.",
+    "Noch Überlappung."
+  ],
+  "CrewFuelWarning": [
+    "Kraftstoff wird knapp — noch etwa {laps} Runden.",
+    "Achtung Treibstoff — noch ungefähr {laps} Runden im Tank."
+  ],
+  "CrewTireWarning": [
+    "Die Reifen bauen ab — der Grip lässt nach.",
+    "Reifenverschleiß — du solltest bald an einen Boxenstopp denken."
+  ],
+  "CrewPitWindowOpen": [
+    "Boxenfenster offen — du kannst jederzeit reinkommen.",
+    "Du kannst jetzt stoppen — das Fenster ist offen."
+  ],
+  "CrewDamage": [
+    "Du hast Schaden genommen — prüfe deine Spiegel.",
+    "Schaden am Fahrzeug gemeldet — behalte es im Auge."
+  ],
+  "TestPhrase": [
+    "Das Boxenfenster öffnet in drei Runden. Kraftstoff sieht gut aus.",
+    "Auto links. Auto links. Hoch gehen.",
+    "Was für ein Maneuver! Er ist durch auf Platz zwei!",
+    "Er war sehr kontrolliert beim Einlenken — das hat das Auto gerettet.",
+    "Der Undercut hat perfekt funktioniert. Er kommt vor seinem Hauptrivalen heraus!"
+  ],
+  "TestPhrase0": [ "Das Boxenfenster öffnet in drei Runden. Kraftstoff sieht gut aus." ],
+  "TestPhrase1": [ "Auto links. Auto links. Hoch gehen." ],
+  "TestPhrase2": [ "Was für ein Manöver! Er ist auf Platz zwei!" ],
+  "TestPhrase3": [ "Er war sehr kontrolliert beim Einlenken — das hat das Auto gerettet." ],
+  "TestPhrase4": [ "Der Undercut hat perfekt funktioniert. Er kommt vor seinem Hauptrivalen heraus!" ]
+}

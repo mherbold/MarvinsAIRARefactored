@@ -32,15 +32,17 @@ public class Settings : INotifyPropertyChanged
 
 		if ( ( propertyName != null ) && !propertyName.EndsWith( "String" ) )
 		{
-			var property = GetType().GetProperty( propertyName );
+			var propertyInfo = GetType().GetProperty( propertyName );
 
-			if ( property != null )
+			if ( propertyInfo != null )
 			{
-				var value = property.GetValue( this );
+				var value = propertyInfo.GetValue( this );
 
 				var valueType = value?.GetType().Name ?? "null";
 
-				if ( propertyName != "AppWindowPositionAndSize" )
+				bool isXmlIgnored = propertyInfo.GetCustomAttribute<XmlIgnoreAttribute>() != null;
+
+				if ( ( propertyName != "AppWindowPositionAndSize" ) && !isXmlIgnored )
 				{
 					app.Logger.WriteLine( $"[Settings] Updating base setting {propertyName} to ({valueType}) {value}" );
 				}
@@ -49,10 +51,13 @@ public class Settings : INotifyPropertyChanged
 				{
 					UpdateSettings( true );
 				}
+
+				if ( !isXmlIgnored )
+				{
+					app.SettingsFile.QueueForSerialization = true;
+				}
 			}
 		}
-
-		app.SettingsFile.QueueForSerialization = true;
 
 		PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
 
@@ -1053,89 +1058,89 @@ public class Settings : INotifyPropertyChanged
 	public ButtonMappings RacingWheelTotalCompressionRatePlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelTotalCompressionRateMinusButtonMappings { get; set; } = new();
 
-    #endregion
+	#endregion
 
-    #region Racing wheel - Multi FFB source menu selection
+	#region Racing wheel - Multi FFB source menu selection
 
-    private RacingWheel.MultiFFBSourceOptions _racingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Native360Hz;
+	private RacingWheel.MultiFFBSourceOptions _racingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Native360Hz;
 
-    public RacingWheel.MultiFFBSourceOptions RacingWheelMultiFFBSourceSelection
-    {
-        get => _racingWheelMultiFFBSourceSelection;
+	public RacingWheel.MultiFFBSourceOptions RacingWheelMultiFFBSourceSelection
+	{
+		get => _racingWheelMultiFFBSourceSelection;
 
-        set
-        {
-            if (value != _racingWheelMultiFFBSourceSelection)
-            {
-                var oldValue = _racingWheelMultiFFBSourceSelection;
+		set
+		{
+			if ( value != _racingWheelMultiFFBSourceSelection )
+			{
+				var oldValue = _racingWheelMultiFFBSourceSelection;
 
-                _racingWheelMultiFFBSourceSelection = value;
+				_racingWheelMultiFFBSourceSelection = value;
 
-                OnPropertyChanged();
+				OnPropertyChanged();
 
-                var app = App.Instance!;
+				var app = App.Instance!;
 
-                if (!_updatingRacingWheelMultiSettings)
-                {
-                    app.RacingWheel.SetCannedMultiAdjustAlgorithmValues();
+				if ( !_updatingRacingWheelMultiSettings )
+				{
+					app.RacingWheel.SetCannedMultiAdjustAlgorithmValues();
 
-                    _updatingRacingWheelMultiSettings = true;
+					_updatingRacingWheelMultiSettings = true;
 
-                    switch (RacingWheelMultiFFBSourceSelection)
-                    {
+					switch ( RacingWheelMultiFFBSourceSelection )
+					{
 						case RacingWheel.MultiFFBSourceOptions.Native60Hz:
 						case RacingWheel.MultiFFBSourceOptions.DefaultsNative60Hz:
-                            RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Native60Hz;
-                            break;
+							RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Native60Hz;
+							break;
 
 						case RacingWheel.MultiFFBSourceOptions.Native360Hz:
-                        case RacingWheel.MultiFFBSourceOptions.DefaultsNative360Hz:
-                            RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Native360Hz;
-                            break;
+						case RacingWheel.MultiFFBSourceOptions.DefaultsNative360Hz:
+							RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Native360Hz;
+							break;
 
 						case RacingWheel.MultiFFBSourceOptions.Hybrid10:
-                        case RacingWheel.MultiFFBSourceOptions.DefaultsHybrid10:
-                            RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Hybrid10;
-                            break;
+						case RacingWheel.MultiFFBSourceOptions.DefaultsHybrid10:
+							RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.Hybrid10;
+							break;
 
 						case RacingWheel.MultiFFBSourceOptions.HybridVariable30:
-                        case RacingWheel.MultiFFBSourceOptions.DefaultsHybridVariable30:
-                        case RacingWheel.MultiFFBSourceOptions.PresetBasicFFB:
-                        case RacingWheel.MultiFFBSourceOptions.PresetBalancedFFB:
-                            RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.HybridVariable30;
-                            break;
+						case RacingWheel.MultiFFBSourceOptions.DefaultsHybridVariable30:
+						case RacingWheel.MultiFFBSourceOptions.PresetBasicFFB:
+						case RacingWheel.MultiFFBSourceOptions.PresetBalancedFFB:
+							RacingWheelMultiFFBSourceSelection = RacingWheel.MultiFFBSourceOptions.HybridVariable30;
+							break;
 
 						default:
-                            RacingWheelMultiFFBSourceSelection = oldValue;
-                            break;
-                    }
+							RacingWheelMultiFFBSourceSelection = oldValue;
+							break;
+					}
 
-                    _updatingRacingWheelMultiSettings = false;
+					_updatingRacingWheelMultiSettings = false;
 
-                }
-                else
-                {
+				}
+				else
+				{
 					// Force the combo box's displayed selection to update when the user selected a preset
 
-                    System.Windows.Application.Current.Dispatcher.BeginInvoke(
-                    DispatcherPriority.Loaded,
-                    new Action(() =>
-                    {
-                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(RacingWheelMultiFFBSourceSelection)));
-                    }));
-                }
-                app.RacingWheel.UpdateAlgorithmPreview = true;
-            }
-        }
-    }
+					System.Windows.Application.Current.Dispatcher.BeginInvoke(
+					DispatcherPriority.Loaded,
+					new Action( () =>
+					{
+						PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( nameof( RacingWheelMultiFFBSourceSelection ) ) );
+					} ) );
+				}
+				app.RacingWheel.UpdateAlgorithmPreview = true;
+			}
+		}
+	}
 
-    public ContextSwitches RacingWheelMultiFFBSourceSelectionContextSwitches { get; set; } = new(false, false, false, false, false);
+	public ContextSwitches RacingWheelMultiFFBSourceSelectionContextSwitches { get; set; } = new( false, false, false, false, false );
 
-    #endregion
+	#endregion
 
-    #region Racing wheel - Multi 360Hz detail
+	#region Racing wheel - Multi 360Hz detail
 
-    private float _racingWheelMulti360HzDetail = 1f;
+	private float _racingWheelMulti360HzDetail = 1f;
 
 	public float RacingWheelMulti360HzDetail
 	{
@@ -12558,6 +12563,430 @@ public class Settings : INotifyPropertyChanged
 
 					app.Logger.WriteLine( $"[Settings] Failed to set CPU affinity: {ex.Message}" );
 				}
+			}
+		}
+	}
+
+	#endregion
+
+	// =========================================================================
+	// Text to Speech
+	// =========================================================================
+
+	#region Text to Speech — Master enable
+
+	private bool _ttsEnabled = false;
+
+	public bool TtsEnabled
+	{
+		get => _ttsEnabled;
+
+		set
+		{
+			if ( value != _ttsEnabled )
+			{
+				_ttsEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Text to Speech — API key (DPAPI — not serialized to Settings.xml)
+
+	[XmlIgnore]
+	public string ApiKey
+	{
+		get => ElevenLabsKeyStore.LoadKey();
+
+		set
+		{
+			ElevenLabsKeyStore.SaveKey( value ?? string.Empty );
+
+			OnPropertyChanged();
+		}
+	}
+
+	#endregion
+
+	#region Text to Speech — Model
+
+	private string _modelId = "eleven_flash_v2_5";
+
+	public string ModelId
+	{
+		get => _modelId;
+
+		set
+		{
+			if ( value != _modelId )
+			{
+				_modelId = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Text to Speech — Master volume
+
+	private float _masterVolume = 0.85f;
+
+	public float MasterVolume
+	{
+		get => _masterVolume;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _masterVolume )
+			{
+				_masterVolume = value;
+
+				OnPropertyChanged();
+			}
+
+			MasterVolumeString = $"{_masterVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _masterVolumeString = string.Empty;
+
+	[XmlIgnore]
+	public string MasterVolumeString
+	{
+		get => _masterVolumeString;
+
+		set
+		{
+			if ( value != _masterVolumeString )
+			{
+				_masterVolumeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Text to Speech — Feature enables
+
+	private bool _commentaryEnabled = true;
+
+	public bool CommentaryEnabled
+	{
+		get => _commentaryEnabled;
+
+		set
+		{
+			if ( value != _commentaryEnabled )
+			{
+				_commentaryEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _spotterEnabled = true;
+
+	public bool SpotterEnabled
+	{
+		get => _spotterEnabled;
+
+		set
+		{
+			if ( value != _spotterEnabled )
+			{
+				_spotterEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _crewChiefEnabled = true;
+
+	public bool CrewChiefEnabled
+	{
+		get => _crewChiefEnabled;
+
+		set
+		{
+			if ( value != _crewChiefEnabled )
+			{
+				_crewChiefEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Text to Speech — Commentary language
+
+	private string _ttsLanguage = "en-US";
+
+	public string TtsLanguage
+	{
+		get => _ttsLanguage;
+
+		set
+		{
+			value = string.IsNullOrWhiteSpace( value ) ? "en-US" : value.Trim();
+
+			if ( value != _ttsLanguage )
+			{
+				_ttsLanguage = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Text to Speech — Session character counter (runtime only, not serialized)
+
+	[XmlIgnore]
+	private int _sessionCharactersUsed = 0;
+
+	[XmlIgnore]
+	public int SessionCharactersUsed
+	{
+		get => _sessionCharactersUsed;
+
+		set
+		{
+			if ( value != _sessionCharactersUsed )
+			{
+				_sessionCharactersUsed = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Text to Speech — Voice slots
+
+	private List<VoiceSlotSettings> _voiceSlots = VoiceSlotSettings.CreateDefaults();
+
+	public List<VoiceSlotSettings> VoiceSlots
+	{
+		get => _voiceSlots;
+
+		set
+		{
+			_voiceSlots = value ?? VoiceSlotSettings.CreateDefaults();
+
+			// Ensure exactly 5 slots are always present, filling any missing tail entries with defaults.
+			var defaults = VoiceSlotSettings.CreateDefaults();
+
+			while ( _voiceSlots.Count < defaults.Count )
+			{
+				_voiceSlots.Add( defaults[ _voiceSlots.Count ] );
+			}
+
+			OnPropertyChanged();
+		}
+	}
+
+	#endregion
+
+	#region Text to Speech — Per-event commentary toggles
+
+	private bool _commentaryOvertake = true;
+
+	public bool CommentaryOvertake
+	{
+		get => _commentaryOvertake;
+
+		set
+		{
+			if ( value != _commentaryOvertake )
+			{
+				_commentaryOvertake = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentaryCloseBattle = true;
+
+	public bool CommentaryCloseBattle
+	{
+		get => _commentaryCloseBattle;
+
+		set
+		{
+			if ( value != _commentaryCloseBattle )
+			{
+				_commentaryCloseBattle = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentaryFastestLap = true;
+
+	public bool CommentaryFastestLap
+	{
+		get => _commentaryFastestLap;
+
+		set
+		{
+			if ( value != _commentaryFastestLap )
+			{
+				_commentaryFastestLap = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentaryPitStop = true;
+
+	public bool CommentaryPitStop
+	{
+		get => _commentaryPitStop;
+
+		set
+		{
+			if ( value != _commentaryPitStop )
+			{
+				_commentaryPitStop = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentaryCaution = true;
+
+	public bool CommentaryCaution
+	{
+		get => _commentaryCaution;
+
+		set
+		{
+			if ( value != _commentaryCaution )
+			{
+				_commentaryCaution = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentarySessionStartEnd = true;
+
+	public bool CommentarySessionStartEnd
+	{
+		get => _commentarySessionStartEnd;
+
+		set
+		{
+			if ( value != _commentarySessionStartEnd )
+			{
+				_commentarySessionStartEnd = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentaryIncident = true;
+
+	public bool CommentaryIncident
+	{
+		get => _commentaryIncident;
+
+		set
+		{
+			if ( value != _commentaryIncident )
+			{
+				_commentaryIncident = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentaryCrewFuelWarning = true;
+
+	public bool CommentaryCrewFuelWarning
+	{
+		get => _commentaryCrewFuelWarning;
+
+		set
+		{
+			if ( value != _commentaryCrewFuelWarning )
+			{
+				_commentaryCrewFuelWarning = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentaryCrewTireWarning = true;
+
+	public bool CommentaryCrewTireWarning
+	{
+		get => _commentaryCrewTireWarning;
+
+		set
+		{
+			if ( value != _commentaryCrewTireWarning )
+			{
+				_commentaryCrewTireWarning = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentaryCrewDamageWarning = true;
+
+	public bool CommentaryCrewDamageWarning
+	{
+		get => _commentaryCrewDamageWarning;
+
+		set
+		{
+			if ( value != _commentaryCrewDamageWarning )
+			{
+				_commentaryCrewDamageWarning = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentaryCrewPitWindowOpen = true;
+
+	public bool CommentaryCrewPitWindowOpen
+	{
+		get => _commentaryCrewPitWindowOpen;
+
+		set
+		{
+			if ( value != _commentaryCrewPitWindowOpen )
+			{
+				_commentaryCrewPitWindowOpen = value;
+
+				OnPropertyChanged();
 			}
 		}
 	}

@@ -1,0 +1,80 @@
+﻿{
+  "Overtake": [
+    "[innostuneesti] {attacker} hyökkää — hän on ohittanut ja P{position}!",
+    "[innostuneesti] Mikä liike {attacker}lta! Ohittaa {defender}in ja ottaa P{position}!",
+    "[yllättyneesti] Vau! {attacker} teki sen — ohitti {defender}in ja on nyt P{position}!"
+  ],
+  "CloseBattle": [
+    "Uskomattoman tiukka taistelu {driver1}n ja {driver2}n välillä — alle sekunnin ero!",
+    "{driver1} ja {driver2} ovat kirjaimellisesti kiinni toisissaan — tämä on sensaatiota!"
+  ],
+  "FastestLap": [
+    "[vaikuttuneesti] {driver} ajaa kilpailun nopeimman kierroksen — {lapTime}!",
+    "[innostuneesti] Uusi nopein kierros {driver}lta — {lapTime}!"
+  ],
+  "PitStopEntry": [
+    "{driver} ajaa varikolle — tiimi on valmiina.",
+    "{driver} suistuu varikkokujalle."
+  ],
+  "PitStopExit": [
+    "{driver} lähtee varikolta — siisti pysähdys.",
+    "{driver} palaa kilpailuun."
+  ],
+  "Caution": [
+    "[kiireellisesti] Keltainen lippu! Varovaisuutta radalla!",
+    "[kiireellisesti] Safety car — hidasta ja tiivistä."
+  ],
+  "RedFlag": [
+    "[vakavasti] Punainen lippu! Punainen lippu! Sessio on pysäytetty.",
+    "[vakavasti] Punainen lippu — kaikkien autojen on palattava varikolle välittömästi."
+  ],
+  "SessionStart": [
+    "[innostuneesti] Vihreä valo — ja mennään! Kilpailu alkaa!",
+    "[innostuneesti] Vihreä lippu! Kilpaillaan!"
+  ],
+  "SessionEnd": [
+    "[tunteikkaasti] Ruutulippu — {driver} voittaa!",
+    "[tunteikkaasti] Ohi on! Mikä kilpailu se olikaan!"
+  ],
+  "Incident": [
+    "{driver} sai {seconds} sekunnin rangaistuksen tästä tapauksesta.",
+    "Tuomarit antoivat {driver}lle {seconds} sekunnin rangaistuksen."
+  ],
+  "SpotterCarLeft": [
+    "Auto vasemmalla.",
+    "Vasemmalla."
+  ],
+  "SpotterCarRight": [
+    "Auto oikealla.",
+    "Oikealla."
+  ],
+  "SpotterClear": [
+    "Vapaa.",
+    "Olet vapaa."
+  ],
+  "SpotterOverlap": [
+    "Päällekkäisyys.",
+    "Edelleen päällekkäisyys."
+  ],
+  "CrewFuelWarning": [
+    "Polttoaine on vähissä — noin {laps} kierrosta jäljellä.",
+    "Tarkkaile polttoainetta — noin {laps} kierrosta tankissa."
+  ],
+  "CrewTireWarning": [
+    "Renkaat kuluvat — pito heikkenee.",
+    "Rengaskuluma — harkitse varikkopysähdystä pian."
+  ],
+  "CrewPitWindowOpen": [
+    "Varikkoikkuna on auki — voit tulla sisään milloin tahansa.",
+    "Voit pysähtyä nyt — ikkuna on auki."
+  ],
+  "CrewDamage": [
+    "Sinulla on vaurio — tarkista peilit.",
+    "Vaurio raportoitu — pidä se mielessä."
+  ],
+  "TestPhrase0": [ "Pitstop-ikkuna aukeaa kolmen kierroksen päästä. Polttoaine näyttää hyvältä." ],
+  "TestPhrase1": [ "Auto vasemmalla. Auto vasemmalla. Mene ylös." ],
+  "TestPhrase2": [ "Mikä liike! Hän on päässyt toiselle sijalle!" ],
+  "TestPhrase3": [ "Hän oli hyvin harkittu sisäänajossa — se pelasti auton." ],
+  "TestPhrase4": [ "Undercut toimi täydellisesti. Hän tulee ulos päärivalinsa edellä!" ]
+}

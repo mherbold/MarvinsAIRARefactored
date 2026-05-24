@@ -226,11 +226,11 @@ public class RacingWheel
 				break;
 
 			case MultiFFBSourceOptions.HybridVariable30:
-                if (settings.RacingWheelMulti360HzDetail == 0f)
-                {
-                    settings.RacingWheelMulti360HzDetail = 1f;
-                }
-                break;
+				if ( settings.RacingWheelMulti360HzDetail == 0f )
+				{
+					settings.RacingWheelMulti360HzDetail = 1f;
+				}
+				break;
 
 			case MultiFFBSourceOptions.DefaultsNative60Hz:
 				settings.RacingWheelMulti360HzDetail = 1f;
@@ -904,7 +904,7 @@ public class RacingWheel
 
 					_vibrateOnGearChangeTimerMS -= deltaMilliseconds;
 				}
-			} 
+			}
 
 			// abs vibration effect
 
@@ -1415,7 +1415,7 @@ public class RacingWheel
 
 			// update graph
 
-			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque60Hz	, steeringWheelTorque60Hz / settings.RacingWheelMaxForce );
+			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque60Hz, steeringWheelTorque60Hz / settings.RacingWheelMaxForce );
 			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque, steeringWheelTorque500Hz / settings.RacingWheelMaxForce );
 			app.Graph.UpdateLayer( Graph.LayerIndex.InputLFE, inputLFEMagnitude );
 			app.Graph.UpdateLayer( Graph.LayerIndex.OutputTorque, outputTorque );

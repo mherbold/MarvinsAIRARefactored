@@ -1,6 +1,7 @@
 
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Runtime.InteropServices;
 
 using MarvinsAIRARefactored.Classes;
 
@@ -375,6 +376,75 @@ public sealed class AudioManager : IDisposable
 	// -------------------------------------------------------------------------
 	// Playback
 	// -------------------------------------------------------------------------
+
+	/// <summary>
+	/// Decodes <paramref name="mp3Bytes"/> from memory and plays it through the current FMOD output device.
+	/// Returns a Task that completes when playback finishes or <paramref name="cancellationToken"/> is cancelled.
+	/// </summary>
+	public async Task PlayFromMemoryAsync( byte[] mp3Bytes, float volume, CancellationToken cancellationToken = default )
+	{
+		ArgumentNullException.ThrowIfNull( mp3Bytes );
+
+		FMOD.Sound sound = default;
+		FMOD.Channel channel = default;
+		bool started = false;
+
+		using ( _lock.EnterScope() )
+		{
+			if ( _fmodSystem == null )
+			{
+				return;
+			}
+
+			var exinfo = new FMOD.CREATESOUNDEXINFO
+			{
+				cbsize = Marshal.SizeOf<FMOD.CREATESOUNDEXINFO>(),
+				length = (uint) mp3Bytes.Length
+			};
+
+			var result = _fmodSystem.Value.createSound( mp3Bytes, FMOD.MODE.OPENMEMORY | FMOD.MODE.CREATESAMPLE, ref exinfo, out sound );
+
+			if ( result != FMOD.RESULT.OK )
+			{
+				App.Instance!.Logger.WriteLine( $"[AudioManager] PlayFromMemoryAsync: createSound failed ({result})" );
+				return;
+			}
+
+			_fmodSystem.Value.playSound( sound, default, true, out channel );
+			channel.setVolume( MathZ.Saturate( volume ) );
+			channel.setPaused( false );
+
+			started = true;
+		}
+
+		if ( !started )
+		{
+			return;
+		}
+
+		try
+		{
+			while ( true )
+			{
+				await Task.Delay( 50, cancellationToken );
+
+				channel.isPlaying( out bool playing );
+
+				if ( !playing )
+				{
+					break;
+				}
+			}
+		}
+		catch ( OperationCanceledException )
+		{
+			channel.stop();
+		}
+		finally
+		{
+			sound.release();
+		}
+	}
 
 	public void Play( string key, float volume, float frequencyRatio = 1f, bool loop = false, uint loopStartMs = 0, uint loopEndMs = 0 )
 	{

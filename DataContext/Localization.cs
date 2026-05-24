@@ -11,7 +11,7 @@ namespace MarvinsAIRARefactored.Components;
 
 public partial class Localization : INotifyPropertyChanged
 {
-	private readonly Dictionary<string, string> _languages = new() { { "default", "English" } };
+	private readonly Dictionary<string, string> _languages = new() { { "default", "English (United States)" } };
 	public Dictionary<string, string> Languages { get => _languages; }
 
 	private Dictionary<string, string> _defaults = [];

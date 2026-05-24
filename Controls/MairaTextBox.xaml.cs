@@ -1,5 +1,6 @@
 ﻿
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 using TextBox = System.Windows.Controls.TextBox;
@@ -33,6 +34,18 @@ public partial class MairaTextBox : UserControl
 		}
 	}
 
+	private bool _updatingPassword;
+
+	private void InnerPasswordBox_PasswordChanged( object sender, RoutedEventArgs e )
+	{
+		if ( sender is PasswordBox passwordBox && !_updatingPassword )
+		{
+			_updatingPassword = true;
+			Value = passwordBox.Password;
+			_updatingPassword = false;
+		}
+	}
+
 	#endregion
 
 	#region Dependency Properties
@@ -45,12 +58,41 @@ public partial class MairaTextBox : UserControl
 		set => SetValue( LabelProperty, value );
 	}
 
-	public static readonly DependencyProperty ValueProperty = DependencyProperty.Register( nameof( Value ), typeof( string ), typeof( MairaTextBox ), new PropertyMetadata( string.Empty ) );
+	public static readonly DependencyProperty ValueProperty = DependencyProperty.Register( nameof( Value ), typeof( string ), typeof( MairaTextBox ), new PropertyMetadata( string.Empty, OnValueChanged ) );
+
+	private static void OnValueChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
+	{
+		if ( d is MairaTextBox control )
+		{
+			if ( control.IsPassword && !control._updatingPassword )
+			{
+				control._updatingPassword = true;
+
+				if ( control.FindName( "InnerPasswordBox" ) is PasswordBox passwordBox )
+				{
+					passwordBox.Password = (string) ( e.NewValue ?? string.Empty );
+				}
+
+				control._updatingPassword = false;
+			}
+
+			control.RaiseEvent( new RoutedEventArgs( ValueChangedEvent, control ) );
+		}
+	}
 
 	public string Value
 	{
 		get => (string) GetValue( ValueProperty );
 		set => SetValue( ValueProperty, value );
+	}
+
+	public static readonly RoutedEvent ValueChangedEvent = EventManager.RegisterRoutedEvent(
+		nameof( ValueChanged ), RoutingStrategy.Bubble, typeof( RoutedEventHandler ), typeof( MairaTextBox ) );
+
+	public event RoutedEventHandler ValueChanged
+	{
+		add => AddHandler( ValueChangedEvent, value );
+		remove => RemoveHandler( ValueChangedEvent, value );
 	}
 
 	public static readonly DependencyProperty IsNumericOnlyProperty = DependencyProperty.Register( nameof( IsNumericOnly ), typeof( bool ), typeof( MairaTextBox ) );
@@ -59,6 +101,14 @@ public partial class MairaTextBox : UserControl
 	{
 		get => (bool) GetValue( ValueProperty );
 		set => SetValue( ValueProperty, value );
+	}
+
+	public static readonly DependencyProperty IsPasswordProperty = DependencyProperty.Register( nameof( IsPassword ), typeof( bool ), typeof( MairaTextBox ), new PropertyMetadata( false ) );
+
+	public bool IsPassword
+	{
+		get => (bool) GetValue( IsPasswordProperty );
+		set => SetValue( IsPasswordProperty, value );
 	}
 
 	#endregion

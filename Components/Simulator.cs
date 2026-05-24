@@ -33,8 +33,15 @@ public partial class Simulator
 	public float Brake { get; private set; } = 0f;
 	public int[] CarIdxLap { get; private set; } = new int[ IRacingSdkConst.MaxNumCars ];
 	public float[] CarIdxLapDistPct { get; private set; } = new float[ IRacingSdkConst.MaxNumCars ];
+	public float[] CarIdxBestLapTime { get; private set; } = new float[ IRacingSdkConst.MaxNumCars ];
+	public float[] CarIdxEstTime { get; private set; } = new float[ IRacingSdkConst.MaxNumCars ];
+	public float[] CarIdxF2Time { get; private set; } = new float[ IRacingSdkConst.MaxNumCars ];
+	public int[] CarIdxLapCompleted { get; private set; } = new int[ IRacingSdkConst.MaxNumCars ];
 	public bool[] CarIdxOnPitRoad { get; private set; } = new bool[ IRacingSdkConst.MaxNumCars ];
 	public int[] CarIdxPosition { get; private set; } = new int[ IRacingSdkConst.MaxNumCars ];
+	public IRacingSdkEnum.CarLeftRight CarLeftRight { get; private set; } = IRacingSdkEnum.CarLeftRight.Off;
+	public float CarDistAhead { get; private set; } = 0f;
+	public float CarDistBehind { get; private set; } = 0f;
 	public string CarScreenName { get; private set; } = string.Empty;
 	public string CarSetupName { get; private set; } = string.Empty;
 	public float[] CFShockVel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
@@ -53,8 +60,10 @@ public partial class Simulator
 	public bool IsOnTrack { get; private set; } = false;
 	public bool IsReplayPlaying { get; private set; } = false;
 	public int Lap { get; private set; } = 0;
+	public float LapBestLapTime { get; private set; } = 0f;
 	public float LapDist { get; private set; } = 0;
 	public float LapDistPct { get; private set; } = 0f;
+	public float LapLastLapTime { get; private set; } = 0f;
 	public int LastRadioTransmitCarIdx { get; private set; } = -1;
 	public float LatAccel { get; private set; } = 0f;
 	public int LeagueID { get; private set; } = 0;
@@ -65,7 +74,15 @@ public partial class Simulator
 	public int NumForwardGears { get; private set; } = 0;
 	public IRacingSdkEnum.PaceMode PaceMode { get; private set; } = IRacingSdkEnum.PaceMode.NotPacing;
 	public float Pitch { get; private set; } = 0f;
+	public float FuelLevel { get; private set; } = 0f;
+	public float FuelLevelPct { get; private set; } = 0f;
+	public float FuelUsePerHour { get; private set; } = 0f;
+	public bool OnPitRoad { get; private set; } = false;
+	public int PlayerCarClassPosition { get; private set; } = 0;
 	public int PlayerCarIdx { get; private set; } = 0;
+	public int PlayerCarMyIncidentCount { get; private set; } = 0;
+	public int PlayerCarPosition { get; private set; } = 0;
+	public bool PitsOpen { get; private set; } = false;
 	public IRacingSdkEnum.TrkLoc PlayerTrackSurface { get; private set; } = IRacingSdkEnum.TrkLoc.NotInWorld;
 	public IRacingSdkEnum.TrkSurf PlayerTrackSurfaceMaterial { get; private set; } = IRacingSdkEnum.TrkSurf.SurfaceNotInWorld;
 	public int RadioTransmitCarIdx { get; private set; } = -1;
@@ -80,8 +97,11 @@ public partial class Simulator
 	public int SeriesID { get; private set; } = 0;
 	public IRacingSdkEnum.Flags SessionFlags { get; private set; } = 0;
 	public int SessionID { get; private set; } = 0;
+	public int SessionLapsRemainEx { get; private set; } = 0;
 	public int SessionNum { get; private set; } = 0;
+	public IRacingSdkEnum.SessionState SessionState { get; private set; } = IRacingSdkEnum.SessionState.Invalid;
 	public double SessionTime { get; private set; } = 0f;
+	public double SessionTimeRemain { get; private set; } = 0;
 	public float ShiftLightsFirstRPM { get; private set; } = 0f;
 	public float ShiftLightsShiftRPM { get; private set; } = 0f;
 	public string SimMode { get; private set; } = string.Empty;
@@ -119,15 +139,23 @@ public partial class Simulator
 	private bool? _weatherDeclaredWetLastFrame = null;
 	private bool? _isReplayPlayingLastFrame = null;
 	private IRacingSdkEnum.Flags? _sessionFlagsLastFrame = null;
+	private IRacingSdkEnum.SessionState? _sessionStateLastFrame = null;
 	private int? _currentTireIndexLastFrame = null;
 
 	private IRacingSdkDatum? _brakeABSactiveDatum = null;
 	private IRacingSdkDatum? _brakeDatum = null;
+	private IRacingSdkDatum? _carIdxBestLapTimeDatum = null;
+	private IRacingSdkDatum? _carIdxEstTimeDatum = null;
+	private IRacingSdkDatum? _carIdxF2TimeDatum = null;
 	private IRacingSdkDatum? _carIdxLapDatum = null;
+	private IRacingSdkDatum? _carIdxLapCompletedDatum = null;
 	private IRacingSdkDatum? _carIdxLapDistPctDatum = null;
 	private IRacingSdkDatum? _carIdxPositionDatum = null;
 	private IRacingSdkDatum? _carIdxOnPitRoadDatum = null;
 	private IRacingSdkDatum? _carIdxTireCompoundDatum = null;
+	private IRacingSdkDatum? _carDistAheadDatum = null;
+	private IRacingSdkDatum? _carDistBehindDatum = null;
+	private IRacingSdkDatum? _carLeftRightDatum = null;
 	private IRacingSdkDatum? _cfShockVel_STDatum = null;
 	private IRacingSdkDatum? _clutchDatum = null;
 	private IRacingSdkDatum? _crShockVel_STDatum = null;
@@ -137,17 +165,27 @@ public partial class Simulator
 	private IRacingSdkDatum? _gpuUsageDatum = null;
 	private IRacingSdkDatum? _isOnTrackDatum = null;
 	private IRacingSdkDatum? _isReplayPlayingDatum = null;
+	private IRacingSdkDatum? _fuelLevelDatum = null;
+	private IRacingSdkDatum? _fuelLevelPctDatum = null;
+	private IRacingSdkDatum? _fuelUsePerHourDatum = null;
+	private IRacingSdkDatum? _lapBestLapTimeDatum = null;
 	private IRacingSdkDatum? _lapDatum = null;
 	private IRacingSdkDatum? _lapDistDatum = null;
 	private IRacingSdkDatum? _lapDistPctDatum = null;
+	private IRacingSdkDatum? _lapLastLapTimeDatum = null;
 	private IRacingSdkDatum? _latAccelDatum = null;
 	private IRacingSdkDatum? _lfShockVel_STDatum = null;
 	private IRacingSdkDatum? _loadNumTexturesDatum = null;
 	private IRacingSdkDatum? _longAccelDatum = null;
 	private IRacingSdkDatum? _lrShockVel_STDatum = null;
+	private IRacingSdkDatum? _onPitRoadDatum = null;
 	private IRacingSdkDatum? _paceModeDatum = null;
 	private IRacingSdkDatum? _pitchDatum = null;
+	private IRacingSdkDatum? _pitsOpenDatum = null;
+	private IRacingSdkDatum? _playerCarClassPositionDatum = null;
 	private IRacingSdkDatum? _playerCarIdxDatum = null;
+	private IRacingSdkDatum? _playerCarMyIncidentCountDatum = null;
+	private IRacingSdkDatum? _playerCarPositionDatum = null;
 	private IRacingSdkDatum? _playerTrackSurfaceDatum = null;
 	private IRacingSdkDatum? _playerTrackSurfaceMaterialDatum = null;
 	private IRacingSdkDatum? _radioTransmitCarIdxDatum = null;
@@ -159,8 +197,11 @@ public partial class Simulator
 	private IRacingSdkDatum? _rpmDatum = null;
 	private IRacingSdkDatum? _rrShockVel_STDatum = null;
 	private IRacingSdkDatum? _sessionFlagsDatum = null;
+	private IRacingSdkDatum? _sessionLapsRemainExDatum = null;
 	private IRacingSdkDatum? _sessionNumDatum = null;
+	private IRacingSdkDatum? _sessionStateDatum = null;
 	private IRacingSdkDatum? _sessionTimeDatum = null;
+	private IRacingSdkDatum? _sessionTimeRemainDatum = null;
 	private IRacingSdkDatum? _speedDatum = null;
 	private IRacingSdkDatum? _steeringFFBEnabledDatum = null;
 	private IRacingSdkDatum? _steeringWheelAngleDatum = null;
@@ -303,6 +344,9 @@ public partial class Simulator
 		AvailableTires = null;
 		BrakeABSactive = false;
 		Brake = 0f;
+		CarDistAhead = 0f;
+		CarDistBehind = 0f;
+		CarLeftRight = IRacingSdkEnum.CarLeftRight.Off;
 		CarScreenName = string.Empty;
 		CarSetupName = string.Empty;
 		Clutch = 0f;
@@ -316,16 +360,26 @@ public partial class Simulator
 		IsOnTrack = false;
 		IsReplayPlaying = false;
 		Lap = 0;
+		LapBestLapTime = 0f;
 		LapDist = 0f;
 		LapDistPct = 0f;
+		LapLastLapTime = 0f;
 		LastRadioTransmitCarIdx = -1;
 		LatAccel = 0f;
 		LoadNumTextures = false;
 		LongAccel = 0f;
 		NumForwardGears = 0;
+		OnPitRoad = false;
+		FuelLevel = 0f;
+		FuelLevelPct = 0f;
+		FuelUsePerHour = 0f;
 		PaceMode = IRacingSdkEnum.PaceMode.NotPacing;
 		Pitch = 0f;
+		PitsOpen = false;
+		PlayerCarClassPosition = 0;
 		PlayerCarIdx = 0;
+		PlayerCarMyIncidentCount = 0;
+		PlayerCarPosition = 0;
 		PlayerTrackSurface = IRacingSdkEnum.TrkLoc.NotInWorld;
 		PlayerTrackSurfaceMaterial = IRacingSdkEnum.TrkSurf.SurfaceNotInWorld;
 		RadioTransmitCarIdx = -1;
@@ -336,8 +390,11 @@ public partial class Simulator
 		RPM = 0f;
 		SessionFlags = 0;
 		SessionID = 0;
+		SessionLapsRemainEx = 0;
 		SessionNum = 0;
+		SessionState = IRacingSdkEnum.SessionState.Invalid;
 		SessionTime = 0;
+		SessionTimeRemain = 0;
 		Speed = 0f;
 		ShiftLightsFirstRPM = 0f;
 		ShiftLightsShiftRPM = 0f;
@@ -383,6 +440,7 @@ public partial class Simulator
 		_weatherDeclaredWetLastFrame = null;
 		_isReplayPlayingLastFrame = null;
 		_sessionFlagsLastFrame = null;
+		_sessionStateLastFrame = null;
 		_currentTireIndexLastFrame = null;
 
 #if DEBUG
@@ -568,11 +626,18 @@ public partial class Simulator
 		{
 			_brakeABSactiveDatum = _irsdk.Data.TelemetryDataProperties[ "BrakeABSactive" ];
 			_brakeDatum = _irsdk.Data.TelemetryDataProperties[ "Brake" ];
+			_carIdxBestLapTimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxBestLapTime" ];
+			_carIdxEstTimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxEstTime" ];
+			_carIdxF2TimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxF2Time" ];
 			_carIdxLapDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLap" ];
+			_carIdxLapCompletedDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapCompleted" ];
 			_carIdxLapDistPctDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapDistPct" ];
 			_carIdxPositionDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxPosition" ];
 			_carIdxOnPitRoadDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxOnPitRoad" ];
 			_carIdxTireCompoundDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxTireCompound" ];
+			_carDistAheadDatum = _irsdk.Data.TelemetryDataProperties[ "CarDistAhead" ];
+			_carDistBehindDatum = _irsdk.Data.TelemetryDataProperties[ "CarDistBehind" ];
+			_carLeftRightDatum = _irsdk.Data.TelemetryDataProperties[ "CarLeftRight" ];
 			_clutchDatum = _irsdk.Data.TelemetryDataProperties[ "Clutch" ];
 			_displayUnitsDatum = _irsdk.Data.TelemetryDataProperties[ "DisplayUnits" ];
 			_frameRateDatum = _irsdk.Data.TelemetryDataProperties[ "FrameRate" ];
@@ -580,15 +645,25 @@ public partial class Simulator
 			_gpuUsageDatum = _irsdk.Data.TelemetryDataProperties[ "GpuUsage" ];
 			_isOnTrackDatum = _irsdk.Data.TelemetryDataProperties[ "IsOnTrack" ];
 			_isReplayPlayingDatum = _irsdk.Data.TelemetryDataProperties[ "IsReplayPlaying" ];
+			_fuelLevelDatum = _irsdk.Data.TelemetryDataProperties[ "FuelLevel" ];
+			_fuelLevelPctDatum = _irsdk.Data.TelemetryDataProperties[ "FuelLevelPct" ];
+			_fuelUsePerHourDatum = _irsdk.Data.TelemetryDataProperties[ "FuelUsePerHour" ];
+			_lapBestLapTimeDatum = _irsdk.Data.TelemetryDataProperties[ "LapBestLapTime" ];
 			_lapDatum = _irsdk.Data.TelemetryDataProperties[ "Lap" ];
 			_lapDistDatum = _irsdk.Data.TelemetryDataProperties[ "LapDist" ];
 			_lapDistPctDatum = _irsdk.Data.TelemetryDataProperties[ "LapDistPct" ];
+			_lapLastLapTimeDatum = _irsdk.Data.TelemetryDataProperties[ "LapLastLapTime" ];
 			_latAccelDatum = _irsdk.Data.TelemetryDataProperties[ "LatAccel" ];
 			_loadNumTexturesDatum = _irsdk.Data.TelemetryDataProperties[ "LoadNumTextures" ];
 			_longAccelDatum = _irsdk.Data.TelemetryDataProperties[ "LongAccel" ];
+			_onPitRoadDatum = _irsdk.Data.TelemetryDataProperties[ "OnPitRoad" ];
 			_paceModeDatum = _irsdk.Data.TelemetryDataProperties[ "PaceMode" ];
 			_pitchDatum = _irsdk.Data.TelemetryDataProperties[ "Pitch" ];
+			_pitsOpenDatum = _irsdk.Data.TelemetryDataProperties[ "PitsOpen" ];
+			_playerCarClassPositionDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerCarClassPosition" ];
 			_playerCarIdxDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerCarIdx" ];
+			_playerCarMyIncidentCountDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerCarMyIncidentCount" ];
+			_playerCarPositionDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerCarPosition" ];
 			_playerTrackSurfaceDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerTrackSurface" ];
 			_playerTrackSurfaceMaterialDatum = _irsdk.Data.TelemetryDataProperties[ "PlayerTrackSurfaceMaterial" ];
 			_radioTransmitCarIdxDatum = _irsdk.Data.TelemetryDataProperties[ "RadioTransmitCarIdx" ];
@@ -598,8 +673,11 @@ public partial class Simulator
 			_rollDatum = _irsdk.Data.TelemetryDataProperties[ "Roll" ];
 			_rpmDatum = _irsdk.Data.TelemetryDataProperties[ "RPM" ];
 			_sessionFlagsDatum = _irsdk.Data.TelemetryDataProperties[ "SessionFlags" ];
+			_sessionLapsRemainExDatum = _irsdk.Data.TelemetryDataProperties[ "SessionLapsRemainEx" ];
 			_sessionNumDatum = _irsdk.Data.TelemetryDataProperties[ "SessionNum" ];
+			_sessionStateDatum = _irsdk.Data.TelemetryDataProperties[ "SessionState" ];
 			_sessionTimeDatum = _irsdk.Data.TelemetryDataProperties[ "SessionTime" ];
+			_sessionTimeRemainDatum = _irsdk.Data.TelemetryDataProperties[ "SessionTimeRemain" ];
 			_speedDatum = _irsdk.Data.TelemetryDataProperties[ "Speed" ];
 			_steeringFFBEnabledDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringFFBEnabled" ];
 			_steeringWheelAngleDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringWheelAngle" ];
@@ -677,6 +755,9 @@ public partial class Simulator
 		BrakeABSactive = _irsdk.Data.GetBool( _brakeABSactiveDatum );
 		Brake = _irsdk.Data.GetFloat( _brakeDatum );
 		Clutch = _irsdk.Data.GetFloat( _clutchDatum );
+		CarDistAhead = _irsdk.Data.GetFloat( _carDistAheadDatum );
+		CarDistBehind = _irsdk.Data.GetFloat( _carDistBehindDatum );
+		CarLeftRight = (IRacingSdkEnum.CarLeftRight) _irsdk.Data.GetInt( _carLeftRightDatum );
 		DisplayUnits = _irsdk.Data.GetInt( _displayUnitsDatum );
 		FrameRate = _irsdk.Data.GetFloat( _frameRateDatum );
 		Gear = _irsdk.Data.GetInt( _gearDatum );
@@ -684,11 +765,21 @@ public partial class Simulator
 		IsOnTrack = _irsdk.Data.GetBool( _isOnTrackDatum );
 		IsReplayPlaying = _irsdk.Data.GetBool( _isReplayPlayingDatum );
 		Lap = _irsdk.Data.GetInt( _lapDatum );
+		LapBestLapTime = _irsdk.Data.GetFloat( _lapBestLapTimeDatum );
 		LapDist = _irsdk.Data.GetFloat( _lapDistDatum );
 		LapDistPct = _irsdk.Data.GetFloat( _lapDistPctDatum );
+		LapLastLapTime = _irsdk.Data.GetFloat( _lapLastLapTimeDatum );
 		LatAccel = _irsdk.Data.GetFloat( _latAccelDatum );
 		LoadNumTextures = _irsdk.Data.GetBool( _loadNumTexturesDatum );
 		LongAccel = _irsdk.Data.GetFloat( _longAccelDatum );
+		FuelLevel = _irsdk.Data.GetFloat( _fuelLevelDatum );
+		FuelLevelPct = _irsdk.Data.GetFloat( _fuelLevelPctDatum );
+		FuelUsePerHour = _irsdk.Data.GetFloat( _fuelUsePerHourDatum );
+		OnPitRoad = _irsdk.Data.GetBool( _onPitRoadDatum );
+		PitsOpen = _irsdk.Data.GetBool( _pitsOpenDatum );
+		PlayerCarClassPosition = _irsdk.Data.GetInt( _playerCarClassPositionDatum );
+		PlayerCarMyIncidentCount = _irsdk.Data.GetInt( _playerCarMyIncidentCountDatum );
+		PlayerCarPosition = _irsdk.Data.GetInt( _playerCarPositionDatum );
 		PaceMode = (IRacingSdkEnum.PaceMode) _irsdk.Data.GetInt( _paceModeDatum );
 		Pitch = _irsdk.Data.GetFloat( _pitchDatum );
 		PlayerCarIdx = _irsdk.Data.GetInt( _playerCarIdxDatum );
@@ -701,8 +792,11 @@ public partial class Simulator
 		Roll = _irsdk.Data.GetFloat( _rollDatum );
 		RPM = _irsdk.Data.GetFloat( _rpmDatum );
 		SessionFlags = (IRacingSdkEnum.Flags) _irsdk.Data.GetBitField( _sessionFlagsDatum );
+		SessionLapsRemainEx = _irsdk.Data.GetInt( _sessionLapsRemainExDatum );
 		SessionNum = _irsdk.Data.GetInt( _sessionNumDatum );
+		SessionState = (IRacingSdkEnum.SessionState) _irsdk.Data.GetInt( _sessionStateDatum );
 		SessionTime = _irsdk.Data.GetDouble( _sessionTimeDatum );
+		SessionTimeRemain = _irsdk.Data.GetDouble( _sessionTimeRemainDatum );
 		Speed = _irsdk.Data.GetFloat( _speedDatum );
 		SteeringFFBEnabled = _irsdk.Data.GetBool( _steeringFFBEnabledDatum );
 		SteeringWheelAngle = _irsdk.Data.GetFloat( _steeringWheelAngleDatum );
@@ -748,9 +842,13 @@ public partial class Simulator
 		// update array telemetry data properties
 
 		_irsdk.Data.GetIntArray( _carIdxLapDatum, CarIdxLap, 0, _carIdxLapDatum!.Count );
+		_irsdk.Data.GetIntArray( _carIdxLapCompletedDatum, CarIdxLapCompleted, 0, _carIdxLapCompletedDatum!.Count );
 		_irsdk.Data.GetFloatArray( _carIdxLapDistPctDatum, CarIdxLapDistPct, 0, _carIdxLapDistPctDatum!.Count );
 		_irsdk.Data.GetIntArray( _carIdxPositionDatum, CarIdxPosition, 0, _carIdxPositionDatum!.Count );
 		_irsdk.Data.GetBoolArray( _carIdxOnPitRoadDatum, CarIdxOnPitRoad, 0, _carIdxOnPitRoadDatum!.Count );
+		_irsdk.Data.GetFloatArray( _carIdxF2TimeDatum, CarIdxF2Time, 0, _carIdxF2TimeDatum!.Count );
+		_irsdk.Data.GetFloatArray( _carIdxBestLapTimeDatum, CarIdxBestLapTime, 0, _carIdxBestLapTimeDatum!.Count );
+		_irsdk.Data.GetFloatArray( _carIdxEstTimeDatum, CarIdxEstTime, 0, _carIdxEstTimeDatum!.Count );
 
 		// get next 360 Hz shock velocity samples
 
@@ -803,6 +901,13 @@ public partial class Simulator
 		}
 
 		_sessionFlagsLastFrame = SessionFlags;
+
+		if ( SessionState != _sessionStateLastFrame )
+		{
+			app.Commentary.SessionStateChanged( SessionState );
+		}
+
+		_sessionStateLastFrame = SessionState;
 
 		// update speech-to-text
 
