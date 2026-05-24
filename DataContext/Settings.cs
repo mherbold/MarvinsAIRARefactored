@@ -12746,6 +12746,8 @@ public class Settings : INotifyPropertyChanged
 			{
 				_ttsLanguage = value;
 
+				App.Instance?.Commentary.Initialize( value );
+
 				OnPropertyChanged();
 			}
 		}
@@ -12985,6 +12987,27 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _commentaryCrewPitWindowOpen )
 			{
 				_commentaryCrewPitWindowOpen = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Text to Speech — Spotter proximity call toggles
+
+	private bool _spotterCarCalls = true;
+
+	public bool SpotterCarCalls
+	{
+		get => _spotterCarCalls;
+
+		set
+		{
+			if ( value != _spotterCarCalls )
+			{
+				_spotterCarCalls = value;
 
 				OnPropertyChanged();
 			}

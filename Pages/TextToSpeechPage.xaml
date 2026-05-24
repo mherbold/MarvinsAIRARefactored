@@ -110,19 +110,11 @@
                                         Label="{Binding Localization[Model]}"
                                         SelectedValue="{Binding Settings.ModelId, Mode=TwoWay}" />
 
-                <!-- Row 4: Session character usage -->
-                <StackPanel Grid.Row="4"
-                            Orientation="Horizontal"
-                            Margin="0,5,0,0">
-
-                    <TextBlock Text="{Binding Localization[SessionCharactersUsed]}"
-                               Style="{DynamicResource MairaTextBlockStyle}"
-                               Margin="0,0,8,0" />
-
-                    <TextBlock Text="{Binding Settings.SessionCharactersUsed}"
-                               Style="{DynamicResource MairaTextBlockStyle}" />
-
-                </StackPanel>
+                <!-- Row 4: Subscription usage -->
+                <TextBlock x:Name="SubscriptionUsage_TextBlock"
+                           Grid.Row="4"
+                           Style="{DynamicResource MairaTextBlockStyle}"
+                           Margin="0,5,0,0" />
 
             </Grid>
 
@@ -587,10 +579,10 @@
         </controls:MairaGroupBox>
 
         <!-- ================================================================ -->
-        <!-- COMMENTARY                                                       -->
+        <!-- CREW CHIEF COMMENTARY                                           -->
         <!-- ================================================================ -->
 
-        <controls:MairaGroupBox Label="{Binding Localization[Commentary_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization[CrewChiefCommentary_UC]}"
                                 HelpTopic="advanced/text-to-speech/#commentary">
 
             <Grid>
@@ -611,73 +603,53 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
-                <!-- master commentary toggle -->
+                <!-- row 0: fastest lap / pit stop / caution -->
                 <controls:MairaSwitch Grid.Row="0"
                                       Grid.Column="0"
-                                      Grid.ColumnSpan="5"
-                                      IsOn="{Binding Settings.CommentaryEnabled, Mode=TwoWay}"
-                                      Label="{Binding Localization[CommentaryEnabled]}" />
-
-                <!-- row 2: overtake / close battle / fastest lap -->
-                <controls:MairaSwitch Grid.Row="2"
-                                      Grid.Column="0"
-                                      IsOn="{Binding Settings.CommentaryOvertake, Mode=TwoWay}"
-                                      Label="{Binding Localization[Overtake]}" />
-
-                <controls:MairaSwitch Grid.Row="2"
-                                      Grid.Column="2"
-                                      IsOn="{Binding Settings.CommentaryCloseBattle, Mode=TwoWay}"
-                                      Label="{Binding Localization[CloseBattle]}" />
-
-                <controls:MairaSwitch Grid.Row="2"
-                                      Grid.Column="4"
                                       IsOn="{Binding Settings.CommentaryFastestLap, Mode=TwoWay}"
                                       Label="{Binding Localization[FastestLap]}" />
 
-                <!-- row 4: pit stop / caution / session start-end -->
-                <controls:MairaSwitch Grid.Row="4"
-                                      Grid.Column="0"
+                <controls:MairaSwitch Grid.Row="0"
+                                      Grid.Column="2"
                                       IsOn="{Binding Settings.CommentaryPitStop, Mode=TwoWay}"
                                       Label="{Binding Localization[PitStop]}" />
 
-                <controls:MairaSwitch Grid.Row="4"
-                                      Grid.Column="2"
+                <controls:MairaSwitch Grid.Row="0"
+                                      Grid.Column="4"
                                       IsOn="{Binding Settings.CommentaryCaution, Mode=TwoWay}"
                                       Label="{Binding Localization[Caution]}" />
 
-                <controls:MairaSwitch Grid.Row="4"
-                                      Grid.Column="4"
+                <!-- row 2: session start-end / driver incident / fuel warning -->
+                <controls:MairaSwitch Grid.Row="2"
+                                      Grid.Column="0"
                                       IsOn="{Binding Settings.CommentarySessionStartEnd, Mode=TwoWay}"
                                       Label="{Binding Localization[SessionStartEnd]}" />
 
-                <!-- row 6: incident / fuel warning / tire warning -->
-                <controls:MairaSwitch Grid.Row="6"
-                                      Grid.Column="0"
+                <controls:MairaSwitch Grid.Row="2"
+                                      Grid.Column="2"
                                       IsOn="{Binding Settings.CommentaryIncident, Mode=TwoWay}"
                                       Label="{Binding Localization[DriverIncident]}" />
 
-                <controls:MairaSwitch Grid.Row="6"
-                                      Grid.Column="2"
+                <controls:MairaSwitch Grid.Row="2"
+                                      Grid.Column="4"
                                       IsOn="{Binding Settings.CommentaryCrewFuelWarning, Mode=TwoWay}"
                                       Label="{Binding Localization[FuelWarning]}" />
 
-                <controls:MairaSwitch Grid.Row="6"
-                                      Grid.Column="4"
+                <!-- row 4: tire warning / damage warning / pit window open -->
+                <controls:MairaSwitch Grid.Row="4"
+                                      Grid.Column="0"
                                       IsOn="{Binding Settings.CommentaryCrewTireWarning, Mode=TwoWay}"
                                       Label="{Binding Localization[TireWarning]}" />
 
-                <!-- row 8: damage warning / pit window open -->
-                <controls:MairaSwitch Grid.Row="8"
-                                      Grid.Column="0"
+                <controls:MairaSwitch Grid.Row="4"
+                                      Grid.Column="2"
                                       IsOn="{Binding Settings.CommentaryCrewDamageWarning, Mode=TwoWay}"
                                       Label="{Binding Localization[DamageWarning]}" />
 
-                <controls:MairaSwitch Grid.Row="8"
-                                      Grid.Column="2"
+                <controls:MairaSwitch Grid.Row="4"
+                                      Grid.Column="4"
                                       IsOn="{Binding Settings.CommentaryCrewPitWindowOpen, Mode=TwoWay}"
                                       Label="{Binding Localization[PitWindowOpen]}" />
 
@@ -686,10 +658,10 @@
         </controls:MairaGroupBox>
 
         <!-- ================================================================ -->
-        <!-- SPOTTER AND CREW CHIEF                                           -->
+        <!-- SPOTTER COMMENTARY                                               -->
         <!-- ================================================================ -->
 
-        <controls:MairaGroupBox Label="{Binding Localization[SpotterAndCrewChief_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization[SpotterCommentary_UC]}"
                                 HelpTopic="advanced/text-to-speech/#spotter">
 
             <Grid>
@@ -702,38 +674,74 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                <!-- proximity calls -->
+                <controls:MairaSwitch Grid.Column="0"
+                                      IsOn="{Binding Settings.SpotterCarCalls, Mode=TwoWay}"
+                                      Label="{Binding Localization[SpotterCarCalls]}" />
 
-                <!-- enabled toggles -->
-                <controls:MairaSwitch Grid.Row="0"
-                                      Grid.Column="0"
-                                      IsOn="{Binding Settings.SpotterEnabled, Mode=TwoWay}"
-                                      Label="{Binding Localization[SpotterEnabled]}" />
+            </Grid>
 
-                <controls:MairaSwitch Grid.Row="0"
-                                      Grid.Column="2"
-                                      IsOn="{Binding Settings.CrewChiefEnabled, Mode=TwoWay}"
-                                      Label="{Binding Localization[CrewChiefEnabled]}" />
+        </controls:MairaGroupBox>
 
-                <!-- cache management -->
-                <controls:MairaButton Grid.Row="0"
-                                      Grid.Column="4"
-                                      x:Name="ClearCache_MairaButton"
-                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
-                                      Label="{Binding Localization[ClearPhraseCache]}"
-                                      Click="ClearCache_MairaButton_Click" />
+        <!-- ================================================================ -->
+        <!-- SPORTSCASTER 1 COMMENTARY                                        -->
+        <!-- ================================================================ -->
 
-                <TextBlock x:Name="CacheStatus_TextBlock"
-                           Grid.Row="2"
-                           Grid.Column="0"
-                           Grid.ColumnSpan="5"
-                           TextWrapping="Wrap"
-                           Style="{DynamicResource MairaTextBlockStyle}"
-                           d:Text="Just a test..." />
+        <controls:MairaGroupBox Label="{Binding Localization[Sportscaster1Commentary_UC]}"
+                                HelpTopic="advanced/text-to-speech/#commentary">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <!-- row 0: overtake / close battle -->
+                <controls:MairaSwitch Grid.Column="0"
+                                      IsOn="{Binding Settings.CommentaryOvertake, Mode=TwoWay}"
+                                      Label="{Binding Localization[Overtake]}" />
+
+                <controls:MairaSwitch Grid.Column="2"
+                                      IsOn="{Binding Settings.CommentaryCloseBattle, Mode=TwoWay}"
+                                      Label="{Binding Localization[CloseBattle]}" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <!-- ================================================================ -->
+        <!-- SPORTSCASTER 2 COMMENTARY                                        -->
+        <!-- ================================================================ -->
+
+        <controls:MairaGroupBox Label="{Binding Localization[Sportscaster2Commentary_UC]}"
+                                HelpTopic="advanced/text-to-speech/#commentary">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <!-- ================================================================ -->
+        <!-- PIT REPORTER COMMENTARY                                          -->
+        <!-- ================================================================ -->
+
+        <controls:MairaGroupBox Label="{Binding Localization[PitReporterCommentary_UC]}"
+                                HelpTopic="advanced/text-to-speech/#commentary">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
             </Grid>
 

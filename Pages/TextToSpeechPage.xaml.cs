@@ -45,6 +45,7 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 		{
 			UpdateModelOptions();
 			UpdateVoiceOptions();
+			await UpdateSubscriptionUsageAsync();
 		}
 	}
 
@@ -194,13 +195,26 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 		return null;
 	}
 
-	private void SetCacheStatus( string text, bool isError = false )
+	private async Task UpdateSubscriptionUsageAsync()
 	{
-		CacheStatus_TextBlock.Text = text;
+		var localization = AppDataContext.Instance.Localization;
 
-		CacheStatus_TextBlock.Foreground = isError
-			? (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Status.Error.Text" )
-			: (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Foreground.Primary" );
+		SubscriptionUsage_TextBlock.Text = localization[ "SubscriptionUsageLoading" ];
+
+		var info = await App.Instance!.TextToSpeech.GetSubscriptionAsync();
+
+		if ( info is null )
+		{
+			SubscriptionUsage_TextBlock.Text = localization[ "SubscriptionUsageUnavailable" ];
+			return;
+		}
+
+		SubscriptionUsage_TextBlock.Text = string.Format(
+			localization[ "SubscriptionUsage" ],
+			info.CharactersUsed,
+			info.CharacterLimit,
+			info.PercentUsed,
+			info.CharactersRemaining );
 	}
 
 	#endregion
@@ -273,9 +287,10 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 				lines.AppendLine( localization[ "KeyRecognized" ] );
 			}
 
-			lines.AppendLine( $"  {PermSymbol( result.TextToSpeech )}  {localization[ "KeyPermissionTextToSpeech" ]}" );
-			lines.AppendLine( $"  {PermSymbol( result.VoiceRead )}  {localization[ "KeyPermissionVoiceRead" ]}" );
-			lines.Append( $"  {PermSymbol( result.ModelsRead )}  {localization[ "KeyPermissionModelsRead" ]}" );
+			lines.AppendLine( $"{PermSymbol( result.TextToSpeech )}  {localization[ "KeyPermissionTextToSpeech" ]}" );
+			lines.AppendLine( $"{PermSymbol( result.VoiceRead )}  {localization[ "KeyPermissionVoiceRead" ]}" );
+			lines.AppendLine( $"{PermSymbol( result.ModelsRead )}  {localization[ "KeyPermissionModelsRead" ]}" );
+			lines.Append( $"{PermSymbol( result.UserRead )}  {localization[ "KeyPermissionUserRead" ]}" );
 
 			VerifyResult_TextBlock.Text = lines.ToString();
 
@@ -285,6 +300,7 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 
 			UpdateVoiceOptions();
 			UpdateModelOptions();
+			await UpdateSubscriptionUsageAsync();
 		}
 		catch ( Exception ex )
 		{
@@ -310,30 +326,6 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 			?? "Testing voice.";
 
 		app.TextToSpeech.Enqueue( slotIndex, phrase, priority: 1 );
-	}
-
-	private void ClearCache_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance!;
-		var localization = AppDataContext.Instance.Localization;
-		var cacheDir = Path.Combine( App.DocumentsFolder, "TTS", "Cache" );
-
-		try
-		{
-			if ( Directory.Exists( cacheDir ) )
-			{
-				Directory.Delete( cacheDir, recursive: true );
-			}
-
-			Directory.CreateDirectory( cacheDir );
-
-			SetCacheStatus( localization[ "CacheClearedMsg" ] );
-		}
-		catch ( Exception ex )
-		{
-			app.Logger.WriteLine( $"[TextToSpeechPage] ClearCache error: {ex.Message}" );
-			SetCacheStatus( ex.Message, isError: true );
-		}
 	}
 
 	#endregion

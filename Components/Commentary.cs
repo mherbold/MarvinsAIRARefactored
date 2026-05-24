@@ -55,12 +55,13 @@ public sealed class Commentary
 	// Whether the session is currently in a racing state (prevents commentary in warmup etc.)
 	private bool _isRacingActive = false;
 
-	public void Initialize()
+	public void Initialize( string? language = null )
 	{
 		var app = App.Instance!;
-		var settings = DataContext.DataContext.Instance.Settings;
 
-		_templates.Initialize( settings.TtsLanguage );
+		language ??= DataContext.DataContext.Instance.Settings.TtsLanguage;
+
+		_templates.Initialize( language );
 
 		app.Logger.WriteLine( $"[Commentary] Initialized, language={_templates.LoadedLanguage}" );
 	}

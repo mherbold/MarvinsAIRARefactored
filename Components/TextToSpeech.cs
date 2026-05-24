@@ -101,7 +101,8 @@ public sealed class TextToSpeech : IDisposable
 			return;
 		}
 
-		var request = new SpeechRequest( slotIndex, slot.VoiceId, text, priority );
+		var request = new SpeechRequest( slotIndex, slot.VoiceId, settings.TtsLanguage, text, priority,
+			slot.Stability, slot.Style, slot.SimilarityBoost, slot.SpeakerBoost );
 
 		// Non-blocking try-write; channel drops oldest on overflow
 		_queue.Writer.TryWrite( request );
@@ -131,11 +132,12 @@ public sealed class TextToSpeech : IDisposable
 		var voicesRead = await ProbePermissionAsync( apiKey, HttpMethod.Get, $"{ApiBaseUrl}/v1/voices", cancellationToken );
 		var modelsRead = await ProbePermissionAsync( apiKey, HttpMethod.Get, $"{ApiBaseUrl}/v1/models", cancellationToken );
 		var textToSpeech = await ProbePermissionAsync( apiKey, HttpMethod.Post, $"{ApiBaseUrl}/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM", cancellationToken );
+		var userRead = await ProbePermissionAsync( apiKey, HttpMethod.Get, $"{ApiBaseUrl}/v1/user/subscription", cancellationToken );
 
-		app.Logger.WriteLine( $"[TextToSpeech] VerifyKeyAsync: voice_read={voicesRead}, models_read={modelsRead}, text_to_speech={textToSpeech}" );
+		app.Logger.WriteLine( $"[TextToSpeech] VerifyKeyAsync: voice_read={voicesRead}, models_read={modelsRead}, text_to_speech={textToSpeech}, user_read={userRead}" );
 
-		// If all three came back as "invalid_api_key" the key itself is not recognized.
-		if ( voicesRead == PermissionStatus.InvalidKey && modelsRead == PermissionStatus.InvalidKey && textToSpeech == PermissionStatus.InvalidKey )
+		// If all four came back as "invalid_api_key" the key itself is not recognized.
+		if ( voicesRead == PermissionStatus.InvalidKey && modelsRead == PermissionStatus.InvalidKey && textToSpeech == PermissionStatus.InvalidKey && userRead == PermissionStatus.InvalidKey )
 		{
 			return KeyVerificationResult.Invalid;
 		}
@@ -144,7 +146,8 @@ public sealed class TextToSpeech : IDisposable
 			IsRecognized: true,
 			VoiceRead: voicesRead,
 			ModelsRead: modelsRead,
-			TextToSpeech: textToSpeech );
+			TextToSpeech: textToSpeech,
+			UserRead: userRead );
 	}
 
 	/// <summary>
@@ -243,7 +246,8 @@ public sealed class TextToSpeech : IDisposable
 		}
 
 		var slot = slots[ request.SlotIndex ];
-		var cacheFile = GetCacheFilePath( request.SlotIndex, request.VoiceId, request.Text );
+		var cacheFile = GetCacheFilePath( request.SlotIndex, request.VoiceId, request.LanguageId, request.Text,
+			request.Stability, request.Style, request.SimilarityBoost, request.SpeakerBoost );
 
 		byte[]? mp3Bytes;
 
@@ -451,15 +455,70 @@ public sealed class TextToSpeech : IDisposable
 	// -------------------------------------------------------------------------
 
 	/// <summary>
+	/// Queries the ElevenLabs subscription endpoint and returns the character usage for the
+	/// current billing period, or null if the call fails or the API key is missing.
+	/// </summary>
+	public async Task<SubscriptionInfo?> GetSubscriptionAsync( CancellationToken cancellationToken = default )
+	{
+		var app = App.Instance!;
+		var apiKey = DataContext.DataContext.Instance.Settings.ApiKey;
+
+		if ( string.IsNullOrWhiteSpace( apiKey ) )
+		{
+			return null;
+		}
+
+		try
+		{
+			using var request = new HttpRequestMessage( HttpMethod.Get, $"{ApiBaseUrl}/v1/user/subscription" );
+			request.Headers.Add( "xi-api-key", apiKey );
+
+			using var response = await _httpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
+
+			if ( !response.IsSuccessStatusCode )
+			{
+				app.Logger.WriteLine( $"[TextToSpeech] GetSubscriptionAsync error {(int) response.StatusCode}" );
+				return null;
+			}
+
+			var json = await response.Content.ReadAsStringAsync( cancellationToken );
+			var root = JObject.Parse( json );
+
+			var used = root[ "character_count" ]?.Value<int>();
+			var limit = root[ "character_limit" ]?.Value<int>();
+
+			if ( used is null || limit is null )
+			{
+				app.Logger.WriteLine( "[TextToSpeech] GetSubscriptionAsync: unexpected response shape" );
+				return null;
+			}
+
+			return new SubscriptionInfo( used.Value, limit.Value );
+		}
+		catch ( Exception ex )
+		{
+			app.Logger.WriteLine( $"[TextToSpeech] GetSubscriptionAsync exception: {ex.Message}" );
+			return null;
+		}
+	}
+
+	// -------------------------------------------------------------------------
+	// Cache helpers
+	// -------------------------------------------------------------------------
+
+	/// <summary>
 	/// Builds the full cache file path for the given slot/voice/text combination.
 	/// The text is normalised (trimmed, lowercased, punctuation stripped) and hashed so
 	/// casing variants of identical phrases share one cache entry.
 	/// </summary>
-	private static string GetCacheFilePath( int slotIndex, string voiceId, string text )
+	private static string GetCacheFilePath( int slotIndex, string voiceId, string languageId, string text,
+		float stability, float style, float similarityBoost, bool speakerBoost )
 	{
 		var normalized = NormalizeText( text );
-		var hash = ComputeHash( normalized );
-		var fileName = $"{slotIndex}_{voiceId}_{hash}.mp3";
+		var voiceSettings = $"{stability:F2}_{style:F2}_{similarityBoost:F2}_{( speakerBoost ? 1 : 0 )}";
+		var hash = ComputeHash( $"{normalized}|{voiceSettings}" );
+		var safeLanguageId = languageId.Replace( '/', '_' ).Replace( '\\', '_' );
+		var fileName = $"{slotIndex}_{voiceId}_{safeLanguageId}_{hash}.mp3";
 
 		return Path.Combine( CacheDirectory, fileName );
 	}
@@ -514,7 +573,15 @@ public sealed class TextToSpeech : IDisposable
 	// Private types
 	// -------------------------------------------------------------------------
 
-	private sealed record SpeechRequest( int SlotIndex, string VoiceId, string Text, int Priority );
+	private sealed record SpeechRequest( int SlotIndex, string VoiceId, string LanguageId, string Text, int Priority,
+		float Stability, float Style, float SimilarityBoost, bool SpeakerBoost );
+}
+
+/// <summary>Character usage for the current ElevenLabs billing period.</summary>
+public sealed record SubscriptionInfo( int CharactersUsed, int CharacterLimit )
+{
+	public int CharactersRemaining => Math.Max( 0, CharacterLimit - CharactersUsed );
+	public double PercentUsed => CharacterLimit > 0 ? CharactersUsed * 100.0 / CharacterLimit : 0.0;
 }
 
 /// <summary>Outcome of a single ElevenLabs endpoint permission probe.</summary>
@@ -535,20 +602,22 @@ public sealed record KeyVerificationResult(
 	bool IsRecognized,
 	PermissionStatus VoiceRead,
 	PermissionStatus ModelsRead,
-	PermissionStatus TextToSpeech )
+	PermissionStatus TextToSpeech,
+	PermissionStatus UserRead )
 {
-	/// <summary>All three required permissions are granted.</summary>
+	/// <summary>All four required permissions are granted.</summary>
 	public bool IsFullyFunctional =>
 		IsRecognized &&
 		VoiceRead == PermissionStatus.Granted &&
 		ModelsRead == PermissionStatus.Granted &&
-		TextToSpeech == PermissionStatus.Granted;
+		TextToSpeech == PermissionStatus.Granted &&
+		UserRead == PermissionStatus.Granted;
 
 	/// <summary>The API key field was empty — nothing was sent to ElevenLabs.</summary>
 	public static readonly KeyVerificationResult Empty =
-		new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
+		new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
 
 	/// <summary>ElevenLabs rejected the key as unrecognized.</summary>
 	public static readonly KeyVerificationResult Invalid =
-		new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
+		new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
 }
