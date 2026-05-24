@@ -51,11 +51,11 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 
 [Dirs]
 Name: "{userdocs}\MarvinsAIRA Refactored"
-Name: "{userdocs}\MarvinsAIRA Refactored\Languages"
 Name: "{userdocs}\MarvinsAIRA Refactored\Sounds"
 Name: "{userdocs}\MarvinsAIRA Refactored\Recordings"
 Name: "{userdocs}\MarvinsAIRA Refactored\Calibration"
 Name: "{userdocs}\MarvinsAIRA Refactored\STT"
+Name: "{userdocs}\MarvinsAIRA Refactored\TTS"
 Name: "{userdocs}\MarvinsAIRA Refactored\SimHub"
 
 [Files]
@@ -65,7 +65,6 @@ Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\bin\publ
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\bin\publish\*.json"; DestDir: "{app}"; Flags: ignoreversion
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\bin\publish\*.config"; DestDir: "{app}"; Flags: ignoreversion
 
-Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\Translate\resx\Resources*.resx"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Languages"; Flags: ignoreversion
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Sounds\*.wav"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Sounds"; Flags: ignoreversion recursesubdirs
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Recordings\*.csv"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Recordings"; Flags: ignoreversion
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Calibration\*.csv"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Calibration"; Flags: ignoreversion

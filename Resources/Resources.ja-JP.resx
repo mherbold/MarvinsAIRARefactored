@@ -1936,4 +1936,139 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
+  <data name="TextToSpeech" xml:space="preserve">
+    <value>テキスト読み上げ</value>
+  </data>
+  <data name="TextToSpeech_UC" xml:space="preserve">
+    <value>テキスト読み上げ</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>アカウント</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>ボイスリスト</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>クルーチーフ実況</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>スポッター実況</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>スポーツキャスター1実況</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>スポーツキャスター2実況</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>ピットレポーター実況</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>APIキー</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>キーを確認</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✔  キーが確認されました</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  キーが無効です</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[ボイスを選択]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✔  キーが認識されました</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✔</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>ボイス — 読み取り</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>モデル — アクセス</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>テキスト読み上げ — アクセス</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>ユーザー — 読み取り</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>モデル</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>マスターボリューム</value>
+  </data>
+  <data name="SubscriptionUsageLoading" xml:space="preserve">
+    <value>サブスクリプション使用状況を取得中…</value>
+  </data>
+  <data name="SubscriptionUsage" xml:space="preserve">
+    <value>プラン使用状況:  {0:N0} / {1:N0} 文字使用済み  ({2:F1}%)  —  残り {3:N0}</value>
+  </data>
+  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
+    <value>プラン使用状況を取得できません</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>ボイス</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>一貫性</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>ドラマチック</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>類似度ブースト</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>スピーカーブースト</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>スロット音量</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>テスト</value>
+  </data>
+  <data name="Overtake" xml:space="preserve">
+    <value>追い越し / 順位変動</value>
+  </data>
+  <data name="CloseBattle" xml:space="preserve">
+    <value>接近戦</value>
+  </data>
+  <data name="FastestLap" xml:space="preserve">
+    <value>ファステストラップ</value>
+  </data>
+  <data name="PitStop" xml:space="preserve">
+    <value>ピットストップ</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>コーション / 黄旗</value>
+  </data>
+  <data name="SessionStartEnd" xml:space="preserve">
+    <value>セッション開始 / 終了</value>
+  </data>
+  <data name="DriverIncident" xml:space="preserve">
+    <value>ドライバーインシデント</value>
+  </data>
+  <data name="FuelWarning" xml:space="preserve">
+    <value>燃料警告</value>
+  </data>
+  <data name="TireWarning" xml:space="preserve">
+    <value>タイヤ警告</value>
+  </data>
+  <data name="DamageWarning" xml:space="preserve">
+    <value>ダメージ警告</value>
+  </data>
+  <data name="SpotterCarCalls" xml:space="preserve">
+    <value>近接コール</value>
+  </data>
+  <data name="PitWindowOpen" xml:space="preserve">
+    <value>ピットウィンドウオープン</value>
+  </data>
 </root>

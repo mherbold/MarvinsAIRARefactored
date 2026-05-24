@@ -155,6 +155,44 @@ public class Misc
 		return dictionary;
 	}
 
+	public static Dictionary<string, string> LoadResxFromStream( Stream stream )
+	{
+		var dictionary = new Dictionary<string, string>();
+
+		using var reader = new ResXResourceReader( stream );
+
+		reader.UseResXDataNodes = true;
+
+		foreach ( DictionaryEntry entry in reader )
+		{
+			var key = entry.Key.ToString();
+
+			if ( key != null )
+			{
+				if ( entry.Value is ResXDataNode node )
+				{
+					var valueAsString = node.GetValue( (ITypeResolutionService?) null )?.ToString();
+
+					if ( valueAsString != null )
+					{
+						dictionary[ key ] = valueAsString;
+					}
+				}
+				else
+				{
+					var valueAsString = entry.Value?.ToString();
+
+					if ( valueAsString != null )
+					{
+						dictionary[ key ] = valueAsString;
+					}
+				}
+			}
+		}
+
+		return dictionary;
+	}
+
 	public static bool IsWindowBoundsVisible( Rectangle bounds )
 	{
 		var totalWindowArea = bounds.Width * bounds.Height;

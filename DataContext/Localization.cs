@@ -2,15 +2,17 @@
 using System.ComponentModel;
 using System.Globalization;
 using System.IO;
+using System.Reflection;
+using System.Resources;
 using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
-
-using MarvinsAIRARefactored.Classes;
 
 namespace MarvinsAIRARefactored.Components;
 
 public partial class Localization : INotifyPropertyChanged
 {
+	private const string ResourcePrefix = "MarvinsAIRARefactored.Resources.Resources";
+
 	private readonly Dictionary<string, string> _languages = new() { { "default", "English (United States)" } };
 	public Dictionary<string, string> Languages { get => _languages; }
 
@@ -19,8 +21,8 @@ public partial class Localization : INotifyPropertyChanged
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
-	[GeneratedRegex( @"^Resources\.(?<languageCode>[a-z]{2,3}(?:-[A-Za-z0-9]+)*)\.resx$", RegexOptions.IgnoreCase, "en-US" )]
-	private static partial Regex ResourceFileRegex();
+	[GeneratedRegex( @"^MarvinsAIRARefactored\.Resources\.Resources\.(?<languageCode>[a-z]{2,3}(?:-[A-Za-z0-9]+)*)\.resources$", RegexOptions.IgnoreCase, "en-US" )]
+	private static partial Regex EmbeddedResourceRegex();
 
 	public void OnPropertyChanged( [CallerMemberName] string? propertyName = null )
 	{
@@ -48,30 +50,25 @@ public partial class Localization : INotifyPropertyChanged
 
 	public void Initialize()
 	{
-		var languagesDirectory = Path.Combine( App.DocumentsFolder, "Languages" );
+		var assembly = Assembly.GetExecutingAssembly();
+		var regex = EmbeddedResourceRegex();
 
-		if ( !Directory.Exists( languagesDirectory ) )
+		foreach ( var resourceName in assembly.GetManifestResourceNames() )
 		{
-			Directory.CreateDirectory( languagesDirectory );
-		}
-
-		var regex = ResourceFileRegex();
-
-		var files = Directory.GetFiles( languagesDirectory, "*.resx" );
-
-		foreach ( var file in files )
-		{
-			var fileName = Path.GetFileName( file );
-
-			var match = regex.Match( fileName );
+			var match = regex.Match( resourceName );
 
 			if ( match.Success )
 			{
-				var resxDictionary = Misc.LoadResx( file );
+				using var stream = assembly.GetManifestResourceStream( resourceName );
 
-				if ( resxDictionary.TryGetValue( "ThisLanguage", out var value ) )
+				if ( stream != null )
 				{
-					_languages.Add( match.Groups[ "languageCode" ].Value, value );
+					var resxDictionary = LoadResourcesFromStream( stream );
+
+					if ( resxDictionary.TryGetValue( "ThisLanguage", out var value ) )
+					{
+						_languages.Add( match.Groups[ "languageCode" ].Value, value );
+					}
 				}
 			}
 		}
@@ -83,39 +80,25 @@ public partial class Localization : INotifyPropertyChanged
 
 		app?.Logger.WriteLine( $"[Localization] Loading language: {languageCode}" );
 
-		var languagesDirectory = Path.Combine( App.DocumentsFolder, "Languages" );
+		var assembly = Assembly.GetExecutingAssembly();
 
-		if ( !Directory.Exists( languagesDirectory ) )
+		var resourceName = ( languageCode == "default" )
+			? $"{ResourcePrefix}.resources"
+			: $"{ResourcePrefix}.{languageCode}.resources";
+
+		using var stream = assembly.GetManifestResourceStream( resourceName );
+
+		if ( stream != null )
 		{
-			Directory.CreateDirectory( languagesDirectory );
-		}
+			app?.Logger.WriteLine( "[Localization] Language found in embedded resources" );
 
-		var languageFile = ( languageCode == "default" ) ? "Resources.resx" : $"Resources.{languageCode}.resx";
-
-		var filePath = Path.Combine( languagesDirectory, languageFile );
-
-		if ( File.Exists( filePath ) )
-		{
-			app?.Logger.WriteLine( $"[Localization] Language found in user documents folder" );
-
-			_translations = Misc.LoadResx( filePath );
+			_translations = LoadResourcesFromStream( stream );
 		}
 		else
 		{
-			filePath = Path.Combine( AppDomain.CurrentDomain.BaseDirectory, "Resources", languageFile );
+			app?.Logger.WriteLine( "[Localization] Language not found" );
 
-			if ( File.Exists( filePath ) )
-			{
-				app?.Logger.WriteLine( $"[Localization] Language found in app folder" );
-
-				_translations = Misc.LoadResx( filePath );
-			}
-			else
-			{
-				app?.Logger.WriteLine( $"[Localization] Language not found" );
-
-				_translations = [];
-			}
+			_translations = [];
 		}
 
 		OnPropertyChanged( null );
@@ -156,5 +139,25 @@ public partial class Localization : INotifyPropertyChanged
 		}
 
 		return "default";
+	}
+
+	private static Dictionary<string, string> LoadResourcesFromStream( Stream stream )
+	{
+		var dictionary = new Dictionary<string, string>();
+
+		using var reader = new ResourceReader( stream );
+
+		foreach ( System.Collections.DictionaryEntry entry in reader )
+		{
+			var key = entry.Key?.ToString();
+			var value = entry.Value?.ToString();
+
+			if ( key != null && value != null )
+			{
+				dictionary[ key ] = value;
+			}
+		}
+
+		return dictionary;
 	}
 }
