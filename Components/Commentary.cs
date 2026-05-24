@@ -51,6 +51,7 @@ public sealed class Commentary
 	private int _prevPlayerIncidentCount = 0;
 	private bool _prevPitsOpen = false;
 	private bool _fuelWarningSent = false;
+	private IRacingSdkEnum.CarLeftRight _prevCarLeftRight = IRacingSdkEnum.CarLeftRight.Clear;
 
 	// Whether the session is currently in a racing state (prevents commentary in warmup etc.)
 	private bool _isRacingActive = false;
@@ -379,7 +380,23 @@ public sealed class Commentary
 
 	private void CheckSpotterCalls( Simulator sim )
 	{
+		if ( !DataContext.DataContext.Instance.Settings.SpotterCarCalls )
+		{
+			return;
+		}
+
 		var carLeftRight = sim.CarLeftRight;
+
+		// Only act when the state actually changes — the SDK delivers the same value every frame
+		if ( carLeftRight == _prevCarLeftRight )
+		{
+			return;
+		}
+
+		_prevCarLeftRight = carLeftRight;
+
+		// Any state transition interrupts whatever the spotter is currently saying
+		App.Instance?.TextToSpeech.InterruptSlot( SlotSpotter );
 
 		switch ( carLeftRight )
 		{
@@ -392,12 +409,19 @@ public sealed class Commentary
 				break;
 
 			case IRacingSdkEnum.CarLeftRight.CarLeftRight:
-				EnqueueRandom( "SpotterOverlap", SlotSpotter );
+				EnqueueRandom( "SpotterThreeWideMiddle", SlotSpotter );
+				break;
+
+			case IRacingSdkEnum.CarLeftRight.TwoCarsLeft:
+				EnqueueRandom( "SpotterThreeWideRight", SlotSpotter );
+				break;
+
+			case IRacingSdkEnum.CarLeftRight.TwoCarsRight:
+				EnqueueRandom( "SpotterThreeWideLeft", SlotSpotter );
 				break;
 
 			case IRacingSdkEnum.CarLeftRight.Clear:
-				// Only say "clear" when transitioning from a side car state — handled by the
-				// built-in iRacing spotter; we avoid redundancy unless commentary spotter is preferred.
+				EnqueueRandom( "SpotterClear", SlotSpotter );
 				break;
 		}
 	}
@@ -521,6 +545,7 @@ public sealed class Commentary
 		_prevPlayerIncidentCount = 0;
 		_prevPitsOpen = false;
 		_fuelWarningSent = false;
+		_prevCarLeftRight = IRacingSdkEnum.CarLeftRight.Clear;
 		_cooldowns.Clear();
 		Array.Clear( _prevCarIdxPosition );
 		Array.Clear( _prevCarIdxLapCompleted );

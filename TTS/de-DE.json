@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[aufgeregt] {attacker} setzt zum Überholmanöver an — er ist vorbei und liegt auf P{position}!",
-    "[aufgeregt] Was für eine Aktion von {attacker}! Er zieht an {defender} vorbei — P{position}!",
-    "[überrascht] Oh! {attacker} hat es geschafft — er ist an {defender} vorbeigekommen und liegt auf P{position}!"
+    "[excitedly] {attacker} setzt zum Überholmanöver an — er ist vorbei und liegt auf P{position}!",
+    "[excitedly] Was für eine Aktion von {attacker}! Er zieht an {defender} vorbei — P{position}!",
+    "[surprised] Oh! {attacker} hat es geschafft — er ist an {defender} vorbeigekommen und liegt auf P{position}!"
   ],
   "CloseBattle": [
     "Unglaublich enger Kampf zwischen {driver1} und {driver2} — weniger als eine Sekunde trennt sie!",
     "{driver1} und {driver2} liefern sich ein packendes Duell — das ist spektakulär!"
   ],
   "FastestLap": [
-    "[beeindruckt] {driver} setzt die schnellste Runde des Rennens — eine {lapTime}!",
-    "[aufgeregt] Neue schnellste Runde von {driver} — {lapTime}!"
+    "[impressed] {driver} setzt die schnellste Runde des Rennens — eine {lapTime}!",
+    "[excitedly] Neue schnellste Runde von {driver} — {lapTime}!"
   ],
   "PitStopEntry": [
     "Und {driver} biegt in die Boxengasse ab — die Crew ist bereit.",
@@ -21,20 +21,20 @@
     "{driver} ist zurück auf der Strecke."
   ],
   "Caution": [
-    "[dringend] Gelbe Flagge! Achtung auf der Strecke!",
-    "[dringend] Gelbphase — verlangsamen und aufschließen."
+    "[urgently] Gelbe Flagge! Achtung auf der Strecke!",
+    "[urgently] Gelbphase — verlangsamen und aufschließen."
   ],
   "RedFlag": [
-    "[ernst] Rote Flagge! Rote Flagge! Die Session wurde unterbrochen.",
-    "[ernst] Rote Flagge — alle Fahrzeuge müssen sofort in die Box."
+    "[seriously] Rote Flagge! Rote Flagge! Die Session wurde unterbrochen.",
+    "[seriously] Rote Flagge — alle Fahrzeuge müssen sofort in die Box."
   ],
   "SessionStart": [
-    "[aufgeregt] Grünes Licht — los geht's! Das Rennen hat begonnen!",
-    "[aufgeregt] Grüne Flagge! Wir fahren!"
+    "[excitedly] Grünes Licht — los geht's! Das Rennen hat begonnen!",
+    "[excitedly] Grüne Flagge! Wir fahren!"
   ],
   "SessionEnd": [
-    "[emotional] Die karierte Flagge — {driver} gewinnt!",
-    "[emotional] Das Rennen ist beendet — was für ein Spektakel!"
+    "[emotionally] Die karierte Flagge — {driver} gewinnt!",
+    "[emotionally] Das Rennen ist beendet — was für ein Spektakel!"
   ],
   "Incident": [
     "{driver} erhält eine {seconds}-Sekunden-Strafe für diesen Vorfall.",
@@ -52,9 +52,17 @@
     "Frei.",
     "Du bist frei."
   ],
-  "SpotterOverlap": [
-    "Überlappung.",
-    "Noch Überlappung."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Drei nebeneinander, du bist in der Mitte!",
+    "[urgently] Drei breit! Auto links und rechts!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Drei nebeneinander, du bist links!",
+    "[urgently] Drei breit! Auto rechts von dir!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Drei nebeneinander, du bist rechts!",
+    "[urgently] Drei breit! Auto links von dir!"
   ],
   "CrewFuelWarning": [
     "Kraftstoff wird knapp — noch etwa {laps} Runden.",

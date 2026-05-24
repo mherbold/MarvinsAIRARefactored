@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[z entuzjazmem] {attacker} atakuje — wyprzedza i jedzie na P{position}!",
-    "[podekscytowany] Co za manewr {attacker}! Wyprzedza {defender} i bierze P{position}!",
-    "[zaskoczony] O! {attacker} to zrobił — minął {defender} i jest na P{position}!"
+    "[excitedly] {attacker} atakuje — wyprzedza i jedzie na P{position}!",
+    "[excitedly] Co za manewr {attacker}! Wyprzedza {defender} i bierze P{position}!",
+    "[surprised] O! {attacker} to zrobił — minął {defender} i jest na P{position}!"
   ],
   "CloseBattle": [
     "Niesamowicie zacięta walka między {driver1} a {driver2} — mniej niż sekunda różnicy!",
     "{driver1} i {driver2} dosłownie jadą ramię w ramię — to jest sensacja!"
   ],
   "FastestLap": [
-    "[z wrażeniem] {driver} ustanawia najszybsze okrążenie wyścigu — {lapTime}!",
-    "[podekscytowany] Nowe najszybsze okrążenie {driver} — {lapTime}!"
+    "[impressed] {driver} ustanawia najszybsze okrążenie wyścigu — {lapTime}!",
+    "[excitedly] Nowe najszybsze okrążenie {driver} — {lapTime}!"
   ],
   "PitStopEntry": [
     "{driver} wjeżdża do boksów — ekipa jest gotowa.",
@@ -21,20 +21,20 @@
     "{driver} wraca do wyścigu."
   ],
   "Caution": [
-    "[pilnie] Żółta flaga! Ostrożność na torze!",
-    "[pilnie] Samochód bezpieczeństwa — zwolnij i zamknij szyk."
+    "[urgently] Żółta flaga! Ostrożność na torze!",
+    "[urgently] Samochód bezpieczeństwa — zwolnij i zamknij szyk."
   ],
   "RedFlag": [
-    "[poważnie] Czerwona flaga! Czerwona flaga! Sesja została przerwana.",
-    "[poważnie] Czerwona flaga — wszystkie samochody muszą natychmiast wrócić do boksów."
+    "[seriously] Czerwona flaga! Czerwona flaga! Sesja została przerwana.",
+    "[seriously] Czerwona flaga — wszystkie samochody muszą natychmiast wrócić do boksów."
   ],
   "SessionStart": [
-    "[podekscytowany] Zielone światło — i ruszamy! Wyścig się zaczął!",
-    "[podekscytowany] Zielona flaga! Ścigamy się!"
+    "[excitedly] Zielone światło — i ruszamy! Wyścig się zaczął!",
+    "[excitedly] Zielona flaga! Ścigamy się!"
   ],
   "SessionEnd": [
-    "[wzruszony] Flaga w szachownicę — {driver} wygrywa!",
-    "[wzruszony] Koniec! Co to był za wyścig!"
+    "[emotionally] Flaga w szachownicę — {driver} wygrywa!",
+    "[emotionally] Koniec! Co to był za wyścig!"
   ],
   "Incident": [
     "{driver} otrzymał karę {seconds} sekund za ten incydent.",
@@ -52,9 +52,17 @@
     "Wolno.",
     "Masz wolną drogę."
   ],
-  "SpotterOverlap": [
-    "Nakładanie.",
-    "Nadal nakładanie."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Trzech obok siebie, jesteś pośrodku!",
+    "[urgently] Trzech obok siebie! Auto z lewej i prawej!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Trzech obok siebie, jesteś po lewej!",
+    "[urgently] Trzech obok siebie! Auto po twojej prawej!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Trzech obok siebie, jesteś po prawej!",
+    "[urgently] Trzech obok siebie! Auto po twojej lewej!"
   ],
   "CrewFuelWarning": [
     "Paliwo kończy się — zostało około {laps} okrążeń.",

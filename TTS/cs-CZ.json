@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[nadšeně] {attacker} útočí — projíždí na P{position}!",
-    "[nadšeně] Jaký manévr od {attacker}! Přejíždí {defender} a bere P{position}!",
-    "[překvapeně] Ó! {attacker} to dokázal — je za {defender} a na P{position}!"
+    "[excitedly] {attacker} útočí — projíždí na P{position}!",
+    "[excitedly] Jaký manévr od {attacker}! Přejíždí {defender} a bere P{position}!",
+    "[surprised] Ó! {attacker} to dokázal — je za {defender} a na P{position}!"
   ],
   "CloseBattle": [
     "Neuvěřitelně těsný souboj mezi {driver1} a {driver2} — méně než sekunda je dělí!",
     "{driver1} a {driver2} jedou doslova bok po boku — to je senzace!"
   ],
   "FastestLap": [
-    "[ohromeně] {driver} jede nejrychlejší kolo závodu — {lapTime}!",
-    "[nadšeně] Nové nejrychlejší kolo od {driver} — {lapTime}!"
+    "[impressed] {driver} jede nejrychlejší kolo závodu — {lapTime}!",
+    "[excitedly] Nové nejrychlejší kolo od {driver} — {lapTime}!"
   ],
   "PitStopEntry": [
     "{driver} zajíždí do boxů — posádka je připravena.",
@@ -21,20 +21,20 @@
     "{driver} se vrací do závodu."
   ],
   "Caution": [
-    "[naléhavě] Žlutá vlajka! Pozor na trati!",
-    "[naléhavě] Safety car — zpomalit a sevřít pole."
+    "[urgently] Žlutá vlajka! Pozor na trati!",
+    "[urgently] Safety car — zpomalit a sevřít pole."
   ],
   "RedFlag": [
-    "[vážně] Červená vlajka! Červená vlajka! Závod byl zastaven.",
-    "[vážně] Červená vlajka — všechna auta se musí okamžitě vrátit do boxů."
+    "[seriously] Červená vlajka! Červená vlajka! Závod byl zastaven.",
+    "[seriously] Červená vlajka — všechna auta se musí okamžitě vrátit do boxů."
   ],
   "SessionStart": [
-    "[nadšeně] Zelené světlo — a jedeme! Závod začíná!",
-    "[nadšeně] Zelená vlajka! Závodíme!"
+    "[excitedly] Zelené světlo — a jedeme! Závod začíná!",
+    "[excitedly] Zelená vlajka! Závodíme!"
   ],
   "SessionEnd": [
-    "[dojatě] Kostkovaná vlajka — {driver} vítězí!",
-    "[dojatě] Je po závodu — jaký to byl zážitek!"
+    "[emotionally] Kostkovaná vlajka — {driver} vítězí!",
+    "[emotionally] Je po závodu — jaký to byl zážitek!"
   ],
   "Incident": [
     "{driver} obdržel trest {seconds} sekund za tento incident.",
@@ -52,9 +52,17 @@
     "Volno.",
     "Máš volno."
   ],
-  "SpotterOverlap": [
-    "Překrytí.",
-    "Stále překrytí."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Tři vedle sebe, jsi uprostřed!",
+    "[urgently] Tři do šířky! Auto vlevo i vpravo!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Tři vedle sebe, jsi vlevo!",
+    "[urgently] Tři do šířky! Auto vpravo od tebe!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Tři vedle sebe, jsi vpravo!",
+    "[urgently] Tři do šířky! Auto vlevo od tebe!"
   ],
   "CrewFuelWarning": [
     "Palivo docházní — zbývá asi {laps} kol.",

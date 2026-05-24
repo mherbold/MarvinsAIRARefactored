@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[opgewonden] {attacker} valt aan — hij is voorbij naar P{position}!",
-    "[opgewonden] Wat een manoeuvre van {attacker}! Hij passeert {defender} en neemt P{position}!",
-    "[verrast] Oh! {attacker} heeft het gedaan — voorbij {defender} en naar P{position}!"
+    "[excitedly] {attacker} valt aan — hij is voorbij naar P{position}!",
+    "[excitedly] Wat een manoeuvre van {attacker}! Hij passeert {defender} en neemt P{position}!",
+    "[surprised] Oh! {attacker} heeft het gedaan — voorbij {defender} en naar P{position}!"
   ],
   "CloseBattle": [
     "Ongelooflijk spannende strijd tussen {driver1} en {driver2} — minder dan een seconde verschil!",
     "{driver1} en {driver2} zitten aan elkaar geplakt — dit is sensationeel!"
   ],
   "FastestLap": [
-    "[onder de indruk] {driver} zet de snelste ronde van de race — een {lapTime}!",
-    "[opgewonden] Nieuwe snelste ronde van {driver} — {lapTime}!"
+    "[impressed] {driver} zet de snelste ronde van de race — een {lapTime}!",
+    "[excitedly] Nieuwe snelste ronde van {driver} — {lapTime}!"
   ],
   "PitStopEntry": [
     "{driver} rijdt de pit in — de crew is klaar.",
@@ -21,20 +21,20 @@
     "{driver} is terug in de race."
   ],
   "Caution": [
-    "[dringend] Gele vlag! Let op op het circuit!",
-    "[dringend] Safety car — vertraag en sluit op."
+    "[urgently] Gele vlag! Let op op het circuit!",
+    "[urgently] Safety car — vertraag en sluit op."
   ],
   "RedFlag": [
-    "[serieus] Rode vlag! Rode vlag! De sessie is gestopt.",
-    "[serieus] Rode vlag — alle auto's moeten onmiddellijk terug naar de pit."
+    "[seriously] Rode vlag! Rode vlag! De sessie is gestopt.",
+    "[seriously] Rode vlag — alle auto's moeten onmiddellijk terug naar de pit."
   ],
   "SessionStart": [
-    "[opgewonden] Groen licht — en we gaan! De race is begonnen!",
-    "[opgewonden] Groene vlag! We rijden!"
+    "[excitedly] Groen licht — en we gaan! De race is begonnen!",
+    "[excitedly] Groene vlag! We rijden!"
   ],
   "SessionEnd": [
-    "[emotioneel] Geblokte vlag — {driver} wint!",
-    "[emotioneel] Het is voorbij! Wat een geweldige race!"
+    "[emotionally] Geblokte vlag — {driver} wint!",
+    "[emotionally] Het is voorbij! Wat een geweldige race!"
   ],
   "Incident": [
     "{driver} heeft een straf van {seconds} seconden gekregen voor dat incident.",
@@ -52,9 +52,17 @@
     "Vrij.",
     "Je bent vrij."
   ],
-  "SpotterOverlap": [
-    "Overlap.",
-    "Nog steeds overlap."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Drie naast elkaar, jij zit in het midden!",
+    "[urgently] Drie breed! Auto links en rechts!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Drie naast elkaar, jij zit links!",
+    "[urgently] Drie breed! Auto rechts van je!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Drie naast elkaar, jij zit rechts!",
+    "[urgently] Drie breed! Auto links van je!"
   ],
   "CrewFuelWarning": [
     "Brandstof raakt op — nog ongeveer {laps} ronden.",

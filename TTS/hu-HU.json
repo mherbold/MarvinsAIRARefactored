@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[lelkesen] {attacker} támad — beelőzte, P{position}!",
-    "[lelkesen] Micsoda manőver {attacker}tól! Megelőzi {defender}t és P{position} az övé!",
-    "[meglepetten] Ó! {attacker} megtette — túljutott {defender}en és P{position} van!"
+    "[excitedly] {attacker} támad — beelőzte, P{position}!",
+    "[excitedly] Micsoda manőver {attacker}tól! Megelőzi {defender}t és P{position} az övé!",
+    "[surprised] Ó! {attacker} megtette — túljutott {defender}en és P{position} van!"
   ],
   "CloseBattle": [
     "Hihetetlen szoros harc {driver1} és {driver2} között — egy másodpercnél is kevesebb köztük!",
     "{driver1} és {driver2} szó szerint egymás hátán vannak — ez szenzációs!"
   ],
   "FastestLap": [
-    "[lenyűgözve] {driver} beállítja a verseny leggyorsabb körét — {lapTime}!",
-    "[lelkesen] Új leggyorsabb kör {driver}től — {lapTime}!"
+    "[impressed] {driver} beállítja a verseny leggyorsabb körét — {lapTime}!",
+    "[excitedly] Új leggyorsabb kör {driver}től — {lapTime}!"
   ],
   "PitStopEntry": [
     "{driver} behajtja a bokszba — a csapat kész.",
@@ -21,20 +21,20 @@
     "{driver} visszatér a versenybe."
   ],
   "Caution": [
-    "[sürgősen] Sárga zászló! Vigyázat a pályán!",
-    "[sürgősen] Safety car — lassíts és zárkózz fel."
+    "[urgently] Sárga zászló! Vigyázat a pályán!",
+    "[urgently] Safety car — lassíts és zárkózz fel."
   ],
   "RedFlag": [
-    "[komolyan] Piros zászló! Piros zászló! A futamot leállították.",
-    "[komolyan] Piros zászló — minden autónak azonnal vissza kell térnie a bokszba."
+    "[seriously] Piros zászló! Piros zászló! A futamot leállították.",
+    "[seriously] Piros zászló — minden autónak azonnal vissza kell térnie a bokszba."
   ],
   "SessionStart": [
-    "[lelkesen] Zöld lámpa — és rajtoltunk! A verseny elkezdődött!",
-    "[lelkesen] Zöld zászló! Versenyezünk!"
+    "[excitedly] Zöld lámpa — és rajtoltunk! A verseny elkezdődött!",
+    "[excitedly] Zöld zászló! Versenyezünk!"
   ],
   "SessionEnd": [
-    "[meghatottan] Kockás zászló — {driver} győz!",
-    "[meghatottan] Vége! Micsoda verseny volt!"
+    "[emotionally] Kockás zászló — {driver} győz!",
+    "[emotionally] Vége! Micsoda verseny volt!"
   ],
   "Incident": [
     "{driver} {seconds} másodperces büntetést kapott ezért az eseményért.",
@@ -52,9 +52,17 @@
     "Szabad.",
     "Szabad vagy."
   ],
-  "SpotterOverlap": [
-    "Átfedés.",
-    "Még átfedés."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Három széles, te vagy középen!",
+    "[urgently] Három széles! Autó balra és jobbra!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Három széles, te vagy bal oldalt!",
+    "[urgently] Három széles! Autó jobbra tőled!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Három széles, te vagy jobb oldalt!",
+    "[urgently] Három széles! Autó balra tőled!"
   ],
   "CrewFuelWarning": [
     "Kevés az üzemanyag — kb. {laps} kör maradt.",

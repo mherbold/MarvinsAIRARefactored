@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[兴奋地] {attacker}发动超车——他已经进入P{position}！",
-    "[激动地] {attacker}的精彩操作！超越{defender}，占据P{position}！",
-    "[惊讶地] 哦！{attacker}做到了——超过{defender}，现在是P{position}！"
+    "[excitedly] {attacker}发动超车——他已经进入P{position}！",
+    "[excited] {attacker}的精彩操作！超越{defender}，占据P{position}！",
+    "[surprised] 哦！{attacker}做到了——超过{defender}，现在是P{position}！"
   ],
   "CloseBattle": [
     "{driver1}和{driver2}之间竞争难以置信地激烈——差距不足一秒！",
     "{driver1}和{driver2}几乎并驾齐驱——这场面太精彩了！"
   ],
   "FastestLap": [
-    "[印象深刻地] {driver}创造了比赛最快圈速——{lapTime}！",
-    "[激动地] {driver}刷新最快圈速——{lapTime}！"
+    "[impressed] {driver}创造了比赛最快圈速——{lapTime}！",
+    "[excited] {driver}刷新最快圈速——{lapTime}！"
   ],
   "PitStopEntry": [
     "{driver}进入维修站——团队已准备就绪。",
@@ -21,20 +21,20 @@
     "{driver}重返比赛。"
   ],
   "Caution": [
-    "[紧急地] 黄旗！赛道上注意安全！",
-    "[紧急地] 安全车出动——减速并收缩队列。"
+    "[urgently] 黄旗！赛道上注意安全！",
+    "[urgently] 安全车出动——减速并收缩队列。"
   ],
   "RedFlag": [
-    "[严肃地] 红旗！红旗！赛事已中止。",
-    "[严肃地] 红旗——所有赛车必须立即返回维修站。"
+    "[seriously] 红旗！红旗！赛事已中止。",
+    "[seriously] 红旗——所有赛车必须立即返回维修站。"
   ],
   "SessionStart": [
-    "[兴奋地] 绿灯亮起——出发！比赛开始了！",
-    "[兴奋地] 绿旗！比赛开始！"
+    "[excitedly] 绿灯亮起——出发！比赛开始了！",
+    "[excitedly] 绿旗！比赛开始！"
   ],
   "SessionEnd": [
-    "[感动地] 方格旗挥舞——{driver}获胜！",
-    "[感动地] 比赛结束！多么精彩的一场角逐！"
+    "[emotionally] 方格旗挥舞——{driver}获胜！",
+    "[emotionally] 比赛结束！多么精彩的一场角逐！"
   ],
   "Incident": [
     "{driver}因那次事故被罚时{seconds}秒。",
@@ -52,9 +52,17 @@
     "前方清晰。",
     "已清晰。"
   ],
-  "SpotterOverlap": [
-    "车身交叠。",
-    "仍有交叠。"
+  "SpotterThreeWideMiddle": [
+    "[urgently] 三车并排，你在中间！",
+    "[urgently] 三车并排！左右各有一辆车！"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] 三车并排，你在左侧！",
+    "[urgently] 三车并排！你右侧有车！"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] 三车并排，你在右侧！",
+    "[urgently] 三车并排！你左侧有车！"
   ],
   "CrewFuelWarning": [
     "燃油不足——大约还剩{laps}圈。",

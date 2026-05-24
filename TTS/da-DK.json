@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[begejstret] {attacker} angriber — han er igennem på P{position}!",
-    "[begejstret] Sikke et træk af {attacker}! Han kører forbi {defender} og tager P{position}!",
-    "[overrasket] Oh! {attacker} har gjort det — forbi {defender} og ind på P{position}!"
+    "[excitedly] {attacker} angriber — han er igennem på P{position}!",
+    "[excitedly] Sikke et træk af {attacker}! Han kører forbi {defender} og tager P{position}!",
+    "[surprised] Oh! {attacker} har gjort det — forbi {defender} og ind på P{position}!"
   ],
   "CloseBattle": [
     "Utroligt tæt kamp mellem {driver1} og {driver2} — under et sekund skiller dem!",
     "{driver1} og {driver2} kæmper side om side — det er sensationelt!"
   ],
   "FastestLap": [
-    "[imponeret] {driver} sætter løbets hurtigste omgang — en {lapTime}!",
-    "[begejstret] Ny hurtigste omgang af {driver} — {lapTime}!"
+    "[impressed] {driver} sætter løbets hurtigste omgang — en {lapTime}!",
+    "[excitedly] Ny hurtigste omgang af {driver} — {lapTime}!"
   ],
   "PitStopEntry": [
     "{driver} kører ind i pit — holdet er klar.",
@@ -21,20 +21,20 @@
     "{driver} er tilbage i løbet."
   ],
   "Caution": [
-    "[presserende] Gult flag! Forsigtig på banen!",
-    "[presserende] Safety car — sænk farten og slut op."
+    "[urgently] Gult flag! Forsigtig på banen!",
+    "[urgently] Safety car — sænk farten og slut op."
   ],
   "RedFlag": [
-    "[alvorligt] Rødt flag! Rødt flag! Sessionen er stoppet.",
-    "[alvorligt] Rødt flag — alle biler skal straks tilbage til pit."
+    "[seriously] Rødt flag! Rødt flag! Sessionen er stoppet.",
+    "[seriously] Rødt flag — alle biler skal straks tilbage til pit."
   ],
   "SessionStart": [
-    "[begejstret] Grønt lys — og vi kører! Løbet er i gang!",
-    "[begejstret] Grønt flag! Vi racing!"
+    "[excitedly] Grønt lys — og vi kører! Løbet er i gang!",
+    "[excitedly] Grønt flag! Vi racing!"
   ],
   "SessionEnd": [
-    "[følelsesmæssigt] Ternet flag — {driver} vinder!",
-    "[følelsesmæssigt] Det er slut! Sikke et løb!"
+    "[emotionally] Ternet flag — {driver} vinder!",
+    "[emotionally] Det er slut! Sikke et løb!"
   ],
   "Incident": [
     "{driver} har fået en {seconds}-sekunders straf for den hændelse.",
@@ -52,9 +52,17 @@
     "Fri.",
     "Du er fri."
   ],
-  "SpotterOverlap": [
-    "Overlap.",
-    "Stadig overlap."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Tre på rad, du er i midten!",
+    "[urgently] Tre bredt! Bil til venstre og højre!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Tre på rad, du er til venstre!",
+    "[urgently] Tre bredt! Bil til din højre!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Tre på rad, du er til højre!",
+    "[urgently] Tre bredt! Bil til din venstre!"
   ],
   "CrewFuelWarning": [
     "Brændstof er ved at slippe op — ca. {laps} omgange tilbage.",

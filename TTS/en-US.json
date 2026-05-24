@@ -61,9 +61,17 @@
     "Clear.",
     "You're clear."
   ],
-  "SpotterOverlap": [
-    "Overlap.",
-    "Still overlap."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Three wide, you're in the middle!",
+    "[urgently] Three wide! Car left and right!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Three wide, you're on the left!",
+    "[urgently] Three wide! Car to your right!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Three wide, you're on the right!",
+    "[urgently] Three wide! Car to your left!"
   ],
   "CrewFuelWarning": [
     "Fuel getting low — you've got about {laps} laps worth left.",

@@ -29,3 +29,4 @@
 - **Settings ordering** — properties in `Settings.cs` and `ContextSettings.cs` must match UI top-to-bottom / left-to-right order.
 - **XAML files** must be written without BOM (UTF-8 no BOM).
 - **`KeyEventArgs` alias** — add `using KeyEventArgs = System.Windows.Input.KeyEventArgs;` in any `.xaml.cs` that handles keyboard events.
+- **File Encoding** — Always use explicit UTF-8 encoding when writing files via PowerShell. Use `[System.IO.File]::WriteAllText($path, $content, [System.Text.Encoding]::UTF8)` or `Set-Content -Encoding UTF8` — never use bare `Set-Content` without an `-Encoding` parameter, as it defaults to the system codepage and corrupts non-ASCII characters.

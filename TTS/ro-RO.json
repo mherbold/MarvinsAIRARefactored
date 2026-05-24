@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[entuziasmat] {attacker} atacă — a trecut în P{position}!",
-    "[entuziasmat] Ce manevră din partea lui {attacker}! Depășește pe {defender} și ia P{position}!",
-    "[surprins] Oh! {attacker} a reușit — a trecut de {defender} și este P{position}!"
+    "[excited] {attacker} atacă — a trecut în P{position}!",
+    "[excited] Ce manevră din partea lui {attacker}! Depășește pe {defender} și ia P{position}!",
+    "[surprised] Oh! {attacker} a reușit — a trecut de {defender} și este P{position}!"
   ],
   "CloseBattle": [
     "Luptă incredibil de strânsă între {driver1} și {driver2} — mai puțin de o secundă îi desparte!",
     "{driver1} și {driver2} sunt lipiți — e senzațional!"
   ],
   "FastestLap": [
-    "[impresionat] {driver} stabilește cel mai rapid tur al cursei — un {lapTime}!",
-    "[entuziasmat] Noul tur rapid al lui {driver} — {lapTime}!"
+    "[impressed] {driver} stabilește cel mai rapid tur al cursei — un {lapTime}!",
+    "[excited] Noul tur rapid al lui {driver} — {lapTime}!"
   ],
   "PitStopEntry": [
     "{driver} intră la boxe — echipa e pregătită.",
@@ -21,20 +21,20 @@
     "{driver} s-a reîntors în cursă."
   ],
   "Caution": [
-    "[urgent] Steag galben! Atenție pe pistă!",
-    "[urgent] Mașina de siguranță — reduceți viteza și strângeți rândurile."
+    "[urgently] Steag galben! Atenție pe pistă!",
+    "[urgently] Mașina de siguranță — reduceți viteza și strângeți rândurile."
   ],
   "RedFlag": [
-    "[serios] Steag roșu! Steag roșu! Sesiunea a fost oprită.",
-    "[serios] Steag roșu — toate mașinile trebuie să revină imediat la boxe."
+    "[seriously] Steag roșu! Steag roșu! Sesiunea a fost oprită.",
+    "[seriously] Steag roșu — toate mașinile trebuie să revină imediat la boxe."
   ],
   "SessionStart": [
-    "[entuziasmat] Lumina verde — și plecăm! Cursa a început!",
-    "[entuziasmat] Steag verde! Concurăm!"
+    "[excited] Lumina verde — și plecăm! Cursa a început!",
+    "[excited] Steag verde! Concurăm!"
   ],
   "SessionEnd": [
-    "[emoționat] Steagul în carouri — {driver} câștigă!",
-    "[emoționat] S-a terminat! Ce cursă extraordinară!"
+    "[emotionally] Steagul în carouri — {driver} câștigă!",
+    "[emotionally] S-a terminat! Ce cursă extraordinară!"
   ],
   "Incident": [
     "{driver} a primit o penalizare de {seconds} secunde pentru acel incident.",
@@ -52,9 +52,17 @@
     "Liber.",
     "Ești liber."
   ],
-  "SpotterOverlap": [
-    "Suprapunere.",
-    "Încă suprapunere."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Trei în linie, ești la mijloc!",
+    "[urgently] Trei în linie! Mașină la stânga și la dreapta!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Trei în linie, ești pe stânga!",
+    "[urgently] Trei în linie! Mașină la dreapta ta!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Trei în linie, ești pe dreapta!",
+    "[urgently] Trei în linie! Mașină la stânga ta!"
   ],
   "CrewFuelWarning": [
     "Combustibil scăzut — mai sunt aproximativ {laps} tururi.",

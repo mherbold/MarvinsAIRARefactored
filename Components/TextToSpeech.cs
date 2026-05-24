@@ -51,6 +51,10 @@ public sealed class TextToSpeech : IDisposable
 	private CancellationTokenSource _cts = new();
 	private Task? _consumerTask;
 
+	// Tracks the slot currently being played so interruption is slot-specific
+	private volatile int _playingSlotIndex = -1;
+	private CancellationTokenSource? _playbackCts;
+
 	// -------------------------------------------------------------------------
 	// Public surface
 	// -------------------------------------------------------------------------
@@ -67,6 +71,18 @@ public sealed class TextToSpeech : IDisposable
 		_consumerTask = Task.Run( () => ConsumeQueueAsync( _cts.Token ) );
 
 		app.Logger.WriteLine( "[TextToSpeech] <<< Initialize" );
+	}
+
+	/// <summary>
+	/// Immediately stops audio playback if the given slot is currently speaking.
+	/// Safe to call from any thread.
+	/// </summary>
+	public void InterruptSlot( int slotIndex )
+	{
+		if ( _playingSlotIndex == slotIndex )
+		{
+			_playbackCts?.Cancel();
+		}
 	}
 
 	/// <summary>
@@ -272,7 +288,21 @@ public sealed class TextToSpeech : IDisposable
 
 		var volume = MathZ.Saturate( slot.Volume * settings.MasterVolume );
 
-		await app.AudioManager.PlayFromMemoryAsync( mp3Bytes, volume, cancellationToken );
+		// Create a per-playback CTS linked to the consumer's shutdown token so that
+		// InterruptSlot() can stop this specific clip without killing the whole pipeline.
+		using var playbackCts = CancellationTokenSource.CreateLinkedTokenSource( cancellationToken );
+		_playbackCts = playbackCts;
+		_playingSlotIndex = request.SlotIndex;
+
+		try
+		{
+			await app.AudioManager.PlayFromMemoryAsync( mp3Bytes, volume, playbackCts.Token );
+		}
+		finally
+		{
+			_playingSlotIndex = -1;
+			_playbackCts = null;
+		}
 	}
 
 	// -------------------------------------------------------------------------

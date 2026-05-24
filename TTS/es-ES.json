@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[con emoción] ¡{attacker} hace el movimiento y pasa a P{position}!",
-    "[emocionado] ¡Qué maniobra de {attacker}! Supera a {defender} y se mete en P{position}.",
-    "[sorprendido] ¡Oh! ¡{attacker} lo ha conseguido — supera a {defender} y es P{position}!"
+    "[emotionally] ¡{attacker} hace el movimiento y pasa a P{position}!",
+    "[excited] ¡Qué maniobra de {attacker}! Supera a {defender} y se mete en P{position}.",
+    "[surprised] ¡Oh! ¡{attacker} lo ha conseguido — supera a {defender} y es P{position}!"
   ],
   "CloseBattle": [
     "¡Increíble batalla entre {driver1} y {driver2} — menos de un segundo les separa!",
     "¡{driver1} y {driver2} están pegados en pista — esto es espectacular!"
   ],
   "FastestLap": [
-    "[impresionado] ¡{driver} marca la vuelta más rápida de la carrera — un {lapTime}!",
-    "[emocionado] ¡Nueva vuelta rápida de {driver} — {lapTime}!"
+    "[impressed] ¡{driver} marca la vuelta más rápida de la carrera — un {lapTime}!",
+    "[excited] ¡Nueva vuelta rápida de {driver} — {lapTime}!"
   ],
   "PitStopEntry": [
     "Y {driver} entra en boxes — el equipo está listo.",
@@ -21,20 +21,20 @@
     "{driver} está de vuelta en carrera."
   ],
   "Caution": [
-    "[urgente] ¡Bandera amarilla! ¡Precaución en pista!",
-    "[urgente] Período de safety car — reducir velocidad."
+    "[urgently] ¡Bandera amarilla! ¡Precaución en pista!",
+    "[urgently] Período de safety car — reducir velocidad."
   ],
   "RedFlag": [
-    "[serio] ¡Bandera roja! ¡Bandera roja! La sesión ha sido detenida.",
-    "[serio] Bandera roja — todos los coches deben regresar a boxes inmediatamente."
+    "[seriously] ¡Bandera roja! ¡Bandera roja! La sesión ha sido detenida.",
+    "[seriously] Bandera roja — todos los coches deben regresar a boxes inmediatamente."
   ],
   "SessionStart": [
-    "[emocionado] ¡Luz verde — arrancamos! ¡La carrera ha comenzado!",
-    "[emocionado] ¡Bandera verde! ¡Estamos corriendo!"
+    "[excited] ¡Luz verde — arrancamos! ¡La carrera ha comenzado!",
+    "[excited] ¡Bandera verde! ¡Estamos corriendo!"
   ],
   "SessionEnd": [
-    "[emotivo] ¡Bandera a cuadros — {driver} gana!",
-    "[emotivo] ¡Ha terminado! ¡Qué carrera hemos vivido!"
+    "[emotionally] ¡Bandera a cuadros — {driver} gana!",
+    "[emotionally] ¡Ha terminado! ¡Qué carrera hemos vivido!"
   ],
   "Incident": [
     "{driver} recibe una penalización de {seconds} segundos por ese incidente.",
@@ -52,9 +52,17 @@
     "Libre.",
     "Estás libre."
   ],
-  "SpotterOverlap": [
-    "Solapamiento.",
-    "Todavía solapamiento."
+  "SpotterThreeWideMiddle": [
+    "[urgently] ¡Tres en fila, estás en el medio!",
+    "[urgently] ¡Tres en fila! ¡Coches a izquierda y derecha!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] ¡Tres en fila, estás a la izquierda!",
+    "[urgently] ¡Tres en fila! ¡Coche a tu derecha!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] ¡Tres en fila, estás a la derecha!",
+    "[urgently] ¡Tres en fila! ¡Coche a tu izquierda!"
   ],
   "CrewFuelWarning": [
     "Combustible bajo — quedan unas {laps} vueltas.",

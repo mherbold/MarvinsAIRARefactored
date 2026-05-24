@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[entusiastiskt] {attacker} anfaller — han är förbi till P{position}!",
-    "[upphetsat] Vilken manöver av {attacker}! Passerar {defender} och tar P{position}!",
-    "[förvånat] Oj! {attacker} klarade det — förbi {defender} och in på P{position}!"
+    "[excitedly] {attacker} anfaller — han är förbi till P{position}!",
+    "[excitedly] Vilken manöver av {attacker}! Passerar {defender} och tar P{position}!",
+    "[surprised] Oj! {attacker} klarade det — förbi {defender} och in på P{position}!"
   ],
   "CloseBattle": [
     "Otroligt jämn kamp mellan {driver1} och {driver2} — under en sekunds skillnad!",
     "{driver1} och {driver2} kör sida vid sida — det här är sensationellt!"
   ],
   "FastestLap": [
-    "[imponerat] {driver} sätter loppets snabbaste varv — en {lapTime}!",
-    "[upphetsat] Nytt snabbaste varv av {driver} — {lapTime}!"
+    "[impressed] {driver} sätter loppets snabbaste varv — en {lapTime}!",
+    "[excitedly] Nytt snabbaste varv av {driver} — {lapTime}!"
   ],
   "PitStopEntry": [
     "{driver} kör in i depån — teamet är redo.",
@@ -21,20 +21,20 @@
     "{driver} är tillbaka i loppet."
   ],
   "Caution": [
-    "[brådskande] Gul flagga! Var försiktig på banan!",
-    "[brådskande] Säkerhetsbil — sakta ner och slut ihop fältet."
+    "[urgently] Gul flagga! Var försiktig på banan!",
+    "[urgently] Säkerhetsbil — sakta ner och slut ihop fältet."
   ],
   "RedFlag": [
-    "[allvarligt] Röd flagga! Röd flagga! Sessionen har stoppats.",
-    "[allvarligt] Röd flagga — alla bilar måste omedelbart återvända till depån."
+    "[seriously] Röd flagga! Röd flagga! Sessionen har stoppats.",
+    "[seriously] Röd flagga — alla bilar måste omedelbart återvända till depån."
   ],
   "SessionStart": [
-    "[upphetsat] Grönt ljus — och vi kör! Loppet har börjat!",
-    "[upphetsat] Grön flagga! Vi tävlar!"
+    "[excitedly] Grönt ljus — och vi kör! Loppet har börjat!",
+    "[excitedly] Grön flagga! Vi tävlar!"
   ],
   "SessionEnd": [
-    "[känslosamt] Rutiga flaggan — {driver} vinner!",
-    "[känslosamt] Det är slut! Vilket lopp det var!"
+    "[emotionally] Rutiga flaggan — {driver} vinner!",
+    "[emotionally] Det är slut! Vilket lopp det var!"
   ],
   "Incident": [
     "{driver} har fått en {seconds}-sekunders straff för den incidenten.",
@@ -52,9 +52,17 @@
     "Fri.",
     "Du är fri."
   ],
-  "SpotterOverlap": [
-    "Överlapp.",
-    "Fortfarande överlapp."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Tre i bredd, du är i mitten!",
+    "[urgently] Tre i bredd! Bil till vänster och höger!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Tre i bredd, du är till vänster!",
+    "[urgently] Tre i bredd! Bil till din höger!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Tre i bredd, du är till höger!",
+    "[urgently] Tre i bredd! Bil till din vänster!"
   ],
   "CrewFuelWarning": [
     "Bränslet håller på att ta slut — ca {laps} varv kvar.",

@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[animado] {attacker} ataca — passou para P{position}!",
-    "[animado] Que manobra de {attacker}! Ultrapassa {defender} e fica em P{position}!",
-    "[surpreso] Uau! {attacker} conseguiu — passou {defender} e está em P{position}!"
+    "[excitedly] {attacker} ataca — passou para P{position}!",
+    "[excitedly] Que manobra de {attacker}! Ultrapassa {defender} e fica em P{position}!",
+    "[surprised] Uau! {attacker} conseguiu — passou {defender} e está em P{position}!"
   ],
   "CloseBattle": [
     "Disputa incrivelmente acirrada entre {driver1} e {driver2} — menos de um segundo entre eles!",
     "{driver1} e {driver2} estão colados — isso é sensacional!"
   ],
   "FastestLap": [
-    "[impressionado] {driver} marca a volta mais rápida da corrida — um {lapTime}!",
-    "[animado] Nova volta mais rápida de {driver} — {lapTime}!"
+    "[impressed] {driver} marca a volta mais rápida da corrida — um {lapTime}!",
+    "[excitedly] Nova volta mais rápida de {driver} — {lapTime}!"
   ],
   "PitStopEntry": [
     "{driver} entra nos boxes — a equipe está pronta.",
@@ -21,20 +21,20 @@
     "{driver} está de volta na corrida."
   ],
   "Caution": [
-    "[urgente] Bandeira amarela! Atenção na pista!",
-    "[urgente] Safety car — reduzir velocidade e fechar o pelotão."
+    "[urgently] Bandeira amarela! Atenção na pista!",
+    "[urgently] Safety car — reduzir velocidade e fechar o pelotão."
   ],
   "RedFlag": [
-    "[sério] Bandeira vermelha! Bandeira vermelha! A sessão foi encerrada.",
-    "[sério] Bandeira vermelha — todos os carros devem retornar aos boxes imediatamente."
+    "[seriously] Bandeira vermelha! Bandeira vermelha! A sessão foi encerrada.",
+    "[seriously] Bandeira vermelha — todos os carros devem retornar aos boxes imediatamente."
   ],
   "SessionStart": [
-    "[animado] Luz verde — e lá vamos! A corrida começou!",
-    "[animado] Bandeira verde! Estamos correndo!"
+    "[excitedly] Luz verde — e lá vamos! A corrida começou!",
+    "[excitedly] Bandeira verde! Estamos correndo!"
   ],
   "SessionEnd": [
-    "[emocionado] Bandeira quadriculada — {driver} vence!",
-    "[emocionado] Acabou! Que corrida incrível!"
+    "[excited] Bandeira quadriculada — {driver} vence!",
+    "[excited] Acabou! Que corrida incrível!"
   ],
   "Incident": [
     "{driver} recebeu uma penalidade de {seconds} segundos por esse incidente.",
@@ -52,9 +52,17 @@
     "Livre.",
     "Está livre."
   ],
-  "SpotterOverlap": [
-    "Sobreposição.",
-    "Ainda sobreposição."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Três lado a lado, você está no meio!",
+    "[urgently] Três lado a lado! Carro à esquerda e à direita!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Três lado a lado, você está à esquerda!",
+    "[urgently] Três lado a lado! Carro à sua direita!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Três lado a lado, você está à direita!",
+    "[urgently] Três lado a lado! Carro à sua esquerda!"
   ],
   "CrewFuelWarning": [
     "Combustível baixo — restam cerca de {laps} voltas.",

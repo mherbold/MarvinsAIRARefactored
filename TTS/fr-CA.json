@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[avec enthousiasme] {attacker} attaque — il est passé en P{position}!",
-    "[excité] Quelle manœuvre de {attacker}! Il dépasse {defender} et prend la P{position}!",
-    "[surpris] Oh! {attacker} l'a fait — il passe {defender} et se retrouve en P{position}!"
+    "[excitedly] {attacker} attaque — il est passé en P{position}!",
+    "[excited] Quelle manœuvre de {attacker}! Il dépasse {defender} et prend la P{position}!",
+    "[surprised] Oh! {attacker} l'a fait — il passe {defender} et se retrouve en P{position}!"
   ],
   "CloseBattle": [
     "Course incroyablement serrée entre {driver1} et {driver2} — moins d'une seconde les sépare!",
     "{driver1} et {driver2} sont collés l'un à l'autre — c'est sensationnel!"
   ],
   "FastestLap": [
-    "[impressionné] {driver} signe le meilleur tour de la course — un {lapTime}!",
-    "[excité] Nouveau meilleur tour pour {driver} — {lapTime}!"
+    "[impressed] {driver} signe le meilleur tour de la course — un {lapTime}!",
+    "[excited] Nouveau meilleur tour pour {driver} — {lapTime}!"
   ],
   "PitStopEntry": [
     "{driver} entre aux stands — l'équipe est prête.",
@@ -21,20 +21,20 @@
     "{driver} est de retour en piste."
   ],
   "Caution": [
-    "[avec urgence] Drapeau jaune! Prudence sur le circuit!",
-    "[avec urgence] Voiture de sécurité — ralentir et se regrouper."
+    "[urgently] Drapeau jaune! Prudence sur le circuit!",
+    "[urgently] Voiture de sécurité — ralentir et se regrouper."
   ],
   "RedFlag": [
-    "[sérieusement] Drapeau rouge! Drapeau rouge! La session a été arrêtée.",
-    "[sérieusement] Drapeau rouge — tous les véhicules doivent rentrer immédiatement."
+    "[seriously] Drapeau rouge! Drapeau rouge! La session a été arrêtée.",
+    "[seriously] Drapeau rouge — tous les véhicules doivent rentrer immédiatement."
   ],
   "SessionStart": [
-    "[excité] Feu vert — c'est parti! La course est lancée!",
-    "[excité] Drapeau vert! On course!"
+    "[excited] Feu vert — c'est parti! La course est lancée!",
+    "[excited] Drapeau vert! On course!"
   ],
   "SessionEnd": [
-    "[avec émotion] Drapeau à damier — {driver} gagne!",
-    "[avec émotion] C'est terminé! Quelle course extraordinaire!"
+    "[emotionally] Drapeau à damier — {driver} gagne!",
+    "[emotionally] C'est terminé! Quelle course extraordinaire!"
   ],
   "Incident": [
     "{driver} reçoit une pénalité de {seconds} secondes pour cet incident.",
@@ -52,9 +52,17 @@
     "Dégagé.",
     "Tu es dégagé."
   ],
-  "SpotterOverlap": [
-    "Chevauchement.",
-    "Toujours chevauchement."
+  "SpotterThreeWideMiddle": [
+    "[urgently] Trois de front, tu es au milieu !",
+    "[urgently] Trois de front ! Voiture à gauche et à droite !"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Trois de front, tu es à gauche !",
+    "[urgently] Trois de front ! Voiture à ta droite !"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Trois de front, tu es à droite !",
+    "[urgently] Trois de front ! Voiture à ta gauche !"
   ],
   "CrewFuelWarning": [
     "Carburant bas — il reste environ {laps} tours.",

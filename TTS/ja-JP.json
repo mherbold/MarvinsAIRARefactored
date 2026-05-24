@@ -1,16 +1,16 @@
 ﻿{
   "Overtake": [
-    "[興奮して] {attacker}が仕掛けた — {position}位に浮上！",
-    "[興奮して] {attacker}、素晴らしいオーバーテイク！{defender}を抜いてP{position}へ！",
-    "[驚いて] おっと！{attacker}がやった — {defender}をかわしてP{position}！"
+    "[excitedly] {attacker}が仕掛けた — {position}位に浮上！",
+    "[excitedly] {attacker}、素晴らしいオーバーテイク！{defender}を抜いてP{position}へ！",
+    "[surprised] おっと！{attacker}がやった — {defender}をかわしてP{position}！"
   ],
   "CloseBattle": [
     "{driver1}と{driver2}の信じられないほど接近した戦い — 差は1秒以内！",
     "{driver1}と{driver2}が接近戦を繰り広げる — これは壮絶だ！"
   ],
   "FastestLap": [
-    "[感心して] {driver}がレース最速ラップをマーク — {lapTime}！",
-    "[興奮して] {driver}がファステストラップを更新 — {lapTime}！"
+    "[impressed] {driver}がレース最速ラップをマーク — {lapTime}！",
+    "[excitedly] {driver}がファステストラップを更新 — {lapTime}！"
   ],
   "PitStopEntry": [
     "{driver}がピットへ — チームは準備万端。",
@@ -21,20 +21,20 @@
     "{driver}がレースに戻ってきた。"
   ],
   "Caution": [
-    "[緊急に] イエローフラッグ！コース上に注意！",
-    "[緊急に] セーフティカー — 減速して間隔を縮めて。"
+    "[urgently] イエローフラッグ！コース上に注意！",
+    "[urgently] セーフティカー — 減速して間隔を縮めて。"
   ],
   "RedFlag": [
-    "[深刻に] 赤旗！赤旗！セッションが中断されました。",
-    "[深刻に] 赤旗 — 全車両は直ちにピットに戻ること。"
+    "[seriously] 赤旗！赤旗！セッションが中断されました。",
+    "[seriously] 赤旗 — 全車両は直ちにピットに戻ること。"
   ],
   "SessionStart": [
-    "[興奮して] グリーンライト — スタート！レース開始！",
-    "[興奮して] グリーンフラッグ！レース開始！"
+    "[excitedly] グリーンライト — スタート！レース開始！",
+    "[excitedly] グリーンフラッグ！レース開始！"
   ],
   "SessionEnd": [
-    "[感動して] チェッカーフラッグ — {driver}が優勝！",
-    "[感動して] レース終了！素晴らしいレースだった！"
+    "[emotionally] チェッカーフラッグ — {driver}が優勝！",
+    "[emotionally] レース終了！素晴らしいレースだった！"
   ],
   "Incident": [
     "{driver}はその事故で{seconds}秒のペナルティを受けました。",
@@ -52,9 +52,17 @@
     "クリア。",
     "クリアです。"
   ],
-  "SpotterOverlap": [
-    "オーバーラップ。",
-    "まだオーバーラップ。"
+  "SpotterThreeWideMiddle": [
+    "[urgently] 三台横並び、あなたは真ん中です！",
+    "[urgently] 三台横並び！左右に車がいます！"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] 三台横並び、あなたは左側です！",
+    "[urgently] 三台横並び！右に車がいます！"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] 三台横並び、あなたは右側です！",
+    "[urgently] 三台横並び！左に車がいます！"
   ],
   "CrewFuelWarning": [
     "燃料が少なくなっています — 約{laps}周分残っています。",
