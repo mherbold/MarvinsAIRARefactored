@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1564,10 +1564,10 @@
     <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
-    <value>Text în vorbire</value>
+    <value>Comentariu</value>
   </data>
   <data name="Commentary_UC" xml:space="preserve">
-    <value>TEXT ÎN VORBIRE</value>
+    <value>COMENTARIU</value>
   </data>
   <data name="Account_UC" xml:space="preserve">
     <value>CONT</value>
@@ -1604,6 +1604,9 @@
   </data>
   <data name="VoiceNotSelected" xml:space="preserve">
     <value>[Selectați o voce]</value>
+  </data>
+  <data name="ModelNotSelected" xml:space="preserve">
+    <value>[Selectați un model]</value>
   </data>
   <data name="KeyRecognized" xml:space="preserve">
     <value>✓  Cheie recunoscută</value>

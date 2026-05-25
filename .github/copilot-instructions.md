@@ -19,7 +19,7 @@
 | ElevenLabs TTS, voice slots, Commentary, phrase templates, API key | `Agents/text-to-speech.md` |
 | Settings, per-context system, ContextSwitches, ContextSettings | `Agents/settings-context.md` |
 | WPF controls, XAML patterns, Maira* controls, dialogs, artwork | `Agents/ui-wpf-controls.md` |
-| Localization, .resx files, adding strings or languages | `Agents/localization.md` |
+| Localization, .resx and TTS .json files, adding strings or languages | `Agents/localization.md` |
 
 ## Quick Rules (apply to all tasks)
 

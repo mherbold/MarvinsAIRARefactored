@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1571,10 +1571,10 @@
     <value>мс</value>
   </data>
   <data name="Commentary" xml:space="preserve">
-    <value>Текст у мовлення</value>
+    <value>Коментар</value>
   </data>
   <data name="Commentary_UC" xml:space="preserve">
-    <value>ТЕКСТ У МОВЛЕННЯ</value>
+    <value>КОМЕНТАР</value>
   </data>
   <data name="Account_UC" xml:space="preserve">
     <value>ОБЛІКОВИЙ ЗАПИС</value>
@@ -1611,6 +1611,9 @@
   </data>
   <data name="VoiceNotSelected" xml:space="preserve">
     <value>[Оберіть голос]</value>
+  </data>
+  <data name="ModelNotSelected" xml:space="preserve">
+    <value>[Оберіть модель]</value>
   </data>
   <data name="KeyRecognized" xml:space="preserve">
     <value>✓  Ключ розпізнано</value>

@@ -40,7 +40,7 @@ The SDK's default auto-inclusion of `.resx` files is **disabled** (`<EnableDefau
 
 ## Adding or Updating Strings
 
-**Always use the LocalizationEditor tool for bulk operations — never edit resx files directly via PowerShell.**
+**Always use the LocalizationEditor tool for bulk operations — never edit resx or TTS json files directly via PowerShell.**
 
 ### Adding a new key
 
@@ -95,35 +95,3 @@ Common existing unit keys: `"Degrees"`, `"DegreesPerSecond"`, `"Percent"`, `"Hz"
 ## ComboBox Options Must Be Localized Too
 
 When building option lists for `MairaComboBox`, always construct them from the `Localization` indexer, never from hard-coded strings. Rebuild the list and refresh the UI whenever the language changes (see `docs/agents/ui-wpf-controls.md` — "Localized ComboBox Items").
-
----
-
-## Unicode Safety — File Read/Write and String Replacement
-
-Several XAML and resource files in this project contain **non-ASCII Unicode characters** (e.g., `Català`, `Français`, `Čestina`, `Русский`, `简体中文`, Thai, Armenian, etc.). Careless file operations will silently corrupt these characters.
-
-### Rules
-
-1. **Never use PowerShell `Get-Content` / `Set-Content` for XAML/resx files without specifying encoding.**
-   PowerShell defaults to the system code page (typically Windows-1252 on Western systems), which cannot represent characters outside its range and will corrupt them silently.
-
-2. **Always use `[System.IO.File]::ReadAllText` / `[System.IO.File]::WriteAllText` with explicit UTF-8 encoding** for any PowerShell read-modify-write operation:
-   ```powershell
-   $content = [System.IO.File]::ReadAllText($path)           # defaults to UTF-8 with BOM detection
-   $content = $content.Replace("old", "new")
-   [System.IO.File]::WriteAllText($path, $content, [System.Text.UTF8Encoding]::new($false))
-   ```
-   The `[System.Text.UTF8Encoding]::new($false)` argument writes UTF-8 **without BOM**, which is required for XAML files (see the XAML Files — Write Without BOM section above).
-
-3. **Never use `replace_string_in_file` or PowerShell `-replace` for bulk multi-occurrence substitutions across Unicode-containing files.**
-   Bulk replacements (e.g., replacing all occurrences of a hardcoded color across a file) must be done with `[System.IO.File]::ReadAllText` → `.Replace()` → `[System.IO.File]::WriteAllText` so encoding is preserved end-to-end.
-
-4. **Always verify after any bulk replacement** that non-ASCII characters in the file are intact:
-   ```powershell
-   $content = [System.IO.File]::ReadAllText($path)
-   $lines = $content -split "`n"
-   # spot-check lines known to contain non-ASCII
-   $lines | Where-Object { $_ -match '[^\x00-\x7F]' } | Select-Object -First 10
-   ```
-
-5. **If corruption is detected** (U+FFFD `?` replacement character, or bytes like `0xEF 0xBF 0xBD`), restore the file from Git and redo the replacement using the safe `[System.IO.File]` approach above.

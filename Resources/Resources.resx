@@ -1605,6 +1605,9 @@
   <data name="VoiceNotSelected" xml:space="preserve">
     <value>[Select a Voice]</value>
   </data>
+  <data name="ModelNotSelected" xml:space="preserve">
+    <value>[Select a Model]</value>
+  </data>
   <data name="KeyRecognized" xml:space="preserve">
     <value>✓  Key recognized</value>
   </data>

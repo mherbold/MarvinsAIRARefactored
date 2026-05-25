@@ -12,8 +12,8 @@ This sub-file covers the ElevenLabs-based text-to-speech pipeline: voice slots, 
 | `Classes/CommentaryTemplates.cs` | Embedded JSON phrase loader with language fallback |
 | `Classes/ElevenLabsKeyStore.cs` | DPAPI-encrypted API key storage |
 | `TTS/*.json` | Embedded phrase template files, one per language tag |
-| `Pages/TextToSpeechPage.xaml/.cs` | Settings UI: key verification, voice/model pickers, per-slot knobs |
-| `DataContext/Settings.cs` | All TTS-related settings properties (region `Text to Speech — *`) |
+| `Pages/CommentaryPage.xaml/.cs` | Settings UI: key verification, voice/model pickers, per-slot knobs |
+| `DataContext/Settings.cs` | All TTS-related settings properties (region `Commentary — *`) |
 
 ---
 
@@ -42,7 +42,7 @@ iRacing telemetry tick
 
 ## Voice Slots
 
-Five fixed voice slots are always present in `Settings.VoiceSlots` (`List<VoiceSlotSettings>`):
+Five fixed voice slots are always present in `Settings.CommentaryVoiceSlots` (`List<VoiceSlotSettings>`):
 
 | Index | Constant | Default voice | Personality |
 |---|---|---|---|
@@ -52,7 +52,7 @@ Five fixed voice slots are always present in `Settings.VoiceSlots` (`List<VoiceS
 | 3 | `SlotSportscaster2` | Daniel (`onwK4e9ZLuTAKqWW03F9`) | Analytical, measured, colour commentary |
 | 4 | `SlotPitReporter` | Jessica (`cgSgspJ2msm6clMCkdW9`) | Energetic, on-the-ground, breathless |
 
-`VoiceSlotSettings.CreateDefaults()` returns this list. `Settings.VoiceSlots` setter always ensures exactly 5 entries are present, padding with defaults if needed.
+`VoiceSlotSettings.CreateDefaults()` returns this list. `Settings.CommentaryVoiceSlots` setter always ensures exactly 5 entries are present, padding with defaults if needed.
 
 ### VoiceSlotSettings Properties
 
@@ -66,7 +66,7 @@ Five fixed voice slots are always present in `Settings.VoiceSlots` (`List<VoiceS
 | `Style` | `float` 0–1 | Exaggeration level |
 | `SimilarityBoost` | `float` 0–1 | How closely to match the original voice |
 | `SpeakerBoost` | `bool` | ElevenLabs speaker-boost processing |
-| `Volume` | `float` 0–1 | Slot-level volume; multiplied with `Settings.MasterVolume` at playback |
+| `Volume` | `float` 0–1 | Slot-level volume; multiplied with `Settings.CommentaryMasterVolume` at playback |
 
 ---
 
@@ -79,7 +79,7 @@ app.TextToSpeech.Enqueue( slotIndex, text, priority );
 ```
 
 - Returns immediately (fire-and-dispatch, not fire-and-forget — the consumer awaits each request).
-- Silently drops if `Settings.TtsEnabled` is false or the slot is disabled/has no voice ID.
+- Silently drops if `Settings.CommentaryEnabled` is false or the slot is disabled/has no voice ID.
 - The internal channel holds up to **64 requests**; oldest is dropped on overflow (`BoundedChannelFullMode.DropOldest`).
 - `priority` is metadata on the request record — the channel is FIFO, not a heap. Use it as a convention hint for future prioritization if needed.
 
@@ -113,7 +113,7 @@ Cache writes happen in a fire-and-forget `Task` so they never delay playback.
 | Method | Returns | Purpose |
 |---|---|---|
 | `GetVoicesAsync()` | `Dictionary<string,string>?` | Voice ID → name, sorted by name |
-| `GetTtsModelsAsync()` | `Dictionary<string,string>?` | Model ID → display name, filtered to TTS-capable only |
+| `GetModelsAsync()` | `Dictionary<string,string>?` | Model ID → display name, filtered to TTS-capable only |
 | `GetSubscriptionAsync()` | `SubscriptionInfo?` | Current billing-period character usage and limit |
 
 ---
@@ -128,7 +128,7 @@ Cache writes happen in a fire-and-forget `Task` so they never delay playback.
 app.Commentary.Initialize( language );  // e.g. "en-US"
 ```
 
-Called at startup and whenever `Settings.TtsLanguage` changes. Delegates to `CommentaryTemplates.Initialize()`.
+Called at startup and whenever `Settings.CommentaryElevenLabsLanguage` changes. Delegates to `CommentaryTemplates.Initialize()`.
 
 ### Tick
 
@@ -138,7 +138,7 @@ Called every worker-thread frame by `App`:
 app.Commentary.Tick( app );
 ```
 
-Only runs when `Settings.TtsEnabled && Settings.CommentaryEnabled && _isRacingActive`.
+Only runs when `Settings.CommentaryEnabled && _isRacingActive`.
 
 ### Event Detection
 
@@ -199,15 +199,41 @@ ElevenLabs **emotion tags** (e.g. `[excitedly]`, `[urgently]`, `[seriously]`) ar
 
 ### Adding a New Event Key
 
-1. Add the key + phrase array to **every** `TTS/*.json` file (all 28 language files).
-2. Add the detection logic in `Commentary.cs` (or another component that calls `app.TextToSpeech.Enqueue`).
-3. If the event is user-togglable, add a `bool` property to `Settings.cs` in the `Text to Speech — Per-event commentary toggles` region and wire it in the detection code.
+**Always use the LocalizationEditor tool — never edit TTS JSON files directly via PowerShell or a text editor.**
+
+1. Open `Tools/LocalizationEditor/Program.cs` and add a new `BuildMyNewKey()` method with phrase translations for all 25 languages. Add a matching `case` in `AddTtsKey()`.
+2. Run: `dotnet run --project Tools/LocalizationEditor -- tts add-key MyNewKey`
+3. Run: `dotnet run --project Tools/LocalizationEditor -- tts validate` to confirm no issues.
+4. Add the detection logic in `Commentary.cs` (or another component that calls `app.TextToSpeech.Enqueue`).
+5. If the event is user-togglable, add a `bool` property to `Settings.cs` in the `Commentary — Per-event commentary toggles` region and wire it in the detection code.
+6. Rebuild the main project (JSON files are embedded resources — changes only take effect after a rebuild).
+
+### Editing Existing Phrases
+
+```
+# Replace all phrases for one key in one language
+dotnet run --project Tools/LocalizationEditor -- tts set-phrases SpotterClear de-DE "Frei." "Du bist frei." "Alles klar."
+
+# Replace across all languages (use * as lang)
+dotnet run --project Tools/LocalizationEditor -- tts set-phrases SpotterClear * "Clear." "You're clear."
+```
 
 ### Adding a New Language
 
-1. Create `TTS/{lang-tag}.json` with all existing event keys translated.
-2. Set **Build Action = Embedded Resource** in the `.csproj` (matches the `<EmbeddedResource>` glob for `TTS/**/*.json`).
+1. Add a new `case` entry for the language in each `Build*` method in `Program.cs`.
+2. Run: `dotnet run --project Tools/LocalizationEditor -- tts add-lang {lang-tag}`
+   - This creates `TTS/{lang-tag}.json` and adds the csproj entry automatically.
 3. The combo box is populated automatically via `CommentaryTemplates.GetAvailableLanguages()`.
+
+### Other Useful Commands
+
+```
+dotnet run --project Tools/LocalizationEditor -- tts list-keys       # all keys + missing languages
+dotnet run --project Tools/LocalizationEditor -- tts show-key SpotterClear  # side-by-side per lang
+dotnet run --project Tools/LocalizationEditor -- tts validate        # full consistency check
+dotnet run --project Tools/LocalizationEditor -- tts rename-key OldKey NewKey
+dotnet run --project Tools/LocalizationEditor -- tts remove-key ObsoleteKey
+```
 
 ---
 
@@ -219,24 +245,23 @@ ElevenLabs **emotion tags** (e.g. `[excitedly]`, `[urgently]`, `[seriously]`) ar
 %DOCUMENTS%\MarvinsAIRA Refactored\ElevenLabs\api-key.dat
 ```
 
-`Settings.ApiKey` is `[XmlIgnore]`; its getter calls `ElevenLabsKeyStore.LoadKey()` and its setter calls `ElevenLabsKeyStore.SaveKey()`. The key is **never** written to `Settings.xml`.
+`Settings.CommentaryElevenLabsApiKey` is `[XmlIgnore]`; its getter calls `ElevenLabsKeyStore.LoadKey()` and its setter calls `ElevenLabsKeyStore.SaveKey()`. The key is **never** written to `Settings.xml`.
 
 ---
 
 ## Settings Properties Reference
 
-All TTS settings live in `DataContext/Settings.cs` under `#region Text to Speech — *` blocks:
+All TTS settings live in `DataContext/Settings.cs` under `#region Commentary — *` blocks:
 
 | Property | Type | Default | Notes |
 |---|---|---|---|
-| `TtsEnabled` | `bool` | `false` | Master on/off switch |
-| `ApiKey` | `string` | *(DPAPI)* | `[XmlIgnore]`; routed through `ElevenLabsKeyStore` |
-| `ModelId` | `string` | `"eleven_flash_v2_5"` | ElevenLabs model ID |
-| `MasterVolume` | `float` | `0.85` | Multiplied with each slot's `Volume` at playback |
-| `TtsLanguage` | `string` | `"en-US"` | Changing this calls `Commentary.Initialize(value)` immediately |
+| `CommentaryEnabled` | `bool` | `false` | Master on/off switch |
+| `CommentaryElevenLabsApiKey` | `string` | *(DPAPI)* | `[XmlIgnore]`; routed through `ElevenLabsKeyStore` |
+| `CommentaryElevenLabsModelId` | `string` | `"eleven_flash_v2_5"` | ElevenLabs model ID |
+| `CommentaryMasterVolume` | `float` | `0.85` | Multiplied with each slot's `Volume` at playback |
+| `CommentaryElevenLabsLanguage` | `string` | `"en-US"` | Changing this calls `Commentary.Initialize(value)` immediately |
 | `SessionCharactersUsed` | `int` | 0 | `[XmlIgnore]`; runtime counter of API chars used this session |
-| `VoiceSlots` | `List<VoiceSlotSettings>` | 5 defaults | Setter ensures exactly 5 entries |
-| `CommentaryEnabled` | `bool` | `true` | Enables the Commentary component |
+| `CommentaryVoiceSlots` | `List<VoiceSlotSettings>` | 5 defaults | Setter ensures exactly 5 entries |
 | `SpotterEnabled` | `bool` | `true` | Enables spotter calls (future — currently guarded in Commentary) |
 | `CrewChiefEnabled` | `bool` | `true` | Enables crew chief calls |
 | `CommentaryOvertake` | `bool` | `true` | Per-event toggle |
@@ -254,23 +279,23 @@ All TTS settings live in `DataContext/Settings.cs` under `#region Text to Speech
 
 ---
 
-## TextToSpeechPage (UI)
+## CommentaryPage (UI)
 
-`Pages/TextToSpeechPage.xaml.cs` — activated via `OnPageActivated()` from `MainWindow`.
+`Pages/CommentaryPage.xaml.cs` — activated via `OnPageActivated()` from `MainWindow`.
 
 On activation it:
 1. Populates the language ComboBox from `CommentaryTemplates.GetAvailableLanguages()`.
-2. Loads the API key into the `PasswordBox` (read from DPAPI; never shown in plain text in settings XML).
-3. If TTS is enabled, calls `VerifyAndPopulateAsync()` which runs `VerifyKeyAsync()`, then `GetVoicesAsync()` and `GetTtsModelsAsync()` to populate the voice and model pickers.
+2. Loads the API key into the password field (read from DPAPI; never shown in plain text in settings XML).
+3. If Commentary is enabled, calls `VerifyAndPopulateAsync()` which runs `VerifyKeyAsync()`, then `GetVoicesAsync()` and `GetModelsAsync()` to populate the voice and model pickers.
 
-The page also re-runs `VerifyAndPopulateAsync()` when `Settings.TtsEnabled` flips to `true` via `PropertyChanged`.
+The page also re-runs `VerifyAndPopulateAsync()` when `Settings.CommentaryEnabled` flips to `true` via `PropertyChanged`.
 
 ---
 
 ## Common Pitfalls
 
-- **Do not call `TextToSpeech.Enqueue` from the UI thread in a tight loop** — the channel is bounded at 64 and drops oldest entries.
+- **Do not call `TextToSpeech.Enqueue` from the UI thread in a tight loop** — the channel is bounded at 64 and drops oldest entries (`BoundedChannelFullMode.DropOldest`).
 - **Cache key includes voice settings** — changing Stability/Style/SimilarityBoost/SpeakerBoost on a slot invalidates its cache entries for existing phrases. This is intentional.
 - **`SessionCharactersUsed` is runtime-only** (`[XmlIgnore]`) — it resets to 0 every time the app starts. It counts API characters since launch, not lifetime usage. Use `GetSubscriptionAsync()` for the ElevenLabs billing-period total.
 - **CommentaryTemplates loads from embedded resources** — editing the JSON files in `TTS/` only takes effect after a rebuild. The files are not read from the documents folder at runtime.
-- **ADMINBOXX build** — all TTS features (`TextToSpeech`, `Commentary`, `TextToSpeechPage`) are compiled out when the `ADMINBOXX` preprocessor constant is defined.
+- **ADMINBOXX build** — all TTS features (`TextToSpeech`, `Commentary`, `CommentaryPage`) are compiled out when the `ADMINBOXX` preprocessor constant is defined.

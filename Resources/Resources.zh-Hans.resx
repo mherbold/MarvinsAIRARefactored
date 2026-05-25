@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1564,10 +1564,10 @@
     <value>毫秒</value>
   </data>
   <data name="Commentary" xml:space="preserve">
-    <value>文字转语音</value>
+    <value>解说</value>
   </data>
   <data name="Commentary_UC" xml:space="preserve">
-    <value>文字转语音</value>
+    <value>解说</value>
   </data>
   <data name="Account_UC" xml:space="preserve">
     <value>账户</value>
@@ -1604,6 +1604,9 @@
   </data>
   <data name="VoiceNotSelected" xml:space="preserve">
     <value>[选择声音]</value>
+  </data>
+  <data name="ModelNotSelected" xml:space="preserve">
+    <value>[选择模型]</value>
   </data>
   <data name="KeyRecognized" xml:space="preserve">
     <value>✓  密钥已识别</value>

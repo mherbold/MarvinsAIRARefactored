@@ -113,19 +113,18 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 		app.Logger.WriteLine( "[CommentaryPage] <<< UpdateLanguageOptions" );
 	}
 
-	private static readonly Dictionary<string, string> _fallbackModels = new()
-	{
-		{ "eleven_flash_v2_5", "Flash v2.5" },
-		{ "eleven_turbo_v2_5", "Turbo v2.5" },
-	};
-
 	private async void UpdateModelOptions()
 	{
 		var app = App.Instance!;
 
 		var models = await app.TextToSpeech.GetModelsAsync();
 
-		Model_MairaComboBox.ItemsSource = ( models ?? _fallbackModels ).ToList();
+		var localization = AppDataContext.Instance.Localization;
+
+		var placeholder = new KeyValuePair<string, string>( "", localization[ "ModelNotSelected" ] );
+		var items = ( models ?? new Dictionary<string, string>() ).Prepend( placeholder ).ToList();
+
+		Model_MairaComboBox.ItemsSource = items;
 	}
 
 	private static readonly Dictionary<string, string> _fallbackVoices = new()
