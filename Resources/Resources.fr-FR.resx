@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -405,6 +509,9 @@
   <data name="AppWindow_UC" xml:space="preserve">
     <value>FENETRE APPLI</value>
   </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Thème Clair</value>
+  </data>
   <data name="UIScale" xml:space="preserve">
     <value>Taille de l'interface</value>
   </data>
@@ -786,6 +893,12 @@
   <data name="AppSettings_UC" xml:space="preserve">
     <value>PARAMÈTRES DE L'APPLICATION</value>
   </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>ASSISTANT</value>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Lancer l'assistant</value>
+  </data>
   <data name="Simulator_UC" xml:space="preserve">
     <value>Simulateur</value>
   </data>
@@ -837,6 +950,93 @@
   <data name="Wind" xml:space="preserve">
     <value>Vent</value>
   </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>TENDEUR DE CEINTURE</value>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>Tendeur de ceinture</value>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>Connecter au tendeur de ceinture</value>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>Connecter au démarrage</value>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>Angle minimum</value>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>Angle neutre</value>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>Angle maximum</value>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>Force G max</value>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>Soustraire la gravité</value>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>Mode axe</value>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>Désactivé</value>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>Inversé</value>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Zone morte</value>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>Lissage</value>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>G min</value>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>G max</value>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>EFFET RESSENTI</value>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>EFFETS DE VIBRATION</value>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / Blocage de roue</value>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>Glissement de roue</value>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>Bande rugueuse</value>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>POUSSÉE</value>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>TANGAGE LATÉRAL</value>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>SOULÈVEMENT</value>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>SORTIE MOTEUR</value>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>Épaule gauche</value>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>Épaule droite</value>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>Vitesse moteur max</value>
+  </data>
   <data name="InvertedArms" xml:space="preserve">
     <value>Bras inversés</value>
   </data>
@@ -879,8 +1079,14 @@
   <data name="DeviceNotFound" xml:space="preserve">
     <value>Appareil manquant</value>
   </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Réessayer</value>
+  </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
     <value>Dossier de peinture iRacing</value>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>Vitesse de téléchargement max</value>
   </data>
   <data name="TradingPaints" xml:space="preserve">
     <value>Trading Paints</value>
@@ -1105,108 +1311,6 @@
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>CPU Affinité</value>
-  </data>
-  <data name="LightTheme" xml:space="preserve">
-    <value>Thème Clair</value>
-  </data>
-  <data name="Wizard_UC" xml:space="preserve">
-    <value>ASSISTANT</value>
-  </data>
-  <data name="LaunchWizard" xml:space="preserve">
-    <value>Lancer l'assistant</value>
-  </data>
-  <data name="SeatBeltTensioner_UC" xml:space="preserve">
-    <value>TENDEUR DE CEINTURE</value>
-  </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Tendeur de ceinture</value>
-  </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Connecter au tendeur de ceinture</value>
-  </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Connecter au démarrage</value>
-  </data>
-  <data name="MinimumAngle" xml:space="preserve">
-    <value>Angle minimum</value>
-  </data>
-  <data name="NeutralAngle" xml:space="preserve">
-    <value>Angle neutre</value>
-  </data>
-  <data name="MaximumAngle" xml:space="preserve">
-    <value>Angle maximum</value>
-  </data>
-  <data name="MaxGForce" xml:space="preserve">
-    <value>Force G max</value>
-  </data>
-  <data name="SubtractGravity" xml:space="preserve">
-    <value>Soustraire la gravité</value>
-  </data>
-  <data name="AxisMode" xml:space="preserve">
-    <value>Mode axe</value>
-  </data>
-  <data name="AxisModeDisabled" xml:space="preserve">
-    <value>Désactivé</value>
-  </data>
-  <data name="AxisModeNormal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="AxisModeInverted" xml:space="preserve">
-    <value>Inversé</value>
-  </data>
-  <data name="DeadZone" xml:space="preserve">
-    <value>Zone morte</value>
-  </data>
-  <data name="Smoothing" xml:space="preserve">
-    <value>Lissage</value>
-  </data>
-  <data name="MinG" xml:space="preserve">
-    <value>G min</value>
-  </data>
-  <data name="MaxG" xml:space="preserve">
-    <value>G max</value>
-  </data>
-  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
-    <value>EFFET RESSENTI</value>
-  </data>
-  <data name="VibrationEffects_UC" xml:space="preserve">
-    <value>EFFETS DE VIBRATION</value>
-  </data>
-  <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Blocage de roue</value>
-  </data>
-  <data name="WheelSlip" xml:space="preserve">
-    <value>Glissement de roue</value>
-  </data>
-  <data name="RumbleStrip" xml:space="preserve">
-    <value>Bande rugueuse</value>
-  </data>
-  <data name="Surge_UC" xml:space="preserve">
-    <value>POUSSÉE</value>
-  </data>
-  <data name="Sway_UC" xml:space="preserve">
-    <value>TANGAGE LATÉRAL</value>
-  </data>
-  <data name="Heave_UC" xml:space="preserve">
-    <value>SOULÈVEMENT</value>
-  </data>
-  <data name="MotorOutput_UC" xml:space="preserve">
-    <value>SORTIE MOTEUR</value>
-  </data>
-  <data name="LeftShoulder" xml:space="preserve">
-    <value>Épaule gauche</value>
-  </data>
-  <data name="RightShoulder" xml:space="preserve">
-    <value>Épaule droite</value>
-  </data>
-  <data name="MaxMotorSpeed" xml:space="preserve">
-    <value>Vitesse moteur max</value>
-  </data>
-  <data name="Retry" xml:space="preserve">
-    <value>Réessayer</value>
-  </data>
-  <data name="MaxDownloadSpeed" xml:space="preserve">
-    <value>Vitesse de téléchargement max</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
     <value>(Préréglage) Réduire les gros chocs</value>
@@ -1475,10 +1579,10 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
-  <data name="TextToSpeech" xml:space="preserve">
+  <data name="Commentary" xml:space="preserve">
     <value>Synthèse vocale</value>
   </data>
-  <data name="TextToSpeech_UC" xml:space="preserve">
+  <data name="Commentary_UC" xml:space="preserve">
     <value>SYNTHÈSE VOCALE</value>
   </data>
   <data name="Account_UC" xml:space="preserve">
@@ -1604,10 +1708,10 @@
   <data name="DamageWarning" xml:space="preserve">
     <value>Avertissement dommages</value>
   </data>
-  <data name="SpotterCarCalls" xml:space="preserve">
+  <data name="CarProximity" xml:space="preserve">
     <value>Appels de proximité</value>
   </data>
-  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+  <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Intervalle de rappel</value>
   </data>
   <data name="PitWindowOpen" xml:space="preserve">

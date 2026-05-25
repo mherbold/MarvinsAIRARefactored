@@ -7,12 +7,12 @@ namespace MarvinsAIRARefactored.Classes;
 /// <summary>
 /// Stores and retrieves the ElevenLabs API key using Windows DPAPI
 /// (DataProtectionScope.CurrentUser) so it is never written to Settings.xml in plain text.
-/// The encrypted blob lives at: %DOCUMENTS%\MarvinsAIRA Refactored\ElevenLabs\api-key.dat
+/// The encrypted blob lives at: %DOCUMENTS%\MarvinsAIRA Refactored\TTS\elevenlabs-api-key.dat
 /// </summary>
 public static class ElevenLabsKeyStore
 {
 	private static readonly string KeyFilePath =
-		Path.Combine( App.DocumentsFolder, "ElevenLabs", "api-key.dat" );
+		Path.Combine( App.DocumentsFolder, "TTS", "elevenlabs-api-key.dat" );
 
 	/// <summary>
 	/// Encrypts <paramref name="apiKey"/> with DPAPI and writes it to disk.

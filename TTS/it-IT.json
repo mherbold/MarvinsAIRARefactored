@@ -1,52 +1,11 @@
 ﻿{
-  "Overtake": [
-    "[excitedly] {attacker} attacca — supera e si porta in P{position}!",
-    "[excited] Che mossa di {attacker}! Supera {defender} e prende la P{position}!",
-    "[surprised] Oh! {attacker} ce l'ha fatta — ha superato {defender} ed è in P{position}!"
-  ],
-  "CloseBattle": [
-    "Battaglia incredibilmente serrata tra {driver1} e {driver2} — meno di un secondo li separa!",
-    "{driver1} e {driver2} sono attaccati — è una lotta sensazionale!"
-  ],
-  "FastestLap": [
-    "[impressed] {driver} segna il giro più veloce della gara — un {lapTime}!",
-    "[excited] Nuovo giro veloce di {driver} — {lapTime}!"
-  ],
-  "PitStopEntry": [
-    "{driver} rientra ai box — il team è pronto.",
-    "{driver} imbocca la corsia dei box."
-  ],
-  "PitStopExit": [
-    "{driver} esce dai box — sosta pulita.",
-    "{driver} è di nuovo in gara."
-  ],
-  "Caution": [
-    "[urgently] Bandiera gialla! Attenzione in pista!",
-    "[urgently] Safety car — rallentare e ricompattarsi."
-  ],
-  "RedFlag": [
-    "[seriously] Bandiera rossa! Bandiera rossa! La sessione è stata interrotta.",
-    "[seriously] Bandiera rossa — tutte le vetture devono rientrare ai box immediatamente."
-  ],
-  "SessionStart": [
-    "[excited] Semaforo verde — si parte! La gara è iniziata!",
-    "[excited] Bandiera verde! Si gareggia!"
-  ],
-  "SessionEnd": [
-    "[emotionally] Bandiera a scacchi — {driver} vince!",
-    "[emotionally] È finita! Che gara straordinaria!"
-  ],
-  "Incident": [
-    "{driver} ha ricevuto una penalità di {seconds} secondi per quell'incidente.",
-    "I commissari hanno inflitto a {driver} una penalità di {seconds} secondi."
-  ],
   "SpotterCarLeft": [
-    "Vettura a sinistra.",
-    "Sinistra."
+    "Vettura a sinistra!",
+    "Sinistra!"
   ],
   "SpotterCarRight": [
-    "Vettura a destra.",
-    "Destra."
+    "Vettura a destra!",
+    "Destra!"
   ],
   "SpotterClear": [
     "Libero.",
@@ -65,30 +24,9 @@
     "[urgently] Tre affiancati! Auto alla tua sinistra!"
   ],
   "SpotterStillThere": [
-    "E' ancora lì.",
-    "E' ancora con te.",
+    "È ancora lì.",
+    "È ancora con te.",
     "Lui è ancora lì.",
     "Auto ancora affiancata."
-  ],
-  "CrewFuelWarning": [
-    "Carburante in esaurimento — circa {laps} giri rimasti.",
-    "Attenzione al carburante — circa {laps} giri nel serbatoio."
-  ],
-  "CrewTireWarning": [
-    "Le gomme si stanno degradando — il grip diminuisce.",
-    "Usura gomme — considera un pit stop presto."
-  ],
-  "CrewPitWindowOpen": [
-    "La finestra dei box è aperta — puoi rientrare quando vuoi.",
-    "Puoi fermarti ora — la finestra è aperta."
-  ],
-  "CrewDamage": [
-    "Hai subito dei danni — controlla gli specchietti.",
-    "Danno riportato — tienilo d'occhio."
-  ],
-  "TestPhrase0": [ "La finestra del pit si apre tra tre giri. Il carburante sembra buono." ],
-  "TestPhrase1": [ "Macchina a sinistra. Macchina a sinistra. Vai in alto." ],
-  "TestPhrase2": [ "Che mossa! È passato in seconda posizione!" ],
-  "TestPhrase3": [ "Era molto misurato in entrata — è quello che ha salvato la macchina." ],
-  "TestPhrase4": [ "L'undercut ha funzionato perfettamente. Esce davanti al suo principale rivale!" ]
+  ]
 }

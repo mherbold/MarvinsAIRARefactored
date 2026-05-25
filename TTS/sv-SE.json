@@ -1,52 +1,11 @@
 ﻿{
-  "Overtake": [
-    "[excitedly] {attacker} anfaller — han är förbi till P{position}!",
-    "[excitedly] Vilken manöver av {attacker}! Passerar {defender} och tar P{position}!",
-    "[surprised] Oj! {attacker} klarade det — förbi {defender} och in på P{position}!"
-  ],
-  "CloseBattle": [
-    "Otroligt jämn kamp mellan {driver1} och {driver2} — under en sekunds skillnad!",
-    "{driver1} och {driver2} kör sida vid sida — det här är sensationellt!"
-  ],
-  "FastestLap": [
-    "[impressed] {driver} sätter loppets snabbaste varv — en {lapTime}!",
-    "[excitedly] Nytt snabbaste varv av {driver} — {lapTime}!"
-  ],
-  "PitStopEntry": [
-    "{driver} kör in i depån — teamet är redo.",
-    "{driver} svänger in i pit-lanen."
-  ],
-  "PitStopExit": [
-    "{driver} lämnar depån — rent stopp.",
-    "{driver} är tillbaka i loppet."
-  ],
-  "Caution": [
-    "[urgently] Gul flagga! Var försiktig på banan!",
-    "[urgently] Säkerhetsbil — sakta ner och slut ihop fältet."
-  ],
-  "RedFlag": [
-    "[seriously] Röd flagga! Röd flagga! Sessionen har stoppats.",
-    "[seriously] Röd flagga — alla bilar måste omedelbart återvända till depån."
-  ],
-  "SessionStart": [
-    "[excitedly] Grönt ljus — och vi kör! Loppet har börjat!",
-    "[excitedly] Grön flagga! Vi tävlar!"
-  ],
-  "SessionEnd": [
-    "[emotionally] Rutiga flaggan — {driver} vinner!",
-    "[emotionally] Det är slut! Vilket lopp det var!"
-  ],
-  "Incident": [
-    "{driver} har fått en {seconds}-sekunders straff för den incidenten.",
-    "Funktionärerna har gett {driver} en {seconds}-sekunders straff."
-  ],
   "SpotterCarLeft": [
-    "Bil till vänster.",
-    "Vänster."
+    "Bil till vänster!",
+    "Vänster!"
   ],
   "SpotterCarRight": [
-    "Bil till höger.",
-    "Höger."
+    "Bil till höger!",
+    "Höger!"
   ],
   "SpotterClear": [
     "Fri.",
@@ -69,26 +28,5 @@
     "Fortfarande med dig.",
     "Han är fortfarande där.",
     "Bilen är fortfarande bredvid."
-  ],
-  "CrewFuelWarning": [
-    "Bränslet håller på att ta slut — ca {laps} varv kvar.",
-    "Håll koll på bränslet — ungefär {laps} varv kvar i tanken."
-  ],
-  "CrewTireWarning": [
-    "Däcken slits ut — greppet minskar.",
-    "Däckslitage — fundera på ett depåstopp snart."
-  ],
-  "CrewPitWindowOpen": [
-    "Depåfönstret är öppet — du kan komma in när som helst.",
-    "Du kan stanna nu — fönstret är öppet."
-  ],
-  "CrewDamage": [
-    "Du har skador — kolla dina speglar.",
-    "Skada rapporterad — ha det i åtanke."
-  ],
-  "TestPhrase0": [ "Pit-fönstret öppnar om tre varv. Bränslet ser bra ut." ],
-  "TestPhrase1": [ "Bil till vänster. Bil till vänster. Gå högt." ],
-  "TestPhrase2": [ "Vilken manöver! Han är igenom till andra plats!" ],
-  "TestPhrase3": [ "Han var mycket kontrollerad i inbromsningen — det räddade bilen." ],
-  "TestPhrase4": [ "Undercutet fungerade perfekt. Han kommer ut framför sin huvudrival!" ]
+  ]
 }

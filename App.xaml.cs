@@ -251,16 +251,16 @@ public partial class App : Application
 
 				Logger.Initialize();
 				TopLevelWindow.Initialize();
+				AudioManager.Initialize(); // must be called before AdminBoxx.Initialize()
 				AdminBoxx.Initialize();
-				AudioManager.Initialize();
-				TextToSpeech.Initialize();
-				Commentary.Initialize();
 				Simulator.Initialize();
 				DirectInput.Initialize();
 				StreamDeck.Initialize();
 
 #if !ADMINBOXX
 
+				TextToSpeech.Initialize();
+				Commentary.Initialize();
 				CloudService.Initialize();
 				Graph.Initialize();
 				Pedals.Initialize();
@@ -315,6 +315,8 @@ public partial class App : Application
 					MainWindow.Show();
 				}
 
+#if !ADMINBOXX
+
 				if ( showWindow && !DataContext.DataContext.Instance.Settings.AppWizardHasRun )
 				{
 					var wizardWindow = new Windows.WizardWindow
@@ -324,6 +326,8 @@ public partial class App : Application
 
 					wizardWindow.ShowDialog();
 				}
+
+#endif
 
 				if ( DataContext.DataContext.Instance.Settings.WindConnectOnStartup )
 				{

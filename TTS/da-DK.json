@@ -1,52 +1,11 @@
 ﻿{
-  "Overtake": [
-    "[excitedly] {attacker} angriber — han er igennem på P{position}!",
-    "[excitedly] Sikke et træk af {attacker}! Han kører forbi {defender} og tager P{position}!",
-    "[surprised] Oh! {attacker} har gjort det — forbi {defender} og ind på P{position}!"
-  ],
-  "CloseBattle": [
-    "Utroligt tæt kamp mellem {driver1} og {driver2} — under et sekund skiller dem!",
-    "{driver1} og {driver2} kæmper side om side — det er sensationelt!"
-  ],
-  "FastestLap": [
-    "[impressed] {driver} sætter løbets hurtigste omgang — en {lapTime}!",
-    "[excitedly] Ny hurtigste omgang af {driver} — {lapTime}!"
-  ],
-  "PitStopEntry": [
-    "{driver} kører ind i pit — holdet er klar.",
-    "{driver} triller ind i pitlanen."
-  ],
-  "PitStopExit": [
-    "{driver} forlader pit — rent stop.",
-    "{driver} er tilbage i løbet."
-  ],
-  "Caution": [
-    "[urgently] Gult flag! Forsigtig på banen!",
-    "[urgently] Safety car — sænk farten og slut op."
-  ],
-  "RedFlag": [
-    "[seriously] Rødt flag! Rødt flag! Sessionen er stoppet.",
-    "[seriously] Rødt flag — alle biler skal straks tilbage til pit."
-  ],
-  "SessionStart": [
-    "[excitedly] Grønt lys — og vi kører! Løbet er i gang!",
-    "[excitedly] Grønt flag! Vi racing!"
-  ],
-  "SessionEnd": [
-    "[emotionally] Ternet flag — {driver} vinder!",
-    "[emotionally] Det er slut! Sikke et løb!"
-  ],
-  "Incident": [
-    "{driver} har fået en {seconds}-sekunders straf for den hændelse.",
-    "Dommerne har givet {driver} en {seconds}-sekunders straf."
-  ],
   "SpotterCarLeft": [
-    "Bil til venstre.",
-    "Venstre."
+    "Bil til venstre!",
+    "Venstre!"
   ],
   "SpotterCarRight": [
-    "Bil til højre.",
-    "Højre."
+    "Bil til højre!",
+    "Højre!"
   ],
   "SpotterClear": [
     "Fri.",
@@ -69,26 +28,5 @@
     "Stadig med dig.",
     "Han er stadig der.",
     "Bilen er stadig ved siden af."
-  ],
-  "CrewFuelWarning": [
-    "Brændstof er ved at slippe op — ca. {laps} omgange tilbage.",
-    "Pas på brændstoffet — cirka {laps} omgange i tanken."
-  ],
-  "CrewTireWarning": [
-    "Dækkene er ved at slides — grebet falder.",
-    "Dækslid — overvej et pit stop snart."
-  ],
-  "CrewPitWindowOpen": [
-    "Pit-vinduet er åbent — du kan komme ind når som helst.",
-    "Du kan stoppe nu — vinduet er åbent."
-  ],
-  "CrewDamage": [
-    "Du har fået skader — tjek dine spejle.",
-    "Skade rapporteret — hold øje med det."
-  ],
-  "TestPhrase0": [ "Pit-vinduet åbner om tre omgange. Brændstoffet ser godt ud." ],
-  "TestPhrase1": [ "Bil til venstre. Bil til venstre. Gå højt." ],
-  "TestPhrase2": [ "Sikke et træk! Han er igennem til andenpladsen!" ],
-  "TestPhrase3": [ "Han var meget kontrolleret i indkøringen — det reddede bilen." ],
-  "TestPhrase4": [ "Undercutet virkede perfekt. Han kommer ud foran sin primære rival!" ]
+  ]
 }

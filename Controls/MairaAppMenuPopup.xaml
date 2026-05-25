@@ -43,6 +43,15 @@
                     </Rectangle.OpacityMask>
                 </Rectangle>
 
+                <Image x:Name="ColorImage"
+                       Grid.Row="0"
+                       HorizontalAlignment="Center"
+                       Height="96"
+                       Margin="20"
+                       Visibility="Collapsed"
+                       RenderOptions.BitmapScalingMode="HighQuality"
+                       Stretch="Uniform" />
+
                 <ListBox Grid.Row="1"
                          ItemsSource="{Binding AppMenuItems, ElementName=Root}"
                          SelectedItem="{Binding SelectedAppMenuItem, ElementName=Root, Mode=TwoWay}"

@@ -5,9 +5,8 @@ using System.Xml.Serialization;
 namespace MarvinsAIRARefactored.Classes;
 
 /// <summary>
-/// Serializable settings for one ElevenLabs TTS voice slot.
-/// Five slots are maintained in Settings.VoiceSlots (Crew Chief, Spotter,
-/// Sportscaster 1, Sportscaster 2, Pit Reporter).
+/// Serializable settings for one commentary voice slot.
+/// Five slots are maintained in Settings.VoiceSlots (Crew Chief, Spotter, Sportscaster 1, Sportscaster 2, Pit Reporter).
 /// </summary>
 public class VoiceSlotSettings : INotifyPropertyChanged
 {
@@ -25,7 +24,7 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 	/// <summary>User-editable display name shown in the settings page header.</summary>
 	public string RoleLabel { get; set; } = string.Empty;
 
-	/// <summary>Whether this slot is active. When false, no TTS is generated for this role.</summary>
+	/// <summary>Whether this slot is active. When false, no commentary is generated for this role.</summary>
 	public bool Enabled { get; set; } = true;
 
 	/// <summary>ElevenLabs voice ID (e.g. "pNInz6obpgDQGcFmaJgB").</summary>
@@ -204,7 +203,6 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 
 	// -------------------------------------------------------------------------
 	// Default-personality factory methods
-	// Values sourced from TTS-PLAN.md Voice Roster table.
 	// -------------------------------------------------------------------------
 
 	/// <summary>

@@ -1,52 +1,11 @@
 ﻿{
-  "Overtake": [
-    "[emotionally] ¡{attacker} hace el movimiento — ya está en P{position}!",
-    "[excited] ¡Qué maniobra de {attacker}! Supera a {defender} y toma P{position}.",
-    "[surprised] ¡Oh! ¡{attacker} lo logró — adelanta a {defender} y es P{position}!"
-  ],
-  "CloseBattle": [
-    "¡Batalla increíblemente cerrada entre {driver1} y {driver2} — menos de un segundo los separa!",
-    "¡{driver1} y {driver2} están pegados en pista — esto es espectacular!"
-  ],
-  "FastestLap": [
-    "[impressed] ¡{driver} marca la vuelta más rápida de la carrera — un {lapTime}!",
-    "[excited] ¡Nueva vuelta rápida de {driver} — {lapTime}!"
-  ],
-  "PitStopEntry": [
-    "Y {driver} entra a pits — el equipo está listo.",
-    "{driver} se mete al pit lane."
-  ],
-  "PitStopExit": [
-    "{driver} sale de pits — parada limpia.",
-    "{driver} regresa a la carrera."
-  ],
-  "Caution": [
-    "[urgently] ¡Bandera amarilla! ¡Precaución en pista!",
-    "[urgently] Safety car — reducir velocidad y cerrar el pelotón."
-  ],
-  "RedFlag": [
-    "[seriously] ¡Bandera roja! ¡Bandera roja! La sesión ha sido detenida.",
-    "[seriously] Bandera roja — todos los autos deben regresar a pits de inmediato."
-  ],
-  "SessionStart": [
-    "[excited] ¡Luz verde — arrancamos! ¡La carrera ha comenzado!",
-    "[excited] ¡Bandera verde! ¡Estamos corriendo!"
-  ],
-  "SessionEnd": [
-    "[emotionally] ¡Bandera a cuadros — {driver} gana!",
-    "[emotionally] ¡Terminó! ¡Qué carrera tan increíble!"
-  ],
-  "Incident": [
-    "{driver} recibe una penalización de {seconds} segundos por ese incidente.",
-    "Los comisarios imponen {seconds} segundos de penalización a {driver}."
-  ],
   "SpotterCarLeft": [
-    "Auto a la izquierda.",
-    "Izquierda."
+    "¡Auto a la izquierda!",
+    "¡Izquierda!"
   ],
   "SpotterCarRight": [
-    "Auto a la derecha.",
-    "Derecha."
+    "¡Auto a la derecha!",
+    "¡Derecha!"
   ],
   "SpotterClear": [
     "Libre.",
@@ -69,26 +28,5 @@
     "Sigue contigo.",
     "Todavía está ahí.",
     "Auto aún al lado."
-  ],
-  "CrewFuelWarning": [
-    "Combustible bajo — quedan unas {laps} vueltas.",
-    "Atención al combustible — aproximadamente {laps} vueltas en el tanque."
-  ],
-  "CrewTireWarning": [
-    "Los neumáticos se están degradando — el agarre disminuye.",
-    "Desgaste de neumáticos — considera entrar a pits pronto."
-  ],
-  "CrewPitWindowOpen": [
-    "La ventana de pits está abierta — puedes entrar cuando quieras.",
-    "Puedes parar ahora — la ventana está abierta."
-  ],
-  "CrewDamage": [
-    "Tienes daños — revisa tus espejos.",
-    "Se reportó daño en el auto — mantenlo en mente."
-  ],
-  "TestPhrase0": [ "La ventana de pits se abre en tres vueltas. El combustible se ve bien." ],
-  "TestPhrase1": [ "Coche a la izquierda. Coche a la izquierda. Ve hacia arriba." ],
-  "TestPhrase2": [ "¡Qué movimiento! ¡Ha pasado al segundo lugar!" ],
-  "TestPhrase3": [ "Fue muy medido en la entrada — eso fue lo que salvó el coche." ],
-  "TestPhrase4": [ "¡El undercut funcionó perfectamente. Sale por delante de su principal rival!" ]
+  ]
 }

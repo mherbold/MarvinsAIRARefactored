@@ -1,6 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <xsd:schema xmlns="" id="root" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" />
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -397,6 +501,9 @@
   <data name="AppWindow_UC" xml:space="preserve">
     <value>APP-VINDU</value>
   </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Lyst tema</value>
+  </data>
   <data name="UIScale" xml:space="preserve">
     <value>UI-skalering</value>
   </data>
@@ -772,6 +879,12 @@
   <data name="AppSettings_UC" xml:space="preserve">
     <value>APP-INNSTILLINGER</value>
   </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>VEIVISER</value>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Start veiviser</value>
+  </data>
   <data name="Simulator_UC" xml:space="preserve">
     <value>SIMULATOR</value>
   </data>
@@ -823,6 +936,93 @@
   <data name="Wind" xml:space="preserve">
     <value>Vind</value>
   </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>SETEBELTETREKKER</value>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>Setebeltetrekker</value>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>Koble til setebeltetrekker</value>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>Koble til ved oppstart</value>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>Minimumsvinkel</value>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>Nøytral vinkel</value>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>Maksimumsvinkel</value>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>Maks G-kraft</value>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>Trekk fra tyngdekraft</value>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>Aksemodus</value>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>Deaktivert</value>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>Normal</value>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>Invertert</value>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Dødband</value>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>Utjevning</value>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>Min G</value>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>Maks G</value>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>SETEEFFEKT</value>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>VIBRASJONSEFFEKTER</value>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / Hjullåsing</value>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>Hjulslipp</value>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>Rystefelt</value>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>LENGDEAKSELERASJON</value>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>SIDEBEVEGELSE</value>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>VERTIKALBEVEGELSE</value>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>MOTORUTGANG</value>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>Venstre skulder</value>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>Høyre skulder</value>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>Maks motorhastighet</value>
+  </data>
   <data name="InvertedArms" xml:space="preserve">
     <value>Inverterte armer</value>
   </data>
@@ -865,8 +1065,14 @@
   <data name="DeviceNotFound" xml:space="preserve">
     <value>Enhet mangler</value>
   </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Prøv igjen</value>
+  </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
     <value>iRacing-malingsmappe</value>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>Maks nedlastingshastighet</value>
   </data>
   <data name="TradingPaints" xml:space="preserve">
     <value>Trading Paints</value>
@@ -991,6 +1197,45 @@
   <data name="FanStatus_UC" xml:space="preserve">
     <value>VIFTESTATUS</value>
   </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value>360 Hz detaljer</value>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value>Toppverdi-bevisst hastighetsbegrensning</value>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value>360 Hz på 60 Hz, 10-30% blanding</value>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value>360 Hz på 60 Hz, 10% blanding</value>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value>(Standardverdier) Innebygd 60 Hz</value>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value>(Standardverdier) 360 Hz på 60 Hz, 10-30% blanding</value>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value>(Standardverdier) 360 Hz på 60 Hz, 10% blanding</value>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value>(Standardverdier) Innebygd 360 Hz</value>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value>(Forhåndsinnstilling) Kjernedekkfeedback, minimal overflatedetalj</value>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value>(Forhåndsinnstilling) Kjernedekkfeedback, moderat overflatedetalj</value>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value>(Forhåndsinnstilling) Moderat øk FFB-dynamikk</value>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value>(Forhåndsinnstilling) Moderat reduser FFB-dynamikk</value>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value>FFB-type + forhåndsinnstillinger</value>
+  </data>
   <data name="LateralGForce" xml:space="preserve">
     <value>Sidelengs G-kraft</value>
   </data>
@@ -1030,107 +1275,26 @@
   <data name="ABSVibrateStrength" xml:space="preserve">
     <value>ABS vibrasjonsstyrke</value>
   </data>
-  <data name="LightTheme" xml:space="preserve">
-    <value>Lyst tema</value>
+  <data name="GapMonitor" xml:space="preserve">
+    <value>Gapovervåking</value>
   </data>
-  <data name="Wizard_UC" xml:space="preserve">
-    <value>VEIVISER</value>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value>OVERLEGG</value>
   </data>
-  <data name="LaunchWizard" xml:space="preserve">
-    <value>Start veiviser</value>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value>GAPOVERVÅKING</value>
   </data>
-  <data name="SeatBeltTensioner_UC" xml:space="preserve">
-    <value>SETEBELTETREKKER</value>
+  <data name="Overlays" xml:space="preserve">
+    <value>Overlegg</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Setebeltetrekker</value>
+  <data name="EnableOverlayWindow" xml:space="preserve">
+    <value>Aktiver overleggsvindu</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Koble til setebeltetrekker</value>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value>Vis overleggsvinduets tittel</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Koble til ved oppstart</value>
-  </data>
-  <data name="MinimumAngle" xml:space="preserve">
-    <value>Minimumsvinkel</value>
-  </data>
-  <data name="NeutralAngle" xml:space="preserve">
-    <value>Nøytral vinkel</value>
-  </data>
-  <data name="MaximumAngle" xml:space="preserve">
-    <value>Maksimumsvinkel</value>
-  </data>
-  <data name="MaxGForce" xml:space="preserve">
-    <value>Maks G-kraft</value>
-  </data>
-  <data name="SubtractGravity" xml:space="preserve">
-    <value>Trekk fra tyngdekraft</value>
-  </data>
-  <data name="AxisMode" xml:space="preserve">
-    <value>Aksemodus</value>
-  </data>
-  <data name="AxisModeDisabled" xml:space="preserve">
-    <value>Deaktivert</value>
-  </data>
-  <data name="AxisModeNormal" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="AxisModeInverted" xml:space="preserve">
-    <value>Invertert</value>
-  </data>
-  <data name="DeadZone" xml:space="preserve">
-    <value>Dødband</value>
-  </data>
-  <data name="Smoothing" xml:space="preserve">
-    <value>Utjevning</value>
-  </data>
-  <data name="MinG" xml:space="preserve">
-    <value>Min G</value>
-  </data>
-  <data name="MaxG" xml:space="preserve">
-    <value>Maks G</value>
-  </data>
-  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
-    <value>SETEEFFEKT</value>
-  </data>
-  <data name="VibrationEffects_UC" xml:space="preserve">
-    <value>VIBRASJONSEFFEKTER</value>
-  </data>
-  <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Hjullåsing</value>
-  </data>
-  <data name="WheelSlip" xml:space="preserve">
-    <value>Hjulslipp</value>
-  </data>
-  <data name="RumbleStrip" xml:space="preserve">
-    <value>Rystefelt</value>
-  </data>
-  <data name="Surge_UC" xml:space="preserve">
-    <value>LENGDEAKSELERASJON</value>
-  </data>
-  <data name="Sway_UC" xml:space="preserve">
-    <value>SIDEBEVEGELSE</value>
-  </data>
-  <data name="Heave_UC" xml:space="preserve">
-    <value>VERTIKALBEVEGELSE</value>
-  </data>
-  <data name="MotorOutput_UC" xml:space="preserve">
-    <value>MOTORUTGANG</value>
-  </data>
-  <data name="LeftShoulder" xml:space="preserve">
-    <value>Venstre skulder</value>
-  </data>
-  <data name="RightShoulder" xml:space="preserve">
-    <value>Høyre skulder</value>
-  </data>
-  <data name="MaxMotorSpeed" xml:space="preserve">
-    <value>Maks motorhastighet</value>
-  </data>
-  <data name="Retry" xml:space="preserve">
-    <value>Prøv igjen</value>
-  </data>
-  <data name="MaxDownloadSpeed" xml:space="preserve">
-    <value>Maks nedlastingshastighet</value>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>CPU-AFFINITET</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
     <value>(Forhåndsinnstilling) Reduser store støt</value>
@@ -1381,66 +1545,6 @@
   <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
     <value>for å åpne dokumentasjonen og lære om de vanlige kontrollene.</value>
   </data>
-  <data name="Multi360HzDetail" xml:space="preserve">
-    <value>360 Hz detaljer</value>
-  </data>
-  <data name="SlewPeakMode" xml:space="preserve">
-    <value>Toppverdi-bevisst hastighetsbegrensning</value>
-  </data>
-  <data name="HybridVariable30" xml:space="preserve">
-    <value>360 Hz på 60 Hz, 10-30% blanding</value>
-  </data>
-  <data name="Hybrid10" xml:space="preserve">
-    <value>360 Hz på 60 Hz, 10% blanding</value>
-  </data>
-  <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Standardverdier) Innebygd 60 Hz</value>
-  </data>
-  <data name="DefaultsHybridVariable30" xml:space="preserve">
-    <value>(Standardverdier) 360 Hz på 60 Hz, 10-30% blanding</value>
-  </data>
-  <data name="DefaultsHybrid10" xml:space="preserve">
-    <value>(Standardverdier) 360 Hz på 60 Hz, 10% blanding</value>
-  </data>
-  <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Standardverdier) Innebygd 360 Hz</value>
-  </data>
-  <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Forhåndsinnstilling) Kjernedekkfeedback, minimal overflatedetalj</value>
-  </data>
-  <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Forhåndsinnstilling) Kjernedekkfeedback, moderat overflatedetalj</value>
-  </data>
-  <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Forhåndsinnstilling) Moderat øk FFB-dynamikk</value>
-  </data>
-  <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Forhåndsinnstilling) Moderat reduser FFB-dynamikk</value>
-  </data>
-  <data name="FFBSource" xml:space="preserve">
-    <value>FFB-type + forhåndsinnstillinger</value>
-  </data>
-  <data name="GapMonitor" xml:space="preserve">
-    <value>Gapovervåking</value>
-  </data>
-  <data name="Overlays_UC" xml:space="preserve">
-    <value>OVERLEGG</value>
-  </data>
-  <data name="GapMonitor_UC" xml:space="preserve">
-    <value>GAPOVERVÅKING</value>
-  </data>
-  <data name="Overlays" xml:space="preserve">
-    <value>Overlegg</value>
-  </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Aktiver overleggsvindu</value>
-  </data>
-  <data name="ShowOverlayWindowTitle" xml:space="preserve">
-    <value>Vis overleggsvinduets tittel</value>
-  </data>
-  <data name="CPUAffinity_UC" xml:space="preserve">
-    <value>CPU-AFFINITET</value>
-  </data>
   <data name="OutputDevice" xml:space="preserve">
     <value>Utgangsenhet</value>
   </data>
@@ -1459,10 +1563,10 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
-  <data name="TextToSpeech" xml:space="preserve">
+  <data name="Commentary" xml:space="preserve">
     <value>Tekst til tale</value>
   </data>
-  <data name="TextToSpeech_UC" xml:space="preserve">
+  <data name="Commentary_UC" xml:space="preserve">
     <value>TEKST TIL TALE</value>
   </data>
   <data name="Account_UC" xml:space="preserve">
@@ -1588,10 +1692,10 @@
   <data name="DamageWarning" xml:space="preserve">
     <value>Skadeadvarsel</value>
   </data>
-  <data name="SpotterCarCalls" xml:space="preserve">
+  <data name="CarProximity" xml:space="preserve">
     <value>Nærhetsanrop</value>
   </data>
-  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+  <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Påminnelsesintervall</value>
   </data>
   <data name="PitWindowOpen" xml:space="preserve">

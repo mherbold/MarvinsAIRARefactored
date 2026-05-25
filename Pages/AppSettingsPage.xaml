@@ -168,7 +168,7 @@
             </Grid>
 
         </controls:MairaGroupBox>
-    
+
         <controls:MairaGroupBox Label="{Binding Localization[CPUAffinity_UC]}"
                                 Tag="HideIfAdminBoxx"
                                 HelpTopic="advanced/app-settings/#cpu-affinity">
@@ -183,7 +183,8 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization[Wizard_UC]}"
-                                HelpTopic="advanced/app-settings/#wizard">
+                                HelpTopic="advanced/app-settings/#wizard"
+                                Tag="HideIfAdminBoxx">
 
             <controls:MairaButton x:Name="LaunchWizard_MairaButton"
                                   Label="{Binding Localization[LaunchWizard]}"

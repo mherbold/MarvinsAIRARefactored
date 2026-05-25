@@ -1,52 +1,11 @@
 ﻿{
-  "Overtake": [
-    "[excitedly] {attacker} valt aan — hij is voorbij naar P{position}!",
-    "[excitedly] Wat een manoeuvre van {attacker}! Hij passeert {defender} en neemt P{position}!",
-    "[surprised] Oh! {attacker} heeft het gedaan — voorbij {defender} en naar P{position}!"
-  ],
-  "CloseBattle": [
-    "Ongelooflijk spannende strijd tussen {driver1} en {driver2} — minder dan een seconde verschil!",
-    "{driver1} en {driver2} zitten aan elkaar geplakt — dit is sensationeel!"
-  ],
-  "FastestLap": [
-    "[impressed] {driver} zet de snelste ronde van de race — een {lapTime}!",
-    "[excitedly] Nieuwe snelste ronde van {driver} — {lapTime}!"
-  ],
-  "PitStopEntry": [
-    "{driver} rijdt de pit in — de crew is klaar.",
-    "{driver} rijdt de pitstraat in."
-  ],
-  "PitStopExit": [
-    "{driver} verlaat de pit — nette stop.",
-    "{driver} is terug in de race."
-  ],
-  "Caution": [
-    "[urgently] Gele vlag! Let op op het circuit!",
-    "[urgently] Safety car — vertraag en sluit op."
-  ],
-  "RedFlag": [
-    "[seriously] Rode vlag! Rode vlag! De sessie is gestopt.",
-    "[seriously] Rode vlag — alle auto's moeten onmiddellijk terug naar de pit."
-  ],
-  "SessionStart": [
-    "[excitedly] Groen licht — en we gaan! De race is begonnen!",
-    "[excitedly] Groene vlag! We rijden!"
-  ],
-  "SessionEnd": [
-    "[emotionally] Geblokte vlag — {driver} wint!",
-    "[emotionally] Het is voorbij! Wat een geweldige race!"
-  ],
-  "Incident": [
-    "{driver} heeft een straf van {seconds} seconden gekregen voor dat incident.",
-    "De stewards hebben {driver} een straf van {seconds} seconden opgelegd."
-  ],
   "SpotterCarLeft": [
-    "Auto links.",
-    "Links."
+    "Auto links!",
+    "Links!"
   ],
   "SpotterCarRight": [
-    "Auto rechts.",
-    "Rechts."
+    "Auto rechts!",
+    "Rechts!"
   ],
   "SpotterClear": [
     "Vrij.",
@@ -69,26 +28,5 @@
     "Nog steeds naast je.",
     "Hij is er nog steeds.",
     "Auto nog steeds naast je."
-  ],
-  "CrewFuelWarning": [
-    "Brandstof raakt op — nog ongeveer {laps} ronden.",
-    "Let op de brandstof — ongeveer {laps} ronden in de tank."
-  ],
-  "CrewTireWarning": [
-    "Banden slijten — grip neemt af.",
-    "Bandenslijtage — overweeg binnenkort een pit stop."
-  ],
-  "CrewPitWindowOpen": [
-    "Het pit-venster is open — je kunt op elk moment binnenkomen.",
-    "Je kunt nu stoppen — het venster is open."
-  ],
-  "CrewDamage": [
-    "Je hebt schade — controleer je spiegels.",
-    "Schade gemeld — houd het in de gaten."
-  ],
-  "TestPhrase0": [ "Het pitvenster opent over drie ronden. De brandstof ziet er goed uit." ],
-  "TestPhrase1": [ "Auto links. Auto links. Ga omhoog." ],
-  "TestPhrase2": [ "Wat een inhaalmanoeuvre! Hij is erdoorheen naar de tweede plek!" ],
-  "TestPhrase3": [ "Hij was heel beheerst bij het insturen — dat redde de auto." ],
-  "TestPhrase4": [ "De undercut werkte perfect. Hij komt voor zijn hoofdrivaal de baan op!" ]
+  ]
 }

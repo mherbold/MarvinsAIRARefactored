@@ -1,52 +1,11 @@
 ﻿{
-  "Overtake": [
-    "[excited] {attacker} atacă — a trecut în P{position}!",
-    "[excited] Ce manevră din partea lui {attacker}! Depășește pe {defender} și ia P{position}!",
-    "[surprised] Oh! {attacker} a reușit — a trecut de {defender} și este P{position}!"
-  ],
-  "CloseBattle": [
-    "Luptă incredibil de strânsă între {driver1} și {driver2} — mai puțin de o secundă îi desparte!",
-    "{driver1} și {driver2} sunt lipiți — e senzațional!"
-  ],
-  "FastestLap": [
-    "[impressed] {driver} stabilește cel mai rapid tur al cursei — un {lapTime}!",
-    "[excited] Noul tur rapid al lui {driver} — {lapTime}!"
-  ],
-  "PitStopEntry": [
-    "{driver} intră la boxe — echipa e pregătită.",
-    "{driver} se îndreaptă spre culoarul de boxe."
-  ],
-  "PitStopExit": [
-    "{driver} iese din boxe — oprire curată.",
-    "{driver} s-a reîntors în cursă."
-  ],
-  "Caution": [
-    "[urgently] Steag galben! Atenție pe pistă!",
-    "[urgently] Mașina de siguranță — reduceți viteza și strângeți rândurile."
-  ],
-  "RedFlag": [
-    "[seriously] Steag roșu! Steag roșu! Sesiunea a fost oprită.",
-    "[seriously] Steag roșu — toate mașinile trebuie să revină imediat la boxe."
-  ],
-  "SessionStart": [
-    "[excited] Lumina verde — și plecăm! Cursa a început!",
-    "[excited] Steag verde! Concurăm!"
-  ],
-  "SessionEnd": [
-    "[emotionally] Steagul în carouri — {driver} câștigă!",
-    "[emotionally] S-a terminat! Ce cursă extraordinară!"
-  ],
-  "Incident": [
-    "{driver} a primit o penalizare de {seconds} secunde pentru acel incident.",
-    "Comisarii i-au dat lui {driver} o penalizare de {seconds} secunde."
-  ],
   "SpotterCarLeft": [
-    "Mașină la stânga.",
-    "Stânga."
+    "Mașină la stânga!",
+    "Stânga!"
   ],
   "SpotterCarRight": [
-    "Mașină la dreapta.",
-    "Dreapta."
+    "Mașină la dreapta!",
+    "Dreapta!"
   ],
   "SpotterClear": [
     "Liber.",
@@ -69,26 +28,5 @@
     "Încă cu tine.",
     "Este încă acolo.",
     "Mașina e încă alături."
-  ],
-  "CrewFuelWarning": [
-    "Combustibil scăzut — mai sunt aproximativ {laps} tururi.",
-    "Atenție la combustibil — aproximativ {laps} tururi în rezervor."
-  ],
-  "CrewTireWarning": [
-    "Pneurile se degradează — aderența scade.",
-    "Uzura pneurilor — ia în calcul un pit stop în curând."
-  ],
-  "CrewPitWindowOpen": [
-    "Fereastra de boxe este deschisă — poți intra oricând.",
-    "Poți opri acum — fereastra este deschisă."
-  ],
-  "CrewDamage": [
-    "Ai suferit daune — verifică oglinzile.",
-    "Daune raportate — fii atent."
-  ],
-  "TestPhrase0": [ "Fereastra de pit se deschide în trei tururi. Combustibilul arată bine." ],
-  "TestPhrase1": [ "Mașină la stânga. Mașină la stânga. Mergi sus." ],
-  "TestPhrase2": [ "Ce mișcare! A trecut pe locul doi!" ],
-  "TestPhrase3": [ "A fost foarte măsurat la intrare — asta a salvat mașina." ],
-  "TestPhrase4": [ "Undercut-ul a funcționat perfect. Iese în fața principalului rival!" ]
+  ]
 }

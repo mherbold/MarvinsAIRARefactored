@@ -18,15 +18,15 @@ For topic-specific details, load the relevant sub-file. Each sub-file lists the 
 
 | Sub-file | Topics covered |
 |---|---|
-| [`docs/agents/force-feedback.md`](docs/agents/force-feedback.md) | FFB algorithms (`RacingWheel`), steering effects, DirectInput, LFE bass shaker, multimedia timer, RLS velocity predictor, `MathZ` hot-path helpers |
-| [`docs/agents/hardware-io.md`](docs/agents/hardware-io.md) | AdminBoxx, Wind simulator, SeatBeltTensioner, vJoy, Stream Deck, hot-plug detection, button mappings, Logitech LEDs |
-| [`docs/agents/simulator-iracing.md`](docs/agents/simulator-iracing.md) | iRacing SDK bridge (`Simulator`), 60/360 Hz telemetry, memory-mapped IPC (`Telemetry`), driver tracking, timing markers, debug viewers |
-| [`docs/agents/audio-sounds.md`](docs/agents/audio-sounds.md) | Audio device management, sound effect playback, CachedSound/Player, XAudio2, LFE DirectSound capture |
-| [`docs/agents/speech-to-text.md`](docs/agents/speech-to-text.md) | Chrome/Edge Web Speech API bridge, STT asset files, ChatQueue, transcript overlay window |
-| [`docs/agents/text-to-speech.md`](docs/agents/text-to-speech.md) | ElevenLabs TTS pipeline, voice slots, Commentary event detection, phrase templates, API key storage |
-| [`docs/agents/settings-context.md`](docs/agents/settings-context.md) | Per-context settings system, `ContextSwitches`, `ContextSettings`, `Settings.cs` ordering rules, adding new per-context settings |
-| [`docs/agents/ui-wpf-controls.md`](docs/agents/ui-wpf-controls.md) | All `Maira*` controls, XAML patterns, artwork/icon PNGs, dialog templates, async window loading, XAML BOM warning |
-| [`docs/agents/localization.md`](docs/agents/localization.md) | `.resx` resource files, `Localization` indexer, adding strings, adding languages, localized ComboBox items |
+| [`Agents/force-feedback.md`](Agents/force-feedback.md) | FFB algorithms (`RacingWheel`), steering effects, DirectInput, LFE bass shaker, multimedia timer, RLS velocity predictor, `MathZ` hot-path helpers |
+| [`Agents/hardware-io.md`](Agents/hardware-io.md) | AdminBoxx, Wind simulator, SeatBeltTensioner, vJoy, Stream Deck, hot-plug detection, button mappings, Logitech LEDs |
+| [`Agents/simulator-iracing.md`](Agents/simulator-iracing.md) | iRacing SDK bridge (`Simulator`), 60/360 Hz telemetry, memory-mapped IPC (`Telemetry`), driver tracking, timing markers, debug viewers |
+| [`Agents/audio-sounds.md`](Agents/audio-sounds.md) | Audio device management, sound effect playback, CachedSound/Player, XAudio2, LFE DirectSound capture |
+| [`Agents/speech-to-text.md`](Agents/speech-to-text.md) | Chrome/Edge Web Speech API bridge, STT asset files, ChatQueue, transcript overlay window |
+| [`Agents/text-to-speech.md`](Agents/text-to-speech.md) | ElevenLabs TTS pipeline, voice slots, Commentary event detection, phrase templates, API key storage |
+| [`Agents/settings-context.md`](Agents/settings-context.md) | Per-context settings system, `ContextSwitches`, `ContextSettings`, `Settings.cs` ordering rules, adding new per-context settings |
+| [`Agents/ui-wpf-controls.md`](Agents/ui-wpf-controls.md) | All `Maira*` controls, XAML patterns, artwork/icon PNGs, dialog templates, async window loading, XAML BOM warning |
+| [`Agents/localization.md`](Agents/localization.md) | `.resx` resource files, `Localization` indexer, adding strings, adding languages, localized ComboBox items |
 
 ---
 
@@ -242,11 +242,11 @@ All components follow an **Initialize / Shutdown** lifecycle called by `App` at 
 ### Key Cross-Cutting Summaries
 For full details on any of these topics, see the sub-files listed in the **Sub-File Index** above.
 
-- **iRacing SDK** — 60 Hz telemetry + 360 Hz sub-tick arrays, datum handle caching; see [`docs/agents/simulator-iracing.md`](docs/agents/simulator-iracing.md).
-- **Per-context settings** — reflection-based context switching per car/track/wheelbase; see [`docs/agents/settings-context.md`](docs/agents/settings-context.md).
-- **FFB pipeline** — multimedia timer -> `RacingWheel` -> `DirectInput`; see [`docs/agents/force-feedback.md`](docs/agents/force-feedback.md).
-- **Custom hardware** — USB serial via `UsbSerialPortHelper`; see [`docs/agents/hardware-io.md`](docs/agents/hardware-io.md).
-- **IPC export** — memory-mapped file `Local\MAIRARefactoredTelemetry`; see [`docs/agents/simulator-iracing.md`](docs/agents/simulator-iracing.md).
+- **iRacing SDK** — 60 Hz telemetry + 360 Hz sub-tick arrays, datum handle caching; see [`Agents/simulator-iracing.md`](Agents/simulator-iracing.md).
+- **Per-context settings** — reflection-based context switching per car/track/wheelbase; see [`Agents/settings-context.md`](Agents/settings-context.md).
+- **FFB pipeline** — multimedia timer -> `RacingWheel` -> `DirectInput`; see [`Agents/force-feedback.md`](Agents/force-feedback.md).
+- **Custom hardware** — USB serial via `UsbSerialPortHelper`; see [`Agents/hardware-io.md`](Agents/hardware-io.md).
+- **IPC export** — memory-mapped file `Local\MAIRARefactoredTelemetry`; see [`Agents/simulator-iracing.md`](Agents/simulator-iracing.md).
 
 ---
 

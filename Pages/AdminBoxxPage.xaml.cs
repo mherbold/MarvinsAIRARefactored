@@ -10,6 +10,10 @@ public partial class AdminBoxxPage : UserControl
 	public AdminBoxxPage()
 	{
 		InitializeComponent();
+
+#if ADMINBOXX
+		ConnectOnStartup_MairaSwitch.Visibility = Visibility.Collapsed;
+#endif
 	}
 
 	#region User Control Events

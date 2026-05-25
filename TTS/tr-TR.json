@@ -1,52 +1,11 @@
 ﻿{
-  "Overtake": [
-    "[excitedly] {attacker} atağa geçiyor — {position}. sıraya çıktı!",
-    "[excitedly] {attacker}'dan muhteşem bir manevra! {defender}'ı geçiyor ve P{position}'a yerleşiyor!",
-    "[surprised] Oha! {attacker} başardı — {defender}'ı geçti ve P{position}'da!"
-  ],
-  "CloseBattle": [
-    "{driver1} ile {driver2} arasında inanılmaz çekişme — aralarında bir saniyeden az fark var!",
-    "{driver1} ve {driver2} adeta birbirine yapışık gidiyor — bu muhteşem!"
-  ],
-  "FastestLap": [
-    "[impressed] {driver} yarışın en hızlı turunu yapıyor — {lapTime}!",
-    "[excitedly] {driver}'dan yeni en hızlı tur — {lapTime}!"
-  ],
-  "PitStopEntry": [
-    "{driver} pite giriyor — ekip hazır.",
-    "{driver} pit yoluna giriyor."
-  ],
-  "PitStopExit": [
-    "{driver} pitten çıkıyor — temiz duruş.",
-    "{driver} yarışa geri döndü."
-  ],
-  "Caution": [
-    "[urgently] Sarı bayrak! Pistte dikkat!",
-    "[urgently] Safety car — yavaşla ve kapat."
-  ],
-  "RedFlag": [
-    "[seriously] Kırmızı bayrak! Kırmızı bayrak! Seans durduruldu.",
-    "[seriously] Kırmızı bayrak — tüm araçlar hemen pit'e dönmeli."
-  ],
-  "SessionStart": [
-    "[excitedly] Yeşil ışık — ve gidiyoruz! Yarış başladı!",
-    "[excitedly] Yeşil bayrak! Yarışıyoruz!"
-  ],
-  "SessionEnd": [
-    "[seriously] Damalı bayrak — {driver} kazanıyor!",
-    "[seriously] Bitti! Ne harika bir yarıştı!"
-  ],
-  "Incident": [
-    "{driver}, o olay nedeniyle {seconds} saniyelik ceza aldı.",
-    "Hakemler {driver}'a {seconds} saniyelik ceza verdi."
-  ],
   "SpotterCarLeft": [
-    "Solda araç.",
-    "Sol."
+    "Solda araç!",
+    "Sol!"
   ],
   "SpotterCarRight": [
-    "Sağda araç.",
-    "Sağ."
+    "Sağda araç!",
+    "Sağ!"
   ],
   "SpotterClear": [
     "Açık.",
@@ -69,26 +28,5 @@
     "Hâlâ yanında.",
     "O hâlâ orada.",
     "Araç hâlâ yan yana."
-  ],
-  "CrewFuelWarning": [
-    "Yakıt azalıyor — yaklaşık {laps} tur kaldı.",
-    "Yakıta dikkat — tankta yaklaşık {laps} turluk var."
-  ],
-  "CrewTireWarning": [
-    "Lastikler aşınıyor — tutuş azalıyor.",
-    "Lastik aşınması — yakında pit yapmayı düşün."
-  ],
-  "CrewPitWindowOpen": [
-    "Pit penceresi açık — istediğin zaman girebilirsin.",
-    "Şimdi girebilirsin — pencere açık."
-  ],
-  "CrewDamage": [
-    "Hasarın var — aynalarını kontrol et.",
-    "Hasar raporlandı — dikkatli ol."
-  ],
-  "TestPhrase0": [ "Pit penceresi üç tur sonra açılıyor. Yakıt iyi görünüyor." ],
-  "TestPhrase1": [ "Araç solda. Araç solda. Yukarı çık." ],
-  "TestPhrase2": [ "Ne bir hamle! İkinci sıraya geçti!" ],
-  "TestPhrase3": [ "Virajda çok kontrollüydü — arabayı kurtaran buydu." ],
-  "TestPhrase4": [ "Undercut mükemmel çalıştı. Ana rakibinin önünde piste çıkıyor!" ]
+  ]
 }

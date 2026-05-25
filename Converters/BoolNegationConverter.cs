@@ -16,7 +16,6 @@ public class BoolNegationConverter : IValueConverter
 
 /// <summary>
 /// Multi-binding converter: returns true (Disabled) when any of the bound bool values is false.
-/// Bind TtsEnabled + SlotEnabled; button is disabled unless both are true.
 /// </summary>
 public class BoolAllTrueNegationConverter : IMultiValueConverter
 {

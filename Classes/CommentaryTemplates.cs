@@ -34,8 +34,7 @@ public sealed class CommentaryTemplates
 	// -------------------------------------------------------------------------
 
 	/// <summary>
-	/// Ensures all shipped language files exist in the TTS documents folder, then
-	/// loads the template set for <paramref name="language"/> (e.g. <c>"en-US"</c>).
+	/// Loads the template set for <paramref name="language"/> (e.g. <c>"en-US"</c>).
 	/// Falls back to <c>en-US</c> if the requested language is unavailable.
 	/// </summary>
 	public void Initialize( string language )

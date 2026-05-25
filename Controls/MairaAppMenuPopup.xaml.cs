@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 using static MarvinsAIRARefactored.Windows.MainWindow;
 
@@ -65,7 +66,10 @@ namespace MarvinsAIRARefactored.Controls
 
 			var uri = new Uri( "pack://application:,,,/MarvinsAIRARefactored;component/Artwork/Misc/adminboxx-logo.png", UriKind.Absolute );
 
-			Image.Source = new BitmapImage( uri );
+			Image.Visibility = Visibility.Collapsed;
+
+			ColorImage.Source = new BitmapImage( uri );
+			ColorImage.Visibility = Visibility.Visible;
 
 #endif
 		}
@@ -119,11 +123,11 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.Sounds:
 					return "advanced/sounds/";
 
+				case AppPage.Commentary:
+					return "advanced/commentary/";
+
 				case AppPage.SpeechToText:
 					return "advanced/speech-to-text/";
-
-				case AppPage.TextToSpeech:
-					return "advanced/text-to-speech/";
 
 				case AppPage.TradingPaints:
 					return "advanced/trading-paints/";
@@ -293,14 +297,14 @@ namespace MarvinsAIRARefactored.Controls
 
 			AppMenuItems.Add( new AppMenuItem
 			{
-				AppPage = AppPage.SpeechToText,
-				PageUserControl = _speechToTextPage
+				AppPage = AppPage.Commentary,
+				PageUserControl = _commentary
 			} );
 
 			AppMenuItems.Add( new AppMenuItem
 			{
-				AppPage = AppPage.TextToSpeech,
-				PageUserControl = _textToSpeechPage
+				AppPage = AppPage.SpeechToText,
+				PageUserControl = _speechToTextPage
 			} );
 
 			AppMenuItems.Add( new AppMenuItem
@@ -375,7 +379,7 @@ namespace MarvinsAIRARefactored.Controls
 				AppPage.Overlays => _overlaysPage,
 				AppPage.Sounds => _soundsPage,
 				AppPage.SpeechToText => _speechToTextPage,
-				AppPage.TextToSpeech => _textToSpeechPage,
+				AppPage.Commentary => _commentary,
 				AppPage.TradingPaints => _tradingPaintsPage,
 				AppPage.Graph => _graphPage,
 				AppPage.Simulator => _simulatorPage,
@@ -443,12 +447,12 @@ namespace MarvinsAIRARefactored.Controls
 						menuItem.DisplayName = localization[ "Sounds" ];
 						break;
 
-					case AppPage.SpeechToText:
-						menuItem.DisplayName = localization[ "SpeechToText" ];
+					case AppPage.Commentary:
+						menuItem.DisplayName = localization[ "Commentary" ];
 						break;
 
-					case AppPage.TextToSpeech:
-						menuItem.DisplayName = localization[ "TextToSpeech" ];
+					case AppPage.SpeechToText:
+						menuItem.DisplayName = localization[ "SpeechToText" ];
 						break;
 
 					case AppPage.TradingPaints:
@@ -530,12 +534,12 @@ namespace MarvinsAIRARefactored.Controls
 					SelectedAppPageText = localization[ "Sounds_UC" ];
 					break;
 
-				case AppPage.SpeechToText:
-					SelectedAppPageText = localization[ "SpeechToText_UC" ];
+				case AppPage.Commentary:
+					SelectedAppPageText = localization[ "Commentary_UC" ];
 					break;
 
-				case AppPage.TextToSpeech:
-					SelectedAppPageText = localization[ "TextToSpeech_UC" ];
+				case AppPage.SpeechToText:
+					SelectedAppPageText = localization[ "SpeechToText_UC" ];
 					break;
 
 				case AppPage.TradingPaints:

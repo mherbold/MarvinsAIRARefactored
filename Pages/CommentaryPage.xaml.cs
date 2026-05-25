@@ -1,5 +1,4 @@
 
-using System.IO;
 using System.Windows;
 using System.Windows.Media;
 
@@ -11,21 +10,21 @@ using AppDataContext = MarvinsAIRARefactored.DataContext.DataContext;
 
 namespace MarvinsAIRARefactored.Pages;
 
-public partial class TextToSpeechPage : System.Windows.Controls.UserControl
+public partial class CommentaryPage : System.Windows.Controls.UserControl
 {
 	private SubscriptionInfo? _lastSubscriptionInfo;
 	private int _sessionCharactersUsed;
 
-	public TextToSpeechPage()
+	public CommentaryPage()
 	{
 		InitializeComponent();
 
 		AppDataContext.Instance.Settings.PropertyChanged += Settings_PropertyChanged;
 
-		Loaded += ( _, _ ) => App.Instance!.TextToSpeech.AudioPlayed += TextToSpeech_AudioPlayed;
+		Loaded += ( _, _ ) => App.Instance!.TextToSpeech.AudioPlayed += Commentary_AudioPlayed;
 	}
 
-	private void TextToSpeech_AudioPlayed( string text, int charactersCharged )
+	private void Commentary_AudioPlayed( string text, int charactersCharged )
 	{
 		_sessionCharactersUsed += charactersCharged;
 
@@ -42,8 +41,8 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 	{
 		switch ( e.PropertyName )
 		{
-			case nameof( MarvinsAIRARefactored.DataContext.Settings.TtsEnabled )
-				when AppDataContext.Instance.Settings.TtsEnabled:
+			case nameof( MarvinsAIRARefactored.DataContext.Settings.CommentaryEnabled )
+				when AppDataContext.Instance.Settings.CommentaryEnabled:
 				await VerifyAndPopulateAsync();
 				break;
 		}
@@ -57,7 +56,7 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 		UpdateLanguageOptions();
 		LoadApiKeyIntoPasswordBox();
 
-		if ( AppDataContext.Instance.Settings.TtsEnabled )
+		if ( AppDataContext.Instance.Settings.CommentaryEnabled )
 		{
 			await VerifyAndPopulateAsync();
 		}
@@ -91,7 +90,7 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 		var app = App.Instance!;
 		var localization = AppDataContext.Instance.Localization;
 
-		app.Logger.WriteLine( "[TextToSpeechPage] UpdateLanguageOptions >>>" );
+		app.Logger.WriteLine( "[CommentaryPage] UpdateLanguageOptions >>>" );
 
 		var options = CommentaryTemplates.GetAvailableLanguages()
 			.ToDictionary(
@@ -111,7 +110,7 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 
 		TtsLanguage_MairaComboBox.ItemsSource = options.ToList();
 
-		app.Logger.WriteLine( "[TextToSpeechPage] <<< UpdateLanguageOptions" );
+		app.Logger.WriteLine( "[CommentaryPage] <<< UpdateLanguageOptions" );
 	}
 
 	private static readonly Dictionary<string, string> _fallbackModels = new()
@@ -124,7 +123,7 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 	{
 		var app = App.Instance!;
 
-		var models = await app.TextToSpeech.GetTtsModelsAsync();
+		var models = await app.TextToSpeech.GetModelsAsync();
 
 		Model_MairaComboBox.ItemsSource = ( models ?? _fallbackModels ).ToList();
 	}
@@ -139,13 +138,13 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 		var app = App.Instance!;
 		var voices = await app.TextToSpeech.GetVoicesAsync();
 
-		app.Logger.WriteLine( $"[TextToSpeechPage] UpdateVoiceOptions: GetVoicesAsync returned {( voices is null ? "null" : $"{voices.Count} voice(s)" )}" );
+		app.Logger.WriteLine( $"[CommentaryPage] UpdateVoiceOptions: GetVoicesAsync returned {( voices is null ? "null" : $"{voices.Count} voice(s)" )}" );
 
 		if ( voices is not null )
 		{
 			foreach ( var kv in voices )
 			{
-				app.Logger.WriteLine( $"[TextToSpeechPage] UpdateVoiceOptions:   id={kv.Key}, name={kv.Value}" );
+				app.Logger.WriteLine( $"[CommentaryPage] UpdateVoiceOptions:   id={kv.Key}, name={kv.Value}" );
 			}
 		}
 
@@ -276,11 +275,11 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 		{
 			ElevenLabsKeyStore.SaveKey( key );
 
-			AppDataContext.Instance.Settings.ApiKey = key;
+			AppDataContext.Instance.Settings.CommentaryElevenLabsApiKey = key;
 		}
 		catch ( Exception ex )
 		{
-			App.Instance!.Logger.WriteLine( $"[TextToSpeechPage] Failed to save API key: {ex.Message}" );
+			App.Instance!.Logger.WriteLine( $"[CommentaryPage] Failed to save API key: {ex.Message}" );
 		}
 	}
 
@@ -344,7 +343,7 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 		}
 		catch ( Exception ex )
 		{
-			app.Logger.WriteLine( $"[TextToSpeechPage] VerifyAndPopulateAsync error: {ex.Message}" );
+			app.Logger.WriteLine( $"[CommentaryPage] VerifyAndPopulateAsync error: {ex.Message}" );
 
 			VerifyResult_TextBlock.Text = localization[ "KeyInvalid" ];
 			VerifyResult_TextBlock.Foreground = (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Status.Error.Text" );

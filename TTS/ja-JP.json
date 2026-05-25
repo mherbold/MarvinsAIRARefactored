@@ -1,52 +1,11 @@
 ﻿{
-  "Overtake": [
-    "[excitedly] {attacker}が仕掛けた — {position}位に浮上！",
-    "[excitedly] {attacker}、素晴らしいオーバーテイク！{defender}を抜いてP{position}へ！",
-    "[surprised] おっと！{attacker}がやった — {defender}をかわしてP{position}！"
-  ],
-  "CloseBattle": [
-    "{driver1}と{driver2}の信じられないほど接近した戦い — 差は1秒以内！",
-    "{driver1}と{driver2}が接近戦を繰り広げる — これは壮絶だ！"
-  ],
-  "FastestLap": [
-    "[impressed] {driver}がレース最速ラップをマーク — {lapTime}！",
-    "[excitedly] {driver}がファステストラップを更新 — {lapTime}！"
-  ],
-  "PitStopEntry": [
-    "{driver}がピットへ — チームは準備万端。",
-    "{driver}がピットレーンに入った。"
-  ],
-  "PitStopExit": [
-    "{driver}がピットを出た — クリーンなストップ。",
-    "{driver}がレースに戻ってきた。"
-  ],
-  "Caution": [
-    "[urgently] イエローフラッグ！コース上に注意！",
-    "[urgently] セーフティカー — 減速して間隔を縮めて。"
-  ],
-  "RedFlag": [
-    "[seriously] 赤旗！赤旗！セッションが中断されました。",
-    "[seriously] 赤旗 — 全車両は直ちにピットに戻ること。"
-  ],
-  "SessionStart": [
-    "[excitedly] グリーンライト — スタート！レース開始！",
-    "[excitedly] グリーンフラッグ！レース開始！"
-  ],
-  "SessionEnd": [
-    "[emotionally] チェッカーフラッグ — {driver}が優勝！",
-    "[emotionally] レース終了！素晴らしいレースだった！"
-  ],
-  "Incident": [
-    "{driver}はその事故で{seconds}秒のペナルティを受けました。",
-    "スチュワードが{driver}に{seconds}秒のペナルティを科しました。"
-  ],
   "SpotterCarLeft": [
-    "左に車両。",
-    "左。"
+    "左に車両！",
+    "左！"
   ],
   "SpotterCarRight": [
-    "右に車両。",
-    "右。"
+    "右に車両！",
+    "右！"
   ],
   "SpotterClear": [
     "クリア。",
@@ -69,26 +28,5 @@
     "まだ並走しています。",
     "まだそこにいます。",
     "車はまだ横にいます。"
-  ],
-  "CrewFuelWarning": [
-    "燃料が少なくなっています — 約{laps}周分残っています。",
-    "燃料に注意 — タンクに約{laps}周分残っています。"
-  ],
-  "CrewTireWarning": [
-    "タイヤが摩耗しています — グリップが低下しています。",
-    "タイヤ摩耗 — 早めのピットインを検討してください。"
-  ],
-  "CrewPitWindowOpen": [
-    "ピットウィンドウが開いています — いつでも入れます。",
-    "今ストップできます — ウィンドウが開いています。"
-  ],
-  "CrewDamage": [
-    "車両にダメージがあります — ミラーを確認してください。",
-    "ダメージが報告されています — 注意してください。"
-  ],
-  "TestPhrase0": [ "ピットウィンドウはあと3周で開きます。燃料は問題ありません。" ],
-  "TestPhrase1": [ "左に車がいます。左に車がいます。右に寄ってください。" ],
-  "TestPhrase2": [ "すばらしい追い越し！2位に浮上しました！" ],
-  "TestPhrase3": [ "コーナーへの進入が非常に丁寧でした — それが車を救いました。" ],
-  "TestPhrase4": [ "アンダーカットが完璧に機能しました。メインライバルの前でコースに戻りました！" ]
+  ]
 }

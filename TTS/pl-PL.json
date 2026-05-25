@@ -1,52 +1,11 @@
 ﻿{
-  "Overtake": [
-    "[excitedly] {attacker} atakuje — wyprzedza i jedzie na P{position}!",
-    "[excitedly] Co za manewr {attacker}! Wyprzedza {defender} i bierze P{position}!",
-    "[surprised] O! {attacker} to zrobił — minął {defender} i jest na P{position}!"
-  ],
-  "CloseBattle": [
-    "Niesamowicie zacięta walka między {driver1} a {driver2} — mniej niż sekunda różnicy!",
-    "{driver1} i {driver2} dosłownie jadą ramię w ramię — to jest sensacja!"
-  ],
-  "FastestLap": [
-    "[impressed] {driver} ustanawia najszybsze okrążenie wyścigu — {lapTime}!",
-    "[excitedly] Nowe najszybsze okrążenie {driver} — {lapTime}!"
-  ],
-  "PitStopEntry": [
-    "{driver} wjeżdża do boksów — ekipa jest gotowa.",
-    "{driver} skręca w aleję serwisową."
-  ],
-  "PitStopExit": [
-    "{driver} opuszcza boksy — czyste zatrzymanie.",
-    "{driver} wraca do wyścigu."
-  ],
-  "Caution": [
-    "[urgently] Żółta flaga! Ostrożność na torze!",
-    "[urgently] Samochód bezpieczeństwa — zwolnij i zamknij szyk."
-  ],
-  "RedFlag": [
-    "[seriously] Czerwona flaga! Czerwona flaga! Sesja została przerwana.",
-    "[seriously] Czerwona flaga — wszystkie samochody muszą natychmiast wrócić do boksów."
-  ],
-  "SessionStart": [
-    "[excitedly] Zielone światło — i ruszamy! Wyścig się zaczął!",
-    "[excitedly] Zielona flaga! Ścigamy się!"
-  ],
-  "SessionEnd": [
-    "[emotionally] Flaga w szachownicę — {driver} wygrywa!",
-    "[emotionally] Koniec! Co to był za wyścig!"
-  ],
-  "Incident": [
-    "{driver} otrzymał karę {seconds} sekund za ten incydent.",
-    "Sędziowie nałożyli na {driver} karę {seconds} sekund."
-  ],
   "SpotterCarLeft": [
-    "Samochód z lewej.",
-    "Lewo."
+    "Samochód z lewej!",
+    "Lewo!"
   ],
   "SpotterCarRight": [
-    "Samochód z prawej.",
-    "Prawo."
+    "Samochód z prawej!",
+    "Prawo!"
   ],
   "SpotterClear": [
     "Wolno.",
@@ -69,26 +28,5 @@
     "Nadal obok ciebie.",
     "On nadal tam jest.",
     "Auto nadal obok."
-  ],
-  "CrewFuelWarning": [
-    "Paliwo kończy się — zostało około {laps} okrążeń.",
-    "Uważaj na paliwo — około {laps} okrążeń w baku."
-  ],
-  "CrewTireWarning": [
-    "Opony się zużywają — przyczepność spada.",
-    "Zużycie opon — rozważ wjazd do boksów wkrótce."
-  ],
-  "CrewPitWindowOpen": [
-    "Okno boksów jest otwarte — możesz wjechać w dowolnej chwili.",
-    "Możesz teraz zatrzymać się — okno jest otwarte."
-  ],
-  "CrewDamage": [
-    "Masz uszkodzenia — sprawdź lusterka.",
-    "Zgłoszono uszkodzenie — miej to na uwadze."
-  ],
-  "TestPhrase0": [ "Okno pit-stopu otwiera się za trzy okrążenia. Paliwo wygląda dobrze." ],
-  "TestPhrase1": [ "Auto z lewej. Auto z lewej. Jedź wyżej." ],
-  "TestPhrase2": [ "Co za manewr! Przebił się na drugą pozycję!" ],
-  "TestPhrase3": [ "Był bardzo wyważony przy wejściu w zakręt — to uratowało auto." ],
-  "TestPhrase4": [ "Undercut zadziałał perfekcyjnie. Wyjeżdża przed swoim głównym rywalem!" ]
+  ]
 }

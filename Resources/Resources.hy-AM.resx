@@ -1,51 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<root xmlns:ns1="urn:schemas-microsoft-com:xml-msdata" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:schema id="root">
-    <xs:import namespace="http://www.w3.org/XML/1998/namespace" />
-    <xs:element name="root" ns1:IsDataSet="true">
-      <xs:complexType>
-        <xs:choice maxOccurs="unbounded">
-          <xs:element name="metadata">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" type="xsd:string" minOccurs="0" />
-              </xs:sequence>
-              <xs:attribute name="name" use="required" type="xsd:string" />
-              <xs:attribute name="type" type="xsd:string" />
-              <xs:attribute name="mimetype" type="xsd:string" />
-              <xs:attribute ref="xml:space" />
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="assembly">
-            <xs:complexType>
-              <xs:attribute name="alias" type="xsd:string" />
-              <xs:attribute name="name" type="xsd:string" />
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="data">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
-                <xs:element name="comment" type="xsd:string" minOccurs="0" ns1:Ordinal="2" />
-              </xs:sequence>
-              <xs:attribute name="name" type="xsd:string" use="required" ns1:Ordinal="1" />
-              <xs:attribute name="type" type="xsd:string" ns1:Ordinal="3" />
-              <xs:attribute name="mimetype" type="xsd:string" ns1:Ordinal="4" />
-              <xs:attribute ref="xml:space" />
-            </xs:complexType>
-          </xs:element>
-          <xs:element name="resheader">
-            <xs:complexType>
-              <xs:sequence>
-                <xs:element name="value" type="xsd:string" minOccurs="0" ns1:Ordinal="1" />
-              </xs:sequence>
-              <xs:attribute name="name" type="xsd:string" use="required" />
-            </xs:complexType>
-          </xs:element>
-        </xs:choice>
-      </xs:complexType>
-    </xs:element>
-  </xs:schema>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
   <resheader name="resmimetype">
     <value>text/microsoft-resx</value>
   </resheader>
@@ -442,6 +501,9 @@
   <data name="AppWindow_UC" xml:space="preserve">
     <value>ՀԱՎԵԼՎԱԾԻ ՊԱՏՈՒՀԱՆ</value>
   </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Բաց թեմա</value>
+  </data>
   <data name="UIScale" xml:space="preserve">
     <value>Միջերեսի Մասշտաբ</value>
   </data>
@@ -546,6 +608,9 @@
   </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Զգայունություն</value>
+  </data>
+  <data name="SlewAndTotalCompression" xml:space="preserve">
+    <value>Փոփոխության արագություն և ընդհանուր սեղմում</value>
   </data>
   <data name="DiscordModerators_UC" xml:space="preserve">
     <value>DISCORD ՄՈԴԵՐԱՏՈՐՆԵՐ</value>
@@ -775,14 +840,50 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>Խոսքից Տեքստ</value>
   </data>
+  <data name="OverlayWindow_UC" xml:space="preserve">
+    <value>OVERLAY WINDOW</value>
+  </data>
+  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
+    <value>Make the overlay window draggable</value>
+  </data>
+  <data name="ResetOverlayWindow" xml:space="preserve">
+    <value>Վերականգնել վերածրագրի պատուհանի դիրքը</value>
+  </data>
+  <data name="OverlayWindowScale" xml:space="preserve">
+    <value>Overlay Window Scale</value>
+  </data>
+  <data name="STT_Title" xml:space="preserve">
+    <value>MAIRA խոսքից-տեքստ կամուրջ</value>
+  </data>
+  <data name="STT_Hint" xml:space="preserve">
+    <value>Սեղմեք «Միացնել» կոճակը: Հարկավոր է ստուգել, որ բրաուզերը ընտրված ունի ճիշտ աուդիո սարք՝ հասցեի տողի ձախ կողմում գտնվող միկրոֆոնի պատկերակին սեղմելով:</value>
+  </data>
+  <data name="STT_Button" xml:space="preserve">
+    <value>Միացնել խոսքից-տեքստը</value>
+  </data>
+  <data name="FFBDeviceNotSelected" xml:space="preserve">
+    <value>[Force Feedback սարք ընտրված չէ]</value>
+  </data>
   <data name="Algorithm_UC" xml:space="preserve">
     <value>ԱԼԳՈՐԻԹՄ</value>
+  </data>
+  <data name="ReadyToDonate" xml:space="preserve">
+    <value>Պատրա՞ստ եք նվիրատվության։</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>Ներդրում կատարել</value>
   </data>
+  <data name="CalibrationFileContributions_UC" xml:space="preserve">
+    <value>ԿԱԼԻԲՐԱՑԻՈՆ ՖԱՅԼԵՐԻ ՆԵՐԴՐՈՒՄՆԵՐ</value>
+  </data>
   <data name="AppSettings_UC" xml:space="preserve">
     <value>ՀԱՎԵԼՎԱԾ</value>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>ՀՐԱՁԻԳ</value>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Գործարկել հրաձիգը</value>
   </data>
   <data name="Simulator_UC" xml:space="preserve">
     <value>ՍԻՄՈՒԼՅԱՏՈՐ</value>
@@ -792,6 +893,9 @@
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
     <value>ԽՈՍՔԻՑ ՏԵՔՍՏ</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Փոփոխությունների ցուցակ</value>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
     <value>ABS-ը միացված է</value>
@@ -805,92 +909,23 @@
   <data name="Frequency" xml:space="preserve">
     <value>Հաճախականություն</value>
   </data>
+  <data name="RPM" xml:space="preserve">
+    <value>պտ/ր</value>
+  </data>
   <data name="Sounds" xml:space="preserve">
     <value>Ձայներ</value>
   </data>
   <data name="Pedals" xml:space="preserve">
     <value>Ոտնակներ</value>
   </data>
-  <data name="WheelSpin" xml:space="preserve">
-    <value>Անիվների սահք</value>
-  </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Անիվների արգելափակում</value>
   </data>
-  <data name="OverlayWindow_UC">
-    <value>OVERLAY WINDOW</value>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Անիվների սահք</value>
   </data>
-  <data name="MakeOverlayWindowDraggable">
-    <value>Make the overlay window draggable</value>
-  </data>
-  <data name="OverlayWindowScale">
-    <value>Overlay Window Scale</value>
-  </data>
-  <data name="STT_Title">
-    <value>MAIRA խոսքից-տեքստ կամուրջ</value>
-  </data>
-  <data name="STT_Button">
-    <value>Միացնել խոսքից-տեքստը</value>
-  </data>
-  <data name="FFBDeviceNotSelected">
-    <value>[Force Feedback սարք ընտրված չէ]</value>
-  </data>
-  <data name="ReadyToDonate">
-    <value>Պատրա՞ստ եք նվիրատվության։</value>
-  </data>
-  <data name="CalibrationFileContributions_UC">
-    <value>ԿԱԼԻԲՐԱՑԻՈՆ ՖԱՅԼԵՐԻ ՆԵՐԴՐՈՒՄՆԵՐ</value>
-  </data>
-  <data name="Changelog">
-    <value>Փոփոխությունների ցուցակ</value>
-  </data>
-  <data name="ResetOverlayWindow">
-    <value>Վերականգնել վերածրագրի պատուհանի դիրքը</value>
-  </data>
-  <data name="RPM">
-    <value>պտ/ր</value>
-  </data>
-  <data name="GripOMeter">
+  <data name="GripOMeter" xml:space="preserve">
     <value>Grip-O-Meter</value>
-  </data>
-  <data name="SlewAndTotalCompression" xml:space="preserve">
-    <value>Փոփոխության արագություն և ընդհանուր սեղմում</value>
-  </data>
-  <data name="Click_UC" xml:space="preserve">
-    <value>Սեղմում</value>
-  </data>
-  <data name="AllowSoundsDuringReplays" xml:space="preserve">
-    <value>Թույլատրել հնչյուններ վերարտադրությունների ժամանակ</value>
-  </data>
-  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
-    <value>ԱՐԳԵԼԱԿ + ԱՐԱԳԱՑՈՒՑԻՉ ԱԶԴԱՆՇԱՆ</value>
-  </data>
-  <data name="FfbClipping_UC" xml:space="preserve">
-    <value>FFB ԿՏՐՈՒՄ</value>
-  </data>
-  <data name="Audio_UC" xml:space="preserve">
-    <value>Աուդիո</value>
-  </data>
-  <data name="AdminBoxx_UC" xml:space="preserve">
-    <value>Ադմին Բոքս</value>
-  </data>
-  <data name="Connection_UC" xml:space="preserve">
-    <value>Միացում</value>
-  </data>
-  <data name="Display_UC" xml:space="preserve">
-    <value>Էկրան</value>
-  </data>
-  <data name="LightTheme" xml:space="preserve">
-    <value>Բաց թեմա</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Սեղմեք «Միացնել» կոճակը: Հարկավոր է ստուգել, որ բրաուզերը ընտրված ունի ճիշտ աուդիո սարք՝ հասցեի տողի ձախ կողմում գտնվող միկրոֆոնի պատկերակին սեղմելով:</value>
-  </data>
-  <data name="Wizard_UC" xml:space="preserve">
-    <value>ՀՐԱՁԻԳ</value>
-  </data>
-  <data name="LaunchWizard" xml:space="preserve">
-    <value>Գործարկել հրաձիգը</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
     <value> Մ/Ժ</value>
@@ -1003,6 +1038,9 @@
   <data name="RightFan" xml:space="preserve">
     <value>Աջ օդախույզ</value>
   </data>
+  <data name="Connection_UC" xml:space="preserve">
+    <value>Միացում</value>
+  </data>
   <data name="Settings_UC" xml:space="preserve">
     <value>ԿԱՐԳԱՎՈՐՈՒՄՆԵՐ</value>
   </data>
@@ -1092,6 +1130,27 @@
   </data>
   <data name="Effects_UC" xml:space="preserve">
     <value>ԱԶԴԵՑՈՒԹՅՈՒՆՆԵՐ</value>
+  </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>Աուդիո</value>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>Էկրան</value>
+  </data>
+  <data name="AdminBoxx_UC" xml:space="preserve">
+    <value>Ադմին Բոքս</value>
+  </data>
+  <data name="Click_UC" xml:space="preserve">
+    <value>Սեղմում</value>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Թույլատրել հնչյուններ վերարտադրությունների ժամանակ</value>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>ԱՐԳԵԼԱԿ + ԱՐԱԳԱՑՈՒՑԻՉ ԱԶԴԱՆՇԱՆ</value>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>FFB ԿՏՐՈՒՄ</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 ոտնակներ</value>
@@ -1504,10 +1563,10 @@
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
   </data>
-  <data name="TextToSpeech" xml:space="preserve">
+  <data name="Commentary" xml:space="preserve">
     <value>Տեքստ ձայնի</value>
   </data>
-  <data name="TextToSpeech_UC" xml:space="preserve">
+  <data name="Commentary_UC" xml:space="preserve">
     <value>ՏԵՔՍՏ ՁԱՅՆԻ</value>
   </data>
   <data name="Account_UC" xml:space="preserve">
@@ -1633,10 +1692,10 @@
   <data name="DamageWarning" xml:space="preserve">
     <value>Վնասի նախազգուշացում</value>
   </data>
-  <data name="SpotterCarCalls" xml:space="preserve">
+  <data name="CarProximity" xml:space="preserve">
     <value>Մոտության ազդանշաններ</value>
   </data>
-  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+  <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Հիշեցման ընդմիջում</value>
   </data>
   <data name="PitWindowOpen" xml:space="preserve">

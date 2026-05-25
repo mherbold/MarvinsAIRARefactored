@@ -9426,10 +9426,16 @@ public class Settings : INotifyPropertyChanged
 
 	#region AdminBoxx - Connect on startup
 
+#if !ADMINBOXX
 	private bool _adminBoxxConnectOnStartup = false;
+#endif
 
 	public bool AdminBoxxConnectOnStartup
 	{
+#if ADMINBOXX
+		get => false;
+		set { }
+#else
 		get => _adminBoxxConnectOnStartup;
 
 		set
@@ -9441,6 +9447,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+#endif
 	}
 
 	#endregion
@@ -12569,115 +12576,9 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	// =========================================================================
-	// Text to Speech
-	// =========================================================================
+	#region Commentary — Master enable
 
-	#region Text to Speech — Master enable
-
-	private bool _ttsEnabled = false;
-
-	public bool TtsEnabled
-	{
-		get => _ttsEnabled;
-
-		set
-		{
-			if ( value != _ttsEnabled )
-			{
-				_ttsEnabled = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Text to Speech — API key (DPAPI — not serialized to Settings.xml)
-
-	[XmlIgnore]
-	public string ApiKey
-	{
-		get => ElevenLabsKeyStore.LoadKey();
-
-		set
-		{
-			ElevenLabsKeyStore.SaveKey( value ?? string.Empty );
-
-			OnPropertyChanged();
-		}
-	}
-
-	#endregion
-
-	#region Text to Speech — Model
-
-	private string _modelId = "eleven_flash_v2_5";
-
-	public string ModelId
-	{
-		get => _modelId;
-
-		set
-		{
-			if ( value != _modelId )
-			{
-				_modelId = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Text to Speech — Master volume
-
-	private float _masterVolume = 0.85f;
-
-	public float MasterVolume
-	{
-		get => _masterVolume;
-
-		set
-		{
-			value = Math.Clamp( value, 0f, 1f );
-
-			if ( value != _masterVolume )
-			{
-				_masterVolume = value;
-
-				OnPropertyChanged();
-			}
-
-			MasterVolumeString = $"{_masterVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-		}
-	}
-
-	private string _masterVolumeString = string.Empty;
-
-	[XmlIgnore]
-	public string MasterVolumeString
-	{
-		get => _masterVolumeString;
-
-		set
-		{
-			if ( value != _masterVolumeString )
-			{
-				_masterVolumeString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Text to Speech — Feature enables
-
-	private bool _commentaryEnabled = true;
+	private bool _commentaryEnabled = false;
 
 	public bool CommentaryEnabled
 	{
@@ -12694,57 +12595,23 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private bool _spotterEnabled = true;
-
-	public bool SpotterEnabled
-	{
-		get => _spotterEnabled;
-
-		set
-		{
-			if ( value != _spotterEnabled )
-			{
-				_spotterEnabled = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _crewChiefEnabled = true;
-
-	public bool CrewChiefEnabled
-	{
-		get => _crewChiefEnabled;
-
-		set
-		{
-			if ( value != _crewChiefEnabled )
-			{
-				_crewChiefEnabled = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
 	#endregion
 
-	#region Text to Speech — Commentary language
+	#region Commentary — ElevenLabs Language
 
-	private string _ttsLanguage = "en-US";
+	private string _commentaryElevenLabsLanguage = "en-US";
 
-	public string TtsLanguage
+	public string CommentaryElevenLabsLanguage
 	{
-		get => _ttsLanguage;
+		get => _commentaryElevenLabsLanguage;
 
 		set
 		{
 			value = string.IsNullOrWhiteSpace( value ) ? "en-US" : value.Trim();
 
-			if ( value != _ttsLanguage )
+			if ( value != _commentaryElevenLabsLanguage )
 			{
-				_ttsLanguage = value;
+				_commentaryElevenLabsLanguage = value;
 
 				App.Instance?.Commentary.Initialize( value );
 
@@ -12755,24 +12622,105 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Text to Speech — Voice slots
+	#region Commentary — Master volume
 
-	private List<VoiceSlotSettings> _voiceSlots = VoiceSlotSettings.CreateDefaults();
+	private float _commentaryMasterVolume = 0.85f;
 
-	public List<VoiceSlotSettings> VoiceSlots
+	public float CommentaryMasterVolume
 	{
-		get => _voiceSlots;
+		get => _commentaryMasterVolume;
 
 		set
 		{
-			_voiceSlots = value ?? VoiceSlotSettings.CreateDefaults();
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _commentaryMasterVolume )
+			{
+				_commentaryMasterVolume = value;
+
+				OnPropertyChanged();
+			}
+
+			CommentaryMasterVolumeString = $"{_commentaryMasterVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _commentaryMasterVolumeString = string.Empty;
+
+	[XmlIgnore]
+	public string CommentaryMasterVolumeString
+	{
+		get => _commentaryMasterVolumeString;
+
+		set
+		{
+			if ( value != _commentaryMasterVolumeString )
+			{
+				_commentaryMasterVolumeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Commentary — ElevenLabs API key (DPAPI — not serialized to Settings.xml)
+
+	[XmlIgnore]
+	public string CommentaryElevenLabsApiKey
+	{
+		get => ElevenLabsKeyStore.LoadKey();
+
+		set
+		{
+			ElevenLabsKeyStore.SaveKey( value ?? string.Empty );
+
+			OnPropertyChanged();
+		}
+	}
+
+	#endregion
+
+	#region Commentary — ElevenLabs Model
+
+	private string _commentaryElevenLabsModelId = "eleven_flash_v2_5";
+
+	public string CommentaryElevenLabsModelId
+	{
+		get => _commentaryElevenLabsModelId;
+
+		set
+		{
+			if ( value != _commentaryElevenLabsModelId )
+			{
+				_commentaryElevenLabsModelId = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Commentary — Voice slots
+
+	private List<VoiceSlotSettings> _commentaryVoiceSlots = VoiceSlotSettings.CreateDefaults();
+
+	public List<VoiceSlotSettings> CommentaryVoiceSlots
+	{
+		get => _commentaryVoiceSlots;
+
+		set
+		{
+			_commentaryVoiceSlots = value ?? VoiceSlotSettings.CreateDefaults();
 
 			// Ensure exactly 5 slots are always present, filling any missing tail entries with defaults.
 			var defaults = VoiceSlotSettings.CreateDefaults();
 
-			while ( _voiceSlots.Count < defaults.Count )
+			while ( _commentaryVoiceSlots.Count < defaults.Count )
 			{
-				_voiceSlots.Add( defaults[ _voiceSlots.Count ] );
+				_commentaryVoiceSlots.Add( defaults[ _commentaryVoiceSlots.Count ] );
 			}
 
 			OnPropertyChanged();
@@ -12781,189 +12729,19 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Text to Speech — Per-event commentary toggles
+	#region Commentary — Spotter enabled
 
-	private bool _commentaryOvertake = true;
+	private bool _commentarySpotterEnabled = true;
 
-	public bool CommentaryOvertake
+	public bool CommentarySpotterEnabled
 	{
-		get => _commentaryOvertake;
+		get => _commentarySpotterEnabled;
 
 		set
 		{
-			if ( value != _commentaryOvertake )
+			if ( value != _commentarySpotterEnabled )
 			{
-				_commentaryOvertake = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _commentaryCloseBattle = true;
-
-	public bool CommentaryCloseBattle
-	{
-		get => _commentaryCloseBattle;
-
-		set
-		{
-			if ( value != _commentaryCloseBattle )
-			{
-				_commentaryCloseBattle = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _commentaryFastestLap = true;
-
-	public bool CommentaryFastestLap
-	{
-		get => _commentaryFastestLap;
-
-		set
-		{
-			if ( value != _commentaryFastestLap )
-			{
-				_commentaryFastestLap = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _commentaryPitStop = true;
-
-	public bool CommentaryPitStop
-	{
-		get => _commentaryPitStop;
-
-		set
-		{
-			if ( value != _commentaryPitStop )
-			{
-				_commentaryPitStop = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _commentaryCaution = true;
-
-	public bool CommentaryCaution
-	{
-		get => _commentaryCaution;
-
-		set
-		{
-			if ( value != _commentaryCaution )
-			{
-				_commentaryCaution = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _commentarySessionStartEnd = true;
-
-	public bool CommentarySessionStartEnd
-	{
-		get => _commentarySessionStartEnd;
-
-		set
-		{
-			if ( value != _commentarySessionStartEnd )
-			{
-				_commentarySessionStartEnd = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _commentaryIncident = true;
-
-	public bool CommentaryIncident
-	{
-		get => _commentaryIncident;
-
-		set
-		{
-			if ( value != _commentaryIncident )
-			{
-				_commentaryIncident = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _commentaryCrewFuelWarning = true;
-
-	public bool CommentaryCrewFuelWarning
-	{
-		get => _commentaryCrewFuelWarning;
-
-		set
-		{
-			if ( value != _commentaryCrewFuelWarning )
-			{
-				_commentaryCrewFuelWarning = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _commentaryCrewTireWarning = true;
-
-	public bool CommentaryCrewTireWarning
-	{
-		get => _commentaryCrewTireWarning;
-
-		set
-		{
-			if ( value != _commentaryCrewTireWarning )
-			{
-				_commentaryCrewTireWarning = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _commentaryCrewDamageWarning = true;
-
-	public bool CommentaryCrewDamageWarning
-	{
-		get => _commentaryCrewDamageWarning;
-
-		set
-		{
-			if ( value != _commentaryCrewDamageWarning )
-			{
-				_commentaryCrewDamageWarning = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private bool _commentaryCrewPitWindowOpen = true;
-
-	public bool CommentaryCrewPitWindowOpen
-	{
-		get => _commentaryCrewPitWindowOpen;
-
-		set
-		{
-			if ( value != _commentaryCrewPitWindowOpen )
-			{
-				_commentaryCrewPitWindowOpen = value;
+				_commentarySpotterEnabled = value;
 
 				OnPropertyChanged();
 			}
@@ -12972,58 +12750,62 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Text to Speech — Spotter proximity call toggles
+	#region Commentary — Spotter car proximity
 
-	private bool _spotterCarCalls = true;
+	private bool _commentarySpotterCarProximity = true;
 
-	public bool SpotterCarCalls
+	public bool CommentarySpotterCarProximity
 	{
-		get => _spotterCarCalls;
+		get => _commentarySpotterCarProximity;
 
 		set
 		{
-			if ( value != _spotterCarCalls )
+			if ( value != _commentarySpotterCarProximity )
 			{
-				_spotterCarCalls = value;
+				_commentarySpotterCarProximity = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	private float _spotterProximityReminderInterval = 3.0f;
+	#endregion
 
-	public float SpotterProximityReminderInterval
+	#region Commentary — Spotter car proximity reminder interval
+
+	private float _commentarySpotterCarProximityReminderInterval = 3.0f;
+
+	public float CommentarySpotterCarProximityReminderInterval
 	{
-		get => _spotterProximityReminderInterval;
+		get => _commentarySpotterCarProximityReminderInterval;
 
 		set
 		{
 			value = Math.Clamp( value, 1.0f, 20.0f );
 
-			if ( value != _spotterProximityReminderInterval )
+			if ( value != _commentarySpotterCarProximityReminderInterval )
 			{
-				_spotterProximityReminderInterval = value;
+				_commentarySpotterCarProximityReminderInterval = value;
 
 				OnPropertyChanged();
 			}
 
-			SpotterProximityReminderIntervalString = $"{_spotterProximityReminderInterval:F1} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
+			CommentarySpotterCarProximityReminderIntervalString = $"{_commentarySpotterCarProximityReminderInterval:F1} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
 		}
 	}
 
-	private string _spotterProximityReminderIntervalString = string.Empty;
+	private string _commentarySpotterCarProximityReminderIntervalString = string.Empty;
 
 	[XmlIgnore]
-	public string SpotterProximityReminderIntervalString
+	public string CommentarySpotterCarProximityReminderIntervalString
 	{
-		get => _spotterProximityReminderIntervalString;
+		get => _commentarySpotterCarProximityReminderIntervalString;
 
 		set
 		{
-			if ( value != _spotterProximityReminderIntervalString )
+			if ( value != _commentarySpotterCarProximityReminderIntervalString )
 			{
-				_spotterProximityReminderIntervalString = value;
+				_commentarySpotterCarProximityReminderIntervalString = value;
 
 				OnPropertyChanged();
 			}

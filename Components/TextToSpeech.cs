@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Channels;
 
 using MarvinsAIRARefactored.Classes;
@@ -102,7 +103,7 @@ public sealed class TextToSpeech : IDisposable
 	/// Enqueues a TTS request for the given voice slot and text.
 	/// Returns immediately; playback happens asynchronously.
 	/// </summary>
-	/// <param name="slotIndex">Index into <see cref="DataContext.Settings.VoiceSlots"/> (0–4).</param>
+	/// <param name="slotIndex">Index into <see cref="DataContext.Settings.CommentaryVoiceSlots"/> (0–4).</param>
 	/// <param name="text">The text to speak. May include ElevenLabs emotion tags, e.g. [excitedly].</param>
 	/// <param name="priority">1 = most urgent (spotter), 4 = low (colour commentary).</param>
 	public void Enqueue( int slotIndex, string text, int priority = 3 )
@@ -111,12 +112,12 @@ public sealed class TextToSpeech : IDisposable
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		if ( !settings.TtsEnabled )
+		if ( !settings.CommentaryEnabled )
 		{
 			return;
 		}
 
-		var slots = settings.VoiceSlots;
+		var slots = settings.CommentaryVoiceSlots;
 
 		if ( slotIndex < 0 || slotIndex >= slots.Count )
 		{
@@ -130,7 +131,7 @@ public sealed class TextToSpeech : IDisposable
 			return;
 		}
 
-		var request = new SpeechRequest( slotIndex, slot.VoiceId, settings.TtsLanguage, text, priority,
+		var request = new SpeechRequest( slotIndex, slot.VoiceId, settings.CommentaryElevenLabsLanguage, text, priority,
 			slot.Stability, slot.Style, slot.SimilarityBoost, slot.SpeakerBoost );
 
 		// Non-blocking try-write; channel drops oldest on overflow
@@ -144,7 +145,7 @@ public sealed class TextToSpeech : IDisposable
 	public async Task<KeyVerificationResult> VerifyKeyAsync( CancellationToken cancellationToken = default )
 	{
 		var app = App.Instance!;
-		var apiKey = DataContext.DataContext.Instance.Settings.ApiKey.Trim();
+		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey.Trim();
 
 		app.Logger.WriteLine( $"[TextToSpeech] VerifyKeyAsync: key length={apiKey.Length}, empty={string.IsNullOrWhiteSpace( apiKey )}" );
 
@@ -267,7 +268,7 @@ public sealed class TextToSpeech : IDisposable
 	{
 		var app = App.Instance!;
 		var settings = DataContext.DataContext.Instance.Settings;
-		var slots = settings.VoiceSlots;
+		var slots = settings.CommentaryVoiceSlots;
 
 		if ( request.SlotIndex >= slots.Count )
 		{
@@ -288,7 +289,7 @@ public sealed class TextToSpeech : IDisposable
 		}
 		else
 		{
-			mp3Bytes = await CallApiAsync( slot, request.Text, settings.ModelId, cancellationToken );
+			mp3Bytes = await CallApiAsync( slot, request.Text, settings.CommentaryElevenLabsModelId, cancellationToken );
 
 			if ( mp3Bytes is null )
 			{
@@ -301,7 +302,7 @@ public sealed class TextToSpeech : IDisposable
 			AudioPlayed?.Invoke( request.Text, request.Text.Length );
 		}
 
-		var volume = MathZ.Saturate( slot.Volume * settings.MasterVolume );
+		var volume = MathZ.Saturate( slot.Volume * settings.CommentaryMasterVolume );
 
 		// Create a per-playback CTS linked to the consumer's shutdown token so that
 		// InterruptSlot() can stop this specific clip without killing the whole pipeline.
@@ -327,7 +328,7 @@ public sealed class TextToSpeech : IDisposable
 	private static async Task<byte[]?> CallApiAsync( VoiceSlotSettings slot, string text, string modelId, CancellationToken cancellationToken )
 	{
 		var app = App.Instance!;
-		var apiKey = DataContext.DataContext.Instance.Settings.ApiKey;
+		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey;
 
 		if ( string.IsNullOrWhiteSpace( apiKey ) )
 		{
@@ -337,9 +338,14 @@ public sealed class TextToSpeech : IDisposable
 
 		var url = $"{ApiBaseUrl}/v1/text-to-speech/{slot.VoiceId}?output_format=mp3_44100_128";
 
+		// Emotion/direction tags (e.g. [urgently]) are only supported by eleven_v3; strip them for all other models.
+		var spokenText = modelId.StartsWith( "eleven_v3", StringComparison.OrdinalIgnoreCase )
+			? text
+			: StripEmotionTags( text );
+
 		var body = new
 		{
-			text,
+			text = spokenText,
 			model_id = modelId,
 			voice_settings = new
 			{
@@ -376,6 +382,10 @@ public sealed class TextToSpeech : IDisposable
 		}
 	}
 
+	/// <summary>Removes ElevenLabs emotion/direction tags such as [urgently] from text for models that do not support them.</summary>
+	private static string StripEmotionTags( string text ) =>
+		Regex.Replace( text, @"\[[a-zA-Z ]+\]\s*", string.Empty ).TrimStart();
+
 	/// <summary>
 	/// Fetches the list of available voices from the ElevenLabs API.
 	/// Returns a dictionary of voice ID → voice name sorted alphabetically by name, or null if the call fails.
@@ -383,7 +393,7 @@ public sealed class TextToSpeech : IDisposable
 	public async Task<Dictionary<string, string>?> GetVoicesAsync( CancellationToken cancellationToken = default )
 	{
 		var app = App.Instance!;
-		var apiKey = DataContext.DataContext.Instance.Settings.ApiKey;
+		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey;
 
 		if ( string.IsNullOrWhiteSpace( apiKey ) )
 		{
@@ -440,10 +450,10 @@ public sealed class TextToSpeech : IDisposable
 	/// Fetches the list of TTS-capable models from the ElevenLabs API.
 	/// Returns a dictionary of model ID → display name, or null if the call fails.
 	/// </summary>
-	public async Task<Dictionary<string, string>?> GetTtsModelsAsync( CancellationToken cancellationToken = default )
+	public async Task<Dictionary<string, string>?> GetModelsAsync( CancellationToken cancellationToken = default )
 	{
 		var app = App.Instance!;
-		var apiKey = DataContext.DataContext.Instance.Settings.ApiKey;
+		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey;
 
 		if ( string.IsNullOrWhiteSpace( apiKey ) )
 		{
@@ -459,7 +469,7 @@ public sealed class TextToSpeech : IDisposable
 
 			if ( !response.IsSuccessStatusCode )
 			{
-				app.Logger.WriteLine( $"[TextToSpeech] GetTtsModelsAsync error {(int) response.StatusCode}" );
+				app.Logger.WriteLine( $"[TextToSpeech] GetModelsAsync error {(int) response.StatusCode}" );
 				return null;
 			}
 
@@ -490,7 +500,7 @@ public sealed class TextToSpeech : IDisposable
 		}
 		catch ( Exception ex )
 		{
-			app.Logger.WriteLine( $"[TextToSpeech] GetTtsModelsAsync exception: {ex.Message}" );
+			app.Logger.WriteLine( $"[TextToSpeech] GetModelsAsync exception: {ex.Message}" );
 			return null;
 		}
 	}
@@ -506,7 +516,7 @@ public sealed class TextToSpeech : IDisposable
 	public async Task<SubscriptionInfo?> GetSubscriptionAsync( CancellationToken cancellationToken = default )
 	{
 		var app = App.Instance!;
-		var apiKey = DataContext.DataContext.Instance.Settings.ApiKey;
+		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey;
 
 		if ( string.IsNullOrWhiteSpace( apiKey ) )
 		{
