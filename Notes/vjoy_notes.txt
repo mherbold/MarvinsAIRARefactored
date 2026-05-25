@@ -1,1 +1,0 @@
-1. Get latest signed drivers for Windows 11 from here - https://github.com/BrunnerInnovation/vJoy/releases/latest
