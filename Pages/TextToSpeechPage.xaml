@@ -67,6 +67,7 @@
                     <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!-- Row 0: API key + Verify button -->
@@ -114,7 +115,15 @@
                 <TextBlock x:Name="SubscriptionUsage_TextBlock"
                            Grid.Row="4"
                            Style="{DynamicResource MairaTextBlockStyle}"
-                           Margin="0,5,0,0" />
+                           Margin="0,5,0,0"
+                           d:Text="Just a test..." />
+
+                <!-- Row 5: Last spoken text -->
+                <TextBlock x:Name="LastSpokenText_TextBlock"
+                           Grid.Row="5"
+                           Style="{DynamicResource MairaTextBlockStyle}"
+                           Margin="0,5,0,0"
+                           d:Text="Just a test..." />
 
             </Grid>
 
@@ -678,6 +687,14 @@
                 <controls:MairaSwitch Grid.Column="0"
                                       IsOn="{Binding Settings.SpotterCarCalls, Mode=TwoWay}"
                                       Label="{Binding Localization[SpotterCarCalls]}" />
+
+                <!-- reminder interval -->
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[SpotterProximityReminderInterval]}"
+                                    Value="{Binding Settings.SpotterProximityReminderInterval, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SpotterProximityReminderIntervalString}"
+                                    StepSize="0.1"
+                                    DefaultValue="3.0" />
 
             </Grid>
 

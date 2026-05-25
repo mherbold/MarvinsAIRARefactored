@@ -64,6 +64,12 @@
     "[urgently] ¡Tres en fila, estás a la derecha!",
     "[urgently] ¡Tres en fila! ¡Auto a tu izquierda!"
   ],
+  "SpotterStillThere": [
+    "Sigue ahí.",
+    "Sigue contigo.",
+    "Todavía está ahí.",
+    "Auto aún al lado."
+  ],
   "CrewFuelWarning": [
     "Combustible bajo — quedan unas {laps} vueltas.",
     "Atención al combustible — aproximadamente {laps} vueltas en el tanque."

@@ -64,6 +64,12 @@
     "[urgently] Három széles, te vagy jobb oldalt!",
     "[urgently] Három széles! Autó balra tőled!"
   ],
+  "SpotterStillThere": [
+    "Még ott van.",
+    "Még melletted.",
+    "Még mindig ott van.",
+    "Az autó még mindig mellette."
+  ],
   "CrewFuelWarning": [
     "Kevés az üzemanyag — kb. {laps} kör maradt.",
     "Figyeld az üzemanyagot — kb. {laps} környi van a tankban."

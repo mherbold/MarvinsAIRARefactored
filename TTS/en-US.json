@@ -73,6 +73,12 @@
     "[urgently] Three wide, you're on the right!",
     "[urgently] Three wide! Car to your left!"
   ],
+  "SpotterStillThere": [
+    "Still there.",
+    "Still with you.",
+    "He's still there.",
+    "Car still alongside."
+  ],
   "CrewFuelWarning": [
     "Fuel getting low — you've got about {laps} laps worth left.",
     "Heads up — fuel is running low, roughly {laps} laps remaining.",

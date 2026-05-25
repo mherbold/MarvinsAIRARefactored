@@ -64,6 +64,12 @@
     "[urgently] Três lado a lado, você está à direita!",
     "[urgently] Três lado a lado! Carro à sua esquerda!"
   ],
+  "SpotterStillThere": [
+    "Ainda lá.",
+    "Ainda com você.",
+    "Ele ainda está lá.",
+    "Carro ainda ao lado."
+  ],
   "CrewFuelWarning": [
     "Combustível baixo — restam cerca de {laps} voltas.",
     "Atenção ao combustível — aproximadamente {laps} voltas no tanque."

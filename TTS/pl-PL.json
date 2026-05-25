@@ -64,6 +64,12 @@
     "[urgently] Trzech obok siebie, jesteś po prawej!",
     "[urgently] Trzech obok siebie! Auto po twojej lewej!"
   ],
+  "SpotterStillThere": [
+    "Nadal tam.",
+    "Nadal obok ciebie.",
+    "On nadal tam jest.",
+    "Auto nadal obok."
+  ],
   "CrewFuelWarning": [
     "Paliwo kończy się — zostało około {laps} okrążeń.",
     "Uważaj na paliwo — około {laps} okrążeń w baku."

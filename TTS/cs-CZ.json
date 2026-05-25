@@ -64,6 +64,12 @@
     "[urgently] Tři vedle sebe, jsi vpravo!",
     "[urgently] Tři do šířky! Auto vlevo od tebe!"
   ],
+  "SpotterStillThere": [
+    "Pořád tam.",
+    "Stále vedle tebe.",
+    "On je stále tam.",
+    "Auto stále vedle."
+  ],
   "CrewFuelWarning": [
     "Palivo docházní — zbývá asi {laps} kol.",
     "Pozor na palivo — přibližně {laps} kol v nádrži."

@@ -64,6 +64,12 @@
     "[urgently] Tre i bredd, du är till höger!",
     "[urgently] Tre i bredd! Bil till din vänster!"
   ],
+  "SpotterStillThere": [
+    "Fortfarande där.",
+    "Fortfarande med dig.",
+    "Han är fortfarande där.",
+    "Bilen är fortfarande bredvid."
+  ],
   "CrewFuelWarning": [
     "Bränslet håller på att ta slut — ca {laps} varv kvar.",
     "Håll koll på bränslet — ungefär {laps} varv kvar i tanken."

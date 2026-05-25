@@ -1591,6 +1591,9 @@
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>接近提示</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>提醒间隔</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>进站窗口开放</value>
   </data>

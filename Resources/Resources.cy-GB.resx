@@ -1591,6 +1591,9 @@
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>Galwadau Agosrwydd</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>Cyfwng Atgoffa</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Ffenestr Pit Ar Agor</value>
   </data>

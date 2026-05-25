@@ -59,6 +59,13 @@ public sealed class TextToSpeech : IDisposable
 	// Public surface
 	// -------------------------------------------------------------------------
 
+	/// <summary>
+	/// Raised on the thread-pool after audio playback begins.
+	/// <paramref name="text"/> is the spoken phrase; <paramref name="charactersCharged"/> is 0 for
+	/// cache hits and <c>text.Length</c> for API calls that consumed ElevenLabs quota.
+	/// </summary>
+	public event Action<string, int>? AudioPlayed;
+
 	public void Initialize()
 	{
 		var app = App.Instance!;
@@ -84,6 +91,12 @@ public sealed class TextToSpeech : IDisposable
 			_playbackCts?.Cancel();
 		}
 	}
+
+	/// <summary>
+	/// Returns true if the given voice slot is currently playing audio.
+	/// Safe to call from any thread.
+	/// </summary>
+	public bool IsSlotPlaying( int slotIndex ) => _playingSlotIndex == slotIndex;
 
 	/// <summary>
 	/// Enqueues a TTS request for the given voice slot and text.
@@ -270,6 +283,8 @@ public sealed class TextToSpeech : IDisposable
 		if ( File.Exists( cacheFile ) )
 		{
 			mp3Bytes = await File.ReadAllBytesAsync( cacheFile, cancellationToken );
+
+			AudioPlayed?.Invoke( request.Text, 0 );
 		}
 		else
 		{
@@ -283,7 +298,7 @@ public sealed class TextToSpeech : IDisposable
 			// Fire-and-forget cache write — does not block playback
 			_ = WriteCacheAsync( cacheFile, mp3Bytes );
 
-			settings.SessionCharactersUsed += request.Text.Length;
+			AudioPlayed?.Invoke( request.Text, request.Text.Length );
 		}
 
 		var volume = MathZ.Saturate( slot.Volume * settings.MasterVolume );

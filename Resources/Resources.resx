@@ -1694,6 +1694,9 @@
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>Proximity Calls</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>Reminder Interval</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Pit Window Open</value>
   </data>

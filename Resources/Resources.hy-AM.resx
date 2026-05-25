@@ -1636,6 +1636,9 @@
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>Մոտության ազդանշաններ</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>Հիշեցման ընդմիջում</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Փիթ պատուհանը բաց է</value>
   </data>

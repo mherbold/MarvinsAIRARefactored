@@ -1607,6 +1607,9 @@
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>Appels de proximité</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>Intervalle de rappel</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Fenêtre des stands ouverte</value>
   </data>

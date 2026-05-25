@@ -1591,6 +1591,9 @@
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>Apeluri de proximitate</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>Interval de reamintire</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Fereastră pit deschisă</value>
   </data>

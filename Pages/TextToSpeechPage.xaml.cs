@@ -13,19 +13,39 @@ namespace MarvinsAIRARefactored.Pages;
 
 public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 {
+	private SubscriptionInfo? _lastSubscriptionInfo;
+	private int _sessionCharactersUsed;
+
 	public TextToSpeechPage()
 	{
 		InitializeComponent();
 
 		AppDataContext.Instance.Settings.PropertyChanged += Settings_PropertyChanged;
+
+		Loaded += ( _, _ ) => App.Instance!.TextToSpeech.AudioPlayed += TextToSpeech_AudioPlayed;
+	}
+
+	private void TextToSpeech_AudioPlayed( string text, int charactersCharged )
+	{
+		_sessionCharactersUsed += charactersCharged;
+
+		var displayText = charactersCharged > 0 ? "* " + text : text;
+
+		Dispatcher.InvokeAsync( () =>
+		{
+			LastSpokenText_TextBlock.Text = displayText;
+			UpdateSubscriptionUsageDisplay();
+		} );
 	}
 
 	private async void Settings_PropertyChanged( object? sender, System.ComponentModel.PropertyChangedEventArgs e )
 	{
-		if ( e.PropertyName == nameof( MarvinsAIRARefactored.DataContext.Settings.TtsEnabled ) &&
-			 AppDataContext.Instance.Settings.TtsEnabled )
+		switch ( e.PropertyName )
 		{
-			await VerifyAndPopulateAsync();
+			case nameof( MarvinsAIRARefactored.DataContext.Settings.TtsEnabled )
+				when AppDataContext.Instance.Settings.TtsEnabled:
+				await VerifyAndPopulateAsync();
+				break;
 		}
 	}
 
@@ -205,16 +225,36 @@ public partial class TextToSpeechPage : System.Windows.Controls.UserControl
 
 		if ( info is null )
 		{
+			_lastSubscriptionInfo = null;
 			SubscriptionUsage_TextBlock.Text = localization[ "SubscriptionUsageUnavailable" ];
 			return;
 		}
 
+		_lastSubscriptionInfo = info;
+		_sessionCharactersUsed = 0;
+
+		UpdateSubscriptionUsageDisplay();
+	}
+
+	private void UpdateSubscriptionUsageDisplay()
+	{
+		if ( _lastSubscriptionInfo is null )
+		{
+			return;
+		}
+
+		var localization = AppDataContext.Instance.Localization;
+		var adjustedUsed = _lastSubscriptionInfo.CharactersUsed + _sessionCharactersUsed;
+		var limit = _lastSubscriptionInfo.CharacterLimit;
+		var remaining = Math.Max( 0, limit - adjustedUsed );
+		var percent = limit > 0 ? adjustedUsed * 100.0 / limit : 0.0;
+
 		SubscriptionUsage_TextBlock.Text = string.Format(
 			localization[ "SubscriptionUsage" ],
-			info.CharactersUsed,
-			info.CharacterLimit,
-			info.PercentUsed,
-			info.CharactersRemaining );
+			adjustedUsed,
+			limit,
+			percent,
+			remaining );
 	}
 
 	#endregion

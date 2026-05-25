@@ -1694,6 +1694,9 @@
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>สัญญาณความใกล้ชิด</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>ช่วงเวลาเตือนความจำ</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>หน้าต่างพิทเปิดอยู่</value>
   </data>

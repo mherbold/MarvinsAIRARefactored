@@ -64,6 +64,12 @@
     "[urgently] Trei în linie, ești pe dreapta!",
     "[urgently] Trei în linie! Mașină la stânga ta!"
   ],
+  "SpotterStillThere": [
+    "Încă acolo.",
+    "Încă cu tine.",
+    "Este încă acolo.",
+    "Mașina e încă alături."
+  ],
   "CrewFuelWarning": [
     "Combustibil scăzut — mai sunt aproximativ {laps} tururi.",
     "Atenție la combustibil — aproximativ {laps} tururi în rezervor."

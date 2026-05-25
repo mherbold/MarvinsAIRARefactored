@@ -1591,6 +1591,9 @@
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>Hlášení přiblížení</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>Interval připomínky</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Okno boxů otevřeno</value>
   </data>

@@ -64,6 +64,12 @@
     "[urgently] Drei nebeneinander, du bist rechts!",
     "[urgently] Drei breit! Auto links von dir!"
   ],
+  "SpotterStillThere": [
+    "Noch da.",
+    "Noch neben dir.",
+    "Er ist noch da.",
+    "Auto noch gleichauf."
+  ],
   "CrewFuelWarning": [
     "Kraftstoff wird knapp — noch etwa {laps} Runden.",
     "Achtung Treibstoff — noch ungefähr {laps} Runden im Tank."

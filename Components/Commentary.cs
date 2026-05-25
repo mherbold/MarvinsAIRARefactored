@@ -52,6 +52,7 @@ public sealed class Commentary
 	private bool _prevPitsOpen = false;
 	private bool _fuelWarningSent = false;
 	private IRacingSdkEnum.CarLeftRight _prevCarLeftRight = IRacingSdkEnum.CarLeftRight.Clear;
+	private double _lastSpotterReminderTime = 0.0;
 
 	// Whether the session is currently in a racing state (prevents commentary in warmup etc.)
 	private bool _isRacingActive = false;
@@ -133,7 +134,7 @@ public sealed class Commentary
 		CheckTireWarning( sim, settings, now );
 
 		// --- Spotter calls ---
-		CheckSpotterCalls( sim );
+		CheckSpotterCalls( sim, now );
 
 		// Advance per-car state for next frame
 		CopyToPrev( sim );
@@ -378,52 +379,91 @@ public sealed class Commentary
 		}
 	}
 
-	private void CheckSpotterCalls( Simulator sim )
+	private void CheckSpotterCalls( Simulator sim, double now )
 	{
-		if ( !DataContext.DataContext.Instance.Settings.SpotterCarCalls )
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		if ( !settings.SpotterCarCalls )
 		{
 			return;
 		}
 
 		var carLeftRight = sim.CarLeftRight;
 
-		// Only act when the state actually changes — the SDK delivers the same value every frame
-		if ( carLeftRight == _prevCarLeftRight )
+		if ( carLeftRight != _prevCarLeftRight )
+		{
+			_prevCarLeftRight = carLeftRight;
+
+			// Any state transition interrupts whatever the spotter is currently saying
+			App.Instance?.TextToSpeech.InterruptSlot( SlotSpotter );
+
+			switch ( carLeftRight )
+			{
+				case IRacingSdkEnum.CarLeftRight.CarLeft:
+					EnqueueRandom( "SpotterCarLeft", SlotSpotter );
+					break;
+
+				case IRacingSdkEnum.CarLeftRight.CarRight:
+					EnqueueRandom( "SpotterCarRight", SlotSpotter );
+					break;
+
+				case IRacingSdkEnum.CarLeftRight.CarLeftRight:
+					EnqueueRandom( "SpotterThreeWideMiddle", SlotSpotter );
+					break;
+
+				case IRacingSdkEnum.CarLeftRight.TwoCarsLeft:
+					EnqueueRandom( "SpotterThreeWideRight", SlotSpotter );
+					break;
+
+				case IRacingSdkEnum.CarLeftRight.TwoCarsRight:
+					EnqueueRandom( "SpotterThreeWideLeft", SlotSpotter );
+					break;
+
+				case IRacingSdkEnum.CarLeftRight.Clear:
+					EnqueueRandom( "SpotterClear", SlotSpotter );
+					break;
+			}
+
+			// Reset reminder timer so the interval starts fresh after each state change
+			_lastSpotterReminderTime = now;
+
+			return;
+		}
+
+		// Periodic proximity reminder while car is alongside
+		if ( carLeftRight == IRacingSdkEnum.CarLeftRight.Clear )
 		{
 			return;
 		}
 
-		_prevCarLeftRight = carLeftRight;
+		var interval = (double) settings.SpotterProximityReminderInterval;
 
-		// Any state transition interrupts whatever the spotter is currently saying
-		App.Instance?.TextToSpeech.InterruptSlot( SlotSpotter );
-
-		switch ( carLeftRight )
+		if ( now - _lastSpotterReminderTime < interval )
 		{
-			case IRacingSdkEnum.CarLeftRight.CarLeft:
-				EnqueueRandom( "SpotterCarLeft", SlotSpotter );
-				break;
-
-			case IRacingSdkEnum.CarLeftRight.CarRight:
-				EnqueueRandom( "SpotterCarRight", SlotSpotter );
-				break;
-
-			case IRacingSdkEnum.CarLeftRight.CarLeftRight:
-				EnqueueRandom( "SpotterThreeWideMiddle", SlotSpotter );
-				break;
-
-			case IRacingSdkEnum.CarLeftRight.TwoCarsLeft:
-				EnqueueRandom( "SpotterThreeWideRight", SlotSpotter );
-				break;
-
-			case IRacingSdkEnum.CarLeftRight.TwoCarsRight:
-				EnqueueRandom( "SpotterThreeWideLeft", SlotSpotter );
-				break;
-
-			case IRacingSdkEnum.CarLeftRight.Clear:
-				EnqueueRandom( "SpotterClear", SlotSpotter );
-				break;
+			return;
 		}
+
+		// Skip the reminder if the spotter is still speaking — don't interrupt
+		if ( App.Instance?.TextToSpeech.IsSlotPlaying( SlotSpotter ) == true )
+		{
+			return;
+		}
+
+		_lastSpotterReminderTime = now;
+
+		// Randomly choose between "Still there" and repeating the current proximity phrase
+		var reminderKey = carLeftRight switch
+		{
+			IRacingSdkEnum.CarLeftRight.CarLeft      => "SpotterCarLeft",
+			IRacingSdkEnum.CarLeftRight.CarRight     => "SpotterCarRight",
+			IRacingSdkEnum.CarLeftRight.CarLeftRight => "SpotterThreeWideMiddle",
+			IRacingSdkEnum.CarLeftRight.TwoCarsLeft  => "SpotterThreeWideRight",
+			IRacingSdkEnum.CarLeftRight.TwoCarsRight => "SpotterThreeWideLeft",
+			_                                        => "SpotterCarLeft"
+		};
+
+		var useStillThere = Random.Shared.NextDouble() < 0.5;
+		EnqueueRandom( useStillThere ? "SpotterStillThere" : reminderKey, SlotSpotter );
 	}
 
 	// -------------------------------------------------------------------------
@@ -546,6 +586,7 @@ public sealed class Commentary
 		_prevPitsOpen = false;
 		_fuelWarningSent = false;
 		_prevCarLeftRight = IRacingSdkEnum.CarLeftRight.Clear;
+		_lastSpotterReminderTime = 0.0;
 		_cooldowns.Clear();
 		Array.Clear( _prevCarIdxPosition );
 		Array.Clear( _prevCarIdxLapCompleted );

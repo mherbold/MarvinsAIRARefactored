@@ -64,6 +64,12 @@
     "[urgently] Tre på rad, du er til høyre!",
     "[urgently] Tre bredt! Bil til din venstre!"
   ],
+  "SpotterStillThere": [
+    "Fremdeles der.",
+    "Fremdeles med deg.",
+    "Han er fremdeles der.",
+    "Bil fremdeles ved siden av."
+  ],
   "CrewFuelWarning": [
     "Drivstoffet er i ferd med å ta slutt — ca. {laps} runder igjen.",
     "Pass på drivstoffet — omtrent {laps} runder igjen i tanken."

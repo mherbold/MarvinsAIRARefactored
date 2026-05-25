@@ -64,6 +64,12 @@
     "[urgently] Tre affiancati, sei a destra!",
     "[urgently] Tre affiancati! Auto alla tua sinistra!"
   ],
+  "SpotterStillThere": [
+    "E' ancora lì.",
+    "E' ancora con te.",
+    "Lui è ancora lì.",
+    "Auto ancora affiancata."
+  ],
   "CrewFuelWarning": [
     "Carburante in esaurimento — circa {laps} giri rimasti.",
     "Attenzione al carburante — circa {laps} giri nel serbatoio."

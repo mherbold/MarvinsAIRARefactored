@@ -1596,6 +1596,9 @@ Hier ist der Link zum Spenden:</value>
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>Näherungsmeldungen</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>Erinnerungsintervall</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Boxenfenster offen</value>
   </data>

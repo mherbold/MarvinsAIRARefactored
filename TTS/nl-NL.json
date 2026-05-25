@@ -64,6 +64,12 @@
     "[urgently] Drie naast elkaar, jij zit rechts!",
     "[urgently] Drie breed! Auto links van je!"
   ],
+  "SpotterStillThere": [
+    "Nog steeds daar.",
+    "Nog steeds naast je.",
+    "Hij is er nog steeds.",
+    "Auto nog steeds naast je."
+  ],
   "CrewFuelWarning": [
     "Brandstof raakt op — nog ongeveer {laps} ronden.",
     "Let op de brandstof — ongeveer {laps} ronden in de tank."

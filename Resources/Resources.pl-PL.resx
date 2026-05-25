@@ -1593,6 +1593,9 @@
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>Sygnały zbliżenia</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>Interwał przypomnień</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Okno pit otwarte</value>
   </data>

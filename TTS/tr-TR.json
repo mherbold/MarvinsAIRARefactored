@@ -1,88 +1,94 @@
 ﻿{
-  "Overtake": c
-    "cexcitedly] {attacker} atağa geçiyor — {position}. sıraya çıktı!",
-    "cexcitedly] {attacker}'dan muhteşem bir manevra! {defender}'ı geçiyor ve P{position}'a yerleşiyor!",
-    "csurprised] Oha! {attacker} başardı — {defender}'ı geçti ve P{position}'da!"
+  "Overtake": [
+    "[excitedly] {attacker} atağa geçiyor — {position}. sıraya çıktı!",
+    "[excitedly] {attacker}'dan muhteşem bir manevra! {defender}'ı geçiyor ve P{position}'a yerleşiyor!",
+    "[surprised] Oha! {attacker} başardı — {defender}'ı geçti ve P{position}'da!"
   ],
-  "CloseBattle": c
+  "CloseBattle": [
     "{driver1} ile {driver2} arasında inanılmaz çekişme — aralarında bir saniyeden az fark var!",
     "{driver1} ve {driver2} adeta birbirine yapışık gidiyor — bu muhteşem!"
   ],
-  "FastestLap": c
-    "cimpressed] {driver} yarışın en hızlı turunu yapıyor — {lapTime}!",
-    "cexcitedly] {driver}'dan yeni en hızlı tur — {lapTime}!"
+  "FastestLap": [
+    "[impressed] {driver} yarışın en hızlı turunu yapıyor — {lapTime}!",
+    "[excitedly] {driver}'dan yeni en hızlı tur — {lapTime}!"
   ],
-  "PitStopEntry": c
+  "PitStopEntry": [
     "{driver} pite giriyor — ekip hazır.",
     "{driver} pit yoluna giriyor."
   ],
-  "PitStopExit": c
+  "PitStopExit": [
     "{driver} pitten çıkıyor — temiz duruş.",
     "{driver} yarışa geri döndü."
   ],
-  "Caution": c
-    "curgently] Sarı bayrak! Pistte dikkat!",
-    "curgently] Safety car — yavaşla ve kapat."
+  "Caution": [
+    "[urgently] Sarı bayrak! Pistte dikkat!",
+    "[urgently] Safety car — yavaşla ve kapat."
   ],
-  "RedFlag": c
-    "cciddi şekilde] Kırmızı bayrak! Kırmızı bayrak! Seans durduruldu.",
-    "cciddi şekilde] Kırmızı bayrak — tüm araçlar hemen pit'e dönmeli."
+  "RedFlag": [
+    "[seriously] Kırmızı bayrak! Kırmızı bayrak! Seans durduruldu.",
+    "[seriously] Kırmızı bayrak — tüm araçlar hemen pit'e dönmeli."
   ],
-  "SessionStart": c
-    "cexcitedly] Yeşil ışık — ve gidiyoruz! Yarış başladı!",
-    "cexcitedly] Yeşil bayrak! Yarışıyoruz!"
+  "SessionStart": [
+    "[excitedly] Yeşil ışık — ve gidiyoruz! Yarış başladı!",
+    "[excitedly] Yeşil bayrak! Yarışıyoruz!"
   ],
-  "SessionEnd": c
-    "cseriously] Damalı bayrak — {driver} kazanıyor!",
-    "cseriously] Bitti! Ne harika bir yarıştı!"
+  "SessionEnd": [
+    "[seriously] Damalı bayrak — {driver} kazanıyor!",
+    "[seriously] Bitti! Ne harika bir yarıştı!"
   ],
-  "Incident": c
+  "Incident": [
     "{driver}, o olay nedeniyle {seconds} saniyelik ceza aldı.",
     "Hakemler {driver}'a {seconds} saniyelik ceza verdi."
   ],
-  "SpotterCarLeft": c
+  "SpotterCarLeft": [
     "Solda araç.",
     "Sol."
   ],
-  "SpotterCarRight": c
+  "SpotterCarRight": [
     "Sağda araç.",
     "Sağ."
   ],
-  "SpotterClear": c
+  "SpotterClear": [
     "Açık.",
     "Yol açık."
   ],
-  "SpotterThreeWideMiddle": c
-    "curgently] Üç araç yan yana, sen ortadasın!",
-    "curgently] Üç araç yan yana! Solda ve sağda araç var!"
+  "SpotterThreeWideMiddle": [
+    "[urgently] Üç araç yan yana, sen ortadasın!",
+    "[urgently] Üç araç yan yana! Solda ve sağda araç var!"
   ],
-  "SpotterThreeWideLeft": c
-    "curgently] Üç araç yan yana, sen soldasın!",
-    "curgently] Üç araç yan yana! Sağında araç var!"
+  "SpotterThreeWideLeft": [
+    "[urgently] Üç araç yan yana, sen soldasın!",
+    "[urgently] Üç araç yan yana! Sağında araç var!"
   ],
-  "SpotterThreeWideRight": c
-    "curgently] Üç araç yan yana, sen sağdasın!",
-    "curgently] Üç araç yan yana! Solunda araç var!"
+  "SpotterThreeWideRight": [
+    "[urgently] Üç araç yan yana, sen sağdasın!",
+    "[urgently] Üç araç yan yana! Solunda araç var!"
   ],
-  "CrewFuelWarning": c
+  "SpotterStillThere": [
+    "Hâlâ orada.",
+    "Hâlâ yanında.",
+    "O hâlâ orada.",
+    "Araç hâlâ yan yana."
+  ],
+  "CrewFuelWarning": [
     "Yakıt azalıyor — yaklaşık {laps} tur kaldı.",
     "Yakıta dikkat — tankta yaklaşık {laps} turluk var."
   ],
-  "CrewTireWarning": c
+  "CrewTireWarning": [
     "Lastikler aşınıyor — tutuş azalıyor.",
     "Lastik aşınması — yakında pit yapmayı düşün."
   ],
-  "CrewPitWindowOpen": c
+  "CrewPitWindowOpen": [
     "Pit penceresi açık — istediğin zaman girebilirsin.",
     "Şimdi girebilirsin — pencere açık."
   ],
-  "CrewDamage": c
+  "CrewDamage": [
     "Hasarın var — aynalarını kontrol et.",
     "Hasar raporlandı — dikkatli ol."
   ],
-  "TestPhrase0": c "Pit penceresi üç tur sonra açılıyor. Yakıt iyi görünüyor." ],
-  "TestPhrase1": c "Araç solda. Araç solda. Yukarı çık." ],
-  "TestPhrase2": c "Ne bir hamle! İkinci sıraya geçti!" ],
-  "TestPhrase3": c "Virajda çok kontrollüydü — arabayı kurtaran buydu." ],
-  "TestPhrase4": c "Undercut mükemmel çalıştı. Ana rakibinin önünde piste çıkıyor!" ]
+  "TestPhrase0": [ "Pit penceresi üç tur sonra açılıyor. Yakıt iyi görünüyor." ],
+  "TestPhrase1": [ "Araç solda. Araç solda. Yukarı çık." ],
+  "TestPhrase2": [ "Ne bir hamle! İkinci sıraya geçti!" ],
+  "TestPhrase3": [ "Virajda çok kontrollüydü — arabayı kurtaran buydu." ],
+  "TestPhrase4": [ "Undercut mükemmel çalıştı. Ana rakibinin önünde piste çıkıyor!" ]
 }

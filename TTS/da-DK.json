@@ -64,6 +64,12 @@
     "[urgently] Tre på rad, du er til højre!",
     "[urgently] Tre bredt! Bil til din venstre!"
   ],
+  "SpotterStillThere": [
+    "Stadig der.",
+    "Stadig med dig.",
+    "Han er stadig der.",
+    "Bilen er stadig ved siden af."
+  ],
   "CrewFuelWarning": [
     "Brændstof er ved at slippe op — ca. {laps} omgange tilbage.",
     "Pas på brændstoffet — cirka {laps} omgange i tanken."

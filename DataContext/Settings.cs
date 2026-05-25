@@ -12755,29 +12755,6 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Text to Speech — Session character counter (runtime only, not serialized)
-
-	[XmlIgnore]
-	private int _sessionCharactersUsed = 0;
-
-	[XmlIgnore]
-	public int SessionCharactersUsed
-	{
-		get => _sessionCharactersUsed;
-
-		set
-		{
-			if ( value != _sessionCharactersUsed )
-			{
-				_sessionCharactersUsed = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
 	#region Text to Speech — Voice slots
 
 	private List<VoiceSlotSettings> _voiceSlots = VoiceSlotSettings.CreateDefaults();
@@ -13008,6 +12985,45 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _spotterCarCalls )
 			{
 				_spotterCarCalls = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private float _spotterProximityReminderInterval = 3.0f;
+
+	public float SpotterProximityReminderInterval
+	{
+		get => _spotterProximityReminderInterval;
+
+		set
+		{
+			value = Math.Clamp( value, 1.0f, 20.0f );
+
+			if ( value != _spotterProximityReminderInterval )
+			{
+				_spotterProximityReminderInterval = value;
+
+				OnPropertyChanged();
+			}
+
+			SpotterProximityReminderIntervalString = $"{_spotterProximityReminderInterval:F1} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
+		}
+	}
+
+	private string _spotterProximityReminderIntervalString = string.Empty;
+
+	[XmlIgnore]
+	public string SpotterProximityReminderIntervalString
+	{
+		get => _spotterProximityReminderIntervalString;
+
+		set
+		{
+			if ( value != _spotterProximityReminderIntervalString )
+			{
+				_spotterProximityReminderIntervalString = value;
 
 				OnPropertyChanged();
 			}

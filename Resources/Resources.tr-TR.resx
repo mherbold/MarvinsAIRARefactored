@@ -1591,6 +1591,9 @@
   <data name="SpotterCarCalls" xml:space="preserve">
     <value>Yakınlık Çağrıları</value>
   </data>
+  <data name="SpotterProximityReminderInterval" xml:space="preserve">
+    <value>Hatırlatma Aralığı</value>
+  </data>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Pit Penceresi Açık</value>
   </data>

@@ -64,6 +64,12 @@
     "[urgently] Trois de front, tu es à droite !",
     "[urgently] Trois de front ! Voiture à ta gauche !"
   ],
+  "SpotterStillThere": [
+    "Toujours là.",
+    "Toujours avec toi.",
+    "Il est toujours là.",
+    "Voiture toujours à côté."
+  ],
   "CrewFuelWarning": [
     "Carburant bas — il reste environ {laps} tours.",
     "Attention au carburant — approximativement {laps} tours restants dans le réservoir."

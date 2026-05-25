@@ -64,6 +64,12 @@
     "[urgently] Kolme vierekkäin, olet oikealla!",
     "[urgently] Kolme leveyttä! Auto vasemmalla puolellasi!"
   ],
+  "SpotterStillThere": [
+    "Vielä siellä.",
+    "Vielä vieressäsi.",
+    "Hän on vielä siellä.",
+    "Auto vielä rinnalla."
+  ],
   "CrewFuelWarning": [
     "Polttoaine on vähissä — noin {laps} kierrosta jäljellä.",
     "Tarkkaile polttoainetta — noin {laps} kierrosta tankissa."
