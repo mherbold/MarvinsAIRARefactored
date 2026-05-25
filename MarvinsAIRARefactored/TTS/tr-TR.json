@@ -1,0 +1,57 @@
+﻿{
+  "SpotterCarLeft": [
+    "Solda araç!",
+    "Sol!"
+  ],
+  "SpotterCarRight": [
+    "Sağda araç!",
+    "Sağ!"
+  ],
+  "SpotterClear": [
+    "Açık.",
+    "Yol açık."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Üç araç yan yana, sen ortadasın!",
+    "[urgently] Üç araç yan yana! Solda ve sağda araç var!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Üç araç yan yana, sen soldasın!",
+    "[urgently] Üç araç yan yana! Sağında araç var!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Üç araç yan yana, sen sağdasın!",
+    "[urgently] Üç araç yan yana! Solunda araç var!"
+  ],
+  "SpotterStillThere": [
+    "Hâlâ orada.",
+    "Hâlâ yanında.",
+    "O hâlâ orada.",
+    "Araç hâlâ yan yana."
+  ],
+  "TestPhrase0": [
+    "Ses testi.",
+    "İletişim kontrolü — beni duyuyor musun?",
+    "Bu bir ses testidir."
+  ],
+  "TestPhrase1": [
+    "Spotter çevrimiçi.",
+    "Spotter burada, iletişim kontrolü.",
+    "Spotter aktif."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Spor spikeri bir, test!",
+    "Mikrofon kontrolü — spor spikeri bir burada.",
+    "[cheerfully] Spor spikeri bir çevrimiçi."
+  ],
+  "TestPhrase3": [
+    "Spor spikeri iki, test.",
+    "Mikrofon kontrolü — spor spikeri iki burada.",
+    "Spor spikeri iki çevrimiçi."
+  ],
+  "TestPhrase4": [
+    "Pit muhabiri, test.",
+    "Pit lane, mikrofon kontrolü.",
+    "Pit muhabiri çevrimiçi."
+  ]
+}

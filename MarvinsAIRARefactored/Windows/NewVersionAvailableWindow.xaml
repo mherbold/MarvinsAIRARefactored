@@ -1,0 +1,76 @@
+﻿<Window x:Class="MarvinsAIRARefactored.Windows.NewVersionAvailableWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:windows="clr-namespace:MarvinsAIRARefactored.Windows"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:components="clr-namespace:MarvinsAIRARefactored.Components"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding Localization[NewVersionAvailable]}"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        Width="800"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </Window.DataContext>
+
+    <StackPanel Margin="40,30,40,40">
+        
+        <TextBlock x:Name="CurrentVersion_TextBlock"
+                   Style="{StaticResource MairaTextBlockStyle}"
+                   FontSize="30"
+                   Text="Test"
+                   Margin="0,0,0,20" />
+
+        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                   Text="{Binding Localization[Changelog]}" />
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+
+            <Border BorderThickness="1,0,0,0"
+                    BorderBrush="#666"
+                    Padding="20,0,0,0"
+                    Margin="0,10,0,60">
+
+                <TextBlock x:Name="ChangeLog_TextBlock"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Text="This is just a test."
+                           FontSize="20"
+                           TextWrapping="Wrap" />
+
+            </Border>
+
+        </ScrollViewer>
+
+        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                   Text="{Binding Localization[DownloadQuestion]}"
+                   HorizontalAlignment="Center" />
+
+        <Grid HorizontalAlignment="Center"
+              Margin="0,10,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <controls:MairaButton Grid.Column="0"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Click="Download_MairaButton_Click" />
+
+            <controls:MairaButton Grid.Column="2"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                  Click="Cancel_MairaButton_Click" />
+
+        </Grid>
+
+    </StackPanel>
+
+</Window>

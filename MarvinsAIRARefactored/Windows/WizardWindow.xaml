@@ -1,0 +1,626 @@
+<Window x:Class="MarvinsAIRARefactored.Windows.WizardWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding Localization[Wizard_Step0_Title]}"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        Width="850"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </Window.DataContext>
+
+    <Grid Margin="20,40,0,0">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Left 2/3: all step panels -->
+        <StackPanel Grid.Column="0"
+                    Margin="0,0,20,40">
+
+            <!-- Step 0: Welcome / Skip -->
+            <StackPanel x:Name="Step0_Panel">
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           TextWrapping="Wrap"
+                           Text="{Binding Localization[Wizard_Step0_Title]}"
+                           Margin="0,0,0,16" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,10"
+                           Text="{Binding Localization[Wizard_Step0_Line1]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,24"
+                           Text="{Binding Localization[Wizard_Step0_Line2]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,30"
+                           Text="{Binding Localization[Wizard_Step0_Line3]}" />
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaButton Grid.Column="0"
+                                          x:Name="UseWizard_MairaButton"
+                                          Label="{Binding Localization[Wizard_LetsGo]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
+                                          Click="UseWizard_MairaButton_Click" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          x:Name="SkipWizard_MairaButton"
+                                          Label="{Binding Localization[Wizard_Skip]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                          Click="SkipWizard_MairaButton_Click" />
+                </Grid>
+
+            </StackPanel>
+
+            <!-- Step 1: Theme -->
+            <StackPanel x:Name="Step1_Panel"
+                        Visibility="Collapsed">
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Text="{Binding Localization[Wizard_Step1_Title]}"
+                           Margin="0,0,0,20" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,24"
+                           Text="{Binding Localization[Wizard_Step1_Line1]}" />
+
+                <controls:MairaSwitch x:Name="LightTheme_MairaSwitch"
+                                      Margin="0,0,0,30"
+                                      IsOn="{Binding Settings.AppLightThemeEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[LightTheme]}" />
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaButton Grid.Column="0"
+                                          Label="{Binding Localization[Wizard_Prev]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
+                                          Click="Prev_MairaButton_Click" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          x:Name="Step1Next_MairaButton"
+                                          Label="{Binding Localization[Wizard_Next]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
+                                          Click="Next_MairaButton_Click" />
+                </Grid>
+
+            </StackPanel>
+
+            <!-- Step 2: Steering Wheel Device -->
+            <StackPanel x:Name="Step2_Panel"
+                        Visibility="Collapsed">
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Text="{Binding Localization[Wizard_Step2_Title]}"
+                           Margin="0,0,0,20" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12"
+                           Text="{Binding Localization[Wizard_Step2_Line1]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12">
+                    <Run Foreground="{StaticResource Brush.Accent}"
+                         Text="&#x1F4A1;" /><Run Text="{Binding Localization[Wizard_Step2_Hint1], Mode=OneWay}" />
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,24">
+                    <Run Foreground="{StaticResource Brush.Accent}"
+                         Text="&#x1F4A1;" /><Run Text="{Binding Localization[Wizard_Step2_Hint2], Mode=OneWay}" />
+                </TextBlock>
+
+                <controls:MairaComboBox x:Name="WizardSteeringDevice_MairaComboBox"
+                                        Margin="0,0,0,30"
+                                        Label="{Binding Localization[SteeringDevice]}"
+                                        SelectedValue="{Binding Settings.RacingWheelSteeringDeviceGuid, Mode=TwoWay}" />
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaButton Grid.Column="0"
+                                          Label="{Binding Localization[Wizard_Prev]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
+                                          Click="Prev_MairaButton_Click" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          Label="{Binding Localization[Wizard_Next]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
+                                          Click="Next_MairaButton_Click" />
+                </Grid>
+
+            </StackPanel>
+
+            <!-- Step 3: Wheel Force -->
+            <StackPanel x:Name="Step3_Panel"
+                        Visibility="Collapsed">
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Text="{Binding Localization[Wizard_Step3_Title]}"
+                           Margin="0,0,0,20" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12"
+                           Text="{Binding Localization[Wizard_Step3_Line1]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12">
+                    <Run Foreground="{StaticResource Brush.Accent}"
+                         Text="&#x1F4A1;" /><Run Text="{Binding Localization[Wizard_Step3_Hint1], Mode=OneWay}" />
+                </TextBlock>
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,24">
+                    <Run Foreground="{StaticResource Brush.Accent}"
+                         Text="&#x26A0;" /><Run Text="{Binding Localization[Wizard_Step3_Hint2], Mode=OneWay}" />
+                </TextBlock>
+
+                <Grid Margin="0,0,0,30">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaKnob Grid.Column="0"
+                                        x:Name="WizardWheelForce_MairaKnob"
+                                        Label="{Binding Localization[WheelForce]}"
+                                        Value="{Binding Settings.RacingWheelWheelForce, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.RacingWheelWheelForceString}"
+                                        StepSize="1"
+                                        ContextSwitches="{Binding Settings.RacingWheelWheelForceContextSwitches}"
+                                        DefaultValue="5" />
+                </Grid>
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaButton Grid.Column="0"
+                                          Label="{Binding Localization[Wizard_Prev]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
+                                          Click="Prev_MairaButton_Click" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          Label="{Binding Localization[Wizard_Next]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
+                                          Click="Next_MairaButton_Click" />
+                </Grid>
+
+            </StackPanel>
+
+            <!-- Step 4: Strength Button Mapping -->
+            <StackPanel x:Name="Step4_Panel"
+                        Visibility="Collapsed">
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Text="{Binding Localization[Wizard_Step4_Title]}"
+                           Margin="0,0,0,20" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12"
+                           Text="{Binding Localization[Wizard_Step4_Line1]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,24"
+                           Text="{Binding Localization[Wizard_Step4_Line2]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12">
+                    <Run Foreground="{StaticResource Brush.Accent}"
+                         Text="&#x1F4A1;" /><Run Text="{Binding Localization[Wizard_Step4_Hint1], Mode=OneWay}" />
+                </TextBlock>
+
+                <Grid HorizontalAlignment="Left"
+                      Margin="0,12,0,30">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaMappableButton Grid.Column="0"
+                                                  x:Name="StrengthMinus_MairaMappableButton"
+                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
+                                                  DefaultFrame="/MarvinsAIRARefactored;component/Artwork/Buttons/knob-minus-default.png"
+                                                  MappedFrame="/MarvinsAIRARefactored;component/Artwork/Buttons/knob-minus-mapped.png"
+                                                  PressedFrame="/MarvinsAIRARefactored;component/Artwork/Buttons/knob-minus-pressed.png"
+                                                  ButtonMappings="{Binding Settings.RacingWheelStrengthMinusButtonMappings}"
+                                                  Click="StrengthMinus_MairaMappableButton_Click" />
+
+                    <Border Grid.Column="1"
+                            BorderThickness="0,2,0,2"
+                            BorderBrush="Black"
+                            Padding="20,0,20,0"
+                            Margin="0,1,0,1">
+
+                        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                   TextWrapping="Wrap"
+                                   Text="{Binding Localization[Wizard_Step4_StrengthLabel]}"
+                                   VerticalAlignment="Center" />
+                    </Border>
+
+                    <controls:MairaMappableButton Grid.Column="2"
+                                                  x:Name="StrengthPlus_MairaMappableButton"
+                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+                                                  DefaultFrame="/MarvinsAIRARefactored;component/Artwork/Buttons/knob-plus-default.png"
+                                                  MappedFrame="/MarvinsAIRARefactored;component/Artwork/Buttons/knob-plus-mapped.png"
+                                                  PressedFrame="/MarvinsAIRARefactored;component/Artwork/Buttons/knob-plus-pressed.png"
+                                                  ButtonMappings="{Binding Settings.RacingWheelStrengthPlusButtonMappings}"
+                                                  Click="StrengthPlus_MairaMappableButton_Click" />
+
+                </Grid>
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaButton Grid.Column="0"
+                                          Label="{Binding Localization[Wizard_Prev]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
+                                          Click="Prev_MairaButton_Click" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          Label="{Binding Localization[Wizard_Next]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
+                                          Click="Next_MairaButton_Click" />
+                </Grid>
+
+            </StackPanel>
+
+            <!-- Step 5: Auto-Set question (Yes / No) -->
+            <StackPanel x:Name="Step5_Panel"
+                        Visibility="Collapsed">
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Text="{Binding Localization[Wizard_Step5_Title]}"
+                           Margin="0,0,0,20" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12"
+                           Text="{Binding Localization[Wizard_Step5_Line1]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12"
+                           Text="{Binding Localization[Wizard_Step5_Line2]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,24"
+                           Text="{Binding Localization[Wizard_Step5_Line3]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,30">
+                    <Run Text="{Binding Localization[Wizard_Step5_Question], Mode=OneWay}" />
+                </TextBlock>
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaButton Grid.Column="0"
+                                          Label="{Binding Localization[Wizard_Prev]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
+                                          Click="Prev_MairaButton_Click" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          Label="{Binding Localization[Wizard_Yes]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
+                                          Click="Step5Yes_MairaButton_Click" />
+
+                    <controls:MairaButton Grid.Column="4"
+                                          Label="{Binding Localization[Wizard_No]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                          Click="Step5No_MairaButton_Click" />
+                </Grid>
+
+            </StackPanel>
+
+            <!-- Step 6: Auto-Set setup (Set, Clear, AutoTarget) -->
+            <StackPanel x:Name="Step6_Panel"
+                        Visibility="Collapsed">
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Text="{Binding Localization[Wizard_Step6_Title]}"
+                           Margin="0,0,0,20" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12"
+                           Text="{Binding Localization[Wizard_Step6_Line1]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,24">
+                    <Run Foreground="{StaticResource Brush.Accent}"
+                         Text="&#x1F4A1;" /><Run Text="{Binding Localization[Wizard_Step6_Hint1], Mode=OneWay}" />
+                </TextBlock>
+
+                <Grid Margin="0,0,0,30">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaKnob Grid.Column="0"
+                                        x:Name="WizardAutoTarget_MairaKnob"
+                                        Label="{Binding Localization[AutoTarget]}"
+                                        Value="{Binding Settings.RacingWheelAutoMargin, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.RacingWheelAutoMarginString}"
+                                        StepSize="0.01"
+                                        ContextSwitches="{Binding Settings.RacingWheelAutoMarginContextSwitches}"
+                                        PlusButtonMappings="{Binding Settings.RacingWheelAutoMarginPlusButtonMappings}"
+                                        MinusButtonMappings="{Binding Settings.RacingWheelAutoMarginMinusButtonMappings}"
+                                        DefaultValue="0"
+                                        Reverse="True" />
+
+                    <controls:MairaMappableButton Grid.Column="2"
+                                                  x:Name="WizardSet_MairaMappableButton"
+                                                  Label="{Binding Localization[Set]}"
+                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                                  ButtonMappings="{Binding Settings.RacingWheelSetButtonMappings}"
+                                                  Click="WizardSet_MairaMappableButton_Click" />
+
+                    <controls:MairaMappableButton Grid.Column="4"
+                                                  x:Name="WizardClear_MairaMappableButton"
+                                                  Label="{Binding Localization[Clear]}"
+                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                                  ButtonMappings="{Binding Settings.RacingWheelClearButtonMappings}"
+                                                  Click="WizardClear_MairaMappableButton_Click" />
+
+                </Grid>
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaButton Grid.Column="0"
+                                          Label="{Binding Localization[Wizard_Prev]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
+                                          Click="Prev_MairaButton_Click" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          Label="{Binding Localization[Wizard_Next]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
+                                          Click="Next_MairaButton_Click" />
+                </Grid>
+
+            </StackPanel>
+
+            <!-- Step 7: FFB Style -->
+            <StackPanel x:Name="Step7_Panel"
+                        Visibility="Collapsed">
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Text="{Binding Localization[Wizard_Step7_Title]}"
+                           Margin="0,0,0,20" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,12"
+                           Text="{Binding Localization[Wizard_Step7_Line1]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,24"
+                           Text="{Binding Localization[Wizard_Step7_Line2]}" />
+
+                <!-- Slider labels row -->
+                <Grid Margin="0,0,0,4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Text="{Binding Localization[Wizard_Step7_SliderLeft]}"
+                               HorizontalAlignment="Left" />
+
+                    <TextBlock Grid.Column="1"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Text="{Binding Localization[Wizard_Step7_SliderCenter]}"
+                               HorizontalAlignment="Center" />
+
+                    <TextBlock Grid.Column="2"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Text="{Binding Localization[Wizard_Step7_SliderRight]}"
+                               HorizontalAlignment="Right" />
+                </Grid>
+
+                <!-- The slider -->
+                <Slider x:Name="FfbStyle_Slider"
+                        Minimum="-3"
+                        Maximum="3"
+                        SmallChange="1"
+                        LargeChange="1"
+                        TickFrequency="1"
+                        IsSnapToTickEnabled="True"
+                        TickPlacement="BottomRight"
+                        Value="0"
+                        Margin="0,0,0,8"
+                        ValueChanged="FfbStyle_Slider_ValueChanged" />
+
+                <!-- Live description of the current position -->
+                <TextBlock x:Name="FfbStyleName_TextBlock"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           FontWeight="Bold"
+                           Margin="0,0,0,4"
+                           Text="{Binding Localization[Wizard_Step7_Preset_Normal_Name]}" />
+
+                <TextBlock x:Name="FfbStyleDescription_TextBlock"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,30"
+                           Text="{Binding Localization[Wizard_Step7_Preset_Normal_Desc]}" />
+
+                <Grid HorizontalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaButton Grid.Column="0"
+                                          Label="{Binding Localization[Wizard_Prev]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/prev.png"
+                                          Click="Prev_MairaButton_Click" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          Label="{Binding Localization[Wizard_Next]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/next.png"
+                                          Click="Step7Apply_MairaButton_Click" />
+
+                    <controls:MairaButton Grid.Column="4"
+                                          Label="{Binding Localization[Wizard_Skip]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                          Click="Next_MairaButton_Click" />
+                </Grid>
+
+            </StackPanel>
+
+            <!-- Final Step: Thank you -->
+            <StackPanel x:Name="StepFinal_Panel"
+                        Visibility="Collapsed">
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="28"
+                           FontWeight="Bold"
+                           Text="{Binding Localization[Wizard_Final_Title]}"
+                           Margin="0,0,0,20" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,16"
+                           Text="{Binding Localization[Wizard_Final_Line1]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,30"
+                           Text="{Binding Localization[Wizard_Final_Line2]}" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Margin="0,0,0,30">
+                    <Run Text="{Binding Localization[Wizard_Final_DocLinkPrefix], Mode=OneWay}" />
+                    <Run Text=" " />
+                    <Hyperlink Click="DocumentationLink_Click">
+                        <Run Text="{Binding Localization[Wizard_Final_DocLinkAnchor], Mode=OneWay}" />
+                    </Hyperlink>
+                    <Run Text=" " />
+                    <Run Text="{Binding Localization[Wizard_Final_DocLinkSuffix], Mode=OneWay}" />
+                </TextBlock>
+
+                <controls:MairaButton HorizontalAlignment="Center"
+                                      x:Name="Close_MairaButton"
+                                      Label="{Binding Localization[Wizard_Close]}"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                      Click="Close_MairaButton_Click" />
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <!-- Right 1/3: wizard image, swaps to thumbs-up on final step -->
+        <Grid Grid.Column="1">
+
+            <Image x:Name="WizardImage_Normal"
+                   Source="/MarvinsAIRARefactored;component/Artwork/Misc/wizard.png"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   Stretch="Uniform"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center" />
+
+            <Image x:Name="WizardImage_ThumbsUp"
+                   Source="/MarvinsAIRARefactored;component/Artwork/Misc/wizard-two-thumbs-up.png"
+                   RenderOptions.BitmapScalingMode="HighQuality"
+                   Stretch="Uniform"
+                   VerticalAlignment="Bottom"
+                   HorizontalAlignment="Center"
+                   Visibility="Collapsed" />
+
+        </Grid>
+
+    </Grid>
+
+</Window>

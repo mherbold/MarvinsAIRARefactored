@@ -1,0 +1,73 @@
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:classes="clr-namespace:MarvinsAIRARefactored.Classes">
+
+    <Style x:Key="HelpIconButtonStyle" TargetType="Button">
+
+    <Setter Property="Width" Value="20"/>
+    <Setter Property="Height" Value="20"/>
+    <Setter Property="Margin" Value="6,0,0,0"/>
+    <Setter Property="Padding" Value="0"/>
+    <Setter Property="ToolTip" Value="Open help"/>
+    <Setter Property="Cursor" Value="Hand"/>
+    <Setter Property="Focusable" Value="False"/>
+
+    <Setter Property="Template">
+      
+      <Setter.Value>
+        
+        <ControlTemplate TargetType="Button">
+
+          <Grid x:Name="PART_Root" Opacity="0.85">
+            
+            <Ellipse x:Name="Ring"
+                     StrokeThickness="1"
+                     Stroke="{DynamicResource Brush.Border.Normal}"
+                     Fill="{DynamicResource Brush.Background.Default}"/>
+            
+            <TextBlock x:Name="Glyph"
+                       Text="?"
+                       FontSize="14"
+                       FontWeight="Bold"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center"
+                       Padding="0,0,0,1"
+                       Foreground="#ff5b2e"/>
+            
+          </Grid>
+          
+          <ControlTemplate.Triggers>
+            
+            <Trigger Property="IsMouseOver" Value="True">
+              <Setter TargetName="PART_Root" Property="Opacity" Value="1"/>
+              <Setter TargetName="Ring" Property="Stroke" Value="#ff5b2e"/>
+            </Trigger>
+            
+            <Trigger Property="IsPressed" Value="True">
+              <Setter TargetName="PART_Root" Property="Opacity" Value="0.9"/>
+            </Trigger>
+            
+            <Trigger Property="IsEnabled" Value="False">
+              <Setter TargetName="PART_Root" Property="Opacity" Value="0.5"/>
+            </Trigger>
+            
+          </ControlTemplate.Triggers>
+          
+        </ControlTemplate>
+        
+      </Setter.Value>
+      
+    </Setter>
+    
+  </Style>
+
+  <Style x:Key="HelpIconCommandMixin"
+         TargetType="Button"
+         BasedOn="{StaticResource HelpIconButtonStyle}">
+
+    <Setter Property="Command" Value="{x:Static classes:HelpService.OpenHelpCommand}"/>
+    
+  </Style>
+
+</ResourceDictionary>

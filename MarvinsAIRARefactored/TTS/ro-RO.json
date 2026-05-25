@@ -1,0 +1,57 @@
+﻿{
+  "SpotterCarLeft": [
+    "Mașină la stânga!",
+    "Stânga!"
+  ],
+  "SpotterCarRight": [
+    "Mașină la dreapta!",
+    "Dreapta!"
+  ],
+  "SpotterClear": [
+    "Liber.",
+    "Ești liber."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Trei în linie, ești la mijloc!",
+    "[urgently] Trei în linie! Mașină la stânga și la dreapta!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Trei în linie, ești pe stânga!",
+    "[urgently] Trei în linie! Mașină la dreapta ta!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Trei în linie, ești pe dreapta!",
+    "[urgently] Trei în linie! Mașină la stânga ta!"
+  ],
+  "SpotterStillThere": [
+    "Încă acolo.",
+    "Încă cu tine.",
+    "Este încă acolo.",
+    "Mașina e încă alături."
+  ],
+  "TestPhrase0": [
+    "Test voce.",
+    "Verificare comunicații — mă auzi?",
+    "Acesta este un test vocal."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter aici, verificare comunicații.",
+    "Spotter activ."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Comentator sportiv unu, test!",
+    "Verificare microfon — comentator unu aici.",
+    "[cheerfully] Comentator unu online."
+  ],
+  "TestPhrase3": [
+    "Comentator sportiv doi, test.",
+    "Verificare microfon — comentator doi aici.",
+    "Comentator doi online."
+  ],
+  "TestPhrase4": [
+    "Reporter pit, test.",
+    "Pit lane, verificare microfon.",
+    "Reporter pit online."
+  ]
+}

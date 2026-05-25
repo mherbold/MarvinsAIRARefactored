@@ -1,0 +1,57 @@
+﻿{
+  "SpotterCarLeft": [
+    "¡Coche a la izquierda!",
+    "¡Izquierda!"
+  ],
+  "SpotterCarRight": [
+    "¡Coche a la derecha!",
+    "¡Derecha!"
+  ],
+  "SpotterClear": [
+    "Libre.",
+    "Estás libre."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] ¡Tres en fila, estás en el medio!",
+    "[urgently] ¡Tres en fila! ¡Coches a izquierda y derecha!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] ¡Tres en fila, estás a la izquierda!",
+    "[urgently] ¡Tres en fila! ¡Coche a tu derecha!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] ¡Tres en fila, estás a la derecha!",
+    "[urgently] ¡Tres en fila! ¡Coche a tu izquierda!"
+  ],
+  "SpotterStillThere": [
+    "Sigue ahí.",
+    "Sigue contigo.",
+    "Todavía está ahí.",
+    "Coche aún al lado."
+  ],
+  "TestPhrase0": [
+    "Probando voz.",
+    "Comprobación de comunicación — ¿me recibes?",
+    "Esto es una prueba de voz."
+  ],
+  "TestPhrase1": [
+    "Observador en línea.",
+    "Observador aquí, prueba de comunicación.",
+    "Observador activo."
+  ],
+  "TestPhrase2": [
+    "[excitedly] ¡Comentarista uno, probando!",
+    "Prueba de micrófono — comentarista uno aquí.",
+    "[cheerfully] Comentarista uno en línea."
+  ],
+  "TestPhrase3": [
+    "Comentarista dos, probando.",
+    "Prueba de micrófono — comentarista dos aquí.",
+    "Comentarista dos en línea."
+  ],
+  "TestPhrase4": [
+    "Reportero de pits, probando.",
+    "Pit lane, prueba de micrófono.",
+    "Reportero de pits en línea."
+  ]
+}

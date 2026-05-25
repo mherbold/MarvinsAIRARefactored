@@ -1,0 +1,159 @@
+<Window x:Class="MarvinsAIRARefactored.Windows.PickProcessWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        mc:Ignorable="d"
+        Title="Running Processes"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        Width="600"
+        Height="520"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner"
+        KeyDown="Window_KeyDown">
+
+  <Window.Resources>
+
+    <Style TargetType="ListBox">
+      <Setter Property="Background" Value="{DynamicResource Brush.Background.Popup}" />
+      <Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Subtle}" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled" />
+      <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+    </Style>
+
+    <Style TargetType="ListBoxItem">
+      <Setter Property="Foreground" Value="{DynamicResource Brush.Foreground.Primary}" />
+      <Setter Property="Cursor" Value="Hand" />
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ListBoxItem">
+            <Border x:Name="Bg"
+                    Background="Transparent"
+                    BorderBrush="{DynamicResource Brush.Border.Normal}"
+                    BorderThickness="0,0,0,1"
+                    Padding="12,8">
+              <ContentPresenter />
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True">
+                <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.ListItem.Hover}" />
+              </Trigger>
+              <Trigger Property="IsSelected" Value="True">
+                <Setter TargetName="Bg" Property="Background" Value="{DynamicResource Brush.Accent.Blue}" />
+                <Setter TargetName="Bg" Property="BorderBrush" Value="{DynamicResource Brush.Border.Normal}" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+
+  </Window.Resources>
+
+  <Grid Margin="40,20,40,40">
+
+    <Grid.RowDefinitions>
+      <RowDefinition Height="Auto" />
+      <RowDefinition Height="12" />
+      <RowDefinition Height="*" />
+      <RowDefinition Height="40" />
+      <RowDefinition Height="Auto" />
+    </Grid.RowDefinitions>
+
+    <!-- Search box with watermark placeholder -->
+    <Grid Grid.Row="0">
+
+      <TextBox x:Name="SearchBox"
+               Background="{DynamicResource Brush.Background.Popup}"
+               BorderBrush="{DynamicResource Brush.Border.Subtle}"
+               BorderThickness="1"
+               CaretBrush="{DynamicResource Brush.Foreground.Primary}"
+               FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
+               FontSize="18"
+               Foreground="{DynamicResource Brush.Foreground.Primary}"
+               Padding="12,8"
+               SelectionBrush="{DynamicResource Brush.Accent.Blue}"
+               TextChanged="SearchBox_TextChanged"
+               KeyDown="SearchBox_KeyDown" />
+
+      <TextBlock IsHitTestVisible="False"
+                 FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
+                 FontSize="18"
+                 FontStyle="Italic"
+                 Foreground="{DynamicResource Brush.Foreground.Muted}"
+                 Padding="14,9">
+        Filter by name or path...
+        <TextBlock.Style>
+          <Style TargetType="TextBlock">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Style.Triggers>
+              <DataTrigger Binding="{Binding Text, ElementName=SearchBox}" Value="">
+                <Setter Property="Visibility" Value="Visible" />
+              </DataTrigger>
+            </Style.Triggers>
+          </Style>
+        </TextBlock.Style>
+      </TextBlock>
+
+    </Grid>
+
+    <!-- Process list with "Searching..." overlay -->
+    <ListBox x:Name="ProcessListBox"
+             Grid.Row="2"
+             MouseDoubleClick="ProcessListBox_MouseDoubleClick"
+             KeyDown="ProcessListBox_KeyDown">
+
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <StackPanel Margin="0,2">
+            <TextBlock Text="{Binding Name}"
+                       FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
+                       FontSize="18"
+                       Foreground="{DynamicResource Brush.Foreground.Primary}" />
+            <TextBlock Text="{Binding Path}"
+                       FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
+                       FontSize="14"
+                       Foreground="{DynamicResource Brush.Foreground.Muted}"
+                       TextTrimming="CharacterEllipsis" />
+          </StackPanel>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+
+    </ListBox>
+
+    <TextBlock x:Name="SearchingText"
+               Grid.Row="2"
+               Text="Searching for running apps..."
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
+               FontSize="18"
+               Foreground="{DynamicResource Brush.Foreground.Muted}"
+               IsHitTestVisible="False" />
+
+    <!-- OK / Cancel -->
+    <Grid Grid.Row="4"
+          HorizontalAlignment="Center">
+
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="Auto" />
+        <ColumnDefinition Width="20" />
+        <ColumnDefinition Width="Auto" />
+      </Grid.ColumnDefinitions>
+
+      <controls:MairaButton Grid.Column="0"
+                            Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                            Click="OK_Click" />
+
+      <controls:MairaButton Grid.Column="2"
+                            Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                            Click="Cancel_Click" />
+
+    </Grid>
+
+  </Grid>
+
+</Window>

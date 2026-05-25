@@ -1,0 +1,57 @@
+﻿{
+  "SpotterCarLeft": [
+    "Samochód z lewej!",
+    "Lewo!"
+  ],
+  "SpotterCarRight": [
+    "Samochód z prawej!",
+    "Prawo!"
+  ],
+  "SpotterClear": [
+    "Wolno.",
+    "Masz wolną drogę."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Trzech obok siebie, jesteś pośrodku!",
+    "[urgently] Trzech obok siebie! Auto z lewej i prawej!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Trzech obok siebie, jesteś po lewej!",
+    "[urgently] Trzech obok siebie! Auto po twojej prawej!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Trzech obok siebie, jesteś po prawej!",
+    "[urgently] Trzech obok siebie! Auto po twojej lewej!"
+  ],
+  "SpotterStillThere": [
+    "Nadal tam.",
+    "Nadal obok ciebie.",
+    "On nadal tam jest.",
+    "Auto nadal obok."
+  ],
+  "TestPhrase0": [
+    "Test głosu.",
+    "Sprawdzenie łączności — słyszysz mnie?",
+    "To jest test głosu."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter tutaj, sprawdzenie łączności.",
+    "Spotter aktywny."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Komentator sportowy jeden, test!",
+    "Sprawdzenie mikrofonu — komentator jeden tutaj.",
+    "[cheerfully] Komentator jeden online."
+  ],
+  "TestPhrase3": [
+    "Komentator sportowy dwa, test.",
+    "Sprawdzenie mikrofonu — komentator dwa tutaj.",
+    "Komentator dwa online."
+  ],
+  "TestPhrase4": [
+    "Reporter z pit lane, test.",
+    "Pit lane, sprawdzenie mikrofonu.",
+    "Reporter z pit lane online."
+  ]
+}

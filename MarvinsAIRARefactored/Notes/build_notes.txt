@@ -1,0 +1,9 @@
+To make a new build for release - 
+
+1. Use PhpStorm to sync Translate project updates
+2. Download any new calibration files from Discord and move files to InnoSetup\Calibration
+3. Switch to release and rebuild all (this gets the proper release SimHub DLL built)
+4. Publish
+5. Run Inno Setup and compile
+6. Install new version and test
+7. Create new version on GitHub

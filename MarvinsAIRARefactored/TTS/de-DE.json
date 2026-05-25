@@ -1,0 +1,57 @@
+﻿{
+  "SpotterCarLeft": [
+    "Auto links!",
+    "Fahrzeug links!"
+  ],
+  "SpotterCarRight": [
+    "Auto rechts!",
+    "Fahrzeug rechts!"
+  ],
+  "SpotterClear": [
+    "Frei.",
+    "Du bist frei."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Drei nebeneinander, du bist in der Mitte!",
+    "[urgently] Drei breit! Auto links und rechts!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Drei nebeneinander, du bist links!",
+    "[urgently] Drei breit! Auto rechts von dir!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Drei nebeneinander, du bist rechts!",
+    "[urgently] Drei breit! Auto links von dir!"
+  ],
+  "SpotterStillThere": [
+    "Noch da.",
+    "Noch neben dir.",
+    "Er ist noch da.",
+    "Auto noch gleichauf."
+  ],
+  "TestPhrase0": [
+    "Sprachtest.",
+    "Funkprüfung — können Sie mich hören?",
+    "Das ist ein Sprachtest."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter hier, Funkprüfung.",
+    "Spotter aktiv."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Sportkommentator eins, Test!",
+    "Mikrofonprüfung — Sportkommentator eins hier.",
+    "[cheerfully] Sportkommentator eins online."
+  ],
+  "TestPhrase3": [
+    "Sportkommentator zwei, Test.",
+    "Mikrofonprüfung — Sportkommentator zwei hier.",
+    "Sportkommentator zwei online."
+  ],
+  "TestPhrase4": [
+    "Pit-Reporter, Test.",
+    "Boxengasse, Mikrofonprüfung.",
+    "Pit-Reporter online."
+  ]
+}

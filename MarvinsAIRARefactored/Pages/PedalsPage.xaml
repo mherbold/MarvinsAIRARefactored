@@ -1,0 +1,1000 @@
+﻿<UserControl x:Class="MarvinsAIRARefactored.Pages.PedalsPage"
+             x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MarvinsAIRARefactored.Pages"
+             xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+             xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+             mc:Ignorable="d"
+             d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </UserControl.DataContext>
+
+    <StackPanel>
+
+        <controls:MairaGroupBox Label="{Binding Localization[Device_UC]}"
+                                HelpTopic="advanced/pedals/#device">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaSwitch Grid.Column="0"
+                                      IsOn="{Binding Settings.PedalsEnabled, Mode=TwoWay}"
+                                      VerticalAlignment="Center" />
+
+                <TextBlock x:Name="Device_Label"
+                           Grid.Column="2"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           FontSize="30"
+                           Text="{Binding Localization[PedalsNone]}"
+                           VerticalAlignment="Center" />
+
+                <Image Grid.Column="4"
+                       Source="{DynamicResource Image.SimagicLogo}"
+                       Height="32"
+                       VerticalAlignment="Center" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[Frequency_UC]}"
+                                HelpTopic="advanced/pedals/#frequency">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[Minimum]}"
+                                    Value="{Binding Settings.PedalsMinimumFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsMinimumFrequencyString}"
+                                    StepSize="1"
+                                    ContextSwitches="{Binding Settings.PedalsMinimumFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsMinimumFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsMinimumFrequencyMinusButtonMappings}"
+                                    DefaultValue="0" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[Maximum]}"
+                                    Value="{Binding Settings.PedalsMaximumFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsMaximumFrequencyString}"
+                                    StepSize="1"
+                                    ContextSwitches="{Binding Settings.PedalsMaximumFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsMaximumFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsMaximumFrequencyMinusButtonMappings}"
+                                    DefaultValue="50" />
+
+                <controls:MairaKnob Grid.Column="4"
+                                    Label="{Binding Localization[Curve]}"
+                                    Value="{Binding Settings.PedalsFrequencyCurve, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsFrequencyCurveString}"
+                                    StepSize="0.05"
+                                    ContextSwitches="{Binding Settings.PedalsFrequencyCurveContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsFrequencyCurvePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsFrequencyCurveMinusButtonMappings}"
+                                    ShowCurve="True"
+                                    DefaultValue="0.25" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[Amplitude_UC]}"
+                                HelpTopic="advanced/pedals/#amplitude">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[Minimum]}"
+                                    Value="{Binding Settings.PedalsMinimumAmplitude, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsMinimumAmplitudeString}"
+                                    StepSize="0.05"
+                                    ContextSwitches="{Binding Settings.PedalsMinimumAmplitudeContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsMinimumAmplitudePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsMinimumAmplitudeMinusButtonMappings}"
+                                    DefaultValue="0" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[Maximum]}"
+                                    Value="{Binding Settings.PedalsMaximumAmplitude, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsMaximumAmplitudeString}"
+                                    StepSize="0.05"
+                                    ContextSwitches="{Binding Settings.PedalsMaximumAmplitudeContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsMaximumAmplitudePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsMaximumAmplitudeMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaKnob Grid.Column="4"
+                                    Label="{Binding Localization[Curve]}"
+                                    Value="{Binding Settings.PedalsAmplitudeCurve, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsAmplitudeCurveString}"
+                                    StepSize="0.05"
+                                    ContextSwitches="{Binding Settings.PedalsAmplitudeCurveContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsAmplitudeCurvePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsAmplitudeCurveMinusButtonMappings}"
+                                    ShowCurve="True"
+                                    DefaultValue="0" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[Clutch_UC]}"
+                                HelpTopic="advanced/pedals/#brake-clutch-throttle">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Text="1"
+                           FontSize="30"
+                           VerticalAlignment="Bottom"
+                           Padding="0,0,0,2" />
+
+                <controls:MairaComboBox x:Name="ClutchEffect1_MairaComboBox"
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Label="{Binding Localization[PedalEffects]}"
+                                        SelectedValue="{Binding Settings.PedalsClutchEffect1, Mode=TwoWay}"
+                                        ContextSwitches="{Binding Settings.PedalsClutchEffect1ContextSwitches}" />
+
+                <controls:MairaKnob Grid.Row="0"
+                                    Grid.Column="4"
+                                    Label="{Binding Localization[Strength]}"
+                                    Value="{Binding Settings.PedalsClutchStrength1, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsClutchStrength1String}"
+                                    StepSize="0.05"
+                                    ContextSwitches="{Binding Settings.PedalsClutchStrength1ContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsClutchStrength1PlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsClutchStrength1MinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaMappableButton x:Name="ClutchTest1_MairaMappableButton"
+                                              Grid.Row="0"
+                                              Grid.Column="6"
+                                              Label="{Binding Localization[Test]}"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              ButtonMappings="{Binding Settings.PedalsClutchTest1ButtonMappings}"
+                                              Click="ClutchTest1_MairaMappableButton_Click"
+                                              IsSmall="True"
+                                              VerticalAlignment="Top" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Text="2"
+                           FontSize="30"
+                           VerticalAlignment="Bottom"
+                           Padding="0,0,0,2" />
+
+                <controls:MairaComboBox x:Name="ClutchEffect2_MairaComboBox"
+                                        Grid.Row="2"
+                                        Grid.Column="2"
+                                        SelectedValue="{Binding Settings.PedalsClutchEffect2, Mode=TwoWay}" />
+
+                <controls:MairaKnob Grid.Row="2"
+                                    Grid.Column="4"
+                                    Value="{Binding Settings.PedalsClutchStrength2, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsClutchStrength2String}"
+                                    StepSize="0.05"
+                                    PlusButtonMappings="{Binding Settings.PedalsClutchStrength2PlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsClutchStrength2MinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaMappableButton x:Name="ClutchTest2_MairaMappableButton"
+                                              Grid.Row="2"
+                                              Grid.Column="6"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              ButtonMappings="{Binding Settings.PedalsClutchTest2ButtonMappings}"
+                                              Click="ClutchTest2_MairaMappableButton_Click"
+                                              IsSmall="True"
+                                              VerticalAlignment="Center" />
+
+                <TextBlock Grid.Row="4"
+                           Grid.Column="0"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Text="3"
+                           FontSize="30"
+                           VerticalAlignment="Bottom"
+                           Padding="0,0,0,2" />
+
+                <controls:MairaComboBox x:Name="ClutchEffect3_MairaComboBox"
+                                        Grid.Row="4"
+                                        Grid.Column="2"
+                                        SelectedValue="{Binding Settings.PedalsClutchEffect3, Mode=TwoWay}" />
+
+                <controls:MairaKnob Grid.Row="4"
+                                    Grid.Column="4"
+                                    Value="{Binding Settings.PedalsClutchStrength3, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsClutchStrength3String}"
+                                    StepSize="0.05"
+                                    PlusButtonMappings="{Binding Settings.PedalsClutchStrength3PlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsClutchStrength3MinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaMappableButton x:Name="ClutchTest3_MairaMappableButton"
+                                              Grid.Row="4"
+                                              Grid.Column="6"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              ButtonMappings="{Binding Settings.PedalsClutchTest3ButtonMappings}"
+                                              Click="ClutchTest3_MairaMappableButton_Click"
+                                              IsSmall="True"
+                                              VerticalAlignment="Center" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[Brake_UC]}"
+                                HelpTopic="advanced/pedals/#brake-clutch-throttle">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Text="1"
+                           FontSize="30"
+                           VerticalAlignment="Bottom"
+                           Padding="0,0,0,2" />
+
+                <controls:MairaComboBox x:Name="BrakeEffect1_MairaComboBox"
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Label="{Binding Localization[PedalEffects]}"
+                                        SelectedValue="{Binding Settings.PedalsBrakeEffect1, Mode=TwoWay}"
+                                        ContextSwitches="{Binding Settings.PedalsBrakeEffect1ContextSwitches}" />
+
+                <controls:MairaKnob Grid.Row="0"
+                                    Grid.Column="4"
+                                    Label="{Binding Localization[Strength]}"
+                                    Value="{Binding Settings.PedalsBrakeStrength1, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsBrakeStrength1String}"
+                                    StepSize="0.05"
+                                    ContextSwitches="{Binding Settings.PedalsBrakeStrength1ContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsBrakeStrength1PlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsBrakeStrength1MinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaMappableButton x:Name="BrakeTest1_MairaMappableButton"
+                                              Grid.Row="0"
+                                              Grid.Column="6"
+                                              Label="{Binding Localization[Test]}"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              ButtonMappings="{Binding Settings.PedalsBrakeTest1ButtonMappings}"
+                                              Click="BrakeTest1_MairaMappableButton_Click"
+                                              IsSmall="True"
+                                              VerticalAlignment="Top" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Text="2"
+                           FontSize="30" />
+
+                <controls:MairaComboBox x:Name="BrakeEffect2_MairaComboBox"
+                                        Grid.Row="2"
+                                        Grid.Column="2"
+                                        SelectedValue="{Binding Settings.PedalsBrakeEffect2, Mode=TwoWay}" />
+
+                <controls:MairaKnob Grid.Row="2"
+                                    Grid.Column="4"
+                                    Value="{Binding Settings.PedalsBrakeStrength2, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsBrakeStrength2String}"
+                                    StepSize="0.05"
+                                    PlusButtonMappings="{Binding Settings.PedalsBrakeStrength2PlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsBrakeStrength2MinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaMappableButton x:Name="BrakeTest2_MairaMappableButton"
+                                              Grid.Row="2"
+                                              Grid.Column="6"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              ButtonMappings="{Binding Settings.PedalsBrakeTest2ButtonMappings}"
+                                              Click="BrakeTest2_MairaMappableButton_Click"
+                                              IsSmall="True"
+                                              VerticalAlignment="Center" />
+
+                <TextBlock Grid.Row="4"
+                           Grid.Column="0"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Text="3"
+                           FontSize="30" />
+
+                <controls:MairaComboBox x:Name="BrakeEffect3_MairaComboBox"
+                                        Grid.Row="4"
+                                        Grid.Column="2"
+                                        SelectedValue="{Binding Settings.PedalsBrakeEffect3, Mode=TwoWay}" />
+
+                <controls:MairaKnob Grid.Row="4"
+                                    Grid.Column="4"
+                                    Value="{Binding Settings.PedalsBrakeStrength3, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsBrakeStrength3String}"
+                                    StepSize="0.05"
+                                    PlusButtonMappings="{Binding Settings.PedalsBrakeStrength3PlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsBrakeStrength3MinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaMappableButton x:Name="BrakeTest3_MairaMappableButton"
+                                              Grid.Row="4"
+                                              Grid.Column="6"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              ButtonMappings="{Binding Settings.PedalsBrakeTest3ButtonMappings}"
+                                              Click="BrakeTest3_MairaMappableButton_Click"
+                                              IsSmall="True"
+                                              VerticalAlignment="Center" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[Throttle_UC]}"
+                                HelpTopic="advanced/pedals/#brake-clutch-throttle">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+
+                <TextBlock Grid.Row="0"
+                           Grid.Column="0"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Text="1"
+                           FontSize="30"
+                           VerticalAlignment="Bottom"
+                           Padding="0,0,0,2" />
+
+                <controls:MairaComboBox x:Name="ThrottleEffect1_MairaComboBox"
+                                        Grid.Row="0"
+                                        Grid.Column="2"
+                                        Label="{Binding Localization[PedalEffects]}"
+                                        SelectedValue="{Binding Settings.PedalsThrottleEffect1, Mode=TwoWay}"
+                                        ContextSwitches="{Binding Settings.PedalsThrottleEffect1ContextSwitches}" />
+
+                <controls:MairaKnob Grid.Row="0"
+                                    Grid.Column="4"
+                                    Label="{Binding Localization[Strength]}"
+                                    Value="{Binding Settings.PedalsThrottleStrength1, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsThrottleStrength1String}"
+                                    StepSize="0.05"
+                                    ContextSwitches="{Binding Settings.PedalsThrottleStrength1ContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsThrottleStrength1PlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsThrottleStrength1MinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaMappableButton x:Name="ThrottleTest1_MairaMappableButton"
+                                              Grid.Row="0"
+                                              Grid.Column="6"
+                                              Label="{Binding Localization[Test]}"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              ButtonMappings="{Binding Settings.PedalsThrottleTest1ButtonMappings}"
+                                              Click="ThrottleTest1_MairaMappableButton_Click"
+                                              IsSmall="True"
+                                              VerticalAlignment="Top" />
+
+                <TextBlock Grid.Row="2"
+                           Grid.Column="0"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Text="2"
+                           FontSize="30" />
+
+                <controls:MairaComboBox x:Name="ThrottleEffect2_MairaComboBox"
+                                        Grid.Row="2"
+                                        Grid.Column="2"
+                                        SelectedValue="{Binding Settings.PedalsThrottleEffect2, Mode=TwoWay}" />
+
+                <controls:MairaKnob Grid.Row="2"
+                                    Grid.Column="4"
+                                    Value="{Binding Settings.PedalsThrottleStrength2, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsThrottleStrength2String}"
+                                    StepSize="0.05"
+                                    PlusButtonMappings="{Binding Settings.PedalsThrottleStrength2PlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsThrottleStrength2MinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaMappableButton x:Name="ThrottleTest2_MairaMappableButton"
+                                              Grid.Row="2"
+                                              Grid.Column="6"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              ButtonMappings="{Binding Settings.PedalsThrottleTest2ButtonMappings}"
+                                              Click="ThrottleTest2_MairaMappableButton_Click"
+                                              IsSmall="True"
+                                              VerticalAlignment="Center" />
+
+                <TextBlock Grid.Row="4"
+                           Grid.Column="0"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           Text="3"
+                           FontSize="30" />
+
+                <controls:MairaComboBox x:Name="ThrottleEffect3_MairaComboBox"
+                                        Grid.Row="4"
+                                        Grid.Column="2"
+                                        SelectedValue="{Binding Settings.PedalsThrottleEffect3, Mode=TwoWay}" />
+
+                <controls:MairaKnob Grid.Row="4"
+                                    Grid.Column="4"
+                                    Value="{Binding Settings.PedalsThrottleStrength3, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsThrottleStrength3String}"
+                                    StepSize="0.05"
+                                    PlusButtonMappings="{Binding Settings.PedalsThrottleStrength3PlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsThrottleStrength3MinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaMappableButton x:Name="ThrottleTest3_MairaMappableButton"
+                                              Grid.Row="4"
+                                              Grid.Column="6"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              ButtonMappings="{Binding Settings.PedalsThrottleTest3ButtonMappings}"
+                                              Click="ThrottleTest3_MairaMappableButton_Click"
+                                              IsSmall="True"
+                                              VerticalAlignment="Center" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[GearChangeShiftIntoGear_UC]}"
+                                HelpTopic="advanced/pedals/#gear-change-shift-into-gear">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[Frequency]}"
+                                    Value="{Binding Settings.PedalsShiftIntoGearFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsShiftIntoGearFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsShiftIntoGearFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsShiftIntoGearFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsShiftIntoGearFrequencyMinusButtonMappings}"
+                                    DefaultValue="0.3" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[Amplitude]}"
+                                    Value="{Binding Settings.PedalsShiftIntoGearAmplitude, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsShiftIntoGearAmplitudeString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsShiftIntoGearAmplitudeContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsShiftIntoGearAmplitudePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsShiftIntoGearAmplitudeMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaKnob Grid.Column="4"
+                                    Label="{Binding Localization[Duration]}"
+                                    Value="{Binding Settings.PedalsShiftIntoGearDuration, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsShiftIntoGearDurationString}"
+                                    StepSize="0.05"
+                                    ContextSwitches="{Binding Settings.PedalsShiftIntoGearDurationContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsShiftIntoGearDurationPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsShiftIntoGearDurationMinusButtonMappings}"
+                                    DefaultValue="0.1" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[GearChangeShiftIntoNeutral_UC]}"
+                                HelpTopic="advanced/pedals/#gear-change-shift-into-neutral">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[Frequency]}"
+                                    Value="{Binding Settings.PedalsShiftIntoNeutralFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsShiftIntoNeutralFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsShiftIntoNeutralFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralFrequencyMinusButtonMappings}"
+                                    DefaultValue="0.7" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[Amplitude]}"
+                                    Value="{Binding Settings.PedalsShiftIntoNeutralAmplitude, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsShiftIntoNeutralAmplitudeString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsShiftIntoNeutralAmplitudeContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralAmplitudePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralAmplitudeMinusButtonMappings}"
+                                    DefaultValue="0.75" />
+
+                <controls:MairaKnob Grid.Column="4"
+                                    Label="{Binding Localization[Duration]}"
+                                    Value="{Binding Settings.PedalsShiftIntoNeutralDuration, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsShiftIntoNeutralDurationString}"
+                                    StepSize="0.05"
+                                    ContextSwitches="{Binding Settings.PedalsShiftIntoNeutralDurationContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralDurationPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsShiftIntoNeutralDurationMinusButtonMappings}"
+                                    DefaultValue="0.05" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[ABSEngaged_UC]}"
+                                HelpTopic="advanced/pedals/#abs-engaged">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[Frequency]}"
+                                    Value="{Binding Settings.PedalsABSEngagedFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsABSEngagedFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsABSEngagedFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsABSEngagedFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsABSEngagedFrequencyMinusButtonMappings}"
+                                    DefaultValue="0.5" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[Amplitude]}"
+                                    Value="{Binding Settings.PedalsABSEngagedAmplitude, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsABSEngagedAmplitudeString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsABSEngagedAmplitudeContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsABSEngagedAmplitudePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsABSEngagedAmplitudeMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaSwitch Grid.Column="4"
+                                      IsOn="{Binding Settings.PedalsABSEngagedFadeWithBrakeEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[FadeWithBrake]}"
+                                      ContextSwitches="{Binding Settings.PedalsABSEngagedFadeWithBrakeEnabledContextSwitches}"
+                                      LabelPosition="Top" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[RPM_UC]}"
+                                HelpTopic="advanced/pedals/#rpm">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[StartingRPM]}"
+                                    Value="{Binding Settings.PedalsStartingRPM, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsStartingRPMString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsStartingRPMContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsStartingRPMPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsStartingRPMMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaSwitch Grid.Column="2"
+                                      IsOn="{Binding Settings.PedalsRPMVibrateInTopGearEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[VibrateInTopGear]}"
+                                      ContextSwitches="{Binding Settings.PedalsRPMVibrateInTopGearEnabledContextSwitches}"
+                                      LabelPosition="Top" />
+
+                <controls:MairaSwitch Grid.Column="4"
+                                      IsOn="{Binding Settings.PedalsRPMFadeWithThrottleEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[FadeWithThrottle]}"
+                                      ContextSwitches="{Binding Settings.PedalsRPMFadeWithThrottleEnabledContextSwitches}"
+                                      LabelPosition="Top" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[WheelLock_UC]}"
+                                HelpTopic="advanced/pedals/#wheel-lock">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[Frequency]}"
+                                    Value="{Binding Settings.PedalsWheelLockFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsWheelLockFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsWheelLockFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsWheelLockFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsWheelLockFrequencyMinusButtonMappings}"
+                                    DefaultValue="0.2" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[Sensitivity]}"
+                                    Value="{Binding Settings.PedalsWheelLockSensitivity, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsWheelLockSensitivityString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsWheelLockSensitivityContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsWheelLockSensitivityPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsWheelLockSensitivityMinusButtonMappings}"
+                                    DefaultValue="0.95" />
+
+                <controls:MairaSwitch Grid.Column="4"
+                                      IsOn="{Binding Settings.PedalsWheelLockFadeWithBrakeEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[FadeWithBrake]}"
+                                      ContextSwitches="{Binding Settings.PedalsWheelLockFadeWithBrakeEnabledContextSwitches}"
+                                      LabelPosition="Top" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[WheelSpin_UC]}"
+                                HelpTopic="advanced/pedals/#wheel-spin">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[Frequency]}"
+                                    Value="{Binding Settings.PedalsWheelSpinFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsWheelSpinFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsWheelSpinFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsWheelSpinFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsWheelSpinFrequencyMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[Sensitivity]}"
+                                    Value="{Binding Settings.PedalsWheelSpinSensitivity, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsWheelSpinSensitivityString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsWheelSpinSensitivityContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsWheelSpinSensitivityPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsWheelSpinSensitivityMinusButtonMappings}"
+                                    DefaultValue="0.95" />
+
+                <controls:MairaSwitch Grid.Column="4"
+                                      IsOn="{Binding Settings.PedalsWheelSpinFadeWithThrottleEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[FadeWithThrottle]}"
+                                      ContextSwitches="{Binding Settings.PedalsWheelSpinFadeWithThrottleEnabledContextSwitches}"
+                                      LabelPosition="Top" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[ClutchSlip_UC]}"
+                                HelpTopic="advanced/pedals/#clutch-slip">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[StartingPoint]}"
+                                    Value="{Binding Settings.PedalsClutchSlipStart, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsClutchSlipStartString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsClutchSlipStartContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsClutchSlipStartPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsClutchSlipStartMinusButtonMappings}"
+                                    DefaultValue="0.25" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[EndingPoint]}"
+                                    Value="{Binding Settings.PedalsClutchSlipEnd, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsClutchSlipEndString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsClutchSlipEndContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsClutchSlipEndPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsClutchSlipEndMinusButtonMappings}"
+                                    DefaultValue="0.75" />
+
+                <controls:MairaKnob Grid.Column="4"
+                                    Label="{Binding Localization[Frequency]}"
+                                    Value="{Binding Settings.PedalsClutchSlipFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsClutchSlipFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsClutchSlipFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsClutchSlipFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsClutchSlipFrequencyMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[Understeer_UC]}"
+                                HelpTopic="advanced/pedals/#understeer-oversteer-seat-of-pants">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[MinimumFrequency]}"
+                                    Value="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyMinusButtonMappings}"
+                                    DefaultValue="0.1" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[MaximumFrequency]}"
+                                    Value="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequencyMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaKnob Grid.Column="4"
+                                    Label="{Binding Localization[Curve]}"
+                                    Value="{Binding Settings.SteeringEffectsUndersteerPedalVibrationCurve, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SteeringEffectsUndersteerPedalVibrationCurveString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.SteeringEffectsUndersteerPedalVibrationCurveContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationCurvePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SteeringEffectsUndersteerPedalVibrationCurveMinusButtonMappings}"
+                                    ShowCurve="True"
+                                    DefaultValue="0" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[Oversteer_UC]}"
+                                HelpTopic="advanced/pedals/#understeer-oversteer-seat-of-pants">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[MinimumFrequency]}"
+                                    Value="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyMinusButtonMappings}"
+                                    DefaultValue="0.1" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[MaximumFrequency]}"
+                                    Value="{Binding Settings.SteeringEffectsOversteerPedalVibrationMaximumFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SteeringEffectsOversteerPedalVibrationMaximumFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.SteeringEffectsOversteerPedalVibrationMaximumFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.SteeringEffectsOversteerPedalVibrationMaximumFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SteeringEffectsOversteerPedalVibrationMaximumFrequencyMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaKnob Grid.Column="4"
+                                    Label="{Binding Localization[Curve]}"
+                                    Value="{Binding Settings.SteeringEffectsOversteerPedalVibrationCurve, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SteeringEffectsOversteerPedalVibrationCurveString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.SteeringEffectsOversteerPedalVibrationCurveContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.SteeringEffectsOversteerPedalVibrationCurvePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SteeringEffectsOversteerPedalVibrationCurveMinusButtonMappings}"
+                                    ShowCurve="True"
+                                    DefaultValue="0" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[SeatOfPants_UC]}"
+                                HelpTopic="advanced/pedals/#understeer-oversteer-seat-of-pants">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[MinimumFrequency]}"
+                                    Value="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyMinusButtonMappings}"
+                                    DefaultValue="0.1" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[MaximumFrequency]}"
+                                    Value="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaKnob Grid.Column="4"
+                                    Label="{Binding Localization[Curve]}"
+                                    Value="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationCurve, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationCurveString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationCurveContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationCurvePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.SteeringEffectsSeatOfPantsPedalVibrationCurveMinusButtonMappings}"
+                                    ShowCurve="True"
+                                    DefaultValue="0" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[OtherFeatures_UC]}"
+                                HelpTopic="advanced/pedals/#other-features">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[NoiseDamper]}"
+                                    Value="{Binding Settings.PedalsNoiseDamper, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsNoiseDamperString}"
+                                    StepSize="0.05"
+                                    ContextSwitches="{Binding Settings.PedalsNoiseDamperContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsNoiseDamperPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsNoiseDamperMinusButtonMappings}"
+                                    DefaultValue="0.1" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+    </StackPanel>
+
+</UserControl>

@@ -1,0 +1,50 @@
+﻿<Window x:Class="MarvinsAIRARefactored.Windows.RunInstallerWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:windows="clr-namespace:MarvinsAIRARefactored.Windows"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:components="clr-namespace:MarvinsAIRARefactored.Components"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding Localization[RunInstaller]}"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        Width="800"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </Window.DataContext>
+
+    <StackPanel Margin="40">
+
+        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                   Text="{Binding Localization[RunInstallerQuestion]}"
+                   HorizontalAlignment="Center" />
+
+        <Grid HorizontalAlignment="Center"
+              Margin="0,10,0,0">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <controls:MairaButton Grid.Column="0"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Click="Install_MairaButton_Click" />
+
+            <controls:MairaButton Grid.Column="2"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                  Click="Cancel_MairaButton_Click" />
+
+        </Grid>
+
+    </StackPanel>
+
+</Window>

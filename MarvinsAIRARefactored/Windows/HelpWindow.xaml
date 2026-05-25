@@ -1,0 +1,53 @@
+﻿<Window x:Class="MarvinsAIRARefactored.Windows.HelpWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:wv2="clr-namespace:Microsoft.Web.WebView2.Wpf;assembly=Microsoft.Web.WebView2.Wpf"
+        Title="Help"
+        Height="640"
+        Width="1024"
+        WindowStartupLocation="CenterOwner">
+
+    <Grid Background="#313131">
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <DockPanel Grid.Row="0"
+                   LastChildFill="False"
+                   Margin="10">
+
+            <TextBlock x:Name="UrlText"
+                       Style="{StaticResource MairaTextBlockStyle}"
+                       HorizontalAlignment="Center"
+                       TextTrimming="CharacterEllipsis"
+                       DockPanel.Dock="Top">
+                
+                <TextBlock.Resources>
+                    
+                    <Style TargetType="Hyperlink">
+                        
+                        <Setter Property="Foreground"
+                                Value="{DynamicResource Brush.Accent}" />
+                        
+                        <Setter Property="TextDecorations"
+                                Value="{x:Null}" />
+
+                        <Setter Property="FocusVisualStyle"
+                                Value="{x:Null}" />
+
+                    </Style>
+                    
+                </TextBlock.Resources>
+                
+            </TextBlock>
+
+        </DockPanel>
+
+        <wv2:WebView2 x:Name="Browser"
+                      Grid.Row="1" />
+
+    </Grid>
+
+</Window>

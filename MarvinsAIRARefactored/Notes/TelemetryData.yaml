@@ -1,0 +1,2616 @@
+SessionTime:
+  varType: Double
+  offset: 0
+  count: 1
+  countAsTime: false
+  name: SessionTime
+  desc: Seconds since session start
+  unit: s
+SessionTick:
+  varType: Int
+  offset: 8
+  count: 1
+  countAsTime: false
+  name: SessionTick
+  desc: Current update number
+  unit: ''
+SessionNum:
+  varType: Int
+  offset: 12
+  count: 1
+  countAsTime: false
+  name: SessionNum
+  desc: Session number
+  unit: ''
+SessionState:
+  varType: Int
+  offset: 16
+  count: 1
+  countAsTime: false
+  name: SessionState
+  desc: Session state
+  unit: irsdk_SessionState
+SessionUniqueID:
+  varType: Int
+  offset: 20
+  count: 1
+  countAsTime: false
+  name: SessionUniqueID
+  desc: Session ID
+  unit: ''
+SessionFlags:
+  varType: BitField
+  offset: 24
+  count: 1
+  countAsTime: false
+  name: SessionFlags
+  desc: Session flags
+  unit: irsdk_Flags
+SessionTimeRemain:
+  varType: Double
+  offset: 28
+  count: 1
+  countAsTime: false
+  name: SessionTimeRemain
+  desc: Seconds left till session ends
+  unit: s
+SessionLapsRemain:
+  varType: Int
+  offset: 36
+  count: 1
+  countAsTime: false
+  name: SessionLapsRemain
+  desc: Old laps left till session ends use SessionLapsRemainEx
+  unit: ''
+SessionLapsRemainEx:
+  varType: Int
+  offset: 40
+  count: 1
+  countAsTime: false
+  name: SessionLapsRemainEx
+  desc: New improved laps left till session ends
+  unit: ''
+SessionTimeTotal:
+  varType: Double
+  offset: 44
+  count: 1
+  countAsTime: false
+  name: SessionTimeTotal
+  desc: Total number of seconds in session
+  unit: s
+SessionLapsTotal:
+  varType: Int
+  offset: 52
+  count: 1
+  countAsTime: false
+  name: SessionLapsTotal
+  desc: Total number of laps in session
+  unit: ''
+SessionJokerLapsRemain:
+  varType: Int
+  offset: 56
+  count: 1
+  countAsTime: false
+  name: SessionJokerLapsRemain
+  desc: Joker laps remaining to be taken
+  unit: ''
+SessionOnJokerLap:
+  varType: Bool
+  offset: 60
+  count: 1
+  countAsTime: false
+  name: SessionOnJokerLap
+  desc: Player is currently completing a joker lap
+  unit: ''
+SessionTimeOfDay:
+  varType: Float
+  offset: 61
+  count: 1
+  countAsTime: false
+  name: SessionTimeOfDay
+  desc: Time of day in seconds
+  unit: s
+RadioTransmitCarIdx:
+  varType: Int
+  offset: 65
+  count: 1
+  countAsTime: false
+  name: RadioTransmitCarIdx
+  desc: The car index of the current person speaking on the radio
+  unit: ''
+RadioTransmitRadioIdx:
+  varType: Int
+  offset: 69
+  count: 1
+  countAsTime: false
+  name: RadioTransmitRadioIdx
+  desc: The radio index of the current person speaking on the radio
+  unit: ''
+RadioTransmitFrequencyIdx:
+  varType: Int
+  offset: 73
+  count: 1
+  countAsTime: false
+  name: RadioTransmitFrequencyIdx
+  desc: The frequency index of the current person speaking on the radio
+  unit: ''
+DisplayUnits:
+  varType: Int
+  offset: 77
+  count: 1
+  countAsTime: false
+  name: DisplayUnits
+  desc: Default units for the user interface 0 = english 1 = metric
+  unit: ''
+DriverMarker:
+  varType: Bool
+  offset: 81
+  count: 1
+  countAsTime: false
+  name: DriverMarker
+  desc: Driver activated flag
+  unit: ''
+PushToTalk:
+  varType: Bool
+  offset: 82
+  count: 1
+  countAsTime: false
+  name: PushToTalk
+  desc: Push to talk button state
+  unit: ''
+PushToPass:
+  varType: Bool
+  offset: 83
+  count: 1
+  countAsTime: false
+  name: PushToPass
+  desc: Push to pass button state
+  unit: ''
+ManualBoost:
+  varType: Bool
+  offset: 84
+  count: 1
+  countAsTime: false
+  name: ManualBoost
+  desc: Hybrid manual boost state
+  unit: ''
+ManualNoBoost:
+  varType: Bool
+  offset: 85
+  count: 1
+  countAsTime: false
+  name: ManualNoBoost
+  desc: Hybrid manual no boost state
+  unit: ''
+IsOnTrack:
+  varType: Bool
+  offset: 86
+  count: 1
+  countAsTime: false
+  name: IsOnTrack
+  desc: 1=Car on track physics running with player in car
+  unit: ''
+IsReplayPlaying:
+  varType: Bool
+  offset: 87
+  count: 1
+  countAsTime: false
+  name: IsReplayPlaying
+  desc: 0=replay not playing  1=replay playing
+  unit: ''
+ReplayFrameNum:
+  varType: Int
+  offset: 88
+  count: 1
+  countAsTime: false
+  name: ReplayFrameNum
+  desc: Integer replay frame number (60 per second)
+  unit: ''
+ReplayFrameNumEnd:
+  varType: Int
+  offset: 92
+  count: 1
+  countAsTime: false
+  name: ReplayFrameNumEnd
+  desc: Integer replay frame number from end of tape
+  unit: ''
+IsDiskLoggingEnabled:
+  varType: Bool
+  offset: 96
+  count: 1
+  countAsTime: false
+  name: IsDiskLoggingEnabled
+  desc: 0=disk based telemetry turned off  1=turned on
+  unit: ''
+IsDiskLoggingActive:
+  varType: Bool
+  offset: 97
+  count: 1
+  countAsTime: false
+  name: IsDiskLoggingActive
+  desc: 0=disk based telemetry file not being written  1=being written
+  unit: ''
+FrameRate:
+  varType: Float
+  offset: 98
+  count: 1
+  countAsTime: false
+  name: FrameRate
+  desc: Average frames per second
+  unit: fps
+CpuUsageFG:
+  varType: Float
+  offset: 102
+  count: 1
+  countAsTime: false
+  name: CpuUsageFG
+  desc: Percent of available time fg thread took with a 1 sec avg
+  unit: '%'
+GpuUsage:
+  varType: Float
+  offset: 106
+  count: 1
+  countAsTime: false
+  name: GpuUsage
+  desc: Percent of available time gpu took with a 1 sec avg
+  unit: '%'
+ChanAvgLatency:
+  varType: Float
+  offset: 110
+  count: 1
+  countAsTime: false
+  name: ChanAvgLatency
+  desc: Communications average latency
+  unit: s
+ChanLatency:
+  varType: Float
+  offset: 114
+  count: 1
+  countAsTime: false
+  name: ChanLatency
+  desc: Communications latency
+  unit: s
+ChanQuality:
+  varType: Float
+  offset: 118
+  count: 1
+  countAsTime: false
+  name: ChanQuality
+  desc: Communications quality
+  unit: '%'
+ChanPartnerQuality:
+  varType: Float
+  offset: 122
+  count: 1
+  countAsTime: false
+  name: ChanPartnerQuality
+  desc: Partner communications quality
+  unit: '%'
+CpuUsageBG:
+  varType: Float
+  offset: 126
+  count: 1
+  countAsTime: false
+  name: CpuUsageBG
+  desc: Percent of available time bg thread took with a 1 sec avg
+  unit: '%'
+ChanClockSkew:
+  varType: Float
+  offset: 130
+  count: 1
+  countAsTime: false
+  name: ChanClockSkew
+  desc: Communications server clock skew
+  unit: s
+MemPageFaultSec:
+  varType: Float
+  offset: 134
+  count: 1
+  countAsTime: false
+  name: MemPageFaultSec
+  desc: Memory page faults per second
+  unit: ''
+MemSoftPageFaultSec:
+  varType: Float
+  offset: 138
+  count: 1
+  countAsTime: false
+  name: MemSoftPageFaultSec
+  desc: Memory soft page faults per second
+  unit: ''
+PlayerCarPosition:
+  varType: Int
+  offset: 142
+  count: 1
+  countAsTime: false
+  name: PlayerCarPosition
+  desc: Players position in race
+  unit: ''
+PlayerCarClassPosition:
+  varType: Int
+  offset: 146
+  count: 1
+  countAsTime: false
+  name: PlayerCarClassPosition
+  desc: Players class position in race
+  unit: ''
+PlayerCarClass:
+  varType: Int
+  offset: 150
+  count: 1
+  countAsTime: false
+  name: PlayerCarClass
+  desc: Player car class id
+  unit: ''
+PlayerTrackSurface:
+  varType: Int
+  offset: 154
+  count: 1
+  countAsTime: false
+  name: PlayerTrackSurface
+  desc: Players car track surface type
+  unit: irsdk_TrkLoc
+PlayerTrackSurfaceMaterial:
+  varType: Int
+  offset: 158
+  count: 1
+  countAsTime: false
+  name: PlayerTrackSurfaceMaterial
+  desc: Players car track surface material type
+  unit: irsdk_TrkSurf
+PlayerCarIdx:
+  varType: Int
+  offset: 162
+  count: 1
+  countAsTime: false
+  name: PlayerCarIdx
+  desc: Players carIdx
+  unit: ''
+PlayerCarTeamIncidentCount:
+  varType: Int
+  offset: 166
+  count: 1
+  countAsTime: false
+  name: PlayerCarTeamIncidentCount
+  desc: Players team incident count for this session
+  unit: ''
+PlayerCarMyIncidentCount:
+  varType: Int
+  offset: 170
+  count: 1
+  countAsTime: false
+  name: PlayerCarMyIncidentCount
+  desc: Players own incident count for this session
+  unit: ''
+PlayerCarDriverIncidentCount:
+  varType: Int
+  offset: 174
+  count: 1
+  countAsTime: false
+  name: PlayerCarDriverIncidentCount
+  desc: Teams current drivers incident count for this session
+  unit: ''
+PlayerCarWeightPenalty:
+  varType: Float
+  offset: 178
+  count: 1
+  countAsTime: false
+  name: PlayerCarWeightPenalty
+  desc: Players weight penalty
+  unit: kg
+PlayerCarPowerAdjust:
+  varType: Float
+  offset: 182
+  count: 1
+  countAsTime: false
+  name: PlayerCarPowerAdjust
+  desc: Players power adjust
+  unit: '%'
+PlayerCarDryTireSetLimit:
+  varType: Int
+  offset: 186
+  count: 1
+  countAsTime: false
+  name: PlayerCarDryTireSetLimit
+  desc: Players dry tire set limit
+  unit: ''
+PlayerCarTowTime:
+  varType: Float
+  offset: 190
+  count: 1
+  countAsTime: false
+  name: PlayerCarTowTime
+  desc: Players car is being towed if time is greater than zero
+  unit: s
+PlayerCarInPitStall:
+  varType: Bool
+  offset: 194
+  count: 1
+  countAsTime: false
+  name: PlayerCarInPitStall
+  desc: Players car is properly in their pitstall
+  unit: ''
+PlayerCarPitSvStatus:
+  varType: Int
+  offset: 195
+  count: 1
+  countAsTime: false
+  name: PlayerCarPitSvStatus
+  desc: Players car pit service status bits
+  unit: irsdk_PitSvStatus
+PlayerTireCompound:
+  varType: Int
+  offset: 199
+  count: 1
+  countAsTime: false
+  name: PlayerTireCompound
+  desc: Players car current tire compound
+  unit: ''
+PlayerFastRepairsUsed:
+  varType: Int
+  offset: 203
+  count: 1
+  countAsTime: false
+  name: PlayerFastRepairsUsed
+  desc: Players car number of fast repairs used
+  unit: ''
+CarIdxLap:
+  varType: Int
+  offset: 207
+  count: 64
+  countAsTime: false
+  name: CarIdxLap
+  desc: Laps started by car index
+  unit: ''
+CarIdxLapCompleted:
+  varType: Int
+  offset: 463
+  count: 64
+  countAsTime: false
+  name: CarIdxLapCompleted
+  desc: Laps completed by car index
+  unit: ''
+CarIdxLapDistPct:
+  varType: Float
+  offset: 719
+  count: 64
+  countAsTime: false
+  name: CarIdxLapDistPct
+  desc: Percentage distance around lap by car index
+  unit: '%'
+CarIdxTrackSurface:
+  varType: Int
+  offset: 975
+  count: 64
+  countAsTime: false
+  name: CarIdxTrackSurface
+  desc: Track surface type by car index
+  unit: irsdk_TrkLoc
+CarIdxTrackSurfaceMaterial:
+  varType: Int
+  offset: 1231
+  count: 64
+  countAsTime: false
+  name: CarIdxTrackSurfaceMaterial
+  desc: Track surface material type by car index
+  unit: irsdk_TrkSurf
+CarIdxOnPitRoad:
+  varType: Bool
+  offset: 1487
+  count: 64
+  countAsTime: false
+  name: CarIdxOnPitRoad
+  desc: On pit road between the cones by car index
+  unit: ''
+CarIdxPosition:
+  varType: Int
+  offset: 1551
+  count: 64
+  countAsTime: false
+  name: CarIdxPosition
+  desc: Cars position in race by car index
+  unit: ''
+CarIdxClassPosition:
+  varType: Int
+  offset: 1807
+  count: 64
+  countAsTime: false
+  name: CarIdxClassPosition
+  desc: Cars class position in race by car index
+  unit: ''
+CarIdxClass:
+  varType: Int
+  offset: 2063
+  count: 64
+  countAsTime: false
+  name: CarIdxClass
+  desc: Cars class id by car index
+  unit: ''
+CarIdxF2Time:
+  varType: Float
+  offset: 2319
+  count: 64
+  countAsTime: false
+  name: CarIdxF2Time
+  desc: Race time behind leader or fastest lap time otherwise
+  unit: s
+CarIdxEstTime:
+  varType: Float
+  offset: 2575
+  count: 64
+  countAsTime: false
+  name: CarIdxEstTime
+  desc: Estimated time to reach current location on track
+  unit: s
+CarIdxLastLapTime:
+  varType: Float
+  offset: 2831
+  count: 64
+  countAsTime: false
+  name: CarIdxLastLapTime
+  desc: Cars last lap time
+  unit: s
+CarIdxBestLapTime:
+  varType: Float
+  offset: 3087
+  count: 64
+  countAsTime: false
+  name: CarIdxBestLapTime
+  desc: Cars best lap time
+  unit: s
+CarIdxBestLapNum:
+  varType: Int
+  offset: 3343
+  count: 64
+  countAsTime: false
+  name: CarIdxBestLapNum
+  desc: Cars best lap number
+  unit: ''
+CarIdxTireCompound:
+  varType: Int
+  offset: 3599
+  count: 64
+  countAsTime: false
+  name: CarIdxTireCompound
+  desc: Cars current tire compound
+  unit: ''
+CarIdxQualTireCompound:
+  varType: Int
+  offset: 3855
+  count: 64
+  countAsTime: false
+  name: CarIdxQualTireCompound
+  desc: Cars Qual tire compound
+  unit: ''
+CarIdxQualTireCompoundLocked:
+  varType: Bool
+  offset: 4111
+  count: 64
+  countAsTime: false
+  name: CarIdxQualTireCompoundLocked
+  desc: Cars Qual tire compound is locked-in
+  unit: ''
+CarIdxFastRepairsUsed:
+  varType: Int
+  offset: 4175
+  count: 64
+  countAsTime: false
+  name: CarIdxFastRepairsUsed
+  desc: How many fast repairs each car has used
+  unit: ''
+CarIdxSessionFlags:
+  varType: BitField
+  offset: 4431
+  count: 64
+  countAsTime: false
+  name: CarIdxSessionFlags
+  desc: Session flags for each player
+  unit: irsdk_Flags
+PaceMode:
+  varType: Int
+  offset: 4687
+  count: 1
+  countAsTime: false
+  name: PaceMode
+  desc: Are we pacing or not
+  unit: irsdk_PaceMode
+CarIdxPaceLine:
+  varType: Int
+  offset: 4691
+  count: 64
+  countAsTime: false
+  name: CarIdxPaceLine
+  desc: What line cars are pacing in  or -1 if not pacing
+  unit: ''
+CarIdxPaceRow:
+  varType: Int
+  offset: 4947
+  count: 64
+  countAsTime: false
+  name: CarIdxPaceRow
+  desc: What row cars are pacing in  or -1 if not pacing
+  unit: ''
+CarIdxPaceFlags:
+  varType: BitField
+  offset: 5203
+  count: 64
+  countAsTime: false
+  name: CarIdxPaceFlags
+  desc: Pacing status flags for each car
+  unit: irsdk_PaceFlags
+OnPitRoad:
+  varType: Bool
+  offset: 5459
+  count: 1
+  countAsTime: false
+  name: OnPitRoad
+  desc: Is the player car on pit road between the cones
+  unit: ''
+CarIdxSteer:
+  varType: Float
+  offset: 5460
+  count: 64
+  countAsTime: false
+  name: CarIdxSteer
+  desc: Steering wheel angle by car index
+  unit: rad
+CarIdxRPM:
+  varType: Float
+  offset: 5716
+  count: 64
+  countAsTime: false
+  name: CarIdxRPM
+  desc: Engine rpm by car index
+  unit: revs/min
+CarIdxGear:
+  varType: Int
+  offset: 5972
+  count: 64
+  countAsTime: false
+  name: CarIdxGear
+  desc: -1=reverse  0=neutral  1..n=current gear by car index
+  unit: ''
+SteeringWheelAngle:
+  varType: Float
+  offset: 6228
+  count: 1
+  countAsTime: false
+  name: SteeringWheelAngle
+  desc: Steering wheel angle
+  unit: rad
+Throttle:
+  varType: Float
+  offset: 6232
+  count: 1
+  countAsTime: false
+  name: Throttle
+  desc: 0=off throttle to 1=full throttle
+  unit: '%'
+Brake:
+  varType: Float
+  offset: 6236
+  count: 1
+  countAsTime: false
+  name: Brake
+  desc: 0=brake released to 1=max pedal force
+  unit: '%'
+Clutch:
+  varType: Float
+  offset: 6240
+  count: 1
+  countAsTime: false
+  name: Clutch
+  desc: 0=disengaged to 1=fully engaged
+  unit: '%'
+Gear:
+  varType: Int
+  offset: 6244
+  count: 1
+  countAsTime: false
+  name: Gear
+  desc: -1=reverse  0=neutral  1..n=current gear
+  unit: ''
+RPM:
+  varType: Float
+  offset: 6248
+  count: 1
+  countAsTime: false
+  name: RPM
+  desc: Engine rpm
+  unit: revs/min
+PlayerCarSLFirstRPM:
+  varType: Float
+  offset: 6252
+  count: 1
+  countAsTime: false
+  name: PlayerCarSLFirstRPM
+  desc: Shift light first light rpm
+  unit: revs/min
+PlayerCarSLShiftRPM:
+  varType: Float
+  offset: 6256
+  count: 1
+  countAsTime: false
+  name: PlayerCarSLShiftRPM
+  desc: Shift light shift rpm
+  unit: revs/min
+PlayerCarSLLastRPM:
+  varType: Float
+  offset: 6260
+  count: 1
+  countAsTime: false
+  name: PlayerCarSLLastRPM
+  desc: Shift light last light rpm
+  unit: revs/min
+PlayerCarSLBlinkRPM:
+  varType: Float
+  offset: 6264
+  count: 1
+  countAsTime: false
+  name: PlayerCarSLBlinkRPM
+  desc: Shift light blink rpm
+  unit: revs/min
+Lap:
+  varType: Int
+  offset: 6268
+  count: 1
+  countAsTime: false
+  name: Lap
+  desc: Laps started count
+  unit: ''
+LapCompleted:
+  varType: Int
+  offset: 6272
+  count: 1
+  countAsTime: false
+  name: LapCompleted
+  desc: Laps completed count
+  unit: ''
+LapDist:
+  varType: Float
+  offset: 6276
+  count: 1
+  countAsTime: false
+  name: LapDist
+  desc: Meters traveled from S/F this lap
+  unit: m
+LapDistPct:
+  varType: Float
+  offset: 6280
+  count: 1
+  countAsTime: false
+  name: LapDistPct
+  desc: Percentage distance around lap
+  unit: '%'
+RaceLaps:
+  varType: Int
+  offset: 6284
+  count: 1
+  countAsTime: false
+  name: RaceLaps
+  desc: Laps completed in race
+  unit: ''
+CarDistAhead:
+  varType: Float
+  offset: 6288
+  count: 1
+  countAsTime: false
+  name: CarDistAhead
+  desc: Distance to first car in front of player in meters
+  unit: m
+CarDistBehind:
+  varType: Float
+  offset: 6292
+  count: 1
+  countAsTime: false
+  name: CarDistBehind
+  desc: Distance to first car behind player in meters
+  unit: m
+LapBestLap:
+  varType: Int
+  offset: 6296
+  count: 1
+  countAsTime: false
+  name: LapBestLap
+  desc: Players best lap number
+  unit: ''
+LapBestLapTime:
+  varType: Float
+  offset: 6300
+  count: 1
+  countAsTime: false
+  name: LapBestLapTime
+  desc: Players best lap time
+  unit: s
+LapLastLapTime:
+  varType: Float
+  offset: 6304
+  count: 1
+  countAsTime: false
+  name: LapLastLapTime
+  desc: Players last lap time
+  unit: s
+LapCurrentLapTime:
+  varType: Float
+  offset: 6308
+  count: 1
+  countAsTime: false
+  name: LapCurrentLapTime
+  desc: Estimate of players current lap time as shown in F3 box
+  unit: s
+LapLasNLapSeq:
+  varType: Int
+  offset: 6312
+  count: 1
+  countAsTime: false
+  name: LapLasNLapSeq
+  desc: Player num consecutive clean laps completed for N average
+  unit: ''
+LapLastNLapTime:
+  varType: Float
+  offset: 6316
+  count: 1
+  countAsTime: false
+  name: LapLastNLapTime
+  desc: Player last N average lap time
+  unit: s
+LapBestNLapLap:
+  varType: Int
+  offset: 6320
+  count: 1
+  countAsTime: false
+  name: LapBestNLapLap
+  desc: Player last lap in best N average lap time
+  unit: ''
+LapBestNLapTime:
+  varType: Float
+  offset: 6324
+  count: 1
+  countAsTime: false
+  name: LapBestNLapTime
+  desc: Player best N average lap time
+  unit: s
+LapDeltaToBestLap:
+  varType: Float
+  offset: 6328
+  count: 1
+  countAsTime: false
+  name: LapDeltaToBestLap
+  desc: Delta time for best lap
+  unit: s
+LapDeltaToBestLap_DD:
+  varType: Float
+  offset: 6332
+  count: 1
+  countAsTime: false
+  name: LapDeltaToBestLap_DD
+  desc: Rate of change of delta time for best lap
+  unit: s/s
+LapDeltaToBestLap_OK:
+  varType: Bool
+  offset: 6336
+  count: 1
+  countAsTime: false
+  name: LapDeltaToBestLap_OK
+  desc: Delta time for best lap is valid
+  unit: ''
+LapDeltaToOptimalLap:
+  varType: Float
+  offset: 6337
+  count: 1
+  countAsTime: false
+  name: LapDeltaToOptimalLap
+  desc: Delta time for optimal lap
+  unit: s
+LapDeltaToOptimalLap_DD:
+  varType: Float
+  offset: 6341
+  count: 1
+  countAsTime: false
+  name: LapDeltaToOptimalLap_DD
+  desc: Rate of change of delta time for optimal lap
+  unit: s/s
+LapDeltaToOptimalLap_OK:
+  varType: Bool
+  offset: 6345
+  count: 1
+  countAsTime: false
+  name: LapDeltaToOptimalLap_OK
+  desc: Delta time for optimal lap is valid
+  unit: ''
+LapDeltaToSessionBestLap:
+  varType: Float
+  offset: 6346
+  count: 1
+  countAsTime: false
+  name: LapDeltaToSessionBestLap
+  desc: Delta time for session best lap
+  unit: s
+LapDeltaToSessionBestLap_DD:
+  varType: Float
+  offset: 6350
+  count: 1
+  countAsTime: false
+  name: LapDeltaToSessionBestLap_DD
+  desc: Rate of change of delta time for session best lap
+  unit: s/s
+LapDeltaToSessionBestLap_OK:
+  varType: Bool
+  offset: 6354
+  count: 1
+  countAsTime: false
+  name: LapDeltaToSessionBestLap_OK
+  desc: Delta time for session best lap is valid
+  unit: ''
+LapDeltaToSessionOptimalLap:
+  varType: Float
+  offset: 6355
+  count: 1
+  countAsTime: false
+  name: LapDeltaToSessionOptimalLap
+  desc: Delta time for session optimal lap
+  unit: s
+LapDeltaToSessionOptimalLap_DD:
+  varType: Float
+  offset: 6359
+  count: 1
+  countAsTime: false
+  name: LapDeltaToSessionOptimalLap_DD
+  desc: Rate of change of delta time for session optimal lap
+  unit: s/s
+LapDeltaToSessionOptimalLap_OK:
+  varType: Bool
+  offset: 6363
+  count: 1
+  countAsTime: false
+  name: LapDeltaToSessionOptimalLap_OK
+  desc: Delta time for session optimal lap is valid
+  unit: ''
+LapDeltaToSessionLastlLap:
+  varType: Float
+  offset: 6364
+  count: 1
+  countAsTime: false
+  name: LapDeltaToSessionLastlLap
+  desc: Delta time for session last lap
+  unit: s
+LapDeltaToSessionLastlLap_DD:
+  varType: Float
+  offset: 6368
+  count: 1
+  countAsTime: false
+  name: LapDeltaToSessionLastlLap_DD
+  desc: Rate of change of delta time for session last lap
+  unit: s/s
+LapDeltaToSessionLastlLap_OK:
+  varType: Bool
+  offset: 6372
+  count: 1
+  countAsTime: false
+  name: LapDeltaToSessionLastlLap_OK
+  desc: Delta time for session last lap is valid
+  unit: ''
+Speed:
+  varType: Float
+  offset: 6373
+  count: 1
+  countAsTime: false
+  name: Speed
+  desc: GPS vehicle speed
+  unit: m/s
+Yaw:
+  varType: Float
+  offset: 6377
+  count: 1
+  countAsTime: false
+  name: Yaw
+  desc: Yaw orientation
+  unit: rad
+YawNorth:
+  varType: Float
+  offset: 6381
+  count: 1
+  countAsTime: false
+  name: YawNorth
+  desc: Yaw orientation relative to north
+  unit: rad
+Pitch:
+  varType: Float
+  offset: 6385
+  count: 1
+  countAsTime: false
+  name: Pitch
+  desc: Pitch orientation
+  unit: rad
+Roll:
+  varType: Float
+  offset: 6389
+  count: 1
+  countAsTime: false
+  name: Roll
+  desc: Roll orientation
+  unit: rad
+EnterExitReset:
+  varType: Int
+  offset: 6393
+  count: 1
+  countAsTime: false
+  name: EnterExitReset
+  desc: Indicate action the reset key will take 0 enter 1 exit 2 reset
+  unit: ''
+TrackTemp:
+  varType: Float
+  offset: 6397
+  count: 1
+  countAsTime: false
+  name: TrackTemp
+  desc: Deprecated  set to TrackTempCrew
+  unit: C
+TrackTempCrew:
+  varType: Float
+  offset: 6401
+  count: 1
+  countAsTime: false
+  name: TrackTempCrew
+  desc: Temperature of track measured by crew around track
+  unit: C
+AirTemp:
+  varType: Float
+  offset: 6405
+  count: 1
+  countAsTime: false
+  name: AirTemp
+  desc: Temperature of air at start/finish line
+  unit: C
+TrackWetness:
+  varType: Int
+  offset: 6409
+  count: 1
+  countAsTime: false
+  name: TrackWetness
+  desc: How wet is the average track surface
+  unit: irsdk_TrackWetness
+Skies:
+  varType: Int
+  offset: 6413
+  count: 1
+  countAsTime: false
+  name: Skies
+  desc: Skies (0=clear/1=p cloudy/2=m cloudy/3=overcast)
+  unit: ''
+AirDensity:
+  varType: Float
+  offset: 6417
+  count: 1
+  countAsTime: false
+  name: AirDensity
+  desc: Density of air at start/finish line
+  unit: kg/m^3
+AirPressure:
+  varType: Float
+  offset: 6421
+  count: 1
+  countAsTime: false
+  name: AirPressure
+  desc: Pressure of air at start/finish line
+  unit: Pa
+WindVel:
+  varType: Float
+  offset: 6425
+  count: 1
+  countAsTime: false
+  name: WindVel
+  desc: Wind velocity at start/finish line
+  unit: m/s
+WindDir:
+  varType: Float
+  offset: 6429
+  count: 1
+  countAsTime: false
+  name: WindDir
+  desc: Wind direction at start/finish line
+  unit: rad
+RelativeHumidity:
+  varType: Float
+  offset: 6433
+  count: 1
+  countAsTime: false
+  name: RelativeHumidity
+  desc: Relative Humidity at start/finish line
+  unit: '%'
+FogLevel:
+  varType: Float
+  offset: 6437
+  count: 1
+  countAsTime: false
+  name: FogLevel
+  desc: Fog level at start/finish line
+  unit: '%'
+Precipitation:
+  varType: Float
+  offset: 6441
+  count: 1
+  countAsTime: false
+  name: Precipitation
+  desc: Precipitation at start/finish line
+  unit: '%'
+SolarAltitude:
+  varType: Float
+  offset: 6445
+  count: 1
+  countAsTime: false
+  name: SolarAltitude
+  desc: Sun angle above horizon in radians
+  unit: rad
+SolarAzimuth:
+  varType: Float
+  offset: 6449
+  count: 1
+  countAsTime: false
+  name: SolarAzimuth
+  desc: Sun angle clockwise from north in radians
+  unit: rad
+WeatherDeclaredWet:
+  varType: Bool
+  offset: 6453
+  count: 1
+  countAsTime: false
+  name: WeatherDeclaredWet
+  desc: The steward says rain tires can be used
+  unit: ''
+SteeringFFBEnabled:
+  varType: Bool
+  offset: 6454
+  count: 1
+  countAsTime: false
+  name: SteeringFFBEnabled
+  desc: Force feedback is enabled
+  unit: ''
+DCLapStatus:
+  varType: Int
+  offset: 6455
+  count: 1
+  countAsTime: false
+  name: DCLapStatus
+  desc: Status of driver change lap requirements
+  unit: ''
+DCDriversSoFar:
+  varType: Int
+  offset: 6459
+  count: 1
+  countAsTime: false
+  name: DCDriversSoFar
+  desc: Number of team drivers who have run a stint
+  unit: ''
+OkToReloadTextures:
+  varType: Bool
+  offset: 6463
+  count: 1
+  countAsTime: false
+  name: OkToReloadTextures
+  desc: True if it is ok to reload car textures at this time
+  unit: ''
+LoadNumTextures:
+  varType: Bool
+  offset: 6464
+  count: 1
+  countAsTime: false
+  name: LoadNumTextures
+  desc: True if the car_num texture will be loaded
+  unit: ''
+CarLeftRight:
+  varType: Int
+  offset: 6465
+  count: 1
+  countAsTime: false
+  name: CarLeftRight
+  desc: Notify if car is to the left or right of driver
+  unit: irsdk_CarLeftRight
+PitsOpen:
+  varType: Bool
+  offset: 6469
+  count: 1
+  countAsTime: false
+  name: PitsOpen
+  desc: True if pit stop is allowed for the current player
+  unit: ''
+VidCapEnabled:
+  varType: Bool
+  offset: 6470
+  count: 1
+  countAsTime: false
+  name: VidCapEnabled
+  desc: True if video capture system is enabled
+  unit: ''
+VidCapActive:
+  varType: Bool
+  offset: 6471
+  count: 1
+  countAsTime: false
+  name: VidCapActive
+  desc: True if video currently being captured
+  unit: ''
+PlayerIncidents:
+  varType: Int
+  offset: 6472
+  count: 1
+  countAsTime: false
+  name: PlayerIncidents
+  desc: Log incidents that the player recieved
+  unit: irsdk_IncidentFlags
+PitRepairLeft:
+  varType: Float
+  offset: 6476
+  count: 1
+  countAsTime: false
+  name: PitRepairLeft
+  desc: Time left for mandatory pit repairs if repairs are active
+  unit: s
+PitOptRepairLeft:
+  varType: Float
+  offset: 6480
+  count: 1
+  countAsTime: false
+  name: PitOptRepairLeft
+  desc: Time left for optional repairs if repairs are active
+  unit: s
+PitstopActive:
+  varType: Bool
+  offset: 6484
+  count: 1
+  countAsTime: false
+  name: PitstopActive
+  desc: Is the player getting pit stop service
+  unit: ''
+FastRepairUsed:
+  varType: Int
+  offset: 6485
+  count: 1
+  countAsTime: false
+  name: FastRepairUsed
+  desc: How many fast repairs used so far
+  unit: ''
+FastRepairAvailable:
+  varType: Int
+  offset: 6489
+  count: 1
+  countAsTime: false
+  name: FastRepairAvailable
+  desc: How many fast repairs left  255 is unlimited
+  unit: ''
+LFTiresUsed:
+  varType: Int
+  offset: 6493
+  count: 1
+  countAsTime: false
+  name: LFTiresUsed
+  desc: How many left front tires used so far
+  unit: ''
+RFTiresUsed:
+  varType: Int
+  offset: 6497
+  count: 1
+  countAsTime: false
+  name: RFTiresUsed
+  desc: How many right front tires used so far
+  unit: ''
+LRTiresUsed:
+  varType: Int
+  offset: 6501
+  count: 1
+  countAsTime: false
+  name: LRTiresUsed
+  desc: How many left rear tires used so far
+  unit: ''
+RRTiresUsed:
+  varType: Int
+  offset: 6505
+  count: 1
+  countAsTime: false
+  name: RRTiresUsed
+  desc: How many right rear tires used so far
+  unit: ''
+LeftTireSetsUsed:
+  varType: Int
+  offset: 6509
+  count: 1
+  countAsTime: false
+  name: LeftTireSetsUsed
+  desc: How many left tire sets used so far
+  unit: ''
+RightTireSetsUsed:
+  varType: Int
+  offset: 6513
+  count: 1
+  countAsTime: false
+  name: RightTireSetsUsed
+  desc: How many right tire sets used so far
+  unit: ''
+FrontTireSetsUsed:
+  varType: Int
+  offset: 6517
+  count: 1
+  countAsTime: false
+  name: FrontTireSetsUsed
+  desc: How many front tire sets used so far
+  unit: ''
+RearTireSetsUsed:
+  varType: Int
+  offset: 6521
+  count: 1
+  countAsTime: false
+  name: RearTireSetsUsed
+  desc: How many rear tire sets used so far
+  unit: ''
+TireSetsUsed:
+  varType: Int
+  offset: 6525
+  count: 1
+  countAsTime: false
+  name: TireSetsUsed
+  desc: How many tire sets used so far
+  unit: ''
+LFTiresAvailable:
+  varType: Int
+  offset: 6529
+  count: 1
+  countAsTime: false
+  name: LFTiresAvailable
+  desc: How many left front tires are remaining  255 is unlimited
+  unit: ''
+RFTiresAvailable:
+  varType: Int
+  offset: 6533
+  count: 1
+  countAsTime: false
+  name: RFTiresAvailable
+  desc: How many right front tires are remaining  255 is unlimited
+  unit: ''
+LRTiresAvailable:
+  varType: Int
+  offset: 6537
+  count: 1
+  countAsTime: false
+  name: LRTiresAvailable
+  desc: How many left rear tires are remaining  255 is unlimited
+  unit: ''
+RRTiresAvailable:
+  varType: Int
+  offset: 6541
+  count: 1
+  countAsTime: false
+  name: RRTiresAvailable
+  desc: How many right rear tires are remaining  255 is unlimited
+  unit: ''
+LeftTireSetsAvailable:
+  varType: Int
+  offset: 6545
+  count: 1
+  countAsTime: false
+  name: LeftTireSetsAvailable
+  desc: How many left tire sets are remaining  255 is unlimited
+  unit: ''
+RightTireSetsAvailable:
+  varType: Int
+  offset: 6549
+  count: 1
+  countAsTime: false
+  name: RightTireSetsAvailable
+  desc: How many right tire sets are remaining  255 is unlimited
+  unit: ''
+FrontTireSetsAvailable:
+  varType: Int
+  offset: 6553
+  count: 1
+  countAsTime: false
+  name: FrontTireSetsAvailable
+  desc: How many front tire sets are remaining  255 is unlimited
+  unit: ''
+RearTireSetsAvailable:
+  varType: Int
+  offset: 6557
+  count: 1
+  countAsTime: false
+  name: RearTireSetsAvailable
+  desc: How many rear tire sets are remaining  255 is unlimited
+  unit: ''
+TireSetsAvailable:
+  varType: Int
+  offset: 6561
+  count: 1
+  countAsTime: false
+  name: TireSetsAvailable
+  desc: How many tire sets are remaining  255 is unlimited
+  unit: ''
+CamCarIdx:
+  varType: Int
+  offset: 6565
+  count: 1
+  countAsTime: false
+  name: CamCarIdx
+  desc: Active camera's focus car index
+  unit: ''
+CamCameraNumber:
+  varType: Int
+  offset: 6569
+  count: 1
+  countAsTime: false
+  name: CamCameraNumber
+  desc: Active camera number
+  unit: ''
+CamGroupNumber:
+  varType: Int
+  offset: 6573
+  count: 1
+  countAsTime: false
+  name: CamGroupNumber
+  desc: Active camera group number
+  unit: ''
+CamCameraState:
+  varType: BitField
+  offset: 6577
+  count: 1
+  countAsTime: false
+  name: CamCameraState
+  desc: State of camera system
+  unit: irsdk_CameraState
+IsOnTrackCar:
+  varType: Bool
+  offset: 6581
+  count: 1
+  countAsTime: false
+  name: IsOnTrackCar
+  desc: 1=Car on track physics running
+  unit: ''
+IsInGarage:
+  varType: Bool
+  offset: 6582
+  count: 1
+  countAsTime: false
+  name: IsInGarage
+  desc: 1=Car in garage physics running
+  unit: ''
+SteeringWheelAngleMax:
+  varType: Float
+  offset: 6583
+  count: 1
+  countAsTime: false
+  name: SteeringWheelAngleMax
+  desc: Steering wheel max angle
+  unit: rad
+ShiftPowerPct:
+  varType: Float
+  offset: 6587
+  count: 1
+  countAsTime: false
+  name: ShiftPowerPct
+  desc: Friction torque applied to gears when shifting or grinding
+  unit: '%'
+ShiftGrindRPM:
+  varType: Float
+  offset: 6591
+  count: 1
+  countAsTime: false
+  name: ShiftGrindRPM
+  desc: RPM of shifter grinding noise
+  unit: RPM
+ThrottleRaw:
+  varType: Float
+  offset: 6595
+  count: 1
+  countAsTime: false
+  name: ThrottleRaw
+  desc: Raw throttle input 0=off throttle to 1=full throttle
+  unit: '%'
+BrakeRaw:
+  varType: Float
+  offset: 6599
+  count: 1
+  countAsTime: false
+  name: BrakeRaw
+  desc: Raw brake input 0=brake released to 1=max pedal force
+  unit: '%'
+ClutchRaw:
+  varType: Float
+  offset: 6603
+  count: 1
+  countAsTime: false
+  name: ClutchRaw
+  desc: Raw clutch input 0=disengaged to 1=fully engaged
+  unit: '%'
+HandbrakeRaw:
+  varType: Float
+  offset: 6607
+  count: 1
+  countAsTime: false
+  name: HandbrakeRaw
+  desc: Raw handbrake input 0=handbrake released to 1=max force
+  unit: '%'
+BrakeABSactive:
+  varType: Bool
+  offset: 6611
+  count: 1
+  countAsTime: false
+  name: BrakeABSactive
+  desc: true if abs is currently reducing brake force pressure
+  unit: ''
+Shifter:
+  varType: Int
+  offset: 6612
+  count: 1
+  countAsTime: false
+  name: Shifter
+  desc: Log inputs from the players shifter control
+  unit: ''
+EngineWarnings:
+  varType: BitField
+  offset: 6616
+  count: 1
+  countAsTime: false
+  name: EngineWarnings
+  desc: Bitfield for warning lights
+  unit: irsdk_EngineWarnings
+FuelLevelPct:
+  varType: Float
+  offset: 6620
+  count: 1
+  countAsTime: false
+  name: FuelLevelPct
+  desc: Percent fuel remaining
+  unit: '%'
+PitSvFlags:
+  varType: BitField
+  offset: 6624
+  count: 1
+  countAsTime: false
+  name: PitSvFlags
+  desc: Bitfield of pit service checkboxes
+  unit: irsdk_PitSvFlags
+PitSvLFP:
+  varType: Float
+  offset: 6628
+  count: 1
+  countAsTime: false
+  name: PitSvLFP
+  desc: Pit service left front tire pressure
+  unit: kPa
+PitSvRFP:
+  varType: Float
+  offset: 6632
+  count: 1
+  countAsTime: false
+  name: PitSvRFP
+  desc: Pit service right front tire pressure
+  unit: kPa
+PitSvLRP:
+  varType: Float
+  offset: 6636
+  count: 1
+  countAsTime: false
+  name: PitSvLRP
+  desc: Pit service left rear tire pressure
+  unit: kPa
+PitSvRRP:
+  varType: Float
+  offset: 6640
+  count: 1
+  countAsTime: false
+  name: PitSvRRP
+  desc: Pit service right rear tire pressure
+  unit: kPa
+PitSvFuel:
+  varType: Float
+  offset: 6644
+  count: 1
+  countAsTime: false
+  name: PitSvFuel
+  desc: Pit service fuel add amount
+  unit: l or kWh
+PitSvTireCompound:
+  varType: Int
+  offset: 6648
+  count: 1
+  countAsTime: false
+  name: PitSvTireCompound
+  desc: Pit service pending tire compound
+  unit: ''
+CarIdxP2P_Status:
+  varType: Bool
+  offset: 6652
+  count: 64
+  countAsTime: false
+  name: CarIdxP2P_Status
+  desc: Push2Pass active or not
+  unit: ''
+CarIdxP2P_Count:
+  varType: Int
+  offset: 6716
+  count: 64
+  countAsTime: false
+  name: CarIdxP2P_Count
+  desc: Push2Pass count of usage (or remaining in Race)
+  unit: ''
+P2P_Status:
+  varType: Bool
+  offset: 6972
+  count: 1
+  countAsTime: false
+  name: P2P_Status
+  desc: Push2Pass active or not on your car
+  unit: ''
+P2P_Count:
+  varType: Int
+  offset: 6973
+  count: 1
+  countAsTime: false
+  name: P2P_Count
+  desc: Push2Pass count of usage (or remaining in Race) on your car
+  unit: ''
+SteeringWheelPctTorque:
+  varType: Float
+  offset: 6977
+  count: 1
+  countAsTime: false
+  name: SteeringWheelPctTorque
+  desc: Force feedback % max torque on steering shaft unsigned
+  unit: '%'
+SteeringWheelPctTorqueSign:
+  varType: Float
+  offset: 6981
+  count: 1
+  countAsTime: false
+  name: SteeringWheelPctTorqueSign
+  desc: Force feedback % max torque on steering shaft signed
+  unit: '%'
+SteeringWheelPctTorqueSignStops:
+  varType: Float
+  offset: 6985
+  count: 1
+  countAsTime: false
+  name: SteeringWheelPctTorqueSignStops
+  desc: Force feedback % max torque on steering shaft signed stops
+  unit: '%'
+SteeringWheelPctIntensity:
+  varType: Float
+  offset: 6989
+  count: 1
+  countAsTime: false
+  name: SteeringWheelPctIntensity
+  desc: Force feedback % max intensity
+  unit: '%'
+SteeringWheelPctSmoothing:
+  varType: Float
+  offset: 6993
+  count: 1
+  countAsTime: false
+  name: SteeringWheelPctSmoothing
+  desc: Force feedback % max smoothing
+  unit: '%'
+SteeringWheelPctDamper:
+  varType: Float
+  offset: 6997
+  count: 1
+  countAsTime: false
+  name: SteeringWheelPctDamper
+  desc: Force feedback % max damping
+  unit: '%'
+SteeringWheelLimiter:
+  varType: Float
+  offset: 7001
+  count: 1
+  countAsTime: false
+  name: SteeringWheelLimiter
+  desc: Force feedback limiter strength limits impacts and oscillation
+  unit: '%'
+SteeringWheelMaxForceNm:
+  varType: Float
+  offset: 7005
+  count: 1
+  countAsTime: false
+  name: SteeringWheelMaxForceNm
+  desc: Value of strength or max force slider in Nm for FFB
+  unit: N*m
+SteeringWheelPeakForceNm:
+  varType: Float
+  offset: 7009
+  count: 1
+  countAsTime: false
+  name: SteeringWheelPeakForceNm
+  desc: Peak torque mapping to direct input units for FFB
+  unit: N*m
+SteeringWheelUseLinear:
+  varType: Bool
+  offset: 7013
+  count: 1
+  countAsTime: false
+  name: SteeringWheelUseLinear
+  desc: True if steering wheel force is using linear mode
+  unit: ''
+ShiftIndicatorPct:
+  varType: Float
+  offset: 7014
+  count: 1
+  countAsTime: false
+  name: ShiftIndicatorPct
+  desc: DEPRECATED use DriverCarSLBlinkRPM instead
+  unit: '%'
+IsGarageVisible:
+  varType: Bool
+  offset: 7018
+  count: 1
+  countAsTime: false
+  name: IsGarageVisible
+  desc: 1=Garage screen is visible
+  unit: ''
+ReplayPlaySpeed:
+  varType: Int
+  offset: 7019
+  count: 1
+  countAsTime: false
+  name: ReplayPlaySpeed
+  desc: Replay playback speed
+  unit: ''
+ReplayPlaySlowMotion:
+  varType: Bool
+  offset: 7023
+  count: 1
+  countAsTime: false
+  name: ReplayPlaySlowMotion
+  desc: 0=not slow motion  1=replay is in slow motion
+  unit: ''
+ReplaySessionTime:
+  varType: Double
+  offset: 7024
+  count: 1
+  countAsTime: false
+  name: ReplaySessionTime
+  desc: Seconds since replay session start
+  unit: s
+ReplaySessionNum:
+  varType: Int
+  offset: 7032
+  count: 1
+  countAsTime: false
+  name: ReplaySessionNum
+  desc: Replay session number
+  unit: ''
+TireLF_RumblePitch:
+  varType: Float
+  offset: 7036
+  count: 1
+  countAsTime: false
+  name: TireLF_RumblePitch
+  desc: Players LF Tire Sound rumblestrip pitch
+  unit: Hz
+TireRF_RumblePitch:
+  varType: Float
+  offset: 7040
+  count: 1
+  countAsTime: false
+  name: TireRF_RumblePitch
+  desc: Players RF Tire Sound rumblestrip pitch
+  unit: Hz
+TireLR_RumblePitch:
+  varType: Float
+  offset: 7044
+  count: 1
+  countAsTime: false
+  name: TireLR_RumblePitch
+  desc: Players LR Tire Sound rumblestrip pitch
+  unit: Hz
+TireRR_RumblePitch:
+  varType: Float
+  offset: 7048
+  count: 1
+  countAsTime: false
+  name: TireRR_RumblePitch
+  desc: Players RR Tire Sound rumblestrip pitch
+  unit: Hz
+SteeringWheelTorque_ST:
+  varType: Float
+  offset: 7052
+  count: 6
+  countAsTime: true
+  name: SteeringWheelTorque_ST
+  desc: Output torque on steering shaft at 360 Hz
+  unit: N*m
+SteeringWheelTorque:
+  varType: Float
+  offset: 7076
+  count: 1
+  countAsTime: false
+  name: SteeringWheelTorque
+  desc: Output torque on steering shaft
+  unit: N*m
+VelocityZ_ST:
+  varType: Float
+  offset: 7080
+  count: 6
+  countAsTime: true
+  name: VelocityZ_ST
+  desc: Z velocity
+  unit: m/s at 360 Hz
+VelocityY_ST:
+  varType: Float
+  offset: 7104
+  count: 6
+  countAsTime: true
+  name: VelocityY_ST
+  desc: Y velocity
+  unit: m/s at 360 Hz
+VelocityX_ST:
+  varType: Float
+  offset: 7128
+  count: 6
+  countAsTime: true
+  name: VelocityX_ST
+  desc: X velocity
+  unit: m/s at 360 Hz
+VelocityZ:
+  varType: Float
+  offset: 7152
+  count: 1
+  countAsTime: false
+  name: VelocityZ
+  desc: Z velocity
+  unit: m/s
+VelocityY:
+  varType: Float
+  offset: 7156
+  count: 1
+  countAsTime: false
+  name: VelocityY
+  desc: Y velocity
+  unit: m/s
+VelocityX:
+  varType: Float
+  offset: 7160
+  count: 1
+  countAsTime: false
+  name: VelocityX
+  desc: X velocity
+  unit: m/s
+YawRate_ST:
+  varType: Float
+  offset: 7164
+  count: 6
+  countAsTime: true
+  name: YawRate_ST
+  desc: Yaw rate at 360 Hz
+  unit: rad/s
+PitchRate_ST:
+  varType: Float
+  offset: 7188
+  count: 6
+  countAsTime: true
+  name: PitchRate_ST
+  desc: Pitch rate at 360 Hz
+  unit: rad/s
+RollRate_ST:
+  varType: Float
+  offset: 7212
+  count: 6
+  countAsTime: true
+  name: RollRate_ST
+  desc: Roll rate at 360 Hz
+  unit: rad/s
+YawRate:
+  varType: Float
+  offset: 7236
+  count: 1
+  countAsTime: false
+  name: YawRate
+  desc: Yaw rate
+  unit: rad/s
+PitchRate:
+  varType: Float
+  offset: 7240
+  count: 1
+  countAsTime: false
+  name: PitchRate
+  desc: Pitch rate
+  unit: rad/s
+RollRate:
+  varType: Float
+  offset: 7244
+  count: 1
+  countAsTime: false
+  name: RollRate
+  desc: Roll rate
+  unit: rad/s
+VertAccel_ST:
+  varType: Float
+  offset: 7248
+  count: 6
+  countAsTime: true
+  name: VertAccel_ST
+  desc: Vertical acceleration (including gravity) at 360 Hz
+  unit: m/s^2
+LatAccel_ST:
+  varType: Float
+  offset: 7272
+  count: 6
+  countAsTime: true
+  name: LatAccel_ST
+  desc: Lateral acceleration (including gravity) at 360 Hz
+  unit: m/s^2
+LongAccel_ST:
+  varType: Float
+  offset: 7296
+  count: 6
+  countAsTime: true
+  name: LongAccel_ST
+  desc: Longitudinal acceleration (including gravity) at 360 Hz
+  unit: m/s^2
+VertAccel:
+  varType: Float
+  offset: 7320
+  count: 1
+  countAsTime: false
+  name: VertAccel
+  desc: Vertical acceleration (including gravity)
+  unit: m/s^2
+LatAccel:
+  varType: Float
+  offset: 7324
+  count: 1
+  countAsTime: false
+  name: LatAccel
+  desc: Lateral acceleration (including gravity)
+  unit: m/s^2
+LongAccel:
+  varType: Float
+  offset: 7328
+  count: 1
+  countAsTime: false
+  name: LongAccel
+  desc: Longitudinal acceleration (including gravity)
+  unit: m/s^2
+dcStarter:
+  varType: Bool
+  offset: 7332
+  count: 1
+  countAsTime: false
+  name: dcStarter
+  desc: In car trigger car starter
+  unit: ''
+dcPitSpeedLimiterToggle:
+  varType: Bool
+  offset: 7333
+  count: 1
+  countAsTime: false
+  name: dcPitSpeedLimiterToggle
+  desc: Track if pit speed limiter system is enabled
+  unit: ''
+dpRFTireChange:
+  varType: Float
+  offset: 7334
+  count: 1
+  countAsTime: false
+  name: dpRFTireChange
+  desc: Pitstop rf tire change request
+  unit: ''
+dpLFTireChange:
+  varType: Float
+  offset: 7338
+  count: 1
+  countAsTime: false
+  name: dpLFTireChange
+  desc: Pitstop lf tire change request
+  unit: ''
+dpRRTireChange:
+  varType: Float
+  offset: 7342
+  count: 1
+  countAsTime: false
+  name: dpRRTireChange
+  desc: Pitstop rr tire change request
+  unit: ''
+dpLRTireChange:
+  varType: Float
+  offset: 7346
+  count: 1
+  countAsTime: false
+  name: dpLRTireChange
+  desc: Pitstop lr tire change request
+  unit: ''
+dpFuelFill:
+  varType: Float
+  offset: 7350
+  count: 1
+  countAsTime: false
+  name: dpFuelFill
+  desc: Pitstop fuel fill flag
+  unit: ''
+dpFuelAutoFillEnabled:
+  varType: Float
+  offset: 7354
+  count: 1
+  countAsTime: false
+  name: dpFuelAutoFillEnabled
+  desc: Pitstop auto fill fuel system enabled
+  unit: ''
+dpFuelAutoFillActive:
+  varType: Float
+  offset: 7358
+  count: 1
+  countAsTime: false
+  name: dpFuelAutoFillActive
+  desc: Pitstop auto fill fuel next stop flag
+  unit: ''
+dpWindshieldTearoff:
+  varType: Float
+  offset: 7362
+  count: 1
+  countAsTime: false
+  name: dpWindshieldTearoff
+  desc: Pitstop windshield tearoff
+  unit: ''
+dpFuelAddKg:
+  varType: Float
+  offset: 7366
+  count: 1
+  countAsTime: false
+  name: dpFuelAddKg
+  desc: Pitstop fuel add amount
+  unit: kg
+dpFastRepair:
+  varType: Float
+  offset: 7370
+  count: 1
+  countAsTime: false
+  name: dpFastRepair
+  desc: Pitstop fast repair set
+  unit: ''
+dpLFTireColdPress:
+  varType: Float
+  offset: 7374
+  count: 1
+  countAsTime: false
+  name: dpLFTireColdPress
+  desc: Pitstop lf tire cold pressure adjustment
+  unit: Pa
+dpRFTireColdPress:
+  varType: Float
+  offset: 7378
+  count: 1
+  countAsTime: false
+  name: dpRFTireColdPress
+  desc: Pitstop rf cold tire pressure adjustment
+  unit: Pa
+dpLRTireColdPress:
+  varType: Float
+  offset: 7382
+  count: 1
+  countAsTime: false
+  name: dpLRTireColdPress
+  desc: Pitstop lr tire cold pressure adjustment
+  unit: Pa
+dpRRTireColdPress:
+  varType: Float
+  offset: 7386
+  count: 1
+  countAsTime: false
+  name: dpRRTireColdPress
+  desc: Pitstop rr cold tire pressure adjustment
+  unit: Pa
+dcToggleWindshieldWipers:
+  varType: Bool
+  offset: 7390
+  count: 1
+  countAsTime: false
+  name: dcToggleWindshieldWipers
+  desc: In car turn wipers on or off
+  unit: ''
+dcTriggerWindshieldWipers:
+  varType: Bool
+  offset: 7391
+  count: 1
+  countAsTime: false
+  name: dcTriggerWindshieldWipers
+  desc: In car momentarily turn on wipers
+  unit: ''
+FuelUsePerHour:
+  varType: Float
+  offset: 7392
+  count: 1
+  countAsTime: false
+  name: FuelUsePerHour
+  desc: Engine fuel used instantaneous
+  unit: kg/h
+Voltage:
+  varType: Float
+  offset: 7396
+  count: 1
+  countAsTime: false
+  name: Voltage
+  desc: Engine voltage
+  unit: V
+WaterTemp:
+  varType: Float
+  offset: 7400
+  count: 1
+  countAsTime: false
+  name: WaterTemp
+  desc: Engine coolant temp
+  unit: C
+WaterLevel:
+  varType: Float
+  offset: 7404
+  count: 1
+  countAsTime: false
+  name: WaterLevel
+  desc: Engine coolant level
+  unit: l
+FuelPress:
+  varType: Float
+  offset: 7408
+  count: 1
+  countAsTime: false
+  name: FuelPress
+  desc: Engine fuel pressure
+  unit: bar
+OilTemp:
+  varType: Float
+  offset: 7412
+  count: 1
+  countAsTime: false
+  name: OilTemp
+  desc: Engine oil temperature
+  unit: C
+OilPress:
+  varType: Float
+  offset: 7416
+  count: 1
+  countAsTime: false
+  name: OilPress
+  desc: Engine oil pressure
+  unit: bar
+OilLevel:
+  varType: Float
+  offset: 7420
+  count: 1
+  countAsTime: false
+  name: OilLevel
+  desc: Engine oil level
+  unit: l
+ManifoldPress:
+  varType: Float
+  offset: 7424
+  count: 1
+  countAsTime: false
+  name: ManifoldPress
+  desc: Engine manifold pressure
+  unit: bar
+FuelLevel:
+  varType: Float
+  offset: 7428
+  count: 1
+  countAsTime: false
+  name: FuelLevel
+  desc: Liters of fuel remaining
+  unit: l
+Engine0_RPM:
+  varType: Float
+  offset: 7432
+  count: 1
+  countAsTime: false
+  name: Engine0_RPM
+  desc: Engine0Engine rpm
+  unit: revs/min
+RFbrakeLinePress:
+  varType: Float
+  offset: 7436
+  count: 1
+  countAsTime: false
+  name: RFbrakeLinePress
+  desc: RF brake line pressure
+  unit: bar
+RFcoldPressure:
+  varType: Float
+  offset: 7440
+  count: 1
+  countAsTime: false
+  name: RFcoldPressure
+  desc: RF tire cold pressure  as set in the garage
+  unit: kPa
+RFodometer:
+  varType: Float
+  offset: 7444
+  count: 1
+  countAsTime: false
+  name: RFodometer
+  desc: RF distance tire traveled since being placed on car
+  unit: m
+RFtempCL:
+  varType: Float
+  offset: 7448
+  count: 1
+  countAsTime: false
+  name: RFtempCL
+  desc: RF tire left carcass temperature
+  unit: C
+RFtempCM:
+  varType: Float
+  offset: 7452
+  count: 1
+  countAsTime: false
+  name: RFtempCM
+  desc: RF tire middle carcass temperature
+  unit: C
+RFtempCR:
+  varType: Float
+  offset: 7456
+  count: 1
+  countAsTime: false
+  name: RFtempCR
+  desc: RF tire right carcass temperature
+  unit: C
+RFwearL:
+  varType: Float
+  offset: 7460
+  count: 1
+  countAsTime: false
+  name: RFwearL
+  desc: RF tire left percent tread remaining
+  unit: '%'
+RFwearM:
+  varType: Float
+  offset: 7464
+  count: 1
+  countAsTime: false
+  name: RFwearM
+  desc: RF tire middle percent tread remaining
+  unit: '%'
+RFwearR:
+  varType: Float
+  offset: 7468
+  count: 1
+  countAsTime: false
+  name: RFwearR
+  desc: RF tire right percent tread remaining
+  unit: '%'
+LFbrakeLinePress:
+  varType: Float
+  offset: 7472
+  count: 1
+  countAsTime: false
+  name: LFbrakeLinePress
+  desc: LF brake line pressure
+  unit: bar
+LFcoldPressure:
+  varType: Float
+  offset: 7476
+  count: 1
+  countAsTime: false
+  name: LFcoldPressure
+  desc: LF tire cold pressure  as set in the garage
+  unit: kPa
+LFodometer:
+  varType: Float
+  offset: 7480
+  count: 1
+  countAsTime: false
+  name: LFodometer
+  desc: LF distance tire traveled since being placed on car
+  unit: m
+LFtempCL:
+  varType: Float
+  offset: 7484
+  count: 1
+  countAsTime: false
+  name: LFtempCL
+  desc: LF tire left carcass temperature
+  unit: C
+LFtempCM:
+  varType: Float
+  offset: 7488
+  count: 1
+  countAsTime: false
+  name: LFtempCM
+  desc: LF tire middle carcass temperature
+  unit: C
+LFtempCR:
+  varType: Float
+  offset: 7492
+  count: 1
+  countAsTime: false
+  name: LFtempCR
+  desc: LF tire right carcass temperature
+  unit: C
+LFwearL:
+  varType: Float
+  offset: 7496
+  count: 1
+  countAsTime: false
+  name: LFwearL
+  desc: LF tire left percent tread remaining
+  unit: '%'
+LFwearM:
+  varType: Float
+  offset: 7500
+  count: 1
+  countAsTime: false
+  name: LFwearM
+  desc: LF tire middle percent tread remaining
+  unit: '%'
+LFwearR:
+  varType: Float
+  offset: 7504
+  count: 1
+  countAsTime: false
+  name: LFwearR
+  desc: LF tire right percent tread remaining
+  unit: '%'
+RRbrakeLinePress:
+  varType: Float
+  offset: 7508
+  count: 1
+  countAsTime: false
+  name: RRbrakeLinePress
+  desc: RR brake line pressure
+  unit: bar
+RRcoldPressure:
+  varType: Float
+  offset: 7512
+  count: 1
+  countAsTime: false
+  name: RRcoldPressure
+  desc: RR tire cold pressure  as set in the garage
+  unit: kPa
+RRodometer:
+  varType: Float
+  offset: 7516
+  count: 1
+  countAsTime: false
+  name: RRodometer
+  desc: RR distance tire traveled since being placed on car
+  unit: m
+RRtempCL:
+  varType: Float
+  offset: 7520
+  count: 1
+  countAsTime: false
+  name: RRtempCL
+  desc: RR tire left carcass temperature
+  unit: C
+RRtempCM:
+  varType: Float
+  offset: 7524
+  count: 1
+  countAsTime: false
+  name: RRtempCM
+  desc: RR tire middle carcass temperature
+  unit: C
+RRtempCR:
+  varType: Float
+  offset: 7528
+  count: 1
+  countAsTime: false
+  name: RRtempCR
+  desc: RR tire right carcass temperature
+  unit: C
+RRwearL:
+  varType: Float
+  offset: 7532
+  count: 1
+  countAsTime: false
+  name: RRwearL
+  desc: RR tire left percent tread remaining
+  unit: '%'
+RRwearM:
+  varType: Float
+  offset: 7536
+  count: 1
+  countAsTime: false
+  name: RRwearM
+  desc: RR tire middle percent tread remaining
+  unit: '%'
+RRwearR:
+  varType: Float
+  offset: 7540
+  count: 1
+  countAsTime: false
+  name: RRwearR
+  desc: RR tire right percent tread remaining
+  unit: '%'
+LRbrakeLinePress:
+  varType: Float
+  offset: 7544
+  count: 1
+  countAsTime: false
+  name: LRbrakeLinePress
+  desc: LR brake line pressure
+  unit: bar
+LRcoldPressure:
+  varType: Float
+  offset: 7548
+  count: 1
+  countAsTime: false
+  name: LRcoldPressure
+  desc: LR tire cold pressure  as set in the garage
+  unit: kPa
+LRodometer:
+  varType: Float
+  offset: 7552
+  count: 1
+  countAsTime: false
+  name: LRodometer
+  desc: LR distance tire traveled since being placed on car
+  unit: m
+LRtempCL:
+  varType: Float
+  offset: 7556
+  count: 1
+  countAsTime: false
+  name: LRtempCL
+  desc: LR tire left carcass temperature
+  unit: C
+LRtempCM:
+  varType: Float
+  offset: 7560
+  count: 1
+  countAsTime: false
+  name: LRtempCM
+  desc: LR tire middle carcass temperature
+  unit: C
+LRtempCR:
+  varType: Float
+  offset: 7564
+  count: 1
+  countAsTime: false
+  name: LRtempCR
+  desc: LR tire right carcass temperature
+  unit: C
+LRwearL:
+  varType: Float
+  offset: 7568
+  count: 1
+  countAsTime: false
+  name: LRwearL
+  desc: LR tire left percent tread remaining
+  unit: '%'
+LRwearM:
+  varType: Float
+  offset: 7572
+  count: 1
+  countAsTime: false
+  name: LRwearM
+  desc: LR tire middle percent tread remaining
+  unit: '%'
+LRwearR:
+  varType: Float
+  offset: 7576
+  count: 1
+  countAsTime: false
+  name: LRwearR
+  desc: LR tire right percent tread remaining
+  unit: '%'
+LRshockDefl:
+  varType: Float
+  offset: 7580
+  count: 1
+  countAsTime: false
+  name: LRshockDefl
+  desc: LR shock deflection
+  unit: m
+LRshockDefl_ST:
+  varType: Float
+  offset: 7584
+  count: 6
+  countAsTime: true
+  name: LRshockDefl_ST
+  desc: LR shock deflection at 360 Hz
+  unit: m
+LRshockVel:
+  varType: Float
+  offset: 7608
+  count: 1
+  countAsTime: false
+  name: LRshockVel
+  desc: LR shock velocity
+  unit: m/s
+LRshockVel_ST:
+  varType: Float
+  offset: 7612
+  count: 6
+  countAsTime: true
+  name: LRshockVel_ST
+  desc: LR shock velocity at 360 Hz
+  unit: m/s
+RRshockDefl:
+  varType: Float
+  offset: 7636
+  count: 1
+  countAsTime: false
+  name: RRshockDefl
+  desc: RR shock deflection
+  unit: m
+RRshockDefl_ST:
+  varType: Float
+  offset: 7640
+  count: 6
+  countAsTime: true
+  name: RRshockDefl_ST
+  desc: RR shock deflection at 360 Hz
+  unit: m
+RRshockVel:
+  varType: Float
+  offset: 7664
+  count: 1
+  countAsTime: false
+  name: RRshockVel
+  desc: RR shock velocity
+  unit: m/s
+RRshockVel_ST:
+  varType: Float
+  offset: 7668
+  count: 6
+  countAsTime: true
+  name: RRshockVel_ST
+  desc: RR shock velocity at 360 Hz
+  unit: m/s
+LFshockDefl:
+  varType: Float
+  offset: 7692
+  count: 1
+  countAsTime: false
+  name: LFshockDefl
+  desc: LF shock deflection
+  unit: m
+LFshockDefl_ST:
+  varType: Float
+  offset: 7696
+  count: 6
+  countAsTime: true
+  name: LFshockDefl_ST
+  desc: LF shock deflection at 360 Hz
+  unit: m
+LFshockVel:
+  varType: Float
+  offset: 7720
+  count: 1
+  countAsTime: false
+  name: LFshockVel
+  desc: LF shock velocity
+  unit: m/s
+LFshockVel_ST:
+  varType: Float
+  offset: 7724
+  count: 6
+  countAsTime: true
+  name: LFshockVel_ST
+  desc: LF shock velocity at 360 Hz
+  unit: m/s
+RFshockDefl:
+  varType: Float
+  offset: 7748
+  count: 1
+  countAsTime: false
+  name: RFshockDefl
+  desc: RF shock deflection
+  unit: m
+RFshockDefl_ST:
+  varType: Float
+  offset: 7752
+  count: 6
+  countAsTime: true
+  name: RFshockDefl_ST
+  desc: RF shock deflection at 360 Hz
+  unit: m
+RFshockVel:
+  varType: Float
+  offset: 7776
+  count: 1
+  countAsTime: false
+  name: RFshockVel
+  desc: RF shock velocity
+  unit: m/s
+RFshockVel_ST:
+  varType: Float
+  offset: 7780
+  count: 6
+  countAsTime: true
+  name: RFshockVel_ST
+  desc: RF shock velocity at 360 Hz
+  unit: m/s

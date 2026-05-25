@@ -1,0 +1,57 @@
+﻿{
+  "SpotterCarLeft": [
+    "Bil till vänster!",
+    "Vänster!"
+  ],
+  "SpotterCarRight": [
+    "Bil till höger!",
+    "Höger!"
+  ],
+  "SpotterClear": [
+    "Fri.",
+    "Du är fri."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Tre i bredd, du är i mitten!",
+    "[urgently] Tre i bredd! Bil till vänster och höger!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Tre i bredd, du är till vänster!",
+    "[urgently] Tre i bredd! Bil till din höger!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Tre i bredd, du är till höger!",
+    "[urgently] Tre i bredd! Bil till din vänster!"
+  ],
+  "SpotterStillThere": [
+    "Fortfarande där.",
+    "Fortfarande med dig.",
+    "Han är fortfarande där.",
+    "Bilen är fortfarande bredvid."
+  ],
+  "TestPhrase0": [
+    "Testar röst.",
+    "Kommunikationstest — hör du mig?",
+    "Det här är ett rösttest."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter här, kommunikationstest.",
+    "Spotter aktiv."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Sportkommentator ett, testar!",
+    "Mikrofontest — sportkommentator ett här.",
+    "[cheerfully] Sportkommentator ett online."
+  ],
+  "TestPhrase3": [
+    "Sportkommentator två, testar.",
+    "Mikrofontest — sportkommentator två här.",
+    "Sportkommentator två online."
+  ],
+  "TestPhrase4": [
+    "Pit-reporter, testar.",
+    "Pit lane, mikrofontest.",
+    "Pit-reporter online."
+  ]
+}

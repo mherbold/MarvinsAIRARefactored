@@ -1,0 +1,557 @@
+﻿<UserControl x:Class="MarvinsAIRARefactored.Pages.ContributePage"
+             x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MarvinsAIRARefactored.Pages"
+             xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+             xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+             mc:Ignorable="d"
+             d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </UserControl.DataContext>
+
+    <StackPanel>
+
+        <controls:MairaGroupBox Label="{Binding Localization[CodeContributions_UC]}">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+
+                    <TextBlock Grid.Column="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#ff5b2e">
+                                
+                    <Run Text="{Binding Localization[Contributors], Mode=OneWay}" />
+                
+                    ❤️❤️❤️
+
+                    </TextBlock>
+
+                    <UniformGrid Columns="1"
+                                 Margin="0,10,0,0">
+
+                        <UniformGrid.Resources>
+                            <Style TargetType="TextBlock"
+                                   BasedOn="{StaticResource MairaTextBlockStyle}">
+                            </Style>
+                        </UniformGrid.Resources>
+
+                        <TextBlock Text="Alan Le" />
+                        <TextBlock Text="Matthew Brittle" />
+                        <TextBlock Text="Scott @ BoxBoxDesign" />
+
+                    </UniformGrid>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               TextWrapping="Wrap"
+                               Text="{Binding Localization[CodeContributionsText], Mode=OneWay}"
+                               Margin="0,0,0,20" />
+
+                    <Border BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            HorizontalAlignment="Left">
+
+                        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                   Padding="15,5">
+
+                        <Hyperlink NavigateUri="https://github.com/mherbold/MarvinsAIRARefactored"
+                                   RequestNavigate="Hyperlink_RequestNavigate"
+                                   Foreground="{DynamicResource Brush.Foreground.Primary}"
+                                   TextDecorations="None">
+
+                            <InlineUIContainer BaselineAlignment="Center">
+
+                                <Rectangle Width="24" Height="24"
+                                           Margin="0,0,5,0"
+                                           Fill="{DynamicResource Brush.Foreground.Primary}">
+                                    <Rectangle.OpacityMask>
+                                        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Misc/github-logo.png"
+                                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+
+                            </InlineUIContainer>
+
+                            <Run Text="{Binding Localization[GitHubRepository], Mode=OneWay}" />
+
+                        </Hyperlink>
+
+                        </TextBlock>
+
+                    </Border>
+
+                </StackPanel>
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[TranslationContributions_UC]}">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+
+                    <TextBlock Grid.Column="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#ff5b2e">
+                                
+                    <Run Text="{Binding Localization[Contributors], Mode=OneWay}" />
+                
+                    ❤️❤️❤️
+
+                    </TextBlock>
+
+                    <UniformGrid Columns="1"
+                                 Margin="0,10,0,0">
+
+                        <UniformGrid.Resources>
+                            <Style TargetType="TextBlock"
+                                   BasedOn="{StaticResource MairaTextBlockStyle}">
+                            </Style>
+                        </UniformGrid.Resources>
+
+                        <!-- Flag icons from https://www.freeflagicons.com/buy/fluttering_flag/ -->
+
+                        <!--ca-ES-->
+                        <!--Cvillena-->
+                        <StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/spain_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Català"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Cvillena" />
+                        </StackPanel>
+
+                        <!--cs-CZ-->
+                        <!--Jakub Trinkl-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/czech_republic_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Čestina"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Jakub Trinkl" />
+                        </StackPanel>
+
+                        <!--da-DK-->
+                        <!--DKBjorn-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/denmark_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Dansk"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="DKBjorn" />
+                        </StackPanel>
+
+                        <!--de-DE-->
+                        <!--Rene-->
+                        <!--Alpha-Xray-->
+                        <!--Italoboy9-->
+                        <!--Bodo-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/germany_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Deutsch"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Rene Stangl, Alpha-Xray, Italoboy9 &amp; Bodo" />
+                        </StackPanel>
+
+                        <!--es-ES-->
+                        <!--Rodas007-->
+                        <!--DrCrazy-->
+                        <!--danmargar-->
+                        <!--Cvillena-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/spain_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Español"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Rodas007, DrCrazy, danmargar &amp; Cvillena" />
+                        </StackPanel>
+
+                        <!--fr-FR-->
+                        <!--Stéphane-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/france_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Français"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Stéphane" />
+                        </StackPanel>
+
+                        <!--fr-CA-->
+                        <!--LAS-Zeppelin83 (Michael Marcotte)-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/france_fluttering_flag_64.png"
+                                       Height="32" />
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/canada_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Français (Canada)"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Michael Marcotte" />
+                        </StackPanel>
+
+                        <!--hu-HU-->
+                        <!--Tamás Kovács-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/hungary_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Magyar (Magyarország)"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Tamás Kovács" />
+                        </StackPanel>
+
+                        <!--it-IT-->
+                        <!--Valerio.exe (Valerio Pasqua)-->
+                        <!--Luca Leoni-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/italy_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Italiano"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Valerio Pasqua &amp; Luca Leoni" />
+                        </StackPanel>
+
+                        <!--nl-NL-->
+                        <!--Jordi Koller-->
+                        <!--Marco Roos-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/netherlands_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Nederlands"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Jordi Koller &amp; Marco Roos" />
+                        </StackPanel>
+
+                        <!--pl-PL-->
+                        <!--Jarek_iRek-->
+                        <!--Pan_Mar1an-->
+                        <!--M Murawski-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/poland_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Polski"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Jarek_iRek, Pan_Mar1an &amp; M Murawski" />
+                        </StackPanel>
+
+                        <!--pt-BR-->
+                        <!--XKRamires (Paul Ramires)-->
+                        <!--Thiago Oliveira-->
+                        <!--Felipe FD-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/brazil_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Português (Brazil)"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Raul Ramires, Thiago Oliveira &amp; Felipe FD" />
+                        </StackPanel>
+
+                        <!--pt-PT-->
+                        <!--mitt42 (Mitt)-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/portugal_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Português (Portugal)"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Vitor Diogo" />
+                        </StackPanel>
+                        
+                        <!--th-TH-->
+                        <!--Anonymous-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/thailand_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="ไทย"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}" />
+                            </StackPanel>
+                            <TextBlock Text="Anonymous" />
+                        </StackPanel>
+                        
+                        <!--tr-TR-->
+                        <!--0xBATUDEV-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/turkey_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Türkçe"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="BATUDEV" />
+                        </StackPanel>
+
+                        <!--uk-UA-->
+                        <!--Giaval-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/ukraine_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Українська"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}" />
+                            </StackPanel>
+                            <TextBlock Text="Giaval" />
+                        </StackPanel>
+
+                        <!--hy-AM-->
+                        <!--Slavik-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/armenia_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="հայերեն"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Slavik Mikoyan" />
+                        </StackPanel>
+
+                        <!--ru-RU-->
+                        <!--Vpolne (Stepan Kutyrev)-->
+                        <!--Old Pepper-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/russia_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="Русский"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Stepan Kutyrev &amp; Old Pepper" />
+                        </StackPanel>
+
+                        <!--zh-Hans-->
+                        <!--Barry@simagic-->
+                        <StackPanel Margin="0,10,0,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MarvinsAIRARefactored;component/Artwork/Flags/china_fluttering_flag_64.png"
+                                       Height="32" />
+                                <TextBlock Text="简体中文"
+                                           FontSize="30"
+                                           Foreground="{DynamicResource Brush.Foreground.Muted}"/>
+                            </StackPanel>
+                            <TextBlock Text="Barry Lee &amp; Zephyr @ Simagic" />
+                        </StackPanel>
+
+                    </UniformGrid>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               TextWrapping="Wrap"
+                               Text="{Binding Localization[TranslationContributionsText], Mode=OneWay}"
+                               Margin="0,0,0,20" />
+
+                    <Border BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            BorderThickness="1"
+                            CornerRadius="5"
+                            HorizontalAlignment="Left">
+
+                        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                   Padding="15,5">
+
+                        <Hyperlink NavigateUri="https://discord.com/channels/1353509415571165204/1385439382693216297"
+                                   RequestNavigate="Hyperlink_RequestNavigate"
+                                   Foreground="{DynamicResource Brush.Foreground.Primary}"
+                                   TextDecorations="None">
+
+                            <InlineUIContainer BaselineAlignment="Center">
+
+                                <Rectangle Width="24" Height="24"
+                                           Margin="0,0,5,0"
+                                           Fill="{DynamicResource Brush.Foreground.Primary}">
+                                    <Rectangle.OpacityMask>
+                                        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Misc/discord-logo.png"
+                                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+
+                            </InlineUIContainer>
+
+                            <Run Text="{Binding Localization[TranslationsDiscordChannel], Mode=OneWay}" />
+
+                        </Hyperlink>
+
+                        </TextBlock>
+
+                    </Border>
+
+                </StackPanel>
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[CalibrationFileContributions_UC]}">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+
+                    <TextBlock Grid.Column="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#ff5b2e">
+                                
+                    <Run Text="{Binding Localization[Contributors], Mode=OneWay}" />
+                
+                    ❤️❤️❤️
+
+                    </TextBlock>
+
+                    <UniformGrid Columns="1"
+                                 Margin="0,10,0,0">
+
+                        <UniformGrid.Resources>
+                            <Style TargetType="TextBlock"
+                                   BasedOn="{StaticResource MairaTextBlockStyle}">
+                            </Style>
+                        </UniformGrid.Resources>
+
+                        <TextBlock Text="James Pasquariello" />
+                        <TextBlock Text="Matthew Brittle" />
+                        <TextBlock Text="schnorkletime" />
+                        <TextBlock Text="SCOSim" />
+                        <TextBlock Text="TeeTohr" />
+
+                    </UniformGrid>
+
+                </StackPanel>
+
+                <TextBlock Grid.Column="2"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Text="{Binding Localization[CalibrationFilesText], Mode=OneWay}"
+                           Margin="0,0,0,20" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[DiscordModerators_UC]}">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel>
+
+                    <TextBlock Grid.Column="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#ff5b2e">
+                                
+                    <Run Text="{Binding Localization[Contributors], Mode=OneWay}" />
+                
+                    ❤️❤️❤️
+
+                    </TextBlock>
+
+                    <UniformGrid Columns="1"
+                                 Margin="0,10,0,0">
+
+                        <UniformGrid.Resources>
+                            <Style TargetType="TextBlock"
+                                   BasedOn="{StaticResource MairaTextBlockStyle}">
+                            </Style>
+                        </UniformGrid.Resources>
+
+                        <TextBlock Text="Alan Le" />
+                        <TextBlock Text="Ade Allen" />
+                        <TextBlock Text="Chad McNeese" />
+                        <TextBlock Text="Christian Scherf" />
+                        <TextBlock Text="Matthew Brittle" />
+                        <TextBlock Text="Robert A Moyer Jr" />
+                        <TextBlock Text="Stephan Bendt" />
+
+                    </UniformGrid>
+
+                </StackPanel>
+
+                <TextBlock Grid.Column="2"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Text="{Binding Localization[DiscordModeratorsText], Mode=OneWay}"
+                           Margin="0,0,0,20" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+    </StackPanel>
+
+</UserControl>
