@@ -88,130 +88,151 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
 ## Project Structure
 
 ```
-MarvinsAIRARefactored/
-├── App.xaml / App.xaml.cs          # Application entry point & global singleton
-├── AssemblyInfo.cs
-├── GlobalSuppressions.cs
-│
-├── Components/                     # Core services (all initialized & owned by App)
-│   ├── AdminBoxx.cs                # USB LED button box hardware
-│   ├── AudioManager.cs             # Audio device management
-│   ├── ChatQueue.cs                # Chat / messaging queue
-│   ├── CloudService.cs             # Update checks, analytics (herboldracing.com)
-│   ├── Debug.cs                    # Debug message display
-│   ├── DirectInput.cs              # DirectInput device polling + FFB output
-│   ├── Drivers.cs                  # iRacing driver/car tracking
-│   ├── Graph.cs                    # Telemetry graph rendering
-│   ├── HidHotPlugMonitor.cs        # USB hot-plug detection
-│   ├── LFE.cs                      # Low Frequency Effects (bass shaker) via DirectSound
-│   ├── Logger.cs                   # File + in-app logging
-│   ├── MultimediaTimer.cs          # High-resolution multimedia timer (~17ms tick)
-│   ├── Pedals.cs                   # Simagic HPR pedal haptics
-│   ├── RacingWheel.cs              # FFB algorithms and wheel output
-│   ├── RecordingManager.cs         # Telemetry recording/playback
-│   ├── SeatBeltTensioner.cs        # USB seat belt tensioner hardware
-│   ├── SettingsFile.cs             # XML settings persistence
-│   ├── Simulator.cs                # iRacing SDK bridge (IRSDKSharper wrapper)
-│   ├── Sounds.cs                   # Sound effect playback
-│   ├── SpeechToText.cs             # Chrome-based Web Speech API bridge
-│   ├── SteeringEffects.cs          # Understeer/oversteer/SeatOfPants effects
-│   ├── StreamDeck.cs               # Elgato Stream Deck integration
-│   ├── Telemetry.cs                # Memory-mapped file IPC (exports data to SimHub etc.)
-│   ├── TimingMarkers.cs            # Lap timing markers
-│   ├── TopLevelWindow.cs           # Always-on-top window helper
-│   ├── TradingPaints.cs            # TradingPaints.com livery downloader
-│   ├── VirtualJoystick.cs          # vJoy virtual joystick output
-│   └── Wind.cs                     # USB twin-fan wind simulator hardware
-│
-├── DataContext/                    # MVVM data layer
-│   ├── DataContext.cs              # Global singleton root (INotifyPropertyChanged)
-│   ├── Settings.cs                 # All user settings (serialized to XML)
-│   ├── ContextSettings.cs          # Per-context override values for settings
-│   ├── ContextSwitches.cs          # Flags controlling which axes create contexts
-│   └── Context.cs                  # Context key (wheelbase, car, track, wet/dry)
-│
-├── Windows/                        # WPF Windows
-│   ├── MainWindow.xaml/.cs         # Primary application shell
-│   ├── GripOMeterWindow.xaml/.cs   # Grip-O-Meter overlay
-│   ├── GapMonitorWindow.xaml/.cs   # Gap monitor overlay
-│   ├── SpeechToTextWindow.xaml/.cs # Speech-to-text floating window
-│   ├── HelpWindow.xaml/.cs
-│   ├── ErrorWindow.xaml/.cs
-│   ├── NewVersionAvailableWindow.xaml/.cs
-│   ├── RunInstallerWindow.xaml/.cs
-│   ├── UpdateButtonMappingsWindow.xaml/.cs
-│   ├── UpdateContextSwitchesWindow.xaml/.cs
-│   └── CursorCountdownOverlay.xaml/.cs
-│
-├── Pages/                          # WPF UserControl pages (hosted in MainWindow)
-│   ├── RacingWheelPage.xaml/.cs
-│   ├── SteeringEffectsPage.xaml/.cs
-│   ├── PedalsPage.xaml/.cs
-│   ├── WindPage.xaml/.cs
-│   ├── SeatBeltTensionerPage.xaml/.cs
-│   ├── OverlaysPage.xaml/.cs
-│   ├── SoundsPage.xaml/.cs
-│   ├── SpeechToTextPage.xaml/.cs
-│   ├── TradingPaintsPage.xaml/.cs
-│   ├── GraphPage.xaml/.cs
-│   ├── SimulatorPage.xaml/.cs
-│   ├── AdminBoxxPage.xaml/.cs
-│   ├── AppSettingsPage.xaml/.cs
-│   ├── HelpPage.xaml/.cs
-│   ├── ContributePage.xaml/.cs
-│   ├── DonatePage.xaml/.cs
-│   └── DebugPage.xaml/.cs
-│
-├── Controls/                       # Custom WPF controls (all prefixed "Maira")
-│   ├── MairaButton, MairaSwitch, MairaKnob, MairaComboBox
-│   ├── MairaTextBox, MairaDualSlider, MairaStatusBar
-│   ├── MairaAppMenuButton, MairaAppMenuPopup
-│   ├── MairaButtonMapping, MairaMappableButton
-│   └── MairaTabItem, MairaGroupBox
-│
-├── Classes/                        # Utility / helper classes
-│   ├── MathZ.cs                    # Math helpers (Lerp, Smoothstep, unit conversions, etc.)
-│   ├── RlsWheelVelocityPredictor.cs # RLS adaptive filter for wheel velocity prediction
-│   ├── Serializer.cs               # XML serialization helpers
-│   ├── SerializableDictionary.cs   # XML-serializable dictionary
-│   ├── Recording.cs / RecordingData.cs # Telemetry recording structures
-│   ├── GraphBase.cs                # Base class for graph rendering
-│   ├── Color.cs                    # RGBA color struct
-│   ├── ButtonMappings.cs           # Input button mapping logic
-│   ├── UsbSerialPortHelper.cs      # USB serial port abstraction
-│   ├── CpuAffinityHelper.cs        # CPU affinity / priority management
-│   ├── CachedSound.cs / CachedSoundPlayer.cs # Pre-loaded audio samples
-│   ├── ChromeLauncher.cs / ChromeSTTBridge.cs # Chrome/Edge Speech-to-Text bridge
-│   ├── LogitechGSDK.cs             # Logitech G-SDK wheel LEDs
-│   ├── TradingPaintsXML.cs         # TradingPaints XML data model
-│   ├── HelpService.cs              # Context-sensitive help
-│   ├── Misc.cs                     # General utilities (version, mutex, DPI, etc.)
-│   └── TextBoxBehaviors.cs         # WPF text box helper behaviors
-│
-├── Viewers/                        # iRacing telemetry data viewers
-│   ├── SessionInfoViewer.cs
-│   ├── TelemetryDataViewer.cs
-│   └── HeaderDataViewer.cs
-│
-├── Converters/                     # WPF value converters
-│   ├── BooleanToVisibilityCollapsedConverter.cs
-│   ├── StartsWithUnderscoreConverter.cs
-│   └── HelpIconVisibilityConverter.cs
-│
-├── PInvoke/                        # Custom P/Invoke declarations
-│   ├── User32.cs
-│   ├── WinMM.cs
-│   ├── DWMAPI.cs
-│   └── UXTheme.cs
-│
-├── Artwork/                        # Embedded image resources (PNG, ICO)
-├── Fonts/                          # Embedded fonts (Aptos Narrow)
-├── Resources/                      # Localization resource files (.resx) — embedded into the assembly at build time
-├── InnoSetup/                      # Installer assets (sounds, calibration, STT, SBT)
+[repo root]/
 ├── Arduino/Wind/Wind.ino           # Arduino sketch for the twin/quad-fan wind simulator
-├── Notes/SessionInfo.yaml          # Example iRacing simulator session info dump for debugging and development
-├── Notes/TelemetryData.yaml        # Example iRacing simulator telemetry data dump for debugging and development
-└── AdminBoxx/code.py               # Embedded Python script for AdminBoxx firmware
+├── InnoSetup/                      # Installer scripts (.iss) and packaged runtime assets
+│   ├── MarvinsAIRA.iss             # Main installer script
+│   ├── AdminBoxx.iss               # AdminBoxx installer script
+│   ├── Calibration/                # Packaged calibration CSV files
+│   ├── Recordings/                 # Packaged telemetry recording files
+│   ├── SBT/                        # Packaged seat belt tensioner assets
+│   ├── SimHub/                     # SimHub plugin DLLs and dash
+│   ├── Sounds/                     # Packaged sound effect .wav files
+│   ├── STT/                        # Packaged Speech-to-Text HTML/JS assets
+│   └── TTS/                        # Packaged TTS cache / AdminBoxx firmware
+├── Tools/
+│   └── LocalizationEditor/         # Localization editor CLI tool (dotnet run)
+└── MarvinsAIRARefactored/          # Main application project
+    ├── App.xaml / App.xaml.cs      # Application entry point & global singleton
+    ├── AssemblyInfo.cs
+    ├── GlobalSuppressions.cs
+    │
+    ├── Components/                 # Core services (all initialized & owned by App)
+    │   ├── AdminBoxx.cs            # USB LED button box hardware
+    │   ├── AudioManager.cs         # Audio device management
+    │   ├── ChatQueue.cs            # Chat / messaging queue
+    │   ├── CloudService.cs         # Update checks, analytics (herboldracing.com)
+    │   ├── Commentary.cs           # iRacing event detection → TTS dispatch
+    │   ├── Debug.cs                # Debug message display
+    │   ├── DirectInput.cs          # DirectInput device polling + FFB output
+    │   ├── Drivers.cs              # iRacing driver/car tracking
+    │   ├── Graph.cs                # Telemetry graph rendering
+    │   ├── HidHotPlugMonitor.cs    # USB hot-plug detection
+    │   ├── LFE.cs                  # Low Frequency Effects (bass shaker) via DirectSound
+    │   ├── Logger.cs               # File + in-app logging
+    │   ├── MultimediaTimer.cs      # High-resolution multimedia timer (~17ms tick)
+    │   ├── Pedals.cs               # Simagic HPR pedal haptics
+    │   ├── RacingWheel.cs          # FFB algorithms and wheel output
+    │   ├── RecordingManager.cs     # Telemetry recording/playback
+    │   ├── SeatBeltTensioner.cs    # USB seat belt tensioner hardware
+    │   ├── SettingsFile.cs         # XML settings persistence
+    │   ├── Simulator.cs            # iRacing SDK bridge (IRSDKSharper wrapper)
+    │   ├── Sounds.cs               # Sound effect playback
+    │   ├── SpeechToText.cs         # Chrome-based Web Speech API bridge
+    │   ├── SteeringEffects.cs      # Understeer/oversteer/SeatOfPants effects
+    │   ├── StreamDeck.cs           # Elgato Stream Deck integration
+    │   ├── Telemetry.cs            # Memory-mapped file IPC (exports data to SimHub etc.)
+    │   ├── TextToSpeech.cs         # ElevenLabs TTS HTTP queue and playback
+    │   ├── TimingMarkers.cs        # Lap timing markers
+    │   ├── TopLevelWindow.cs       # Always-on-top window helper
+    │   ├── TradingPaints.cs        # TradingPaints.com livery downloader
+    │   ├── VirtualJoystick.cs      # vJoy virtual joystick output
+    │   └── Wind.cs                 # USB twin-fan wind simulator hardware
+    │
+    ├── DataContext/                # MVVM data layer
+    │   ├── DataContext.cs          # Global singleton root (INotifyPropertyChanged)
+    │   ├── Settings.cs             # All user settings (serialized to XML)
+    │   ├── ContextSettings.cs      # Per-context override values for settings
+    │   ├── ContextSwitches.cs      # Flags controlling which axes create contexts
+    │   └── Context.cs              # Context key (wheelbase, car, track, wet/dry)
+    │
+    ├── Windows/                    # WPF Windows
+    │   ├── MainWindow.xaml/.cs     # Primary application shell
+    │   ├── GripOMeterWindow.xaml/.cs
+    │   ├── GapMonitorWindow.xaml/.cs
+    │   ├── SpeechToTextWindow.xaml/.cs
+    │   ├── HelpWindow.xaml/.cs
+    │   ├── ErrorWindow.xaml/.cs
+    │   ├── NewVersionAvailableWindow.xaml/.cs
+    │   ├── RunInstallerWindow.xaml/.cs
+    │   ├── UpdateButtonMappingsWindow.xaml/.cs
+    │   ├── UpdateContextSwitchesWindow.xaml/.cs
+    │   └── CursorCountdownOverlay.xaml/.cs
+    │
+    ├── Pages/                      # WPF UserControl pages (hosted in MainWindow)
+    │   ├── RacingWheelPage.xaml/.cs
+    │   ├── SteeringEffectsPage.xaml/.cs
+    │   ├── PedalsPage.xaml/.cs
+    │   ├── WindPage.xaml/.cs
+    │   ├── SeatBeltTensionerPage.xaml/.cs
+    │   ├── OverlaysPage.xaml/.cs
+    │   ├── SoundsPage.xaml/.cs
+    │   ├── SpeechToTextPage.xaml/.cs
+    │   ├── CommentaryPage.xaml/.cs
+    │   ├── TradingPaintsPage.xaml/.cs
+    │   ├── GraphPage.xaml/.cs
+    │   ├── SimulatorPage.xaml/.cs
+    │   ├── AdminBoxxPage.xaml/.cs
+    │   ├── AppSettingsPage.xaml/.cs
+    │   ├── HelpPage.xaml/.cs
+    │   ├── ContributePage.xaml/.cs
+    │   ├── DonatePage.xaml/.cs
+    │   └── DebugPage.xaml/.cs
+    │
+    ├── Controls/                   # Custom WPF controls (all prefixed "Maira")
+    │   ├── MairaButton, MairaSwitch, MairaKnob, MairaComboBox
+    │   ├── MairaTextBox, MairaDualSlider, MairaStatusBar
+    │   ├── MairaAppMenuButton, MairaAppMenuPopup
+    │   ├── MairaButtonMapping, MairaMappableButton
+    │   └── MairaTabItem, MairaGroupBox
+    │
+    ├── Classes/                    # Utility / helper classes
+    │   ├── MathZ.cs                # Math helpers (Lerp, Smoothstep, unit conversions, etc.)
+    │   ├── RlsWheelVelocityPredictor.cs  # RLS adaptive filter for wheel velocity prediction
+    │   ├── Serializer.cs           # XML serialization helpers
+    │   ├── SerializableDictionary.cs     # XML-serializable dictionary
+    │   ├── Recording.cs / RecordingData.cs # Telemetry recording structures
+    │   ├── GraphBase.cs            # Base class for graph rendering
+    │   ├── Color.cs                # RGBA color struct
+    │   ├── ButtonMappings.cs       # Input button mapping logic
+    │   ├── UsbSerialPortHelper.cs  # USB serial port abstraction
+    │   ├── CpuAffinityHelper.cs    # CPU affinity / priority management
+    │   ├── CachedSound.cs / CachedSoundPlayer.cs  # Pre-loaded audio samples
+    │   ├── ChromeLauncher.cs / ChromeSTTBridge.cs # Chrome/Edge Speech-to-Text bridge
+    │   ├── VoiceSlotSettings.cs    # Per-slot ElevenLabs voice parameters
+    │   ├── CommentaryTemplates.cs  # Embedded JSON phrase loader with language fallback
+    │   ├── ElevenLabsKeyStore.cs   # DPAPI-encrypted API key storage
+    │   ├── LogitechGSDK.cs         # Logitech G-SDK wheel LEDs
+    │   ├── TradingPaintsXML.cs     # TradingPaints XML data model
+    │   ├── HelpService.cs          # Context-sensitive help
+    │   ├── Misc.cs                 # General utilities (version, mutex, DPI, etc.)
+    │   └── TextBoxBehaviors.cs     # WPF text box helper behaviors
+    │
+    ├── Viewers/                    # iRacing telemetry data viewers
+    │   ├── SessionInfoViewer.cs
+    │   ├── TelemetryDataViewer.cs
+    │   └── HeaderDataViewer.cs
+    │
+    ├── Converters/                 # WPF value converters
+    │   ├── BooleanToVisibilityCollapsedConverter.cs
+    │   ├── StartsWithUnderscoreConverter.cs
+    │   └── HelpIconVisibilityConverter.cs
+    │
+    ├── PInvoke/                    # Custom P/Invoke declarations
+    │   ├── User32.cs
+    │   ├── WinMM.cs
+    │   ├── DWMAPI.cs
+    │   └── UXTheme.cs
+    │
+    ├── Artwork/                    # Embedded image resources (PNG, ICO)
+    ├── Fonts/                      # Embedded fonts (Aptos Narrow)
+    ├── Resources/                  # Localization resource files (.resx) — embedded into the assembly at build time
+    ├── Themes/                     # WPF resource dictionaries (DarkTheme, Generic, etc.)
+    ├── FMOD/                       # FMOD audio library C# bindings
+    ├── TTS/                        # Embedded phrase template JSON files (one per language tag)
+    ├── Notes/SessionInfo.yaml      # Example iRacing session info dump for debugging and development
+    ├── Notes/TelemetryData.yaml    # Example iRacing telemetry data dump for debugging and development
+    └── AdminBoxx/code.py           # Embedded Python script for AdminBoxx firmware
 ```
 
 ---

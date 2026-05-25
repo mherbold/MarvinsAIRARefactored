@@ -81,9 +81,9 @@ The calibration routine drives the car slowly through a range of steering angles
 If no calibration file exists for the current car, steering effects are disabled automatically.
 
 ### Adding or Changing Steering-Effects Settings
-- Add new properties to `DataContext/Settings.cs` following the per-context pattern (see `docs/agents/settings-context.md`).
+- Add new properties to `DataContext/Settings.cs` following the per-context pattern (see [`Agents/settings-context.md`](../Agents/settings-context.md)).
 - Add matching properties to `DataContext/ContextSettings.cs`.
-- Update `Pages/SteeringEffectsPage.xaml` — always use `controls:MairaKnob` or `controls:MairaSwitch` (see `docs/agents/ui-wpf-controls.md`).
+- Update `Pages/SteeringEffectsPage.xaml` — always use `controls:MairaKnob` or `controls:MairaSwitch` (see [`Agents/ui-wpf-controls.md`](../Agents/ui-wpf-controls.md)).
 
 ---
 

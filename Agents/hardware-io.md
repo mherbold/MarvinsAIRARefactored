@@ -13,7 +13,7 @@
 - `Pages/AdminBoxxPage.xaml/.cs` — AdminBoxx UI
 - `Pages/WindPage.xaml/.cs` — Wind simulator UI
 - `Pages/SeatBeltTensionerPage.xaml/.cs` — SBT UI
-- `Arduino/Wind/Wind.ino` — Arduino sketch for the wind simulator firmware
+- `Arduino/Wind/Wind.ino` — Arduino sketch for the wind simulator firmware (repo root)
 
 ---
 

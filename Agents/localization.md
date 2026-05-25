@@ -94,4 +94,4 @@ Common existing unit keys: `"Degrees"`, `"DegreesPerSecond"`, `"Percent"`, `"Hz"
 
 ## ComboBox Options Must Be Localized Too
 
-When building option lists for `MairaComboBox`, always construct them from the `Localization` indexer, never from hard-coded strings. Rebuild the list and refresh the UI whenever the language changes (see `docs/agents/ui-wpf-controls.md` — "Localized ComboBox Items").
+When building option lists for `MairaComboBox`, always construct them from the `Localization` indexer, never from hard-coded strings. Rebuild the list and refresh the UI whenever the language changes (see [`Agents/ui-wpf-controls.md`](../Agents/ui-wpf-controls.md) — "Localized ComboBox Items").

@@ -1,3 +1,4 @@
+#pragma warning disable
 /* ======================================================================================== */
 /* FMOD Core API - C# wrapper.                                                              */
 /* Copyright (c), Firelight Technologies Pty, Ltd. 2004-2026.                               */
@@ -4088,3 +4089,4 @@ namespace FMOD
 
     #endregion
 }
+#pragma warning restore

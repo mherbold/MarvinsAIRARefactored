@@ -174,6 +174,8 @@
     <Resource Include="Artwork\Misc\left-drag-handle.png" />
     <Resource Include="Artwork\Misc\orange-stripes.png" />
     <Resource Include="Artwork\Misc\right-drag-handle.png" />
+    <Resource Include="Artwork\Misc\simagic-logo.png" />
+    <Resource Include="Artwork\Misc\simagic-logo-light.png" />
     <Resource Include="Artwork\Misc\trading-paints.png" />
     <Resource Include="Artwork\Misc\trading-paints-light.png" />
     <Resource Include="Artwork\Misc\wizard-two-thumbs-up.png" />
@@ -182,10 +184,6 @@
     <Resource Include="Artwork\Misc\yellow-stripes.png" />
     <Resource Include="Fonts\Aptos-Narrow-Italic.ttf" />
     <Resource Include="Fonts\Aptos-Narrow.ttf" />
-    <Resource Include="Artwork\Misc\simagic-logo.png" />
-    <Resource Include="Artwork\Misc\simagic-logo-light.png" />
-    <Resource Include="InnoSetup\STT\app-menu-logo.png" />
-    <Resource Include="InnoSetup\STT\favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -243,24 +241,15 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="InnoSetup\Calibration\" />
-    <Folder Include="InnoSetup\SimHub\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include=".github\copilot-instructions.md" />
-  </ItemGroup>
-
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\Recordings\*.csv&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\Recordings\&quot; /Y /I" />
-    <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\Calibration\*.csv&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\Calibration\&quot; /Y /I" />
-    <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\SBT\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\SBT\&quot; /Y /I" />
-    <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\SimHub\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\SimHub\&quot; /Y /I" />
-    <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\Sounds\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\Sounds\&quot; /Y /I" />
-    <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\STT\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\STT\&quot; /Y /I" />
+    <Exec Command="xcopy /S /D &quot;$(SolutionDir)InnoSetup\Recordings\*.csv&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\Recordings\&quot; /Y /I" />
+    <Exec Command="xcopy /S /D &quot;$(SolutionDir)InnoSetup\Calibration\*.csv&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\Calibration\&quot; /Y /I" />
+    <Exec Command="xcopy /S /D &quot;$(SolutionDir)InnoSetup\SBT\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\SBT\&quot; /Y /I" />
+    <Exec Command="xcopy /S /D &quot;$(SolutionDir)InnoSetup\SimHub\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\SimHub\&quot; /Y /I" />
+    <Exec Command="xcopy /S /D &quot;$(SolutionDir)InnoSetup\Sounds\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\Sounds\&quot; /Y /I" />
+    <Exec Command="xcopy /S /D &quot;$(SolutionDir)InnoSetup\STT\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\MarvinsAIRA Refactored\STT\&quot; /Y /I" />
 
-    <Exec Command="xcopy /S /D &quot;$(ProjectDir)InnoSetup\Sounds\AdminBoxx\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\AdminBoxx\Sounds\AdminBoxx\&quot; /Y /I" />
+    <Exec Command="xcopy /S /D &quot;$(SolutionDir)InnoSetup\Sounds\AdminBoxx\*&quot; &quot;$(registry:HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\User Shell Folders@Personal)\AdminBoxx\Sounds\AdminBoxx\&quot; /Y /I" />
   </Target>
 
   <Choose>

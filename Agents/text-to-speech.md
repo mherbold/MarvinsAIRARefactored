@@ -11,7 +11,7 @@ This sub-file covers the ElevenLabs-based text-to-speech pipeline: voice slots, 
 | `Classes/VoiceSlotSettings.cs` | Per-slot voice parameters; default factory methods |
 | `Classes/CommentaryTemplates.cs` | Embedded JSON phrase loader with language fallback |
 | `Classes/ElevenLabsKeyStore.cs` | DPAPI-encrypted API key storage |
-| `TTS/*.json` | Embedded phrase template files, one per language tag |
+| `TTS/*.json` | Embedded phrase template files, one per language tag (in `MarvinsAIRARefactored/TTS/`) |
 | `Pages/CommentaryPage.xaml/.cs` | Settings UI: key verification, voice/model pickers, per-slot knobs |
 | `DataContext/Settings.cs` | All TTS-related settings properties (region `Commentary — *`) |
 

@@ -46,4 +46,4 @@
 - Uses `SharpDX.DirectSound` for audio capture (`DirectSoundCapture`).
 - Post-processing applies a low-pass filter and configurable gain.
 - Output is forwarded to a DirectInput FFB effect or a separate audio playback device, depending on configuration.
-- For full FFB integration details see `docs/agents/force-feedback.md`.
+- For full FFB integration details see [`Agents/force-feedback.md`](../Agents/force-feedback.md).
