@@ -28,5 +28,30 @@
     "Toujours avec toi.",
     "Il est toujours là.",
     "Voiture toujours à côté."
+  ],
+  "TestPhrase0": [
+    "Test de voix.",
+    "Vérification comm — vous me recevez?",
+    "Ceci est un test de voix."
+  ],
+  "TestPhrase1": [
+    "Guetteur en ligne.",
+    "Guetteur ici, vérification comm.",
+    "Guetteur actif."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Commentateur un, test!",
+    "Vérification micro — commentateur un ici.",
+    "[cheerfully] Commentateur un en ligne."
+  ],
+  "TestPhrase3": [
+    "Commentateur deux, test.",
+    "Vérification micro — commentateur deux ici.",
+    "Commentateur deux en ligne."
+  ],
+  "TestPhrase4": [
+    "Journaliste des stands, test.",
+    "Pit lane, vérification micro.",
+    "Journaliste des stands en ligne."
   ]
 }

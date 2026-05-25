@@ -40,10 +40,30 @@ The SDK's default auto-inclusion of `.resx` files is **disabled** (`<EnableDefau
 
 ## Adding or Updating Strings
 
-1. Add a named entry to `Resources/Resources.resx` (English).
-2. Add a matching entry to **every** other language `.resx` file.
-3. Reference in XAML via `{Binding Localization[KeyName]}` — never hard-code strings in XAML.
-4. Reference in C# via `DataContext.DataContext.Instance.Localization["KeyName"]`.
+**Always use the LocalizationEditor tool for bulk operations — never edit resx files directly via PowerShell.**
+
+### Adding a new key
+
+1. Open `Tools/LocalizationEditor/Program.cs` and add a `case` in `AddResxKey()` with translated values for all languages.
+2. Run: `dotnet run --project Tools/LocalizationEditor -- resx add-key MyNewKey`
+3. Run: `dotnet run --project Tools/LocalizationEditor -- resx validate` to confirm no issues.
+4. Reference in XAML via `{Binding Localization[MyNewKey]}` — never hard-code strings in XAML.
+5. Reference in C# via `DataContext.DataContext.Instance.Localization["MyNewKey"]`.
+
+### Other useful commands
+
+```
+dotnet run --project Tools/LocalizationEditor -- resx list-keys              # all keys + missing languages
+dotnet run --project Tools/LocalizationEditor -- resx show-key Commentary    # value per language
+dotnet run --project Tools/LocalizationEditor -- resx validate               # full consistency check
+dotnet run --project Tools/LocalizationEditor -- resx set-value MyKey de-DE "Neuer Wert"
+dotnet run --project Tools/LocalizationEditor -- resx rename-key OldKey NewKey
+dotnet run --project Tools/LocalizationEditor -- resx remove-key ObsoleteKey
+```
+
+### Manual single-file edits
+
+For a one-off change to a single language file it is still acceptable to use `replace_string_in_file` directly — but follow the Unicode safety rules in the section below.
 
 **Always use localization keys** for unit strings and value formatters in `Settings.cs` too. Do **not** hard-code unit strings in C#:
 

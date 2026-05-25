@@ -28,5 +28,30 @@
     "È ancora con te.",
     "Lui è ancora lì.",
     "Auto ancora affiancata."
+  ],
+  "TestPhrase0": [
+    "Prova voce.",
+    "Controllo comunicazioni — mi ricevi?",
+    "Questo è un test vocale."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter qui, controllo comunicazioni.",
+    "Spotter attivo."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Commentatore uno, test!",
+    "Controllo microfono — commentatore uno qui.",
+    "[cheerfully] Commentatore uno online."
+  ],
+  "TestPhrase3": [
+    "Commentatore due, test.",
+    "Controllo microfono — commentatore due qui.",
+    "Commentatore due online."
+  ],
+  "TestPhrase4": [
+    "Reporter del pit, test.",
+    "Corsia dei box, controllo microfono.",
+    "Reporter del pit online."
   ]
 }

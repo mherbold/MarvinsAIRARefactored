@@ -25,7 +25,19 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 	public string RoleLabel { get; set; } = string.Empty;
 
 	/// <summary>Whether this slot is active. When false, no commentary is generated for this role.</summary>
-	public bool Enabled { get; set; } = true;
+	private bool _enabled = true;
+	public bool Enabled
+	{
+		get => _enabled;
+		set
+		{
+			if ( value != _enabled )
+			{
+				_enabled = value;
+				OnPropertyChanged();
+			}
+		}
+	}
 
 	/// <summary>ElevenLabs voice ID (e.g. "pNInz6obpgDQGcFmaJgB").</summary>
 	public string VoiceId { get; set; } = string.Empty;

@@ -28,5 +28,30 @@
     "Fremdeles med deg.",
     "Han er fremdeles der.",
     "Bil fremdeles ved siden av."
+  ],
+  "TestPhrase0": [
+    "Tester stemme.",
+    "Sambandssjekk — hører du meg?",
+    "Dette er en stemmetest."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter her, sambandssjekk.",
+    "Spotter aktiv."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Sportskommentator en, tester!",
+    "Mik-sjekk — sportskommentator en her.",
+    "[cheerfully] Sportskommentator en online."
+  ],
+  "TestPhrase3": [
+    "Sportskommentator to, tester.",
+    "Mik-sjekk — sportskommentator to her.",
+    "Sportskommentator to online."
+  ],
+  "TestPhrase4": [
+    "Pit-reporter, tester.",
+    "Pit lane, mik-sjekk.",
+    "Pit-reporter online."
   ]
 }
