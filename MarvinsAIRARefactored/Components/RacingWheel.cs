@@ -128,6 +128,7 @@ public class RacingWheel
 
 	private readonly GraphBase _algorithmPreviewGraphBase = new();
 
+	private bool _logiSdkInitialized = false;
 	private bool _logiPlayLedsNotWorking = false;
 
 	private int _updateCounter = UpdateInterval + 4;
@@ -183,6 +184,50 @@ public class RacingWheel
 #endif
 
 		app.Logger.WriteLine( "[RacingWheel] <<< Initialize" );
+	}
+
+	public void LogiInitialize( IntPtr iRacingWindowHandle )
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[RacingWheel] LogiInitialize >>>" );
+
+		if ( _logiSdkInitialized )
+		{
+			app.Logger.WriteLine( "[RacingWheel] Logitech SDK already initialized, shutting down first" );
+
+			LogitechGSDK.LogiSteeringShutdown();
+
+			_logiSdkInitialized = false;
+		}
+
+		var result = LogitechGSDK.LogiSteeringInitializeWithWindow( true, iRacingWindowHandle );
+
+		app.Logger.WriteLine( $"[RacingWheel] LogiSteeringInitializeWithWindow returned {result}" );
+
+		_logiSdkInitialized = result;
+		_logiPlayLedsNotWorking = false;
+
+		app.Logger.WriteLine( "[RacingWheel] <<< LogiInitialize" );
+	}
+
+	public void LogiShutdown()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[RacingWheel] LogiShutdown >>>" );
+
+		if ( _logiSdkInitialized )
+		{
+			LogitechGSDK.LogiSteeringShutdown();
+
+			_logiSdkInitialized = false;
+			_logiPlayLedsNotWorking = false;
+
+			app.Logger.WriteLine( "[RacingWheel] Logitech SDK shut down" );
+		}
+
+		app.Logger.WriteLine( "[RacingWheel] <<< LogiShutdown" );
 	}
 
 	public float GetCurrentAutoTorque()
@@ -1479,11 +1524,32 @@ public class RacingWheel
 
 			if ( settings.RacingWheelEnableLogitechRPMLights )
 			{
-				if ( !_logiPlayLedsNotWorking && app.Simulator.IsConnected && ( app.DirectInput.ForceFeedbackJoystick != null ) )
+				if ( _logiSdkInitialized && !_logiPlayLedsNotWorking && app.Simulator.IsConnected )
 				{
 					try
 					{
-						if ( !LogitechGSDK.LogiPlayLedsDInput( app.DirectInput.ForceFeedbackJoystick.NativePointer, app.Simulator.RPM, app.Simulator.ShiftLightsFirstRPM, app.Simulator.ShiftLightsShiftRPM ) )
+						if ( LogitechGSDK.LogiUpdate() )
+						{
+							var wheelIndex = -1;
+
+							for ( var i = 0; i < LogitechGSDK.MaxControllers; i++ )
+							{
+								if ( LogitechGSDK.LogiIsConnected( i ) )
+								{
+									wheelIndex = i;
+									break;
+								}
+							}
+
+							if ( wheelIndex >= 0 )
+							{
+								if ( !LogitechGSDK.LogiPlayLeds( wheelIndex, app.Simulator.RPM, app.Simulator.ShiftLightsFirstRPM, app.Simulator.ShiftLightsShiftRPM ) )
+								{
+									_logiPlayLedsNotWorking = true;
+								}
+							}
+						}
+						else
 						{
 							_logiPlayLedsNotWorking = true;
 						}

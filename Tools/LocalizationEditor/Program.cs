@@ -145,9 +145,44 @@ internal static class Program
 	/// </summary>
 	private static void AddResxKey(string key)
 	{
-		throw new InvalidOperationException(
-			$"No value data defined for resx key '{key}'. " +
-			$"Add a case to AddResxKey() in Program.cs.");
+		var values = key switch
+		{
+			"ResetFanPowerCurveToDefaults" => new Dictionary<string, string>
+			{
+				["ca-ES"]   = "Restableix als valors predeterminats",
+				["cs-CZ"]   = "Obnovit výchozí hodnoty",
+				["cy-GB"]   = "Ailosod i'r Rhagosodiadau",
+				["da-DK"]   = "Nulstil til standarder",
+				["de-DE"]   = "Auf Standardwerte zurücksetzen",
+				["es-ES"]   = "Restablecer valores predeterminados",
+				["es-MX"]   = "Restablecer valores predeterminados",
+				["fi-FI"]   = "Palauta oletusasetukset",
+				["fr-CA"]   = "Réinitialiser aux valeurs par défaut",
+				["fr-FR"]   = "Réinitialiser aux valeurs par défaut",
+				["he-IL"]   = "איפוס לברירות מחדל",
+				["hu-HU"]   = "Visszaállítás alapértékekre",
+				["hy-AM"]   = "Վերականգնել կանխադրված արժեքները",
+				["it-IT"]   = "Ripristina valori predefiniti",
+				["ja-JP"]   = "デフォルトにリセット",
+				["nb-NO"]   = "Tilbakestill til standard",
+				["nl-NL"]   = "Terugzetten naar standaard",
+				["pl-PL"]   = "Przywróć ustawienia domyślne",
+				["pt-BR"]   = "Redefinir para padrões",
+				["pt-PT"]   = "Repor predefinições",
+				["ro-RO"]   = "Resetare la valorile implicite",
+				["ru-RU"]   = "Сбросить до значений по умолчанию",
+				["sv-SE"]   = "Återställ till standard",
+				["th-TH"]   = "รีเซ็ตเป็นค่าเริ่มต้น",
+				["tr-TR"]   = "Varsayılanlara sıfırla",
+				["uk-UA"]   = "Скинути до стандартних значень",
+				["zh-Hans"] = "重置为默认值",
+			},
+			_ => throw new InvalidOperationException(
+				$"No value data defined for resx key '{key}'. " +
+				$"Add a case to AddResxKey() in Program.cs.")
+		};
+
+		ResxEditor.AddKey(key, "Reset to Defaults", values);
 	}
 
 	// -------------------------------------------------------------------------

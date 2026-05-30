@@ -7005,7 +7005,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windMinimumSpeed )
 			{
@@ -7024,11 +7024,11 @@ public class Settings : INotifyPropertyChanged
 
 				if ( app.Simulator.DisplayUnits == 0 )
 				{
-					WindMinimumSpeedString = $"{_windMinimumSpeed * 100f * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
+					WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
 				}
 				else
 				{
-					WindMinimumSpeedString = $"{_windMinimumSpeed * 100f * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
+					WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
 				}
 			}
 		}
@@ -7122,7 +7122,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windSpeed1 )
 			{
@@ -7137,11 +7137,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindSpeed1String = $"{_windSpeed1 * 100f * MathZ.MPSToMPH:F0}";
+				WindSpeed1String = $"{_windSpeed1 * MathZ.MPSToMPH:F0}";
 			}
 			else
 			{
-				WindSpeed1String = $"{_windSpeed1 * 100f * MathZ.MPSToKPH:F0}";
+				WindSpeed1String = $"{_windSpeed1 * MathZ.MPSToKPH:F0}";
 			}
 		}
 	}
@@ -7211,7 +7211,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Speed 2
 
-	private float _windSpeed2 = 0.0675f;
+	private float _windSpeed2 = 3.313f;
 
 	public float WindSpeed2
 	{
@@ -7219,7 +7219,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windSpeed2 )
 			{
@@ -7235,11 +7235,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindSpeed2String = $"{_windSpeed2 * 100f * MathZ.MPSToMPH:F0}";
+				WindSpeed2String = $"{_windSpeed2 * MathZ.MPSToMPH:F0}";
 			}
 			else
 			{
-				WindSpeed2String = $"{_windSpeed2 * 100f * MathZ.MPSToKPH:F0}";
+				WindSpeed2String = $"{_windSpeed2 * MathZ.MPSToKPH:F0}";
 			}
 		}
 	}
@@ -7266,7 +7266,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Fan power 2
 
-	private float _windFanPower2 = 0.02f;
+	private float _windFanPower2 = 0.125f;
 
 	public float WindFanPower2
 	{
@@ -7309,7 +7309,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Speed 3
 
-	private float _windSpeed3 = 0.135f;
+	private float _windSpeed3 = 9.373f;
 
 	public float WindSpeed3
 	{
@@ -7317,7 +7317,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windSpeed3 )
 			{
@@ -7333,11 +7333,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindSpeed3String = $"{_windSpeed3 * 100f * MathZ.MPSToMPH:F0}";
+				WindSpeed3String = $"{_windSpeed3 * MathZ.MPSToMPH:F0}";
 			}
 			else
 			{
-				WindSpeed3String = $"{_windSpeed3 * 100f * MathZ.MPSToKPH:F0}";
+				WindSpeed3String = $"{_windSpeed3 * MathZ.MPSToKPH:F0}";
 			}
 		}
 	}
@@ -7364,7 +7364,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Fan power 3
 
-	private float _windFanPower3 = 0.04f;
+	private float _windFanPower3 = 0.25f;
 
 	public float WindFanPower3
 	{
@@ -7407,7 +7407,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Speed 4
 
-	private float _windSpeed4 = 0.2f;
+	private float _windSpeed4 = 17.208f;
 
 	public float WindSpeed4
 	{
@@ -7415,7 +7415,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windSpeed4 )
 			{
@@ -7431,11 +7431,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindSpeed4String = $"{_windSpeed4 * 100f * MathZ.MPSToMPH:F0}";
+				WindSpeed4String = $"{_windSpeed4 * MathZ.MPSToMPH:F0}";
 			}
 			else
 			{
-				WindSpeed4String = $"{_windSpeed4 * 100f * MathZ.MPSToKPH:F0}";
+				WindSpeed4String = $"{_windSpeed4 * MathZ.MPSToKPH:F0}";
 			}
 		}
 	}
@@ -7462,7 +7462,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Fan power 4
 
-	private float _windFanPower4 = 0.06f;
+	private float _windFanPower4 = 0.375f;
 
 	public float WindFanPower4
 	{
@@ -7505,7 +7505,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Speed 5
 
-	private float _windSpeed5 = 0.268f;
+	private float _windSpeed5 = 26.494f;
 
 	public float WindSpeed5
 	{
@@ -7513,7 +7513,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windSpeed5 )
 			{
@@ -7529,11 +7529,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindSpeed5String = $"{_windSpeed5 * 100f * MathZ.MPSToMPH:F0}";
+				WindSpeed5String = $"{_windSpeed5 * MathZ.MPSToMPH:F0}";
 			}
 			else
 			{
-				WindSpeed5String = $"{_windSpeed5 * 100f * MathZ.MPSToKPH:F0}";
+				WindSpeed5String = $"{_windSpeed5 * MathZ.MPSToKPH:F0}";
 			}
 		}
 	}
@@ -7560,7 +7560,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Fan power 5
 
-	private float _windFanPower5 = 0.10f;
+	private float _windFanPower5 = 0.5f;
 
 	public float WindFanPower5
 	{
@@ -7603,7 +7603,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Speed 6
 
-	private float _windSpeed6 = 0.4025f;
+	private float _windSpeed6 = 37.047f;
 
 	public float WindSpeed6
 	{
@@ -7611,7 +7611,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windSpeed6 )
 			{
@@ -7627,11 +7627,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindSpeed6String = $"{_windSpeed6 * 100f * MathZ.MPSToMPH:F0}";
+				WindSpeed6String = $"{_windSpeed6 * MathZ.MPSToMPH:F0}";
 			}
 			else
 			{
-				WindSpeed6String = $"{_windSpeed6 * 100f * MathZ.MPSToKPH:F0}";
+				WindSpeed6String = $"{_windSpeed6 * MathZ.MPSToKPH:F0}";
 			}
 		}
 	}
@@ -7658,7 +7658,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Fan power 6
 
-	private float _windFanPower6 = 0.15f;
+	private float _windFanPower6 = 0.625f;
 
 	public float WindFanPower6
 	{
@@ -7701,7 +7701,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Speed 7
 
-	private float _windSpeed7 = 0.535f;
+	private float _windSpeed7 = 48.672f;
 
 	public float WindSpeed7
 	{
@@ -7709,7 +7709,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windSpeed7 )
 			{
@@ -7725,11 +7725,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindSpeed7String = $"{_windSpeed7 * 100f * MathZ.MPSToMPH:F0}";
+				WindSpeed7String = $"{_windSpeed7 * MathZ.MPSToMPH:F0}";
 			}
 			else
 			{
-				WindSpeed7String = $"{_windSpeed7 * 100f * MathZ.MPSToKPH:F0}";
+				WindSpeed7String = $"{_windSpeed7 * MathZ.MPSToKPH:F0}";
 			}
 		}
 	}
@@ -7756,7 +7756,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Fan power 7
 
-	private float _windFanPower7 = 0.25f;
+	private float _windFanPower7 = 0.75f;
 
 	public float WindFanPower7
 	{
@@ -7799,7 +7799,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Speed 8
 
-	private float _windSpeed8 = 0.6725f;
+	private float _windSpeed8 = 61.374f;
 
 	public float WindSpeed8
 	{
@@ -7807,7 +7807,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windSpeed8 )
 			{
@@ -7823,11 +7823,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindSpeed8String = $"{_windSpeed8 * 100f * MathZ.MPSToMPH:F0}";
+				WindSpeed8String = $"{_windSpeed8 * MathZ.MPSToMPH:F0}";
 			}
 			else
 			{
-				WindSpeed8String = $"{_windSpeed8 * 100f * MathZ.MPSToKPH:F0}";
+				WindSpeed8String = $"{_windSpeed8 * MathZ.MPSToKPH:F0}";
 			}
 		}
 	}
@@ -7854,7 +7854,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Fan power 8
 
-	private float _windFanPower8 = 0.40f;
+	private float _windFanPower8 = 0.8333f;
 
 	public float WindFanPower8
 	{
@@ -7897,7 +7897,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Speed 9
 
-	private float _windSpeed9 = 0.805f;
+	private float _windSpeed9 = 74.935f;
 
 	public float WindSpeed9
 	{
@@ -7905,7 +7905,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windSpeed9 )
 			{
@@ -7921,11 +7921,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindSpeed9String = $"{_windSpeed9 * 100f * MathZ.MPSToMPH:F0}";
+				WindSpeed9String = $"{_windSpeed9 * MathZ.MPSToMPH:F0}";
 			}
 			else
 			{
-				WindSpeed9String = $"{_windSpeed9 * 100f * MathZ.MPSToKPH:F0}";
+				WindSpeed9String = $"{_windSpeed9 * MathZ.MPSToKPH:F0}";
 			}
 		}
 	}
@@ -7952,7 +7952,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Fan power 9
 
-	private float _windFanPower9 = 0.65f;
+	private float _windFanPower9 = 0.9167f;
 
 	public float WindFanPower9
 	{
@@ -7995,7 +7995,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Wind - Speed 10
 
-	private float _windSpeed10 = 0.94f;
+	private float _windSpeed10 = 89.408f;
 
 	public float WindSpeed10
 	{
@@ -8003,7 +8003,7 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
-			value = Math.Clamp( value, 0f, 1f );
+			value = Math.Clamp( value, 0f, 100f );
 
 			if ( value != _windSpeed10 )
 			{
@@ -8018,11 +8018,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindSpeed10String = $"{_windSpeed10 * 100f * MathZ.MPSToMPH:F0}";
+				WindSpeed10String = $"{_windSpeed10 * MathZ.MPSToMPH:F0}";
 			}
 			else
 			{
-				WindSpeed10String = $"{_windSpeed10 * 100f * MathZ.MPSToKPH:F0}";
+				WindSpeed10String = $"{_windSpeed10 * MathZ.MPSToKPH:F0}";
 			}
 		}
 	}

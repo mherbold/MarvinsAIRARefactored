@@ -239,7 +239,7 @@ public partial class Wind
 
 		var velocity = MathF.Sqrt( app.Simulator.VelocityX * app.Simulator.VelocityX + app.Simulator.VelocityY * app.Simulator.VelocityY );
 
-		var speed = MathF.Max( velocity / 100f, settings.WindMinimumSpeed );
+		var speed = MathF.Max( velocity, settings.WindMinimumSpeed );
 
 		var fanPower = settings.WindFanPower10;
 

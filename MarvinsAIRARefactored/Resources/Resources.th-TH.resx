@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1704,4 +1704,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>หน้าต่างพิทเปิดอยู่</value>
   </data>
-</root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>รีเซ็ตเป็นค่าเริ่มต้น</value></data></root>

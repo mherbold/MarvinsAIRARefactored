@@ -74,7 +74,7 @@
                                     Label="{Binding Localization[MinimumSpeed]}"
                                     Value="{Binding Settings.WindMinimumSpeed, Mode=TwoWay}"
                                     ValueString="{Binding Settings.WindMinimumSpeedString}"
-                                    StepSize="0.01"
+                                    StepSize="0.5"
                                     ContextSwitches="{Binding Settings.WindMinimumSpeedContextSwitches}"
                                     PlusButtonMappings="{Binding Settings.WindMinimumSpeedPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.WindMinimumSpeedMinusButtonMappings}"
@@ -96,6 +96,8 @@
 
         <controls:MairaGroupBox Label="{Binding Localization[FanPower_UC]}"
                                 HelpTopic="advanced/wind/#fan-power">
+
+            <StackPanel>
 
             <Grid Height="200"
                   HorizontalAlignment="Center">
@@ -143,6 +145,7 @@
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaDualSlider Grid.Column="0"
+                                              LeftMinValue="0" LeftMaxValue="100"
                                               LeftValue="{Binding Settings.WindSpeed1}"
                                               LeftValueString="{Binding Settings.WindSpeed1String}"
                                               RightValue="{Binding Settings.WindFanPower1}"
@@ -150,6 +153,7 @@
                                               HorizontalAlignment="Center" />
 
                     <controls:MairaDualSlider Grid.Column="2"
+                                              LeftMinValue="0" LeftMaxValue="100"
                                               LeftValue="{Binding Settings.WindSpeed2}"
                                               LeftValueString="{Binding Settings.WindSpeed2String}"
                                               RightValue="{Binding Settings.WindFanPower2}"
@@ -157,6 +161,7 @@
                                               HorizontalAlignment="Center" />
 
                     <controls:MairaDualSlider Grid.Column="4"
+                                              LeftMinValue="0" LeftMaxValue="100"
                                               LeftValue="{Binding Settings.WindSpeed3}"
                                               LeftValueString="{Binding Settings.WindSpeed3String}"
                                               RightValue="{Binding Settings.WindFanPower3}"
@@ -164,6 +169,7 @@
                                               HorizontalAlignment="Center" />
 
                     <controls:MairaDualSlider Grid.Column="6"
+                                              LeftMinValue="0" LeftMaxValue="100"
                                               LeftValue="{Binding Settings.WindSpeed4}"
                                               LeftValueString="{Binding Settings.WindSpeed4String}"
                                               RightValue="{Binding Settings.WindFanPower4}"
@@ -171,6 +177,7 @@
                                               HorizontalAlignment="Center" />
 
                     <controls:MairaDualSlider Grid.Column="8"
+                                              LeftMinValue="0" LeftMaxValue="100"
                                               LeftValue="{Binding Settings.WindSpeed5}"
                                               LeftValueString="{Binding Settings.WindSpeed5String}"
                                               RightValue="{Binding Settings.WindFanPower5}"
@@ -178,6 +185,7 @@
                                               HorizontalAlignment="Center" />
 
                     <controls:MairaDualSlider Grid.Column="10"
+                                              LeftMinValue="0" LeftMaxValue="100"
                                               LeftValue="{Binding Settings.WindSpeed6}"
                                               LeftValueString="{Binding Settings.WindSpeed6String}"
                                               RightValue="{Binding Settings.WindFanPower6}"
@@ -185,6 +193,7 @@
                                               HorizontalAlignment="Center" />
 
                     <controls:MairaDualSlider Grid.Column="12"
+                                              LeftMinValue="0" LeftMaxValue="100"
                                               LeftValue="{Binding Settings.WindSpeed7}"
                                               LeftValueString="{Binding Settings.WindSpeed7String}"
                                               RightValue="{Binding Settings.WindFanPower7}"
@@ -192,6 +201,7 @@
                                               HorizontalAlignment="Center" />
 
                     <controls:MairaDualSlider Grid.Column="14"
+                                              LeftMinValue="0" LeftMaxValue="100"
                                               LeftValue="{Binding Settings.WindSpeed8}"
                                               LeftValueString="{Binding Settings.WindSpeed8String}"
                                               RightValue="{Binding Settings.WindFanPower8}"
@@ -199,6 +209,7 @@
                                               HorizontalAlignment="Center" />
 
                     <controls:MairaDualSlider Grid.Column="16"
+                                              LeftMinValue="0" LeftMaxValue="100"
                                               LeftValue="{Binding Settings.WindSpeed9}"
                                               LeftValueString="{Binding Settings.WindSpeed9String}"
                                               RightValue="{Binding Settings.WindFanPower9}"
@@ -206,6 +217,7 @@
                                               HorizontalAlignment="Center" />
 
                     <controls:MairaDualSlider Grid.Column="18"
+                                              LeftMinValue="0" LeftMaxValue="100"
                                               LeftValue="{Binding Settings.WindSpeed10}"
                                               LeftValueString="{Binding Settings.WindSpeed10String}"
                                               RightValue="{Binding Settings.WindFanPower10}"
@@ -214,10 +226,10 @@
 
                 </Grid>
 
-                <TextBlock Grid.Row="0"
+                <TextBlock x:Name="SpeedLabel_TextBlock"
+                           Grid.Row="0"
                            Grid.Column="4"
-                           Style="{StaticResource MairaTextBlockStyle}"
-                           Text="{Binding Localization[Speed]}" />
+                           Style="{StaticResource MairaTextBlockStyle}" />
 
                 <TextBlock Grid.Row="2"
                            Grid.Column="4"
@@ -225,6 +237,16 @@
                            Text="{Binding Localization[FanPower]}" />
 
             </Grid>
+
+            <controls:MairaButton Margin="0,20,0,0"
+                                  HorizontalAlignment="Center"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[ResetFanPowerCurveToDefaults]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                  Click="ResetFanPowerCurveToDefaults_MairaButton_Click" />
+
+            </StackPanel>
 
         </controls:MairaGroupBox>
 

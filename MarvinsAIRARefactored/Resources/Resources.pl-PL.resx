@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1706,4 +1706,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Okno pit otwarte</value>
   </data>
-</root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Przywróć ustawienia domyślne</value></data></root>

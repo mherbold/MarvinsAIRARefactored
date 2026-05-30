@@ -87,7 +87,7 @@ public partial class MairaDualSlider : UserControl
 
 			RightDragHandle_Image.CaptureMouse();
 
-			app.Wind.StartPreview( RightValue );
+			app.Wind.StartPreview( ( RightValue - RightMinValue ) / ( RightMaxValue - RightMinValue ) );
 
 			e.Handled = true;
 		}
@@ -111,7 +111,7 @@ public partial class MairaDualSlider : UserControl
 
 			if ( delta != 0 )
 			{
-				LeftValue = MathZ.Saturate( LeftValue - delta * 0.001f );
+				LeftValue = Math.Clamp( LeftValue - delta * 0.001f * ( LeftMaxValue - LeftMinValue ), LeftMinValue, LeftMaxValue );
 
 				User32.SetCursorPos( _draggingCenter.x, _draggingCenter.y );
 			}
@@ -130,9 +130,9 @@ public partial class MairaDualSlider : UserControl
 
 			if ( delta != 0 )
 			{
-				RightValue = MathZ.Saturate( RightValue - delta * 0.001f );
+				RightValue = Math.Clamp( RightValue - delta * 0.001f * ( RightMaxValue - RightMinValue ), RightMinValue, RightMaxValue );
 
-				app.Wind.StartPreview( RightValue );
+				app.Wind.StartPreview( ( RightValue - RightMinValue ) / ( RightMaxValue - RightMinValue ) );
 
 				User32.SetCursorPos( _draggingCenter.x, _draggingCenter.y );
 			}
@@ -191,6 +191,38 @@ public partial class MairaDualSlider : UserControl
 		set => SetValue( RightValueStringProperty, value );
 	}
 
+	public static readonly DependencyProperty LeftMinValueProperty = DependencyProperty.Register( nameof( LeftMinValue ), typeof( float ), typeof( MairaDualSlider ), new PropertyMetadata( 0f ) );
+
+	public float LeftMinValue
+	{
+		get => (float) GetValue( LeftMinValueProperty );
+		set => SetValue( LeftMinValueProperty, value );
+	}
+
+	public static readonly DependencyProperty LeftMaxValueProperty = DependencyProperty.Register( nameof( LeftMaxValue ), typeof( float ), typeof( MairaDualSlider ), new PropertyMetadata( 1f ) );
+
+	public float LeftMaxValue
+	{
+		get => (float) GetValue( LeftMaxValueProperty );
+		set => SetValue( LeftMaxValueProperty, value );
+	}
+
+	public static readonly DependencyProperty RightMinValueProperty = DependencyProperty.Register( nameof( RightMinValue ), typeof( float ), typeof( MairaDualSlider ), new PropertyMetadata( 0f ) );
+
+	public float RightMinValue
+	{
+		get => (float) GetValue( RightMinValueProperty );
+		set => SetValue( RightMinValueProperty, value );
+	}
+
+	public static readonly DependencyProperty RightMaxValueProperty = DependencyProperty.Register( nameof( RightMaxValue ), typeof( float ), typeof( MairaDualSlider ), new PropertyMetadata( 1f ) );
+
+	public float RightMaxValue
+	{
+		get => (float) GetValue( RightMaxValueProperty );
+		set => SetValue( RightMaxValueProperty, value );
+	}
+
 	#endregion
 
 	#region Dependency Property Changed Events
@@ -237,8 +269,11 @@ public partial class MairaDualSlider : UserControl
 	{
 		var rowHeight = Grid.RowDefinitions[ 1 ].ActualHeight;
 
-		LeftDragHandle_Image.Margin = new Thickness( 0, 0, 0, LeftValue * ( rowHeight - LeftDragHandle_Image.ActualHeight ) );
-		RightDragHandle_Image.Margin = new Thickness( 0, 0, 0, RightValue * ( rowHeight - RightDragHandle_Image.ActualHeight ) );
+		var leftNormalized = ( LeftValue - LeftMinValue ) / ( LeftMaxValue - LeftMinValue );
+		var rightNormalized = ( RightValue - RightMinValue ) / ( RightMaxValue - RightMinValue );
+
+		LeftDragHandle_Image.Margin = new Thickness( 0, 0, 0, leftNormalized * ( rowHeight - LeftDragHandle_Image.ActualHeight ) );
+		RightDragHandle_Image.Margin = new Thickness( 0, 0, 0, rightNormalized * ( rowHeight - RightDragHandle_Image.ActualHeight ) );
 	}
 
 	#endregion

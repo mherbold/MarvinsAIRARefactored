@@ -426,6 +426,7 @@ public partial class App : Application
 		TextToSpeech.Dispose();
 
 		Simulator.Shutdown();
+		RacingWheel.LogiShutdown();
 		AdminBoxx.Shutdown();
 		DirectInput.Shutdown();
 
@@ -2176,12 +2177,12 @@ public partial class App : Application
 
 			if ( CheckMappedButtons( settings.WindMinimumSpeedPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.WindMinimumSpeed += 0.01f;
+				settings.WindMinimumSpeed += 0.5f;
 			}
 
 			if ( CheckMappedButtons( settings.WindMinimumSpeedMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
-				settings.WindMinimumSpeed -= 0.01f;
+				settings.WindMinimumSpeed -= 0.5f;
 			}
 
 			// wind curving

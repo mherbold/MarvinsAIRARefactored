@@ -141,6 +141,7 @@ public partial class Simulator
 	private IRacingSdkEnum.Flags? _sessionFlagsLastFrame = null;
 	private IRacingSdkEnum.SessionState? _sessionStateLastFrame = null;
 	private int? _currentTireIndexLastFrame = null;
+	private int? _displayUnitsLastFrame = null;
 
 	private IRacingSdkDatum? _brakeABSactiveDatum = null;
 	private IRacingSdkDatum? _brakeDatum = null;
@@ -312,6 +313,8 @@ public partial class Simulator
 
 		app.RacingWheel.ResetForceFeedback = true;
 
+		app.RacingWheel.LogiInitialize( WindowHandle.Value );
+
 		app.AdminBoxx.SimulatorConnected();
 
 #if !ADMINBOXX
@@ -335,6 +338,8 @@ public partial class Simulator
 		app.Logger.WriteLine( "[Simulator] OnDisconnected >>>" );
 
 		app.RacingWheel.UseSteeringWheelTorqueData = false;
+
+		app.RacingWheel.LogiShutdown();
 
 		WindowHandle = null;
 
@@ -442,6 +447,7 @@ public partial class Simulator
 		_sessionFlagsLastFrame = null;
 		_sessionStateLastFrame = null;
 		_currentTireIndexLastFrame = null;
+		_displayUnitsLastFrame = null;
 
 #if DEBUG
 
@@ -908,6 +914,18 @@ public partial class Simulator
 		}
 
 		_sessionStateLastFrame = SessionState;
+
+		if ( DisplayUnits != _displayUnitsLastFrame )
+		{
+			app.Dispatcher.InvokeAsync( () =>
+			{
+				Misc.ForcePropertySetters( settings );
+
+				MainWindow._windPage.UpdateSpeedUnitLabel();
+			} );
+		}
+
+		_displayUnitsLastFrame = DisplayUnits;
 
 		// update speech-to-text
 
