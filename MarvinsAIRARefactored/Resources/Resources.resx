@@ -417,6 +417,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Connect to AdminBoxx on App Startup</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Enable Xtreme Scoring Race Control Integration</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Brightness</value>
   </data>

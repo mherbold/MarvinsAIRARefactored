@@ -98,6 +98,22 @@ public partial class AdminBoxx
 	private bool _globalChatEnabled = true;
 	private bool _carNumberIsRequired = false;
 
+	// Xtreme Scoring Race Control integration — WM_APP message IDs
+	private const uint WM_APP = 0x8000;
+	private const uint XSRC_YELLOW_FLAG    = WM_APP + 1;
+	private const uint XSRC_CLEAR_ALL_FLAGS = WM_APP + 2;
+	private const uint XSRC_PLUS_ONE_LAP   = WM_APP + 3;
+	private const uint XSRC_MINUS_ONE_LAP  = WM_APP + 4;
+	private const uint XSRC_ADVANCE_SESSION = WM_APP + 5;
+	private const uint XSRC_CHAT           = WM_APP + 6;
+	private const uint XSRC_PACE_MODE      = WM_APP + 7;
+	private const uint XSRC_BLACK_FLAG     = WM_APP + 8;
+	private const uint XSRC_CLEAR_FLAG     = WM_APP + 9;
+	private const uint XSRC_WAVE_BY        = WM_APP + 10;
+	private const uint XSRC_END_OF_LINE    = WM_APP + 11;
+	private const uint XSRC_DISQUALIFY     = WM_APP + 12;
+	private const uint XSRC_REMOVE_DRIVER  = WM_APP + 13;
+
 	private bool _shownYellowFlag = false;
 	private bool _shownOneLapToGreenFlag = false;
 	private bool _shownStartReadyFlag = false;
@@ -825,6 +841,45 @@ public partial class AdminBoxx
 		app.Logger.WriteLine( $"[AdminBoxx] Unrecognized message: \"{data}\"" );
 	}
 
+	/// <summary>Sends a WM_APP message to Xtreme Scoring Race Control if integration is enabled.</summary>
+	private static void SendXsrcMessage( uint msg, IntPtr wParam, IntPtr lParam )
+	{
+		if ( !DataContext.DataContext.Instance.Settings.AdminBoxxEnableXsrcIntegration )
+		{
+			return;
+		}
+
+		var hwnd = PInvoke.User32.FindWindow( null, "Xtreme Scoring Race Control" );
+
+		if ( hwnd == IntPtr.Zero )
+		{
+			return;
+		}
+
+		PInvoke.User32.PostMessage( hwnd, msg, wParam, lParam );
+	}
+
+	/// <summary>
+	/// Computes the iRacing CarNumberRaw encoding for a car number string.
+	/// Leading zeros are encoded as: numLeadingZeros * 1000 + numericValue.
+	/// </summary>
+	private static IntPtr CarNumberRaw( string carNumber )
+	{
+		if ( string.IsNullOrEmpty( carNumber ) )
+		{
+			return IntPtr.Zero;
+		}
+
+		var numLeadingZeros = carNumber.Length - carNumber.TrimStart( '0' ).Length;
+
+		if ( !int.TryParse( carNumber, out var numericValue ) )
+		{
+			return IntPtr.Zero;
+		}
+
+		return (IntPtr) ( numLeadingZeros * 1000 + numericValue );
+	}
+
 	#region Handle button commands
 
 	private void HandleButtonPress( int y, int x )
@@ -980,6 +1035,8 @@ public partial class AdminBoxx
 			{
 				app.ChatQueue.SendMessage( "!yellow" );
 
+				SendXsrcMessage( XSRC_YELLOW_FLAG, IntPtr.Zero, IntPtr.Zero );
+
 				RunSequence( 3, Tone.AdminBoxx, true, Yellow, 0, 0 );
 			}
 		}
@@ -1013,6 +1070,8 @@ public partial class AdminBoxx
 
 		app.ChatQueue.SendMessage( $"!black #{_carNumber}" );
 
+		SendXsrcMessage( XSRC_BLACK_FLAG, IntPtr.Zero, CarNumberRaw( _carNumber ) );
+
 		RunSequence( 1 );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< BlackFlagCallback" );
@@ -1044,6 +1103,8 @@ public partial class AdminBoxx
 
 		app.ChatQueue.SendMessage( $"!clear #{_carNumber}" );
 
+		SendXsrcMessage( XSRC_CLEAR_FLAG, IntPtr.Zero, CarNumberRaw( _carNumber ) );
+
 		RunSequence( 1 );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< ClearFlagCallback" );
@@ -1058,6 +1119,8 @@ public partial class AdminBoxx
 		if ( !_inNumpadMode )
 		{
 			app.ChatQueue.SendMessage( "!clearall" );
+
+			SendXsrcMessage( XSRC_CLEAR_ALL_FLAGS, IntPtr.Zero, IntPtr.Zero );
 
 			RunSequence( 1, Tone.AdminBoxx, true, White, 6, 0, "all_penalties_cleared" );
 		}
@@ -1079,6 +1142,8 @@ public partial class AdminBoxx
 
 				_globalChatEnabled = false;
 
+				SendXsrcMessage( XSRC_CHAT, (IntPtr) 0, IntPtr.Zero );
+
 				RunSequence( 1, Tone.AdminBoxx, true, White, 7, 0, "chat_disabled" );
 			}
 			else
@@ -1086,6 +1151,8 @@ public partial class AdminBoxx
 				app.ChatQueue.SendMessage( "!chat" );
 
 				_globalChatEnabled = true;
+
+				SendXsrcMessage( XSRC_CHAT, (IntPtr) 1, IntPtr.Zero );
 
 				RunSequence( 1, Tone.AdminBoxx, true, White, 7, 0, "chat_enabled" );
 			}
@@ -1108,11 +1175,15 @@ public partial class AdminBoxx
 			{
 				app.ChatQueue.SendMessage( "!restart single" );
 
+				SendXsrcMessage( XSRC_PACE_MODE, (IntPtr) 1, IntPtr.Zero );
+
 				RunSequence( 1, Tone.AdminBoxx, true, White, 0, 1, "restart_is_single_file" );
 			}
 			else
 			{
 				app.ChatQueue.SendMessage( "!restart double" );
+
+				SendXsrcMessage( XSRC_PACE_MODE, (IntPtr) 0, IntPtr.Zero );
 
 				RunSequence( 2, Tone.AdminBoxx, true, White, 0, 1, "restart_is_double_file" );
 			}
@@ -1147,6 +1218,8 @@ public partial class AdminBoxx
 
 		app.ChatQueue.SendMessage( $"!waveby #{_carNumber}" );
 
+		SendXsrcMessage( XSRC_WAVE_BY, IntPtr.Zero, CarNumberRaw( _carNumber ) );
+
 		RunSequence( 1 );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< WaveByDriverCallback" );
@@ -1177,6 +1250,8 @@ public partial class AdminBoxx
 		app.Logger.WriteLine( "[AdminBoxx] EndOfLineDriverCallback >>>" );
 
 		app.ChatQueue.SendMessage( $"!eol #{_carNumber}" );
+
+		SendXsrcMessage( XSRC_END_OF_LINE, IntPtr.Zero, CarNumberRaw( _carNumber ) );
 
 		RunSequence( 1 );
 
@@ -1209,6 +1284,8 @@ public partial class AdminBoxx
 
 		app.ChatQueue.SendMessage( $"!dq #{_carNumber}" );
 
+		SendXsrcMessage( XSRC_DISQUALIFY, IntPtr.Zero, CarNumberRaw( _carNumber ) );
+
 		RunSequence( 1 );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< DisqualifyDriverCallback" );
@@ -1240,6 +1317,8 @@ public partial class AdminBoxx
 
 		app.ChatQueue.SendMessage( $"!remove #{_carNumber}" );
 
+		SendXsrcMessage( XSRC_REMOVE_DRIVER, IntPtr.Zero, CarNumberRaw( _carNumber ) );
+
 		RunSequence( 1 );
 
 		app.Logger.WriteLine( "[AdminBoxx] <<< RemoveDriverCallback" );
@@ -1254,6 +1333,8 @@ public partial class AdminBoxx
 		if ( !_inNumpadMode )
 		{
 			app.ChatQueue.SendMessage( "!pacelaps +1" );
+
+			SendXsrcMessage( XSRC_PLUS_ONE_LAP, IntPtr.Zero, IntPtr.Zero );
 
 			RunSequence( 1, Tone.AdminBoxx, true, White, 0, 2, "caution_extended_by_one_lap" );
 		}
@@ -1270,6 +1351,8 @@ public partial class AdminBoxx
 		if ( !_inNumpadMode )
 		{
 			app.ChatQueue.SendMessage( "!advance" );
+
+			SendXsrcMessage( XSRC_ADVANCE_SESSION, IntPtr.Zero, IntPtr.Zero );
 
 			RunSequence( 1, Tone.AdminBoxx, true, White, 4, 2, "session_has_been_advanced" );
 		}
@@ -1335,6 +1418,8 @@ public partial class AdminBoxx
 		if ( !_inNumpadMode )
 		{
 			app.ChatQueue.SendMessage( "!pacelaps -1" );
+
+			SendXsrcMessage( XSRC_MINUS_ONE_LAP, IntPtr.Zero, IntPtr.Zero );
 
 			RunSequence( 1, Tone.AdminBoxx, true, White, 0, 3, "caution_shortened_by_one_lap" );
 		}

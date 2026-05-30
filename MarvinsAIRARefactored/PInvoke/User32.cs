@@ -51,4 +51,11 @@ public static partial class User32
 
 	[DllImport( "user32.dll", CharSet = CharSet.Unicode )]
 	public static extern short VkKeyScanW( char ch );
+
+	[DllImport( "user32.dll", CharSet = CharSet.Unicode, SetLastError = true )]
+	public static extern IntPtr FindWindow( string? lpClassName, string lpWindowName );
+
+	[DllImport( "user32.dll", SetLastError = true )]
+	[return: MarshalAs( UnmanagedType.Bool )]
+	public static extern bool PostMessage( IntPtr hWnd, uint msg, IntPtr wParam, IntPtr lParam );
 }

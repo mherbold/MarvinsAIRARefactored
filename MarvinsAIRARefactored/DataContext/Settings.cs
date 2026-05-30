@@ -9452,6 +9452,27 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region AdminBoxx - Enable XSRC integration
+
+	private bool _adminBoxxEnableXsrcIntegration = false;
+
+	public bool AdminBoxxEnableXsrcIntegration
+	{
+		get => _adminBoxxEnableXsrcIntegration;
+
+		set
+		{
+			if ( value != _adminBoxxEnableXsrcIntegration )
+			{
+				_adminBoxxEnableXsrcIntegration = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region AdminBoxx - Brightness
 
 	private float _adminBoxxBrightness = 0.15f;
