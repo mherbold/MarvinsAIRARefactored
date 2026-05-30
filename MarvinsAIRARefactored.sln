@@ -5,83 +5,70 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvinsAIRARefactored", "MarvinsAIRARefactored\MarvinsAIRARefactored.csproj", "{47D4F509-459D-4DDE-9A42-86F944F2FF6C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A1234567-89AB-CDEF-0123-456789ABCDEF}"
-ProjectSection(SolutionItems) = preProject
-AGENTS.md = AGENTS.md
-LICENSE = LICENSE
-README.md = README.md
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		AGENTS.md = AGENTS.md
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Agents", "Agents", "{B1234567-89AB-CDEF-0123-456789ABCDEF}"
-ProjectSection(SolutionItems) = preProject
-Agents\audio-sounds.md = Agents\audio-sounds.md
-Agents\force-feedback.md = Agents\force-feedback.md
-Agents\hardware-io.md = Agents\hardware-io.md
-Agents\localization.md = Agents\localization.md
-Agents\settings-context.md = Agents\settings-context.md
-Agents\simulator-iracing.md = Agents\simulator-iracing.md
-Agents\speech-to-text.md = Agents\speech-to-text.md
-Agents\text-to-speech.md = Agents\text-to-speech.md
-Agents\ui-wpf-controls.md = Agents\ui-wpf-controls.md
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		Agents\audio-sounds.md = Agents\audio-sounds.md
+		Agents\force-feedback.md = Agents\force-feedback.md
+		Agents\hardware-io.md = Agents\hardware-io.md
+		Agents\localization.md = Agents\localization.md
+		Agents\settings-context.md = Agents\settings-context.md
+		Agents\simulator-iracing.md = Agents\simulator-iracing.md
+		Agents\speech-to-text.md = Agents\speech-to-text.md
+		Agents\text-to-speech.md = Agents\text-to-speech.md
+		Agents\ui-wpf-controls.md = Agents\ui-wpf-controls.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Arduino", "Arduino", "{C1234567-89AB-CDEF-0123-456789ABCDEF}"
-ProjectSection(SolutionItems) = preProject
-Arduino\Wind\Wind.ino = Arduino\Wind\Wind.ino
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		Arduino\Wind\Wind.ino = Arduino\Wind\Wind.ino
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "InnoSetup", "InnoSetup", "{D1234567-89AB-CDEF-0123-456789ABCDEF}"
-ProjectSection(SolutionItems) = preProject
-InnoSetup\AdminBoxx.iss = InnoSetup\AdminBoxx.iss
-InnoSetup\Legal.txt = InnoSetup\Legal.txt
-InnoSetup\MarvinsAIRA.iss = InnoSetup\MarvinsAIRA.iss
-EndProjectSection
+	ProjectSection(SolutionItems) = preProject
+		InnoSetup\AdminBoxx.iss = InnoSetup\AdminBoxx.iss
+		InnoSetup\Legal.txt = InnoSetup\Legal.txt
+		InnoSetup\MarvinsAIRA.iss = InnoSetup\MarvinsAIRA.iss
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tools", "Tools", "{07C2787E-EAC7-C090-1BA3-A61EC2A24D84}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalizationEditor", "Tools\LocalizationEditor\LocalizationEditor.csproj", "{6F233FEA-7839-4775-8E3A-673EBD6868D6}"
 EndProject
 Global
-GlobalSection(SolutionConfigurationPlatforms) = preSolution
-Debug|Any CPU = Debug|Any CPU
-Debug|x64 = Debug|x64
-Debug|x86 = Debug|x86
-Release|Any CPU = Release|Any CPU
-Release|x64 = Release|x64
-Release|x86 = Release|x86
-EndGlobalSection
-GlobalSection(ProjectConfigurationPlatforms) = postSolution
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|x64.ActiveCfg = Debug|x64
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|x64.Build.0 = Debug|x64
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|x86.ActiveCfg = Debug|Any CPU
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|x86.Build.0 = Debug|Any CPU
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|Any CPU.Build.0 = Release|Any CPU
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|x64.ActiveCfg = Release|x64
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|x64.Build.0 = Release|x64
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|x86.ActiveCfg = Release|Any CPU
-{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|x86.Build.0 = Release|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Debug|x64.ActiveCfg = Debug|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Debug|x64.Build.0 = Debug|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Debug|x86.ActiveCfg = Debug|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Debug|x86.Build.0 = Debug|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Release|Any CPU.Build.0 = Release|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Release|x64.ActiveCfg = Release|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Release|x64.Build.0 = Release|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Release|x86.ActiveCfg = Release|Any CPU
-{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Release|x86.Build.0 = Release|Any CPU
-EndGlobalSection
-GlobalSection(SolutionProperties) = preSolution
-HideSolutionNode = FALSE
-EndGlobalSection
-GlobalSection(NestedProjects) = preSolution
-{6F233FEA-7839-4775-8E3A-673EBD6868D6} = {07C2787E-EAC7-C090-1BA3-A61EC2A24D84}
-EndGlobalSection
-GlobalSection(ExtensibilityGlobals) = postSolution
-SolutionGuid = {B2657563-585A-430E-920E-FB7949D6FD96}
-EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|x64.ActiveCfg = Debug|x64
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Debug|x64.Build.0 = Debug|x64
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|x64.ActiveCfg = Release|x64
+		{47D4F509-459D-4DDE-9A42-86F944F2FF6C}.Release|x64.Build.0 = Release|x64
+		{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Debug|x64.Build.0 = Debug|Any CPU
+		{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Release|x64.ActiveCfg = Release|Any CPU
+		{6F233FEA-7839-4775-8E3A-673EBD6868D6}.Release|x64.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B311528F-69BF-446B-8E45-CC4D69DD744D}
+	EndGlobalSection
 EndGlobal
