@@ -53,5 +53,81 @@
     "Repórter do pit, testando.",
     "Pit lane, teste de microfone.",
     "Repórter do pit online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Uma volta para o verde!",
+    "Uma volta restante antes do verde!",
+    "Prepare-se — uma volta para a bandeira verde!",
+    "Quase lá — mais uma volta antes do verde!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Bandeira verde, vai vai vai!",
+    "[excitedly] Bandeira verde! Vamos!",
+    "[excitedly] Verde, acelera!",
+    "[excitedly] Bandeira verde — vai, vai, vai!",
+    "[excitedly] Verde, pisa fundo!"
+  ],
+  "SpotterFlagBlue": [
+    "Bandeira azul — deixe-os passar.",
+    "Bandeira azul, mova-se.",
+    "Você tem bandeira azul — dê passagem.",
+    "Bandeira azul mostrada — deixe o líder passar.",
+    "Abra caminho, bandeira azul."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Bandeira amarela — problema à frente, cuidado!",
+    "[urgently] Bandeira amarela balançando, reduza a velocidade!",
+    "[urgently] Bandeira amarela, há problemas à frente!",
+    "[urgently] Bandeira amarela — cuidado lá na frente!",
+    "[urgently] Atenção, bandeira amarela — fique alerta!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "A bandeira de cautela está fora!",
+    "Temos cautela na pista.",
+    "Cautela de pista toda — reduza a velocidade.",
+    "Bandeira de cautela balançando — mantenha seu ritmo.",
+    "A cautela está fora, recue."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Cuidado com destroços na pista!",
+    "[urgently] Destroços na pista — tome cuidado!",
+    "[urgently] Há destroços à frente, fique alerta!",
+    "[urgently] Cuidado, destroços na linha de corrida!"
+  ],
+  "SpotterFlagWhite": [
+    "Bandeira branca — última volta!",
+    "Bandeira branca fora, última volta!",
+    "É a bandeira branca — uma volta restante!",
+    "Bandeira branca mostrada, faça valer!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] A bandeira quadriculada está fora!",
+    "[excitedly] Bandeira quadriculada — essa é a chegada!",
+    "[excitedly] É o xadrez, a corrida acabou!",
+    "[excitedly] Bandeira quadriculada voa — corrida encerrada!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Você tem bandeira preta — entre!",
+    "[seriously] Bandeira preta mostrada, venha para o pit.",
+    "[seriously] Bandeira preta — vá ao pit agora.",
+    "[seriously] Estão mostrando a bandeira preta, entre nesta volta."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Você foi desclassificado — volte para o pit.",
+    "[seriously] Bandeira de desclassificação — retorne ao pit lane.",
+    "[seriously] Você foi DQ, traga o carro.",
+    "[seriously] Bandeira preta com cruz — você está desclassificado, pit agora."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Bandeira meatball — traga seu carro ao pit para reparos.",
+    "[seriously] Você tem a bandeira meatball, pit para reparos.",
+    "[seriously] Bandeira de reparo mostrada — seu carro precisa de atenção no pit.",
+    "[seriously] Bandeira meatball fora — pit nesta volta para reparos."
+  ],
+  "SpotterFlagStartReady": [
+    "Prepare-se!",
+    "Em espera para a largada.",
+    "Prepare-se — a largada está chegando!",
+    "Quase na hora — prepare-se para ir!"
   ]
 }

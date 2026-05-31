@@ -1704,4 +1704,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Box ablak nyitva</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Visszaállítás alapértékekre</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Visszaállítás alapértékekre</value></data><data name="FlagCalls" xml:space="preserve"><value>Zászlójelzések</value></data></root>

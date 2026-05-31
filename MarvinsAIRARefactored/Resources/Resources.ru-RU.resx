@@ -1704,4 +1704,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Окно пит-лейна открыто</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Сбросить до значений по умолчанию</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Сбросить до значений по умолчанию</value></data><data name="FlagCalls" xml:space="preserve"><value>Объявления флагов</value></data></root>

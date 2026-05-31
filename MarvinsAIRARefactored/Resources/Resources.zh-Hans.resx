@@ -1704,4 +1704,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>进站窗口开放</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>重置为默认值</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>重置为默认值</value></data><data name="FlagCalls" xml:space="preserve"><value>旗帜通报</value></data></root>

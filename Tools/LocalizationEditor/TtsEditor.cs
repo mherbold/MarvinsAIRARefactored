@@ -114,6 +114,26 @@ internal static class TtsEditor
 		}
 	}
 
+	/// <summary>
+	/// Same as <see cref="AddKey"/> but overwrites any existing entry for <paramref name="key"/>.
+	/// </summary>
+	public static void OverwriteKey(string key, Dictionary<string, string[]> phrasesByLang)
+	{
+		if (!phrasesByLang.ContainsKey("en-US"))
+			throw new ArgumentException("phrasesByLang must include an 'en-US' entry.");
+
+		var fallback = phrasesByLang["en-US"];
+
+		foreach (var lang in FileSetConfig.TtsLanguages)
+		{
+			var obj = Load(lang);
+			var phrases = phrasesByLang.TryGetValue(lang, out var p) ? p : fallback;
+			obj[key] = new JArray(phrases.Cast<object>().ToArray());
+			Save(lang, obj);
+			Console.WriteLine($"  [{lang}]  set ({phrases.Length} phrase(s))");
+		}
+	}
+
 	/// <summary>Removes <paramref name="key"/> from every language file.</summary>
 	public static void RemoveKey(string key)
 	{

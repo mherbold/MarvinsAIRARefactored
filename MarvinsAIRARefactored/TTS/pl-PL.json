@@ -53,5 +53,81 @@
     "Reporter z pit lane, test.",
     "Pit lane, sprawdzenie mikrofonu.",
     "Reporter z pit lane online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Jedno okrążenie do zielonej!",
+    "Pozostało jedno okrążenie do startu!",
+    "Gotuj się — jedno okrążenie do zielonej flagi!",
+    "Prawie — jeszcze jedno okrążenie i ruszamy!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Zielona flaga, jedź jedź jedź!",
+    "[excitedly] Zielona flaga! Jedziemy!",
+    "[excitedly] Zielona, wciśnij gaz!",
+    "[excitedly] Zielona flaga — jedź, jedź, jedź!",
+    "[excitedly] Zielona, gaz do dechy!"
+  ],
+  "SpotterFlagBlue": [
+    "Niebieska flaga — przepuść ich.",
+    "Niebieska flaga, zjadź na bok.",
+    "Masz niebieską flagę — ustąp drogi.",
+    "Niebieska flaga — przepuść lidera.",
+    "Zjedź na bok, niebieska flaga."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Żółta flaga — problem z przodu, ostrożnie!",
+    "[urgently] Żółta flaga macha, zwolnij!",
+    "[urgently] Żółta flaga, z przodu są problemy!",
+    "[urgently] Żółta flaga — uważaj tam z przodu!",
+    "[urgently] Uwaga, żółta flaga — bądź czujny!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Flaga ostrożności jest na zewnątrz!",
+    "Mamy ostrożność na torze.",
+    "Pełna ostrożność toru — zwolnij.",
+    "Flaga ostrożności macha — utrzymaj tempo.",
+    "Ostrożność na zewnątrz, trzymaj dystans."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Uważaj na gruz na torze!",
+    "[urgently] Gruz na torze — bądź ostrożny!",
+    "[urgently] Z przodu jest gruz, bądź czujny!",
+    "[urgently] Uwaga, gruz na linii wyścigu!"
+  ],
+  "SpotterFlagWhite": [
+    "Biała flaga — ostatnie okrążenie!",
+    "Biała flaga na zewnątrz, ostatnie okrążenie!",
+    "To biała flaga — jedno okrążenie zostało!",
+    "Biała flaga pokazana, warto to wykorzystać!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Flaga w kratę jest na zewnątrz!",
+    "[excitedly] Flaga w kratę — to meta!",
+    "[excitedly] To flaga w kratę, wyścig skończony!",
+    "[excitedly] Flaga w kratę leci — wyścig zakończony!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Masz czarną flagę — wracaj!",
+    "[seriously] Czarna flaga pokazana, wracaj do boksów.",
+    "[seriously] Czarna flaga — do boksów teraz.",
+    "[seriously] Pokazują ci czarną flagę, wejdź w to okrążenie."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Zostałeś zdyskwalifikowany — wróć do boksów.",
+    "[seriously] Flaga dyskwalifikacji — wróć do pit lane.",
+    "[seriously] Zostałeś DQ, przyjedź bolidem.",
+    "[seriously] Czarna flaga z krzyżem — jesteś zdyskwalifikowany, do boksów."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Flaga meatball — przywieź auto do boksów na naprawy.",
+    "[seriously] Masz flagę meatball, do boksów na naprawy.",
+    "[seriously] Flaga naprawy pokazana — twój samochód wymaga uwagi w boksach.",
+    "[seriously] Flaga meatball na zewnątrz — wejdź w to okrążenie na naprawy."
+  ],
+  "SpotterFlagStartReady": [
+    "Gotuj się!",
+    "Czekaj na start.",
+    "Przygotuj się — start nadchodzi!",
+    "Prawie czas — gotuj się do jazdy!"
   ]
 }

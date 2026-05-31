@@ -53,5 +53,81 @@
     "Reporter pit, test.",
     "Pit lane, verificare microfon.",
     "Reporter pit online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Un tur până la verde!",
+    "A mai rămas un tur până la verde!",
+    "Pregătește-te — un tur până la steagul verde!",
+    "Aproape — mai un tur și plecăm la verde!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Steag verde, du-te du-te du-te!",
+    "[excitedly] Steag verde! Hai să mergem!",
+    "[excitedly] Verde, apasă pedala!",
+    "[excitedly] Steag verde — du-te, du-te, du-te!",
+    "[excitedly] Verde, gaz!"
+  ],
+  "SpotterFlagBlue": [
+    "Steag albastru — lasă-i să treacă.",
+    "Steag albastru, dă-te la o parte.",
+    "Ai steag albastru — cedează trecerea.",
+    "Steag albastru arătat — lasă liderul să treacă.",
+    "Dă-te la o parte, steag albastru."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Steag galben — problemă înainte, fii atent!",
+    "[urgently] Steag galben fluturând, încetinește!",
+    "[urgently] Steag galben afară, sunt probleme înainte!",
+    "[urgently] Steag galben — ai grijă acolo în față!",
+    "[urgently] Atenție, steag galben — rămâi vigilent!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Steagul de precauție este afară!",
+    "Avem precauție pe pistă.",
+    "Precauție pe tot circuitul — încetinește.",
+    "Steag de precauție fluturând — menține ritmul.",
+    "Precauția este afară, trage-te înapoi."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Atenție la moloz pe pistă!",
+    "[urgently] Moloz pe pistă — fii atent!",
+    "[urgently] Sunt moloz înainte, rămâi vigilent!",
+    "[urgently] Atenție, moloz pe linia de cursă!"
+  ],
+  "SpotterFlagWhite": [
+    "Steag alb — ultimul tur!",
+    "Steag alb afară, ultimul tur!",
+    "Acesta este steagul alb — un tur rămas!",
+    "Steag alb arătat, profită de el!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Steagul alb-negru este afară!",
+    "[excitedly] Steag alb-negru — asta e finalul!",
+    "[excitedly] E steagul, cursa s-a terminat!",
+    "[excitedly] Steagul alb-negru zboară — cursă terminată!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Ai steag negru — vino înăuntru!",
+    "[seriously] Steag negru arătat, intră în pit.",
+    "[seriously] Steag negru — mergi la pit acum.",
+    "[seriously] Îți arată steagul negru, intră în tur acesta."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Ai fost descalificat — întoarce-te la pit.",
+    "[seriously] Steag de descalificare — întoarce-te la pit lane.",
+    "[seriously] Ai fost DQ, adu mașina înăuntru.",
+    "[seriously] Steag negru cu cruce — ești descalificat, pit acum."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Steag meatball — adu mașina la pit pentru reparații.",
+    "[seriously] Ai steagul meatball, pit pentru reparații.",
+    "[seriously] Steag de reparație arătat — mașina ta are nevoie de atenție la pit.",
+    "[seriously] Steag meatball afară — pit în turul acesta pentru reparații."
+  ],
+  "SpotterFlagStartReady": [
+    "Pregătește-te!",
+    "Stai în așteptare pentru start.",
+    "Pregătește-te — startul vine!",
+    "Aproape timp — pregătește-te să pleci!"
   ]
 }

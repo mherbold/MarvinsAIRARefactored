@@ -1706,4 +1706,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Okno pit otwarte</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Przywróć ustawienia domyślne</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Przywróć ustawienia domyślne</value></data><data name="FlagCalls" xml:space="preserve"><value>Komunikaty flag</value></data></root>

@@ -1704,4 +1704,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Փիթ պատուհանը բաց է</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Վերականգնել կանխադրված արժեքները</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Վերականգնել կանխադրված արժեքները</value></data><data name="FlagCalls" xml:space="preserve"><value>Դրոշի հայտարարություններ</value></data></root>

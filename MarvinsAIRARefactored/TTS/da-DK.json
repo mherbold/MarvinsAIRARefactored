@@ -53,5 +53,81 @@
     "Pit-reporter, tester.",
     "Pit lane, mik-tjek.",
     "Pit-reporter online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Et omgang til grønt!",
+    "Et omgang tilbage til grøn!",
+    "Gør dig klar — et omgang til det grønne flag!",
+    "Næsten — endnu et omgang før vi kører grønt!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Grønt flag, kør kør kør!",
+    "[excitedly] Grønt flag! Afsted!",
+    "[excitedly] Vi er grønne, tryk på det!",
+    "[excitedly] Grønt flag ude — kør, kør, kør!",
+    "[excitedly] Det er grønt, giv gas!"
+  ],
+  "SpotterFlagBlue": [
+    "Blåt flag — lad dem passere.",
+    "Blåt flag, flyt over.",
+    "Du har et blåt flag — lad dem forbi.",
+    "Blåt flag vist — lad lederen passere.",
+    "Flyt til siden, blåt flag."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Gult flag — problem forude, vær forsigtig!",
+    "[urgently] Gult flag vinker, sæt farten ned!",
+    "[urgently] Gult flag ude, der er problemer forude!",
+    "[urgently] Gult flag — hold øje derude!",
+    "[urgently] Forsigtig, gult flag — hold dig skarp!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Forsigtighedsflagget er ude!",
+    "Vi har en forsigtighedstilstand på banen.",
+    "Fuld bane-caution — sæt farten ned.",
+    "Forsigtighedsflag vifter — hold tempoet.",
+    "Caution er ude, træk dig tilbage."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Hold øje med affald på banen!",
+    "[urgently] Affald på banen — vær forsigtig!",
+    "[urgently] Der er affald forude, hold dig skarp!",
+    "[urgently] Se op, affald på racerlinjen!"
+  ],
+  "SpotterFlagWhite": [
+    "Hvidt flag — sidste omgang!",
+    "Hvidt flag ude, sidste omgang!",
+    "Det er det hvide flag — et omgang tilbage!",
+    "Hvidt flag vist, udnyt det!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Ternet flag er ude!",
+    "[excitedly] Ternet flag — det er målstregen!",
+    "[excitedly] Det er ternet flag, løbet er slut!",
+    "[excitedly] Ternet flag flyver — løb slut!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Du har et sort flag — kom ind!",
+    "[seriously] Sort flag vist, kør ind.",
+    "[seriously] Sort flag — gå til pit nu.",
+    "[seriously] De viser dig det sorte flag, kør ind denne omgang."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Du er blevet diskvalificeret — kom tilbage til pit.",
+    "[seriously] Diskvalifikationsflag — vend tilbage til pit lane.",
+    "[seriously] Du er DQ'd, tag bilen ind.",
+    "[seriously] Sort flag med kryds — du er diskvalificeret, pit nu."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Kødfrikadelleflag — tag din bil ind til reparationer.",
+    "[seriously] Du har kødfrikadelleflagget, pit til reparationer.",
+    "[seriously] Reparationsflag vist — din bil trænger til opmærksomhed i pit.",
+    "[seriously] Kødfrikadelleflag ude — pit denne omgang til reparationer."
+  ],
+  "SpotterFlagStartReady": [
+    "Gør dig klar!",
+    "Stå klar til start.",
+    "Forbered dig — start er på vej!",
+    "Næsten tid — gør dig klar til at køre!"
   ]
 }

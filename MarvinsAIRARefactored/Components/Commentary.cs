@@ -13,6 +13,10 @@ public sealed class Commentary
 	// Voice slot indices (matches VoiceSlotSettings.CreateDefaults order)
 	private const int SlotSpotter = 1;
 
+	// Priority levels — lower number = higher priority
+	private const int PriorityFlag      = 1;
+	private const int PriorityProximity = 3;
+
 	// Commentary templates loaded per-language
 	private readonly CommentaryTemplates _templates = new();
 
@@ -22,6 +26,10 @@ public sealed class Commentary
 	// Spotter state tracked between ticks
 	private IRacingSdkEnum.CarLeftRight _prevCarLeftRight = IRacingSdkEnum.CarLeftRight.Clear;
 	private double _lastCarLeftRightReminderTime = 0.0;
+
+	// Flag state tracked between ticks
+	private IRacingSdkEnum.Flags _prevSessionFlags = 0;
+	private uint _prevPlayerCarIdxSessionFlags = 0;
 
 	// Whether the session is currently in a racing state (prevents commentary in warmup etc.)
 	private bool _isRacingActive = false;
@@ -68,6 +76,9 @@ public sealed class Commentary
 		var sim = app.Simulator;
 		var now = sim.SessionTime;
 
+		// --- Flag calls (higher priority — checked first) ---
+		CheckFlagCalls( sim );
+
 		// --- Spotter calls ---
 		CheckSpotterCalls( sim, now );
 	}
@@ -75,6 +86,114 @@ public sealed class Commentary
 	// -------------------------------------------------------------------------
 	// Event detection helpers
 	// -------------------------------------------------------------------------
+
+	private void CheckFlagCalls( Simulator sim )
+	{
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		if ( !settings.CommentarySpotterEnabled || !settings.CommentarySpotterFlagCalls )
+		{
+			return;
+		}
+
+		var sessionFlags    = sim.SessionFlags;
+		var playerIdx       = sim.PlayerCarIdx;
+		var playerCarFlags  = ( playerIdx >= 0 && playerIdx < sim.CarIdxSessionFlags.Length )
+			? sim.CarIdxSessionFlags[ playerIdx ]
+			: 0u;
+
+		var sessionRaised = (IRacingSdkEnum.Flags) ( (uint) sessionFlags & ~(uint) _prevSessionFlags );
+		var playerRaised  = playerCarFlags & ~_prevPlayerCarIdxSessionFlags;
+
+		_prevSessionFlags          = sessionFlags;
+		_prevPlayerCarIdxSessionFlags = playerCarFlags;
+
+		// Process flag bits in priority order.
+		// Flag announcements queue up without interrupting already-playing spotter speech
+		// so that multiple flags back-to-back are heard in sequence.
+
+		if ( HasFlag( sessionRaised, IRacingSdkEnum.Flags.StartReady ) || HasFlag( playerRaised, IRacingSdkEnum.Flags.StartReady ) )
+		{
+			EnqueueFlag( "SpotterFlagStartReady" );
+		}
+
+		if ( HasFlag( sessionRaised, IRacingSdkEnum.Flags.OneLapToGreen ) || HasFlag( playerRaised, IRacingSdkEnum.Flags.OneLapToGreen ) )
+		{
+			EnqueueFlag( "SpotterFlagOneLapToGreen" );
+		}
+
+		// StartGo and Green are treated as the same event — both trigger the "green flag" announcement.
+		if ( HasFlag( sessionRaised, IRacingSdkEnum.Flags.StartGo ) || HasFlag( playerRaised, IRacingSdkEnum.Flags.StartGo )
+			|| HasFlag( sessionRaised, IRacingSdkEnum.Flags.Green ) || HasFlag( playerRaised, IRacingSdkEnum.Flags.Green ) )
+		{
+			EnqueueFlag( "SpotterFlagGreen" );
+		}
+
+		if ( HasFlag( sessionRaised, IRacingSdkEnum.Flags.YellowWaving ) || HasFlag( playerRaised, IRacingSdkEnum.Flags.YellowWaving ) )
+		{
+			EnqueueFlag( "SpotterFlagYellowWaving" );
+		}
+
+		if ( HasFlag( sessionRaised, IRacingSdkEnum.Flags.CautionWaving ) || HasFlag( playerRaised, IRacingSdkEnum.Flags.CautionWaving ) )
+		{
+			EnqueueFlag( "SpotterFlagCautionWaving" );
+		}
+
+		if ( HasFlag( sessionRaised, IRacingSdkEnum.Flags.Debris ) || HasFlag( playerRaised, IRacingSdkEnum.Flags.Debris ) )
+		{
+			EnqueueFlag( "SpotterFlagDebris" );
+		}
+
+		if ( HasFlag( sessionRaised, IRacingSdkEnum.Flags.Blue ) || HasFlag( playerRaised, IRacingSdkEnum.Flags.Blue ) )
+		{
+			EnqueueFlag( "SpotterFlagBlue" );
+		}
+
+		if ( HasFlag( sessionRaised, IRacingSdkEnum.Flags.White ) || HasFlag( playerRaised, IRacingSdkEnum.Flags.White ) )
+		{
+			EnqueueFlag( "SpotterFlagWhite" );
+		}
+
+		if ( HasFlag( sessionRaised, IRacingSdkEnum.Flags.Checkered ) || HasFlag( playerRaised, IRacingSdkEnum.Flags.Checkered ) )
+		{
+			EnqueueFlag( "SpotterFlagCheckered" );
+		}
+
+		if ( HasFlag( playerRaised, IRacingSdkEnum.Flags.Black ) )
+		{
+			EnqueueFlag( "SpotterFlagBlack" );
+		}
+
+		if ( HasFlag( playerRaised, IRacingSdkEnum.Flags.Disqualify ) )
+		{
+			EnqueueFlag( "SpotterFlagDisqualify" );
+		}
+
+		if ( HasFlag( playerRaised, IRacingSdkEnum.Flags.Repair ) )
+		{
+			EnqueueFlag( "SpotterFlagRepair" );
+		}
+	}
+
+	private static bool HasFlag( IRacingSdkEnum.Flags raised, IRacingSdkEnum.Flags flag ) =>
+		( raised & flag ) != 0;
+
+	private static bool HasFlag( uint raised, IRacingSdkEnum.Flags flag ) =>
+		( raised & (uint) flag ) != 0;
+
+	/// <summary>
+	/// Enqueues a flag announcement at high priority without interrupting already-playing speech,
+	/// so multiple sequential flag events are heard one after another.
+	/// </summary>
+	private void EnqueueFlag( string eventKey )
+	{
+		string? phrase = _templates.GetRandomPhrase( eventKey );
+
+		if ( phrase is not null )
+		{
+			App.Instance?.TextToSpeech.Enqueue( SlotSpotter, phrase, PriorityFlag );
+		}
+	}
 
 	private void CheckSpotterCalls( Simulator sim, double now )
 	{
@@ -88,8 +207,10 @@ public sealed class Commentary
 		// Only call proximity when conditions are appropriate for live racing
 		if ( sim.IsReplayPlaying || !sim.IsOnTrack || sim.OnPitRoad )
 		{
-			// Reset so calls fire fresh when conditions become eligible again
-			ResetPerSessionState();
+			// Reset proximity state so calls fire fresh when conditions become eligible again.
+			// Flag tracking state is intentionally NOT reset here — flag bits must only
+			// be re-announced when the iRacing SDK actually raises them again.
+			ResetProximityState();
 			return;
 		}
 
@@ -99,33 +220,39 @@ public sealed class Commentary
 		{
 			_prevCarLeftRight = carLeftRight;
 
-			// Any state transition interrupts whatever the spotter is currently saying
-			App.Instance?.TextToSpeech.InterruptSlot( SlotSpotter );
+			// Interrupt only if a lower-priority (proximity) call is playing.
+			// If a flag announcement is currently playing, let it finish.
+			var playingPriority = App.Instance?.TextToSpeech.GetSlotPlayingPriority( SlotSpotter ) ?? int.MaxValue;
+
+			if ( playingPriority > PriorityFlag )
+			{
+				App.Instance?.TextToSpeech.InterruptSlot( SlotSpotter );
+			}
 
 			switch ( carLeftRight )
 			{
 				case IRacingSdkEnum.CarLeftRight.CarLeft:
-					EnqueueRandom( "SpotterCarLeft", SlotSpotter );
+					EnqueueRandom( "SpotterCarLeft", SlotSpotter, PriorityProximity );
 					break;
 
 				case IRacingSdkEnum.CarLeftRight.CarRight:
-					EnqueueRandom( "SpotterCarRight", SlotSpotter );
+					EnqueueRandom( "SpotterCarRight", SlotSpotter, PriorityProximity );
 					break;
 
 				case IRacingSdkEnum.CarLeftRight.CarLeftRight:
-					EnqueueRandom( "SpotterThreeWideMiddle", SlotSpotter );
+					EnqueueRandom( "SpotterThreeWideMiddle", SlotSpotter, PriorityProximity );
 					break;
 
 				case IRacingSdkEnum.CarLeftRight.TwoCarsLeft:
-					EnqueueRandom( "SpotterThreeWideRight", SlotSpotter );
+					EnqueueRandom( "SpotterThreeWideRight", SlotSpotter, PriorityProximity );
 					break;
 
 				case IRacingSdkEnum.CarLeftRight.TwoCarsRight:
-					EnqueueRandom( "SpotterThreeWideLeft", SlotSpotter );
+					EnqueueRandom( "SpotterThreeWideLeft", SlotSpotter, PriorityProximity );
 					break;
 
 				case IRacingSdkEnum.CarLeftRight.Clear:
-					EnqueueRandom( "SpotterClear", SlotSpotter );
+					EnqueueRandom( "SpotterClear", SlotSpotter, PriorityProximity );
 					break;
 			}
 
@@ -169,7 +296,7 @@ public sealed class Commentary
 
 		var useStillThere = Random.Shared.NextDouble() < 0.5;
 
-		EnqueueRandom( useStillThere ? "SpotterStillThere" : reminderKey, SlotSpotter );
+		EnqueueRandom( useStillThere ? "SpotterStillThere" : reminderKey, SlotSpotter, PriorityProximity );
 	}
 
 	// -------------------------------------------------------------------------
@@ -183,27 +310,35 @@ public sealed class Commentary
 		return settings.CommentaryEnabled;
 	}
 
-	private void EnqueueRandom( string eventKey, int slotIndex )
+	private void EnqueueRandom( string eventKey, int slotIndex, int priority = 3 )
 	{
 		string? phrase = _templates.GetRandomPhrase( eventKey );
 
 		if ( phrase is not null )
 		{
-			Enqueue( slotIndex, phrase );
+			Enqueue( slotIndex, phrase, priority );
 		}
 	}
 
-	private static void Enqueue( int slotIndex, string text )
+	private static void Enqueue( int slotIndex, string text, int priority = 3 )
 	{
 		if ( string.IsNullOrWhiteSpace( text ) )
 		{
 			return;
 		}
 
-		App.Instance?.TextToSpeech.Enqueue( slotIndex, text );
+		App.Instance?.TextToSpeech.Enqueue( slotIndex, text, priority );
 	}
 
 	private void ResetPerSessionState()
+	{
+		ResetProximityState();
+
+		_prevSessionFlags = 0;
+		_prevPlayerCarIdxSessionFlags = 0;
+	}
+
+	private void ResetProximityState()
 	{
 		_prevCarLeftRight = IRacingSdkEnum.CarLeftRight.Clear;
 		_lastCarLeftRightReminderTime = 0.0;

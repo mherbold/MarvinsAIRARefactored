@@ -53,5 +53,81 @@
     "Reporter del pit, test.",
     "Corsia dei box, controllo microfono.",
     "Reporter del pit online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Un giro al verde!",
+    "Un giro al via verde!",
+    "Preparati — un giro alla bandiera verde!",
+    "Ci siamo quasi — ancora un giro prima del verde!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Bandiera verde, via via via!",
+    "[excitedly] Bandiera verde! Andiamo!",
+    "[excitedly] Verde, vai a tutta!",
+    "[excitedly] Bandiera verde — via, via, via!",
+    "[excitedly] Verde, piede sull'acceleratore!"
+  ],
+  "SpotterFlagBlue": [
+    "Bandiera blu — lasciali passare.",
+    "Bandiera blu, spostati.",
+    "Hai la bandiera blu — cedi il passo.",
+    "Bandiera blu mostrata — lascia passare il leader.",
+    "Fatti da parte, bandiera blu."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Bandiera gialla — problema avanti, stai attento!",
+    "[urgently] Bandiera gialla sventolante, rallenta!",
+    "[urgently] Bandiera gialla fuori, c'è un problema avanti!",
+    "[urgently] Bandiera gialla — tieni d'occhio lì avanti!",
+    "[urgently] Attenzione, bandiera gialla — rimani all'erta!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "La bandiera di cautela è fuori!",
+    "Abbiamo una cautela in pista.",
+    "Cautela su tutto il circuito — rallenta.",
+    "Bandiera di cautela sventolante — mantieni il ritmo.",
+    "La cautela è fuori, stai indietro."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Attenzione ai detriti in pista!",
+    "[urgently] Detriti in pista — stai attento!",
+    "[urgently] Ci sono detriti avanti, rimani all'erta!",
+    "[urgently] Attenzione, detriti sulla traiettoria di gara!"
+  ],
+  "SpotterFlagWhite": [
+    "Bandiera bianca — ultimo giro!",
+    "Bandiera bianca fuori, ultimo giro!",
+    "Ecco la bandiera bianca — un giro ancora!",
+    "Bandiera bianca mostrata, rendilo utile!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] La bandiera a scacchi è fuori!",
+    "[excitedly] Bandiera a scacchi — è il traguardo!",
+    "[excitedly] È il traguardo, la gara è finita!",
+    "[excitedly] Bandiera a scacchi vola — gara finita!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Hai la bandiera nera — vieni ai box!",
+    "[seriously] Bandiera nera mostrata, rientra.",
+    "[seriously] Bandiera nera — vai ai box ora.",
+    "[seriously] Ti stanno mostrando la bandiera nera, rientra questo giro."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Sei stato squalificato — torna ai box.",
+    "[seriously] Bandiera di squalifica — torna alla pit lane.",
+    "[seriously] Sei stato squalificato, porta la macchina ai box.",
+    "[seriously] Bandiera nera con croce — sei squalificato, pit ora."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Bandiera meatball — porta la tua macchina ai box per riparazioni.",
+    "[seriously] Hai la bandiera meatball, pit per riparazioni.",
+    "[seriously] Bandiera di riparazione mostrata — la tua macchina ha bisogno di attenzione ai box.",
+    "[seriously] Bandiera meatball fuori — pit questo giro per riparazioni."
+  ],
+  "SpotterFlagStartReady": [
+    "Preparati!",
+    "In attesa della partenza.",
+    "Preparati — la partenza sta arrivando!",
+    "Quasi tempo — preparati a partire!"
   ]
 }

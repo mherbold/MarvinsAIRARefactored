@@ -627,10 +627,18 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <!-- proximity calls -->
-                <controls:MairaSwitch Grid.Column="0"
-                                      IsOn="{Binding Settings.CommentarySpotterCarProximity, Mode=TwoWay}"
-                                      Label="{Binding Localization[CarProximity]}" />
+                <StackPanel Grid.Column="0">
+
+                    <!-- proximity calls -->
+                    <controls:MairaSwitch IsOn="{Binding Settings.CommentarySpotterCarProximity, Mode=TwoWay}"
+                                          Label="{Binding Localization[CarProximity]}" />
+
+                    <!-- flag calls -->
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          IsOn="{Binding Settings.CommentarySpotterFlagCalls, Mode=TwoWay}"
+                                          Label="{Binding Localization[FlagCalls]}" />
+
+                </StackPanel>
 
                 <!-- reminder interval -->
                 <controls:MairaKnob Grid.Column="2"

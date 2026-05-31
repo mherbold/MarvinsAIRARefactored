@@ -1709,4 +1709,4 @@ Hier ist der Link zum Spenden:</value>
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Boxenfenster offen</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Auf Standardwerte zurücksetzen</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Auf Standardwerte zurücksetzen</value></data><data name="FlagCalls" xml:space="preserve"><value>Flaggen-Ansagen</value></data></root>

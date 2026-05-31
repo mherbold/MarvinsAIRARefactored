@@ -54,6 +54,7 @@ public sealed class TextToSpeech : IDisposable
 
 	// Tracks the slot currently being played so interruption is slot-specific
 	private volatile int _playingSlotIndex = -1;
+	private volatile int _playingPriority = int.MaxValue;
 	private CancellationTokenSource? _playbackCts;
 
 	// -------------------------------------------------------------------------
@@ -98,6 +99,14 @@ public sealed class TextToSpeech : IDisposable
 	/// Safe to call from any thread.
 	/// </summary>
 	public bool IsSlotPlaying( int slotIndex ) => _playingSlotIndex == slotIndex;
+
+	/// <summary>
+	/// Returns the priority of the audio currently playing on the given slot,
+	/// or <see cref="int.MaxValue"/> if nothing is playing.
+	/// Lower value = higher urgency (1 is most urgent).
+	/// </summary>
+	public int GetSlotPlayingPriority( int slotIndex ) =>
+		_playingSlotIndex == slotIndex ? _playingPriority : int.MaxValue;
 
 	/// <summary>
 	/// Enqueues a TTS request for the given voice slot and text.
@@ -309,6 +318,7 @@ public sealed class TextToSpeech : IDisposable
 		using var playbackCts = CancellationTokenSource.CreateLinkedTokenSource( cancellationToken );
 		_playbackCts = playbackCts;
 		_playingSlotIndex = request.SlotIndex;
+		_playingPriority = request.Priority;
 
 		try
 		{
@@ -317,6 +327,7 @@ public sealed class TextToSpeech : IDisposable
 		finally
 		{
 			_playingSlotIndex = -1;
+			_playingPriority = int.MaxValue;
 			_playbackCts = null;
 		}
 	}

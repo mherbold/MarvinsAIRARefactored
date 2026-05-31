@@ -1720,4 +1720,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Fenêtre des stands ouverte</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Réinitialiser aux valeurs par défaut</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Réinitialiser aux valeurs par défaut</value></data><data name="FlagCalls" xml:space="preserve"><value>Annonces de drapeau</value></data></root>

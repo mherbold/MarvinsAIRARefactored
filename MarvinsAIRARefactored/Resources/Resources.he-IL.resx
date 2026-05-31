@@ -1704,4 +1704,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>חלון פיט פתוח</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>איפוס לברירות מחדל</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>איפוס לברירות מחדל</value></data><data name="FlagCalls" xml:space="preserve"><value>קריאות דגל</value></data></root>

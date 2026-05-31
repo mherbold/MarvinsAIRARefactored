@@ -1704,4 +1704,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Varikkoikkuna auki</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Palauta oletusasetukset</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Palauta oletusasetukset</value></data><data name="FlagCalls" xml:space="preserve"><value>Lippuilmoitukset</value></data></root>

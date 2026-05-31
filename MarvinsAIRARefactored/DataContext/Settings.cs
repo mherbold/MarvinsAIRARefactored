@@ -12792,6 +12792,27 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Commentary — Spotter flag calls
+
+	private bool _commentarySpotterFlagCalls = true;
+
+	public bool CommentarySpotterFlagCalls
+	{
+		get => _commentarySpotterFlagCalls;
+
+		set
+		{
+			if ( value != _commentarySpotterFlagCalls )
+			{
+				_commentarySpotterFlagCalls = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Commentary — Spotter car proximity reminder interval
 
 	private float _commentarySpotterCarProximityReminderInterval = 3.0f;

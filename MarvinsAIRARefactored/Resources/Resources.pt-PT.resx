@@ -1705,4 +1705,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Janela do pit aberta</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Repor predefinições</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Repor predefinições</value></data><data name="FlagCalls" xml:space="preserve"><value>Avisos de bandeira</value></data></root>

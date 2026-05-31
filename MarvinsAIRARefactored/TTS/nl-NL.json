@@ -53,5 +53,81 @@
     "Pit-reporter, test.",
     "Pit lane, microfooncheck.",
     "Pit-reporter online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Eén ronde tot groen!",
+    "Nog één ronde voor het groene vlag!",
+    "Maak je klaar — één ronde tot de groene vlag!",
+    "Bijna — nog één ronde voor we groen gaan!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Groene vlag, rijd rijd rijd!",
+    "[excitedly] Groene vlag! Laten we gaan!",
+    "[excitedly] Groen, trap erop!",
+    "[excitedly] Groene vlag — rijd, rijd, rijd!",
+    "[excitedly] Het is groen, gas geven!"
+  ],
+  "SpotterFlagBlue": [
+    "Blauwe vlag — laat ze voorbij.",
+    "Blauwe vlag, ga opzij.",
+    "Blauwe vlag — geef ruimte.",
+    "Blauwe vlag getoond — laat de leider voorbij.",
+    "Opzij, blauwe vlag."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Gele vlag — probleem voor je, wees voorzichtig!",
+    "[urgently] Gele vlag zwaait, rem af!",
+    "[urgently] Gele vlag buiten, er is een probleem voor je!",
+    "[urgently] Gele vlag — let op daar voor je!",
+    "[urgently] Opgelet, gele vlag — blijf alert!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "De cautionvlag is buiten!",
+    "Er is een caution op het circuit.",
+    "Volledige course caution — rem af.",
+    "Cautionvlag wappert — houd je tempo.",
+    "Caution is buiten, geef ruimte."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Let op puin op de baan!",
+    "[urgently] Puin op het circuit — wees voorzichtig!",
+    "[urgently] Er is puin voor je, blijf alert!",
+    "[urgently] Pas op, puin op de racelijn!"
+  ],
+  "SpotterFlagWhite": [
+    "Witte vlag — laatste ronde!",
+    "Witte vlag buiten, laatste ronde!",
+    "Dat is de witte vlag — nog één ronde!",
+    "Witte vlag getoond, maak het tellen!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] De geblokte vlag is buiten!",
+    "[excitedly] Geblokte vlag — dat is de finish!",
+    "[excitedly] Het is de geblokte, race is klaar!",
+    "[excitedly] Geblokte vlag vliegt — race voorbij!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Je hebt een zwarte vlag — kom binnen!",
+    "[seriously] Zwarte vlag getoond, kom binnen.",
+    "[seriously] Zwarte vlag — naar de pit nu.",
+    "[seriously] Ze tonen je de zwarte vlag, kom deze ronde binnen."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Je bent gediskwalificeerd — kom terug naar de pit.",
+    "[seriously] Diskwalificatievlag — keer terug naar de pit lane.",
+    "[seriously] Je bent gediskwalificeerd, breng de auto binnen.",
+    "[seriously] Zwarte vlag met kruis — je bent gediskwalificeerd, pit nu."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Gehaktbalflag — breng je auto naar de pit voor reparaties.",
+    "[seriously] Je hebt de gehaktbalvlag, pit voor reparaties.",
+    "[seriously] Reparatievlag getoond — je auto heeft aandacht nodig in de pit.",
+    "[seriously] Gehaktbalvlag buiten — pit deze ronde voor reparaties."
+  ],
+  "SpotterFlagStartReady": [
+    "Maak je klaar!",
+    "Klaarstaan voor de start.",
+    "Bereid je voor — de start komt!",
+    "Bijna tijd — maak je klaar om te gaan!"
   ]
 }

@@ -1704,4 +1704,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>หน้าต่างพิทเปิดอยู่</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>รีเซ็ตเป็นค่าเริ่มต้น</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>รีเซ็ตเป็นค่าเริ่มต้น</value></data><data name="FlagCalls" xml:space="preserve"><value>การแจ้งเตือนธง</value></data></root>

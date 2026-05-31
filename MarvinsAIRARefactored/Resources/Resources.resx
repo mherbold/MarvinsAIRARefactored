@@ -1707,4 +1707,4 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Pit Window Open</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Reset to Defaults</value></data></root>
+<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Reset to Defaults</value></data><data name="FlagCalls" xml:space="preserve"><value>Flag Calls</value></data></root>
