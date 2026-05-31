@@ -1,0 +1,417 @@
+<!-- wp:paragraph -->
+<p>The Commentary page brings your iRacing sessions to life with AI-generated, real-time voice commentary powered by <a href="https://elevenlabs.io" target="_blank" rel="noreferrer noopener">ElevenLabs</a> text-to-speech. A full broadcast crew of up to five distinct voice roles — Crew Chief, Spotter, Sportscaster 1, Sportscaster 2, and Pit Reporter — reacts to on-track events as they happen.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This feature requires an ElevenLabs account and a valid API key. See the Account section below for setup instructions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Note:</strong> Currently only the <strong>Spotter</strong> role is fully implemented and visible in the UI. The Crew Chief, Sportscaster 1, Sportscaster 2, and Pit Reporter roles are still in development and are not yet available.
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="master">Master</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enabled</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Master on/off switch for the entire Commentary system. When off, no voices will speak and no ElevenLabs API calls will be made, even if individual roles are enabled.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Language</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Selects the language used for all generated commentary phrases. MAIRA ships with phrase templates for 25 languages. Changing this setting takes effect immediately — no restart required.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: English (US)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Master Volume</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Global volume multiplier applied on top of each individual voice slot's own volume setting.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 85%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="account">Account</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA uses the ElevenLabs API to generate speech. You need a free or paid ElevenLabs account and an API key to use this feature.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Step 1 — Create an ElevenLabs account</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Go to <a href="https://elevenlabs.io" target="_blank" rel="noreferrer noopener">elevenlabs.io</a> and click <strong>Sign Up</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Complete registration (email or Google/GitHub login).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Verify your email address if prompted.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The free tier gives you a limited number of characters per month. Because MAIRA caches generated audio to disk, repeated phrases (especially common spotter calls like "car left" and "clear") are played back from cache without consuming any additional API characters. The Spotter's phrase set is small and repetitive by nature, so the cache fills up quickly and very few new API characters are consumed after the first session. This means the free tier is more than sufficient for the vast majority of MAIRA users who just want the Spotter. The sportscaster and crew chief roles — when they become available — will produce a much wider variety of unique phrases, so a paid plan may be worth considering at that point.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Step 2 — Create an API key</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Log in and click your profile icon (bottom-left), then choose <strong>Profile + API key</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Under the <strong>API Keys</strong> section, click <strong>Create API Key</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Give it a name (e.g. "MAIRA") and click <strong>Create</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Copy the key — you will only see it once.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Step 3 — Required API key permissions</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA needs the following permissions to function correctly. When creating your API key, make sure all four of these are enabled:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Voices — Read</strong> (so MAIRA can populate the voice picker)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Models — Read</strong> (so MAIRA can populate the model picker)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Text-to-Speech</strong> (so MAIRA can generate speech)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>User — Read</strong> (so MAIRA can display your subscription usage)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Step 4 — Enter your API key in MAIRA</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Paste your API key into the <strong>API Key</strong> field on this page.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Click the <strong>Verify Key</strong> button. MAIRA will check all four required permissions and report the result.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>If verification passes, the voice and model pickers will populate automatically.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Your API key is stored encrypted on your PC using Windows DPAPI (Data Protection API). It is never written to MAIRA's settings file in plain text and never leaves your machine except to reach the ElevenLabs API.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Model</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Selects the ElevenLabs speech model used for all voice slots. Different models offer different trade-offs between speed, quality, and cost (characters per API call).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The <strong>Eleven v3</strong> model is strongly recommended. It is the only model that supports emotion cues — the expressive tags embedded in MAIRA's phrase templates (such as <em>[excitedly]</em>, <em>[urgently]</em>, and <em>[seriously]</em>) that give each voice role its personality. Without v3, those cues are ignored and the delivery will be noticeably flatter. The free tier is sufficient for Spotter-only use with the v3 model.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Eleven v3 (recommended — required for emotion cue support)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA also displays your current session character usage and ElevenLabs subscription billing-period usage beneath the model selector, so you can keep an eye on your quota.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="voices">Voice Roster</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The Voice Roster contains five role slots, each representing a different on-air personality. You can assign any ElevenLabs voice to any slot, tune the voice parameters independently, and enable or disable each role separately.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The five roles are:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Crew Chief</strong> — Tactical, authoritative, calm. Speaks directly to you about your own car: fuel warnings, tire warnings, pit window, incidents.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Spotter</strong> — Clipped, fast, safety-critical. Calls proximity (car left / car right / clear) and flag conditions in real time.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Sportscaster 1</strong> — Warm, theatrical, lead play-by-play. Calls session starts/ends, overtakes, and fastest laps.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Sportscaster 2</strong> — Analytical, measured, colour commentary. Calls overtakes for other drivers, close battles, and caution flags.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Pit Reporter</strong> — Energetic, on-the-ground, breathless. Calls pit stop entries and exits for other cars in the field.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Each slot expands to show the following settings:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Voice</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Selects the ElevenLabs voice assigned to this role. The list is populated from your ElevenLabs account and includes all voices available to you — both ElevenLabs stock voices and any custom voices you have created. See the section below on creating your own custom voice.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Consistency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls how consistent the voice sounds from phrase to phrase (ElevenLabs "Stability" parameter). Higher values make the voice more predictable and uniform. Lower values allow more natural variation and expressiveness between takes, but can occasionally produce unexpected results.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Dramatic</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls how much the voice exaggerates emotion and delivery (ElevenLabs "Style Exaggeration" parameter). Higher values produce a more theatrical, punchy performance. Lower values give a flatter, more neutral delivery.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Similarity Boost</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls how closely the output sticks to the original trained voice sample. Higher values hew more tightly to the voice's characteristic timbre. Lower values give the model more freedom to vary the delivery.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Slot Volume</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Per-slot volume level. This is multiplied with the Master Volume to produce the final playback level for this role.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enabled</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables or disables this individual voice slot. When a slot is disabled, no API calls are made for it and it will not speak even if the Master switch is on.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Speaker Boost</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables ElevenLabs speaker-boost processing on this slot. Can improve clarity and presence for some voices. Not all models support this option.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Test Voice</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sends a short test phrase to ElevenLabs using the current voice and parameter settings for this slot so you can audition it without needing to be in a race session. The master switch and this slot must both be enabled for the button to be active.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Creating Your Own Custom Voice</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>ElevenLabs lets you clone or design your own voices using their <strong>Voice Design</strong> (AI-generated) or <strong>Voice Clone</strong> (from recordings) tools — both are accessible from your ElevenLabs account under <strong>Voices → Add Voice</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Once you create a custom voice in your ElevenLabs account it will appear automatically in MAIRA's voice picker the next time you open the page (or re-verify your key).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Example: Creating a NASCAR-style spotter voice</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Go to <strong>Voices → Add Voice → Voice Design</strong> in ElevenLabs and paste in a prompt like this:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>A NASCAR spotter with a thick Southern American accent — Tennessee or Alabama. Male voice, mid-thirties. Talks fast, punchy, and direct. Short clipped sentences. Alert and focused, never slow. The kind of voice that has called a thousand races from a spotter's stand at Talladega. Slightly gravelly, confident, with just a hint of urgency always in the background.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>You can experiment with the accent, age, and personality description until you get something you like. Generate a few previews and pick the best one, then save it to your Voice Library. It will show up in MAIRA's voice picker right away.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Some tips for a great spotter or crew chief voice:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Short, punchy sentences work better with a fast-talking voice than long flowing ones.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Set <strong>Consistency</strong> high (80–95%) for the Spotter slot — you want it to sound exactly the same every time it calls "car left."</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Set <strong>Dramatic</strong> lower (10–20%) for the Spotter — over-exaggerated delivery on a safety call sounds strange.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Sportscaster voices benefit from a lower Consistency (30–50%) and higher Dramatic (60–80%) to give more natural, varied energy across play-by-play calls.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="spotter">Spotter Commentary</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls the real-time spotter calls made by the Spotter voice slot.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Car Proximity</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables proximity calls — "car left", "car right", "car on both sides", and "clear" — whenever another car is alongside you on track. These calls are made in real time every tick while a car is present, with a configurable reminder interval to avoid repeating the same call too rapidly.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Flag Calls</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables the spotter to announce flag conditions such as caution flags and green flag restarts.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Car Proximity Reminder Interval</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How often (in seconds) the spotter will repeat a proximity call while a car remains alongside you. Setting this lower makes the spotter more insistent; higher makes it more relaxed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 3.0 seconds</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">How Commentary Works</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA monitors iRacing telemetry every frame and fires commentary events when specific on-track situations occur. Each event type has an independent cooldown timer to prevent the same call from triggering too frequently. When an event fires, MAIRA picks a random phrase from its built-in template library (available in 25 languages), substitutes in the relevant driver names, positions, and lap times, and sends the text to ElevenLabs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Generated audio is cached to disk so that repeated phrases (especially common spotter calls) are played back instantly from cache without making another API call. The cache lives in:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>Documents\MarvinsAIRA Refactored\TTS\Cache\</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>The full list of events MAIRA detects and the role that speaks each one:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><thead><tr><th>Event</th><th>Voice Role</th><th>Cooldown</th></tr></thead><tbody><tr><td>Session Start</td><td>Sportscaster 1</td><td>—</td></tr><tr><td>Session End</td><td>Sportscaster 1</td><td>—</td></tr><tr><td>Overtake (your car)</td><td>Sportscaster 1</td><td>15 s</td></tr><tr><td>Overtake (other drivers)</td><td>Sportscaster 2</td><td>15 s</td></tr><tr><td>Close Battle</td><td>Sportscaster 2</td><td>30 s</td></tr><tr><td>Fastest Lap</td><td>Sportscaster 1</td><td>20 s</td></tr><tr><td>Pit Stop Entry (your car)</td><td>Crew Chief</td><td>10 s</td></tr><tr><td>Pit Stop Entry (other drivers)</td><td>Pit Reporter</td><td>10 s per car</td></tr><tr><td>Pit Stop Exit (your car)</td><td>Crew Chief</td><td>10 s</td></tr><tr><td>Pit Stop Exit (other drivers)</td><td>Pit Reporter</td><td>10 s per car</td></tr><tr><td>Caution Flag</td><td>Sportscaster 2</td><td>60 s</td></tr><tr><td>Red Flag</td><td>Sportscaster 1</td><td>30 s</td></tr><tr><td>Incident (your car)</td><td>Crew Chief</td><td>20 s</td></tr><tr><td>Fuel Warning</td><td>Crew Chief</td><td>60 s</td></tr><tr><td>Pit Window Open</td><td>Crew Chief</td><td>60 s</td></tr><tr><td>Tire Warning</td><td>Crew Chief</td><td>60 s</td></tr><tr><td>Car Left / Right / Overlap</td><td>Spotter</td><td>per tick + reminder interval</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/sounds/" data-type="page" data-id="172">Sounds</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/speech-to-text/" data-type="page" data-id="174">Speech to Text</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

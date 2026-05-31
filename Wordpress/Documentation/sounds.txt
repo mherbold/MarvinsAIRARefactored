@@ -1,0 +1,183 @@
+<!-- wp:paragraph -->
+<p>The Sounds page controls MAIRA’s sound effects system (short/looping WAV effects that MAIRA plays based on simulator state and MAIRA’s internal steering effects).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Custom sound files</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA loads WAVs from your documents folder:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>Documents\MAIRA Refactored\Sounds\Effects\&lt;sound key&gt;.wav</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>It also supports user overrides:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>Documents\MAIRA Refactored\Sounds\Effects\&lt;sound key&gt;_custom.wav</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>If a _custom.wav exists, MAIRA will use it instead of the default for that sound key. MAIRA can also load custom sounds while the app is running if you just drop them into that folder.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sound keys you can override:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>click</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>abs_engaged</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>wheel_lock</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>wheel_spin</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>understeer</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>oversteer</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>seat_of_pants</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="master">Master</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Master switch and global volume multiplier for the whole Sounds system.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If this is off, none of the sound effects will play (even if individual effects are enabled).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON, 75% volume</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="click">Click</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is a short “UI feedback” click sound that MAIRA plays when certain mapped actions fire.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON, 75% volume, 100% frequency ratio</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="abs-engaged">ABS EnGAGED</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays a looping sound while ABS is active. If fade is enabled, the effect volume scales with brake pedal position.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF, 75% volume, 100% frequency ratio</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="wheel-lock">Wheel Lock</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays a looping sound when MAIRA detects braking lockup based on RPM vs wheel-speed relationship. If fade is enabled, the effect volume scales with brake pedal position.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF, 75% volume, 100% frequency ratio, 85% sensitivity, Fade ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="wheel-spin">Wheel Spin</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays a looping sound when MAIRA detects wheelspin based on RPM vs wheel-speed relationship. If fade is enabled, the effect volume scales with throttle pedal position.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF, 75% volume, 100% frequency ratio, 85% sensitivity, Fade ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="understeer">Understeer</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays a looping sound based on MAIRA’s understeer effect magnitude.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF, 75% volume, 100% frequency ratio</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="oversteer">Oversteer</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Same concept as understeer, but for oversteer.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF, 75% volume, 100% frequency ratio</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="seat-of-pants">Seat-of-Pants</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays a looping sound based on MAIRA’s seat-of-pants effect magnitude.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF, 75% volume, 100% frequency ratio</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/overlays/" data-type="page" data-id="860">Overlays</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/commentary/" data-type="page">Commentary</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

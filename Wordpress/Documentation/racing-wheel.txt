@@ -1,0 +1,1001 @@
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="device">Device</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Steering Device</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Pick which DirectInput force-feedback wheel MAIRA should control. If you don’t see your wheel here, your wheel might not be turned on, or it may not be a DirectInput FFB device (or the driver isn’t exposing it correctly).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Power</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Turns MAIRA force feedback on/off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The power button can be different colors. Here is the meaning of those -</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><mark style="background-color: rgba(0, 0, 0, 0);" class="has-inline-color"><mark style="color: rgb(255, 0, 0); background-color: rgba(0, 0, 0, 0);" class="has-inline-color">Red</mark></mark> = Emergency shut-off is active</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><mark style="background-color:rgba(0, 0, 0, 0)" class="has-inline-color has-accent-3-color">Cyan </mark>= Waiting for the iRacing simulator telemetry data stream</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><mark style="background-color:rgba(0, 0, 0, 0);color:#ffff00" class="has-inline-color">Yellow</mark> = Force feedback is not active (reason shown below steering device)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><mark style="background-color:rgba(0, 0, 0, 0);color:#00ff00" class="has-inline-color">Green</mark> = All systems go, force feedback is active!</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>You can map this button to an input on your button box, to act as a safety / emergency switch to turn the wheel FFB off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Test</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays a short test signal through the wheel. Useful to verify MAIRA is actually driving the wheel.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Reset</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Forces MAIRA to reinitialize the wheel device. Useful if the wheel “goes dead” or feels desynced.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="overall-strength">Overall Strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These settings define your overall torque scaling.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Wheel Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Your wheel’s physical maximum torque (Nm).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Set this to your wheel’s rated peak torque</strong> (example: 10 Nm, 15 Nm, 25 Nm, etc). MAIRA uses this to keep units consistent and to compute other values correctly.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Here is a handy table of <a href="https://mairapp.com/wheel-force-settings/" data-type="page" data-id="451">Wheel Force Settings</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Overall strength multiplier (0–100% normally).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is the “how strong should it feel” knob. This remaps the iRacing car steering wheel torque into a smaller value that will fit on your wheelbase without clipping.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>For example, the Mazda MX-5 Cup car tends to produce approximately 20 Nm peak force on the steering wheel. If you only have a 10 Nm wheelbase, this is too much! So, for this situation you would set <strong>Strength</strong> to 50% to make the 20 Nm force fit on your 10 Nm wheelbase without clipping (50% of 20 Nm = 10 Nm).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Here is a table showing a few examples of recommended <strong>Strength </strong>settings for various cars and wheelbases -</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><td><strong>Wheelbase</strong></td><td><strong>Car</strong></td><td><strong>Strength</strong></td></tr><tr><td>Logitech G29<br>(2.2Nm)</td><td>Mazda MX-5 Cup<br>(20 Nm)</td><td>11%</td></tr><tr><td>Simagic Alpha Evo Pro<br>(18 Nm)</td><td>Mazda MX-5 Cup<br>(20 Nm)</td><td>90%</td></tr><tr><td>Fanatec ClubSport DD<br>(12 Nm)</td><td>Dallara IR18<br>(60 Nm)</td><td>20%</td></tr><tr><td>Simagic Alpha Evo Ultra<br>(28 Nm)</td><td>Dallara IR18<br>(60 Nm)</td><td>47%</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>If you enable <strong>Allow Super Strength</strong>, this can go up to 200% (see <strong>SWITCHES</strong>).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Max Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is the “target peak torque” MAIRA uses internally for normalization. It’s tightly linked to the two settings above.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Important:</strong> MAIRA keeps these three values in sync:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><code>MaxForce = WheelForce / Strength</code></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Changing Wheel Force or Strength will update Max Force automatically.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Changing Max Force will update Strength automatically.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>iRacing's native FFB also has a "Max Force" setting in their UI, which works exactly like how it works in MAIRA.  You can copy and paste iRacing's Max Force setting if you want the FFB strength to feel the same.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Here's another handy table -</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><td>NASCAR Cup Series (Next Gen)</td><td>~28-35 Nm</td></tr><tr><td>IndyCar (IR-18)</td><td>~30-60 Nm</td></tr><tr><td>Mazda MX-5 Cup</td><td>~18-22 Nm</td></tr><tr><td>Supercars (V8)</td><td>~22-28 Nm</td></tr><tr><td>GT3 (Ferrari, Porsche, BMW, etc.)</td><td>~8-14 Nm</td></tr><tr><td>GT4</td><td>~12-18 Nm</td></tr><tr><td>GTP / LMDh</td><td>~10-16 Nm</td></tr><tr><td>Formula 3</td><td>~14-20 Nm</td></tr><tr><td>Formula Vee</td><td>~16-22 Nm</td></tr><tr><td>Street Stock</td><td>~18-25 Nm</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="auto-strength-feature">Auto-Strength Feature</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The auto-strength feature allows you to calibrate the strength of the force feedback to the car/track you are driving, in an automatic way. This is how you would use this feature -</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Set the <strong>Auto Target</strong> number</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Get on the track</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Hit the clear button</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Drive around the track normally for at least a few corners<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Do not hit curbs or go off track</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Hit the set button</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>All done, you're ready to go!</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Note - The auto-strength feature adjusts the strength of the force feedback only when you hit the <strong>Set</strong> button!</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Auto Target</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Set this to be how strong you want the main weight of the force feedback experience to be, when using the auto-strength feature.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If you have a 20 Nm wheelbase, setting this to 50% means you only want to use half (10 Nm) when taking corners.  The rest is reserved for spikes (curb strikes, bananas, collisions, etc.)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You may want to set this to higher than 100% if you have a weak wheelbase, however this does mean the force feedback signal will clip when taking intense corners.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Set</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When you press the <strong>Set</strong> button, the auto-strength feature goes ahead and sets the <em>Max Force</em> to the measured max force (Auto Max Force) value.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Clear</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Clears the measured max force value, so MAIRA can “re-learn” from fresh driving.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Current Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This shows the strongest raw torque MAIRA has observed, based on live steering torque from iRacing, while on-track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Auto Max Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The measured max force, that will be applied to the Max Force setting if you hit the <strong>Set</strong> button.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="algorithm">Algorithm</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This section controls <em>how MAIRA processes iRacing’s steering torque signal</em> before sending it to your wheel.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Algorithm</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Available algorithms:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Native 60Hz</strong>: Uses iRacing’s 60 Hz torque signal (simplest).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Native 360Hz</strong>: Uses iRacing’s higher-rate steering torque samples (more detail).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Detail Booster</strong>: Boost details for more road feeling</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Delta Limiter</strong>: Cuts down on details for a smoother feeling</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Detail Booster (Low Latency)</strong>: Same as detail booster, but with lower latency</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Delta Limiter (Low Latency)</strong>: Same as delta limiter, but with lower latency</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Slew and Total Compression</strong>: Reduces aggressive increases in torque (slew) and decreases large torque output (total)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Multi Adjustment Toolkit</strong>: Selects FFB type, adjusts the amount of high frequency FFB (360 Hz Detail - 360 Hz on 60 Hz FFB only), decreases large torque output (Torque Compression), reduces aggressive increases in torque (Slew Rate Reduction), decreases or increases FFB dynamics (Detail Gain +/- Adjustment), and smooths FFB (Output Smoothing)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Detail Booster (Low Latency)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Soft Clipping</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Applies a soft limiter near the extremes so the signal eases into ±100% instead of “brick wall” clipping.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Prediction Mode</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Predicts the next steering-torque sample to reduce latency and improve responsiveness.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Disabled</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Predict K1</strong> (predicts 1 frame ahead)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Predict K2</strong> (predicts 2 frames ahead)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Predict K1</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Prediction Blend</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How much predicted torque is blended in:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>0% = no prediction effect</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>100% = full prediction</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 35%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Detail Boost</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Boosts rapid torque changes to increase “texture” and small details.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 50%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Detail Boost Bias</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How quickly the boosted signal is pulled back toward the base signal. Higher bias = less “ringing” / less exaggerated detail.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 10%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Delta Limit</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Limits how fast torque is allowed to change per step. Helps reduce harsh spikes and oscillation, and makes the driving feel smoother.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 500 Nm/s</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Delta Limiter Bias</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Bias toward the raw signal. Higher bias = follows the raw torque more closely.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 20%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Slew Threshold</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Threshold at which slew compression starts clamping fast torque changes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0.02% of Max Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Slew Compression Rate</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How strongly fast changes are compressed once above the threshold.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 65%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Total Threshold</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Threshold where total compression starts acting on the overall signal.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 65% of Max Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Total Compression Rate</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How much the overall signal is compressed beyond the Total Threshold.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 75%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Torque Compression</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Compresses high-torque peaks to reduce clipping and keep more usable midrange.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Slew Rate Reduction</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Reduces how quickly torque can drop (and in some cases rise), smoothing sharp transitions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Detail Gain</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Boosts deviations from the “steady” component of the signal to enhance road detail.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Output Smoothing</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds smoothing to the final output to reduce chatter / jitter.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="output">Output</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The output settings are recommended only for people with gear driven or belt driven wheels. Direct drive wheel users should leave all output settings OFF.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Minimum</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Forces a minimum output magnitude.<br>Useful if your wheel has a deadzone where small forces aren’t felt.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF (0%)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Maximum</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Hard cap on output magnitude (below 100%).<br>Useful if you want to keep the strongest hits under control without changing your overall scaling.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF (100%)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Curve</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Applies a response curve:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Positive values emphasize larger forces (more dramatic build-up)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Negative values emphasize smaller forces (more “alive” near center)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF (Linear)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="preview">Preview</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting" id="live-preview-graph">Live Preview Graph</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shows how the current Algorithm transforms input torque into output torque using a recorded sample set.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>The <mark style="background-color:rgba(0, 0, 0, 0);color:#ff0000" class="has-inline-color">RED</mark> line is the 360 Hz input signal from iRacing.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The <mark style="background-color:rgba(0, 0, 0, 0);color:#00ffff" class="has-inline-color">CYAN</mark> line is the output of the selected algorithm.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Where the red and cyan lines overlap, the line becomes <strong>white</strong> in color.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting" id="recording-selector">Recording selector</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Choose which saved recording is used for preview.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting" id="record-button">Record button</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Starts a new recording (only enabled while on-track). This gives you a sample set you can use to preview algorithm changes consistently.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Tip: Hover the preview graph to get a zoomed view.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="wheel-lfe">Wheel LFE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You will need to download and install a utility called VB-CABLE for the Wheel LFE feature to work. More information on that can be found here - <a href="https://mairapp.com/home/documentation/other-stuff/vb-cable-setup/" data-type="page" data-id="282">VB-CABLE Setup</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">LFE Recording Device</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Select which audio capture device MAIRA listens to for LFE magnitude.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How much LFE magnitude is added directly to wheel torque.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is intended for subtle texture or low-frequency effects, not for replacing normal steering torque.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 5%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="crash-protection">Crash Protection</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Crash Protection reduces wheel force temporarily when a crash-like event is detected.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Longitudinal G-Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Threshold for longitudinal G (braking / impacts) to trigger Crash Protection.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 8.0g</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Lateral G-Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Threshold for lateral G (side impacts) to trigger Crash Protection.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 6.0g</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Duration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How long Crash Protection remains active (seconds), plus a short recovery ramp.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 1.0 sec</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Force Reduction</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How much force is reduced when Crash Protection triggers.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 95%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="curb-protection">Curb Protection</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Curb Protection reduces algorithm aggressiveness temporarily when shock velocity spikes (curbs, bumps).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Shock Velocity</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Threshold for suspension shock velocity to trigger Curb Protection.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0.50 m/s</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Duration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How long protection stays active.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0.10 sec</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Force Reduction</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>How strongly the algorithm is “softened” while protection is active.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 75%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="parked-effects">Parked Effects</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These apply when moving very slowly (roughly 0–5 mph), to keep the wheel calmer / more manageable in pits and when stopped.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Force Feedback Strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Scales down overall forces as speed approaches zero.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 10%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Parked Friction</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds velocity-based friction when parked (helps stop the wheel from feeling loose at a standstill).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="other-features">Other Features</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Soft Lock Strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds a soft force barrier near your steering angle limit to simulate a “bump stop”.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 25%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Racing Friction</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds velocity-based friction while driving (reduced automatically as you approach parked speed).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Wheel Centering Strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds a centering force toward wheel center (optionally enabled separately for racing vs parked; see <strong>SWITCHES</strong>).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 75%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="effects">Effects</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Gear Change Vibrate Strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds a short vibration pulse on gear shifts. Setting this to 0% turns the effect off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">ABS Vibrate Strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds a vibration pattern while ABS is active. Setting this to 0% turns the effect off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="private-messages">Private Messages</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These control MAIRA sending <strong>private chat messages</strong> to the driver (useful confirmations and event notifications).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Send private chat messages to the driver</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Master enable for all MAIRA private messages.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enable input mapped setting update messages</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When enabled, MAIRA can send confirmation messages when certain settings are changed via button mappings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enable crash protection messages</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sends a message when Crash Protection triggers.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enable curb protection messages</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sends a message when Curb Protection triggers.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="switches">Switches</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Center wheel while racing</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables MAIRA centering force while driving.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Center wheel while parked</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables MAIRA centering force while stopped / crawling.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Fade force feedback when entering or exiting car</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Smooth fade-in/out of steering torque as iRacing transitions on/off track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enable Logitech RPM lights</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Uses Logitech’s LED SDK to drive RPM LEDs (when available).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Allow up to 200% strength (potentially dangerous)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Allows Strength to go above 100% (up to 200%).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Use with caution: this can produce very high forces depending on your Wheel Force and Max Force.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enable FFB even if iRacing simulator FFB is on</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Normally MAIRA suspends itself when iRacing FFB is enabled (to prevent fighting signals).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enable this only if you know what you’re doing (and ideally keep iRacing FFB off).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enable simple mode</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Hides most sections on this page for a cleaner and simpler experience.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/basic/lets-go-just-the-basic-stuff/" data-type="page" data-id="150">Let’s Go! Just the Basic Stuff</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/steering-effects/" data-type="page" data-id="166">Steering Effects</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

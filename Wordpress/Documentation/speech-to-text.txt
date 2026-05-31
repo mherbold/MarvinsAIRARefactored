@@ -1,0 +1,165 @@
+<!-- wp:paragraph -->
+<p>This feature lets MAIRA display live speech-to-text (STT) captions from iRacing voice chat.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA does not do speech recognition itself. Instead, it launches a small Chrome/Edge “Speech-To-Text Bridge” browser window that uses the browser’s built-in speech recognition (Web Speech API) and streams the recognized text back to MAIRA over a local WebSocket connection.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Note: You must setup VB-CABLE for this feature to work.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="https://mairapp.com/home/documentation/other-stuff/vb-cable-setup/" data-type="page" data-id="282">VB-CABLE Setup</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Speech to Text</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enabled</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Turns the speech-to-text system on/off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>What happens when you enable it</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>MAIRA checks that you are connected to iRacing.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>MAIRA verifies Chrome or Edge is installed.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>MAIRA starts a small local web server on your PC and launches the STT browser window to http://localhost:18888/</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>MAIRA waits for the browser page to connect back (up to ~10 seconds).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Once connected, MAIRA sets the initial language and you’re ready to start recognition.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Important</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Leave the browser window open. (Closing it breaks the STT connection.)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Click Enable Speech-To-Text.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>When the browser asks, click Allow microphone access.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Confirm the browser is using the correct microphone input device (the VB-Audio Virtual Cable).</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Language</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sets the recognition language used by the STT bridge. Nearly all common languages of the world are supported.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: English (US)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Overlay Window</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Show the overlay window title</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Show or hide the overlay window title.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Make the overlay window draggable</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When off, the window becomes click-through (transparent to mouse). When on, the overlay window is forced to be visible so you can move it around.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Overlay Window Scale</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Scales the overlay window size.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Setting: Settings.SpeechToTextOverlayWindowScale</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:columns {"verticalAlignment":"top"} -->
+<div class="wp-block-columns are-vertically-aligned-top"><!-- wp:column {"verticalAlignment":"top"} -->
+<div class="wp-block-column is-vertically-aligned-top"><!-- wp:image {"id":280,"sizeSlug":"full","linkDestination":"none","align":"right"} -->
+<figure class="wp-block-image alignright size-full"><img src="https://mairapp.com/wp-content/uploads/2026/01/reset.png" alt="" class="wp-image-280"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Reset the overlay window position</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Moves the overlay back to the top-left (0,0) of your screen.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/commentary/" data-type="page">Commentary</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/trading-paints/" data-type="page" data-id="176">Trading Paints</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
