@@ -300,11 +300,33 @@ public partial class App : Application
 
 				var showWindow = true;
 
-				if ( DataContext.DataContext.Instance.Settings.AppStartMinimized )
+				var startMinimized = DataContext.DataContext.Instance.Settings.AppStartMinimized;
+				var minimizeToSystemTray = DataContext.DataContext.Instance.Settings.AppMinimizeToSystemTray;
+
+				foreach ( var commandLineArgument in e.Args )
+				{
+					var normalizedArgument = commandLineArgument.TrimStart( '-', '/' ).ToLowerInvariant();
+
+					if ( normalizedArgument is "minimized" or "m" )
+					{
+						startMinimized = true;
+
+						Logger.WriteLine( $"[App] Command line argument '{commandLineArgument}' detected - starting minimized." );
+					}
+					else if ( normalizedArgument is "tray" or "t" )
+					{
+						startMinimized = true;
+						minimizeToSystemTray = true;
+
+						Logger.WriteLine( $"[App] Command line argument '{commandLineArgument}' detected - starting minimized to system tray." );
+					}
+				}
+
+				if ( startMinimized )
 				{
 					MainWindow.WindowState = WindowState.Minimized;
 
-					if ( DataContext.DataContext.Instance.Settings.AppMinimizeToSystemTray )
+					if ( minimizeToSystemTray )
 					{
 						showWindow = false;
 					}
