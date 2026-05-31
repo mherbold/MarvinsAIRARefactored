@@ -1,0 +1,133 @@
+﻿{
+  "SpotterCarLeft": [
+    "Bil till vänster!",
+    "Vänster!"
+  ],
+  "SpotterCarRight": [
+    "Bil till höger!",
+    "Höger!"
+  ],
+  "SpotterClear": [
+    "Fri.",
+    "Du är fri."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Tre i bredd, du är i mitten!",
+    "[urgently] Tre i bredd! Bil till vänster och höger!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Tre i bredd, du är till vänster!",
+    "[urgently] Tre i bredd! Bil till din höger!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Tre i bredd, du är till höger!",
+    "[urgently] Tre i bredd! Bil till din vänster!"
+  ],
+  "SpotterStillThere": [
+    "Fortfarande där.",
+    "Fortfarande med dig.",
+    "Han är fortfarande där.",
+    "Bilen är fortfarande bredvid."
+  ],
+  "TestPhrase0": [
+    "Testar röst.",
+    "Kommunikationstest — hör du mig?",
+    "Det här är ett rösttest."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter här, kommunikationstest.",
+    "Spotter aktiv."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Sportkommentator ett, testar!",
+    "Mikrofontest — sportkommentator ett här.",
+    "[cheerfully] Sportkommentator ett online."
+  ],
+  "TestPhrase3": [
+    "Sportkommentator två, testar.",
+    "Mikrofontest — sportkommentator två här.",
+    "Sportkommentator två online."
+  ],
+  "TestPhrase4": [
+    "Pit-reporter, testar.",
+    "Pit lane, mikrofontest.",
+    "Pit-reporter online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Ett varv till grönt!",
+    "Ett varv kvar till grönt!",
+    "Gör dig redo — ett varv till gröna flaggan!",
+    "Nästan — ett varv till innan vi går grönt!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Grönt flagg, kör kör kör!",
+    "[excitedly] Grönt flagg! Låt oss åka!",
+    "[excitedly] Vi är gröna, tryck på det!",
+    "[excitedly] Grönt flagg ute — kör, kör, kör!",
+    "[excitedly] Det är grönt, full gas!"
+  ],
+  "SpotterFlagBlue": [
+    "Blått flagg — låt dem passera.",
+    "Blått flagg, flytta på dig.",
+    "Du har ett blått flagg — ge vika.",
+    "Blått flagg visat — låt ledaren passera.",
+    "Flytta på dig, blått flagg."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Gult flagg — problem framåt, var försiktig!",
+    "[urgently] Gult flagg viftar, sakta ner!",
+    "[urgently] Gult flagg ute, det är problem framåt!",
+    "[urgently] Gult flagg — se upp där framme!",
+    "[urgently] Försiktig, gult flagg — håll dig skärpt!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Försiktighetsflaggan är ute!",
+    "Vi har ett cautionläge på banan.",
+    "Full-bane caution — sakta ner.",
+    "Försiktighetsflagg viftar — håll ditt tempo.",
+    "Caution är ute, dra dig tillbaka."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Se upp för skräp på banan!",
+    "[urgently] Skräp på banan — var försiktig!",
+    "[urgently] Det finns skräp framåt, håll dig skärpt!",
+    "[urgently] Se upp, skräp på racinglinjen!"
+  ],
+  "SpotterFlagWhite": [
+    "Vitt flagg — sista varvet!",
+    "Vitt flagg ute, sista varvet!",
+    "Det är det vita flagget — ett varv kvar!",
+    "Vitt flagg visat, gör det värt!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Det rutiga flagget är ute!",
+    "[excitedly] Rutigt flagg — det är mållinjen!",
+    "[excitedly] Det är schackbrädet, loppet är klart!",
+    "[excitedly] Rutigt flagg flyger — lopp avslutat!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Du har ett svart flagg — kom in!",
+    "[seriously] Svart flagg visat, kör in.",
+    "[seriously] Svart flagg — åk till pit nu.",
+    "[seriously] De visar dig det svarta flagget, box detta varvet."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Du är diskvalificerad — kom tillbaka till pit.",
+    "[seriously] Diskvalificeringsflagga — återvänd till pit lane.",
+    "[seriously] Du är diskvalificerad, ta in bilen.",
+    "[seriously] Svart flagga med kors — du är diskvalificerad, pit nu."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Köttbullsflagga — ta in din bil för reparationer.",
+    "[seriously] Du har köttbullsflaggan, pit för reparationer.",
+    "[seriously] Reparationsflagga visad — din bil behöver uppmärksamhet i pit.",
+    "[seriously] Köttbullsflagga ute — pit detta varvet för reparationer."
+  ],
+  "SpotterFlagStartReady": [
+    "Gör dig redo!",
+    "Stå redo för starten.",
+    "Förbered dig — starten är på väg!",
+    "Nästan dags — gör dig redo att köra!"
+  ]
+}

@@ -1,0 +1,133 @@
+﻿{
+  "SpotterCarLeft": [
+    "Car left!",
+    "Car to your left!"
+  ],
+  "SpotterCarRight": [
+    "Car right!",
+    "Car to your right!"
+  ],
+  "SpotterClear": [
+    "Clear.",
+    "You're clear."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Three wide, you're in the middle!",
+    "[urgently] Three wide! Car left and right!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Three wide, you're on the left!",
+    "[urgently] Three wide! Car to your right!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Three wide, you're on the right!",
+    "[urgently] Three wide! Car to your left!"
+  ],
+  "SpotterStillThere": [
+    "Still there.",
+    "Still with you.",
+    "He's still there.",
+    "Car still alongside."
+  ],
+  "TestPhrase0": [
+    "Testing voice.",
+    "Comm check — how do you read me?",
+    "This is a voice test."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter here, comms check.",
+    "Spotter active."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Sportscaster one, testing!",
+    "Mic check — sportscaster one here.",
+    "[cheerfully] Sportscaster one online."
+  ],
+  "TestPhrase3": [
+    "Sportscaster two, testing.",
+    "Mic check — sportscaster two here.",
+    "Sportscaster two online."
+  ],
+  "TestPhrase4": [
+    "Pit reporter, testing.",
+    "Pit lane, mic check.",
+    "Pit reporter online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "One lap to green!",
+    "One lap remaining before green!",
+    "Get ready — one lap to the green flag!",
+    "Almost there — one more lap before we go green!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Green flag, go go go!",
+    "[excitedly] Green flag! Let's go!",
+    "[excitedly] We're green, punch it!",
+    "[excitedly] Green flag is out — go, go, go!",
+    "[excitedly] It's green, hit the gas!"
+  ],
+  "SpotterFlagBlue": [
+    "Blue flag — let them by.",
+    "Blue flag, move over.",
+    "You've got a blue flag — give way.",
+    "Blue flag shown — let the leader past.",
+    "Move aside, blue flag."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Yellow flag — problem ahead, be careful!",
+    "[urgently] Yellow flag waving, slow down!",
+    "[urgently] Yellow flag out, there's trouble ahead!",
+    "[urgently] Yellow flag — watch yourself up there!",
+    "[urgently] Caution, yellow flag — stay alert!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "The caution flag is out!",
+    "We've got a caution on track.",
+    "Full course caution — slow down.",
+    "Caution flag waving — hold your pace.",
+    "Caution is out, back off."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Watch for debris on the road!",
+    "[urgently] Debris on track — be careful!",
+    "[urgently] There's debris ahead, stay alert!",
+    "[urgently] Watch out, debris on the racing line!"
+  ],
+  "SpotterFlagWhite": [
+    "White flag — final lap!",
+    "White flag is out, last lap!",
+    "That's the white flag — one to go!",
+    "White flag shown, make it count!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] The checkered flag is out!",
+    "[excitedly] Checkered flag — that's the finish!",
+    "[excitedly] It's the checker, race is done!",
+    "[excitedly] Checkered flag flies — race over!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] You've got a black flag — come in!",
+    "[seriously] Black flag shown, bring it in.",
+    "[seriously] Black flag — head to the pits now.",
+    "[seriously] They're showing you the black flag, box this lap."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] You've been disqualified — come back to the pits.",
+    "[seriously] Disqualification flag — return to pit lane.",
+    "[seriously] You've been DQ'd, bring the car in.",
+    "[seriously] Black flag with cross — you're disqualified, pit now."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Meatball flag — bring your car in for repairs.",
+    "[seriously] You've got the meatball flag, pit for repairs.",
+    "[seriously] Repair flag shown — your car needs attention in the pits.",
+    "[seriously] Meatball flag out — pit this lap for repairs."
+  ],
+  "SpotterFlagStartReady": [
+    "Get ready!",
+    "Stand by for the start.",
+    "Prepare yourself — start is coming!",
+    "Almost time — get ready to go!"
+  ]
+}

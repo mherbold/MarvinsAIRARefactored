@@ -1,0 +1,133 @@
+﻿{
+  "SpotterCarLeft": [
+    "Auto vlevo!",
+    "Vlevo!"
+  ],
+  "SpotterCarRight": [
+    "Auto vpravo!",
+    "Vpravo!"
+  ],
+  "SpotterClear": [
+    "Volno.",
+    "Máš volno."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Tři vedle sebe, jsi uprostřed!",
+    "[urgently] Tři do šířky! Auto vlevo i vpravo!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Tři vedle sebe, jsi vlevo!",
+    "[urgently] Tři do šířky! Auto vpravo od tebe!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Tři vedle sebe, jsi vpravo!",
+    "[urgently] Tři do šířky! Auto vlevo od tebe!"
+  ],
+  "SpotterStillThere": [
+    "Pořád tam.",
+    "Stále vedle tebe.",
+    "On je stále tam.",
+    "Auto stále vedle."
+  ],
+  "TestPhrase0": [
+    "Testování hlasu.",
+    "Zkouška komunikace — slyšíte mě?",
+    "Toto je zkouška hlasu."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter tady, zkouška komunikace.",
+    "Spotter aktivní."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Sportovní komentátor jedna, testování!",
+    "Zkouška mikrofonu — sportovní komentátor jedna.",
+    "[cheerfully] Sportovní komentátor jedna online."
+  ],
+  "TestPhrase3": [
+    "Sportovní komentátor dva, testování.",
+    "Zkouška mikrofonu — sportovní komentátor dva.",
+    "Sportovní komentátor dva online."
+  ],
+  "TestPhrase4": [
+    "Pitový reportér, testování.",
+    "Pit lane, zkouška mikrofonu.",
+    "Pitový reportér online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Jeden kolo do zelené!",
+    "Zbývá jedno kolo do zeleného startu!",
+    "Připrav se — jedno kolo do zelené vlajky!",
+    "Skoro tam — ještě jedno kolo a jedeme!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Zelená vlajka, jeď jeď jeď!",
+    "[excitedly] Zelená vlajka! Jedeme!",
+    "[excitedly] Zelená, přidej plyn!",
+    "[excitedly] Zelená vlajka — jeď, jeď, jeď!",
+    "[excitedly] Zelená, šlápni na to!"
+  ],
+  "SpotterFlagBlue": [
+    "Modrá vlajka — uvolni jim cestu.",
+    "Modrá vlajka, uhni.",
+    "Máš modrou vlajku — dej jim přednost.",
+    "Modrá vlajka — nech lídra projet.",
+    "Ustup, modrá vlajka."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Žlutá vlajka — problém vpředu, buď opatrný!",
+    "[urgently] Žlutá vlajka mává, zpomal!",
+    "[urgently] Žlutá vlajka, vpředu je problém!",
+    "[urgently] Žlutá vlajka — dej tam pozor!",
+    "[urgently] Pozor, žlutá vlajka — buď ostražitý!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Žlutá vlajka je venku!",
+    "Máme žlutou vlajku na trati.",
+    "Plná kurzová žlutá — zpomal.",
+    "Žlutá vlajka mává — drž tempo.",
+    "Žlutá je venku, ulevit."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Pozor na trosky na trati!",
+    "[urgently] Trosky na trati — buď opatrný!",
+    "[urgently] Vpředu jsou trosky, buď ostražitý!",
+    "[urgently] Pozor, trosky na závodní linii!"
+  ],
+  "SpotterFlagWhite": [
+    "Bílá vlajka — poslední kolo!",
+    "Bílá vlajka je venku, poslední kolo!",
+    "To je bílá vlajka — jedno kolo zbývá!",
+    "Bílá vlajka ukázána, využij to!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Šachovnicová vlajka je venku!",
+    "[excitedly] Šachovnicová vlajka — to je cíl!",
+    "[excitedly] Je to šachovnice, závod je u konce!",
+    "[excitedly] Šachovnicová vlajka letí — závod skončil!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Máš černou vlajku — přijeď do boxů!",
+    "[seriously] Černá vlajka ukázána, jeď do boxů.",
+    "[seriously] Černá vlajka — ihned do boxů.",
+    "[seriously] Ukazují ti černou vlajku, zaparkuj toto kolo."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Byl jsi diskvalifikován — vrať se do boxů.",
+    "[seriously] Vlajka diskvalifikace — vrať se do pit lane.",
+    "[seriously] Byl jsi DQ, přiveď auto.",
+    "[seriously] Černá vlajka s křížem — jsi diskvalifikován, do boxů."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Vlajka meatball — přiveď auto do boxů na opravy.",
+    "[seriously] Máš vlajku meatball, do boxů na opravy.",
+    "[seriously] Opravná vlajka ukázána — tvoje auto potřebuje péči v boxech.",
+    "[seriously] Vlajka meatball venku — zastav toto kolo na opravy."
+  ],
+  "SpotterFlagStartReady": [
+    "Připrav se!",
+    "Stůj v pohotovosti ke startu.",
+    "Připrav se — start se blíží!",
+    "Skoro čas — připrav se k jízdě!"
+  ]
+}

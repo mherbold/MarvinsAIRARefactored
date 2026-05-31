@@ -1,0 +1,133 @@
+﻿{
+  "SpotterCarLeft": [
+    "¡Coche a la izquierda!",
+    "¡Izquierda!"
+  ],
+  "SpotterCarRight": [
+    "¡Coche a la derecha!",
+    "¡Derecha!"
+  ],
+  "SpotterClear": [
+    "Libre.",
+    "Estás libre."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] ¡Tres en fila, estás en el medio!",
+    "[urgently] ¡Tres en fila! ¡Coches a izquierda y derecha!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] ¡Tres en fila, estás a la izquierda!",
+    "[urgently] ¡Tres en fila! ¡Coche a tu derecha!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] ¡Tres en fila, estás a la derecha!",
+    "[urgently] ¡Tres en fila! ¡Coche a tu izquierda!"
+  ],
+  "SpotterStillThere": [
+    "Sigue ahí.",
+    "Sigue contigo.",
+    "Todavía está ahí.",
+    "Coche aún al lado."
+  ],
+  "TestPhrase0": [
+    "Probando voz.",
+    "Comprobación de comunicación — ¿me recibes?",
+    "Esto es una prueba de voz."
+  ],
+  "TestPhrase1": [
+    "Observador en línea.",
+    "Observador aquí, prueba de comunicación.",
+    "Observador activo."
+  ],
+  "TestPhrase2": [
+    "[excitedly] ¡Comentarista uno, probando!",
+    "Prueba de micrófono — comentarista uno aquí.",
+    "[cheerfully] Comentarista uno en línea."
+  ],
+  "TestPhrase3": [
+    "Comentarista dos, probando.",
+    "Prueba de micrófono — comentarista dos aquí.",
+    "Comentarista dos en línea."
+  ],
+  "TestPhrase4": [
+    "Reportero de pits, probando.",
+    "Pit lane, prueba de micrófono.",
+    "Reportero de pits en línea."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "¡Una vuelta para la salida!",
+    "¡Queda una vuelta para la salida!",
+    "¡Prepárate — una vuelta para la bandera verde!",
+    "¡Casi llegamos — una vuelta más antes de que salgamos!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] ¡Bandera verde, vamos vamos vamos!",
+    "[excitedly] ¡Bandera verde! ¡Vamos!",
+    "[excitedly] ¡Verde, a fondo!",
+    "[excitedly] ¡Bandera verde — vamos, vamos, vamos!",
+    "[excitedly] ¡Verde, pisa el acelerador!"
+  ],
+  "SpotterFlagBlue": [
+    "Bandera azul — déjalos pasar.",
+    "Bandera azul, apártate.",
+    "Tienes bandera azul — cede el paso.",
+    "Bandera azul mostrada — deja pasar al líder.",
+    "Hazte a un lado, bandera azul."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] ¡Bandera amarilla — problema adelante, ten cuidado!",
+    "[urgently] ¡Bandera amarilla ondeando, reduce la velocidad!",
+    "[urgently] ¡Bandera amarilla, hay problemas adelante!",
+    "[urgently] ¡Bandera amarilla — ten cuidado ahí delante!",
+    "[urgently] ¡Precaución, bandera amarilla — mantente alerta!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "¡La bandera de precaución está fuera!",
+    "Tenemos precaución en pista.",
+    "Precaución de todo el circuito — reduce la velocidad.",
+    "Bandera de precaución ondeando — mantén tu ritmo.",
+    "La precaución está fuera, frena."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] ¡Cuidado con los escombros en la pista!",
+    "[urgently] ¡Escombros en pista — ten cuidado!",
+    "[urgently] ¡Hay escombros adelante, mantente alerta!",
+    "[urgently] ¡Cuidado, escombros en la línea de carrera!"
+  ],
+  "SpotterFlagWhite": [
+    "¡Bandera blanca — última vuelta!",
+    "¡Bandera blanca fuera, última vuelta!",
+    "¡Es la bandera blanca — una vuelta más!",
+    "¡Bandera blanca mostrada, que cuente!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] ¡La bandera a cuadros está afuera!",
+    "[excitedly] ¡Bandera a cuadros — esa es la meta!",
+    "[excitedly] ¡Es el cuadros, la carrera ha terminado!",
+    "[excitedly] ¡Bandera a cuadros vuela — carrera terminada!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] ¡Tienes bandera negra — entra!",
+    "[seriously] Bandera negra mostrada, entra al pit.",
+    "[seriously] Bandera negra — ve al pit ahora.",
+    "[seriously] Te están mostrando la bandera negra, entra esta vuelta."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Has sido descalificado — vuelve a los pits.",
+    "[seriously] Bandera de descalificación — regresa al pit lane.",
+    "[seriously] Estás descalificado, lleva el coche al pit.",
+    "[seriously] Bandera negra con cruz — estás descalificado, entra ahora."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Bandera meatball — lleva tu auto al pit para reparaciones.",
+    "[seriously] Tienes la bandera meatball, pit para reparaciones.",
+    "[seriously] Bandera de reparación mostrada — tu auto necesita atención en el pit.",
+    "[seriously] Bandera meatball fuera — entra esta vuelta para reparaciones."
+  ],
+  "SpotterFlagStartReady": [
+    "¡Prepárate!",
+    "En espera para la salida.",
+    "¡Prepárate — la salida está llegando!",
+    "¡Casi la hora — prepárate para ir!"
+  ]
+}

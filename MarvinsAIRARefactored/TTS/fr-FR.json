@@ -1,0 +1,133 @@
+﻿{
+  "SpotterCarLeft": [
+    "Voiture à gauche !",
+    "Gauche !"
+  ],
+  "SpotterCarRight": [
+    "Voiture à droite !",
+    "Droite !"
+  ],
+  "SpotterClear": [
+    "Dégagé.",
+    "Tu es libre."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Trois de front, tu es au milieu !",
+    "[urgently] Trois de front ! Voiture à gauche et à droite !"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Trois de front, tu es à gauche !",
+    "[urgently] Trois de front ! Voiture à ta droite !"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Trois de front, tu es à droite !",
+    "[urgently] Trois de front ! Voiture à ta gauche !"
+  ],
+  "SpotterStillThere": [
+    "Toujours là.",
+    "Toujours avec toi.",
+    "Il est toujours là.",
+    "Voiture toujours à côté."
+  ],
+  "TestPhrase0": [
+    "Test de voix.",
+    "Vérification comm — vous me recevez?",
+    "Ceci est un test de voix."
+  ],
+  "TestPhrase1": [
+    "Guetteur en ligne.",
+    "Guetteur ici, vérification comm.",
+    "Guetteur actif."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Commentateur un, test!",
+    "Vérification micro — commentateur un ici.",
+    "[cheerfully] Commentateur un en ligne."
+  ],
+  "TestPhrase3": [
+    "Commentateur deux, test.",
+    "Vérification micro — commentateur deux ici.",
+    "Commentateur deux en ligne."
+  ],
+  "TestPhrase4": [
+    "Journaliste des stands, test.",
+    "Pit lane, vérification micro.",
+    "Journaliste des stands en ligne."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Un tour avant le vert!",
+    "Un tour restant avant le vert!",
+    "Préparez-vous — un tour avant le drapeau vert!",
+    "On y est presque — encore un tour avant le vert!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Drapeau vert, allez allez allez!",
+    "[excitedly] Drapeau vert! On y va!",
+    "[excitedly] C'est vert, appuyez!",
+    "[excitedly] Drapeau vert — allez, allez, allez!",
+    "[excitedly] C'est vert, gaz à fond!"
+  ],
+  "SpotterFlagBlue": [
+    "Drapeau bleu — laissez-les passer.",
+    "Drapeau bleu, dégagez.",
+    "Vous avez un drapeau bleu — cédez le passage.",
+    "Drapeau bleu montré — laissez passer le leader.",
+    "Dégagez, drapeau bleu."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Drapeau jaune — problème devant, soyez prudent!",
+    "[urgently] Drapeau jaune agité, ralentissez!",
+    "[urgently] Drapeau jaune sorti, il y a un problème devant!",
+    "[urgently] Drapeau jaune — faites attention là-devant!",
+    "[urgently] Attention, drapeau jaune — restez alerte!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Le drapeau de précaution est sorti!",
+    "Nous avons une précaution sur la piste.",
+    "Précaution pleine course — ralentissez.",
+    "Drapeau de précaution agité — maintenez votre rythme.",
+    "La précaution est sortie, reculez."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Attention aux débris sur la piste!",
+    "[urgently] Débris sur la piste — soyez prudent!",
+    "[urgently] Il y a des débris devant, restez alerte!",
+    "[urgently] Attention, débris sur la trajectoire de course!"
+  ],
+  "SpotterFlagWhite": [
+    "Drapeau blanc — dernier tour!",
+    "Drapeau blanc sorti, dernier tour!",
+    "C'est le drapeau blanc — un tour restant!",
+    "Drapeau blanc montré, faites-en bon usage!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Le drapeau à damier est sorti!",
+    "[excitedly] Drapeau à damier — c'est la fin!",
+    "[excitedly] C'est le damier, la course est terminée!",
+    "[excitedly] Drapeau à damier vole — course terminée!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Vous avez un drapeau noir — rentrez!",
+    "[seriously] Drapeau noir montré, rentrez.",
+    "[seriously] Drapeau noir — direction les stands maintenant.",
+    "[seriously] Ils vous montrent le drapeau noir, rentrez ce tour."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Vous avez été disqualifié — revenez aux stands.",
+    "[seriously] Drapeau de disqualification — retournez au pit lane.",
+    "[seriously] Vous avez été disqualifié, ramenez la voiture.",
+    "[seriously] Drapeau noir avec croix — vous êtes disqualifié, pit maintenant."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Drapeau meatball — ramenez votre voiture au stand pour réparations.",
+    "[seriously] Vous avez le drapeau meatball, pit pour réparations.",
+    "[seriously] Drapeau de réparation montré — votre voiture a besoin d'attention au stand.",
+    "[seriously] Drapeau meatball sorti — pit ce tour pour réparations."
+  ],
+  "SpotterFlagStartReady": [
+    "Préparez-vous!",
+    "En attente pour le départ.",
+    "Préparez-vous — le départ arrive!",
+    "C'est presque l'heure — préparez-vous à partir!"
+  ]
+}

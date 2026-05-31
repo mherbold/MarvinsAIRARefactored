@@ -1,0 +1,133 @@
+﻿{
+  "SpotterCarLeft": [
+    "Auto links!",
+    "Fahrzeug links!"
+  ],
+  "SpotterCarRight": [
+    "Auto rechts!",
+    "Fahrzeug rechts!"
+  ],
+  "SpotterClear": [
+    "Frei.",
+    "Du bist frei."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Drei nebeneinander, du bist in der Mitte!",
+    "[urgently] Drei breit! Auto links und rechts!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Drei nebeneinander, du bist links!",
+    "[urgently] Drei breit! Auto rechts von dir!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Drei nebeneinander, du bist rechts!",
+    "[urgently] Drei breit! Auto links von dir!"
+  ],
+  "SpotterStillThere": [
+    "Noch da.",
+    "Noch neben dir.",
+    "Er ist noch da.",
+    "Auto noch gleichauf."
+  ],
+  "TestPhrase0": [
+    "Sprachtest.",
+    "Funkprüfung — können Sie mich hören?",
+    "Das ist ein Sprachtest."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter hier, Funkprüfung.",
+    "Spotter aktiv."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Sportkommentator eins, Test!",
+    "Mikrofonprüfung — Sportkommentator eins hier.",
+    "[cheerfully] Sportkommentator eins online."
+  ],
+  "TestPhrase3": [
+    "Sportkommentator zwei, Test.",
+    "Mikrofonprüfung — Sportkommentator zwei hier.",
+    "Sportkommentator zwei online."
+  ],
+  "TestPhrase4": [
+    "Pit-Reporter, Test.",
+    "Boxengasse, Mikrofonprüfung.",
+    "Pit-Reporter online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Eine Runde bis zur Freigabe!",
+    "Noch eine Runde bis zur Freigabe!",
+    "Mach dich bereit — eine Runde bis zur Grünen Flagge!",
+    "Fast da — noch eine Runde bis wir freigegeben werden!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Grünes Licht, los los los!",
+    "[excitedly] Grüne Flagge! Los geht's!",
+    "[excitedly] Freigabe, gib Gas!",
+    "[excitedly] Grüne Flagge — los, los, los!",
+    "[excitedly] Grün, Vollgas!"
+  ],
+  "SpotterFlagBlue": [
+    "Blaue Flagge — lass sie vorbei.",
+    "Blaue Flagge, rüberfahren.",
+    "Du hast eine blaue Flagge — gib die Bahn frei.",
+    "Blaue Flagge gezeigt — lass den Führenden vorbei.",
+    "Platz machen, blaue Flagge."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Gelbe Flagge — Problem voraus, sei vorsichtig!",
+    "[urgently] Gelbe Flagge geschwenkt, langsamer fahren!",
+    "[urgently] Gelbe Flagge raus, es gibt Probleme voraus!",
+    "[urgently] Gelbe Flagge — pass dort vorne auf!",
+    "[urgently] Achtung, gelbe Flagge — bleib wachsam!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Die Gelbphase ist aktiv!",
+    "Wir haben ein Gelbphase auf der Strecke.",
+    "Vollständige Gelbphase — langsamer fahren.",
+    "Gelbphase — Tempo halten.",
+    "Gelbphase aktiv, zurückhalten."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Achtung, Trümmer auf der Strecke!",
+    "[urgently] Trümmer auf der Strecke — pass auf!",
+    "[urgently] Trümmer voraus, bleib wachsam!",
+    "[urgently] Vorsicht, Trümmer auf der Ideallinie!"
+  ],
+  "SpotterFlagWhite": [
+    "Weiße Flagge — letzte Runde!",
+    "Weiße Flagge raus, letzte Runde!",
+    "Das ist die weiße Flagge — noch eine Runde!",
+    "Weiße Flagge gezeigt, mach es zählen!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Die karierte Flagge ist draußen!",
+    "[excitedly] Karierte Flagge — das ist das Ziel!",
+    "[excitedly] Das Schachbrettflagge, Rennen vorbei!",
+    "[excitedly] Karierte Flagge weht — Rennen beendet!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Du hast die schwarze Flagge — komm rein!",
+    "[seriously] Schwarze Flagge gezeigt, fahr rein.",
+    "[seriously] Schwarze Flagge — jetzt in die Box.",
+    "[seriously] Sie zeigen dir die schwarze Flagge, box diese Runde."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Du wurdest disqualifiziert — kehre in die Boxen zurück.",
+    "[seriously] Disqualifikationsflagge — kehre in die Boxengasse zurück.",
+    "[seriously] Du wurdest disqualifiziert, fahr das Auto rein.",
+    "[seriously] Schwarze Flagge mit Kreuz — du bist disqualifiziert, Box jetzt."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Meatball-Flagge — bring dein Auto zur Reparatur in die Boxen.",
+    "[seriously] Du hast die Meatball-Flagge, Box für Reparaturen.",
+    "[seriously] Reparaturflagge gezeigt — dein Auto braucht Aufmerksamkeit in den Boxen.",
+    "[seriously] Meatball-Flagge raus — diese Runde für Reparaturen boxen."
+  ],
+  "SpotterFlagStartReady": [
+    "Mach dich bereit!",
+    "Bereit zum Start.",
+    "Mach dich bereit — der Start kommt!",
+    "Fast Zeit — mach dich bereit loszufahren!"
+  ]
+}

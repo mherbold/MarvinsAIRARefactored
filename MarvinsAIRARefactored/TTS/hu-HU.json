@@ -1,0 +1,133 @@
+﻿{
+  "SpotterCarLeft": [
+    "Autó balra!",
+    "Balra!"
+  ],
+  "SpotterCarRight": [
+    "Autó jobbra!",
+    "Jobbra!"
+  ],
+  "SpotterClear": [
+    "Szabad.",
+    "Szabad vagy."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Három széles, te vagy középen!",
+    "[urgently] Három széles! Autó balra és jobbra!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Három széles, te vagy bal oldalt!",
+    "[urgently] Három széles! Autó jobbra tőled!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Három széles, te vagy jobb oldalt!",
+    "[urgently] Három széles! Autó balra tőled!"
+  ],
+  "SpotterStillThere": [
+    "Még ott van.",
+    "Még melletted.",
+    "Még mindig ott van.",
+    "Az autó még mindig mellette."
+  ],
+  "TestPhrase0": [
+    "Hangpróba.",
+    "Kommunikációs teszt — hallasz engem?",
+    "Ez egy hangpróba."
+  ],
+  "TestPhrase1": [
+    "Spotter online.",
+    "Spotter itt, kommunikációs teszt.",
+    "Spotter aktív."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Kommentátor egy, teszt!",
+    "Mikrofonpróba — kommentátor egy itt.",
+    "[cheerfully] Kommentátor egy online."
+  ],
+  "TestPhrase3": [
+    "Kommentátor kettő, teszt.",
+    "Mikrofonpróba — kommentátor kettő itt.",
+    "Kommentátor kettő online."
+  ],
+  "TestPhrase4": [
+    "Pit-riporter, teszt.",
+    "Boxutca, mikrofonpróba.",
+    "Pit-riporter online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Egy kör a zöld előtt!",
+    "Egy kör maradt a zöld rajtig!",
+    "Készülj — egy kör a zöld zászlóig!",
+    "Már majdnem — még egy kör és mehetünk!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Zöld zászló, hajrá hajrá hajrá!",
+    "[excitedly] Zöld zászló! Menjünk!",
+    "[excitedly] Zöld, nyomj rá!",
+    "[excitedly] Zöld zászló — hajrá, hajrá, hajrá!",
+    "[excitedly] Zöld, gázt!"
+  ],
+  "SpotterFlagBlue": [
+    "Kék zászló — enged el őket.",
+    "Kék zászló, húzz félre.",
+    "Kék zászlót kaptál — adj utat.",
+    "Kék zászló — enged el a vezetőt.",
+    "Húzz félre, kék zászló."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Sárga zászló — probléma előtte, légy óvatos!",
+    "[urgently] Sárga zászló lobog, lassíts!",
+    "[urgently] Sárga zászló kint, probléma van előtte!",
+    "[urgently] Sárga zászló — vigyázz ott előtte!",
+    "[urgently] Figyelem, sárga zászló — maradj éber!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "A sárga zászló kint van!",
+    "Sárga zászló van a pályán.",
+    "Teljes pályás sárga — lassíts.",
+    "Sárga zászló lobog — tartsd a tempót.",
+    "Sárga zászló kint, tarts távolságot."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Figyelj a törmelékre a pályán!",
+    "[urgently] Törmelék a pályán — légy óvatos!",
+    "[urgently] Előtted törmelék van, maradj éber!",
+    "[urgently] Vigyázz, törmelék az ideális vonalon!"
+  ],
+  "SpotterFlagWhite": [
+    "Fehér zászló — utolsó kör!",
+    "Fehér zászló kint, utolsó kör!",
+    "Ez a fehér zászló — még egy kör!",
+    "Fehér zászló mutatva, hajtsd meg!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] A kockás zászló kint van!",
+    "[excitedly] Kockás zászló — ez a cél!",
+    "[excitedly] Ez a kocka, a verseny véget ért!",
+    "[excitedly] Kockás zászló lebeg — verseny vége!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Fekete zászlód van — gyere be!",
+    "[seriously] Fekete zászló mutatva, gyere be.",
+    "[seriously] Fekete zászló — most a boxba.",
+    "[seriously] Fekete zászlót mutatnak, jöjj be ebben a körben."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Kizártak — gyere vissza a boxba.",
+    "[seriously] Kizárás zászló — térj vissza a boxutcába.",
+    "[seriously] Kizártak, hozd be az autót.",
+    "[seriously] Fekete zászló kereszttel — ki vagy zárva, boxba most."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Meatball-zászló — hozd be az autódat javításra.",
+    "[seriously] Kaptad a meatball-zászlót, boxba javításra.",
+    "[seriously] Javítási zászló mutatva — az autód figyelmet igényel a boxban.",
+    "[seriously] Meatball-zászló kint — javítás miatt boxba ebben a körben."
+  ],
+  "SpotterFlagStartReady": [
+    "Készülj!",
+    "Készen állj a rajtra.",
+    "Készülj — a rajt közeledik!",
+    "Már majdnem — készülj az indulásra!"
+  ]
+}

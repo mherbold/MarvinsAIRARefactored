@@ -1,0 +1,133 @@
+﻿{
+  "SpotterCarLeft": [
+    "Solda araç!",
+    "Sol!"
+  ],
+  "SpotterCarRight": [
+    "Sağda araç!",
+    "Sağ!"
+  ],
+  "SpotterClear": [
+    "Açık.",
+    "Yol açık."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Üç araç yan yana, sen ortadasın!",
+    "[urgently] Üç araç yan yana! Solda ve sağda araç var!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Üç araç yan yana, sen soldasın!",
+    "[urgently] Üç araç yan yana! Sağında araç var!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Üç araç yan yana, sen sağdasın!",
+    "[urgently] Üç araç yan yana! Solunda araç var!"
+  ],
+  "SpotterStillThere": [
+    "Hâlâ orada.",
+    "Hâlâ yanında.",
+    "O hâlâ orada.",
+    "Araç hâlâ yan yana."
+  ],
+  "TestPhrase0": [
+    "Ses testi.",
+    "İletişim kontrolü — beni duyuyor musun?",
+    "Bu bir ses testidir."
+  ],
+  "TestPhrase1": [
+    "Spotter çevrimiçi.",
+    "Spotter burada, iletişim kontrolü.",
+    "Spotter aktif."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Spor spikeri bir, test!",
+    "Mikrofon kontrolü — spor spikeri bir burada.",
+    "[cheerfully] Spor spikeri bir çevrimiçi."
+  ],
+  "TestPhrase3": [
+    "Spor spikeri iki, test.",
+    "Mikrofon kontrolü — spor spikeri iki burada.",
+    "Spor spikeri iki çevrimiçi."
+  ],
+  "TestPhrase4": [
+    "Pit muhabiri, test.",
+    "Pit lane, mikrofon kontrolü.",
+    "Pit muhabiri çevrimiçi."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Yeşile bir tur kaldı!",
+    "Yeşil bayrak öncesi bir tur kaldı!",
+    "Hazırlan — yeşil bayrak öncesi bir tur!",
+    "Neredeyse — bir tur daha ve yeşil!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Yeşil bayrak, git git git!",
+    "[excitedly] Yeşil bayrak! Haydi gidelim!",
+    "[excitedly] Yeşil, bas gazı!",
+    "[excitedly] Yeşil bayrak çıktı — git, git, git!",
+    "[excitedly] Yeşil, gazı bas!"
+  ],
+  "SpotterFlagBlue": [
+    "Mavi bayrak — geçmelerine izin ver.",
+    "Mavi bayrak, çekil.",
+    "Mavi bayrak aldın — yol ver.",
+    "Mavi bayrak gösterildi — liderin geçmesine izin ver.",
+    "Çekil, mavi bayrak."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Sarı bayrak — önde sorun var, dikkatli ol!",
+    "[urgently] Sarı bayrak sallıyor, yavaşla!",
+    "[urgently] Sarı bayrak çıktı, önde sorun var!",
+    "[urgently] Sarı bayrak — orası dikkatli ol!",
+    "[urgently] Dikkat, sarı bayrak — uyanık kal!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "İkaz bayrağı çıktı!",
+    "Pistte ikaz var.",
+    "Tam pist ikazı — yavaşla.",
+    "İkaz bayrağı sallıyor — hızını koru.",
+    "İkaz çıktı, geri çekil."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Yolda enkaz var, dikkat et!",
+    "[urgently] Pistte enkaz — dikkatli ol!",
+    "[urgently] İleride enkaz var, uyanık kal!",
+    "[urgently] Dikkat, yarış hattında enkaz!"
+  ],
+  "SpotterFlagWhite": [
+    "Beyaz bayrak — son tur!",
+    "Beyaz bayrak çıktı, son tur!",
+    "Beyaz bayrak bu — bir tur kaldı!",
+    "Beyaz bayrak gösterildi, değerini koy!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Damalı bayrak çıktı!",
+    "[excitedly] Damalı bayrak — bitiş!",
+    "[excitedly] Damalı bayrak, yarış bitti!",
+    "[excitedly] Damalı bayrak uçuyor — yarış sona erdi!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Siyah bayrak aldın — içeri gel!",
+    "[seriously] Siyah bayrak gösterildi, içeri gir.",
+    "[seriously] Siyah bayrak — şimdi pite git.",
+    "[seriously] Sana siyah bayrak gösteriyorlar, bu turda box yap."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Diskalifiye edildin — pit'e geri dön.",
+    "[seriously] Diskalifiye bayrağı — pit lane'e geri dön.",
+    "[seriously] Diskalifiye oldun, arabayı getir.",
+    "[seriously] Çarpı işaretli siyah bayrak — diskalifiye oldun, pit yap."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Meatball bayrağı — arabayı tamir için pit'e getir.",
+    "[seriously] Meatball bayrağı aldın, tamir için pit yap.",
+    "[seriously] Tamir bayrağı gösterildi — araban pit'te ilgi gerektiriyor.",
+    "[seriously] Meatball bayrağı çıktı — bu turda tamir için pit yap."
+  ],
+  "SpotterFlagStartReady": [
+    "Hazır ol!",
+    "Başlangıç için beklemede.",
+    "Hazırlan — start geliyor!",
+    "Neredeyse zaman — gitmek için hazırlan!"
+  ]
+}

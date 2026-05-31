@@ -1,0 +1,133 @@
+﻿{
+  "SpotterCarLeft": [
+    "Auto vasemmalla!",
+    "Vasemmalla!"
+  ],
+  "SpotterCarRight": [
+    "Auto oikealla!",
+    "Oikealla!"
+  ],
+  "SpotterClear": [
+    "Vapaa.",
+    "Olet vapaa."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Kolme vierekkäin, olet keskellä!",
+    "[urgently] Kolme leveyttä! Auto vasemmalla ja oikealla!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Kolme vierekkäin, olet vasemmalla!",
+    "[urgently] Kolme leveyttä! Auto oikealla puolellasi!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Kolme vierekkäin, olet oikealla!",
+    "[urgently] Kolme leveyttä! Auto vasemmalla puolellasi!"
+  ],
+  "SpotterStillThere": [
+    "Vielä siellä.",
+    "Vielä vieressäsi.",
+    "Hän on vielä siellä.",
+    "Auto vielä rinnalla."
+  ],
+  "TestPhrase0": [
+    "Testataan ääntä.",
+    "Yhteyden tarkistus — kuuletko minut?",
+    "Tämä on äänitesti."
+  ],
+  "TestPhrase1": [
+    "Tarkkailija online.",
+    "Tarkkailija täällä, yhteyden tarkistus.",
+    "Tarkkailija aktiivinen."
+  ],
+  "TestPhrase2": [
+    "[excitedly] Selostaja yksi, testataan!",
+    "Mikrofonitesti — selostaja yksi täällä.",
+    "[cheerfully] Selostaja yksi online."
+  ],
+  "TestPhrase3": [
+    "Selostaja kaksi, testataan.",
+    "Mikrofonitesti — selostaja kaksi täällä.",
+    "Selostaja kaksi online."
+  ],
+  "TestPhrase4": [
+    "Pit-raportoija, testataan.",
+    "Pit lane, mikrofonitesti.",
+    "Pit-raportoija online."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Yksi kierros vihreään!",
+    "Yksi kierros jäljellä ennen vihreää!",
+    "Valmistaudu — yksi kierros vihreään lippuun!",
+    "Melkein perillä — yksi kierros ennen kuin lähdemme!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Vihreä lippu, mene mene mene!",
+    "[excitedly] Vihreä lippu! Mennään!",
+    "[excitedly] Vihreä, kaasu pohjaan!",
+    "[excitedly] Vihreä lippu — mene, mene, mene!",
+    "[excitedly] Vihreä, paina kaasua!"
+  ],
+  "SpotterFlagBlue": [
+    "Sininen lippu — päästä heidät ohi.",
+    "Sininen lippu, siirry sivuun.",
+    "Sinulla on sininen lippu — väistä.",
+    "Sininen lippu — päästä johtaja ohi.",
+    "Siirry sivuun, sininen lippu."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Keltainen lippu — ongelma edessä, ole varovainen!",
+    "[urgently] Keltainen lippu heiluu, hidasta!",
+    "[urgently] Keltainen lippu, edessä on ongelmia!",
+    "[urgently] Keltainen lippu — varo siellä edessä!",
+    "[urgently] Varoitus, keltainen lippu — pysy valppaana!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Varoituslippu on ulkona!",
+    "Meillä on varoitus radalla.",
+    "Koko radan varoitus — hidasta.",
+    "Varoituslippu heiluu — pidä vauhti.",
+    "Varoitus on ulkona, jätä tilaa."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Varokaa trümmereita radalla!",
+    "[urgently] Roskaa radalla — ole varovainen!",
+    "[urgently] Edessä on roskaa, pysy valppaana!",
+    "[urgently] Varoa, roskaa ajolinjalla!"
+  ],
+  "SpotterFlagWhite": [
+    "Valkoinen lippu — viimeinen kierros!",
+    "Valkoinen lippu on ulkona, viimeinen kierros!",
+    "Se on valkoinen lippu — yksi kierros jäljellä!",
+    "Valkoinen lippu näytetty, tee siitä arvokas!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Ruudullinen lippu on ulkona!",
+    "[excitedly] Ruudullinen lippu — se on maali!",
+    "[excitedly] Se on ruudullinen, kilpailu on ohi!",
+    "[excitedly] Ruudullinen lippu lentää — kilpailu ohi!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Sinulla on musta lippu — tule sisään!",
+    "[seriously] Musta lippu näytetty, aja sisään.",
+    "[seriously] Musta lippu — mene varikolle nyt.",
+    "[seriously] He näyttävät sinulle mustaa lippua, tule varikolle tällä kierroksella."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Sinut on hylätty — tule takaisin varikolle.",
+    "[seriously] Hylkäyslippu — palaa pit lanelle.",
+    "[seriously] Sinut on hylätty, tuo auto sisään.",
+    "[seriously] Musta lippu ristillä — sinut on hylätty, varikolle nyt."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Meatball-lippu — tuo autosi varikolle korjauksia varten.",
+    "[seriously] Sinulla on meatball-lippu, varikolle korjauksia varten.",
+    "[seriously] Korjauslippu näytetty — autosi tarvitsee huomiota varikoilla.",
+    "[seriously] Meatball-lippu ulkona — tule varikolle tällä kierroksella korjauksia varten."
+  ],
+  "SpotterFlagStartReady": [
+    "Valmistaudu!",
+    "Valmiudessa starttia varten.",
+    "Valmistaudu — startti on tulossa!",
+    "Melkein aika — valmistaudu lähtemään!"
+  ]
+}

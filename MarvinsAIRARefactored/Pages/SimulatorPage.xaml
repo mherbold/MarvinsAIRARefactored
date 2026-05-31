@@ -1,0 +1,218 @@
+﻿<UserControl x:Class="MarvinsAIRARefactored.Pages.SimulatorPage"
+             x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MarvinsAIRARefactored.Pages"
+             xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+             xmlns:viewers="clr-namespace:MarvinsAIRARefactored.Viewers"
+             xmlns:classes="clr-namespace:MarvinsAIRARefactored.Classes"
+             xmlns:converters="clr-namespace:MarvinsAIRARefactored.Converters"
+             xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+             mc:Ignorable="d"
+             d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </UserControl.DataContext>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <TabControl Grid.Row="2"
+                    TabStripPlacement="Top"
+                    Background="{x:Null}"
+                    BorderThickness="0"
+                    BorderBrush="Transparent">
+
+            <TabControl.Resources>
+
+                <ResourceDictionary>
+
+                    <ResourceDictionary.MergedDictionaries>
+                        <ResourceDictionary Source="/MarvinsAIRARefactored;component/Themes/SharedHelpIcon.xaml" />
+                    </ResourceDictionary.MergedDictionaries>
+
+                    <converters:HelpIconVisibilityConverter x:Key="HelpIconVisibility" />
+
+                    <Style TargetType="{x:Type controls:MairaTabItem}">
+
+                        <Setter Property="Foreground"
+                                Value="{DynamicResource Brush.Foreground.Muted}" />
+                        <Setter Property="FontSize"
+                                Value="20" />
+                        <Setter Property="Cursor"
+                                Value="Hand" />
+
+                        <Setter Property="Template">
+
+                            <Setter.Value>
+
+                                <ControlTemplate TargetType="TabItem">
+
+                                    <Border x:Name="Border"
+                                            Background="Transparent"
+                                            BorderBrush="Transparent"
+                                            BorderThickness="0"
+                                            Margin="0,0,40,0"
+                                            SnapsToDevicePixels="True">
+
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*" />
+                                                <ColumnDefinition Width="10" />
+                                                <ColumnDefinition Width="Auto" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <ContentPresenter Grid.Column="0"
+                                                              ContentSource="Header"
+                                                              HorizontalAlignment="Center"
+                                                              RecognizesAccessKey="True" />
+
+                                            <Button Grid.Column="2"
+                                                    Style="{StaticResource HelpIconCommandMixin}"
+                                                    CommandParameter="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=HelpTopic}"
+                                                    VerticalAlignment="Center"
+                                                    Margin="6,0,0,0"
+                                                    Panel.ZIndex="2">
+
+                                                <Button.Visibility>
+
+                                                    <MultiBinding Converter="{StaticResource HelpIconVisibility}">
+
+                                                        <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                                                 Path="HelpTopic" />
+
+                                                    </MultiBinding>
+
+                                                </Button.Visibility>
+
+                                            </Button>
+
+                                        </Grid>
+
+                                    </Border>
+
+                                    <ControlTemplate.Triggers>
+
+                                        <Trigger Property="IsSelected"
+                                                 Value="True">
+                                            <Setter Property="Foreground"
+                                                    Value="{DynamicResource Brush.Accent}" />
+                                            <Setter Property="Panel.ZIndex"
+                                                    Value="1" />
+                                        </Trigger>
+
+                                        <Trigger Property="IsMouseOver"
+                                                 Value="True">
+                                        </Trigger>
+
+                                    </ControlTemplate.Triggers>
+
+                                </ControlTemplate>
+
+                            </Setter.Value>
+
+                        </Setter>
+
+                    </Style>
+
+                </ResourceDictionary>
+
+            </TabControl.Resources>
+
+            <controls:MairaTabItem x:Name="HeaderData_TabItem"
+                                  Header="{Binding Localization[HeaderData_UC]}"
+                                  HelpTopic="advanced/simulator/#header-data">
+
+                <Grid Margin="0,40,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="12" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <viewers:HeaderDataViewer x:Name="HeaderData_HeaderDataViewer"
+                                              Grid.Column="0"
+                                              MouseWheel="HeaderData_HeaderDataViewer_MouseWheel"
+                                              ClipToBounds="True" />
+
+                    <ScrollBar x:Name="HeaderData_ScrollBar"
+                               Grid.Column="2"
+                               Scroll="HeaderData_ScrollBar_Scroll"
+                               SmallChange="1"
+                               LargeChange="15"
+                               Visibility="Collapsed" />
+
+                </Grid>
+
+            </controls:MairaTabItem>
+
+            <controls:MairaTabItem x:Name="SessionInfo_TabItem"
+                                  Header="{Binding Localization[SessionInformation_UC]}"
+                                  HelpTopic="advanced/simulator/#session-information">
+
+                <Grid Margin="0,40,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="12" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <viewers:SessionInfoViewer x:Name="SessionInfo_SessionInfoViewer"
+                                               Grid.Column="0"
+                                               MouseWheel="SessionInfo_SessionInfoViewer_MouseWheel"
+                                               ClipToBounds="True" />
+
+                    <ScrollBar x:Name="SessionInfo_ScrollBar"
+                               Grid.Column="2"
+                               Scroll="SessionInfo_ScrollBar_Scroll"
+                               SmallChange="1"
+                               LargeChange="15"
+                               Visibility="Collapsed" />
+
+                </Grid>
+
+            </controls:MairaTabItem>
+
+            <controls:MairaTabItem x:Name="TelemetryData_TabItem"
+                                  Header="{Binding Localization[TelemetryData_UC]}"
+                                  HelpTopic="advanced/simulator/#telemetry-data">
+
+                <Grid Margin="0,40,0,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="12" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <viewers:TelemetryDataViewer x:Name="TelemetryData_TelemetryDataViewer"
+                                                 Grid.Column="0"
+                                                 MouseWheel="TelemetryData_TelemetryDataViewer_MouseWheel"
+                                                 ClipToBounds="True" />
+
+                    <ScrollBar x:Name="TelemetryData_ScrollBar"
+                               Grid.Column="2"
+                               Scroll="TelemetryData_ScrollBar_Scroll"
+                               SmallChange="1"
+                               LargeChange="15"
+                               Visibility="Collapsed" />
+
+                </Grid>
+
+            </controls:MairaTabItem>
+
+        </TabControl>
+
+    </Grid>
+
+</UserControl>
