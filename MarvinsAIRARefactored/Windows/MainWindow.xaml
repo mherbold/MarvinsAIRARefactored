@@ -5,6 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:classes="clr-namespace:MarvinsAIRARefactored.Classes"
+        xmlns:converters="clr-namespace:MarvinsAIRARefactored.Converters"
         xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
         xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
         mc:Ignorable="d"
@@ -37,7 +38,7 @@
                 <ResourceDictionary Source="/MarvinsAIRARefactored;component/Themes/SharedHelpIcon.xaml" />
             </ResourceDictionary.MergedDictionaries>
 
-            <classes:HelpIconVisibilityConverter x:Key="HelpIconVisibility" />
+            <converters:HelpIconVisibilityConverter x:Key="HelpIconVisibility" />
 
         </ResourceDictionary>
 

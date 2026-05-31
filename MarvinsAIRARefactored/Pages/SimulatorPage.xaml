@@ -8,6 +8,7 @@
              xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
              xmlns:viewers="clr-namespace:MarvinsAIRARefactored.Viewers"
              xmlns:classes="clr-namespace:MarvinsAIRARefactored.Classes"
+             xmlns:converters="clr-namespace:MarvinsAIRARefactored.Converters"
              xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
              mc:Ignorable="d"
              d:DesignWidth="800">
@@ -38,7 +39,7 @@
                         <ResourceDictionary Source="/MarvinsAIRARefactored;component/Themes/SharedHelpIcon.xaml" />
                     </ResourceDictionary.MergedDictionaries>
 
-                    <classes:HelpIconVisibilityConverter x:Key="HelpIconVisibility" />
+                    <converters:HelpIconVisibilityConverter x:Key="HelpIconVisibility" />
 
                     <Style TargetType="{x:Type controls:MairaTabItem}">
 

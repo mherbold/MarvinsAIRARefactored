@@ -1,13 +1,13 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:classes="clr-namespace:MarvinsAIRARefactored.Classes"
+                    xmlns:converters="clr-namespace:MarvinsAIRARefactored.Converters"
                     xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls">
 
     <ResourceDictionary.MergedDictionaries>
         <ResourceDictionary Source="/MarvinsAIRARefactored;component/Themes/SharedHelpIcon.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
-    <classes:HelpIconVisibilityConverter x:Key="HelpIconVisibility" />
+    <converters:HelpIconVisibilityConverter x:Key="HelpIconVisibility" />
 
     <Style x:Key="MairaGroupBoxHeaderTextStyle"
            TargetType="{x:Type TextBlock}">

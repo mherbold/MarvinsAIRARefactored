@@ -11,6 +11,8 @@ using FlowDirection = System.Windows.FlowDirection;
 using Point = System.Windows.Point;
 using ScrollBar = System.Windows.Controls.Primitives.ScrollBar;
 
+using AppDataContext = MarvinsAIRARefactored.DataContext.DataContext;
+
 namespace MarvinsAIRARefactored.Viewers;
 
 public class SessionInfoViewer : Control
@@ -23,8 +25,10 @@ public class SessionInfoViewer : Control
 	private static readonly Typeface typeface = new( "Consolas" );
 
 	private static readonly SolidColorBrush _oddLineBrush = Brushes.Transparent;
-	private static readonly SolidColorBrush _evenLineBrush = new( Color.FromArgb( 255, 34, 34, 34 ) );
-	private static readonly SolidColorBrush _foregroundBrush = new( Color.FromArgb( 255, 220, 220, 220 ) );
+	private static readonly SolidColorBrush _evenLineBrushDark = new( Color.FromArgb( 255, 34, 34, 34 ) );
+	private static readonly SolidColorBrush _evenLineBrushLight = new( Color.FromArgb( 255, 210, 210, 210 ) );
+	private static readonly SolidColorBrush _foregroundBrushDark = new( Color.FromArgb( 255, 220, 220, 220 ) );
+	private static readonly SolidColorBrush _foregroundBrushLight = new( Color.FromArgb( 255, 20, 20, 20 ) );
 
 	private const double _lineHeight = 30.0;
 	private const double _fontSize = 20.0;
@@ -40,8 +44,10 @@ public class SessionInfoViewer : Control
 		DefaultStyleKeyProperty.OverrideMetadata( typeof( SessionInfoViewer ), new FrameworkPropertyMetadata( typeof( SessionInfoViewer ) ) );
 
 		_oddLineBrush.Freeze();
-		_evenLineBrush.Freeze();
-		_foregroundBrush.Freeze();
+		_evenLineBrushDark.Freeze();
+		_evenLineBrushLight.Freeze();
+		_foregroundBrushDark.Freeze();
+		_foregroundBrushLight.Freeze();
 	}
 
 	public void Initialize( ScrollBar scrollBar )
@@ -71,9 +77,14 @@ public class SessionInfoViewer : Control
 		var lineIndex = 0;
 		var stopDrawing = false;
 
+		var isDark = !AppDataContext.Instance.Settings.AppLightThemeEnabled;
+
+		var evenLineBrush = isDark ? _evenLineBrushDark : _evenLineBrushLight;
+		var foregroundBrush = isDark ? _foregroundBrushDark : _foregroundBrushLight;
+
 		foreach ( var propertyInfo in sessionInfo.GetType().GetProperties() )
 		{
-			DrawSessionInfo( drawingContext, propertyInfo.Name, propertyInfo.GetValue( sessionInfo ), 0, ref origin, ref lineIndex, ref stopDrawing );
+			DrawSessionInfo( drawingContext, propertyInfo.Name, propertyInfo.GetValue( sessionInfo ), 0, ref origin, ref lineIndex, ref stopDrawing, evenLineBrush, foregroundBrush );
 		}
 
 		NumTotalLines = lineIndex;
@@ -97,7 +108,7 @@ public class SessionInfoViewer : Control
 		}
 	}
 
-	private void DrawSessionInfo( DrawingContext drawingContext, string propertyName, object? valueAsObject, int indent, ref Point origin, ref int lineIndex, ref bool stopDrawing )
+	private void DrawSessionInfo( DrawingContext drawingContext, string propertyName, object? valueAsObject, int indent, ref Point origin, ref int lineIndex, ref bool stopDrawing, SolidColorBrush evenLineBrush, SolidColorBrush foregroundBrush )
 	{
 		var isSimpleValue = valueAsObject is null || valueAsObject is string || valueAsObject is int || valueAsObject is float || valueAsObject is double;
 
@@ -105,13 +116,13 @@ public class SessionInfoViewer : Control
 		{
 			if ( lineIndex >= ScrollIndex && !stopDrawing )
 			{
-				var brush = ( lineIndex & 1 ) == 1 ? _oddLineBrush : _evenLineBrush;
+				var brush = ( lineIndex & 1 ) == 1 ? _oddLineBrush : evenLineBrush;
 
 				drawingContext.DrawRectangle( brush, null, new Rect( 0, origin.Y - _yOffset, ActualWidth, _lineHeight ) );
 
 				origin.X = 20 + indent * _indentWidth;
 
-				var formattedText = new FormattedText( propertyName, cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, _foregroundBrush, 1.25 )
+				var formattedText = new FormattedText( propertyName, cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, foregroundBrush, 1.25 )
 				{
 					LineHeight = _lineHeight
 				};
@@ -122,7 +133,7 @@ public class SessionInfoViewer : Control
 				{
 					origin.X = _firstColumnWidth + indent * _indentWidth;
 
-					formattedText = new FormattedText( valueAsObject.ToString(), cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, _foregroundBrush, 1.25 )
+					formattedText = new FormattedText( valueAsObject.ToString(), cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, foregroundBrush, 1.25 )
 					{
 						LineHeight = _lineHeight
 					};
@@ -149,7 +160,7 @@ public class SessionInfoViewer : Control
 
 				foreach ( var item in list )
 				{
-					DrawSessionInfo( drawingContext, index.ToString(), item, indent + 1, ref origin, ref lineIndex, ref stopDrawing );
+					DrawSessionInfo( drawingContext, index.ToString(), item, indent + 1, ref origin, ref lineIndex, ref stopDrawing, evenLineBrush, foregroundBrush );
 
 					index++;
 				}
@@ -159,7 +170,7 @@ public class SessionInfoViewer : Control
 #pragma warning disable CS8602
 				foreach ( var propertyInfo in valueAsObject.GetType().GetProperties() )
 				{
-					DrawSessionInfo( drawingContext, propertyInfo.Name, propertyInfo.GetValue( valueAsObject ), indent + 1, ref origin, ref lineIndex, ref stopDrawing );
+					DrawSessionInfo( drawingContext, propertyInfo.Name, propertyInfo.GetValue( valueAsObject ), indent + 1, ref origin, ref lineIndex, ref stopDrawing, evenLineBrush, foregroundBrush );
 				}
 #pragma warning restore CS8602
 			}

@@ -1,9 +1,8 @@
-﻿
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace MarvinsAIRARefactored.Classes;
+namespace MarvinsAIRARefactored.Converters;
 
 public sealed class HelpIconVisibilityConverter : IMultiValueConverter
 {

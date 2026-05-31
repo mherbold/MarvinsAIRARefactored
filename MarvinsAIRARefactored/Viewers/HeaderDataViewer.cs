@@ -10,6 +10,8 @@ using FlowDirection = System.Windows.FlowDirection;
 using Point = System.Windows.Point;
 using ScrollBar = System.Windows.Controls.Primitives.ScrollBar;
 
+using AppDataContext = MarvinsAIRARefactored.DataContext.DataContext;
+
 namespace MarvinsAIRARefactored.Viewers;
 
 public class HeaderDataViewer : Control
@@ -22,8 +24,10 @@ public class HeaderDataViewer : Control
 	private static readonly Typeface typeface = new( "Consolas" );
 
 	private static readonly SolidColorBrush _oddLineBrush = Brushes.Transparent;
-	private static readonly SolidColorBrush _evenLineBrush = new( Color.FromArgb( 255, 34, 34, 34 ) );
-	private static readonly SolidColorBrush _foregroundBrush = new( Color.FromArgb( 255, 220, 220, 220 ) );
+	private static readonly SolidColorBrush _evenLineBrushDark = new( Color.FromArgb( 255, 34, 34, 34 ) );
+	private static readonly SolidColorBrush _evenLineBrushLight = new( Color.FromArgb( 255, 210, 210, 210 ) );
+	private static readonly SolidColorBrush _foregroundBrushDark = new( Color.FromArgb( 255, 220, 220, 220 ) );
+	private static readonly SolidColorBrush _foregroundBrushLight = new( Color.FromArgb( 255, 20, 20, 20 ) );
 
 	private const double _lineHeight = 30.0;
 	private const double _fontSize = 20.0;
@@ -38,8 +42,10 @@ public class HeaderDataViewer : Control
 		DefaultStyleKeyProperty.OverrideMetadata( typeof( HeaderDataViewer ), new FrameworkPropertyMetadata( typeof( HeaderDataViewer ) ) );
 
 		_oddLineBrush.Freeze();
-		_evenLineBrush.Freeze();
-		_foregroundBrush.Freeze();
+		_evenLineBrushDark.Freeze();
+		_evenLineBrushLight.Freeze();
+		_foregroundBrushDark.Freeze();
+		_foregroundBrushLight.Freeze();
 	}
 
 	public void Initialize( ScrollBar scrollBar )
@@ -83,15 +89,20 @@ public class HeaderDataViewer : Control
 		var origin = new Point( 20, _yOffset );
 		var lineIndex = 0;
 
+		var isDark = !AppDataContext.Instance.Settings.AppLightThemeEnabled;
+
+		var evenLineBrush = isDark ? _evenLineBrushDark : _evenLineBrushLight;
+		var foregroundBrush = isDark ? _foregroundBrushDark : _foregroundBrushLight;
+
 		foreach ( var keyValuePair in dictionary )
 		{
 			if ( lineIndex >= ScrollIndex )
 			{
-				var brush = ( lineIndex & 1 ) == 1 ? _oddLineBrush : _evenLineBrush;
+				var brush = ( lineIndex & 1 ) == 1 ? _oddLineBrush : evenLineBrush;
 
 				drawingContext.DrawRectangle( brush, null, new Rect( 0, origin.Y - _yOffset, ActualWidth, _lineHeight ) );
 
-				var formattedText = new FormattedText( keyValuePair.Key, _cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, _foregroundBrush, 1.25 )
+				var formattedText = new FormattedText( keyValuePair.Key, _cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, foregroundBrush, 1.25 )
 				{
 					LineHeight = _lineHeight
 				};
@@ -100,7 +111,7 @@ public class HeaderDataViewer : Control
 
 				var valueOrigin = new Point( origin.X + _firstColumnWidth, origin.Y );
 
-				formattedText = new FormattedText( keyValuePair.Value.ToString( _cultureInfo ), _cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, _foregroundBrush, 1.25 )
+				formattedText = new FormattedText( keyValuePair.Value.ToString( _cultureInfo ), _cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, foregroundBrush, 1.25 )
 				{
 					LineHeight = _lineHeight
 				};

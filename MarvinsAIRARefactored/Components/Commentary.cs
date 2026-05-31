@@ -85,6 +85,14 @@ public sealed class Commentary
 			return;
 		}
 
+		// Only call proximity when conditions are appropriate for live racing
+		if ( sim.IsReplayPlaying || !sim.IsOnTrack || sim.OnPitRoad )
+		{
+			// Reset so calls fire fresh when conditions become eligible again
+			ResetPerSessionState();
+			return;
+		}
+
 		var carLeftRight = sim.CarLeftRight;
 
 		if ( carLeftRight != _prevCarLeftRight )

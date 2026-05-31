@@ -12,6 +12,8 @@ using ScrollBar = System.Windows.Controls.Primitives.ScrollBar;
 
 using IRSDKSharper;
 
+using AppDataContext = MarvinsAIRARefactored.DataContext.DataContext;
+
 namespace MarvinsAIRARefactored.Viewers;
 
 public class TelemetryDataViewer : Control
@@ -24,8 +26,10 @@ public class TelemetryDataViewer : Control
 	private static readonly Typeface typeface = new( "Consolas" );
 
 	private static readonly SolidColorBrush _oddLineBrush = Brushes.Transparent;
-	private static readonly SolidColorBrush _evenLineBrush = new( Color.FromArgb( 255, 34, 34, 34 ) );
-	private static readonly SolidColorBrush _foregroundBrush = new( Color.FromArgb( 255, 220, 220, 220 ) );
+	private static readonly SolidColorBrush _evenLineBrushDark = new( Color.FromArgb( 255, 34, 34, 34 ) );
+	private static readonly SolidColorBrush _evenLineBrushLight = new( Color.FromArgb( 255, 210, 210, 210 ) );
+	private static readonly SolidColorBrush _foregroundBrushDark = new( Color.FromArgb( 255, 220, 220, 220 ) );
+	private static readonly SolidColorBrush _foregroundBrushLight = new( Color.FromArgb( 255, 20, 20, 20 ) );
 	private static readonly SolidColorBrush _indexBrush = new( Color.FromArgb( 255, 128, 128, 128 ) );
 	private static readonly SolidColorBrush _greenBrush = new( Color.FromArgb( 255, 46, 255, 145 ) );
 	private static readonly SolidColorBrush _orangeBrush = new( Color.FromArgb( 255, 255, 91, 46 ) );
@@ -43,8 +47,10 @@ public class TelemetryDataViewer : Control
 		DefaultStyleKeyProperty.OverrideMetadata( typeof( TelemetryDataViewer ), new FrameworkPropertyMetadata( typeof( TelemetryDataViewer ) ) );
 
 		_oddLineBrush.Freeze();
-		_evenLineBrush.Freeze();
-		_foregroundBrush.Freeze();
+		_evenLineBrushDark.Freeze();
+		_evenLineBrushLight.Freeze();
+		_foregroundBrushDark.Freeze();
+		_foregroundBrushLight.Freeze();
 		_indexBrush.Freeze();
 		_greenBrush.Freeze();
 		_orangeBrush.Freeze();
@@ -75,13 +81,18 @@ public class TelemetryDataViewer : Control
 		var lineIndex = 0;
 		var stopDrawing = false;
 
+		var isDark = !AppDataContext.Instance.Settings.AppLightThemeEnabled;
+
+		var evenLineBrush = isDark ? _evenLineBrushDark : _evenLineBrushLight;
+		var foregroundBrush = isDark ? _foregroundBrushDark : _foregroundBrushLight;
+
 		foreach ( var keyValuePair in irsdk.Data.TelemetryDataProperties )
 		{
 			for ( var valueIndex = 0; valueIndex < keyValuePair.Value.Count; valueIndex++ )
 			{
 				if ( lineIndex >= ScrollIndex && !stopDrawing )
 				{
-					var brush = ( lineIndex & 1 ) == 1 ? _oddLineBrush : _evenLineBrush;
+					var brush = ( lineIndex & 1 ) == 1 ? _oddLineBrush : evenLineBrush;
 
 					drawingContext.DrawRectangle( brush, null, new Rect( 0, origin.Y - _yOffset, ActualWidth, _lineHeight ) );
 
@@ -96,7 +107,7 @@ public class TelemetryDataViewer : Control
 
 					origin.X += 60;
 
-					formattedText = new FormattedText( keyValuePair.Value.Name, _cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, _foregroundBrush, 1.25 )
+					formattedText = new FormattedText( keyValuePair.Value.Name, _cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, foregroundBrush, 1.25 )
 					{
 						LineHeight = _lineHeight
 					};
@@ -120,7 +131,7 @@ public class TelemetryDataViewer : Control
 					var valueAsString = string.Empty;
 					var bitsAsString = string.Empty;
 
-					brush = _foregroundBrush;
+					brush = foregroundBrush;
 
 					switch ( keyValuePair.Value.Unit )
 					{
@@ -215,7 +226,7 @@ public class TelemetryDataViewer : Control
 
 					origin.X += 210;
 
-					formattedText = new FormattedText( keyValuePair.Value.Unit, _cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, _foregroundBrush, 1.25 )
+					formattedText = new FormattedText( keyValuePair.Value.Unit, _cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, foregroundBrush, 1.25 )
 					{
 						LineHeight = _lineHeight
 					};
@@ -232,7 +243,7 @@ public class TelemetryDataViewer : Control
 						desc += $" ({bitsAsString})";
 					}
 
-					formattedText = new FormattedText( desc, _cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, _foregroundBrush, 1.25 )
+					formattedText = new FormattedText( desc, _cultureInfo, FlowDirection.LeftToRight, typeface, _fontSize, foregroundBrush, 1.25 )
 					{
 						LineHeight = _lineHeight
 					};

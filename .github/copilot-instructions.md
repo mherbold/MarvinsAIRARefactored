@@ -16,7 +16,8 @@
 | iRacing SDK, telemetry, memory-mapped IPC, drivers | `Agents/simulator-iracing.md` |
 | Audio devices, sounds, CachedSound, XAudio2 | `Agents/audio-sounds.md` |
 | Speech-to-text, Chrome bridge, WebView2 | `Agents/speech-to-text.md` |
-| ElevenLabs TTS, voice slots, Commentary, phrase templates, API key | `Agents/text-to-speech.md` |
+| Commentary event detection, phrase templates, per-event toggles | `Agents/commentary.md` |
+| ElevenLabs TTS, voice slots, TTS queue/cache, API key | `Agents/elevenlabs-integration.md` |
 | Settings, per-context system, ContextSwitches, ContextSettings | `Agents/settings-context.md` |
 | WPF controls, XAML patterns, Maira* controls, dialogs, artwork | `Agents/ui-wpf-controls.md` |
 | Localization, .resx and TTS .json files, adding strings or languages | `Agents/localization.md` |

@@ -39,6 +39,7 @@ public partial class Simulator
 	public int[] CarIdxLapCompleted { get; private set; } = new int[ IRacingSdkConst.MaxNumCars ];
 	public bool[] CarIdxOnPitRoad { get; private set; } = new bool[ IRacingSdkConst.MaxNumCars ];
 	public int[] CarIdxPosition { get; private set; } = new int[ IRacingSdkConst.MaxNumCars ];
+	public uint[] CarIdxSessionFlags { get; private set; } = new uint[ IRacingSdkConst.MaxNumCars ];
 	public IRacingSdkEnum.CarLeftRight CarLeftRight { get; private set; } = IRacingSdkEnum.CarLeftRight.Off;
 	public float CarDistAhead { get; private set; } = 0f;
 	public float CarDistBehind { get; private set; } = 0f;
@@ -153,6 +154,7 @@ public partial class Simulator
 	private IRacingSdkDatum? _carIdxLapDistPctDatum = null;
 	private IRacingSdkDatum? _carIdxPositionDatum = null;
 	private IRacingSdkDatum? _carIdxOnPitRoadDatum = null;
+	private IRacingSdkDatum? _carIdxSessionFlagsDatum = null;
 	private IRacingSdkDatum? _carIdxTireCompoundDatum = null;
 	private IRacingSdkDatum? _carDistAheadDatum = null;
 	private IRacingSdkDatum? _carDistBehindDatum = null;
@@ -640,6 +642,7 @@ public partial class Simulator
 			_carIdxLapDistPctDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapDistPct" ];
 			_carIdxPositionDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxPosition" ];
 			_carIdxOnPitRoadDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxOnPitRoad" ];
+			_carIdxSessionFlagsDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxSessionFlags" ];
 			_carIdxTireCompoundDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxTireCompound" ];
 			_carDistAheadDatum = _irsdk.Data.TelemetryDataProperties[ "CarDistAhead" ];
 			_carDistBehindDatum = _irsdk.Data.TelemetryDataProperties[ "CarDistBehind" ];
@@ -852,6 +855,7 @@ public partial class Simulator
 		_irsdk.Data.GetFloatArray( _carIdxLapDistPctDatum, CarIdxLapDistPct, 0, _carIdxLapDistPctDatum!.Count );
 		_irsdk.Data.GetIntArray( _carIdxPositionDatum, CarIdxPosition, 0, _carIdxPositionDatum!.Count );
 		_irsdk.Data.GetBoolArray( _carIdxOnPitRoadDatum, CarIdxOnPitRoad, 0, _carIdxOnPitRoadDatum!.Count );
+		_irsdk.Data.GetBitFieldArray( _carIdxSessionFlagsDatum, CarIdxSessionFlags, 0, _carIdxSessionFlagsDatum!.Count );
 		_irsdk.Data.GetFloatArray( _carIdxF2TimeDatum, CarIdxF2Time, 0, _carIdxF2TimeDatum!.Count );
 		_irsdk.Data.GetFloatArray( _carIdxBestLapTimeDatum, CarIdxBestLapTime, 0, _carIdxBestLapTimeDatum!.Count );
 		_irsdk.Data.GetFloatArray( _carIdxEstTimeDatum, CarIdxEstTime, 0, _carIdxEstTimeDatum!.Count );

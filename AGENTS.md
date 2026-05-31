@@ -23,7 +23,8 @@ For topic-specific details, load the relevant sub-file. Each sub-file lists the 
 | [`Agents/simulator-iracing.md`](Agents/simulator-iracing.md) | iRacing SDK bridge (`Simulator`), 60/360 Hz telemetry, memory-mapped IPC (`Telemetry`), driver tracking, timing markers, debug viewers |
 | [`Agents/audio-sounds.md`](Agents/audio-sounds.md) | Audio device management, sound effect playback, CachedSound/Player, XAudio2, LFE DirectSound capture |
 | [`Agents/speech-to-text.md`](Agents/speech-to-text.md) | Chrome/Edge Web Speech API bridge, STT asset files, ChatQueue, transcript overlay window |
-| [`Agents/text-to-speech.md`](Agents/text-to-speech.md) | ElevenLabs TTS pipeline, voice slots, Commentary event detection, phrase templates, API key storage |
+| [`Agents/commentary.md`](Agents/commentary.md) | Commentary event detection, cooldowns, phrase templates & JSON files, LocalizationEditor tool, per-event settings toggles |
+| [`Agents/elevenlabs-integration.md`](Agents/elevenlabs-integration.md) | ElevenLabs TTS pipeline, voice slots, TTS queue/cache, API key storage, CommentaryPage UI |
 | [`Agents/settings-context.md`](Agents/settings-context.md) | Per-context settings system, `ContextSwitches`, `ContextSettings`, `Settings.cs` ordering rules, adding new per-context settings |
 | [`Agents/ui-wpf-controls.md`](Agents/ui-wpf-controls.md) | All `Maira*` controls, XAML patterns, artwork/icon PNGs, dialog templates, async window loading, XAML BOM warning |
 | [`Agents/localization.md`](Agents/localization.md) | `.resx` resource files, `Localization` indexer, adding strings, adding languages, localized ComboBox items |
@@ -87,6 +88,14 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
 
 ## Project Structure
 
+> **Important for agents resolving file paths:**
+> The solution root and the main application project share the same name, creating a **nested directory**:
+> `[repo root]/MarvinsAIRARefactored/MarvinsAIRARefactored.csproj`
+> All application source files (Components, DataContext, Windows, Pages, etc.) live under
+> `[repo root]/MarvinsAIRARefactored/` — **not** directly under `[repo root]/`.
+>
+> When constructing absolute paths, always use `get_projects_in_solution` first to confirm the project path, then derive file paths from `[workspace root] + project directory`. Do **not** trust paths returned by `code_search` directly — they can silently omit the project subdirectory segment.
+
 ```
 [repo root]/
 ├── Arduino/Wind/Wind.ino           # Arduino sketch for the twin/quad-fan wind simulator
@@ -109,6 +118,7 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
     │
     ├── Components/                 # Core services (all initialized & owned by App)
     │   ├── AdminBoxx.cs            # USB LED button box hardware
+    │   ├── AppManager.cs           # External app launch / process management
     │   ├── AudioManager.cs         # Audio device management
     │   ├── ChatQueue.cs            # Chat / messaging queue
     │   ├── CloudService.cs         # Update checks, analytics (herboldracing.com)
@@ -125,6 +135,7 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
     │   ├── RacingWheel.cs          # FFB algorithms and wheel output
     │   ├── RecordingManager.cs     # Telemetry recording/playback
     │   ├── SeatBeltTensioner.cs    # USB seat belt tensioner hardware
+    │   ├── SeatBeltTensionerGraph.cs # SBT telemetry graph rendering
     │   ├── SettingsFile.cs         # XML settings persistence
     │   ├── Simulator.cs            # iRacing SDK bridge (IRSDKSharper wrapper)
     │   ├── Sounds.cs               # Sound effect playback
@@ -173,6 +184,7 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
     │   ├── GraphPage.xaml/.cs
     │   ├── SimulatorPage.xaml/.cs
     │   ├── AdminBoxxPage.xaml/.cs
+    │   ├── AppManagerPage.xaml/.cs
     │   ├── AppSettingsPage.xaml/.cs
     │   ├── HelpPage.xaml/.cs
     │   ├── ContributePage.xaml/.cs
@@ -184,6 +196,7 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
     │   ├── MairaTextBox, MairaDualSlider, MairaStatusBar
     │   ├── MairaAppMenuButton, MairaAppMenuPopup
     │   ├── MairaButtonMapping, MairaMappableButton
+    │   ├── MairaExpander
     │   └── MairaTabItem, MairaGroupBox
     │
     ├── Classes/                    # Utility / helper classes
@@ -215,8 +228,10 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
     │
     ├── Converters/                 # WPF value converters
     │   ├── BooleanToVisibilityCollapsedConverter.cs
-    │   ├── StartsWithUnderscoreConverter.cs
-    │   └── HelpIconVisibilityConverter.cs
+    │   ├── BoolNegationConverter.cs
+    │   ├── HelpIconVisibilityConverter.cs
+    │   ├── NullToVisibilityConverter.cs
+    │   └── StartsWithUnderscoreConverter.cs
     │
     ├── PInvoke/                    # Custom P/Invoke declarations
     │   ├── User32.cs

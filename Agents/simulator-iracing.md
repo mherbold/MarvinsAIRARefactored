@@ -65,6 +65,14 @@ External readers map the same struct layout and read fields directly. Any change
 
 ---
 
+## IRSDKSharper Reference
+
+The **IRSDKSharper** library source lives at:
+```
+C:\Users\marvi\OneDrive\Documents\GitHub\IRSDKSharper
+```
+The key enum file is `IRacingSdkEnum.cs` in that directory. When you need to check enum values, read that file directly — do **not** guess values.
+
 ## Driver & Car Tracking (`Drivers`)
 
 `Drivers` maintains a live list of all cars/drivers in the current session, updated from `OnSessionInfo` and `OnTelemetryData`:
