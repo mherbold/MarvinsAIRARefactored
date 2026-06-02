@@ -31,15 +31,15 @@ public partial class Simulator
 	public List<IRacingSdkSessionInfo.DriverInfoModel.DriverTireModel>? AvailableTires = null;
 	public bool BrakeABSactive { get; private set; } = false;
 	public float Brake { get; private set; } = 0f;
-	public int[] CarIdxLap { get; private set; } = new int[ IRacingSdkConst.MaxNumCars ];
-	public float[] CarIdxLapDistPct { get; private set; } = new float[ IRacingSdkConst.MaxNumCars ];
-	public float[] CarIdxBestLapTime { get; private set; } = new float[ IRacingSdkConst.MaxNumCars ];
-	public float[] CarIdxEstTime { get; private set; } = new float[ IRacingSdkConst.MaxNumCars ];
-	public float[] CarIdxF2Time { get; private set; } = new float[ IRacingSdkConst.MaxNumCars ];
-	public int[] CarIdxLapCompleted { get; private set; } = new int[ IRacingSdkConst.MaxNumCars ];
-	public bool[] CarIdxOnPitRoad { get; private set; } = new bool[ IRacingSdkConst.MaxNumCars ];
-	public int[] CarIdxPosition { get; private set; } = new int[ IRacingSdkConst.MaxNumCars ];
-	public uint[] CarIdxSessionFlags { get; private set; } = new uint[ IRacingSdkConst.MaxNumCars ];
+	public int[] CarIdxLap { get; private set; } = [];
+	public float[] CarIdxLapDistPct { get; private set; } = [];
+	public float[] CarIdxBestLapTime { get; private set; } = [];
+	public float[] CarIdxEstTime { get; private set; } = [];
+	public float[] CarIdxF2Time { get; private set; } = [];
+	public int[] CarIdxLapCompleted { get; private set; } = [];
+	public bool[] CarIdxOnPitRoad { get; private set; } = [];
+	public int[] CarIdxPosition { get; private set; } = [];
+	public uint[] CarIdxSessionFlags { get; private set; } = [];
 	public IRacingSdkEnum.CarLeftRight CarLeftRight { get; private set; } = IRacingSdkEnum.CarLeftRight.Off;
 	public float CarDistAhead { get; private set; } = 0f;
 	public float CarDistBehind { get; private set; } = 0f;
@@ -635,14 +635,24 @@ public partial class Simulator
 			_brakeABSactiveDatum = _irsdk.Data.TelemetryDataProperties[ "BrakeABSactive" ];
 			_brakeDatum = _irsdk.Data.TelemetryDataProperties[ "Brake" ];
 			_carIdxBestLapTimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxBestLapTime" ];
-			_carIdxEstTimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxEstTime" ];
-			_carIdxF2TimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxF2Time" ];
-			_carIdxLapDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLap" ];
-			_carIdxLapCompletedDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapCompleted" ];
-			_carIdxLapDistPctDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapDistPct" ];
-			_carIdxPositionDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxPosition" ];
-			_carIdxOnPitRoadDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxOnPitRoad" ];
-			_carIdxSessionFlagsDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxSessionFlags" ];
+				_carIdxEstTimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxEstTime" ];
+				_carIdxF2TimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxF2Time" ];
+				_carIdxLapDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLap" ];
+				_carIdxLapCompletedDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapCompleted" ];
+				_carIdxLapDistPctDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapDistPct" ];
+				_carIdxPositionDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxPosition" ];
+				_carIdxOnPitRoadDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxOnPitRoad" ];
+				_carIdxSessionFlagsDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxSessionFlags" ];
+
+				CarIdxBestLapTime = new float[ _carIdxBestLapTimeDatum.Count ];
+				CarIdxEstTime = new float[ _carIdxEstTimeDatum.Count ];
+				CarIdxF2Time = new float[ _carIdxF2TimeDatum.Count ];
+				CarIdxLap = new int[ _carIdxLapDatum.Count ];
+				CarIdxLapCompleted = new int[ _carIdxLapCompletedDatum.Count ];
+				CarIdxLapDistPct = new float[ _carIdxLapDistPctDatum.Count ];
+				CarIdxPosition = new int[ _carIdxPositionDatum.Count ];
+				CarIdxOnPitRoad = new bool[ _carIdxOnPitRoadDatum.Count ];
+				CarIdxSessionFlags = new uint[ _carIdxSessionFlagsDatum.Count ];
 			_carIdxTireCompoundDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxTireCompound" ];
 			_carDistAheadDatum = _irsdk.Data.TelemetryDataProperties[ "CarDistAhead" ];
 			_carDistBehindDatum = _irsdk.Data.TelemetryDataProperties[ "CarDistBehind" ];
@@ -718,6 +728,27 @@ public partial class Simulator
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LRshockVel_ST", out _lrShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RFshockVel_ST", out _rfShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RRshockVel_ST", out _rrShockVel_STDatum );
+
+			// log array datum counts so we can detect if any exceed our destination array sizes
+			var logger = app.Logger;
+
+			logger.WriteLine( $"[Simulator] IRacingSdkConst.MaxNumCars = {IRacingSdkConst.MaxNumCars}" );
+			logger.WriteLine( $"[Simulator] Array datum counts on initialization:" );
+			logger.WriteLine( $"[Simulator]   CarIdxBestLapTime.Count   = {_carIdxBestLapTimeDatum!.Count}" );
+			logger.WriteLine( $"[Simulator]   CarIdxEstTime.Count       = {_carIdxEstTimeDatum!.Count}" );
+			logger.WriteLine( $"[Simulator]   CarIdxF2Time.Count        = {_carIdxF2TimeDatum!.Count}" );
+			logger.WriteLine( $"[Simulator]   CarIdxLap.Count           = {_carIdxLapDatum!.Count}" );
+			logger.WriteLine( $"[Simulator]   CarIdxLapCompleted.Count  = {_carIdxLapCompletedDatum!.Count}" );
+			logger.WriteLine( $"[Simulator]   CarIdxLapDistPct.Count    = {_carIdxLapDistPctDatum!.Count}" );
+			logger.WriteLine( $"[Simulator]   CarIdxOnPitRoad.Count     = {_carIdxOnPitRoadDatum!.Count}" );
+			logger.WriteLine( $"[Simulator]   CarIdxPosition.Count      = {_carIdxPositionDatum!.Count}" );
+			logger.WriteLine( $"[Simulator]   CarIdxSessionFlags.Count  = {_carIdxSessionFlagsDatum!.Count}" );
+			logger.WriteLine( $"[Simulator]   CFShockVel_ST.Count       = {_cfShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   CRShockVel_ST.Count       = {_crShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   LFShockVel_ST.Count       = {_lfShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   LRShockVel_ST.Count       = {_lrShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   RFShockVel_ST.Count       = {_rfShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   RRShockVel_ST.Count       = {_rrShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 
 			_telemetryDataInitialized = true;
 		}
@@ -923,7 +954,7 @@ public partial class Simulator
 		{
 			app.Dispatcher.InvokeAsync( () =>
 			{
-				Misc.ForcePropertySetters( settings );
+				DataContext.DataContext.Instance.Settings.UpdateSpeedUnitStrings();
 
 				MainWindow._windPage.UpdateSpeedUnitLabel();
 			} );
