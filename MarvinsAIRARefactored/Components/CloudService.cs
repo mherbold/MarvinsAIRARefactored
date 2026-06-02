@@ -73,7 +73,9 @@ public class CloudService
 			{
 				var appVersion = Misc.GetVersion();
 
-				if ( appVersion != getCurrentVersionResponse.currentVersion )
+				var isNewerVersionAvailable = Version.TryParse( appVersion, out var localVersion ) && Version.TryParse( getCurrentVersionResponse.currentVersion, out var remoteVersion ) && remoteVersion > localVersion;
+
+				if ( isNewerVersionAvailable )
 				{
 					app.Logger.WriteLine( "[CloudService] Newer version is available" );
 
