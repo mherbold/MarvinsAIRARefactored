@@ -160,6 +160,38 @@ public class Settings : INotifyPropertyChanged
 		SuppressUpdatingOfContextSettings = false;
 	}
 
+	/// <summary>Updates only the display strings that depend on the iRacing speed units (MPH vs KPH).</summary>
+	public void UpdateSpeedUnitStrings()
+	{
+		var app = App.Instance!;
+
+		var useMph = app.Simulator.DisplayUnits == 0;
+
+		if ( _windMinimumSpeed == 0f )
+		{
+			WindMinimumSpeedString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else if ( useMph )
+		{
+			WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
+		}
+		else
+		{
+			WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
+		}
+
+		WindSpeed1String = useMph ? $"{_windSpeed1 * MathZ.MPSToMPH:F0}" : $"{_windSpeed1 * MathZ.MPSToKPH:F0}";
+		WindSpeed2String = useMph ? $"{_windSpeed2 * MathZ.MPSToMPH:F0}" : $"{_windSpeed2 * MathZ.MPSToKPH:F0}";
+		WindSpeed3String = useMph ? $"{_windSpeed3 * MathZ.MPSToMPH:F0}" : $"{_windSpeed3 * MathZ.MPSToKPH:F0}";
+		WindSpeed4String = useMph ? $"{_windSpeed4 * MathZ.MPSToMPH:F0}" : $"{_windSpeed4 * MathZ.MPSToKPH:F0}";
+		WindSpeed5String = useMph ? $"{_windSpeed5 * MathZ.MPSToMPH:F0}" : $"{_windSpeed5 * MathZ.MPSToKPH:F0}";
+		WindSpeed6String = useMph ? $"{_windSpeed6 * MathZ.MPSToMPH:F0}" : $"{_windSpeed6 * MathZ.MPSToKPH:F0}";
+		WindSpeed7String = useMph ? $"{_windSpeed7 * MathZ.MPSToMPH:F0}" : $"{_windSpeed7 * MathZ.MPSToKPH:F0}";
+		WindSpeed8String = useMph ? $"{_windSpeed8 * MathZ.MPSToMPH:F0}" : $"{_windSpeed8 * MathZ.MPSToKPH:F0}";
+		WindSpeed9String = useMph ? $"{_windSpeed9 * MathZ.MPSToMPH:F0}" : $"{_windSpeed9 * MathZ.MPSToKPH:F0}";
+		WindSpeed10String = useMph ? $"{_windSpeed10 * MathZ.MPSToMPH:F0}" : $"{_windSpeed10 * MathZ.MPSToKPH:F0}";
+	}
+
 	#endregion
 
 	#region Related settings
