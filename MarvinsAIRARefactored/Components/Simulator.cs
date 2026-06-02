@@ -750,6 +750,8 @@ public partial class Simulator
 			logger.WriteLine( $"[Simulator]   RFShockVel_ST.Count       = {_rfShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 			logger.WriteLine( $"[Simulator]   RRShockVel_ST.Count       = {_rrShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 
+			app.TimingMarkers.Initialize( _carIdxLapDistPctDatum.Count );
+
 			_telemetryDataInitialized = true;
 		}
 

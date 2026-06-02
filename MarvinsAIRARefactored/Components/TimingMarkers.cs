@@ -1,6 +1,4 @@
 ﻿
-using IRSDKSharper;
-
 namespace MarvinsAIRARefactored.Components;
 
 public class TimingMarkers
@@ -21,11 +19,18 @@ public class TimingMarkers
 
 	private int lastSessionNum = 0;
 
-	private readonly Car[] cars = new Car[ IRacingSdkConst.MaxNumCars ];
+	private Car[] cars = [];
 
 	public void Initialize()
 	{
-		for ( int i = 0; i < cars.Length; i++ )
+		Reset();
+	}
+
+	public void Initialize( int numCars )
+	{
+		cars = new Car[ numCars ];
+
+		for ( var i = 0; i < cars.Length; i++ )
 		{
 			cars[ i ] = new Car();
 		}

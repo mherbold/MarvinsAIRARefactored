@@ -124,7 +124,7 @@ public partial class GapMonitorWindow : Window
 				_updateCounter = UpdateInterval;
 
 				// protect against invalid player car index
-				if ( ( app.Simulator.PlayerCarIdx < 0 ) || ( app.Simulator.PlayerCarIdx >= IRacingSdkConst.MaxNumCars ) )
+				if ( ( app.Simulator.PlayerCarIdx < 0 ) || ( app.Simulator.PlayerCarIdx >= app.Simulator.CarIdxLapDistPct.Length ) )
 				{
 					return;
 				}
@@ -139,7 +139,7 @@ public partial class GapMonitorWindow : Window
 				Drivers.DriverInfo? aheadDriver = null;
 				Drivers.DriverInfo? behindDriver = null;
 
-				for ( var carIdx = 0; carIdx < IRacingSdkConst.MaxNumCars; carIdx++ )
+				for ( var carIdx = 0; carIdx < app.Simulator.CarIdxLapDistPct.Length; carIdx++ )
 				{
 					// exclude player's own car
 					if ( carIdx == app.Simulator.PlayerCarIdx )
