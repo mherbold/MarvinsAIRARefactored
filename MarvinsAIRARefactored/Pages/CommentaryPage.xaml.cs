@@ -20,6 +20,9 @@ internal sealed class PhraseEntryViewModel
 {
 	public string EventKey { get; init; } = "";
 	public string Text { get; set; } = "";
+
+	/// <summary>The text value at the time it was last saved to disk; used to detect changes and invalidate TTS cache.</summary>
+	public string SavedText { get; set; } = "";
 }
 
 /// <summary>One event-key group containing its list of phrase entries.</summary>
@@ -449,7 +452,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 
 			foreach ( var phrase in kv.Value )
 			{
-				vm.Phrases.Add( new PhraseEntryViewModel { EventKey = kv.Key, Text = phrase } );
+				vm.Phrases.Add( new PhraseEntryViewModel { EventKey = kv.Key, Text = phrase, SavedText = phrase } );
 			}
 
 			_phraseViewModels.Add( vm );
@@ -499,6 +502,21 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 	private void SavePhrases()
 	{
 		var language = AppDataContext.Instance.Settings.CommentaryElevenLabsLanguage;
+
+		// Delete cached audio for any phrase that has been modified since last save.
+		foreach ( var vm in _phraseViewModels )
+		{
+			foreach ( var entry in vm.Phrases )
+			{
+				if ( entry.Text != entry.SavedText && !string.IsNullOrWhiteSpace( entry.SavedText ) )
+				{
+					App.Instance!.TextToSpeech.DeleteCachedPhrasesForText( entry.SavedText, language );
+				}
+
+				entry.SavedText = entry.Text;
+			}
+		}
+
 		var dict = _phraseViewModels
 			.ToDictionary(
 				vm => vm.EventKey,

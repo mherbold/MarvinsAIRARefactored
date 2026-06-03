@@ -576,15 +576,22 @@ public sealed class TextToSpeech : IDisposable
 	/// Builds the full cache file path for the given slot/voice/text combination.
 	/// The text is normalised (trimmed, lowercased, punctuation stripped) and hashed so
 	/// casing variants of identical phrases share one cache entry.
+	/// Voice settings are encoded as explicit filename segments (not folded into the hash)
+	/// so that cache files for a given phrase can be found and deleted across any voice
+	/// configuration by matching only the text hash suffix.
+	/// Format: {slotIndex}_{voiceId}_{languageId}_{stability}_{style}_{similarityBoost}_{speakerBoost}_{textHash}.mp3
+	/// where stability/style/similarityBoost are 0–100 integers and speakerBoost is 0 or 1.
 	/// </summary>
 	private static string GetCacheFilePath( int slotIndex, string voiceId, string languageId, string text,
 		float stability, float style, float similarityBoost, bool speakerBoost )
 	{
-		var normalized = NormalizeText( text );
-		var voiceSettings = $"{stability:F2}_{style:F2}_{similarityBoost:F2}_{( speakerBoost ? 1 : 0 )}";
-		var hash = ComputeHash( $"{normalized}|{voiceSettings}" );
+		var textHash = ComputeHash( NormalizeText( text ) );
 		var safeLanguageId = languageId.Replace( '/', '_' ).Replace( '\\', '_' );
-		var fileName = $"{slotIndex}_{voiceId}_{safeLanguageId}_{hash}.mp3";
+		var stab = (int) Math.Round( stability * 100 );
+		var styl = (int) Math.Round( style * 100 );
+		var sim = (int) Math.Round( similarityBoost * 100 );
+		var sb = speakerBoost ? 1 : 0;
+		var fileName = $"{slotIndex}_{voiceId}_{safeLanguageId}_{stab:D3}_{styl:D3}_{sim:D3}_{sb}_{textHash}.mp3";
 
 		return Path.Combine( CacheDirectory, fileName );
 	}
@@ -609,6 +616,38 @@ public sealed class TextToSpeech : IDisposable
 		var bytes = SHA256.HashData( Encoding.UTF8.GetBytes( text ) );
 
 		return Convert.ToHexStringLower( bytes )[ ..16 ];
+	}
+
+	/// <summary>
+	/// Deletes all cached MP3 files associated with <paramref name="text"/> regardless of which
+	/// voice slot or voice settings were used to generate them.  Because voice settings are now
+	/// explicit filename segments (not folded into the hash), a single glob on the text-hash
+	/// suffix is sufficient to find every matching file.
+	/// Call this whenever a phrase is edited so the next test or live playback triggers a fresh
+	/// ElevenLabs API call instead of replaying stale cached audio.
+	/// </summary>
+	public void DeleteCachedPhrasesForText( string text, string languageId )
+	{
+		if ( !Directory.Exists( CacheDirectory ) )
+		{
+			return;
+		}
+
+		var textHash = ComputeHash( NormalizeText( text ) );
+		var matchingFiles = Directory.GetFiles( CacheDirectory, $"*_{textHash}.mp3" );
+
+		foreach ( var path in matchingFiles )
+		{
+			try
+			{
+				File.Delete( path );
+				App.Instance?.Logger.WriteLine( $"[TextToSpeech] Deleted stale cache: {Path.GetFileName( path )}" );
+			}
+			catch ( Exception ex )
+			{
+				App.Instance?.Logger.WriteLine( $"[TextToSpeech] Could not delete cache '{path}': {ex.Message}" );
+			}
+		}
 	}
 
 	private static async Task WriteCacheAsync( string path, byte[] bytes )
