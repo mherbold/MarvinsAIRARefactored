@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "Jezdci, nastartujte své motory!",
+    "Jedeme závodit!",
+    "Kdo není první, je poslední.",
+    "Jak se máš dnes, kamaráde?",
+    "Šachovnicová vlajka — to byl závod!"
+  ],
   "SpotterCarLeft": [
     "Auto vlevo!",
     "Vlevo!"
@@ -28,31 +35,6 @@
     "Stále vedle tebe.",
     "On je stále tam.",
     "Auto stále vedle."
-  ],
-  "TestPhrase0": [
-    "Testování hlasu.",
-    "Zkouška komunikace — slyšíte mě?",
-    "Toto je zkouška hlasu."
-  ],
-  "TestPhrase1": [
-    "Spotter online.",
-    "Spotter tady, zkouška komunikace.",
-    "Spotter aktivní."
-  ],
-  "TestPhrase2": [
-    "[excitedly] Sportovní komentátor jedna, testování!",
-    "Zkouška mikrofonu — sportovní komentátor jedna.",
-    "[cheerfully] Sportovní komentátor jedna online."
-  ],
-  "TestPhrase3": [
-    "Sportovní komentátor dva, testování.",
-    "Zkouška mikrofonu — sportovní komentátor dva.",
-    "Sportovní komentátor dva online."
-  ],
-  "TestPhrase4": [
-    "Pitový reportér, testování.",
-    "Pit lane, zkouška mikrofonu.",
-    "Pitový reportér online."
   ],
   "SpotterFlagOneLapToGreen": [
     "Jeden kolo do zelené!",

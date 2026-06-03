@@ -40,7 +40,27 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 	}
 
 	/// <summary>ElevenLabs voice ID (e.g. "pNInz6obpgDQGcFmaJgB").</summary>
-	public string VoiceId { get; set; } = string.Empty;
+	private string _voiceId = string.Empty;
+
+	public string VoiceId
+	{
+		get => _voiceId;
+
+		set
+		{
+			if ( value != _voiceId )
+			{
+				_voiceId = value;
+
+				OnPropertyChanged();
+				OnPropertyChanged( nameof( HasVoiceSelected ) );
+			}
+		}
+	}
+
+	/// <summary>True when the user has picked a voice (VoiceId is non-empty). Used to gate the Enabled switch in the UI.</summary>
+	[XmlIgnore]
+	public bool HasVoiceSelected => !string.IsNullOrEmpty( _voiceId );
 
 	/// <summary>
 	/// Human-readable voice name — populated from /v1/voices after a successful API call.
@@ -219,14 +239,13 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 
 	/// <summary>
 	/// Crew Chief — deep, authoritative, calm under pressure. Tactical and direct.
-	/// ElevenLabs voice: Adam (pNInz6obpgDQGcFmaJgB)
 	/// </summary>
 	public static VoiceSlotSettings CreateCrewChief() => new()
 	{
 		RoleLabel = "Crew Chief",
 		Enabled = true,
-		VoiceId = "pNInz6obpgDQGcFmaJgB",
-		VoiceName = "Adam",
+		VoiceId = "",
+		VoiceName = "",
 		Stability = 0.75f,
 		Style = 0.30f,
 		SimilarityBoost = 0.80f,
@@ -236,14 +255,13 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 
 	/// <summary>
 	/// Spotter — clipped, fast, high-clarity. Safety-critical, no drama.
-	/// ElevenLabs voice: Liam (TX3LPaxmHKxFdv7VOQHJ)
 	/// </summary>
 	public static VoiceSlotSettings CreateSpotter() => new()
 	{
 		RoleLabel = "Spotter",
 		Enabled = true,
-		VoiceId = "TX3LPaxmHKxFdv7VOQHJ",
-		VoiceName = "Liam",
+		VoiceId = "",
+		VoiceName = "",
 		Stability = 0.90f,
 		Style = 0.15f,
 		SimilarityBoost = 0.75f,
@@ -253,14 +271,13 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 
 	/// <summary>
 	/// Sportscaster 1 (Lead) — warm, theatrical, excited on big moments. Main play-by-play.
-	/// ElevenLabs voice: George (JBFqnCBsd6RMkjVDRZzb)
 	/// </summary>
 	public static VoiceSlotSettings CreateSportscaster1() => new()
 	{
 		RoleLabel = "Sportscaster 1",
 		Enabled = true,
-		VoiceId = "JBFqnCBsd6RMkjVDRZzb",
-		VoiceName = "George",
+		VoiceId = "",
+		VoiceName = "",
 		Stability = 0.35f,
 		Style = 0.75f,
 		SimilarityBoost = 0.75f,
@@ -270,14 +287,13 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 
 	/// <summary>
 	/// Sportscaster 2 (Color) — analytical, measured, conversational. Insight and strategy.
-	/// ElevenLabs voice: Daniel (onwK4e9ZLuTAKqWW03F9)
 	/// </summary>
 	public static VoiceSlotSettings CreateSportscaster2() => new()
 	{
 		RoleLabel = "Sportscaster 2",
 		Enabled = true,
-		VoiceId = "onwK4e9ZLuTAKqWW03F9",
-		VoiceName = "Daniel",
+		VoiceId = "",
+		VoiceName = "",
 		Stability = 0.55f,
 		Style = 0.50f,
 		SimilarityBoost = 0.75f,
@@ -287,14 +303,13 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 
 	/// <summary>
 	/// Pit Reporter — energetic, on-the-ground, slightly breathless. Pit lane presence.
-	/// ElevenLabs voice: Jessica (cgSgspJ2msm6clMCkdW9)
 	/// </summary>
 	public static VoiceSlotSettings CreatePitReporter() => new()
 	{
 		RoleLabel = "Pit Reporter",
 		Enabled = true,
-		VoiceId = "cgSgspJ2msm6clMCkdW9",
-		VoiceName = "Jessica",
+		VoiceId = "",
+		VoiceName = "",
 		Stability = 0.45f,
 		Style = 0.65f,
 		SimilarityBoost = 0.80f,

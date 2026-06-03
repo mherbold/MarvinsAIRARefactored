@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "Rijders, start jullie motoren!",
+    "Laten we racen!",
+    "Als je niet eerste bent, ben je laatste.",
+    "Hoe gaat het vandaag, vriend?",
+    "De geblokte vlag is uit – wat een race!"
+  ],
   "SpotterCarLeft": [
     "Auto links!",
     "Links!"
@@ -28,31 +35,6 @@
     "Nog steeds naast je.",
     "Hij is er nog steeds.",
     "Auto nog steeds naast je."
-  ],
-  "TestPhrase0": [
-    "Spraaktest.",
-    "Communicatiecheck — kun je me horen?",
-    "Dit is een spraaktest."
-  ],
-  "TestPhrase1": [
-    "Spotter online.",
-    "Spotter hier, communicatiecheck.",
-    "Spotter actief."
-  ],
-  "TestPhrase2": [
-    "[excitedly] Sportcommentator één, test!",
-    "Microfooncheck — sportcommentator één hier.",
-    "[cheerfully] Sportcommentator één online."
-  ],
-  "TestPhrase3": [
-    "Sportcommentator twee, test.",
-    "Microfooncheck — sportcommentator twee hier.",
-    "Sportcommentator twee online."
-  ],
-  "TestPhrase4": [
-    "Pit-reporter, test.",
-    "Pit lane, microfooncheck.",
-    "Pit-reporter online."
   ],
   "SpotterFlagOneLapToGreen": [
     "Eén ronde tot groen!",

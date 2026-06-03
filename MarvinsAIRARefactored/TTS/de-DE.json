@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "Fahrer, startet eure Motoren!",
+    "Los geht's, auf die Strecke!",
+    "Wer nicht Erster ist, ist Letzter.",
+    "Wie läuft's heute, Kumpel?",
+    "Die Zielflagge ist draußen – was für ein Rennen!"
+  ],
   "SpotterCarLeft": [
     "Auto links!",
     "Fahrzeug links!"
@@ -28,31 +35,6 @@
     "Noch neben dir.",
     "Er ist noch da.",
     "Auto noch gleichauf."
-  ],
-  "TestPhrase0": [
-    "Sprachtest.",
-    "Funkprüfung — können Sie mich hören?",
-    "Das ist ein Sprachtest."
-  ],
-  "TestPhrase1": [
-    "Spotter online.",
-    "Spotter hier, Funkprüfung.",
-    "Spotter aktiv."
-  ],
-  "TestPhrase2": [
-    "[excitedly] Sportkommentator eins, Test!",
-    "Mikrofonprüfung — Sportkommentator eins hier.",
-    "[cheerfully] Sportkommentator eins online."
-  ],
-  "TestPhrase3": [
-    "Sportkommentator zwei, Test.",
-    "Mikrofonprüfung — Sportkommentator zwei hier.",
-    "Sportkommentator zwei online."
-  ],
-  "TestPhrase4": [
-    "Pit-Reporter, Test.",
-    "Boxengasse, Mikrofonprüfung.",
-    "Pit-Reporter online."
   ],
   "SpotterFlagOneLapToGreen": [
     "Eine Runde bis zur Freigabe!",

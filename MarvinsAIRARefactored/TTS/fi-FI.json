@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "Kuljettajat, käynnistäkää moottorit!",
+    "Ajetaan!",
+    "Jos et ole ensimmäinen, olet viimeinen.",
+    "Mitä kuuluu tänään, kaveri?",
+    "Ruutulippu on ulkona – mikä kilpailu!"
+  ],
   "SpotterCarLeft": [
     "Auto vasemmalla!",
     "Vasemmalla!"
@@ -28,31 +35,6 @@
     "Vielä vieressäsi.",
     "Hän on vielä siellä.",
     "Auto vielä rinnalla."
-  ],
-  "TestPhrase0": [
-    "Testataan ääntä.",
-    "Yhteyden tarkistus — kuuletko minut?",
-    "Tämä on äänitesti."
-  ],
-  "TestPhrase1": [
-    "Tarkkailija online.",
-    "Tarkkailija täällä, yhteyden tarkistus.",
-    "Tarkkailija aktiivinen."
-  ],
-  "TestPhrase2": [
-    "[excitedly] Selostaja yksi, testataan!",
-    "Mikrofonitesti — selostaja yksi täällä.",
-    "[cheerfully] Selostaja yksi online."
-  ],
-  "TestPhrase3": [
-    "Selostaja kaksi, testataan.",
-    "Mikrofonitesti — selostaja kaksi täällä.",
-    "Selostaja kaksi online."
-  ],
-  "TestPhrase4": [
-    "Pit-raportoija, testataan.",
-    "Pit lane, mikrofonitesti.",
-    "Pit-raportoija online."
   ],
   "SpotterFlagOneLapToGreen": [
     "Yksi kierros vihreään!",

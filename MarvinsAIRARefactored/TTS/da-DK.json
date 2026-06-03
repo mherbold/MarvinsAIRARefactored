@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "Kørere, start jeres motorer!",
+    "Lad os køre!",
+    "Hvis du ikke er den første, er du den sidste.",
+    "Hvordan har du det i dag, ven?",
+    "Det ternede flag er ude – sikke et løb!"
+  ],
   "SpotterCarLeft": [
     "Bil til venstre!",
     "Venstre!"
@@ -28,31 +35,6 @@
     "Stadig med dig.",
     "Han er stadig der.",
     "Bilen er stadig ved siden af."
-  ],
-  "TestPhrase0": [
-    "Tester stemme.",
-    "Komm-tjek — hører du mig?",
-    "Dette er en stemmetest."
-  ],
-  "TestPhrase1": [
-    "Spotter online.",
-    "Spotter her, komm-tjek.",
-    "Spotter aktiv."
-  ],
-  "TestPhrase2": [
-    "[excitedly] Sportskommentator et, tester!",
-    "Mik-tjek — sportskommentator et her.",
-    "[cheerfully] Sportskommentator et online."
-  ],
-  "TestPhrase3": [
-    "Sportskommentator to, tester.",
-    "Mik-tjek — sportskommentator to her.",
-    "Sportskommentator to online."
-  ],
-  "TestPhrase4": [
-    "Pit-reporter, tester.",
-    "Pit lane, mik-tjek.",
-    "Pit-reporter online."
   ],
   "SpotterFlagOneLapToGreen": [
     "Et omgang til grønt!",

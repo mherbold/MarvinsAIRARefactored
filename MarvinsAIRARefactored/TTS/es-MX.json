@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "¡Pilotos, enciendan sus motores!",
+    "¡A correr!",
+    "Si no eres el primero, eres el último.",
+    "¿Cómo estás hoy, amigo?",
+    "¡Bandera a cuadros, qué carrera!"
+  ],
   "SpotterCarLeft": [
     "¡Auto a la izquierda!",
     "¡Izquierda!"
@@ -28,31 +35,6 @@
     "Sigue contigo.",
     "Todavía está ahí.",
     "Auto aún al lado."
-  ],
-  "TestPhrase0": [
-    "Probando voz.",
-    "Prueba de radio — ¿me escuchas?",
-    "Esto es una prueba de voz."
-  ],
-  "TestPhrase1": [
-    "Observador en línea.",
-    "Observador aquí, prueba de radio.",
-    "Observador activo."
-  ],
-  "TestPhrase2": [
-    "[excitedly] ¡Comentarista uno, probando!",
-    "Prueba de micro — comentarista uno aquí.",
-    "[cheerfully] Comentarista uno en línea."
-  ],
-  "TestPhrase3": [
-    "Comentarista dos, probando.",
-    "Prueba de micro — comentarista dos aquí.",
-    "Comentarista dos en línea."
-  ],
-  "TestPhrase4": [
-    "Reportero de pits, probando.",
-    "Pit lane, prueba de micro.",
-    "Reportero de pits en línea."
   ],
   "SpotterFlagOneLapToGreen": [
     "¡Una vuelta para la salida!",

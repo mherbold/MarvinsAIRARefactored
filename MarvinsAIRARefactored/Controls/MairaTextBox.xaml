@@ -86,7 +86,7 @@
                  BorderBrush="{DynamicResource Brush.Border.Subtle}"
                  BorderThickness="0,0,0,2"
                  FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
-                 Text="{Binding Value, ElementName=Root, FallbackValue='Some example text for the text box user control'}"
+                 Text="{Binding Value, ElementName=Root, FallbackValue='Some example text for the text box user control', UpdateSourceTrigger=PropertyChanged}"
                  classes:TextBoxBehaviors.IsNumericOnly="{Binding IsNumericOnly, ElementName=Root}">
 
             <TextBox.Style>
@@ -104,6 +104,36 @@
             </TextBox.Style>
 
         </TextBox>
+
+        <!-- Placeholder overlay — visible only when Value is empty and Placeholder is set -->
+        <TextBlock x:Name="PlaceholderTextBlock"
+                   Grid.Row="1"
+                   Height="34"
+                   Padding="2,0,0,0"
+                   VerticalAlignment="Bottom"
+                   IsHitTestVisible="False"
+                   Text="{Binding Placeholder, ElementName=Root}"
+                   FontSize="{Binding FontSize, ElementName=Root}"
+                   FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
+                   Foreground="{DynamicResource Brush.Accent}"
+                   Opacity="0.35">
+            <TextBlock.Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <!-- Show when Value is empty, not a password box, and not focused -->
+                        <MultiDataTrigger>
+                            <MultiDataTrigger.Conditions>
+                                <Condition Binding="{Binding Value, ElementName=Root}" Value="" />
+                                <Condition Binding="{Binding IsPassword, ElementName=Root}" Value="False" />
+                                <Condition Binding="{Binding IsKeyboardFocusWithin, ElementName=Root}" Value="False" />
+                            </MultiDataTrigger.Conditions>
+                            <Setter Property="Visibility" Value="Visible" />
+                        </MultiDataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
 
     </Grid>
 

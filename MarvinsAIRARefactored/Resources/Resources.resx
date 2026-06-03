@@ -1707,4 +1707,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Pit Window Open</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Reset to Defaults</value></data><data name="FlagCalls" xml:space="preserve"><value>Flag Calls</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>COMMENTARY PHRASES</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Customize the phrases spoken for each event in the selected language. Changes are saved to your Documents folder and override the built-in phrases.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Reset All</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Reset</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Add Phrase</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✓  Custom phrases saved.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>All phrases reset to built-in defaults.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Reset to Defaults</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Flag Calls</value>
+  </data>
+</root>

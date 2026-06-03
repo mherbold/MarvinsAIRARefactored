@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "Kierowcy, odpalajcie silniki!",
+    "Do wyścigu!",
+    "Jeśli nie jesteś pierwszy, jesteś ostatni.",
+    "Jak się masz dziś, kolego?",
+    "Flaga w kratkę — co za wyścig!"
+  ],
   "SpotterCarLeft": [
     "Samochód z lewej!",
     "Lewo!"
@@ -28,31 +35,6 @@
     "Nadal obok ciebie.",
     "On nadal tam jest.",
     "Auto nadal obok."
-  ],
-  "TestPhrase0": [
-    "Test głosu.",
-    "Sprawdzenie łączności — słyszysz mnie?",
-    "To jest test głosu."
-  ],
-  "TestPhrase1": [
-    "Spotter online.",
-    "Spotter tutaj, sprawdzenie łączności.",
-    "Spotter aktywny."
-  ],
-  "TestPhrase2": [
-    "[excitedly] Komentator sportowy jeden, test!",
-    "Sprawdzenie mikrofonu — komentator jeden tutaj.",
-    "[cheerfully] Komentator jeden online."
-  ],
-  "TestPhrase3": [
-    "Komentator sportowy dwa, test.",
-    "Sprawdzenie mikrofonu — komentator dwa tutaj.",
-    "Komentator dwa online."
-  ],
-  "TestPhrase4": [
-    "Reporter z pit lane, test.",
-    "Pit lane, sprawdzenie mikrofonu.",
-    "Reporter z pit lane online."
   ],
   "SpotterFlagOneLapToGreen": [
     "Jedno okrążenie do zielonej!",

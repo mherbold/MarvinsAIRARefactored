@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "Förare, starta era motorer!",
+    "Nu kör vi!",
+    "Om du inte är först, är du sist.",
+    "Hur mår du idag, kompis?",
+    "Rutan är ute – vilken tävling!"
+  ],
   "SpotterCarLeft": [
     "Bil till vänster!",
     "Vänster!"
@@ -28,31 +35,6 @@
     "Fortfarande med dig.",
     "Han är fortfarande där.",
     "Bilen är fortfarande bredvid."
-  ],
-  "TestPhrase0": [
-    "Testar röst.",
-    "Kommunikationstest — hör du mig?",
-    "Det här är ett rösttest."
-  ],
-  "TestPhrase1": [
-    "Spotter online.",
-    "Spotter här, kommunikationstest.",
-    "Spotter aktiv."
-  ],
-  "TestPhrase2": [
-    "[excitedly] Sportkommentator ett, testar!",
-    "Mikrofontest — sportkommentator ett här.",
-    "[cheerfully] Sportkommentator ett online."
-  ],
-  "TestPhrase3": [
-    "Sportkommentator två, testar.",
-    "Mikrofontest — sportkommentator två här.",
-    "Sportkommentator två online."
-  ],
-  "TestPhrase4": [
-    "Pit-reporter, testar.",
-    "Pit lane, mikrofontest.",
-    "Pit-reporter online."
   ],
   "SpotterFlagOneLapToGreen": [
     "Ett varv till grönt!",

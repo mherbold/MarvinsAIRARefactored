@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "Versenyzők, indítsátok a motorokat!",
+    "Gyerünk versenyezni!",
+    "Aki nem az első, az az utolsó.",
+    "Hogy vagy ma, haver?",
+    "Kint a kockás zászló – micsoda verseny!"
+  ],
   "SpotterCarLeft": [
     "Autó balra!",
     "Balra!"
@@ -28,31 +35,6 @@
     "Még melletted.",
     "Még mindig ott van.",
     "Az autó még mindig mellette."
-  ],
-  "TestPhrase0": [
-    "Hangpróba.",
-    "Kommunikációs teszt — hallasz engem?",
-    "Ez egy hangpróba."
-  ],
-  "TestPhrase1": [
-    "Spotter online.",
-    "Spotter itt, kommunikációs teszt.",
-    "Spotter aktív."
-  ],
-  "TestPhrase2": [
-    "[excitedly] Kommentátor egy, teszt!",
-    "Mikrofonpróba — kommentátor egy itt.",
-    "[cheerfully] Kommentátor egy online."
-  ],
-  "TestPhrase3": [
-    "Kommentátor kettő, teszt.",
-    "Mikrofonpróba — kommentátor kettő itt.",
-    "Kommentátor kettő online."
-  ],
-  "TestPhrase4": [
-    "Pit-riporter, teszt.",
-    "Boxutca, mikrofonpróba.",
-    "Pit-riporter online."
   ],
   "SpotterFlagOneLapToGreen": [
     "Egy kör a zöld előtt!",

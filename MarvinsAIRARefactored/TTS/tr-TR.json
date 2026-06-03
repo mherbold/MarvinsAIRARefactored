@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "Sürücüler, motorlarınızı çalıştırın!",
+    "Hadi yarışalım!",
+    "Birinci değilsen, sonuncusun.",
+    "Bugün nasılsın, arkadaş?",
+    "Damalı bayrak çıktı – ne yarış!"
+  ],
   "SpotterCarLeft": [
     "Solda araç!",
     "Sol!"
@@ -28,31 +35,6 @@
     "Hâlâ yanında.",
     "O hâlâ orada.",
     "Araç hâlâ yan yana."
-  ],
-  "TestPhrase0": [
-    "Ses testi.",
-    "İletişim kontrolü — beni duyuyor musun?",
-    "Bu bir ses testidir."
-  ],
-  "TestPhrase1": [
-    "Spotter çevrimiçi.",
-    "Spotter burada, iletişim kontrolü.",
-    "Spotter aktif."
-  ],
-  "TestPhrase2": [
-    "[excitedly] Spor spikeri bir, test!",
-    "Mikrofon kontrolü — spor spikeri bir burada.",
-    "[cheerfully] Spor spikeri bir çevrimiçi."
-  ],
-  "TestPhrase3": [
-    "Spor spikeri iki, test.",
-    "Mikrofon kontrolü — spor spikeri iki burada.",
-    "Spor spikeri iki çevrimiçi."
-  ],
-  "TestPhrase4": [
-    "Pit muhabiri, test.",
-    "Pit lane, mikrofon kontrolü.",
-    "Pit muhabiri çevrimiçi."
   ],
   "SpotterFlagOneLapToGreen": [
     "Yeşile bir tur kaldı!",

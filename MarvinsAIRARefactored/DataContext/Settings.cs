@@ -12737,7 +12737,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Commentary — ElevenLabs Model
 
-	private string _commentaryElevenLabsModelId = "eleven_flash_v2_5";
+	private string _commentaryElevenLabsModelId = "";
 
 	public string CommentaryElevenLabsModelId
 	{

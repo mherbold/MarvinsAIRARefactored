@@ -111,5 +111,14 @@ public partial class MairaTextBox : UserControl
 		set => SetValue( IsPasswordProperty, value );
 	}
 
+	public static readonly DependencyProperty PlaceholderProperty = DependencyProperty.Register( nameof( Placeholder ), typeof( string ), typeof( MairaTextBox ), new PropertyMetadata( string.Empty ) );
+
+	/// <summary>Placeholder text shown when the text box is empty and has no label.</summary>
+	public string Placeholder
+	{
+		get => (string) GetValue( PlaceholderProperty );
+		set => SetValue( PlaceholderProperty, value );
+	}
+
 	#endregion
 }

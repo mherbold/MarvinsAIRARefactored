@@ -1,4 +1,5 @@
 
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Media;
 
@@ -10,6 +11,26 @@ using AppDataContext = MarvinsAIRARefactored.DataContext.DataContext;
 
 namespace MarvinsAIRARefactored.Pages;
 
+// ---------------------------------------------------------------------------
+// Lightweight view-models for the phrase editor
+// ---------------------------------------------------------------------------
+
+/// <summary>One editable phrase string within an event-key group.</summary>
+internal sealed class PhraseEntryViewModel
+{
+	public string EventKey { get; init; } = "";
+	public string Text { get; set; } = "";
+}
+
+/// <summary>One event-key group containing its list of phrase entries.</summary>
+internal sealed class PhraseEventKeyViewModel
+{
+	public string EventKey { get; init; } = "";
+	public ObservableCollection<PhraseEntryViewModel> Phrases { get; init; } = [];
+}
+
+// ---------------------------------------------------------------------------
+
 public partial class CommentaryPage : System.Windows.Controls.UserControl
 {
 	private SubscriptionInfo? _lastSubscriptionInfo;
@@ -20,6 +41,15 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 		InitializeComponent();
 
 		AppDataContext.Instance.Settings.PropertyChanged += Settings_PropertyChanged;
+
+		// Re-subscribe to the new Settings instance whenever it is replaced (e.g. after settings file load).
+		AppDataContext.Instance.PropertyChanged += ( _, e ) =>
+		{
+			if ( e.PropertyName == nameof( AppDataContext.Settings ) )
+			{
+				AppDataContext.Instance.Settings.PropertyChanged += Settings_PropertyChanged;
+			}
+		};
 
 		Loaded += ( _, _ ) => App.Instance!.TextToSpeech.AudioPlayed += Commentary_AudioPlayed;
 	}
@@ -45,6 +75,15 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 				when AppDataContext.Instance.Settings.CommentaryEnabled:
 				await VerifyAndPopulateAsync();
 				break;
+
+			case nameof( MarvinsAIRARefactored.DataContext.Settings.CommentaryElevenLabsLanguage ):
+					var newLang = AppDataContext.Instance.Settings.CommentaryElevenLabsLanguage;
+					App.Instance!.Logger.WriteLine( $"[CommentaryPage] Settings_PropertyChanged: language changed to '{newLang}', thread={System.Threading.Thread.CurrentThread.ManagedThreadId}" );
+					App.Instance!.Commentary.Initialize();
+					App.Instance!.Logger.WriteLine( $"[CommentaryPage] Commentary.Initialize() done, LoadedLanguage='{App.Instance!.Commentary.Templates.LoadedLanguage}', PhraseCount={App.Instance!.Commentary.Templates.Phrases.Count}" );
+					await Dispatcher.InvokeAsync( PopulatePhraseEditor );
+					App.Instance!.Logger.WriteLine( $"[CommentaryPage] PopulatePhraseEditor() done, _phraseViewModels.Count={_phraseViewModels.Count}" );
+					break;
 		}
 	}
 
@@ -66,6 +105,8 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 			UpdateVoiceOptions();
 			await UpdateSubscriptionUsageAsync();
 		}
+
+		PopulatePhraseEditor();
 	}
 
 	#endregion
@@ -122,10 +163,28 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 		var localization = AppDataContext.Instance.Localization;
 
 		var placeholder = new KeyValuePair<string, string>( "", localization[ "ModelNotSelected" ] );
-		var items = ( models ?? new Dictionary<string, string>() ).Prepend( placeholder ).ToList();
+		var items = ( models ?? _fallbackModels ).Prepend( placeholder ).ToList();
 
 		Model_MairaComboBox.ItemsSource = items;
+
+		// Auto-select the eleven_v3 model if the user has not chosen one yet and it is available.
+		var settings = AppDataContext.Instance.Settings;
+
+		if ( string.IsNullOrEmpty( settings.CommentaryElevenLabsModelId ) && models is not null )
+		{
+			var defaultModel = models.Keys.FirstOrDefault( id => id.StartsWith( "eleven_v3", StringComparison.OrdinalIgnoreCase ) );
+
+			if ( defaultModel is not null )
+			{
+				settings.CommentaryElevenLabsModelId = defaultModel;
+			}
+		}
 	}
+
+	private static readonly Dictionary<string, string> _fallbackModels = new()
+	{
+		{ "", "(no models — verify API key)" },
+	};
 
 	private static readonly Dictionary<string, string> _fallbackVoices = new()
 	{
@@ -358,12 +417,194 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 	private static void TestSlot( int slotIndex )
 	{
 		var app = App.Instance!;
-		var key = $"TestPhrase{slotIndex}";
-		var phrase = app.Commentary.Templates.GetRandomPhrase( key )
-			?? app.Commentary.Templates.GetRandomPhrase( "TestPhrase0" )
-			?? "Testing voice.";
+		var phrase = app.Commentary.Templates.GetRandomPhrase( "TestPhrase" ) ?? "Testing voice.";
 
 		app.TextToSpeech.Enqueue( slotIndex, phrase, priority: 1 );
+	}
+
+	#endregion
+
+	// -------------------------------------------------------------------------
+	#region Phrase Editor
+	// -------------------------------------------------------------------------
+
+	// Working copy: event-key → mutable list of phrases (built from loaded templates + user overrides)
+	private readonly List<PhraseEventKeyViewModel> _phraseViewModels = [];
+
+	/// <summary>
+	/// Populates the phrase editor from the currently loaded templates (which already
+	/// incorporate any user-customized file if one exists).
+	/// </summary>
+	private void PopulatePhraseEditor()
+	{
+		var templates = App.Instance!.Commentary.Templates;
+
+		App.Instance!.Logger.WriteLine( $"[CommentaryPage] PopulatePhraseEditor: LoadedLanguage='{templates.LoadedLanguage}', PhraseCount={templates.Phrases.Count}, thread={System.Threading.Thread.CurrentThread.ManagedThreadId}" );
+
+		_phraseViewModels.Clear();
+
+		foreach ( var kv in templates.Phrases.OrderBy( kv => kv.Key ) )
+		{
+			var vm = new PhraseEventKeyViewModel { EventKey = kv.Key };
+
+			foreach ( var phrase in kv.Value )
+			{
+				vm.Phrases.Add( new PhraseEntryViewModel { EventKey = kv.Key, Text = phrase } );
+			}
+
+			_phraseViewModels.Add( vm );
+		}
+
+		ApplyPhraseFilter();
+		PhraseEditorStatus_TextBlock.Text = "";
+	}
+
+	/// <summary>Filters the visible event-key groups by the current search text.</summary>
+	private void ApplyPhraseFilter()
+	{
+		var filter = PhraseSearch_MairaTextBox?.Value ?? "";
+
+		var filtered = string.IsNullOrWhiteSpace( filter )
+			? _phraseViewModels
+			: _phraseViewModels
+				.Where( vm => vm.EventKey.Contains( filter, StringComparison.OrdinalIgnoreCase )
+						   || vm.Phrases.Any( p => p.Text.Contains( filter, StringComparison.OrdinalIgnoreCase ) ) )
+				.ToList();
+
+		App.Instance!.Logger.WriteLine( $"[CommentaryPage] ApplyPhraseFilter: filtered.Count={( filtered is List<PhraseEventKeyViewModel> l ? l.Count : _phraseViewModels.Count )}" );
+		PhraseEventKeys_ItemsControl.ItemsSource = null;
+		PhraseEventKeys_ItemsControl.ItemsSource = filtered;
+	}
+
+	private System.Windows.Threading.DispatcherTimer? _searchDebounceTimer;
+
+	private void PhraseSearch_MairaTextBox_ValueChanged( object sender, RoutedEventArgs e )
+	{
+		if ( _searchDebounceTimer is null )
+		{
+			_searchDebounceTimer = new System.Windows.Threading.DispatcherTimer { Interval = TimeSpan.FromSeconds( 1 ) };
+
+			_searchDebounceTimer.Tick += ( _, _ ) =>
+			{
+				_searchDebounceTimer.Stop();
+				ApplyPhraseFilter();
+			};
+		}
+
+		_searchDebounceTimer.Stop();
+		_searchDebounceTimer.Start();
+	}
+
+	/// <summary>Rebuilds the dictionary from the current view-models and saves it.</summary>
+	private void SavePhrases()
+	{
+		var language = AppDataContext.Instance.Settings.CommentaryElevenLabsLanguage;
+		var dict = _phraseViewModels
+			.ToDictionary(
+				vm => vm.EventKey,
+				vm => vm.Phrases.Select( e => e.Text ).Where( t => !string.IsNullOrWhiteSpace( t ) ).ToArray() );
+
+		UserCommentaryPhrases.Save( language, dict );
+
+		// Reload templates so the commentary system picks up the new phrases
+		App.Instance!.Commentary.Initialize( language );
+
+		var localization = AppDataContext.Instance.Localization;
+		PhraseEditorStatus_TextBlock.Text = localization[ "PhraseEditorSaved" ];
+		PhraseEditorStatus_TextBlock.Foreground = (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Accent.Blue" );
+	}
+
+	private void PhraseTextBox_LostFocus( object sender, RoutedEventArgs e )
+	{
+		SavePhrases();
+	}
+
+	private void TestPhrase_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( sender is not MairaButton button )
+		{
+			return;
+		}
+
+		// Tag="{Binding}" inside a DataTemplate resolves to the row DataContext (PhraseEntryViewModel).
+		// Fall back to DataContext in case MairaButton's Tag DP shadowing causes Tag to be null.
+		var entry = button.Tag as PhraseEntryViewModel ?? button.DataContext as PhraseEntryViewModel;
+
+		if ( entry is null || string.IsNullOrWhiteSpace( entry.Text ) )
+		{
+			return;
+		}
+
+		// Use the first enabled slot that has a voice configured; otherwise slot 0 (Enqueue handles missing voice gracefully).
+		var slots = AppDataContext.Instance.Settings.CommentaryVoiceSlots;
+		var slotIndex = slots.FindIndex( s => s.Enabled && !string.IsNullOrWhiteSpace( s.VoiceId ) );
+
+		App.Instance!.TextToSpeech.Enqueue( slotIndex < 0 ? 0 : slotIndex, entry.Text, priority: 1 );
+	}
+
+	private void AddPhrase_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( sender is MairaButton button && button.Tag is PhraseEventKeyViewModel vm )
+		{
+			vm.Phrases.Add( new PhraseEntryViewModel { EventKey = vm.EventKey, Text = "" } );
+			// No save yet — user will type and LostFocus will trigger save
+		}
+	}
+
+	private void RemovePhrase_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( sender is MairaButton button && button.Tag is PhraseEntryViewModel entry )
+		{
+			var vm = _phraseViewModels.FirstOrDefault( v => v.EventKey == entry.EventKey );
+
+			if ( vm is not null )
+			{
+				vm.Phrases.Remove( entry );
+				SavePhrases();
+			}
+		}
+	}
+
+	private void ResetEventPhrases_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( sender is not MairaButton button || button.Tag is not PhraseEventKeyViewModel vm )
+		{
+			return;
+		}
+
+		// Load the built-in (embedded) phrases for this event key
+		var language = AppDataContext.Instance.Settings.CommentaryElevenLabsLanguage;
+		var builtIn = CommentaryTemplates.GetBuiltInPhrases( language );
+
+		if ( builtIn is null || !builtIn.TryGetValue( vm.EventKey, out var defaults ) )
+		{
+			return;
+		}
+
+		vm.Phrases.Clear();
+
+		foreach ( var phrase in defaults )
+		{
+			vm.Phrases.Add( new PhraseEntryViewModel { EventKey = vm.EventKey, Text = phrase } );
+		}
+
+		SavePhrases();
+	}
+
+	private void ResetAllPhrases_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var language = AppDataContext.Instance.Settings.CommentaryElevenLabsLanguage;
+
+		UserCommentaryPhrases.Delete( language );
+
+		// Reload templates from built-in
+		App.Instance!.Commentary.Initialize( language );
+
+		PopulatePhraseEditor();
+
+		var localization = AppDataContext.Instance.Localization;
+		PhraseEditorStatus_TextBlock.Text = localization[ "PhraseEditorResetAll" ];
+		PhraseEditorStatus_TextBlock.Foreground = (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Accent.Blue" );
 	}
 
 	#endregion

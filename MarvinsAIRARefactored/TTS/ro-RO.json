@@ -1,4 +1,11 @@
-﻿{
+{
+  "TestPhrase": [
+    "Piloți, porniți motoarele!",
+    "Să mergem la cursă!",
+    "Dacă nu ești primul, ești ultimul.",
+    "Ce mai faci azi, prietene?",
+    "Steagul în carouri a ieșit – ce cursă!"
+  ],
   "SpotterCarLeft": [
     "Mașină la stânga!",
     "Stânga!"
@@ -28,31 +35,6 @@
     "Încă cu tine.",
     "Este încă acolo.",
     "Mașina e încă alături."
-  ],
-  "TestPhrase0": [
-    "Test voce.",
-    "Verificare comunicații — mă auzi?",
-    "Acesta este un test vocal."
-  ],
-  "TestPhrase1": [
-    "Spotter online.",
-    "Spotter aici, verificare comunicații.",
-    "Spotter activ."
-  ],
-  "TestPhrase2": [
-    "[excitedly] Comentator sportiv unu, test!",
-    "Verificare microfon — comentator unu aici.",
-    "[cheerfully] Comentator unu online."
-  ],
-  "TestPhrase3": [
-    "Comentator sportiv doi, test.",
-    "Verificare microfon — comentator doi aici.",
-    "Comentator doi online."
-  ],
-  "TestPhrase4": [
-    "Reporter pit, test.",
-    "Pit lane, verificare microfon.",
-    "Reporter pit online."
   ],
   "SpotterFlagOneLapToGreen": [
     "Un tur până la verde!",

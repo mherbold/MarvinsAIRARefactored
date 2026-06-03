@@ -35,7 +35,8 @@ public sealed class CommentaryTemplates
 
 	/// <summary>
 	/// Loads the template set for <paramref name="language"/> (e.g. <c>"en-US"</c>).
-	/// Falls back to <c>en-US</c> if the requested language is unavailable.
+	/// Checks the user's Documents folder first; falls back to the embedded resource.
+	/// Falls back further to <c>en-US</c> if the requested language is unavailable.
 	/// </summary>
 	public void Initialize( string language )
 	{
@@ -43,12 +44,13 @@ public sealed class CommentaryTemplates
 
 		app.Logger.WriteLine( "[CommentaryTemplates] Initialize >>>" );
 
-		var loaded = LoadLanguage( language, app );
+		// Prefer user-customized file over embedded resource
+		var loaded = LoadUserLanguage( language, app ) ?? LoadLanguage( language, app );
 
 		if ( loaded == null && language != "en-US" )
 		{
 			app.Logger.WriteLine( $"[CommentaryTemplates] Language '{language}' not found, falling back to en-US" );
-			loaded = LoadLanguage( "en-US", app );
+			loaded = LoadUserLanguage( "en-US", app ) ?? LoadLanguage( "en-US", app );
 		}
 
 		if ( loaded != null )
@@ -98,9 +100,71 @@ public sealed class CommentaryTemplates
 			.ToList();
 	}
 
+	/// <summary>
+	/// Loads and returns the built-in (embedded) phrase dictionary for <paramref name="language"/>
+	/// without applying any user overrides. Returns <c>null</c> if the language is not found.
+	/// </summary>
+	public static IReadOnlyDictionary<string, string[]>? GetBuiltInPhrases( string language )
+	{
+		var app = App.Instance!;
+		var result = LoadLanguage( language, app );
+
+		return result?.phrases;
+	}
+
 	// -------------------------------------------------------------------------
-	// Load helper
+	// Load helpers
 	// -------------------------------------------------------------------------
+
+	/// <summary>Attempts to load from the user's custom file in Documents; returns null if none exists.</summary>
+	private static (IReadOnlyDictionary<string, string[]> phrases, string language)? LoadUserLanguage( string language, App app )
+	{
+		var dict = UserCommentaryPhrases.Load( language );
+
+		if ( dict is null )
+		{
+			return null;
+		}
+
+		app.Logger.WriteLine( $"[CommentaryTemplates] Loaded user-customized phrases for '{language}' from Documents folder." );
+
+		// Sync user file against the built-in phrases: add missing keys, remove obsolete keys.
+		var builtIn = LoadLanguage( language, app )?.phrases;
+
+		if ( builtIn is not null )
+		{
+			var changed = false;
+
+			// Add keys present in the built-in file that are missing from the user file.
+			foreach ( var kvp in builtIn )
+			{
+				if ( !dict.ContainsKey( kvp.Key ) )
+				{
+					dict[ kvp.Key ] = kvp.Value;
+					app.Logger.WriteLine( $"[CommentaryTemplates] Added missing key '{kvp.Key}' to user phrases for '{language}'." );
+					changed = true;
+				}
+			}
+
+			// Remove keys in the user file that no longer exist in the built-in file.
+			var obsoleteKeys = dict.Keys.Except( builtIn.Keys ).ToList();
+
+			foreach ( var key in obsoleteKeys )
+			{
+				dict.Remove( key );
+				app.Logger.WriteLine( $"[CommentaryTemplates] Removed obsolete key '{key}' from user phrases for '{language}'." );
+				changed = true;
+			}
+
+			if ( changed )
+			{
+				UserCommentaryPhrases.Save( language, dict );
+				app.Logger.WriteLine( $"[CommentaryTemplates] Saved updated user phrases for '{language}' after sync." );
+			}
+		}
+
+		return (dict, language);
+	}
 
 	private static (IReadOnlyDictionary<string, string[]> phrases, string language)? LoadLanguage( string language, App app )
 	{

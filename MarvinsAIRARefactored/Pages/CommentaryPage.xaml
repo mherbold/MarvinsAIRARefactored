@@ -110,7 +110,7 @@
                 <controls:MairaComboBox x:Name="Model_MairaComboBox"
                                         Grid.Row="3"
                                         Label="{Binding Localization[Model]}"
-                                        SelectedValue="{Binding Settings.ModelId, Mode=TwoWay}" />
+                                        SelectedValue="{Binding Settings.CommentaryElevenLabsModelId, Mode=TwoWay}" />
 
                 <!-- Row 4: Subscription usage -->
                 <TextBlock x:Name="SubscriptionUsage_TextBlock"
@@ -204,6 +204,7 @@
                                     Grid.Column="2">
 
                             <controls:MairaSwitch IsOn="{Binding Settings.CommentaryVoiceSlots[0].Enabled, Mode=TwoWay}"
+                                                  IsEnabled="{Binding Settings.CommentaryVoiceSlots[0].HasVoiceSelected}"
                                                   Label="{Binding Localization[Enabled]}"
                                                   Margin="0,0,0,10" />
 
@@ -294,6 +295,7 @@
                                     Grid.Column="2">
 
                             <controls:MairaSwitch IsOn="{Binding Settings.CommentaryVoiceSlots[1].Enabled, Mode=TwoWay}"
+                                                  IsEnabled="{Binding Settings.CommentaryVoiceSlots[1].HasVoiceSelected}"
                                                   Label="{Binding Localization[Enabled]}"
                                                   Margin="0,0,0,10" />
 
@@ -384,6 +386,7 @@
                                     Grid.Column="2">
 
                             <controls:MairaSwitch IsOn="{Binding Settings.CommentaryVoiceSlots[2].Enabled, Mode=TwoWay}"
+                                                  IsEnabled="{Binding Settings.CommentaryVoiceSlots[2].HasVoiceSelected}"
                                                   Label="{Binding Localization[Enabled]}"
                                                   Margin="0,0,0,10" />
 
@@ -474,6 +477,7 @@
                                     Grid.Column="2">
 
                             <controls:MairaSwitch IsOn="{Binding Settings.CommentaryVoiceSlots[3].Enabled, Mode=TwoWay}"
+                                                  IsEnabled="{Binding Settings.CommentaryVoiceSlots[3].HasVoiceSelected}"
                                                   Label="{Binding Localization[Enabled]}"
                                                   Margin="0,0,0,10" />
 
@@ -563,6 +567,7 @@
                                     Grid.Column="2">
 
                             <controls:MairaSwitch IsOn="{Binding Settings.CommentaryVoiceSlots[4].Enabled, Mode=TwoWay}"
+                                                  IsEnabled="{Binding Settings.CommentaryVoiceSlots[4].HasVoiceSelected}"
                                                   Label="{Binding Localization[Enabled]}"
                                                   Margin="0,0,0,10" />
 
@@ -706,6 +711,141 @@
 
         </controls:MairaGroupBox>
 
+        <!-- ================================================================ -->
+        <!-- COMMENTARY PHRASES                                               -->
+        <!-- ================================================================ -->
+
+        <controls:MairaGroupBox x:Name="CommentaryPhrases_MairaGroupBox"
+                                Label="{Binding Localization[CommentaryPhrases_UC]}"
+                                HelpTopic="advanced/commentary/#phrases">
+
+            <StackPanel>
+
+                <!-- Description + Reset All button -->
+                <Grid Margin="0,0,0,10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding Localization[EditCommentaryPhrasesDescription]}"
+                               Style="{DynamicResource MairaTextBlockStyle}"
+                               TextWrapping="Wrap" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          x:Name="ResetAllPhrases_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                          Label="{Binding Localization[ResetAllPhrases]}"
+                                          Click="ResetAllPhrases_MairaButton_Click"
+                                          IsSmall="True"
+                                          VerticalAlignment="Top" />
+                </Grid>
+
+                <!-- Status text -->
+                <TextBlock x:Name="PhraseEditorStatus_TextBlock"
+                           Style="{DynamicResource MairaTextBlockStyle}"
+                           Margin="0,0,0,6" />
+
+                <!-- Search box -->
+                <controls:MairaTextBox x:Name="PhraseSearch_MairaTextBox"
+                                       FontSize="20"
+                                       Placeholder="{Binding Localization[PhraseSearch]}"
+                                       Margin="0,0,0,8"
+                                       ValueChanged="PhraseSearch_MairaTextBox_ValueChanged" />
+
+                <!-- Scrollable event-key list -->
+                <Border BorderThickness="1"
+                        BorderBrush="#30ffffff"
+                        CornerRadius="4">
+                    <ScrollViewer MaxHeight="500"
+                                  VerticalScrollBarVisibility="Auto"
+                                  Padding="4">
+
+                        <ItemsControl x:Name="PhraseEventKeys_ItemsControl">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <!-- DataContext is PhraseEventKeyViewModel -->
+                                    <controls:MairaExpander Label="{Binding EventKey}"
+                                                            Margin="0,0,0,6">
+                                        <StackPanel Margin="0,6,0,0">
+
+                                            <!-- Existing phrases list -->
+                                            <ItemsControl ItemsSource="{Binding Phrases}">
+                                                <ItemsControl.ItemTemplate>
+                                                    <DataTemplate>
+                                                        <!-- DataContext is PhraseEntryViewModel -->
+                                                        <Grid Margin="0,0,0,4">
+                                                            <Grid.ColumnDefinitions>
+                                                                <ColumnDefinition Width="*" />
+                                                                <ColumnDefinition Width="6" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                                <ColumnDefinition Width="4" />
+                                                                <ColumnDefinition Width="Auto" />
+                                                            </Grid.ColumnDefinitions>
+
+                                                            <controls:MairaTextBox Grid.Column="0"
+                                                                                    Value="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
+                                                                                    Tag="{Binding}"
+                                                                                    LostFocus="PhraseTextBox_LostFocus" />
+
+                                                            <controls:MairaButton Grid.Column="2"
+                                                                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                                                                   IsSmall="True"
+                                                                                   Tag="{Binding}"
+                                                                                   Click="TestPhrase_MairaButton_Click"
+                                                                                   VerticalAlignment="Bottom" />
+
+                                                            <controls:MairaButton Grid.Column="4"
+                                                                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
+                                                                                   IsSmall="True"
+                                                                                   Tag="{Binding}"
+                                                                                   Click="RemovePhrase_MairaButton_Click"
+                                                                                   VerticalAlignment="Bottom" />
+                                                        </Grid>
+                                                    </DataTemplate>
+                                                </ItemsControl.ItemTemplate>
+                                            </ItemsControl>
+
+                                            <!-- Add phrase + Reset buttons -->
+                                            <Grid Margin="0,4,0,0">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="10" />
+                                                    <ColumnDefinition Width="Auto" />
+                                                    <ColumnDefinition Width="*" />
+                                                </Grid.ColumnDefinitions>
+
+                                                <controls:MairaButton Grid.Column="0"
+                                                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+                                                                       Label="{Binding DataContext.Localization[AddPhrase], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                       IsSmall="True"
+                                                                       Tag="{Binding}"
+                                                                       Click="AddPhrase_MairaButton_Click" />
+
+                                                <controls:MairaButton Grid.Column="2"
+                                                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                                                       Label="{Binding DataContext.Localization[ResetEventPhrases], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                       IsSmall="True"
+                                                                       Tag="{Binding}"
+                                                                       Click="ResetEventPhrases_MairaButton_Click" />
+                                            </Grid>
+
+                                        </StackPanel>
+                                    </controls:MairaExpander>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+
+                    </ScrollViewer>
+                </Border>
+
+            </StackPanel>
+
+        </controls:MairaGroupBox>
+
     </StackPanel>
 
 </UserControl>
+
