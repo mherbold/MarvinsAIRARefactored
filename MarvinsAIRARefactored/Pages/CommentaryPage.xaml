@@ -740,7 +740,8 @@
                                           Label="{Binding Localization[ResetAllPhrases]}"
                                           Click="ResetAllPhrases_MairaButton_Click"
                                           IsSmall="True"
-                                          VerticalAlignment="Top" />
+                                          VerticalAlignment="Top"
+                                          Visibility="Collapsed" />
                 </Grid>
 
                 <!-- Status text -->
@@ -786,23 +787,23 @@
                                                             </Grid.ColumnDefinitions>
 
                                                             <controls:MairaTextBox Grid.Column="0"
-                                                                                    Value="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
-                                                                                    Tag="{Binding}"
-                                                                                    LostFocus="PhraseTextBox_LostFocus" />
+                                                                                   Value="{Binding Text, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                                                                                   Tag="{Binding}"
+                                                                                   LostFocus="PhraseTextBox_LostFocus" />
 
                                                             <controls:MairaButton Grid.Column="2"
-                                                                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
-                                                                                   IsSmall="True"
-                                                                                   Tag="{Binding}"
-                                                                                   Click="TestPhrase_MairaButton_Click"
-                                                                                   VerticalAlignment="Bottom" />
+                                                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                                                                  IsSmall="True"
+                                                                                  Tag="{Binding}"
+                                                                                  Click="TestPhrase_MairaButton_Click"
+                                                                                  VerticalAlignment="Bottom" />
 
                                                             <controls:MairaButton Grid.Column="4"
-                                                                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
-                                                                                   IsSmall="True"
-                                                                                   Tag="{Binding}"
-                                                                                   Click="RemovePhrase_MairaButton_Click"
-                                                                                   VerticalAlignment="Bottom" />
+                                                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
+                                                                                  IsSmall="True"
+                                                                                  Tag="{Binding}"
+                                                                                  Click="RemovePhrase_MairaButton_Click"
+                                                                                  VerticalAlignment="Bottom" />
                                                         </Grid>
                                                     </DataTemplate>
                                                 </ItemsControl.ItemTemplate>
@@ -818,18 +819,18 @@
                                                 </Grid.ColumnDefinitions>
 
                                                 <controls:MairaButton Grid.Column="0"
-                                                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
-                                                                       Label="{Binding DataContext.Localization[AddPhrase], RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                                       IsSmall="True"
-                                                                       Tag="{Binding}"
-                                                                       Click="AddPhrase_MairaButton_Click" />
+                                                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+                                                                      Label="{Binding DataContext.Localization[AddPhrase], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                      IsSmall="True"
+                                                                      Tag="{Binding}"
+                                                                      Click="AddPhrase_MairaButton_Click" />
 
                                                 <controls:MairaButton Grid.Column="2"
-                                                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
-                                                                       Label="{Binding DataContext.Localization[ResetEventPhrases], RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                                                       IsSmall="True"
-                                                                       Tag="{Binding}"
-                                                                       Click="ResetEventPhrases_MairaButton_Click" />
+                                                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                                                      Label="{Binding DataContext.Localization[ResetEventPhrases], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                      IsSmall="True"
+                                                                      Tag="{Binding}"
+                                                                      Click="ResetEventPhrases_MairaButton_Click" />
                                             </Grid>
 
                                         </StackPanel>
