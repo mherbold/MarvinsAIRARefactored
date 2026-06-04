@@ -1823,7 +1823,10 @@ public partial class AdminBoxx
 								_ => string.Empty
 							};
 
-							app.AudioManager.Play( key, DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
+							if ( key != string.Empty )
+							{
+								app.AudioManager.Play( key, DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
+							}
 
 							_sequenceBeepBlinkRemaining--;
 
