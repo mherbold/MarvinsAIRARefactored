@@ -249,7 +249,7 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 				}
 				catch ( Exception exception )
 				{
-					App.Instance?.Logger.WriteLine( $"[UsbSerialPortHelper] Write failed: {exception.Message}" );
+					HandleWriteFailure( "Write", exception );
 				}
 			}
 		}
@@ -267,7 +267,7 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 				}
 				catch ( Exception exception )
 				{
-					App.Instance?.Logger.WriteLine( $"[UsbSerialPortHelper] Write failed: {exception.Message}" );
+					HandleWriteFailure( "Write", exception );
 				}
 			}
 		}
@@ -285,7 +285,7 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 				}
 				catch ( Exception exception )
 				{
-					App.Instance?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine failed: {exception.Message}" );
+					HandleWriteFailure( "WriteLine", exception );
 				}
 			}
 		}
@@ -308,9 +308,30 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 				}
 				catch ( Exception exception )
 				{
-					App.Instance?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine failed: {exception.Message}" );
+					HandleWriteFailure( "WriteLine", exception );
 				}
 			}
+		}
+	}
+
+	private void HandleWriteFailure( string operation, Exception exception )
+	{
+		var app = App.Instance;
+
+		app?.Logger.WriteLine( $"[UsbSerialPortHelper] {operation} failed: {exception.Message} : '{_portName}'." );
+
+		if ( _serialPort == null || !_serialPort.IsOpen )
+		{
+			return;
+		}
+
+		try
+		{
+			_serialPort.Close();
+		}
+		catch ( Exception closeException )
+		{
+			app?.Logger.WriteLine( $"[UsbSerialPortHelper] Failed to close serial port {_portName} after {operation} failure: {closeException.Message}" );
 		}
 	}
 
