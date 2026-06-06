@@ -50,6 +50,20 @@ public partial class MairaProgressBar : UserControl
 		private set => SetValue( PercentageTextPropertyKey, value );
 	}
 
+	private static readonly DependencyPropertyKey IsNearCompletionPropertyKey = DependencyProperty.RegisterReadOnly(
+		nameof( IsNearCompletion ),
+		typeof( bool ),
+		typeof( MairaProgressBar ),
+		new PropertyMetadata( false ) );
+
+	public static readonly DependencyProperty IsNearCompletionProperty = IsNearCompletionPropertyKey.DependencyProperty;
+
+	public bool IsNearCompletion
+	{
+		get => (bool) GetValue( IsNearCompletionProperty );
+		private set => SetValue( IsNearCompletionPropertyKey, value );
+	}
+
 	private static void OnValueChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
 	{
 		if ( d is MairaProgressBar progressBar )
@@ -64,6 +78,7 @@ public partial class MairaProgressBar : UserControl
 
 			var currentCulture = CultureInfo.CurrentCulture;
 			progressBar.PercentageText = string.Format( currentCulture, "{0:F1}%", clampedValue );
+			progressBar.IsNearCompletion = clampedValue > 90d;
 		}
 	}
 }

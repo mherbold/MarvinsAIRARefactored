@@ -21,8 +21,8 @@ public sealed class SpeechToText : IDisposable
 	private const int SampleRate = 16000;
 	private const int Channels = 1;
 	private const int BitsPerSample = 16;
-	private const int SegmentDurationMs = 4000;
-	private const int RecordingBufferSeconds = 12;
+	private const int SegmentDurationMs = 250;
+	private const int RecordingBufferSeconds = 5;
 
 	public const string DefaultRecordingDeviceName = "[Default Recording Device]";
 
@@ -43,6 +43,8 @@ public sealed class SpeechToText : IDisposable
 	private bool _flushSegmentAfterTransmitStops;
 	private int _sessionCharactersUsed;
 	private readonly SemaphoreSlim _transcriptionSemaphore = new( 1, 1 );
+	private int _isRadioTransmitting;
+	private int _sawRadioTransmissionSinceLastFlush;
 
 	public ObservableCollection<string> RecordingDevices { get; } = [];
 
@@ -109,6 +111,70 @@ public sealed class SpeechToText : IDisposable
 		TrackTranscriptUsage( text, text.Length );
 	}
 
+	/// <summary>
+	/// Probes the ElevenLabs STT endpoint using a proper multipart/form-data request (with a
+	/// 1-byte silent WAV) so ElevenLabs evaluates the key's permissions before validating the
+	/// audio payload.  A plain JSON body causes the API to reject with 422/415 before it ever
+	/// checks permissions, which would produce a false Granted result.
+	/// </summary>
+	private static async Task<PermissionStatus> ProbeSttPermissionAsync( string apiKey, CancellationToken cancellationToken )
+	{
+		var app = App.Instance!;
+
+		try
+		{
+			using var request = new HttpRequestMessage( HttpMethod.Post, "https://api.elevenlabs.io/v1/speech-to-text" );
+
+			request.Headers.Add( "xi-api-key", apiKey );
+
+			// Minimal valid WAV: 44-byte header + 1 byte of silence (1 Hz, 1 ch, 8-bit)
+			// so ElevenLabs proceeds past auth before rejecting the payload.
+			var minimalWav = BuildWavFromPcm( [ 0 ], 1, 1, 8 );
+
+			using var form = new MultipartFormDataContent();
+
+			form.Add( new StringContent( "scribe_v1" ), "model_id" );
+
+			var fileContent = new ByteArrayContent( minimalWav );
+			fileContent.Headers.ContentType = new MediaTypeHeaderValue( "audio/wav" );
+			form.Add( fileContent, "file", "probe.wav" );
+
+			request.Content = form;
+
+			using var response = await _httpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
+
+			app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync POST speech-to-text: {(int) response.StatusCode}" );
+
+			if ( response.IsSuccessStatusCode )
+			{
+				return PermissionStatus.Granted;
+			}
+
+			if ( response.StatusCode == System.Net.HttpStatusCode.Unauthorized )
+			{
+				var body = await response.Content.ReadAsStringAsync( cancellationToken );
+				var detail = string.Empty;
+
+				try
+				{
+					detail = JObject.Parse( body )[ "detail" ]?[ "status" ]?.Value<string>() ?? string.Empty;
+				}
+				catch { /* non-JSON body — treat as invalid key */ }
+
+				return detail == "missing_permissions" ? PermissionStatus.MissingPermission : PermissionStatus.InvalidKey;
+			}
+
+			// Any other 4xx (e.g. 422 unprocessable for our tiny probe audio) means auth passed.
+			return PermissionStatus.Granted;
+		}
+		catch ( Exception ex )
+		{
+			app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync exception: {ex.Message}" );
+
+			return PermissionStatus.InvalidKey;
+		}
+	}
+
 	public async Task<SttKeyVerificationResult> VerifyApiKeyAsync( CancellationToken cancellationToken = default )
 	{
 		var apiKey = ElevenLabsKeyStore.LoadKey( SpeechToTextScope ).Trim();
@@ -118,7 +184,7 @@ public sealed class SpeechToText : IDisposable
 			return SttKeyVerificationResult.Empty;
 		}
 
-		var speechToTextStatus = await TextToSpeech.ProbePermissionAsync( apiKey, HttpMethod.Post, "https://api.elevenlabs.io/v1/speech-to-text", cancellationToken );
+		var speechToTextStatus = await ProbeSttPermissionAsync( apiKey, cancellationToken );
 		var userReadStatus = await TextToSpeech.ProbePermissionAsync( apiKey, HttpMethod.Get, "https://api.elevenlabs.io/v1/user/subscription", cancellationToken );
 
 		if ( speechToTextStatus == PermissionStatus.InvalidKey && userReadStatus == PermissionStatus.InvalidKey )
@@ -297,6 +363,16 @@ public sealed class SpeechToText : IDisposable
 	public void SimulatorDisconnected()
 	{
 		_ = DisableAsync();
+	}
+
+	public void UpdateRadioTransmitState( bool isRadioTransmitting )
+	{
+		Interlocked.Exchange( ref _isRadioTransmitting, isRadioTransmitting ? 1 : 0 );
+
+		if ( isRadioTransmitting )
+		{
+			Interlocked.Exchange( ref _sawRadioTransmissionSinceLastFlush, 1 );
+		}
 	}
 
 	public void RefreshRecordingDevices()
@@ -539,29 +615,15 @@ public sealed class SpeechToText : IDisposable
 
 	private async Task FlushAndTranscribeAsync( CancellationToken cancellationToken )
 	{
-		byte[] pcmBytes;
-
-		using ( _audioBufferLock.EnterScope() )
-		{
-			pcmBytes = ReadRecordedPcm();
-		}
-
-		if ( pcmBytes.Length < SampleRate / 2 )
-		{
-			return;
-		}
-
 		var app = App.Instance!;
-
-		var radioTransmitCarIdx = app.Simulator.RadioTransmitCarIdx;
-		var isRadioTransmitting = radioTransmitCarIdx != -1 && radioTransmitCarIdx != app.Simulator.PlayerCarIdx;
+		var isRadioTransmitting = Interlocked.CompareExchange( ref _isRadioTransmitting, 0, 0 ) != 0;
+		var sawRadioTransmissionSinceLastFlush = Interlocked.Exchange( ref _sawRadioTransmissionSinceLastFlush, 0 ) != 0;
 
 		if ( isRadioTransmitting )
 		{
 			_flushSegmentAfterTransmitStops = true;
 		}
-
-		if ( !isRadioTransmitting && !_flushSegmentAfterTransmitStops )
+		else if ( !_flushSegmentAfterTransmitStops && !sawRadioTransmissionSinceLastFlush )
 		{
 			return;
 		}
@@ -573,6 +635,18 @@ public sealed class SpeechToText : IDisposable
 			_flushSegmentAfterTransmitStops = false;
 
 			app.Logger.WriteLine( "[SpeechToText] Radio transmit ended; flushing trailing buffered segment" );
+		}
+
+		byte[] pcmBytes;
+
+		using ( _audioBufferLock.EnterScope() )
+		{
+			pcmBytes = ReadRecordedPcm();
+		}
+
+		if ( pcmBytes.Length < SampleRate / 2 )
+		{
+			return;
 		}
 
 		await _transcriptionSemaphore.WaitAsync( cancellationToken );

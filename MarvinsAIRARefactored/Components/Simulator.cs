@@ -223,16 +223,6 @@ public partial class Simulator
 	private IRacingSdkDatum? _yawNorthDatum = null;
 	private IRacingSdkDatum? _yawRateDatum = null;
 
-#if DEBUG
-
-	private float _minMaxLogAccumulator = 0f;
-	private float _minFrameRate = float.MaxValue;
-	private float _maxFrameRate = float.MinValue;
-	private float _minGpuUsage = float.MaxValue;
-	private float _maxGpuUsage = float.MinValue;
-
-#endif
-
 	private readonly float[] _rpmSpeedRatioAccumulator = new float[ MaxNumGears ];
 	private readonly int[] _rpmSpeedRatioSampleCount = new int[ MaxNumGears ];
 	private const int RpmSpeedRatioMinSamples = 20;
@@ -450,16 +440,6 @@ public partial class Simulator
 		_sessionStateLastFrame = null;
 		_currentTireIndexLastFrame = null;
 		_displayUnitsLastFrame = null;
-
-#if DEBUG
-
-		_minMaxLogAccumulator = 0f;
-		_minFrameRate = float.MaxValue;
-		_maxFrameRate = float.MinValue;
-		_minGpuUsage = float.MaxValue;
-		_maxGpuUsage = float.MinValue;
-
-#endif
 
 		DataContext.DataContext.Instance.Settings.UpdateSettings( false );
 
@@ -856,31 +836,6 @@ public partial class Simulator
 		YawNorth = _irsdk.Data.GetFloat( _yawNorthDatum );
 		YawRate = _irsdk.Data.GetFloat( _yawRateDatum );
 
-		// update min/max FrameRate and GpuUsage, log every second
-
-#if DEBUG
-
-		_minFrameRate = MathF.Min( _minFrameRate, FrameRate );
-		_maxFrameRate = MathF.Max( _maxFrameRate, FrameRate );
-		_minGpuUsage = MathF.Min( _minGpuUsage, GpuUsage );
-		_maxGpuUsage = MathF.Max( _maxGpuUsage, GpuUsage );
-
-		_minMaxLogAccumulator += deltaSeconds;
-
-		if ( _minMaxLogAccumulator >= 1f )
-		{
-			app.Logger.WriteLine( $"[Simulator] FrameRate min={_minFrameRate:F1} max={_maxFrameRate:F1}, GpuUsage min={_minGpuUsage:F1} max={_maxGpuUsage:F1}" );
-
-			_minMaxLogAccumulator -= 1f;
-
-			_minFrameRate = float.MaxValue;
-			_maxFrameRate = float.MinValue;
-			_minGpuUsage = float.MaxValue;
-			_maxGpuUsage = float.MinValue;
-		}
-
-#endif
-
 		// update array telemetry data properties
 
 		_irsdk.Data.GetIntArray( _carIdxLapDatum, CarIdxLap, 0, _carIdxLapDatum!.Count );
@@ -970,6 +925,10 @@ public partial class Simulator
 		{
 			LastRadioTransmitCarIdx = RadioTransmitCarIdx;
 		}
+
+		var isRadioTransmitting = RadioTransmitCarIdx != -1 && RadioTransmitCarIdx != PlayerCarIdx;
+
+		app.SpeechToText.UpdateRadioTransmitState( isRadioTransmitting );
 
 		// update velocity
 

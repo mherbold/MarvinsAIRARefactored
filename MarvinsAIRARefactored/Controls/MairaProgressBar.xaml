@@ -41,6 +41,14 @@
 
                         </Border>
 
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding IsNearCompletion, ElementName=Root}"
+                                         Value="True">
+                                <Setter Property="Foreground"
+                                        Value="{DynamicResource Brush.Accent}" />
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+
                     </ControlTemplate>
 
                 </Setter.Value>
