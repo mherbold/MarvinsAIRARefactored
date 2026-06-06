@@ -64,10 +64,13 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
@@ -100,7 +103,7 @@
                 <!-- Row 1: API key status -->
 
                 <TextBlock x:Name="VerifyResult_TextBlock"
-                           Grid.Row="1"
+                           Grid.Row="2"
                            Style="{DynamicResource MairaTextBlockStyle}"
                            Foreground="#ff5b2e"
                            Margin="0,5,0,0"
@@ -108,23 +111,14 @@
 
                 <!-- Row 2: Model -->
                 <controls:MairaComboBox x:Name="Model_MairaComboBox"
-                                        Grid.Row="3"
+                                        Grid.Row="4"
                                         Label="{Binding Localization[Model]}"
                                         SelectedValue="{Binding Settings.CommentaryElevenLabsModelId, Mode=TwoWay}" />
 
                 <!-- Row 4: Subscription usage -->
-                <TextBlock x:Name="SubscriptionUsage_TextBlock"
-                           Grid.Row="4"
-                           Style="{DynamicResource MairaTextBlockStyle}"
-                           Margin="0,5,0,0"
-                           d:Text="Just a test..." />
-
-                <!-- Row 5: Last spoken text -->
-                <TextBlock x:Name="LastSpokenText_TextBlock"
-                           Grid.Row="5"
-                           Style="{DynamicResource MairaTextBlockStyle}"
-                           Margin="0,5,0,0"
-                           d:Text="Just a test..." />
+                <controls:MairaProgressBar x:Name="SubscriptionUsage_MairaProgressBar"
+                                            Grid.Row="6"
+                                            Label="{Binding Localization[Usage]}"/>
 
             </Grid>
 

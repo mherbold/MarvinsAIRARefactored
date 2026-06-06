@@ -54,9 +54,11 @@
 
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="5" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
@@ -86,22 +88,18 @@
                 </Grid>
 
                 <TextBlock x:Name="VerifyResult_TextBlock"
-                           Grid.Row="1"
+                           Grid.Row="2"
                            Style="{DynamicResource MairaTextBlockStyle}"
                            Foreground="#ff5b2e"
-                           Margin="0,5,0,0"
                            d:Text="Just a test" />
 
-                <TextBlock x:Name="SubscriptionUsage_TextBlock"
-                           Grid.Row="3"
-                           Style="{DynamicResource MairaTextBlockStyle}"
-                           Margin="0,5,0,0"
-                           d:Text="Just a test..." />
+                <controls:MairaProgressBar x:Name="SubscriptionUsage_MairaProgressBar"
+                                            Grid.Row="4"
+                                            Label="{Binding Localization[Usage]}"/>
 
                 <TextBlock x:Name="LastTranscription_TextBlock"
-                           Grid.Row="4"
+                           Grid.Row="6"
                            Style="{DynamicResource MairaTextBlockStyle}"
-                           Margin="0,5,0,0"
                            d:Text="Just a test..." />
 
             </Grid>

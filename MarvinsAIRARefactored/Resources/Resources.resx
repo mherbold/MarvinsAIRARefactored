@@ -1647,6 +1647,9 @@
   <data name="MasterVolume" xml:space="preserve">
     <value>Master Volume</value>
   </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Usage</value>
+  </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Fetching subscription usage…</value>
   </data>

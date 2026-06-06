@@ -54,24 +54,23 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 			}
 		};
 
-		Loaded += ( _, _ ) => App.Instance!.TextToSpeech.AudioPlayed += Commentary_AudioPlayed;
+		Loaded += ( _, _ ) => App.Instance!.TextToSpeech.CreditsConsumed += UpdateSubscriptionUsageDisplayAsync;
 	}
 
-	private void Commentary_AudioPlayed( string text, int charactersCharged )
+	private void UpdateSubscriptionUsageDisplayAsync( int charactersCharged )
 	{
 		_sessionCharactersUsed += charactersCharged;
 
-		var displayText = charactersCharged > 0 ? "* " + text : text;
-
 		Dispatcher.InvokeAsync( () =>
 		{
-			LastSpokenText_TextBlock.Text = displayText;
 			UpdateSubscriptionUsageDisplay();
 		} );
 	}
 
 	private async void Settings_PropertyChanged( object? sender, System.ComponentModel.PropertyChangedEventArgs e )
 	{
+		var app = App.Instance!;
+
 		switch ( e.PropertyName )
 		{
 			case nameof( MarvinsAIRARefactored.DataContext.Settings.CommentaryEnabled )
@@ -80,13 +79,13 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 				break;
 
 			case nameof( MarvinsAIRARefactored.DataContext.Settings.CommentaryElevenLabsLanguage ):
-					var newLang = AppDataContext.Instance.Settings.CommentaryElevenLabsLanguage;
-					App.Instance!.Logger.WriteLine( $"[CommentaryPage] Settings_PropertyChanged: language changed to '{newLang}', thread={System.Threading.Thread.CurrentThread.ManagedThreadId}" );
-					App.Instance!.Commentary.Initialize();
-					App.Instance!.Logger.WriteLine( $"[CommentaryPage] Commentary.Initialize() done, LoadedLanguage='{App.Instance!.Commentary.Templates.LoadedLanguage}', PhraseCount={App.Instance!.Commentary.Templates.Phrases.Count}" );
-					await Dispatcher.InvokeAsync( PopulatePhraseEditor );
-					App.Instance!.Logger.WriteLine( $"[CommentaryPage] PopulatePhraseEditor() done, _phraseViewModels.Count={_phraseViewModels.Count}" );
-					break;
+				var newLang = AppDataContext.Instance.Settings.CommentaryElevenLabsLanguage;
+				app.Logger.WriteLine( $"[CommentaryPage] Settings_PropertyChanged: language changed to '{newLang}', thread={System.Threading.Thread.CurrentThread.ManagedThreadId}" );
+				app.Commentary.Initialize();
+				app.Logger.WriteLine( $"[CommentaryPage] Commentary.Initialize() done, LoadedLanguage='{app.Commentary.Templates.LoadedLanguage}', PhraseCount={app.Commentary.Templates.Phrases.Count}" );
+				await Dispatcher.InvokeAsync( PopulatePhraseEditor );
+				app.Logger.WriteLine( $"[CommentaryPage] PopulatePhraseEditor() done, _phraseViewModels.Count={_phraseViewModels.Count}" );
+				break;
 		}
 	}
 
@@ -106,6 +105,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 		{
 			UpdateModelOptions();
 			UpdateVoiceOptions();
+
 			await UpdateSubscriptionUsageAsync();
 		}
 
@@ -277,16 +277,13 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 
 	private async Task UpdateSubscriptionUsageAsync()
 	{
-		var localization = AppDataContext.Instance.Localization;
-
-		SubscriptionUsage_TextBlock.Text = localization[ "SubscriptionUsageLoading" ];
+		SubscriptionUsage_MairaProgressBar.Value = 0;
 
 		var info = await App.Instance!.TextToSpeech.GetSubscriptionAsync();
 
 		if ( info is null )
 		{
 			_lastSubscriptionInfo = null;
-			SubscriptionUsage_TextBlock.Text = localization[ "SubscriptionUsageUnavailable" ];
 			return;
 		}
 
@@ -300,21 +297,15 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 	{
 		if ( _lastSubscriptionInfo is null )
 		{
+			SubscriptionUsage_MairaProgressBar.Value = 0;
 			return;
 		}
 
-		var localization = AppDataContext.Instance.Localization;
 		var adjustedUsed = _lastSubscriptionInfo.CharactersUsed + _sessionCharactersUsed;
 		var limit = _lastSubscriptionInfo.CharacterLimit;
-		var remaining = Math.Max( 0, limit - adjustedUsed );
 		var percent = limit > 0 ? adjustedUsed * 100.0 / limit : 0.0;
 
-		SubscriptionUsage_TextBlock.Text = string.Format(
-			localization[ "SubscriptionUsage" ],
-			adjustedUsed,
-			limit,
-			percent,
-			remaining );
+		SubscriptionUsage_MairaProgressBar.Value = Math.Clamp( percent, 0.0, 100.0 );
 	}
 
 	#endregion

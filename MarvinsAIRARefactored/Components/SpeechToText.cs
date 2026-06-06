@@ -55,6 +55,7 @@ public sealed class SpeechToText : IDisposable
 	public string RecordingDevice
 	{
 		get => _recordingDevice;
+
 		set
 		{
 			var nextDevice = string.IsNullOrWhiteSpace( value ) ? DefaultRecordingDeviceName : value;
@@ -94,6 +95,7 @@ public sealed class SpeechToText : IDisposable
 		}
 
 		_sessionCharactersUsed += charged;
+
 		TranscriptReceived?.Invoke( transcript, charged );
 	}
 
@@ -140,6 +142,7 @@ public sealed class SpeechToText : IDisposable
 		try
 		{
 			using var request = new HttpRequestMessage( HttpMethod.Get, "https://api.elevenlabs.io/v1/user/subscription" );
+
 			request.Headers.Add( "xi-api-key", sttApiKey );
 
 			using var response = await _httpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
@@ -147,6 +150,7 @@ public sealed class SpeechToText : IDisposable
 			if ( !response.IsSuccessStatusCode )
 			{
 				app.Logger.WriteLine( $"[SpeechToText] GetSubscriptionUsageAsync error {(int) response.StatusCode}" );
+
 				return null;
 			}
 
@@ -163,20 +167,16 @@ public sealed class SpeechToText : IDisposable
 			if ( characterCount is null || characterLimit is null )
 			{
 				app.Logger.WriteLine( "[SpeechToText] GetSubscriptionUsageAsync: character_count/character_limit not found in subscription response" );
+
 				return null;
 			}
 
-			return new SttSubscriptionInfo(
-				Math.Max( 0, characterCount.Value ),
-				Math.Max( 0, characterLimit.Value ),
-				tier,
-				status,
-				nextResetUnix,
-				currentOverage );
+			return new SttSubscriptionInfo( Math.Max( 0, characterCount.Value ), Math.Max( 0, characterLimit.Value ), tier, status, nextResetUnix, currentOverage );
 		}
 		catch ( Exception ex )
 		{
 			app.Logger.WriteLine( $"[SpeechToText] GetSubscriptionUsageAsync exception: {ex.Message}" );
+
 			return null;
 		}
 	}
@@ -197,6 +197,7 @@ public sealed class SpeechToText : IDisposable
 		if ( string.IsNullOrWhiteSpace( apiKey ) )
 		{
 			app.SpeechToTextWindow?.SetFinalText( "No ElevenLabs STT API key configured." );
+
 			return;
 		}
 
@@ -218,6 +219,7 @@ public sealed class SpeechToText : IDisposable
 		catch ( Exception ex )
 		{
 			app.Logger.WriteLine( $"[SpeechToText] EnableAsync failed: {ex.Message}" );
+
 			await DisableAsync();
 		}
 	}
@@ -279,6 +281,7 @@ public sealed class SpeechToText : IDisposable
 
 		_isEnabled = false;
 		_flushSegmentAfterTransmitStops = false;
+
 		app.UpdateSpeechToTextWindowVisibility();
 		app.Logger.WriteLine( "[SpeechToText] << DisableAsync" );
 	}
@@ -294,11 +297,6 @@ public sealed class SpeechToText : IDisposable
 	public void SimulatorDisconnected()
 	{
 		_ = DisableAsync();
-	}
-
-	public void UpdateStrings()
-	{
-		// No external browser UI strings in native capture mode.
 	}
 
 	public void RefreshRecordingDevices()
@@ -322,6 +320,7 @@ public sealed class SpeechToText : IDisposable
 	public void Dispose()
 	{
 		_ = DisableAsync();
+
 		_transcriptionSemaphore.Dispose();
 	}
 
@@ -366,6 +365,7 @@ public sealed class SpeechToText : IDisposable
 		_recordDriverId = ResolveRecordDriverId( _captureSystem.Value, numDrivers );
 
 		_captureSystem.Value.getRecordDriverInfo( _recordDriverId, out var recordingDeviceName, 256, out _, out _, out _, out _, out _ );
+
 		App.Instance?.Logger.WriteLine( $"[SpeechToText] Using recording device {_recordDriverId}: {recordingDeviceName}" );
 
 		var bufferLengthSamples = (uint) ( SampleRate * RecordingBufferSeconds );
@@ -415,11 +415,13 @@ public sealed class SpeechToText : IDisposable
 		if ( _captureSystem is not null )
 		{
 			_captureSystem.Value.getRecordNumDrivers( out var activeDrivers, out var activeConnectedDrivers );
+
 			app.Logger.WriteLine( $"[SpeechToText] EnumerateRecordingDevices(active system): drivers={activeDrivers}, connected={activeConnectedDrivers}" );
 
 			for ( int i = 0; i < activeDrivers; i++ )
 			{
 				_captureSystem.Value.getRecordDriverInfo( i, out var activeName, 256, out _, out _, out _, out _, out var state );
+
 				app.Logger.WriteLine( $"[SpeechToText] EnumerateRecordingDevices(active system): index={i}, name='{activeName}', state={state}" );
 
 				if ( !string.IsNullOrWhiteSpace( activeName ) && !IsLoopbackDeviceName( activeName ) )
@@ -431,6 +433,7 @@ public sealed class SpeechToText : IDisposable
 			if ( names.Count > 0 )
 			{
 				app.Logger.WriteLine( "[SpeechToText] EnumerateRecordingDevices: using active capture system list" );
+
 				return names;
 			}
 
@@ -442,6 +445,7 @@ public sealed class SpeechToText : IDisposable
 		if ( createResult != FMOD.RESULT.OK )
 		{
 			app.Logger.WriteLine( $"[SpeechToText] EnumerateRecordingDevices(temp system): System_Create failed {createResult}" );
+
 			return names;
 		}
 
@@ -452,6 +456,7 @@ public sealed class SpeechToText : IDisposable
 			if ( initResult != FMOD.RESULT.OK )
 			{
 				app.Logger.WriteLine( $"[SpeechToText] EnumerateRecordingDevices(temp system): init failed {initResult}" );
+
 				return names;
 			}
 
@@ -476,6 +481,7 @@ public sealed class SpeechToText : IDisposable
 		}
 
 		app.Logger.WriteLine( $"[SpeechToText] EnumerateRecordingDevices final count={names.Count}" );
+
 		return names;
 	}
 
@@ -498,8 +504,7 @@ public sealed class SpeechToText : IDisposable
 				fallbackDriverId = i;
 			}
 
-			if ( !string.Equals( selectedName, DefaultRecordingDeviceName, StringComparison.OrdinalIgnoreCase ) &&
-				 string.Equals( name, selectedName, StringComparison.OrdinalIgnoreCase ) )
+			if ( !string.Equals( selectedName, DefaultRecordingDeviceName, StringComparison.OrdinalIgnoreCase ) && string.Equals( name, selectedName, StringComparison.OrdinalIgnoreCase ) )
 			{
 				return i;
 			}
@@ -510,8 +515,7 @@ public sealed class SpeechToText : IDisposable
 
 	private static bool IsLoopbackDeviceName( string? deviceName )
 	{
-		return !string.IsNullOrWhiteSpace( deviceName ) &&
-			deviceName.Contains( "[loopback]", StringComparison.OrdinalIgnoreCase );
+		return !string.IsNullOrWhiteSpace( deviceName ) && deviceName.Contains( "[loopback]", StringComparison.OrdinalIgnoreCase );
 	}
 
 	private void UpdateRecordingDeviceCollection( IReadOnlyList<string> deviceNames )
@@ -548,10 +552,9 @@ public sealed class SpeechToText : IDisposable
 		}
 
 		var app = App.Instance!;
+
 		var radioTransmitCarIdx = app.Simulator.RadioTransmitCarIdx;
-		var isRadioTransmitting =
-			radioTransmitCarIdx != -1 &&
-			radioTransmitCarIdx != app.Simulator.PlayerCarIdx;
+		var isRadioTransmitting = radioTransmitCarIdx != -1 && radioTransmitCarIdx != app.Simulator.PlayerCarIdx;
 
 		if ( isRadioTransmitting )
 		{
@@ -568,6 +571,7 @@ public sealed class SpeechToText : IDisposable
 		if ( consumeTrailingFlush )
 		{
 			_flushSegmentAfterTransmitStops = false;
+
 			app.Logger.WriteLine( "[SpeechToText] Radio transmit ended; flushing trailing buffered segment" );
 		}
 
@@ -584,6 +588,7 @@ public sealed class SpeechToText : IDisposable
 
 			app.EnsureSpeechToTextWindowExists();
 			app.SpeechToTextWindow?.SetFinalText( transcript );
+
 			HandleFinalText( transcript );
 		}
 		finally
@@ -636,12 +641,13 @@ public sealed class SpeechToText : IDisposable
 		if ( lockResult != FMOD.RESULT.OK )
 		{
 			App.Instance?.Logger.WriteLine( $"[SpeechToText] Sound.lock failed: {lockResult}" );
+
 			return [];
 		}
 
 		try
 		{
-			var totalLength = checked( (int) ( len1 + len2 ) );
+			var totalLength = checked((int) ( len1 + len2 ));
 			var buffer = new byte[ totalLength ];
 
 			if ( len1 > 0 )
@@ -676,10 +682,12 @@ public sealed class SpeechToText : IDisposable
 		var wavBytes = BuildWavFromPcm( pcmBytes, SampleRate, Channels, BitsPerSample );
 
 		using var request = new HttpRequestMessage( HttpMethod.Post, "https://api.elevenlabs.io/v1/speech-to-text" );
+
 		request.Headers.Add( "xi-api-key", apiKey );
 		request.Headers.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
 
 		using var form = new MultipartFormDataContent();
+
 		form.Add( new StringContent( "scribe_v1" ), "model_id" );
 
 		if ( !string.IsNullOrWhiteSpace( _language ) )
@@ -688,8 +696,11 @@ public sealed class SpeechToText : IDisposable
 		}
 
 		var fileContent = new ByteArrayContent( wavBytes );
+
 		fileContent.Headers.ContentType = new MediaTypeHeaderValue( "audio/wav" );
+
 		form.Add( fileContent, "file", "segment.wav" );
+
 		request.Content = form;
 
 		using var response = await _httpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
@@ -697,15 +708,16 @@ public sealed class SpeechToText : IDisposable
 		if ( !response.IsSuccessStatusCode )
 		{
 			var body = await response.Content.ReadAsStringAsync( cancellationToken );
+
 			App.Instance?.Logger.WriteLine( $"[SpeechToText] TranscribeSegmentAsync error {(int) response.StatusCode}: {body}" );
+
 			return null;
 		}
 
 		var json = await response.Content.ReadAsStringAsync( cancellationToken );
 		var root = JObject.Parse( json );
 
-		return root[ "text" ]?.Value<string>()
-			?? root[ "transcript" ]?.Value<string>();
+		return root[ "text" ]?.Value<string>() ?? root[ "transcript" ]?.Value<string>();
 	}
 
 	private static byte[] BuildWavFromPcm( byte[] pcmBytes, int sampleRate, int channels, int bitsPerSample )
@@ -734,6 +746,7 @@ public sealed class SpeechToText : IDisposable
 		writer.Write( pcmBytes );
 
 		writer.Flush();
+
 		return stream.ToArray();
 	}
 
@@ -840,30 +853,15 @@ public sealed class SpeechToText : IDisposable
 
 public sealed record SttKeyVerificationResult( bool IsRecognized, PermissionStatus SpeechToText, PermissionStatus UserRead )
 {
-	public bool IsFullyFunctional =>
-		IsRecognized &&
-		SpeechToText == PermissionStatus.Granted &&
-		UserRead == PermissionStatus.Granted;
+	public bool IsFullyFunctional => IsRecognized && SpeechToText == PermissionStatus.Granted && UserRead == PermissionStatus.Granted;
 
-	public static readonly SttKeyVerificationResult Empty =
-		new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
-
-	public static readonly SttKeyVerificationResult Invalid =
-		new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
+	public static readonly SttKeyVerificationResult Empty = new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
+	public static readonly SttKeyVerificationResult Invalid = new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
 }
 
-public sealed record SttSubscriptionInfo(
-	int CharacterCount,
-	int CharacterLimit,
-	string Tier,
-	string Status,
-	long? NextCharacterCountResetUnix,
-	decimal? CurrentOverage )
+public sealed record SttSubscriptionInfo( int CharacterCount, int CharacterLimit, string Tier, string Status, long? NextCharacterCountResetUnix, decimal? CurrentOverage )
 {
 	public int RemainingCredits => Math.Max( 0, CharacterLimit - CharacterCount );
 
-	public DateTimeOffset? NextCharacterCountResetUtc =>
-		NextCharacterCountResetUnix is > 0
-			? DateTimeOffset.FromUnixTimeSeconds( NextCharacterCountResetUnix.Value )
-			: null;
+	public DateTimeOffset? NextCharacterCountResetUtc => NextCharacterCountResetUnix is > 0 ? DateTimeOffset.FromUnixTimeSeconds( NextCharacterCountResetUnix.Value ) : null;
 }

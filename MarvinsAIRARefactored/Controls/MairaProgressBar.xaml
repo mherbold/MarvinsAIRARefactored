@@ -1,0 +1,120 @@
+<UserControl x:Class="MarvinsAIRARefactored.Controls.MairaProgressBar"
+             x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             Background="Transparent">
+
+    <UserControl.Resources>
+
+        <Style x:Key="MairaProgressBarStyle"
+               TargetType="ProgressBar">
+
+            <Setter Property="Foreground"
+                    Value="{DynamicResource Brush.SteeringEffects.Understeer}" />
+            <Setter Property="Background"
+                    Value="{DynamicResource Brush.Background.Popup}" />
+            <Setter Property="Height"
+                    Value="10" />
+            <Setter Property="Template">
+
+                <Setter.Value>
+
+                    <ControlTemplate TargetType="ProgressBar">
+
+                        <Border BorderBrush="{DynamicResource Brush.Border.Subtle}"
+                                BorderThickness="1"
+                                CornerRadius="5"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True">
+
+                            <Grid x:Name="PART_Track"
+                                  ClipToBounds="True"
+                                  Margin="1">
+                                <Border x:Name="PART_Indicator"
+                                        HorizontalAlignment="Left"
+                                        Background="{TemplateBinding Foreground}"
+                                        CornerRadius="4" />
+                            </Grid>
+
+                        </Border>
+
+                    </ControlTemplate>
+
+                </Setter.Value>
+
+            </Setter>
+
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <TextBlock Grid.Row="0"
+                   Text="{Binding Label, ElementName=Root}">
+
+            <TextBlock.Style>
+
+                <Style TargetType="TextBlock"
+                       BasedOn="{StaticResource MairaTextBlockStyle}">
+
+                    <Setter Property="Visibility"
+                            Value="Visible" />
+
+                    <Style.Triggers>
+
+                        <DataTrigger Binding="{Binding Label, ElementName=Root}"
+                                     Value="">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed" />
+                        </DataTrigger>
+
+                    </Style.Triggers>
+
+                </Style>
+
+            </TextBlock.Style>
+
+        </TextBlock>
+
+        <Grid Grid.Row="1"
+              Margin="0,5,0,0"
+              VerticalAlignment="Bottom">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0"
+                  Height="34"
+                  VerticalAlignment="Bottom">
+
+                <ProgressBar Minimum="0"
+                             Maximum="100"
+                             Value="{Binding Value, ElementName=Root}"
+                             Style="{StaticResource MairaProgressBarStyle}"
+                             VerticalAlignment="Center" />
+
+            </Grid>
+
+            <TextBlock Grid.Column="2"
+                       VerticalAlignment="Center"
+                       Style="{StaticResource MairaTextBlockStyle}"
+                       Foreground="{DynamicResource Brush.Foreground.Primary}"
+                       Text="{Binding PercentageText, ElementName=Root}" />
+
+        </Grid>
+
+    </Grid>
+
+</UserControl>

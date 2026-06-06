@@ -154,16 +154,13 @@ public partial class SpeechToTextPage : UserControl
 
 	private async Task UpdateSubscriptionUsageAsync()
 	{
-		var localization = AppDataContext.Instance.Localization;
-		SubscriptionUsage_TextBlock.Text = localization[ "SubscriptionUsageLoading" ];
+		SubscriptionUsage_MairaProgressBar.Value = 0;
 
 		var info = await App.Instance!.SpeechToText.GetSubscriptionUsageAsync();
 
 		if ( info is null )
 		{
 			_lastSubscriptionInfo = null;
-			LastTranscription_TextBlock.Text = localization[ "SubscriptionUsageUnavailable" ];
-			SubscriptionUsage_TextBlock.Text = localization[ "SubscriptionUsageUnavailable" ];
 			return;
 		}
 
@@ -177,32 +174,16 @@ public partial class SpeechToTextPage : UserControl
 	{
 		if ( _lastSubscriptionInfo is null )
 		{
+			SubscriptionUsage_MairaProgressBar.Value = 0;
 			return;
 		}
 
-		var localization = AppDataContext.Instance.Localization;
-
 		var adjustedCharacterCount = _lastSubscriptionInfo.CharacterCount + _sessionCharactersUsed;
-		var remainingCredits = Math.Max( 0, _lastSubscriptionInfo.CharacterLimit - adjustedCharacterCount );
-		var percent = _lastSubscriptionInfo.CharacterLimit > 0 ? adjustedCharacterCount * 100.0 / _lastSubscriptionInfo.CharacterLimit : 0.0;
+		var percent = _lastSubscriptionInfo.CharacterLimit > 0
+			? adjustedCharacterCount * 100.0 / _lastSubscriptionInfo.CharacterLimit
+			: 0.0;
 
-		var estimatedMinutesRemaining = remainingCredits / SpeechToText.ElevenLabsSttCreditsPerMinute;
-		var estimatedHoursRemaining = estimatedMinutesRemaining / 60.0;
-
-		var resetText = _lastSubscriptionInfo.NextCharacterCountResetUtc?.ToLocalTime().ToString( "g" )
-			?? localization[ "Unknown" ];
-		var overage = _lastSubscriptionInfo.CurrentOverage ?? 0m;
-
-		SubscriptionUsage_TextBlock.Text = string.Format(
-			localization[ "SttSubscriptionUsageEstimated" ],
-			estimatedHoursRemaining,
-			estimatedMinutesRemaining,
-			remainingCredits,
-			resetText,
-			adjustedCharacterCount,
-			_lastSubscriptionInfo.CharacterLimit,
-			percent,
-			overage );
+		SubscriptionUsage_MairaProgressBar.Value = Math.Clamp( percent, 0.0, 100.0 );
 	}
 
 	public void UpdateLanguageOptions()

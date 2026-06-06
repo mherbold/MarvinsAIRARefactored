@@ -172,8 +172,6 @@ public partial class MainWindow : Window
 
 			_speechToTextPage.OnPageActivated();
 
-			app.SpeechToText.UpdateStrings();
-
 			_commentary.OnPageActivated();
 
 			_appManagerPage.UpdateComboBoxOptions();
