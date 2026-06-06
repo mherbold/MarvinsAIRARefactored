@@ -144,6 +144,9 @@
   <data name="HeaderData_UC" xml:space="preserve">
     <value>נתוני כותרת</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>שפה</value>
+  </data>
   <data name="Language_UC" xml:space="preserve">
     <value>שפה</value>
   </data>

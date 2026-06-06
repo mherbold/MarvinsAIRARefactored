@@ -18,31 +18,91 @@
 
         <controls:MairaGroupBox Label="{Binding Localization[SpeechToText_UC]}">
 
-            <StackPanel>
-
-                <controls:MairaSwitch Margin="0"
-                                      IsOn="{Binding Settings.SpeechToTextEnabled, Mode=TwoWay}"
-                                      Label="{Binding Localization[Enabled]}" />
-
-            </StackPanel>
-
-        </controls:MairaGroupBox>
-
-        <controls:MairaGroupBox Label="{Binding Localization[Language_UC]}">
-
             <Grid>
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="20" />
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="20" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <controls:MairaSwitch Grid.Column="0"
+                                      Margin="0"
+                                      LabelPosition="Top"
+                                      IsOn="{Binding Settings.SpeechToTextEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[Enabled]}" />
+
+                <controls:MairaComboBox x:Name="RecordingDevice_MairaComboBox"
+                                        Grid.Column="2"
+                                        Label="{Binding Localization[RecordingDevice]}"
+                                        SelectedValue="{Binding Settings.SpeechToTextRecordingDevice, Mode=TwoWay}" />
+
                 <controls:MairaComboBox x:Name="Language_MairaComboBox"
-                                        Grid.Column="0"
+                                        Grid.Column="4"
+                                        Label="{Binding Localization[Language]}"
                                         SelectedValue="{Binding Settings.SpeechToTextLanguageCode, Mode=TwoWay}" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization[Account_UC]}">
+
+            <Grid>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="20" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaTextBox Grid.Column="0"
+                                           x:Name="ApiKey_MairaTextBox"
+                                           Label="{Binding Localization[ApiKey]}"
+                                           IsPassword="True"
+                                           ValueChanged="ApiKey_MairaTextBox_ValueChanged"
+                                           FontSize="20" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          x:Name="VerifyKey_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/power-blue.png"
+                                          Label="{Binding Localization[VerifyKey]}"
+                                          Click="VerifyKey_MairaButton_Click"
+                                          IsSmall="True"
+                                          VerticalAlignment="Bottom" />
+
+                </Grid>
+
+                <TextBlock x:Name="VerifyResult_TextBlock"
+                           Grid.Row="1"
+                           Style="{DynamicResource MairaTextBlockStyle}"
+                           Foreground="#ff5b2e"
+                           Margin="0,5,0,0"
+                           d:Text="Just a test" />
+
+                <TextBlock x:Name="SubscriptionUsage_TextBlock"
+                           Grid.Row="3"
+                           Style="{DynamicResource MairaTextBlockStyle}"
+                           Margin="0,5,0,0"
+                           d:Text="Just a test..." />
+
+                <TextBlock x:Name="LastTranscription_TextBlock"
+                           Grid.Row="4"
+                           Style="{DynamicResource MairaTextBlockStyle}"
+                           Margin="0,5,0,0"
+                           d:Text="Just a test..." />
 
             </Grid>
 

@@ -170,7 +170,7 @@ public partial class MainWindow : Window
 
 			_soundsPage.UpdateOutputDeviceOptions();
 
-			_speechToTextPage.UpdateLanguageOptions();
+			_speechToTextPage.OnPageActivated();
 
 			app.SpeechToText.UpdateStrings();
 

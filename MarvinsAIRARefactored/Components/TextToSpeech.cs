@@ -193,7 +193,7 @@ public sealed class TextToSpeech : IDisposable
 	/// Sends a lightweight probe request and returns whether the key has permission for that endpoint.
 	/// For POST endpoints (text-to-speech) an empty body is sent — ElevenLabs checks auth before validating the payload.
 	/// </summary>
-	private static async Task<PermissionStatus> ProbePermissionAsync( string apiKey, HttpMethod method, string url, CancellationToken cancellationToken )
+	public static async Task<PermissionStatus> ProbePermissionAsync( string apiKey, HttpMethod method, string url, CancellationToken cancellationToken )
 	{
 		var app = App.Instance!;
 
@@ -524,10 +524,20 @@ public sealed class TextToSpeech : IDisposable
 	/// Queries the ElevenLabs subscription endpoint and returns the character usage for the
 	/// current billing period, or null if the call fails or the API key is missing.
 	/// </summary>
-	public async Task<SubscriptionInfo?> GetSubscriptionAsync( CancellationToken cancellationToken = default )
+	public Task<SubscriptionInfo?> GetSubscriptionAsync( CancellationToken cancellationToken = default )
+	{
+		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey;
+
+		return GetSubscriptionAsync( apiKey, cancellationToken );
+	}
+
+	/// <summary>
+	/// Queries the ElevenLabs subscription endpoint and returns the character usage for the
+	/// current billing period using the provided API key, or null if the call fails.
+	/// </summary>
+	public async Task<SubscriptionInfo?> GetSubscriptionAsync( string apiKey, CancellationToken cancellationToken = default )
 	{
 		var app = App.Instance!;
-		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey;
 
 		if ( string.IsNullOrWhiteSpace( apiKey ) )
 		{

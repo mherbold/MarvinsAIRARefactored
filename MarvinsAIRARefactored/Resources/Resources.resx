@@ -144,6 +144,9 @@
   <data name="HeaderData_UC" xml:space="preserve">
     <value>HEADER DATA</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="Language_UC" xml:space="preserve">
     <value>LANGUAGE</value>
   </data>
@@ -1629,6 +1632,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Text to Speech — Access</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Speech to Text — Access</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>User — Read</value>
   </data>
@@ -1646,6 +1652,9 @@
   </data>
   <data name="SubscriptionUsageUnavailable" xml:space="preserve">
     <value>Plan usage unavailable</value>
+  </data>
+  <data name="SttSubscriptionUsageEstimated" xml:space="preserve">
+    <value>Estimated STT time remaining: {0:F2} hours ({1:F1} minutes). Remaining credits: {2:N0}. Next reset: {3}. Raw usage: {4:N0} / {5:N0} credits ({6:F1}%). Current overage: {7:F2}.</value>
   </data>
   <data name="Voice" xml:space="preserve">
     <value>Voice</value>

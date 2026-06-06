@@ -144,6 +144,9 @@
   <data name="HeaderData_UC" xml:space="preserve">
     <value>ՎԵՐՆԱԳՐԻ ՏՎՅԱԼՆԵՐ</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Լեզու</value>
+  </data>
   <data name="Language_UC" xml:space="preserve">
     <value>ԼԵԶՈՒ</value>
   </data>

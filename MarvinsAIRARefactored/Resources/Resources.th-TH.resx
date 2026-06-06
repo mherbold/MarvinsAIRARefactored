@@ -144,6 +144,9 @@
   <data name="HeaderData_UC" xml:space="preserve">
     <value>ข้อมูลส่วนหัว</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>ภาษา</value>
+  </data>
   <data name="Language_UC" xml:space="preserve">
     <value>ภาษา</value>
   </data>

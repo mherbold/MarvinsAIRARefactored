@@ -144,6 +144,9 @@
   <data name="HeaderData_UC" xml:space="preserve">
     <value>DONNÉES D'EN-TÊTE</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Langue</value>
+  </data>
   <data name="Language_UC" xml:space="preserve">
     <value>LANGUE</value>
   </data>

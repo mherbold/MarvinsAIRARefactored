@@ -1,20 +1,63 @@
 ﻿
 using System.Windows;
+using System.Windows.Media;
 
+using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.Components;
 using MarvinsAIRARefactored.Controls;
 
+using AppDataContext = MarvinsAIRARefactored.DataContext.DataContext;
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace MarvinsAIRARefactored.Pages;
 
 public partial class SpeechToTextPage : UserControl
 {
+	private SttSubscriptionInfo? _lastSubscriptionInfo;
+	private int _sessionCharactersUsed;
+
 	public SpeechToTextPage()
 	{
 		InitializeComponent();
+
+		AppDataContext.Instance.Settings.PropertyChanged += Settings_PropertyChanged;
+
+		Loaded += ( _, _ ) => App.Instance!.SpeechToText.TranscriptReceived += SpeechToText_TranscriptReceived;
+		Unloaded += ( _, _ ) => App.Instance!.SpeechToText.TranscriptReceived -= SpeechToText_TranscriptReceived;
+	}
+
+	public async void OnPageActivated()
+	{
+		UpdateLanguageOptions();
+		UpdateRecordingDeviceOptions();
+		LoadApiKeyIntoPasswordBox();
+		await VerifyAndPopulateAsync();
 	}
 
 	#region User Control Events
+
+	private void SpeechToText_TranscriptReceived( string text, int charactersCharged )
+	{
+		_sessionCharactersUsed += charactersCharged;
+
+		var displayText = charactersCharged > 0 ? "* " + text : text;
+
+		Dispatcher.InvokeAsync( () =>
+		{
+			LastTranscription_TextBlock.Text = displayText;
+			UpdateSubscriptionUsageDisplay();
+		} );
+	}
+
+	private async void Settings_PropertyChanged( object? sender, System.ComponentModel.PropertyChangedEventArgs e )
+	{
+		switch ( e.PropertyName )
+		{
+			case nameof( MarvinsAIRARefactored.DataContext.Settings.SpeechToTextElevenLabsApiKey ):
+				await VerifyAndPopulateAsync();
+				break;
+		}
+	}
 
 	private void ResetOverlayWindow_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
@@ -23,110 +66,197 @@ public partial class SpeechToTextPage : UserControl
 		app.SpeechToTextWindow?.ResetWindow();
 	}
 
+	private void ApiKey_MairaTextBox_ValueChanged( object sender, RoutedEventArgs e )
+	{
+		var key = ApiKey_MairaTextBox.Value.Trim();
+
+		if ( key != ApiKey_MairaTextBox.Value )
+		{
+			ApiKey_MairaTextBox.Value = key;
+			return;
+		}
+
+		try
+		{
+			AppDataContext.Instance.Settings.SpeechToTextElevenLabsApiKey = key;
+		}
+		catch ( Exception ex )
+		{
+			App.Instance!.Logger.WriteLine( $"[SpeechToTextPage] Failed to save STT API key: {ex.Message}" );
+		}
+	}
+
+	private async void VerifyKey_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		VerifyResult_TextBlock.Text = "…";
+		await VerifyAndPopulateAsync();
+	}
+
 	#endregion
 
 	#region Logic
 
+	private void LoadApiKeyIntoPasswordBox()
+	{
+		try
+		{
+			ApiKey_MairaTextBox.Value = AppDataContext.Instance.Settings.SpeechToTextElevenLabsApiKey;
+		}
+		catch
+		{
+			ApiKey_MairaTextBox.Value = string.Empty;
+		}
+	}
+
+	private async Task VerifyAndPopulateAsync()
+	{
+		var app = App.Instance!;
+		var localization = AppDataContext.Instance.Localization;
+
+		try
+		{
+			var result = await app.SpeechToText.VerifyApiKeyAsync();
+
+			if ( !result.IsRecognized )
+			{
+				VerifyResult_TextBlock.Text = localization[ "KeyInvalid" ];
+				VerifyResult_TextBlock.Foreground = (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Status.Error.Text" );
+				return;
+			}
+
+			string permSymbol( PermissionStatus status ) =>
+				status == PermissionStatus.Granted
+					? localization[ "KeyPermissionGranted" ]
+					: localization[ "KeyPermissionMissing" ];
+
+			if ( result.IsFullyFunctional )
+			{
+				VerifyResult_TextBlock.Text =
+					$"{localization[ "KeyVerified" ]}\n{permSymbol( result.SpeechToText )}  {localization[ "KeyPermissionSpeechToText" ]}\n{permSymbol( result.UserRead )}  {localization[ "KeyPermissionUserRead" ]}";
+				VerifyResult_TextBlock.Foreground = (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Accent.Blue" );
+			}
+			else
+			{
+				VerifyResult_TextBlock.Text =
+					$"{localization[ "KeyRecognized" ]}\n{permSymbol( result.SpeechToText )}  {localization[ "KeyPermissionSpeechToText" ]}\n{permSymbol( result.UserRead )}  {localization[ "KeyPermissionUserRead" ]}";
+				VerifyResult_TextBlock.Foreground = (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Status.Warning.Text" );
+			}
+
+			await UpdateSubscriptionUsageAsync();
+		}
+		catch ( Exception ex )
+		{
+			app.Logger.WriteLine( $"[SpeechToTextPage] VerifyAndPopulateAsync error: {ex.Message}" );
+			VerifyResult_TextBlock.Text = localization[ "KeyInvalid" ];
+			VerifyResult_TextBlock.Foreground = (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Status.Error.Text" );
+		}
+	}
+
+	private async Task UpdateSubscriptionUsageAsync()
+	{
+		var localization = AppDataContext.Instance.Localization;
+		SubscriptionUsage_TextBlock.Text = localization[ "SubscriptionUsageLoading" ];
+
+		var info = await App.Instance!.SpeechToText.GetSubscriptionUsageAsync();
+
+		if ( info is null )
+		{
+			_lastSubscriptionInfo = null;
+			LastTranscription_TextBlock.Text = localization[ "SubscriptionUsageUnavailable" ];
+			SubscriptionUsage_TextBlock.Text = localization[ "SubscriptionUsageUnavailable" ];
+			return;
+		}
+
+		_lastSubscriptionInfo = info;
+		_sessionCharactersUsed = App.Instance!.SpeechToText.SessionCharactersUsed;
+		LastTranscription_TextBlock.Text = string.Empty;
+		UpdateSubscriptionUsageDisplay();
+	}
+
+	private void UpdateSubscriptionUsageDisplay()
+	{
+		if ( _lastSubscriptionInfo is null )
+		{
+			return;
+		}
+
+		var localization = AppDataContext.Instance.Localization;
+
+		var adjustedCharacterCount = _lastSubscriptionInfo.CharacterCount + _sessionCharactersUsed;
+		var remainingCredits = Math.Max( 0, _lastSubscriptionInfo.CharacterLimit - adjustedCharacterCount );
+		var percent = _lastSubscriptionInfo.CharacterLimit > 0 ? adjustedCharacterCount * 100.0 / _lastSubscriptionInfo.CharacterLimit : 0.0;
+
+		var estimatedMinutesRemaining = remainingCredits / SpeechToText.ElevenLabsSttCreditsPerMinute;
+		var estimatedHoursRemaining = estimatedMinutesRemaining / 60.0;
+
+		var resetText = _lastSubscriptionInfo.NextCharacterCountResetUtc?.ToLocalTime().ToString( "g" )
+			?? localization[ "Unknown" ];
+		var overage = _lastSubscriptionInfo.CurrentOverage ?? 0m;
+
+		SubscriptionUsage_TextBlock.Text = string.Format(
+			localization[ "SttSubscriptionUsageEstimated" ],
+			estimatedHoursRemaining,
+			estimatedMinutesRemaining,
+			remainingCredits,
+			resetText,
+			adjustedCharacterCount,
+			_lastSubscriptionInfo.CharacterLimit,
+			percent,
+			overage );
+	}
+
 	public void UpdateLanguageOptions()
 	{
 		var app = App.Instance!;
+		var localization = AppDataContext.Instance.Localization;
 
 		app.Logger.WriteLine( "[SpeechToTextPage] UpdateLanguageOptions >>>" );
 
-		var dictionary = new Dictionary<string, string>
-		{
-			// ---- European ----
-			{ "en-US", "English (US)" },
-			{ "en-GB", "English (UK)" },
-			{ "fr-FR", "français" },
-			{ "fr-CA", "français (Canada)" },
-			{ "de-DE", "Deutsch" },
-			{ "it-IT", "italiano" },
-			{ "es-ES", "español (España)" },
-			{ "es-MX", "español (México)" },
-			{ "pt-PT", "português (Portugal)" },
-			{ "pt-BR", "português (Brasil)" },
-			{ "nl-NL", "Nederlands" },
-			{ "nl-BE", "Nederlands (België)" },
-			{ "pl-PL", "polski" },
-			{ "cs-CZ", "čeština" },
-			{ "sk-SK", "slovenčina" },
-			{ "sl-SI", "slovenščina" },
-			{ "hr-HR", "hrvatski" },
-			{ "sr-RS", "српски" },
-			{ "bs-BA", "bosanski" },
-			{ "mk-MK", "македонски" },
-			{ "bg-BG", "български" },
-			{ "ro-RO", "română" },
-			{ "hu-HU", "magyar" },
-			{ "fi-FI", "suomi" },
-			{ "sv-SE", "svenska" },
-			{ "da-DK", "dansk" },
-			{ "no-NO", "norsk bokmål" },
-			{ "is-IS", "íslenska" },
-			{ "et-EE", "eesti" },
-			{ "lv-LV", "latviešu" },
-			{ "lt-LT", "lietuvių" },
-			{ "el-GR", "Ελληνικά" },
-			{ "mt-MT", "Malti" },
-			{ "ga-IE", "Gaeilge" },
-			{ "cy-GB", "Cymraeg" },
-			{ "ru-RU", "русский" },
-			{ "uk-UA", "українська" },
-			{ "be-BY", "беларуская" },
-			{ "tr-TR", "Türkçe" },
-			{ "sq-AL", "shqip" },
+		var options = CommentaryTemplates.GetAvailableLanguages()
+			.ToDictionary(
+				lang => lang,
+				lang =>
+				{
+					if ( localization.Languages.TryGetValue( lang, out var label ) )
+					{
+						return label;
+					}
 
-			// ---- Middle East / Central Asia ----
-			{ "he-IL", "עברית" },
-			{ "ar-SA", "العربية" },
-			{ "fa-IR", "فارسی" },
-			{ "ur-PK", "اردو" },
-			{ "kk-KZ", "қазақ тілі" },
-			{ "uz-UZ", "oʻzbekcha" },
-			{ "az-AZ", "azərbaycan dili" },
-			{ "hy-AM", "հայերեն" },
-			{ "ka-GE", "ქართული" },
+					var fallbackKey = lang == "en-US" ? "default" : lang;
 
-			// ---- South Asia ----
-			{ "hi-IN", "हिन्दी" },
-			{ "bn-BD", "বাংলা (বাংলাদেশ)" },
-			{ "bn-IN", "বাংলা (ভারত)" },
-			{ "ta-IN", "தமிழ்" },
-			{ "te-IN", "తెలుగు" },
-			{ "ml-IN", "മലയാളം" },
-			{ "kn-IN", "ಕನ್ನಡ" },
-			{ "gu-IN", "ગુજરાતી" },
-			{ "pa-IN", "ਪੰਜਾਬੀ" },
-			{ "si-LK", "සිංහල" },
-			{ "ne-NP", "नेपाली" },
+					return localization.Languages.TryGetValue( fallbackKey, out label ) ? label : lang;
+				} );
 
-			// ---- East Asia ----
-			{ "zh-CN", "中文 (简体)" },
-			{ "zh-TW", "中文 (繁體)" },
-			{ "zh-HK", "中文 (香港)" },
-			{ "ja-JP", "日本語" },
-			{ "ko-KR", "한국어" },
-
-			// ---- Southeast Asia ----
-			{ "th-TH", "ไทย" },
-			{ "vi-VN", "Tiếng Việt" },
-			{ "id-ID", "Bahasa Indonesia" },
-			{ "ms-MY", "Bahasa Melayu" },
-			{ "km-KH", "ភាសាខ្មែរ" },
-			{ "lo-LA", "ລາວ" },
-			{ "my-MM", "ဗမာ" },
-			{ "fil-PH", "Filipino" },
-
-			// ---- Other notable ----
-			{ "af-ZA", "Afrikaans" },
-			{ "sw-KE", "Kiswahili" },
-			{ "zu-ZA", "isiZulu" }
-		};
-
-		Language_MairaComboBox.ItemsSource = dictionary.ToList();
+		Language_MairaComboBox.ItemsSource = options.ToList();
 
 		app.Logger.WriteLine( "[SpeechToTextPage] <<< UpdateLanguageOptions" );
+	}
+
+	public void UpdateRecordingDeviceOptions()
+	{
+		var app = App.Instance!;
+		var localization = AppDataContext.Instance.Localization;
+		var settings = AppDataContext.Instance.Settings;
+
+		app.Logger.WriteLine( "[SpeechToTextPage] UpdateRecordingDeviceOptions >>>" );
+
+		app.SpeechToText.RefreshRecordingDevices();
+
+		var options = new Dictionary<string, string>
+		{
+			{ SpeechToText.DefaultRecordingDeviceName, localization[ "DefaultWindowsSoundDevice" ] }
+		};
+
+		app.SpeechToText.RecordingDevices.ToList().ForEach( deviceName => options[ deviceName ] = deviceName );
+
+		if ( !options.ContainsKey( settings.SpeechToTextRecordingDevice ) )
+		{
+			options.Add( settings.SpeechToTextRecordingDevice, $"{localization[ "DeviceNotFound" ]} [{settings.SpeechToTextRecordingDevice}]" );
+		}
+
+		RecordingDevice_MairaComboBox.ItemsSource = options.ToList();
+
+		app.Logger.WriteLine( "[SpeechToTextPage] <<< UpdateRecordingDeviceOptions" );
 	}
 
 	#endregion

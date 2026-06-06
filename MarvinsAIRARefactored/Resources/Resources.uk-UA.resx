@@ -144,9 +144,11 @@
   <data name="HeaderData_UC" xml:space="preserve">
     <value>ДАНІ ЗАГОЛОВКА</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Мова</value>
+  </data>
   <data name="Language_UC" xml:space="preserve">
-    <value>Мова
-</value>
+    <value>Мова</value>
   </data>
   <data name="DetailBooster" xml:space="preserve">
     <value>Підсилювач деталей</value>

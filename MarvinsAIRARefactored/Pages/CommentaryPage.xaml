@@ -39,7 +39,7 @@
 
                 <controls:MairaComboBox x:Name="TtsLanguage_MairaComboBox"
                                         Grid.Column="2"
-                                        Label="{Binding Localization[Language_UC]}"
+                                        Label="{Binding Localization[Language]}"
                                         SelectedValue="{Binding Settings.CommentaryElevenLabsLanguage, Mode=TwoWay}" />
 
                 <controls:MairaKnob Grid.Column="4"

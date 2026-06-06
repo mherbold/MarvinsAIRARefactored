@@ -11874,6 +11874,31 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Speech to text - Recording device
+
+	private string _speechToTextRecordingDevice = Components.SpeechToText.DefaultRecordingDeviceName;
+
+	public string SpeechToTextRecordingDevice
+	{
+		get => _speechToTextRecordingDevice;
+
+		set
+		{
+			var recordingDevice = string.IsNullOrWhiteSpace( value ) ? Components.SpeechToText.DefaultRecordingDeviceName : value;
+
+			if ( recordingDevice != _speechToTextRecordingDevice )
+			{
+				_speechToTextRecordingDevice = recordingDevice;
+
+				OnPropertyChanged();
+
+				App.Instance!.SpeechToText.RecordingDevice = recordingDevice;
+			}
+		}
+	}
+
+	#endregion
+
 	#region Speech to text - Show overlay window title
 
 	private bool _speechToTextShowOverlayWindowTitle = true;
@@ -12723,17 +12748,35 @@ public class Settings : INotifyPropertyChanged
 	[XmlIgnore]
 	public string CommentaryElevenLabsApiKey
 	{
-		get => ElevenLabsKeyStore.LoadKey();
+		get => ElevenLabsKeyStore.LoadKey( "tts" );
 
 		set
 		{
-			ElevenLabsKeyStore.SaveKey( value ?? string.Empty );
+			ElevenLabsKeyStore.SaveKey( "tts", value ?? string.Empty );
 
 			OnPropertyChanged();
 		}
 	}
 
 	#endregion
+
+	#region Speech to text — ElevenLabs API key (DPAPI — not serialized to Settings.xml)
+
+	[XmlIgnore]
+	public string SpeechToTextElevenLabsApiKey
+	{
+		get => ElevenLabsKeyStore.LoadKey( "stt" );
+
+		set
+		{
+			ElevenLabsKeyStore.SaveKey( "stt", value ?? string.Empty );
+
+			OnPropertyChanged();
+		}
+	}
+
+	#endregion
+
 
 	#region Commentary — ElevenLabs Model
 
