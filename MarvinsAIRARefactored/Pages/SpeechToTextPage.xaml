@@ -34,15 +34,15 @@
                                       IsOn="{Binding Settings.SpeechToTextEnabled, Mode=TwoWay}"
                                       Label="{Binding Localization[Enabled]}" />
 
-                <controls:MairaComboBox x:Name="RecordingDevice_MairaComboBox"
-                                        Grid.Column="2"
-                                        Label="{Binding Localization[RecordingDevice]}"
-                                        SelectedValue="{Binding Settings.SpeechToTextRecordingDevice, Mode=TwoWay}" />
-
                 <controls:MairaComboBox x:Name="Language_MairaComboBox"
-                                        Grid.Column="4"
+                                        Grid.Column="2"
                                         Label="{Binding Localization[Language]}"
                                         SelectedValue="{Binding Settings.SpeechToTextLanguageCode, Mode=TwoWay}" />
+
+                <controls:MairaComboBox x:Name="RecordingDevice_MairaComboBox"
+                                        Grid.Column="4"
+                                        Label="{Binding Localization[RecordingDevice]}"
+                                        SelectedValue="{Binding Settings.SpeechToTextRecordingDevice, Mode=TwoWay}" />
 
             </Grid>
 
