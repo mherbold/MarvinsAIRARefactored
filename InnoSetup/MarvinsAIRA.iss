@@ -54,7 +54,6 @@ Name: "{userdocs}\MarvinsAIRA Refactored"
 Name: "{userdocs}\MarvinsAIRA Refactored\Sounds"
 Name: "{userdocs}\MarvinsAIRA Refactored\Recordings"
 Name: "{userdocs}\MarvinsAIRA Refactored\Calibration"
-Name: "{userdocs}\MarvinsAIRA Refactored\STT"
 Name: "{userdocs}\MarvinsAIRA Refactored\TTS"
 Name: "{userdocs}\MarvinsAIRA Refactored\SimHub"
 
@@ -70,7 +69,6 @@ Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetu
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SBT\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\SBT"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\SimHub"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\Sounds\*.wav"; DestDir: "{userdocs}\MarvinsAIRA Refactored\Sounds"; Flags: ignoreversion recursesubdirs createallsubdirs
-Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\STT\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\STT"; Flags: ignoreversion recursesubdirs createallsubdirs
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\TTS\*"; DestDir: "{userdocs}\MarvinsAIRA Refactored\TTS"; Flags: ignoreversion recursesubdirs createallsubdirs
 
 Source: "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\InnoSetup\SimHub\MarvinsAIRARefactoredSimHub.dll"; DestDir: "{code:SimHubRoot}"; Flags: ignoreversion recursesubdirs createallsubdirs
