@@ -183,6 +183,9 @@
   <data name="SteeringDevice" xml:space="preserve">
     <value>Dispositivo de dirección</value>
   </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>Dispositivo de grabación</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>Restablecer</value>
   </data>

@@ -183,6 +183,9 @@
   <data name="SteeringDevice" xml:space="preserve">
     <value>Selecteer je wheelbase</value>
   </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>Opnameapparaat</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>Resetten</value>
   </data>

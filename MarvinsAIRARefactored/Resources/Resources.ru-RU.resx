@@ -183,6 +183,9 @@
   <data name="SteeringDevice" xml:space="preserve">
     <value>Устройство ввода</value>
   </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>Устройство записи</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>Сброс</value>
   </data>

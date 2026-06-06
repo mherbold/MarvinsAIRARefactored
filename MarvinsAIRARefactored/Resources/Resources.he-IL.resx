@@ -183,6 +183,9 @@
   <data name="SteeringDevice" xml:space="preserve">
     <value>התקן היגוי</value>
   </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>התקן הקלטה</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>אפס</value>
   </data>

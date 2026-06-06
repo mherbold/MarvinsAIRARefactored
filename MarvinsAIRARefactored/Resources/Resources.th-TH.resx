@@ -183,6 +183,9 @@
   <data name="SteeringDevice" xml:space="preserve">
     <value>อุปกรณ์บังคับเลี้ยว</value>
   </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>อุปกรณ์บันทึกเสียง</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>รีเซ็ต</value>
   </data>

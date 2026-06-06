@@ -183,6 +183,9 @@
   <data name="SteeringDevice" xml:space="preserve">
     <value>Рульовий пристрій</value>
   </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>Пристрій запису</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>Скинути</value>
   </data>

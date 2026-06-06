@@ -183,6 +183,9 @@
   <data name="SteeringDevice" xml:space="preserve">
     <value>Kormányeszköz</value>
   </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>Rögzítő eszköz</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>Visszaállítás</value>
   </data>

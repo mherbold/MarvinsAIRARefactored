@@ -183,6 +183,9 @@
   <data name="SteeringDevice" xml:space="preserve">
     <value>Ohjauslaite</value>
   </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>Tallennuslaite</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>Nollaa</value>
   </data>

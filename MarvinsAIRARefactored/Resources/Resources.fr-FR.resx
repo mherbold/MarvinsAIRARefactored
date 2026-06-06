@@ -183,6 +183,9 @@
   <data name="SteeringDevice" xml:space="preserve">
     <value>Périphérique Volant</value>
   </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>Périphérique d'enregistrement</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>Réinitialiser</value>
   </data>

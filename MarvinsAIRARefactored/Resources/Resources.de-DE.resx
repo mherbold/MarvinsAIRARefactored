@@ -183,6 +183,9 @@
   <data name="SteeringDevice" xml:space="preserve">
     <value>Lenkrad-Basis</value>
   </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>Aufnahmegerät</value>
+  </data>
   <data name="Reset" xml:space="preserve">
     <value>Zurücksetzen</value>
   </data>
