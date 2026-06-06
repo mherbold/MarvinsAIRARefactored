@@ -841,6 +841,20 @@ public partial class AdminBoxx
 		app.Logger.WriteLine( $"[AdminBoxx] Unrecognized message: \"{data}\"" );
 	}
 
+	/// <summary>
+	/// Sends an iRacing admin chat command unless Xtreme Scoring Race Control integration is enabled,
+	/// in which case XSRC owns race control and the command is suppressed.
+	/// </summary>
+	private static void SendIRacingCommand( string message )
+	{
+		if ( DataContext.DataContext.Instance.Settings.AdminBoxxEnableXsrcIntegration )
+		{
+			return;
+		}
+
+		App.Instance!.ChatQueue.SendMessage( message );
+	}
+
 	/// <summary>Sends a WM_APP message to Xtreme Scoring Race Control if integration is enabled.</summary>
 	private static void SendXsrcMessage( uint msg, IntPtr wParam, IntPtr lParam )
 	{
@@ -1033,7 +1047,7 @@ public partial class AdminBoxx
 		{
 			if ( ( app.Simulator.SessionFlags & ( IRacingSdkEnum.Flags.Caution | IRacingSdkEnum.Flags.CautionWaving ) ) == 0 )
 			{
-				app.ChatQueue.SendMessage( "!yellow" );
+				SendIRacingCommand( "!yellow" );
 
 				SendXsrcMessage( XSRC_YELLOW_FLAG, IntPtr.Zero, IntPtr.Zero );
 
@@ -1068,7 +1082,7 @@ public partial class AdminBoxx
 
 		app.Logger.WriteLine( "[AdminBoxx] BlackFlagCallback >>>" );
 
-		app.ChatQueue.SendMessage( $"!black #{_carNumber}" );
+		SendIRacingCommand( $"!black #{_carNumber}" );
 
 		SendXsrcMessage( XSRC_BLACK_FLAG, IntPtr.Zero, CarNumberRaw( _carNumber ) );
 
@@ -1101,7 +1115,7 @@ public partial class AdminBoxx
 
 		app.Logger.WriteLine( "[AdminBoxx] ClearFlagCallback >>>" );
 
-		app.ChatQueue.SendMessage( $"!clear #{_carNumber}" );
+		SendIRacingCommand( $"!clear #{_carNumber}" );
 
 		SendXsrcMessage( XSRC_CLEAR_FLAG, IntPtr.Zero, CarNumberRaw( _carNumber ) );
 
@@ -1118,7 +1132,7 @@ public partial class AdminBoxx
 
 		if ( !_inNumpadMode )
 		{
-			app.ChatQueue.SendMessage( "!clearall" );
+			SendIRacingCommand( "!clearall" );
 
 			SendXsrcMessage( XSRC_CLEAR_ALL_FLAGS, IntPtr.Zero, IntPtr.Zero );
 
@@ -1138,7 +1152,7 @@ public partial class AdminBoxx
 		{
 			if ( _globalChatEnabled )
 			{
-				app.ChatQueue.SendMessage( "!nchat" );
+				SendIRacingCommand( "!nchat" );
 
 				_globalChatEnabled = false;
 
@@ -1148,7 +1162,7 @@ public partial class AdminBoxx
 			}
 			else
 			{
-				app.ChatQueue.SendMessage( "!chat" );
+				SendIRacingCommand( "!chat" );
 
 				_globalChatEnabled = true;
 
@@ -1173,7 +1187,7 @@ public partial class AdminBoxx
 
 			if ( _singleFilePaceMode )
 			{
-				app.ChatQueue.SendMessage( "!restart single" );
+				SendIRacingCommand( "!restart single" );
 
 				SendXsrcMessage( XSRC_PACE_MODE, (IntPtr) 1, IntPtr.Zero );
 
@@ -1181,7 +1195,7 @@ public partial class AdminBoxx
 			}
 			else
 			{
-				app.ChatQueue.SendMessage( "!restart double" );
+				SendIRacingCommand( "!restart double" );
 
 				SendXsrcMessage( XSRC_PACE_MODE, (IntPtr) 0, IntPtr.Zero );
 
@@ -1216,7 +1230,7 @@ public partial class AdminBoxx
 
 		app.Logger.WriteLine( "[AdminBoxx] WaveByDriverCallback >>>" );
 
-		app.ChatQueue.SendMessage( $"!waveby #{_carNumber}" );
+		SendIRacingCommand( $"!waveby #{_carNumber}" );
 
 		SendXsrcMessage( XSRC_WAVE_BY, IntPtr.Zero, CarNumberRaw( _carNumber ) );
 
@@ -1249,7 +1263,7 @@ public partial class AdminBoxx
 
 		app.Logger.WriteLine( "[AdminBoxx] EndOfLineDriverCallback >>>" );
 
-		app.ChatQueue.SendMessage( $"!eol #{_carNumber}" );
+		SendIRacingCommand( $"!eol #{_carNumber}" );
 
 		SendXsrcMessage( XSRC_END_OF_LINE, IntPtr.Zero, CarNumberRaw( _carNumber ) );
 
@@ -1282,7 +1296,7 @@ public partial class AdminBoxx
 
 		app.Logger.WriteLine( "[AdminBoxx] DisqualifyDriverCallback >>>" );
 
-		app.ChatQueue.SendMessage( $"!dq #{_carNumber}" );
+		SendIRacingCommand( $"!dq #{_carNumber}" );
 
 		SendXsrcMessage( XSRC_DISQUALIFY, IntPtr.Zero, CarNumberRaw( _carNumber ) );
 
@@ -1315,7 +1329,7 @@ public partial class AdminBoxx
 
 		app.Logger.WriteLine( "[AdminBoxx] RemoveDriverCallback >>>" );
 
-		app.ChatQueue.SendMessage( $"!remove #{_carNumber}" );
+		SendIRacingCommand( $"!remove #{_carNumber}" );
 
 		SendXsrcMessage( XSRC_REMOVE_DRIVER, IntPtr.Zero, CarNumberRaw( _carNumber ) );
 
@@ -1332,7 +1346,7 @@ public partial class AdminBoxx
 
 		if ( !_inNumpadMode )
 		{
-			app.ChatQueue.SendMessage( "!pacelaps +1" );
+			SendIRacingCommand( "!pacelaps +1" );
 
 			SendXsrcMessage( XSRC_PLUS_ONE_LAP, IntPtr.Zero, IntPtr.Zero );
 
@@ -1350,7 +1364,7 @@ public partial class AdminBoxx
 
 		if ( !_inNumpadMode )
 		{
-			app.ChatQueue.SendMessage( "!advance" );
+			SendIRacingCommand( "!advance" );
 
 			SendXsrcMessage( XSRC_ADVANCE_SESSION, IntPtr.Zero, IntPtr.Zero );
 
@@ -1417,7 +1431,7 @@ public partial class AdminBoxx
 
 		if ( !_inNumpadMode )
 		{
-			app.ChatQueue.SendMessage( "!pacelaps -1" );
+			SendIRacingCommand( "!pacelaps -1" );
 
 			SendXsrcMessage( XSRC_MINUS_ONE_LAP, IntPtr.Zero, IntPtr.Zero );
 
