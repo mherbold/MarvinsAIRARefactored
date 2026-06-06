@@ -17,7 +17,7 @@
             <Setter Property="Background"
                     Value="{DynamicResource Brush.Background.Popup}" />
             <Setter Property="Height"
-                    Value="10" />
+                    Value="20" />
             <Setter Property="Template">
 
                 <Setter.Value>
