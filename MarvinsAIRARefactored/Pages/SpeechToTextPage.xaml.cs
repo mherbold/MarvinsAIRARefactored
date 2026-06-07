@@ -4,7 +4,6 @@ using System.Windows.Media;
 
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
-using MarvinsAIRARefactored.Controls;
 
 using AppDataContext = MarvinsAIRARefactored.DataContext.DataContext;
 using UserControl = System.Windows.Controls.UserControl;
@@ -13,41 +12,42 @@ namespace MarvinsAIRARefactored.Pages;
 
 public partial class SpeechToTextPage : UserControl
 {
-	private SttSubscriptionInfo? _lastSubscriptionInfo;
-	private int _sessionCharactersUsed;
-
 	public SpeechToTextPage()
 	{
 		InitializeComponent();
 
 		AppDataContext.Instance.Settings.PropertyChanged += Settings_PropertyChanged;
 
-		Loaded += ( _, _ ) => App.Instance!.SpeechToText.TranscriptReceived += SpeechToText_TranscriptReceived;
-		Unloaded += ( _, _ ) => App.Instance!.SpeechToText.TranscriptReceived -= SpeechToText_TranscriptReceived;
+		Loaded += ( _, _ ) => App.Instance!.SpeechToText.UpdateSubscriptionUsage += UpdateSubscriptionUsage;
+		Unloaded += ( _, _ ) => App.Instance!.SpeechToText.UpdateSubscriptionUsage -= UpdateSubscriptionUsage;
+	}
+
+	private void UpdateSubscriptionUsage( CancellationToken cancellationToken = default )
+	{
+		Dispatcher.InvokeAsync( async () =>
+		{
+			try
+			{
+				await ElevenLabs.UpdateSubscriptionUsageAsync( AppDataContext.Instance.Settings.SpeechToTextElevenLabsApiKey, SubscriptionUsage_MairaProgressBar, cancellationToken );
+			}
+			catch ( OperationCanceledException ) when ( cancellationToken.IsCancellationRequested )
+			{
+			}
+			catch ( Exception ex )
+			{
+				App.Instance?.Logger.WriteLine( $"[SpeechToTextPage] UpdateSubscriptionUsage error: {ex.Message}" );
+			}
+		} );
 	}
 
 	public async void OnPageActivated()
 	{
-		UpdateLanguageOptions();
 		UpdateRecordingDeviceOptions();
 		LoadApiKeyIntoPasswordBox();
 		await VerifyAndPopulateAsync();
 	}
 
 	#region User Control Events
-
-	private void SpeechToText_TranscriptReceived( string text, int charactersCharged )
-	{
-		_sessionCharactersUsed += charactersCharged;
-
-		var displayText = charactersCharged > 0 ? "* " + text : text;
-
-		Dispatcher.InvokeAsync( () =>
-		{
-			LastTranscription_TextBlock.Text = displayText;
-			UpdateSubscriptionUsageDisplay();
-		} );
-	}
 
 	private async void Settings_PropertyChanged( object? sender, System.ComponentModel.PropertyChangedEventArgs e )
 	{
@@ -61,9 +61,7 @@ public partial class SpeechToTextPage : UserControl
 
 	private void ResetOverlayWindow_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		var app = App.Instance!;
-
-		app.SpeechToTextWindow?.ResetWindow();
+		App.Instance!.SpeechToTextWindow?.ResetWindow();
 	}
 
 	private void ApiKey_MairaTextBox_ValueChanged( object sender, RoutedEventArgs e )
@@ -89,6 +87,7 @@ public partial class SpeechToTextPage : UserControl
 	private async void VerifyKey_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		VerifyResult_TextBlock.Text = "…";
+
 		await VerifyAndPopulateAsync();
 	}
 
@@ -115,7 +114,7 @@ public partial class SpeechToTextPage : UserControl
 
 		try
 		{
-			var result = await app.SpeechToText.VerifyApiKeyAsync();
+			var result = await SpeechToText.VerifyApiKeyAsync();
 
 			if ( !result.IsRecognized )
 			{
@@ -124,93 +123,28 @@ public partial class SpeechToTextPage : UserControl
 				return;
 			}
 
-			string permSymbol( PermissionStatus status ) =>
-				status == PermissionStatus.Granted
-					? localization[ "KeyPermissionGranted" ]
-					: localization[ "KeyPermissionMissing" ];
+			string permSymbol( ElevenLabs.PermissionStatus status ) => status == ElevenLabs.PermissionStatus.Granted ? localization[ "KeyPermissionGranted" ] : localization[ "KeyPermissionMissing" ];
 
 			if ( result.IsFullyFunctional )
 			{
-				VerifyResult_TextBlock.Text =
-					$"{localization[ "KeyVerified" ]}\n{permSymbol( result.SpeechToText )}  {localization[ "KeyPermissionSpeechToText" ]}\n{permSymbol( result.UserRead )}  {localization[ "KeyPermissionUserRead" ]}";
+				VerifyResult_TextBlock.Text = $"{localization[ "KeyVerified" ]}\n{permSymbol( result.SpeechToText )}  {localization[ "KeyPermissionSpeechToText" ]}\n{permSymbol( result.UserRead )}  {localization[ "KeyPermissionUserRead" ]}";
 				VerifyResult_TextBlock.Foreground = (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Accent.Blue" );
 			}
 			else
 			{
-				VerifyResult_TextBlock.Text =
-					$"{localization[ "KeyRecognized" ]}\n{permSymbol( result.SpeechToText )}  {localization[ "KeyPermissionSpeechToText" ]}\n{permSymbol( result.UserRead )}  {localization[ "KeyPermissionUserRead" ]}";
+				VerifyResult_TextBlock.Text = $"{localization[ "KeyRecognized" ]}\n{permSymbol( result.SpeechToText )}  {localization[ "KeyPermissionSpeechToText" ]}\n{permSymbol( result.UserRead )}  {localization[ "KeyPermissionUserRead" ]}";
 				VerifyResult_TextBlock.Foreground = (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Status.Warning.Text" );
 			}
 
-			await UpdateSubscriptionUsageAsync();
+			UpdateSubscriptionUsage();
 		}
 		catch ( Exception ex )
 		{
 			app.Logger.WriteLine( $"[SpeechToTextPage] VerifyAndPopulateAsync error: {ex.Message}" );
+
 			VerifyResult_TextBlock.Text = localization[ "KeyInvalid" ];
 			VerifyResult_TextBlock.Foreground = (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Status.Error.Text" );
 		}
-	}
-
-	private async Task UpdateSubscriptionUsageAsync()
-	{
-		SubscriptionUsage_MairaProgressBar.Value = 0;
-
-		var info = await App.Instance!.SpeechToText.GetSubscriptionUsageAsync();
-
-		if ( info is null )
-		{
-			_lastSubscriptionInfo = null;
-			return;
-		}
-
-		_lastSubscriptionInfo = info;
-		_sessionCharactersUsed = App.Instance!.SpeechToText.SessionCharactersUsed;
-		LastTranscription_TextBlock.Text = string.Empty;
-		UpdateSubscriptionUsageDisplay();
-	}
-
-	private void UpdateSubscriptionUsageDisplay()
-	{
-		if ( _lastSubscriptionInfo is null )
-		{
-			SubscriptionUsage_MairaProgressBar.Value = 0;
-			return;
-		}
-
-		var adjustedCharacterCount = _lastSubscriptionInfo.CharacterCount + _sessionCharactersUsed;
-		var percent = _lastSubscriptionInfo.CharacterLimit > 0
-			? adjustedCharacterCount * 100.0 / _lastSubscriptionInfo.CharacterLimit
-			: 0.0;
-
-		SubscriptionUsage_MairaProgressBar.Value = Math.Clamp( percent, 0.0, 100.0 );
-	}
-
-	public void UpdateLanguageOptions()
-	{
-		var app = App.Instance!;
-		var localization = AppDataContext.Instance.Localization;
-
-		app.Logger.WriteLine( "[SpeechToTextPage] UpdateLanguageOptions >>>" );
-
-		var options = CommentaryTemplates.GetAvailableLanguages()
-			.ToDictionary(
-				lang => lang,
-				lang =>
-				{
-					if ( localization.Languages.TryGetValue( lang, out var label ) )
-					{
-						return label;
-					}
-
-					var fallbackKey = lang == "en-US" ? "default" : lang;
-
-					return localization.Languages.TryGetValue( fallbackKey, out label ) ? label : lang;
-				} );
-
-		Language_MairaComboBox.ItemsSource = options.ToList();
-
-		app.Logger.WriteLine( "[SpeechToTextPage] <<< UpdateLanguageOptions" );
 	}
 
 	public void UpdateRecordingDeviceOptions()

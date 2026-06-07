@@ -1,9 +1,11 @@
 ﻿
 using System.Collections.ObjectModel;
 using System.IO;
+using System.Net.WebSockets;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Runtime.InteropServices;
+using System.Text;
 
 using MarvinsAIRARefactored.Classes;
 
@@ -13,20 +15,22 @@ namespace MarvinsAIRARefactored.Components;
 
 public sealed class SpeechToText : IDisposable
 {
-	// ElevenLabs subscription exposes credit/character quota, not direct STT minutes/hours.
-	// This conversion factor is an estimate and should be updated if pricing changes.
-	public const double ElevenLabsSttCreditsPerMinute = 66.6666667;
-
 	private const string SpeechToTextScope = "stt";
 	private const int SampleRate = 16000;
 	private const int Channels = 1;
 	private const int BitsPerSample = 16;
 	private const int SegmentDurationMs = 250;
 	private const int RecordingBufferSeconds = 5;
+	private const int PostTransmitFlushDurationMs = 500;
+	private const string RealtimeSpeechToTextModelId = "scribe_v2_realtime";
+	private const string RealtimeSpeechToTextWebSocketUrl = "wss://api.elevenlabs.io/v1/speech-to-text/realtime";
+	private const int RealtimeWebSocketConnectTimeoutSeconds = 15;
+	private const int SubscriptionQueryIntervalMs = 60 * 1000; // Query at most every 1 minute
+
+	private const bool DumpAudioChunksToFileOnly = false;
+	private const string AudioChunkDumpDirectoryName = "STT";
 
 	public const string DefaultRecordingDeviceName = "[Default Recording Device]";
-
-	private static readonly HttpClient _httpClient = new() { Timeout = TimeSpan.FromSeconds( 10 ) };
 
 	private readonly Lock _audioBufferLock = new();
 	private CancellationTokenSource? _captureCancellationTokenSource;
@@ -37,22 +41,25 @@ public sealed class SpeechToText : IDisposable
 	private int _recordDriverId = -1;
 	private uint _recordReadPositionPcm;
 
-	private string _language = "en-US";
 	private string _recordingDevice = DefaultRecordingDeviceName;
 	private bool _isEnabled;
-	private bool _flushSegmentAfterTransmitStops;
-	private int _sessionCharactersUsed;
+	private int _remainingPostTransmitFlushSegments;
+	private string _latestTranscriptCandidate = string.Empty;
 	private readonly SemaphoreSlim _transcriptionSemaphore = new( 1, 1 );
+	private readonly SemaphoreSlim _webSocketSendSemaphore = new( 1, 1 );
+	private ClientWebSocket? _transcriptionWebSocket;
+	private Task? _webSocketReceiveLoopTask;
 	private int _isRadioTransmitting;
 	private int _sawRadioTransmissionSinceLastFlush;
+	private bool _didLogEndOfSpeechSkippedForCurrentIdlePeriod;
+	private bool _didLogEndOfSpeechIgnoredForCurrentIdlePeriod;
+	private DateTime _lastSubscriptionQueryTime = DateTime.MinValue;
+	private int _hadNewSttRequestSinceLastQuery;
+	private FileStream? _audioChunkDumpStream;
+	private string? _audioChunkDumpPath;
+	private int _audioChunkDumpPcmLength;
 
 	public ObservableCollection<string> RecordingDevices { get; } = [];
-
-	public string Language
-	{
-		get => _language;
-		set => _language = value ?? "en-US";
-	}
 
 	public string RecordingDevice
 	{
@@ -76,40 +83,16 @@ public sealed class SpeechToText : IDisposable
 		}
 	}
 
-	public event Action<string, int>? TranscriptReceived;
-
-	public int SessionCharactersUsed => _sessionCharactersUsed;
+	public event Action<CancellationToken>? UpdateSubscriptionUsage;
 
 	public void ResetSessionUsage()
 	{
-		_sessionCharactersUsed = 0;
+		_lastSubscriptionQueryTime = DateTime.MinValue;
+
+		Interlocked.Exchange( ref _hadNewSttRequestSinceLastQuery, 0 );
 	}
 
-	public void TrackTranscriptUsage( string transcript, int charactersCharged )
-	{
-		ArgumentNullException.ThrowIfNull( transcript );
-
-		var charged = Math.Max( 0, charactersCharged );
-
-		if ( charged == 0 )
-		{
-			charged = transcript.Length;
-		}
-
-		_sessionCharactersUsed += charged;
-
-		TranscriptReceived?.Invoke( transcript, charged );
-	}
-
-	private void HandleFinalText( string text )
-	{
-		if ( string.IsNullOrWhiteSpace( text ) )
-		{
-			return;
-		}
-
-		TrackTranscriptUsage( text, text.Length );
-	}
+	private static int PostTransmitFlushSegments => Math.Max( 1, (int) Math.Ceiling( (double) PostTransmitFlushDurationMs / SegmentDurationMs ) );
 
 	/// <summary>
 	/// Probes the ElevenLabs STT endpoint using a proper multipart/form-data request (with a
@@ -117,7 +100,7 @@ public sealed class SpeechToText : IDisposable
 	/// audio payload.  A plain JSON body causes the API to reject with 422/415 before it ever
 	/// checks permissions, which would produce a false Granted result.
 	/// </summary>
-	private static async Task<PermissionStatus> ProbeSttPermissionAsync( string apiKey, CancellationToken cancellationToken )
+	private static async Task<ElevenLabs.PermissionStatus> ProbeSttPermissionAsync( string apiKey, CancellationToken cancellationToken )
 	{
 		var app = App.Instance!;
 
@@ -133,21 +116,23 @@ public sealed class SpeechToText : IDisposable
 
 			using var form = new MultipartFormDataContent();
 
-			form.Add( new StringContent( "scribe_v1" ), "model_id" );
+			form.Add( new StringContent( RealtimeSpeechToTextModelId ), "model_id" );
 
 			var fileContent = new ByteArrayContent( minimalWav );
+
 			fileContent.Headers.ContentType = new MediaTypeHeaderValue( "audio/wav" );
+
 			form.Add( fileContent, "file", "probe.wav" );
 
 			request.Content = form;
 
-			using var response = await _httpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
+			using var response = await ElevenLabs.HttpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
 
 			app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync POST speech-to-text: {(int) response.StatusCode}" );
 
 			if ( response.IsSuccessStatusCode )
 			{
-				return PermissionStatus.Granted;
+				return ElevenLabs.PermissionStatus.Granted;
 			}
 
 			if ( response.StatusCode == System.Net.HttpStatusCode.Unauthorized )
@@ -161,90 +146,38 @@ public sealed class SpeechToText : IDisposable
 				}
 				catch { /* non-JSON body — treat as invalid key */ }
 
-				return detail == "missing_permissions" ? PermissionStatus.MissingPermission : PermissionStatus.InvalidKey;
+				return detail == "missing_permissions" ? ElevenLabs.PermissionStatus.MissingPermission : ElevenLabs.PermissionStatus.InvalidKey;
 			}
 
 			// Any other 4xx (e.g. 422 unprocessable for our tiny probe audio) means auth passed.
-			return PermissionStatus.Granted;
+			return ElevenLabs.PermissionStatus.Granted;
 		}
 		catch ( Exception ex )
 		{
 			app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync exception: {ex.Message}" );
 
-			return PermissionStatus.InvalidKey;
+			return ElevenLabs.PermissionStatus.InvalidKey;
 		}
 	}
 
-	public async Task<SttKeyVerificationResult> VerifyApiKeyAsync( CancellationToken cancellationToken = default )
+	public static async Task<ElevenLabs.SttKeyVerificationResult> VerifyApiKeyAsync( CancellationToken cancellationToken = default )
 	{
 		var apiKey = ElevenLabsKeyStore.LoadKey( SpeechToTextScope ).Trim();
 
 		if ( string.IsNullOrWhiteSpace( apiKey ) )
 		{
-			return SttKeyVerificationResult.Empty;
+			return ElevenLabs.SttKeyVerificationResult.Empty;
 		}
 
 		var speechToTextStatus = await ProbeSttPermissionAsync( apiKey, cancellationToken );
-		var userReadStatus = await TextToSpeech.ProbePermissionAsync( apiKey, HttpMethod.Get, "https://api.elevenlabs.io/v1/user/subscription", cancellationToken );
+		var userReadStatus = await ElevenLabs.ProbePermissionAsync( apiKey, HttpMethod.Get, "https://api.elevenlabs.io/v1/user/subscription", cancellationToken );
 
-		if ( speechToTextStatus == PermissionStatus.InvalidKey && userReadStatus == PermissionStatus.InvalidKey )
+		if ( speechToTextStatus == ElevenLabs.PermissionStatus.InvalidKey && userReadStatus == ElevenLabs.PermissionStatus.InvalidKey )
 		{
-			return SttKeyVerificationResult.Invalid;
+			return ElevenLabs.SttKeyVerificationResult.Invalid;
 		}
 
-		return new SttKeyVerificationResult( true, speechToTextStatus, userReadStatus );
-	}
-
-	public async Task<SttSubscriptionInfo?> GetSubscriptionUsageAsync( CancellationToken cancellationToken = default )
-	{
-		var app = App.Instance!;
-		var sttApiKey = ElevenLabsKeyStore.LoadKey( SpeechToTextScope );
-
-		if ( string.IsNullOrWhiteSpace( sttApiKey ) )
-		{
-			return null;
-		}
-
-		try
-		{
-			using var request = new HttpRequestMessage( HttpMethod.Get, "https://api.elevenlabs.io/v1/user/subscription" );
-
-			request.Headers.Add( "xi-api-key", sttApiKey );
-
-			using var response = await _httpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
-
-			if ( !response.IsSuccessStatusCode )
-			{
-				app.Logger.WriteLine( $"[SpeechToText] GetSubscriptionUsageAsync error {(int) response.StatusCode}" );
-
-				return null;
-			}
-
-			var json = await response.Content.ReadAsStringAsync( cancellationToken );
-			var root = JObject.Parse( json );
-
-			var characterCount = ReadIntegerField( root, "character_count" );
-			var characterLimit = ReadIntegerField( root, "character_limit" );
-			var tier = root[ "tier" ]?.Value<string>() ?? string.Empty;
-			var status = root[ "status" ]?.Value<string>() ?? string.Empty;
-			var nextResetUnix = ReadLongField( root, "next_character_count_reset_unix" );
-			var currentOverage = ReadDecimalField( root, "current_overage" );
-
-			if ( characterCount is null || characterLimit is null )
-			{
-				app.Logger.WriteLine( "[SpeechToText] GetSubscriptionUsageAsync: character_count/character_limit not found in subscription response" );
-
-				return null;
-			}
-
-			return new SttSubscriptionInfo( Math.Max( 0, characterCount.Value ), Math.Max( 0, characterLimit.Value ), tier, status, nextResetUnix, currentOverage );
-		}
-		catch ( Exception ex )
-		{
-			app.Logger.WriteLine( $"[SpeechToText] GetSubscriptionUsageAsync exception: {ex.Message}" );
-
-			return null;
-		}
+		return new ElevenLabs.SttKeyVerificationResult( true, speechToTextStatus, userReadStatus );
 	}
 
 	public async Task EnableAsync( int port = 18888 )
@@ -260,20 +193,21 @@ public sealed class SpeechToText : IDisposable
 
 		var apiKey = ElevenLabsKeyStore.LoadKey( SpeechToTextScope );
 
-		if ( string.IsNullOrWhiteSpace( apiKey ) )
+		if ( !DumpAudioChunksToFileOnly && string.IsNullOrWhiteSpace( apiKey ) )
 		{
 			app.SpeechToTextWindow?.SetFinalText( "No ElevenLabs STT API key configured." );
 
 			return;
 		}
 
-		app.Logger.WriteLine( "[SpeechToText] >>> EnableAsync (FMOD ElevenLabs path)" );
+		app.Logger.WriteLine( DumpAudioChunksToFileOnly ? "[SpeechToText] >>> EnableAsync (FMOD diagnostic dump-to-file path)" : "[SpeechToText] >>> EnableAsync (FMOD ElevenLabs path)" );
 
 		try
 		{
 			InitializeCaptureSystem();
 			RefreshRecordingDevices();
 			StartRecording();
+			await InitializeAudioChunkDumpAsync( CancellationToken.None );
 
 			_captureCancellationTokenSource = new CancellationTokenSource();
 			_segmentLoopTask = RunSegmentLoopAsync( _captureCancellationTokenSource.Token );
@@ -298,6 +232,7 @@ public sealed class SpeechToText : IDisposable
 		}
 
 		var app = App.Instance!;
+
 		app.Logger.WriteLine( "[SpeechToText] >>> DisableAsync" );
 
 		_captureCancellationTokenSource?.Cancel();
@@ -316,6 +251,9 @@ public sealed class SpeechToText : IDisposable
 				_segmentLoopTask = null;
 			}
 		}
+
+		await CloseRealtimeConnectionAsync( CancellationToken.None );
+		await FinalizeAudioChunkDumpAsync( CancellationToken.None );
 
 		_captureCancellationTokenSource?.Dispose();
 		_captureCancellationTokenSource = null;
@@ -346,9 +284,11 @@ public sealed class SpeechToText : IDisposable
 		}
 
 		_isEnabled = false;
-		_flushSegmentAfterTransmitStops = false;
+		_remainingPostTransmitFlushSegments = 0;
+		_latestTranscriptCandidate = string.Empty;
 
 		app.UpdateSpeechToTextWindowVisibility();
+
 		app.Logger.WriteLine( "[SpeechToText] << DisableAsync" );
 	}
 
@@ -398,6 +338,7 @@ public sealed class SpeechToText : IDisposable
 		_ = DisableAsync();
 
 		_transcriptionSemaphore.Dispose();
+		_webSocketSendSemaphore.Dispose();
 	}
 
 	private void InitializeCaptureSystem()
@@ -537,11 +478,13 @@ public sealed class SpeechToText : IDisposable
 			}
 
 			tempSystem.getRecordNumDrivers( out var numDrivers, out var connectedDrivers );
+
 			app.Logger.WriteLine( $"[SpeechToText] EnumerateRecordingDevices(temp system): drivers={numDrivers}, connected={connectedDrivers}" );
 
 			for ( int i = 0; i < numDrivers; i++ )
 			{
 				tempSystem.getRecordDriverInfo( i, out var name, 256, out _, out _, out _, out _, out var state );
+
 				app.Logger.WriteLine( $"[SpeechToText] EnumerateRecordingDevices(temp system): index={i}, name='{name}', state={state}" );
 
 				if ( !string.IsNullOrWhiteSpace( name ) && !IsLoopbackDeviceName( name ) )
@@ -609,32 +552,40 @@ public sealed class SpeechToText : IDisposable
 		while ( !cancellationToken.IsCancellationRequested )
 		{
 			await Task.Delay( SegmentDurationMs, cancellationToken );
+			await UpdateSubscriptionUsageIfNeededAsync( cancellationToken );
 			await FlushAndTranscribeAsync( cancellationToken );
 		}
 	}
 
 	private async Task FlushAndTranscribeAsync( CancellationToken cancellationToken )
 	{
-		var app = App.Instance!;
 		var isRadioTransmitting = Interlocked.CompareExchange( ref _isRadioTransmitting, 0, 0 ) != 0;
 		var sawRadioTransmissionSinceLastFlush = Interlocked.Exchange( ref _sawRadioTransmissionSinceLastFlush, 0 ) != 0;
+		var finalizeAfterThisCycle = false;
 
 		if ( isRadioTransmitting )
 		{
-			_flushSegmentAfterTransmitStops = true;
+			_remainingPostTransmitFlushSegments = PostTransmitFlushSegments;
 		}
-		else if ( !_flushSegmentAfterTransmitStops && !sawRadioTransmissionSinceLastFlush )
+		else
 		{
-			return;
-		}
+			if ( sawRadioTransmissionSinceLastFlush && _remainingPostTransmitFlushSegments == 0 )
+			{
+				_remainingPostTransmitFlushSegments = PostTransmitFlushSegments;
+			}
 
-		var consumeTrailingFlush = !isRadioTransmitting && _flushSegmentAfterTransmitStops;
+			if ( _remainingPostTransmitFlushSegments == 0 )
+			{
+				await SendEndOfSpeechAsync( cancellationToken );
 
-		if ( consumeTrailingFlush )
-		{
-			_flushSegmentAfterTransmitStops = false;
+				FinalizePendingTranscript();
 
-			app.Logger.WriteLine( "[SpeechToText] Radio transmit ended; flushing trailing buffered segment" );
+				return;
+			}
+
+			_remainingPostTransmitFlushSegments--;
+
+			finalizeAfterThisCycle = _remainingPostTransmitFlushSegments == 0;
 		}
 
 		byte[] pcmBytes;
@@ -644,31 +595,70 @@ public sealed class SpeechToText : IDisposable
 			pcmBytes = ReadRecordedPcm();
 		}
 
-		if ( pcmBytes.Length < SampleRate / 2 )
+		if ( pcmBytes.Length > 0 )
+		{
+			if ( DumpAudioChunksToFileOnly )
+			{
+				await AppendAudioChunkDumpAsync( pcmBytes, cancellationToken );
+			}
+			else
+			{
+				await EnsureRealtimeConnectionAsync( cancellationToken );
+				await SendAudioFrameAsync( pcmBytes, cancellationToken );
+			}
+		}
+
+		if ( finalizeAfterThisCycle )
+		{
+			await SendEndOfSpeechAsync( cancellationToken );
+
+			FinalizePendingTranscript();
+		}
+	}
+
+	private void FinalizePendingTranscript()
+	{
+		if ( string.IsNullOrWhiteSpace( _latestTranscriptCandidate ) )
 		{
 			return;
 		}
 
-		await _transcriptionSemaphore.WaitAsync( cancellationToken );
+		var app = App.Instance!;
 
-		try
+		var finalTranscript = _latestTranscriptCandidate;
+
+		_latestTranscriptCandidate = string.Empty;
+
+		app.EnsureSpeechToTextWindowExists();
+		app.SpeechToTextWindow?.SetFinalText( finalTranscript );
+	}
+
+	private Task UpdateSubscriptionUsageIfNeededAsync( CancellationToken cancellationToken )
+	{
+		cancellationToken.ThrowIfCancellationRequested();
+
+		// Only query if we've had a new STT request since the last query.
+		if ( Interlocked.CompareExchange( ref _hadNewSttRequestSinceLastQuery, 0, 0 ) == 0 )
 		{
-			var transcript = await TranscribeSegmentAsync( pcmBytes, cancellationToken );
-
-			if ( string.IsNullOrWhiteSpace( transcript ) )
-			{
-				return;
-			}
-
-			app.EnsureSpeechToTextWindowExists();
-			app.SpeechToTextWindow?.SetFinalText( transcript );
-
-			HandleFinalText( transcript );
+			return Task.CompletedTask;
 		}
-		finally
+
+		// Check if enough time has passed since the last query (at most every 1 minute).
+		var now = DateTime.UtcNow;
+		var timeSinceLastQuery = now - _lastSubscriptionQueryTime;
+
+		if ( timeSinceLastQuery.TotalMilliseconds < SubscriptionQueryIntervalMs )
 		{
-			_transcriptionSemaphore.Release();
+			return Task.CompletedTask;
 		}
+
+		Interlocked.Exchange( ref _hadNewSttRequestSinceLastQuery, 0 );
+
+		_lastSubscriptionQueryTime = now;
+
+		UpdateSubscriptionUsage?.Invoke( cancellationToken );
+
+		return Task.CompletedTask;
 	}
 
 	private byte[] ReadRecordedPcm()
@@ -744,68 +734,436 @@ public sealed class SpeechToText : IDisposable
 		}
 	}
 
-	private async Task<string?> TranscribeSegmentAsync( byte[] pcmBytes, CancellationToken cancellationToken )
+	private async Task EnsureRealtimeConnectionAsync( CancellationToken cancellationToken )
 	{
-		var apiKey = ElevenLabsKeyStore.LoadKey( SpeechToTextScope ).Trim();
-
-		if ( string.IsNullOrWhiteSpace( apiKey ) )
+		if ( _transcriptionWebSocket is { State: WebSocketState.Open } )
 		{
-			return null;
+			return;
 		}
 
-		var wavBytes = BuildWavFromPcm( pcmBytes, SampleRate, Channels, BitsPerSample );
+		await _transcriptionSemaphore.WaitAsync( cancellationToken );
 
-		using var request = new HttpRequestMessage( HttpMethod.Post, "https://api.elevenlabs.io/v1/speech-to-text" );
-
-		request.Headers.Add( "xi-api-key", apiKey );
-		request.Headers.Accept.Add( new MediaTypeWithQualityHeaderValue( "application/json" ) );
-
-		using var form = new MultipartFormDataContent();
-
-		form.Add( new StringContent( "scribe_v1" ), "model_id" );
-
-		if ( !string.IsNullOrWhiteSpace( _language ) )
+		try
 		{
-			form.Add( new StringContent( _language ), "language_code" );
+			if ( _transcriptionWebSocket is { State: WebSocketState.Open } )
+			{
+				return;
+			}
+
+			await CloseRealtimeConnectionAsync( cancellationToken );
+
+			var apiKey = ElevenLabsKeyStore.LoadKey( SpeechToTextScope ).Trim();
+
+			if ( string.IsNullOrWhiteSpace( apiKey ) )
+			{
+				return;
+			}
+
+			var app = App.Instance!;
+			var uri = new Uri( $"{RealtimeSpeechToTextWebSocketUrl}?model_id={Uri.EscapeDataString( RealtimeSpeechToTextModelId )}&audio_format=pcm_16000&commit_strategy=vad" );
+			var socket = new ClientWebSocket();
+
+			socket.Options.SetRequestHeader( "xi-api-key", apiKey );
+			app.Logger.WriteLine( $"[SpeechToText] WS OUT connect: {uri}" );
+
+			using var connectTimeoutCts = CancellationTokenSource.CreateLinkedTokenSource( cancellationToken );
+			connectTimeoutCts.CancelAfter( TimeSpan.FromSeconds( RealtimeWebSocketConnectTimeoutSeconds ) );
+
+			try
+			{
+				await socket.ConnectAsync( uri, connectTimeoutCts.Token );
+				app.Logger.WriteLine( $"[SpeechToText] WS IN connected: state={socket.State}" );
+
+				_transcriptionWebSocket = socket;
+				_webSocketReceiveLoopTask = RunWebSocketReceiveLoopAsync( socket, cancellationToken );
+			}
+			catch ( OperationCanceledException ex ) when ( !cancellationToken.IsCancellationRequested )
+			{
+				app.Logger.WriteLine( $"[SpeechToText] WS connect timeout after {RealtimeWebSocketConnectTimeoutSeconds}s: {uri}" );
+				app.Logger.WriteLine( $"[SpeechToText] WS connect timeout details: {ex.Message}" );
+			}
+			catch ( WebSocketException ex )
+			{
+				app.Logger.WriteLine( $"[SpeechToText] WS connect websocket error: code={ex.WebSocketErrorCode}, message={ex.Message}" );
+
+				if ( ex.InnerException is not null )
+				{
+					app.Logger.WriteLine( $"[SpeechToText] WS connect inner error: {ex.InnerException.GetType().Name}: {ex.InnerException.Message}" );
+				}
+			}
+			catch ( HttpRequestException ex )
+			{
+				app.Logger.WriteLine( $"[SpeechToText] WS connect HTTP error: {ex.Message}" );
+			}
+			catch ( Exception ex )
+			{
+				app.Logger.WriteLine( $"[SpeechToText] WS connect exception: {ex.GetType().Name}: {ex.Message}" );
+			}
+			finally
+			{
+				if ( _transcriptionWebSocket != socket )
+				{
+					socket.Dispose();
+				}
+			}
+		}
+		finally
+		{
+			_transcriptionSemaphore.Release();
+		}
+	}
+
+	private async Task SendAudioFrameAsync( byte[] pcmBytes, CancellationToken cancellationToken )
+	{
+		ArgumentNullException.ThrowIfNull( pcmBytes );
+
+		if ( pcmBytes.Length == 0 )
+		{
+			return;
 		}
 
-		var fileContent = new ByteArrayContent( wavBytes );
+		var app = App.Instance!;
 
-		fileContent.Headers.ContentType = new MediaTypeHeaderValue( "audio/wav" );
-
-		form.Add( fileContent, "file", "segment.wav" );
-
-		request.Content = form;
-
-		using var response = await _httpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
-
-		if ( !response.IsSuccessStatusCode )
+		if ( _transcriptionWebSocket is not { State: WebSocketState.Open } socket )
 		{
-			var body = await response.Content.ReadAsStringAsync( cancellationToken );
+			app.Logger.WriteLine( "[SpeechToText] WS OUT audio skipped: socket not open" );
 
-			App.Instance?.Logger.WriteLine( $"[SpeechToText] TranscribeSegmentAsync error {(int) response.StatusCode}: {body}" );
-
-			return null;
+			return;
 		}
 
-		var json = await response.Content.ReadAsStringAsync( cancellationToken );
-		var root = JObject.Parse( json );
+		var payload = new JObject
+		{
+			[ "message_type" ] = "input_audio_chunk",
+			[ "audio_base_64" ] = Convert.ToBase64String( pcmBytes ),
+			[ "sample_rate" ] = SampleRate,
+			[ "commit" ] = false
+		};
 
-		return root[ "text" ]?.Value<string>() ?? root[ "transcript" ]?.Value<string>();
+		var payloadBytes = Encoding.UTF8.GetBytes( payload.ToString() );
+
+		await _webSocketSendSemaphore.WaitAsync( cancellationToken );
+
+		try
+		{
+			_didLogEndOfSpeechIgnoredForCurrentIdlePeriod = false;
+
+			Interlocked.Exchange( ref _hadNewSttRequestSinceLastQuery, 1 );
+
+			app.Logger.WriteLine( $"[SpeechToText] WS OUT audio frame: pcmBytes={pcmBytes.Length}, payloadBytes={payloadBytes.Length}" );
+
+			await socket.SendAsync( new ArraySegment<byte>( payloadBytes ), WebSocketMessageType.Text, true, cancellationToken );
+		}
+		catch ( WebSocketException ex )
+		{
+			App.Instance?.Logger.WriteLine( $"[SpeechToText] SendAudioFrameAsync websocket error: {ex.Message}" );
+		}
+		finally
+		{
+			_webSocketSendSemaphore.Release();
+		}
+	}
+
+	private Task SendEndOfSpeechAsync( CancellationToken cancellationToken )
+	{
+		_ = cancellationToken;
+
+		var app = App.Instance!;
+
+		if ( _transcriptionWebSocket is not { State: WebSocketState.Open } )
+		{
+			if ( !_didLogEndOfSpeechSkippedForCurrentIdlePeriod )
+			{
+				app.Logger.WriteLine( "[SpeechToText] WS OUT end_of_speech skipped: socket not open" );
+
+				_didLogEndOfSpeechSkippedForCurrentIdlePeriod = true;
+			}
+
+			return Task.CompletedTask;
+		}
+
+		_didLogEndOfSpeechSkippedForCurrentIdlePeriod = false;
+
+		if ( !_didLogEndOfSpeechIgnoredForCurrentIdlePeriod )
+		{
+			app.Logger.WriteLine( "[SpeechToText] WS OUT end_of_speech ignored: using commit_strategy=vad" );
+
+			_didLogEndOfSpeechIgnoredForCurrentIdlePeriod = true;
+		}
+
+		return Task.CompletedTask;
+	}
+
+	private async Task RunWebSocketReceiveLoopAsync( ClientWebSocket socket, CancellationToken cancellationToken )
+	{
+		var app = App.Instance!;
+		var buffer = new byte[ 32 * 1024 ];
+		using var messageBuffer = new MemoryStream();
+
+		try
+		{
+			app.Logger.WriteLine( "[SpeechToText] WS IN receive loop started" );
+
+			while ( socket.State == WebSocketState.Open && !cancellationToken.IsCancellationRequested )
+			{
+				var receiveResult = await socket.ReceiveAsync( new ArraySegment<byte>( buffer ), cancellationToken );
+
+				app.Logger.WriteLine( $"[SpeechToText] WS IN frame: type={receiveResult.MessageType}, bytes={receiveResult.Count}, endOfMessage={receiveResult.EndOfMessage}" );
+
+				if ( receiveResult.MessageType == WebSocketMessageType.Close )
+				{
+					app.Logger.WriteLine( $"[SpeechToText] WS IN close frame: status={receiveResult.CloseStatus}, description='{receiveResult.CloseStatusDescription}'" );
+
+					break;
+				}
+
+				if ( receiveResult.Count > 0 )
+				{
+					messageBuffer.Write( buffer, 0, receiveResult.Count );
+				}
+
+				if ( !receiveResult.EndOfMessage )
+				{
+					continue;
+				}
+
+				if ( receiveResult.MessageType != WebSocketMessageType.Text )
+				{
+					messageBuffer.SetLength( 0 );
+
+					continue;
+				}
+
+				var json = Encoding.UTF8.GetString( messageBuffer.GetBuffer(), 0, (int) messageBuffer.Length );
+
+				messageBuffer.SetLength( 0 );
+
+				app.Logger.WriteLine( $"[SpeechToText] WS IN text: {TruncateForLog( json )}" );
+
+				ProcessRealtimeMessage( json );
+			}
+
+			app.Logger.WriteLine( $"[SpeechToText] WS IN receive loop ended: state={socket.State}, canceled={cancellationToken.IsCancellationRequested}" );
+		}
+		catch ( OperationCanceledException )
+		{
+			app.Logger.WriteLine( "[SpeechToText] WS IN receive loop canceled" );
+		}
+		catch ( WebSocketException ex )
+		{
+			app.Logger.WriteLine( $"[SpeechToText] RunWebSocketReceiveLoopAsync websocket error: {ex.Message}" );
+		}
+		catch ( Exception ex )
+		{
+			app.Logger.WriteLine( $"[SpeechToText] RunWebSocketReceiveLoopAsync exception: {ex.Message}" );
+		}
+	}
+
+	private void ProcessRealtimeMessage( string json )
+	{
+		if ( string.IsNullOrWhiteSpace( json ) )
+		{
+			return;
+		}
+
+		try
+		{
+			var root = JObject.Parse( json );
+			var message = root[ "message" ] as JObject;
+			var textEvent = root[ "text_event" ] as JObject;
+			var messageType = root[ "message_type" ]?.Value<string>();
+			var errorText = root[ "error" ]?.Value<string>();
+
+			if ( !string.IsNullOrWhiteSpace( errorText ) )
+			{
+				App.Instance?.Logger.WriteLine( $"[SpeechToText] WS IN server error: type={messageType ?? "(unknown)"}, error={errorText}" );
+			}
+
+			var text = root[ "text" ]?.Value<string>() ?? root[ "transcript" ]?.Value<string>() ?? root[ "partial" ]?.Value<string>() ?? message?[ "text" ]?.Value<string>() ?? textEvent?[ "text" ]?.Value<string>();
+
+			if ( string.IsNullOrWhiteSpace( text ) )
+			{
+				App.Instance?.Logger.WriteLine( $"[SpeechToText] WS IN message without transcript text: {TruncateForLog( json )}" );
+
+				return;
+			}
+
+			var isFinal = root[ "is_final" ]?.Value<bool>() ?? root[ "final" ]?.Value<bool>() ?? message?[ "is_final" ]?.Value<bool>() ?? textEvent?[ "is_final" ]?.Value<bool>() ?? false;
+
+			if ( !isFinal )
+			{
+				isFinal = string.Equals( root[ "type" ]?.Value<string>(), "final", StringComparison.OrdinalIgnoreCase ) || string.Equals( message?[ "type" ]?.Value<string>(), "final", StringComparison.OrdinalIgnoreCase ) || string.Equals( textEvent?[ "type" ]?.Value<string>(), "final", StringComparison.OrdinalIgnoreCase );
+			}
+
+			_latestTranscriptCandidate = text;
+
+			var app = App.Instance!;
+
+			app.Logger.WriteLine( $"[SpeechToText] WS IN transcript: final={isFinal}, chars={text.Length}, text='{TruncateForLog( text, 200 )}'" );
+
+			app.EnsureSpeechToTextWindowExists();
+
+			if ( isFinal )
+			{
+				app.SpeechToTextWindow?.SetFinalText( text );
+
+				_latestTranscriptCandidate = string.Empty;
+			}
+			else
+			{
+				app.SpeechToTextWindow?.SetPartialText( text );
+			}
+		}
+		catch ( Exception ex )
+		{
+			App.Instance?.Logger.WriteLine( $"[SpeechToText] ProcessRealtimeMessage parse error: {ex.Message}" );
+		}
+	}
+
+	private async Task CloseRealtimeConnectionAsync( CancellationToken cancellationToken )
+	{
+		var socket = _transcriptionWebSocket;
+
+		_transcriptionWebSocket = null;
+
+		if ( socket is null )
+		{
+			return;
+		}
+
+		try
+		{
+			if ( socket.State is WebSocketState.Open or WebSocketState.CloseReceived )
+			{
+				await socket.CloseAsync( WebSocketCloseStatus.NormalClosure, "shutdown", cancellationToken );
+			}
+		}
+		catch ( Exception ex )
+		{
+			App.Instance?.Logger.WriteLine( $"[SpeechToText] CloseRealtimeConnectionAsync error: {ex.Message}" );
+		}
+		finally
+		{
+			socket.Dispose();
+		}
+
+		if ( _webSocketReceiveLoopTask is not null )
+		{
+			try
+			{
+				await _webSocketReceiveLoopTask;
+			}
+			catch ( OperationCanceledException )
+			{
+			}
+			finally
+			{
+				_webSocketReceiveLoopTask = null;
+			}
+		}
+	}
+
+	private async Task InitializeAudioChunkDumpAsync( CancellationToken cancellationToken )
+	{
+		if ( !DumpAudioChunksToFileOnly || _audioChunkDumpStream is not null )
+		{
+			return;
+		}
+
+		var app = App.Instance!;
+		var dumpDirectoryPath = Path.Combine( App.DocumentsFolder, AudioChunkDumpDirectoryName );
+
+		Directory.CreateDirectory( dumpDirectoryPath );
+
+		var timestamp = DateTime.UtcNow.ToString( "yyyyMMdd-HHmmss" );
+
+		_audioChunkDumpPath = Path.Combine( dumpDirectoryPath, $"stt-capture-{timestamp}.wav" );
+		_audioChunkDumpPcmLength = 0;
+		_audioChunkDumpStream = new FileStream( _audioChunkDumpPath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read, 81920, true );
+
+		var headerBytes = BuildWavHeader( 0, SampleRate, Channels, BitsPerSample );
+
+		await _audioChunkDumpStream.WriteAsync( headerBytes, cancellationToken );
+
+		app.Logger.WriteLine( $"[SpeechToText] Audio dump initialized: {_audioChunkDumpPath}" );
+	}
+
+	private async Task AppendAudioChunkDumpAsync( byte[] pcmBytes, CancellationToken cancellationToken )
+	{
+		ArgumentNullException.ThrowIfNull( pcmBytes );
+
+		if ( pcmBytes.Length == 0 || _audioChunkDumpStream is null )
+		{
+			return;
+		}
+
+		await _audioChunkDumpStream.WriteAsync( pcmBytes, cancellationToken );
+
+		_audioChunkDumpPcmLength += pcmBytes.Length;
+	}
+
+	private async Task FinalizeAudioChunkDumpAsync( CancellationToken cancellationToken )
+	{
+		if ( _audioChunkDumpStream is null )
+		{
+			return;
+		}
+
+		var app = App.Instance!;
+		var stream = _audioChunkDumpStream;
+		var dumpPath = _audioChunkDumpPath;
+		var pcmLength = _audioChunkDumpPcmLength;
+
+		_audioChunkDumpStream = null;
+		_audioChunkDumpPath = null;
+		_audioChunkDumpPcmLength = 0;
+
+		try
+		{
+			await stream.FlushAsync( cancellationToken );
+			stream.Seek( 0, SeekOrigin.Begin );
+
+			var headerBytes = BuildWavHeader( pcmLength, SampleRate, Channels, BitsPerSample );
+
+			await stream.WriteAsync( headerBytes, cancellationToken );
+			await stream.FlushAsync( cancellationToken );
+
+			app.Logger.WriteLine( $"[SpeechToText] Audio dump finalized: path={dumpPath}, pcmBytes={pcmLength}" );
+		}
+		catch ( Exception ex )
+		{
+			app.Logger.WriteLine( $"[SpeechToText] FinalizeAudioChunkDumpAsync failed: {ex.Message}" );
+		}
+		finally
+		{
+			await stream.DisposeAsync();
+		}
 	}
 
 	private static byte[] BuildWavFromPcm( byte[] pcmBytes, int sampleRate, int channels, int bitsPerSample )
 	{
 		ArgumentNullException.ThrowIfNull( pcmBytes );
 
+		var headerBytes = BuildWavHeader( pcmBytes.Length, sampleRate, channels, bitsPerSample );
+		var wavBytes = new byte[ headerBytes.Length + pcmBytes.Length ];
+
+		Buffer.BlockCopy( headerBytes, 0, wavBytes, 0, headerBytes.Length );
+		Buffer.BlockCopy( pcmBytes, 0, wavBytes, headerBytes.Length, pcmBytes.Length );
+
+		return wavBytes;
+	}
+
+	private static byte[] BuildWavHeader( int pcmLength, int sampleRate, int channels, int bitsPerSample )
+	{
+		ArgumentOutOfRangeException.ThrowIfLessThan( pcmLength, 0 );
+
 		var byteRate = sampleRate * channels * bitsPerSample / 8;
 		var blockAlign = channels * bitsPerSample / 8;
 
-		using var stream = new MemoryStream( pcmBytes.Length + 44 );
+		using var stream = new MemoryStream( 44 );
 		using var writer = new BinaryWriter( stream );
 
 		writer.Write( "RIFF"u8.ToArray() );
-		writer.Write( 36 + pcmBytes.Length );
+		writer.Write( 36 + pcmLength );
 		writer.Write( "WAVE"u8.ToArray() );
 		writer.Write( "fmt "u8.ToArray() );
 		writer.Write( 16 );
@@ -816,126 +1174,23 @@ public sealed class SpeechToText : IDisposable
 		writer.Write( (short) blockAlign );
 		writer.Write( (short) bitsPerSample );
 		writer.Write( "data"u8.ToArray() );
-		writer.Write( pcmBytes.Length );
-		writer.Write( pcmBytes );
+		writer.Write( pcmLength );
 
 		writer.Flush();
 
 		return stream.ToArray();
 	}
 
-	private static int? ReadIntegerField( JToken? source, params string[] keys )
+	private static string TruncateForLog( string value, int maxLength = 1000 )
 	{
-		if ( source is not JObject obj )
+		ArgumentNullException.ThrowIfNull( value );
+		ArgumentOutOfRangeException.ThrowIfLessThan( maxLength, 1 );
+
+		if ( value.Length <= maxLength )
 		{
-			return null;
+			return value;
 		}
 
-		foreach ( var key in keys )
-		{
-			var token = obj[ key ];
-
-			if ( token is null )
-			{
-				continue;
-			}
-
-			if ( token.Type == JTokenType.Integer )
-			{
-				return token.Value<int>();
-			}
-
-			if ( token.Type == JTokenType.Float )
-			{
-				return (int) Math.Round( token.Value<double>() );
-			}
-
-			if ( token.Type == JTokenType.String && int.TryParse( token.Value<string>(), out var parsed ) )
-			{
-				return parsed;
-			}
-		}
-
-		return null;
+		return $"{value[ ..maxLength ]}... (truncated, totalChars={value.Length})";
 	}
-
-	private static long? ReadLongField( JToken? source, params string[] keys )
-	{
-		if ( source is not JObject obj )
-		{
-			return null;
-		}
-
-		foreach ( var key in keys )
-		{
-			var token = obj[ key ];
-
-			if ( token is null )
-			{
-				continue;
-			}
-
-			if ( token.Type == JTokenType.Integer )
-			{
-				return token.Value<long>();
-			}
-
-			if ( token.Type == JTokenType.Float )
-			{
-				return (long) Math.Round( token.Value<double>() );
-			}
-
-			if ( token.Type == JTokenType.String && long.TryParse( token.Value<string>(), out var parsed ) )
-			{
-				return parsed;
-			}
-		}
-
-		return null;
-	}
-
-	private static decimal? ReadDecimalField( JToken? source, params string[] keys )
-	{
-		if ( source is not JObject obj )
-		{
-			return null;
-		}
-
-		foreach ( var key in keys )
-		{
-			var token = obj[ key ];
-
-			if ( token is null )
-			{
-				continue;
-			}
-
-			if ( token.Type == JTokenType.Integer || token.Type == JTokenType.Float )
-			{
-				return token.Value<decimal>();
-			}
-
-			if ( token.Type == JTokenType.String && decimal.TryParse( token.Value<string>(), out var parsed ) )
-			{
-				return parsed;
-			}
-		}
-
-		return null;
-	}
-}
-
-public sealed record SttKeyVerificationResult( bool IsRecognized, PermissionStatus SpeechToText, PermissionStatus UserRead )
-{
-	public bool IsFullyFunctional => IsRecognized && SpeechToText == PermissionStatus.Granted && UserRead == PermissionStatus.Granted;
-
-	public static readonly SttKeyVerificationResult Empty = new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
-	public static readonly SttKeyVerificationResult Invalid = new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
-}
-
-public sealed record SttSubscriptionInfo( int CharacterCount, int CharacterLimit, string Tier, string Status, long? NextCharacterCountResetUnix, decimal? CurrentOverage )
-{
-	public int RemainingCredits => Math.Max( 0, CharacterLimit - CharacterCount );
-
-	public DateTimeOffset? NextCharacterCountResetUtc => NextCharacterCountResetUnix is > 0 ? DateTimeOffset.FromUnixTimeSeconds( NextCharacterCountResetUnix.Value ) : null;
 }

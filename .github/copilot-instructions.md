@@ -13,3 +13,7 @@
 - **Custom controls only** — never use raw WPF `TextBox`, `ComboBox`, `Button`, `CheckBox`, `Slider`, `GroupBox`, or `TabItem` when a `Maira*` equivalent exists.
 - **Settings ordering** — properties in `Settings.cs` and `ContextSettings.cs` must match UI top-to-bottom / left-to-right order.
 - **XAML files** must be written without BOM (UTF-8 no BOM).
+
+## SpeechToText Guidelines
+
+- Preserve a streaming model: send audio only while radio transmission is active, keep a short post-transmit tail, and update the UI with partial and final transcript text.

@@ -36,9 +36,6 @@ internal sealed class PhraseEventKeyViewModel
 
 public partial class CommentaryPage : System.Windows.Controls.UserControl
 {
-	private SubscriptionInfo? _lastSubscriptionInfo;
-	private int _sessionCharactersUsed;
-
 	public CommentaryPage()
 	{
 		InitializeComponent();
@@ -54,16 +51,25 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 			}
 		};
 
-		Loaded += ( _, _ ) => App.Instance!.TextToSpeech.CreditsConsumed += UpdateSubscriptionUsageDisplayAsync;
+		Loaded += ( _, _ ) => App.Instance!.SpeechToText.UpdateSubscriptionUsage += UpdateSubscriptionUsage;
+		Unloaded += ( _, _ ) => App.Instance!.SpeechToText.UpdateSubscriptionUsage -= UpdateSubscriptionUsage;
 	}
 
-	private void UpdateSubscriptionUsageDisplayAsync( int charactersCharged )
+	private void UpdateSubscriptionUsage( CancellationToken cancellationToken = default )
 	{
-		_sessionCharactersUsed += charactersCharged;
-
-		Dispatcher.InvokeAsync( () =>
+		Dispatcher.InvokeAsync( async () =>
 		{
-			UpdateSubscriptionUsageDisplay();
+			try
+			{
+				await ElevenLabs.UpdateSubscriptionUsageAsync( AppDataContext.Instance.Settings.CommentaryElevenLabsApiKey, SubscriptionUsage_MairaProgressBar, cancellationToken );
+			}
+			catch ( OperationCanceledException ) when ( cancellationToken.IsCancellationRequested )
+			{
+			}
+			catch ( Exception ex )
+			{
+				App.Instance?.Logger.WriteLine( $"[CommentaryPage] UpdateSubscriptionUsage error: {ex.Message}" );
+			}
 		} );
 	}
 
@@ -105,8 +111,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 		{
 			UpdateModelOptions();
 			UpdateVoiceOptions();
-
-			await UpdateSubscriptionUsageAsync();
+			UpdateSubscriptionUsage();
 		}
 
 		PopulatePhraseEditor();
@@ -161,7 +166,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 	{
 		var app = App.Instance!;
 
-		var models = await app.TextToSpeech.GetModelsAsync();
+		var models = await TextToSpeech.GetModelsAsync();
 
 		var localization = AppDataContext.Instance.Localization;
 
@@ -197,7 +202,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 	private async void UpdateVoiceOptions()
 	{
 		var app = App.Instance!;
-		var voices = await app.TextToSpeech.GetVoicesAsync();
+		var voices = await TextToSpeech.GetVoicesAsync();
 
 		app.Logger.WriteLine( $"[CommentaryPage] UpdateVoiceOptions: GetVoicesAsync returned {( voices is null ? "null" : $"{voices.Count} voice(s)" )}" );
 
@@ -255,9 +260,9 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 
 	private static T? FindVisualChild<T>( DependencyObject parent ) where T : DependencyObject
 	{
-		for ( var i = 0; i < System.Windows.Media.VisualTreeHelper.GetChildrenCount( parent ); i++ )
+		for ( var i = 0; i < VisualTreeHelper.GetChildrenCount( parent ); i++ )
 		{
-			var child = System.Windows.Media.VisualTreeHelper.GetChild( parent, i );
+			var child = VisualTreeHelper.GetChild( parent, i );
 
 			if ( child is T match )
 			{
@@ -273,39 +278,6 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 		}
 
 		return null;
-	}
-
-	private async Task UpdateSubscriptionUsageAsync()
-	{
-		SubscriptionUsage_MairaProgressBar.Value = 0;
-
-		var info = await App.Instance!.TextToSpeech.GetSubscriptionAsync();
-
-		if ( info is null )
-		{
-			_lastSubscriptionInfo = null;
-			return;
-		}
-
-		_lastSubscriptionInfo = info;
-		_sessionCharactersUsed = 0;
-
-		UpdateSubscriptionUsageDisplay();
-	}
-
-	private void UpdateSubscriptionUsageDisplay()
-	{
-		if ( _lastSubscriptionInfo is null )
-		{
-			SubscriptionUsage_MairaProgressBar.Value = 0;
-			return;
-		}
-
-		var adjustedUsed = _lastSubscriptionInfo.CharactersUsed + _sessionCharactersUsed;
-		var limit = _lastSubscriptionInfo.CharacterLimit;
-		var percent = limit > 0 ? adjustedUsed * 100.0 / limit : 0.0;
-
-		SubscriptionUsage_MairaProgressBar.Value = Math.Clamp( percent, 0.0, 100.0 );
 	}
 
 	#endregion
@@ -353,7 +325,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 
 		try
 		{
-			var result = await app.TextToSpeech.VerifyKeyAsync();
+			var result = await TextToSpeech.VerifyKeyAsync();
 
 			if ( !result.IsRecognized )
 			{
@@ -362,10 +334,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 				return;
 			}
 
-			string PermSymbol( PermissionStatus s ) =>
-				s == PermissionStatus.Granted
-					? localization[ "KeyPermissionGranted" ]
-					: localization[ "KeyPermissionMissing" ];
+			string PermSymbol( ElevenLabs.PermissionStatus s ) => s == ElevenLabs.PermissionStatus.Granted ? localization[ "KeyPermissionGranted" ] : localization[ "KeyPermissionMissing" ];
 
 			var lines = new System.Text.StringBuilder();
 
@@ -385,13 +354,11 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 
 			VerifyResult_TextBlock.Text = lines.ToString();
 
-			VerifyResult_TextBlock.Foreground = result.IsFullyFunctional
-				? (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Accent.Blue" )
-				: (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Status.Warning.Text" );
+			VerifyResult_TextBlock.Foreground = result.IsFullyFunctional ? (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Accent.Blue" ) : (SolidColorBrush) System.Windows.Application.Current.FindResource( "Brush.Status.Warning.Text" );
 
 			UpdateVoiceOptions();
 			UpdateModelOptions();
-			await UpdateSubscriptionUsageAsync();
+			UpdateSubscriptionUsage();
 		}
 		catch ( Exception ex )
 		{
@@ -501,7 +468,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 			{
 				if ( entry.Text != entry.SavedText && !string.IsNullOrWhiteSpace( entry.SavedText ) )
 				{
-					App.Instance!.TextToSpeech.DeleteCachedPhrasesForText( entry.SavedText, language );
+					TextToSpeech.DeleteCachedPhrasesForText( entry.SavedText, language );
 				}
 
 				entry.SavedText = entry.Text;

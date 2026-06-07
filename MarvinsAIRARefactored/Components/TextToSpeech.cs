@@ -16,24 +16,13 @@ namespace MarvinsAIRARefactored.Components;
 /// Handles all ElevenLabs TTS requests: cache lookup, HTTP calls, and playback hand-off to AudioManager.
 /// Requests are queued internally and processed one at a time so overlapping calls never happen.
 /// </summary>
-public sealed class TextToSpeech : IDisposable
+public sealed partial class TextToSpeech : IDisposable
 {
 	// -------------------------------------------------------------------------
 	// Constants
 	// -------------------------------------------------------------------------
 
-	private const string ApiBaseUrl = "https://api.elevenlabs.io";
-
 	private static readonly string CacheDirectory = Path.Combine( App.DocumentsFolder, "TTS", "Cache" );
-
-	// -------------------------------------------------------------------------
-	// HTTP client (shared; Authorization header swapped on each key change)
-	// -------------------------------------------------------------------------
-
-	private static readonly HttpClient _httpClient = new()
-	{
-		Timeout = TimeSpan.FromSeconds( 10 )
-	};
 
 	// -------------------------------------------------------------------------
 	// Priority queue processed by a single background consumer
@@ -54,11 +43,7 @@ public sealed class TextToSpeech : IDisposable
 	// Public surface
 	// -------------------------------------------------------------------------
 
-	/// <summary>
-	/// Raised on the thread-pool after credits are consumed.
-	/// <paramref name="charactersCharged"/> is the length of text passed to ElevenLabs for API calls that consumed quota.
-	/// </summary>
-	public event Action<int>? CreditsConsumed;
+	public event Action<CancellationToken>? UpdateSubscriptionUsage;
 
 	public void Initialize()
 	{
@@ -139,9 +124,9 @@ public sealed class TextToSpeech : IDisposable
 
 	/// <summary>
 	/// Verifies the stored API key and probes each permission required by the app.
-	/// Returns a <see cref="KeyVerificationResult"/> describing the outcome.
+	/// Returns a <see cref="ElevenLabs.TtsKeyVerificationResult"/> describing the outcome.
 	/// </summary>
-	public async Task<KeyVerificationResult> VerifyKeyAsync( CancellationToken cancellationToken = default )
+	public static async Task<ElevenLabs.TtsKeyVerificationResult> VerifyKeyAsync( CancellationToken cancellationToken = default )
 	{
 		var app = App.Instance!;
 		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey.Trim();
@@ -150,7 +135,7 @@ public sealed class TextToSpeech : IDisposable
 
 		if ( string.IsNullOrWhiteSpace( apiKey ) )
 		{
-			return KeyVerificationResult.Empty;
+			return ElevenLabs.TtsKeyVerificationResult.Empty;
 		}
 
 		// Probe each endpoint and classify the response.
@@ -158,74 +143,29 @@ public sealed class TextToSpeech : IDisposable
 		// and 401 "invalid_api_key" (or similar) for an unrecognized key.
 		// Any non-401 response means the key was at least recognized.
 
-		var voicesRead = await ProbePermissionAsync( apiKey, HttpMethod.Get, $"{ApiBaseUrl}/v1/voices", cancellationToken );
-		var modelsRead = await ProbePermissionAsync( apiKey, HttpMethod.Get, $"{ApiBaseUrl}/v1/models", cancellationToken );
-		var textToSpeech = await ProbePermissionAsync( apiKey, HttpMethod.Post, $"{ApiBaseUrl}/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM", cancellationToken );
-		var userRead = await ProbePermissionAsync( apiKey, HttpMethod.Get, $"{ApiBaseUrl}/v1/user/subscription", cancellationToken );
+		var voicesRead = await ElevenLabs.ProbePermissionAsync( apiKey, HttpMethod.Get, "https://api.elevenlabs.io/v1/voices", cancellationToken );
+		var modelsRead = await ElevenLabs.ProbePermissionAsync( apiKey, HttpMethod.Get, "https://api.elevenlabs.io/v1/models", cancellationToken );
+		var textToSpeech = await ElevenLabs.ProbePermissionAsync( apiKey, HttpMethod.Post, "https://api.elevenlabs.io/v1/text-to-speech/21m00Tcm4TlvDq8ikWAM", cancellationToken );
+		var userRead = await ElevenLabs.ProbePermissionAsync( apiKey, HttpMethod.Get, "https://api.elevenlabs.io/v1/user/subscription", cancellationToken );
 
 		app.Logger.WriteLine( $"[TextToSpeech] VerifyKeyAsync: voice_read={voicesRead}, models_read={modelsRead}, text_to_speech={textToSpeech}, user_read={userRead}" );
 
 		// If all four came back as "invalid_api_key" the key itself is not recognized.
-		if ( voicesRead == PermissionStatus.InvalidKey && modelsRead == PermissionStatus.InvalidKey && textToSpeech == PermissionStatus.InvalidKey && userRead == PermissionStatus.InvalidKey )
+		if ( voicesRead == ElevenLabs.PermissionStatus.InvalidKey && modelsRead == ElevenLabs.PermissionStatus.InvalidKey && textToSpeech == ElevenLabs.PermissionStatus.InvalidKey && userRead == ElevenLabs.PermissionStatus.InvalidKey )
 		{
-			return KeyVerificationResult.Invalid;
+			return ElevenLabs.TtsKeyVerificationResult.Invalid;
 		}
 
-		return new KeyVerificationResult( IsRecognized: true, VoiceRead: voicesRead, ModelsRead: modelsRead, TextToSpeech: textToSpeech, UserRead: userRead );
+		return new ElevenLabs.TtsKeyVerificationResult( IsRecognized: true, VoiceRead: voicesRead, ModelsRead: modelsRead, TextToSpeech: textToSpeech, UserRead: userRead );
 	}
 
 	/// <summary>
 	/// Sends a lightweight probe request and returns whether the key has permission for that endpoint.
 	/// For POST endpoints (text-to-speech) an empty body is sent — ElevenLabs checks auth before validating the payload.
 	/// </summary>
-	public static async Task<PermissionStatus> ProbePermissionAsync( string apiKey, HttpMethod method, string url, CancellationToken cancellationToken )
+	public static async Task<ElevenLabs.PermissionStatus> ProbePermissionAsync( string apiKey, HttpMethod method, string url, CancellationToken cancellationToken )
 	{
-		var app = App.Instance!;
-
-		try
-		{
-			using var request = new HttpRequestMessage( method, url );
-
-			request.Headers.Add( "xi-api-key", apiKey );
-
-			if ( method == HttpMethod.Post )
-			{
-				request.Content = new StringContent( "{}", Encoding.UTF8, "application/json" );
-			}
-
-			using var response = await _httpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
-
-			app.Logger.WriteLine( $"[TextToSpeech] ProbePermissionAsync {method} {url}: {(int) response.StatusCode}" );
-
-			if ( response.IsSuccessStatusCode )
-			{
-				return PermissionStatus.Granted;
-			}
-
-			if ( response.StatusCode == System.Net.HttpStatusCode.Unauthorized )
-			{
-				var body = await response.Content.ReadAsStringAsync( cancellationToken );
-				var detail = string.Empty;
-
-				try
-				{
-					detail = JObject.Parse( body )[ "detail" ]?[ "status" ]?.Value<string>() ?? string.Empty;
-				}
-				catch { /* non-JSON body — treat as invalid key */ }
-
-				return detail == "missing_permissions" ? PermissionStatus.MissingPermission : PermissionStatus.InvalidKey;
-			}
-
-			// 4xx other than 401 (e.g. 422 unprocessable for empty POST body) means the key
-			// was recognized and passed auth — only the request payload was rejected.
-			return PermissionStatus.Granted;
-		}
-		catch ( Exception ex )
-		{
-			app.Logger.WriteLine( $"[TextToSpeech] ProbePermissionAsync exception: {ex.Message}" );
-
-			return PermissionStatus.InvalidKey;
-		}
+		return await ElevenLabs.ProbePermissionAsync( apiKey, method, url, cancellationToken );
 	}
 
 	// -------------------------------------------------------------------------
@@ -290,7 +230,8 @@ public sealed class TextToSpeech : IDisposable
 			// Fire-and-forget cache write — does not block playback
 			_ = WriteCacheAsync( cacheFile, mp3Bytes );
 
-			CreditsConsumed?.Invoke( request.Text.Length );
+			// Update subscription usage after successful TTS call
+			UpdateSubscriptionUsage?.Invoke( cancellationToken );
 		}
 
 		var volume = MathZ.Saturate( slot.Volume * settings.CommentaryMasterVolume );
@@ -331,7 +272,7 @@ public sealed class TextToSpeech : IDisposable
 			return null;
 		}
 
-		var url = $"{ApiBaseUrl}/v1/text-to-speech/{slot.VoiceId}?output_format=mp3_44100_128";
+		var url = $"https://api.elevenlabs.io/v1/text-to-speech/{slot.VoiceId}?output_format=mp3_44100_128";
 
 		// Emotion/direction tags (e.g. [urgently]) are only supported by eleven_v3; strip them for all other models.
 		var spokenText = modelId.StartsWith( "eleven_v3", StringComparison.OrdinalIgnoreCase ) ? text : StripEmotionTags( text );
@@ -360,7 +301,7 @@ public sealed class TextToSpeech : IDisposable
 			request.Headers.Add( "xi-api-key", apiKey );
 			request.Content = new StringContent( json, Encoding.UTF8, "application/json" );
 
-			using var response = await _httpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
+			using var response = await ElevenLabs.HttpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
 
 			if ( !response.IsSuccessStatusCode )
 			{
@@ -382,13 +323,13 @@ public sealed class TextToSpeech : IDisposable
 	}
 
 	/// <summary>Removes ElevenLabs emotion/direction tags such as [urgently] from text for models that do not support them.</summary>
-	private static string StripEmotionTags( string text ) => Regex.Replace( text, @"\[[a-zA-Z ]+\]\s*", string.Empty ).TrimStart();
+	private static string StripEmotionTags( string text ) => StripEmotionTagsRegex().Replace( text, string.Empty ).TrimStart();
 
 	/// <summary>
 	/// Fetches the list of available voices from the ElevenLabs API.
 	/// Returns a dictionary of voice ID → voice name sorted alphabetically by name, or null if the call fails.
 	/// </summary>
-	public async Task<Dictionary<string, string>?> GetVoicesAsync( CancellationToken cancellationToken = default )
+	public static async Task<Dictionary<string, string>?> GetVoicesAsync( CancellationToken cancellationToken = default )
 	{
 		var app = App.Instance!;
 		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey;
@@ -400,11 +341,11 @@ public sealed class TextToSpeech : IDisposable
 
 		try
 		{
-			using var request = new HttpRequestMessage( HttpMethod.Get, $"{ApiBaseUrl}/v1/voices" );
+			using var request = new HttpRequestMessage( HttpMethod.Get, "https://api.elevenlabs.io/v1/voices" );
 
 			request.Headers.Add( "xi-api-key", apiKey );
 
-			using var response = await _httpClient.SendAsync( request, cancellationToken );
+			using var response = await ElevenLabs.HttpClient.SendAsync( request, cancellationToken );
 
 			if ( !response.IsSuccessStatusCode )
 			{
@@ -415,9 +356,8 @@ public sealed class TextToSpeech : IDisposable
 
 			var json = await response.Content.ReadAsStringAsync( cancellationToken );
 			var root = JObject.Parse( json );
-			var voices = root[ "voices" ] as JArray;
 
-			if ( voices is null )
+			if ( root[ "voices" ] is not JArray voices )
 			{
 				return null;
 			}
@@ -449,7 +389,7 @@ public sealed class TextToSpeech : IDisposable
 	/// Fetches the list of TTS-capable models from the ElevenLabs API.
 	/// Returns a dictionary of model ID → display name, or null if the call fails.
 	/// </summary>
-	public async Task<Dictionary<string, string>?> GetModelsAsync( CancellationToken cancellationToken = default )
+	public static async Task<Dictionary<string, string>?> GetModelsAsync( CancellationToken cancellationToken = default )
 	{
 		var app = App.Instance!;
 		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey;
@@ -461,11 +401,11 @@ public sealed class TextToSpeech : IDisposable
 
 		try
 		{
-			using var request = new HttpRequestMessage( HttpMethod.Get, $"{ApiBaseUrl}/v1/models" );
+			using var request = new HttpRequestMessage( HttpMethod.Get, "https://api.elevenlabs.io/v1/models" );
 
 			request.Headers.Add( "xi-api-key", apiKey );
 
-			using var response = await _httpClient.SendAsync( request, cancellationToken );
+			using var response = await ElevenLabs.HttpClient.SendAsync( request, cancellationToken );
 
 			if ( !response.IsSuccessStatusCode )
 			{
@@ -502,72 +442,6 @@ public sealed class TextToSpeech : IDisposable
 		catch ( Exception ex )
 		{
 			app.Logger.WriteLine( $"[TextToSpeech] GetModelsAsync exception: {ex.Message}" );
-
-			return null;
-		}
-	}
-
-	// -------------------------------------------------------------------------
-	// Cache helpers
-	// -------------------------------------------------------------------------
-
-	/// <summary>
-	/// Queries the ElevenLabs subscription endpoint and returns the character usage for the
-	/// current billing period, or null if the call fails or the API key is missing.
-	/// </summary>
-	public Task<SubscriptionInfo?> GetSubscriptionAsync( CancellationToken cancellationToken = default )
-	{
-		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey;
-
-		return GetSubscriptionAsync( apiKey, cancellationToken );
-	}
-
-	/// <summary>
-	/// Queries the ElevenLabs subscription endpoint and returns the character usage for the
-	/// current billing period using the provided API key, or null if the call fails.
-	/// </summary>
-	public async Task<SubscriptionInfo?> GetSubscriptionAsync( string apiKey, CancellationToken cancellationToken = default )
-	{
-		var app = App.Instance!;
-
-		if ( string.IsNullOrWhiteSpace( apiKey ) )
-		{
-			return null;
-		}
-
-		try
-		{
-			using var request = new HttpRequestMessage( HttpMethod.Get, $"{ApiBaseUrl}/v1/user/subscription" );
-
-			request.Headers.Add( "xi-api-key", apiKey );
-
-			using var response = await _httpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
-
-			if ( !response.IsSuccessStatusCode )
-			{
-				app.Logger.WriteLine( $"[TextToSpeech] GetSubscriptionAsync error {(int) response.StatusCode}" );
-
-				return null;
-			}
-
-			var json = await response.Content.ReadAsStringAsync( cancellationToken );
-			var root = JObject.Parse( json );
-
-			var used = root[ "character_count" ]?.Value<int>();
-			var limit = root[ "character_limit" ]?.Value<int>();
-
-			if ( used is null || limit is null )
-			{
-				app.Logger.WriteLine( "[TextToSpeech] GetSubscriptionAsync: unexpected response shape" );
-
-				return null;
-			}
-
-			return new SubscriptionInfo( used.Value, limit.Value );
-		}
-		catch ( Exception ex )
-		{
-			app.Logger.WriteLine( $"[TextToSpeech] GetSubscriptionAsync exception: {ex.Message}" );
 
 			return null;
 		}
@@ -623,14 +497,12 @@ public sealed class TextToSpeech : IDisposable
 	}
 
 	/// <summary>
-	/// Deletes all cached MP3 files associated with <paramref name="text"/> regardless of which
-	/// voice slot or voice settings were used to generate them.  Because voice settings are now
-	/// explicit filename segments (not folded into the hash), a single glob on the text-hash
-	/// suffix is sufficient to find every matching file.
+	/// Deletes all cached MP3 files associated with <paramref name="text"/> and <paramref name="languageId"/>.
+	/// Only files generated for the specified language are removed; entries for other languages are preserved.
 	/// Call this whenever a phrase is edited so the next test or live playback triggers a fresh
 	/// ElevenLabs API call instead of replaying stale cached audio.
 	/// </summary>
-	public void DeleteCachedPhrasesForText( string text, string languageId )
+	public static void DeleteCachedPhrasesForText( string text, string languageId )
 	{
 		if ( !Directory.Exists( CacheDirectory ) )
 		{
@@ -638,7 +510,8 @@ public sealed class TextToSpeech : IDisposable
 		}
 
 		var textHash = ComputeHash( NormalizeText( text ) );
-		var matchingFiles = Directory.GetFiles( CacheDirectory, $"*_{textHash}.mp3" );
+		var safeLanguageId = languageId.Replace( '/', '_' ).Replace( '\\', '_' );
+		var matchingFiles = Directory.GetFiles( CacheDirectory, $"*_{safeLanguageId}_*_{textHash}.mp3" );
 
 		foreach ( var path in matchingFiles )
 		{
@@ -684,37 +557,7 @@ public sealed class TextToSpeech : IDisposable
 	// -------------------------------------------------------------------------
 
 	private sealed record SpeechRequest( int SlotIndex, string VoiceId, string LanguageId, string Text, int Priority, float Stability, float Style, float SimilarityBoost, bool SpeakerBoost );
-}
 
-/// <summary>Character usage for the current ElevenLabs billing period.</summary>
-public sealed record SubscriptionInfo( int CharactersUsed, int CharacterLimit )
-{
-	public int CharactersRemaining => Math.Max( 0, CharacterLimit - CharactersUsed );
-	public double PercentUsed => CharacterLimit > 0 ? CharactersUsed * 100.0 / CharacterLimit : 0.0;
-}
-
-/// <summary>Outcome of a single ElevenLabs endpoint permission probe.</summary>
-public enum PermissionStatus
-{
-	/// <summary>The endpoint returned success (or a non-auth error, meaning auth passed).</summary>
-	Granted,
-
-	/// <summary>The key is recognized but lacks the required scope for this endpoint.</summary>
-	MissingPermission,
-
-	/// <summary>The key was not recognized by ElevenLabs.</summary>
-	InvalidKey
-}
-
-/// <summary>Structured result returned by <see cref="TextToSpeech.VerifyKeyAsync"/>.</summary>
-public sealed record KeyVerificationResult( bool IsRecognized, PermissionStatus VoiceRead, PermissionStatus ModelsRead, PermissionStatus TextToSpeech, PermissionStatus UserRead )
-{
-	/// <summary>All four required permissions are granted.</summary>
-	public bool IsFullyFunctional => IsRecognized && VoiceRead == PermissionStatus.Granted && ModelsRead == PermissionStatus.Granted && TextToSpeech == PermissionStatus.Granted && UserRead == PermissionStatus.Granted;
-
-	/// <summary>The API key field was empty — nothing was sent to ElevenLabs.</summary>
-	public static readonly KeyVerificationResult Empty = new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
-
-	/// <summary>ElevenLabs rejected the key as unrecognized.</summary>
-	public static readonly KeyVerificationResult Invalid = new( false, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey, PermissionStatus.InvalidKey );
+	[GeneratedRegex( @"\[[a-zA-Z ]+\]\s*" )]
+	private static partial Regex StripEmotionTagsRegex();
 }

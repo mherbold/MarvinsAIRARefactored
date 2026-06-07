@@ -34,13 +34,9 @@
                                       IsOn="{Binding Settings.SpeechToTextEnabled, Mode=TwoWay}"
                                       Label="{Binding Localization[Enabled]}" />
 
-                <controls:MairaComboBox x:Name="Language_MairaComboBox"
-                                        Grid.Column="2"
-                                        Label="{Binding Localization[Language]}"
-                                        SelectedValue="{Binding Settings.SpeechToTextLanguageCode, Mode=TwoWay}" />
-
                 <controls:MairaComboBox x:Name="RecordingDevice_MairaComboBox"
-                                        Grid.Column="4"
+                                        Grid.Column="2"
+                                        Grid.ColumnSpan="3"
                                         Label="{Binding Localization[RecordingDevice]}"
                                         SelectedValue="{Binding Settings.SpeechToTextRecordingDevice, Mode=TwoWay}" />
 
@@ -55,8 +51,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="5" />
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="10" />
                     <RowDefinition Height="Auto" />
@@ -96,11 +90,6 @@
                 <controls:MairaProgressBar x:Name="SubscriptionUsage_MairaProgressBar"
                                             Grid.Row="4"
                                             Label="{Binding Localization[Usage]}"/>
-
-                <TextBlock x:Name="LastTranscription_TextBlock"
-                           Grid.Row="6"
-                           Style="{DynamicResource MairaTextBlockStyle}"
-                           d:Text="Just a test..." />
 
             </Grid>
 
