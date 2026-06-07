@@ -136,13 +136,14 @@ public partial class Simulator
 	private bool _telemetryDataInitialized = false;
 	private bool _waitingForFirstSessionInfo = false;
 
-	private int? _tickCountLastFrame = null;
-	private bool? _weatherDeclaredWetLastFrame = null;
 	private bool? _isReplayPlayingLastFrame = null;
-	private IRacingSdkEnum.Flags? _sessionFlagsLastFrame = null;
-	private IRacingSdkEnum.SessionState? _sessionStateLastFrame = null;
+	private bool? _weatherDeclaredWetLastFrame = null;
 	private int? _currentTireIndexLastFrame = null;
 	private int? _displayUnitsLastFrame = null;
+	private int? _radioTransmitCarIdxLastFrame = null;
+	private int? _tickCountLastFrame = null;
+	private IRacingSdkEnum.Flags? _sessionFlagsLastFrame = null;
+	private IRacingSdkEnum.SessionState? _sessionStateLastFrame = null;
 
 	private IRacingSdkDatum? _brakeABSactiveDatum = null;
 	private IRacingSdkDatum? _brakeDatum = null;
@@ -433,13 +434,14 @@ public partial class Simulator
 		Array.Clear( _rpmSpeedRatioAccumulator );
 		Array.Clear( _rpmSpeedRatioSampleCount );
 
-		_tickCountLastFrame = null;
-		_weatherDeclaredWetLastFrame = null;
-		_isReplayPlayingLastFrame = null;
-		_sessionFlagsLastFrame = null;
-		_sessionStateLastFrame = null;
 		_currentTireIndexLastFrame = null;
 		_displayUnitsLastFrame = null;
+		_isReplayPlayingLastFrame = null;
+		_radioTransmitCarIdxLastFrame = null;
+		_sessionFlagsLastFrame = null;
+		_sessionStateLastFrame = null;
+		_tickCountLastFrame = null;
+		_weatherDeclaredWetLastFrame = null;
 
 		DataContext.DataContext.Instance.Settings.UpdateSettings( false );
 
@@ -615,24 +617,14 @@ public partial class Simulator
 			_brakeABSactiveDatum = _irsdk.Data.TelemetryDataProperties[ "BrakeABSactive" ];
 			_brakeDatum = _irsdk.Data.TelemetryDataProperties[ "Brake" ];
 			_carIdxBestLapTimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxBestLapTime" ];
-				_carIdxEstTimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxEstTime" ];
-				_carIdxF2TimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxF2Time" ];
-				_carIdxLapDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLap" ];
-				_carIdxLapCompletedDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapCompleted" ];
-				_carIdxLapDistPctDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapDistPct" ];
-				_carIdxPositionDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxPosition" ];
-				_carIdxOnPitRoadDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxOnPitRoad" ];
-				_carIdxSessionFlagsDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxSessionFlags" ];
-
-				CarIdxBestLapTime = new float[ _carIdxBestLapTimeDatum.Count ];
-				CarIdxEstTime = new float[ _carIdxEstTimeDatum.Count ];
-				CarIdxF2Time = new float[ _carIdxF2TimeDatum.Count ];
-				CarIdxLap = new int[ _carIdxLapDatum.Count ];
-				CarIdxLapCompleted = new int[ _carIdxLapCompletedDatum.Count ];
-				CarIdxLapDistPct = new float[ _carIdxLapDistPctDatum.Count ];
-				CarIdxPosition = new int[ _carIdxPositionDatum.Count ];
-				CarIdxOnPitRoad = new bool[ _carIdxOnPitRoadDatum.Count ];
-				CarIdxSessionFlags = new uint[ _carIdxSessionFlagsDatum.Count ];
+			_carIdxEstTimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxEstTime" ];
+			_carIdxF2TimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxF2Time" ];
+			_carIdxLapDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLap" ];
+			_carIdxLapCompletedDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapCompleted" ];
+			_carIdxLapDistPctDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxLapDistPct" ];
+			_carIdxPositionDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxPosition" ];
+			_carIdxOnPitRoadDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxOnPitRoad" ];
+			_carIdxSessionFlagsDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxSessionFlags" ];
 			_carIdxTireCompoundDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxTireCompound" ];
 			_carDistAheadDatum = _irsdk.Data.TelemetryDataProperties[ "CarDistAhead" ];
 			_carDistBehindDatum = _irsdk.Data.TelemetryDataProperties[ "CarDistBehind" ];
@@ -694,6 +686,16 @@ public partial class Simulator
 			_yawDatum = _irsdk.Data.TelemetryDataProperties[ "Yaw" ];
 			_yawNorthDatum = _irsdk.Data.TelemetryDataProperties[ "YawNorth" ];
 			_yawRateDatum = _irsdk.Data.TelemetryDataProperties[ "YawRate" ];
+
+			CarIdxBestLapTime = new float[ _carIdxBestLapTimeDatum.Count ];
+			CarIdxEstTime = new float[ _carIdxEstTimeDatum.Count ];
+			CarIdxF2Time = new float[ _carIdxF2TimeDatum.Count ];
+			CarIdxLap = new int[ _carIdxLapDatum.Count ];
+			CarIdxLapCompleted = new int[ _carIdxLapCompletedDatum.Count ];
+			CarIdxLapDistPct = new float[ _carIdxLapDistPctDatum.Count ];
+			CarIdxPosition = new int[ _carIdxPositionDatum.Count ];
+			CarIdxOnPitRoad = new bool[ _carIdxOnPitRoadDatum.Count ];
+			CarIdxSessionFlags = new uint[ _carIdxSessionFlagsDatum.Count ];
 
 			_cfShockVel_STDatum = null;
 			_crShockVel_STDatum = null;
@@ -770,6 +772,14 @@ public partial class Simulator
 
 		// save last frame values
 
+		_currentTireIndexLastFrame = CurrentTireIndex;
+		_displayUnitsLastFrame = DisplayUnits;
+		_isReplayPlayingLastFrame = IsReplayPlaying;
+		_radioTransmitCarIdxLastFrame = RadioTransmitCarIdx;
+		_sessionFlagsLastFrame = SessionFlags;
+		_sessionStateLastFrame = SessionState;
+		_weatherDeclaredWetLastFrame = WeatherDeclaredWet;
+
 		WasOnTrack = IsOnTrack;
 
 		// update non-array telemetry data properties
@@ -836,6 +846,13 @@ public partial class Simulator
 		YawNorth = _irsdk.Data.GetFloat( _yawNorthDatum );
 		YawRate = _irsdk.Data.GetFloat( _yawRateDatum );
 
+		// temporarily log changes to the RadioTransmitCarIdx value
+
+		if ( RadioTransmitCarIdx != _radioTransmitCarIdxLastFrame )
+		{
+			app.Logger.WriteLine( $"[Simulator] RadioTransmitCarIdx changed: {_radioTransmitCarIdxLastFrame} -> {RadioTransmitCarIdx} (LastRadioTransmitCarIdx={LastRadioTransmitCarIdx})" );
+		}
+
 		// update array telemetry data properties
 
 		_irsdk.Data.GetIntArray( _carIdxLapDatum, CarIdxLap, 0, _carIdxLapDatum!.Count );
@@ -891,21 +908,15 @@ public partial class Simulator
 			app.AdminBoxx.ReplayPlayingChanged();
 		}
 
-		_isReplayPlayingLastFrame = IsReplayPlaying;
-
 		if ( SessionFlags != _sessionFlagsLastFrame )
 		{
 			app.AdminBoxx.SessionFlagsChanged();
 		}
 
-		_sessionFlagsLastFrame = SessionFlags;
-
 		if ( SessionState != _sessionStateLastFrame )
 		{
 			app.Commentary.SessionStateChanged( SessionState );
 		}
-
-		_sessionStateLastFrame = SessionState;
 
 		if ( DisplayUnits != _displayUnitsLastFrame )
 		{
@@ -913,11 +924,9 @@ public partial class Simulator
 			{
 				DataContext.DataContext.Instance.Settings.UpdateSpeedUnitStrings();
 
-				MainWindow._windPage.UpdateSpeedUnitLabel();
+				_windPage.UpdateSpeedUnitLabel();
 			} );
 		}
-
-		_displayUnitsLastFrame = DisplayUnits;
 
 		// update speech-to-text
 
@@ -928,7 +937,7 @@ public partial class Simulator
 
 		var isRadioTransmitting = RadioTransmitCarIdx != -1 && RadioTransmitCarIdx != PlayerCarIdx;
 
-		app.SpeechToText.UpdateRadioTransmitState( isRadioTransmitting );
+		app.SpeechToText.UpdateRadioTransmitState( isRadioTransmitting, RadioTransmitCarIdx );
 
 		// update velocity
 
@@ -952,8 +961,6 @@ public partial class Simulator
 			}
 		}
 
-		_weatherDeclaredWetLastFrame = WeatherDeclaredWet;
-
 		// get the current tire index and the current tire compound type
 
 		if ( ( PlayerCarIdx >= 0 ) && ( PlayerCarIdx < _carIdxTireCompoundDatum!.Count ) )
@@ -971,8 +978,6 @@ public partial class Simulator
 					UpdateTireProperties();
 				}
 			}
-
-			_currentTireIndexLastFrame = CurrentTireIndex;
 		}
 
 		// crash protection processing

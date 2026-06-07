@@ -17,7 +17,6 @@ public partial class SpeechToTextWindow : Window
 	private float _finalVisibilityTimer = 0f;
 
 	private int _speakingCarIdx = -1;
-	private DateTime _speakingTimestamp;
 
 	public SpeechToTextWindow()
 	{
@@ -75,15 +74,15 @@ public partial class SpeechToTextWindow : Window
 
 		var hwnd = new WindowInteropHelper( this ).Handle;
 
-		var exStyle = User32.GetWindowLong( hwnd, WindowLongIndexFlags.GWL_EXSTYLE );
+		var exStyle = GetWindowLong( hwnd, WindowLongIndexFlags.GWL_EXSTYLE );
 
 		if ( _isDraggable )
 		{
-			_ = User32.SetWindowLong( hwnd, WindowLongIndexFlags.GWL_EXSTYLE, (SetWindowLongFlags) ( (uint) exStyle & (uint) ~SetWindowLongFlags.WS_EX_TRANSPARENT ) );
+			_ = SetWindowLong( hwnd, WindowLongIndexFlags.GWL_EXSTYLE, (SetWindowLongFlags) ( (uint) exStyle & (uint) ~SetWindowLongFlags.WS_EX_TRANSPARENT ) );
 		}
 		else
 		{
-			_ = User32.SetWindowLong( hwnd, WindowLongIndexFlags.GWL_EXSTYLE, (SetWindowLongFlags) ( (uint) exStyle | (uint) SetWindowLongFlags.WS_EX_TRANSPARENT ) );
+			_ = SetWindowLong( hwnd, WindowLongIndexFlags.GWL_EXSTYLE, (SetWindowLongFlags) ( (uint) exStyle | (uint) SetWindowLongFlags.WS_EX_TRANSPARENT ) );
 		}
 	}
 
@@ -95,40 +94,64 @@ public partial class SpeechToTextWindow : Window
 		}
 	}
 
+	private static string TruncateForLog( string text, int maxLength )
+	{
+		if ( text.Length <= maxLength )
+		{
+			return text;
+		}
+
+		return text[..maxLength];
+	}
+
+	private static string FormatDriverLabel( App app, int carIdx )
+	{
+		var driver = app.Simulator.GetDriver( carIdx );
+
+		if ( driver is null )
+		{
+			return string.Empty;
+		}
+
+		return $"#{driver.CarNumber} {driver.UserName}";
+	}
+
 	public void SetPartialText( string text )
 	{
+		var app = App.Instance!;
+
+		var radioTransmitCarIdx = app.Simulator.RadioTransmitCarIdx;
+		var lastRadioTransmitCarIdx = app.Simulator.LastRadioTransmitCarIdx;
+
 		Dispatcher.BeginInvoke( () =>
 		{
-			var app = App.Instance!;
+			var previousSpeakingCarIdx = _speakingCarIdx;
 
-			app.Logger.WriteLine( $"[SpeechToText] Got partial text ({text})" );
+			var chosenCarIdx = radioTransmitCarIdx;
 
-			var elapsedTime = DateTime.UtcNow - _speakingTimestamp;
-
-			if ( _speakingCarIdx == -1 || ( elapsedTime.TotalSeconds > 1 ) )
+			if ( chosenCarIdx == -1 )
 			{
-				_speakingCarIdx = app.Simulator.LastRadioTransmitCarIdx;
-
-				app.Logger.WriteLine( $"[SpeechToText] Speaking car index was not set - now set to {_speakingCarIdx}" );
+				chosenCarIdx = lastRadioTransmitCarIdx;
 			}
 
-			_speakingTimestamp = DateTime.UtcNow;
+			var driverLabel = ( chosenCarIdx != -1 ) ? FormatDriverLabel( app, chosenCarIdx ) : string.Empty;
 
-			var driver = app.Simulator.GetDriver( _speakingCarIdx );
+			app.Logger.WriteLine( $"[SpeechToTextWindow] Partial text: radioTransmitCarIdx={radioTransmitCarIdx}, lastRadioTransmitCarIdx={lastRadioTransmitCarIdx}, previousSpeakingCarIdx={previousSpeakingCarIdx}, chosenCarIdx={chosenCarIdx}, driver='{driverLabel}', text='{TruncateForLog( text, 200 )}'" );
 
-			if ( driver != null )
+			_speakingCarIdx = chosenCarIdx;
+
+			if ( !string.IsNullOrWhiteSpace( driverLabel ) )
 			{
 				Partial_Driver_TextBlock.Visibility = Visibility.Visible;
-				Partial_Driver_TextBlock.Text = $"#{driver.CarNumber} {driver.UserName}";
+				Partial_Driver_TextBlock.Text = driverLabel;
 			}
 			else
 			{
 				Partial_Driver_TextBlock.Visibility = Visibility.Collapsed;
+				Partial_Driver_TextBlock.Text = string.Empty;
 			}
 
 			Partial_Message_TextBlock.Text = text;
-
-			Partial_Driver_TextBlock.Visibility = Visibility.Visible;
 			Partial_Message_TextBlock.Visibility = Visibility.Visible;
 
 			_windowVisibilityTimer = 10f;
@@ -139,35 +162,50 @@ public partial class SpeechToTextWindow : Window
 
 	public void SetFinalText( string text )
 	{
+		var app = App.Instance!;
+
+		var radioTransmitCarIdx = app.Simulator.RadioTransmitCarIdx;
+		var lastRadioTransmitCarIdx = app.Simulator.LastRadioTransmitCarIdx;
+
 		Dispatcher.BeginInvoke( () =>
 		{
-			var app = App.Instance!;
+			var chosenCarIdx = _speakingCarIdx;
 
-			app.Logger.WriteLine( $"[SpeechToText] Got final text ({text})" );
+			if ( chosenCarIdx == -1 )
+			{
+				chosenCarIdx = radioTransmitCarIdx;
 
-			var driver = app.Simulator.GetDriver( _speakingCarIdx );
+				if ( chosenCarIdx == -1 )
+				{
+					chosenCarIdx = lastRadioTransmitCarIdx;
+				}
+			}
+
+			var driverLabel = ( chosenCarIdx != -1 ) ? FormatDriverLabel( app, chosenCarIdx ) : string.Empty;
+
+			app.Logger.WriteLine( $"[SpeechToTextWindow] Final text: radioTransmitCarIdx={radioTransmitCarIdx}, lastRadioTransmitCarIdx={lastRadioTransmitCarIdx}, chosenCarIdx={chosenCarIdx}, driver='{driverLabel}', text='{TruncateForLog( text, 200 )}'" );
 
 			_speakingCarIdx = -1;
 
-			app.Logger.WriteLine( $"[SpeechToText] Speaking car index cleared" );
-
-			if ( driver != null )
+			if ( !string.IsNullOrWhiteSpace( driverLabel ) )
 			{
 				Final_Driver_TextBlock.Visibility = Visibility.Visible;
-				Final_Driver_TextBlock.Text = $"#{driver.CarNumber} {driver.UserName}";
+				Final_Driver_TextBlock.Text = driverLabel;
 			}
 			else
 			{
 				Final_Driver_TextBlock.Visibility = Visibility.Collapsed;
+				Final_Driver_TextBlock.Text = string.Empty;
 			}
 
 			Final_Message_TextBlock.Text = text;
-
-			Final_Driver_TextBlock.Visibility = Visibility.Visible;
 			Final_Message_TextBlock.Visibility = Visibility.Visible;
 
 			Partial_Driver_TextBlock.Visibility = Visibility.Collapsed;
+			Partial_Driver_TextBlock.Text = string.Empty;
+
 			Partial_Message_TextBlock.Visibility = Visibility.Collapsed;
+			Partial_Message_TextBlock.Text = string.Empty;
 
 			_windowVisibilityTimer = 10f;
 			_finalVisibilityTimer = 10f;
@@ -189,10 +227,16 @@ public partial class SpeechToTextWindow : Window
 				_finalVisibilityTimer = 0f;
 
 				Final_Driver_TextBlock.Visibility = Visibility.Collapsed;
+				Final_Driver_TextBlock.Text = string.Empty;
+
 				Final_Message_TextBlock.Visibility = Visibility.Collapsed;
+				Final_Message_TextBlock.Text = string.Empty;
 
 				Partial_Driver_TextBlock.Visibility = Visibility.Collapsed;
+				Partial_Driver_TextBlock.Text = string.Empty;
+
 				Partial_Message_TextBlock.Visibility = Visibility.Collapsed;
+				Partial_Message_TextBlock.Text = string.Empty;
 
 				if ( !settings.SpeechToTextMakeOverlayWindowDraggable )
 				{
@@ -208,7 +252,10 @@ public partial class SpeechToTextWindow : Window
 			if ( _finalVisibilityTimer <= 0f )
 			{
 				Final_Driver_TextBlock.Visibility = Visibility.Collapsed;
+				Final_Driver_TextBlock.Text = string.Empty;
+
 				Final_Message_TextBlock.Visibility = Visibility.Collapsed;
+				Final_Message_TextBlock.Text = string.Empty;
 			}
 		}
 	}

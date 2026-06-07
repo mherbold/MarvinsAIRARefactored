@@ -21,7 +21,6 @@ public sealed class SpeechToText : IDisposable
 	private const int BitsPerSample = 16;
 	private const int SegmentDurationMs = 250;
 	private const int RecordingBufferSeconds = 5;
-	private const int PostTransmitFlushDurationMs = 500;
 	private const string RealtimeSpeechToTextModelId = "scribe_v2_realtime";
 	private const string RealtimeSpeechToTextWebSocketUrl = "wss://api.elevenlabs.io/v1/speech-to-text/realtime";
 	private const int RealtimeWebSocketConnectTimeoutSeconds = 15;
@@ -44,15 +43,14 @@ public sealed class SpeechToText : IDisposable
 	private string _recordingDevice = DefaultRecordingDeviceName;
 	private bool _isEnabled;
 	private int _remainingPostTransmitFlushSegments;
-	private string _latestTranscriptCandidate = string.Empty;
+	private int _transmittingCarIdx = -1;
+	private bool _transmittingCarIdxChanged;
 	private readonly SemaphoreSlim _transcriptionSemaphore = new( 1, 1 );
 	private readonly SemaphoreSlim _webSocketSendSemaphore = new( 1, 1 );
 	private ClientWebSocket? _transcriptionWebSocket;
 	private Task? _webSocketReceiveLoopTask;
 	private int _isRadioTransmitting;
 	private int _sawRadioTransmissionSinceLastFlush;
-	private bool _didLogEndOfSpeechSkippedForCurrentIdlePeriod;
-	private bool _didLogEndOfSpeechIgnoredForCurrentIdlePeriod;
 	private DateTime _lastSubscriptionQueryTime = DateTime.MinValue;
 	private int _hadNewSttRequestSinceLastQuery;
 	private FileStream? _audioChunkDumpStream;
@@ -85,14 +83,7 @@ public sealed class SpeechToText : IDisposable
 
 	public event Action<CancellationToken>? UpdateSubscriptionUsage;
 
-	public void ResetSessionUsage()
-	{
-		_lastSubscriptionQueryTime = DateTime.MinValue;
-
-		Interlocked.Exchange( ref _hadNewSttRequestSinceLastQuery, 0 );
-	}
-
-	private static int PostTransmitFlushSegments => Math.Max( 1, (int) Math.Ceiling( (double) PostTransmitFlushDurationMs / SegmentDurationMs ) );
+	private static int PostTransmitFlushSegments => 1;
 
 	/// <summary>
 	/// Probes the ElevenLabs STT endpoint using a proper multipart/form-data request (with a
@@ -180,10 +171,8 @@ public sealed class SpeechToText : IDisposable
 		return new ElevenLabs.SttKeyVerificationResult( true, speechToTextStatus, userReadStatus );
 	}
 
-	public async Task EnableAsync( int port = 18888 )
+	public async Task EnableAsync()
 	{
-		_ = port;
-
 		var app = App.Instance!;
 
 		if ( !app.Simulator.IsConnected || _isEnabled )
@@ -285,7 +274,8 @@ public sealed class SpeechToText : IDisposable
 
 		_isEnabled = false;
 		_remainingPostTransmitFlushSegments = 0;
-		_latestTranscriptCandidate = string.Empty;
+		_transmittingCarIdx = -1;
+		_transmittingCarIdxChanged = false;
 
 		app.UpdateSpeechToTextWindowVisibility();
 
@@ -305,9 +295,17 @@ public sealed class SpeechToText : IDisposable
 		_ = DisableAsync();
 	}
 
-	public void UpdateRadioTransmitState( bool isRadioTransmitting )
+	public void UpdateRadioTransmitState( bool isRadioTransmitting, int transmittingCarIdx = -1 )
 	{
 		Interlocked.Exchange( ref _isRadioTransmitting, isRadioTransmitting ? 1 : 0 );
+
+		// Detect if the transmitting car has changed
+		if ( transmittingCarIdx != _transmittingCarIdx )
+		{
+			_transmittingCarIdxChanged = true;
+		}
+
+		_transmittingCarIdx = transmittingCarIdx;
 
 		if ( isRadioTransmitting )
 		{
@@ -561,31 +559,30 @@ public sealed class SpeechToText : IDisposable
 	{
 		var isRadioTransmitting = Interlocked.CompareExchange( ref _isRadioTransmitting, 0, 0 ) != 0;
 		var sawRadioTransmissionSinceLastFlush = Interlocked.Exchange( ref _sawRadioTransmissionSinceLastFlush, 0 ) != 0;
-		var finalizeAfterThisCycle = false;
+		var commit = false;
 
-		if ( isRadioTransmitting )
+		// Check if the transmitting car has changed
+		if ( _transmittingCarIdxChanged )
+		{
+			commit = true;
+
+			_transmittingCarIdxChanged = false;
+		}
+
+		if ( isRadioTransmitting || sawRadioTransmissionSinceLastFlush )
 		{
 			_remainingPostTransmitFlushSegments = PostTransmitFlushSegments;
 		}
 		else
 		{
-			if ( sawRadioTransmissionSinceLastFlush && _remainingPostTransmitFlushSegments == 0 )
-			{
-				_remainingPostTransmitFlushSegments = PostTransmitFlushSegments;
-			}
-
 			if ( _remainingPostTransmitFlushSegments == 0 )
 			{
-				await SendEndOfSpeechAsync( cancellationToken );
-
-				FinalizePendingTranscript();
-
 				return;
 			}
 
 			_remainingPostTransmitFlushSegments--;
 
-			finalizeAfterThisCycle = _remainingPostTransmitFlushSegments == 0;
+			commit = ( _remainingPostTransmitFlushSegments == 0 ) || commit;
 		}
 
 		byte[] pcmBytes;
@@ -604,33 +601,9 @@ public sealed class SpeechToText : IDisposable
 			else
 			{
 				await EnsureRealtimeConnectionAsync( cancellationToken );
-				await SendAudioFrameAsync( pcmBytes, cancellationToken );
+				await SendAudioFrameAsync( pcmBytes, commit, cancellationToken );
 			}
 		}
-
-		if ( finalizeAfterThisCycle )
-		{
-			await SendEndOfSpeechAsync( cancellationToken );
-
-			FinalizePendingTranscript();
-		}
-	}
-
-	private void FinalizePendingTranscript()
-	{
-		if ( string.IsNullOrWhiteSpace( _latestTranscriptCandidate ) )
-		{
-			return;
-		}
-
-		var app = App.Instance!;
-
-		var finalTranscript = _latestTranscriptCandidate;
-
-		_latestTranscriptCandidate = string.Empty;
-
-		app.EnsureSpeechToTextWindowExists();
-		app.SpeechToTextWindow?.SetFinalText( finalTranscript );
 	}
 
 	private Task UpdateSubscriptionUsageIfNeededAsync( CancellationToken cancellationToken )
@@ -760,7 +733,7 @@ public sealed class SpeechToText : IDisposable
 			}
 
 			var app = App.Instance!;
-			var uri = new Uri( $"{RealtimeSpeechToTextWebSocketUrl}?model_id={Uri.EscapeDataString( RealtimeSpeechToTextModelId )}&audio_format=pcm_16000&commit_strategy=vad" );
+			var uri = new Uri( $"{RealtimeSpeechToTextWebSocketUrl}?model_id={Uri.EscapeDataString( RealtimeSpeechToTextModelId )}&audio_format=pcm_16000&commit_strategy=manual" );
 			var socket = new ClientWebSocket();
 
 			socket.Options.SetRequestHeader( "xi-api-key", apiKey );
@@ -813,7 +786,7 @@ public sealed class SpeechToText : IDisposable
 		}
 	}
 
-	private async Task SendAudioFrameAsync( byte[] pcmBytes, CancellationToken cancellationToken )
+	private async Task SendAudioFrameAsync( byte[] pcmBytes, bool commit, CancellationToken cancellationToken )
 	{
 		ArgumentNullException.ThrowIfNull( pcmBytes );
 
@@ -836,7 +809,7 @@ public sealed class SpeechToText : IDisposable
 			[ "message_type" ] = "input_audio_chunk",
 			[ "audio_base_64" ] = Convert.ToBase64String( pcmBytes ),
 			[ "sample_rate" ] = SampleRate,
-			[ "commit" ] = false
+			[ "commit" ] = commit
 		};
 
 		var payloadBytes = Encoding.UTF8.GetBytes( payload.ToString() );
@@ -845,11 +818,9 @@ public sealed class SpeechToText : IDisposable
 
 		try
 		{
-			_didLogEndOfSpeechIgnoredForCurrentIdlePeriod = false;
-
 			Interlocked.Exchange( ref _hadNewSttRequestSinceLastQuery, 1 );
 
-			app.Logger.WriteLine( $"[SpeechToText] WS OUT audio frame: pcmBytes={pcmBytes.Length}, payloadBytes={payloadBytes.Length}" );
+			// app.Logger.WriteLine( $"[SpeechToText] WS OUT audio frame: pcmBytes={pcmBytes.Length}, payloadBytes={payloadBytes.Length}" );
 
 			await socket.SendAsync( new ArraySegment<byte>( payloadBytes ), WebSocketMessageType.Text, true, cancellationToken );
 		}
@@ -861,36 +832,6 @@ public sealed class SpeechToText : IDisposable
 		{
 			_webSocketSendSemaphore.Release();
 		}
-	}
-
-	private Task SendEndOfSpeechAsync( CancellationToken cancellationToken )
-	{
-		_ = cancellationToken;
-
-		var app = App.Instance!;
-
-		if ( _transcriptionWebSocket is not { State: WebSocketState.Open } )
-		{
-			if ( !_didLogEndOfSpeechSkippedForCurrentIdlePeriod )
-			{
-				app.Logger.WriteLine( "[SpeechToText] WS OUT end_of_speech skipped: socket not open" );
-
-				_didLogEndOfSpeechSkippedForCurrentIdlePeriod = true;
-			}
-
-			return Task.CompletedTask;
-		}
-
-		_didLogEndOfSpeechSkippedForCurrentIdlePeriod = false;
-
-		if ( !_didLogEndOfSpeechIgnoredForCurrentIdlePeriod )
-		{
-			app.Logger.WriteLine( "[SpeechToText] WS OUT end_of_speech ignored: using commit_strategy=vad" );
-
-			_didLogEndOfSpeechIgnoredForCurrentIdlePeriod = true;
-		}
-
-		return Task.CompletedTask;
 	}
 
 	private async Task RunWebSocketReceiveLoopAsync( ClientWebSocket socket, CancellationToken cancellationToken )
@@ -907,7 +848,7 @@ public sealed class SpeechToText : IDisposable
 			{
 				var receiveResult = await socket.ReceiveAsync( new ArraySegment<byte>( buffer ), cancellationToken );
 
-				app.Logger.WriteLine( $"[SpeechToText] WS IN frame: type={receiveResult.MessageType}, bytes={receiveResult.Count}, endOfMessage={receiveResult.EndOfMessage}" );
+				// app.Logger.WriteLine( $"[SpeechToText] WS IN frame: type={receiveResult.MessageType}, bytes={receiveResult.Count}, endOfMessage={receiveResult.EndOfMessage}" );
 
 				if ( receiveResult.MessageType == WebSocketMessageType.Close )
 				{
@@ -937,7 +878,7 @@ public sealed class SpeechToText : IDisposable
 
 				messageBuffer.SetLength( 0 );
 
-				app.Logger.WriteLine( $"[SpeechToText] WS IN text: {TruncateForLog( json )}" );
+				// app.Logger.WriteLine( $"[SpeechToText] WS IN text: {TruncateForLog( json )}" );
 
 				ProcessRealtimeMessage( json );
 			}
@@ -958,7 +899,7 @@ public sealed class SpeechToText : IDisposable
 		}
 	}
 
-	private void ProcessRealtimeMessage( string json )
+	private static void ProcessRealtimeMessage( string json )
 	{
 		if ( string.IsNullOrWhiteSpace( json ) )
 		{
@@ -987,14 +928,7 @@ public sealed class SpeechToText : IDisposable
 				return;
 			}
 
-			var isFinal = root[ "is_final" ]?.Value<bool>() ?? root[ "final" ]?.Value<bool>() ?? message?[ "is_final" ]?.Value<bool>() ?? textEvent?[ "is_final" ]?.Value<bool>() ?? false;
-
-			if ( !isFinal )
-			{
-				isFinal = string.Equals( root[ "type" ]?.Value<string>(), "final", StringComparison.OrdinalIgnoreCase ) || string.Equals( message?[ "type" ]?.Value<string>(), "final", StringComparison.OrdinalIgnoreCase ) || string.Equals( textEvent?[ "type" ]?.Value<string>(), "final", StringComparison.OrdinalIgnoreCase );
-			}
-
-			_latestTranscriptCandidate = text;
+			var isFinal = string.Equals( messageType, "committed_transcript", StringComparison.OrdinalIgnoreCase ) || string.Equals( messageType, "committed_transcript_with_timestamps", StringComparison.OrdinalIgnoreCase );
 
 			var app = App.Instance!;
 
@@ -1005,8 +939,6 @@ public sealed class SpeechToText : IDisposable
 			if ( isFinal )
 			{
 				app.SpeechToTextWindow?.SetFinalText( text );
-
-				_latestTranscriptCandidate = string.Empty;
 			}
 			else
 			{

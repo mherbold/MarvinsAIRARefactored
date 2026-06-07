@@ -157,18 +157,18 @@ public static class ElevenLabs
 
 		cancellationToken.ThrowIfCancellationRequested();
 
-		progressBar.Value = 0;
-
 		var subscriptionInfo = await GetSubscriptionInfoAsync( apiKey, cancellationToken );
 
 		if ( subscriptionInfo is null )
 		{
-			return;
+			progressBar.Value = 0;
 		}
+		else
+		{
+			cancellationToken.ThrowIfCancellationRequested();
 
-		cancellationToken.ThrowIfCancellationRequested();
-
-		progressBar.Value = Math.Clamp( subscriptionInfo.PercentUsed, 0.0, 100.0 );
+			progressBar.Value = Math.Clamp( subscriptionInfo.PercentUsed, 0.0, 100.0 );
+		}
 	}
 
 	/// <summary>Outcome of a single ElevenLabs endpoint permission probe.</summary>
