@@ -26,9 +26,6 @@ public sealed class SpeechToText : IDisposable
 	private const int RealtimeWebSocketConnectTimeoutSeconds = 15;
 	private const int SubscriptionQueryIntervalMs = 60 * 1000; // Query at most every 1 minute
 
-	private const bool DumpAudioChunksToFileOnly = false;
-	private const string AudioChunkDumpDirectoryName = "STT";
-
 	public const string DefaultRecordingDeviceName = "[Default Recording Device]";
 
 	private readonly Lock _audioBufferLock = new();
@@ -53,9 +50,6 @@ public sealed class SpeechToText : IDisposable
 	private int _sawRadioTransmissionSinceLastFlush;
 	private DateTime _lastSubscriptionQueryTime = DateTime.MinValue;
 	private int _hadNewSttRequestSinceLastQuery;
-	private FileStream? _audioChunkDumpStream;
-	private string? _audioChunkDumpPath;
-	private int _audioChunkDumpPcmLength;
 
 	public ObservableCollection<string> RecordingDevices { get; } = [];
 
@@ -182,21 +176,20 @@ public sealed class SpeechToText : IDisposable
 
 		var apiKey = ElevenLabsKeyStore.LoadKey( SpeechToTextScope );
 
-		if ( !DumpAudioChunksToFileOnly && string.IsNullOrWhiteSpace( apiKey ) )
+		if ( string.IsNullOrWhiteSpace( apiKey ) )
 		{
 			app.SpeechToTextWindow?.SetFinalText( "No ElevenLabs STT API key configured." );
 
 			return;
 		}
 
-		app.Logger.WriteLine( DumpAudioChunksToFileOnly ? "[SpeechToText] >>> EnableAsync (FMOD diagnostic dump-to-file path)" : "[SpeechToText] >>> EnableAsync (FMOD ElevenLabs path)" );
+		app.Logger.WriteLine( "[SpeechToText] >>> EnableAsync (FMOD ElevenLabs path)" );
 
 		try
 		{
 			InitializeCaptureSystem();
 			RefreshRecordingDevices();
 			StartRecording();
-			await InitializeAudioChunkDumpAsync( CancellationToken.None );
 
 			_captureCancellationTokenSource = new CancellationTokenSource();
 			_segmentLoopTask = RunSegmentLoopAsync( _captureCancellationTokenSource.Token );
@@ -242,7 +235,6 @@ public sealed class SpeechToText : IDisposable
 		}
 
 		await CloseRealtimeConnectionAsync( CancellationToken.None );
-		await FinalizeAudioChunkDumpAsync( CancellationToken.None );
 
 		_captureCancellationTokenSource?.Dispose();
 		_captureCancellationTokenSource = null;
@@ -594,15 +586,8 @@ public sealed class SpeechToText : IDisposable
 
 		if ( pcmBytes.Length > 0 )
 		{
-			if ( DumpAudioChunksToFileOnly )
-			{
-				await AppendAudioChunkDumpAsync( pcmBytes, cancellationToken );
-			}
-			else
-			{
-				await EnsureRealtimeConnectionAsync( cancellationToken );
-				await SendAudioFrameAsync( pcmBytes, commit, cancellationToken );
-			}
+			await EnsureRealtimeConnectionAsync( cancellationToken );
+			await SendAudioFrameAsync( pcmBytes, commit, cancellationToken );
 		}
 	}
 
@@ -991,83 +976,6 @@ public sealed class SpeechToText : IDisposable
 			{
 				_webSocketReceiveLoopTask = null;
 			}
-		}
-	}
-
-	private async Task InitializeAudioChunkDumpAsync( CancellationToken cancellationToken )
-	{
-		if ( !DumpAudioChunksToFileOnly || _audioChunkDumpStream is not null )
-		{
-			return;
-		}
-
-		var app = App.Instance!;
-		var dumpDirectoryPath = Path.Combine( App.DocumentsFolder, AudioChunkDumpDirectoryName );
-
-		Directory.CreateDirectory( dumpDirectoryPath );
-
-		var timestamp = DateTime.UtcNow.ToString( "yyyyMMdd-HHmmss" );
-
-		_audioChunkDumpPath = Path.Combine( dumpDirectoryPath, $"stt-capture-{timestamp}.wav" );
-		_audioChunkDumpPcmLength = 0;
-		_audioChunkDumpStream = new FileStream( _audioChunkDumpPath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read, 81920, true );
-
-		var headerBytes = BuildWavHeader( 0, SampleRate, Channels, BitsPerSample );
-
-		await _audioChunkDumpStream.WriteAsync( headerBytes, cancellationToken );
-
-		app.Logger.WriteLine( $"[SpeechToText] Audio dump initialized: {_audioChunkDumpPath}" );
-	}
-
-	private async Task AppendAudioChunkDumpAsync( byte[] pcmBytes, CancellationToken cancellationToken )
-	{
-		ArgumentNullException.ThrowIfNull( pcmBytes );
-
-		if ( pcmBytes.Length == 0 || _audioChunkDumpStream is null )
-		{
-			return;
-		}
-
-		await _audioChunkDumpStream.WriteAsync( pcmBytes, cancellationToken );
-
-		_audioChunkDumpPcmLength += pcmBytes.Length;
-	}
-
-	private async Task FinalizeAudioChunkDumpAsync( CancellationToken cancellationToken )
-	{
-		if ( _audioChunkDumpStream is null )
-		{
-			return;
-		}
-
-		var app = App.Instance!;
-		var stream = _audioChunkDumpStream;
-		var dumpPath = _audioChunkDumpPath;
-		var pcmLength = _audioChunkDumpPcmLength;
-
-		_audioChunkDumpStream = null;
-		_audioChunkDumpPath = null;
-		_audioChunkDumpPcmLength = 0;
-
-		try
-		{
-			await stream.FlushAsync( cancellationToken );
-			stream.Seek( 0, SeekOrigin.Begin );
-
-			var headerBytes = BuildWavHeader( pcmLength, SampleRate, Channels, BitsPerSample );
-
-			await stream.WriteAsync( headerBytes, cancellationToken );
-			await stream.FlushAsync( cancellationToken );
-
-			app.Logger.WriteLine( $"[SpeechToText] Audio dump finalized: path={dumpPath}, pcmBytes={pcmLength}" );
-		}
-		catch ( Exception ex )
-		{
-			app.Logger.WriteLine( $"[SpeechToText] FinalizeAudioChunkDumpAsync failed: {ex.Message}" );
-		}
-		finally
-		{
-			await stream.DisposeAsync();
 		}
 	}
 
