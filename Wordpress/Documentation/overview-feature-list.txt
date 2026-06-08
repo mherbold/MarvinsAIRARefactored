@@ -188,15 +188,15 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Uses the Google Chrome STT engine to convert voice chat messages to text</li>
+<li>Uses ElevenLabs Speech-to-Text to convert iRacing voice chat into captions</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Works with any language</li>
+<li>Runs in real time while radio traffic is active</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Text is shown in an overlay window</li>
+<li>Text is shown in a movable/scalable overlay window</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

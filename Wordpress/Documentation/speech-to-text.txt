@@ -1,13 +1,13 @@
 <!-- wp:paragraph -->
-<p>This feature lets MAIRA display live speech-to-text (STT) captions from iRacing voice chat.</p>
+<p>This feature lets MAIRA show live speech-to-text (STT) captions from iRacing voice chat.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>MAIRA does not do speech recognition itself. Instead, it launches a small Chrome/Edge “Speech-To-Text Bridge” browser window that uses the browser’s built-in speech recognition (Web Speech API) and streams the recognized text back to MAIRA over a local WebSocket connection.</p>
+<p>MAIRA now uses the ElevenLabs Speech-to-Text service for transcription. It listens to your selected recording input, sends short audio segments while radio traffic is active, and shows captions in the STT overlay window.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Note: You must setup VB-CABLE for this feature to work.</p>
+<p>You still need your iRacing audio routing set up correctly (for example with VB-CABLE) so voice chat audio reaches the recording input you selected in MAIRA.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -15,7 +15,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section">Speech to Text</p>
+<p class="section" id="speech-to-text">SPEECH TO TEXT</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These settings control live captions for iRacing voice chat.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -23,71 +27,63 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Turns the speech-to-text system on/off.</p>
+<p>Turns speech-to-text on/off.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>What happens when you enable it</p>
+<p>When enabled, MAIRA starts audio capture, sends voice-chat audio to ElevenLabs for transcription, and updates the overlay with partial/final text as radio messages come in.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>MAIRA checks that you are connected to iRacing.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>MAIRA verifies Chrome or Edge is installed.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>MAIRA starts a small local web server on your PC and launches the STT browser window to http://localhost:18888/</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>MAIRA waits for the browser page to connect back (up to ~10 seconds).</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Once connected, MAIRA sets the initial language and you’re ready to start recognition.</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph -->
-<p>Important</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:list -->
-<ul class="wp-block-list"><!-- wp:list-item -->
-<li>Leave the browser window open. (Closing it breaks the STT connection.)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Click Enable Speech-To-Text.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>When the browser asks, click Allow microphone access.</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Confirm the browser is using the correct microphone input device (the VB-Audio Virtual Cable).</li>
-<!-- /wp:list-item --></ul>
-<!-- /wp:list -->
-
-<!-- wp:paragraph {"className":"section"} -->
-<p class="section">Language</p>
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Recording Device</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Sets the recognition language used by the STT bridge. Nearly all common languages of the world are supported.</p>
+<p>Chooses the Windows recording input MAIRA listens to for STT. In most setups, this should be the input that carries iRacing voice chat audio.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: English (US)</p>
+<!-- wp:paragraph -->
+<p>If your captions are blank or unreliable, this is the first setting to check.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section">Overlay Window</p>
+<p class="section" id="account">ACCOUNT</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These settings manage your ElevenLabs API access for speech-to-text.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">API Key</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enter your ElevenLabs API key. MAIRA uses this key to send STT audio and check account usage.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Verify Key</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Checks whether your key is recognized and whether it has the required STT/account permissions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Usage</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shows your current ElevenLabs subscription usage so you can keep an eye on limits.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="overlay-window">OVERLAY WINDOW</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These settings control how the live STT caption window looks and behaves.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -95,7 +91,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Show or hide the overlay window title.</p>
+<p>Shows or hides the title bar on the STT overlay.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -107,7 +103,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>When off, the window becomes click-through (transparent to mouse). When on, the overlay window is forced to be visible so you can move it around.</p>
+<p>When ON, you can drag the overlay to a new position. When OFF, the overlay becomes click-through so it doesn’t block your mouse during racing.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -119,11 +115,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Scales the overlay window size.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Setting: Settings.SpeechToTextOverlayWindowScale</p>
+<p>Changes the size of the STT overlay text window.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -141,7 +133,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Moves the overlay back to the top-left (0,0) of your screen.</p>
+<p>Moves the overlay back to its default screen position.</p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:column --></div>
 <!-- /wp:columns -->
