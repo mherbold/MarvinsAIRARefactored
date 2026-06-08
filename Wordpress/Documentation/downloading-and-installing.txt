@@ -1,0 +1,83 @@
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">the Legal Stuff</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This app has been downloaded and used by thousands of users without any issues, and a lot of effort has been spent in making sure it works.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This app controls the force feedback of your wheelbase. If you have a very strong wheelbase, this app can and will cause injuries if you are not careful.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This app does not do any automatic modifications to iRacing, but may require you to modify iRacing settings including disabling Force Feedback, and possibly also modify your iRacing app.ini file, if you have a Logitech wheel.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The app may require you to update your wheelbase firmware and/or software in order to work. This app does sometimes require additional components to be installed directly from Microsoft, depending on your system. These modifications and updates may cause iRacing or your wheel or your computer to stop functioning as expected.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>I can’t be held responsible for any issues to your system, wheelbase, or to your body. If you do not agree with this, then please don’t use this software.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"className":"is-style-default","style":{"border":{"radius":{"topLeft":"16px","topRight":"16px","bottomLeft":"16px","bottomRight":"16px"},"width":"1px"},"spacing":{"padding":{"top":"var:preset|spacing|30","bottom":"var:preset|spacing|30","left":"var:preset|spacing|30","right":"var:preset|spacing|30"}}},"borderColor":"accent-1","layout":{"type":"constrained"}} -->
+<div class="wp-block-group is-style-default has-border-color has-accent-1-border-color" style="border-width:1px;border-top-left-radius:16px;border-top-right-radius:16px;border-bottom-left-radius:16px;border-bottom-right-radius:16px;padding-top:var(--wp--preset--spacing--30);padding-right:var(--wp--preset--spacing--30);padding-bottom:var(--wp--preset--spacing--30);padding-left:var(--wp--preset--spacing--30)"><!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center"><em>The code is public and can be found here:</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"align":"center"} -->
+<p class="has-text-align-center"><a href="https://github.com/mherbold/MarvinsAIRA">https://github.com/mherbold/MarvinsAIRA</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Downloading</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You can download the latest version by clicking on the first link at the top of the <a href="https://mairapp.com/" data-type="page" data-id="9">home page</a> of this website.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Installing</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>After you download the app installer, find it on your computer and run it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You might get this screen –</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":356,"sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}}} -->
+<figure class="wp-block-image size-full has-custom-border"><img src="https://mairapp.com/wp-content/uploads/2026/02/image.png" alt="" class="wp-image-356" style="border-top-left-radius:8px;border-top-right-radius:8px;border-bottom-left-radius:8px;border-bottom-right-radius:8px"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>I ain’t paying $300 a year to Microsoft for a certificate to remove this whine screen. Just click on&nbsp;<strong>More info</strong>&nbsp;and then click on&nbsp;<strong>Run anyway</strong>. Or, if you don’t trust me, then don’t. The source code for MAIRA is public and can be reviewed by anyone.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>After you install my app, run it via either the desktop icon, or by finding it by pressing the Windows key and then typing “Marvin” in the search box.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/basic/overview-feature-list/" data-type="page" data-id="146">Overview / Feature List</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/basic/common-controls/" data-type="page" data-id="508">Common Controls</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

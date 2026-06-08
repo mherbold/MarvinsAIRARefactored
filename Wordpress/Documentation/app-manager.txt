@@ -1,0 +1,225 @@
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>This page lets MAIRA automatically close and launch other Windows applications when iRacing connects and disconnects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>It is useful for setting up a “sim racing session workflow.” For example, MAIRA can close background apps that you do not want running while driving, then start racing-related apps in a specific order when the simulator connects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When iRacing disconnects, MAIRA can optionally terminate the apps it started and relaunch the apps it previously closed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="app-manager">APP MANAGER</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Turns the App Manager feature on/off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA responds to simulator connect/disconnect events and manages the configured app lists automatically.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="apps-to-terminate">APPS TO TERMINATE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This section defines apps that MAIRA should close when the simulator connects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Each entry works by process name, derived from the executable path. In other words, if you point MAIRA at <code>SomeApp.exe</code>, it will look for running processes named <code>SomeApp</code> and terminate them.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Executable Path</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The full path to the application executable that should be terminated when the simulator connects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You can type the path manually, browse for an executable file, or use the process-picker button to select a currently running process.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Launch on Simulator Disconnect</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA will relaunch that terminated app after the simulator disconnects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is useful for apps that you want out of the way while racing, but want restored automatically afterward.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="apps-to-launch">APPS TO LAUNCH</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This section defines apps that MAIRA should start when the simulator connects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Apps are launched in top-to-bottom order. Use the move up/down buttons to control the startup sequence. This matters if one app depends on another already being open.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Executable Path</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The full path to the application executable that MAIRA should launch when the simulator connects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You can type the path manually, browse for an executable file, or use the process-picker button to select a currently running process.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Arguments</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Optional command-line arguments to pass to the executable when MAIRA launches it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: blank</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Delay After Start (sec)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Wait time, in seconds, before MAIRA launches the next app in the list.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is useful when an app needs a moment to finish opening before another app starts.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0.0 sec</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">CPU Priority</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sets the Windows CPU priority class for the launched process after it starts.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This can be used to give racing-related tools higher priority, or lower the priority of less critical background apps.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Normal</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Window Style</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls how the application window should appear when it is launched.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is useful for apps that you want to start minimized or hidden from view.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Normal</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Avoid Primary CPU Cores</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA sets CPU affinity for the launched process so that it avoids logical CPU cores 0 and 1.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This can help keep the primary cores freer for iRacing and other time-sensitive work, especially on systems with many logical processors.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If the system has only 1 or 2 logical processors, MAIRA cannot apply this setting.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Terminate on Simulator Disconnect</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA will terminate that launched app after the simulator disconnects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is useful for race-session helper apps that should run only while you are connected to the simulator.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="other-behavior">Other Behavior</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA will not start an app from the launch list if a process with that executable name is already running.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Likewise, on simulator disconnect, MAIRA will not relaunch an app from the terminate list if that app is already running again.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If the simulator disconnects while MAIRA is still working through the launch list, the remaining startup sequence is cancelled.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The plus button adds a new entry to either list, and the clear button removes an entry.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/simulator/" data-type="page" data-id="180">Simulator</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

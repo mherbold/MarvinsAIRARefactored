@@ -1,0 +1,157 @@
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="language">Language</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sets the language MAIRA uses for all UI text.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="https://mairapp.com/home/documentation/other-stuff/help-translate-maira/" data-type="page" data-id="215">Help Translate MAIRA</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"is-style-default default"} -->
+<p class="is-style-default default">Default: Windows language setting (if your language is supported) or English</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="default-page">Default Page</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls which page MAIRA opens to when the application starts.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"is-style-default default"} -->
+<p class="is-style-default default">Default: Racing Wheel</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="app-window">App Window</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These settings control how the MAIRA window behaves (position, startup behavior, tray behavior, and UI scaling). They do not change simulator behavior.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"is-style-default setting "} -->
+<p class="is-style-default setting ">Topmost Window</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Keeps the MAIRA window above other normal windows.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":" setting "} -->
+<p class=" setting ">Remember Window Position and Size</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If enabled, MAIRA restores the last window size and screen position from the previous run.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":" setting "} -->
+<p class=" setting ">Start With Windows</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Launches MAIRA automatically when you sign into Windows.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":" setting "} -->
+<p class=" setting ">Start Minimized</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Starts MAIRA minimized instead of opening the main window.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":" setting "} -->
+<p class=" setting ">Minimize to System Tray</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When enabled, minimizing MAIRA hides it to the system tray instead of leaving it on the taskbar.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":" setting "} -->
+<p class=" setting ">UI Scale</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Scales the MAIRA UI larger or smaller.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="cloud-service">Cloud Service</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":" setting "} -->
+<p class=" setting ">Check For Updates on Startup</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When enabled, MAIRA will automatically check for a newer version each time the app starts.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":" setting "} -->
+<p class=" setting ">Check Now</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Runs an update check immediately (without waiting for next startup).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="cpu-affinity">CPU Affinity</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>CPU Affinity allows you to control which physical CPU cores this application uses. By default, Windows distributes processes across all available CPU cores, but in some cases, you may want to restrict MAIRA to specific cores for better performance or to avoid conflicts with other demanding applications - such as the iRacing simulator, streaming software, or other background processes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Changes take effect immediately and will apply to the current and future sessions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/app-manager/" data-type="page" data-id="852">App Manager</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/other-stuff/troubleshooting/" data-type="page" data-id="152">Troubleshooting</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

@@ -1,0 +1,633 @@
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>You will need to build the MAIRA Seat Belt Tensioner to use this feature. More details on that can be found here: <a href="https://mairapp.com/home/maira-seat-belt-tensioner-kit/" data-type="page" data-id="647">Seat Belt Tensioner</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This page drives the MAIRA Seat Belt Tensioner (SBT) by converting iRacing acceleration data into left and right shoulder belt positions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA blends <strong>surge</strong> (forward/back), <strong>sway</strong> (left/right), <strong>heave</strong> (up/down), and <strong>seat-of-pants</strong> into independent belt commands for the left and right shoulders. Vibration effects for ABS, wheel slip, and rumble strips can also be layered on top.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In practice, braking usually tightens both belts, acceleration usually loosens both belts, cornering can tighten one shoulder more than the other, and vertical motion can tighten both belts together.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The MAIRA SBT is a USB serial device. MAIRA detects it and sends live position commands while you are on track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="connection">CONNECTION</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Connect to MAIRA Seat Belt Tensioner</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Connects or disconnects the seat belt tensioner hardware immediately. If the device is not available, the switch shows an error instead of connecting.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Connect to MAIRA Seat Belt Tensioner on App Startup</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA will automatically connect to the seat belt tensioner when the app starts.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="calibration">CALIBRATION</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These settings define the mechanical travel range and neutral position of the seat belt tensioner.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Minimum Angle</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The loosest allowed belt position. MAIRA will not command the motors below this angle.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 60.0°</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Neutral Angle</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The resting belt position that MAIRA treats as the center point between loosening and tightening.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 90.0°</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Maximum Angle</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The tightest allowed belt position. MAIRA will not command the motors above this angle.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 120.0°</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Max Motor Speed</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is the maximum motor speed (in degrees per second) sent to the SBT controller. Lower values make belt motion slower and smoother. Higher values make it react faster and more aggressively, and also makes the motors run hotter.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 180°/s</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Test</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Runs a calibration sweep test that drives the motors through the full range from minimum to maximum and back to neutral. Use this to verify your calibration angles are set to safe values.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="surge">SURGE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Surge controls how forward/backward acceleration affects both belts together.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Braking tightens both belts</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Acceleration loosens both belts</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Axis Mode</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls whether surge is active and which direction it acts. <strong>Disabled</strong> turns surge off entirely. <strong>Normal</strong> means braking tightens and acceleration loosens. <strong>Inverted</strong> reverses that relationship.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Normal</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Subtract Gravity</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA removes the gravity component caused by vehicle pitch before calculating surge output. This can reduce false belt movement on hills or steep banking.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Max G Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This sets the surge acceleration needed to reach full effect. Lower values make the belts react more strongly to small acceleration changes. Higher values require more G force before full tightening or loosening is reached.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 10.00 G</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Dead Zone</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Any surge acceleration below this threshold is ignored and treated as zero. This can help eliminate small unwanted belt movements when the car is nearly still or on a straight.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Smoothing</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Applies an exponential moving average to the surge signal. Higher values smooth out rapid changes and make the belt response feel more gradual. Lower values keep the response more immediate.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Curve</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adjusts the response curve shape for the surge axis.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Test</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays a pre-recorded surge test signal through the belts so you can feel how your current surge settings will respond without needing to be on track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="sway">SWAY</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Sway controls the left/right weight transfer effect between the two shoulders.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>One shoulder can tighten while the other loosens</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>This helps represent lateral load transfer during cornering</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Axis Mode</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls whether sway is active and which direction it acts. <strong>Disabled</strong> turns sway off entirely. <strong>Normal</strong> means the outside shoulder tightens during cornering. <strong>Inverted</strong> reverses that relationship.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Disabled</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Subtract Gravity</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA removes the gravity component caused by vehicle roll before calculating sway output. This can reduce false shoulder bias on heavily banked surfaces.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Max G Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This sets the sway acceleration needed to reach full left/right bias. Lower values make the belts react more strongly to cornering forces. Higher values make the effect less sensitive.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 10.00 G</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Dead Zone</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Any sway acceleration below this threshold is ignored and treated as zero. This can help eliminate small belt differences when driving in a straight line.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Smoothing</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Applies an exponential moving average to the sway signal. Higher values smooth out rapid lateral changes. Lower values keep the response more immediate.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Curve</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adjusts the response curve shape for the sway axis.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Test</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays a pre-recorded sway test signal through the belts so you can feel how your current sway settings will respond without needing to be on track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="heave">HEAVE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Heave controls how vertical acceleration affects both belts together.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>By default, upward body loading (for example compressions or bumps) increases belt tension, while the opposite direction reduces it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Axis Mode</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls whether heave is active and which direction it acts. <strong>Disabled</strong> turns heave off entirely. <strong>Normal</strong> means upward body loading tightens the belts. <strong>Inverted</strong> reverses that relationship.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Inverted</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Subtract Gravity</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA removes the gravity component from vertical acceleration before calculating heave output. This is usually the most useful axis to gravity-correct.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Max G Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This sets the vertical acceleration needed to reach full heave effect. Lower values increase sensitivity. Higher values reduce sensitivity.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 10.00 G</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Dead Zone</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Any heave acceleration below this threshold is ignored and treated as zero. This can help eliminate small unwanted belt changes caused by minor road imperfections.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Smoothing</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Applies an exponential moving average to the heave signal. Higher values smooth out rapid vertical changes. Lower values keep the response more immediate.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Curve</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adjusts the response curve shape for the heave axis.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Test</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays a pre-recorded heave test signal through the belts so you can feel how your current heave settings will respond without needing to be on track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="seat-of-pants-effect">SEAT OF PANTS EFFECT</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The seat-of-pants effect adds a constant force effect to the belts that is driven by the movement of the car's chassis. This gives a physical sense of the car's behavior through belt tension.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Axis Mode</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls whether the seat-of-pants effect is active and which direction it acts. <strong>Disabled</strong> turns it off entirely. <strong>Normal</strong> applies it in the standard direction. <strong>Inverted</strong> reverses the effect.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: Normal</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Minimum Threshold</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The signal level below which no seat-of-pants effect is produced. Signals below this threshold are ignored entirely, which helps suppress the effect during calm driving.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0.00</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Maximum Threshold</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The signal level at which the seat-of-pants effect reaches full amplitude. Signals above this threshold are clamped to full effect.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 3.00</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Algorithm</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Selects which chassis signal is used to drive the seat-of-pants effect. Choose the one that feels most natural for your setup.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Amplitude</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The maximum belt angle deviation (in degrees) used for the seat-of-pants constant force. Higher values produce a stronger physical sensation.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 30.0°</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Curve</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adjusts the response curve shape for the seat-of-pants amplitude scaling.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="vibration-effects">VIBRATION EFFECTS</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These effects add rapid belt oscillations in response to specific car events. Each effect has an independent enable switch, frequency, and amplitude, and each can be tested without going on track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">ABS / Wheel Lock</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA vibrates the belts whenever ABS or wheel lock is detected. This helps communicate brake lockup directly through the harness.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">ABS / Wheel Lock — Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The vibration frequency in Hz for the ABS / wheel lock effect. Higher values produce a faster, buzzier feel. Lower values produce a slower, choppier feel.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 10 Hz</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">ABS / Wheel Lock — Amplitude</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The belt angle swing (in degrees) used for the ABS / wheel lock vibration. Higher values produce a stronger physical sensation.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 30.0°</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Wheel Slip</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA vibrates the belts whenever wheel slip is detected. This helps communicate drive wheel spin through the harness.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Wheel Slip — Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The vibration frequency in Hz for the wheel slip effect.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 11 Hz</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Wheel Slip — Amplitude</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The belt angle swing (in degrees) used for the wheel slip vibration.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 30.0°</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Rumble Strip</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, MAIRA vibrates the belts whenever a rumble strip is detected. This gives a tactile cue when a wheel crosses the track edge.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Rumble Strip — Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The vibration frequency in Hz for the rumble strip effect.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 12 Hz</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Rumble Strip — Amplitude</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The belt angle swing (in degrees) used for the rumble strip vibration.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 30.0°</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="motor-output">MOTOR OUTPUT</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This section shows the live output graphs for the left and right shoulder motors after surge, sway, heave, and the seat-of-pants effect have been combined.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These are display-only graphs. They are useful for seeing how MAIRA is blending all axes into final belt commands. When a vibration effect (ABS / Wheel Lock, Wheel Slip, or Rumble Strip) is active, a label appears on the relevant graph to indicate which effect is running.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="notes">NOTES</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The surge, sway, heave, seat-of-pants, and vibration effect tuning controls all support MAIRA's per-context system, so they can be customized per car (and other context dimensions if configured).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Internally, MAIRA applies a soft limiter before mapping the combined signal into the calibrated minimum → neutral → maximum angle range. This helps prevent the final belt output from becoming too abrupt when multiple axes stack together.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Vibration effects are applied as a separate oscillation layer on top of the positional output. They do not interact with the soft limiter or the per-axis dead zone and smoothing settings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/wind/" data-type="page" data-id="170">Wind</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/adminboxx/" data-type="page" data-id="858">AdminBoxx</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

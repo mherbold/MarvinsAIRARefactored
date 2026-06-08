@@ -7,7 +7,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><strong>Note:</strong> Currently only the <strong>Spotter</strong> role is fully implemented and visible in the UI. The Crew Chief, Sportscaster 1, Sportscaster 2, and Pit Reporter roles are still in development and are not yet available.
+<p><strong>Note:</strong> Currently only the <strong>Spotter</strong> role is fully implemented and visible in the UI. The Crew Chief, Sportscaster 1, Sportscaster 2, and Pit Reporter roles are still in development and are not yet available.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -389,14 +389,6 @@
 <p>Documents\MarvinsAIRA Refactored\TTS\Cache\</p>
 <!-- /wp:paragraph --></blockquote>
 <!-- /wp:quote -->
-
-<!-- wp:paragraph -->
-<p>The full list of events MAIRA detects and the role that speaks each one:</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:table -->
-<figure class="wp-block-table"><table><thead><tr><th>Event</th><th>Voice Role</th><th>Cooldown</th></tr></thead><tbody><tr><td>Session Start</td><td>Sportscaster 1</td><td>—</td></tr><tr><td>Session End</td><td>Sportscaster 1</td><td>—</td></tr><tr><td>Overtake (your car)</td><td>Sportscaster 1</td><td>15 s</td></tr><tr><td>Overtake (other drivers)</td><td>Sportscaster 2</td><td>15 s</td></tr><tr><td>Close Battle</td><td>Sportscaster 2</td><td>30 s</td></tr><tr><td>Fastest Lap</td><td>Sportscaster 1</td><td>20 s</td></tr><tr><td>Pit Stop Entry (your car)</td><td>Crew Chief</td><td>10 s</td></tr><tr><td>Pit Stop Entry (other drivers)</td><td>Pit Reporter</td><td>10 s per car</td></tr><tr><td>Pit Stop Exit (your car)</td><td>Crew Chief</td><td>10 s</td></tr><tr><td>Pit Stop Exit (other drivers)</td><td>Pit Reporter</td><td>10 s per car</td></tr><tr><td>Caution Flag</td><td>Sportscaster 2</td><td>60 s</td></tr><tr><td>Red Flag</td><td>Sportscaster 1</td><td>30 s</td></tr><tr><td>Incident (your car)</td><td>Crew Chief</td><td>20 s</td></tr><tr><td>Fuel Warning</td><td>Crew Chief</td><td>60 s</td></tr><tr><td>Pit Window Open</td><td>Crew Chief</td><td>60 s</td></tr><tr><td>Tire Warning</td><td>Crew Chief</td><td>60 s</td></tr><tr><td>Car Left / Right / Overlap</td><td>Spotter</td><td>per tick + reminder interval</td></tr></tbody></table></figure>
-<!-- /wp:table -->
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:spacer -->

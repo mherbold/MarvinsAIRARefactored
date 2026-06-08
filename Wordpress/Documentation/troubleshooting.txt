@@ -1,0 +1,37 @@
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph {"className":"section"} -->
+<p class="section">Logitech Wheelbases</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Logitech wheelbase users <strong>must</strong> also disable the iRacing simulator’s support for TrueForce. To do this, edit the iRacing <strong>app.ini</strong> file which is located in your documents iRacing folder, and find and replace <strong>loadTrueForceAPI=1</strong> with <strong>loadTrueForceAPI=0</strong> and save.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Loss of FFB</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If you are experiencing issues with the FFB going away, iRacing might be trying to steal back the FFB. To stop that from happening, you can edit the iRacing <strong>app.ini</strong> file which is located in your documents iRacing folder, and find and replace <strong>resetWhenFFBLost=1 </strong>with <strong>resetWhenFFBLost=0</strong> and save.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">App Crashes</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/other-stuff/wheel-force-settings/" data-type="page" data-id="451">Wheel Force Settings</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

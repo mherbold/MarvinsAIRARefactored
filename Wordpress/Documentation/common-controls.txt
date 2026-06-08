@@ -1,0 +1,183 @@
+<!-- wp:paragraph -->
+<p>There are some common controls that you will find in MAIRA that need some explanation to be able to fully use them.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="context-based-saving">Configuring How a Setting is Saved</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Some settings support <strong>context-based saving</strong>, meaning the same setting can have different values depending on what you’re driving and where.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If the setting supports it, you can right-click on the name of the setting, which will open up a configuration window.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":509,"sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"},"width":"2px"}},"borderColor":"contrast"} -->
+<figure class="wp-block-image size-full has-custom-border"><img src="https://mairapp.com/wp-content/uploads/2026/02/ContextSwitchesWindow.png" alt="" class="has-border-color has-contrast-border-color wp-image-509" style="border-width:2px;border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>You can choose to save that setting:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Per <strong>Wheelbase</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Per <strong>Car</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Per <strong>Track</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Per <strong>Track Configuration</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Per <strong>Wet/Dry</strong> condition</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>You can enable multiple at once. MAIRA treats the enabled switches as a combined “key”, so you can get very specific behaviors.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>For example, selecting "Per Car" + "Per Wet/Dry" means that not only will you have separate settings for each car, you will also have separate dry and wet settings for each car.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="infinite-slider-control">Infinite Slider Control</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The infinite slider control is a unique control created for MAIRA, that is used instead of the standard slider control. The issue with the standard slider control, is that the resolution and range of values needed for many settings would require a slider that is much wider than your screen. The infinite slider control will work with whatever resolution the setting needs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":516,"sizeSlug":"full","linkDestination":"none","align":"center","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"},"width":"2px"}},"borderColor":"contrast"} -->
+<figure class="wp-block-image aligncenter size-full has-custom-border"><img src="https://mairapp.com/wp-content/uploads/2026/02/KnobControl.png" alt="" class="has-border-color has-contrast-border-color wp-image-516" style="border-width:2px;border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px"/><figcaption class="wp-element-caption">The Infinite Slider Control</figcaption></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>To use the infinite slider control, hold down the left mouse button while the cursor is above the infinite slider icon, and then move the mouse left to decrease the value, or right to increase the value.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="reset-to-default-value">Reset to Default Value</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Many settings can be reset to their default value by holding down the right mouse button while the cursor is above the value of the setting. An animated icon will pop up showing a red circle that slowly disappears. Once the circle disappears, the setting will be reset to its default value. You can release the right mouse button at any time before the circle disappears, to cancel this action.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":521,"sizeSlug":"full","linkDestination":"none","align":"center","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"},"width":"2px"}},"borderColor":"contrast"} -->
+<figure class="wp-block-image aligncenter size-full has-custom-border"><img src="https://mairapp.com/wp-content/uploads/2026/02/ResetToDefaultValue.gif" alt="" class="has-border-color has-contrast-border-color wp-image-521" style="border-width:2px;border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="input-mapping">Input Mapping</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You can map inputs (buttons, knobs, hats, and keys) on your wheel, button box, Stream Deck, or keyboard to most button controls, including those on infinite sliders. To do so, you would right-click on the button, and this will open up a configuration window.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":530,"sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":{"topLeft":"12px","topRight":"12px","bottomLeft":"12px","bottomRight":"12px"},"width":"2px"}},"borderColor":"contrast"} -->
+<figure class="wp-block-image size-full has-custom-border"><img src="https://mairapp.com/wp-content/uploads/2026/02/image-1.png" alt="" class="has-border-color has-contrast-border-color wp-image-530" style="border-width:2px;border-top-left-radius:12px;border-top-right-radius:12px;border-bottom-left-radius:12px;border-bottom-right-radius:12px"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Press the record button, and then press any input on your wheel, button box, stream deck, or keyboard. You can optionally press a second input for hold + click behavior. Finally, press the save button to save your configuration.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You can also press the + button to add additional inputs to control the same setting.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Press the x button to remove the input mapping.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="curves">Curves</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>A few settings use an infinite slider to control a curve. These curves control how slowly or how quickly an effect ramps up. Positive values make the effect ramp up slower. Negative values make the effect ramp up faster. Setting the curve to zero (OFF) makes the effect linear. Here are a few images to illustrate what the various curve values look like -</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":536,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
+<figure class="wp-block-image aligncenter size-large"><img src="https://mairapp.com/wp-content/uploads/2026/02/maira_curve_clean_padded_plus0.25-1-1024x774.png" alt="" class="wp-image-536"/><figcaption class="wp-element-caption">25%</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":537,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
+<figure class="wp-block-image aligncenter size-large"><img src="https://mairapp.com/wp-content/uploads/2026/02/maira_curve_clean_padded_plus0.50-1-1024x774.png" alt="" class="wp-image-537"/><figcaption class="wp-element-caption">50%</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":538,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
+<figure class="wp-block-image aligncenter size-large"><img src="https://mairapp.com/wp-content/uploads/2026/02/maira_curve_clean_padded_plus0.75-1-1024x774.png" alt="" class="wp-image-538"/><figcaption class="wp-element-caption">75%</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":539,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
+<figure class="wp-block-image aligncenter size-large"><img src="https://mairapp.com/wp-content/uploads/2026/02/maira_curve_clean_padded_plus1.00-1-1024x774.png" alt="" class="wp-image-539"/><figcaption class="wp-element-caption">100%</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":542,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
+<figure class="wp-block-image aligncenter size-large"><img src="https://mairapp.com/wp-content/uploads/2026/02/maira_curve_clean_padded_minus0.25-1024x774.png" alt="" class="wp-image-542"/><figcaption class="wp-element-caption">-25%</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":543,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
+<figure class="wp-block-image aligncenter size-large"><img src="https://mairapp.com/wp-content/uploads/2026/02/maira_curve_clean_padded_minus0.50-1024x774.png" alt="" class="wp-image-543"/><figcaption class="wp-element-caption">-50%</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":544,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
+<figure class="wp-block-image aligncenter size-large"><img src="https://mairapp.com/wp-content/uploads/2026/02/maira_curve_clean_padded_minus0.75-1024x774.png" alt="" class="wp-image-544"/><figcaption class="wp-element-caption">-75%</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column -->
+
+<!-- wp:column -->
+<div class="wp-block-column"><!-- wp:image {"id":545,"sizeSlug":"large","linkDestination":"none","align":"center"} -->
+<figure class="wp-block-image aligncenter size-large"><img src="https://mairapp.com/wp-content/uploads/2026/02/maira_curve_clean_padded_minus1.00-1024x774.png" alt="" class="wp-image-545"/><figcaption class="wp-element-caption">-100%</figcaption></figure>
+<!-- /wp:image --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/basic/downloading-and-installing/" data-type="page" data-id="148">Downloading and Installing</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/basic/lets-go-just-the-basic-stuff/" data-type="page" data-id="150">Let’s Go! Just the Basic Stuff</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

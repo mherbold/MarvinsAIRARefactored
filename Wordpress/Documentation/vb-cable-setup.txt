@@ -1,0 +1,251 @@
+<!-- wp:paragraph -->
+<p>MAIRA uses VB-CABLE to route audio internally on your PC so it can be analyzed and repurposed for features like:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Speech To Text (STT) – capturing iRacing voice chat audio</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Wheel LFE (Low Frequency Effects) – routing bass shaker effects to the wheel</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>VB-CABLE is developed by VB-Audio and provides virtual audio devices that behave like physical sound cards, allowing audio to be redirected between applications.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Downloading VB-CABLE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>VB-CABLE is available directly from VB-Audio:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="https://vb-audio.com/Cable">https://vb-audio.com/Cable</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Which version do I need?</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Free version (VB-CABLE)<br>✔ Required for either Speech-To-Text or LFE<br>✔ Fully sufficient if you use only one of those features</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Paid version (VB-CABLE A+B)<br>✔ Required if you want to use Speech-To-Text and LFE at the same time<br>✔ Provides additional virtual cables so audio paths don’t conflict</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Installing VB-CABLE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Download the ZIP from the VB-Audio website.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Extract the ZIP file.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Right-click on the setup file and choose Run as administrator.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Click Install Driver.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Reboot Windows when prompted (important).</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>After rebooting, Windows will have new audio devices:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>CABLE Input (VB-Audio Virtual Cable)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>CABLE Output (VB-Audio Virtual Cable)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Configuring VB-CABLE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>VB-CABLE routes audio internally, which means audio sent into it won’t automatically go to your speakers/headphones (or to your shaker amp). To hear it (or send it to your bass shaker device), you must enable monitoring in Windows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Step-by-step: Enable “Listen to this device”</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Right-click the speaker icon in the Windows taskbar</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Click Sound settings</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Scroll down and click More sound settings<br>(This opens the classic Sound control panel)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Go to the Recording tab</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Find and double-click:<br>CABLE Output (VB-Audio Virtual Cable)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Go to the Listen tab</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Check: ✅ Listen to this device</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Under Playback through this device, choose where you want the audio to go:<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Your headphones / speakers (to hear voice chat), or</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Your bass shaker sound card / USB DAC (to drive the shaker amp)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Click Apply, then OK</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>At this point:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>iRacing → VB-CABLE → MAIRA can analyze it</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>AND Windows forwards VB-CABLE audio to the device you selected</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Configuring iRacing to Use VB-CABLE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Once VB-CABLE is installed and Windows monitoring is configured, iRacing must be told to send data through VB-CABLE. This is done inside iRacing’s settings UI.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Launch the iRacing simulator</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Go to Settings</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>For the MAIRA Wheel LFE feature<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Go to Bass Shaker Force Feedback</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Select the CABLE Input as the LFE Device</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>For the MAIRA Speech-to-Text feature<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Go to Audio</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Go to Voice Chat &gt; Devices</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Select the CABLE Input as the Voice Chat Output Device</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>When using both the Wheel LFE and Speech-to-Text features, I like to use CABLE-A for the voice chat, and CABLE-B ("B" for Bass Shaker) for the LFE.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">How MAIRA Uses VB-CABLE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Conceptual overview</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>VB-CABLE always works in pairs:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>CABLE Input → appears as a playback device (speaker)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>CABLE Output → appears as a recording device (microphone)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Audio sent into CABLE Input comes out of CABLE Output.  In other words, speakers are turned into microphones.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA listens to CABLE Output.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/other-stuff/wheel-force-settings/" data-type="page" data-id="451">Wheel Force Settings</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/other-stuff/help-translate-maira/" data-type="page" data-id="215">Help Translate MAIRA</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

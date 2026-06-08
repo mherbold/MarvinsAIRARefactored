@@ -1,0 +1,233 @@
+<!-- wp:paragraph -->
+<p>This page is a live “glass dashboard” for iRacing’s SDK data. Nothing here changes MAIRA behavior—MAIRA is simply displaying what iRacing is currently publishing through its shared-memory telemetry interface.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The page is split into three tabs:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Header Data</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Session Information</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Telemetry Data</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>You can scroll each tab with the mouse wheel or the scrollbar on the right.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="header-data">Header Data</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is a small set of top-level SDK header fields (integers) that describe the current telemetry stream and session-info block. Think of it as “metadata about the live data feed.”</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA shows these fields:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Version</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Status</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>TickRate</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>SessionInfoUpdate</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>SessionInfoLength</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>SessionInfoOffset</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>VarCount</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>VarHeaderOffset</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>BufferCount</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>BufferLength</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>TickCount</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Offset</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>FramesDropped</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">How to read this</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>TickRate: how often iRacing is publishing telemetry frames (always 60 Hz).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>TickCount: current frame counter.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>FramesDropped: indicates MAIRA missed frames (usually because something stalled long enough that frames were skipped).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="session-information">Session Information</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This displays iRacing’s Session Info data, which is a structured block of information that changes relatively infrequently compared to telemetry. In iRacing’s SDK, this is commonly represented as a YAML document containing details like weekend/session structure, cars, drivers, track info, session settings, etc.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">How it’s shown</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA renders it as an indented tree:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>property name on the left</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>value on the right (for simple values)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>nested objects/lists expand as additional indented lines</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">What it’s good for</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Confirming what session iRacing thinks you’re in</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Inspecting driver lists, car/track identifiers, session options, and other “session context” data that helps explain what telemetry means</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="telemetry-data">Telemetry Data</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is the big one: a live list of iRacing’s telemetry variables (the values that update every tick/frame).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>iRacing telemetry is exposed live through the SDK, and many variables are also written to telemetry logs (.ibt) at the same cadence (60 Hz).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Columns / fields shown</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Each telemetry line shows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Offset: the byte offset of the value inside the telemetry buffer (useful for developers/debugging)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Name: the variable name (example: Speed, RPM, etc.)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Index: for array variables (only shown when the variable has multiple values)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Value: the current value (formatted based on type)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Unit: unit or enum type name (for example m/s, deg, or SDK enum identifiers)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Description: iRacing’s description of what the variable represents</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Friendly formatting MAIRA applies</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Booleans show as T / F and are color-highlighted.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Enums (like track location/surface/session state) are displayed as readable enum names.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Bitfields are shown in hex (example: 0x00000080) and MAIRA also appends a decoded list of active flags.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/graph/" data-type="page" data-id="178">Graph</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/app-manager/" data-type="page" data-id="852">App Manager</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

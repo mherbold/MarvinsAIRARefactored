@@ -1,0 +1,191 @@
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>This page configures the <strong>AdminBoxx</strong> hardware integration. For more information about the AdminBoxx you can visit this page:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><a href="https://www.adminboxx.com">https://www.adminboxx.com</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>AdminBoxx is a dedicated USB race-control button box for iRacing. It combines LED button feedback, spoken/audio confirmations, and one-touch shortcuts for common admin actions such as cautions, penalties, wave-bys, session control, and replay navigation.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When connected, MAIRA controls the AdminBoxx LEDs, plays confirmation tones/voice prompts, reacts to iRacing session flags, and sends the appropriate admin chat commands on your behalf.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA can also automatically update the AdminBoxx firmware when the version on the device does not match the version bundled with the app.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="connection">CONNECTION</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These settings control whether MAIRA should connect to the AdminBoxx hardware.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Connect to AdminBoxx</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Turns the AdminBoxx connection on/off. If the device is not detected, MAIRA disables this control and shows <strong>Device not found</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When MAIRA successfully connects, it enables LED control, starts keep-alive communication, requests the firmware version from the box, and enables the Test button.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Connect to AdminBoxx on App Startup</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If this is ON, MAIRA will try to connect to the AdminBoxx automatically when the app starts.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Test</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Runs a built-in LED test cycle on the AdminBoxx. This steps through several flag colors/patterns plus the main layout states so you can verify that the LEDs are working correctly.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This button is only enabled while AdminBoxx is connected.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="display">DISPLAY</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These settings affect the brightness of the AdminBoxx button LEDs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Brightness</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adjusts the LED brightness of the AdminBoxx buttons.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Changing this immediately resends all current LED colors to the box using the new brightness value.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 15%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="audio">AUDIO</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These settings control AdminBoxx tones and spoken feedback.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Volume</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adjusts the playback volume of AdminBoxx tones, replay beeps, and spoken confirmation phrases/numbers.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Changing this setting plays a short beep so you can hear the current level immediately.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 75%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="how-adminboxx-works">HOW ADMINBOXX WORKS</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The AdminBoxx hardware is an 8×4 illuminated button matrix. MAIRA listens for button presses from the box, updates the button LEDs to reflect the current mode/state, and sends the matching iRacing admin commands through chat or replay control APIs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Examples of supported actions include:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Throw yellow / caution</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Black flag, clear flag, clear all penalties</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Toggle chat on/off</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Toggle single-file / double-file restart mode</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Wave by, end-of-line, disqualify, or remove a driver</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Adjust caution laps and advance to the next session</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Replay controls such as live, previous incident, next incident, slow motion, reverse, play/pause, and fast forward</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Some actions require a car number. In those cases, AdminBoxx switches into a numpad entry mode. You enter the driver number on the illuminated keypad and then press Enter to send the command, or Escape to cancel it.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>AdminBoxx also reacts to simulator state. For example, it can animate flag colors for yellow/green/white/checkered-style events, show replay-mode indicators, and reflect whether chat is enabled or whether restart mode is single-file or double-file.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="firmware-updates">FIRMWARE UPDATES</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>After connecting, MAIRA requests the firmware version from the AdminBoxx device. If the version on the hardware does not match the version bundled with MAIRA, the app automatically starts a firmware update by sending the latest code to the device over USB serial.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>During this process, the AdminBoxx status in MAIRA shows that the firmware is being updated. When the transfer completes, the device reboots and reconnects using the new firmware.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/seat-belt-tensioner/" data-type="page" data-id="849">Seat Belt Tensioner</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/overlays/" data-type="page" data-id="860">Overlays</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

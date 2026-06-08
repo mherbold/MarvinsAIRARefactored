@@ -1,0 +1,379 @@
+<!-- wp:paragraph -->
+<p>This is a list of all the features that are currently in MAIRA.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">General Features</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Ability to configure settings per-car and per-track</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Ability to control most settings to various inputs (keys, knobs, buttons, hats)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>SimHub plugin</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Awesome force feedback experience - the main feature!</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>360 Hz (upscaled to 500 Hz) force feedback for all wheelbases</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Works for all types of wheelbases - gear driven, belt driven, and direct drive</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Adjust the main weight separately from the high frequency details</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Multiple FFB algorithms to choose from</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Prediction removes up to 2 frames of latency (1/30s)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Wheel LFE</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Crash and curb protection</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Reduce forces and auto-center wheel when parked or not on track</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Soft clipping</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Vibrate on gear change and ABS activation</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Steering effects</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Understeer, oversteer, and seat-of-pants steering effects</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Calibrated to each car</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Wheel vibration, constant force, and pedal vibration effects</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Overlay to show how your car is behaving, similar to the skid-slip indicator on aircraft</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Pedal effects</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Works with all Simagic pedal haptic devices natively</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Works with some other brands via SimHub</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Mix, match, and tune different effects including -<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Gear change (separate settings for shift into gear and shift into neutral)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>ABS activation</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>RPM (constant or vibrate when its time to shift)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Wheel lock and spin</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Clutch slip</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Understeer, oversteer, and seat-of-pants</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Wind simulation</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Works with the custom MAIRA <a href="https://mairapp.com/home/maira-typhoon-wind-kit/" data-type="page" data-id="72">Typhoon Wind Kit</a></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Equalizer-style fine tuning of fan speeds based on car speed</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Wind curving</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Minimum fan speed (for those hot days)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Sounds</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Custom sounds support (drop in your own wav files)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Adjust loudness and pitch (frequency shift)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Sound effects for -<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>ABS activation</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Wheel lock and spin</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Understeer, oversteer, and seat-of-pants</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Speech-to-Text</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Uses the Google Chrome STT engine to convert voice chat messages to text</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Works with any language</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Text is shown in an overlay window</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Trading Paints</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Downloads paints from Trading Paints</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Notifies iRacing after paints have been downloaded (so cars are reloaded)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>No need to run the Trading Paints app</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Graph</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Shows real time data graphs for -<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Input torque from iRacing (360 Hz and 60 Hz)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Input wheel LFE from iRacing</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Output torque from MAIRA</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Clutch, brake, and throttle pedal haptics</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Timer jitter</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Simulator Data</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Shows the data stream from iRacing in real time -<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Header data</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Session information</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Telemetry data</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">App settings</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><a href="https://mairapp.com/home/documentation/other-stuff/help-translate-maira/" data-type="page" data-id="215">Multiple language support!</a>  This is the list of languages supported in MAIRA and the percentage of text that has been translated for each language -<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>English</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Deutsch (Deutschland) - German (Germany)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Português (Brasil) - Portuguese (Brazil)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Українська (Україна) - Ukrainian (Ukraine)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Español (España) - Spanish (Spain)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Français (France) - French (France)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Português (Portugal) - Portuguese (Portugal)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Русский (Россия) - Russian (Russia)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Polski (Polska) - Polish (Poland)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Dansk (Danmark) - Danish (Denmark)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Italiano (Italia) - Italian (Italy)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Nederlands (Nederland) - Dutch (Netherlands)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Čeština (Česko) - Czech (Czechia)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Հայերեն (Հայաստան) - Armenian (Armenia)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Türkçe (Türkiye) - Turkish (Turkey)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>简体中文 - Chinese (Simplified)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Français (Canada) - French (Canada)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Català (Espanya) - Catalan (Spain)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Magyar (Magyarország) - Hungarian (Hungary)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list --></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Various app window options (topmost, scaling, start minimized, etc.)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Checking for updates on app start</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/basic/downloading-and-installing/" data-type="page" data-id="148">Downloading and Installing</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

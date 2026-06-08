@@ -1,0 +1,191 @@
+<!-- wp:paragraph -->
+<p>This page shows a live scrolling waveform graph of several internal signals. What you see depends on which of the 8 toggles (below the graph) you turn on.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The graph is meant for “at-a-glance” monitoring while you drive and tune.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:columns -->
+<div class="wp-block-columns"><!-- wp:column {"className":"is-style-default"} -->
+<div class="wp-block-column is-style-default"><!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Solo mode</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":266,"sizeSlug":"full","linkDestination":"none","align":"right","className":"is-style-default","style":{"spacing":{"margin":{"top":"0","bottom":"0"}}}} -->
+<figure class="wp-block-image alignright size-full is-style-default" style="margin-top:0;margin-bottom:0"><img src="https://mairapp.com/wp-content/uploads/2026/01/solo.png" alt="" class="wp-image-266"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>There’s a Solo button (icon) that appears when you hover over the graph.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When Solo is enabled:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>MAIRA hides everything except the graph (bottom toggles and other window chrome).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The main window becomes borderless and non-resizable.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>You can drag the window by clicking and dragging directly on the graph.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>This is ideal if you want to place the graph on top of iRacing as a lightweight overlay.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Click the Solo button again to restore the normal window layout.</p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:column --></div>
+<!-- /wp:columns -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">What each toggle shows</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Each toggle enables a “layer” in the graph. If a toggle is off, that layer isn’t drawn.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Input Torque</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shows the 360 Hz steering torque iRacing is providing (the “input” MAIRA receives).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Input Torque (60 Hz)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shows the 60 Hz steering torque iRacing is providing.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Input LFE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shows the current low-frequency-effect magnitude MAIRA is producing.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>More information about Wheel LFE can be found here - <a href="https://mairapp.com/home/documentation/advanced/racing-wheel/#wheel-lfe" data-type="page" data-id="164">Wheel LFE</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Output Torque</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shows the final force value MAIRA is sending to your wheel after processing (algorithms + effects + fades).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Clutch Pedal Haptics</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shows the current clutch haptics waveform MAIRA is generating (a live sine-based signal).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Brake Pedal Haptics</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Same concept as clutch, but for the brake haptics waveform.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Throttle Pedal Haptics</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Same concept as clutch/brake, but for the throttle haptics waveform.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Timer Jitter</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shows timing jitter in the multimedia timer loop (how stable MAIRA’s 500 Hz timing is).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Quick reading tips</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Midline and scaling</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>The vertical center is “0”.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Up/down indicates positive/negative depending on the signal.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>The intensity of the line increases with magnitude.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Gutter indicators (top/bottom bars)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The graph has top and bottom “gutters” used as status indicators:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>If Output Torque is clipping, the top or bottom gutter turns solid red.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>If Curb Protection is active, the gutters show yellow checkers.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>If Crash Protection is active, the gutters show orange checkers.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>This makes it easy to spot clipping/protection events without staring at the waveform.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/trading-paints/" data-type="page" data-id="176">Trading Paints</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/simulator/" data-type="page" data-id="180">Simulator</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

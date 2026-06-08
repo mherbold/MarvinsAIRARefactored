@@ -1,0 +1,163 @@
+<!-- wp:paragraph -->
+<p>This page controls MAIRA’s <a href="https://mairapp.com/home/maira-typhoon-wind-kit/" data-type="page" data-id="72">Typhoon Wind Kit</a> fans. MAIRA calculates fan power from iRacing vehicle motion and sends left/right commands to the fan controller. It also displays live fan power % and fan RPM reported back by the hardware.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="connection">Connection</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Connect to MAIRA Wind</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Connects/disconnects MAIRA to the wind controller over USB serial port.  If the checkbox remains unchecked after clicking on it, then that indicates some kind of issue occurred trying to connect to the MAIRA wind controller.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Connect to MAIRA Wind on App Startup</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If enabled, MAIRA automatically connects to the wind controller during app startup.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="settings">Settings</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These affect how MAIRA computes fan power from vehicle motion.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Master Wind Power</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Overall multiplier for fan power (acts like a master volume for wind).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Minimum Speed</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Forces a minimum wind level even at very low speeds (useful if your fans stall at low PWM).  Also great for those hot summer days when you want to have the fan constantly blowing even while car you car is parked.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Wind Curving</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls how much wind “leans” left/right during sideways motion (slip/rotation).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="fan-power">Fan Power</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This section is a speed → fan power curve editor that works in similar fashion to an audio equalizer.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Each vertical slider pair sets one point on the curve:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The speed (top value) is controlled by the left side (red) lever.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The fan power (bottom value) is controlled by the right side (blue) lever.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>While you are moving the fan power slider, both fans will spin up for a preview of the feel of the current setting.  It is suggested that you close your eyes, and move the slider up or down until the feel of the wind is exactly how you want it for that speed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">How it works</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA computes car speed magnitude from iRacing car velocity, and finds where that speed fits among the 10 speed data points.  Then, it computes fan power using Hermite interpolation between points (smooth curve instead of sharp steps).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="fan-status">Fan Status</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Left Fan / Right Fan</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shows live feedback from the controller. For each fan, MAIRA shows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Power (%) — the last commanded fan power</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>RPM — reported back from the controller</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Test buttons</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Test (Left): toggles the left fan to 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Test (Right): toggles the right fan to 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is handy for confirming wiring, confirming fan direction, and verifying RPM feedback.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/pedals/" data-type="page" data-id="168">Pedals</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/seat-belt-tensioner/" data-type="page" data-id="849">Seat Belt Tensioner</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

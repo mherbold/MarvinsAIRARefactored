@@ -1,0 +1,503 @@
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>This page drives pedal haptics by generating vibration commands for Simagic HPR devices connected to the clutch, brake, and throttle pedals.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This works for any Simagic pedal haptic device (P-HPR, P-HPR GT, P-HPR NEO) connected to P500, P700, or P1000 pedal bases, or the P2000 Haptic Control Box.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA can run up to 3 “effect slots” per pedal. For each pedal, MAIRA checks slot 1 → slot 2 → slot 3 and plays the first effect that is currently active (first-match wins).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>There are also global shaping controls (frequency/amplitude ranges + curves) that affect most effects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Pedal effects can also be routed through SimHub to support non-Simagic pedal haptics.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="device">DEVICE</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Turns Simagic HPR pedal output on/off. Shows what MAIRA detected:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[No Compatible Simagic Pedals Found] or Simagic P500/P700/P1000/P2000 Pedals</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="frequency">FREQUENCY</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These settings define the frequency “workspace” that effects operate inside.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Minimum</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The starting (bottom-most) frequency for effects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0 Hz</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Maximum</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The ending (top-most) frequency for effects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 50 Hz</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Curve</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This defines how MAIRA should transition (ramp) from minimum to maximum frequency.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>0% (OFF) means to use a linear (straight) transition from minimum to maximum</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Larger positive numbers mean to transition more slowly from minimum to maximum</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Larger negative numbers mean to transition more quickly from minimum to maximum</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 25%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="amplitude">Amplitude</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Same idea as Frequency, but for output intensity.  This is the "global volume" of all effects.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Minimum</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Maximum</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Curve</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="brake-clutch-throttle">Clutch / Brake / Throttle</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Each pedal has 3 effects slots.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Pedal effects</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Choose from: None, Gear Change, ABS Engaged, RPM, Understeer Effect, Oversteer Effect, Seat Of Pants Effect, Wheel Lock, Wheel Spin, or Clutch Slip.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default for Clutch: Gear Change / Clutch Slip / None</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default for Brake: ABS Engaged / Wheel Lock / Understeer Effect</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default for Throttle: Wheel Spin / RPM / Oversteer Effect</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Basically, this is the "volume" of the effect - how strongly it is played.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Test</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Plays the effect on the selected slot on that pedal for approximately 3 seconds.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="gear-change-shift-into-gear">Gear Change - Shift Into Gear</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Controls the “gear change kick” feel when shifting into a forward or reverse gear.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 30% (15Hz)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Amplitude</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Duration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0.1 sec</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="gear-change-shift-into-neutral">Gear Change - Shift Into Neutral</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Same as above, but when shifting into neutral.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 70% (35Hz)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Amplitude</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 75%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Duration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0.05 sec</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="abs-engaged">ABS Engaged</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Vibration while ABS is active.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 50% (25Hz)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Amplitude</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Fade With Brake</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, the effect amplitude is modulated by the brake pedal.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="rpm">RPM</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Vibration that increases as RPM approaches shift RPM.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Starting RPM</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This is the percentage of the shift RPM to start vibrating at.  For example, if the shift RPM of the current car is 6000 RPM and you set this to 50%, then the pedal will start vibrating at 3000 RPM.  The default value of 100% means to vibrate only when the engine is at shift RPM.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Vibrate In Top Gear</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Since you can't shift up when you are already in top gear, it makes little sense to vibrate the pedal if you are in top gear, so the default is OFF.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Fade With Throttle</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, the effect amplitude is modulated by the throttle pedal.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="wheel-lock">Wheel Lock</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Detects lock-up by comparing the current RPM ↔ speed ratio vs the expected ratio for the current gear.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 20% (10Hz)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Sensitivity</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The higher this number is, the more likely the effect will activate.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 95%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Fade With Brake</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, the effect amplitude is modulated by the brake pedal.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="wheel-spin">Wheel Spin</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Wheel spin is detected similarly to wheel lock, but in the opposite direction, when too much RPM is seen for the current vehicle speed and gear.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 20% (10Hz)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Sensitivity</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The higher this number is, the more likely the effect will activate.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 95%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Fade With Throttle</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When this is ON, the effect amplitude is modulated by the throttle pedal.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="clutch-slip">Clutch Slip</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Vibrates when the clutch pedal is inside a defined range.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Starting Point</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 25%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Ending Point</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 75%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100% (50Hz)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="understeer-oversteer-seat-of-pants">Understeer / Oversteer / Seat-of-Pants</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>These sections tune how <a href="https://mairapp.com/home/documentation/advanced/steering-effects/" data-type="page" data-id="166">Steering Effects</a> get translated into pedal vibration.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Minimum Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The frequency to vibrate the pedal at, when below the steering effects maximum threshold.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 10% (5Hz)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Maximum Frequency</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The frequency to vibrate the pedal at, when at or above the steering effects maximum threshold.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100% (50Hz)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Curve</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="other-features">Other Features</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Noise Damper</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Reduces noise caused by Simagic HPRs bottoming out due to a combination of too-low frequency and too-high amplitude.  This should only be used with linear motor HPRs.  If you are using rumble-style HPRs then this should be set to 0% (OFF).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 10%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/steering-effects/" data-type="page" data-id="166">Steering Effects</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/wind/" data-type="page" data-id="170">Wind</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

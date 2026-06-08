@@ -1,0 +1,103 @@
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:paragraph -->
+<p>Here is a quick-start tutorial. If you follow these steps, you can get up and running now, and read the rest of this documentation later. Leave everything at default values, except for the settings below.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Racing Wheel</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Wheel Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Set this to your wheel’s physical maximum torque.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Here is a handy table - <a href="https://mairapp.com/home/documentation/other-stuff/wheel-force-settings/" data-type="page" data-id="451">Wheel Force Settings</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Max Force</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Set the Max Force according to the car you are driving.  Here's another handy table -</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table class="has-fixed-layout"><tbody><tr><td>NASCAR Cup Series (Next Gen)</td><td>~28-35 Nm</td></tr><tr><td>IndyCar (IR-18)</td><td>~30-60 Nm</td></tr><tr><td>Mazda MX-5 Cup</td><td>~18-22 Nm</td></tr><tr><td>Supercars (V8)</td><td>~22-28 Nm</td></tr><tr><td>GT3 (Ferrari, Porsche, BMW, etc.)</td><td>~8-14 Nm</td></tr><tr><td>GT4</td><td>~12-18 Nm</td></tr><tr><td>GTP / LMDh</td><td>~10-16 Nm</td></tr><tr><td>Formula 3</td><td>~14-20 Nm</td></tr><tr><td>Formula Vee</td><td>~16-22 Nm</td></tr><tr><td>Street Stock</td><td>~18-25 Nm</td></tr></tbody></table></figure>
+<!-- /wp:table -->
+
+<!-- wp:paragraph -->
+<p>Note that choosing a higher steering wheel ratio in the car setup typically means lower steering wheel torque.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Wet road conditions also mean lower steering wheel torque.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Algorithm</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Select -</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Detail Booster (Low Latency)</strong>: if you want to boost details (feel more road)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Delta Limiter (Low Latency)</strong>: if you prefer a smoother driving experience.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Pedals</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If you have Simagic pedal haptic (HPR) devices on your pedals, then you should enable pedal haptics by ticking the first checkbox on the <strong>Pedals</strong> page. </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Don't forget to turn pedal vibrations off in other apps (iRacing, SimPro, SimHub, etc.)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph {"align":"center","className":"is-style-text-display"} -->
+<p class="has-text-align-center is-style-text-display">That's it! You're ready to go!</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/basic/common-controls/" data-type="page" data-id="508">Common Controls</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/racing-wheel/" data-type="page" data-id="164">Racing Wheel</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->
