@@ -192,21 +192,33 @@ public class RacingWheel
 
 		app.Logger.WriteLine( "[RacingWheel] LogiInitialize >>>" );
 
-		if ( _logiSdkInitialized )
+		try
 		{
-			app.Logger.WriteLine( "[RacingWheel] Logitech SDK already initialized, shutting down first" );
+			if ( _logiSdkInitialized )
+			{
+				app.Logger.WriteLine( "[RacingWheel] Logitech SDK already initialized, shutting down first" );
 
-			LogitechGSDK.LogiSteeringShutdown();
+				LogitechGSDK.LogiSteeringShutdown();
+			}
 
-			_logiSdkInitialized = false;
+			if ( iRacingWindowHandle == IntPtr.Zero )
+			{
+				app.Logger.WriteLine( "[RacingWheel] Skipping Logitech SDK initialization because iRacing window handle is invalid (IntPtr.Zero)." );
+			}
+			else
+			{
+
+				var result = LogitechGSDK.LogiSteeringInitializeWithWindow( true, iRacingWindowHandle );
+
+				app.Logger.WriteLine( $"[RacingWheel] LogiSteeringInitializeWithWindow returned {result}" );
+
+				_logiSdkInitialized = result;
+			}
 		}
-
-		var result = LogitechGSDK.LogiSteeringInitializeWithWindow( true, iRacingWindowHandle );
-
-		app.Logger.WriteLine( $"[RacingWheel] LogiSteeringInitializeWithWindow returned {result}" );
-
-		_logiSdkInitialized = result;
-		_logiPlayLedsNotWorking = false;
+		catch ( Exception exception )
+		{
+			app.Logger.WriteLine( $"[RacingWheel] Logitech SDK initialization failed: {exception.Message.Trim()}" );
+		}
 
 		app.Logger.WriteLine( "[RacingWheel] <<< LogiInitialize" );
 	}
