@@ -36,89 +36,131 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 	public void Initialize()
 	{
 		var app = App.Instance!;
+		var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
 		app.Logger.WriteLine( "[UsbSerialPortHelper] Initialize >>>" );
+		app.Logger.WriteLine( $"[UsbSerialPortHelper] Search criteria: handshake='{_handshake}', deviceIdMustContain='{_deviceIdMustContain}', vid='{_vid}', pid='{_pid}', baudRate={_baudRate}, parity={_parity}, dataBits={_dataBits}, stopBits={_stopBits}" );
+
+		_portName = string.Empty;
+		LastErrorMessage = string.Empty;
 
 		try
 		{
 			using var searcher = new ManagementObjectSearcher( "SELECT * FROM Win32_PnPEntity WHERE Name LIKE '%(COM%'" );
+			using var devices = searcher.Get();
 
-			foreach ( var device in searcher.Get() )
+			var inspectedDeviceCount = 0;
+
+			foreach ( var device in devices )
 			{
+				inspectedDeviceCount++;
+
 				var name = device[ "Name" ]?.ToString();
 				var deviceId = device[ "PNPDeviceID" ]?.ToString();
 
-				if ( !string.IsNullOrEmpty( name ) && !string.IsNullOrEmpty( deviceId ) )
+				app.Logger.WriteLine( $"[UsbSerialPortHelper] Device #{inspectedDeviceCount}: Name='{name}', PNPDeviceID='{deviceId}'" );
+
+				if ( string.IsNullOrEmpty( name ) || string.IsNullOrEmpty( deviceId ) )
 				{
-					var start = name.IndexOf( "(COM" );
+					app.Logger.WriteLine( "[UsbSerialPortHelper] Skipping device because Name or PNPDeviceID is empty" );
+					continue;
+				}
 
-					if ( start >= 0 )
+				var start = name.IndexOf( "(COM" );
+
+				if ( start < 0 )
+				{
+					app.Logger.WriteLine( $"[UsbSerialPortHelper] Skipping device '{name}' because COM token was not found" );
+					continue;
+				}
+
+				var end = name.IndexOf( ')', start );
+
+				if ( end < 0 )
+				{
+					app.Logger.WriteLine( $"[UsbSerialPortHelper] Skipping device '{name}' because COM token did not have a closing parenthesis" );
+					continue;
+				}
+
+				var portName = name.Substring( start + 1, end - start - 1 );
+
+				app.Logger.WriteLine( $"[UsbSerialPortHelper] Parsed serial port '{portName}' from '{name}'" );
+
+				if ( _handshake != string.Empty )
+				{
+					app.Logger.WriteLine( $"[UsbSerialPortHelper] Testing handshake mode on '{portName}'" );
+
+					try
 					{
-						var end = name.IndexOf( ')', start );
-
-						if ( end >= 0 )
+						using var testPort = new SerialPort( portName, _baudRate, _parity, _dataBits, _stopBits )
 						{
-							var portName = name.Substring( start + 1, end - start - 1 );
+							Handshake = Handshake.None,
+							Encoding = Encoding.ASCII,
+							ReadTimeout = 500,
+							WriteTimeout = 500,
+							NewLine = "\n"
+						};
 
-							if ( _handshake != string.Empty )
-							{
-								// use handshake method
+						testPort.Open();
+						testPort.DiscardInBuffer();
+						testPort.DiscardOutBuffer();
+						testPort.WriteLine( "WHAT ARE YOU?" );
 
-								try
-								{
-									using var testPort = new SerialPort( portName, _baudRate, _parity, _dataBits, _stopBits )
-									{
-										Handshake = Handshake.None,
-										Encoding = Encoding.ASCII,
-										ReadTimeout = 500,
-										WriteTimeout = 500,
-										NewLine = "\n"
-									};
+						Thread.Sleep( 200 );
 
-									testPort.Open();
-									testPort.DiscardInBuffer();
-									testPort.DiscardOutBuffer();
-									testPort.WriteLine( "WHAT ARE YOU?" );
+						var response = testPort.ReadExisting()?.Trim();
 
-									Thread.Sleep( 200 );
+						app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake response on '{portName}': '{response}'" );
 
-									var response = testPort.ReadExisting()?.Trim();
+						if ( !string.IsNullOrEmpty( response ) && response.Contains( _handshake, StringComparison.OrdinalIgnoreCase ) )
+						{
+							app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake successful on '{portName}'" );
 
-									if ( !string.IsNullOrEmpty( response ) && response.Contains( _handshake, StringComparison.OrdinalIgnoreCase ) )
-									{
-										app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake successful on {portName}" );
+							_portName = portName;
 
-										_portName = portName;
-
-										break;
-									}
-								}
-								catch ( Exception exception )
-								{
-									app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake failed on {portName}: {exception.Message}" );
-								}
-							}
-							else
-							{
-								// use VID/PID method
-
-								if ( ( _deviceIdMustContain == string.Empty ) || !deviceId.Contains( _deviceIdMustContain, StringComparison.OrdinalIgnoreCase ) )
-								{
-									if ( ( _vid != string.Empty ) && ( _pid != string.Empty ) )
-									{
-										if ( deviceId.Contains( $"VID_{_vid}", StringComparison.OrdinalIgnoreCase ) && deviceId.Contains( $"PID_{_pid}", StringComparison.OrdinalIgnoreCase ) )
-										{
-											_portName = portName;
-
-											break;
-										}
-									}
-								}
-							}
+							break;
 						}
+
+						app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake token '{_handshake}' not found in response from '{portName}'" );
+					}
+					catch ( Exception exception )
+					{
+						app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake failed on '{portName}': {exception.Message}" );
+					}
+				}
+				else
+				{
+					var matchesDeviceIdMustContain = ( _deviceIdMustContain == string.Empty ) || deviceId.Contains( _deviceIdMustContain, StringComparison.OrdinalIgnoreCase );
+
+					if ( !matchesDeviceIdMustContain )
+					{
+						app.Logger.WriteLine( $"[UsbSerialPortHelper] Skipping '{portName}' because PNPDeviceID does not contain required token '{_deviceIdMustContain}'" );
+						continue;
+					}
+
+					if ( ( _vid == string.Empty ) || ( _pid == string.Empty ) )
+					{
+						app.Logger.WriteLine( "[UsbSerialPortHelper] VID/PID mode selected but VID or PID is empty; skipping device matching" );
+						continue;
+					}
+
+					var matchesVid = deviceId.Contains( $"VID_{_vid}", StringComparison.OrdinalIgnoreCase );
+					var matchesPid = deviceId.Contains( $"PID_{_pid}", StringComparison.OrdinalIgnoreCase );
+
+					app.Logger.WriteLine( $"[UsbSerialPortHelper] VID/PID check on '{portName}': matchesVid={matchesVid}, matchesPid={matchesPid}" );
+
+					if ( matchesVid && matchesPid )
+					{
+						_portName = portName;
+
+						app.Logger.WriteLine( $"[UsbSerialPortHelper] Selected port '{_portName}' based on VID/PID match" );
+
+						break;
 					}
 				}
 			}
+
+			app.Logger.WriteLine( $"[UsbSerialPortHelper] Device scan complete. inspectedDeviceCount={inspectedDeviceCount}, selectedPort='{_portName}'" );
 
 			if ( _portName == string.Empty )
 			{
@@ -130,9 +172,11 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		catch ( Exception exception )
 		{
 			app.Logger.WriteLine( $"[UsbSerialPortHelper] Unexpected error during device search: {exception.Message}" );
+
+			LastErrorMessage = exception.Message;
 		}
 
-		app.Logger.WriteLine( "[UsbSerialPortHelper] <<< Initialize" );
+		app.Logger.WriteLine( $"[UsbSerialPortHelper] <<< Initialize (DeviceFound={DeviceFound}, SelectedPort='{_portName}', elapsed={stopwatch.ElapsedMilliseconds}ms)" );
 	}
 
 	public bool Open()
