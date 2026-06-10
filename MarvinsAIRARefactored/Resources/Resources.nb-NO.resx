@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Koble til AdminBoxx ved oppstart av app</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Aktiver Xtreme Scoring Race Control-integrering</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Lysstyrke</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Tekst til tale — Tilgang</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Tale til tekst — Tilgang</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Bruker — Lese</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Hovedvolum</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Bruk</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Henter abonnementsbruk…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Pit-vindu åpent</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Tilbakestill til standard</value></data><data name="FlagCalls" xml:space="preserve"><value>Flaggmeldinger</value></data><data name="AddPhrase" xml:space="preserve"><value>Legg til setning</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>KOMMENTARSETNINGER</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Tilpass setningene som sies for hvert hendelse på det valgte språket. Endringer lagres i mappen Dokumenter og overstyrer de innebygde setningene.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Aktiver Xtreme Scoring Race Control-integrering</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Alle setninger er tilbakestilt til de innebygde standardene.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Egendefinerte setninger lagret.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Søk...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Fjern</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Tilbakestill alle</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Tilbakestill</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>KOMMENTARSETNINGER</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Tilpass setningene som sies for hvert hendelse på det valgte språket. Endringer lagres i mappen Dokumenter og overstyrer de innebygde setningene.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Tilbakestill alle</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Tilbakestill</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Legg til setning</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Fjern</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Egendefinerte setninger lagret.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Alle setninger er tilbakestilt til de innebygde standardene.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Søk...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Tilbakestill til standard</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Flaggmeldinger</value>
+  </data>
+</root>

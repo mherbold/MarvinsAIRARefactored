@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>起動時にAdminBoxxに接続する</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Xtreme Scoring Race Control 連携を有効にする</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>輝度</value>
   </data>
@@ -1635,6 +1638,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>テキスト読み上げ — アクセス</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>音声認識 — アクセス</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>ユーザー — 読み取り</value>
   </data>
@@ -1643,6 +1649,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>マスターボリューム</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>使用状況</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>サブスクリプション使用状況を取得中…</value>
@@ -1713,4 +1722,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>ピットウィンドウオープン</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>デフォルトにリセット</value></data><data name="FlagCalls" xml:space="preserve"><value>フラグ通知</value></data><data name="AddPhrase" xml:space="preserve"><value>フレーズを追加</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>実況フレーズ</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>選択した言語で各イベントに話されるフレーズをカスタマイズします。変更はドキュメントフォルダーに保存され、組み込みフレーズを上書きします。</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Xtreme Scoring Race Control 連携を有効にする</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>すべてのフレーズが組み込みのデフォルト値にリセットされました。</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  カスタムフレーズを保存しました。</value></data><data name="PhraseSearch" xml:space="preserve"><value>検索...</value></data><data name="RemovePhrase" xml:space="preserve"><value>削除</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>すべてリセット</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>リセット</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>実況フレーズ</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>選択した言語で各イベントに話されるフレーズをカスタマイズします。変更はドキュメントフォルダーに保存され、組み込みフレーズを上書きします。</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>すべてリセット</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>リセット</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>フレーズを追加</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  カスタムフレーズを保存しました。</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>すべてのフレーズが組み込みのデフォルト値にリセットされました。</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>検索...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>デフォルトにリセット</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>フラグ通知</value>
+  </data>
+</root>

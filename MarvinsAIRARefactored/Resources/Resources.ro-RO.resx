@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Conectare la AdminBoxx la pornirea aplicației</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Activați integrarea Xtreme Scoring Race Control</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Luminozitate</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Text în vorbire — Acces</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Vorbire în text — Acces</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Utilizator — Citire</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Volum principal</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Utilizare</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Se preiau datele de utilizare a abonamentului…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Fereastră pit deschisă</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Resetare la valorile implicite</value></data><data name="FlagCalls" xml:space="preserve"><value>Anunțuri steag</value></data><data name="AddPhrase" xml:space="preserve"><value>Adaugă frază</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>FRAZE COMENTARIU</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Personalizați frazele rostite pentru fiecare eveniment în limba selectată. Modificările sunt salvate în dosarul Documente și înlocuiesc frazele încorporate.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Activați integrarea Xtreme Scoring Race Control</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Toate frazele au fost resetate la valorile implicite integrate.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Fraze personalizate salvate.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Căutare...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Elimină</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Resetează tot</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Resetează</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>FRAZE COMENTARIU</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Personalizați frazele rostite pentru fiecare eveniment în limba selectată. Modificările sunt salvate în dosarul Documente și înlocuiesc frazele încorporate.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Resetează tot</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Resetează</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Adaugă frază</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Elimină</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Fraze personalizate salvate.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Toate frazele au fost resetate la valorile implicite integrate.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Căutare...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Resetare la valorile implicite</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Anunțuri steag</value>
+  </data>
+</root>

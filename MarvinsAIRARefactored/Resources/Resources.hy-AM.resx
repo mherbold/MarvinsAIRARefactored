@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Միանալ գործարկման պահին</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Միացնել Xtreme Scoring Race Control ինտեգրումը</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Պայծառություն</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Տեքստ ձայնի — Հասանելիություն</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Խոսքից տեքստ — Հասանելիություն</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Օգտատեր — Կարդալ</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Հիմնական ձայնի մակարդակ</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Օգտագործում</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Բաժանորդագրության օգտագործումը բեռնվում է…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Փիթ պատուհանը բաց է</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Վերականգնել կանխադրված արժեքները</value></data><data name="FlagCalls" xml:space="preserve"><value>Դրոշի հայտարարություններ</value></data><data name="AddPhrase" xml:space="preserve"><value>Ավելացնել արտահայտություն</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>ՄԵԿՆԱԲԱՆՈՒԹՅԱՆ ԱՐՏԱՀԱՅՏՈՒԹՅՈՒՆՆԵՐ</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Հարմարեցրեք արտահայտությունները, որոնք արտասանվում են յուրաքանչյուր իրադարձության համար ընտրված լեզվով: Փոփոխությունները պահվում են Փաստաթղթեր թղթապանակում և փոխարինում են ներկառուցված արտահայտությունները:</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Միացնել Xtreme Scoring Race Control ինտեգրումը</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Բոլոր արտահայտությունները վերականգնվել են ներկառուցված կանխադրած արժեքներին:</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Հատուկ արտահայտությունները պահպանվել են:</value></data><data name="PhraseSearch" xml:space="preserve"><value>Փնտրել...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Հեռացնել</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Վերականգնել բոլորը</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Վերականգնել</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>ՄԵԿՆԱԲԱՆՈՒԹՅԱՆ ԱՐՏԱՀԱՅՏՈՒԹՅՈՒՆՆԵՐ</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Հարմարեցրեք արտահայտությունները, որոնք արտասանվում են յուրաքանչյուր իրադարձության համար ընտրված լեզվով: Փոփոխությունները պահվում են Փաստաթղթեր թղթապանակում և փոխարինում են ներկառուցված արտահայտությունները:</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Վերականգնել բոլորը</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Վերականգնել</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Ավելացնել արտահայտություն</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Հեռացնել</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Հատուկ արտահայտությունները պահպանվել են:</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Բոլոր արտահայտությունները վերականգնվել են ներկառուցված կանխադրած արժեքներին:</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Փնտրել...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Վերականգնել կանխադրված արժեքները</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Դրոշի հայտարարություններ</value>
+  </data>
+</root>

@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>当App启动时连接到管理员Boxx</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>启用 Xtreme Scoring 赛事控制集成</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>亮度</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>文字转语音 — 访问</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>语音转文字 — 访问</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>用户 — 读取</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>主音量</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>用量</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>正在获取订阅用量…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>进站窗口开放</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>重置为默认值</value></data><data name="FlagCalls" xml:space="preserve"><value>旗帜通报</value></data><data name="AddPhrase" xml:space="preserve"><value>添加短语</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>解说短语</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>自定义所选语言中每个事件的朗读短语。更改将保存到您的文档文件夹，并覆盖内置短语。</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>启用 Xtreme Scoring 赛事控制集成</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>所有短语已重置为内置默认值。</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  自定义短语已保存。</value></data><data name="PhraseSearch" xml:space="preserve"><value>搜索...</value></data><data name="RemovePhrase" xml:space="preserve"><value>删除</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>重置全部</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>重置</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>解说短语</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>自定义所选语言中每个事件的朗读短语。更改将保存到您的文档文件夹，并覆盖内置短语。</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>重置全部</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>重置</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>添加短语</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  自定义短语已保存。</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>所有短语已重置为内置默认值。</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>搜索...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>重置为默认值</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>旗帜通报</value>
+  </data>
+</root>

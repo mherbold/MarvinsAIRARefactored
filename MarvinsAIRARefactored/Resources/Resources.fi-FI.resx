@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Yhdistä AdminBoxx-laitteeseen sovelluksen käynnistyessä</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Ota käyttöön Xtreme Scoring Race Control -integraatio</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Kirkkaus</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Tekstistä puheeksi — Käyttöoikeus</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Puheesta tekstiksi — Käyttöoikeus</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Käyttäjä — Luku</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Päävoimakkuus</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Käyttö</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Haetaan tilauksen käyttöä…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Varikkoikkuna auki</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Palauta oletusasetukset</value></data><data name="FlagCalls" xml:space="preserve"><value>Lippuilmoitukset</value></data><data name="AddPhrase" xml:space="preserve"><value>Lisää lause</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>KOMMENTTILAUSEET</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Mukauta lauseet, jotka puhutaan jokaiselle tapahtumalle valitussa kielessä. Muutokset tallennetaan Asiakirjat-kansioon ja korvaavat sisäänrakennetut lauseet.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Ota käyttöön Xtreme Scoring Race Control -integraatio</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Kaikki lauseet palautettu sisäänrakennettuihin oletusarvoihin.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Mukautetut lauseet tallennettu.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Hae...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Poista</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Palauta kaikki</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Palauta</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>KOMMENTTILAUSEET</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Mukauta lauseet, jotka puhutaan jokaiselle tapahtumalle valitussa kielessä. Muutokset tallennetaan Asiakirjat-kansioon ja korvaavat sisäänrakennetut lauseet.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Palauta kaikki</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Palauta</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Lisää lause</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Poista</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Mukautetut lauseet tallennettu.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Kaikki lauseet palautettu sisäänrakennettuihin oletusarvoihin.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Hae...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Palauta oletusasetukset</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Lippuilmoitukset</value>
+  </data>
+</root>

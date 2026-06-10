@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Connettiti all'AdminBoxx all'Avvio</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Abilita integrazione Xtreme Scoring Race Control</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Luminosità</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Sintesi vocale — Accesso</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Da voce a testo — Accesso</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Utente — Lettura</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Volume principale</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Utilizzo</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Recupero utilizzo abbonamento…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Finestra pit aperta</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Ripristina valori predefiniti</value></data><data name="FlagCalls" xml:space="preserve"><value>Avvisi bandiera</value></data><data name="AddPhrase" xml:space="preserve"><value>Aggiungi frase</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>FRASI DEL COMMENTO</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Personalizza le frasi pronunciate per ogni evento nella lingua selezionata. Le modifiche vengono salvate nella cartella Documenti e sovrascrivono le frasi integrate.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Abilita integrazione Xtreme Scoring Race Control</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Tutte le frasi ripristinate ai valori predefiniti integrati.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Frasi personalizzate salvate.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Cerca...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Rimuovi</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Reimposta tutto</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Reimposta</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>FRASI DEL COMMENTO</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Personalizza le frasi pronunciate per ogni evento nella lingua selezionata. Le modifiche vengono salvate nella cartella Documenti e sovrascrivono le frasi integrate.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Reimposta tutto</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Reimposta</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Aggiungi frase</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Rimuovi</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Frasi personalizzate salvate.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Tutte le frasi ripristinate ai valori predefiniti integrati.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Cerca...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Ripristina valori predefiniti</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Avvisi bandiera</value>
+  </data>
+</root>

@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Anslut till AdminBoxx vid appstart</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Aktivera Xtreme Scoring Race Control-integration</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Ljusstyrka</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Text till tal — Åtkomst</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Tal till text — Åtkomst</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Användare — Läsning</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Huvudvolym</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Användning</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Hämtar prenumerationsanvändning…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Pit­fönster öppet</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Återställ till standard</value></data><data name="FlagCalls" xml:space="preserve"><value>Flagganrop</value></data><data name="AddPhrase" xml:space="preserve"><value>Lägg till fras</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>KOMMENTARSFRASER</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Anpassa fraserna som talas för varje händelse på det valda språket. Ändringar sparas i mappen Dokument och åsidosätter de inbyggda fraserna.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Aktivera Xtreme Scoring Race Control-integration</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Alla fraser har återställts till de inbyggda standardvärdena.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Anpassade fraser sparade.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Sök...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Ta bort</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Återställ alla</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Återställ</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>KOMMENTARSFRASER</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Anpassa fraserna som talas för varje händelse på det valda språket. Ändringar sparas i mappen Dokument och åsidosätter de inbyggda fraserna.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Återställ alla</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Återställ</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Lägg till fras</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Ta bort</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Anpassade fraser sparade.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Alla fraser har återställts till de inbyggda standardvärdena.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Sök...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Återställ till standard</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Flagganrop</value>
+  </data>
+</root>

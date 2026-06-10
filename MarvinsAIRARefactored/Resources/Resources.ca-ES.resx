@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Connecta a Adminboxx a l'inici de l'aplicatiu</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Activa la integració de control de curses Xtreme Scoring</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Brillantor</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Text a veu — Accés</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Veu a text — Accés</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Usuari — Lectura</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Volum principal</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Ús</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Obtenint l'ús de la subscripció…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Finestra de boxes oberta</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Restableix als valors predeterminats</value></data><data name="FlagCalls" xml:space="preserve"><value>Avisos de bandera</value></data><data name="AddPhrase" xml:space="preserve"><value>Afegir frase</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>FRASES DEL COMENTARI</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Personalitzeu les frases que es diuen per a cada esdeveniment en l'idioma seleccionat. Els canvis es desen a la carpeta Documents i substitueixen les frases integrades.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Activa la integració de control de curses Xtreme Scoring</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Totes les frases s'han restablert als valors predeterminats integrats.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Frases personalitzades desades.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Cerca...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Elimina</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Restableix-les totes</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Restableix</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>FRASES DEL COMENTARI</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Personalitzeu les frases que es diuen per a cada esdeveniment en l'idioma seleccionat. Els canvis es desen a la carpeta Documents i substitueixen les frases integrades.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Restableix-les totes</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Restableix</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Afegir frase</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Elimina</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Frases personalitzades desades.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Totes les frases s'han restablert als valors predeterminats integrats.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Cerca...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Restableix als valors predeterminats</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Avisos de bandera</value>
+  </data>
+</root>

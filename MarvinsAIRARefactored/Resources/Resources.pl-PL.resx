@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Połącz z AdminBoxx podczas uruchamiania</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Włącz integrację Xtreme Scoring Race Control</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Jasność</value>
   </data>
@@ -1634,6 +1637,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Zamiana tekstu na mowę — Dostęp</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Mowa na tekst — Dostęp</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Użytkownik — Odczyt</value>
   </data>
@@ -1642,6 +1648,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Głośność główna</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Użycie</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Pobieranie użycia subskrypcji…</value>
@@ -1712,4 +1721,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Okno pit otwarte</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Przywróć ustawienia domyślne</value></data><data name="FlagCalls" xml:space="preserve"><value>Komunikaty flag</value></data><data name="AddPhrase" xml:space="preserve"><value>Dodaj frazę</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>FRAZY KOMENTARZA</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Dostosuj frazy mówione dla każdego zdarzenia w wybranym języku. Zmiany są zapisywane w folderze Dokumenty i zastępują wbudowane frazy.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Włącz integrację Xtreme Scoring Race Control</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Wszystkie frazy zresetowane do wbudowanych wartości domyślnych.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Niestandardowe frazy zapisane.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Szukaj...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Usuń</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Zresetuj wszystko</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Zresetuj</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>FRAZY KOMENTARZA</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Dostosuj frazy mówione dla każdego zdarzenia w wybranym języku. Zmiany są zapisywane w folderze Dokumenty i zastępują wbudowane frazy.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Zresetuj wszystko</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Zresetuj</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Dodaj frazę</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Usuń</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Niestandardowe frazy zapisane.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Wszystkie frazy zresetowane do wbudowanych wartości domyślnych.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Szukaj...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Przywróć ustawienia domyślne</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Komunikaty flag</value>
+  </data>
+</root>

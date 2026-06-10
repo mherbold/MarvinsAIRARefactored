@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Подключаться к AdminBoxx при запуске приложения</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Включить интеграцию Xtreme Scoring Race Control</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Яркость</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Текст в речь — Доступ</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Речь в текст — Доступ</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Пользователь — Чтение</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Основная громкость</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Использование</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Загрузка данных об использовании подписки…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Окно пит-лейна открыто</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Сбросить до значений по умолчанию</value></data><data name="FlagCalls" xml:space="preserve"><value>Объявления флагов</value></data><data name="AddPhrase" xml:space="preserve"><value>Добавить фразу</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>ФРАЗЫ КОММЕНТАТОРА</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Настройте фразы, произносимые для каждого события на выбранном языке. Изменения сохраняются в папке «Документы» и заменяют встроенные фразы.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Включить интеграцию Xtreme Scoring Race Control</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Все фразы сброшены до встроенных значений по умолчанию.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Пользовательские фразы сохранены.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Поиск...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Удалить</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Сбросить всё</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Сбросить</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>ФРАЗЫ КОММЕНТАТОРА</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Настройте фразы, произносимые для каждого события на выбранном языке. Изменения сохраняются в папке «Документы» и заменяют встроенные фразы.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Сбросить всё</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Сбросить</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Добавить фразу</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Удалить</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Пользовательские фразы сохранены.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Все фразы сброшены до встроенных значений по умолчанию.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Поиск...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Сбросить до значений по умолчанию</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Объявления флагов</value>
+  </data>
+</root>

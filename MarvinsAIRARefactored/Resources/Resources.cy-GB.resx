@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Cysylltu ag AdminBoxx wrth Gychwyn yr Ap</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Galluogi Integreiddiad Rheoli Ras Xtreme Scoring</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Disgleirdeb</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Testun i Leferydd — Mynediad</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Lleferydd i Destun — Mynediad</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Defnyddiwr — Darllen</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Prif Sain</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Defnydd</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Yn nôl defnydd tanysgrifiad…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Ffenestr Pit Ar Agor</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Ailosod i'r Rhagosodiadau</value></data><data name="FlagCalls" xml:space="preserve"><value>Galwadau baner</value></data><data name="AddPhrase" xml:space="preserve"><value>Ychwanegu Ymadrodd</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>YMADRODDION SYLWEBAETH</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Addasu'r ymadroddion a siaredir ar gyfer pob digwyddiad yn yr iaith a ddewiswyd. Caiff newidiadau eu cadw i'ch ffolder Dogfennau ac maent yn disodli'r ymadroddion adeiledig.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Galluogi Integreiddiad Rheoli Ras Xtreme Scoring</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Ailosodwyd pob ymadrodd i'r rhagosodiadau adeiledig.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Ymadroddion personol wedi'u cadw.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Chwilio...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Dileu</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Ailosod Pob Un</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Ailosod</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>YMADRODDION SYLWEBAETH</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Addasu'r ymadroddion a siaredir ar gyfer pob digwyddiad yn yr iaith a ddewiswyd. Caiff newidiadau eu cadw i'ch ffolder Dogfennau ac maent yn disodli'r ymadroddion adeiledig.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Ailosod Pob Un</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Ailosod</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Ychwanegu Ymadrodd</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Dileu</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Ymadroddion personol wedi'u cadw.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Ailosodwyd pob ymadrodd i'r rhagosodiadau adeiledig.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Chwilio...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Ailosod i'r Rhagosodiadau</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Galwadau baner</value>
+  </data>
+</root>

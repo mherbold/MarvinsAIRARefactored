@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Connectez-vous à AdminBoxx au démarrage de l'application</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Activer l'intégration Xtreme Scoring Race Control</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Luminosité</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Synthèse vocale — Accès</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Reconnaissance vocale — Accès</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Utilisateur — Lecture</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Volume principal</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Utilisation</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Récupération de l'utilisation de l'abonnement…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Fenêtre de pit ouverte</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Réinitialiser aux valeurs par défaut</value></data><data name="FlagCalls" xml:space="preserve"><value>Annonces de drapeau</value></data><data name="AddPhrase" xml:space="preserve"><value>Ajouter une phrase</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>PHRASES DE COMMENTAIRE</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Personnalisez les phrases prononcées pour chaque événement dans la langue sélectionnée. Les modifications sont enregistrées dans votre dossier Documents et remplacent les phrases intégrées.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Activer l'intégration Xtreme Scoring Race Control</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Toutes les phrases ont été réinitialisées aux valeurs par défaut intégrées.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Phrases personnalisées enregistrées.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Rechercher...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Supprimer</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Tout réinitialiser</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Réinitialiser</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>PHRASES DE COMMENTAIRE</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Personnalisez les phrases prononcées pour chaque événement dans la langue sélectionnée. Les modifications sont enregistrées dans votre dossier Documents et remplacent les phrases intégrées.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Tout réinitialiser</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Réinitialiser</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Ajouter une phrase</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Supprimer</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Phrases personnalisées enregistrées.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Toutes les phrases ont été réinitialisées aux valeurs par défaut intégrées.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Rechercher...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Réinitialiser aux valeurs par défaut</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Annonces de drapeau</value>
+  </data>
+</root>

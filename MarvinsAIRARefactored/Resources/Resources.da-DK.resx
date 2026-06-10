@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Opret forbindelse til AdminBoxx ved program start</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Aktiver Xtreme Scoring Race Control-integration</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Lys</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Tekst til tale — Adgang</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Tale til tekst — Adgang</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Bruger — Læsning</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Hovedlydstyrke</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Forbrug</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Henter abonnementsforbrug…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Pit-vindue åbent</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Nulstil til standarder</value></data><data name="FlagCalls" xml:space="preserve"><value>Flagopkald</value></data><data name="AddPhrase" xml:space="preserve"><value>Tilføj sætning</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>KOMMENTARSÆTNINGER</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Tilpas de sætninger, der tales for hver begivenhed på det valgte sprog. Ændringer gemmes i mappen Dokumenter og tilsidesætter de indbyggede sætninger.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Aktiver Xtreme Scoring Race Control-integration</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Alle sætninger er nulstillet til de indbyggede standarder.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Brugerdefinerede sætninger gemt.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Søg...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Fjern</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Nulstil alle</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Nulstil</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>KOMMENTARSÆTNINGER</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Tilpas de sætninger, der tales for hver begivenhed på det valgte sprog. Ændringer gemmes i mappen Dokumenter og tilsidesætter de indbyggede sætninger.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Nulstil alle</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Nulstil</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Tilføj sætning</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Fjern</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Brugerdefinerede sætninger gemt.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Alle sætninger er nulstillet til de indbyggede standarder.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Søg...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Nulstil til standarder</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Flagopkald</value>
+  </data>
+</root>

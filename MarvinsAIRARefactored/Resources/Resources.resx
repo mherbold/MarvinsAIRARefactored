@@ -1659,9 +1659,6 @@
   <data name="SubscriptionUsageUnavailable" xml:space="preserve">
     <value>Plan usage unavailable</value>
   </data>
-  <data name="SttSubscriptionUsageEstimated" xml:space="preserve">
-    <value>Estimated STT time remaining: {0:F2} hours ({1:F1} minutes). Remaining credits: {2:N0}. Next reset: {3}. Raw usage: {4:N0} / {5:N0} credits ({6:F1}%). Current overage: {7:F2}.</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Voice</value>
   </data>

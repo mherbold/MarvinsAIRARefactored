@@ -423,6 +423,9 @@
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Uygulama Başlangıcında AdminBoxx Bağlan</value>
   </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Xtreme Scoring Race Control entegrasyonunu etkinleştir</value>
+  </data>
   <data name="Brightness" xml:space="preserve">
     <value>Parlaklık</value>
   </data>
@@ -1632,6 +1635,9 @@
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
     <value>Metinden Sese — Erişim</value>
   </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Sesten Metne — Erişim</value>
+  </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
     <value>Kullanıcı — Okuma</value>
   </data>
@@ -1640,6 +1646,9 @@
   </data>
   <data name="MasterVolume" xml:space="preserve">
     <value>Ana Ses Seviyesi</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Kullanım</value>
   </data>
   <data name="SubscriptionUsageLoading" xml:space="preserve">
     <value>Abonelik kullanımı alınıyor…</value>
@@ -1710,4 +1719,37 @@
   <data name="PitWindowOpen" xml:space="preserve">
     <value>Pit Penceresi Açık</value>
   </data>
-<data name="ResetFanPowerCurveToDefaults" xml:space="preserve"><value>Varsayılanlara sıfırla</value></data><data name="FlagCalls" xml:space="preserve"><value>Bayrak duyuruları</value></data><data name="AddPhrase" xml:space="preserve"><value>İfade ekle</value></data><data name="CommentaryPhrases_UC" xml:space="preserve"><value>YORUM İFADELERİ</value></data><data name="EditCommentaryPhrasesDescription" xml:space="preserve"><value>Seçilen dilde her etkinlik için söylenen ifadeleri özelleştirin. Değişiklikler Belgeler klasörünüze kaydedilir ve yerleşik ifadelerin yerine geçer.</value></data><data name="EnableXsrcIntegration" xml:space="preserve"><value>Xtreme Scoring Race Control entegrasyonunu etkinleştir</value></data><data name="PhraseEditorResetAll" xml:space="preserve"><value>Tüm ifadeler yerleşik varsayılanlara sıfırlandı.</value></data><data name="PhraseEditorSaved" xml:space="preserve"><value>✔  Özel ifadeler kaydedildi.</value></data><data name="PhraseSearch" xml:space="preserve"><value>Ara...</value></data><data name="RemovePhrase" xml:space="preserve"><value>Kaldır</value></data><data name="ResetAllPhrases" xml:space="preserve"><value>Tümünü sıfırla</value></data><data name="ResetEventPhrases" xml:space="preserve"><value>Sıfırla</value></data></root>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>YORUM İFADELERİ</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Seçilen dilde her etkinlik için söylenen ifadeleri özelleştirin. Değişiklikler Belgeler klasörünüze kaydedilir ve yerleşik ifadelerin yerine geçer.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Tümünü sıfırla</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Sıfırla</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>İfade ekle</value>
+  </data>
+  <data name="RemovePhrase" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✔  Özel ifadeler kaydedildi.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Tüm ifadeler yerleşik varsayılanlara sıfırlandı.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Ara...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Varsayılanlara sıfırla</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Bayrak duyuruları</value>
+  </data>
+</root>
