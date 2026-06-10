@@ -21,6 +21,7 @@ public sealed class SpeechToText : IDisposable
 	private const int BitsPerSample = 16;
 	private const int SegmentDurationMs = 250;
 	private const int RecordingBufferSeconds = 5;
+	private const string BatchSpeechToTextModelId = "scribe_v2";
 	private const string RealtimeSpeechToTextModelId = "scribe_v2_realtime";
 	private const string RealtimeSpeechToTextWebSocketUrl = "wss://api.elevenlabs.io/v1/speech-to-text/realtime";
 	private const int RealtimeWebSocketConnectTimeoutSeconds = 15;
@@ -79,10 +80,108 @@ public sealed class SpeechToText : IDisposable
 
 	private static int PostTransmitFlushSegments => 1;
 
+	private sealed record ElevenLabsErrorInfo( string Status, string Message, string Error );
+
+	private static ElevenLabsErrorInfo ParseElevenLabsErrorInfo( string body )
+	{
+		if ( string.IsNullOrWhiteSpace( body ) )
+		{
+			return new ElevenLabsErrorInfo( string.Empty, string.Empty, string.Empty );
+		}
+
+		try
+		{
+			var root = JObject.Parse( body );
+			var detail = root[ "detail" ];
+
+			static string ReadString( JToken? token, string name )
+			{
+				if ( token is JObject tokenObject )
+				{
+					return tokenObject[ name ]?.Value<string>() ?? string.Empty;
+				}
+
+				return string.Empty;
+			}
+
+			var status = ReadString( detail, "status" );
+
+			if ( string.IsNullOrWhiteSpace( status ) )
+			{
+				status = root[ "status" ]?.Value<string>()
+					?? root[ "message_type" ]?.Value<string>()
+					?? string.Empty;
+			}
+
+			var message = ReadString( detail, "message" );
+
+			if ( string.IsNullOrWhiteSpace( message ) )
+			{
+				message = root[ "message" ]?.Value<string>() ?? detail?.Value<string>() ?? string.Empty;
+			}
+
+			var error = ReadString( detail, "error" );
+
+			if ( string.IsNullOrWhiteSpace( error ) )
+			{
+				error = root[ "error" ]?.Value<string>() ?? string.Empty;
+			}
+
+			return new ElevenLabsErrorInfo( status, message, error );
+		}
+		catch
+		{
+			return new ElevenLabsErrorInfo( string.Empty, body, string.Empty );
+		}
+	}
+
+	private static bool LooksLikeMissingPermission( ElevenLabsErrorInfo errorInfo )
+	{
+		var text = $"{errorInfo.Status} {errorInfo.Message} {errorInfo.Error}";
+
+		return text.Contains( "missing_permissions", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "permission", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "forbidden", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "not authorized", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "not allowed", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "access", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "plan", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "quota", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "disabled", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "restrict", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "endpoint", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "model", StringComparison.OrdinalIgnoreCase );
+	}
+
+	private static bool LooksLikeInvalidKey( ElevenLabsErrorInfo errorInfo )
+	{
+		var text = $"{errorInfo.Status} {errorInfo.Message} {errorInfo.Error}";
+
+		return text.Contains( "invalid_api_key", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "invalid api key", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "invalid key", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "invalid xi-api-key", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "incorrect api key", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "malformed api key", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "unauthenticated", StringComparison.OrdinalIgnoreCase );
+	}
+
+	private static bool LooksLikeProbePayloadAcceptedPastAuth( ElevenLabsErrorInfo errorInfo )
+	{
+		var text = $"{errorInfo.Status} {errorInfo.Message} {errorInfo.Error}";
+
+		return text.Contains( "audio", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "file", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "duration", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "too short", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "invalid wav", StringComparison.OrdinalIgnoreCase )
+			|| text.Contains( "unprocessable", StringComparison.OrdinalIgnoreCase );
+	}
+
 	/// <summary>
 	/// Probes the ElevenLabs STT endpoint using a proper multipart/form-data request (with a
 	/// 1-byte silent WAV) so ElevenLabs evaluates the key's permissions before validating the
-	/// audio payload.  A plain JSON body causes the API to reject with 422/415 before it ever
+	/// audio payload. A plain JSON body causes the API to reject with 422/415 before it ever
 	/// checks permissions, which would produce a false Granted result.
 	/// </summary>
 	private static async Task<ElevenLabs.PermissionStatus> ProbeSttPermissionAsync( string apiKey, CancellationToken cancellationToken )
@@ -101,10 +200,9 @@ public sealed class SpeechToText : IDisposable
 
 			using var form = new MultipartFormDataContent();
 
-			form.Add( new StringContent( RealtimeSpeechToTextModelId ), "model_id" );
+			form.Add( new StringContent( BatchSpeechToTextModelId ), "model_id" );
 
 			var fileContent = new ByteArrayContent( minimalWav );
-
 			fileContent.Headers.ContentType = new MediaTypeHeaderValue( "audio/wav" );
 
 			form.Add( fileContent, "file", "probe.wav" );
@@ -113,35 +211,211 @@ public sealed class SpeechToText : IDisposable
 
 			using var response = await ElevenLabs.HttpClient.SendAsync( request, HttpCompletionOption.ResponseHeadersRead, cancellationToken );
 
-			app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync POST speech-to-text: {(int) response.StatusCode}" );
-
 			if ( response.IsSuccessStatusCode )
 			{
+				app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync POST speech-to-text: {(int) response.StatusCode} {response.StatusCode}; granted" );
+
 				return ElevenLabs.PermissionStatus.Granted;
 			}
 
+			var body = await response.Content.ReadAsStringAsync( cancellationToken );
+			var errorInfo = ParseElevenLabsErrorInfo( body );
+
+			app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync POST speech-to-text: {(int) response.StatusCode} {response.StatusCode}; body={TruncateForLog( body )}" );
+
 			if ( response.StatusCode == System.Net.HttpStatusCode.Unauthorized )
 			{
-				var body = await response.Content.ReadAsStringAsync( cancellationToken );
-				var detail = string.Empty;
-
-				try
+				if ( LooksLikeMissingPermission( errorInfo ) )
 				{
-					detail = JObject.Parse( body )[ "detail" ]?[ "status" ]?.Value<string>() ?? string.Empty;
+					return ElevenLabs.PermissionStatus.MissingPermission;
 				}
-				catch { /* non-JSON body — treat as invalid key */ }
 
-				return detail == "missing_permissions" ? ElevenLabs.PermissionStatus.MissingPermission : ElevenLabs.PermissionStatus.InvalidKey;
+				return ElevenLabs.PermissionStatus.InvalidKey;
 			}
 
-			// Any other 4xx (e.g. 422 unprocessable for our tiny probe audio) means auth passed.
-			return ElevenLabs.PermissionStatus.Granted;
+			if ( response.StatusCode == System.Net.HttpStatusCode.Forbidden )
+			{
+				if ( LooksLikeMissingPermission( errorInfo ) )
+				{
+					return ElevenLabs.PermissionStatus.MissingPermission;
+				}
+
+				if ( LooksLikeInvalidKey( errorInfo ) )
+				{
+					return ElevenLabs.PermissionStatus.InvalidKey;
+				}
+
+				return ElevenLabs.PermissionStatus.MissingPermission;
+			}
+
+			if ( response.StatusCode == System.Net.HttpStatusCode.BadRequest ||
+				 response.StatusCode == System.Net.HttpStatusCode.NotFound ||
+				 response.StatusCode == System.Net.HttpStatusCode.UnsupportedMediaType ||
+				 response.StatusCode == System.Net.HttpStatusCode.UnprocessableEntity )
+			{
+				if ( LooksLikeMissingPermission( errorInfo ) )
+				{
+					return ElevenLabs.PermissionStatus.MissingPermission;
+				}
+
+				if ( LooksLikeInvalidKey( errorInfo ) )
+				{
+					return ElevenLabs.PermissionStatus.InvalidKey;
+				}
+
+				if ( LooksLikeProbePayloadAcceptedPastAuth( errorInfo ) )
+				{
+					return ElevenLabs.PermissionStatus.Granted;
+				}
+
+				app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync inconclusive 4xx response; treating as MissingPermission: {(int) response.StatusCode} {response.StatusCode}" );
+
+				return ElevenLabs.PermissionStatus.MissingPermission;
+			}
+
+			if ( response.StatusCode == System.Net.HttpStatusCode.TooManyRequests )
+			{
+				app.Logger.WriteLine( "[SpeechToText] ProbeSttPermissionAsync rate limited; treating as MissingPermission/inconclusive." );
+
+				return ElevenLabs.PermissionStatus.MissingPermission;
+			}
+
+			if ( (int) response.StatusCode >= 500 )
+			{
+				app.Logger.WriteLine( "[SpeechToText] ProbeSttPermissionAsync server error; treating as MissingPermission/inconclusive, not InvalidKey." );
+
+				return ElevenLabs.PermissionStatus.MissingPermission;
+			}
+
+			app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync unexpected status; treating as MissingPermission: {(int) response.StatusCode} {response.StatusCode}" );
+
+			return ElevenLabs.PermissionStatus.MissingPermission;
+		}
+		catch ( OperationCanceledException ) when ( cancellationToken.IsCancellationRequested )
+		{
+			throw;
 		}
 		catch ( Exception ex )
 		{
-			app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync exception: {ex.Message}" );
+			app.Logger.WriteLine( $"[SpeechToText] ProbeSttPermissionAsync exception/inconclusive: {ex.Message}" );
 
-			return ElevenLabs.PermissionStatus.InvalidKey;
+			return ElevenLabs.PermissionStatus.MissingPermission;
+		}
+	}
+
+	private static async Task<ElevenLabs.PermissionStatus> ProbeRealtimeSttPermissionAsync( string apiKey, CancellationToken cancellationToken )
+	{
+		var app = App.Instance!;
+
+		try
+		{
+			var uri = new Uri( $"{RealtimeSpeechToTextWebSocketUrl}?model_id={Uri.EscapeDataString( RealtimeSpeechToTextModelId )}&audio_format=pcm_16000&commit_strategy=manual" );
+
+			using var socket = new ClientWebSocket();
+			socket.Options.SetRequestHeader( "xi-api-key", apiKey );
+
+			using var connectTimeoutCts = CancellationTokenSource.CreateLinkedTokenSource( cancellationToken );
+			connectTimeoutCts.CancelAfter( TimeSpan.FromSeconds( 5 ) );
+
+			await socket.ConnectAsync( uri, connectTimeoutCts.Token );
+
+			app.Logger.WriteLine( $"[SpeechToText] ProbeRealtimeSttPermissionAsync WS connected: state={socket.State}" );
+
+			var permissionStatus = ElevenLabs.PermissionStatus.Granted;
+			var sawAuthError = false;
+			var buffer = new byte[ 16 * 1024 ];
+
+			using var receiveTimeoutCts = CancellationTokenSource.CreateLinkedTokenSource( cancellationToken );
+			receiveTimeoutCts.CancelAfter( TimeSpan.FromSeconds( 2 ) );
+
+			try
+			{
+				var result = await socket.ReceiveAsync( new ArraySegment<byte>( buffer ), receiveTimeoutCts.Token );
+
+				if ( result.MessageType == WebSocketMessageType.Text && result.Count > 0 )
+				{
+					var body = Encoding.UTF8.GetString( buffer, 0, result.Count );
+
+					app.Logger.WriteLine( $"[SpeechToText] ProbeRealtimeSttPermissionAsync WS first message: {TruncateForLog( body )}" );
+
+					try
+					{
+						var root = JObject.Parse( body );
+						var messageType = root[ "message_type" ]?.Value<string>();
+
+						if ( string.Equals( messageType, "auth_error", StringComparison.OrdinalIgnoreCase ) )
+						{
+							sawAuthError = true;
+
+							var authErrorInfo = ParseElevenLabsErrorInfo( body );
+							var authText = $"{authErrorInfo.Status} {authErrorInfo.Message} {authErrorInfo.Error}";
+
+							if ( LooksLikeInvalidKey( authErrorInfo )
+								|| authText.Contains( "must be authenticated", StringComparison.OrdinalIgnoreCase ) )
+							{
+								permissionStatus = ElevenLabs.PermissionStatus.InvalidKey;
+							}
+							else
+							{
+								permissionStatus = ElevenLabs.PermissionStatus.MissingPermission;
+							}
+						}
+					}
+					catch
+					{
+						// Ignore non-JSON first message during probe.
+					}
+				}
+			}
+			catch ( OperationCanceledException ) when ( !cancellationToken.IsCancellationRequested )
+			{
+				if ( !sawAuthError )
+				{
+					app.Logger.WriteLine( "[SpeechToText] ProbeRealtimeSttPermissionAsync no auth_error received during short probe window; treating as Granted." );
+				}
+			}
+
+			if ( socket.State is WebSocketState.Open or WebSocketState.CloseReceived )
+			{
+				try
+				{
+					await socket.CloseAsync( WebSocketCloseStatus.NormalClosure, "probe complete", CancellationToken.None );
+				}
+				catch
+				{
+					// Ignore close failures during probe cleanup.
+				}
+			}
+
+			return permissionStatus;
+		}
+		catch ( OperationCanceledException ) when ( cancellationToken.IsCancellationRequested )
+		{
+			throw;
+		}
+		catch ( WebSocketException ex )
+		{
+			app.Logger.WriteLine( $"[SpeechToText] ProbeRealtimeSttPermissionAsync websocket exception/inconclusive: {ex.Message}" );
+
+			var errorInfo = new ElevenLabsErrorInfo( string.Empty, ex.Message, string.Empty );
+
+			if ( LooksLikeInvalidKey( errorInfo ) )
+			{
+				return ElevenLabs.PermissionStatus.InvalidKey;
+			}
+
+			if ( LooksLikeMissingPermission( errorInfo ) )
+			{
+				return ElevenLabs.PermissionStatus.MissingPermission;
+			}
+
+			return ElevenLabs.PermissionStatus.MissingPermission;
+		}
+		catch ( Exception ex )
+		{
+			app.Logger.WriteLine( $"[SpeechToText] ProbeRealtimeSttPermissionAsync exception/inconclusive: {ex.Message}" );
+
+			return ElevenLabs.PermissionStatus.MissingPermission;
 		}
 	}
 
@@ -154,15 +428,20 @@ public sealed class SpeechToText : IDisposable
 			return ElevenLabs.SttKeyVerificationResult.Empty;
 		}
 
-		var speechToTextStatus = await ProbeSttPermissionAsync( apiKey, cancellationToken );
+		var batchSpeechToTextStatus = await ProbeSttPermissionAsync( apiKey, cancellationToken );
+		var realtimeSpeechToTextStatus = await ProbeRealtimeSttPermissionAsync( apiKey, cancellationToken );
 		var userReadStatus = await ElevenLabs.ProbePermissionAsync( apiKey, HttpMethod.Get, "https://api.elevenlabs.io/v1/user/subscription", cancellationToken );
 
-		if ( speechToTextStatus == ElevenLabs.PermissionStatus.InvalidKey && userReadStatus == ElevenLabs.PermissionStatus.InvalidKey )
+		App.Instance?.Logger.WriteLine( $"[SpeechToText] VerifyApiKeyAsync STT probe summary: batch={batchSpeechToTextStatus}, realtime={realtimeSpeechToTextStatus}, userRead={userReadStatus}" );
+
+		if ( batchSpeechToTextStatus == ElevenLabs.PermissionStatus.InvalidKey
+			&& realtimeSpeechToTextStatus == ElevenLabs.PermissionStatus.InvalidKey
+			&& userReadStatus == ElevenLabs.PermissionStatus.InvalidKey )
 		{
 			return ElevenLabs.SttKeyVerificationResult.Invalid;
 		}
 
-		return new ElevenLabs.SttKeyVerificationResult( true, speechToTextStatus, userReadStatus );
+		return new ElevenLabs.SttKeyVerificationResult( true, realtimeSpeechToTextStatus, userReadStatus );
 	}
 
 	public async Task EnableAsync()
@@ -902,6 +1181,11 @@ public sealed class SpeechToText : IDisposable
 			if ( !string.IsNullOrWhiteSpace( errorText ) )
 			{
 				App.Instance?.Logger.WriteLine( $"[SpeechToText] WS IN server error: type={messageType ?? "(unknown)"}, error={errorText}" );
+			}
+
+			if ( string.Equals( messageType, "auth_error", StringComparison.OrdinalIgnoreCase ) )
+			{
+				App.Instance?.Logger.WriteLine( $"[SpeechToText] WS IN auth_error: realtime STT authentication failed; key may be invalid, disabled, restricted, or not authorized for realtime STT/Scribe. serverMessage='{TruncateForLog( errorText ?? json, 400 )}'" );
 			}
 
 			var text = root[ "text" ]?.Value<string>() ?? root[ "transcript" ]?.Value<string>() ?? root[ "partial" ]?.Value<string>() ?? message?[ "text" ]?.Value<string>() ?? textEvent?[ "text" ]?.Value<string>();
