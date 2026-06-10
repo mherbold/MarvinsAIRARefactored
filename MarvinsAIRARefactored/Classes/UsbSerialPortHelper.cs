@@ -88,6 +88,12 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 				if ( _handshake != string.Empty )
 				{
+					if ( !name.Contains( "CH340", StringComparison.OrdinalIgnoreCase ) )
+					{
+						app.Logger.WriteLine( $"[UsbSerialPortHelper] Skipping handshake probe on '{portName}' because device name '{name}' does not contain 'CH340'" );
+						continue;
+					}
+
 					app.Logger.WriteLine( $"[UsbSerialPortHelper] Testing handshake mode on '{portName}'" );
 
 					try
@@ -261,7 +267,6 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 					}
 					catch
 					{
-
 					}
 
 					_serialPort.Close();
@@ -379,12 +384,37 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		}
 	}
 
+	private void HandleReadFailure( string operation, Exception exception )
+	{
+		var app = App.Instance;
+
+		app?.Logger.WriteLine( $"[UsbSerialPortHelper] {operation} failed: {exception.Message} : '{_portName}'." );
+
+		if ( _serialPort == null || !_serialPort.IsOpen )
+		{
+			return;
+		}
+
+		try
+		{
+			_serialPort.Close();
+		}
+		catch ( Exception closeException )
+		{
+			app?.Logger.WriteLine( $"[UsbSerialPortHelper] Failed to close serial port {_portName} after {operation} failure: {closeException.Message}" );
+		}
+	}
+
 	private void OnDataReceived( object sender, SerialDataReceivedEventArgs e )
 	{
+		var app = App.Instance;
+
 		try
 		{
 			if ( _serialPort != null )
 			{
+				// app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: EventType={e.EventType}, BytesToRead={_serialPort.BytesToRead}" );
+
 				var incoming = _serialPort.ReadExisting();
 
 				_dataBuffer.Append( incoming );
@@ -397,17 +427,24 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 					_dataBuffer.Remove( 0, newlineIndex + 1 );
 
+					// app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: Dispatching line '{data}'" );
+
 					DataReceived?.Invoke( this, data );
 				}
 			}
 		}
-		catch ( Exception )
+		catch ( Exception exception )
 		{
+			HandleReadFailure( "OnDataReceived", exception );
 		}
 	}
 
 	private async Task MonitorPort( CancellationToken token )
 	{
+		var app = App.Instance;
+
+		app?.Logger.WriteLine( $"[UsbSerialPortHelper] MonitorPort started for '{_portName}'." );
+
 		while ( !token.IsCancellationRequested )
 		{
 			try
@@ -416,18 +453,26 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			}
 			catch ( OperationCanceledException )
 			{
+				app?.Logger.WriteLine( $"[UsbSerialPortHelper] MonitorPort cancelled for '{_portName}'." );
 				break;
 			}
 
 			using ( _lock.EnterScope() )
 			{
-				if ( ( _serialPort == null ) || !_serialPort.IsOpen )
+				var portIsNull = _serialPort == null;
+				var portIsOpen = _serialPort?.IsOpen ?? false;
+
+				if ( portIsNull || !portIsOpen )
 				{
+					app?.Logger.WriteLine( $"[UsbSerialPortHelper] MonitorPort detected '{_portName}' is no longer open; closing and raising PortClosed." );
+
 					Close();
 					PortClosed?.Invoke( this, EventArgs.Empty );
 					break;
 				}
 			}
 		}
+
+		app?.Logger.WriteLine( $"[UsbSerialPortHelper] MonitorPort exited for '{_portName}'." );
 	}
 }

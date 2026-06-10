@@ -1627,7 +1627,13 @@ public partial class AdminBoxx
 
 	private void OnPortClosed( object? sender, EventArgs e )
 	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AdminBoxx] OnPortClosed >>>" );
+
 		Disconnect();
+
+		app.Logger.WriteLine( "[AdminBoxx] OnPortClosed <<<" );
 	}
 
 	private void OnTimer( object? sender, EventArgs e )
