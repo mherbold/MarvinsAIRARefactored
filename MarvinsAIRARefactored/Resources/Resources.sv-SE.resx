@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>Flagganrop</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Startar...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Initierar Logger...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Initierar topnivåfönster...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Initierar ljudhanterare...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>Initierar AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Initierar simulator...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Initierar direkt inmatning...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Initierar Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Initierar text till tal...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Initierar kommentar...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Initierar molntjänst...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Initierar graf...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Initierar pedaler...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Initierar racinghjul...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Initierar ljud...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>Initierar LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Initierar multimediatimer...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Initierar inspelningshanterare...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Initierar tidsmarkeringar...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Initierar telemetri...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Initierar vind...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Initierar säkerhetsbältespännare...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>Initierar HID Hot Plug Monitor...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Initierar Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Initierar inställningsfil...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Initierar huvudfönster...</value>
   </data>
 </root>

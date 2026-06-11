@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>Zászlójelzések</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Indítás...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Naplózó inicializálása...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Felső szintű ablak inicializálása...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Hangkezelő inicializálása...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>AdminBoxx inicializálása...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Szimulátor inicializálása...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Közvetlen bemenet inicializálása...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Stream Deck inicializálása...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Szövegfelolvasás inicializálása...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Megjegyzés inicializálása...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Felhőszolgáltatás inicializálása...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Grafikon inicializálása...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Pedálok inicializálása...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Versenykerék inicializálása...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Hangok inicializálása...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>LFE inicializálása...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Multimédia időzítő inicializálása...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Felvételkezelő inicializálása...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Időzítési jelölők inicializálása...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Telemetria inicializálása...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Szél inicializálása...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Biztonsági öv feszítő inicializálása...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>HID Hot Plug Monitor inicializálása...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Trading Paints inicializálása...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Beállítások fájl inicializálása...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Főablak inicializálása...</value>
   </data>
 </root>

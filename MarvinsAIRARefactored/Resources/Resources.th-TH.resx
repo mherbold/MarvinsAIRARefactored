@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>การแจ้งเตือนธง</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>กำลังเริ่มต้น...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>กำลังเริ่มต้น Logger...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>กำลังเริ่มต้นหน้าต่างระดับสูงสุด...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>กำลังเริ่มต้น Audio Manager...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>กำลังเริ่มต้น AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>กำลังเริ่มต้นเครื่องจำลอง...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>กำลังเริ่มต้น Direct Input...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>กำลังเริ่มต้น Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>กำลังเริ่มต้นการแปลงข้อความเป็นเสียง...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>กำลังเริ่มต้น Commentary...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>กำลังเริ่มต้นบริการคลาวด์...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>กำลังเริ่มต้น Graph...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>กำลังเริ่มต้นเพดาล...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>กำลังเริ่มต้นพวงมาลัยการแข่ง...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>กำลังเริ่มต้นเสียง...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>กำลังเริ่มต้น LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>กำลังเริ่มต้น Multimedia Timer...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>กำลังเริ่มต้น Recording Manager...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>กำลังเริ่มต้น Timing Markers...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>กำลังเริ่มต้น Telemetry...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>กำลังเริ่มต้นลม...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>กำลังเริ่มต้น Seat Belt Tensioner...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>กำลังเริ่มต้น HID Hot Plug Monitor...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>กำลังเริ่มต้น Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>กำลังเริ่มต้นไฟล์การตั้งค่า...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>กำลังเริ่มต้นหน้าต่างหลัก...</value>
   </data>
 </root>

@@ -1752,4 +1752,82 @@
   <data name="FlagCalls" xml:space="preserve">
     <value>Avisos de bandeira</value>
   </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Inicializando...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Inicializando Registrador...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Inicializando Janela de Nível Superior...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Inicializando Gerenciador de Áudio...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>Inicializando AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Inicializando Simulador...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Inicializando Entrada Direta...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Inicializando Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Inicializando Conversão de Texto em Fala...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Inicializando Comentário...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Inicializando Serviço em Nuvem...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Inicializando Gráfico...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Inicializando Pedais...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Inicializando Volante de Corrida...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Inicializando Sons...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>Inicializando LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Inicializando Temporizador Multimídia...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Inicializando Gerenciador de Gravação...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Inicializando Marcadores de Tempo...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Inicializando Telemetria...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Inicializando Vento...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Inicializando Tensor de Cinto de Segurança...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>Inicializando Monitor Hot Plug HID...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Inicializando Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Inicializando Arquivo de Configurações...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Inicializando Janela Principal...</value>
+  </data>
 </root>

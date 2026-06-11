@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>Lippuilmoitukset</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Käynnistetään...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Alustetaan Lokitin...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Alustetaan Ylimmän Tason Ikkuna...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Alustetaan Äänenhallinta...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>Alustetaan AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Alustetaan Simulaattori...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Alustetaan Suora Tulo...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Alustetaan Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Alustetaan Tekstistä Puheeksi...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Alustetaan Kommentaari...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Alustetaan Pilvipalvelu...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Alustetaan Kaavio...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Alustetaan Polkimet...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Alustetaan Kilpailuohjauspyörä...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Alustetaan Äänet...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>Alustetaan LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Alustetaan Multimediataikaajin...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Alustetaan Tallennuksenhallinta...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Alustetaan Ajoitusmerkit...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Alustetaan Telemetria...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Alustetaan Tuuli...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Alustetaan Turvavöiden Jännitys...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>Alustetaan HID-kuumaliitäntömonitori...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Alustetaan Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Alustetaan Asetustiedosto...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Alustetaan Pääikkuna...</value>
   </data>
 </root>

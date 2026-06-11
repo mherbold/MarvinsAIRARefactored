@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>Flaggmeldinger</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Starter...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Initialiserer Logger...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Initialiserer topplevelvindu...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Initialiserer lydbehandler...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>Initialiserer AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Initialiserer simulator...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Initialiserer direkte inndata...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Initialiserer Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Initialiserer tekst til tale...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Initialiserer kommentar...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Initialiserer skytjeneste...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Initialiserer graf...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Initialiserer pedaler...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Initialiserer racinghjul...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Initialiserer lyder...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>Initialiserer LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Initialiserer multimedieunstoppbar...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Initialiserer opptak-behandler...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Initialiserer timingsmarkører...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Initialiserer telemetri...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Initialiserer vind...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Initialiserer sikkerhetsbeltespenn...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>Initialiserer HID Hot Plug Monitor...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Initialiserer Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Initialiserer innstillingsfil...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Initialiserer hovedvindu...</value>
   </data>
 </root>

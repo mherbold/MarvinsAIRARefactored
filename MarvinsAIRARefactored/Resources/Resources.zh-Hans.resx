@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>旗帜通报</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>启动中...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>初始化日志记录器...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>初始化顶级窗口...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>初始化音频管理器...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>初始化AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>初始化模拟器...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>初始化直接输入...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>初始化Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>初始化文本转语音...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>初始化评论...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>初始化云服务...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>初始化图表...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>初始化踏板...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>初始化赛车方向盘...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>初始化声音...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>初始化LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>初始化多媒体计时器...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>初始化录制管理器...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>初始化计时标记...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>初始化遥测...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>初始化风...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>初始化安全带张紧器...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>初始化HID热插拔监视器...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>初始化Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>初始化设置文件...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>初始化主窗口...</value>
   </data>
 </root>

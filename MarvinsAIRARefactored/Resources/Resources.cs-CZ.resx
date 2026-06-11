@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>Hlášení vlajek</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Spouštění...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Inicializuji Loger...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Inicializuji Okno Nejvyšší Úrovně...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Inicializuji Správce Zvuku...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>Inicializuji AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Inicializuji Simulátor...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Inicializuji Přímý Vstup...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Inicializuji Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Inicializuji Převod Textu na Řeč...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Inicializuji Komentář...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Inicializuji Cloudovou Službu...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Inicializuji Graf...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Inicializuji Pedály...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Inicializuji Závodní Volant...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Inicializuji Zvuky...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>Inicializuji LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Inicializuji Multimediální Časovač...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Inicializuji Správce Nahrávání...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Inicializuji Značky Času...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Inicializuji Telemetrii...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Inicializuji Vítr...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Inicializuji Zesilovací Pas Bezečnosti...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>Inicializuji Monitor Hot Plug HID...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Inicializuji Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Inicializuji Soubor Nastavení...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Inicializuji Hlavní Okno...</value>
   </data>
 </root>

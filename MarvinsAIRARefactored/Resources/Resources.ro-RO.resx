@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>Anunțuri steag</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Se inițiază...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Inițializare Logger...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Inițializare Fereastra de Nivel Superior...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Inițializare Audio Manager...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>Inițializare AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Inițializare Simulator...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Inițializare Intrare Directă...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Inițializare Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Inițializare Text-to-Speech...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Inițializare Comentariu...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Inițializare Serviciu Cloud...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Inițializare Grafic...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Inițializare Pedale...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Inițializare Roată de Curse...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Inițializare Sunete...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>Inițializare LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Inițializare Timer Multimedia...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Inițializare Manager Înregistrare...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Inițializare Marcatori Timp...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Inițializare Telemetrie...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Inițializare Vânt...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Inițializare Tensioner Centură Siguranță...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>Inițializare HID Hot Plug Monitor...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Inițializare Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Inițializare Fișier Setări...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Inițializare Fereastra Principală...</value>
   </data>
 </root>

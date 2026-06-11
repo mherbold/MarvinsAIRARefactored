@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1754,5 +1754,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>フラグ通知</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>起動中...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>ロガーを初期化中...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>トップレベルウィンドウを初期化中...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>オーディオマネージャーを初期化中...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>AdminBoxxを初期化中...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>シミュレーターを初期化中...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>ダイレクト入力を初期化中...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Stream Deckを初期化中...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>テキスト読み上げを初期化中...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>コメンタリーを初期化中...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>クラウドサービスを初期化中...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>グラフを初期化中...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>ペダルを初期化中...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>レーシングホイールを初期化中...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>サウンドを初期化中...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>LFEを初期化中...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>マルチメディアタイマーを初期化中...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>録画マネージャーを初期化中...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>タイミングマーカーを初期化中...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>テレメトリーを初期化中...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>ウィンドを初期化中...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>シートベルトテンショナーを初期化中...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>HIDホットプラグモニターを初期化中...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Trading Paintsを初期化中...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>設定ファイルを初期化中...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>メインウィンドウを初期化中...</value>
   </data>
 </root>

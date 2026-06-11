@@ -1752,4 +1752,82 @@
   <data name="FlagCalls" xml:space="preserve">
     <value>Объявления флагов</value>
   </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Запуск...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Инициализация регистратора...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Инициализация окна верхнего уровня...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Инициализация менеджера аудио...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>Инициализация AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Инициализация симулятора...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Инициализация прямого ввода...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Инициализация Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Инициализация преобразования текста в речь...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Инициализация комментария...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Инициализация облачного сервиса...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Инициализация графика...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Инициализация педалей...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Инициализация рулевого колеса...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Инициализация звуков...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>Инициализация LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Инициализация мультимедийного таймера...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Инициализация менеджера записи...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Инициализация маркеров времени...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Инициализация телеметрии...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Инициализация ветра...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Инициализация натяжителя ремня безопасности...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>Инициализация монитора горячего подключения HID...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Инициализация Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Инициализация файла параметров...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Инициализация основного окна...</value>
+  </data>
 </root>

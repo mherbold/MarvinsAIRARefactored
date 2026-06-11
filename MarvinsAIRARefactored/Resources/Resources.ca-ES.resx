@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>Avisos de bandera</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Iniciando...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Inicializando Registrador...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Inicializando Finestra de Nivell Superior...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Inicializando Gestor d'Àudio...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>Inicializando AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Inicializando Simulador...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Inicializando Entrada Directa...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Inicializando Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Inicializando Conversió de Text a Veu...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Inicializando Comentari...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Inicializando Servei al Núvol...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Inicializando Gràfic...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Inicializando Pedals...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Inicializando Volant de Carreres...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Inicializando Sons...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>Inicializando LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Inicializando Temporitzador Multimèdia...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Inicializando Gestor de Gravació...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Inicializando Marcadors de Temps...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Inicializando Telemetria...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Inicializando Vent...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Inicializando Tensor de Cinturó de Seguretat...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>Inicializando Monitor Hot Plug HID...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Inicializando Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Inicializando Fitxer de Configuració...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Inicializando Finestra Principal...</value>
   </data>
 </root>

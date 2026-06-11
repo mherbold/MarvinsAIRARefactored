@@ -1757,4 +1757,82 @@ Hier ist der Link zum Spenden:</value>
   <data name="FlagCalls" xml:space="preserve">
     <value>Flaggen-Ansagen</value>
   </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Wird gestartet...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Logger wird initialisiert...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Top-Level-Fenster wird initialisiert...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Audio-Manager wird initialisiert...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>AdminBoxx wird initialisiert...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Simulator wird initialisiert...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Direct Input wird initialisiert...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Stream Deck wird initialisiert...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Text-zu-Sprache wird initialisiert...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Kommentar wird initialisiert...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Cloud-Service wird initialisiert...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Diagramm wird initialisiert...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Pedale werden initialisiert...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Lenkrad wird initialisiert...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Töne werden initialisiert...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>LFE wird initialisiert...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Multimedia-Timer wird initialisiert...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Aufnahme-Manager wird initialisiert...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Timing-Markierungen werden initialisiert...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Telemetrie wird initialisiert...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Wind wird initialisiert...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Sicherheitsgurtstraffer wird initialisiert...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>HID-Hot-Plug-Monitor wird initialisiert...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Trading Paints wird initialisiert...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Einstellungsdatei wird initialisiert...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Hauptfenster wird initialisiert...</value>
+  </data>
 </root>

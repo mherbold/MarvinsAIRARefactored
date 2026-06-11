@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>Bayrak duyuruları</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Başlatılıyor...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>Logger Başlatılıyor...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Üst Düzey Pencere Başlatılıyor...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Ses Yöneticisi Başlatılıyor...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>AdminBoxx Başlatılıyor...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Simülatör Başlatılıyor...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Doğrudan Giriş Başlatılıyor...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Stream Deck Başlatılıyor...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Metin-Konuşma Başlatılıyor...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Yorum Başlatılıyor...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Bulut Hizmeti Başlatılıyor...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Grafik Başlatılıyor...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Pedallar Başlatılıyor...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Yarış Direksiyonu Başlatılıyor...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Sesler Başlatılıyor...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>LFE Başlatılıyor...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Multimedya Zamanlayıcısı Başlatılıyor...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Kayıt Yöneticisi Başlatılıyor...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Zamanlama İşaretleri Başlatılıyor...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Telemetri Başlatılıyor...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Rüzgar Başlatılıyor...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Kemer Gerilimi Başlatılıyor...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>HID Hot Plug Monitor Başlatılıyor...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Trading Paints Başlatılıyor...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Ayarlar Dosyası Başlatılıyor...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Ana Pencere Başlatılıyor...</value>
   </data>
 </root>

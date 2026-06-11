@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <root>
   <!-- 
     Microsoft ResX Schema 
@@ -1751,5 +1751,83 @@
   </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>קריאות דגל</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>מתחיל...</value>
+  </data>
+  <data name="InitializingLogger" xml:space="preserve">
+    <value>אתחול Logger...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>אתחול חלון ברמה עליונה...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>אתחול מנהל אודיו...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>אתחול AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>אתחול סימולטור...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>אתחול קלט ישיר...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>אתחול Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>אתחול טקסט-לדיבור...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>אתחול הערות...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>אתחול שירות ענן...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>אתחול גרף...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>אתחול דוושות...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>אתחול הגה מירוצים...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>אתחול צלילים...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>אתחול LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>אתחול טיימר מולטימדיה...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>אתחול מנהל הקלטות...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>אתחול סמני תזמון...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>אתחול טלמטריה...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>אתחול רוח...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>אתחול מתיח חגורת הבטיחות...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>אתחול HID Hot Plug Monitor...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>אתחול Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>אתחול קובץ הגדרות...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>אתחול חלון ראשי...</value>
   </data>
 </root>
