@@ -70,7 +70,7 @@ public class DirectInput
 
 		EnumerateDevices();
 
-		app.HidHotplugMonitor.DeviceListMightHaveChanged += OnDeviceListMightHaveChanged;
+		app.HidHotPlugMonitor.DeviceListMightHaveChanged += OnDeviceListMightHaveChanged;
 
 		app.Logger.WriteLine( "[DirectInput] <<< Initialize" );
 	}

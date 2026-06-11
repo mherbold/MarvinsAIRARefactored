@@ -71,7 +71,7 @@ public partial class App : Application
 	public SpeechToText SpeechToText { get; private set; } = null!;
 	public Wind Wind { get; private set; } = null!;
 	public SeatBeltTensioner SeatBeltTensioner { get; private set; } = null!;
-	public HidHotplugMonitor HidHotplugMonitor { get; private set; } = null!;
+	public HidHotPlugMonitor HidHotPlugMonitor { get; private set; } = null!;
 	public TradingPaints TradingPaints { get; private set; } = null!;
 	public AppManager AppManager { get; private set; } = null!;
 
@@ -135,7 +135,7 @@ public partial class App : Application
 		SpeechToText = new();
 		Wind = new();
 		SeatBeltTensioner = new();
-		HidHotplugMonitor = new();
+		HidHotPlugMonitor = new();
 		TradingPaints = new();
 		AppManager = new();
 
@@ -298,7 +298,7 @@ public partial class App : Application
 				RunStartupStep( "InitializingTelemetry", Telemetry.Initialize );
 				RunStartupStep( "InitializingWind", Wind.Initialize );
 				RunStartupStep( "InitializingSeatBeltTensioner", SeatBeltTensioner.Initialize );
-				RunStartupStep( "InitializingHidHotPlugMonitor", HidHotplugMonitor.Initialize );
+				RunStartupStep( "InitializingHidHotPlugMonitor", HidHotPlugMonitor.Initialize );
 				RunStartupStep( "InitializingTradingPaints", TradingPaints.Initialize );
 				RunStartupStep( "InitializingSettingsFile", SettingsFile.Initialize );
 
