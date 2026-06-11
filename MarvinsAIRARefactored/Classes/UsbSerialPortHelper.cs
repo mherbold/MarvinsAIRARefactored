@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MarvinsAIRARefactored.Classes;
 
-public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdMustContain = "", string vid = "", string pid = "", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One ) : IDisposable
+public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdMustNotContain = "", string vid = "", string pid = "", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One ) : IDisposable
 {
 	public bool DeviceFound { get => _portName != string.Empty; }
 	public string LastErrorMessage { get; private set; } = string.Empty;
@@ -14,7 +14,7 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 	public event EventHandler? PortClosed = null;
 
 	private readonly string _handshake = handshake;
-	private readonly string _deviceIdMustContain = deviceIdMustContain;
+	private readonly string _deviceIdMustNotContain = deviceIdMustNotContain;
 
 	private readonly string _vid = vid.ToUpper();
 	private readonly string _pid = pid.ToUpper();
@@ -39,7 +39,7 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
 		app.Logger.WriteLine( "[UsbSerialPortHelper] Initialize >>>" );
-		app.Logger.WriteLine( $"[UsbSerialPortHelper] Search criteria: handshake='{_handshake}', deviceIdMustContain='{_deviceIdMustContain}', vid='{_vid}', pid='{_pid}', baudRate={_baudRate}, parity={_parity}, dataBits={_dataBits}, stopBits={_stopBits}" );
+		app.Logger.WriteLine( $"[UsbSerialPortHelper] Search criteria: handshake='{_handshake}', deviceIdMustNotContain='{_deviceIdMustNotContain}', vid='{_vid}', pid='{_pid}', baudRate={_baudRate}, parity={_parity}, dataBits={_dataBits}, stopBits={_stopBits}" );
 
 		_portName = string.Empty;
 		LastErrorMessage = string.Empty;
@@ -136,11 +136,11 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 				}
 				else
 				{
-					var matchesDeviceIdMustContain = ( _deviceIdMustContain == string.Empty ) || deviceId.Contains( _deviceIdMustContain, StringComparison.OrdinalIgnoreCase );
+					var deviceIdIsGood = ( _deviceIdMustNotContain == string.Empty ) || !deviceId.Contains( _deviceIdMustNotContain, StringComparison.OrdinalIgnoreCase );
 
-					if ( !matchesDeviceIdMustContain )
+					if ( !deviceIdIsGood )
 					{
-						app.Logger.WriteLine( $"[UsbSerialPortHelper] Skipping '{portName}' because PNPDeviceID does not contain required token '{_deviceIdMustContain}'" );
+						app.Logger.WriteLine( $"[UsbSerialPortHelper] Skipping '{portName}' because PNPDeviceID contains excluded token '{_deviceIdMustNotContain}'" );
 						continue;
 					}
 
