@@ -1831,4 +1831,7 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Inicializando Ventana Principal...</value>
   </data>
+  <data name="DeleteMe" xml:space="preserve">
+    <value>DeleteMe</value>
+  </data>
 </root>

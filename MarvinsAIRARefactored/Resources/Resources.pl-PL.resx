@@ -1832,4 +1832,7 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Inicjalizacja Okna Głównego...</value>
   </data>
+  <data name="DeleteMe" xml:space="preserve">
+    <value>DeleteMe</value>
+  </data>
 </root>

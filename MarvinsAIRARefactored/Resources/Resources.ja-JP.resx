@@ -1833,4 +1833,7 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>メインウィンドウを初期化中...</value>
   </data>
+  <data name="DeleteMe" xml:space="preserve">
+    <value>DeleteMe</value>
+  </data>
 </root>
