@@ -52,13 +52,26 @@
         <Grid.RowDefinitions>
           <RowDefinition Height="*"/>
           <RowDefinition Height="Auto"/>
+          <RowDefinition Height="60"/>
+          <RowDefinition Height="Auto"/>
           <RowDefinition Height="10"/>
           <RowDefinition Height="Auto"/>
           <RowDefinition Height="120"/>
         </Grid.RowDefinitions>
 
+        <TextBlock x:Name="Version_TextBlock"
+                   Grid.Row="1"
+                   HorizontalAlignment="Center"
+                   TextAlignment="Center"
+                   Style="{StaticResource MairaTextBlockStyle}"
+                   TextWrapping="Wrap"
+                   Text=""
+                   FontSize="18"
+                   Foreground="{DynamicResource Brush.Accent}"
+                   d:Text="Version number goes here"/>
+
         <controls:MairaProgressBar x:Name="Startup_MairaProgressBar"
-                                   Grid.Row="1"
+                                   Grid.Row="3"
                                    Margin="250,0,250,0"
                                    ShowPercentageText="False"
                                    ShowLabel="False"
@@ -66,7 +79,7 @@
                                    UseNearCompletionAccent="False"/>
 
         <TextBlock x:Name="Status_TextBlock"
-                   Grid.Row="3"
+                   Grid.Row="5"
                    HorizontalAlignment="Center"
                    TextAlignment="Center"
                    Style="{StaticResource MairaTextBlockStyle}"
