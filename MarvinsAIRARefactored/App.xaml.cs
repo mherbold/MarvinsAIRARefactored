@@ -107,7 +107,6 @@ public partial class App : Application
 
 	private void InitializeRuntimeComponents()
 	{
-		Logger = new();
 		TopLevelWindow = new();
 		CloudService = new();
 		SettingsFile = new();
@@ -199,6 +198,34 @@ public partial class App : Application
 			return;
 		}
 
+		Logger = new();
+
+		Logger.Initialize();
+
+#if !ADMINBOXX
+
+		DataContext.DataContext.Instance.Settings.AppCurrentLanguageCode = DataContext.DataContext.Instance.Localization.ChooseInitialLanguage();
+
+		ShutdownMode = ShutdownMode.OnExplicitShutdown;
+
+		StartupWindow? startupWindow = new();
+
+		startupWindow.Show();
+
+		var startupStepIndex = 0;
+		const int startupStepCount = 24;
+
+		void RunStartupStep( string statusKey, Action initializeAction )
+		{
+			startupStepIndex++;
+
+			startupWindow?.UpdateProgress( startupStepIndex * 100d / startupStepCount, DataContext.DataContext.Instance.Localization[ statusKey ] );
+
+			initializeAction();
+		}
+
+#endif
+
 		InitializeRuntimeComponents();
 
 		DispatcherUnhandledException += ( sender, args ) =>
@@ -249,36 +276,43 @@ public partial class App : Application
 					Directory.CreateDirectory( DocumentsFolder );
 				}
 
-				Logger.Initialize();
+#if !ADMINBOXX
+
+				RunStartupStep( "InitializingTopLevelWindow", TopLevelWindow.Initialize );
+				RunStartupStep( "InitializingAudioManager", AudioManager.Initialize ); // must be called before AdminBoxx.Initialize()
+				RunStartupStep( "InitializingAdminBoxx", AdminBoxx.Initialize );
+				RunStartupStep( "InitializingSimulator", Simulator.Initialize );
+				RunStartupStep( "InitializingDirectInput", DirectInput.Initialize );
+				RunStartupStep( "InitializingStreamDeck", StreamDeck.Initialize );
+				RunStartupStep( "InitializingTextToSpeech", TextToSpeech.Initialize );
+				RunStartupStep( "InitializingCommentary", () => Commentary.Initialize() );
+				RunStartupStep( "InitializingCloudService", CloudService.Initialize );
+				RunStartupStep( "InitializingGraph", Graph.Initialize );
+				RunStartupStep( "InitializingPedals", Pedals.Initialize );
+				RunStartupStep( "InitializingRacingWheel", RacingWheel.Initialize );
+				RunStartupStep( "InitializingSounds", Sounds.Initialize );
+				RunStartupStep( "InitializingLFE", LFE.Initialize );
+				RunStartupStep( "InitializingMultimediaTimer", MultimediaTimer.Initialize );
+				RunStartupStep( "InitializingRecordingManager", RecordingManager.Initialize );
+				RunStartupStep( "InitializingTimingMarkers", TimingMarkers.Initialize );
+				RunStartupStep( "InitializingTelemetry", Telemetry.Initialize );
+				RunStartupStep( "InitializingWind", Wind.Initialize );
+				RunStartupStep( "InitializingSeatBeltTensioner", SeatBeltTensioner.Initialize );
+				RunStartupStep( "InitializingHidHotPlugMonitor", HidHotplugMonitor.Initialize );
+				RunStartupStep( "InitializingTradingPaints", TradingPaints.Initialize );
+				RunStartupStep( "InitializingSettingsFile", SettingsFile.Initialize );
+
+#else
+
 				TopLevelWindow.Initialize();
 				AudioManager.Initialize(); // must be called before AdminBoxx.Initialize()
 				AdminBoxx.Initialize();
 				Simulator.Initialize();
 				DirectInput.Initialize();
 				StreamDeck.Initialize();
-
-#if !ADMINBOXX
-
-				TextToSpeech.Initialize();
-				Commentary.Initialize();
-				CloudService.Initialize();
-				Graph.Initialize();
-				Pedals.Initialize();
-				RacingWheel.Initialize();
-				Sounds.Initialize();
-				LFE.Initialize();
-				MultimediaTimer.Initialize();
-				RecordingManager.Initialize();
-				TimingMarkers.Initialize();
-				Telemetry.Initialize();
-				Wind.Initialize();
-				SeatBeltTensioner.Initialize();
-				HidHotplugMonitor.Initialize();
-				TradingPaints.Initialize();
+				SettingsFile.Initialize();
 
 #endif
-
-				SettingsFile.Initialize();
 
 				var settings = DataContext.DataContext.Instance.Settings;
 
@@ -296,7 +330,19 @@ public partial class App : Application
 
 				MainWindow.Resources = Current.Resources;
 
+#if !ADMINBOXX
+
+				RunStartupStep( "InitializingMainWindow", MainWindow.Initialize );
+				base.MainWindow = MainWindow;
+				ShutdownMode = ShutdownMode.OnMainWindowClose;
+				startupWindow?.Close();
+				startupWindow = null;
+
+#else
+
 				MainWindow.Initialize();
+
+#endif
 
 				var showWindow = true;
 

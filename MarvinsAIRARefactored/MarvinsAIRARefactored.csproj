@@ -18,6 +18,9 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
+  <ItemGroup>
+    <None Remove="Artwork\Misc\splash-screen.png" />
+  </ItemGroup>
 
   <ItemGroup>
     <COMReference Include="IWshRuntimeLibrary">
@@ -176,6 +179,7 @@
     <Resource Include="Artwork\Misc\right-drag-handle.png" />
     <Resource Include="Artwork\Misc\simagic-logo.png" />
     <Resource Include="Artwork\Misc\simagic-logo-light.png" />
+    <Resource Include="Artwork\Misc\splash-screen.png" />
     <Resource Include="Artwork\Misc\trading-paints.png" />
     <Resource Include="Artwork\Misc\trading-paints-light.png" />
     <Resource Include="Artwork\Misc\wizard-two-thumbs-up.png" />

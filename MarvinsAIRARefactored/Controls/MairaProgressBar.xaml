@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              mc:Ignorable="d"
-             Background="Transparent">
+             Background="Transparent"
+             d:Width="400">
 
     <UserControl.Resources>
 
@@ -16,8 +17,6 @@
                     Value="{DynamicResource Brush.SteeringEffects.Understeer}" />
             <Setter Property="Background"
                     Value="{DynamicResource Brush.Background.Popup}" />
-            <Setter Property="Height"
-                    Value="20" />
             <Setter Property="Template">
 
                 <Setter.Value>
@@ -42,11 +41,16 @@
                         </Border>
 
                         <ControlTemplate.Triggers>
-                            <DataTrigger Binding="{Binding IsNearCompletion, ElementName=Root}"
-                                         Value="True">
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding IsNearCompletion, ElementName=Root}"
+                                               Value="True" />
+                                    <Condition Binding="{Binding UseNearCompletionAccent, ElementName=Root}"
+                                               Value="True" />
+                                </MultiDataTrigger.Conditions>
                                 <Setter Property="Foreground"
                                         Value="{DynamicResource Brush.Accent}" />
-                            </DataTrigger>
+                            </MultiDataTrigger>
                         </ControlTemplate.Triggers>
 
                     </ControlTemplate>
@@ -79,8 +83,8 @@
 
                     <Style.Triggers>
 
-                        <DataTrigger Binding="{Binding Label, ElementName=Root}"
-                                     Value="">
+                        <DataTrigger Binding="{Binding IsLabelVisible, ElementName=Root}"
+                                     Value="False">
                             <Setter Property="Visibility"
                                     Value="Collapsed" />
                         </DataTrigger>
@@ -94,32 +98,61 @@
         </TextBlock>
 
         <Grid Grid.Row="1"
-              Margin="0,5,0,0"
               VerticalAlignment="Bottom">
+
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Margin"
+                            Value="0,5,0,0" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding IsLabelVisible, ElementName=Root}"
+                                     Value="False">
+                            <Setter Property="Margin"
+                                    Value="0" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Style>
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="10" />
                 <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
 
             <Grid Grid.Column="0"
-                  Height="34"
-                  VerticalAlignment="Bottom">
+                  VerticalAlignment="Center">
 
                 <ProgressBar Minimum="0"
                              Maximum="100"
+                             Height="{Binding ProgressBarHeight, ElementName=Root}"
                              Value="{Binding Value, ElementName=Root}"
                              Style="{StaticResource MairaProgressBarStyle}"
                              VerticalAlignment="Center" />
 
             </Grid>
 
-            <TextBlock Grid.Column="2"
+            <TextBlock Grid.Column="1"
+                       Margin="10,0,0,0"
                        VerticalAlignment="Center"
-                       Style="{StaticResource MairaTextBlockStyle}"
                        Foreground="{DynamicResource Brush.Foreground.Primary}"
-                       Text="{Binding PercentageText, ElementName=Root}" />
+                       Text="{Binding PercentageText, ElementName=Root}">
+
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock"
+                           BasedOn="{StaticResource MairaTextBlockStyle}">
+                        <Setter Property="Visibility"
+                                Value="Visible" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ShowPercentageText, ElementName=Root}"
+                                         Value="False">
+                                <Setter Property="Visibility"
+                                        Value="Collapsed" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+
+            </TextBlock>
 
         </Grid>
 
