@@ -4,18 +4,19 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Threading;
 
-using MouseEventArgs = System.Windows.Input.MouseEventArgs;
-using UserControl = System.Windows.Controls.UserControl;
-
-using PInvoke;
+using Windows.Win32;
 
 using MarvinsAIRARefactored.Classes;
+
+using MouseEventArgs = System.Windows.Input.MouseEventArgs;
+using UserControl = System.Windows.Controls.UserControl;
+using Point = System.Drawing.Point;
 
 namespace MarvinsAIRARefactored.Controls;
 
 public partial class MairaDualSlider : UserControl
 {
-	private POINT _draggingCenter;
+	private Point _draggingCenter;
 	private bool _isDraggingLeftHandle;
 
 	public MairaDualSlider()
@@ -61,9 +62,9 @@ public partial class MairaDualSlider : UserControl
 
 			_isDraggingLeftHandle = true;
 
-			User32.GetCursorPos( out _draggingCenter );
+			PInvoke.GetCursorPos( out _draggingCenter );
 
-			_ = User32.ShowCursor( false );
+			_ = PInvoke.ShowCursor( false );
 
 			LeftDragHandle_Image.CaptureMouse();
 
@@ -81,9 +82,9 @@ public partial class MairaDualSlider : UserControl
 
 			_isDraggingLeftHandle = false;
 
-			User32.GetCursorPos( out _draggingCenter );
+			PInvoke.GetCursorPos( out _draggingCenter );
 
-			_ = User32.ShowCursor( false );
+			_ = PInvoke.ShowCursor( false );
 
 			RightDragHandle_Image.CaptureMouse();
 
@@ -105,15 +106,15 @@ public partial class MairaDualSlider : UserControl
 	{
 		if ( IsDragging )
 		{
-			User32.GetCursorPos( out POINT current );
+			PInvoke.GetCursorPos( out System.Drawing.Point current );
 
-			var delta = ( current.x - _draggingCenter.x ) + ( current.y - _draggingCenter.y );
+			var delta = ( current.X - _draggingCenter.X ) + ( current.Y - _draggingCenter.Y );
 
 			if ( delta != 0 )
 			{
 				LeftValue = Math.Clamp( LeftValue - delta * 0.001f * ( LeftMaxValue - LeftMinValue ), LeftMinValue, LeftMaxValue );
 
-				User32.SetCursorPos( _draggingCenter.x, _draggingCenter.y );
+				PInvoke.SetCursorPos( _draggingCenter.X, _draggingCenter.Y );
 			}
 		}
 	}
@@ -124,9 +125,9 @@ public partial class MairaDualSlider : UserControl
 
 		if ( IsDragging )
 		{
-			User32.GetCursorPos( out POINT current );
+			PInvoke.GetCursorPos( out System.Drawing.Point current );
 
-			var delta = ( current.x - _draggingCenter.x ) + ( current.y - _draggingCenter.y );
+			var delta = ( current.X - _draggingCenter.X ) + ( current.Y - _draggingCenter.Y );
 
 			if ( delta != 0 )
 			{
@@ -134,7 +135,7 @@ public partial class MairaDualSlider : UserControl
 
 				app.Wind.StartPreview( ( RightValue - RightMinValue ) / ( RightMaxValue - RightMinValue ) );
 
-				User32.SetCursorPos( _draggingCenter.x, _draggingCenter.y );
+				PInvoke.SetCursorPos( _draggingCenter.X, _draggingCenter.Y );
 			}
 		}
 	}
@@ -255,7 +256,7 @@ public partial class MairaDualSlider : UserControl
 
 		Misc.MoveCursorToElement( _isDraggingLeftHandle ? LeftDragHandle_Image : RightDragHandle_Image );
 
-		_ = User32.ShowCursor( true );
+		_ = PInvoke.ShowCursor( true );
 
 		Mouse.Capture( null );
 

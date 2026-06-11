@@ -5,13 +5,16 @@ using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 
-using Color = MarvinsAIRARefactored.Classes.Color;
-using Timer = System.Timers.Timer;
+using Windows.Win32;
+using Windows.Win32.Foundation;
 
 using IRSDKSharper;
 
 using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Windows;
+
+using Color = MarvinsAIRARefactored.Classes.Color;
+using Timer = System.Timers.Timer;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -100,19 +103,19 @@ public partial class AdminBoxx
 
 	// Xtreme Scoring Race Control integration — WM_APP message IDs
 	private const uint WM_APP = 0x8000;
-	private const uint XSRC_YELLOW_FLAG    = WM_APP + 1;
+	private const uint XSRC_YELLOW_FLAG = WM_APP + 1;
 	private const uint XSRC_CLEAR_ALL_FLAGS = WM_APP + 2;
-	private const uint XSRC_PLUS_ONE_LAP   = WM_APP + 3;
-	private const uint XSRC_MINUS_ONE_LAP  = WM_APP + 4;
+	private const uint XSRC_PLUS_ONE_LAP = WM_APP + 3;
+	private const uint XSRC_MINUS_ONE_LAP = WM_APP + 4;
 	private const uint XSRC_ADVANCE_SESSION = WM_APP + 5;
-	private const uint XSRC_CHAT           = WM_APP + 6;
-	private const uint XSRC_PACE_MODE      = WM_APP + 7;
-	private const uint XSRC_BLACK_FLAG     = WM_APP + 8;
-	private const uint XSRC_CLEAR_FLAG     = WM_APP + 9;
-	private const uint XSRC_WAVE_BY        = WM_APP + 10;
-	private const uint XSRC_END_OF_LINE    = WM_APP + 11;
-	private const uint XSRC_DISQUALIFY     = WM_APP + 12;
-	private const uint XSRC_REMOVE_DRIVER  = WM_APP + 13;
+	private const uint XSRC_CHAT = WM_APP + 6;
+	private const uint XSRC_PACE_MODE = WM_APP + 7;
+	private const uint XSRC_BLACK_FLAG = WM_APP + 8;
+	private const uint XSRC_CLEAR_FLAG = WM_APP + 9;
+	private const uint XSRC_WAVE_BY = WM_APP + 10;
+	private const uint XSRC_END_OF_LINE = WM_APP + 11;
+	private const uint XSRC_DISQUALIFY = WM_APP + 12;
+	private const uint XSRC_REMOVE_DRIVER = WM_APP + 13;
 
 	private bool _shownYellowFlag = false;
 	private bool _shownOneLapToGreenFlag = false;
@@ -863,14 +866,14 @@ public partial class AdminBoxx
 			return;
 		}
 
-		var hwnd = PInvoke.User32.FindWindow( null, "Xtreme Scoring Race Control" );
+		var hwnd = PInvoke.FindWindow( null, "Xtreme Scoring Race Control" );
 
-		if ( hwnd == IntPtr.Zero )
+		if ( hwnd == HWND.Null )
 		{
 			return;
 		}
 
-		PInvoke.User32.PostMessage( hwnd, msg, wParam, lParam );
+		_ = PInvoke.PostMessage( hwnd, msg, new WPARAM( unchecked((nuint) wParam.ToInt64()) ), new LPARAM( lParam ) );
 	}
 
 	/// <summary>

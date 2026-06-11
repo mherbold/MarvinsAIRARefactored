@@ -1,8 +1,9 @@
 ﻿
-using IRSDKSharper;
-using PInvoke;
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.UI.Input.KeyboardAndMouse;
 
-using static PInvoke.User32;
+using IRSDKSharper;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -138,26 +139,28 @@ public partial class ChatQueue
 
 	private static void SendKey( App app, char key )
 	{
-		if ( app.Simulator.WindowHandle is not null )
+		if ( app.Simulator.WindowHandle is null )
 		{
-			if ( key == '\r' )
-			{
-				var virtualKey = PInvoke.User32.VkKeyScanW( '\r' );
+			return;
+		}
 
-				var scanCode = User32.MapVirtualKey( virtualKey, MapVirtualKeyTranslation.MAPVK_VK_TO_VSC );
+		var hwnd = (HWND) (nint) app.Simulator.WindowHandle;
 
-				var lParamDown = (IntPtr) ( 1 | ( scanCode << 16 ) | ( 0 << 24 ) | ( 0 << 29 ) | ( 0 << 30 ) | ( 0 << 31 ) );
+		if ( key == '\r' )
+		{
+			var scanCode = PInvoke.MapVirtualKey( (uint) VIRTUAL_KEY.VK_RETURN, MAP_VIRTUAL_KEY_TYPE.MAPVK_VK_TO_VSC );
 
-				User32.PostMessage( (IntPtr) app.Simulator.WindowHandle, User32.WindowMessage.WM_KEYDOWN, (IntPtr) User32.VirtualKey.VK_RETURN, lParamDown );
+			var lParamDown = new LPARAM( unchecked((nint) ( 1L | ( (long) scanCode << 16 ) )) );
 
-				var lParamUp = (IntPtr) ( 1 | ( scanCode << 16 ) | ( 0 << 24 ) | ( 0 << 29 ) | ( 1 << 30 ) | ( 1 << 31 ) );
+			_ = PInvoke.PostMessage( hwnd, PInvoke.WM_KEYDOWN, new WPARAM( (nuint) VIRTUAL_KEY.VK_RETURN ), lParamDown );
 
-				User32.PostMessage( (IntPtr) app.Simulator.WindowHandle, User32.WindowMessage.WM_KEYUP, (IntPtr) User32.VirtualKey.VK_RETURN, lParamUp );
-			}
-			else
-			{
-				User32.PostMessage( (IntPtr) app.Simulator.WindowHandle, User32.WindowMessage.WM_CHAR, (IntPtr) key, IntPtr.Zero );
-			}
+			var lParamUp = new LPARAM( unchecked((nint) ( 1L | ( (long) scanCode << 16 ) | ( 1L << 30 ) | ( 1L << 31 ) )) );
+
+			_ = PInvoke.PostMessage( hwnd, PInvoke.WM_KEYUP, new WPARAM( (nuint) VIRTUAL_KEY.VK_RETURN ), lParamUp );
+		}
+		else
+		{
+			_ = PInvoke.PostMessage( hwnd, PInvoke.WM_CHAR, new WPARAM( key ), new LPARAM( 0 ) );
 		}
 	}
 

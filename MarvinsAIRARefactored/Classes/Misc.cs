@@ -2,18 +2,20 @@
 using System.Collections;
 using System.ComponentModel.Design;
 using System.Diagnostics;
-using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Resources;
 using System.Runtime.InteropServices;
-using System.Text;
 using System.Windows;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.System.Threading;
+using Windows.Win32.UI.WindowsAndMessaging;
+
 using IWshRuntimeLibrary;
-using PInvoke;
 
 using Point = System.Windows.Point;
 
@@ -28,32 +30,30 @@ public class Misc
 		return systemVersion?.ToString() ?? string.Empty;
 	}
 
-	public static void DisableThrottling()
+	public static unsafe void DisableThrottling()
 	{
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[Misc] DisableThrottling >>>" );
 
-		var processInformationSize = Marshal.SizeOf<Kernel32.PROCESS_POWER_THROTTLING_STATE>();
+		const uint processPowerThrottlingCurrentVersion = 1;
+		const uint processPowerThrottlingIgnoreTimerResolution = 0x4;
 
-		var processInformation = new Kernel32.PROCESS_POWER_THROTTLING_STATE()
+		var processPowerThrottlingState = new PROCESS_POWER_THROTTLING_STATE
 		{
-			Version = 1,
-			ControlMask = (Kernel32.ProcessorPowerThrottlingFlags) 4, // PROCESS_POWER_THROTTLING_IGNORE_TIMER_RESOLUTION
+			Version = processPowerThrottlingCurrentVersion,
+			ControlMask = processPowerThrottlingIgnoreTimerResolution,
 			StateMask = 0
 		};
 
-		var processInformationPtr = Marshal.AllocHGlobal( processInformationSize );
+		var processHandle = (HANDLE) Process.GetCurrentProcess().Handle;
 
-		Marshal.StructureToPtr( processInformation, processInformationPtr, false );
+		var result = PInvoke.SetProcessInformation( processHandle, PROCESS_INFORMATION_CLASS.ProcessPowerThrottling, &processPowerThrottlingState, (uint) sizeof( PROCESS_POWER_THROTTLING_STATE ) );
 
-		var processHandle = Process.GetCurrentProcess().Handle;
-
-		Kernel32.SafeObjectHandle safeHandle = new Kernel32.SafeObjectHandle( processHandle, ownsHandle: false );
-
-		_ = Kernel32.SetProcessInformation( safeHandle, Kernel32.PROCESS_INFORMATION_CLASS.ProcessPowerThrottling, processInformationPtr, (uint) processInformationSize );
-
-		Marshal.FreeHGlobal( processInformationPtr );
+		if ( !result )
+		{
+			app.Logger.WriteLine( $"[Misc] DisableThrottling SetProcessInformation failed: {Marshal.GetLastWin32Error()}" );
+		}
 
 		app.Logger.WriteLine( "[Misc] <<< DisableThrottling" );
 	}
@@ -65,7 +65,7 @@ public class Misc
 			return null;
 		}
 
-		_ = User32.GetWindowThreadProcessId( windowHandle, out var processId );
+		_ = PInvoke.GetWindowThreadProcessId( (HWND) windowHandle, out var processId );
 
 		if ( processId == 0 )
 		{
@@ -221,18 +221,20 @@ public class Misc
 
 		foreach ( var process in Process.GetProcessesByName( current.ProcessName ) )
 		{
-			if ( process.Id != current.Id )
+			if ( process.Id == current.Id )
 			{
-				var handle = process.MainWindowHandle;
-
-				if ( handle != IntPtr.Zero )
-				{
-					User32.ShowWindow( handle, User32.WindowShowStyle.SW_RESTORE );
-					User32.SetForegroundWindow( handle );
-				}
-
-				break;
+				continue;
 			}
+
+			var hwnd = (HWND) process.MainWindowHandle;
+
+			if ( hwnd != HWND.Null )
+			{
+				_ = PInvoke.ShowWindow( hwnd, SHOW_WINDOW_CMD.SW_RESTORE );
+				_ = PInvoke.SetForegroundWindow( hwnd );
+			}
+
+			break;
 		}
 	}
 
@@ -321,6 +323,6 @@ public class Misc
 
 		var p = element.PointToScreen( new Point( element.ActualWidth / 2, element.ActualHeight / 2 ) );
 
-		User32.SetCursorPos( (int) Math.Round( p.X ), (int) Math.Round( p.Y ) );
+		PInvoke.SetCursorPos( (int) Math.Round( p.X ), (int) Math.Round( p.Y ) );
 	}
 }

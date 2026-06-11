@@ -7,6 +7,12 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Threading;
 
+using Windows.Win32;
+
+using MarvinsAIRARefactored.Classes;
+using MarvinsAIRARefactored.DataContext;
+using MarvinsAIRARefactored.Windows;
+
 using Color = System.Windows.Media.Color;
 using Cursors = System.Windows.Input.Cursors;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
@@ -14,12 +20,6 @@ using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 using Pen = System.Windows.Media.Pen;
 using Point = System.Windows.Point;
 using UserControl = System.Windows.Controls.UserControl;
-
-using PInvoke;
-
-using MarvinsAIRARefactored.Classes;
-using MarvinsAIRARefactored.DataContext;
-using MarvinsAIRARefactored.Windows;
 
 namespace MarvinsAIRARefactored.Controls;
 
@@ -54,7 +54,7 @@ public partial class MairaKnob : UserControl
 		}
 	}
 
-	private POINT _draggingCenter;
+	private System.Drawing.Point _draggingCenter;
 
 	private readonly DispatcherTimer _resetDispatcherTimer = new() { Interval = TimeSpan.FromMilliseconds( 20 ) };
 	private DateTime _resetStartTime;
@@ -88,9 +88,9 @@ public partial class MairaKnob : UserControl
 
 			Middle_MairaButton.IsPressed = true;
 
-			User32.GetCursorPos( out _draggingCenter );
+			PInvoke.GetCursorPos( out _draggingCenter );
 
-			_ = User32.ShowCursor( false );
+			_ = PInvoke.ShowCursor( false );
 
 			Mouse.Capture( (MairaButton) sender );
 		}
@@ -108,9 +108,9 @@ public partial class MairaKnob : UserControl
 	{
 		if ( IsDragging )
 		{
-			User32.GetCursorPos( out POINT current );
+			PInvoke.GetCursorPos( out System.Drawing.Point current );
 
-			var delta = ( current.x - _draggingCenter.x ) + ( current.y - _draggingCenter.y );
+			var delta = ( current.X - _draggingCenter.X ) + ( current.Y - _draggingCenter.Y );
 
 			if ( delta != 0 )
 			{
@@ -123,7 +123,7 @@ public partial class MairaKnob : UserControl
 
 				AdjustValue( amount );
 
-				User32.SetCursorPos( _draggingCenter.x, _draggingCenter.y );
+				PInvoke.SetCursorPos( _draggingCenter.X, _draggingCenter.Y );
 			}
 		}
 	}
@@ -332,7 +332,7 @@ public partial class MairaKnob : UserControl
 
 		Middle_MairaButton.IsPressed = false;
 
-		_ = User32.ShowCursor( true );
+		_ = PInvoke.ShowCursor( true );
 
 		Mouse.Capture( null );
 	}

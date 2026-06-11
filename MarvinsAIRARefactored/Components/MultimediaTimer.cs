@@ -1,11 +1,12 @@
 ﻿
 using System.Diagnostics;
+using System.Runtime.InteropServices;
 
-using MarvinsAIRARefactored.PInvoke;
+using Windows.Win32;
 
 namespace MarvinsAIRARefactored.Components;
 
-public class MultimediaTimer
+public partial class MultimediaTimer
 {
 	private bool _suspend = true;
 	private int _suspendCounter = 0;
@@ -91,13 +92,18 @@ public class MultimediaTimer
 
 			app.Logger.WriteLine( "[MultimediaTimer] ResumeTimerNow >>>" );
 
-			app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeBeginPeriod" );
+			app.Logger.WriteLine( "[MultimediaTimer] Calling PInvoke.timeBeginPeriod" );
 
-			_ = WinMM.TimeBeginPeriod( 1 );
+			_ = PInvoke.timeBeginPeriod( 1 );
 
-			app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeSetEvent" );
+			app.Logger.WriteLine( "[MultimediaTimer] Calling TimeSetEvent" );
 
-			_multimediaTimerId = WinMM.TimeSetEvent( 2, 0, _autoResetEvent.SafeWaitHandle.DangerousGetHandle(), ref _multimediaTimerId, (uint) ( WinMM.fuEvent.TIME_PERIODIC | WinMM.fuEvent.TIME_CALLBACK_EVENT_SET ) );
+			var eventHandle = _autoResetEvent.SafeWaitHandle.DangerousGetHandle();
+
+			const uint timePeriodic = 0x0001;
+			const uint timeCallbackEventSet = 0x0010;
+
+			_multimediaTimerId = TimeSetEvent( 2, 0, eventHandle, UIntPtr.Zero, timePeriodic | timeCallbackEventSet );
 
 			app.Logger.WriteLine( "[MultimediaTimer] <<< ResumeTimerNow" );
 		}
@@ -111,13 +117,13 @@ public class MultimediaTimer
 
 			app.Logger.WriteLine( "[MultimediaTimer] SuspendTimerNow >>>" );
 
-			app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeEndPeriod" );
+			app.Logger.WriteLine( "[MultimediaTimer] Calling PInvoke.timeEndPeriod" );
 
-			_ = WinMM.TimeEndPeriod( 1 );
+			_ = PInvoke.timeEndPeriod( 1 );
 
-			app.Logger.WriteLine( "[MultimediaTimer] Calling WinMM.TimeKillEvent" );
+			app.Logger.WriteLine( "[MultimediaTimer] Calling PInvoke.timeKillEvent" );
 
-			_ = WinMM.TimeKillEvent( _multimediaTimerId );
+			_ = PInvoke.timeKillEvent( _multimediaTimerId );
 
 			_multimediaTimerId = 0;
 
@@ -201,4 +207,7 @@ public class MultimediaTimer
 			}
 		}
 	}
+
+	[LibraryImport( "winmm.dll", EntryPoint = "timeSetEvent" )]
+	internal static partial uint TimeSetEvent( uint delayMilliseconds, uint resolutionMilliseconds, IntPtr eventHandle, UIntPtr user, uint eventFlags );
 }

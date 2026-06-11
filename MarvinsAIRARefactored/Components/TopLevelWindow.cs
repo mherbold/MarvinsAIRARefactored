@@ -1,7 +1,9 @@
 ﻿
 using System.Windows.Interop;
 
-using static PInvoke.User32;
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -22,15 +24,17 @@ public class TopLevelWindow
 			Height = 1,
 			PositionX = -10000,
 			PositionY = -10000,
+
 			WindowStyle = unchecked((int) (
-				(uint) WindowStyles.WS_POPUP |
-				(uint) WindowStyles.WS_CLIPSIBLINGS |
-				(uint) WindowStyles.WS_CLIPCHILDREN
+				(uint) WINDOW_STYLE.WS_POPUP |
+				(uint) WINDOW_STYLE.WS_CLIPSIBLINGS |
+				(uint) WINDOW_STYLE.WS_CLIPCHILDREN
 			)),
+
 			ExtendedWindowStyle = unchecked((int) (
-				(uint) WindowStylesEx.WS_EX_TOOLWINDOW | // hides from Alt+Tab
-				(uint) WindowStylesEx.WS_EX_NOACTIVATE       // don’t steal focus
-															 // intentionally NOT WS_EX_APPWINDOW
+				(uint) WINDOW_EX_STYLE.WS_EX_TOOLWINDOW |  // hides from Alt+Tab
+				(uint) WINDOW_EX_STYLE.WS_EX_NOACTIVATE    // does not steal focus
+														   // intentionally NOT WS_EX_APPWINDOW
 			))
 		};
 
@@ -39,7 +43,7 @@ public class TopLevelWindow
 		WindowHandle = _source.Handle;
 
 		// Make sure it stays hidden (not strictly required; it has no taskbar/Alt+Tab presence anyway)
-		ShowWindow( WindowHandle, WindowShowStyle.SW_HIDE );
+		PInvoke.ShowWindow( (HWND) WindowHandle, SHOW_WINDOW_CMD.SW_HIDE );
 
 		app.Logger.WriteLine( "[TopLevelWindow] <<< Initialize" );
 	}

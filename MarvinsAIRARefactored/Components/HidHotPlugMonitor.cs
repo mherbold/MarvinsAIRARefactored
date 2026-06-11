@@ -2,14 +2,16 @@
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 
-using MarvinsAIRARefactored.PInvoke;
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.UI.WindowsAndMessaging;
 
 namespace MarvinsAIRARefactored.Components;
 
 public sealed class HidHotplugMonitor : IDisposable
 {
 	private HwndSource? _hwndSource;
-	private IntPtr _deviceNotifyHandle = IntPtr.Zero;
+	private HDEVNOTIFY _deviceNotifyHandle;
 	private readonly Guid _hidInterfaceGuid = new( "{4D1E55B2-F16F-11CF-88CB-001111000030}" ); // GUID_DEVINTERFACE_HID
 
 	private System.Timers.Timer? _debounceTimer;
@@ -43,11 +45,11 @@ public sealed class HidHotplugMonitor : IDisposable
 
 	public void Dispose()
 	{
-		if ( _deviceNotifyHandle != IntPtr.Zero )
+		if ( _deviceNotifyHandle != HDEVNOTIFY.Null )
 		{
-			User32.UnregisterDeviceNotification( _deviceNotifyHandle );
+			_ = PInvoke.UnregisterDeviceNotification( _deviceNotifyHandle );
 
-			_deviceNotifyHandle = IntPtr.Zero;
+			_deviceNotifyHandle = HDEVNOTIFY.Null;
 		}
 
 		_hwndSource?.RemoveHook( WndProc );
@@ -57,16 +59,19 @@ public sealed class HidHotplugMonitor : IDisposable
 		_debounceTimer?.Dispose();
 	}
 
-	private void RegisterForHidNotifications( IntPtr hwnd )
+	private unsafe void RegisterForHidNotifications( IntPtr hwnd )
 	{
-		var dbi = new User32.DEV_BROADCAST_DEVICEINTERFACE_W
+		var deviceBroadcastInterface = new DEV_BROADCAST_DEVICEINTERFACE_W
 		{
-			dbcc_size = (uint) Marshal.SizeOf<User32.DEV_BROADCAST_DEVICEINTERFACE_W>(),
+			dbcc_size = (uint) sizeof( DEV_BROADCAST_DEVICEINTERFACE_W ),
 			dbcc_classguid = _hidInterfaceGuid,
-			dbcc_devicetype = User32.DeviceType.DBT_DEVTYP_DEVICEINTERFACE
+			dbcc_devicetype = (uint) DEV_BROADCAST_HDR_DEVICE_TYPE.DBT_DEVTYP_DEVICEINTERFACE
 		};
 
-		_deviceNotifyHandle = User32.RegisterDeviceNotification( hwnd, ref dbi, User32.DeviceNotificationFlags.DEVICE_NOTIFY_WINDOW_HANDLE );
+		_deviceNotifyHandle = PInvoke.RegisterDeviceNotification(
+			new HANDLE( hwnd ),
+			&deviceBroadcastInterface,
+			REGISTER_NOTIFICATION_FLAGS.DEVICE_NOTIFY_WINDOW_HANDLE );
 	}
 
 	private void SetupForHwnd( IntPtr hwnd )
@@ -91,31 +96,33 @@ public sealed class HidHotplugMonitor : IDisposable
 
 	private IntPtr WndProc( IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled )
 	{
-		const int WM_DEVICECHANGE = 0x0219;
-		const int DBT_DEVICEARRIVAL = 0x8000;
-		const int DBT_DEVICEREMOVECOMPLETE = 0x8004;
-
-		if ( msg == WM_DEVICECHANGE )
+		if ( msg == PInvoke.WM_DEVICECHANGE )
 		{
 			var eventType = wParam.ToInt32();
 
-			if ( eventType == DBT_DEVICEARRIVAL || eventType == DBT_DEVICEREMOVECOMPLETE )
+			if ( eventType == PInvoke.DBT_DEVICEARRIVAL || eventType == PInvoke.DBT_DEVICEREMOVECOMPLETE )
 			{
 				_debounceTimer?.Stop();
 				_debounceTimer?.Start();
 
-				var hdr = Marshal.PtrToStructure<User32.DEV_BROADCAST_HDR>( lParam );
-
-				if ( hdr.dbch_devicetype == User32.DeviceType.DBT_DEVTYP_DEVICEINTERFACE )
+				if ( lParam == IntPtr.Zero )
 				{
-					var nameOffset = Marshal.OffsetOf<User32.DEV_BROADCAST_DEVICEINTERFACE_W>( nameof( User32.DEV_BROADCAST_DEVICEINTERFACE_W.dbcc_name ) ).ToInt32();
-					var namePtr = IntPtr.Add( lParam, nameOffset );
+					return IntPtr.Zero;
+				}
 
+				var broadcastHeader = Marshal.PtrToStructure<DEV_BROADCAST_HDR>( lParam );
+
+				if ( broadcastHeader.dbch_devicetype == DEV_BROADCAST_HDR_DEVICE_TYPE.DBT_DEVTYP_DEVICEINTERFACE )
+				{
+					var nameOffset = Marshal.OffsetOf<DEV_BROADCAST_DEVICEINTERFACE_W>(
+						nameof( DEV_BROADCAST_DEVICEINTERFACE_W.dbcc_name ) ).ToInt32();
+
+					var namePtr = IntPtr.Add( lParam, nameOffset );
 					var devicePath = Marshal.PtrToStringUni( namePtr ) ?? string.Empty;
 
 					var app = App.Instance!;
 
-					if ( eventType == DBT_DEVICEREMOVECOMPLETE )
+					if ( eventType == PInvoke.DBT_DEVICEREMOVECOMPLETE )
 					{
 						app.Logger.WriteLine( $"[HidHotPlugMonitor] Device {devicePath} was removed!" );
 					}

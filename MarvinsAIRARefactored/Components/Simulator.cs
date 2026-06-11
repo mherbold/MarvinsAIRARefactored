@@ -6,7 +6,8 @@ using System.Text.RegularExpressions;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
-using PInvoke;
+using Windows.Win32;
+
 using IRSDKSharper;
 
 using MarvinsAIRARefactored.Classes;
@@ -298,7 +299,7 @@ public partial class Simulator
 
 		app.Logger.WriteLine( "[Simulator] OnConnected >>>" );
 
-		WindowHandle = User32.FindWindow( null, "iRacing.com Simulator" );
+		WindowHandle = PInvoke.FindWindow( null, "iRacing.com Simulator" );
 
 		app.MultimediaTimer.Suspend = false;
 

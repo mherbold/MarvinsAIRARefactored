@@ -4,11 +4,11 @@ using System.Windows.Input;
 using System.Windows.Interop;
 using System.Windows.Media;
 
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.UI.WindowsAndMessaging;
+
 using Color = System.Windows.Media.Color;
-
-using PInvoke;
-
-using static PInvoke.User32;
 
 namespace MarvinsAIRARefactored.Windows;
 
@@ -92,16 +92,18 @@ public partial class GripOMeterWindow : Window
 
 		var hwnd = new WindowInteropHelper( this ).Handle;
 
-		var exStyle = User32.GetWindowLong( hwnd, WindowLongIndexFlags.GWL_EXSTYLE );
+		var exStyle = PInvoke.GetWindowLong( (HWND) hwnd, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE );
 
 		if ( _isDraggable )
 		{
-			_ = User32.SetWindowLong( hwnd, WindowLongIndexFlags.GWL_EXSTYLE, (SetWindowLongFlags) ( (uint) exStyle & (uint) ~SetWindowLongFlags.WS_EX_TRANSPARENT ) );
+			exStyle &= ~(int) WINDOW_EX_STYLE.WS_EX_TRANSPARENT;
 		}
 		else
 		{
-			_ = User32.SetWindowLong( hwnd, WindowLongIndexFlags.GWL_EXSTYLE, (SetWindowLongFlags) ( (uint) exStyle | (uint) SetWindowLongFlags.WS_EX_TRANSPARENT ) );
+			exStyle |= (int) WINDOW_EX_STYLE.WS_EX_TRANSPARENT;
 		}
+
+		_ = PInvoke.SetWindowLong( (HWND) hwnd, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exStyle );
 	}
 
 	protected override void OnMouseLeftButtonDown( MouseButtonEventArgs e )
