@@ -654,9 +654,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>Privát csevegőüzenetek küldése a versenyzőnek</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Logitech RPM ledek engedélyezése</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>

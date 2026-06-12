@@ -655,9 +655,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>Enviar Mensagens Privadas para o Piloto</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Ativar as Luzes de RPM da Logitech</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>

@@ -656,9 +656,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>Wyślij prywatne wiadomości czatu do kierowcy</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Włącz Logitech RPM </value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>

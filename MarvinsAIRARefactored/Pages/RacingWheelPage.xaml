@@ -954,11 +954,6 @@
                                           Tag="Complex" />
 
                     <controls:MairaSwitch Margin="0,10,0,0"
-                                          IsOn="{Binding Settings.RacingWheelEnableLogitechRPMLights, Mode=TwoWay}"
-                                          Label="{Binding Localization[EnableLogitechRPMLights]}"
-                                          Tag="Complex" />
-
-                    <controls:MairaSwitch Margin="0,10,0,0"
                                           IsOn="{Binding Settings.RacingWheelAllowSuperStrength, Mode=TwoWay}"
                                           Label="{Binding Localization[AllowSuperStrength]}"
                                           Tag="Complex" />

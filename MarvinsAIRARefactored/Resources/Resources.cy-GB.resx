@@ -654,9 +654,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>Anfon negeseuon sgwrs preifat at y gyrrwr</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Galluogi goleuadau RPM Logitech</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>

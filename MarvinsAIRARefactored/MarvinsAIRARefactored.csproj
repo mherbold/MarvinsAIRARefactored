@@ -224,9 +224,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="LogitechSteeringWheelEnginesWrapper.dll">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
     <None Update="SimagicHPR.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>

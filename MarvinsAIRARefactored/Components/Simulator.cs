@@ -307,8 +307,6 @@ public partial class Simulator
 
 		app.RacingWheel.ResetForceFeedback = true;
 
-		app.RacingWheel.LogiInitialize( WindowHandle.Value );
-
 		app.AdminBoxx.SimulatorConnected();
 
 #if !ADMINBOXX
@@ -332,8 +330,6 @@ public partial class Simulator
 		app.Logger.WriteLine( "[Simulator] OnDisconnected >>>" );
 
 		app.RacingWheel.UseSteeringWheelTorqueData = false;
-
-		app.RacingWheel.LogiShutdown();
 
 		WindowHandle = null;
 

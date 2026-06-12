@@ -654,9 +654,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>Manda Messaggio in Chat</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Enable Logitech giri/min lights</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>

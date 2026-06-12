@@ -656,9 +656,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>ドライバーにプライベートチャットメッセージを送信する</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Logitech RPMライトを有効にする</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>

@@ -662,9 +662,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>Envoyer des messages privés au pilote</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Activer les voyants Logitech de régime moteur</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>

@@ -657,9 +657,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="SendChatMessages" xml:space="preserve">
     <value>Sende private Nachrichten an den Fahrer</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Aktiviere Logitech Drehzahl-Leuchten</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>

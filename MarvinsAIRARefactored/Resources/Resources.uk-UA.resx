@@ -658,9 +658,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>Надсилайте водієві приватні повідомлення в чаті</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Увімкнути індикатори швидкості обертання Logitech RPM</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>	°</value>
   </data>

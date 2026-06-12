@@ -498,7 +498,6 @@ public partial class App : Application
 		TextToSpeech.Dispose();
 
 		Simulator.Shutdown();
-		RacingWheel.LogiShutdown();
 		AdminBoxx.Shutdown();
 		DirectInput.Shutdown();
 

@@ -654,9 +654,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>ส่งข้อความแชทส่วนตัวถึงนักแข่ง</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>เปิดใช้งานไฟ RPM Logitech</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>

@@ -654,9 +654,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>Skicka privata chattmeddelanden till föraren</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Aktivera Logitech RPM-lampor</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>

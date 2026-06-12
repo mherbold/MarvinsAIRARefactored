@@ -128,9 +128,6 @@ public class RacingWheel
 
 	private readonly GraphBase _algorithmPreviewGraphBase = new();
 
-	private bool _logiSdkInitialized = false;
-	private bool _logiPlayLedsNotWorking = false;
-
 	private int _updateCounter = UpdateInterval + 4;
 	private int _lastGear = 0;
 
@@ -184,62 +181,6 @@ public class RacingWheel
 #endif
 
 		app.Logger.WriteLine( "[RacingWheel] <<< Initialize" );
-	}
-
-	public void LogiInitialize( IntPtr iRacingWindowHandle )
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[RacingWheel] LogiInitialize >>>" );
-
-		try
-		{
-			if ( _logiSdkInitialized )
-			{
-				app.Logger.WriteLine( "[RacingWheel] Logitech SDK already initialized, shutting down first" );
-
-				LogitechGSDK.LogiSteeringShutdown();
-			}
-
-			if ( iRacingWindowHandle == IntPtr.Zero )
-			{
-				app.Logger.WriteLine( "[RacingWheel] Skipping Logitech SDK initialization because iRacing window handle is invalid (IntPtr.Zero)." );
-			}
-			else
-			{
-
-				var result = LogitechGSDK.LogiSteeringInitializeWithWindow( true, iRacingWindowHandle );
-
-				app.Logger.WriteLine( $"[RacingWheel] LogiSteeringInitializeWithWindow returned {result}" );
-
-				_logiSdkInitialized = result;
-			}
-		}
-		catch ( Exception exception )
-		{
-			app.Logger.WriteLine( $"[RacingWheel] Logitech SDK initialization failed: {exception.Message.Trim()}" );
-		}
-
-		app.Logger.WriteLine( "[RacingWheel] <<< LogiInitialize" );
-	}
-
-	public void LogiShutdown()
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[RacingWheel] LogiShutdown >>>" );
-
-		if ( _logiSdkInitialized )
-		{
-			LogitechGSDK.LogiSteeringShutdown();
-
-			_logiSdkInitialized = false;
-			_logiPlayLedsNotWorking = false;
-
-			app.Logger.WriteLine( "[RacingWheel] Logitech SDK shut down" );
-		}
-
-		app.Logger.WriteLine( "[RacingWheel] <<< LogiShutdown" );
 	}
 
 	public float GetCurrentAutoTorque()
@@ -1531,52 +1472,6 @@ public class RacingWheel
 			// update auto force label
 
 			_racingWheelPage.AutoForce_TextBlock.Text = $"{_autoTorque:F1} {DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
-
-			// update logitech rpm lights
-
-			if ( settings.RacingWheelEnableLogitechRPMLights )
-			{
-				if ( _logiSdkInitialized && !_logiPlayLedsNotWorking && app.Simulator.IsConnected )
-				{
-					try
-					{
-						if ( LogitechGSDK.LogiUpdate() )
-						{
-							var wheelIndex = -1;
-
-							for ( var i = 0; i < LogitechGSDK.MaxControllers; i++ )
-							{
-								if ( LogitechGSDK.LogiIsConnected( i ) )
-								{
-									wheelIndex = i;
-									break;
-								}
-							}
-
-							if ( wheelIndex >= 0 )
-							{
-								if ( !LogitechGSDK.LogiPlayLeds( wheelIndex, app.Simulator.RPM, app.Simulator.ShiftLightsFirstRPM, app.Simulator.ShiftLightsShiftRPM ) )
-								{
-									_logiPlayLedsNotWorking = true;
-								}
-							}
-						}
-						else
-						{
-							_logiPlayLedsNotWorking = true;
-						}
-					}
-					catch ( Exception )
-					{
-						_logiPlayLedsNotWorking = true;
-					}
-
-					if ( _logiPlayLedsNotWorking )
-					{
-						app.Logger.WriteLine( "[RacingWheel] The Logitech G SDK doesn't seem to be working, so we are temporarily disabling Logitech RPM lights support." );
-					}
-				}
-			}
 
 			// update algorithm preview
 

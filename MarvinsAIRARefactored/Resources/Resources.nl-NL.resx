@@ -654,9 +654,6 @@
   <data name="SendChatMessages" xml:space="preserve">
     <value>Stuur priveberichten naar de bestuurder</value>
   </data>
-  <data name="EnableLogitechRPMLights" xml:space="preserve">
-    <value>Enable Logitech omw/min lights</value>
-  </data>
   <data name="Degrees" xml:space="preserve">
     <value>Graden</value>
   </data>
