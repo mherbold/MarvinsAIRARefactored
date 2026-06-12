@@ -12307,17 +12307,20 @@ public class Settings : INotifyPropertyChanged
 
 		set
 		{
+			DataContext.Instance.Localization.LoadLanguage( value ); // Always try to load the language (Localization has it's own _currentLanguageCode)
+
 			if ( value != _appCurrentLanguageCode )
 			{
 				_appCurrentLanguageCode = value;
 
-				DataContext.Instance.Localization.LoadLanguage( value );
-
-				OnPropertyChanged();
-
 				var app = App.Instance!;
 
-				app.MainWindow.RefreshWindow();
+				if ( app.Ready )
+				{
+					OnPropertyChanged();
+
+					app.MainWindow.RefreshWindow();
+				}
 			}
 		}
 	}
@@ -12347,6 +12350,64 @@ public class Settings : INotifyPropertyChanged
 				_appDefaultPage = value;
 
 				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region App - Show splash screen
+
+	private bool _appShowSplashScreen = true;
+
+	public bool AppShowSplashScreen
+	{
+		get => _appShowSplashScreen;
+
+		set
+		{
+			if ( value != _appShowSplashScreen )
+			{
+				_appShowSplashScreen = value;
+
+				OnPropertyChanged();
+
+				var app = App.Instance!;
+
+				var disableSplashScreenFilePath = Path.Combine( App.DocumentsFolder, "DisableSplashScreen.txt" );
+
+				if ( !_appShowSplashScreen )
+				{
+					try
+					{
+						if ( !File.Exists( disableSplashScreenFilePath ) )
+						{
+							File.WriteAllText( disableSplashScreenFilePath, "This file disables the splash screen on startup." );
+
+							app.Logger.WriteLine( "[Settings] Created DisableSplashScreen.txt file" );
+						}
+					}
+					catch ( Exception ex )
+					{
+						app.Logger.WriteLine( $"[Settings] Failed to create DisableSplashScreen.txt: {ex.Message}" );
+					}
+				}
+				else
+				{
+					try
+					{
+						if ( File.Exists( disableSplashScreenFilePath ) )
+						{
+							File.Delete( disableSplashScreenFilePath );
+
+							app.Logger.WriteLine( "[Settings] Deleted DisableSplashScreen.txt file" );
+						}
+					}
+					catch ( Exception ex )
+					{
+						app.Logger.WriteLine( $"[Settings] Failed to delete DisableSplashScreen.txt: {ex.Message}" );
+					}
+				}
 			}
 		}
 	}

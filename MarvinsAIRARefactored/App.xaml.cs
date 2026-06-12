@@ -204,25 +204,29 @@ public partial class App : Application
 
 #if !ADMINBOXX
 
-		DataContext.DataContext.Instance.Settings.AppCurrentLanguageCode = DataContext.DataContext.Instance.Localization.ChooseInitialLanguage();
+	DataContext.DataContext.Instance.Settings.AppCurrentLanguageCode = DataContext.DataContext.Instance.Localization.ChooseInitialLanguage();
 
-		ShutdownMode = ShutdownMode.OnExplicitShutdown;
+	ShutdownMode = ShutdownMode.OnExplicitShutdown;
 
-		StartupWindow? startupWindow = new();
+	// Check if splash screen should be shown
+	var disableSplashScreenFilePath = Path.Combine( DocumentsFolder, "DisableSplashScreen.txt" );
+	var showSplashScreen = !File.Exists( disableSplashScreenFilePath );
 
-		startupWindow.Show();
+	StartupWindow? startupWindow = showSplashScreen ? new() : null;
 
-		var startupStepIndex = 0;
-		const int startupStepCount = 24;
+	startupWindow?.Show();
 
-		void RunStartupStep( string statusKey, Action initializeAction )
-		{
-			startupStepIndex++;
+	var startupStepIndex = 0;
+	const int startupStepCount = 24;
 
-			startupWindow?.UpdateProgress( startupStepIndex * 100d / startupStepCount, DataContext.DataContext.Instance.Localization[ statusKey ] );
+	void RunStartupStep( string statusKey, Action initializeAction )
+	{
+		startupStepIndex++;
 
-			initializeAction();
-		}
+		startupWindow?.UpdateProgress( startupStepIndex * 100d / startupStepCount, DataContext.DataContext.Instance.Localization[ statusKey ] );
+
+		initializeAction();
+	}
 
 #endif
 

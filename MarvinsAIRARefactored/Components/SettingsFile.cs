@@ -109,12 +109,25 @@ public class SettingsFile
 			DataContext.DataContext.Instance.Settings.AppCurrentLanguageCode = DataContext.DataContext.Instance.Localization.ChooseInitialLanguage();
 		}
 
-		Settings.SuppressUpdatingOfContextSettings = false;
+			Settings.SuppressUpdatingOfContextSettings = false;
 
-		PauseSerialization = false;
+			PauseSerialization = false;
 
-		app.Logger.WriteLine( "[SettingsFile] <<< Initialize" );
-	}
+			// Sync the AppShowSplashScreen setting with the DisableSplashScreen.txt file state
+			// This ensures the setting reflects reality if the user manually deleted the file
+			var disableSplashScreenFilePath = Path.Combine( App.DocumentsFolder, "DisableSplashScreen.txt" );
+			var fileExists = File.Exists( disableSplashScreenFilePath );
+			var showSplashScreen = !fileExists;
+
+			if ( DataContext.DataContext.Instance.Settings.AppShowSplashScreen != showSplashScreen )
+			{
+				app.Logger.WriteLine( $"[SettingsFile] Syncing AppShowSplashScreen setting to {showSplashScreen} based on file presence" );
+
+				DataContext.DataContext.Instance.Settings.AppShowSplashScreen = showSplashScreen;
+			}
+
+			app.Logger.WriteLine( "[SettingsFile] <<< Initialize" );
+		}
 
 	public void Tick( App app )
 	{

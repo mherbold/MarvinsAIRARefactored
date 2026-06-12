@@ -19,6 +19,8 @@ public partial class Localization : INotifyPropertyChanged
 	private Dictionary<string, string> _defaults = [];
 	private Dictionary<string, string> _translations = [];
 
+	private string? _currentLanguageCode = null;
+
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	[GeneratedRegex( @"^MarvinsAIRARefactored\.Resources\.Resources\.(?<languageCode>[a-z]{2,3}(?:-[A-Za-z0-9]+)*)\.resources$", RegexOptions.IgnoreCase, "en-US" )]
@@ -80,25 +82,34 @@ public partial class Localization : INotifyPropertyChanged
 
 		app?.Logger.WriteLine( $"[Localization] Loading language: {languageCode}" );
 
-		var assembly = Assembly.GetExecutingAssembly();
-
-		var resourceName = ( languageCode == "default" )
-			? $"{ResourcePrefix}.resources"
-			: $"{ResourcePrefix}.{languageCode}.resources";
-
-		using var stream = assembly.GetManifestResourceStream( resourceName );
-
-		if ( stream != null )
+		if ( languageCode != _currentLanguageCode )
 		{
-			app?.Logger.WriteLine( "[Localization] Language found in embedded resources" );
+			var assembly = Assembly.GetExecutingAssembly();
 
-			_translations = LoadResourcesFromStream( stream );
+			var resourceName = ( languageCode == "default" )
+				? $"{ResourcePrefix}.resources"
+				: $"{ResourcePrefix}.{languageCode}.resources";
+
+			using var stream = assembly.GetManifestResourceStream( resourceName );
+
+			if ( stream != null )
+			{
+				app?.Logger.WriteLine( "[Localization] Language found in embedded resources" );
+
+				_translations = LoadResourcesFromStream( stream );
+			}
+			else
+			{
+				app?.Logger.WriteLine( "[Localization] Language not found" );
+
+				_translations = [];
+			}
+
+			_currentLanguageCode = languageCode;
 		}
 		else
 		{
-			app?.Logger.WriteLine( "[Localization] Language not found" );
-
-			_translations = [];
+			app?.Logger.WriteLine( "[Localization] This is already the current language - skipping." );
 		}
 
 		OnPropertyChanged( null );

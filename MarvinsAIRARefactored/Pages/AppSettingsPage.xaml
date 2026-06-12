@@ -82,44 +82,52 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <controls:MairaSwitch Grid.Row="0"
                                       Grid.Column="0"
                                       Grid.ColumnSpan="3"
                                       Margin="0"
+                                      IsOn="{Binding Settings.AppShowSplashScreen, Mode=TwoWay}"
+                                      Label="{Binding Localization[ShowSplashScreen]}" />
+
+                <controls:MairaSwitch Grid.Row="1"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="3"
+                                      Margin="0,10,0,0"
                                       IsOn="{Binding Settings.AppTopmostWindowEnabled, Mode=TwoWay}"
                                       Label="{Binding Localization[TopmostWindow]}" />
 
-                <controls:MairaSwitch Grid.Row="1"
+                <controls:MairaSwitch Grid.Row="2"
                                       Grid.Column="0"
                                       Grid.ColumnSpan="3"
                                       Margin="0,10,0,0"
                                       IsOn="{Binding Settings.AppRememberWindowPositionAndSize, Mode=TwoWay}"
                                       Label="{Binding Localization[RememberWindowPositionAndSize]}" />
 
-                <controls:MairaSwitch Grid.Row="2"
+                <controls:MairaSwitch Grid.Row="3"
                                       Grid.Column="0"
                                       Grid.ColumnSpan="3"
                                       Margin="0,10,0,0"
                                       IsOn="{Binding Settings.AppStartWithWindows, Mode=TwoWay}"
                                       Label="{Binding Localization[StartWithWindows]}" />
 
-                <controls:MairaSwitch Grid.Row="3"
+                <controls:MairaSwitch Grid.Row="4"
                                       Grid.Column="0"
                                       Grid.ColumnSpan="3"
                                       Margin="0,10,0,0"
                                       IsOn="{Binding Settings.AppStartMinimized, Mode=TwoWay}"
                                       Label="{Binding Localization[StartMinimized]}" />
 
-                <controls:MairaSwitch Grid.Row="4"
+                <controls:MairaSwitch Grid.Row="5"
                                       Grid.Column="0"
                                       Grid.ColumnSpan="3"
                                       Margin="0,10,0,0"
                                       IsOn="{Binding Settings.AppMinimizeToSystemTray, Mode=TwoWay}"
                                       Label="{Binding Localization[MinimizeToSystemTray]}" />
 
-                <controls:MairaSwitch Grid.Row="5"
+                <controls:MairaSwitch Grid.Row="6"
                                       Grid.Column="0"
                                       Grid.ColumnSpan="3"
                                       Margin="0,10,0,0"
