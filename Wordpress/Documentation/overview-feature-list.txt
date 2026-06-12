@@ -153,6 +153,40 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section">Seat belt tensioner</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>USB serial-controlled seat belt tensioner integration</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Real-time graphs showing surge, sway, and heave forces</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Responds to G-forces (surge, sway, heave) during racing</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Seat-of-pants effect for enhanced immersion</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Vibration effects (ABS, wheel slip, rumble)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Per-axis control (normal/inverted/disabled modes)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Separate left and right shoulder control</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section">Sounds</p>
 <!-- /wp:paragraph -->
 
@@ -177,6 +211,14 @@
 
 <!-- wp:list-item -->
 <li>Understeer, oversteer, and seat-of-pants</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Brake and throttle warning (when both are pressed simultaneously)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>FFB clipping warning</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></li>
 <!-- /wp:list-item --></ul>
@@ -197,6 +239,36 @@
 
 <!-- wp:list-item -->
 <li>Text is shown in a movable/scalable overlay window</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Commentary</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>AI-powered race commentary using ElevenLabs Text-to-Speech</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Spotter calls for car proximity (car left, car right, three-wide situations, clear)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Flag announcements (green, yellow, white, checkered, blue, black, debris, etc.)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Multi-language support with customizable phrase templates</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Priority-based voice queue system</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Configurable reminder intervals for proximity calls</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -245,6 +317,16 @@
 <li>Timer jitter</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Overlays</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Gap Monitor - movable/scalable overlay displaying real-time gap information to cars ahead and behind</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -361,6 +443,42 @@
 
 <!-- wp:list-item -->
 <li>Checking for updates on app start</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">App Manager</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Automatically start and stop external applications when connecting/disconnecting from iRacing</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Configurable delays for application startup sequences</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Can terminate and relaunch applications automatically</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Set CPU priority and processor affinity (avoid primary cores) for each managed application</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section">Stream Deck integration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Elgato Stream Deck support for button mappings</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Use Stream Deck buttons to control MAIRA settings and features</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
