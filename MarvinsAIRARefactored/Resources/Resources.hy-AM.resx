@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Ցույց տալ պատուհանը</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Գործարկելիս ցույց տալ մեկնարկային էկրանը</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Ելք հավելվածից</value>
   </data>

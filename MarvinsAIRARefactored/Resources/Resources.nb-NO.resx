@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Vis vindu</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Vis oppstartsskjerm ved oppstart</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Avslutt app</value>
   </data>

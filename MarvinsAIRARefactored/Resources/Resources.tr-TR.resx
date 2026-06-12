@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Pencereyi Görüntüle</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Başlangıçta açılış ekranını göster</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Uygulamayı Kapat</value>
   </data>

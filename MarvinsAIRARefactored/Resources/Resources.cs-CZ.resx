@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Zobrazit okno aplikace</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Zobrazit úvodní obrazovku při spuštění</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Ukončit aplikaci</value>
   </data>

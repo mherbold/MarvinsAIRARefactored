@@ -576,6 +576,9 @@ Hier ist der Link zum Spenden:</value>
   <data name="ShowWindow" xml:space="preserve">
     <value>Zeige Fenster</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Begrüßungsbildschirm beim Start anzeigen</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>App schliessen</value>
   </data>

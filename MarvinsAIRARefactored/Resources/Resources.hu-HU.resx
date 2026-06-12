@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Ablak megjelenítése</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Indításkor jelenjen meg a kezdőképernyő</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Kilépés az alkalmazásból</value>
   </data>

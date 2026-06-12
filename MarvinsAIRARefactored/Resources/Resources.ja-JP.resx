@@ -575,6 +575,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>ウィンドウを表示</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>起動時にスプラッシュ画面を表示</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>アプリを終了</value>
   </data>

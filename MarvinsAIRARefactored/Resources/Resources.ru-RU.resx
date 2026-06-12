@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Показать окно</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Показывать заставку при запуске</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Выйти из приложения</value>
   </data>

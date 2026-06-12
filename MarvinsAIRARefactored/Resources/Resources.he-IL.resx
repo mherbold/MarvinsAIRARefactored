@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>הצג חלון</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>הצג מסך פתיחה בעת ההפעלה</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>צא מהאפליקציה</value>
   </data>

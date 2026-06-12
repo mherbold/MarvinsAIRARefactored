@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>展示窗口</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>启动时显示启动画面</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>退出App</value>
   </data>

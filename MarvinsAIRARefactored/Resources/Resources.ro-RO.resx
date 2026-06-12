@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Afișați fereastra</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Afișează ecranul de pornire la lansare</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Ieșiți din aplicație</value>
   </data>

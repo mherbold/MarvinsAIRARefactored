@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Toon venster</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Toon opstartscherm bij het starten</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Sluit App</value>
   </data>

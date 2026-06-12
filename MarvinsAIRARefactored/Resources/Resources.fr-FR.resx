@@ -581,6 +581,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Afficher la fenêtre</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Afficher l’écran de démarrage au lancement</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Quitter l'application</value>
   </data>

@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Vis Vindue</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Vis opstartsskærm ved opstart</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Luk Program</value>
   </data>

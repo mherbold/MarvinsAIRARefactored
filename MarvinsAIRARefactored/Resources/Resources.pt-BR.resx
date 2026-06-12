@@ -573,6 +573,9 @@
   <data name="ShowWindow" xml:space="preserve">
     <value>Mostrar Janela</value>
   </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Mostrar tela de abertura ao iniciar</value>
+  </data>
   <data name="ExitApp" xml:space="preserve">
     <value>Sair do Aplicativo</value>
   </data>
