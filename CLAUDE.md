@@ -50,6 +50,20 @@ The app version is computed at build time from the current UTC date via MSBuild 
 - **Release** — standard release build.
 - **ADMINBOXX** — strips out most features (steering effects, pedals, speech-to-text, cloud updates, etc.) and rebrands the app as "AdminBoxx".
 
+### How to Build
+
+**Do not use `dotnet build`** — this project uses COM references (`ResolveComReference`) that require the full Visual Studio MSBuild, not the .NET SDK's MSBuild. `dotnet build` will always fail with MSB4803.
+
+Use the PowerShell tool with VS MSBuild directly:
+
+```powershell
+$msbuild = (Get-ChildItem "C:\Program Files\Microsoft Visual Studio" -Recurse -Filter "MSBuild.exe" | Where-Object { $_.FullName -like "*amd64*" } | Select-Object -First 1).FullName
+$sln = "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsAIRARefactored.sln"
+& $msbuild $sln /t:Build /p:Configuration=Debug /p:Platform=x64 /m /nologo /v:minimal 2>&1 | Select-Object -Last 30
+```
+
+A clean build exits with code 0. The post-build `xcopy` steps use the `/D` flag and will report "0 File(s) copied" when the destination is already up to date — this is normal, not an error.
+
 ### Post-Build Events
 The post-build step copies several asset folders (sounds, recordings, calibration files, STT files, SBT files) to the user's `My Documents\MarvinsAIRA Refactored\` folder using `xcopy`.
 
@@ -61,7 +75,6 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
 |---|---|
 | `IRSDKSharper` (1.1.8) | iRacing SDK wrapper — provides telemetry and session info |
 | `SharpDX.DirectInput` (4.2.0) | DirectInput for racing wheel / joystick input and FFB |
-| `SharpDX.DirectSound` (4.2.0) | DirectSound for LFE (Low Frequency Effects) audio capture |
 | `Accord` / `Accord.Neuro` / `Accord.Statistics` (3.8.0) | Machine-learning / signal-processing utilities |
 | `CsvHelper` (33.1.0) | CSV reading/writing (calibration data, recordings) |
 | `Newtonsoft.Json` (13.0.4) | JSON serialization (cloud service responses) |
