@@ -1839,6 +1839,9 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Initialiserer Hovedvindue...</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Hent malingsfiler igen</value>
+  </data>
   <data name="DeleteMe" xml:space="preserve">
     <value>DeleteMe</value>
   </data>

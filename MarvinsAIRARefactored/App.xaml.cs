@@ -2519,6 +2519,13 @@ public partial class App : Application
 			{
 				settings.AdminBoxxVolume -= 0.01f;
 			}
+
+			// trading paints re-download button
+
+			if ( CheckMappedButtons( settings.TradingPaintsRedownloadButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				TradingPaints.Reset();
+			}
 		}
 	}
 

@@ -1844,6 +1844,9 @@ Hier ist der Link zum Spenden:</value>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Hauptfenster wird initialisiert...</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Lackdateien neu herunterladen</value>
+  </data>
   <data name="DeleteMe" xml:space="preserve">
     <value>DeleteMe</value>
   </data>

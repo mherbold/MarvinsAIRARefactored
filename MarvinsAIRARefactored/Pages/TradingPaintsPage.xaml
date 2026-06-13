@@ -67,6 +67,16 @@
 
                 </Grid>
 
+                <controls:MairaMappableButton x:Name="Redownload_MairaMappableButton"
+                                              Margin="0,20,0,0"
+                                              HorizontalAlignment="Center"
+                                              LabelOnRight="True"
+                                              IsSmall="True"
+                                              Label="{Binding Localization[RedownloadPaintFiles]}"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                              ButtonMappings="{Binding Settings.TradingPaintsRedownloadButtonMappings}"
+                                              Click="Redownload_MairaMappableButton_Click" />
+
                 <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                            HorizontalAlignment="Center"
                            Foreground="#888"

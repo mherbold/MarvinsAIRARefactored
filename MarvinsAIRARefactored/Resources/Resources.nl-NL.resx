@@ -1839,6 +1839,9 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Hoofdvenster initialiseren...</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Verfbestanden opnieuw downloaden</value>
+  </data>
   <data name="DeleteMe" xml:space="preserve">
     <value>DeleteMe</value>
   </data>

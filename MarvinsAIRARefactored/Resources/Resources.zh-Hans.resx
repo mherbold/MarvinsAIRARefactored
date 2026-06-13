@@ -1839,6 +1839,9 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>初始化主窗口...</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>重新下载涂装文件</value>
+  </data>
   <data name="DeleteMe" xml:space="preserve">
     <value>DeleteMe</value>
   </data>

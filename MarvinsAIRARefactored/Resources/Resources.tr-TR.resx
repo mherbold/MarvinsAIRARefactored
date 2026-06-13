@@ -1839,6 +1839,9 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Ana Pencere Başlatılıyor...</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Boya dosyalarını yeniden indir</value>
+  </data>
   <data name="DeleteMe" xml:space="preserve">
     <value>DeleteMe</value>
   </data>

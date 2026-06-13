@@ -1839,6 +1839,9 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Alustetaan Pääikkuna...</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Lataa maalitiedostot uudelleen</value>
+  </data>
   <data name="DeleteMe" xml:space="preserve">
     <value>DeleteMe</value>
   </data>

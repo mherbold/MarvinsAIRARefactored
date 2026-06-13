@@ -1839,6 +1839,9 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Inicializando Finestra Principal...</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Torna a baixar els fitxers de pintura</value>
+  </data>
   <data name="DeleteMe" xml:space="preserve">
     <value>DeleteMe</value>
   </data>

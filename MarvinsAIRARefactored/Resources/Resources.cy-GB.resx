@@ -1839,6 +1839,9 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Yn Cychwyn Prif Ffenestr...</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Ail-lawrlwytho ffeiliau paent</value>
+  </data>
   <data name="DeleteMe" xml:space="preserve">
     <value>DeleteMe</value>
   </data>

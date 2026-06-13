@@ -1839,6 +1839,9 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Inicializuji Hlavní Okno...</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Znovu stáhnout soubory vzhledů</value>
+  </data>
   <data name="DeleteMe" xml:space="preserve">
     <value>DeleteMe</value>
   </data>

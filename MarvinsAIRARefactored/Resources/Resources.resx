@@ -1758,6 +1758,9 @@
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
     <value>Reset to Defaults</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Re-download Paint Files</value>
+  </data>
   <data name="FlagCalls" xml:space="preserve">
     <value>Flag Calls</value>
   </data>

@@ -12181,6 +12181,12 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Trading paints - Re-download
+
+	public ButtonMappings TradingPaintsRedownloadButtonMappings { get; set; } = new();
+
+	#endregion
+
 	#region Graph - Statistics
 
 	private Graph.LayerIndex _graphStatisticsLayerIndex = Graph.LayerIndex.TimerJitter;

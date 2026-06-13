@@ -1839,6 +1839,9 @@
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Inițializare Fereastra Principală...</value>
   </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Descarcă din nou fișierele de vopsea</value>
+  </data>
   <data name="DeleteMe" xml:space="preserve">
     <value>DeleteMe</value>
   </data>
