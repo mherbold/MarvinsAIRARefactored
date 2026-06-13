@@ -1,0 +1,9 @@
+{
+  "model": "opusplan",
+  "permissions": {
+    "allow": [
+      "Edit(*)",
+      "Write(*)"
+    ]
+  }
+}
