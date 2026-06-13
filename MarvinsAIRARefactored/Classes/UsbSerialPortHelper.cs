@@ -288,12 +288,16 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 	public void Write( byte[] data )
 	{
+		var app = App.Instance;
+
 		using ( _lock.EnterScope() )
 		{
 			if ( _serialPort != null && _serialPort.IsOpen )
 			{
 				try
 				{
+					app?.Logger.WriteLine( $"[UsbSerialPortHelper] Write: {DescribeBytes( data )}" );
+
 					_serialPort.Write( data, 0, data.Length );
 				}
 				catch ( Exception exception )
@@ -306,12 +310,16 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 	public void Write( ReadOnlySpan<byte> data )
 	{
+		var app = App.Instance;
+
 		using ( _lock.EnterScope() )
 		{
 			if ( _serialPort != null && _serialPort.IsOpen )
 			{
 				try
 				{
+					app?.Logger.WriteLine( $"[UsbSerialPortHelper] Write: {DescribeBytes( data )}" );
+
 					_serialPort.BaseStream.Write( data );
 				}
 				catch ( Exception exception )
@@ -324,12 +332,16 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 	public void WriteLine( string data )
 	{
+		var app = App.Instance;
+
 		using ( _lock.EnterScope() )
 		{
 			if ( _serialPort != null && _serialPort.IsOpen )
 			{
 				try
 				{
+					app?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine: {DescribeBytes( _serialPort.Encoding.GetBytes( data + _serialPort.NewLine ) )}" );
+
 					_serialPort.WriteLine( data );
 				}
 				catch ( Exception exception )
@@ -342,16 +354,22 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 	public void WriteLine( ReadOnlySpan<byte> data )
 	{
+		var app = App.Instance;
+
 		using ( _lock.EnterScope() )
 		{
 			if ( _serialPort != null && _serialPort.IsOpen )
 			{
 				try
 				{
+					app?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine payload: {DescribeBytes( data )}" );
+
 					_serialPort.BaseStream.Write( data );
 
 					if ( data.Length == 0 || data[ ^1 ] != (byte) '\n' )
 					{
+						app?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine terminator: {DescribeBytes( stackalloc byte[] { (byte) '\n' } )}" );
+
 						_serialPort.BaseStream.WriteByte( (byte) '\n' );
 					}
 				}
@@ -362,6 +380,12 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			}
 		}
 	}
+
+	private static string DescribeBytes( ReadOnlySpan<byte> data )
+	{
+		return data.Length == 0 ? "len=0, hex=<empty>" : $"len={data.Length}, hex={Convert.ToHexString( data )}";
+	}
+
 
 	private void HandleWriteFailure( string operation, Exception exception )
 	{
@@ -413,9 +437,21 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		{
 			if ( _serialPort != null )
 			{
-				// app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: EventType={e.EventType}, BytesToRead={_serialPort.BytesToRead}" );
+				var bytesToRead = _serialPort.BytesToRead;
 
-				var incoming = _serialPort.ReadExisting();
+				app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: EventType={e.EventType}, BytesToRead={bytesToRead}" );
+
+				if ( bytesToRead <= 0 )
+				{
+					return;
+				}
+
+				var incomingBytes = new byte[ bytesToRead ];
+				var bytesRead = _serialPort.Read( incomingBytes, 0, incomingBytes.Length );
+
+				app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: Received {DescribeBytes( incomingBytes.AsSpan( 0, bytesRead ) )}" );
+
+				var incoming = _serialPort.Encoding.GetString( incomingBytes, 0, bytesRead );
 
 				_dataBuffer.Append( incoming );
 
@@ -427,7 +463,7 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 					_dataBuffer.Remove( 0, newlineIndex + 1 );
 
-					// app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: Dispatching line '{data}'" );
+					app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: Dispatching bytes {DescribeBytes( _serialPort.Encoding.GetBytes( data ) )}" );
 
 					DataReceived?.Invoke( this, data );
 				}
@@ -438,6 +474,7 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			HandleReadFailure( "OnDataReceived", exception );
 		}
 	}
+
 
 	private async Task MonitorPort( CancellationToken token )
 	{

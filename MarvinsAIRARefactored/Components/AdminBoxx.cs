@@ -227,7 +227,7 @@ public partial class AdminBoxx
 
 		if ( !_usbSerialPortHelper.DeviceFound )
 		{
-			app.Logger.WriteLine( "[AdminBoxx] Device not found - disabling AdminBoxxConnectOnStartup" );
+			app.Logger.WriteLine( "[AdminBoxx] Device not found" );
 
 			var localization = DataContext.DataContext.Instance.Localization;
 
@@ -385,16 +385,26 @@ public partial class AdminBoxx
 
 	public void SimulatorConnected()
 	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AdminBoxx] SimulatorConnected >>>" );
+
 		UpdateColors( _blueNoiseLedOrder, true );
 
 		if ( IsConnected )
 		{
 			RunSequence( 0, Tone.None, false, null, 0, 0, "connected_to_iracing_simulator" );
 		}
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< SimulatorConnected" );
 	}
 
 	public void SimulatorDisconnected()
 	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AdminBoxx] SimulatorDisconnected >>>" );
+
 		UpdateColors( _blueNoiseLedOrder, true );
 
 		_inNumpadMode = false;
@@ -406,12 +416,20 @@ public partial class AdminBoxx
 		{
 			RunSequence( 3, Tone.None, true, Green, 3, 3, "disconnected_from_iracing_simulator" );
 		}
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< SimulatorDisconnected" );
 	}
 
 	public void StartTestCycle()
 	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AdminBoxx] StartTestCycle >>>" );
+
 		_testState = 0;
 		_testCounter = 1;
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< StartTestCycle" );
 	}
 
 	public void ReplayPlayingChanged()
@@ -615,6 +633,10 @@ public partial class AdminBoxx
 
 	private void WaveFlag( Color color, int numberOfTimes, bool checkered = false )
 	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AdminBoxx] WaveFlag >>>" );
+
 		_brightness = 1f;
 
 		_wavingFlagState = 0;
@@ -625,6 +647,8 @@ public partial class AdminBoxx
 
 		_sequenceState = 0;
 		_sequenceCounter = 0;
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< WaveFlag" );
 	}
 
 	private void SetLEDToColor( int y, int x, Color color, bool forceUpdate )
@@ -769,6 +793,10 @@ public partial class AdminBoxx
 
 	private bool EnterNumpadMode( CarNumberCallback carNumberCallback, bool carNumberIsRequired = true )
 	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AdminBoxx] EnterNumpadMode >>>" );
+
 		if ( !_inNumpadMode )
 		{
 			_inNumpadMode = true;
@@ -779,14 +807,22 @@ public partial class AdminBoxx
 
 			UpdateColors( _blueNoiseLedOrder, false );
 
+			app.Logger.WriteLine( "[AdminBoxx] <<< EnterNumpadMode (entered)" );
+
 			return true;
 		}
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< EnterNumpadMode (already in numpad mode)" );
 
 		return false;
 	}
 
 	private bool LeaveNumpadMode( bool invokeCallback )
 	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AdminBoxx] LeaveNumpadMode >>>" );
+
 		if ( _inNumpadMode )
 		{
 			_inNumpadMode = false;
@@ -798,8 +834,12 @@ public partial class AdminBoxx
 				_carNumberCallback?.Invoke();
 			}
 
+			app.Logger.WriteLine( "[AdminBoxx] <<< LeaveNumpadMode (left)" );
+
 			return true;
 		}
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< LeaveNumpadMode (was not in numpad mode)" );
 
 		return false;
 	}
@@ -807,6 +847,8 @@ public partial class AdminBoxx
 	private void OnDataReceived( object? sender, string data )
 	{
 		var app = App.Instance!;
+
+		app.Logger.WriteLine( $"[AdminBoxx] OnDataReceived >>> (data: {data})" );
 
 		var match = StaticButtonPressRegex.Match( data );
 
@@ -820,6 +862,8 @@ public partial class AdminBoxx
 				HandleButtonPress( y, x );
 			}
 
+			app.Logger.WriteLine( "[AdminBoxx] <<< OnDataReceived (button press)" );
+
 			return;
 		}
 
@@ -828,6 +872,8 @@ public partial class AdminBoxx
 		if ( match.Success )
 		{
 			HandleVersionNumber( match.Groups[ 1 ].Value );
+
+			app.Logger.WriteLine( "[AdminBoxx] <<< OnDataReceived (version number)" );
 
 			return;
 		}
@@ -838,10 +884,14 @@ public partial class AdminBoxx
 		{
 			SendNextCodePyLine();
 
+			app.Logger.WriteLine( "[AdminBoxx] <<< OnDataReceived (next line)" );
+
 			return;
 		}
 
 		app.Logger.WriteLine( $"[AdminBoxx] Unrecognized message: \"{data}\"" );
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< OnDataReceived (unrecognized)" );
 	}
 
 	/// <summary>
@@ -850,12 +900,20 @@ public partial class AdminBoxx
 	/// </summary>
 	private static void SendIRacingCommand( string message )
 	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( $"[AdminBoxx] SendIRacingCommand >>> (message: {message})" );
+
 		if ( DataContext.DataContext.Instance.Settings.AdminBoxxEnableXsrcIntegration )
 		{
+			app.Logger.WriteLine( "[AdminBoxx] <<< SendIRacingCommand (suppressed - XSRC enabled)" );
+
 			return;
 		}
 
-		App.Instance!.ChatQueue.SendMessage( message );
+		app.ChatQueue.SendMessage( message );
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< SendIRacingCommand (sent)" );
 	}
 
 	/// <summary>Sends a WM_APP message to Xtreme Scoring Race Control if integration is enabled.</summary>
@@ -1608,6 +1666,10 @@ public partial class AdminBoxx
 
 	private void RunSequence( int beepBlinkCount, Tone beepTone = Tone.AdminBoxx, bool blink = false, Color? blinkColor = null, int blinkX = 0, int blinkY = 0, string? key = null, string? driverNumberToSay = null )
 	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( $"[AdminBoxx] RunSequence >>> (count: {beepBlinkCount}, tone: {beepTone}, blink: {blink}, key: {key})" );
+
 		_sequenceState = 0;
 		_sequenceCounter = 1;
 
@@ -1626,6 +1688,8 @@ public partial class AdminBoxx
 		_sequenceDriverNumberToSay = driverNumberToSay;
 		_sequenceDriverNumberToSayIndex = 0;
 		_sequenceDriverNumberState = 0;
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< RunSequence" );
 	}
 
 	private void OnPortClosed( object? sender, EventArgs e )
