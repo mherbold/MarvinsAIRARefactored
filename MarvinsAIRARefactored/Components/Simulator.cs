@@ -137,14 +137,16 @@ public partial class Simulator
 	private bool _telemetryDataInitialized = false;
 	private bool _waitingForFirstSessionInfo = false;
 
-	private bool? _isReplayPlayingLastFrame = null;
-	private bool? _weatherDeclaredWetLastFrame = null;
+	private int _activeResetBlockTimerFrames = 0;
 	private int? _currentTireIndexLastFrame = null;
 	private int? _displayUnitsLastFrame = null;
+	private bool? _isReplayPlayingLastFrame = null;
+	private float? _lapDistLastFrame = null;
 	private int? _radioTransmitCarIdxLastFrame = null;
-	private int? _tickCountLastFrame = null;
 	private IRacingSdkEnum.Flags? _sessionFlagsLastFrame = null;
 	private IRacingSdkEnum.SessionState? _sessionStateLastFrame = null;
+	private int? _tickCountLastFrame = null;
+	private bool? _weatherDeclaredWetLastFrame = null;
 
 	private IRacingSdkDatum? _brakeABSactiveDatum = null;
 	private IRacingSdkDatum? _brakeDatum = null;
@@ -431,9 +433,11 @@ public partial class Simulator
 		Array.Clear( _rpmSpeedRatioAccumulator );
 		Array.Clear( _rpmSpeedRatioSampleCount );
 
+		_activeResetBlockTimerFrames = 0;
 		_currentTireIndexLastFrame = null;
 		_displayUnitsLastFrame = null;
 		_isReplayPlayingLastFrame = null;
+		_lapDistLastFrame = null;
 		_radioTransmitCarIdxLastFrame = null;
 		_sessionFlagsLastFrame = null;
 		_sessionStateLastFrame = null;
@@ -772,6 +776,7 @@ public partial class Simulator
 		_currentTireIndexLastFrame = CurrentTireIndex;
 		_displayUnitsLastFrame = DisplayUnits;
 		_isReplayPlayingLastFrame = IsReplayPlaying;
+		_lapDistLastFrame = LapDist;
 		_radioTransmitCarIdxLastFrame = RadioTransmitCarIdx;
 		_sessionFlagsLastFrame = SessionFlags;
 		_sessionStateLastFrame = SessionState;
@@ -977,25 +982,45 @@ public partial class Simulator
 			}
 		}
 
+		// detect active reset warp (>10m jump in one frame) and block crash protection for 1 second
+
+		if ( _lapDistLastFrame != null )
+		{
+			var lapDistDelta = MathF.Abs( LapDist - _lapDistLastFrame.Value );
+
+			if ( lapDistDelta > 10f )
+			{
+				_activeResetBlockTimerFrames = 60;
+			}
+		}
+
+		if ( _activeResetBlockTimerFrames > 0 )
+		{
+			_activeResetBlockTimerFrames--;
+		}
+
 		// crash protection processing
 
 		if ( IsOnTrack )
 		{
 			if ( ( settings.RacingWheelCrashProtectionDuration > 0f ) && ( settings.RacingWheelCrashProtectionForceReduction > 0f ) )
 			{
-				if ( settings.RacingWheelCrashProtectionLongitudalGForce < 20f )
+				if ( _activeResetBlockTimerFrames <= 0 )
 				{
-					if ( LongitudinalGForce >= settings.RacingWheelCrashProtectionLongitudalGForce )
+					if ( settings.RacingWheelCrashProtectionLongitudalGForce < 20f )
 					{
-						app.RacingWheel.ActivateCrashProtection = true;
+						if ( LongitudinalGForce >= settings.RacingWheelCrashProtectionLongitudalGForce )
+						{
+							app.RacingWheel.ActivateCrashProtection = true;
+						}
 					}
-				}
 
-				if ( settings.RacingWheelCrashProtectionLateralGForce < 20f )
-				{
-					if ( LateralGForce >= settings.RacingWheelCrashProtectionLateralGForce )
+					if ( settings.RacingWheelCrashProtectionLateralGForce < 20f )
 					{
-						app.RacingWheel.ActivateCrashProtection = true;
+						if ( LateralGForce >= settings.RacingWheelCrashProtectionLateralGForce )
+						{
+							app.RacingWheel.ActivateCrashProtection = true;
+						}
 					}
 				}
 			}
