@@ -1685,23 +1685,25 @@ public class Settings : INotifyPropertyChanged
 
 	#region Racing wheel - LFE Recording Device
 
-	private Guid _racingWheelLFERecordingDeviceGuid = Guid.Empty;
+	private string _racingWheelLFERecordingDeviceName = Components.LFE.DisabledDeviceName;
 
-	public Guid RacingWheelLFERecordingDeviceGuid
+	public string RacingWheelLFERecordingDeviceName
 	{
-		get => _racingWheelLFERecordingDeviceGuid;
+		get => _racingWheelLFERecordingDeviceName;
 
 		set
 		{
-			if ( value != _racingWheelLFERecordingDeviceGuid )
+			var normalizedValue = value ?? Components.LFE.DisabledDeviceName;
+
+			if ( normalizedValue != _racingWheelLFERecordingDeviceName )
 			{
-				_racingWheelLFERecordingDeviceGuid = value;
+				_racingWheelLFERecordingDeviceName = normalizedValue;
 
 				OnPropertyChanged();
 
 				var app = App.Instance!;
 
-				app.LFE.NextCaptureDeviceGuid = _racingWheelLFERecordingDeviceGuid;
+				app.LFE.NextCaptureDeviceName = _racingWheelLFERecordingDeviceName;
 			}
 		}
 	}

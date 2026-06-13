@@ -1,8 +1,6 @@
-﻿
-using System.Runtime.CompilerServices;
 
-using SharpDX.DirectSound;
-using SharpDX.Multimedia;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
 
 using MarvinsAIRARefactored.Windows;
 
@@ -10,19 +8,20 @@ namespace MarvinsAIRARefactored.Components;
 
 public class LFE
 {
+	public const string DisabledDeviceName = "";
+
 	private const int _bytesPerSample = 2;
 	private const int _500HzTo8KhzScale = 16;
 	private const int _batchCount = 10;
 
 	private const int _captureBufferFrequency = 8000;
-	private const int _captureBufferBitsPerSample = _bytesPerSample * 8;
 	private const int _captureBufferNumSamples = _captureBufferFrequency;
 	private const int _captureBufferSizeInBytes = _captureBufferNumSamples * _bytesPerSample;
 
 	private const int _frameSizeInSamples = _500HzTo8KhzScale * _batchCount;
 	private const int _frameSizeInBytes = _frameSizeInSamples * _bytesPerSample;
 
-	public Guid? NextCaptureDeviceGuid { private get; set; } = null;
+	public string? NextCaptureDeviceName { private get; set; } = null;
 
 	public float CurrentMagnitude
 	{
@@ -37,10 +36,11 @@ public class LFE
 		}
 	}
 
-	public Dictionary<Guid, string> CaptureDeviceList { get; private set; } = [];
+	public List<string> CaptureDeviceNames { get; private set; } = [];
 
-	private DirectSoundCapture? _directSoundCapture = null;
-	private CaptureBuffer? _captureBuffer = null;
+	private FMOD.System? _captureSystem = null;
+	private FMOD.Sound _captureSound;
+	private int _captureDriverId = -1;
 	private bool _captureDeviceCreated = false;
 	private readonly AutoResetEvent _autoResetEvent = new( false );
 
@@ -55,7 +55,7 @@ public class LFE
 	private readonly byte[] _scratchRead = new byte[ _frameSizeInBytes ];
 	private readonly float[,] _magnitude = new float[ 2, _batchCount ];
 
-	private Guid? _configuredCaptureDeviceGuid = null;
+	private string? _configuredCaptureDeviceName = null;
 
 	public void Initialize()
 	{
@@ -96,22 +96,48 @@ public class LFE
 
 		app.Logger.WriteLine( "[LFE] EnumerateCaptureDevices >>>" );
 
-		CaptureDeviceList.Clear();
+		CaptureDeviceNames.Clear();
 
-		var deviceInformationList = DirectSoundCapture.GetDevices();
+		var createResult = FMOD.Factory.System_Create( out var tempSystem );
 
-		foreach ( var deviceInformation in deviceInformationList )
+		if ( createResult == FMOD.RESULT.OK )
 		{
-			if ( deviceInformation.DriverGuid != Guid.Empty )
+			try
 			{
-				app.Logger.WriteLine( $"[LFE] Description: {deviceInformation.Description}" );
-				app.Logger.WriteLine( $"[LFE] Module name: {deviceInformation.ModuleName}" );
-				app.Logger.WriteLine( $"[LFE] Driver GUID: {deviceInformation.DriverGuid}" );
+				var initResult = tempSystem.init( 8, FMOD.INITFLAGS.NORMAL, IntPtr.Zero );
 
-				CaptureDeviceList.Add( deviceInformation.DriverGuid, deviceInformation.Description );
+				if ( initResult == FMOD.RESULT.OK )
+				{
+					tempSystem.getRecordNumDrivers( out var numDrivers, out _ );
 
-				app.Logger.WriteLine( $"[LFE] ---" );
+					app.Logger.WriteLine( $"[LFE] Found {numDrivers} recording drivers" );
+
+					for ( var i = 0; i < numDrivers; i++ )
+					{
+						tempSystem.getRecordDriverInfo( i, out var name, 256, out _, out _, out _, out _, out _ );
+
+						app.Logger.WriteLine( $"[LFE] Driver {i}: '{name}'" );
+
+						if ( !string.IsNullOrWhiteSpace( name ) )
+						{
+							CaptureDeviceNames.Add( name );
+						}
+					}
+				}
+				else
+				{
+					app.Logger.WriteLine( $"[LFE] EnumerateCaptureDevices: FMOD init failed: {initResult}" );
+				}
 			}
+			finally
+			{
+				tempSystem.close();
+				tempSystem.release();
+			}
+		}
+		else
+		{
+			app.Logger.WriteLine( $"[LFE] EnumerateCaptureDevices: FMOD System_Create failed: {createResult}" );
 		}
 
 		MainWindow._racingWheelPage.UpdateLFERecordingDeviceOptions();
@@ -125,53 +151,110 @@ public class LFE
 
 		app.Logger.WriteLine( "[LFE] CreateCaptureDevice >>>" );
 
-		if ( ( _configuredCaptureDeviceGuid != null ) && ( _configuredCaptureDeviceGuid != Guid.Empty ) )
+		if ( !string.IsNullOrEmpty( _configuredCaptureDeviceName ) )
 		{
 			try
 			{
-				app.Logger.WriteLine( "[LFE] Creating the new direct sound capture device" );
+				var createResult = FMOD.Factory.System_Create( out var system );
 
-				_directSoundCapture = new DirectSoundCapture( (Guid) _configuredCaptureDeviceGuid );
-
-				var captureBufferDescription = new CaptureBufferDescription
+				if ( createResult != FMOD.RESULT.OK )
 				{
-					Format = new WaveFormat( _captureBufferFrequency, _captureBufferBitsPerSample, 1 ),
-					BufferBytes = _captureBufferSizeInBytes
-				};
+					app.Logger.WriteLine( $"[LFE] FMOD System_Create failed: {createResult}" );
 
-				_captureBuffer = new CaptureBuffer( _directSoundCapture, captureBufferDescription );
+					app.Logger.WriteLine( "[LFE] <<< CreateCaptureDevice" );
 
-				app.Logger.WriteLine( "[SpeechToText] Setting up the notification positions" );
-
-				var notifyCount = _captureBufferNumSamples / _frameSizeInSamples;
-
-				var notificationPositionArray = new NotificationPosition[ notifyCount ];
-
-				for ( var i = 0; i < notificationPositionArray.Length; i++ )
-				{
-					var endOfBlock = ( i + 1 ) * _captureBufferSizeInBytes / notifyCount;
-
-					notificationPositionArray[ i ] = new()
-					{
-						Offset = endOfBlock - 1,
-						WaitHandle = _autoResetEvent
-					};
+					return;
 				}
 
-				_captureBuffer.SetNotificationPositions( notificationPositionArray );
+				var initResult = system.init( 32, FMOD.INITFLAGS.NORMAL, IntPtr.Zero );
 
-				app.Logger.WriteLine( "[LFE] Starting the capture" );
+				if ( initResult != FMOD.RESULT.OK )
+				{
+					app.Logger.WriteLine( $"[LFE] FMOD system init failed: {initResult}" );
+
+					system.release();
+
+					app.Logger.WriteLine( "[LFE] <<< CreateCaptureDevice" );
+
+					return;
+				}
+
+				system.getRecordNumDrivers( out var numDrivers, out _ );
+
+				var driverId = -1;
+
+				for ( var i = 0; i < numDrivers; i++ )
+				{
+					system.getRecordDriverInfo( i, out var name, 256, out _, out _, out _, out _, out _ );
+
+					if ( string.Equals( name, _configuredCaptureDeviceName, StringComparison.OrdinalIgnoreCase ) )
+					{
+						driverId = i;
+						break;
+					}
+				}
+
+				if ( driverId < 0 )
+				{
+					app.Logger.WriteLine( $"[LFE] Device '{_configuredCaptureDeviceName}' not found; falling back to driver 0" );
+
+					driverId = 0;
+				}
+
+				app.Logger.WriteLine( $"[LFE] Creating capture for driver {driverId} ('{_configuredCaptureDeviceName}')" );
+
+				var exInfo = new FMOD.CREATESOUNDEXINFO
+				{
+					cbsize = Marshal.SizeOf<FMOD.CREATESOUNDEXINFO>(),
+					numchannels = 1,
+					defaultfrequency = _captureBufferFrequency,
+					format = FMOD.SOUND_FORMAT.PCM16,
+					length = (uint) _captureBufferSizeInBytes
+				};
+
+				var soundResult = system.createSound( string.Empty, FMOD.MODE.OPENUSER | FMOD.MODE.LOOP_NORMAL, ref exInfo, out var sound );
+
+				if ( soundResult != FMOD.RESULT.OK )
+				{
+					app.Logger.WriteLine( $"[LFE] FMOD createSound failed: {soundResult}" );
+
+					system.close();
+					system.release();
+
+					app.Logger.WriteLine( "[LFE] <<< CreateCaptureDevice" );
+
+					return;
+				}
+
+				var recordResult = system.recordStart( driverId, sound, true );
+
+				if ( recordResult != FMOD.RESULT.OK )
+				{
+					app.Logger.WriteLine( $"[LFE] FMOD recordStart failed: {recordResult}" );
+
+					sound.release();
+					system.close();
+					system.release();
+
+					app.Logger.WriteLine( "[LFE] <<< CreateCaptureDevice" );
+
+					return;
+				}
+
+				_captureSystem = system;
+				_captureSound = sound;
+				_captureDriverId = driverId;
 
 				_batchIndex = 0;
 				_pingPongIndex = 0;
 
-				_captureBuffer.Start( true );
-
 				_captureDeviceCreated = true;
+
+				app.Logger.WriteLine( "[LFE] Capture device created successfully" );
 			}
 			catch ( Exception exception )
 			{
-				app.Logger.WriteLine( "[LFE] Failed to create direct sound capture device - could microphone access be restricted? " + exception.Message.Trim() );
+				app.Logger.WriteLine( "[LFE] Failed to create FMOD capture device: " + exception.Message.Trim() );
 			}
 		}
 
@@ -184,19 +267,20 @@ public class LFE
 
 		app.Logger.WriteLine( "[LFE] ReleaseCaptureDevice >>>" );
 
-		if ( _captureBuffer != null )
+		if ( _captureDeviceCreated && _captureSystem.HasValue )
 		{
-			_captureBuffer.Stop();
-			_captureBuffer.Dispose();
+			if ( _captureDriverId >= 0 )
+			{
+				_captureSystem.Value.recordStop( _captureDriverId );
+			}
 
-			_captureBuffer = null;
-		}
+			_captureSound.release();
 
-		if ( _directSoundCapture != null )
-		{
-			_directSoundCapture.Dispose();
+			_captureSystem.Value.close();
+			_captureSystem.Value.release();
+			_captureSystem = null;
 
-			_directSoundCapture = null;
+			_captureDriverId = -1;
 		}
 
 		Array.Clear( _magnitude );
@@ -207,25 +291,23 @@ public class LFE
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	private void Update( App app, bool signalReceived )
+	private void Update( App app )
 	{
-		if ( NextCaptureDeviceGuid != null )
+		if ( NextCaptureDeviceName != null )
 		{
-			app.Logger.WriteLine( $"[LFE] Switching to the next capture device: {NextCaptureDeviceGuid}" );
+			app.Logger.WriteLine( $"[LFE] Switching to the next capture device: '{NextCaptureDeviceName}'" );
 
-			_configuredCaptureDeviceGuid = NextCaptureDeviceGuid;
+			_configuredCaptureDeviceName = NextCaptureDeviceName;
 
-			NextCaptureDeviceGuid = null;
+			NextCaptureDeviceName = null;
 
 			if ( app.Simulator.IsOnTrack )
 			{
 				ReleaseCaptureDevice();
 				CreateCaptureDevice();
 			}
-
-			signalReceived = false;
 		}
-		else if ( app.Simulator.IsOnTrack && !_captureDeviceCreated && ( _configuredCaptureDeviceGuid != null ) && ( _configuredCaptureDeviceGuid != Guid.Empty ) )
+		else if ( app.Simulator.IsOnTrack && !_captureDeviceCreated && !string.IsNullOrEmpty( _configuredCaptureDeviceName ) )
 		{
 			app.Logger.WriteLine( "[LFE] Went on track - creating capture device" );
 
@@ -238,53 +320,72 @@ public class LFE
 			ReleaseCaptureDevice();
 		}
 
-		if ( signalReceived && ( _captureBuffer != null ) )
+		if ( _captureDeviceCreated && _captureSystem.HasValue )
 		{
+			_captureSystem.Value.update();
+
 			if ( Interlocked.Exchange( ref _lfeBusy, 1 ) == 0 )
 			{
-				// copy audio from the capture buffer into our scratch read buffer
+				_captureSystem.Value.getRecordPosition( _captureDriverId, out var writePosSamples );
 
-				var currentCapturePosition = _captureBuffer.CurrentCapturePosition;
+				var alignedWritePosSamples = (int) ( writePosSamples / _frameSizeInSamples ) * _frameSizeInSamples;
+				var readPosSamples = ( alignedWritePosSamples + _captureBufferNumSamples - _frameSizeInSamples ) % _captureBufferNumSamples;
+				var readOffsetBytes = readPosSamples * _bytesPerSample;
 
-				currentCapturePosition = ( currentCapturePosition / _frameSizeInBytes ) * _frameSizeInBytes;
+				var lockResult = _captureSound.@lock( (uint) readOffsetBytes, (uint) _frameSizeInBytes, out var ptr1, out var ptr2, out var len1, out var len2 );
 
-				var currentReadPosition = ( currentCapturePosition + _captureBufferSizeInBytes - _frameSizeInBytes ) % _captureBufferSizeInBytes;
-
-				_captureBuffer.Read( _scratchRead, 0, _frameSizeInBytes, currentReadPosition, LockFlags.None );
-
-				// convert from PCM16 to float32 [-1,1]
-
-				var floatSamples = new float[ _frameSizeInSamples ];
-
-				for ( var i = 0; i < _frameSizeInSamples; i++ )
+				if ( lockResult == FMOD.RESULT.OK )
 				{
-					var b0 = _scratchRead[ 2 * i + 0 ];
-					var b1 = _scratchRead[ 2 * i + 1 ];
+					var bytesCopied = 0;
 
-					var s = (short) ( b0 | ( b1 << 8 ) );
-
-					floatSamples[ i ] = s / 32768f;
-				}
-
-				var pingPongIndex = ( _pingPongIndex + 1 ) & 1;
-				var sampleOffset = 0;
-
-				for ( var batchIndex = 0; batchIndex < _batchCount; batchIndex++ )
-				{
-					var amplitudeSum = 0f;
-
-					for ( var sampleIndex = 0; sampleIndex < _500HzTo8KhzScale; sampleIndex++ )
+					if ( ptr1 != IntPtr.Zero && len1 > 0 )
 					{
-						amplitudeSum += floatSamples[ sampleOffset ];
-
-						sampleOffset++;
+						Marshal.Copy( ptr1, _scratchRead, bytesCopied, (int) len1 );
+						bytesCopied += (int) len1;
 					}
 
-					_magnitude[ pingPongIndex, batchIndex ] = amplitudeSum / _500HzTo8KhzScale;
+					if ( ptr2 != IntPtr.Zero && len2 > 0 )
+					{
+						Marshal.Copy( ptr2, _scratchRead, bytesCopied, (int) len2 );
+					}
+
+					_captureSound.unlock( ptr1, ptr2, len1, len2 );
+
+					// convert from PCM16 to float32 [-1,1]
+
+					var floatSamples = new float[ _frameSizeInSamples ];
+
+					for ( var i = 0; i < _frameSizeInSamples; i++ )
+					{
+						var b0 = _scratchRead[ 2 * i + 0 ];
+						var b1 = _scratchRead[ 2 * i + 1 ];
+
+						var s = (short) ( b0 | ( b1 << 8 ) );
+
+						floatSamples[ i ] = s / 32768f;
+					}
+
+					var pingPongIndex = ( _pingPongIndex + 1 ) & 1;
+					var sampleOffset = 0;
+
+					for ( var batchIndex = 0; batchIndex < _batchCount; batchIndex++ )
+					{
+						var amplitudeSum = 0f;
+
+						for ( var sampleIndex = 0; sampleIndex < _500HzTo8KhzScale; sampleIndex++ )
+						{
+							amplitudeSum += floatSamples[ sampleOffset ];
+
+							sampleOffset++;
+						}
+
+						_magnitude[ pingPongIndex, batchIndex ] = amplitudeSum / _500HzTo8KhzScale;
+					}
+
+					_batchIndex = 0;
+					_pingPongIndex = pingPongIndex;
 				}
 
-				_batchIndex = 0;
-				_pingPongIndex = pingPongIndex;
 				_lfeBusy = 0;
 			}
 		}
@@ -302,9 +403,9 @@ public class LFE
 		{
 			while ( lfe._running )
 			{
-				var signalReceived = lfe._autoResetEvent.WaitOne( 250 );
+				lfe._autoResetEvent.WaitOne( 250 );
 
-				lfe.Update( app, signalReceived );
+				lfe.Update( app );
 			}
 		}
 		catch ( Exception exception )

@@ -325,20 +325,23 @@ public partial class RacingWheelPage : UserControl
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var dictionary = new Dictionary<Guid, string>
+		var dictionary = new Dictionary<string, string>
 		{
-			{ Guid.Empty, localization[ "Disabled" ] }
+			{ Components.LFE.DisabledDeviceName, localization[ "Disabled" ] }
 		};
 
-		app.LFE.CaptureDeviceList.ToList().ForEach( keyValuePair => dictionary[ keyValuePair.Key ] = keyValuePair.Value );
-
-		if ( !dictionary.ContainsKey( settings.RacingWheelLFERecordingDeviceGuid ) )
+		foreach ( var deviceName in app.LFE.CaptureDeviceNames )
 		{
-			dictionary.Add( settings.RacingWheelLFERecordingDeviceGuid, $"{localization[ "DeviceNotFound" ]} [{settings.RacingWheelLFERecordingDeviceGuid}]" );
+			dictionary[ deviceName ] = deviceName;
+		}
+
+		if ( !string.IsNullOrEmpty( settings.RacingWheelLFERecordingDeviceName ) && !dictionary.ContainsKey( settings.RacingWheelLFERecordingDeviceName ) )
+		{
+			dictionary.Add( settings.RacingWheelLFERecordingDeviceName, $"{localization[ "DeviceNotFound" ]} [{settings.RacingWheelLFERecordingDeviceName}]" );
 		}
 
 		LFERecordingDevice_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value ).ToList();
-		LFERecordingDevice_MairaComboBox.OffValue = Guid.Empty;
+		LFERecordingDevice_MairaComboBox.OffValue = Components.LFE.DisabledDeviceName;
 
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateLFERecordingDeviceOptions" );
 	}

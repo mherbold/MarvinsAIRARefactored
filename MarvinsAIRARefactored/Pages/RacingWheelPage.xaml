@@ -651,7 +651,7 @@
                                         Grid.Column="0"
                                         Grid.ColumnSpan="3"
                                         Label="{Binding Localization[LFERecordingDevice]}"
-                                        SelectedValue="{Binding Settings.RacingWheelLFERecordingDeviceGuid, Mode=TwoWay}" />
+                                        SelectedValue="{Binding Settings.RacingWheelLFERecordingDeviceName, Mode=TwoWay}" />
 
                 <controls:MairaKnob Grid.Column="4"
                                     Label="{Binding Localization[Strength]}"
