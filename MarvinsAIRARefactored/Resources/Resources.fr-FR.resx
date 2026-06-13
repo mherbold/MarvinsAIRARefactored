@@ -344,10 +344,10 @@
     <value>Hz</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>FRÉQUENCE</value>
+    <value>FRÉQUENCE GLOBALE</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>AMPLITUDE</value>
+    <value>AMPLITUDE GLOBALE</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
@@ -378,6 +378,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>TR/MIN</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>RÉGIME DE PASSAGE</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Aucun</value>
@@ -485,6 +488,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>S'estomper avec l'accélérateur</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>Pulser</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>Point de départ</value>
@@ -934,6 +940,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>RPM</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>Régime de passage</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>Sons</value>

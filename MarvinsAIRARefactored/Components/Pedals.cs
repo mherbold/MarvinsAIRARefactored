@@ -18,7 +18,8 @@ public class Pedals
 		SeatOfPantsEffect,
 		WheelLock,
 		WheelSpin,
-		ClutchSlip
+		ClutchSlip,
+		ShiftRPM
 	};
 
 	private const float DeltaSeconds = 1f / 20f;
@@ -269,6 +270,7 @@ public class Pedals
 			Effect.WheelLock => DoWheelLockEffect( app, amplitude ),
 			Effect.WheelSpin => DoWheelSpinEffect( app, amplitude ),
 			Effect.ClutchSlip => DoClutchSlipEffect( app, amplitude ),
+			Effect.ShiftRPM => DoShiftRPMEffect( app, amplitude ),
 			_ => (false, 0f, 0f),
 		};
 	}
@@ -426,6 +428,33 @@ public class Pedals
 			amplitude = MathZ.Saturate( amplitude );
 			amplitude = MathZ.Lerp( settings.PedalsMinimumAmplitude, settings.PedalsMaximumAmplitude, MathF.Pow( amplitude, MathZ.CurveToPower( settings.PedalsAmplitudeCurve ) ) );
 			amplitude *= MathF.Pow( frequency / 50f, MathZ.CurveToPower( settings.PedalsNoiseDamper ) );
+
+			return (true, frequency, amplitude);
+		}
+
+		return (false, 0f, 0f);
+	}
+
+	private (bool, float, float) DoShiftRPMEffect( App app, float amplitude )
+	{
+		if ( _testing || ( app.Simulator.RPM >= app.Simulator.ShiftLightsShiftRPM ) )
+		{
+			var settings = DataContext.DataContext.Instance.Settings;
+			var frequency = MathZ.Lerp( settings.PedalsMinimumFrequency, settings.PedalsMaximumFrequency, MathF.Pow( settings.PedalsShiftRPMFrequency, MathZ.CurveToPower( settings.PedalsFrequencyCurve ) ) );
+
+			if ( settings.PedalsShiftRPMPulsateEnabled )
+			{
+				var pulsate = MathF.Sin( (float) ( app.Simulator.SessionTime * MathF.Tau * 6f ) );
+
+				if ( pulsate < 0f )
+				{
+					return (false, 0f, 0f);
+				}
+			}
+
+			amplitude *= settings.PedalsShiftRPMAmplitude;
+			amplitude = MathZ.Saturate( amplitude );
+			amplitude = MathZ.Lerp( settings.PedalsMinimumAmplitude, settings.PedalsMaximumAmplitude, MathF.Pow( amplitude, MathZ.CurveToPower( settings.PedalsAmplitudeCurve ) ) );
 
 			return (true, frequency, amplitude);
 		}

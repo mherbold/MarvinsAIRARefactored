@@ -340,10 +340,10 @@
     <value>Гц</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>ЧАСТОТА</value>
+    <value>ГЛОБАЛЬНА ЧАСТОТА</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>АМПЛІТУДА</value>
+    <value>ГЛОБАЛЬНА АМПЛІТУДА</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Мінімум</value>
@@ -374,6 +374,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>Оберти на хвилину</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>ОБЕРТИ ПЕРЕМИКАННЯ</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Жоден</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>Плавність з дроселем</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>Пульсація</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>Початкова точка</value>
@@ -924,6 +930,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>Обороти на хвилину(RPM)</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>Оберти перемикання</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>Звуки</value>

@@ -340,10 +340,10 @@
     <value>Hz</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>FREQÜÈNCIA</value>
+    <value>FREQÜÈNCIA GLOBAL</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>AMPLITUD</value>
+    <value>AMPLITUD GLOBAL</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Mínim</value>
@@ -374,6 +374,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>RPM</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>RPM DE CANVI</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Cap</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>Esvaïment amb accelerador</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>Pulsació</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>Punt de partida</value>
@@ -920,6 +926,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>RPM</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>RPM de canvi</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>Sons</value>

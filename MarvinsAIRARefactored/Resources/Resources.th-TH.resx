@@ -340,10 +340,10 @@
     <value>เฮิรตซ์</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>ความถี่</value>
+    <value>ความถี่รวม</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>แอมพลิจูด</value>
+    <value>แอมพลิจูดรวม</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>ต่ำสุด</value>
@@ -374,6 +374,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>RPM</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>รอบเปลี่ยนเกียร์</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>ไม่มี</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>ค่อยๆ ลดตามคันเร่ง</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>เต้นเป็นจังหวะ</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>จุดเริ่มต้น</value>
@@ -920,6 +926,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>RPM</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>รอบเปลี่ยนเกียร์</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>เสียง</value>

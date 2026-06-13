@@ -340,10 +340,10 @@
     <value>Hz</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>CZĘSTOTLIWOŚĆ</value>
+    <value>GLOBALNA CZĘSTOTLIWOŚĆ</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>AMPLITUDA</value>
+    <value>GLOBALNA AMPLITUDA</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
@@ -374,6 +374,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>OBR./MIN</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>OBROTY ZMIANY BIEGU</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Brak</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>Stopniowy zanik z  wciśniętą Przepustnicą</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>Pulsowanie</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>Punkt Początkowy</value>
@@ -922,6 +928,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>Obr./Min</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>Obroty zmiany biegu</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>Dźwięki</value>

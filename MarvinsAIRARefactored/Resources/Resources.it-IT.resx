@@ -340,10 +340,10 @@
     <value>Hz</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>FREQUENZA</value>
+    <value>FREQUENZA GLOBALE</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>AMPIEZZA</value>
+    <value>AMPIEZZA GLOBALE</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimo</value>
@@ -374,6 +374,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>GIRI/MIN</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>GIRI CAMBIO</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Nessuno</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>Diminuisci con l'Acceleratore</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>Pulsazione</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>Punto di Partenza</value>
@@ -920,6 +926,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>giri/min</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>Giri cambio</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>Suoni</value>

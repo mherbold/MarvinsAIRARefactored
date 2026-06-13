@@ -257,6 +257,7 @@ public class Settings : INotifyPropertyChanged
 			UpdatePedalsShiftIntoGearFrequencyString();
 			UpdatePedalsShiftIntoNeutralFrequencyString();
 			UpdatePedalsABSEngagedFrequencyString();
+			UpdatePedalsShiftRPMFrequencyString();
 			UpdatePedalsWheelLockFrequencyString();
 			UpdatePedalsWheelSpinFrequencyString();
 			UpdatePedalsClutchSlipFrequencyString();
@@ -5814,7 +5815,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Pedals - Throttle effect 2
 
-	private Pedals.Effect _pedalsThrottleEffect2 = Pedals.Effect.RPM;
+	private Pedals.Effect _pedalsThrottleEffect2 = Pedals.Effect.ShiftRPM;
 
 	public Pedals.Effect PedalsThrottleEffect2
 	{
@@ -6474,6 +6475,130 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	public ContextSwitches PedalsRPMFadeWithThrottleEnabledContextSwitches { get; set; } = new( false, false, false, false, false );
+
+	#endregion
+
+	#region Pedals - Shift RPM frequency
+
+	private float _pedalsShiftRPMFrequency = 1f;
+
+	public float PedalsShiftRPMFrequency
+	{
+		get => _pedalsShiftRPMFrequency;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _pedalsShiftRPMFrequency )
+			{
+				_pedalsShiftRPMFrequency = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdatePedalsShiftRPMFrequencyString();
+		}
+	}
+
+	private string _pedalsShiftRPMFrequencyString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsShiftRPMFrequencyString
+	{
+		get => _pedalsShiftRPMFrequencyString;
+
+		set
+		{
+			if ( value != _pedalsShiftRPMFrequencyString )
+			{
+				_pedalsShiftRPMFrequencyString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private void UpdatePedalsShiftRPMFrequencyString()
+	{
+		var convertedToHertz = Math.Round( MathZ.Lerp( PedalsMinimumFrequency, PedalsMaximumFrequency, _pedalsShiftRPMFrequency ) );
+
+		PedalsShiftRPMFrequencyString = $"{_pedalsShiftRPMFrequency * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToHertz:F0}{DataContext.Instance.Localization[ "HertzUnits" ]})";
+	}
+
+	public ContextSwitches PedalsShiftRPMFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings PedalsShiftRPMFrequencyPlusButtonMappings { get; set; } = new();
+	public ButtonMappings PedalsShiftRPMFrequencyMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Shift RPM amplitude
+
+	private float _pedalsShiftRPMAmplitude = 1f;
+
+	public float PedalsShiftRPMAmplitude
+	{
+		get => _pedalsShiftRPMAmplitude;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _pedalsShiftRPMAmplitude )
+			{
+				_pedalsShiftRPMAmplitude = value;
+
+				OnPropertyChanged();
+			}
+
+			PedalsShiftRPMAmplitudeString = $"{_pedalsShiftRPMAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _pedalsShiftRPMAmplitudeString = string.Empty;
+
+	[XmlIgnore]
+	public string PedalsShiftRPMAmplitudeString
+	{
+		get => _pedalsShiftRPMAmplitudeString;
+
+		set
+		{
+			if ( value != _pedalsShiftRPMAmplitudeString )
+			{
+				_pedalsShiftRPMAmplitudeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches PedalsShiftRPMAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings PedalsShiftRPMAmplitudePlusButtonMappings { get; set; } = new();
+	public ButtonMappings PedalsShiftRPMAmplitudeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Pedals - Shift RPM pulsate enabled
+
+	private bool _pedalsShiftRPMPulsateEnabled = false;
+
+	public bool PedalsShiftRPMPulsateEnabled
+	{
+		get => _pedalsShiftRPMPulsateEnabled;
+
+		set
+		{
+			if ( value != _pedalsShiftRPMPulsateEnabled )
+			{
+				_pedalsShiftRPMPulsateEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public ContextSwitches PedalsShiftRPMPulsateEnabledContextSwitches { get; set; } = new( false, false, false, false, false );
 
 	#endregion
 

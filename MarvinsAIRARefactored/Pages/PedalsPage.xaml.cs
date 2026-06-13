@@ -98,6 +98,7 @@ public partial class PedalsPage : UserControl
 			{ Pedals.Effect.GearChange, localization[ "GearChange" ] },
 			{ Pedals.Effect.ABSEngaged, localization[ "ABSEngaged" ] },
 			{ Pedals.Effect.RPM, localization[ "RPM" ] },
+			{ Pedals.Effect.ShiftRPM, localization[ "ShiftRPM" ] },
 			{ Pedals.Effect.UndersteerEffect, localization[ "UndersteerEffect" ] },
 			{ Pedals.Effect.OversteerEffect, localization[ "OversteerEffect" ] },
 			{ Pedals.Effect.SeatOfPantsEffect, localization[ "SeatOfPantsEffect" ] },

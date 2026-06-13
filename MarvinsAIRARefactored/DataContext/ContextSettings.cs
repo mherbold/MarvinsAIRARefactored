@@ -153,7 +153,7 @@ public class ContextSettings
 
 	public Pedals.Effect PedalsThrottleEffect1 { get; set; } = Pedals.Effect.WheelSpin;
 	public float PedalsThrottleStrength1 { get; set; } = 1f;
-	public Pedals.Effect PedalsThrottleEffect2 { get; set; } = Pedals.Effect.RPM;
+	public Pedals.Effect PedalsThrottleEffect2 { get; set; } = Pedals.Effect.ShiftRPM;
 	public float PedalsThrottleStrength2 { get; set; } = 1f;
 	public Pedals.Effect PedalsThrottleEffect3 { get; set; } = Pedals.Effect.OversteerEffect;
 	public float PedalsThrottleStrength3 { get; set; } = 1f;
@@ -174,6 +174,9 @@ public class ContextSettings
 	public float PedalsStartingRPM { get; set; } = 1f;
 	public bool PedalsVibrateInTopGearEnabled { get; set; } = false;
 	public bool PedalsFadeWithThrottleEnabled { get; set; } = true;
+	public float PedalsShiftRPMFrequency { get; set; } = 1f;
+	public float PedalsShiftRPMAmplitude { get; set; } = 1f;
+	public bool PedalsShiftRPMPulsateEnabled { get; set; } = false;
 	public float PedalsWheelLockFrequency { get; set; } = 0.2f;
 	public float PedalsWheelLockSensitivity { get; set; } = 0.95f;
 	public bool PedalsWheelLockFadeWithBrakeEnabled { get; set; } = true;

@@ -2064,6 +2064,30 @@ public partial class App : Application
 				settings.PedalsStartingRPM -= 0.01f;
 			}
 
+			// pedals shift rpm frequency knob
+
+			if ( CheckMappedButtons( settings.PedalsShiftRPMFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsShiftRPMFrequency += 0.01f;
+			}
+
+			if ( CheckMappedButtons( settings.PedalsShiftRPMFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsShiftRPMFrequency -= 0.01f;
+			}
+
+			// pedals shift rpm amplitude knob
+
+			if ( CheckMappedButtons( settings.PedalsShiftRPMAmplitudePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsShiftRPMAmplitude += 0.01f;
+			}
+
+			if ( CheckMappedButtons( settings.PedalsShiftRPMAmplitudeMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
+			{
+				settings.PedalsShiftRPMAmplitude -= 0.01f;
+			}
+
 			// pedals wheel lock frequency knob
 
 			if ( CheckMappedButtons( settings.PedalsWheelLockFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )

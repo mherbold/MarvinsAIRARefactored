@@ -340,10 +340,10 @@
     <value> Hz</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>TAAJUUS</value>
+    <value>GLOBAALI TAAJUUS</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>AMPLITUDI</value>
+    <value>GLOBAALI AMPLITUDI</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimi</value>
@@ -374,6 +374,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>RPM</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>VAIHTO-RPM</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Ei mitään</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>Häivytä kaasulla</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>Sykäys</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>Aloituspiste</value>
@@ -920,6 +926,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>RPM</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>Vaihto-RPM</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>Äänet</value>

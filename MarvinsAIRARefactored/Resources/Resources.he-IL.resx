@@ -340,10 +340,10 @@
     <value>הרץ</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>תדירות</value>
+    <value>תדר גלובלי</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>אמפליטודה</value>
+    <value>משרעת גלובלית</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>מינימום</value>
@@ -374,6 +374,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>סל"ד</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>סל״ד החלפה</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>ללא</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>דעוך עם מצערת</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>פעימה</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>נקודת התחלה</value>
@@ -920,6 +926,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>סל"ד</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>סל״ד החלפה</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>צלילים</value>

@@ -340,10 +340,10 @@
     <value> Hz</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>FRECVENȚĂ</value>
+    <value>FRECVENȚĂ GLOBALĂ</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>AMPLITUDINE</value>
+    <value>AMPLITUDINE GLOBALĂ</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minim</value>
@@ -374,6 +374,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>RPM</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>TURAȚIE DE SCHIMBARE</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Niciunul</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>Estompare cu accelerația</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>Pulsație</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>Punct de start</value>
@@ -920,6 +926,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>RPM</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>Turație de schimbare</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>Sunete</value>

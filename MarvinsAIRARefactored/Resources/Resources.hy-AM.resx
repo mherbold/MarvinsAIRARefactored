@@ -340,10 +340,10 @@
     <value> Հց</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>ՀԱՃԱԽԱԿԱՆՈՒԹՅՈՒՆ</value>
+    <value>ԳԼՈԲԱԼ ՀԱՃԱԽԱԿԱՆՈՒԹՅՈՒՆ</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>ԱՄՊԼԻՏՈՒԴ</value>
+    <value>ԳԼՈԲԱԼ ԱՄՊԼԻՏՈՒԴ</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Նվազագույն</value>
@@ -374,6 +374,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>ՊՏ/Ր</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>ՓՈԽԱՆՑՄԱՆ RPM</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Չկա</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>Մարում՝ գազ տալիս</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>ՏԱՏԱՆՈՒՄ</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>Սկզբնակետ</value>
@@ -920,6 +926,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>պտ/ր</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>Փոխանցման RPM</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>Ձայներ</value>

@@ -691,6 +691,49 @@
 
         </controls:MairaGroupBox>
 
+        <controls:MairaGroupBox Label="{Binding Localization[ShiftRPM_UC]}"
+                                HelpTopic="advanced/pedals/#shift-rpm">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[Frequency]}"
+                                    Value="{Binding Settings.PedalsShiftRPMFrequency, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsShiftRPMFrequencyString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsShiftRPMFrequencyContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsShiftRPMFrequencyPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsShiftRPMFrequencyMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaKnob Grid.Column="2"
+                                    Label="{Binding Localization[Amplitude]}"
+                                    Value="{Binding Settings.PedalsShiftRPMAmplitude, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.PedalsShiftRPMAmplitudeString}"
+                                    StepSize="0.01"
+                                    ContextSwitches="{Binding Settings.PedalsShiftRPMAmplitudeContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.PedalsShiftRPMAmplitudePlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.PedalsShiftRPMAmplitudeMinusButtonMappings}"
+                                    DefaultValue="1" />
+
+                <controls:MairaSwitch Grid.Column="4"
+                                      IsOn="{Binding Settings.PedalsShiftRPMPulsateEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[Pulsate]}"
+                                      ContextSwitches="{Binding Settings.PedalsShiftRPMPulsateEnabledContextSwitches}"
+                                      LabelPosition="Top" />
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
         <controls:MairaGroupBox Label="{Binding Localization[WheelLock_UC]}"
                                 HelpTopic="advanced/pedals/#wheel-lock">
 

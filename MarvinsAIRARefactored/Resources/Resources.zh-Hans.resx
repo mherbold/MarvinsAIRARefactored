@@ -340,10 +340,10 @@
     <value> Hz</value>
   </data>
   <data name="Frequency_UC" xml:space="preserve">
-    <value>频率</value>
+    <value>全局频率</value>
   </data>
   <data name="Amplitude_UC" xml:space="preserve">
-    <value>振幅</value>
+    <value>全局振幅</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>最小值</value>
@@ -374,6 +374,9 @@
   </data>
   <data name="RPM_UC" xml:space="preserve">
     <value>转速</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>换挡转速</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>无</value>
@@ -479,6 +482,9 @@
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>油门衰减效果</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>脉动</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
     <value>起始点</value>
@@ -920,6 +926,9 @@
   </data>
   <data name="RPM" xml:space="preserve">
     <value>转速</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>换挡转速</value>
   </data>
   <data name="Sounds" xml:space="preserve">
     <value>声音</value>
