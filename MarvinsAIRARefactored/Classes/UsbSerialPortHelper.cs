@@ -5,8 +5,13 @@ using System.Text;
 
 namespace MarvinsAIRARefactored.Classes;
 
+// Set to true to enable verbose logging of the noisy read/write functions. Leave false for daily use to keep the log file small.
+#pragma warning disable CS0162 // Unreachable code detected (intentional: _verboseLogging is a compile-time toggle)
+
 public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdMustNotContain = "", string vid = "", string pid = "", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One ) : IDisposable
 {
+	private const bool _verboseLogging = false;
+
 	public bool DeviceFound { get => _portName != string.Empty; }
 	public string LastErrorMessage { get; private set; } = string.Empty;
 
@@ -296,7 +301,10 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			{
 				try
 				{
-					app?.Logger.WriteLine( $"[UsbSerialPortHelper] Write: {DescribeBytes( data )}" );
+					if ( _verboseLogging )
+					{
+						app?.Logger.WriteLine( $"[UsbSerialPortHelper] Write: {DescribeBytes( data )}" );
+					}
 
 					_serialPort.Write( data, 0, data.Length );
 				}
@@ -318,7 +326,10 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			{
 				try
 				{
-					app?.Logger.WriteLine( $"[UsbSerialPortHelper] Write: {DescribeBytes( data )}" );
+					if ( _verboseLogging )
+					{
+						app?.Logger.WriteLine( $"[UsbSerialPortHelper] Write: {DescribeBytes( data )}" );
+					}
 
 					_serialPort.BaseStream.Write( data );
 				}
@@ -340,7 +351,10 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			{
 				try
 				{
-					app?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine: {DescribeBytes( _serialPort.Encoding.GetBytes( data + _serialPort.NewLine ) )}" );
+					if ( _verboseLogging )
+					{
+						app?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine: {DescribeBytes( _serialPort.Encoding.GetBytes( data + _serialPort.NewLine ) )}" );
+					}
 
 					_serialPort.WriteLine( data );
 				}
@@ -362,13 +376,19 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			{
 				try
 				{
-					app?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine payload: {DescribeBytes( data )}" );
+					if ( _verboseLogging )
+					{
+						app?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine payload: {DescribeBytes( data )}" );
+					}
 
 					_serialPort.BaseStream.Write( data );
 
 					if ( data.Length == 0 || data[ ^1 ] != (byte) '\n' )
 					{
-						app?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine terminator: {DescribeBytes( stackalloc byte[] { (byte) '\n' } )}" );
+						if ( _verboseLogging )
+						{
+							app?.Logger.WriteLine( $"[UsbSerialPortHelper] WriteLine terminator: {DescribeBytes( stackalloc byte[] { (byte) '\n' } )}" );
+						}
 
 						_serialPort.BaseStream.WriteByte( (byte) '\n' );
 					}
@@ -439,7 +459,10 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			{
 				var bytesToRead = _serialPort.BytesToRead;
 
-				app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: EventType={e.EventType}, BytesToRead={bytesToRead}" );
+				if ( _verboseLogging )
+				{
+					app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: EventType={e.EventType}, BytesToRead={bytesToRead}" );
+				}
 
 				if ( bytesToRead <= 0 )
 				{
@@ -449,7 +472,10 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 				var incomingBytes = new byte[ bytesToRead ];
 				var bytesRead = _serialPort.Read( incomingBytes, 0, incomingBytes.Length );
 
-				app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: Received {DescribeBytes( incomingBytes.AsSpan( 0, bytesRead ) )}" );
+				if ( _verboseLogging )
+				{
+					app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: Received {DescribeBytes( incomingBytes.AsSpan( 0, bytesRead ) )}" );
+				}
 
 				var incoming = _serialPort.Encoding.GetString( incomingBytes, 0, bytesRead );
 
@@ -463,7 +489,10 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 					_dataBuffer.Remove( 0, newlineIndex + 1 );
 
-					app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: Dispatching bytes {DescribeBytes( _serialPort.Encoding.GetBytes( data ) )}" );
+					if ( _verboseLogging )
+					{
+						app?.Logger.WriteLine( $"[UsbSerialPortHelper] OnDataReceived: Dispatching bytes {DescribeBytes( _serialPort.Encoding.GetBytes( data ) )}" );
+					}
 
 					DataReceived?.Invoke( this, data );
 				}
@@ -513,3 +542,5 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		app?.Logger.WriteLine( $"[UsbSerialPortHelper] MonitorPort exited for '{_portName}'." );
 	}
 }
+
+#pragma warning restore CS0162 // Unreachable code detected
