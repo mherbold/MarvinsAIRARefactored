@@ -51,6 +51,7 @@ public class LFE
 	private int _lfeBusy = 0;
 	private int _pingPongIndex = 0;
 	private int _batchIndex = 0;
+	private int _lastProcessedWritePosSamples = -1;
 
 	private readonly byte[] _scratchRead = new byte[ _frameSizeInBytes ];
 	private readonly float[,] _magnitude = new float[ 2, _batchCount ];
@@ -247,6 +248,7 @@ public class LFE
 
 				_batchIndex = 0;
 				_pingPongIndex = 0;
+				_lastProcessedWritePosSamples = -1;
 
 				_captureDeviceCreated = true;
 
@@ -286,6 +288,7 @@ public class LFE
 		Array.Clear( _magnitude );
 
 		_captureDeviceCreated = false;
+		_lastProcessedWritePosSamples = -1;
 
 		app.Logger.WriteLine( "[LFE] <<< ReleaseCaptureDevice" );
 	}
@@ -329,6 +332,15 @@ public class LFE
 				_captureSystem.Value.getRecordPosition( _captureDriverId, out var writePosSamples );
 
 				var alignedWritePosSamples = (int) ( writePosSamples / _frameSizeInSamples ) * _frameSizeInSamples;
+
+				if ( alignedWritePosSamples == _lastProcessedWritePosSamples )
+				{
+					_lfeBusy = 0;
+					return;
+				}
+
+				_lastProcessedWritePosSamples = alignedWritePosSamples;
+
 				var readPosSamples = ( alignedWritePosSamples + _captureBufferNumSamples - _frameSizeInSamples ) % _captureBufferNumSamples;
 				var readOffsetBytes = readPosSamples * _bytesPerSample;
 
@@ -403,7 +415,7 @@ public class LFE
 		{
 			while ( lfe._running )
 			{
-				lfe._autoResetEvent.WaitOne( 250 );
+				lfe._autoResetEvent.WaitOne( 10 );
 
 				lfe.Update( app );
 			}
