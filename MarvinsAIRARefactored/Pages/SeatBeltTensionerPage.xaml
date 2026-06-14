@@ -157,7 +157,7 @@
                                         Value="{Binding Settings.SeatBeltTensionerSurgeMaxG, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSurgeMaxGString}"
                                         StepSize="0.1"
-                                        DefaultValue="10"
+                                        DefaultValue="4"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeMaxGContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
@@ -282,7 +282,7 @@
                                         Value="{Binding Settings.SeatBeltTensionerSwayMaxG, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSwayMaxGString}"
                                         StepSize="0.1"
-                                        DefaultValue="10"
+                                        DefaultValue="2"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSwayMaxGContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
@@ -290,7 +290,7 @@
                                         Value="{Binding Settings.SeatBeltTensionerSwayDeadZone, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSwayDeadZoneString}"
                                         StepSize="0.01"
-                                        DefaultValue="0"
+                                        DefaultValue="0.05"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSwayDeadZoneContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
@@ -306,7 +306,7 @@
                                         Value="{Binding Settings.SeatBeltTensionerSwayCurve, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSwayCurveString}"
                                         StepSize="0.01"
-                                        DefaultValue="0"
+                                        DefaultValue="0.15"
                                         ShowCurve="True"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSwayCurveContextSwitches}" />
 
@@ -407,7 +407,7 @@
                                         Value="{Binding Settings.SeatBeltTensionerHeaveMaxG, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerHeaveMaxGString}"
                                         StepSize="0.1"
-                                        DefaultValue="10"
+                                        DefaultValue="1.5"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveMaxGContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
@@ -415,7 +415,7 @@
                                         Value="{Binding Settings.SeatBeltTensionerHeaveDeadZone, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerHeaveDeadZoneString}"
                                         StepSize="0.01"
-                                        DefaultValue="0"
+                                        DefaultValue="0.05"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveDeadZoneContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
@@ -423,7 +423,7 @@
                                         Value="{Binding Settings.SeatBeltTensionerHeaveSmoothing, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerHeaveSmoothingString}"
                                         StepSize="0.01"
-                                        DefaultValue="0"
+                                        DefaultValue="0.1"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveSmoothingContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
@@ -431,7 +431,7 @@
                                         Value="{Binding Settings.SeatBeltTensionerHeaveCurve, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerHeaveCurveString}"
                                         StepSize="0.01"
-                                        DefaultValue="0"
+                                        DefaultValue="0.15"
                                         ShowCurve="True"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveCurveContextSwitches}" />
 
@@ -546,14 +546,14 @@
                                         Value="{Binding Settings.SeatBeltTensionerSeatOfPantsAmplitude, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSeatOfPantsAmplitudeString}"
                                         StepSize="1"
-                                        DefaultValue="30" />
+                                        DefaultValue="120" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Curve]}"
                                         Value="{Binding Settings.SeatBeltTensionerSeatOfPantsCurve, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSeatOfPantsCurveString}"
                                         StepSize="0.01"
-                                        DefaultValue="0"
+                                        DefaultValue="0.25"
                                         ShowCurve="True"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSeatOfPantsCurveContextSwitches}" />
 

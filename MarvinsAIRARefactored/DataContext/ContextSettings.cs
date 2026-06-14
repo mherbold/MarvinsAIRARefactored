@@ -171,12 +171,12 @@ public class ContextSettings
 	public float PedalsABSEngagedFrequency { get; set; } = 0.5f;
 	public float PedalsABSEngagedAmplitude { get; set; } = 1f;
 	public bool PedalsABSEngagedFadeWithBrakeEnabled { get; set; } = true;
-	public float PedalsStartingRPM { get; set; } = 1f;
+	public float PedalsStartingRPM { get; set; } = 0.25f;
 	public bool PedalsVibrateInTopGearEnabled { get; set; } = false;
 	public bool PedalsFadeWithThrottleEnabled { get; set; } = true;
 	public float PedalsShiftRPMFrequency { get; set; } = 1f;
 	public float PedalsShiftRPMAmplitude { get; set; } = 1f;
-	public bool PedalsShiftRPMPulsateEnabled { get; set; } = false;
+	public bool PedalsShiftRPMPulsateEnabled { get; set; } = true;
 	public float PedalsWheelLockFrequency { get; set; } = 0.2f;
 	public float PedalsWheelLockSensitivity { get; set; } = 0.95f;
 	public bool PedalsWheelLockFadeWithBrakeEnabled { get; set; } = true;
@@ -200,26 +200,26 @@ public class ContextSettings
 
 	#region Seat Belt Tensioner
 
-	public Components.SeatBeltTensioner.AxisMode SeatBeltTensionerSurgeMode { get; set; } = Components.SeatBeltTensioner.AxisMode.Normal;
-	public bool SeatBeltTensionerSurgeSubtractGravity { get; set; } = false;
-	public float SeatBeltTensionerSurgeMaxG { get; set; } = 10f;
+	public SeatBeltTensioner.AxisMode SeatBeltTensionerSurgeMode { get; set; } = SeatBeltTensioner.AxisMode.Normal;
+	public bool SeatBeltTensionerSurgeSubtractGravity { get; set; } = true;
+	public float SeatBeltTensionerSurgeMaxG { get; set; } = 4f;
 	public float SeatBeltTensionerSurgeDeadZone { get; set; } = 0f;
 	public float SeatBeltTensionerSurgeSmoothing { get; set; } = 0f;
 	public float SeatBeltTensionerSurgeCurve { get; set; } = 0f;
-	public Components.SeatBeltTensioner.AxisMode SeatBeltTensionerSwayMode { get; set; } = Components.SeatBeltTensioner.AxisMode.Normal;
-	public bool SeatBeltTensionerSwaySubtractGravity { get; set; } = false;
-	public float SeatBeltTensionerSwayMaxG { get; set; } = 10f;
-	public float SeatBeltTensionerSwayDeadZone { get; set; } = 0f;
+	public SeatBeltTensioner.AxisMode SeatBeltTensionerSwayMode { get; set; } = SeatBeltTensioner.AxisMode.Normal;
+	public bool SeatBeltTensionerSwaySubtractGravity { get; set; } = true;
+	public float SeatBeltTensionerSwayMaxG { get; set; } = 2f;
+	public float SeatBeltTensionerSwayDeadZone { get; set; } = 0.05f;
 	public float SeatBeltTensionerSwaySmoothing { get; set; } = 0f;
-	public float SeatBeltTensionerSwayCurve { get; set; } = 0f;
-	public Components.SeatBeltTensioner.AxisMode SeatBeltTensionerHeaveMode { get; set; } = Components.SeatBeltTensioner.AxisMode.Inverted;
+	public float SeatBeltTensionerSwayCurve { get; set; } = 0.15f;
+	public SeatBeltTensioner.AxisMode SeatBeltTensionerHeaveMode { get; set; } = SeatBeltTensioner.AxisMode.Normal;
 	public bool SeatBeltTensionerHeaveSubtractGravity { get; set; } = true;
-	public float SeatBeltTensionerHeaveMaxG { get; set; } = 10f;
-	public float SeatBeltTensionerHeaveDeadZone { get; set; } = 0f;
-	public float SeatBeltTensionerHeaveSmoothing { get; set; } = 0f;
-	public float SeatBeltTensionerHeaveCurve { get; set; } = 0f;
-	public Components.SeatBeltTensioner.AxisMode SeatBeltTensionerSeatOfPantsMode { get; set; } = Components.SeatBeltTensioner.AxisMode.Disabled;
-	public float SeatBeltTensionerSeatOfPantsCurve { get; set; } = 0f;
+	public float SeatBeltTensionerHeaveMaxG { get; set; } = 1.5f;
+	public float SeatBeltTensionerHeaveDeadZone { get; set; } = 0.05f;
+	public float SeatBeltTensionerHeaveSmoothing { get; set; } = 0.1f;
+	public float SeatBeltTensionerHeaveCurve { get; set; } = 0.15f;
+	public SeatBeltTensioner.AxisMode SeatBeltTensionerSeatOfPantsMode { get; set; } = SeatBeltTensioner.AxisMode.Normal;
+	public float SeatBeltTensionerSeatOfPantsCurve { get; set; } = 0.25f;
 
 	#endregion
 }

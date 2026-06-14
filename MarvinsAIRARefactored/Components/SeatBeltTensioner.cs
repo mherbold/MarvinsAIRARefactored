@@ -454,11 +454,11 @@ public class SeatBeltTensioner
 		MainWindow._seatBeltTensionerPage.HeaveMinGString = _heaveMinG < float.MaxValue ? $"{_heaveMinG:F2} G" : "---";
 		MainWindow._seatBeltTensionerPage.HeaveMaxGString = _heaveMaxG > float.MinValue ? $"{_heaveMaxG:F2} G" : "---";
 
-		// Surge normalized [-1..1]: braking tightens both belts, acceleration loosens both belts
-		var surgeNormalized = Math.Clamp( -longAccel / MathZ.OneG / settings.SeatBeltTensionerSurgeMaxG, -1f, 1f );
+		// Surge normalized [-1..1]: acceleration tightens both belts, braking loosens both belts
+		var surgeNormalized = Math.Clamp( longAccel / MathZ.OneG / settings.SeatBeltTensionerSurgeMaxG, -1f, 1f );
 
 		// Sway normalized [-1..1]: positive biases right belt tighter, left belt looser
-		var swayNormalized = Math.Clamp( latAccel / MathZ.OneG / settings.SeatBeltTensionerSwayMaxG, -1f, 1f );
+		var swayNormalized = Math.Clamp( -latAccel / MathZ.OneG / settings.SeatBeltTensionerSwayMaxG, -1f, 1f );
 
 		// Heave normalized [-1..1]
 		var heaveNormalized = Math.Clamp( vertAccel / MathZ.OneG / settings.SeatBeltTensionerHeaveMaxG, -1f, 1f );
@@ -538,18 +538,8 @@ public class SeatBeltTensioner
 
 			var amplitudeTenths = settings.SeatBeltTensionerSeatOfPantsAmplitude * 10f;
 
-			// Positive SoP = right lateral force → tighten right belt, negative SoP → tighten left belt
-			// No loosening: only add, never subtract below base position
-			if ( sop < 0f )
-			{
-				// Tighten left
-				leftTargetPositionTenths = Math.Clamp( leftTargetPositionTenths + (int) MathF.Round( -sop * amplitudeTenths ), minimumTenths, maximumTenths );
-			}
-			else if ( sop > 0f )
-			{
-				// Tighten right
-				rightTargetPositionTenths = Math.Clamp( rightTargetPositionTenths + (int) MathF.Round( sop * amplitudeTenths ), minimumTenths, maximumTenths );
-			}
+			leftTargetPositionTenths = Math.Clamp( leftTargetPositionTenths + (int) MathF.Round( -sop * amplitudeTenths ), minimumTenths, maximumTenths );
+			rightTargetPositionTenths = Math.Clamp( rightTargetPositionTenths + (int) MathF.Round( sop * amplitudeTenths ), minimumTenths, maximumTenths );
 		}
 
 		// Update shoulder graphs if on the SBT page

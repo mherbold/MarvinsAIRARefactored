@@ -6431,7 +6431,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Pedals - Starting RPM
 
-	private float _pedalsStartingRPM = 1f;
+	private float _pedalsStartingRPM = 0.25f;
 
 	public float PedalsStartingRPM
 	{
@@ -6625,7 +6625,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Pedals - Shift RPM pulsate enabled
 
-	private bool _pedalsShiftRPMPulsateEnabled = false;
+	private bool _pedalsShiftRPMPulsateEnabled = true;
 
 	public bool PedalsShiftRPMPulsateEnabled
 	{
@@ -8523,7 +8523,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Surge Subtract Gravity
 
-	private bool _seatBeltTensionerSurgeSubtractGravity = false;
+	private bool _seatBeltTensionerSurgeSubtractGravity = true;
 
 	public bool SeatBeltTensionerSurgeSubtractGravity
 	{
@@ -8546,7 +8546,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Surge Max G
 
-	private float _seatBeltTensionerSurgeMaxG = 10f;
+	private float _seatBeltTensionerSurgeMaxG = 4f;
 
 	public float SeatBeltTensionerSurgeMaxG
 	{
@@ -8733,7 +8733,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Sway Mode
 
-	private Components.SeatBeltTensioner.AxisMode _seatBeltTensionerSwayMode = Components.SeatBeltTensioner.AxisMode.Disabled;
+	private Components.SeatBeltTensioner.AxisMode _seatBeltTensionerSwayMode = Components.SeatBeltTensioner.AxisMode.Normal;
 
 	public Components.SeatBeltTensioner.AxisMode SeatBeltTensionerSwayMode
 	{
@@ -8756,7 +8756,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Sway Subtract Gravity
 
-	private bool _seatBeltTensionerSwaySubtractGravity = false;
+	private bool _seatBeltTensionerSwaySubtractGravity = true;
 
 	public bool SeatBeltTensionerSwaySubtractGravity
 	{
@@ -8779,7 +8779,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Sway Max G
 
-	private float _seatBeltTensionerSwayMaxG = 10f;
+	private float _seatBeltTensionerSwayMaxG = 2f;
 
 	public float SeatBeltTensionerSwayMaxG
 	{
@@ -8824,7 +8824,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Sway Dead Zone
 
-	private float _seatBeltTensionerSwayDeadZone = 0f;
+	private float _seatBeltTensionerSwayDeadZone = 0.05f;
 
 	public float SeatBeltTensionerSwayDeadZone
 	{
@@ -8914,7 +8914,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Sway Curve
 
-	private float _seatBeltTensionerSwayCurve = 0f;
+	private float _seatBeltTensionerSwayCurve = 0.15f;
 
 	public float SeatBeltTensionerSwayCurve
 	{
@@ -8966,9 +8966,9 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Heave Mode
 
-	private Components.SeatBeltTensioner.AxisMode _seatBeltTensionerHeaveMode = Components.SeatBeltTensioner.AxisMode.Inverted;
+	private SeatBeltTensioner.AxisMode _seatBeltTensionerHeaveMode = SeatBeltTensioner.AxisMode.Normal;
 
-	public Components.SeatBeltTensioner.AxisMode SeatBeltTensionerHeaveMode
+	public SeatBeltTensioner.AxisMode SeatBeltTensionerHeaveMode
 	{
 		get => _seatBeltTensionerHeaveMode;
 
@@ -9012,7 +9012,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Heave Max G
 
-	private float _seatBeltTensionerHeaveMaxG = 10f;
+	private float _seatBeltTensionerHeaveMaxG = 1.5f;
 
 	public float SeatBeltTensionerHeaveMaxG
 	{
@@ -9057,7 +9057,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Heave Dead Zone
 
-	private float _seatBeltTensionerHeaveDeadZone = 0f;
+	private float _seatBeltTensionerHeaveDeadZone = 0.05f;
 
 	public float SeatBeltTensionerHeaveDeadZone
 	{
@@ -9102,7 +9102,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Heave Smoothing
 
-	private float _seatBeltTensionerHeaveSmoothing = 0f;
+	private float _seatBeltTensionerHeaveSmoothing = 0.1f;
 
 	public float SeatBeltTensionerHeaveSmoothing
 	{
@@ -9147,7 +9147,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Heave Curve
 
-	private float _seatBeltTensionerHeaveCurve = 0f;
+	private float _seatBeltTensionerHeaveCurve = 0.15f;
 
 	public float SeatBeltTensionerHeaveCurve
 	{
@@ -9199,9 +9199,9 @@ public class Settings : INotifyPropertyChanged
 
 	#region Seat Belt Tensioner - Seat of Pants Effect
 
-	private Components.SeatBeltTensioner.AxisMode _seatBeltTensionerSeatOfPantsMode = Components.SeatBeltTensioner.AxisMode.Normal;
+	private SeatBeltTensioner.AxisMode _seatBeltTensionerSeatOfPantsMode = SeatBeltTensioner.AxisMode.Normal;
 
-	public Components.SeatBeltTensioner.AxisMode SeatBeltTensionerSeatOfPantsMode
+	public SeatBeltTensioner.AxisMode SeatBeltTensionerSeatOfPantsMode
 	{
 		get => _seatBeltTensionerSeatOfPantsMode;
 
@@ -9218,7 +9218,7 @@ public class Settings : INotifyPropertyChanged
 
 	public ContextSwitches SeatBeltTensionerSeatOfPantsModeContextSwitches { get; set; } = new( false, false, false, false, false );
 
-	private float _seatBeltTensionerSeatOfPantsAmplitude = 30f;
+	private float _seatBeltTensionerSeatOfPantsAmplitude = 120f;
 
 	public float SeatBeltTensionerSeatOfPantsAmplitude
 	{
@@ -9257,7 +9257,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private float _seatBeltTensionerSeatOfPantsCurve = 0f;
+	private float _seatBeltTensionerSeatOfPantsCurve = 0.25f;
 
 	public float SeatBeltTensionerSeatOfPantsCurve
 	{
@@ -12989,7 +12989,6 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	#endregion
-
 
 	#region Commentary — ElevenLabs Model
 
