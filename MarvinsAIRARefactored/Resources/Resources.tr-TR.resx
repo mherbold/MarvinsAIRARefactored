@@ -565,10 +565,7 @@
     <value>C# geliştiricisiyseniz ve bu projeye kod katkısında bulunmak istiyorsanız, GitHub deposuna buradan ulaşabilirsiniz:</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Birden fazla dilde okuma ve yazma biliyorsanız, bu uygulamayı dünyadaki tüm dillere çevirmek için yardımınıza ihtiyacımız var! Bunun nasıl yapılacağı hakkında daha fazla bilgi için şu Discord kanalını ziyaret edin:</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Çeviriler Discord Kanalı</value>
+    <value>MarvinsAIRA'yı bu kadar çok dile çevirmek için zamanını ve yeteneğini veren, burada adı geçen herkese içten teşekkürler. Çalışmalarınız bu uygulamayı dünyanın her yerindeki sim yarışçıları için erişilebilir hale getirmeye yardımcı oldu. Çeviriler artık otomatik olarak makine tarafından yapılıyor, bu yüzden çeviri konusunda başka yardıma ihtiyaç yok – ancak bu katkıda bulunanlar her zaman en derin minnettarlığımı hak edecek.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>GitHub deposu</value>

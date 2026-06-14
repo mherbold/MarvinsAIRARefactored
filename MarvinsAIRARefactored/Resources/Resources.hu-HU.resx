@@ -565,10 +565,7 @@
     <value>Te C# fejlesztő vagy? Ez a projekt nyitott a hozzájárulásokra. További információért látogasd meg a GitHub oldalt.</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Írsz-olvasok több nyelven? Segítségre van szükségünk a világ különböző nyelveihez. Többet megtudhatsz ha ellátogatsz a Discord szerverünkre.</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Fordítások Discord csatorna</value>
+    <value>Hálás köszönet mindenkinek, aki itt szerepel, és idejét és tehetségét adta a MarvinsAIRA ennyi nyelvre való lefordításához. Munkátok segített abban, hogy ez az alkalmazás elérhetővé váljon a szimulátoros versenyzők számára szerte a világon. A fordításokat mostantól automatikusan, gépi úton készítjük, így további fordítási segítségre már nincs szükség – ezeket a közreműködőket azonban mindig a legmélyebb hálám illeti.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>GitHub tároló</value>

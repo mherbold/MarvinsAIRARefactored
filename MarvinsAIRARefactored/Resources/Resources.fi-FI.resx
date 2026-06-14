@@ -565,10 +565,7 @@
     <value>Oletko C#-kehittäjä? Tämä projekti on avoin kontribuutioille. Lue lisää vierailemalla GitHub-arkistossa.</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Osaatko lukea ja kirjoittaa useilla kielillä? Tarvitsemme apua kielille ympäri maailmaa. Lue lisää vierailemalla Discord-palvelimellamme.</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Käännösten Discord-kanava</value>
+    <value>Lämmin kiitos kaikille tässä mainituille, jotka antoivat aikaansa ja taitojaan kääntääkseen MarvinsAIRA:n niin monelle kielelle. Työnne on auttanut tekemään tästä sovelluksesta saavutettavan simracing-kuljettajille kaikkialla maailmassa. Käännökset hoidetaan nyt automaattisesti koneellisesti, joten käännösapua ei enää tarvita – mutta näille avustajille kuuluu aina syvin kiitollisuuteni.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>GitHub-arkisto</value>

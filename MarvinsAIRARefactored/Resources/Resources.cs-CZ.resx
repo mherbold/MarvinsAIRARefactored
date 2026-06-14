@@ -565,10 +565,7 @@
     <value>Pokud se vyznáte ve tvorbě kódu programů, zde je odkaz na GitHub ´úložiště:</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Pokud umíte číst a psát nějakým jazykem, kterým MAIRA ještě není přeložená a chtěli by jste se podílet na překladu, tak navštivte Discord kanál:</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Kanál Discordu pro překlady</value>
+    <value>Srdečné poděkování všem zde uvedeným, kteří věnovali svůj čas a talent překladu aplikace MarvinsAIRA do tolika jazyků. Vaše práce pomohla zpřístupnit tuto aplikaci simracerům po celém světě. Překlady nyní zajišťuje automaticky strojový překlad, takže další pomoc s překlady už není potřeba – tito přispěvatelé však vždy budou mít mou nejhlubší vděčnost.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>GitHub úložiště</value>

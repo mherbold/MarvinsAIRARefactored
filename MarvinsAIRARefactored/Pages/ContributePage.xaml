@@ -401,48 +401,11 @@
 
                 </StackPanel>
 
-                <StackPanel Grid.Column="2">
-
-                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
-                               TextWrapping="Wrap"
-                               Text="{Binding Localization[TranslationContributionsText], Mode=OneWay}"
-                               Margin="0,0,0,20" />
-
-                    <Border BorderBrush="{DynamicResource Brush.Border.Normal}"
-                            BorderThickness="1"
-                            CornerRadius="5"
-                            HorizontalAlignment="Left">
-
-                        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
-                                   Padding="15,5">
-
-                        <Hyperlink NavigateUri="https://discord.com/channels/1353509415571165204/1385439382693216297"
-                                   RequestNavigate="Hyperlink_RequestNavigate"
-                                   Foreground="{DynamicResource Brush.Foreground.Primary}"
-                                   TextDecorations="None">
-
-                            <InlineUIContainer BaselineAlignment="Center">
-
-                                <Rectangle Width="24" Height="24"
-                                           Margin="0,0,5,0"
-                                           Fill="{DynamicResource Brush.Foreground.Primary}">
-                                    <Rectangle.OpacityMask>
-                                        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Misc/discord-logo.png"
-                                                    RenderOptions.BitmapScalingMode="HighQuality" />
-                                    </Rectangle.OpacityMask>
-                                </Rectangle>
-
-                            </InlineUIContainer>
-
-                            <Run Text="{Binding Localization[TranslationsDiscordChannel], Mode=OneWay}" />
-
-                        </Hyperlink>
-
-                        </TextBlock>
-
-                    </Border>
-
-                </StackPanel>
+                <TextBlock Grid.Column="2"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           TextWrapping="Wrap"
+                           Text="{Binding Localization[TranslationContributionsText], Mode=OneWay}"
+                           Margin="0,0,0,20" />
 
             </Grid>
 

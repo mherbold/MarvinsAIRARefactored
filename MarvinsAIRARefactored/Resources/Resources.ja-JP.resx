@@ -567,10 +567,7 @@
     <value>C#開発者ですか？このプロジェクトはコード貢献を歓迎しています。詳細はGitHubリポジトリをご覧ください。</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>複数の言語を読み書きできますか？世界各国の言語のサポートが必要です。詳細はDiscordサーバーをご覧ください。</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>翻訳Discordチャンネル</value>
+    <value>MarvinsAIRA をこれほど多くの言語に翻訳するために、時間と才能を捧げてくださった、ここに記載されているすべての方々に心より感謝申し上げます。皆様のお力添えのおかげで、このアプリは世界中のシムレーサーにご利用いただけるようになりました。翻訳は現在、機械によって自動的に行われるため、これ以上の翻訳のご協力は必要ありません。しかし、これらの貢献者の皆様には、これからもずっと深く感謝し続けます。</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>GitHub リポジトリ</value>

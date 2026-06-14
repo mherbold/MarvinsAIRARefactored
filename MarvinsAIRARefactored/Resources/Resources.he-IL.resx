@@ -565,10 +565,7 @@
     <value>האם אתה מפתח C#? פרויקט זה פתוח לתרומות. למד עוד על ידי ביקור במאגר GitHub.</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>האם אתה יכול לקרוא ולכתוב במספר שפות? אנו זקוקים לעזרה עבור שפות ברחבי העולם. למד עוד על ידי ביקור בשרת Discord שלנו.</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>ערוץ Discord לתרגומים</value>
+    <value>תודה מקרב לב לכל מי שמופיע כאן ותרם מזמנו ומכישרונו כדי לתרגם את MarvinsAIRA לשפות כה רבות. עבודתכם סייעה להנגיש את האפליקציה הזו לנהגי סימולציה בכל רחבי העולם. התרגומים מתבצעים כעת אוטומטית באמצעות מכונה, ולכן אין עוד צורך בעזרה בתרגום – אך לתורמים אלה תמיד תהיה נתונה הכרת התודה העמוקה שלי.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>מאגר GitHub</value>

@@ -565,10 +565,7 @@
     <value>Ydych chi'n ddatblygwr C#? Mae'r prosiect hwn yn agored i gyfraniadau. Dysgwch fwy drwy ymweld â'r storfa GitHub.</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Allwch chi ddarllen ac ysgrifennu mewn sawl iaith? Mae angen cymorth arnom ar gyfer ieithoedd ledled y byd. Dysgwch fwy drwy ymweld â'n gweinydd Discord.</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Sianel Discord Cyfieithiadau</value>
+    <value>Diolch o galon i bawb sydd wedi'u rhestru yma ac a roddodd eu hamser a'u doniau i gyfieithu MarvinsAIRA i gymaint o ieithoedd. Mae eich gwaith wedi helpu i wneud y rhaglen hon yn hygyrch i raswyr efelychu ledled y byd. Mae cyfieithiadau bellach yn cael eu trin yn awtomatig gan beiriant, felly nid oes angen rhagor o gymorth cyfieithu – ond bydd y cyfranwyr hyn bob amser yn cael fy niolch dwysaf.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>Storfa GitHub</value>

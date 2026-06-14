@@ -565,10 +565,7 @@
     <value>Are you a C# developer? This project is open to contributions. Learn more by visiting the GitHub repository.</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Can you read and write in multiple languages? We need help for languages across the globe. Learn more by visiting our Discord server.</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Translations Discord Channel</value>
+    <value>A heartfelt thank you to everyone listed here who volunteered their time and talent to translate MarvinsAIRA into so many languages. Your work helped make this app accessible to sim racers all over the world. Translations are now handled automatically by machine, so no further translation help is needed — but these contributors will always have my deepest gratitude.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>GitHub Repository</value>

@@ -565,12 +565,7 @@
     <value>Jeśli jesteś programistą C# i chciałbyś dodać kod do tego projektu, oto link do repozytorium GitHub:</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Jeśli potrafisz czytać i pisać w wielu językach, potrzebujemy Twojej pomocy w przetłumaczeniu tej aplikacji na wszystkie możliwe języki świata! Aby dowiedzieć się więcej, odwiedź ten kanał na Discordzie:
-
-</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Kanał Tłumaczeń Discord</value>
+    <value>Serdecznie dziękuję wszystkim wymienionym tutaj osobom, które poświęciły swój czas i talent, aby przetłumaczyć MarvinsAIRA na tak wiele języków. Wasza praca pomogła udostępnić tę aplikację symulatorowym kierowcom na całym świecie. Tłumaczenia są teraz wykonywane automatycznie przez maszynę, więc dalsza pomoc w tłumaczeniu nie jest już potrzebna – ale ci współtwórcy zawsze będą mieli moją najgłębszą wdzięczność.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>Repozytorium GitHub</value>

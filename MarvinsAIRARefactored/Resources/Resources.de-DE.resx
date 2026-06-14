@@ -568,10 +568,7 @@ Hier ist der Link zum Spenden:</value>
     <value>Wenn du ein C#-Entwickler bist und Code zu diesem Projekt beisteuern möchtest, findest du hier den Link zum GitHub-Repository:</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Du kannst mehrere Sprachen? Dann brauchen wir deine Hilfe  um MAIRA in jede mögliche Sprache der Welt zu übersetzen! Weitere Informationen dazu findest du in diesem Discord-Kanal:</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Übersetzung Discord-Kanal</value>
+    <value>Ein herzliches Dankeschön an alle, die hier aufgeführt sind und ihre Zeit und ihr Talent eingesetzt haben, um MarvinsAIRA in so viele Sprachen zu übersetzen. Eure Arbeit hat dazu beigetragen, diese App für Sim-Racer auf der ganzen Welt zugänglich zu machen. Übersetzungen werden jetzt automatisch maschinell erstellt, sodass keine weitere Übersetzungshilfe mehr nötig ist – doch diesen Mitwirkenden gilt für immer mein tiefster Dank.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>GitHub-Repository</value>

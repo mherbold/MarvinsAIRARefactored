@@ -565,10 +565,7 @@
     <value>如果你是C语言开发者, 并且想要为此项目贡献共享代码, 以下是Github代码仓库链接:</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>如果您掌握多语言读写技能, 我们很需要您翻译此App至任何可支持的语言的帮助! 更多详情请访问此Discord频道链接:</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Discord翻译频道</value>
+    <value>衷心感谢这里列出的每一位，他们贡献了自己的时间和才华，将 MarvinsAIRA 翻译成如此多的语言。你们的付出让这款应用得以惠及世界各地的模拟赛车玩家。现在翻译已由机器自动完成，因此不再需要翻译方面的帮助，但这些贡献者将永远拥有我最深切的感激。</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>GitHub 代码仓库</value>

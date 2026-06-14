@@ -565,10 +565,7 @@
     <value>Er du en C#-utvikler? Dette prosjektet er åpent for bidrag. Finn ut mer ved å besøke GitHub-depotet.</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Kan du lese og skrive på flere språk? Vi trenger hjelp for språk over hele verden. Finn ut mer ved å besøke Discord-serveren vår.</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Oversettelses Discord-kanal</value>
+    <value>En hjertelig takk til alle som er nevnt her, og som ga av sin tid og sitt talent for å oversette MarvinsAIRA til så mange språk. Arbeidet deres har bidratt til å gjøre denne appen tilgjengelig for simracere over hele verden. Oversettelser håndteres nå automatisk av maskin, så det er ikke lenger behov for hjelp til oversettelse – men disse bidragsyterne vil alltid ha min dypeste takknemlighet.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>GitHub-depot</value>

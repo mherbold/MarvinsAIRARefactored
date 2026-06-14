@@ -565,10 +565,7 @@
     <value>Se sei uno sviluppatore C#, e vorresti contribuire al codice relativamente a questo progetto, ecco il link al Repository GitHub</value>
   </data>
   <data name="TranslationContributionsText" xml:space="preserve">
-    <value>Se puoi leggere e scrivere in più lingue, abbiamo bisogno del tuo aiuto per tradurre l'app in ogni possibile linguaggio del mondo! Per maggiori informazioni su come fare, visita questo canale Discord:</value>
-  </data>
-  <data name="TranslationsDiscordChannel" xml:space="preserve">
-    <value>Canale Discord Traduzioni</value>
+    <value>Un sentito ringraziamento a tutti coloro che sono elencati qui e che hanno dedicato il loro tempo e il loro talento per tradurre MarvinsAIRA in così tante lingue. Il vostro lavoro ha contribuito a rendere questa app accessibile ai sim racer di tutto il mondo. Le traduzioni vengono ora gestite automaticamente da una macchina, quindi non è più necessario alcun aiuto con le traduzioni, ma questi collaboratori avranno sempre la mia più profonda gratitudine.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
     <value>Repository GitHub</value>
