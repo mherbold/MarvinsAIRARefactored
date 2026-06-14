@@ -1059,6 +1059,27 @@
 
         </controls:MairaGroupBox>
 
+        <controls:MairaGroupBox Label="{Binding Localization[PrivateMessages_UC]}"
+                                HelpTopic="advanced/steering-effects/#private-messages">
+
+            <Grid>
+
+                <StackPanel>
+
+                    <controls:MairaSwitch Margin="0"
+                                          IsOn="{Binding Settings.SteeringEffectsSendChatMessages, Mode=TwoWay}"
+                                          Label="{Binding Localization[SendChatMessages]}" />
+
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          IsOn="{Binding Settings.SteeringEffectsInputMappedSettingUpdateEnabled, Mode=TwoWay}"
+                                          Label="{Binding Localization[InputMappedSettingUpdateEnabled]}" />
+
+                </StackPanel>
+
+            </Grid>
+
+        </controls:MairaGroupBox>
+
         <controls:MairaGroupBox x:Name="Calibration_MairaGroupBox"
                                 Label="{Binding Localization[Calibration_UC]}"
                                 HelpTopic="advanced/steering-effects/#calibration">

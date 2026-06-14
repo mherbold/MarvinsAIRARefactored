@@ -138,6 +138,22 @@ public class SteeringEffects
 		MainWindow._steeringEffectsPage.UpdateCalibrationFileNameOptions();
 	}
 
+	public static void SendChatMessage( string groupKey, string labelKey, string? value = null )
+	{
+		var app = App.Instance!;
+
+		var localization = DataContext.DataContext.Instance.Localization;
+
+		if ( DataContext.DataContext.Instance.Settings.SteeringEffectsSendChatMessages && ( app.Simulator.UserName != string.Empty ) )
+		{
+			var playerName = app.Simulator.UserName;
+
+			playerName = playerName.Replace( " ", "." );
+
+			app.ChatQueue.SendMessage( $"/{playerName} (MAIRA) {localization[ groupKey ]} {localization[ labelKey ]}", value );
+		}
+	}
+
 	public void Update( App app, float deltaSeconds )
 	{
 		if ( _calibrationPhase == CalibrationPhase.NotCalibrating )

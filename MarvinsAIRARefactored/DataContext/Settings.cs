@@ -4947,6 +4947,48 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Steering effects - Send chat messages
+
+	private bool _steeringEffectsSendChatMessages = true;
+
+	public bool SteeringEffectsSendChatMessages
+	{
+		get => _steeringEffectsSendChatMessages;
+
+		set
+		{
+			if ( value != _steeringEffectsSendChatMessages )
+			{
+				_steeringEffectsSendChatMessages = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Steering effects - Input mapped setting update enabled
+
+	private bool _steeringEffectsInputMappedSettingUpdateEnabled = true;
+
+	public bool SteeringEffectsInputMappedSettingUpdateEnabled
+	{
+		get => _steeringEffectsInputMappedSettingUpdateEnabled;
+
+		set
+		{
+			if ( value != _steeringEffectsInputMappedSettingUpdateEnabled )
+			{
+				_steeringEffectsInputMappedSettingUpdateEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Pedals - Enabled
 
 	private bool _pedalsEnabled = false;

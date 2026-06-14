@@ -1394,11 +1394,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerMinimumThresholdPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerMinimumThreshold += 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "Understeer_UC", "MinimumThreshold", settings.SteeringEffectsUndersteerMinimumThresholdString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerMinimumThresholdMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerMinimumThreshold -= 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "Understeer_UC", "MinimumThreshold", settings.SteeringEffectsUndersteerMinimumThresholdString );
+				}
 			}
 
 			// steering effects understeer maximum threshold
@@ -1406,11 +1416,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerMaximumThresholdPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerMaximumThreshold += 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "Understeer_UC", "MaximumThreshold", settings.SteeringEffectsUndersteerMaximumThresholdString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerMaximumThresholdMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerMaximumThreshold -= 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "Understeer_UC", "MaximumThreshold", settings.SteeringEffectsUndersteerMaximumThresholdString );
+				}
 			}
 
 			// steering effects understeer wheel vibration strength
@@ -1418,11 +1438,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelVibrationStrength += 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelVibrationEffect_UC", "Strength", settings.SteeringEffectsUndersteerWheelVibrationStrengthString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelVibrationStrength -= 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelVibrationEffect_UC", "Strength", settings.SteeringEffectsUndersteerWheelVibrationStrengthString );
+				}
 			}
 
 			// steering effects understeer wheel vibration minimum frequency
@@ -1430,11 +1460,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationMinimumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelVibrationMinimumFrequency += 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsUndersteerWheelVibrationMinimumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationMinimumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelVibrationMinimumFrequency -= 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsUndersteerWheelVibrationMinimumFrequencyString );
+				}
 			}
 
 			// steering effects understeer wheel vibration maximum frequency
@@ -1442,11 +1482,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationMaximumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelVibrationMaximumFrequency += 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsUndersteerWheelVibrationMaximumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationMaximumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelVibrationMaximumFrequency -= 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsUndersteerWheelVibrationMaximumFrequencyString );
+				}
 			}
 
 			// steering effects understeer wheel vibration curve
@@ -1454,11 +1504,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelVibrationCurve += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelVibrationEffect_UC", "Curve", settings.SteeringEffectsUndersteerWheelVibrationCurveString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelVibrationCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelVibrationCurve -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelVibrationEffect_UC", "Curve", settings.SteeringEffectsUndersteerWheelVibrationCurveString );
+				}
 			}
 
 			// steering effects understeer wheel constant force strength
@@ -1466,11 +1526,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelConstantForceStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelConstantForceStrength += 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelConstantForceEffect_UC", "Strength", settings.SteeringEffectsUndersteerWheelConstantForceStrengthString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelConstantForceStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelConstantForceStrength -= 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelConstantForceEffect_UC", "Strength", settings.SteeringEffectsUndersteerWheelConstantForceStrengthString );
+				}
 			}
 
 			// steering effects understeer wheel constant force curve
@@ -1478,11 +1548,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelConstantForceCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelConstantForceCurve += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelConstantForceEffect_UC", "Curve", settings.SteeringEffectsUndersteerWheelConstantForceCurveString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerWheelConstantForceCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerWheelConstantForceCurve -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerWheelConstantForceEffect_UC", "Curve", settings.SteeringEffectsUndersteerWheelConstantForceCurveString );
+				}
 			}
 
 			// steering effects understeer pedal vibration minimum frequency
@@ -1490,11 +1570,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequency += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerPedalVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequency -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerPedalVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsUndersteerPedalVibrationMinimumFrequencyString );
+				}
 			}
 
 			// steering effects understeer pedal vibration maximum frequency
@@ -1502,11 +1592,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequency += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerPedalVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequency -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerPedalVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsUndersteerPedalVibrationMaximumFrequencyString );
+				}
 			}
 
 			// steering effects understeer pedal vibration curve
@@ -1514,11 +1614,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerPedalVibrationCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerPedalVibrationCurve += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerPedalVibrationEffect_UC", "Curve", settings.SteeringEffectsUndersteerPedalVibrationCurveString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsUndersteerPedalVibrationCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsUndersteerPedalVibrationCurve -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "UndersteerPedalVibrationEffect_UC", "Curve", settings.SteeringEffectsUndersteerPedalVibrationCurveString );
+				}
 			}
 
 			// steering effects oversteer minimum threshold
@@ -1526,11 +1636,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerMinimumThresholdPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerMinimumThreshold += 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "Oversteer_UC", "MinimumThreshold", settings.SteeringEffectsOversteerMinimumThresholdString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerMinimumThresholdMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerMinimumThreshold -= 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "Oversteer_UC", "MinimumThreshold", settings.SteeringEffectsOversteerMinimumThresholdString );
+				}
 			}
 
 			// steering effects oversteer maximum threshold
@@ -1538,11 +1658,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerMaximumThresholdPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerMaximumThreshold += 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "Oversteer_UC", "MaximumThreshold", settings.SteeringEffectsOversteerMaximumThresholdString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerMaximumThresholdMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerMaximumThreshold -= 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "Oversteer_UC", "MaximumThreshold", settings.SteeringEffectsOversteerMaximumThresholdString );
+				}
 			}
 
 			// steering effects oversteer wheel vibration strength
@@ -1550,11 +1680,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelVibrationStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelVibrationStrength += 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelVibrationEffect_UC", "Strength", settings.SteeringEffectsOversteerWheelVibrationStrengthString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelVibrationStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelVibrationStrength -= 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelVibrationEffect_UC", "Strength", settings.SteeringEffectsOversteerWheelVibrationStrengthString );
+				}
 			}
 
 			// steering effects oversteer wheel vibration minimum frequency
@@ -1562,11 +1702,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelVibrationMinimumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelVibrationMinimumFrequency += 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsOversteerWheelVibrationMinimumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelVibrationMinimumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelVibrationMinimumFrequency -= 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsOversteerWheelVibrationMinimumFrequencyString );
+				}
 			}
 
 			// steering effects oversteer wheel vibration maximum frequency
@@ -1574,11 +1724,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelVibrationMaximumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelVibrationMaximumFrequency += 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsOversteerWheelVibrationMaximumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelVibrationMaximumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelVibrationMaximumFrequency -= 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsOversteerWheelVibrationMaximumFrequencyString );
+				}
 			}
 
 			// steering effects oversteer wheel vibration curve
@@ -1586,11 +1746,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelVibrationCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelVibrationCurve += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelVibrationEffect_UC", "Curve", settings.SteeringEffectsOversteerWheelVibrationCurveString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelVibrationCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelVibrationCurve -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelVibrationEffect_UC", "Curve", settings.SteeringEffectsOversteerWheelVibrationCurveString );
+				}
 			}
 
 			// steering effects oversteer wheel constant force strength
@@ -1598,11 +1768,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelConstantForceStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelConstantForceStrength += 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelConstantForceEffect_UC", "Strength", settings.SteeringEffectsOversteerWheelConstantForceStrengthString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelConstantForceStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelConstantForceStrength -= 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelConstantForceEffect_UC", "Strength", settings.SteeringEffectsOversteerWheelConstantForceStrengthString );
+				}
 			}
 
 			// steering effects oversteer wheel constant force curve
@@ -1610,11 +1790,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelConstantForceCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelConstantForceCurve += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelConstantForceEffect_UC", "Curve", settings.SteeringEffectsOversteerWheelConstantForceCurveString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerWheelConstantForceCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerWheelConstantForceCurve -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerWheelConstantForceEffect_UC", "Curve", settings.SteeringEffectsOversteerWheelConstantForceCurveString );
+				}
 			}
 
 			// steering effects oversteer pedal vibration minimum frequency
@@ -1622,11 +1812,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerPedalVibrationMinimumFrequency += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerPedalVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerPedalVibrationMinimumFrequency -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerPedalVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsOversteerPedalVibrationMinimumFrequencyString );
+				}
 			}
 
 			// steering effects oversteer pedal vibration maximum frequency
@@ -1634,11 +1834,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerPedalVibrationMaximumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerPedalVibrationMaximumFrequency += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerPedalVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsOversteerPedalVibrationMaximumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerPedalVibrationMaximumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerPedalVibrationMaximumFrequency -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerPedalVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsOversteerPedalVibrationMaximumFrequencyString );
+				}
 			}
 
 			// steering effects oversteer pedal vibration curve
@@ -1646,11 +1856,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerPedalVibrationCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerPedalVibrationCurve += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerPedalVibrationEffect_UC", "Curve", settings.SteeringEffectsOversteerPedalVibrationCurveString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsOversteerPedalVibrationCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsOversteerPedalVibrationCurve -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "OversteerPedalVibrationEffect_UC", "Curve", settings.SteeringEffectsOversteerPedalVibrationCurveString );
+				}
 			}
 
 			// steering effects seat-of-pants minimum threshold
@@ -1658,11 +1878,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsMinimumThresholdPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsMinimumThreshold += 0.5f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPants_UC", "MinimumThreshold", settings.SteeringEffectsSeatOfPantsMinimumThresholdString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsMinimumThresholdMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsMinimumThreshold -= 0.5f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPants_UC", "MinimumThreshold", settings.SteeringEffectsSeatOfPantsMinimumThresholdString );
+				}
 			}
 
 			// steering effects seat-of-pants maximum threshold
@@ -1670,11 +1900,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsMaximumThresholdPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsMaximumThreshold += 0.5f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPants_UC", "MaximumThreshold", settings.SteeringEffectsSeatOfPantsMaximumThresholdString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsMaximumThresholdMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsMaximumThreshold -= 0.5f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPants_UC", "MaximumThreshold", settings.SteeringEffectsSeatOfPantsMaximumThresholdString );
+				}
 			}
 
 			// steering effects seat-of-pants wheel vibration strength
@@ -1682,11 +1922,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelVibrationStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelVibrationStrength += 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelVibrationEffect_UC", "Strength", settings.SteeringEffectsSeatOfPantsWheelVibrationStrengthString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelVibrationStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelVibrationStrength -= 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelVibrationEffect_UC", "Strength", settings.SteeringEffectsSeatOfPantsWheelVibrationStrengthString );
+				}
 			}
 
 			// steering effects seat-of-pants wheel vibration minimum frequency
@@ -1694,11 +1944,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequency += 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequency -= 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyString );
+				}
 			}
 
 			// steering effects seat-of-pants wheel vibration maximum frequency
@@ -1706,11 +1966,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequency += 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequency -= 1f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyString );
+				}
 			}
 
 			// steering effects seat-of-pants wheel vibration curve
@@ -1718,11 +1988,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelVibrationCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelVibrationCurve += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelVibrationEffect_UC", "Curve", settings.SteeringEffectsSeatOfPantsWheelVibrationCurveString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelVibrationCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelVibrationCurve -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelVibrationEffect_UC", "Curve", settings.SteeringEffectsSeatOfPantsWheelVibrationCurveString );
+				}
 			}
 
 			// steering effects seat-of-pants wheel constant force strength
@@ -1730,11 +2010,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelConstantForceStrengthPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelConstantForceStrength += 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelConstantForceEffect_UC", "Strength", settings.SteeringEffectsSeatOfPantsWheelConstantForceStrengthString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelConstantForceStrengthMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelConstantForceStrength -= 0.01f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelConstantForceEffect_UC", "Strength", settings.SteeringEffectsSeatOfPantsWheelConstantForceStrengthString );
+				}
 			}
 
 			// steering effects seat-of-pants wheel constant force curve
@@ -1742,11 +2032,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelConstantForceCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelConstantForceCurve += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelConstantForceEffect_UC", "Curve", settings.SteeringEffectsSeatOfPantsWheelConstantForceCurveString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsWheelConstantForceCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsWheelConstantForceCurve -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsWheelConstantForceEffect_UC", "Curve", settings.SteeringEffectsSeatOfPantsWheelConstantForceCurveString );
+				}
 			}
 
 			// steering effects seat-of-pants pedal vibration minimum frequency
@@ -1754,11 +2054,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequency += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsPedalVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequency -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsPedalVibrationEffect_UC", "MinimumFrequency", settings.SteeringEffectsSeatOfPantsPedalVibrationMinimumFrequencyString );
+				}
 			}
 
 			// steering effects seat-of-pants pedal vibration maximum frequency
@@ -1766,11 +2076,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyPlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequency += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsPedalVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequency -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsPedalVibrationEffect_UC", "MaximumFrequency", settings.SteeringEffectsSeatOfPantsPedalVibrationMaximumFrequencyString );
+				}
 			}
 
 			// steering effects seat-of-pants pedal vibration curve
@@ -1778,11 +2098,21 @@ public partial class App : Application
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsPedalVibrationCurvePlusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsPedalVibrationCurve += 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsPedalVibrationEffect_UC", "Curve", settings.SteeringEffectsSeatOfPantsPedalVibrationCurveString );
+				}
 			}
 
 			if ( CheckMappedButtons( settings.SteeringEffectsSeatOfPantsPedalVibrationCurveMinusButtonMappings, deviceInstanceGuid, buttonNumber ) )
 			{
 				settings.SteeringEffectsSeatOfPantsPedalVibrationCurve -= 0.05f;
+
+				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
+				{
+					SteeringEffects.SendChatMessage( "SeatOfPantsPedalVibrationEffect_UC", "Curve", settings.SteeringEffectsSeatOfPantsPedalVibrationCurveString );
+				}
 			}
 
 			// pedals clutch strength 1 knob
