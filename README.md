@@ -1,8 +1,10 @@
 ﻿# This is the MAIRA Refactored (2.0) GitHub repo!
 
-Check out my progress on my Trello board here - https://trello.com/b/o7vbR74U/maira-refactored-20
+**Marvin's Awesome iRacing App (MAIRA) Refactored** is a Windows desktop companion app for the [iRacing](https://www.iracing.com/) simulator. It is written in **C# 13 / .NET 9** using **WPF**, and provides advanced force-feedback processing, steering effects, pedal haptics, seat-belt tensioner support, wind/LFE effects, AI commentary and speech-to-text, hardware integrations (Stream Deck, AdminBoxx, vJoy, etc.), Trading Paints livery downloading, and a variety of overlays.
 
-I need help with translating the app into multiple languages - https://herboldracing.com/translations
+The project also has a second build target, **AdminBoxx** (selected via the `ADMINBOXX` preprocessor constant), which strips out most sim-racing features and runs as a simpler hardware-controller utility.
+
+Check out my progress on my Trello board here - https://trello.com/b/o7vbR74U/maira-refactored-20
 
 For any questions or suggestions, please reach out to me on my Discord server - https://discord.gg/Y7JN3BAz72
 
@@ -33,29 +35,14 @@ At a very high level, the solution looks like this:
 
 Examples (not exhaustive):
 
-- `Simulator` (iRacing telemetry, **IRSDKSharper**)
-- `DirectInput`
-- `RacingWheel`
-- `Pedals`
-- `LFE`
-- `VirtualJoystick`
-- `AudioManager`
-- `Sounds`
-- `Telemetry` (memory-mapped IPC)
-- `CloudService`
-- `TradingPaints`
-- `RecordingManager`
-- `MultimediaTimer`
-- `StreamDeck`
-- `AdminBoxx`
-- `SpeechToText`
-- `Wind`
-- `SteeringEffects`
-- `HidHotPlugMonitor`
-- `Logger`
-- `TopLevelWindow`
-- `Debug`
-- `SettingsFile`
+- **Force feedback / wheel** — `RacingWheel`, `SteeringEffects`, `DirectInput`, `Drivers`
+- **Pedals & haptics** — `Pedals`, `SeatBeltTensioner`, `SeatBeltTensionerGraph`
+- **iRacing data** — `Simulator` (iRacing telemetry, **IRSDKSharper**), `Telemetry` (memory-mapped IPC), `TimingMarkers`
+- **Audio** — `AudioManager`, `Sounds`, `LFE`
+- **Speech / commentary** — `SpeechToText`, `TextToSpeech`, `Commentary`, `ChatQueue`
+- **Hardware integrations** — `Wind`, `AdminBoxx`, `StreamDeck`, `VirtualJoystick`, `HidHotPlugMonitor`
+- **Cloud / external** — `CloudService`, `TradingPaints`
+- **App / utility** — `AppManager`, `Logger`, `Debug`, `Graph`, `RecordingManager`, `MultimediaTimer`, `SettingsFile`, `TopLevelWindow`
 
 ### 1.3 Data / MVVM-ish Layer — `DataContext/`
 
@@ -71,27 +58,41 @@ Examples (not exhaustive):
   - WPF windows such as `MainWindow`, `HelpWindow`, `ErrorWindow`, `GripOMeterWindow`, `SpeechToTextWindow`, etc.
 
 - **Pages/** (WPF `UserControl` pages hosted in `MainWindow`)
-  - `AppSettingsPage`
-  - `PedalsPage`
   - `RacingWheelPage`
   - `SteeringEffectsPage`
-  - `SpeechToTextPage`
-  - `SimulatorPage`
-  - `GraphPage`
+  - `PedalsPage`
+  - `SeatBeltTensionerPage`
+  - `WindPage`
   - `SoundsPage`
+  - `SpeechToTextPage`
+  - `CommentaryPage`
+  - `TradingPaintsPage`
+  - `AppManagerPage`
+  - `GraphPage`
+  - `SimulatorPage`
+  - `OverlaysPage`
+  - `AppSettingsPage`
   - `AdminBoxxPage`
   - `DebugPage`
+  - `ContributePage`
   - `DonatePage`
   - `HelpPage`
-  - …and similar.
 
-- **Controls/** (reusable visual components)
+- **Controls/** (reusable `Maira*` visual components — used in place of raw WPF equivalents)
   - `MairaButton`
   - `MairaMappableButton`
   - `MairaComboBox`
+  - `MairaTextBox`
   - `MairaKnob`
   - `MairaSwitch`
+  - `MairaDualSlider`
+  - `MairaProgressBar`
+  - `MairaExpander`
+  - `MairaGroupBox`
+  - `MairaTabItem`
+  - `MairaStatusBar`
   - `MairaButtonMapping`
+  - `MairaAppMenuButton`
   - `MairaAppMenuPopup`
 
 - **Viewers/**
@@ -103,24 +104,21 @@ Examples (not exhaustive):
 ### 1.5 Support / Utilities
 
 - **Classes/** — helpers such as:
-  - `GraphBase`
-  - `Graph`
-  - `ButtonMappings`
-  - `Recording`
-  - `RecordingData`
-  - `HelpService`
-  - `Serializer`
-  - `MathZ`
-  - `Misc`
-  - `TradingPaintsXML`
-  - `UsbSerialPortHelper`
-  - `LogitechGSDK`
-  - etc.
+  - Math / signal: `MathZ`, `RlsWheelVelocityPredictor`
+  - Audio: `CachedSound`, `CachedSoundPlayer`
+  - Recording: `Recording`, `RecordingData`
+  - Serialization: `Serializer`, `SerializableDictionary`
+  - Commentary / voice: `CommentaryTemplates`, `UserCommentaryPhrases`, `VoiceSlotSettings`, `ElevenLabs`, `ElevenLabsKeyStore`
+  - Graph / UI: `GraphBase`, `ButtonMappings`, `TextBoxBehaviors`, `Color`
+  - App manager: `AppManagerEntry`, `AppManagerStartEntryViewModel`
+  - Hardware / util: `UsbSerialPortHelper`, `CpuAffinityHelper`, `HelpService`, `TradingPaintsXML`, `Misc`
 
-- **Translate/** — localization (ResX resources).
-- **Help/** & **Website/** — static documentation.
-- **PInvoke/** — low-level Win32 bindings.
-- **Arduino/**, **AdminBoxx/**, **InnoSetup/** — external tooling / supporting assets.
+- **DataContext/Localization.cs** + **Resources/** — UI string table and localized resources.
+- **Converters/** — WPF value converters.
+- **Viewers/** — custom telemetry/session drawing controls.
+- **Themes/** — `DarkTheme`, `LightTheme`, `Generic`, and per-control resources.
+- **MarvinsAIRARefactored.Win32/** — companion project for source-generated P/Invoke (CsWin32) bindings.
+- **Arduino/**, **AdminBoxx/**, **InnoSetup/**, **Wordpress/** — external tooling, firmware, the installer script, and supporting web/site assets.
 
 > **Mental model:**  
 > - `App` is the global **service locator**.  
@@ -140,40 +138,50 @@ The project uses **composition** heavily with fairly shallow inheritance. The ma
 
 **Windows** (all inherit from `Window`):
 
-- `MainWindow`
+- `MainWindow` — the primary shell
+- `StartupWindow`
+- `WizardWindow`
 - `ErrorWindow`
-- `GripOMeterWindow`
 - `HelpWindow`
+- `PickProcessWindow`
+- `SpeechToTextWindow`
 - `NewVersionAvailableWindow`
 - `RunInstallerWindow`
-- `SpeechToTextWindow`
 - `UpdateButtonMappingsWindow`
 - `UpdateContextSwitchesWindow`
-- (and a few similar dialog-style windows)
+- Overlays: `GripOMeterWindow`, `GapMonitorWindow`, `CursorCountdownOverlay`
 
 **Pages** (all inherit from `UserControl`):
 
-- `AdminBoxxPage`
-- `AppSettingsPage`
-- `GraphPage`
-- `PedalsPage`
 - `RacingWheelPage`
-- `SimulatorPage`
+- `SteeringEffectsPage`
+- `PedalsPage`
+- `SeatBeltTensionerPage`
+- `WindPage`
 - `SoundsPage`
 - `SpeechToTextPage`
-- `SteeringEffectsPage`
+- `CommentaryPage`
+- `TradingPaintsPage`
+- `AppManagerPage`
+- `GraphPage`
+- `SimulatorPage`
+- `OverlaysPage`
+- `AppSettingsPage`
+- `AdminBoxxPage`
 - `DebugPage`
+- `ContributePage`
 - `DonatePage`
 - `HelpPage`
-- etc.
 
 **Core custom controls:**
 
 - `MairaButton : UserControl`
 - `MairaMappableButton : MairaButton`
 - `MairaComboBox : UserControl`
+- `MairaTextBox : UserControl`
 - `MairaKnob : UserControl`
 - `MairaSwitch : UserControl`
+- `MairaDualSlider : UserControl`
 - `MairaButtonMapping : UserControl`
 - `MairaAppMenuPopup : UserControl`
 
@@ -242,7 +250,6 @@ App
  ├─ Pedals
  ├─ AdminBoxx
  ├─ Debug
- ├─ MainWindow
  ├─ RacingWheel
  ├─ ChatQueue
  ├─ AudioManager
@@ -255,13 +262,17 @@ App
  ├─ RecordingManager
  ├─ SteeringEffects
  ├─ VirtualJoystick
- ├─ GripOMeterWindow
+ ├─ Drivers
+ ├─ TimingMarkers
  ├─ Telemetry
- ├─ SpeechToTextWindow
+ ├─ TextToSpeech
+ ├─ Commentary
  ├─ SpeechToText
- ├─ HidHotPlugMonitor
  ├─ Wind
- └─ TradingPaints
+ ├─ SeatBeltTensioner
+ ├─ HidHotPlugMonitor
+ ├─ TradingPaints
+ └─ AppManager
 ```
 
 Other classes get at these via `App.Instance!`.
