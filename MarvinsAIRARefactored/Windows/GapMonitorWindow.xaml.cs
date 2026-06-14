@@ -88,7 +88,7 @@ public partial class GapMonitorWindow : Window
 	{
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		_isDraggable = settings.SteeringEffectsMakeGripOMeterDraggable;
+		_isDraggable = settings.OverlaysMakeGapMonitorDraggable;
 
 		var hwnd = new WindowInteropHelper( this ).Handle;
 
