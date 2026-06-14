@@ -448,7 +448,7 @@ public class Pedals
 
 				if ( pulsate < 0f )
 				{
-					return (false, 0f, 0f);
+					return (true, 0f, 0f);
 				}
 			}
 
