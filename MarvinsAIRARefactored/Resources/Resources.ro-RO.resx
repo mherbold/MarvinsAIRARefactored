@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Ieșiți din aplicație</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Minimizează în loc de închidere</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Minimizare în bara de sistem</value>
   </data>

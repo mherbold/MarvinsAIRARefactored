@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Poistu sovelluksesta</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Pienennä sulkemisen sijaan</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Pienennä ilmaisinalueelle</value>
   </data>

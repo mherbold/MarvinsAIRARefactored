@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Sluit App</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Minimaliseren in plaats van sluiten</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Minimaliseer naar pictogram</value>
   </data>

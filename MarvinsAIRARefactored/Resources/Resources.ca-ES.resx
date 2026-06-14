@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Surt de l'aplicació</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Minimitza en lloc de tancar</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Minimitzar a la barra de tasques</value>
   </data>

@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>退出App</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>最小化而非关闭</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>最小化到系统托盘</value>
   </data>

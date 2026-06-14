@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Gadael yr Ap</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Lleihau yn lle cau</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Lleihau i'r Bar System</value>
   </data>

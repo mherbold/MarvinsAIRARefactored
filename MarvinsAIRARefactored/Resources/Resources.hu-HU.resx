@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Kilépés az alkalmazásból</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Kis méret bezárás helyett</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Minimalizálás a tálcára</value>
   </data>

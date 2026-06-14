@@ -589,6 +589,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Вийти з програми</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Згортати замість закриття</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Згорнути в трей</value>
   </data>

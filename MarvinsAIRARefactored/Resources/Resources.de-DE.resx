@@ -588,6 +588,9 @@ Hier ist der Link zum Spenden:</value>
   <data name="ExitApp" xml:space="preserve">
     <value>App schliessen</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Minimieren statt schließen</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>In System-Tray minimieren</value>
   </data>

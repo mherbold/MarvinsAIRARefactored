@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Ելք հավելվածից</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Փակելու փոխարեն ծալել</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Թաքցնել համակարգային վահանակում</value>
   </data>

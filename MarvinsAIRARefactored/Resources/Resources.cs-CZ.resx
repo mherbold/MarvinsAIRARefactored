@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Ukončit aplikaci</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Minimalizovat místo zavření</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Minimalizovat do systémové lišty</value>
   </data>

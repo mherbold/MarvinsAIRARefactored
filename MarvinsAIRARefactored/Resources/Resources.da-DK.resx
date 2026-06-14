@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Luk Program</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Minimer i stedet for at lukke</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Minimer til process linjen</value>
   </data>

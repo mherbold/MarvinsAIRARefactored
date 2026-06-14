@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>ออกจากแอป</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>ย่อหน้าต่างแทนการปิด</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>ย่อไปที่ System Tray</value>
   </data>

@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Uygulamayı Kapat</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Kapatmak yerine simge durumuna küçült</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Sitem Tepsisine Küçült</value>
   </data>

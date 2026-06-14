@@ -67,6 +67,7 @@ public partial class MainWindow : Window
 	private string? _installerFilePath = null;
 	private bool _initialized = false;
 	private NotifyIcon? _notifyIcon = null;
+	private bool _exitRequested = false;
 	private int _updateCounter = UpdateInterval + 6;
 
 	public MainWindow()
@@ -492,18 +493,22 @@ public partial class MainWindow : Window
 
 	private void ExitApp()
 	{
+		_exitRequested = true;
+
 		if ( _notifyIcon != null )
 		{
 			_notifyIcon.Visible = false;
 
 			_notifyIcon.Dispose();
-
-			Close();
 		}
+
+		Close();
 	}
 
 	public void CloseAndLaunchInstaller( string installerFilePath )
 	{
+		_exitRequested = true;
+
 		_installerFilePath = installerFilePath;
 
 		Close();
@@ -561,6 +566,15 @@ public partial class MainWindow : Window
 
 	private void Window_Closing( object sender, CancelEventArgs e )
 	{
+		if ( !_exitRequested && MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.AppMinimizeInsteadOfClosing )
+		{
+			e.Cancel = true;
+
+			WindowState = WindowState.Minimized;
+
+			return;
+		}
+
 		if ( _notifyIcon != null )
 		{
 			_notifyIcon.Visible = false;

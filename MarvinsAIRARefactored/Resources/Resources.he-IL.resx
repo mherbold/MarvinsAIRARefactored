@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>צא מהאפליקציה</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>מזער במקום לסגור</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>מזער לסרגל המערכת</value>
   </data>

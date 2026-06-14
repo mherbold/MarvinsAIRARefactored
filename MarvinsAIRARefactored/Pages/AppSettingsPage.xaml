@@ -83,6 +83,7 @@
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
                     <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <controls:MairaSwitch Grid.Row="0"
@@ -128,6 +129,13 @@
                                       Label="{Binding Localization[MinimizeToSystemTray]}" />
 
                 <controls:MairaSwitch Grid.Row="6"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="3"
+                                      Margin="0,10,0,0"
+                                      IsOn="{Binding Settings.AppMinimizeInsteadOfClosing, Mode=TwoWay}"
+                                      Label="{Binding Localization[MinimizeInsteadOfClosing]}" />
+
+                <controls:MairaSwitch Grid.Row="7"
                                       Grid.Column="0"
                                       Grid.ColumnSpan="3"
                                       Margin="0,10,0,0"

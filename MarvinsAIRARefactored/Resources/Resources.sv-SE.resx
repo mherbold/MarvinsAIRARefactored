@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Avsluta appen</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Minimera istället för att stänga</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Minimera till systemfältet</value>
   </data>

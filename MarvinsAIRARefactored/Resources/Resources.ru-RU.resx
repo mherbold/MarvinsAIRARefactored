@@ -585,6 +585,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Выйти из приложения</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Сворачивать вместо закрытия</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Сворачивать в трей вместо панели задач</value>
   </data>

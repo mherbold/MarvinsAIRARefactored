@@ -586,6 +586,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>Sair da Aplicação</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Minimizar em vez de fechar</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>Minimizar para a bandeja do sistema</value>
   </data>

@@ -587,6 +587,9 @@
   <data name="ExitApp" xml:space="preserve">
     <value>アプリを終了</value>
   </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>閉じる代わりに最小化</value>
+  </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
     <value>システムトレイに最小化</value>
   </data>

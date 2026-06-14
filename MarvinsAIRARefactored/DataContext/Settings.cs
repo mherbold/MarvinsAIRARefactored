@@ -12704,6 +12704,27 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region App - Minimize instead of closing
+
+	private bool _appMinimizeInsteadOfClosing = false;
+
+	public bool AppMinimizeInsteadOfClosing
+	{
+		get => _appMinimizeInsteadOfClosing;
+
+		set
+		{
+			if ( value != _appMinimizeInsteadOfClosing )
+			{
+				_appMinimizeInsteadOfClosing = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region App - UI scale
 
 	private float _appUIScale = 1f;
