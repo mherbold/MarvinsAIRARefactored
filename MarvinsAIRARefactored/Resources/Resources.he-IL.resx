@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>חלון כיסוי</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>אפשר גרירת חלון הכיסוי</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>אפס מיקום חלון הכיסוי</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>קנה מידה חלון כיסוי</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>נהל את חלון הכיסוי</value>
   </data>
@@ -876,14 +867,8 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>הפוך את כל חלונות הכיסוי לגלויים וניתנים לגרירה</value>
   </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>גשר MAIRA דיבור-לטקסט</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>לחץ על כפתור ההפעלה. עליך לוודא שהדפדפן בחר את התקן השמע הנכון על ידי לחיצה על סמל המיקרופון משמאל לשורת הכתובות!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>הפעל דיבור לטקסט</value>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>אפס את כל חלונות הכיסוי</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[התקן כוח חוזר לא נבחר]</value>
@@ -1407,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>לא</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>החל והבא</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>סגור</value>
   </data>
@@ -1668,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>שימוש</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>טוען נתוני שימוש…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>שימוש בתוכנית:  {0:N0} / {1:N0} תווים בשימוש  ({2:F1}%)  —  {3:N0} נותרו</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>שימוש בתוכנית אינו זמין</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>קול</value>
   </data>
@@ -1698,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>בדיקה</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>עקיפה / שינוי עמדה</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>קרב צמוד</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>הסיבוב המהיר ביותר</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>עצירת פיט</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>זהירות / דגל צהוב</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>תחילת / סיום מפגש</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>תקרית נהג</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>אזהרת דלק</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>אזהרת צמיגים</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>אזהרת נזק</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>קריאות קרבה</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>מרווח תזכורת</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>חלון פיט פתוח</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>ביטויי פרשנות</value>
@@ -1751,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>הוסף ביטוי</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>הסר</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  ביטויים מותאמים אישית נשמרו.</value>
@@ -1772,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>מתחיל...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>אתחול Logger...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>אתחול חלון ברמה עליונה...</value>
@@ -1851,7 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>הורד מחדש קובצי צביעה</value>
   </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>ניטור דלתא</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>ניטור דלתא</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>הקפה</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>מול אחרונה</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>מול P1</value>
   </data>
 </root>

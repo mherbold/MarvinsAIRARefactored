@@ -859,15 +859,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>JANELA DA SOBREPOSIÇÃO</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Tornar a janela da sobreposição arrastável</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Repor a posição da sobreposição</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Escala Da Sobreposição</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Gerir janela de sobreposição</value>
   </data>
@@ -877,14 +868,8 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Tornar todas as janelas de sobreposição visíveis e arrastáveis</value>
   </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>Reconhecimento de Voz MAIRA</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Clica no botão ativar. Precisas verificar se o navegador está com o dispositivo de áudio correto selecionado, ao clicar no ícone do microfone à esquerda da barra do endereço!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Ativar Reconhecimento de Voz</value>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Repor todas as janelas de sobreposição</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Dispositivo com Force Feedback Não Selecionado]</value>
@@ -1408,9 +1393,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>Não</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Seguinte</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Fechar</value>
   </data>
@@ -1669,15 +1651,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Utilização</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>A obter utilização da subscrição…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Utilização do plano:  {0:N0} / {1:N0} caracteres utilizados  ({2:F1}%)  —  {3:N0} restantes</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Utilização do plano indisponível</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Voz</value>
   </data>
@@ -1699,44 +1672,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Testar</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Ultrapassagem / Mudança de posição</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Batalha cerrada</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Volta mais rápida</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Pit stop</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Cuidado / Bandeira amarela</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Início / Fim da sessão</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Incidente de piloto</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Aviso de combustível</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Aviso de pneus</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Aviso de danos</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Chamadas de proximidade</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Intervalo de lembrete</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Janela do pit aberta</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>FRASES DE COMENTÁRIO</value>
@@ -1752,9 +1695,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Adicionar frase</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Remover</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Frases personalizadas guardadas.</value>
@@ -1773,9 +1713,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Iniciando...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Inicializando Registador...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Inicializando Janela de Nível Superior...</value>
@@ -1852,7 +1789,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Transferir novamente os ficheiros de pintura</value>
   </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Monitor de delta</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>MONITOR DE DELTA</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Volta</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. última</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
   </data>
 </root>

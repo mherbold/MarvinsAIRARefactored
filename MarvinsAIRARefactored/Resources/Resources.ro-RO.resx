@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>FEREASTRĂ OVERLAY</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Faceți fereastra overlay glisabilă</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Resetați poziția ferestrei overlay</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Scara ferestrei overlay</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Gestionează fereastra overlay</value>
   </data>
@@ -876,14 +867,8 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Fă toate ferestrele overlay vizibile și mutabile</value>
   </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>Punte MAIRA Speech-To-Text</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Faceți clic pe butonul de activare. Trebuie să verificați că browserul are dispozitivul audio corect selectat, făcând clic pe pictograma microfonului din stânga barei de adrese!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Activare Speech-To-Text</value>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Resetează toate ferestrele overlay</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Dispozitiv Force Feedback neselectat]</value>
@@ -1407,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>Nu</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Următor</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Închide</value>
   </data>
@@ -1668,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Utilizare</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Se preiau datele de utilizare a abonamentului…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Utilizare plan:  {0:N0} / {1:N0} caractere folosite  ({2:F1}%)  —  {3:N0} rămase</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Utilizarea planului indisponibilă</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Voce</value>
   </data>
@@ -1698,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Test</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Depășire / Schimbare poziție</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Luptă strânsă</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Cel mai rapid tur</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Pit stop</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Atenție / Steag galben</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Start / Final sesiune</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Incident pilot</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Avertizare combustibil</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Avertizare anvelope</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Avertizare daune</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Apeluri de proximitate</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Interval de reamintire</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Fereastră pit deschisă</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>FRAZE COMENTARIU</value>
@@ -1751,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Adaugă frază</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Elimină</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Fraze personalizate salvate.</value>
@@ -1772,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Se inițiază...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Inițializare Logger...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Inițializare Fereastra de Nivel Superior...</value>
@@ -1851,7 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Descarcă din nou fișierele de vopsea</value>
   </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Monitor delta</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>MONITOR DELTA</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Tur</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. ant.</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
   </data>
 </root>

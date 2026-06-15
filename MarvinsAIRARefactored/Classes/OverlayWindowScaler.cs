@@ -11,7 +11,7 @@ namespace MarvinsAIRARefactored.Classes;
 public sealed class OverlayWindowScaler
 {
 	// How much the scale changes per pixel of cursor movement
-	private const float Sensitivity = 0.005f;
+	private const float Sensitivity = 0.0015f;
 
 	private readonly Window _window;
 	private readonly Func<float> _getScale;

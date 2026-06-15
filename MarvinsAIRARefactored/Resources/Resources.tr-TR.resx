@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>KAPLAMA PENCERESI</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Kaplama penceresini sürüklenebilir hale getir</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Kaplama penceresinin pozisyonunu sıfırla</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Kaplama Penceresi Ölçeği</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Kaplama penceresini yönet</value>
   </data>
@@ -876,14 +867,8 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Tüm kaplama pencerelerini görünür ve sürüklenebilir yap</value>
   </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA Konuşma-Metin Köprüsü</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Etkinleştir düğmesine tıklayın. Adres çubuğunun solundaki mikrofon simgesine tıklayarak tarayıcının doğru ses cihazının seçili olduğunu kontrol etmeniz gerekir!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Konuşmayı Metne Dönüştürmeyi Aktifleştir</value>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Tüm kaplama pencerelerini sıfırla</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Force Feedback aygıt seçilmedi]</value>
@@ -1407,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>Hayır</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>İleri</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Kapat</value>
   </data>
@@ -1668,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Kullanım</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Abonelik kullanımı alınıyor…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Plan kullanımı:  {0:N0} / {1:N0} karakter kullanıldı  ({2:F1}%)  —  {3:N0} kaldı</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Plan kullanımı kullanılamıyor</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Ses</value>
   </data>
@@ -1698,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Test Et</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Geçiş / Pozisyon Değişimi</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Yakın Mücadele</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>En Hızlı Tur</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Pit Durağı</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Dikkat / Sarı Bayrak</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Seans Başlangıcı / Sonu</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Sürücü Olayı</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Yakıt Uyarısı</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Lastik Uyarısı</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Hasar Uyarısı</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Yakınlık Çağrıları</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Hatırlatma Aralığı</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Pit Penceresi Açık</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>YORUM İFADELERİ</value>
@@ -1751,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>İfade ekle</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Kaldır</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Özel ifadeler kaydedildi.</value>
@@ -1772,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Başlatılıyor...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Logger Başlatılıyor...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Üst Düzey Pencere Başlatılıyor...</value>
@@ -1851,7 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Boya dosyalarını yeniden indir</value>
   </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Delta monitörü</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>DELTA MONİTÖRÜ</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Tur</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. önceki</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
   </data>
 </root>

@@ -13,6 +13,7 @@ public class Drivers
 		public bool CarIsPaceCar { get; set; }
 		public int IRating { get; set; }
 		public bool IsSpectator { get; set; }
+		public int CarClassID { get; set; }
 	}
 
 	private List<DriverInfo> _drivers = [];
@@ -47,6 +48,7 @@ public class Drivers
 					CarIsPaceCar = d.CarIsPaceCar != 0,
 					IRating = d.IRating,
 					IsSpectator = d.IsSpectator != 0,
+					CarClassID = d.CarClassID,
 				};
 
 				newList.Add( info );

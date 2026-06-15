@@ -77,6 +77,7 @@ public partial class App : Application
 
 	public GripOMeterWindow? GripOMeterWindow { get; set; }
 	public GapMonitorWindow? GapMonitorWindow { get; set; }
+	public DeltaMonitorWindow? DeltaMonitorWindow { get; set; }
 	public SpeechToTextWindow? SpeechToTextWindow { get; set; }
 
 	// Transient (not persisted) - when true, all overlay windows are made visible and draggable
@@ -496,6 +497,7 @@ public partial class App : Application
 		SpeechToTextWindow?.Close();
 		GripOMeterWindow?.Close();
 		GapMonitorWindow?.Close();
+		DeltaMonitorWindow?.Close();
 
 		_ = SpeechToText.DisableAsync();
 		TextToSpeech.Dispose();
@@ -2956,6 +2958,7 @@ public partial class App : Application
 
 						app.GripOMeterWindow?.Tick( app );
 						app.GapMonitorWindow?.Tick( app );
+						app.DeltaMonitorWindow?.Tick( app );
 						app.SpeechToTextWindow?.Tick( app );
 
 #endif
@@ -3055,6 +3058,44 @@ public partial class App : Application
 		} );
 	}
 
+	public void EnsureDeltaMonitorWindowExists()
+	{
+		var app = App.Instance!;
+
+		app.Dispatcher.InvokeAsync( () =>
+		{
+			if ( DeltaMonitorWindow == null )
+			{
+				Dispatcher.Invoke( () =>
+				{
+					Logger.WriteLine( "[App] Creating DeltaMonitorWindow" );
+
+					DeltaMonitorWindow = new();
+				} );
+			}
+		} );
+	}
+
+	public void DestroyDeltaMonitorWindow()
+	{
+		var app = App.Instance!;
+
+		app.Dispatcher.InvokeAsync( () =>
+		{
+			if ( DeltaMonitorWindow != null )
+			{
+				Dispatcher.Invoke( () =>
+				{
+					Logger.WriteLine( "[App] Destroying DeltaMonitorWindow" );
+
+					DeltaMonitorWindow.Close();
+
+					DeltaMonitorWindow = null;
+				} );
+			}
+		} );
+	}
+
 	public void EnsureSpeechToTextWindowExists()
 	{
 		var app = App.Instance!;
@@ -3131,6 +3172,27 @@ public partial class App : Application
 			else
 			{
 				DestroyGapMonitorWindow();
+			}
+		} );
+	}
+
+	public void UpdateDeltaMonitorWindowVisibility()
+	{
+		var app = App.Instance!;
+
+		app.Dispatcher.InvokeAsync( () =>
+		{
+			var settings = DataContext.DataContext.Instance.Settings;
+
+			if ( OverlaysDraggable || ( settings.OverlaysShowDeltaMonitorWindow && Simulator.IsConnected && Simulator.IsOnTrack ) )
+			{
+				EnsureDeltaMonitorWindowExists();
+
+				DeltaMonitorWindow?.MakeDraggable();
+			}
+			else
+			{
+				DestroyDeltaMonitorWindow();
 			}
 		} );
 	}

@@ -7,6 +7,8 @@ public class TimingMarkers
 	{
 		public int lastMarkerIndex;
 
+		public double previousLapStartTime;
+
 		public readonly double[] markerTiming = new double[ MaxNumMarkers ];
 	}
 
@@ -43,6 +45,7 @@ public class TimingMarkers
 		for ( int i = 0; i < cars.Length; i++ )
 		{
 			cars[ i ].lastMarkerIndex = 0;
+			cars[ i ].previousLapStartTime = 0;
 
 			Array.Clear( cars[ i ].markerTiming, 0, cars[ i ].markerTiming.Length );
 		}
@@ -109,6 +112,25 @@ public class TimingMarkers
 		return true;
 	}
 
+	public bool TryGetLapStartTimes( int carIdx, out double currentLapStartTime, out double previousLapStartTime )
+	{
+		currentLapStartTime = 0;
+		previousLapStartTime = 0;
+
+		if ( ( carIdx < 0 ) || ( carIdx >= cars.Length ) )
+		{
+			return false;
+		}
+
+		var car = cars[ carIdx ];
+
+		// marker 0 holds the time the car most recently crossed the start/finish line (the current lap start)
+		currentLapStartTime = car.markerTiming[ 0 ];
+		previousLapStartTime = car.previousLapStartTime;
+
+		return currentLapStartTime > 0;
+	}
+
 	public void Tick( App app )
 	{
 		if ( app.Simulator.SessionNum != lastSessionNum )
@@ -168,8 +190,11 @@ public class TimingMarkers
 			}
 			else
 			{
-				// wrapped around the lap
+				// wrapped around the lap (crossed the start/finish line)
 				markersPassed = currentMarkerIndex + numMarkers - car.lastMarkerIndex;
+
+				// marker 0 still holds the previous lap's start time until it is overwritten by the stamping below
+				car.previousLapStartTime = car.markerTiming[ 0 ];
 			}
 
 			// get the time of the last marker passed

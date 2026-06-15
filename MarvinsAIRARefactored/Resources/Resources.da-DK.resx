@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLEJRINGSVINDUE</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Gør overlejrings vinduet flytbart</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Nulstil overlejrings vinduets placering</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Overlejringsvinduets skala</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Administrer overlejringsvindue</value>
   </data>
@@ -876,14 +867,8 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Gør alle overlejringsvinduer synlige og flytbare</value>
   </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA Tale-til-tekst</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Klik på aktiverings knappen. Du skal kontrollere, at browseren har valgt den korrekte lydenhed, ved at klikke på mikrofonikonet til venstre for adresselinjen!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Aktivér tale-til-tekst</value>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Nulstil alle overlejringsvinduer</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Force Feedback enhed ikke valgt]</value>
@@ -1407,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>Nej</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Næste</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Luk</value>
   </data>
@@ -1668,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Forbrug</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Henter abonnementsforbrug…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Planbrug:  {0:N0} / {1:N0} tegn brugt  ({2:F1}%)  —  {3:N0} tilbage</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Planbrug utilgængeligt</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Stemme</value>
   </data>
@@ -1698,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Test</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Overhaling / Positionsskift</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Tæt kamp</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Hurtigste omgang</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Pit stop</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Advarsel / Gult flag</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Session start / slut</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Føreruheld</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Brændstofadvarsel</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Dækadvarsel</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Skadeadvarsel</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Nærhedsopkald</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Påmindelses­interval</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Pit-vindue åbent</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>KOMMENTARSÆTNINGER</value>
@@ -1751,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Tilføj sætning</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Fjern</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Brugerdefinerede sætninger gemt.</value>
@@ -1772,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Starter...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Initialiserer Logger...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Initialiserer Topniveauvindue...</value>
@@ -1851,7 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Hent malingsfiler igen</value>
   </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Deltaoversigt</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>DELTAOVERSIGT</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Omgang</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. forr.</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
   </data>
 </root>

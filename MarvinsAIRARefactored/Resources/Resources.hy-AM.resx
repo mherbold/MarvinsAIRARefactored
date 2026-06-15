@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY WINDOW</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Make the overlay window draggable</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Վերականգնել վերածրագրի պատուհանի դիրքը</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Overlay Window Scale</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Կառավարել վերադրման պատուհանը</value>
   </data>
@@ -876,14 +867,8 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Դարձնել բոլոր վերադրման պատուհանները տեսանելի և քաշելի</value>
   </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA խոսքից-տեքստ կամուրջ</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Սեղմեք «Միացնել» կոճակը: Հարկավոր է ստուգել, որ բրաուզերը ընտրված ունի ճիշտ աուդիո սարք՝ հասցեի տողի ձախ կողմում գտնվող միկրոֆոնի պատկերակին սեղմելով:</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Միացնել խոսքից-տեքստը</value>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Վերակայել բոլոր վերադրման պատուհանները</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Force Feedback սարք ընտրված չէ]</value>
@@ -1407,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>Ոչ</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Հաջ</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Փակել</value>
   </data>
@@ -1668,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Օգտագործում</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Բաժանորդագրության օգտագործումը բեռնվում է…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Պլանի օգտագործում:  {0:N0} / {1:N0} նիշ օգտագործված  ({2:F1}%)  —  {3:N0} մնացած</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Պլանի օգտագործումն անհասանելի է</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Ձայն</value>
   </data>
@@ -1698,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Փորձարկում</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Առաջ անցնել / Դիրքի փոփոխություն</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Մոտ մրցամարտ</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Ամենաարագ շրջան</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Փիթ-ստոպ</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Զգուշություն / Դեղին դրոշ</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Սեսիայի սկիզբ / ավարտ</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Վարորդի դեպք</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Վառելիքի նախազգուշացում</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Անվադողի նախազգուշացում</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Վնասի նախազգուշացում</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Մոտության ազդանշաններ</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Հիշեցման ընդմիջում</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Փիթ պատուհանը բաց է</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>ՄԵԿՆԱԲԱՆՈՒԹՅԱՆ ԱՐՏԱՀԱՅՏՈՒԹՅՈՒՆՆԵՐ</value>
@@ -1751,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Ավելացնել արտահայտություն</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Հեռացնել</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Հատուկ արտահայտությունները պահպանվել են:</value>
@@ -1772,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Գործարկում...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Լոգերի համակարգի նախաստեղծում...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Վերին մակարդակի պատուհանի նախաստեղծում...</value>
@@ -1851,7 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Կրկին ներբեռնել ներկման ֆայլերը</value>
   </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Դելտա մոնիտոր</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>ԴԵԼՏԱ ՄՈՆԻՏՈՐ</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Շրջան</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. նախ.</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
   </data>
 </root>

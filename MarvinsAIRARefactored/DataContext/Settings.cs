@@ -9720,6 +9720,120 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Overlays - Show Delta monitor window
+
+	private bool _overlaysShowDeltaMonitorWindow = false;
+
+	public bool OverlaysShowDeltaMonitorWindow
+	{
+		get => _overlaysShowDeltaMonitorWindow;
+
+		set
+		{
+			if ( value != _overlaysShowDeltaMonitorWindow )
+			{
+				_overlaysShowDeltaMonitorWindow = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.UpdateDeltaMonitorWindowVisibility();
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Show Delta monitor title
+
+	private bool _overlaysShowDeltaMonitorTitle = true;
+
+	public bool OverlaysShowDeltaMonitorTitle
+	{
+		get => _overlaysShowDeltaMonitorTitle;
+
+		set
+		{
+			if ( value != _overlaysShowDeltaMonitorTitle )
+			{
+				_overlaysShowDeltaMonitorTitle = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.UpdateDeltaMonitorWindowVisibility();
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Delta monitor window scale
+
+	private float _overlaysDeltaMonitorWindowScale = 1f;
+
+	public float OverlaysDeltaMonitorWindowScale
+	{
+		get => _overlaysDeltaMonitorWindowScale;
+
+		set
+		{
+			value = Math.Clamp( value, 0.5f, 2f );
+
+			if ( value != _overlaysDeltaMonitorWindowScale )
+			{
+				_overlaysDeltaMonitorWindowScale = value;
+
+				OnPropertyChanged();
+			}
+
+			OverlaysDeltaMonitorWindowScaleString = $"{_overlaysDeltaMonitorWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _overlaysDeltaMonitorWindowScaleString = string.Empty;
+
+	[XmlIgnore]
+	public string OverlaysDeltaMonitorWindowScaleString
+	{
+		get => _overlaysDeltaMonitorWindowScaleString;
+
+		set
+		{
+			if ( value != _overlaysDeltaMonitorWindowScaleString )
+			{
+				_overlaysDeltaMonitorWindowScaleString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Delta monitor window position
+
+	private Rectangle _overlaysDeltaMonitorWindowPosition = Rectangle.Empty;
+
+	public Rectangle OverlaysDeltaMonitorWindowPosition
+	{
+		get => _overlaysDeltaMonitorWindowPosition;
+
+		set
+		{
+			if ( value != _overlaysDeltaMonitorWindowPosition )
+			{
+				_overlaysDeltaMonitorWindowPosition = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Overlays - Show Grip-O-Meter window
 
 	private bool _overlaysShowGripOMeterWindow = false;

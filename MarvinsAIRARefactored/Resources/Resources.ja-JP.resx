@@ -860,15 +860,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>オーバーレイウィンドウ</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>オーバーレイウィンドウをドラッグ可能にする</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>オーバーレイウィンドウの位置をリセット</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>オーバーレイウィンドウのスケール</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>オーバーレイウィンドウの管理</value>
   </data>
@@ -878,14 +869,8 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>すべてのオーバーレイウィンドウを表示してドラッグ可能にする</value>
   </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA 音声認識ブリッジ</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>有効ボタンをクリックしてください。アドレスバー左側のマイクアイコンをクリックして、ブラウザで正しい音声デバイスが選択されているか確認してください！</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>音声認識を有効にする</value>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>すべてのオーバーレイウィンドウをリセット</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[フォースフィードバックデバイスが選択されていません]</value>
@@ -1410,9 +1395,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>いいえ</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>次へ</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>閉じる</value>
   </data>
@@ -1671,15 +1653,6 @@
   <data name="Usage" xml:space="preserve">
     <value>使用状況</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>サブスクリプション使用状況を取得中…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>プラン使用状況:  {0:N0} / {1:N0} 文字使用済み  ({2:F1}%)  —  残り {3:N0}</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>プラン使用状況を取得できません</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>ボイス</value>
   </data>
@@ -1701,44 +1674,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>テスト</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>追い越し / 順位変動</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>接近戦</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>ファステストラップ</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>ピットストップ</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>コーション / 黄旗</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>セッション開始 / 終了</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>ドライバーインシデント</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>燃料警告</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>タイヤ警告</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>ダメージ警告</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>近接コール</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>リマインダー間隔</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>ピットウィンドウオープン</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>実況フレーズ</value>
@@ -1754,9 +1697,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>フレーズを追加</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>削除</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  カスタムフレーズを保存しました。</value>
@@ -1775,9 +1715,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>起動中...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>ロガーを初期化中...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>トップレベルウィンドウを初期化中...</value>
@@ -1854,7 +1791,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>ペイントファイルを再ダウンロード</value>
   </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>デルタモニター</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>デルタモニター</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>ラップ</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>対 前回</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>対 P1</value>
   </data>
 </root>

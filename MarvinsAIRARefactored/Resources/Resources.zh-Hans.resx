@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>覆盖窗口</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>使覆盖窗口可拖动</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>重置覆盖窗口位置</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>覆盖窗口比例</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>管理覆盖窗口</value>
   </data>
@@ -876,14 +867,8 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>使所有覆盖窗口可见并可拖动</value>
   </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA 语音转文字桥接</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>单击启用按钮。您必须通过单击地址栏左侧的麦克风图标，确认浏览器选择了正确的音频设备！</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>启用语音转文字</value>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>重置所有覆盖窗口</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[力反馈 设备 未选择]</value>
@@ -1407,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>否</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>下一步</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>关闭</value>
   </data>
@@ -1668,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>用量</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>正在获取订阅用量…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>套餐用量:  {0:N0} / {1:N0} 个字符已使用  ({2:F1}%)  —  剩余 {3:N0}</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>套餐用量不可用</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>声音</value>
   </data>
@@ -1698,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>测试</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>超车 / 位置变化</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>近距离角逐</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>最快圈速</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>进站</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>注意 / 黄旗</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>赛段开始 / 结束</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>车手事故</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>燃油警告</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>轮胎警告</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>损伤警告</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>接近提示</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>提醒间隔</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>进站窗口开放</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>解说短语</value>
@@ -1751,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>添加短语</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>删除</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  自定义短语已保存。</value>
@@ -1772,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>启动中...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>初始化日志记录器...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>初始化顶级窗口...</value>
@@ -1851,7 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>重新下载涂装文件</value>
   </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>差值监控</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>差值监控</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>本圈</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. 上圈</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
   </data>
 </root>

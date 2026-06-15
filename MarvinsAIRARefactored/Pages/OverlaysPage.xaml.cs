@@ -11,6 +11,7 @@ public partial class OverlaysPage : UserControl
 	public enum OverlaySection
 	{
 		GapMonitor,
+		DeltaMonitor,
 		GripOMeter,
 		SpeechToText
 	}
@@ -20,24 +21,28 @@ public partial class OverlaysPage : UserControl
 		InitializeComponent();
 	}
 
-	private void ResetGapMonitorWindow_MairaButton_Click( object sender, RoutedEventArgs e )
+	private void ResetAllOverlays_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		// reset all overlay window scales to 100%
+		settings.OverlaysGapMonitorWindowScale = 1f;
+		settings.OverlaysDeltaMonitorWindowScale = 1f;
+		settings.OverlaysGripOMeterWindowScale = 1f;
+		settings.OverlaysSpeechToTextWindowScale = 1f;
+
+		// reset all overlay window positions to 0,0 (persisted for windows that aren't currently open)
+		settings.OverlaysGapMonitorWindowPosition = System.Drawing.Rectangle.Empty;
+		settings.OverlaysDeltaMonitorWindowPosition = System.Drawing.Rectangle.Empty;
+		settings.OverlaysGripOMeterWindowPosition = System.Drawing.Rectangle.Empty;
+		settings.OverlaysSpeechToTextWindowPosition = System.Drawing.Rectangle.Empty;
+
+		// move any open windows to 0,0 immediately
 		app.GapMonitorWindow?.ResetWindow();
-	}
-
-	private void ResetGripOMeterWindow_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance!;
-
+		app.DeltaMonitorWindow?.ResetWindow();
 		app.GripOMeterWindow?.ResetWindow();
-	}
-
-	private void ResetSpeechToTextWindow_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance!;
-
 		app.SpeechToTextWindow?.ResetWindow();
 	}
 
@@ -48,6 +53,7 @@ public partial class OverlaysPage : UserControl
 		app.OverlaysDraggable = MakeAllOverlaysDraggable_MairaSwitch.IsOn;
 
 		app.UpdateGapMonitorWindowVisibility();
+		app.UpdateDeltaMonitorWindowVisibility();
 		app.UpdateGripOMeterWindowVisibility();
 		app.UpdateSpeechToTextWindowVisibility();
 	}
@@ -57,6 +63,7 @@ public partial class OverlaysPage : UserControl
 		var targetElement = section switch
 		{
 			OverlaySection.GapMonitor => (FrameworkElement) GapMonitor_MairaGroupBox,
+			OverlaySection.DeltaMonitor => DeltaMonitor_MairaGroupBox,
 			OverlaySection.GripOMeter => GripOMeter_MairaGroupBox,
 			OverlaySection.SpeechToText => SpeechToText_MairaGroupBox,
 			_ => null
