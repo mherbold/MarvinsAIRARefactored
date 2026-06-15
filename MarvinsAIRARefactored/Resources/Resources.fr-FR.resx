@@ -1804,4 +1804,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Retélécharger les fichiers de peinture</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Moniteur delta</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>MONITEUR DELTA</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Tour</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. dern.</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
+  </data>
 </root>

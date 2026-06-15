@@ -1791,4 +1791,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>ペイントファイルを再ダウンロード</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>デルタモニター</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>デルタモニター</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>ラップ</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>対 前回</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>対 P1</value>
+  </data>
 </root>

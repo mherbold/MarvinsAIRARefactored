@@ -1788,4 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Ladda ner lackfiler igen</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Deltamonitor</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>DELTAMONITOR</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Varv</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. förra</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
+  </data>
 </root>

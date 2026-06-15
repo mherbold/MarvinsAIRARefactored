@@ -1788,4 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>הורד מחדש קובצי צביעה</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>ניטור דלתא</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>ניטור דלתא</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>הקפה</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>מול אחרונה</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>מול P1</value>
+  </data>
 </root>

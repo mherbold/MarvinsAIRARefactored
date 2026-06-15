@@ -1788,4 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Lataa maalitiedostot uudelleen</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Deltamonitori</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>DELTAMONITORI</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Kierros</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. edell.</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
+  </data>
 </root>

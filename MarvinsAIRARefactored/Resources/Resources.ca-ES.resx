@@ -1788,4 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Torna a baixar els fitxers de pintura</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Monitor de delta</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>MONITOR DE DELTA</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Volta</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. última</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
+  </data>
 </root>

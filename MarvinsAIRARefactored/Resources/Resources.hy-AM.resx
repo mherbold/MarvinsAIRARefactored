@@ -1788,4 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Կրկին ներբեռնել ներկման ֆայլերը</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Դելտա մոնիտոր</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>ԴԵԼՏԱ ՄՈՆԻՏՈՐ</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Շրջան</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. նախ.</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
+  </data>
 </root>

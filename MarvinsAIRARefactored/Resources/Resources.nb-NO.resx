@@ -1788,4 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Last ned lakkfiler på nytt</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Deltaovervåking</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>DELTAOVERVÅKING</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Runde</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. forr.</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
+  </data>
 </root>

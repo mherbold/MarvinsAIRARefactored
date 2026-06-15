@@ -1788,4 +1788,19 @@
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>重新下载涂装文件</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>差值监控</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>差值监控</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>本圈</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. 上圈</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
+  </data>
 </root>

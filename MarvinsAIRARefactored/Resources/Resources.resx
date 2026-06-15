@@ -1296,6 +1296,21 @@
   <data name="GapMonitor_UC" xml:space="preserve">
     <value>GAP MONITOR</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Delta Monitor</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>DELTA MONITOR</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Lap</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. Last</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
+  </data>
   <data name="Overlays" xml:space="preserve">
     <value>Overlays</value>
   </data>

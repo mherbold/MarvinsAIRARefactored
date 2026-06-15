@@ -1793,4 +1793,19 @@ Hier ist der Link zum Spenden:</value>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Lackdateien neu herunterladen</value>
   </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Deltaüberwachung</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>DELTAÜBERWACHUNG</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Runde</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>vs. Letzte</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>vs. P1</value>
+  </data>
 </root>

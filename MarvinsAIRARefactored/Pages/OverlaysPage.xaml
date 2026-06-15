@@ -50,6 +50,22 @@
 
         </controls:MairaGroupBox>
 
+        <controls:MairaGroupBox x:Name="DeltaMonitor_MairaGroupBox"
+                                Label="{Binding Localization[DeltaMonitor_UC]}">
+
+            <StackPanel>
+
+                <controls:MairaSwitch IsOn="{Binding Settings.OverlaysShowDeltaMonitorWindow, Mode=TwoWay}"
+                                      Label="{Binding Localization[EnableOverlayWindow]}" />
+
+                <controls:MairaSwitch Margin="0,10,0,0"
+                                      IsOn="{Binding Settings.OverlaysShowDeltaMonitorTitle, Mode=TwoWay}"
+                                      Label="{Binding Localization[ShowOverlayWindowTitle]}" />
+
+            </StackPanel>
+
+        </controls:MairaGroupBox>
+
         <controls:MairaGroupBox x:Name="GripOMeter_MairaGroupBox"
                                 Label="{Binding Localization[GripOMeter_UC]}">
 
