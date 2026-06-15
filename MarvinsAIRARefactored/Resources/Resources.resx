@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Make all overlay windows visible and draggable</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Reset all overlay windows</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA Speech-To-Text Bridge</value>
   </data>
