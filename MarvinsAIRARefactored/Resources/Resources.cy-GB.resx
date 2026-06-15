@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Gwneud pob ffenestr gorchudio yn weladwy ac yn llusgadwy</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Ailosod pob ffenestr gorchudio</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Pont Lleferydd-i-Destun MAIRA</value>
   </data>

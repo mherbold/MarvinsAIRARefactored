@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Rendi visibili e trascinabili tutte le finestre overlay</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Reimposta tutte le finestre overlay</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Bridge MAIRA per il riconoscimento vocale</value>
   </data>

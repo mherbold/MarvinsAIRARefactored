@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Fes visibles i arrossegables totes les finestres superposades</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Restableix totes les finestres superposades</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Pont de reconeixement de veu de MAIRA</value>
   </data>

@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Tegye láthatóvá és húzhatóvá az összes overlay ablakot</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Az összes overlay ablak visszaállítása</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA Beszéd-Szöveggé Átalakító Híd</value>
   </data>

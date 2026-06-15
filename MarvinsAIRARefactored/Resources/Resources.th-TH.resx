@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>ทำให้หน้าต่าง Overlay ทั้งหมดมองเห็นได้และลากได้</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>รีเซ็ตหน้าต่าง Overlay ทั้งหมด</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>สะพาน MAIRA Speech-To-Text</value>
   </data>

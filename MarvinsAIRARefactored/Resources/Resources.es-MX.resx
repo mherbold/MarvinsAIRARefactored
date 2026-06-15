@@ -877,6 +877,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Hacer visibles y arrastrables todas las ventanas de superposición</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Restablecer todas las ventanas de superposición</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Puente MAIRA de voz a texto</value>
   </data>

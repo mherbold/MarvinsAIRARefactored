@@ -880,6 +880,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Зробити всі вікна накладання видимими та переміщуваними</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Скинути всі вікна накладання</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Міст перетворення мовлення в текст MAIRA</value>
   </data>

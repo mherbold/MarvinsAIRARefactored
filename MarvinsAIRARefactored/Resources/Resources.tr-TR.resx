@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Tüm kaplama pencerelerini görünür ve sürüklenebilir yap</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Tüm kaplama pencerelerini sıfırla</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA Konuşma-Metin Köprüsü</value>
   </data>

@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Zviditelnit a umožnit přesouvání všech překryvných oken</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Obnovit všechna překryvná okna</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Most MAIRA řeč–text</value>
   </data>

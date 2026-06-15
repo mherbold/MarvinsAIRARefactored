@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Fă toate ferestrele overlay vizibile și mutabile</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Resetează toate ferestrele overlay</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Punte MAIRA Speech-To-Text</value>
   </data>

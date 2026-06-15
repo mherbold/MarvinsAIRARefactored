@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Gör alla överläggsfönster synliga och flyttbara</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Återställ alla överläggsfönster</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA Tal-till-text-brygga</value>
   </data>

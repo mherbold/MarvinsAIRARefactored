@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Maak alle overlay-vensters zichtbaar en versleepbaar</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Alle overlay-vensters resetten</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA Spraak-naar-tekst-brug</value>
   </data>

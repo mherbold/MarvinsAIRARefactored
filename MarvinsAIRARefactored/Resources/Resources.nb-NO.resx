@@ -876,6 +876,9 @@
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Gjør alle overleggsvinduer synlige og flyttbare</value>
   </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Tilbakestill alle overleggsvinduer</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA Tale-til-tekst-bro</value>
   </data>
