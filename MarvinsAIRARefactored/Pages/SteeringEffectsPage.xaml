@@ -1003,62 +1003,6 @@
 
         </Grid>
 
-        <controls:MairaGroupBox Label="{Binding Localization[GripOMeter_UC]}"
-                                HelpTopic="advanced/steering-effects/#grip-o-meter">
-
-            <Grid>
-
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="20" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="20" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="20" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <StackPanel Grid.Row="0"
-                            Grid.Column="0"
-                            Grid.ColumnSpan="3">
-
-                    <controls:MairaSwitch IsOn="{Binding Settings.SteeringEffectsShowGripOMeterWindow, Mode=TwoWay}"
-                                          Label="{Binding Localization[EnableOverlayWindow]}" />
-
-                    <controls:MairaSwitch Margin="0,10,0,0"
-                                          IsOn="{Binding Settings.SteeringEffectsShowGripOMeterTitle, Mode=TwoWay}"
-                                          Label="{Binding Localization[ShowOverlayWindowTitle]}" />
-
-                    <controls:MairaSwitch Margin="0,10,0,0"
-                                          IsOn="{Binding Settings.SteeringEffectsMakeGripOMeterDraggable, Mode=TwoWay}"
-                                          Label="{Binding Localization[MakeOverlayWindowDraggable]}" />
-
-                </StackPanel>
-
-                <controls:MairaKnob Grid.Row="0"
-                                    Grid.Column="4"
-                                    Label="{Binding Localization[OverlayWindowScale]}"
-                                    Value="{Binding Settings.SteeringEffectsGripOMeterWindowScale, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.SteeringEffectsGripOMeterWindowScaleString}"
-                                    StepSize="0.05"
-                                    DefaultValue="1" />
-
-                <controls:MairaButton x:Name="ResetGripOMeter_MairaButton"
-                                      Grid.Row="2"
-                                      Grid.Column="0"
-                                      Grid.ColumnSpan="5"
-                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
-                                      Label="{Binding Localization[ResetOverlayWindow]}"
-                                      Click="ResetGripOMeter_MairaButton_Click" />
-
-            </Grid>
-
-        </controls:MairaGroupBox>
-
         <controls:MairaGroupBox Label="{Binding Localization[PrivateMessages_UC]}"
                                 HelpTopic="advanced/steering-effects/#private-messages">
 

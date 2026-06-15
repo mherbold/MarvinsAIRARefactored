@@ -28,13 +28,6 @@ public partial class SteeringEffectsPage : UserControl
 
 	#region User Control Events
 
-	private void ResetGripOMeter_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance!;
-
-		app.GripOMeterWindow?.ResetWindow();
-	}
-
 	private void RunCalibration_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;

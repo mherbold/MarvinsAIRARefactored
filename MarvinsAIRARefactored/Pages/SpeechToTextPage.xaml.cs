@@ -1,5 +1,6 @@
 ﻿
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 using MarvinsAIRARefactored.Classes;
@@ -59,9 +60,9 @@ public partial class SpeechToTextPage : UserControl
 		}
 	}
 
-	private void ResetOverlayWindow_MairaButton_Click( object sender, RoutedEventArgs e )
+	private void ManageOverlayWindow_Border_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
 	{
-		App.Instance!.SpeechToTextWindow?.ResetWindow();
+		App.Instance!.MainWindow.NavigateToOverlaySection( OverlaysPage.OverlaySection.SpeechToText );
 	}
 
 	private void ApiKey_MairaTextBox_ValueChanged( object sender, RoutedEventArgs e )

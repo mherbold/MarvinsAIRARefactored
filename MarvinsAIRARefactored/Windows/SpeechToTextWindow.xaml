@@ -16,6 +16,9 @@
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         LocationChanged="Window_LocationChanged"
+        PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
+        PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp"
+        MouseMove="Window_MouseMove"
         Cursor="SizeAll"
         Opacity="0.9">
 
@@ -31,8 +34,8 @@
 
         <Grid.LayoutTransform>
             <ScaleTransform x:Name="RootScaleTransform"
-                            ScaleX="{Binding Settings.SpeechToTextOverlayWindowScale}"
-                            ScaleY="{Binding Settings.SpeechToTextOverlayWindowScale}" />
+                            ScaleX="{Binding Settings.OverlaysSpeechToTextWindowScale}"
+                            ScaleY="{Binding Settings.OverlaysSpeechToTextWindowScale}" />
         </Grid.LayoutTransform>
 
         <Grid.RowDefinitions>
@@ -45,7 +48,7 @@
                    Grid.Row="0"
                    Grid.Column="0"
                    Text="{Binding Localization[SpeechToText]}"
-                   Visibility="{Binding Settings.SpeechToTextShowOverlayWindowTitle, Converter={StaticResource BoolToVis}}"
+                   Visibility="{Binding Settings.OverlaysShowSpeechToTextTitle, Converter={StaticResource BoolToVis}}"
                    HorizontalAlignment="Center"
                    Foreground="White"
                    FontSize="30" />
@@ -96,6 +99,28 @@
 
             </StackPanel>
 
+        </Border>
+
+        <Border x:Name="ScaleIcon"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="0,0,6,6"
+                Padding="4"
+                CornerRadius="6"
+                Background="Black"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Cursor="SizeNWSE"
+                Visibility="Collapsed">
+            <Rectangle Width="28"
+                       Height="28"
+                       Fill="#ff5b2e"
+                       IsHitTestVisible="False">
+                <Rectangle.OpacityMask>
+                    <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Buttons/solo.png"
+                                RenderOptions.BitmapScalingMode="HighQuality" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
         </Border>
 
     </Grid>

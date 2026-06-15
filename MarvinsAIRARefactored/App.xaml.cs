@@ -79,6 +79,9 @@ public partial class App : Application
 	public GapMonitorWindow? GapMonitorWindow { get; set; }
 	public SpeechToTextWindow? SpeechToTextWindow { get; set; }
 
+	// Transient (not persisted) - when true, all overlay windows are made visible and draggable
+	public bool OverlaysDraggable { get; set; } = false;
+
 	public const int TimerPeriodInMilliseconds = 17;
 	public const int TimerTicksPerSecond = 1000 / TimerPeriodInMilliseconds;
 
@@ -3098,7 +3101,7 @@ public partial class App : Application
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
-			if ( settings.SteeringEffectsMakeGripOMeterDraggable || ( settings.SteeringEffectsShowGripOMeterWindow && Simulator.IsConnected && Simulator.IsOnTrack ) )
+			if ( OverlaysDraggable || ( settings.OverlaysShowGripOMeterWindow && Simulator.IsConnected && Simulator.IsOnTrack ) )
 			{
 				EnsureGripOMeterWindowExists();
 
@@ -3119,7 +3122,7 @@ public partial class App : Application
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
-			if ( settings.OverlaysMakeGapMonitorDraggable || ( settings.OverlaysShowGapMonitorWindow && Simulator.IsConnected && Simulator.IsOnTrack ) )
+			if ( OverlaysDraggable || ( settings.OverlaysShowGapMonitorWindow && Simulator.IsConnected && Simulator.IsOnTrack ) )
 			{
 				EnsureGapMonitorWindowExists();
 
@@ -3140,7 +3143,7 @@ public partial class App : Application
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
-			if ( settings.SpeechToTextMakeOverlayWindowDraggable )
+			if ( OverlaysDraggable )
 			{
 				EnsureSpeechToTextWindowExists();
 

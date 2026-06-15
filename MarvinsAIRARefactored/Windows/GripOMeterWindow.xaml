@@ -16,6 +16,9 @@
         ResizeMode="NoResize"
         SizeToContent="WidthAndHeight"
         LocationChanged="Window_LocationChanged"
+        PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
+        PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp"
+        MouseMove="Window_MouseMove"
         Cursor="SizeAll">
 
     <Window.Resources>
@@ -33,8 +36,8 @@
 
         <Grid.LayoutTransform>
             <ScaleTransform x:Name="RootScaleTransform"
-                            ScaleX="{Binding Settings.SteeringEffectsGripOMeterWindowScale}"
-                            ScaleY="{Binding Settings.SteeringEffectsGripOMeterWindowScale}" />
+                            ScaleX="{Binding Settings.OverlaysGripOMeterWindowScale}"
+                            ScaleY="{Binding Settings.OverlaysGripOMeterWindowScale}" />
         </Grid.LayoutTransform>
 
         <Grid.ColumnDefinitions>
@@ -54,7 +57,7 @@
                    Grid.Row="0"
                    Grid.Column="0"
                    Text="{Binding Localization[GripOMeter]}"
-                   Visibility="{Binding Settings.SteeringEffectsShowGripOMeterTitle, Converter={StaticResource BoolToVis}}"
+                   Visibility="{Binding Settings.OverlaysShowGripOMeterTitle, Converter={StaticResource BoolToVis}}"
                    HorizontalAlignment="Center"
                    FontSize="30" />
 
@@ -104,6 +107,29 @@
                 <TranslateTransform x:Name="GripOMeter_SeatOfPants_Transform" />
             </Border.RenderTransform>
 
+        </Border>
+
+        <Border x:Name="ScaleIcon"
+                Grid.Row="0"
+                Grid.RowSpan="5"
+                Grid.Column="0"
+                Margin="0,0,6,6"
+                Padding="4"
+                CornerRadius="6"
+                Background="Black"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Cursor="SizeNWSE"
+                Visibility="Collapsed">
+            <Rectangle Width="28"
+                       Height="28"
+                       Fill="#ff5b2e"
+                       IsHitTestVisible="False">
+                <Rectangle.OpacityMask>
+                    <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Buttons/solo.png"
+                                RenderOptions.BitmapScalingMode="HighQuality" />
+                </Rectangle.OpacityMask>
+            </Rectangle>
         </Border>
 
     </Grid>

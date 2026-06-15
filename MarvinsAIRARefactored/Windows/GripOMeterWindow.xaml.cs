@@ -8,6 +8,8 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
+using MarvinsAIRARefactored.Classes;
+
 using Color = System.Windows.Media.Color;
 
 namespace MarvinsAIRARefactored.Windows;
@@ -19,6 +21,8 @@ public partial class GripOMeterWindow : Window
 	private int _updateCounter = UpdateInterval + 3;
 
 	private bool _isDraggable = false;
+
+	private readonly OverlayWindowScaler _scaler;
 
 	private float _smoothedSkidSlip = 0f;
 	private float _smoothedSeatOfPants = 0f;
@@ -37,7 +41,9 @@ public partial class GripOMeterWindow : Window
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var rectangle = settings.SteeringEffectsGripOMeterWindowPosition;
+		_scaler = new OverlayWindowScaler( this, () => settings.OverlaysGripOMeterWindowScale, value => settings.OverlaysGripOMeterWindowScale = value );
+
+		var rectangle = settings.OverlaysGripOMeterWindowPosition;
 
 		Left = rectangle.Location.X;
 		Top = rectangle.Location.Y;
@@ -70,11 +76,11 @@ public partial class GripOMeterWindow : Window
 		{
 			var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-			var rectangle = settings.SteeringEffectsGripOMeterWindowPosition;
+			var rectangle = settings.OverlaysGripOMeterWindowPosition;
 
 			rectangle.Location = new System.Drawing.Point( (int) RestoreBounds.Left, (int) RestoreBounds.Top );
 
-			settings.SteeringEffectsGripOMeterWindowPosition = rectangle;
+			settings.OverlaysGripOMeterWindowPosition = rectangle;
 		}
 	}
 
@@ -86,9 +92,9 @@ public partial class GripOMeterWindow : Window
 
 	public void MakeDraggable()
 	{
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+		_isDraggable = App.Instance!.OverlaysDraggable;
 
-		_isDraggable = settings.SteeringEffectsMakeGripOMeterDraggable;
+		ScaleIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
 
 		var hwnd = new WindowInteropHelper( this ).Handle;
 
@@ -112,6 +118,31 @@ public partial class GripOMeterWindow : Window
 		{
 			DragMove();
 		}
+	}
+
+	private void Window_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		if ( ReferenceEquals( e.OriginalSource, ScaleIcon ) )
+		{
+			_scaler.Start();
+
+			e.Handled = true;
+		}
+	}
+
+	private void Window_PreviewMouseLeftButtonUp( object sender, MouseButtonEventArgs e )
+	{
+		if ( _scaler.IsScaling )
+		{
+			_scaler.Stop();
+
+			e.Handled = true;
+		}
+	}
+
+	private void Window_MouseMove( object sender, System.Windows.Input.MouseEventArgs e )
+	{
+		_scaler.Update();
 	}
 
 	public void Tick( App app )

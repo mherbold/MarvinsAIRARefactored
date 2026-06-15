@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
+using System.Windows.Threading;
 
 using Simagic;
 
@@ -603,6 +604,18 @@ public partial class MainWindow : Window
 	private void PageName_TextBlock_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
 	{
 		AppMenuButton.IsMenuOpen = true;
+	}
+
+	public void NavigateToOverlaySection( OverlaysPage.OverlaySection section )
+	{
+		AppMenuButton.IsMenuOpen = false;
+
+		AppMenuPopup.SelectedAppPage = AppPage.Overlays;
+
+		Dispatcher.BeginInvoke( DispatcherPriority.Loaded, () =>
+		{
+			_overlaysPage.ScrollToSection( AppPage_ScrollViewer, section );
+		} );
 	}
 
 	private void OpenHelp_Executed( object sender, ExecutedRoutedEventArgs e )

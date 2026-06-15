@@ -7,16 +7,26 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
+using MarvinsAIRARefactored.Classes;
+
 namespace MarvinsAIRARefactored.Windows;
 
 public partial class SpeechToTextWindow : Window
 {
 	private bool _isDraggable = false;
 
+	private readonly OverlayWindowScaler _scaler;
+
 	private float _windowVisibilityTimer = 0f;
 	private float _finalVisibilityTimer = 0f;
 
 	private int _speakingCarIdx = -1;
+
+	// Sample text shown while "make all overlay windows visible and draggable" is enabled, so the window can be positioned and scaled
+	private const string SampleFinalDriver = "#24 Jane Sample";
+	private const string SampleFinalMessage = "Box this lap, box this lap — we are switching to plan B for the final stint.";
+	private const string SamplePartialDriver = "#7 John Placeholder";
+	private const string SamplePartialMessage = "Copy that, I am pushing now and closing the gap to the car ahead…";
 
 	public SpeechToTextWindow()
 	{
@@ -28,7 +38,9 @@ public partial class SpeechToTextWindow : Window
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var rectangle = settings.SpeechToTextOverlayWindowPosition;
+		_scaler = new OverlayWindowScaler( this, () => settings.OverlaysSpeechToTextWindowScale, value => settings.OverlaysSpeechToTextWindowScale = value );
+
+		var rectangle = settings.OverlaysSpeechToTextWindowPosition;
 
 		Left = rectangle.Location.X;
 		Top = rectangle.Location.Y;
@@ -38,7 +50,7 @@ public partial class SpeechToTextWindow : Window
 		MakeDraggable();
 
 		// Only show if draggable mode is on, otherwise it will be shown when speech is detected
-		if ( settings.SpeechToTextMakeOverlayWindowDraggable )
+		if ( App.Instance!.OverlaysDraggable )
 		{
 			Show();
 		}
@@ -52,11 +64,11 @@ public partial class SpeechToTextWindow : Window
 		{
 			var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-			var rectangle = settings.SpeechToTextOverlayWindowPosition;
+			var rectangle = settings.OverlaysSpeechToTextWindowPosition;
 
 			rectangle.Location = new System.Drawing.Point( (int) RestoreBounds.Left, (int) RestoreBounds.Top );
 
-			settings.SpeechToTextOverlayWindowPosition = rectangle;
+			settings.OverlaysSpeechToTextWindowPosition = rectangle;
 		}
 	}
 
@@ -68,9 +80,18 @@ public partial class SpeechToTextWindow : Window
 
 	public void MakeDraggable()
 	{
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+		_isDraggable = App.Instance!.OverlaysDraggable;
 
-		_isDraggable = settings.SpeechToTextMakeOverlayWindowDraggable;
+		ScaleIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
+
+		if ( _isDraggable )
+		{
+			ShowSampleData();
+		}
+		else
+		{
+			ClearSampleData();
+		}
 
 		var hwnd = new WindowInteropHelper( this ).Handle;
 
@@ -94,6 +115,64 @@ public partial class SpeechToTextWindow : Window
 		{
 			DragMove();
 		}
+	}
+
+	private void Window_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		if ( ReferenceEquals( e.OriginalSource, ScaleIcon ) )
+		{
+			_scaler.Start();
+
+			e.Handled = true;
+		}
+	}
+
+	private void Window_PreviewMouseLeftButtonUp( object sender, MouseButtonEventArgs e )
+	{
+		if ( _scaler.IsScaling )
+		{
+			_scaler.Stop();
+
+			e.Handled = true;
+		}
+	}
+
+	private void Window_MouseMove( object sender, System.Windows.Input.MouseEventArgs e )
+	{
+		_scaler.Update();
+	}
+
+	private void ShowSampleData()
+	{
+		_windowVisibilityTimer = 0f;
+		_finalVisibilityTimer = 0f;
+
+		Final_Driver_TextBlock.Text = SampleFinalDriver;
+		Final_Driver_TextBlock.Visibility = Visibility.Visible;
+
+		Final_Message_TextBlock.Text = SampleFinalMessage;
+		Final_Message_TextBlock.Visibility = Visibility.Visible;
+
+		Partial_Driver_TextBlock.Text = SamplePartialDriver;
+		Partial_Driver_TextBlock.Visibility = Visibility.Visible;
+
+		Partial_Message_TextBlock.Text = SamplePartialMessage;
+		Partial_Message_TextBlock.Visibility = Visibility.Visible;
+	}
+
+	private void ClearSampleData()
+	{
+		Final_Driver_TextBlock.Text = string.Empty;
+		Final_Driver_TextBlock.Visibility = Visibility.Collapsed;
+
+		Final_Message_TextBlock.Text = string.Empty;
+		Final_Message_TextBlock.Visibility = Visibility.Collapsed;
+
+		Partial_Driver_TextBlock.Text = string.Empty;
+		Partial_Driver_TextBlock.Visibility = Visibility.Collapsed;
+
+		Partial_Message_TextBlock.Text = string.Empty;
+		Partial_Message_TextBlock.Visibility = Visibility.Collapsed;
 	}
 
 	private static string TruncateForLog( string text, int maxLength )
@@ -121,6 +200,12 @@ public partial class SpeechToTextWindow : Window
 	public void SetPartialText( string text )
 	{
 		var app = App.Instance!;
+
+		// while sample data is being shown for overlay setup, ignore real speech text
+		if ( app.OverlaysDraggable )
+		{
+			return;
+		}
 
 		var radioTransmitCarIdx = app.Simulator.RadioTransmitCarIdx;
 		var lastRadioTransmitCarIdx = app.Simulator.LastRadioTransmitCarIdx;
@@ -165,6 +250,12 @@ public partial class SpeechToTextWindow : Window
 	public void SetFinalText( string text )
 	{
 		var app = App.Instance!;
+
+		// while sample data is being shown for overlay setup, ignore real speech text
+		if ( app.OverlaysDraggable )
+		{
+			return;
+		}
 
 		var radioTransmitCarIdx = app.Simulator.RadioTransmitCarIdx;
 		var lastRadioTransmitCarIdx = app.Simulator.LastRadioTransmitCarIdx;
@@ -218,8 +309,6 @@ public partial class SpeechToTextWindow : Window
 
 	public void Tick( App app )
 	{
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
 		if ( _windowVisibilityTimer > 0f )
 		{
 			_windowVisibilityTimer -= 1f / 60f;
@@ -240,7 +329,7 @@ public partial class SpeechToTextWindow : Window
 				Partial_Message_TextBlock.Visibility = Visibility.Collapsed;
 				Partial_Message_TextBlock.Text = string.Empty;
 
-				if ( !settings.SpeechToTextMakeOverlayWindowDraggable )
+				if ( !app.OverlaysDraggable )
 				{
 					Hide();
 				}

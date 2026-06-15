@@ -42,7 +42,7 @@ public class Settings : INotifyPropertyChanged
 
 				bool isXmlIgnored = propertyInfo.GetCustomAttribute<XmlIgnoreAttribute>() != null;
 
-				if ( ( propertyName != "AppWindowPositionAndSize" ) && !isXmlIgnored )
+				if ( ( propertyName != "AppWindowPositionAndSize" ) && !propertyName.EndsWith( "Scale" ) && !isXmlIgnored )
 				{
 					app.Logger.WriteLine( $"[Settings] Updating base setting {propertyName} to ({valueType}) {value}" );
 				}
@@ -4805,145 +4805,6 @@ public class Settings : INotifyPropertyChanged
 	public ContextSwitches SteeringEffectsSeatOfPantsPedalVibrationCurveContextSwitches { get; set; } = new( true, true, false, false, false );
 	public ButtonMappings SteeringEffectsSeatOfPantsPedalVibrationCurvePlusButtonMappings { get; set; } = new();
 	public ButtonMappings SteeringEffectsSeatOfPantsPedalVibrationCurveMinusButtonMappings { get; set; } = new();
-
-	#endregion
-
-	#region Steering effects - Show Grip-O-Meter window
-
-	private bool _steeringEffectsShowGripOMeterWindow = false;
-
-	public bool SteeringEffectsShowGripOMeterWindow
-	{
-		get => _steeringEffectsShowGripOMeterWindow;
-
-		set
-		{
-			if ( value != _steeringEffectsShowGripOMeterWindow )
-			{
-				_steeringEffectsShowGripOMeterWindow = value;
-
-				OnPropertyChanged();
-			}
-
-			var app = App.Instance!;
-
-			app.UpdateGripOMeterWindowVisibility();
-		}
-	}
-
-	#endregion
-
-	#region Steering effects - Show Grip-O-Meter title
-
-	private bool _steeringEffectsShowGripOMeterTitle = true;
-
-	public bool SteeringEffectsShowGripOMeterTitle
-	{
-		get => _steeringEffectsShowGripOMeterTitle;
-
-		set
-		{
-			if ( value != _steeringEffectsShowGripOMeterTitle )
-			{
-				_steeringEffectsShowGripOMeterTitle = value;
-
-				OnPropertyChanged();
-			}
-
-			var app = App.Instance!;
-
-			app.UpdateGripOMeterWindowVisibility();
-		}
-	}
-
-	#endregion
-
-	#region Steering effects - Make Grip-O-Meter draggable
-
-	private bool _steeringEffectsMakeGripOMeterDraggable = false;
-
-	public bool SteeringEffectsMakeGripOMeterDraggable
-	{
-		get => _steeringEffectsMakeGripOMeterDraggable;
-
-		set
-		{
-			if ( value != _steeringEffectsMakeGripOMeterDraggable )
-			{
-				_steeringEffectsMakeGripOMeterDraggable = value;
-
-				OnPropertyChanged();
-			}
-
-			var app = App.Instance!;
-
-			app.UpdateGripOMeterWindowVisibility();
-		}
-	}
-
-	#endregion
-
-	#region Steering effects - Grip-O-Meter window position
-
-	private Rectangle _steeringEffectsGripOMeterWindowPosition = Rectangle.Empty;
-
-	public Rectangle SteeringEffectsGripOMeterWindowPosition
-	{
-		get => _steeringEffectsGripOMeterWindowPosition;
-
-		set
-		{
-			if ( value != _steeringEffectsGripOMeterWindowPosition )
-			{
-				_steeringEffectsGripOMeterWindowPosition = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Steering effects - Grip-O-Meter window scale
-
-	private float _steeringEffectsGripOMeterWindowScale = 1f;
-
-	public float SteeringEffectsGripOMeterWindowScale
-	{
-		get => _steeringEffectsGripOMeterWindowScale;
-
-		set
-		{
-			value = Math.Clamp( value, 0.5f, 2f );
-
-			if ( value != _steeringEffectsGripOMeterWindowScale )
-			{
-				_steeringEffectsGripOMeterWindowScale = value;
-
-				OnPropertyChanged();
-			}
-
-			SteeringEffectsGripOMeterWindowScaleString = $"{_steeringEffectsGripOMeterWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-		}
-	}
-
-	private string _steeringEffectsGripOMeterWindowScaleString = string.Empty;
-
-	[XmlIgnore]
-	public string SteeringEffectsGripOMeterWindowScaleString
-	{
-		get => _steeringEffectsGripOMeterWindowScaleString;
-
-		set
-		{
-			if ( value != _steeringEffectsGripOMeterWindowScaleString )
-			{
-				_steeringEffectsGripOMeterWindowScaleString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
 
 	#endregion
 
@@ -9770,19 +9631,19 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Overlays - Make Gap monitor draggable
+	#region Overlays - Show Gap monitor title
 
-	private bool _overlaysMakeGapMonitorDraggable = false;
+	private bool _overlaysShowGapMonitorTitle = true;
 
-	public bool OverlaysMakeGapMonitorDraggable
+	public bool OverlaysShowGapMonitorTitle
 	{
-		get => _overlaysMakeGapMonitorDraggable;
+		get => _overlaysShowGapMonitorTitle;
 
 		set
 		{
-			if ( value != _overlaysMakeGapMonitorDraggable )
+			if ( value != _overlaysShowGapMonitorTitle )
 			{
-				_overlaysMakeGapMonitorDraggable = value;
+				_overlaysShowGapMonitorTitle = value;
 
 				OnPropertyChanged();
 			}
@@ -9790,27 +9651,6 @@ public class Settings : INotifyPropertyChanged
 			var app = App.Instance!;
 
 			app.UpdateGapMonitorWindowVisibility();
-		}
-	}
-
-	#endregion
-
-	#region Overlays - Gap monitor window position
-
-	private Rectangle _overlaysGapMonitorWindowPosition = Rectangle.Empty;
-
-	public Rectangle OverlaysGapMonitorWindowPosition
-	{
-		get => _overlaysGapMonitorWindowPosition;
-
-		set
-		{
-			if ( value != _overlaysGapMonitorWindowPosition )
-			{
-				_overlaysGapMonitorWindowPosition = value;
-
-				OnPropertyChanged();
-			}
 		}
 	}
 
@@ -9859,26 +9699,221 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Overlays - Show Gap monitor title
+	#region Overlays - Gap monitor window position
 
-	private bool _overlaysShowGapMonitorTitle = true;
+	private Rectangle _overlaysGapMonitorWindowPosition = Rectangle.Empty;
 
-	public bool OverlaysShowGapMonitorTitle
+	public Rectangle OverlaysGapMonitorWindowPosition
 	{
-		get => _overlaysShowGapMonitorTitle;
+		get => _overlaysGapMonitorWindowPosition;
 
 		set
 		{
-			if ( value != _overlaysShowGapMonitorTitle )
+			if ( value != _overlaysGapMonitorWindowPosition )
 			{
-				_overlaysShowGapMonitorTitle = value;
+				_overlaysGapMonitorWindowPosition = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Show Grip-O-Meter window
+
+	private bool _overlaysShowGripOMeterWindow = false;
+
+	public bool OverlaysShowGripOMeterWindow
+	{
+		get => _overlaysShowGripOMeterWindow;
+
+		set
+		{
+			if ( value != _overlaysShowGripOMeterWindow )
+			{
+				_overlaysShowGripOMeterWindow = value;
 
 				OnPropertyChanged();
 			}
 
 			var app = App.Instance!;
 
-			app.UpdateGapMonitorWindowVisibility();
+			app.UpdateGripOMeterWindowVisibility();
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Show Grip-O-Meter title
+
+	private bool _overlaysShowGripOMeterTitle = true;
+
+	public bool OverlaysShowGripOMeterTitle
+	{
+		get => _overlaysShowGripOMeterTitle;
+
+		set
+		{
+			if ( value != _overlaysShowGripOMeterTitle )
+			{
+				_overlaysShowGripOMeterTitle = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.UpdateGripOMeterWindowVisibility();
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Grip-O-Meter window scale
+
+	private float _overlaysGripOMeterWindowScale = 1f;
+
+	public float OverlaysGripOMeterWindowScale
+	{
+		get => _overlaysGripOMeterWindowScale;
+
+		set
+		{
+			value = Math.Clamp( value, 0.5f, 2f );
+
+			if ( value != _overlaysGripOMeterWindowScale )
+			{
+				_overlaysGripOMeterWindowScale = value;
+
+				OnPropertyChanged();
+			}
+
+			OverlaysGripOMeterWindowScaleString = $"{_overlaysGripOMeterWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _overlaysGripOMeterWindowScaleString = string.Empty;
+
+	[XmlIgnore]
+	public string OverlaysGripOMeterWindowScaleString
+	{
+		get => _overlaysGripOMeterWindowScaleString;
+
+		set
+		{
+			if ( value != _overlaysGripOMeterWindowScaleString )
+			{
+				_overlaysGripOMeterWindowScaleString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Grip-O-Meter window position
+
+	private Rectangle _overlaysGripOMeterWindowPosition = Rectangle.Empty;
+
+	public Rectangle OverlaysGripOMeterWindowPosition
+	{
+		get => _overlaysGripOMeterWindowPosition;
+
+		set
+		{
+			if ( value != _overlaysGripOMeterWindowPosition )
+			{
+				_overlaysGripOMeterWindowPosition = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Show Speech-to-text title
+
+	private bool _overlaysShowSpeechToTextTitle = true;
+
+	public bool OverlaysShowSpeechToTextTitle
+	{
+		get => _overlaysShowSpeechToTextTitle;
+
+		set
+		{
+			if ( value != _overlaysShowSpeechToTextTitle )
+			{
+				_overlaysShowSpeechToTextTitle = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Speech-to-text window scale
+
+	private float _overlaysSpeechToTextWindowScale = 1f;
+
+	public float OverlaysSpeechToTextWindowScale
+	{
+		get => _overlaysSpeechToTextWindowScale;
+
+		set
+		{
+			value = Math.Clamp( value, 0.5f, 2f );
+
+			if ( value != _overlaysSpeechToTextWindowScale )
+			{
+				_overlaysSpeechToTextWindowScale = value;
+
+				OnPropertyChanged();
+			}
+
+			OverlaysSpeechToTextWindowScaleString = $"{_overlaysSpeechToTextWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		}
+	}
+
+	private string _overlaysSpeechToTextWindowScaleString = string.Empty;
+
+	[XmlIgnore]
+	public string OverlaysSpeechToTextWindowScaleString
+	{
+		get => _overlaysSpeechToTextWindowScaleString;
+
+		set
+		{
+			if ( value != _overlaysSpeechToTextWindowScaleString )
+			{
+				_overlaysSpeechToTextWindowScaleString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Speech-to-text window position
+
+	private Rectangle _overlaysSpeechToTextWindowPosition = Rectangle.Empty;
+
+	public Rectangle OverlaysSpeechToTextWindowPosition
+	{
+		get => _overlaysSpeechToTextWindowPosition;
+
+		set
+		{
+			if ( value != _overlaysSpeechToTextWindowPosition )
+			{
+				_overlaysSpeechToTextWindowPosition = value;
+
+				OnPropertyChanged();
+			}
 		}
 	}
 
@@ -12018,118 +12053,6 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 
 				App.Instance!.SpeechToText.RecordingDevice = recordingDevice;
-			}
-		}
-	}
-
-	#endregion
-
-	#region Speech to text - Show overlay window title
-
-	private bool _speechToTextShowOverlayWindowTitle = true;
-
-	public bool SpeechToTextShowOverlayWindowTitle
-	{
-		get => _speechToTextShowOverlayWindowTitle;
-
-		set
-		{
-			if ( value != _speechToTextShowOverlayWindowTitle )
-			{
-				_speechToTextShowOverlayWindowTitle = value;
-
-				OnPropertyChanged();
-			}
-
-			var app = App.Instance!;
-		}
-	}
-
-	#endregion
-
-	#region Speech to text - Make overlay window draggable
-
-	private bool _speechToTextMakeOverlayWindowDraggable = false;
-
-	public bool SpeechToTextMakeOverlayWindowDraggable
-	{
-		get => _speechToTextMakeOverlayWindowDraggable;
-
-		set
-		{
-			if ( value != _speechToTextMakeOverlayWindowDraggable )
-			{
-				_speechToTextMakeOverlayWindowDraggable = value;
-
-				OnPropertyChanged();
-			}
-
-			var app = App.Instance!;
-
-			app.UpdateSpeechToTextWindowVisibility();
-		}
-	}
-
-	#endregion
-
-	#region Speech to text - Overlay window position
-
-	private Rectangle _speechToTextOverlayWindowPosition = Rectangle.Empty;
-
-	public Rectangle SpeechToTextOverlayWindowPosition
-	{
-		get => _speechToTextOverlayWindowPosition;
-
-		set
-		{
-			if ( value != _speechToTextOverlayWindowPosition )
-			{
-				_speechToTextOverlayWindowPosition = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	#endregion
-
-	#region Speech to text - Overlay window scale
-
-	private float _speechToTextOverlayWindowScale = 1f;
-
-	public float SpeechToTextOverlayWindowScale
-	{
-		get => _speechToTextOverlayWindowScale;
-
-		set
-		{
-			value = Math.Clamp( value, 0.5f, 2f );
-
-			if ( value != _speechToTextOverlayWindowScale )
-			{
-				_speechToTextOverlayWindowScale = value;
-
-				OnPropertyChanged();
-			}
-
-			SpeechToTextOverlayWindowScaleString = $"{_speechToTextOverlayWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-		}
-	}
-
-	private string _speechToTextOverlayWindowScaleString = string.Empty;
-
-	[XmlIgnore]
-	public string SpeechToTextOverlayWindowScaleString
-	{
-		get => _speechToTextOverlayWindowScaleString;
-
-		set
-		{
-			if ( value != _speechToTextOverlayWindowScaleString )
-			{
-				_speechToTextOverlayWindowScaleString = value;
-
-				OnPropertyChanged();
 			}
 		}
 	}

@@ -7,6 +7,7 @@ using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.UI.WindowsAndMessaging;
 
+using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Components;
 
 using Brushes = System.Windows.Media.Brushes;
@@ -20,6 +21,20 @@ public partial class GapMonitorWindow : Window
 	private int _updateCounter = UpdateInterval + 3;
 
 	private bool _isDraggable = false;
+
+	private readonly OverlayWindowScaler _scaler;
+
+	// Sample data shown while "make all overlay windows visible and draggable" is enabled, so the window can be positioned and scaled
+	private const string SampleAheadCarNumber = "#24";
+	private const string SampleAheadPosition = "P3";
+	private const string SampleAheadIRating = "3500";
+	private const string SampleAheadDelta = "1.23s";
+	private const string SampleAheadDriver = "Jane Sample";
+	private const string SampleBehindCarNumber = "#7";
+	private const string SampleBehindPosition = "P5";
+	private const string SampleBehindIRating = "2800";
+	private const string SampleBehindDelta = "0.87s";
+	private const string SampleBehindDriver = "John Placeholder";
 
 	private int _prevAheadCarIdx = -1;
 	private int _prevBehindCarIdx = -1;
@@ -49,6 +64,8 @@ public partial class GapMonitorWindow : Window
 		InitializeComponent();
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		_scaler = new OverlayWindowScaler( this, () => settings.OverlaysGapMonitorWindowScale, value => settings.OverlaysGapMonitorWindowScale = value );
 
 		var rectangle = settings.OverlaysGapMonitorWindowPosition;
 
@@ -86,9 +103,14 @@ public partial class GapMonitorWindow : Window
 
 	public void MakeDraggable()
 	{
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+		_isDraggable = App.Instance!.OverlaysDraggable;
 
-		_isDraggable = settings.OverlaysMakeGapMonitorDraggable;
+		ScaleIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
+
+		if ( _isDraggable )
+		{
+			ShowSampleData();
+		}
 
 		var hwnd = new WindowInteropHelper( this ).Handle;
 
@@ -114,8 +136,58 @@ public partial class GapMonitorWindow : Window
 		}
 	}
 
+	private void Window_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		if ( ReferenceEquals( e.OriginalSource, ScaleIcon ) )
+		{
+			_scaler.Start();
+
+			e.Handled = true;
+		}
+	}
+
+	private void Window_PreviewMouseLeftButtonUp( object sender, MouseButtonEventArgs e )
+	{
+		if ( _scaler.IsScaling )
+		{
+			_scaler.Stop();
+
+			e.Handled = true;
+		}
+	}
+
+	private void Window_MouseMove( object sender, System.Windows.Input.MouseEventArgs e )
+	{
+		_scaler.Update();
+	}
+
+	private void ShowSampleData()
+	{
+		AheadCarNumberText.Text = SampleAheadCarNumber;
+		AheadPositionText.Text = SampleAheadPosition;
+		AheadPositionText.Foreground = Brushes.White;
+		AheadIRatingText.Text = SampleAheadIRating;
+		AheadDeltaText.Text = SampleAheadDelta;
+		AheadDeltaText.Foreground = Brushes.White;
+		AheadDriverText.Text = SampleAheadDriver;
+
+		BehindCarNumberText.Text = SampleBehindCarNumber;
+		BehindPositionText.Text = SampleBehindPosition;
+		BehindPositionText.Foreground = Brushes.White;
+		BehindIRatingText.Text = SampleBehindIRating;
+		BehindDeltaText.Text = SampleBehindDelta;
+		BehindDeltaText.Foreground = Brushes.White;
+		BehindDriverText.Text = SampleBehindDriver;
+	}
+
 	public void Tick( App app )
 	{
+		// while sample data is being shown for overlay setup, leave the displayed values alone
+		if ( app.OverlaysDraggable )
+		{
+			return;
+		}
+
 		if ( Visibility == Visibility.Visible )
 		{
 			_updateCounter--;
