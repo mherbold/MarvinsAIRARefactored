@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY ABLAK</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Az overlay ablak húzhatóvá tétele</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Az overlay ablak pozíciójának visszaállítása</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Overlay ablak méretezése</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Overlay ablak kezelése</value>
   </data>
@@ -878,15 +869,6 @@
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Az összes overlay ablak visszaállítása</value>
-  </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA Beszéd-Szöveggé Átalakító Híd</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Kattintson az engedélyező gombra. Ellenőrizze, hogy a böngészőben a megfelelő hangeszköz van kiválasztva, a mikrofon ikonra kattintva a címsor bal oldalán!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Beszéd-szöveggé engedélyezése</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Erővisszajelző eszköz nincs kiválasztva]</value>
@@ -1410,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>Nem</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Alkalmaz és tovább</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Bezárás</value>
   </data>
@@ -1671,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Használat</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Előfizetés-használat lekérése…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Terv-felhasználás:  {0:N0} / {1:N0} karakter felhasználva  ({2:F1}%)  —  {3:N0} marad</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Terv-felhasználás nem elérhető</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Hang</value>
   </data>
@@ -1701,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Teszt</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Előzés / Helyzetváltozás</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Szoros csata</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Leggyorsabb kör</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Boxkiállás</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Vigyázat / Sárga zászló</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Menet kezdete / vége</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Vezető incidens</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Üzemanyag figyelmeztetés</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Gumiabroncs figyelmeztetés</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Kár figyelmeztetés</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Közelségi figyelmeztetések</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Emlékeztető intervallum</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Box ablak nyitva</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>KOMMENTÁR MONDATOK</value>
@@ -1754,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Mondat hozzáadása</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Eltávolítás</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Egyéni mondatok mentve.</value>
@@ -1775,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Indítás...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Naplózó inicializálása...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Felső szintű ablak inicializálása...</value>
@@ -1853,8 +1787,5 @@
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Fényezésfájlok újraletöltése</value>
-  </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
   </data>
 </root>

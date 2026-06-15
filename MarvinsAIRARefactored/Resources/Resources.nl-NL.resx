@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY-VENSTER</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Overlay-venster versleepbaar maken</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Positie van overlay-venster resetten</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Schaal van overlay-venster</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Overlay-venster beheren</value>
   </data>
@@ -878,15 +869,6 @@
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Alle overlay-vensters resetten</value>
-  </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA Spraak-naar-tekst-brug</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Klik op de inschakelknop. Controleer het geselcteerde audio apparaat door te klikken op het microfoon icoon links van de adresbalk!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Spraak-naar-tekst inschakelen</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Force Feedback apparaat niet geselecteerd]</value>
@@ -1410,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>Nee</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Volgende</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Sluiten</value>
   </data>
@@ -1671,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Gebruik</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Abonnementsgebruik ophalen…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Plangebruik:  {0:N0} / {1:N0} tekens gebruikt  ({2:F1}%)  —  {3:N0} resterend</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Plangebruik niet beschikbaar</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Stem</value>
   </data>
@@ -1701,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Test</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Inhalen / Positiewijziging</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Gevecht op de voet</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Snelste ronde</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Pitstop</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Voorzichtig / Gele vlag</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Sessie start / einde</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Rijdersincident</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Brandstofwaarschuwing</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Bandenwaarschuwing</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Schade­waarschuwing</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Nabijheids­meldingen</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Herinnerings­interval</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Pit­venster open</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>COMMENTAAR ZINNEN</value>
@@ -1754,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Zin toevoegen</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Verwijderen</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Aangepaste zinnen opgeslagen.</value>
@@ -1775,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Starten...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Logger initialiseren...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Bovenste niveauvenster initialiseren...</value>
@@ -1853,8 +1787,5 @@
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Verfbestanden opnieuw downloaden</value>
-  </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
   </data>
 </root>

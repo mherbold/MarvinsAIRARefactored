@@ -861,15 +861,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY-FENSTER</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Overlay-Fenster verschiebbar machen</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Position des Overlay-Fensters zurücksetzen</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Overlay-Fenster Skalierung</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Overlay-Fenster verwalten</value>
   </data>
@@ -881,15 +872,6 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Alle Overlay-Fenster zurücksetzen</value>
-  </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA Sprache-zu-Text Schnittstelle</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Klicke auf die Schaltfläche „Aktivieren“. Prüfe ob im Browser das richtige Audiogerät ausgewählt ist, indem Du auf das Mikrofonsymbol links neben der Adressleiste klickst!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Sprache-zu-Text aktivieren</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Force Feedback Gerät nicht ausgewählt]</value>
@@ -1415,9 +1397,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="Wizard_No" xml:space="preserve">
     <value>Nein</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Übernehmen &amp; Weiter</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Schließen</value>
   </data>
@@ -1676,15 +1655,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="Usage" xml:space="preserve">
     <value>Nutzung</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Abonnementnutzung wird abgerufen…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Plannutzung:  {0:N0} / {1:N0} Zeichen verwendet  ({2:F1}%)  —  {3:N0} verbleibend</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Plannutzung nicht verfügbar</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Stimme</value>
   </data>
@@ -1706,44 +1676,14 @@ Hier ist der Link zum Spenden:</value>
   <data name="TestVoice" xml:space="preserve">
     <value>Testen</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Überholmanöver / Positionswechsel</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Nahkampf</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Schnellste Runde</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Boxenstopp</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Vorsicht / Gelbe Flagge</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Sitzungsstart / -ende</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Fahrerzwischenfall</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Kraftstoffwarnung</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Reifenwarnung</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Schadenswarnung</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Näherungsmeldungen</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Erinnerungsintervall</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Boxenfenster offen</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>KOMMENTAR-PHRASEN</value>
@@ -1759,9 +1699,6 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Phrase hinzufügen</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Entfernen</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Benutzerdefinierte Phrasen gespeichert.</value>
@@ -1780,9 +1717,6 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Wird gestartet...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Logger wird initialisiert...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Top-Level-Fenster wird initialisiert...</value>
@@ -1858,8 +1792,5 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Lackdateien neu herunterladen</value>
-  </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
   </data>
 </root>

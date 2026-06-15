@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>หน้าต่าง Overlay</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>ทำให้หน้าต่าง Overlay ลากได้</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>รีเซ็ตตำแหน่งหน้าต่าง Overlay</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>ขนาดหน้าต่าง Overlay</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>จัดการหน้าต่าง Overlay</value>
   </data>
@@ -878,15 +869,6 @@
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>รีเซ็ตหน้าต่าง Overlay ทั้งหมด</value>
-  </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>สะพาน MAIRA Speech-To-Text</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>คลิกปุ่มเปิดใช้งาน คุณต้องตรวจสอบว่าเบราว์เซอร์เลือกอุปกรณ์เสียงที่ถูกต้อง โดยคลิกที่ไอคอนไมโครโฟนทางซ้ายของแถบที่อยู่!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>เปิดใช้งาน Speech-To-Text</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[ไม่ได้เลือกอุปกรณ์ Force Feedback]</value>
@@ -1410,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>ไม่</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>ใช้ &amp; ถัดไป</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>ปิด</value>
   </data>
@@ -1671,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>การใช้งาน</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>กำลังดึงข้อมูลการใช้งานการสมัครสมาชิก…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>การใช้งานแผน:  {0:N0} / {1:N0} ตัวอักษรที่ใช้  ({2:F1}%)  —  {3:N0} คงเหลือ</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>ไม่มีข้อมูลการใช้งานแผน</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>เสียง</value>
   </data>
@@ -1701,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>ทดสอบ</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>แซงหน้า / เปลี่ยนตำแหน่ง</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>การต่อสู้ใกล้ชิด</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>รอบที่เร็วที่สุด</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>พิทสต็อป</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>ระวัง / ธงเหลือง</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>เริ่ม / สิ้นสุดรอบ</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>เหตุการณ์ผู้ขับ</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>แจ้งเตือนเชื้อเพลิง</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>แจ้งเตือนยาง</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>แจ้งเตือนความเสียหาย</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>สัญญาณความใกล้ชิด</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>ช่วงเวลาเตือนความจำ</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>หน้าต่างพิทเปิดอยู่</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>วลีบรรยาย</value>
@@ -1754,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>เพิ่มวลี</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>ลบ</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  บันทึกวลีที่กำหนดเองแล้ว</value>
@@ -1775,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>กำลังเริ่มต้น...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>กำลังเริ่มต้น Logger...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>กำลังเริ่มต้นหน้าต่างระดับสูงสุด...</value>
@@ -1853,8 +1787,5 @@
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>ดาวน์โหลดไฟล์สีใหม่</value>
-  </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
   </data>
 </root>

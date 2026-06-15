@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLEGGSVINDU</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Gjør overleggsvinduet drabart</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Tilbakestill posisjonen til overleggsvinduet</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Skala for overleggsvindu</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Administrer overleggsvindu</value>
   </data>
@@ -878,15 +869,6 @@
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Tilbakestill alle overleggsvinduer</value>
-  </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA Tale-til-tekst-bro</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Klikk på aktiveringknappen. Du må kontrollere at nettleseren har riktig lydenhet valgt, ved å klikke på mikrofonikonet til venstre for adressefeltet!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Aktiver tale til tekst</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Krafttilbakemeldingsenhet ikke valgt]</value>
@@ -1410,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>Nei</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Bruk og neste</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Lukk</value>
   </data>
@@ -1671,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Bruk</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Henter abonnementsbruk…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Planbruk:  {0:N0} / {1:N0} tegn brukt  ({2:F1}%)  —  {3:N0} igjen</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Planbruk utilgjengelig</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Stemme</value>
   </data>
@@ -1701,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Test</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Forbikjøring / Posisjonsendring</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Tett kamp</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Raskeste runde</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Pit-stopp</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Forsiktig / Gult flagg</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Sesjon start / slutt</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Sjåførhendelse</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Drivstoffadvarsel</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Dekkladvarsel</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Skadeadvarsel</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Nærhetsanrop</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Påminnelsesintervall</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Pit-vindu åpent</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>KOMMENTARSETNINGER</value>
@@ -1754,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Legg til setning</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Fjern</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Egendefinerte setninger lagret.</value>
@@ -1775,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Starter...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Initialiserer Logger...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Initialiserer topplevelvindu...</value>
@@ -1853,8 +1787,5 @@
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Last ned lakkfiler på nytt</value>
-  </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
   </data>
 </root>

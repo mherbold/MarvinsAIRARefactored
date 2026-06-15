@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>ÖVERLÄGSFÖNSTER</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Gör överlägsfönstret dragbart</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Återställ överlägsfönstrets position</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Överlägsfönstrets skalning</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Hantera överläggsfönster</value>
   </data>
@@ -878,15 +869,6 @@
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Återställ alla överläggsfönster</value>
-  </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA Tal-till-text-brygga</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Klicka på aktiveringsknappen. Du måste kontrollera att webbläsaren har rätt ljudenhet vald, genom att klicka på mikrofonikonen till vänster om adressfältet!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Aktivera tal till text</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Kraftåterkopplingsenhet ej vald]</value>
@@ -1410,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>Nej</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Nästa</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Stäng</value>
   </data>
@@ -1671,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Användning</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Hämtar prenumerationsanvändning…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Plananvändning:  {0:N0} / {1:N0} tecken använda  ({2:F1}%)  —  {3:N0} kvar</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Plananvändning ej tillgänglig</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Röst</value>
   </data>
@@ -1701,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Testa</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Omkörning / Positionsbyte</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Tight kamp</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Snabbaste varv</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Pit­stopp</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Varning / Gul flagg</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Session start / slut</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Förarincident</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Bränslevarning</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Däckvarning</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Skadevarning</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Närhetsanrop</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Påminnelseintervall</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Pit­fönster öppet</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>KOMMENTARSFRASER</value>
@@ -1754,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Lägg till fras</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Ta bort</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Anpassade fraser sparade.</value>
@@ -1775,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Startar...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Initierar Logger...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Initierar topnivåfönster...</value>
@@ -1853,8 +1787,5 @@
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Ladda ner lackfiler igen</value>
-  </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
   </data>
 </root>

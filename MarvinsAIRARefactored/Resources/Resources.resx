@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY WINDOW</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Make the overlay window draggable</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Reset the overlay window position</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Overlay Window Scale</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Manage Overlay Window</value>
   </data>
@@ -878,15 +869,6 @@
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Reset all overlay windows</value>
-  </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>MAIRA Speech-To-Text Bridge</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Click the enable button. You must check that the browser has the correct audio device selected, by clicking on  the microphone icon to the left of the address bar!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Enable Speech-To-Text</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Force Feedback Device Not Selected]</value>
@@ -1410,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Next</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Close</value>
   </data>
@@ -1671,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Usage</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Fetching subscription usage…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Plan usage:  {0:N0} / {1:N0} characters used  ({2:F1}%)  —  {3:N0} remaining</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Plan usage unavailable</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Voice</value>
   </data>
@@ -1701,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Test</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Overtake / Position Change</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Close Battle</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Fastest Lap</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Pit Stop</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Caution / Yellow Flag</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Session Start / End</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Driver Incident</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Fuel Warning</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Tire Warning</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Damage Warning</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Proximity Calls</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Reminder Interval</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Pit Window Open</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>COMMENTARY PHRASES</value>
@@ -1754,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Add Phrase</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Remove</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✓  Custom phrases saved.</value>
@@ -1778,9 +1715,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Starting up...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Initializing Logger...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Initializing Top Level Window...</value>
@@ -1853,8 +1787,5 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Initializing Main Window...</value>
-  </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
   </data>
 </root>

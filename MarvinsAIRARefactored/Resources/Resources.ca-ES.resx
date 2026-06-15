@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>FINESTRA SUPERPOSADA</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Fes que la finestra superposada sigui arrossegable</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Restableix la posició de la finestra superposada</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Escala de la finestra superposada</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Gestiona la finestra superposada</value>
   </data>
@@ -878,15 +869,6 @@
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Restableix totes les finestres superposades</value>
-  </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>Pont de reconeixement de veu de MAIRA</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Feu clic al botó d'activació. Heu de comprovar que el navegador tingui el dispositiu d'àudio correcte seleccionat, fent clic a la icona del micròfon a l'esquerra de la barra d'adreces!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Activa la veu a text</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Dispositiu de retroalimentació de força no seleccionat]</value>
@@ -1410,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>No</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Seg</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Tanca</value>
   </data>
@@ -1671,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Ús</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Obtenint l'ús de la subscripció…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Ús del pla:  {0:N0} / {1:N0} caràcters usats  ({2:F1}%)  —  {3:N0} restants</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Ús del pla no disponible</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Veu</value>
   </data>
@@ -1701,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Prova</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Avançament / Canvi de posició</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Batalla ajustada</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Volta ràpida</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Parada a boxes</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Precaució / Bandera groga</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Inici / Final de sessió</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Incident de pilot</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Avís de combustible</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Avís de pneumàtics</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Avís de danys</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Avisos de proximitat</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Interval de recordatori</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Finestra de boxes oberta</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>FRASES DEL COMENTARI</value>
@@ -1754,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Afegir frase</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Elimina</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Frases personalitzades desades.</value>
@@ -1775,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Iniciando...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Inicializando Registrador...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Inicializando Finestra de Nivell Superior...</value>
@@ -1853,8 +1787,5 @@
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Torna a baixar els fitxers de pintura</value>
-  </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
   </data>
 </root>

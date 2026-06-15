@@ -858,15 +858,6 @@
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>FFENESTR GORCHUDIO</value>
   </data>
-  <data name="MakeOverlayWindowDraggable" xml:space="preserve">
-    <value>Gwneud ffenestr gorchudio yn llusgadwy</value>
-  </data>
-  <data name="ResetOverlayWindow" xml:space="preserve">
-    <value>Ailosod safle ffenestr gorchudio</value>
-  </data>
-  <data name="OverlayWindowScale" xml:space="preserve">
-    <value>Graddfa Ffenestr Gorchudio</value>
-  </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Rheoli Ffenestr Gorchudio</value>
   </data>
@@ -878,15 +869,6 @@
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Ailosod pob ffenestr gorchudio</value>
-  </data>
-  <data name="STT_Title" xml:space="preserve">
-    <value>Pont Lleferydd-i-Destun MAIRA</value>
-  </data>
-  <data name="STT_Hint" xml:space="preserve">
-    <value>Cliciwch y botwm galluogi. Rhaid gwirio bod y porwr wedi dewis y ddyfais sain gywir, drwy glicio ar yr eicon meicroffon i'r chwith o'r bar cyfeiriad!</value>
-  </data>
-  <data name="STT_Button" xml:space="preserve">
-    <value>Galluogi Lleferydd i Destun</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Dyfais Adborth Grym Heb ei Dewis]</value>
@@ -1410,9 +1392,6 @@
   <data name="Wizard_No" xml:space="preserve">
     <value>Na</value>
   </data>
-  <data name="Wizard_ApplyAndNext" xml:space="preserve">
-    <value>Nesaf</value>
-  </data>
   <data name="Wizard_Close" xml:space="preserve">
     <value>Cau</value>
   </data>
@@ -1671,15 +1650,6 @@
   <data name="Usage" xml:space="preserve">
     <value>Defnydd</value>
   </data>
-  <data name="SubscriptionUsageLoading" xml:space="preserve">
-    <value>Yn nôl defnydd tanysgrifiad…</value>
-  </data>
-  <data name="SubscriptionUsage" xml:space="preserve">
-    <value>Defnydd cynllun:  {0:N0} / {1:N0} nod wedi'u defnyddio  ({2:F1}%)  —  {3:N0} yn weddill</value>
-  </data>
-  <data name="SubscriptionUsageUnavailable" xml:space="preserve">
-    <value>Defnydd cynllun ddim ar gael</value>
-  </data>
   <data name="Voice" xml:space="preserve">
     <value>Llais</value>
   </data>
@@ -1701,44 +1671,14 @@
   <data name="TestVoice" xml:space="preserve">
     <value>Prawf</value>
   </data>
-  <data name="Overtake" xml:space="preserve">
-    <value>Goddiweddyd / Newid Safle</value>
-  </data>
-  <data name="CloseBattle" xml:space="preserve">
-    <value>Brwydr Agos</value>
-  </data>
-  <data name="FastestLap" xml:space="preserve">
-    <value>Lap Gyflymaf</value>
-  </data>
-  <data name="PitStop" xml:space="preserve">
-    <value>Pit Stop</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Rhybudd / Baner Felen</value>
-  </data>
-  <data name="SessionStartEnd" xml:space="preserve">
-    <value>Dechrau / Diwedd Sesiwn</value>
-  </data>
-  <data name="DriverIncident" xml:space="preserve">
-    <value>Digwyddiad Gyrrwr</value>
-  </data>
-  <data name="FuelWarning" xml:space="preserve">
-    <value>Rhybudd Tanwydd</value>
-  </data>
-  <data name="TireWarning" xml:space="preserve">
-    <value>Rhybudd Teiars</value>
-  </data>
-  <data name="DamageWarning" xml:space="preserve">
-    <value>Rhybudd Difrod</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Galwadau Agosrwydd</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Cyfwng Atgoffa</value>
-  </data>
-  <data name="PitWindowOpen" xml:space="preserve">
-    <value>Ffenestr Pit Ar Agor</value>
   </data>
   <data name="CommentaryPhrases_UC" xml:space="preserve">
     <value>YMADRODDION SYLWEBAETH</value>
@@ -1754,9 +1694,6 @@
   </data>
   <data name="AddPhrase" xml:space="preserve">
     <value>Ychwanegu Ymadrodd</value>
-  </data>
-  <data name="RemovePhrase" xml:space="preserve">
-    <value>Dileu</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✔  Ymadroddion personol wedi'u cadw.</value>
@@ -1775,9 +1712,6 @@
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Yn cychwyn...</value>
-  </data>
-  <data name="InitializingLogger" xml:space="preserve">
-    <value>Yn Cychwyn Cofnodwr...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
     <value>Yn Cychwyn Ffenestr Lefel Uchaf...</value>
@@ -1853,8 +1787,5 @@
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Ail-lawrlwytho ffeiliau paent</value>
-  </data>
-  <data name="DeleteMe" xml:space="preserve">
-    <value>DeleteMe</value>
   </data>
 </root>
