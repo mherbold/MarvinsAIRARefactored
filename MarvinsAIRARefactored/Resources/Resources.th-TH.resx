@@ -867,6 +867,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>ขนาดหน้าต่าง Overlay</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>จัดการหน้าต่าง Overlay</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>Overlay ทั้งหมด</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>ทำให้หน้าต่าง Overlay ทั้งหมดมองเห็นได้และลากได้</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>สะพาน MAIRA Speech-To-Text</value>
   </data>

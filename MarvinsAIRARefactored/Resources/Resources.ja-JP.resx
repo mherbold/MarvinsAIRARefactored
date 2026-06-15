@@ -869,6 +869,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>オーバーレイウィンドウのスケール</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>オーバーレイウィンドウの管理</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>すべてのオーバーレイ</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>すべてのオーバーレイウィンドウを表示してドラッグ可能にする</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA 音声認識ブリッジ</value>
   </data>

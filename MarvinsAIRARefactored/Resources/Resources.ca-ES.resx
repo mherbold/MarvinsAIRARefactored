@@ -867,6 +867,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>Escala de la finestra superposada</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Gestiona la finestra superposada</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>TOTES LES SUPERPOSICIONS</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Fes visibles i arrossegables totes les finestres superposades</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Pont de reconeixement de veu de MAIRA</value>
   </data>

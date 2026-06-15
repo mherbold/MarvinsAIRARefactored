@@ -871,6 +871,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>Масштаб вікна накладання</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Керування вікном накладання</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>ВСІ НАКЛАДАННЯ</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Зробити всі вікна накладання видимими та переміщуваними</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Міст перетворення мовлення в текст MAIRA</value>
   </data>

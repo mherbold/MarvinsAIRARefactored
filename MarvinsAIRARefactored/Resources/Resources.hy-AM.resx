@@ -867,6 +867,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>Overlay Window Scale</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Կառավարել վերադրման պատուհանը</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>ԲՈԼՈՐ ՎԵՐԱԴՐՈՒՄՆԵՐԸ</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Դարձնել բոլոր վերադրման պատուհանները տեսանելի և քաշելի</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA խոսքից-տեքստ կամուրջ</value>
   </data>

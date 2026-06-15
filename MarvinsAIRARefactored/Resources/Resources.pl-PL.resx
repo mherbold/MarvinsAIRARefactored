@@ -867,6 +867,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>Skalowanie okna nakładki</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Zarządzaj oknem nakładki</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>WSZYSTKIE NAKŁADKI</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Uczyń wszystkie okna nakładek widocznymi i przeciągalnymi</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Most MAIRA do rozpoznawania mowy</value>
   </data>

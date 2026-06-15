@@ -868,6 +868,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>Escala Da Sobreposição</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Gerir janela de sobreposição</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>TODAS AS SOBREPOSIÇÕES</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Tornar todas as janelas de sobreposição visíveis e arrastáveis</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Reconhecimento de Voz MAIRA</value>
   </data>

@@ -867,6 +867,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>Scara ferestrei overlay</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Gestionează fereastra overlay</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>TOATE OVERLAY-URILE</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Fă toate ferestrele overlay vizibile și mutabile</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Punte MAIRA Speech-To-Text</value>
   </data>

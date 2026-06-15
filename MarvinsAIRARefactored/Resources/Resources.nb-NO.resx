@@ -867,6 +867,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>Skala for overleggsvindu</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Administrer overleggsvindu</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>ALLE OVERLEGG</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Gjør alle overleggsvinduer synlige og flyttbare</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA Tale-til-tekst-bro</value>
   </data>

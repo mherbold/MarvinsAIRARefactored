@@ -867,6 +867,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>Peiteikkunan skaala</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Hallitse peiteikkunaa</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>KAIKKI PEITTEET</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Tee kaikista peiteikkunoista näkyviä ja siirrettäviä</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA puhe-tekstisilta</value>
   </data>

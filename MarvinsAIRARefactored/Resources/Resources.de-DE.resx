@@ -870,6 +870,15 @@ Hier ist der Link zum Spenden:</value>
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>Overlay-Fenster Skalierung</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Overlay-Fenster verwalten</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>ALLE OVERLAYS</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Alle Overlay-Fenster sichtbar und verschiebbar machen</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>MAIRA Sprache-zu-Text Schnittstelle</value>
   </data>

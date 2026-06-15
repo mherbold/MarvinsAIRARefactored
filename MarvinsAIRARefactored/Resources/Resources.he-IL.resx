@@ -867,6 +867,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>קנה מידה חלון כיסוי</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>נהל את חלון הכיסוי</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>כל הכיסויים</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>הפוך את כל חלונות הכיסוי לגלויים וניתנים לגרירה</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>גשר MAIRA דיבור-לטקסט</value>
   </data>

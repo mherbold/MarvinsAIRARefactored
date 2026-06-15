@@ -867,6 +867,15 @@
   <data name="OverlayWindowScale" xml:space="preserve">
     <value>Scala finestra overlay</value>
   </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Gestisci finestra overlay</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>TUTTI GLI OVERLAY</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Rendi visibili e trascinabili tutte le finestre overlay</value>
+  </data>
   <data name="STT_Title" xml:space="preserve">
     <value>Bridge MAIRA per il riconoscimento vocale</value>
   </data>
