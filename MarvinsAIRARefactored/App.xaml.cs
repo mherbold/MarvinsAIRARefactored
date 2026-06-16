@@ -391,6 +391,15 @@ public partial class App : Application
 					MainWindow.Show();
 				}
 
+				// Start the worker thread and the input polling timer before showing the modal
+				// first-run wizard. The wizard's button-mapping recorder relies on DirectInput.OnInput,
+				// which is only fired from PollDevices (driven by OnTimer). ShowDialog() runs a nested
+				// dispatcher loop, so the timer and worker keep ticking while the wizard is open.
+
+				_workerThread.Start();
+
+				_timer.Start();
+
 #if !ADMINBOXX
 
 				if ( showWindow && !DataContext.DataContext.Instance.Settings.AppWizardHasRun )
@@ -428,10 +437,6 @@ public partial class App : Application
 				}
 
 #endif
-
-				_workerThread.Start();
-
-				_timer.Start();
 
 				Simulator.Start();
 
@@ -2955,6 +2960,7 @@ public partial class App : Application
 						app.Commentary.Tick( app );
 						app.Wind.Tick( app );
 						app.SeatBeltTensioner.Tick( app );
+						app.CloudService.Tick( app );
 
 						app.GripOMeterWindow?.Tick( app );
 						app.GapMonitorWindow?.Tick( app );
@@ -3142,7 +3148,7 @@ public partial class App : Application
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
-			if ( OverlaysDraggable || ( settings.OverlaysShowGripOMeterWindow && Simulator.IsConnected && Simulator.IsOnTrack ) )
+			if ( settings.OverlaysShowGripOMeterWindow && ( OverlaysDraggable || ( Simulator.IsConnected && ( Simulator.IsOnTrack || settings.OverlaysShowWhenOffTrack ) && ( !Simulator.IsReplayPlaying || settings.OverlaysShowInReplayMode ) ) ) )
 			{
 				EnsureGripOMeterWindowExists();
 
@@ -3163,7 +3169,7 @@ public partial class App : Application
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
-			if ( OverlaysDraggable || ( settings.OverlaysShowGapMonitorWindow && Simulator.IsConnected && Simulator.IsOnTrack ) )
+			if ( settings.OverlaysShowGapMonitorWindow && ( OverlaysDraggable || ( Simulator.IsConnected && ( Simulator.IsOnTrack || settings.OverlaysShowWhenOffTrack ) && ( !Simulator.IsReplayPlaying || settings.OverlaysShowInReplayMode ) ) ) )
 			{
 				EnsureGapMonitorWindowExists();
 
@@ -3184,7 +3190,7 @@ public partial class App : Application
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
-			if ( OverlaysDraggable || ( settings.OverlaysShowDeltaMonitorWindow && Simulator.IsConnected && Simulator.IsOnTrack ) )
+			if ( settings.OverlaysShowDeltaMonitorWindow && ( OverlaysDraggable || ( Simulator.IsConnected && ( Simulator.IsOnTrack || settings.OverlaysShowWhenOffTrack ) && ( !Simulator.IsReplayPlaying || settings.OverlaysShowInReplayMode ) ) ) )
 			{
 				EnsureDeltaMonitorWindowExists();
 
@@ -3205,7 +3211,7 @@ public partial class App : Application
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 
-			if ( OverlaysDraggable )
+			if ( OverlaysDraggable && settings.SpeechToTextEnabled )
 			{
 				EnsureSpeechToTextWindowExists();
 

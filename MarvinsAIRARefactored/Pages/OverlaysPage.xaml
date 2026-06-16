@@ -24,6 +24,16 @@
                                       Label="{Binding Localization[MakeAllOverlaysVisibleAndDraggable]}"
                                       Toggled="MakeAllOverlaysDraggable_MairaSwitch_Toggled" />
 
+                <controls:MairaSwitch x:Name="ShowWhenOffTrack_MairaSwitch"
+                                      Margin="0,10,0,0"
+                                      IsOn="{Binding Settings.OverlaysShowWhenOffTrack, Mode=TwoWay}"
+                                      Label="{Binding Localization[ShowWhenOffTrack]}" />
+
+                <controls:MairaSwitch x:Name="ShowInReplayMode_MairaSwitch"
+                                      Margin="0,10,0,0"
+                                      IsOn="{Binding Settings.OverlaysShowInReplayMode, Mode=TwoWay}"
+                                      Label="{Binding Localization[ShowInReplayMode]}" />
+
                 <controls:MairaButton x:Name="ResetAllOverlays_MairaButton"
                                       Margin="0,20,0,0"
                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
@@ -40,7 +50,7 @@
             <StackPanel>
 
                 <controls:MairaSwitch IsOn="{Binding Settings.OverlaysShowGapMonitorWindow, Mode=TwoWay}"
-                                      Label="{Binding Localization[EnableOverlayWindow]}" />
+                                      Label="{Binding Localization[Enabled]}" />
 
                 <controls:MairaSwitch Margin="0,10,0,0"
                                       IsOn="{Binding Settings.OverlaysShowGapMonitorTitle, Mode=TwoWay}"
@@ -56,7 +66,7 @@
             <StackPanel>
 
                 <controls:MairaSwitch IsOn="{Binding Settings.OverlaysShowDeltaMonitorWindow, Mode=TwoWay}"
-                                      Label="{Binding Localization[EnableOverlayWindow]}" />
+                                      Label="{Binding Localization[Enabled]}" />
 
                 <controls:MairaSwitch Margin="0,10,0,0"
                                       IsOn="{Binding Settings.OverlaysShowDeltaMonitorTitle, Mode=TwoWay}"
@@ -72,7 +82,7 @@
             <StackPanel>
 
                 <controls:MairaSwitch IsOn="{Binding Settings.OverlaysShowGripOMeterWindow, Mode=TwoWay}"
-                                      Label="{Binding Localization[EnableOverlayWindow]}" />
+                                      Label="{Binding Localization[Enabled]}" />
 
                 <controls:MairaSwitch Margin="0,10,0,0"
                                       IsOn="{Binding Settings.OverlaysShowGripOMeterTitle, Mode=TwoWay}"
@@ -87,7 +97,11 @@
 
             <StackPanel>
 
-                <controls:MairaSwitch IsOn="{Binding Settings.OverlaysShowSpeechToTextTitle, Mode=TwoWay}"
+                <controls:MairaSwitch IsOn="{Binding Settings.SpeechToTextEnabled, Mode=TwoWay}"
+                                      Label="{Binding Localization[Enabled]}" />
+
+                <controls:MairaSwitch Margin="0,10,0,0"
+                                      IsOn="{Binding Settings.OverlaysShowSpeechToTextTitle, Mode=TwoWay}"
                                       Label="{Binding Localization[ShowOverlayWindowTitle]}" />
 
             </StackPanel>

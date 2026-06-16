@@ -865,7 +865,13 @@
     <value>ALL OVERLAYS</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Make all overlay windows visible and draggable</value>
+    <value>Enable edit mode</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Show when off track</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Show in replay mode</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Reset all overlay windows</value>
@@ -1314,11 +1320,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>Overlays</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Enable the overlay window</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Show the overlay window title</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Overlay Settings</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Background color</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Red</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Green</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blue</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Opacity</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>CPU Affinity</value>

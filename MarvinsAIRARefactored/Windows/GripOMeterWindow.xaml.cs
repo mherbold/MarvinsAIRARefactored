@@ -23,6 +23,7 @@ public partial class GripOMeterWindow : Window
 	private bool _isDraggable = false;
 
 	private readonly OverlayWindowScaler _scaler;
+	private readonly OverlayWindowMover _mover;
 
 	private float _smoothedSkidSlip = 0f;
 	private float _smoothedSeatOfPants = 0f;
@@ -30,6 +31,7 @@ public partial class GripOMeterWindow : Window
 	private const float SmoothingFactor = 0.15f;
 
 	private readonly SolidColorBrush[] _backgroundBrushes = new SolidColorBrush[ 16 ];
+	private byte _backgroundBrushesAlpha = 255;
 
 	public GripOMeterWindow()
 	{
@@ -41,7 +43,8 @@ public partial class GripOMeterWindow : Window
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		_scaler = new OverlayWindowScaler( this, () => settings.OverlaysGripOMeterWindowScale, value => settings.OverlaysGripOMeterWindowScale = value );
+		_scaler = new OverlayWindowScaler( this, ScaleIcon, () => settings.OverlaysGripOMeterWindowScale, value => settings.OverlaysGripOMeterWindowScale = value );
+		_mover = new OverlayWindowMover( this, DragIcon );
 
 		var rectangle = settings.OverlaysGripOMeterWindowPosition;
 
@@ -50,24 +53,33 @@ public partial class GripOMeterWindow : Window
 
 		WindowStartupLocation = WindowStartupLocation.Manual;
 
-		// Create 16 brushes with channel values from 0..255 in 16 steps and freeze them to avoid allocations during high-frequency Tick calls
+		// Build the 16 grip gradient brushes up front (rebuilt only when the opacity changes) to avoid allocations during high-frequency Tick calls.
+		// The opacity setting is baked into the alpha channel so it tints the background fill without affecting the black border.
 
-		for ( var i = 0; i < _backgroundBrushes.Length; i++ )
-		{
-			var gradientValue = (byte) Math.Round( i * 255.0 / ( _backgroundBrushes.Length - 1 ) );
+		_backgroundBrushesAlpha = (byte) Math.Round( Math.Clamp( settings.OverlaysGripOMeterWindowOpacity, 0f, 1f ) * 255f );
 
-			var brush = new SolidColorBrush( Color.FromRgb( 255, gradientValue, gradientValue ) );
-
-			brush.Freeze();
-
-			_backgroundBrushes[ i ] = brush;
-		}
+		RebuildBackgroundBrushes( _backgroundBrushesAlpha );
 
 		MakeDraggable();
 
 		Show();
 
 		app.Logger.WriteLine( "[GripOMeterWindow] <<< Constructor" );
+	}
+
+	// Rebuilds the 16 grip gradient brushes with the given alpha so the opacity setting tints only the background fill (the black border stays opaque).
+	private void RebuildBackgroundBrushes( byte alpha )
+	{
+		for ( var i = 0; i < _backgroundBrushes.Length; i++ )
+		{
+			var gradientValue = (byte) Math.Round( i * 255.0 / ( _backgroundBrushes.Length - 1 ) );
+
+			var brush = new SolidColorBrush( Color.FromArgb( alpha, 255, gradientValue, gradientValue ) );
+
+			brush.Freeze();
+
+			_backgroundBrushes[ i ] = brush;
+		}
 	}
 
 	private void Window_LocationChanged( object sender, EventArgs e )
@@ -95,6 +107,8 @@ public partial class GripOMeterWindow : Window
 		_isDraggable = App.Instance!.OverlaysDraggable;
 
 		ScaleIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
+		GearIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
+		DragIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
 
 		var hwnd = new WindowInteropHelper( this ).Handle;
 
@@ -112,14 +126,6 @@ public partial class GripOMeterWindow : Window
 		_ = PInvoke.SetWindowLong( (HWND) hwnd, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exStyle );
 	}
 
-	protected override void OnMouseLeftButtonDown( MouseButtonEventArgs e )
-	{
-		if ( _isDraggable )
-		{
-			DragMove();
-		}
-	}
-
 	private void Window_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
 	{
 		if ( ReferenceEquals( e.OriginalSource, ScaleIcon ) )
@@ -127,6 +133,18 @@ public partial class GripOMeterWindow : Window
 			_scaler.Start();
 
 			e.Handled = true;
+		}
+		else if ( ReferenceEquals( e.OriginalSource, DragIcon ) )
+		{
+			_mover.Start();
+
+			e.Handled = true;
+		}
+		else if ( ReferenceEquals( e.OriginalSource, GearIcon ) )
+		{
+			e.Handled = true;
+
+			Dispatcher.BeginInvoke( OpenOverlaySettings );
 		}
 	}
 
@@ -138,11 +156,38 @@ public partial class GripOMeterWindow : Window
 
 			e.Handled = true;
 		}
+		else if ( _mover.IsMoving )
+		{
+			_mover.Stop();
+
+			e.Handled = true;
+		}
 	}
 
 	private void Window_MouseMove( object sender, System.Windows.Input.MouseEventArgs e )
 	{
 		_scaler.Update();
+		_mover.Update();
+	}
+
+	private void OpenOverlaySettings()
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		// the Grip-O-Meter has no background panel, so only its window opacity can be customized
+		var overlaySettingsWindow = new OverlaySettingsWindow(
+			colorEnabled: false,
+			getColor: null,
+			setColor: null,
+			defaultColor: "#000000",
+			getOpacity: () => settings.OverlaysGripOMeterWindowOpacity,
+			setOpacity: value => settings.OverlaysGripOMeterWindowOpacity = value,
+			defaultOpacity: 1f )
+		{
+			Owner = this
+		};
+
+		overlaySettingsWindow.ShowDialog();
 	}
 
 	public void Tick( App app )
@@ -154,6 +199,18 @@ public partial class GripOMeterWindow : Window
 			if ( _updateCounter <= 0 )
 			{
 				_updateCounter = UpdateInterval;
+
+				// rebuild the gradient brushes if the opacity setting changed since the last update
+				var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+				var backgroundAlpha = (byte) Math.Round( Math.Clamp( settings.OverlaysGripOMeterWindowOpacity, 0f, 1f ) * 255f );
+
+				if ( backgroundAlpha != _backgroundBrushesAlpha )
+				{
+					_backgroundBrushesAlpha = backgroundAlpha;
+
+					RebuildBackgroundBrushes( backgroundAlpha );
+				}
 
 				_smoothedSkidSlip += ( app.SteeringEffects.SkidSlip - _smoothedSkidSlip ) * SmoothingFactor;
 				_smoothedSeatOfPants += ( app.SteeringEffects.SeatOfPantsEffect - _smoothedSeatOfPants ) * SmoothingFactor;

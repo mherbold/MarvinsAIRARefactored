@@ -18,8 +18,7 @@
         LocationChanged="Window_LocationChanged"
         PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
         PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp"
-        MouseMove="Window_MouseMove"
-        Cursor="SizeAll">
+        MouseMove="Window_MouseMove">
 
     <Window.Resources>
         <converters:BooleanToVisibilityHiddenConverter x:Key="BoolToVis" />
@@ -40,83 +39,135 @@
                             ScaleY="{Binding Settings.OverlaysGripOMeterWindowScale}" />
         </Grid.LayoutTransform>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="384" />
-        </Grid.ColumnDefinitions>
+        <!-- gauge content, grouped separately from the edit-mode buttons -->
+        <Grid x:Name="GaugeContent">
 
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="8" />
-            <RowDefinition Height="8" />
-            <RowDefinition Height="80" />
-            <RowDefinition Height="8" />
-        </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="384" />
+            </Grid.ColumnDefinitions>
 
-        <TextBlock x:Name="GripOMeter_Title"
-                   Style="{StaticResource MairaTextBlockStyle}"
-                   Grid.Row="0"
-                   Grid.Column="0"
-                   Text="{Binding Localization[GripOMeter]}"
-                   Visibility="{Binding Settings.OverlaysShowGripOMeterTitle, Converter={StaticResource BoolToVis}}"
-                   HorizontalAlignment="Center"
-                   FontSize="30" />
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="8" />
+                <RowDefinition Height="80" />
+                <RowDefinition Height="8" />
+            </Grid.RowDefinitions>
 
-        <Border x:Name="GripOMeter_Background"
-                Grid.Row="2"
-                Grid.RowSpan="3"
-                Grid.Column="0"
-                Width="384"
-                Height="96"
-                CornerRadius="48"
-                Background="White"
-                BorderThickness="4"
-                BorderBrush="Black" />
+            <TextBlock x:Name="GripOMeter_Title"
+                       Style="{StaticResource MairaTextBlockStyle}"
+                       Grid.Row="0"
+                       Grid.Column="0"
+                       Text="{Binding Localization[GripOMeter]}"
+                       Visibility="{Binding Settings.OverlaysShowGripOMeterTitle, Converter={StaticResource BoolToVis}}"
+                       HorizontalAlignment="Center"
+                       FontSize="30" />
 
-        <Border Grid.Row="2"
-                Grid.RowSpan="3"
-                Grid.Column="0"
-                Width="96"
-                Height="96"
-                CornerRadius="48"
-                BorderThickness="4"
-                BorderBrush="Black" />
+            <Border x:Name="GripOMeter_Background"
+                    Grid.Row="2"
+                    Grid.RowSpan="3"
+                    Grid.Column="0"
+                    Width="384"
+                    Height="96"
+                    CornerRadius="48"
+                    BorderThickness="4"
+                    BorderBrush="Black" />
 
-        <Border Grid.Row="3"
-                Grid.Column="0"
+            <Border Grid.Row="2"
+                    Grid.RowSpan="3"
+                    Grid.Column="0"
+                    Width="96"
+                    Height="96"
+                    CornerRadius="48"
+                    BorderThickness="4"
+                    BorderBrush="Black" />
+
+            <Border Grid.Row="3"
+                    Grid.Column="0"
+                    Background="Black"
+                    Width="80"
+                    Height="80"
+                    CornerRadius="40">
+
+                <Border.RenderTransform>
+                    <TranslateTransform x:Name="GripOMeter_Ball_Transform" />
+                </Border.RenderTransform>
+
+            </Border>
+
+            <Border Grid.Row="3"
+                    Grid.Column="0"
+                    Background="White"
+                    BorderBrush="Black"
+                    BorderThickness="5"
+                    Width="40"
+                    Height="40"
+                    CornerRadius="20">
+
+                <Border.RenderTransform>
+                    <TranslateTransform x:Name="GripOMeter_SeatOfPants_Transform" />
+                </Border.RenderTransform>
+
+            </Border>
+
+        </Grid>
+
+        <Border x:Name="GearIcon"
+                Margin="0,0,90,6"
+                Padding="4"
+                CornerRadius="6"
                 Background="Black"
-                Width="80"
-                Height="80"
-                CornerRadius="40">
-
-            <Border.RenderTransform>
-                <TranslateTransform x:Name="GripOMeter_Ball_Transform" />
-            </Border.RenderTransform>
-
+                BorderBrush="#ff5b2e"
+                BorderThickness="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Cursor="Hand"
+                Visibility="Collapsed">
+            <Grid Width="28"
+                  Height="28"
+                  IsHitTestVisible="False">
+                <Viewbox Width="21"
+                         Height="21"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center">
+                    <TextBlock Text="&#xE713;"
+                               FontFamily="Segoe MDL2 Assets"
+                               Foreground="#ff5b2e" />
+                </Viewbox>
+            </Grid>
         </Border>
 
-        <Border Grid.Row="3"
-                Grid.Column="0"
-                Background="White"
-                BorderBrush="Black"
-                BorderThickness="5"
-                Width="40"
-                Height="40"
-                CornerRadius="20">
-
-            <Border.RenderTransform>
-                <TranslateTransform x:Name="GripOMeter_SeatOfPants_Transform" />
-            </Border.RenderTransform>
-
+        <Border x:Name="DragIcon"
+                Margin="0,0,48,6"
+                Padding="4"
+                CornerRadius="6"
+                Background="Black"
+                BorderBrush="#ff5b2e"
+                BorderThickness="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Cursor="SizeAll"
+                Visibility="Collapsed">
+            <Grid Width="28"
+                  Height="28"
+                  IsHitTestVisible="False">
+                <Viewbox Width="24"
+                         Height="24"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center">
+                    <Path Data="M16,1 L22,7 L17.5,7 L17.5,14.5 L25,14.5 L25,10 L31,16 L25,22 L25,17.5 L17.5,17.5 L17.5,25 L22,25 L16,31 L10,25 L14.5,25 L14.5,17.5 L7,17.5 L7,22 L1,16 L7,10 L7,14.5 L14.5,14.5 L14.5,7 L10,7 Z"
+                          Fill="#ff5b2e" />
+                </Viewbox>
+            </Grid>
         </Border>
 
         <Border x:Name="ScaleIcon"
-                Grid.Row="0"
-                Grid.RowSpan="5"
-                Grid.Column="0"
                 Margin="0,0,6,6"
                 Padding="4"
                 CornerRadius="6"
                 Background="Black"
+                BorderBrush="#ff5b2e"
+                BorderThickness="1"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Cursor="SizeNWSE"
@@ -124,10 +175,10 @@
             <Rectangle Width="28"
                        Height="28"
                        Fill="#ff5b2e"
-                       IsHitTestVisible="False">
+                       IsHitTestVisible="False"
+                       RenderOptions.BitmapScalingMode="HighQuality">
                 <Rectangle.OpacityMask>
-                    <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Buttons/solo.png"
-                                RenderOptions.BitmapScalingMode="HighQuality" />
+                    <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Buttons/solo.png" />
                 </Rectangle.OpacityMask>
             </Rectangle>
         </Border>

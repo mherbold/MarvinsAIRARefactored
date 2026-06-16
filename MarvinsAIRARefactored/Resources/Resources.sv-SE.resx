@@ -865,7 +865,13 @@
     <value>ALLA ÖVERLÄGG</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Gör alla överläggsfönster synliga och flyttbara</value>
+    <value>Aktivera redigeringsläge</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Visa när utanför banan</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Visa i replayläge</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Återställ alla överläggsfönster</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>Överlägg</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Aktivera överlägsfönster</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Visa överlägsfönstrets titel</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Överläggsinställningar</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Bakgrundsfärg</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Röd</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Grön</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blå</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Opacitet</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Stäng</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>CPU-TILLHÖRIGHET</value>

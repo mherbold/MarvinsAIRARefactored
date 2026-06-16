@@ -17,11 +17,20 @@ public class CloudService
 	public bool CheckingForUpdate { get; private set; } = false;
 	public bool DownloadingUpdate { get; private set; } = false;
 
+	private static readonly TimeSpan UpdateCheckInterval = TimeSpan.FromHours( 1 );
+
+	private DateTime _nextUpdateCheckUtc = DateTime.MaxValue;
+
 	public void Initialize()
 	{
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[CloudService] Initialize >>>" );
+
+		// Schedule the first recurring update check one interval from now. The initial
+		// (startup) check is fired separately from App_Startup; this keeps users who never
+		// restart the app current by re-checking periodically while iRacing is not running.
+		_nextUpdateCheckUtc = DateTime.UtcNow + UpdateCheckInterval;
 
 		var networkInterfaceList = NetworkInterface.GetAllNetworkInterfaces();
 
@@ -38,6 +47,34 @@ public class CloudService
 		}
 
 		app.Logger.WriteLine( "[CloudService] <<< Initialize" );
+	}
+
+	public void Tick( App app )
+	{
+		if ( !DataContext.DataContext.Instance.Settings.AppCheckForUpdates )
+		{
+			return;
+		}
+
+		// Never check for updates while the iRacing simulator is running.
+		if ( app.Simulator.IsConnected )
+		{
+			return;
+		}
+
+		if ( CheckingForUpdate || DownloadingUpdate )
+		{
+			return;
+		}
+
+		if ( DateTime.UtcNow < _nextUpdateCheckUtc )
+		{
+			return;
+		}
+
+		_nextUpdateCheckUtc = DateTime.UtcNow + UpdateCheckInterval;
+
+		_ = CheckForUpdates( false );
 	}
 
 	class GetCurrentVersionResponse

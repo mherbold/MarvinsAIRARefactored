@@ -1097,7 +1097,7 @@ public partial class Simulator
 
 		// update visibility of overlays
 
-		if ( IsOnTrack != WasOnTrack )
+		if ( ( IsOnTrack != WasOnTrack ) || ( IsReplayPlaying != _isReplayPlayingLastFrame ) )
 		{
 			app.UpdateGripOMeterWindowVisibility();
 			app.UpdateGapMonitorWindowVisibility();

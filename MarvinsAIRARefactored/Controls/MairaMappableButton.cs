@@ -1,4 +1,5 @@
 ﻿
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
 
@@ -10,12 +11,28 @@ namespace MarvinsAIRARefactored.Controls;
 
 public class MairaMappableButton : MairaButton
 {
+	private static readonly ConditionalWeakTable<MairaMappableButton, object?> _instances = new();
+
 	public MairaMappableButton()
 	{
 		Loaded += MairaMappableButton_Loaded;
 
 		TextBlock.PreviewMouseRightButtonDown += MappableMairaButton_Label_PreviewMouseRightButtonDown;
 		Button.PreviewMouseRightButtonDown += MappableMairaButton_Button_PreviewMouseRightButtonDown;
+
+		_instances.Add( this, null );
+	}
+
+	// Re-evaluates the mapped (orange border) state for every mappable button in the app. The
+	// per-button IsMapped state is only computed on Loaded and after the button's own right-click
+	// mapping flow, so when mappings are changed elsewhere (e.g. the first-run wizard mutating the
+	// same ButtonMappings objects) the already-loaded buttons would otherwise stay stale.
+	public static void RefreshAll()
+	{
+		foreach ( var instance in _instances )
+		{
+			instance.Key.IsMapped = instance.Key.HasAnyMappedButton();
+		}
 	}
 
 	#region User Control Events

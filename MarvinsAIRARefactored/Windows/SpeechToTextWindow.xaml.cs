@@ -16,6 +16,7 @@ public partial class SpeechToTextWindow : Window
 	private bool _isDraggable = false;
 
 	private readonly OverlayWindowScaler _scaler;
+	private readonly OverlayWindowMover _mover;
 
 	private float _windowVisibilityTimer = 0f;
 	private float _finalVisibilityTimer = 0f;
@@ -38,7 +39,8 @@ public partial class SpeechToTextWindow : Window
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		_scaler = new OverlayWindowScaler( this, () => settings.OverlaysSpeechToTextWindowScale, value => settings.OverlaysSpeechToTextWindowScale = value );
+		_scaler = new OverlayWindowScaler( this, ScaleIcon, () => settings.OverlaysSpeechToTextWindowScale, value => settings.OverlaysSpeechToTextWindowScale = value );
+		_mover = new OverlayWindowMover( this, DragIcon );
 
 		var rectangle = settings.OverlaysSpeechToTextWindowPosition;
 
@@ -83,6 +85,8 @@ public partial class SpeechToTextWindow : Window
 		_isDraggable = App.Instance!.OverlaysDraggable;
 
 		ScaleIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
+		GearIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
+		DragIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
 
 		if ( _isDraggable )
 		{
@@ -109,14 +113,6 @@ public partial class SpeechToTextWindow : Window
 		_ = PInvoke.SetWindowLong( (HWND) hwnd, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exStyle );
 	}
 
-	protected override void OnMouseLeftButtonDown( MouseButtonEventArgs e )
-	{
-		if ( _isDraggable )
-		{
-			DragMove();
-		}
-	}
-
 	private void Window_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
 	{
 		if ( ReferenceEquals( e.OriginalSource, ScaleIcon ) )
@@ -124,6 +120,18 @@ public partial class SpeechToTextWindow : Window
 			_scaler.Start();
 
 			e.Handled = true;
+		}
+		else if ( ReferenceEquals( e.OriginalSource, DragIcon ) )
+		{
+			_mover.Start();
+
+			e.Handled = true;
+		}
+		else if ( ReferenceEquals( e.OriginalSource, GearIcon ) )
+		{
+			e.Handled = true;
+
+			Dispatcher.BeginInvoke( OpenOverlaySettings );
 		}
 	}
 
@@ -135,11 +143,37 @@ public partial class SpeechToTextWindow : Window
 
 			e.Handled = true;
 		}
+		else if ( _mover.IsMoving )
+		{
+			_mover.Stop();
+
+			e.Handled = true;
+		}
 	}
 
 	private void Window_MouseMove( object sender, System.Windows.Input.MouseEventArgs e )
 	{
 		_scaler.Update();
+		_mover.Update();
+	}
+
+	private void OpenOverlaySettings()
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var overlaySettingsWindow = new OverlaySettingsWindow(
+			colorEnabled: true,
+			getColor: () => settings.OverlaysSpeechToTextWindowBackgroundColor,
+			setColor: value => settings.OverlaysSpeechToTextWindowBackgroundColor = value,
+			defaultColor: "#000000",
+			getOpacity: () => settings.OverlaysSpeechToTextWindowBackgroundOpacity,
+			setOpacity: value => settings.OverlaysSpeechToTextWindowBackgroundOpacity = value,
+			defaultOpacity: 0.9f )
+		{
+			Owner = this
+		};
+
+		overlaySettingsWindow.ShowDialog();
 	}
 
 	private void ShowSampleData()

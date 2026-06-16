@@ -865,7 +865,13 @@
     <value>POB GORCHUDIO</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Gwneud pob ffenestr gorchudio yn weladwy ac yn llusgadwy</value>
+    <value>Galluogi'r modd golygu</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Dangos pan oddi ar y trac</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Dangos yn y modd ailchwarae</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Ailosod pob ffenestr gorchudio</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>Haenau</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Galluogi ffenestr haen</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Dangos teitl ffenestr haen</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Gosodiadau gorchudio</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Lliw cefndir</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Coch</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Gwyrdd</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Glas</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Didreiddedd</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Cau</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>AFFINEDD CPU</value>

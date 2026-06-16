@@ -865,7 +865,13 @@
     <value>ALLE OVERLEJRINGER</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Gør alle overlejringsvinduer synlige og flytbare</value>
+    <value>Aktivér redigeringstilstand</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Vis uden for banen</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Vis i gengivelsestilstand</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Nulstil alle overlejringsvinduer</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>Overlays</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Aktiver overlayvindue</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Vis titelbjælke i overlayvindue</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Overlejringsindstillinger</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Baggrundsfarve</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Rød</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Grøn</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blå</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Uigennemsigtighed</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Luk</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>CPU-AFFINITET</value>

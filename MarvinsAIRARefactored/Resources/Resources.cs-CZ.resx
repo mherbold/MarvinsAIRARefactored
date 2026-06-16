@@ -865,7 +865,13 @@
     <value>VŠECHNY PŘEKRYVY</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Zviditelnit a umožnit přesouvání všech překryvných oken</value>
+    <value>Zapnout režim úprav</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Zobrazit mimo trať</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Zobrazit v režimu přehrávání</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Obnovit všechna překryvná okna</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>Překryvy</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Povolit okno překryvu</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Zobrazit titulek okna překryvu</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Nastavení překryvu</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Barva pozadí</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Červená</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Zelená</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Modrá</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Neprůhlednost</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zavřít</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>AFINITA CPU</value>

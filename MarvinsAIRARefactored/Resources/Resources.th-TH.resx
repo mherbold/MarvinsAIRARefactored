@@ -865,7 +865,13 @@
     <value>Overlay ทั้งหมด</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>ทำให้หน้าต่าง Overlay ทั้งหมดมองเห็นได้และลากได้</value>
+    <value>เปิดโหมดแก้ไข</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>แสดงเมื่อออกนอกสนาม</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>แสดงในโหมดรีเพลย์</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>รีเซ็ตหน้าต่าง Overlay ทั้งหมด</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>โอเวอร์เลย์</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>เปิดใช้งานหน้าต่างโอเวอร์เลย์</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>แสดงชื่อหน้าต่างโอเวอร์เลย์</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>การตั้งค่าโอเวอร์เลย์</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>สีพื้นหลัง</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>แดง</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>เขียว</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>น้ำเงิน</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>ความทึบ</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>ปิด</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>CPU Affinity</value>

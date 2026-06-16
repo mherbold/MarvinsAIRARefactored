@@ -865,7 +865,13 @@
     <value>WSZYSTKIE NAKŁADKI</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Uczyń wszystkie okna nakładek widocznymi i przeciągalnymi</value>
+    <value>Włącz tryb edycji</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Pokaż poza torem</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Pokaż w trybie powtórki</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Zresetuj wszystkie okna nakładek</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>Nakładki</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Włącz okno nakładki</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Pokaż tytuł okna nakładki</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Ustawienia nakładki</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Kolor tła</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Czerwony</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Zielony</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Niebieski</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Krycie</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Zamknij</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>Przypisanie rdzenia CPU</value>

@@ -867,7 +867,13 @@
     <value>すべてのオーバーレイ</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>すべてのオーバーレイウィンドウを表示してドラッグ可能にする</value>
+    <value>編集モードを有効にする</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>コース外で表示する</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>リプレイモードで表示する</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>すべてのオーバーレイウィンドウをリセット</value>
@@ -1302,11 +1308,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>オーバーレイ</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>オーバーレイウィンドウを有効にする</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>オーバーレイウィンドウのタイトルを表示する</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>オーバーレイ設定</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>背景色</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>赤</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>緑</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>青</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>閉じる</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>CPUアフィニティ</value>

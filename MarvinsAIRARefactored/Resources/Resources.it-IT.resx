@@ -865,7 +865,13 @@
     <value>TUTTI GLI OVERLAY</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Rendi visibili e trascinabili tutte le finestre overlay</value>
+    <value>Attiva modalità modifica</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Mostra fuori pista</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Mostra in modalità replay</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Reimposta tutte le finestre overlay</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>Sovrapposizioni</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Abilita finestra di sovrapposizione</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Mostra titolo finestra di sovrapposizione</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Impostazioni overlay</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Colore di sfondo</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Rosso</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blu</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Opacità</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Chiudi</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>AFFINITÀ CPU</value>

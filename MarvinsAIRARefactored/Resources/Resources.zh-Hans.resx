@@ -865,7 +865,13 @@
     <value>所有覆盖层</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>使所有覆盖窗口可见并可拖动</value>
+    <value>启用编辑模式</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>离开赛道时显示</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>回放模式下显示</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>重置所有覆盖窗口</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>叠加层</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>启用叠加层窗口</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>显示叠加层窗口标题</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>叠加层设置</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>背景颜色</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>红色</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>绿色</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>蓝色</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>关闭</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>CPU 亲和性</value>

@@ -18,12 +18,12 @@
         LocationChanged="Window_LocationChanged"
         PreviewMouseLeftButtonDown="Window_PreviewMouseLeftButtonDown"
         PreviewMouseLeftButtonUp="Window_PreviewMouseLeftButtonUp"
-        MouseMove="Window_MouseMove"
-        Cursor="SizeAll">
+        MouseMove="Window_MouseMove">
 
     <Window.Resources>
         <converters:BooleanToVisibilityHiddenConverter x:Key="BoolToVis" />
-        <!-- DeltaMonitorWindow always has a black background, so force light text/icon colors regardless of theme -->
+        <converters:ColorAndOpacityToBrushConverter x:Key="ColorAndOpacityToBrush" />
+        <!-- DeltaMonitorWindow forces light text/icon colors regardless of theme (background is dark by default) -->
         <SolidColorBrush x:Key="Brush.Foreground.Primary" Color="#ffffff" />
         <SolidColorBrush x:Key="Brush.Foreground.Secondary" Color="#eeeeee" />
         <SolidColorBrush x:Key="Brush.Border.Normal" Color="#aaaaaa" />
@@ -60,9 +60,15 @@
         <Border Grid.Row="1"
                 BorderThickness="2"
                 BorderBrush="White"
-                Background="Black"
                 CornerRadius="10"
                 Padding="10,10,10,10">
+
+            <Border.Background>
+                <MultiBinding Converter="{StaticResource ColorAndOpacityToBrush}">
+                    <Binding Path="Settings.OverlaysDeltaMonitorWindowBackgroundColor" />
+                    <Binding Path="Settings.OverlaysDeltaMonitorWindowBackgroundOpacity" />
+                </MultiBinding>
+            </Border.Background>
 
             <Grid>
 
@@ -129,6 +135,59 @@
 
         </Border>
 
+        <Border x:Name="GearIcon"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="0,0,90,6"
+                Padding="4"
+                CornerRadius="6"
+                Background="Black"
+                BorderBrush="#ff5b2e"
+                BorderThickness="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Cursor="Hand"
+                Visibility="Collapsed">
+            <Grid Width="28"
+                  Height="28"
+                  IsHitTestVisible="False">
+                <Viewbox Width="21"
+                         Height="21"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center">
+                    <TextBlock Text="&#xE713;"
+                               FontFamily="Segoe MDL2 Assets"
+                               Foreground="#ff5b2e" />
+                </Viewbox>
+            </Grid>
+        </Border>
+
+        <Border x:Name="DragIcon"
+                Grid.Row="0"
+                Grid.RowSpan="2"
+                Margin="0,0,48,6"
+                Padding="4"
+                CornerRadius="6"
+                Background="Black"
+                BorderBrush="#ff5b2e"
+                BorderThickness="1"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Cursor="SizeAll"
+                Visibility="Collapsed">
+            <Grid Width="28"
+                  Height="28"
+                  IsHitTestVisible="False">
+                <Viewbox Width="24"
+                         Height="24"
+                         HorizontalAlignment="Center"
+                         VerticalAlignment="Center">
+                    <Path Data="M16,1 L22,7 L17.5,7 L17.5,14.5 L25,14.5 L25,10 L31,16 L25,22 L25,17.5 L17.5,17.5 L17.5,25 L22,25 L16,31 L10,25 L14.5,25 L14.5,17.5 L7,17.5 L7,22 L1,16 L7,10 L7,14.5 L14.5,14.5 L14.5,7 L10,7 Z"
+                          Fill="#ff5b2e" />
+                </Viewbox>
+            </Grid>
+        </Border>
+
         <Border x:Name="ScaleIcon"
                 Grid.Row="0"
                 Grid.RowSpan="2"
@@ -136,6 +195,8 @@
                 Padding="4"
                 CornerRadius="6"
                 Background="Black"
+                BorderBrush="#ff5b2e"
+                BorderThickness="1"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom"
                 Cursor="SizeNWSE"
@@ -143,10 +204,10 @@
             <Rectangle Width="28"
                        Height="28"
                        Fill="#ff5b2e"
-                       IsHitTestVisible="False">
+                       IsHitTestVisible="False"
+                       RenderOptions.BitmapScalingMode="HighQuality">
                 <Rectangle.OpacityMask>
-                    <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Buttons/solo.png"
-                                RenderOptions.BitmapScalingMode="HighQuality" />
+                    <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Buttons/solo.png" />
                 </Rectangle.OpacityMask>
             </Rectangle>
         </Border>

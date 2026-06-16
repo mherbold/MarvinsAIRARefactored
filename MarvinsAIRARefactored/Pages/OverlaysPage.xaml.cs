@@ -39,6 +39,15 @@ public partial class OverlaysPage : UserControl
 		settings.OverlaysGripOMeterWindowPosition = System.Drawing.Rectangle.Empty;
 		settings.OverlaysSpeechToTextWindowPosition = System.Drawing.Rectangle.Empty;
 
+		// reset all overlay window background colors and opacities to their defaults
+		settings.OverlaysGapMonitorWindowBackgroundColor = "#000000";
+		settings.OverlaysGapMonitorWindowBackgroundOpacity = 1f;
+		settings.OverlaysDeltaMonitorWindowBackgroundColor = "#000000";
+		settings.OverlaysDeltaMonitorWindowBackgroundOpacity = 1f;
+		settings.OverlaysSpeechToTextWindowBackgroundColor = "#000000";
+		settings.OverlaysSpeechToTextWindowBackgroundOpacity = 0.9f;
+		settings.OverlaysGripOMeterWindowOpacity = 1f;
+
 		// move any open windows to 0,0 immediately
 		app.GapMonitorWindow?.ResetWindow();
 		app.DeltaMonitorWindow?.ResetWindow();

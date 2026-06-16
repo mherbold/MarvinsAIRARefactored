@@ -868,7 +868,13 @@ Hier ist der Link zum Spenden:</value>
     <value>ALLE OVERLAYS</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Alle Overlay-Fenster sichtbar und verschiebbar machen</value>
+    <value>Bearbeitungsmodus aktivieren</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Außerhalb der Strecke anzeigen</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Im Wiederholungsmodus anzeigen</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Alle Overlay-Fenster zurücksetzen</value>
@@ -1304,11 +1310,29 @@ Hier ist der Link zum Spenden:</value>
   <data name="Overlays" xml:space="preserve">
     <value>Overlays</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Overlay-Fenster aktivieren</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Overlay-Fenstertitel anzeigen</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Overlay-Einstellungen</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Hintergrundfarbe</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Rot</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Grün</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Blau</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Deckkraft</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Schließen</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>CPU-Zuweisung</value>

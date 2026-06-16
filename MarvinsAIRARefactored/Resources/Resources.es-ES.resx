@@ -865,7 +865,13 @@
     <value>TODAS LAS SUPERPOSICIONES</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Hacer visibles y arrastrables todas las ventanas superpuestas</value>
+    <value>Activar modo de edición</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Mostrar fuera de pista</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Mostrar en modo repetición</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Restablecer todas las ventanas superpuestas</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>Superposiciones</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Activar la ventana de superposición</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Mostrar el título de la ventana de superposición</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Configuración de superposición</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Color de fondo</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Rojo</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Verde</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Azul</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Opacidad</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Cerrar</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>AFINIDAD DE CPU</value>

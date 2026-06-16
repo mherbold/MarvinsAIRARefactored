@@ -865,7 +865,13 @@
     <value>ВСЕ ОВЕРЛЕИ</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Сделать все окна оверлеев видимыми и перемещаемыми</value>
+    <value>Включить режим редактирования</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Показывать вне трассы</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Показывать в режиме повтора</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Сбросить все окна оверлеев</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>Оверелеи</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Включить окно наложения</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Показать заголовок окна наложения</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Настройки наложения</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Цвет фона</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Красный</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Зелёный</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Синий</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Непрозрачность</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Закрыть</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>Привязка к Процессору</value>

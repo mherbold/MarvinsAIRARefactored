@@ -1,0 +1,100 @@
+<Window x:Class="MarvinsAIRARefactored.Windows.OverlaySettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MarvinsAIRARefactored.Windows"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding Localization[OverlaySettings]}"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        SizeToContent="WidthAndHeight"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="Manual"
+        ShowInTaskbar="False"
+        Topmost="True">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </Window.DataContext>
+
+    <StackPanel Margin="20"
+                MinWidth="640">
+
+        <StackPanel Margin="0,0,0,10">
+
+            <controls:MairaTextBox x:Name="Hex_MairaTextBox"
+                                   Label="{Binding Localization[BackgroundColor]}"
+                                   ValueChanged="Hex_MairaTextBox_ValueChanged"
+                                   Margin="0,0,0,10" />
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="10" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <controls:MairaKnob x:Name="R_MairaKnob"
+                                    Grid.Column="0"
+                                    Grid.Row="0"
+                                    Label="{Binding Localization[Red]}"
+                                    StepSize="0.01" />
+
+                <controls:MairaKnob x:Name="G_MairaKnob"
+                                    Grid.Column="2"
+                                    Grid.Row="0"
+                                    Label="{Binding Localization[Green]}"
+                                    StepSize="0.01" />
+
+                <controls:MairaKnob x:Name="B_MairaKnob"
+                                    Grid.Column="4"
+                                    Grid.Row="0"
+                                    Label="{Binding Localization[Blue]}"
+                                    StepSize="0.01" />
+
+                <controls:MairaKnob x:Name="Opacity_MairaKnob"
+                                    Grid.Column="0"
+                                    Grid.Row="2"
+                                    Label="{Binding Localization[Opacity]}"
+                                    StepSize="0.01"
+                                    Margin="0,0,0,16" />
+
+            </Grid>
+
+        </StackPanel>
+
+        <Grid HorizontalAlignment="Center">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <controls:MairaButton Grid.Column="0"
+                                  Label="{Binding Localization[Reset]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                  Click="Reset_MairaButton_Click" />
+
+            <controls:MairaButton Grid.Column="2"
+                                  Label="{Binding Localization[Close]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                  Click="Close_MairaButton_Click" />
+
+        </Grid>
+
+    </StackPanel>
+
+</Window>

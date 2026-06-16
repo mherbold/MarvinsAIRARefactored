@@ -865,7 +865,13 @@
     <value>ԲՈԼՈՐ ՎԵՐԱԴՐՈՒՄՆԵՐԸ</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>Դարձնել բոլոր վերադրման պատուհանները տեսանելի և քաշելի</value>
+    <value>Միացնել խմբագրման ռեժիմը</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Ցույց տալ ուղուց դուրս լինելիս</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Ցույց տալ վերարտադրման ռեժիմում</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>Վերակայել բոլոր վերադրման պատուհանները</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>Շերտ ծածկոններ</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>Միացնել ծածկույթի պատուհանը</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Ցույց տալ ծածկույթի պատուհանի վերնագիրը</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Ծածկույթի կարգավորումներ</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Ֆոնի գույն</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Կարմիր</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Կանաչ</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Կապույտ</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Անթափանցելիություն</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Փակել</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>ՊՄ ԿԱՊՎԱԾՈՒԹՅՈՒՆ</value>

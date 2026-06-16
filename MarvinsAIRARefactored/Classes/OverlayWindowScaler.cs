@@ -14,15 +14,17 @@ public sealed class OverlayWindowScaler
 	private const float Sensitivity = 0.0015f;
 
 	private readonly Window _window;
+	private readonly FrameworkElement _scaleHandle;
 	private readonly Func<float> _getScale;
 	private readonly Action<float> _setScale;
 
 	private bool _isScaling = false;
 	private System.Drawing.Point _anchor;
 
-	public OverlayWindowScaler( Window window, Func<float> getScale, Action<float> setScale )
+	public OverlayWindowScaler( Window window, FrameworkElement scaleHandle, Func<float> getScale, Action<float> setScale )
 	{
 		_window = window;
+		_scaleHandle = scaleHandle;
 		_getScale = getScale;
 		_setScale = setScale;
 	}
@@ -79,6 +81,12 @@ public sealed class OverlayWindowScaler
 		}
 
 		_isScaling = false;
+
+		// place the cursor at the center of the scale handle's new on-screen location so it reappears under the button the user was holding,
+		// instead of back at the anchor point where scaling started
+		var center = _scaleHandle.PointToScreen( new System.Windows.Point( _scaleHandle.ActualWidth / 2, _scaleHandle.ActualHeight / 2 ) );
+
+		WinFormsCursor.Position = new System.Drawing.Point( (int) center.X, (int) center.Y );
 
 		_window.LostMouseCapture -= Window_LostMouseCapture;
 

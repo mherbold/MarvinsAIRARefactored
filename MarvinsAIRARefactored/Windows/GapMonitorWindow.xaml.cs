@@ -23,6 +23,7 @@ public partial class GapMonitorWindow : Window
 	private bool _isDraggable = false;
 
 	private readonly OverlayWindowScaler _scaler;
+	private readonly OverlayWindowMover _mover;
 
 	// Sample data shown while "make all overlay windows visible and draggable" is enabled, so the window can be positioned and scaled
 	private const string SampleAheadCarNumber = "#24";
@@ -65,7 +66,8 @@ public partial class GapMonitorWindow : Window
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		_scaler = new OverlayWindowScaler( this, () => settings.OverlaysGapMonitorWindowScale, value => settings.OverlaysGapMonitorWindowScale = value );
+		_scaler = new OverlayWindowScaler( this, ScaleIcon, () => settings.OverlaysGapMonitorWindowScale, value => settings.OverlaysGapMonitorWindowScale = value );
+		_mover = new OverlayWindowMover( this, DragIcon );
 
 		var rectangle = settings.OverlaysGapMonitorWindowPosition;
 
@@ -106,6 +108,8 @@ public partial class GapMonitorWindow : Window
 		_isDraggable = App.Instance!.OverlaysDraggable;
 
 		ScaleIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
+		GearIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
+		DragIcon.Visibility = _isDraggable ? Visibility.Visible : Visibility.Collapsed;
 
 		if ( _isDraggable )
 		{
@@ -128,14 +132,6 @@ public partial class GapMonitorWindow : Window
 		_ = PInvoke.SetWindowLong( (HWND) hwnd, WINDOW_LONG_PTR_INDEX.GWL_EXSTYLE, exStyle );
 	}
 
-	protected override void OnMouseLeftButtonDown( MouseButtonEventArgs e )
-	{
-		if ( _isDraggable )
-		{
-			DragMove();
-		}
-	}
-
 	private void Window_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
 	{
 		if ( ReferenceEquals( e.OriginalSource, ScaleIcon ) )
@@ -143,6 +139,18 @@ public partial class GapMonitorWindow : Window
 			_scaler.Start();
 
 			e.Handled = true;
+		}
+		else if ( ReferenceEquals( e.OriginalSource, DragIcon ) )
+		{
+			_mover.Start();
+
+			e.Handled = true;
+		}
+		else if ( ReferenceEquals( e.OriginalSource, GearIcon ) )
+		{
+			e.Handled = true;
+
+			Dispatcher.BeginInvoke( OpenOverlaySettings );
 		}
 	}
 
@@ -154,11 +162,37 @@ public partial class GapMonitorWindow : Window
 
 			e.Handled = true;
 		}
+		else if ( _mover.IsMoving )
+		{
+			_mover.Stop();
+
+			e.Handled = true;
+		}
 	}
 
 	private void Window_MouseMove( object sender, System.Windows.Input.MouseEventArgs e )
 	{
 		_scaler.Update();
+		_mover.Update();
+	}
+
+	private void OpenOverlaySettings()
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var overlaySettingsWindow = new OverlaySettingsWindow(
+			colorEnabled: true,
+			getColor: () => settings.OverlaysGapMonitorWindowBackgroundColor,
+			setColor: value => settings.OverlaysGapMonitorWindowBackgroundColor = value,
+			defaultColor: "#000000",
+			getOpacity: () => settings.OverlaysGapMonitorWindowBackgroundOpacity,
+			setOpacity: value => settings.OverlaysGapMonitorWindowBackgroundOpacity = value,
+			defaultOpacity: 1f )
+		{
+			Owner = this
+		};
+
+		overlaySettingsWindow.ShowDialog();
 	}
 
 	private void ShowSampleData()

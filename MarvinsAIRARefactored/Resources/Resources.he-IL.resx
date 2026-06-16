@@ -865,7 +865,13 @@
     <value>כל הכיסויים</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
-    <value>הפוך את כל חלונות הכיסוי לגלויים וניתנים לגרירה</value>
+    <value>הפעל מצב עריכה</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>הצג כשמחוץ למסלול</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>הצג במצב שידור חוזר</value>
   </data>
   <data name="ResetAllOverlayWindows" xml:space="preserve">
     <value>אפס את כל חלונות הכיסוי</value>
@@ -1299,11 +1305,29 @@
   <data name="Overlays" xml:space="preserve">
     <value>כיסויים</value>
   </data>
-  <data name="EnableOverlayWindow" xml:space="preserve">
-    <value>הפעל חלון כיסוי</value>
-  </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>הצג כותרת חלון כיסוי</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>הגדרות כיסוי</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>צבע רקע</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>אדום</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>ירוק</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>כחול</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>אטימות</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>סגור</value>
   </data>
   <data name="CPUAffinity_UC" xml:space="preserve">
     <value>זיקת מעבד</value>

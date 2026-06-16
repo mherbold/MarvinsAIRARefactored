@@ -9606,6 +9606,60 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Overlays - Show when off track
+
+	private bool _overlaysShowWhenOffTrack = false;
+
+	public bool OverlaysShowWhenOffTrack
+	{
+		get => _overlaysShowWhenOffTrack;
+
+		set
+		{
+			if ( value != _overlaysShowWhenOffTrack )
+			{
+				_overlaysShowWhenOffTrack = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.UpdateGapMonitorWindowVisibility();
+			app.UpdateDeltaMonitorWindowVisibility();
+			app.UpdateGripOMeterWindowVisibility();
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Show in replay mode
+
+	private bool _overlaysShowInReplayMode = false;
+
+	public bool OverlaysShowInReplayMode
+	{
+		get => _overlaysShowInReplayMode;
+
+		set
+		{
+			if ( value != _overlaysShowInReplayMode )
+			{
+				_overlaysShowInReplayMode = value;
+
+				OnPropertyChanged();
+			}
+
+			var app = App.Instance!;
+
+			app.UpdateGapMonitorWindowVisibility();
+			app.UpdateDeltaMonitorWindowVisibility();
+			app.UpdateGripOMeterWindowVisibility();
+		}
+	}
+
+	#endregion
+
 	#region Overlays - Show Gap monitor window
 
 	private bool _overlaysShowGapMonitorWindow = false;
@@ -9712,6 +9766,50 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _overlaysGapMonitorWindowPosition )
 			{
 				_overlaysGapMonitorWindowPosition = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Gap monitor window background color
+
+	private string _overlaysGapMonitorWindowBackgroundColor = "#000000";
+
+	public string OverlaysGapMonitorWindowBackgroundColor
+	{
+		get => _overlaysGapMonitorWindowBackgroundColor;
+
+		set
+		{
+			if ( value != _overlaysGapMonitorWindowBackgroundColor )
+			{
+				_overlaysGapMonitorWindowBackgroundColor = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Gap monitor window background opacity
+
+	private float _overlaysGapMonitorWindowBackgroundOpacity = 1f;
+
+	public float OverlaysGapMonitorWindowBackgroundOpacity
+	{
+		get => _overlaysGapMonitorWindowBackgroundOpacity;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _overlaysGapMonitorWindowBackgroundOpacity )
+			{
+				_overlaysGapMonitorWindowBackgroundOpacity = value;
 
 				OnPropertyChanged();
 			}
@@ -9834,6 +9932,50 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Overlays - Delta monitor window background color
+
+	private string _overlaysDeltaMonitorWindowBackgroundColor = "#000000";
+
+	public string OverlaysDeltaMonitorWindowBackgroundColor
+	{
+		get => _overlaysDeltaMonitorWindowBackgroundColor;
+
+		set
+		{
+			if ( value != _overlaysDeltaMonitorWindowBackgroundColor )
+			{
+				_overlaysDeltaMonitorWindowBackgroundColor = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Delta monitor window background opacity
+
+	private float _overlaysDeltaMonitorWindowBackgroundOpacity = 1f;
+
+	public float OverlaysDeltaMonitorWindowBackgroundOpacity
+	{
+		get => _overlaysDeltaMonitorWindowBackgroundOpacity;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _overlaysDeltaMonitorWindowBackgroundOpacity )
+			{
+				_overlaysDeltaMonitorWindowBackgroundOpacity = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Overlays - Show Grip-O-Meter window
 
 	private bool _overlaysShowGripOMeterWindow = false;
@@ -9948,6 +10090,30 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Overlays - Grip-O-Meter window opacity
+
+	private float _overlaysGripOMeterWindowOpacity = 1f;
+
+	public float OverlaysGripOMeterWindowOpacity
+	{
+		get => _overlaysGripOMeterWindowOpacity;
+
+		set
+		{
+			// floor at 10% so the Grip-O-Meter (whose opacity is window-level) can never become fully invisible
+			value = Math.Clamp( value, 0.1f, 1f );
+
+			if ( value != _overlaysGripOMeterWindowOpacity )
+			{
+				_overlaysGripOMeterWindowOpacity = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Overlays - Show Speech-to-text title
 
 	private bool _overlaysShowSpeechToTextTitle = true;
@@ -10025,6 +10191,50 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _overlaysSpeechToTextWindowPosition )
 			{
 				_overlaysSpeechToTextWindowPosition = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Speech-to-text window background color
+
+	private string _overlaysSpeechToTextWindowBackgroundColor = "#000000";
+
+	public string OverlaysSpeechToTextWindowBackgroundColor
+	{
+		get => _overlaysSpeechToTextWindowBackgroundColor;
+
+		set
+		{
+			if ( value != _overlaysSpeechToTextWindowBackgroundColor )
+			{
+				_overlaysSpeechToTextWindowBackgroundColor = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Overlays - Speech-to-text window background opacity
+
+	private float _overlaysSpeechToTextWindowBackgroundOpacity = 0.9f;
+
+	public float OverlaysSpeechToTextWindowBackgroundOpacity
+	{
+		get => _overlaysSpeechToTextWindowBackgroundOpacity;
+
+		set
+		{
+			value = Math.Clamp( value, 0f, 1f );
+
+			if ( value != _overlaysSpeechToTextWindowBackgroundOpacity )
+			{
+				_overlaysSpeechToTextWindowBackgroundOpacity = value;
 
 				OnPropertyChanged();
 			}
@@ -12142,6 +12352,9 @@ public class Settings : INotifyPropertyChanged
 				{
 					_ = app.SpeechToText.DisableAsync();
 				}
+
+				// refresh the overlay so the edit-mode preview reflects the enabled state even when not connected to the simulator
+				app.UpdateSpeechToTextWindowVisibility();
 			}
 		}
 	}
