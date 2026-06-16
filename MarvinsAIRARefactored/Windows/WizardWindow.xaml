@@ -12,7 +12,8 @@
         SizeToContent="Height"
         ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow"
-        WindowStartupLocation="CenterOwner">
+        WindowStartupLocation="CenterOwner"
+        Closed="Window_Closed">
 
     <Window.DataContext>
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />

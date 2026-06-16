@@ -376,4 +376,11 @@ public partial class WizardWindow : Window
 
 		Close();
 	}
+
+	private void Window_Closed( object sender, EventArgs e )
+	{
+		// The wizard mutates the same ButtonMappings objects the pages bind to, so refresh the
+		// mapped (orange border) state of every mappable button now that the wizard has closed.
+		Controls.MairaMappableButton.RefreshAll();
+	}
 }
