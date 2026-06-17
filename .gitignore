@@ -25,6 +25,11 @@ x64/
 x86/
 [Ww][Ii][Nn]32/
 [Aa][Rr][Mm]/
+
+# Keep the release-automation skill: its folder is literally named "release",
+# which the [Rr]elease/ build-output rule above would otherwise ignore.
+!.claude/skills/release/
+!.claude/skills/release/**
 [Aa][Rr][Mm]64/
 bld/
 [Bb]in/

@@ -1,0 +1,226 @@
+---
+name: release
+description: >-
+  Cut a new release of MarvinsAIRA Refactored: compile a Release build, publish
+  via the FolderProfile, build the Inno Setup installer, then create a GitHub
+  *draft* release (title "Version <ver>", tag "<ver>") with an auto-generated
+  changelog and the installer attached. The skill stops at the draft — the
+  maintainer publishes it manually with one click on GitHub. Use this whenever
+  the user wants to "cut a release", "ship/publish an update", "make a new
+  release", "build the installer and put it on GitHub", "release a new version to
+  my users", or anything describing shipping a new version of this app to end
+  users.
+---
+
+# Release MarvinsAIRA Refactored
+
+This skill automates the release pipeline for **MarvinsAIRA Refactored**
+(repo `mherbold/MarvinsAIRARefactored`): build → publish → installer → GitHub
+**draft** release. The maintainer publishes the draft manually (a single button
+click on GitHub), so the skill deliberately stops once the draft exists with the
+installer attached.
+
+The build/publish/installer steps are deterministic and handled by a bundled
+script. The changelog needs judgment, so that stays in this workflow.
+
+## Golden rules
+
+- **Stop at the draft — publishing is the maintainer's manual step.** The
+  skill's job ends when the draft release exists with the installer attached and
+  notes set. The maintainer reviews it and clicks *Publish release* on GitHub
+  themselves (one button). Hand them the draft URL and stop there; don't flip the
+  draft to published. (If they ever explicitly ask you to publish it for them,
+  the command is `gh release edit "<ver>" --draft=false --latest` — but that's
+  not part of the normal flow.)
+- **The version is the four-part number from the installer filename**
+  (`MarvinsAIRARefactored-Setup-<x.y.z.w>.exe`), e.g. `2.0.439.1234`. The
+  release **title** is `Version <ver>` and the **tag** is `<ver>` (no prefix).
+  A past release was mistakenly titled/tagged with the whole filename
+  (`Version MarvinsAIRARefactored-Setup-2.0.438.1415`) — do not let that happen.
+  If the version does not match `^\d+\.\d+\.\d+\.\d+$`, stop and report it
+  instead of creating a release.
+- **Run everything from the repo root** so `gh` targets the right repository.
+- **Use the personal GitHub account.** This repo belongs to `mherbold`
+  (personal), but the machine also has a work account. The project is wired to a
+  dedicated personal `gh` profile via `GH_CONFIG_DIR`
+  (`C:\Users\marvi\.config\gh-personal`, set in `.claude/settings.local.json`),
+  so `gh` here should already be `mherbold`. Before the first `gh` write, sanity
+  check `gh api repos/mherbold/MarvinsAIRARefactored --jq .permissions.push` is
+  `true` — if it's `false` you're on the wrong account (see Troubleshooting).
+
+## Step 1 — Build, publish, package the installer
+
+Run the bundled script with the **PowerShell tool**. It compiles Release|x64,
+publishes via `FolderProfile`, runs Inno Setup, and prints the version +
+installer path. It uses full Visual Studio MSBuild (this project's COM
+references break `dotnet build`/`publish`), so let it take a few minutes.
+
+```powershell
+& "<repo-root>\.claude\skills\release\scripts\build-release.ps1"
+```
+
+The script's final lines are the result block you parse:
+
+```
+RELEASE_BUILD_OK
+VERSION=2.0.439.1234
+INSTALLER=C:\Users\marvi\OneDrive\Documents\MarvinsAIRA Refactored\MarvinsAIRARefactored-Setup-2.0.439.1234.exe
+```
+
+If you instead see `RELEASE_BUILD_FAILED` (or a non-zero exit), **stop** and
+show the user the error — compile errors, a failed publish, or a missing
+installer all mean the release can't proceed. Do not continue to GitHub.
+
+Capture `VERSION` and `INSTALLER` for the next steps.
+
+## Step 2 — Draft the changelog from commits
+
+Find the previous release and list what changed since it:
+
+```bash
+# Latest existing release tag (commits since here are "new"):
+gh release view --json tagName -q .tagName
+# Then, from the repo root, the new commits (the tag still points at a commit
+# even if it was named oddly):
+git log "<lastTag>..HEAD" --no-merges --pretty=format:'%s%n%b'
+```
+
+**Don't stop at the commit messages — read the diffs.** The maintainer keeps
+commit messages terse, so a one-line message like "Major update to overlays
+system" can hide an entire feature set. Inspect the actual changes to write
+notes with real substance, especially for any commit that sounds like a big
+feature:
+
+```bash
+git show --stat <sha>                 # which files changed — new classes/windows = new features
+git show <sha> -- <path>              # read a specific change in detail
+# Added resource string keys are GOLD — they're the literal UI labels for new
+# features. Pull them out of the .resx diff:
+git show <sha> -- "MarvinsAIRARefactored/Resources/Resources.resx" \
+  | grep -E '^\+\s*<data name=' | sed -E 's/.*name="([^"]+)".*/\1/'
+```
+
+What to look for: newly added files in `Windows/` (new overlay/window), `Classes/`
+or `Controls/` (new capability), the new property names in `DataContext/Settings.cs`
+(new user-configurable options), and the added `Resources.resx` keys (new UI
+labels). Translate those into the user-facing sub-bullets of a major feature.
+For example, `OverlayWindowMover.cs` + the `BackgroundColor`/`Opacity`/
+`ShowWhenOffTrack` keys are what let you say "overlays can be dragged to
+reposition" and "each overlay has configurable color, opacity, and off-track
+visibility" — detail that never appears in the commit message.
+
+Summarize those commits into release notes the way the maintainer writes them:
+
+- **One `-` bullet per user-facing feature or fix**, each a short sentence
+  describing the new/updated feature — written for end users, not as raw commit
+  subjects.
+- **Order: new features / major updates first, then bug fixes, then "Updated
+  translations" last.** This is the maintainer's standard structure — keep it.
+- **Punctuation signals the type — and only *brand-new* features get an
+  exclamation point.** A `!` is reserved for something that genuinely didn't
+  exist before (a whole new overlay, a new page, a brand-new capability) — it's
+  how the maintainer conveys excitement about a new feature. *Updates* and
+  *improvements* to things that already exist end with a plain period, even when
+  the bullet sits in the features section — e.g. "Major update to the overlays
+  system." is an update, so it (and its sub-bullets describing that update) take
+  periods. Bug-fix lines and "Updated translations." also end with a period.
+  When unsure whether something is brand-new or an enhancement, use a period and
+  point it out so the maintainer can promote it to a `!`.
+- **Expand a major update with sub-bullets.** When a feature has several parts,
+  lead with a short main sentence, then a few indented sub-bullets that expand
+  on it — rather than cramming everything into one long sentence. Small, single
+  features and bug fixes stay as a single line.
+- **Group** related commits together (e.g. several "Translations" commits → one
+  "Updated translations" line; the separate pieces of one larger feature → one
+  parent bullet with sub-bullets).
+- **Drop noise** that users don't care about: merge commits, version bumps,
+  pure-refactor/internal commits, formatting-only changes.
+- One commit may contain several unrelated changes — split it across the right
+  bullets (features vs. fixes) instead of treating it as a single item.
+
+Example shape:
+
+```
+- New delta monitor overlay!
+- Major update to the overlays system.
+    - All overlay settings are now consolidated on the Overlays page.
+    - Overlay windows can be repositioned by dragging them with a move handle.
+    - Each overlay now has its own configurable background color and opacity.
+    - New options to show overlays while off track and during replays.
+    - Added a "Make all overlays visible and draggable" option and a global "Reset all overlay windows" button.
+- The app now checks for updates every hour.
+- Fixed the mapping wizard not receiving input events while mapping a button.
+- Fixed mappable buttons not showing their orange border when the wizard exits.
+- Updated translations.
+```
+
+(Note how the overlays sub-bullets above come from reading the diffs — the
+drag-to-move, color/opacity, and off-track/replay details are nowhere in the
+commit message; they came from the new `OverlayWindowMover.cs` class and the
+added `Resources.resx` labels.)
+
+**Show the drafted notes and the version to the user and let them edit** before
+anything is created on GitHub. This is the auto-draft-then-review step the
+maintainer asked for.
+
+## Step 3 — Create the draft release with the installer attached
+
+Once the user is happy with the notes, write them to a temp file **outside the
+repo** so it can't be accidentally committed (use the Write tool, e.g.
+`C:\Users\marvi\AppData\Local\Temp\maira-release-notes.md`) and create a
+**draft** release. Re-confirm the version matches `^\d+\.\d+\.\d+\.\d+$` first.
+
+```bash
+gh release create "<ver>" \
+  --draft \
+  --title "Version <ver>" \
+  --notes-file "C:/Users/marvi/AppData/Local/Temp/maira-release-notes.md" \
+  "<INSTALLER path from step 1>"
+```
+
+This creates the tag `<ver>`, titles the release `Version <ver>`, sets the
+description, and uploads the installer as a release asset — all in one command.
+
+If a release or tag named `<ver>` already exists, stop and tell the user rather
+than overwriting. (Normally the version's build number changes every build, so
+collisions shouldn't happen — a collision usually means nothing was rebuilt.)
+
+## Step 4 — Hand off the draft for manual publishing
+
+Verify the draft looks right and report it back to the user:
+
+```bash
+gh release view "<ver>" --json name,tagName,isDraft,url,assets \
+  --jq '{name, tag: .tagName, isDraft, url, assets: [.assets[].name]}'
+```
+
+Confirm the title is `Version <ver>`, the tag is the bare `<ver>`, `isDraft` is
+`true`, and the installer is attached. Then give the user the draft URL and let
+them know it's ready for them to review and **publish manually** with the
+*Publish release* button on GitHub. That's the end of the skill's job — do not
+publish it yourself.
+
+## If something goes wrong
+
+- **Build/publish/installer failure** → reported by the script as
+  `RELEASE_BUILD_FAILED`; surface the error and stop.
+- **Wrong version extracted** → the script refuses to guess and fails; check
+  that Inno Setup wrote `MarvinsAIRARefactored-Setup-*.exe` to
+  `Documents\MarvinsAIRA Refactored`.
+- **`gh` not authenticated** → `gh auth status`; have the user re-auth.
+- **`gh release create` fails with "workflow scope may be required"** → this
+  message is usually a red herring. The real cause is almost always the **wrong
+  GitHub account** being active — one without push access to this repo (read
+  works on a public repo, so `gh release list/view` succeed while create fails).
+  Confirm with `gh api repos/mherbold/MarvinsAIRARefactored --jq .permissions.push`;
+  if that's `false`, you're on the wrong account. This repo is wired to a
+  dedicated personal `gh` profile via `GH_CONFIG_DIR`
+  (`C:\Users\marvi\.config\gh-personal`, set in `.claude/settings.local.json`),
+  which keeps the personal `mherbold` account active here. Verify with
+  `gh auth status` (should show `mherbold`). If the personal profile isn't
+  logged in, only the user can fix it interactively:
+  `$env:GH_CONFIG_DIR="C:\Users\marvi\.config\gh-personal"; gh auth login --web --scopes "repo,read:org,workflow"`
+  (choose `mherbold`). Only if `push` is `true` and create still complains about
+  scope is a real `gh auth refresh -h github.com -s workflow` warranted.
+- **User wants to abort after the draft exists** → `gh release delete "<ver>"
+  --yes --cleanup-tag` removes the draft and its tag.
