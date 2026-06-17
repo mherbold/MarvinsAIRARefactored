@@ -31,18 +31,15 @@
         <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                    Text="{Binding Localization[Changelog]}" />
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      MaxHeight="500">
 
             <Border BorderThickness="1,0,0,0"
                     BorderBrush="#666"
                     Padding="20,0,0,0"
                     Margin="0,10,0,60">
 
-                <TextBlock x:Name="ChangeLog_TextBlock"
-                           Style="{StaticResource MairaTextBlockStyle}"
-                           Text="This is just a test."
-                           FontSize="20"
-                           TextWrapping="Wrap" />
+                <StackPanel x:Name="ChangeLog_Panel" />
 
             </Border>
 

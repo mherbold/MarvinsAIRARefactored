@@ -84,6 +84,49 @@ public class CloudService
 		public string changeLog = string.Empty;
 	}
 
+	class GitHubReleaseResponse
+	{
+		public string body = string.Empty;
+	}
+
+	// The herboldracing.com endpoint flattens the changelog (strips the markdown
+	// bullets and indentation), so for display we prefer the raw release body
+	// straight from the GitHub releases API, which preserves the formatting. If
+	// that fetch fails for any reason we fall back to the flattened changelog.
+	private async Task<string> GetReleaseNotes( HttpClient httpClient, string version, string fallbackChangeLog )
+	{
+		var app = App.Instance!;
+
+		try
+		{
+			var releaseApiUrl = $"https://api.github.com/repos/mherbold/MarvinsAIRARefactored/releases/tags/{version}";
+
+			using var requestMessage = new HttpRequestMessage( HttpMethod.Get, releaseApiUrl );
+
+			requestMessage.Headers.UserAgent.ParseAdd( "MarvinsAIRARefactored" );
+			requestMessage.Headers.Accept.ParseAdd( "application/vnd.github+json" );
+
+			using var responseMessage = await httpClient.SendAsync( requestMessage );
+
+			responseMessage.EnsureSuccessStatusCode();
+
+			var jsonString = await responseMessage.Content.ReadAsStringAsync();
+
+			var gitHubReleaseResponse = JsonConvert.DeserializeObject<GitHubReleaseResponse>( jsonString );
+
+			if ( !string.IsNullOrWhiteSpace( gitHubReleaseResponse?.body ) )
+			{
+				return gitHubReleaseResponse.body;
+			}
+		}
+		catch ( Exception exception )
+		{
+			app.Logger.WriteLine( $"[CloudService] Could not fetch release notes from GitHub; using fallback changelog: {exception.Message.Trim()}" );
+		}
+
+		return fallbackChangeLog;
+	}
+
 	public async Task CheckForUpdates( bool manuallyLaunched )
 	{
 		var app = App.Instance!;
@@ -132,7 +175,9 @@ public class CloudService
 
 							app.Logger.WriteLine( "[CloudService] Asking user if they want to download the update" );
 
-							var window = new NewVersionAvailableWindow( getCurrentVersionResponse.currentVersion, getCurrentVersionResponse.changeLog )
+							var releaseNotes = await GetReleaseNotes( httpClient, getCurrentVersionResponse.currentVersion, getCurrentVersionResponse.changeLog );
+
+							var window = new NewVersionAvailableWindow( getCurrentVersionResponse.currentVersion, releaseNotes )
 							{
 								Owner = app.MainWindow
 							};
