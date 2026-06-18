@@ -10,8 +10,18 @@ The project has a second build target called **AdminBoxx**, controlled via the `
 
 ## Project Rules
 
-- Use the Edit and Write tools to modify files. If an edit cannot be applied directly, explain why and stop.
-- Do not use PowerShell, terminal commands, or shell scripts to write or modify file content. The terminal is fine for builds, git, and other non-editing tasks.
+### Editing files
+- **Default to the Edit and Write tools** for normal, one-off code changes — anything that requires reasoning about the code. If an edit can't be applied directly, explain why and stop.
+- **For bulk mechanical edits, write a script — do NOT loop the Edit tool.** A "bulk mechanical edit" is the *same deterministic transformation* applied across many files or many occurrences: renaming a key in every `.resx`, prefixing a string across all localizations, project-wide find-and-replace, etc. When the same change touches ~3+ files (or many repeats of one pattern), reading and editing each file individually burns a large amount of usage and invites copy-by-copy mistakes. Write one script, prove it on a single file, then run it once across the rest.
+
+### Scripting rules (for bulk edits)
+- **Use `pwsh` (PowerShell 7+), never `powershell.exe` (Windows PowerShell 5.1).** `powershell.exe` corrupts UTF-8 and destroys non-ASCII text. `pwsh` defaults to UTF-8 and round-trips it correctly.
+- **Prove the transform before fanning out:** run it on ONE file, show the resulting diff, and confirm correctness (no missing/extra spaces, no doubling, encoding intact) before touching the rest.
+- If the transform is wrong, **fix the script and re-run it** — never patch the result file-by-file with the Edit tool. Make scripts **idempotent** so a second run is a no-op rather than double-applying.
+- Verify with a single grep/search across the affected files afterward, then build to confirm it still compiles. The terminal remains fine for builds, git, and other non-editing tasks.
+
+### Localization
+- For localization work specifically (editing `Resources.*.resx` / `Localization.cs` — adding, renaming, or translating UI strings), use the **`localization` skill** in `.claude/skills/localization/`. It carries the confirmed file set, BOM convention, and a reusable `transform-resx.ps1` for the per-file encoding details.
 
 ---
 
