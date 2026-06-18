@@ -109,6 +109,10 @@ public class SettingsFile
 			DataContext.DataContext.Instance.Settings.AppCurrentLanguageCode = DataContext.DataContext.Instance.Localization.ChooseInitialLanguage();
 		}
 
+			// Migrate a pre-profiles settings file (snapshot the existing flat mappings into a
+			// "Default" controller profile) and guarantee a valid active profile.
+			DataContext.DataContext.Instance.Settings.EnsureControllerProfilesInitialized();
+
 			Settings.SuppressUpdatingOfContextSettings = false;
 
 			PauseSerialization = false;
@@ -155,6 +159,10 @@ public class SettingsFile
 
 					app.Logger.WriteLine( "[SettingsFile] Settings.xml backup created" );
 				}
+
+				// Flush the live working-copy mappings into the active controller profile so the
+				// persisted store stays authoritative no matter where a mapping was edited.
+				DataContext.DataContext.Instance.Settings.SaveCurrentControllerProfile();
 
 				Serializer.Save( SettingsFilePath, DataContext.DataContext.Instance.Settings );
 

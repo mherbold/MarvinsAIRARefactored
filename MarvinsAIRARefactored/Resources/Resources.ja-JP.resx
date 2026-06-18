@@ -310,7 +310,7 @@
     <value>ショック速度</value>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>ペダル</value>
+    <value>SIMAGIC ペダル</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Simagic P1000 ペダル</value>
@@ -855,7 +855,7 @@
     <value>設定ファイルが無効です！</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>音声認識</value>
+    <value>字幕</value>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>オーバーレイウィンドウ</value>
@@ -909,7 +909,7 @@
     <value>グラフ</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>音声認識</value>
+    <value>字幕</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>変更履歴</value>
@@ -936,7 +936,7 @@
     <value>サウンド</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>ペダル</value>
+    <value>Simagic ペダル</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>ホイールロック</value>
@@ -951,10 +951,10 @@
     <value> MPH</value>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value>ウィンド</value>
+    <value>TYPHOON ウィンド</value>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value>ウィンド</value>
+    <value>Typhoon ウィンド</value>
   </data>
   <data name="SeatBeltTensioner_UC" xml:space="preserve">
     <value>シートベルトテンショナー</value>
@@ -1829,5 +1829,50 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>対 P1</value>
+  </data>  <data name="ControllerProfiles" xml:space="preserve">
+    <value>コントローラープロファイル</value>
+  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>コントローラープロファイル</value>
+  </data>  <data name="Profile" xml:space="preserve">
+    <value>プロファイル</value>
+  </data>  <data name="ProfileName" xml:space="preserve">
+    <value>プロファイル名</value>
+  </data>  <data name="NewProfile" xml:space="preserve">
+    <value>新しいプロファイル</value>
+  </data>  <data name="DeleteProfile" xml:space="preserve">
+    <value>プロファイルを削除</value>
+  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>このコントローラープロファイルを削除してもよろしいですか？</value>
+  </data>  <data name="NewControllerProfile" xml:space="preserve">
+    <value>新しいコントローラープロファイル</value>
+  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>現在の割り当てをコピー</value>
+  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>ボタン割り当て</value>
+  </data>  <data name="Map" xml:space="preserve">
+    <value>割り当て</value>
+  </data>  <data name="Record" xml:space="preserve">
+    <value>記録</value>
+  </data>  <data name="Unmapped" xml:space="preserve">
+    <value>（未割り当て）</value>
+  </data>  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </root>

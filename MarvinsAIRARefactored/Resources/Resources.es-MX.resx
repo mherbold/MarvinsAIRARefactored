@@ -310,7 +310,7 @@
     <value>Velocidad de impacto</value>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>PEDALES</value>
+    <value>SIMAGIC PEDALES</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Pedales Simagic P1000</value>
@@ -854,7 +854,7 @@
     <value>¡El archivo de configuración no es válido!</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>Transcripción Voz a Texto</value>
+    <value>Subtítulos</value>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>VENTANA DE SUPERPOSICIÓN</value>
@@ -908,7 +908,7 @@
     <value>GRÁFICO</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>VOZ A TEXTO</value>
+    <value>SUBTÍTULOS</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Registro de cambios</value>
@@ -935,7 +935,7 @@
     <value>Sonidos</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Pedales</value>
+    <value>Simagic Pedales</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Bloqueo de rueda</value>
@@ -950,10 +950,10 @@
     <value> MPH</value>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value>VIENTO</value>
+    <value>TYPHOON VIENTO</value>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value>Viento</value>
+    <value>Typhoon Viento</value>
   </data>
   <data name="SeatBeltTensioner_UC" xml:space="preserve">
     <value>TENSOR DE CINTURÓN DE SEGURIDAD</value>
@@ -1827,5 +1827,50 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
+  </data>  <data name="ControllerProfiles" xml:space="preserve">
+    <value>Perfiles de controlador</value>
+  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>PERFILES DE CONTROLADOR</value>
+  </data>  <data name="Profile" xml:space="preserve">
+    <value>Perfil</value>
+  </data>  <data name="ProfileName" xml:space="preserve">
+    <value>Nombre del perfil</value>
+  </data>  <data name="NewProfile" xml:space="preserve">
+    <value>Nuevo perfil</value>
+  </data>  <data name="DeleteProfile" xml:space="preserve">
+    <value>Eliminar perfil</value>
+  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>¿Seguro que quieres eliminar este perfil de controlador?</value>
+  </data>  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Nuevo perfil de controlador</value>
+  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Copiar asignaciones actuales</value>
+  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>ASIGNACIÓN DE BOTONES</value>
+  </data>  <data name="Map" xml:space="preserve">
+    <value>Asignar</value>
+  </data>  <data name="Record" xml:space="preserve">
+    <value>Grabar</value>
+  </data>  <data name="Unmapped" xml:space="preserve">
+    <value>(sin asignar)</value>
+  </data>  <data name="OK" xml:space="preserve">
+    <value>Aceptar</value>
+  </data>  <data name="Cancel" xml:space="preserve">
+    <value>Cancelar</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </root>

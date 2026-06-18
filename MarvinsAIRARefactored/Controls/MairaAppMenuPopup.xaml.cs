@@ -3,7 +3,13 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Input;
+
+#if ADMINBOXX
+
 using System.Windows.Media.Imaging;
+
+#endif
 
 using static MarvinsAIRARefactored.Windows.MainWindow;
 
@@ -19,8 +25,11 @@ namespace MarvinsAIRARefactored.Controls
 		{
 			public AppPage AppPage { get; init; }
 			public UserControl PageUserControl { get; init; } = new UserControl();
+
 			private string _displayName = string.Empty;
+			private string _suffix = string.Empty;
 			private bool _isVisible = true;
+			private bool _isSelected = false;
 
 			public string DisplayName
 			{
@@ -31,6 +40,23 @@ namespace MarvinsAIRARefactored.Controls
 					if ( _displayName != value )
 					{
 						_displayName = value;
+
+						OnPropertyChanged();
+					}
+				}
+			}
+
+			// Optional colored suffix shown after the display name (e.g. the red Donate heart). Rendered in
+			// its own Run so it can carry a different brush than the menu label.
+			public string Suffix
+			{
+				get => _suffix;
+
+				set
+				{
+					if ( _suffix != value )
+					{
+						_suffix = value;
 
 						OnPropertyChanged();
 					}
@@ -52,11 +78,33 @@ namespace MarvinsAIRARefactored.Controls
 				}
 			}
 
+			public bool IsSelected
+			{
+				get => _isSelected;
+
+				set
+				{
+					if ( _isSelected != value )
+					{
+						_isSelected = value;
+
+						OnPropertyChanged();
+					}
+				}
+			}
+
 			public event PropertyChangedEventHandler? PropertyChanged;
 			private void OnPropertyChanged( [CallerMemberName] string? propertyName = null ) => PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
 		}
 
-		public ObservableCollection<AppMenuItem> AppMenuItems { get; } = [];
+		// The app menu is laid out as three fixed columns. Each column is an independent collection so
+		// pages appear in the exact column / order the maintainer specified (auto-flow layouts cannot
+		// place specific pages in specific columns when the columns have different lengths).
+		public ObservableCollection<AppMenuItem> AppMenuItemsColumn1 { get; } = [];
+		public ObservableCollection<AppMenuItem> AppMenuItemsColumn2 { get; } = [];
+		public ObservableCollection<AppMenuItem> AppMenuItemsColumn3 { get; } = [];
+
+		private IEnumerable<AppMenuItem> AllMenuItems => AppMenuItemsColumn1.Concat( AppMenuItemsColumn2 ).Concat( AppMenuItemsColumn3 );
 
 		public MairaAppMenuPopup()
 		{
@@ -71,32 +119,58 @@ namespace MarvinsAIRARefactored.Controls
 			ColorImage.Source = new BitmapImage( uri );
 			ColorImage.Visibility = Visibility.Visible;
 
+			// AdminBoxx has only a few menu items, so restore the classic single-column layout: logo on
+			// top, the menu stacked directly beneath it. Give the menu its own row (the multi-column build
+			// overlaps the logo and menu in a single row) and hide the two empty columns.
+			MenuGrid.RowDefinitions.Add( new System.Windows.Controls.RowDefinition { Height = GridLength.Auto } );
+
+			System.Windows.Controls.Grid.SetRow( MenuScrollViewer, 1 );
+
+			Column2Items.Visibility = Visibility.Collapsed;
+			Column3Items.Visibility = Visibility.Collapsed;
+
 #endif
 		}
 
 		#region User Control Events
 
-		private void Scrim_MouseDown( object sender, System.Windows.Input.MouseButtonEventArgs e )
+		// A WPF Popup is a separate top-level window and does not follow its placement target when the
+		// main window moves or resizes. Nudging the offset forces WPF to re-evaluate the Center placement
+		// so the menu card stays centered over the main window. Called from MainWindow's move/size events.
+		public void ReanchorIfOpen()
+		{
+			if ( MenuPopup.IsOpen )
+			{
+				var horizontalOffset = MenuPopup.HorizontalOffset;
+
+				MenuPopup.HorizontalOffset = horizontalOffset + 1;
+				MenuPopup.HorizontalOffset = horizontalOffset;
+			}
+		}
+
+		private void Scrim_MouseDown( object sender, MouseButtonEventArgs e )
 		{
 			IsMenuOpen = false;
 		}
 
-		#endregion
-
-		private void ListBoxItem_PreviewMouseLeftButtonUp( object sender, System.Windows.Input.MouseButtonEventArgs e )
+		private void MenuItem_PreviewMouseLeftButtonUp( object sender, MouseButtonEventArgs e )
 		{
-			if ( sender is System.Windows.Controls.ListBoxItem listBoxItem )
+			if ( ( sender is FrameworkElement frameworkElement ) && ( frameworkElement.DataContext is AppMenuItem appMenuItem ) )
 			{
-				if ( listBoxItem.DataContext is AppMenuItem clickedItem )
+				e.Handled = true;
+
+				// Re-clicking the current page just closes the menu; otherwise navigate (which also
+				// closes the menu via the page-change handler below).
+				if ( SelectedAppPage != appMenuItem.AppPage )
 				{
-					if ( Equals( clickedItem, SelectedAppMenuItem ) )
-					{
-						IsMenuOpen = false;
-						e.Handled = true;
-					}
+					SelectedAppPage = appMenuItem.AppPage;
 				}
+
+				IsMenuOpen = false;
 			}
 		}
+
+		#endregion
 
 		private static string? GetHelpTopicForAppPage( AppPage appPage )
 		{
@@ -110,6 +184,9 @@ namespace MarvinsAIRARefactored.Controls
 
 				case AppPage.Pedals:
 					return "advanced/pedals/";
+
+				case AppPage.ControllerProfiles:
+					return "advanced/controller-profiles/";
 
 				case AppPage.Wind:
 					return "advanced/wind/";
@@ -175,14 +252,6 @@ namespace MarvinsAIRARefactored.Controls
 			set => SetValue( SelectedAppPageUserControlProperty, value );
 		}
 
-		public static readonly DependencyProperty SelectedAppMenuItemProperty = DependencyProperty.Register( nameof( SelectedAppMenuItem ), typeof( AppMenuItem ), typeof( MairaAppMenuPopup ), new FrameworkPropertyMetadata( null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, OnSelectedMenuItemChanged ) );
-
-		public AppMenuItem? SelectedAppMenuItem
-		{
-			get => (AppMenuItem?) GetValue( SelectedAppMenuItemProperty );
-			set => SetValue( SelectedAppMenuItemProperty, value );
-		}
-
 		public static readonly DependencyProperty IsMenuOpenProperty = DependencyProperty.Register( nameof( IsMenuOpen ), typeof( bool ), typeof( MairaAppMenuPopup ), new FrameworkPropertyMetadata( false, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault ) );
 
 		public bool IsMenuOpen
@@ -195,36 +264,34 @@ namespace MarvinsAIRARefactored.Controls
 
 		#region Dependency Property Changed Events
 
-		private static void OnSelectedMenuItemChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
-		{
-			if ( d is MairaAppMenuPopup mairaAppMenuPopup )
-			{
-				if ( e.NewValue is AppMenuItem appMenuItem )
-				{
-					mairaAppMenuPopup.SelectedAppPage = appMenuItem.AppPage;
-					mairaAppMenuPopup.SelectedAppPageUserControl = appMenuItem.PageUserControl;
-
-					mairaAppMenuPopup.IsMenuOpen = false;
-
-					mairaAppMenuPopup.UpdateSelectedAppPageText();
-				}
-			}
-		}
-
 		private static void OnSelectedAppPageChanged( DependencyObject d, DependencyPropertyChangedEventArgs e )
 		{
 			if ( d is MairaAppMenuPopup mairaAppMenuPopup )
 			{
 				var appPage = (AppPage) e.NewValue;
 
-				var match = mairaAppMenuPopup.AppMenuItems.FirstOrDefault( appMenuItem => appMenuItem.AppPage == appPage );
+				AppMenuItem? match = null;
 
-				if ( ( match != null ) && !Equals( mairaAppMenuPopup.SelectedAppMenuItem, match ) )
+				foreach ( var appMenuItem in mairaAppMenuPopup.AllMenuItems )
 				{
-					mairaAppMenuPopup.SelectedAppMenuItem = match;
+					var isSelected = appMenuItem.AppPage == appPage;
+
+					appMenuItem.IsSelected = isSelected;
+
+					if ( isSelected )
+					{
+						match = appMenuItem;
+					}
+				}
+
+				if ( match != null )
+				{
+					mairaAppMenuPopup.SelectedAppPageUserControl = match.PageUserControl;
 				}
 
 				CurrentAppPage = appPage;
+
+				mairaAppMenuPopup.UpdateSelectedAppPageText();
 			}
 		}
 
@@ -232,170 +299,99 @@ namespace MarvinsAIRARefactored.Controls
 
 		#region Logic
 
+		private static void Add( ObservableCollection<AppMenuItem> column, AppPage appPage, UserControl pageUserControl )
+		{
+			column.Add( new AppMenuItem
+			{
+				AppPage = appPage,
+				PageUserControl = pageUserControl
+			} );
+		}
+
 		public void Initialize()
 		{
+			// ----- Column 1 -----
 
 #if !ADMINBOXX
 
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Help,
-				PageUserControl = _helpPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.RacingWheel,
-				PageUserControl = _racingWheelPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.SteeringEffects,
-				PageUserControl = _steeringEffectsPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Pedals,
-				PageUserControl = _pedalsPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Wind,
-				PageUserControl = _windPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.SeatBeltTensioner,
-				PageUserControl = _seatBeltTensionerPage
-			} );
+			Add( AppMenuItemsColumn1, AppPage.AppManager, _appManagerPage );
+			Add( AppMenuItemsColumn1, AppPage.RacingWheel, _racingWheelPage );
+			Add( AppMenuItemsColumn1, AppPage.SteeringEffects, _steeringEffectsPage );
+			Add( AppMenuItemsColumn1, AppPage.Pedals, _pedalsPage );
+			Add( AppMenuItemsColumn1, AppPage.Wind, _windPage );
+			Add( AppMenuItemsColumn1, AppPage.SeatBeltTensioner, _seatBeltTensionerPage );
 
 #endif
 
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.AdminBoxx,
-				PageUserControl = _adminBoxxPage
-			} );
+			Add( AppMenuItemsColumn1, AppPage.AdminBoxx, _adminBoxxPage );
 
 #if !ADMINBOXX
 
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Overlays,
-				PageUserControl = _overlaysPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Sounds,
-				PageUserControl = _soundsPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Commentary,
-				PageUserControl = _commentary
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.SpeechToText,
-				PageUserControl = _speechToTextPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.TradingPaints,
-				PageUserControl = _tradingPaintsPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Graph,
-				PageUserControl = _graphPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Simulator,
-				PageUserControl = _simulatorPage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.AppManager,
-				PageUserControl = _appManagerPage
-			} );
+			Add( AppMenuItemsColumn1, AppPage.SpeechToText, _speechToTextPage );
+			Add( AppMenuItemsColumn1, AppPage.Commentary, _commentary );
+			Add( AppMenuItemsColumn1, AppPage.Sounds, _soundsPage );
+			Add( AppMenuItemsColumn1, AppPage.Overlays, _overlaysPage );
+			Add( AppMenuItemsColumn1, AppPage.TradingPaints, _tradingPaintsPage );
 
 #endif
 
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.AppSettings,
-				PageUserControl = _appSettingsPage
-			} );
+			// ----- Column 2 -----
+
+#if ADMINBOXX
+
+			// AdminBoxx uses a single column, so keep App Settings beneath AdminBoxx in column 1.
+			Add( AppMenuItemsColumn1, AppPage.AppSettings, _appSettingsPage );
+
+#else
+
+			Add( AppMenuItemsColumn2, AppPage.AppSettings, _appSettingsPage );
+			Add( AppMenuItemsColumn2, AppPage.ControllerProfiles, _controllerProfilesPage );
+			Add( AppMenuItemsColumn2, AppPage.Simulator, _simulatorPage );
+			Add( AppMenuItemsColumn2, AppPage.Graph, _graphPage );
+
+#endif
+
+			// ----- Column 3 -----
 
 #if !ADMINBOXX
 
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Contribute,
-				PageUserControl = _contributePage
-			} );
-
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Donate,
-				PageUserControl = _donatePage
-			} );
+			Add( AppMenuItemsColumn3, AppPage.Help, _helpPage );
+			Add( AppMenuItemsColumn3, AppPage.Donate, _donatePage );
+			Add( AppMenuItemsColumn3, AppPage.Contribute, _contributePage );
 
 #endif
 
 #if DEBUG
 
-			AppMenuItems.Add( new AppMenuItem
-			{
-				AppPage = AppPage.Debug,
-				PageUserControl = _debugPage
-			} );
+#if ADMINBOXX
+
+			// AdminBoxx uses a single column, so keep Debug beneath App Settings in column 1.
+			Add( AppMenuItemsColumn1, AppPage.Debug, _debugPage );
+
+#else
+
+			Add( AppMenuItemsColumn3, AppPage.Debug, _debugPage );
+
+#endif
 
 #endif
 
 			var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-			object currentPage = settings.AppDefaultPage switch
+			var defaultMenuItem = AllMenuItems.FirstOrDefault( appMenuItem => appMenuItem.AppPage == settings.AppDefaultPage ) ?? AllMenuItems.FirstOrDefault();
+
+			if ( defaultMenuItem != null )
 			{
-				AppPage.Help => _helpPage,
-				AppPage.RacingWheel => _racingWheelPage,
-				AppPage.SteeringEffects => _steeringEffectsPage,
-				AppPage.Pedals => _pedalsPage,
-				AppPage.Wind => _windPage,
-				AppPage.SeatBeltTensioner => _seatBeltTensionerPage,
-				AppPage.AdminBoxx => _adminBoxxPage,
-				AppPage.Overlays => _overlaysPage,
-				AppPage.Sounds => _soundsPage,
-				AppPage.SpeechToText => _speechToTextPage,
-				AppPage.Commentary => _commentary,
-				AppPage.TradingPaints => _tradingPaintsPage,
-				AppPage.Graph => _graphPage,
-				AppPage.Simulator => _simulatorPage,
-				AppPage.AppManager => _appManagerPage,
-				AppPage.AppSettings => _appSettingsPage,
-				AppPage.Contribute => _contributePage,
-				AppPage.Donate => _donatePage,
-				AppPage.Debug => _debugPage,
-				_ => _racingWheelPage
-			};
+				foreach ( var appMenuItem in AllMenuItems )
+				{
+					appMenuItem.IsSelected = appMenuItem == defaultMenuItem;
+				}
 
-			SelectedAppPage = settings.AppDefaultPage;
-			SelectedAppPageUserControl = currentPage;
-			SelectedAppMenuItem = AppMenuItems.FirstOrDefault( appMenuItem => appMenuItem.AppPage == SelectedAppPage );
+				SelectedAppPage = defaultMenuItem.AppPage;
+				SelectedAppPageUserControl = defaultMenuItem.PageUserControl;
 
-			CurrentAppPage = SelectedAppPage;
+				CurrentAppPage = defaultMenuItem.AppPage;
+			}
 
 			UpdateSelectedAppPageText();
 		}
@@ -406,7 +402,7 @@ namespace MarvinsAIRARefactored.Controls
 			var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 			var isEnglish = settings.AppCurrentLanguageCode == "default";
 
-			foreach ( var menuItem in AppMenuItems )
+			foreach ( var menuItem in AllMenuItems )
 			{
 				switch ( menuItem.AppPage )
 				{
@@ -424,6 +420,10 @@ namespace MarvinsAIRARefactored.Controls
 
 					case AppPage.Pedals:
 						menuItem.DisplayName = localization[ "Pedals" ];
+						break;
+
+					case AppPage.ControllerProfiles:
+						menuItem.DisplayName = localization[ "ControllerProfiles" ];
 						break;
 
 					case AppPage.Wind:
@@ -481,6 +481,7 @@ namespace MarvinsAIRARefactored.Controls
 
 					case AppPage.Donate:
 						menuItem.DisplayName = localization[ "Donate" ];
+						menuItem.Suffix = " ❤️";
 						break;
 
 					case AppPage.Debug:
@@ -514,6 +515,10 @@ namespace MarvinsAIRARefactored.Controls
 					SelectedAppPageText = localization[ "Pedals_UC" ];
 					break;
 
+				case AppPage.ControllerProfiles:
+					SelectedAppPageText = localization[ "ControllerProfiles_UC" ];
+					break;
+
 				case AppPage.Wind:
 					SelectedAppPageText = localization[ "Wind_UC" ];
 					break;
@@ -545,6 +550,7 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.TradingPaints:
 					SelectedAppPageText = localization[ "TradingPaints_UC" ];
 					break;
+
 				case AppPage.Graph:
 					SelectedAppPageText = localization[ "Graph_UC" ];
 					break;
@@ -556,7 +562,6 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.AppManager:
 					SelectedAppPageText = localization[ "AppManager_UC" ];
 					break;
-
 
 				case AppPage.AppSettings:
 					SelectedAppPageText = localization[ "AppSettings_UC" ];

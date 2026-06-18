@@ -310,7 +310,7 @@
     <value>Cyflymder Sioc</value>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>PEDALAU</value>
+    <value>SIMAGIC PEDALAU</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Pedalau Simagic P1000</value>
@@ -853,7 +853,7 @@
     <value>Mae'r Ffeil Ffurfwedd yn Annilys!</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>Lleferydd i Destun</value>
+    <value>Isdeitlau</value>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>FFENESTR GORCHUDIO</value>
@@ -907,7 +907,7 @@
     <value>GRAFF</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>LLEFERYDD I DESTUN</value>
+    <value>ISDEITLAU</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Cofnod Newidiadau</value>
@@ -934,7 +934,7 @@
     <value>Synau</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Pedalau</value>
+    <value>Simagic Pedalau</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Clo Olwyn</value>
@@ -949,10 +949,10 @@
     <value>MYA</value>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value>GWYNT</value>
+    <value>TYPHOON GWYNT</value>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value>Gwynt</value>
+    <value>Typhoon Gwynt</value>
   </data>
   <data name="SeatBeltTensioner_UC" xml:space="preserve">
     <value>TYNNWR GWREGYS</value>
@@ -1826,5 +1826,50 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
+  </data>  <data name="ControllerProfiles" xml:space="preserve">
+    <value>Proffiliau rheolydd</value>
+  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>PROFFILIAU RHEOLYDD</value>
+  </data>  <data name="Profile" xml:space="preserve">
+    <value>Proffil</value>
+  </data>  <data name="ProfileName" xml:space="preserve">
+    <value>Enw'r proffil</value>
+  </data>  <data name="NewProfile" xml:space="preserve">
+    <value>Proffil newydd</value>
+  </data>  <data name="DeleteProfile" xml:space="preserve">
+    <value>Dileu proffil</value>
+  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Ydych chi'n siŵr eich bod am ddileu'r proffil rheolydd hwn?</value>
+  </data>  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Proffil rheolydd newydd</value>
+  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Copïo'r mapiadau cyfredol</value>
+  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>MAPIO BOTYMAU</value>
+  </data>  <data name="Map" xml:space="preserve">
+    <value>Mapio</value>
+  </data>  <data name="Record" xml:space="preserve">
+    <value>Recordio</value>
+  </data>  <data name="Unmapped" xml:space="preserve">
+    <value>(heb fapio)</value>
+  </data>  <data name="OK" xml:space="preserve">
+    <value>Iawn</value>
+  </data>  <data name="Cancel" xml:space="preserve">
+    <value>Canslo</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </root>

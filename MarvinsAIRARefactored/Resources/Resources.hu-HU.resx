@@ -310,7 +310,7 @@
     <value>Ütközési sebesség</value>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>PEDÁLOK</value>
+    <value>SIMAGIC PEDÁLOK</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Simagic P1000 pedálok</value>
@@ -853,7 +853,7 @@
     <value>A konfigurációs fájl érvénytelen!</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>Beszéd szöveggé alakítása</value>
+    <value>Feliratok</value>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY ABLAK</value>
@@ -907,7 +907,7 @@
     <value>GRAFIKON</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>BESZÉD-SZÖVEGGÉ</value>
+    <value>FELIRATOK</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Változások</value>
@@ -934,7 +934,7 @@
     <value>Hangok</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Pedál</value>
+    <value>Simagic Pedál</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Kerékblokkolás</value>
@@ -949,10 +949,10 @@
     <value> MPH</value>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value>SZÉL</value>
+    <value>TYPHOON SZÉL</value>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value>Szél</value>
+    <value>Typhoon Szél</value>
   </data>
   <data name="SeatBeltTensioner_UC" xml:space="preserve">
     <value>BIZTONSÁGI ÖV FESZÍTŐ</value>
@@ -1826,5 +1826,50 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
+  </data>  <data name="ControllerProfiles" xml:space="preserve">
+    <value>Vezérlőprofilok</value>
+  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>VEZÉRLŐPROFILOK</value>
+  </data>  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>  <data name="ProfileName" xml:space="preserve">
+    <value>Profil neve</value>
+  </data>  <data name="NewProfile" xml:space="preserve">
+    <value>Új profil</value>
+  </data>  <data name="DeleteProfile" xml:space="preserve">
+    <value>Profil törlése</value>
+  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Biztosan törli ezt a vezérlőprofilt?</value>
+  </data>  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Új vezérlőprofil</value>
+  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Jelenlegi kiosztások másolása</value>
+  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>GOMBKIOSZTÁSOK</value>
+  </data>  <data name="Map" xml:space="preserve">
+    <value>Kiosztás</value>
+  </data>  <data name="Record" xml:space="preserve">
+    <value>Felvétel</value>
+  </data>  <data name="Unmapped" xml:space="preserve">
+    <value>(nincs kiosztva)</value>
+  </data>  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>  <data name="Cancel" xml:space="preserve">
+    <value>Mégse</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </root>

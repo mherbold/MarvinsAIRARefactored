@@ -26,6 +26,7 @@ public partial class MainWindow : Window
 		RacingWheel,
 		SteeringEffects,
 		Pedals,
+		ControllerProfiles,
 		Wind,
 		SeatBeltTensioner,
 		AdminBoxx,
@@ -49,6 +50,7 @@ public partial class MainWindow : Window
 	public static readonly RacingWheelPage _racingWheelPage = new();
 	public static readonly SteeringEffectsPage _steeringEffectsPage = new();
 	public static readonly PedalsPage _pedalsPage = new();
+	public static readonly ControllerProfilesPage _controllerProfilesPage = new();
 	public static readonly WindPage _windPage = new();
 	public static readonly SeatBeltTensionerPage _seatBeltTensionerPage = new();
 	public static readonly OverlaysPage _overlaysPage = new();
@@ -522,6 +524,8 @@ public partial class MainWindow : Window
 
 	private void Window_LocationChanged( object sender, EventArgs e )
 	{
+		AppMenuPopup.ReanchorIfOpen();
+
 		if ( _initialized )
 		{
 			if ( IsVisible && ( WindowState == WindowState.Normal ) )
@@ -539,6 +543,8 @@ public partial class MainWindow : Window
 
 	private void Window_SizeChanged( object sender, SizeChangedEventArgs e )
 	{
+		AppMenuPopup.ReanchorIfOpen();
+
 		if ( _initialized )
 		{
 			if ( IsVisible && ( WindowState == WindowState.Normal ) )

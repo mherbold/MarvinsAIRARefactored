@@ -71,6 +71,10 @@ public partial class UpdateButtonMappingsWindow : Window
 
 		app.SettingsFile.QueueForSerialization = true;
 
+		// A mapping was potentially added/removed - refresh the catalog-driven input dispatch index
+		// so the change takes effect immediately, regardless of where the editor was opened from.
+		app.RebuildButtonMappingIndex();
+
 		WindowIsOpen = false;
 	}
 }

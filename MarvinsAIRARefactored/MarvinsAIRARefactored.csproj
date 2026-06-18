@@ -20,6 +20,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
   <ItemGroup>
+    <None Remove="Artwork\Misc\app-menu-helmet.png" />
     <None Remove="Artwork\Misc\splash-screen.png" />
   </ItemGroup>
 
@@ -170,6 +171,7 @@
     <Resource Include="Artwork\Flags\turkey_fluttering_flag_64.png" />
     <Resource Include="Artwork\Flags\ukraine_fluttering_flag_64.png" />
     <Resource Include="Artwork\Misc\adminboxx-logo.png" />
+    <Resource Include="Artwork\Misc\app-menu-helmet.png" />
     <Resource Include="Artwork\Misc\app-menu-logo.png" />
     <Resource Include="Artwork\Misc\buy-me-a-coffee-logo.png" />
     <Resource Include="Artwork\Misc\discord-logo.png" />

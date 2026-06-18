@@ -270,6 +270,51 @@
   <data name="Clear" xml:space="preserve">
     <value>Clear</value>
   </data>
+  <data name="ControllerProfiles" xml:space="preserve">
+    <value>Controller Profiles</value>
+  </data>
+  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>CONTROLLER PROFILES</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Profile Name</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>New Profile</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Delete Profile</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Are you sure you want to delete this controller profile?</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>New Controller Profile</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Copy current mappings</value>
+  </data>
+  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>BUTTON MAPPINGS</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Map</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Record</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(unmapped)</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
   <data name="CurrentForce" xml:space="preserve">
     <value>Current Force</value>
   </data>
@@ -310,7 +355,7 @@
     <value>Shock Velocity</value>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>PEDALS</value>
+    <value>SIMAGIC PEDALS</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Simagic P1000 Pedals</value>
@@ -853,7 +898,7 @@
     <value>Configuration File Is Invalid!</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>Speech to Text</value>
+    <value>Captions</value>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY WINDOW</value>
@@ -907,7 +952,7 @@
     <value>GRAPH</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>SPEECH TO TEXT</value>
+    <value>CAPTIONS</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Changelog</value>
@@ -934,7 +979,7 @@
     <value>Sounds</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Pedals</value>
+    <value>Simagic Pedals</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Wheel Lock</value>
@@ -949,10 +994,10 @@
     <value> MPH</value>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value>WIND</value>
+    <value>TYPHOON WIND</value>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value>Wind</value>
+    <value>Typhoon Wind</value>
   </data>
   <data name="SeatBeltTensioner_UC" xml:space="preserve">
     <value>SEAT BELT TENSIONER</value>

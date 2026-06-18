@@ -310,7 +310,7 @@
     <value>Швидкість удару</value>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>ПЕДАЛІ</value>
+    <value>SIMAGIC ПЕДАЛІ</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Simagic P1000 Pedals</value>
@@ -857,7 +857,7 @@
     <value>Файл конфігурації недійсний!</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>Перетворення мовлення на текст</value>
+    <value>Субтитри</value>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>ВІКНО НАКЛАДАННЯ</value>
@@ -911,7 +911,7 @@
     <value>ГРАФІК</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>МОВЛЕННЯ В ТЕКСТ</value>
+    <value>СУБТИТРИ</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Список змін</value>
@@ -938,7 +938,7 @@
     <value>Звуки</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Педалі</value>
+    <value>Simagic Педалі</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Блокування керма</value>
@@ -953,10 +953,10 @@
     <value>Миль/год</value>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value>	ВІТЕР</value>
+    <value>TYPHOON	ВІТЕР</value>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value>Вітер</value>
+    <value>Typhoon Вітер</value>
   </data>
   <data name="SeatBeltTensioner_UC" xml:space="preserve">
     <value>НАТЯГУВАЧ РЕМЕНЯ БЕЗПЕКИ</value>
@@ -1832,5 +1832,50 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
+  </data>  <data name="ControllerProfiles" xml:space="preserve">
+    <value>Профілі контролера</value>
+  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>ПРОФІЛІ КОНТРОЛЕРА</value>
+  </data>  <data name="Profile" xml:space="preserve">
+    <value>Профіль</value>
+  </data>  <data name="ProfileName" xml:space="preserve">
+    <value>Назва профілю</value>
+  </data>  <data name="NewProfile" xml:space="preserve">
+    <value>Новий профіль</value>
+  </data>  <data name="DeleteProfile" xml:space="preserve">
+    <value>Видалити профіль</value>
+  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Ви впевнені, що хочете видалити цей профіль контролера?</value>
+  </data>  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Новий профіль контролера</value>
+  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Копіювати поточні прив’язки</value>
+  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>ПРИВ’ЯЗКА КНОПОК</value>
+  </data>  <data name="Map" xml:space="preserve">
+    <value>Прив’язати</value>
+  </data>  <data name="Record" xml:space="preserve">
+    <value>Запис</value>
+  </data>  <data name="Unmapped" xml:space="preserve">
+    <value>(не прив’язано)</value>
+  </data>  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>  <data name="Cancel" xml:space="preserve">
+    <value>Скасувати</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </root>

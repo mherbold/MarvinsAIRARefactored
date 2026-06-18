@@ -99,6 +99,179 @@ public class Settings : INotifyPropertyChanged
 		return contextSettings;
 	}
 
+	#endregion
+
+	#region Controller profiles
+
+	// A controller profile is a complete, named set of button mappings. Users who swap wheels (rims)
+	// on the same wheelbase switch profiles manually - the wheelbase device GUID never changes, so the
+	// active rim cannot be auto-detected. The flat Settings.*ButtonMappings properties are the live
+	// working copy of the currently selected profile (still bound in XAML and read by App.OnInput);
+	// these helpers snapshot mappings in and out of the named profiles below, mutating the live
+	// ButtonMappings objects in place so existing bindings stay valid.
+
+	public SerializableDictionary<string, ControllerProfile> ControllerProfiles { get; set; } = [];
+
+	public string CurrentControllerProfileName { get; set; } = ControllerProfile.DefaultProfileName;
+
+	private static ButtonMappings.MappedButton.Button CloneButton( ButtonMappings.MappedButton.Button source )
+	{
+		return new ButtonMappings.MappedButton.Button
+		{
+			DeviceProductName = source.DeviceProductName,
+			DeviceInstanceGuid = source.DeviceInstanceGuid,
+			ButtonNumber = source.ButtonNumber
+		};
+	}
+
+	private static ButtonMappings.MappedButton CloneMappedButton( ButtonMappings.MappedButton source )
+	{
+		return new ButtonMappings.MappedButton
+		{
+			HoldButton = CloneButton( source.HoldButton ),
+			ClickButton = CloneButton( source.ClickButton )
+		};
+	}
+
+	private static ButtonMappings CloneButtonMappings( ButtonMappings source )
+	{
+		var clone = new ButtonMappings();
+
+		foreach ( var mappedButton in source.MappedButtons )
+		{
+			clone.MappedButtons.Add( CloneMappedButton( mappedButton ) );
+		}
+
+		return clone;
+	}
+
+	// Snapshots the live working-copy mappings into the currently selected profile (creating it if
+	// needed). Called before switching away and before serialization so the store is authoritative.
+	public void SaveCurrentControllerProfile()
+	{
+		if ( !ControllerProfiles.TryGetValue( CurrentControllerProfileName, out var profile ) )
+		{
+			profile = new ControllerProfile { Name = CurrentControllerProfileName };
+
+			ControllerProfiles[ CurrentControllerProfileName ] = profile;
+		}
+
+		profile.ButtonMappings.Clear();
+
+		foreach ( var action in MappableActionCatalog.Actions )
+		{
+			profile.ButtonMappings[ action.SettingsPropertyName ] = CloneButtonMappings( action.GetButtonMappings( this ) );
+		}
+	}
+
+	// Copies the named profile's mappings into the live working copy, mutating the existing
+	// ButtonMappings objects in place (so XAML bindings remain valid).
+	public void ApplyControllerProfile( string name )
+	{
+		ControllerProfiles.TryGetValue( name, out var profile );
+
+		foreach ( var action in MappableActionCatalog.Actions )
+		{
+			var liveButtonMappings = action.GetButtonMappings( this );
+
+			liveButtonMappings.MappedButtons.Clear();
+
+			if ( ( profile != null ) && profile.ButtonMappings.TryGetValue( action.SettingsPropertyName, out var storedButtonMappings ) )
+			{
+				foreach ( var mappedButton in storedButtonMappings.MappedButtons )
+				{
+					liveButtonMappings.MappedButtons.Add( CloneMappedButton( mappedButton ) );
+				}
+			}
+		}
+	}
+
+	// Persists the current profile, then makes the named profile active. Data-only - the caller is
+	// responsible for rebuilding the App button-mapping index, refreshing mappable button visuals,
+	// and queuing serialization.
+	public void SelectControllerProfile( string name )
+	{
+		SaveCurrentControllerProfile();
+
+		CurrentControllerProfileName = name;
+
+		ApplyControllerProfile( name );
+	}
+
+	// Creates a new profile (either empty or seeded with a copy of the current profile's mappings),
+	// makes it active, and applies it. Data-only.
+	public void CreateControllerProfile( string name, bool copyFromCurrent )
+	{
+		SaveCurrentControllerProfile();
+
+		var profile = new ControllerProfile { Name = name };
+
+		if ( copyFromCurrent )
+		{
+			foreach ( var action in MappableActionCatalog.Actions )
+			{
+				profile.ButtonMappings[ action.SettingsPropertyName ] = CloneButtonMappings( action.GetButtonMappings( this ) );
+			}
+		}
+
+		ControllerProfiles[ name ] = profile;
+
+		CurrentControllerProfileName = name;
+
+		ApplyControllerProfile( name );
+	}
+
+	// Deletes the named profile, guaranteeing at least one profile always remains, then applies the
+	// surviving active profile. Data-only.
+	public void DeleteControllerProfile( string name )
+	{
+		ControllerProfiles.Remove( name );
+
+		if ( ControllerProfiles.Count == 0 )
+		{
+			var defaultProfileName = ControllerProfile.GetLocalizedDefaultProfileName();
+
+			ControllerProfiles[ defaultProfileName ] = new ControllerProfile { Name = defaultProfileName };
+		}
+
+		if ( !ControllerProfiles.ContainsKey( CurrentControllerProfileName ) )
+		{
+			CurrentControllerProfileName = ControllerProfiles.Keys.First();
+		}
+
+		ApplyControllerProfile( CurrentControllerProfileName );
+	}
+
+	// Called once after settings load. Migrates a pre-profiles settings file by snapshotting the
+	// existing flat mappings into a "Default" profile, and guarantees the current profile is valid.
+	public void EnsureControllerProfilesInitialized()
+	{
+		if ( ControllerProfiles.Count == 0 )
+		{
+			// First-ever creation of the default profile - name it using the localized "Default" for the
+			// user's current language. A genuinely custom active name (should one somehow exist) is left alone.
+			if ( string.IsNullOrEmpty( CurrentControllerProfileName ) || ( CurrentControllerProfileName == ControllerProfile.DefaultProfileName ) )
+			{
+				CurrentControllerProfileName = ControllerProfile.GetLocalizedDefaultProfileName();
+			}
+
+			SaveCurrentControllerProfile();
+		}
+		else
+		{
+			if ( !ControllerProfiles.ContainsKey( CurrentControllerProfileName ) )
+			{
+				CurrentControllerProfileName = ControllerProfiles.Keys.First();
+			}
+
+			ApplyControllerProfile( CurrentControllerProfileName );
+		}
+	}
+
+	#endregion
+
+	#region Context settings
+
 	public void UpdateSettings( bool updateContextSettings )
 	{
 		var app = App.Instance!;

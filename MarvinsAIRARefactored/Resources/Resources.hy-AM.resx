@@ -310,7 +310,7 @@
     <value>Հարվածի Արագություն</value>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>ՈՏՆԱԿՆԵՐ</value>
+    <value>SIMAGIC ՈՏՆԱԿՆԵՐ</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Simagic P1000 ոտնակներ</value>
@@ -853,7 +853,7 @@
     <value>Կազմաձևման ֆայլը անվավեր է</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>Խոսքից Տեքստ</value>
+    <value>Ենթագրեր</value>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>OVERLAY WINDOW</value>
@@ -907,7 +907,7 @@
     <value>ԳՐԱՖ</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>ԽՈՍՔԻՑ ՏԵՔՍՏ</value>
+    <value>ԵՆԹԱԳՐԵՐ</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Փոփոխությունների ցուցակ</value>
@@ -934,7 +934,7 @@
     <value>Ձայներ</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Ոտնակներ</value>
+    <value>Simagic Ոտնակներ</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Անիվների արգելափակում</value>
@@ -949,10 +949,10 @@
     <value> Մ/Ժ</value>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value>ՔԱՄԻ</value>
+    <value>TYPHOON ՔԱՄԻ</value>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value>Քամի</value>
+    <value>Typhoon Քամի</value>
   </data>
   <data name="SeatBeltTensioner_UC" xml:space="preserve">
     <value>ԿՐԾՔԱԿԱԼ ՁԳԻՉ</value>
@@ -1826,5 +1826,50 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
+  </data>  <data name="ControllerProfiles" xml:space="preserve">
+    <value>Կարգավորիչի պրոֆիլներ</value>
+  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>ԿԱՐԳԱՎՈՐԻՉԻ ՊՐՈՖԻԼՆԵՐ</value>
+  </data>  <data name="Profile" xml:space="preserve">
+    <value>Պրոֆիլ</value>
+  </data>  <data name="ProfileName" xml:space="preserve">
+    <value>Պրոֆիլի անունը</value>
+  </data>  <data name="NewProfile" xml:space="preserve">
+    <value>Նոր պրոֆիլ</value>
+  </data>  <data name="DeleteProfile" xml:space="preserve">
+    <value>Ջնջել պրոֆիլը</value>
+  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Վստա՞հ եք, որ ցանկանում եք ջնջել այս կարգավորիչի պրոֆիլը։</value>
+  </data>  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Նոր կարգավորիչի պրոֆիլ</value>
+  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Պատճենել ընթացիկ կապակցումները</value>
+  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>ԿՈՃԱԿՆԵՐԻ ԿԱՊԱԿՑՈՒՄ</value>
+  </data>  <data name="Map" xml:space="preserve">
+    <value>Կապակցել</value>
+  </data>  <data name="Record" xml:space="preserve">
+    <value>Գրանցել</value>
+  </data>  <data name="Unmapped" xml:space="preserve">
+    <value>(չկապակցված)</value>
+  </data>  <data name="OK" xml:space="preserve">
+    <value>Լավ</value>
+  </data>  <data name="Cancel" xml:space="preserve">
+    <value>Չեղարկել</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </root>

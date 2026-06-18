@@ -310,7 +310,7 @@
     <value>Chockhastighet</value>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>PEDALER</value>
+    <value>SIMAGIC PEDALER</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Simagic P1000-pedaler</value>
@@ -853,7 +853,7 @@
     <value>Konfigurationsfilen är ogiltig!</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>Tal till text</value>
+    <value>Undertexter</value>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>ÖVERLÄGSFÖNSTER</value>
@@ -907,7 +907,7 @@
     <value>GRAF</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>TAL TILL TEXT</value>
+    <value>UNDERTEXTER</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Ändringslogg</value>
@@ -934,7 +934,7 @@
     <value>Ljud</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Pedaler</value>
+    <value>Simagic Pedaler</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Hjulblockning</value>
@@ -949,10 +949,10 @@
     <value> MPH</value>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value>VIND</value>
+    <value>TYPHOON VIND</value>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value>Vind</value>
+    <value>Typhoon Vind</value>
   </data>
   <data name="SeatBeltTensioner_UC" xml:space="preserve">
     <value>SÄKERHETSBÄLTESSTRÄCKARE</value>
@@ -1826,5 +1826,50 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
+  </data>  <data name="ControllerProfiles" xml:space="preserve">
+    <value>Kontrollerprofiler</value>
+  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>KONTROLLERPROFILER</value>
+  </data>  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>  <data name="ProfileName" xml:space="preserve">
+    <value>Profilnamn</value>
+  </data>  <data name="NewProfile" xml:space="preserve">
+    <value>Ny profil</value>
+  </data>  <data name="DeleteProfile" xml:space="preserve">
+    <value>Ta bort profil</value>
+  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Är du säker på att du vill ta bort den här kontrollerprofilen?</value>
+  </data>  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Ny kontrollerprofil</value>
+  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Kopiera nuvarande mappningar</value>
+  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>KNAPPMAPPNINGAR</value>
+  </data>  <data name="Map" xml:space="preserve">
+    <value>Mappa</value>
+  </data>  <data name="Record" xml:space="preserve">
+    <value>Spela in</value>
+  </data>  <data name="Unmapped" xml:space="preserve">
+    <value>(ej mappad)</value>
+  </data>  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>  <data name="Cancel" xml:space="preserve">
+    <value>Avbryt</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </root>

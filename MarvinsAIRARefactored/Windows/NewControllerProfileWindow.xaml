@@ -1,0 +1,58 @@
+<Window x:Class="MarvinsAIRARefactored.Windows.NewControllerProfileWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding Localization[NewControllerProfile]}"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        Width="500"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </Window.DataContext>
+
+    <StackPanel Margin="40,20,40,40">
+
+        <controls:MairaTextBox x:Name="ProfileName_MairaTextBox"
+                               Label="{Binding Localization[ProfileName]}"
+                               Placeholder="{Binding Localization[ProfileName]}" />
+
+        <controls:MairaSwitch x:Name="CopyCurrentMappings_MairaSwitch"
+                              Margin="0,20,0,0"
+                              Label="{Binding Localization[CopyCurrentMappings]}" />
+
+        <Grid Margin="0,30,0,0"
+              HorizontalAlignment="Center">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <controls:MairaButton Grid.Column="0"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[OK]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Click="OK_MairaButton_Click" />
+
+            <controls:MairaButton Grid.Column="2"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  Label="{Binding Localization[Cancel]}"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                  Click="Cancel_MairaButton_Click" />
+
+        </Grid>
+
+    </StackPanel>
+
+</Window>

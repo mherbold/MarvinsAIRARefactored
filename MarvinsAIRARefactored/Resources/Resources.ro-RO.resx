@@ -310,7 +310,7 @@
     <value>Viteză de șoc</value>
   </data>
   <data name="Pedals_UC" xml:space="preserve">
-    <value>PEDALE</value>
+    <value>SIMAGIC PEDALE</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Pedale Simagic P1000</value>
@@ -853,7 +853,7 @@
     <value>Fișierul de configurare este invalid!</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
-    <value>Text vorbit</value>
+    <value>Subtitrări</value>
   </data>
   <data name="OverlayWindow_UC" xml:space="preserve">
     <value>FEREASTRĂ OVERLAY</value>
@@ -907,7 +907,7 @@
     <value>GRAFIC</value>
   </data>
   <data name="SpeechToText_UC" xml:space="preserve">
-    <value>TEXT VORBIT</value>
+    <value>SUBTITRĂRI</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Jurnal modificări</value>
@@ -934,7 +934,7 @@
     <value>Sunete</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Pedale</value>
+    <value>Simagic Pedale</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Blocare roată</value>
@@ -949,10 +949,10 @@
     <value> MPH</value>
   </data>
   <data name="Wind_UC" xml:space="preserve">
-    <value>VÂNT</value>
+    <value>TYPHOON VÂNT</value>
   </data>
   <data name="Wind" xml:space="preserve">
-    <value>Vânt</value>
+    <value>Typhoon Vânt</value>
   </data>
   <data name="SeatBeltTensioner_UC" xml:space="preserve">
     <value>TENSIONATOR CENTURĂ</value>
@@ -1826,5 +1826,50 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
+  </data>  <data name="ControllerProfiles" xml:space="preserve">
+    <value>Profiluri controler</value>
+  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>PROFILURI CONTROLER</value>
+  </data>  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>  <data name="ProfileName" xml:space="preserve">
+    <value>Nume profil</value>
+  </data>  <data name="NewProfile" xml:space="preserve">
+    <value>Profil nou</value>
+  </data>  <data name="DeleteProfile" xml:space="preserve">
+    <value>Șterge profilul</value>
+  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Sigur doriți să ștergeți acest profil de controler?</value>
+  </data>  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Profil de controler nou</value>
+  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Copiază asocierile curente</value>
+  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>ASOCIERE BUTOANE</value>
+  </data>  <data name="Map" xml:space="preserve">
+    <value>Asociază</value>
+  </data>  <data name="Record" xml:space="preserve">
+    <value>Înregistrează</value>
+  </data>  <data name="Unmapped" xml:space="preserve">
+    <value>(neasociat)</value>
+  </data>  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>  <data name="Cancel" xml:space="preserve">
+    <value>Anulează</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </root>
