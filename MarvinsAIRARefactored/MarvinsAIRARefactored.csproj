@@ -39,6 +39,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Resources.resx" />
+    <EmbeddedResource Include="Resources\Resources.ar-SA.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.bg-BG.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.ca-ES.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.cs-CZ.resx"><WithCulture>false</WithCulture></EmbeddedResource>
