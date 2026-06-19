@@ -195,12 +195,15 @@ and write it to a temp file **outside the repo** so it can't be accidentally
 committed (use the Write tool, e.g.
 `C:\Users\marvi\AppData\Local\Temp\maira-release-notes.md`).
 
-The file's layout is: the current release's notes at the top, then a horizontal
-rule, then each of the 4 prior releases under its own version heading (newest
-first), each separated by a horizontal rule so the boundaries are visually
-obvious. Use the release **title** (`Version <ver>`) as the heading text:
+The file's layout is: a `## This release` heading, then the current release's
+notes, then a horizontal rule, then each of the 4 prior releases under its own
+version heading (newest first), each separated by a horizontal rule so the
+boundaries are visually obvious. Use the release **title** (`Version <ver>`) as
+the per-release heading text:
 
 ```markdown
+## This release
+
 - New delta monitor overlay!
 - Fixed the mapping wizard not receiving input events.
 - Updated translations.
@@ -233,9 +236,9 @@ obvious. Use the release **title** (`Version <ver>`) as the heading text:
 ```
 
 If fewer than 4 prior releases exist, append however many there are (and if
-there are none, the description is just the current notes — no "Previous
-releases" section). Then create a **draft** release. Re-confirm the version
-matches `^\d+\.\d+\.\d+\.\d+$` first.
+there are none, the description is just the `## This release` heading and the
+current notes — no "Previous releases" section). Then create a **draft**
+release. Re-confirm the version matches `^\d+\.\d+\.\d+\.\d+$` first.
 
 ```bash
 gh release create "<ver>" \
