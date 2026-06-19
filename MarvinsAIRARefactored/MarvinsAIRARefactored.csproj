@@ -53,6 +53,7 @@
     <EmbeddedResource Include="Resources\Resources.fr-CA.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.fr-FR.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.he-IL.resx"><WithCulture>false</WithCulture></EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resources.hi-IN.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.hu-HU.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.hy-AM.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.it-IT.resx"><WithCulture>false</WithCulture></EmbeddedResource>
