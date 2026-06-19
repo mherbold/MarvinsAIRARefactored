@@ -22,6 +22,7 @@
   <ItemGroup>
     <None Remove="Artwork\Misc\app-menu-helmet.png" />
     <None Remove="Artwork\Misc\splash-screen.png" />
+    <None Remove="Artwork\Misc\splash-screen-mask.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -189,6 +190,7 @@
     <Resource Include="Artwork\Misc\simagic-logo.png" />
     <Resource Include="Artwork\Misc\simagic-logo-light.png" />
     <Resource Include="Artwork\Misc\splash-screen.png" />
+    <Resource Include="Artwork\Misc\splash-screen-mask.png" />
     <Resource Include="Artwork\Misc\trading-paints.png" />
     <Resource Include="Artwork\Misc\trading-paints-light.png" />
     <Resource Include="Artwork\Misc\wizard-two-thumbs-up.png" />
