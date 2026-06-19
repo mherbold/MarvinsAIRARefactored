@@ -161,14 +161,81 @@ added `Resources.resx` labels.)
 
 **Show the drafted notes and the version to the user and let them edit** before
 anything is created on GitHub. This is the auto-draft-then-review step the
-maintainer asked for.
+maintainer asked for. (The current release's notes are what the user reviews
+here — the appended history in the next step is mechanical and doesn't need
+review.)
+
+## Step 2.5 — Append the previous 4 releases' descriptions
+
+The maintainer sometimes ships several releases a day. A user who updates
+infrequently jumps straight to the latest version and never sees the notes for
+the releases they skipped. To fix this, the final release description is the
+**current** notes followed by the descriptions of the **4 most recent existing
+releases**, so a user always sees the recent history in one place.
+
+Pull the last 4 releases and their bodies. Exclude drafts (`isDraft=false`) —
+only already-published releases count, and the new release doesn't exist on
+GitHub yet at this point:
+
+```bash
+# 4 most recent published releases, newest first (tag + title):
+gh release list --exclude-drafts --limit 4 \
+  --json tagName,name,isDraft -q '.[] | select(.isDraft==false) | .tagName'
+# For each tag, fetch its description body verbatim:
+gh release view "<tag>" --json name,body -q '"\(.name)\n\(.body)"'
+```
+
+Keep each prior release's body **verbatim** — do not re-summarize or reword it.
+The point is to reproduce exactly what those users would have seen.
 
 ## Step 3 — Create the draft release with the installer attached
 
-Once the user is happy with the notes, write them to a temp file **outside the
-repo** so it can't be accidentally committed (use the Write tool, e.g.
-`C:\Users\marvi\AppData\Local\Temp\maira-release-notes.md`) and create a
-**draft** release. Re-confirm the version matches `^\d+\.\d+\.\d+\.\d+$` first.
+Once the user is happy with the current notes, assemble the **full** description
+and write it to a temp file **outside the repo** so it can't be accidentally
+committed (use the Write tool, e.g.
+`C:\Users\marvi\AppData\Local\Temp\maira-release-notes.md`).
+
+The file's layout is: the current release's notes at the top, then a horizontal
+rule, then each of the 4 prior releases under its own version heading (newest
+first), each separated by a horizontal rule so the boundaries are visually
+obvious. Use the release **title** (`Version <ver>`) as the heading text:
+
+```markdown
+- New delta monitor overlay!
+- Fixed the mapping wizard not receiving input events.
+- Updated translations.
+
+---
+
+## Previous releases
+
+### Version 2.0.438.1100
+
+- ...verbatim body of that release...
+
+---
+
+### Version 2.0.437.0930
+
+- ...verbatim body of that release...
+
+---
+
+### Version 2.0.436.2200
+
+- ...verbatim body of that release...
+
+---
+
+### Version 2.0.435.1500
+
+- ...verbatim body of that release...
+```
+
+If fewer than 4 prior releases exist, append however many there are (and if
+there are none, the description is just the current notes — no "Previous
+releases" section). Then create a **draft** release. Re-confirm the version
+matches `^\d+\.\d+\.\d+\.\d+$` first.
 
 ```bash
 gh release create "<ver>" \
