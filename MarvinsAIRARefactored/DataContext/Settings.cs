@@ -404,10 +404,9 @@ public class Settings : INotifyPropertyChanged
 	// would otherwise keep showing the previous language until the setting is touched, so this re-runs
 	// every Update*String() builder to re-localize them. These builders only rebuild a display string
 	// (no setter side effects), unlike the old Misc.ForcePropertySetters hack.
-	private static readonly MethodInfo[] _displayStringUpdaters = typeof( Settings )
+	private static readonly MethodInfo[] _displayStringUpdaters = [ .. typeof( Settings )
 		.GetMethods( BindingFlags.NonPublic | BindingFlags.Instance )
-		.Where( method => method.Name.StartsWith( "Update", StringComparison.Ordinal ) && method.Name.EndsWith( "String", StringComparison.Ordinal ) && method.GetParameters().Length == 0 )
-		.ToArray();
+		.Where( method => method.Name.StartsWith( "Update", StringComparison.Ordinal ) && method.Name.EndsWith( "String", StringComparison.Ordinal ) && method.GetParameters().Length == 0 ) ];
 
 	/// <summary>Recomputes every localized display string. Call after a runtime language change.</summary>
 	public void UpdateLocalizedStrings()
@@ -883,7 +882,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			RacingWheelPredictionBlendString = $"{_racingWheelPredictionBlend * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelPredictionBlendString();
 		}
 	}
 
@@ -903,6 +902,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelPredictionBlendString()
+	{
+		RacingWheelPredictionBlendString = $"{_racingWheelPredictionBlend * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelPredictionBlendContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -934,7 +938,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelDetailBoostString = $"{_racingWheelDetailBoost * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelDetailBoostString();
 		}
 	}
 
@@ -954,6 +958,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelDetailBoostString()
+	{
+		RacingWheelDetailBoostString = $"{_racingWheelDetailBoost * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelDetailBoostContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -985,7 +994,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelDetailBoostBiasString = $"{_racingWheelDetailBoostBias * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelDetailBoostBiasString();
 		}
 	}
 
@@ -1005,6 +1014,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelDetailBoostBiasString()
+	{
+		RacingWheelDetailBoostBiasString = $"{_racingWheelDetailBoostBias * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelDetailBoostBiasContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1036,7 +1050,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelDeltaLimitString = $"{_racingWheelDeltaLimit:F0} {DataContext.Instance.Localization[ "DeltaLimitUnits" ]}";
+			UpdateRacingWheelDeltaLimitString();
 		}
 	}
 
@@ -1056,6 +1070,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelDeltaLimitString()
+	{
+		RacingWheelDeltaLimitString = $"{_racingWheelDeltaLimit:F0} {DataContext.Instance.Localization[ "DeltaLimitUnits" ]}";
 	}
 
 	public ContextSwitches RacingWheelDeltaLimitContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1087,7 +1106,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelDeltaLimiterBiasString = $"{_racingWheelDeltaLimiterBias * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelDeltaLimiterBiasString();
 		}
 	}
 
@@ -1107,6 +1126,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelDeltaLimiterBiasString()
+	{
+		RacingWheelDeltaLimiterBiasString = $"{_racingWheelDeltaLimiterBias * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelDeltaLimiterBiasContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1190,7 +1214,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelSlewCompressionRateString = $"{_racingWheelSlewCompressionRate * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelSlewCompressionRateString();
 		}
 	}
 
@@ -1210,6 +1234,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelSlewCompressionRateString()
+	{
+		RacingWheelSlewCompressionRateString = $"{_racingWheelSlewCompressionRate * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelSlewCompressionRateContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1293,7 +1322,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelTotalCompressionRateString = $"{_racingWheelTotalCompressionRate * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelTotalCompressionRateString();
 		}
 	}
 
@@ -1313,6 +1342,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelTotalCompressionRateString()
+	{
+		RacingWheelTotalCompressionRateString = $"{_racingWheelTotalCompressionRate * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelTotalCompressionRateContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1433,7 +1467,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelMulti360HzDetailString = $"{_racingWheelMulti360HzDetail * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelMulti360HzDetailString();
 		}
 	}
 
@@ -1453,6 +1487,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelMulti360HzDetailString()
+	{
+		RacingWheelMulti360HzDetailString = $"{_racingWheelMulti360HzDetail * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelMulti360HzDetailContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1484,7 +1523,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelMultiTorqueCompressionString = $"{_racingWheelMultiTorqueCompression * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelMultiTorqueCompressionString();
 		}
 	}
 
@@ -1504,6 +1543,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelMultiTorqueCompressionString()
+	{
+		RacingWheelMultiTorqueCompressionString = $"{_racingWheelMultiTorqueCompression * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelMultiTorqueCompressionContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1562,7 +1606,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelMultiSlewRateReductionString = $"{_racingWheelMultiSlewRateReduction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelMultiSlewRateReductionString();
 		}
 	}
 
@@ -1582,6 +1626,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelMultiSlewRateReductionString()
+	{
+		RacingWheelMultiSlewRateReductionString = $"{_racingWheelMultiSlewRateReduction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelMultiSlewRateReductionContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1613,7 +1662,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelMultiDetailGainString = $"{_racingWheelMultiDetailGain * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelMultiDetailGainString();
 		}
 	}
 
@@ -1633,6 +1682,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelMultiDetailGainString()
+	{
+		RacingWheelMultiDetailGainString = $"{_racingWheelMultiDetailGain * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelMultiDetailGainContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1664,7 +1718,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			RacingWheelMultiOutputSmoothingString = $"{_racingWheelMultiOutputSmoothing * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateRacingWheelMultiOutputSmoothingString();
 		}
 	}
 
@@ -1684,6 +1738,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateRacingWheelMultiOutputSmoothingString()
+	{
+		RacingWheelMultiOutputSmoothingString = $"{_racingWheelMultiOutputSmoothing * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches RacingWheelMultiOutputSmoothingContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1845,14 +1904,7 @@ public class Settings : INotifyPropertyChanged
 
 			app.RacingWheel.UpdateAlgorithmPreview = true;
 
-			if ( _racingWheelOutputCurve == 0f )
-			{
-				RacingWheelOutputCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelOutputCurveString = $"{_racingWheelOutputCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateRacingWheelOutputCurveString();
 		}
 	}
 
@@ -1871,6 +1923,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelOutputCurveString()
+	{
+		if ( _racingWheelOutputCurve == 0f )
+		{
+			RacingWheelOutputCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelOutputCurveString = $"{_racingWheelOutputCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -1957,14 +2021,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelLFEStrength == 0f )
-			{
-				RacingWheelLFEStrengthString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelLFEStrengthString = $"{_racingWheelLFEStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateRacingWheelLFEStrengthString();
 		}
 	}
 
@@ -1983,6 +2040,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelLFEStrengthString()
+	{
+		if ( _racingWheelLFEStrength == 0f )
+		{
+			RacingWheelLFEStrengthString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelLFEStrengthString = $"{_racingWheelLFEStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -2011,14 +2080,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelCrashProtectionLongitudalGForce == 20f )
-			{
-				RacingWheelCrashProtectionLongitudalGForceString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelCrashProtectionLongitudalGForceString = $"{_racingWheelCrashProtectionLongitudalGForce:F1} {DataContext.Instance.Localization[ "GForceUnits" ]}";
-			}
+			UpdateRacingWheelCrashProtectionLongitudalGForceString();
 		}
 	}
 
@@ -2037,6 +2099,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelCrashProtectionLongitudalGForceString()
+	{
+		if ( _racingWheelCrashProtectionLongitudalGForce == 20f )
+		{
+			RacingWheelCrashProtectionLongitudalGForceString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelCrashProtectionLongitudalGForceString = $"{_racingWheelCrashProtectionLongitudalGForce:F1} {DataContext.Instance.Localization[ "GForceUnits" ]}";
 		}
 	}
 
@@ -2065,14 +2139,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelCrashProtectionLateralGForce == 20f )
-			{
-				RacingWheelCrashProtectionLateralGForceString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelCrashProtectionLateralGForceString = $"{_racingWheelCrashProtectionLateralGForce:F1} {DataContext.Instance.Localization[ "GForceUnits" ]}";
-			}
+			UpdateRacingWheelCrashProtectionLateralGForceString();
 		}
 	}
 
@@ -2091,6 +2158,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelCrashProtectionLateralGForceString()
+	{
+		if ( _racingWheelCrashProtectionLateralGForce == 20f )
+		{
+			RacingWheelCrashProtectionLateralGForceString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelCrashProtectionLateralGForceString = $"{_racingWheelCrashProtectionLateralGForce:F1} {DataContext.Instance.Localization[ "GForceUnits" ]}";
 		}
 	}
 
@@ -2119,14 +2198,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelCrashProtectionDuration == 0f )
-			{
-				RacingWheelCrashProtectionDurationString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelCrashProtectionDurationString = $"{_racingWheelCrashProtectionDuration:F1} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
-			}
+			UpdateRacingWheelCrashProtectionDurationString();
 		}
 	}
 
@@ -2145,6 +2217,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelCrashProtectionDurationString()
+	{
+		if ( _racingWheelCrashProtectionDuration == 0f )
+		{
+			RacingWheelCrashProtectionDurationString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelCrashProtectionDurationString = $"{_racingWheelCrashProtectionDuration:F1} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
 		}
 	}
 
@@ -2173,14 +2257,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelCrashProtectionForceReduction == 0f )
-			{
-				RacingWheelCrashProtectionForceReductionString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelCrashProtectionForceReductionString = $"{_racingWheelCrashProtectionForceReduction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateRacingWheelCrashProtectionForceReductionString();
 		}
 	}
 
@@ -2199,6 +2276,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelCrashProtectionForceReductionString()
+	{
+		if ( _racingWheelCrashProtectionForceReduction == 0f )
+		{
+			RacingWheelCrashProtectionForceReductionString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelCrashProtectionForceReductionString = $"{_racingWheelCrashProtectionForceReduction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -2227,14 +2316,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelCurbProtectionShockVelocity == 0f )
-			{
-				RacingWheelCurbProtectionShockVelocityString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelCurbProtectionShockVelocityString = $"{_racingWheelCurbProtectionShockVelocity:F2} {DataContext.Instance.Localization[ "MPSUnits" ]}";
-			}
+			UpdateRacingWheelCurbProtectionShockVelocityString();
 		}
 	}
 
@@ -2253,6 +2335,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelCurbProtectionShockVelocityString()
+	{
+		if ( _racingWheelCurbProtectionShockVelocity == 0f )
+		{
+			RacingWheelCurbProtectionShockVelocityString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelCurbProtectionShockVelocityString = $"{_racingWheelCurbProtectionShockVelocity:F2} {DataContext.Instance.Localization[ "MPSUnits" ]}";
 		}
 	}
 
@@ -2281,14 +2375,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelCurbProtectionDuration == 0f )
-			{
-				RacingWheelCurbProtectionDurationString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelCurbProtectionDurationString = $"{_racingWheelCurbProtectionDuration:F2} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
-			}
+			UpdateRacingWheelCurbProtectionDurationString();
 		}
 	}
 
@@ -2307,6 +2394,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelCurbProtectionDurationString()
+	{
+		if ( _racingWheelCurbProtectionDuration == 0f )
+		{
+			RacingWheelCurbProtectionDurationString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelCurbProtectionDurationString = $"{_racingWheelCurbProtectionDuration:F2} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
 		}
 	}
 
@@ -2335,14 +2434,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelCurbProtectionForceReduction == 0f )
-			{
-				RacingWheelCurbProtectionForceReductionString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelCurbProtectionForceReductionString = $"{_racingWheelCurbProtectionForceReduction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateRacingWheelCurbProtectionForceReductionString();
 		}
 	}
 
@@ -2361,6 +2453,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelCurbProtectionForceReductionString()
+	{
+		if ( _racingWheelCurbProtectionForceReduction == 0f )
+		{
+			RacingWheelCurbProtectionForceReductionString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelCurbProtectionForceReductionString = $"{_racingWheelCurbProtectionForceReduction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -2389,14 +2493,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelParkedStrength == 1f )
-			{
-				RacingWheelParkedStrengthString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelParkedStrengthString = $"{_racingWheelParkedStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateRacingWheelParkedStrengthString();
 		}
 	}
 
@@ -2415,6 +2512,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelParkedStrengthString()
+	{
+		if ( _racingWheelParkedStrength == 1f )
+		{
+			RacingWheelParkedStrengthString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelParkedStrengthString = $"{_racingWheelParkedStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -2443,14 +2552,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelParkedFriction == 0f )
-			{
-				RacingWheelParkedFrictionString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelParkedFrictionString = $"{_racingWheelParkedFriction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateRacingWheelParkedFrictionString();
 		}
 	}
 
@@ -2469,6 +2571,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelParkedFrictionString()
+	{
+		if ( _racingWheelParkedFriction == 0f )
+		{
+			RacingWheelParkedFrictionString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelParkedFrictionString = $"{_racingWheelParkedFriction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -2497,14 +2611,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelSoftLockStrength == 0f )
-			{
-				RacingWheelSoftLockStrengthString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelSoftLockStrengthString = $"{_racingWheelSoftLockStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateRacingWheelSoftLockStrengthString();
 		}
 	}
 
@@ -2523,6 +2630,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelSoftLockStrengthString()
+	{
+		if ( _racingWheelSoftLockStrength == 0f )
+		{
+			RacingWheelSoftLockStrengthString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelSoftLockStrengthString = $"{_racingWheelSoftLockStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -2551,14 +2670,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelFriction == 0f )
-			{
-				RacingWheelFrictionString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelFrictionString = $"{_racingWheelFriction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateRacingWheelFrictionString();
 		}
 	}
 
@@ -2577,6 +2689,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelFrictionString()
+	{
+		if ( _racingWheelFriction == 0f )
+		{
+			RacingWheelFrictionString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelFrictionString = $"{_racingWheelFriction * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -2605,14 +2729,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _racingWheelWheelCenteringStrength == 0f )
-			{
-				RacingWheelWheelCenteringStrengthString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				RacingWheelWheelCenteringStrengthString = $"{_racingWheelWheelCenteringStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateRacingWheelWheelCenteringStrengthString();
 		}
 	}
 
@@ -2631,6 +2748,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateRacingWheelWheelCenteringStrengthString()
+	{
+		if ( _racingWheelWheelCenteringStrength == 0f )
+		{
+			RacingWheelWheelCenteringStrengthString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			RacingWheelWheelCenteringStrengthString = $"{_racingWheelWheelCenteringStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -3072,7 +3201,7 @@ public class Settings : INotifyPropertyChanged
 				App.Instance!.SteeringEffects.RedrawCalibrationGraph = true;
 			}
 
-			SteeringEffectsUndersteerMinimumThresholdString = $"{_steeringEffectsUndersteerMinimumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
+			UpdateSteeringEffectsUndersteerMinimumThresholdString();
 		}
 	}
 
@@ -3092,6 +3221,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsUndersteerMinimumThresholdString()
+	{
+		SteeringEffectsUndersteerMinimumThresholdString = $"{_steeringEffectsUndersteerMinimumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsUndersteerMinimumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -3123,7 +3257,7 @@ public class Settings : INotifyPropertyChanged
 				App.Instance!.SteeringEffects.RedrawCalibrationGraph = true;
 			}
 
-			SteeringEffectsUndersteerMaximumThresholdString = $"{_steeringEffectsUndersteerMaximumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
+			UpdateSteeringEffectsUndersteerMaximumThresholdString();
 		}
 	}
 
@@ -3143,6 +3277,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsUndersteerMaximumThresholdString()
+	{
+		SteeringEffectsUndersteerMaximumThresholdString = $"{_steeringEffectsUndersteerMaximumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsUndersteerMaximumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -3254,7 +3393,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SteeringEffectsUndersteerWheelVibrationMinimumFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+			UpdateSteeringEffectsUndersteerWheelVibrationMinimumFrequencyString();
 		}
 	}
 
@@ -3274,6 +3413,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsUndersteerWheelVibrationMinimumFrequencyString()
+	{
+		SteeringEffectsUndersteerWheelVibrationMinimumFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsUndersteerWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -3301,7 +3445,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SteeringEffectsUndersteerWheelVibrationMaximumFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+			UpdateSteeringEffectsUndersteerWheelVibrationMaximumFrequencyString();
 		}
 	}
 
@@ -3321,6 +3465,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsUndersteerWheelVibrationMaximumFrequencyString()
+	{
+		SteeringEffectsUndersteerWheelVibrationMaximumFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsUndersteerWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -3348,14 +3497,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsUndersteerWheelVibrationCurve == 0f )
-			{
-				SteeringEffectsUndersteerWheelVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SteeringEffectsUndersteerWheelVibrationCurveString = $"{_steeringEffectsUndersteerWheelVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSteeringEffectsUndersteerWheelVibrationCurveString();
 		}
 	}
 
@@ -3374,6 +3516,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSteeringEffectsUndersteerWheelVibrationCurveString()
+	{
+		if ( _steeringEffectsUndersteerWheelVibrationCurve == 0f )
+		{
+			SteeringEffectsUndersteerWheelVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SteeringEffectsUndersteerWheelVibrationCurveString = $"{_steeringEffectsUndersteerWheelVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -3487,14 +3641,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsUndersteerWheelConstantForceCurve == 0f )
-			{
-				SteeringEffectsUndersteerWheelConstantForceCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SteeringEffectsUndersteerWheelConstantForceCurveString = $"{_steeringEffectsUndersteerWheelConstantForceCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSteeringEffectsUndersteerWheelConstantForceCurveString();
 		}
 	}
 
@@ -3513,6 +3660,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSteeringEffectsUndersteerWheelConstantForceCurveString()
+	{
+		if ( _steeringEffectsUndersteerWheelConstantForceCurve == 0f )
+		{
+			SteeringEffectsUndersteerWheelConstantForceCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SteeringEffectsUndersteerWheelConstantForceCurveString = $"{_steeringEffectsUndersteerWheelConstantForceCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -3649,14 +3808,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsUndersteerPedalVibrationCurve == 0f )
-			{
-				SteeringEffectsUndersteerPedalVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SteeringEffectsUndersteerPedalVibrationCurveString = $"{_steeringEffectsUndersteerPedalVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSteeringEffectsUndersteerPedalVibrationCurveString();
 		}
 	}
 
@@ -3675,6 +3827,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSteeringEffectsUndersteerPedalVibrationCurveString()
+	{
+		if ( _steeringEffectsUndersteerPedalVibrationCurve == 0f )
+		{
+			SteeringEffectsUndersteerPedalVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SteeringEffectsUndersteerPedalVibrationCurveString = $"{_steeringEffectsUndersteerPedalVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -3732,7 +3896,7 @@ public class Settings : INotifyPropertyChanged
 				App.Instance!.SteeringEffects.RedrawCalibrationGraph = true;
 			}
 
-			SteeringEffectsOversteerMinimumThresholdString = $"{_steeringEffectsOversteerMinimumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
+			UpdateSteeringEffectsOversteerMinimumThresholdString();
 		}
 	}
 
@@ -3752,6 +3916,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsOversteerMinimumThresholdString()
+	{
+		SteeringEffectsOversteerMinimumThresholdString = $"{_steeringEffectsOversteerMinimumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsOversteerMinimumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -3783,7 +3952,7 @@ public class Settings : INotifyPropertyChanged
 				App.Instance!.SteeringEffects.RedrawCalibrationGraph = true;
 			}
 
-			SteeringEffectsOversteerMaximumThresholdString = $"{_steeringEffectsOversteerMaximumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
+			UpdateSteeringEffectsOversteerMaximumThresholdString();
 		}
 	}
 
@@ -3803,6 +3972,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsOversteerMaximumThresholdString()
+	{
+		SteeringEffectsOversteerMaximumThresholdString = $"{_steeringEffectsOversteerMaximumThreshold:F2}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsOversteerMaximumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -3914,7 +4088,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SteeringEffectsOversteerWheelVibrationMinimumFrequencyString = $"{_steeringEffectsOversteerWheelVibrationMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+			UpdateSteeringEffectsOversteerWheelVibrationMinimumFrequencyString();
 		}
 	}
 
@@ -3934,6 +4108,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsOversteerWheelVibrationMinimumFrequencyString()
+	{
+		SteeringEffectsOversteerWheelVibrationMinimumFrequencyString = $"{_steeringEffectsOversteerWheelVibrationMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsOversteerWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -3961,7 +4140,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SteeringEffectsOversteerWheelVibrationMaximumFrequencyString = $"{_steeringEffectsOversteerWheelVibrationMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+			UpdateSteeringEffectsOversteerWheelVibrationMaximumFrequencyString();
 		}
 	}
 
@@ -3981,6 +4160,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsOversteerWheelVibrationMaximumFrequencyString()
+	{
+		SteeringEffectsOversteerWheelVibrationMaximumFrequencyString = $"{_steeringEffectsOversteerWheelVibrationMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsOversteerWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -4008,14 +4192,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsOversteerWheelVibrationCurve == 0f )
-			{
-				SteeringEffectsOversteerWheelVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SteeringEffectsOversteerWheelVibrationCurveString = $"{_steeringEffectsOversteerWheelVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSteeringEffectsOversteerWheelVibrationCurveString();
 		}
 	}
 
@@ -4034,6 +4211,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSteeringEffectsOversteerWheelVibrationCurveString()
+	{
+		if ( _steeringEffectsOversteerWheelVibrationCurve == 0f )
+		{
+			SteeringEffectsOversteerWheelVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SteeringEffectsOversteerWheelVibrationCurveString = $"{_steeringEffectsOversteerWheelVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -4146,14 +4335,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsOversteerWheelConstantForceCurve == 0f )
-			{
-				SteeringEffectsOversteerWheelConstantForceCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SteeringEffectsOversteerWheelConstantForceCurveString = $"{_steeringEffectsOversteerWheelConstantForceCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSteeringEffectsOversteerWheelConstantForceCurveString();
 		}
 	}
 
@@ -4172,6 +4354,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSteeringEffectsOversteerWheelConstantForceCurveString()
+	{
+		if ( _steeringEffectsOversteerWheelConstantForceCurve == 0f )
+		{
+			SteeringEffectsOversteerWheelConstantForceCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SteeringEffectsOversteerWheelConstantForceCurveString = $"{_steeringEffectsOversteerWheelConstantForceCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -4308,14 +4502,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsOversteerPedalVibrationCurve == 0f )
-			{
-				SteeringEffectsOversteerPedalVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SteeringEffectsOversteerPedalVibrationCurveString = $"{_steeringEffectsOversteerPedalVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSteeringEffectsOversteerPedalVibrationCurveString();
 		}
 	}
 
@@ -4334,6 +4521,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSteeringEffectsOversteerPedalVibrationCurveString()
+	{
+		if ( _steeringEffectsOversteerPedalVibrationCurve == 0f )
+		{
+			SteeringEffectsOversteerPedalVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SteeringEffectsOversteerPedalVibrationCurveString = $"{_steeringEffectsOversteerPedalVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -4387,14 +4586,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var units = SteeringEffectsSeatOfPantsAlgorithm switch
-			{
-				SteeringEffects.SeatOfPantsAlgorithm.YAcceleration => DataContext.Instance.Localization[ "GForceUnits" ],
-				SteeringEffects.SeatOfPantsAlgorithm.YVelocity => DataContext.Instance.Localization[ "MPSUnits" ],
-				_ => ""
-			};
-
-			SteeringEffectsSeatOfPantsMinimumThresholdString = $"{_steeringEffectsSeatOfPantsMinimumThreshold:F2} {units}";
+			UpdateSteeringEffectsSeatOfPantsMinimumThresholdString();
 		}
 	}
 
@@ -4414,6 +4606,18 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsSeatOfPantsMinimumThresholdString()
+	{
+		var units = SteeringEffectsSeatOfPantsAlgorithm switch
+		{
+			SteeringEffects.SeatOfPantsAlgorithm.YAcceleration => DataContext.Instance.Localization[ "GForceUnits" ],
+			SteeringEffects.SeatOfPantsAlgorithm.YVelocity => DataContext.Instance.Localization[ "MPSUnits" ],
+			_ => ""
+		};
+
+		SteeringEffectsSeatOfPantsMinimumThresholdString = $"{_steeringEffectsSeatOfPantsMinimumThreshold:F2} {units}";
 	}
 
 	public ContextSwitches SteeringEffectsSeatOfPantsMinimumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -4443,14 +4647,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var units = SteeringEffectsSeatOfPantsAlgorithm switch
-			{
-				SteeringEffects.SeatOfPantsAlgorithm.YAcceleration => DataContext.Instance.Localization[ "GForceUnits" ],
-				SteeringEffects.SeatOfPantsAlgorithm.YVelocity => DataContext.Instance.Localization[ "MPSUnits" ],
-				_ => ""
-			};
-
-			SteeringEffectsSeatOfPantsMaximumThresholdString = $"{_steeringEffectsSeatOfPantsMaximumThreshold:F2} {units}";
+			UpdateSteeringEffectsSeatOfPantsMaximumThresholdString();
 		}
 	}
 
@@ -4470,6 +4667,18 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsSeatOfPantsMaximumThresholdString()
+	{
+		var units = SteeringEffectsSeatOfPantsAlgorithm switch
+		{
+			SteeringEffects.SeatOfPantsAlgorithm.YAcceleration => DataContext.Instance.Localization[ "GForceUnits" ],
+			SteeringEffects.SeatOfPantsAlgorithm.YVelocity => DataContext.Instance.Localization[ "MPSUnits" ],
+			_ => ""
+		};
+
+		SteeringEffectsSeatOfPantsMaximumThresholdString = $"{_steeringEffectsSeatOfPantsMaximumThreshold:F2} {units}";
 	}
 
 	public ContextSwitches SteeringEffectsSeatOfPantsMaximumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -4607,7 +4816,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyString = $"{_steeringEffectsSeatOfPantsWheelVibrationMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+			UpdateSteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyString();
 		}
 	}
 
@@ -4627,6 +4836,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyString()
+	{
+		SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyString = $"{_steeringEffectsSeatOfPantsWheelVibrationMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -4654,7 +4868,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyString = $"{_steeringEffectsSeatOfPantsWheelVibrationMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+			UpdateSteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyString();
 		}
 	}
 
@@ -4674,6 +4888,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyString()
+	{
+		SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyString = $"{_steeringEffectsSeatOfPantsWheelVibrationMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -4701,14 +4920,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsSeatOfPantsWheelVibrationCurve == 0f )
-			{
-				SteeringEffectsSeatOfPantsWheelVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SteeringEffectsSeatOfPantsWheelVibrationCurveString = $"{_steeringEffectsSeatOfPantsWheelVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSteeringEffectsSeatOfPantsWheelVibrationCurveString();
 		}
 	}
 
@@ -4727,6 +4939,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSteeringEffectsSeatOfPantsWheelVibrationCurveString()
+	{
+		if ( _steeringEffectsSeatOfPantsWheelVibrationCurve == 0f )
+		{
+			SteeringEffectsSeatOfPantsWheelVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SteeringEffectsSeatOfPantsWheelVibrationCurveString = $"{_steeringEffectsSeatOfPantsWheelVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -4839,14 +5063,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsSeatOfPantsWheelConstantForceCurve == 0f )
-			{
-				SteeringEffectsSeatOfPantsWheelConstantForceCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SteeringEffectsSeatOfPantsWheelConstantForceCurveString = $"{_steeringEffectsSeatOfPantsWheelConstantForceCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSteeringEffectsSeatOfPantsWheelConstantForceCurveString();
 		}
 	}
 
@@ -4865,6 +5082,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSteeringEffectsSeatOfPantsWheelConstantForceCurveString()
+	{
+		if ( _steeringEffectsSeatOfPantsWheelConstantForceCurve == 0f )
+		{
+			SteeringEffectsSeatOfPantsWheelConstantForceCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SteeringEffectsSeatOfPantsWheelConstantForceCurveString = $"{_steeringEffectsSeatOfPantsWheelConstantForceCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -5001,14 +5230,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _steeringEffectsSeatOfPantsPedalVibrationCurve == 0f )
-			{
-				SteeringEffectsSeatOfPantsPedalVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SteeringEffectsSeatOfPantsPedalVibrationCurveString = $"{_steeringEffectsSeatOfPantsPedalVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSteeringEffectsSeatOfPantsPedalVibrationCurveString();
 		}
 	}
 
@@ -5027,6 +5249,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSteeringEffectsSeatOfPantsPedalVibrationCurveString()
+	{
+		if ( _steeringEffectsSeatOfPantsPedalVibrationCurve == 0f )
+		{
+			SteeringEffectsSeatOfPantsPedalVibrationCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SteeringEffectsSeatOfPantsPedalVibrationCurveString = $"{_steeringEffectsSeatOfPantsPedalVibrationCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -5129,7 +5363,7 @@ public class Settings : INotifyPropertyChanged
 				UpdateRelatedPedalSettings();
 			}
 
-			PedalsMinimumFrequencyString = $"{_pedalsMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+			UpdatePedalsMinimumFrequencyString();
 		}
 	}
 
@@ -5149,6 +5383,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsMinimumFrequencyString()
+	{
+		PedalsMinimumFrequencyString = $"{_pedalsMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches PedalsMinimumFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -5180,7 +5419,7 @@ public class Settings : INotifyPropertyChanged
 				UpdateRelatedPedalSettings();
 			}
 
-			PedalsMaximumFrequencyString = $"{_pedalsMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+			UpdatePedalsMaximumFrequencyString();
 		}
 	}
 
@@ -5200,6 +5439,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsMaximumFrequencyString()
+	{
+		PedalsMaximumFrequencyString = $"{_pedalsMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches PedalsMaximumFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -5227,14 +5471,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _pedalsFrequencyCurve == 0f )
-			{
-				PedalsFrequencyCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				PedalsFrequencyCurveString = $"{_pedalsFrequencyCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdatePedalsFrequencyCurveString();
 		}
 	}
 
@@ -5253,6 +5490,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdatePedalsFrequencyCurveString()
+	{
+		if ( _pedalsFrequencyCurve == 0f )
+		{
+			PedalsFrequencyCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			PedalsFrequencyCurveString = $"{_pedalsFrequencyCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -5283,7 +5532,7 @@ public class Settings : INotifyPropertyChanged
 				PedalsMaximumAmplitude = MathF.Max( PedalsMaximumAmplitude, _pedalsMinimumAmplitude );
 			}
 
-			PedalsMinimumAmplitudeString = $"{_pedalsMinimumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsMinimumAmplitudeString();
 		}
 	}
 
@@ -5303,6 +5552,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsMinimumAmplitudeString()
+	{
+		PedalsMinimumAmplitudeString = $"{_pedalsMinimumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsMinimumAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -5332,7 +5586,7 @@ public class Settings : INotifyPropertyChanged
 				PedalsMinimumAmplitude = MathF.Min( PedalsMinimumAmplitude, _pedalsMaximumAmplitude );
 			}
 
-			PedalsMaximumAmplitudeString = $"{_pedalsMaximumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsMaximumAmplitudeString();
 		}
 	}
 
@@ -5352,6 +5606,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsMaximumAmplitudeString()
+	{
+		PedalsMaximumAmplitudeString = $"{_pedalsMaximumAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsMaximumAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -5379,14 +5638,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _pedalsAmplitudeCurve == 0f )
-			{
-				PedalsAmplitudeCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				PedalsAmplitudeCurveString = $"{_pedalsAmplitudeCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdatePedalsAmplitudeCurveString();
 		}
 	}
 
@@ -5405,6 +5657,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdatePedalsAmplitudeCurveString()
+	{
+		if ( _pedalsAmplitudeCurve == 0f )
+		{
+			PedalsAmplitudeCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			PedalsAmplitudeCurveString = $"{_pedalsAmplitudeCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -5456,7 +5720,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsClutchStrength1String = $"{_pedalsClutchStrength1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsClutchStrength1String();
 		}
 	}
 
@@ -5476,6 +5740,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsClutchStrength1String()
+	{
+		PedalsClutchStrength1String = $"{_pedalsClutchStrength1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsClutchStrength1ContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -5532,7 +5801,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsClutchStrength2String = $"{_pedalsClutchStrength2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsClutchStrength2String();
 		}
 	}
 
@@ -5552,6 +5821,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsClutchStrength2String()
+	{
+		PedalsClutchStrength2String = $"{_pedalsClutchStrength2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsClutchStrength2ContextSwitches { get => PedalsClutchStrength1ContextSwitches; set => PedalsClutchStrength1ContextSwitches = value; }
@@ -5608,7 +5882,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsClutchStrength3String = $"{_pedalsClutchStrength3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsClutchStrength3String();
 		}
 	}
 
@@ -5628,6 +5902,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsClutchStrength3String()
+	{
+		PedalsClutchStrength3String = $"{_pedalsClutchStrength3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsClutchStrength3ContextSwitches { get => PedalsClutchStrength1ContextSwitches; set => PedalsClutchStrength1ContextSwitches = value; }
@@ -5684,7 +5963,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsBrakeStrength1String = $"{_pedalsBrakeStrength1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsBrakeStrength1String();
 		}
 	}
 
@@ -5704,6 +5983,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsBrakeStrength1String()
+	{
+		PedalsBrakeStrength1String = $"{_pedalsBrakeStrength1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsBrakeStrength1ContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -5760,7 +6044,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsBrakeStrength2String = $"{_pedalsBrakeStrength2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsBrakeStrength2String();
 		}
 	}
 
@@ -5780,6 +6064,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsBrakeStrength2String()
+	{
+		PedalsBrakeStrength2String = $"{_pedalsBrakeStrength2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsBrakeStrength2ContextSwitches { get => PedalsBrakeStrength1ContextSwitches; set => PedalsBrakeStrength1ContextSwitches = value; }
@@ -5836,7 +6125,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsBrakeStrength3String = $"{_pedalsBrakeStrength3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsBrakeStrength3String();
 		}
 	}
 
@@ -5856,6 +6145,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsBrakeStrength3String()
+	{
+		PedalsBrakeStrength3String = $"{_pedalsBrakeStrength3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsBrakeStrength3ContextSwitches { get => PedalsBrakeStrength1ContextSwitches; set => PedalsBrakeStrength1ContextSwitches = value; }
@@ -5912,7 +6206,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsThrottleStrength1String = $"{_pedalsThrottleStrength1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsThrottleStrength1String();
 		}
 	}
 
@@ -5932,6 +6226,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsThrottleStrength1String()
+	{
+		PedalsThrottleStrength1String = $"{_pedalsThrottleStrength1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsThrottleStrength1ContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -5988,7 +6287,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsThrottleStrength2String = $"{_pedalsThrottleStrength2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsThrottleStrength2String();
 		}
 	}
 
@@ -6008,6 +6307,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsThrottleStrength2String()
+	{
+		PedalsThrottleStrength2String = $"{_pedalsThrottleStrength2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsThrottleStrength2ContextSwitches { get => PedalsThrottleStrength1ContextSwitches; set => PedalsThrottleStrength1ContextSwitches = value; }
@@ -6064,7 +6368,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsThrottleStrength3String = $"{_pedalsThrottleStrength3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsThrottleStrength3String();
 		}
 	}
 
@@ -6084,6 +6388,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsThrottleStrength3String()
+	{
+		PedalsThrottleStrength3String = $"{_pedalsThrottleStrength3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsThrottleStrength3ContextSwitches { get => PedalsThrottleStrength1ContextSwitches; set => PedalsThrottleStrength1ContextSwitches = value; }
@@ -6171,7 +6480,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsShiftIntoGearAmplitudeString = $"{_pedalsShiftIntoGearAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsShiftIntoGearAmplitudeString();
 		}
 	}
 
@@ -6191,6 +6500,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsShiftIntoGearAmplitudeString()
+	{
+		PedalsShiftIntoGearAmplitudeString = $"{_pedalsShiftIntoGearAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsShiftIntoGearAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -6218,7 +6532,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsShiftIntoGearDurationString = $"{_pedalsShiftIntoGearDuration:F2} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
+			UpdatePedalsShiftIntoGearDurationString();
 		}
 	}
 
@@ -6238,6 +6552,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsShiftIntoGearDurationString()
+	{
+		PedalsShiftIntoGearDurationString = $"{_pedalsShiftIntoGearDuration:F2} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
 	}
 
 	public ContextSwitches PedalsShiftIntoGearDurationContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -6319,7 +6638,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsShiftIntoNeutralAmplitudeString = $"{_pedalsShiftIntoNeutralAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsShiftIntoNeutralAmplitudeString();
 		}
 	}
 
@@ -6339,6 +6658,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsShiftIntoNeutralAmplitudeString()
+	{
+		PedalsShiftIntoNeutralAmplitudeString = $"{_pedalsShiftIntoNeutralAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsShiftIntoNeutralAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -6366,7 +6690,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsShiftIntoNeutralDurationString = $"{_pedalsShiftIntoNeutralDuration:F2} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
+			UpdatePedalsShiftIntoNeutralDurationString();
 		}
 	}
 
@@ -6386,6 +6710,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsShiftIntoNeutralDurationString()
+	{
+		PedalsShiftIntoNeutralDurationString = $"{_pedalsShiftIntoNeutralDuration:F2} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
 	}
 
 	public ContextSwitches PedalsShiftIntoNeutralDurationContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -6467,7 +6796,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsABSEngagedAmplitudeString = $"{_pedalsABSEngagedAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsABSEngagedAmplitudeString();
 		}
 	}
 
@@ -6487,6 +6816,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsABSEngagedAmplitudeString()
+	{
+		PedalsABSEngagedAmplitudeString = $"{_pedalsABSEngagedAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsABSEngagedAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -6537,7 +6871,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsStartingRPMString = $"{_pedalsStartingRPM * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsStartingRPMString();
 		}
 	}
 
@@ -6557,6 +6891,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsStartingRPMString()
+	{
+		PedalsStartingRPMString = $"{_pedalsStartingRPM * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsStartingRPMContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -6684,7 +7023,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsShiftRPMAmplitudeString = $"{_pedalsShiftRPMAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsShiftRPMAmplitudeString();
 		}
 	}
 
@@ -6704,6 +7043,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsShiftRPMAmplitudeString()
+	{
+		PedalsShiftRPMAmplitudeString = $"{_pedalsShiftRPMAmplitude * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsShiftRPMAmplitudeContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -6808,7 +7152,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsWheelLockSensitivityString = $"{_pedalsWheelLockSensitivity * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsWheelLockSensitivityString();
 		}
 	}
 
@@ -6828,6 +7172,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsWheelLockSensitivityString()
+	{
+		PedalsWheelLockSensitivityString = $"{_pedalsWheelLockSensitivity * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsWheelLockSensitivityContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -6932,7 +7281,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			PedalsWheelSpinSensitivityString = $"{_pedalsWheelSpinSensitivity * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsWheelSpinSensitivityString();
 		}
 	}
 
@@ -6952,6 +7301,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsWheelSpinSensitivityString()
+	{
+		PedalsWheelSpinSensitivityString = $"{_pedalsWheelSpinSensitivity * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsWheelSpinSensitivityContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -7004,7 +7358,7 @@ public class Settings : INotifyPropertyChanged
 				PedalsClutchSlipEnd = MathF.Max( PedalsClutchSlipEnd, _pedalsClutchSlipStart );
 			}
 
-			PedalsClutchSlipStartString = $"{_pedalsClutchSlipStart * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsClutchSlipStartString();
 		}
 	}
 
@@ -7024,6 +7378,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsClutchSlipStartString()
+	{
+		PedalsClutchSlipStartString = $"{_pedalsClutchSlipStart * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsClutchSlipStartContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -7053,7 +7412,7 @@ public class Settings : INotifyPropertyChanged
 				PedalsClutchSlipStart = MathF.Min( PedalsClutchSlipStart, _pedalsClutchSlipEnd );
 			}
 
-			PedalsClutchSlipEndString = $"{_pedalsClutchSlipEnd * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdatePedalsClutchSlipEndString();
 		}
 	}
 
@@ -7073,6 +7432,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdatePedalsClutchSlipEndString()
+	{
+		PedalsClutchSlipEndString = $"{_pedalsClutchSlipEnd * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ContextSwitches PedalsClutchSlipEndContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -7154,14 +7518,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _pedalsNoiseDamper == 0f )
-			{
-				PedalsNoiseDamperString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				PedalsNoiseDamperString = $"{_pedalsNoiseDamper * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdatePedalsNoiseDamperString();
 		}
 	}
 
@@ -7180,6 +7537,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdatePedalsNoiseDamperString()
+	{
+		if ( _pedalsNoiseDamper == 0f )
+		{
+			PedalsNoiseDamperString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			PedalsNoiseDamperString = $"{_pedalsNoiseDamper * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -7229,14 +7598,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _windMasterWindPower == 0f )
-			{
-				WindMasterWindPowerString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				WindMasterWindPowerString = $"{_windMasterWindPower * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateWindMasterWindPowerString();
 		}
 	}
 
@@ -7255,6 +7617,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindMasterWindPowerString()
+	{
+		if ( _windMasterWindPower == 0f )
+		{
+			WindMasterWindPowerString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			WindMasterWindPowerString = $"{_windMasterWindPower * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -7283,23 +7657,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _windMinimumSpeed == 0f )
-			{
-				WindMinimumSpeedString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				var app = App.Instance!;
-
-				if ( app.Simulator.DisplayUnits == 0 )
-				{
-					WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
-				}
-				else
-				{
-					WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
-				}
-			}
+			UpdateWindMinimumSpeedString();
 		}
 	}
 
@@ -7317,6 +7675,27 @@ public class Settings : INotifyPropertyChanged
 				_windMinimumSpeedString = value;
 
 				OnPropertyChanged();
+			}
+		}
+	}
+
+	private void UpdateWindMinimumSpeedString()
+	{
+		if ( _windMinimumSpeed == 0f )
+		{
+			WindMinimumSpeedString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			var app = App.Instance!;
+
+			if ( app.Simulator.DisplayUnits == 0 )
+			{
+				WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
+			}
+			else
+			{
+				WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
 			}
 		}
 	}
@@ -7346,14 +7725,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _windCurving == 0f )
-			{
-				WindCurvingString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				WindCurvingString = $"{_windCurving * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateWindCurvingString();
 		}
 	}
 
@@ -7372,6 +7744,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindCurvingString()
+	{
+		if ( _windCurving == 0f )
+		{
+			WindCurvingString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			WindCurvingString = $"{_windCurving * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -7402,16 +7786,7 @@ public class Settings : INotifyPropertyChanged
 				WindSpeed2 = MathF.Max( WindSpeed2, _windSpeed1 );
 			}
 
-			var app = App.Instance!;
-
-			if ( app.Simulator.DisplayUnits == 0 )
-			{
-				WindSpeed1String = $"{_windSpeed1 * MathZ.MPSToMPH:F0}";
-			}
-			else
-			{
-				WindSpeed1String = $"{_windSpeed1 * MathZ.MPSToKPH:F0}";
-			}
+			UpdateWindSpeed1String();
 		}
 	}
 
@@ -7430,6 +7805,20 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindSpeed1String()
+	{
+		var app = App.Instance!;
+
+		if ( app.Simulator.DisplayUnits == 0 )
+		{
+			WindSpeed1String = $"{_windSpeed1 * MathZ.MPSToMPH:F0}";
+		}
+		else
+		{
+			WindSpeed1String = $"{_windSpeed1 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
@@ -7454,7 +7843,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			WindFanPower1String = $"{_windFanPower1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateWindFanPower1String();
 		}
 	}
 
@@ -7474,6 +7863,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateWindFanPower1String()
+	{
+		WindFanPower1String = $"{_windFanPower1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -7500,16 +7894,7 @@ public class Settings : INotifyPropertyChanged
 				WindSpeed3 = MathF.Max( WindSpeed3, _windSpeed2 );
 			}
 
-			var app = App.Instance!;
-
-			if ( app.Simulator.DisplayUnits == 0 )
-			{
-				WindSpeed2String = $"{_windSpeed2 * MathZ.MPSToMPH:F0}";
-			}
-			else
-			{
-				WindSpeed2String = $"{_windSpeed2 * MathZ.MPSToKPH:F0}";
-			}
+			UpdateWindSpeed2String();
 		}
 	}
 
@@ -7528,6 +7913,20 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindSpeed2String()
+	{
+		var app = App.Instance!;
+
+		if ( app.Simulator.DisplayUnits == 0 )
+		{
+			WindSpeed2String = $"{_windSpeed2 * MathZ.MPSToMPH:F0}";
+		}
+		else
+		{
+			WindSpeed2String = $"{_windSpeed2 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
@@ -7552,7 +7951,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			WindFanPower2String = $"{_windFanPower2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateWindFanPower2String();
 		}
 	}
 
@@ -7572,6 +7971,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateWindFanPower2String()
+	{
+		WindFanPower2String = $"{_windFanPower2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -7598,16 +8002,7 @@ public class Settings : INotifyPropertyChanged
 				WindSpeed4 = MathF.Max( WindSpeed4, _windSpeed3 );
 			}
 
-			var app = App.Instance!;
-
-			if ( app.Simulator.DisplayUnits == 0 )
-			{
-				WindSpeed3String = $"{_windSpeed3 * MathZ.MPSToMPH:F0}";
-			}
-			else
-			{
-				WindSpeed3String = $"{_windSpeed3 * MathZ.MPSToKPH:F0}";
-			}
+			UpdateWindSpeed3String();
 		}
 	}
 
@@ -7626,6 +8021,20 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindSpeed3String()
+	{
+		var app = App.Instance!;
+
+		if ( app.Simulator.DisplayUnits == 0 )
+		{
+			WindSpeed3String = $"{_windSpeed3 * MathZ.MPSToMPH:F0}";
+		}
+		else
+		{
+			WindSpeed3String = $"{_windSpeed3 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
@@ -7650,7 +8059,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			WindFanPower3String = $"{_windFanPower3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateWindFanPower3String();
 		}
 	}
 
@@ -7670,6 +8079,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateWindFanPower3String()
+	{
+		WindFanPower3String = $"{_windFanPower3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -7696,16 +8110,7 @@ public class Settings : INotifyPropertyChanged
 				WindSpeed5 = MathF.Max( WindSpeed5, _windSpeed4 );
 			}
 
-			var app = App.Instance!;
-
-			if ( app.Simulator.DisplayUnits == 0 )
-			{
-				WindSpeed4String = $"{_windSpeed4 * MathZ.MPSToMPH:F0}";
-			}
-			else
-			{
-				WindSpeed4String = $"{_windSpeed4 * MathZ.MPSToKPH:F0}";
-			}
+			UpdateWindSpeed4String();
 		}
 	}
 
@@ -7724,6 +8129,20 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindSpeed4String()
+	{
+		var app = App.Instance!;
+
+		if ( app.Simulator.DisplayUnits == 0 )
+		{
+			WindSpeed4String = $"{_windSpeed4 * MathZ.MPSToMPH:F0}";
+		}
+		else
+		{
+			WindSpeed4String = $"{_windSpeed4 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
@@ -7748,7 +8167,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			WindFanPower4String = $"{_windFanPower4 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateWindFanPower4String();
 		}
 	}
 
@@ -7768,6 +8187,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateWindFanPower4String()
+	{
+		WindFanPower4String = $"{_windFanPower4 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -7794,16 +8218,7 @@ public class Settings : INotifyPropertyChanged
 				WindSpeed6 = MathF.Max( WindSpeed6, _windSpeed5 );
 			}
 
-			var app = App.Instance!;
-
-			if ( app.Simulator.DisplayUnits == 0 )
-			{
-				WindSpeed5String = $"{_windSpeed5 * MathZ.MPSToMPH:F0}";
-			}
-			else
-			{
-				WindSpeed5String = $"{_windSpeed5 * MathZ.MPSToKPH:F0}";
-			}
+			UpdateWindSpeed5String();
 		}
 	}
 
@@ -7822,6 +8237,20 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindSpeed5String()
+	{
+		var app = App.Instance!;
+
+		if ( app.Simulator.DisplayUnits == 0 )
+		{
+			WindSpeed5String = $"{_windSpeed5 * MathZ.MPSToMPH:F0}";
+		}
+		else
+		{
+			WindSpeed5String = $"{_windSpeed5 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
@@ -7846,7 +8275,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			WindFanPower5String = $"{_windFanPower5 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateWindFanPower5String();
 		}
 	}
 
@@ -7866,6 +8295,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateWindFanPower5String()
+	{
+		WindFanPower5String = $"{_windFanPower5 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -7892,16 +8326,7 @@ public class Settings : INotifyPropertyChanged
 				WindSpeed7 = MathF.Max( WindSpeed7, _windSpeed6 );
 			}
 
-			var app = App.Instance!;
-
-			if ( app.Simulator.DisplayUnits == 0 )
-			{
-				WindSpeed6String = $"{_windSpeed6 * MathZ.MPSToMPH:F0}";
-			}
-			else
-			{
-				WindSpeed6String = $"{_windSpeed6 * MathZ.MPSToKPH:F0}";
-			}
+			UpdateWindSpeed6String();
 		}
 	}
 
@@ -7920,6 +8345,20 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindSpeed6String()
+	{
+		var app = App.Instance!;
+
+		if ( app.Simulator.DisplayUnits == 0 )
+		{
+			WindSpeed6String = $"{_windSpeed6 * MathZ.MPSToMPH:F0}";
+		}
+		else
+		{
+			WindSpeed6String = $"{_windSpeed6 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
@@ -7944,7 +8383,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			WindFanPower6String = $"{_windFanPower6 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateWindFanPower6String();
 		}
 	}
 
@@ -7964,6 +8403,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateWindFanPower6String()
+	{
+		WindFanPower6String = $"{_windFanPower6 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -7990,16 +8434,7 @@ public class Settings : INotifyPropertyChanged
 				WindSpeed8 = MathF.Max( WindSpeed8, _windSpeed7 );
 			}
 
-			var app = App.Instance!;
-
-			if ( app.Simulator.DisplayUnits == 0 )
-			{
-				WindSpeed7String = $"{_windSpeed7 * MathZ.MPSToMPH:F0}";
-			}
-			else
-			{
-				WindSpeed7String = $"{_windSpeed7 * MathZ.MPSToKPH:F0}";
-			}
+			UpdateWindSpeed7String();
 		}
 	}
 
@@ -8018,6 +8453,20 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindSpeed7String()
+	{
+		var app = App.Instance!;
+
+		if ( app.Simulator.DisplayUnits == 0 )
+		{
+			WindSpeed7String = $"{_windSpeed7 * MathZ.MPSToMPH:F0}";
+		}
+		else
+		{
+			WindSpeed7String = $"{_windSpeed7 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
@@ -8042,7 +8491,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			WindFanPower7String = $"{_windFanPower7 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateWindFanPower7String();
 		}
 	}
 
@@ -8062,6 +8511,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateWindFanPower7String()
+	{
+		WindFanPower7String = $"{_windFanPower7 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -8088,16 +8542,7 @@ public class Settings : INotifyPropertyChanged
 				WindSpeed9 = MathF.Max( WindSpeed9, _windSpeed8 );
 			}
 
-			var app = App.Instance!;
-
-			if ( app.Simulator.DisplayUnits == 0 )
-			{
-				WindSpeed8String = $"{_windSpeed8 * MathZ.MPSToMPH:F0}";
-			}
-			else
-			{
-				WindSpeed8String = $"{_windSpeed8 * MathZ.MPSToKPH:F0}";
-			}
+			UpdateWindSpeed8String();
 		}
 	}
 
@@ -8116,6 +8561,20 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindSpeed8String()
+	{
+		var app = App.Instance!;
+
+		if ( app.Simulator.DisplayUnits == 0 )
+		{
+			WindSpeed8String = $"{_windSpeed8 * MathZ.MPSToMPH:F0}";
+		}
+		else
+		{
+			WindSpeed8String = $"{_windSpeed8 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
@@ -8140,7 +8599,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			WindFanPower8String = $"{_windFanPower8 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateWindFanPower8String();
 		}
 	}
 
@@ -8160,6 +8619,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateWindFanPower8String()
+	{
+		WindFanPower8String = $"{_windFanPower8 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -8186,16 +8650,7 @@ public class Settings : INotifyPropertyChanged
 				WindSpeed10 = MathF.Max( WindSpeed10, _windSpeed9 );
 			}
 
-			var app = App.Instance!;
-
-			if ( app.Simulator.DisplayUnits == 0 )
-			{
-				WindSpeed9String = $"{_windSpeed9 * MathZ.MPSToMPH:F0}";
-			}
-			else
-			{
-				WindSpeed9String = $"{_windSpeed9 * MathZ.MPSToKPH:F0}";
-			}
+			UpdateWindSpeed9String();
 		}
 	}
 
@@ -8214,6 +8669,20 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindSpeed9String()
+	{
+		var app = App.Instance!;
+
+		if ( app.Simulator.DisplayUnits == 0 )
+		{
+			WindSpeed9String = $"{_windSpeed9 * MathZ.MPSToMPH:F0}";
+		}
+		else
+		{
+			WindSpeed9String = $"{_windSpeed9 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
@@ -8238,7 +8707,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			WindFanPower9String = $"{_windFanPower9 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateWindFanPower9String();
 		}
 	}
 
@@ -8258,6 +8727,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateWindFanPower9String()
+	{
+		WindFanPower9String = $"{_windFanPower9 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -8283,16 +8757,7 @@ public class Settings : INotifyPropertyChanged
 				WindSpeed9 = MathF.Min( WindSpeed9, _windSpeed10 );
 			}
 
-			var app = App.Instance!;
-
-			if ( app.Simulator.DisplayUnits == 0 )
-			{
-				WindSpeed10String = $"{_windSpeed10 * MathZ.MPSToMPH:F0}";
-			}
-			else
-			{
-				WindSpeed10String = $"{_windSpeed10 * MathZ.MPSToKPH:F0}";
-			}
+			UpdateWindSpeed10String();
 		}
 	}
 
@@ -8311,6 +8776,20 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateWindSpeed10String()
+	{
+		var app = App.Instance!;
+
+		if ( app.Simulator.DisplayUnits == 0 )
+		{
+			WindSpeed10String = $"{_windSpeed10 * MathZ.MPSToMPH:F0}";
+		}
+		else
+		{
+			WindSpeed10String = $"{_windSpeed10 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
@@ -8335,7 +8814,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			WindFanPower10String = $"{_windFanPower10 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateWindFanPower10String();
 		}
 	}
 
@@ -8355,6 +8834,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateWindFanPower10String()
+	{
+		WindFanPower10String = $"{_windFanPower10 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -8403,7 +8887,7 @@ public class Settings : INotifyPropertyChanged
 				App.Instance?.SeatBeltTensioner.SendCalibration();
 			}
 
-			SeatBeltTensionerMinimumString = $"{_seatBeltTensionerMinimum:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+			UpdateSeatBeltTensionerMinimumString();
 		}
 	}
 
@@ -8423,6 +8907,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerMinimumString()
+	{
+		SeatBeltTensionerMinimumString = $"{_seatBeltTensionerMinimum:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
 	}
 
 	#endregion
@@ -8448,7 +8937,7 @@ public class Settings : INotifyPropertyChanged
 				App.Instance?.SeatBeltTensioner.SendCalibration();
 			}
 
-			SeatBeltTensionerNeutralString = $"{_seatBeltTensionerNeutral:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+			UpdateSeatBeltTensionerNeutralString();
 		}
 	}
 
@@ -8468,6 +8957,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerNeutralString()
+	{
+		SeatBeltTensionerNeutralString = $"{_seatBeltTensionerNeutral:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
 	}
 
 	#endregion
@@ -8495,7 +8989,7 @@ public class Settings : INotifyPropertyChanged
 				App.Instance?.SeatBeltTensioner.SendCalibration();
 			}
 
-			SeatBeltTensionerMaximumString = $"{_seatBeltTensionerMaximum:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+			UpdateSeatBeltTensionerMaximumString();
 		}
 	}
 
@@ -8515,6 +9009,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerMaximumString()
+	{
+		SeatBeltTensionerMaximumString = $"{_seatBeltTensionerMaximum:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
 	}
 
 	#endregion
@@ -8540,7 +9039,7 @@ public class Settings : INotifyPropertyChanged
 				App.Instance?.SeatBeltTensioner.SendMaxMovement();
 			}
 
-			SeatBeltTensionerMaxMotorSpeedString = $"{(int) MathF.Round( _seatBeltTensionerMaxMotorSpeed )}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
+			UpdateSeatBeltTensionerMaxMotorSpeedString();
 		}
 	}
 
@@ -8560,6 +9059,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerMaxMotorSpeedString()
+	{
+		SeatBeltTensionerMaxMotorSpeedString = $"{(int) MathF.Round( _seatBeltTensionerMaxMotorSpeed )}{DataContext.Instance.Localization[ "DegreesPerSecond" ]}";
 	}
 
 	#endregion
@@ -8652,7 +9156,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerSurgeMaxGString = $"{_seatBeltTensionerSurgeMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
+			UpdateSeatBeltTensionerSurgeMaxGString();
 		}
 	}
 
@@ -8672,6 +9176,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerSurgeMaxGString()
+	{
+		SeatBeltTensionerSurgeMaxGString = $"{_seatBeltTensionerSurgeMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
 	}
 
 	public ContextSwitches SeatBeltTensionerSurgeMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
@@ -8697,7 +9206,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerSurgeDeadZoneString = $"{_seatBeltTensionerSurgeDeadZone * 100f:F0}%";
+			UpdateSeatBeltTensionerSurgeDeadZoneString();
 		}
 	}
 
@@ -8717,6 +9226,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerSurgeDeadZoneString()
+	{
+		SeatBeltTensionerSurgeDeadZoneString = $"{_seatBeltTensionerSurgeDeadZone * 100f:F0}%";
 	}
 
 	public ContextSwitches SeatBeltTensionerSurgeDeadZoneContextSwitches { get; set; } = new( false, true, false, false, false );
@@ -8742,7 +9256,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerSurgeSmoothingString = $"{_seatBeltTensionerSurgeSmoothing * 100f:F0}%";
+			UpdateSeatBeltTensionerSurgeSmoothingString();
 		}
 	}
 
@@ -8762,6 +9276,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerSurgeSmoothingString()
+	{
+		SeatBeltTensionerSurgeSmoothingString = $"{_seatBeltTensionerSurgeSmoothing * 100f:F0}%";
 	}
 
 	public ContextSwitches SeatBeltTensionerSurgeSmoothingContextSwitches { get; set; } = new( false, true, false, false, false );
@@ -8787,14 +9306,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _seatBeltTensionerSurgeCurve == 0f )
-			{
-				SeatBeltTensionerSurgeCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SeatBeltTensionerSurgeCurveString = $"{_seatBeltTensionerSurgeCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSeatBeltTensionerSurgeCurveString();
 		}
 	}
 
@@ -8813,6 +9325,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSeatBeltTensionerSurgeCurveString()
+	{
+		if ( _seatBeltTensionerSurgeCurve == 0f )
+		{
+			SeatBeltTensionerSurgeCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SeatBeltTensionerSurgeCurveString = $"{_seatBeltTensionerSurgeCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -8885,7 +9409,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerSwayMaxGString = $"{_seatBeltTensionerSwayMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
+			UpdateSeatBeltTensionerSwayMaxGString();
 		}
 	}
 
@@ -8905,6 +9429,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerSwayMaxGString()
+	{
+		SeatBeltTensionerSwayMaxGString = $"{_seatBeltTensionerSwayMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
 	}
 
 	public ContextSwitches SeatBeltTensionerSwayMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
@@ -8930,7 +9459,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerSwayDeadZoneString = $"{_seatBeltTensionerSwayDeadZone * 100f:F0}%";
+			UpdateSeatBeltTensionerSwayDeadZoneString();
 		}
 	}
 
@@ -8950,6 +9479,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerSwayDeadZoneString()
+	{
+		SeatBeltTensionerSwayDeadZoneString = $"{_seatBeltTensionerSwayDeadZone * 100f:F0}%";
 	}
 
 	public ContextSwitches SeatBeltTensionerSwayDeadZoneContextSwitches { get; set; } = new( false, true, false, false, false );
@@ -8975,7 +9509,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerSwaySmoothingString = $"{_seatBeltTensionerSwaySmoothing * 100f:F0}%";
+			UpdateSeatBeltTensionerSwaySmoothingString();
 		}
 	}
 
@@ -8995,6 +9529,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerSwaySmoothingString()
+	{
+		SeatBeltTensionerSwaySmoothingString = $"{_seatBeltTensionerSwaySmoothing * 100f:F0}%";
 	}
 
 	public ContextSwitches SeatBeltTensionerSwaySmoothingContextSwitches { get; set; } = new( false, true, false, false, false );
@@ -9020,14 +9559,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _seatBeltTensionerSwayCurve == 0f )
-			{
-				SeatBeltTensionerSwayCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SeatBeltTensionerSwayCurveString = $"{_seatBeltTensionerSwayCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSeatBeltTensionerSwayCurveString();
 		}
 	}
 
@@ -9046,6 +9578,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSeatBeltTensionerSwayCurveString()
+	{
+		if ( _seatBeltTensionerSwayCurve == 0f )
+		{
+			SeatBeltTensionerSwayCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SeatBeltTensionerSwayCurveString = $"{_seatBeltTensionerSwayCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -9118,7 +9662,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerHeaveMaxGString = $"{_seatBeltTensionerHeaveMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
+			UpdateSeatBeltTensionerHeaveMaxGString();
 		}
 	}
 
@@ -9138,6 +9682,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerHeaveMaxGString()
+	{
+		SeatBeltTensionerHeaveMaxGString = $"{_seatBeltTensionerHeaveMaxG:F2}{DataContext.Instance.Localization[ "GForceUnits" ]}";
 	}
 
 	public ContextSwitches SeatBeltTensionerHeaveMaxGContextSwitches { get; set; } = new( false, true, false, false, false );
@@ -9163,7 +9712,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerHeaveDeadZoneString = $"{_seatBeltTensionerHeaveDeadZone * 100f:F0}%";
+			UpdateSeatBeltTensionerHeaveDeadZoneString();
 		}
 	}
 
@@ -9183,6 +9732,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerHeaveDeadZoneString()
+	{
+		SeatBeltTensionerHeaveDeadZoneString = $"{_seatBeltTensionerHeaveDeadZone * 100f:F0}%";
 	}
 
 	public ContextSwitches SeatBeltTensionerHeaveDeadZoneContextSwitches { get; set; } = new( false, true, false, false, false );
@@ -9208,7 +9762,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerHeaveSmoothingString = $"{_seatBeltTensionerHeaveSmoothing * 100f:F0}%";
+			UpdateSeatBeltTensionerHeaveSmoothingString();
 		}
 	}
 
@@ -9228,6 +9782,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerHeaveSmoothingString()
+	{
+		SeatBeltTensionerHeaveSmoothingString = $"{_seatBeltTensionerHeaveSmoothing * 100f:F0}%";
 	}
 
 	public ContextSwitches SeatBeltTensionerHeaveSmoothingContextSwitches { get; set; } = new( false, true, false, false, false );
@@ -9253,14 +9812,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _seatBeltTensionerHeaveCurve == 0f )
-			{
-				SeatBeltTensionerHeaveCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SeatBeltTensionerHeaveCurveString = $"{_seatBeltTensionerHeaveCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSeatBeltTensionerHeaveCurveString();
 		}
 	}
 
@@ -9279,6 +9831,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSeatBeltTensionerHeaveCurveString()
+	{
+		if ( _seatBeltTensionerHeaveCurve == 0f )
+		{
+			SeatBeltTensionerHeaveCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SeatBeltTensionerHeaveCurveString = $"{_seatBeltTensionerHeaveCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -9324,7 +9888,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerSeatOfPantsAmplitudeString = $"{_seatBeltTensionerSeatOfPantsAmplitude:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+			UpdateSeatBeltTensionerSeatOfPantsAmplitudeString();
 		}
 	}
 
@@ -9346,6 +9910,11 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	private void UpdateSeatBeltTensionerSeatOfPantsAmplitudeString()
+	{
+		SeatBeltTensionerSeatOfPantsAmplitudeString = $"{_seatBeltTensionerSeatOfPantsAmplitude:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+	}
+
 	private float _seatBeltTensionerSeatOfPantsCurve = 0.25f;
 
 	public float SeatBeltTensionerSeatOfPantsCurve
@@ -9363,14 +9932,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			if ( _seatBeltTensionerSeatOfPantsCurve == 0f )
-			{
-				SeatBeltTensionerSeatOfPantsCurveString = DataContext.Instance.Localization[ "OFF" ];
-			}
-			else
-			{
-				SeatBeltTensionerSeatOfPantsCurveString = $"{_seatBeltTensionerSeatOfPantsCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-			}
+			UpdateSeatBeltTensionerSeatOfPantsCurveString();
 		}
 	}
 
@@ -9389,6 +9951,18 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	private void UpdateSeatBeltTensionerSeatOfPantsCurveString()
+	{
+		if ( _seatBeltTensionerSeatOfPantsCurve == 0f )
+		{
+			SeatBeltTensionerSeatOfPantsCurveString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			SeatBeltTensionerSeatOfPantsCurveString = $"{_seatBeltTensionerSeatOfPantsCurve * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
@@ -9432,7 +10006,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerABSFrequencyString = $"{(int) MathF.Round( _seatBeltTensionerABSFrequency )} Hz";
+			UpdateSeatBeltTensionerABSFrequencyString();
 		}
 	}
 
@@ -9454,6 +10028,11 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	private void UpdateSeatBeltTensionerABSFrequencyString()
+	{
+		SeatBeltTensionerABSFrequencyString = $"{(int) MathF.Round( _seatBeltTensionerABSFrequency )} Hz";
+	}
+
 	private float _seatBeltTensionerABSAmplitude = 30f;
 
 	public float SeatBeltTensionerABSAmplitude
@@ -9471,7 +10050,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerABSAmplitudeString = $"{_seatBeltTensionerABSAmplitude:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+			UpdateSeatBeltTensionerABSAmplitudeString();
 		}
 	}
 
@@ -9491,6 +10070,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerABSAmplitudeString()
+	{
+		SeatBeltTensionerABSAmplitudeString = $"{_seatBeltTensionerABSAmplitude:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
 	}
 
 	#endregion
@@ -9531,7 +10115,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerWheelSlipFrequencyString = $"{(int) MathF.Round( _seatBeltTensionerWheelSlipFrequency )} Hz";
+			UpdateSeatBeltTensionerWheelSlipFrequencyString();
 		}
 	}
 
@@ -9553,6 +10137,11 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	private void UpdateSeatBeltTensionerWheelSlipFrequencyString()
+	{
+		SeatBeltTensionerWheelSlipFrequencyString = $"{(int) MathF.Round( _seatBeltTensionerWheelSlipFrequency )} Hz";
+	}
+
 	private float _seatBeltTensionerWheelSlipAmplitude = 30f;
 
 	public float SeatBeltTensionerWheelSlipAmplitude
@@ -9570,7 +10159,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerWheelSlipAmplitudeString = $"{_seatBeltTensionerWheelSlipAmplitude:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+			UpdateSeatBeltTensionerWheelSlipAmplitudeString();
 		}
 	}
 
@@ -9590,6 +10179,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerWheelSlipAmplitudeString()
+	{
+		SeatBeltTensionerWheelSlipAmplitudeString = $"{_seatBeltTensionerWheelSlipAmplitude:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
 	}
 
 	#endregion
@@ -9630,7 +10224,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerRumbleFrequencyString = $"{(int) MathF.Round( _seatBeltTensionerRumbleFrequency )} Hz";
+			UpdateSeatBeltTensionerRumbleFrequencyString();
 		}
 	}
 
@@ -9652,6 +10246,11 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	private void UpdateSeatBeltTensionerRumbleFrequencyString()
+	{
+		SeatBeltTensionerRumbleFrequencyString = $"{(int) MathF.Round( _seatBeltTensionerRumbleFrequency )} Hz";
+	}
+
 	private float _seatBeltTensionerRumbleAmplitude = 30f;
 
 	public float SeatBeltTensionerRumbleAmplitude
@@ -9669,7 +10268,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SeatBeltTensionerRumbleAmplitudeString = $"{_seatBeltTensionerRumbleAmplitude:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
+			UpdateSeatBeltTensionerRumbleAmplitudeString();
 		}
 	}
 
@@ -9689,6 +10288,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSeatBeltTensionerRumbleAmplitudeString()
+	{
+		SeatBeltTensionerRumbleAmplitudeString = $"{_seatBeltTensionerRumbleAmplitude:F1}{DataContext.Instance.Localization[ "Degrees" ]}";
 	}
 
 	#endregion
@@ -9761,7 +10365,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			AdminBoxxBrightnessString = $"{_adminBoxxBrightness * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateAdminBoxxBrightnessString();
 		}
 	}
 
@@ -9781,6 +10385,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateAdminBoxxBrightnessString()
+	{
+		AdminBoxxBrightnessString = $"{_adminBoxxBrightness * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings AdminBoxxBrightnessPlusButtonMappings { get; set; } = new();
@@ -9807,7 +10416,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			AdminBoxxVolumeString = $"{_adminBoxxVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateAdminBoxxVolumeString();
 		}
 	}
 
@@ -9827,6 +10436,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateAdminBoxxVolumeString()
+	{
+		AdminBoxxVolumeString = $"{_adminBoxxVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings AdminBoxxVolumePlusButtonMappings { get; set; } = new();
@@ -9957,7 +10571,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			OverlaysGapMonitorWindowScaleString = $"{_overlaysGapMonitorWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateOverlaysGapMonitorWindowScaleString();
 		}
 	}
 
@@ -9977,6 +10591,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateOverlaysGapMonitorWindowScaleString()
+	{
+		OverlaysGapMonitorWindowScaleString = $"{_overlaysGapMonitorWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -10115,7 +10734,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			OverlaysDeltaMonitorWindowScaleString = $"{_overlaysDeltaMonitorWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateOverlaysDeltaMonitorWindowScaleString();
 		}
 	}
 
@@ -10135,6 +10754,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateOverlaysDeltaMonitorWindowScaleString()
+	{
+		OverlaysDeltaMonitorWindowScaleString = $"{_overlaysDeltaMonitorWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -10273,7 +10897,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			OverlaysGripOMeterWindowScaleString = $"{_overlaysGripOMeterWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateOverlaysGripOMeterWindowScaleString();
 		}
 	}
 
@@ -10293,6 +10917,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateOverlaysGripOMeterWindowScaleString()
+	{
+		OverlaysGripOMeterWindowScaleString = $"{_overlaysGripOMeterWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -10382,7 +11011,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			OverlaysSpeechToTextWindowScaleString = $"{_overlaysSpeechToTextWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateOverlaysSpeechToTextWindowScaleString();
 		}
 	}
 
@@ -10402,6 +11031,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateOverlaysSpeechToTextWindowScaleString()
+	{
+		OverlaysSpeechToTextWindowScaleString = $"{_overlaysSpeechToTextWindowScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -10554,7 +11188,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsMasterVolumeString = $"{_soundsMasterVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsMasterVolumeString();
 		}
 	}
 
@@ -10574,6 +11208,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsMasterVolumeString()
+	{
+		SoundsMasterVolumeString = $"{_soundsMasterVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsMasterVolumePlusButtonMappings { get; set; } = new();
@@ -10642,7 +11281,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsClickVolumeString = $"{_soundsClickVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsClickVolumeString();
 		}
 	}
 
@@ -10662,6 +11301,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsClickVolumeString()
+	{
+		SoundsClickVolumeString = $"{_soundsClickVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsClickVolumePlusButtonMappings { get; set; } = new();
@@ -10688,8 +11332,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var clickPitchShift = _soundsClickFrequencyRatio * 100f - 100f;
-			SoundsClickFrequencyRatioString = clickPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( clickPitchShift >= 0f ? "+" : "" )}{clickPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsClickFrequencyRatioString();
 		}
 	}
 
@@ -10709,6 +11352,12 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsClickFrequencyRatioString()
+	{
+		var clickPitchShift = _soundsClickFrequencyRatio * 100f - 100f;
+		SoundsClickFrequencyRatioString = clickPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( clickPitchShift >= 0f ? "+" : "" )}{clickPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsClickFrequencyRatioPlusButtonMappings { get; set; } = new();
@@ -10777,7 +11426,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsABSEngagedVolumeString = $"{_soundsABSEngagedVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsABSEngagedVolumeString();
 		}
 	}
 
@@ -10797,6 +11446,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsABSEngagedVolumeString()
+	{
+		SoundsABSEngagedVolumeString = $"{_soundsABSEngagedVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsABSEngagedVolumePlusButtonMappings { get; set; } = new();
@@ -10823,8 +11477,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var absEngagedPitchShift = _soundsABSEngagedFrequencyRatio * 100f - 100f;
-			SoundsABSEngagedFrequencyRatioString = absEngagedPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( absEngagedPitchShift >= 0f ? "+" : "" )}{absEngagedPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsABSEngagedFrequencyRatioString();
 		}
 	}
 
@@ -10844,6 +11497,12 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsABSEngagedFrequencyRatioString()
+	{
+		var absEngagedPitchShift = _soundsABSEngagedFrequencyRatio * 100f - 100f;
+		SoundsABSEngagedFrequencyRatioString = absEngagedPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( absEngagedPitchShift >= 0f ? "+" : "" )}{absEngagedPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsABSEngagedFrequencyRatioPlusButtonMappings { get; set; } = new();
@@ -10875,7 +11534,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsABSEngagedLoopStartMsString = $"{_soundsABSEngagedLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsABSEngagedLoopStartMsString();
 		}
 	}
 
@@ -10895,6 +11554,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsABSEngagedLoopStartMsString()
+	{
+		SoundsABSEngagedLoopStartMsString = $"{_soundsABSEngagedLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -10923,7 +11587,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsABSEngagedLoopEndMsString = $"{_soundsABSEngagedLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsABSEngagedLoopEndMsString();
 		}
 	}
 
@@ -10943,6 +11607,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsABSEngagedLoopEndMsString()
+	{
+		SoundsABSEngagedLoopEndMsString = $"{_soundsABSEngagedLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -11008,7 +11677,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsWheelLockVolumeString = $"{_soundsWheelLockVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsWheelLockVolumeString();
 		}
 	}
 
@@ -11028,6 +11697,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsWheelLockVolumeString()
+	{
+		SoundsWheelLockVolumeString = $"{_soundsWheelLockVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsWheelLockVolumePlusButtonMappings { get; set; } = new();
@@ -11054,8 +11728,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var wheelLockPitchShift = _soundsWheelLockFrequencyRatio * 100f - 100f;
-			SoundsWheelLockFrequencyRatioString = wheelLockPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( wheelLockPitchShift >= 0f ? "+" : "" )}{wheelLockPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsWheelLockFrequencyRatioString();
 		}
 	}
 
@@ -11075,6 +11748,12 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsWheelLockFrequencyRatioString()
+	{
+		var wheelLockPitchShift = _soundsWheelLockFrequencyRatio * 100f - 100f;
+		SoundsWheelLockFrequencyRatioString = wheelLockPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( wheelLockPitchShift >= 0f ? "+" : "" )}{wheelLockPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsWheelLockFrequencyRatioPlusButtonMappings { get; set; } = new();
@@ -11106,7 +11785,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsWheelLockLoopStartMsString = $"{_soundsWheelLockLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsWheelLockLoopStartMsString();
 		}
 	}
 
@@ -11126,6 +11805,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsWheelLockLoopStartMsString()
+	{
+		SoundsWheelLockLoopStartMsString = $"{_soundsWheelLockLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -11154,7 +11838,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsWheelLockLoopEndMsString = $"{_soundsWheelLockLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsWheelLockLoopEndMsString();
 		}
 	}
 
@@ -11174,6 +11858,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsWheelLockLoopEndMsString()
+	{
+		SoundsWheelLockLoopEndMsString = $"{_soundsWheelLockLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -11197,7 +11886,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsWheelLockSensitivityString = $"{_soundsWheelLockSensitivity * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsWheelLockSensitivityString();
 		}
 	}
 
@@ -11217,6 +11906,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsWheelLockSensitivityString()
+	{
+		SoundsWheelLockSensitivityString = $"{_soundsWheelLockSensitivity * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsWheelLockSensitivityPlusButtonMappings { get; set; } = new();
@@ -11285,7 +11979,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsWheelSpinVolumeString = $"{_soundsWheelSpinVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsWheelSpinVolumeString();
 		}
 	}
 
@@ -11305,6 +11999,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsWheelSpinVolumeString()
+	{
+		SoundsWheelSpinVolumeString = $"{_soundsWheelSpinVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsWheelSpinVolumePlusButtonMappings { get; set; } = new();
@@ -11331,8 +12030,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var wheelSpinPitchShift = _soundsWheelSpinFrequencyRatio * 100f - 100f;
-			SoundsWheelSpinFrequencyRatioString = wheelSpinPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( wheelSpinPitchShift >= 0f ? "+" : "" )}{wheelSpinPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsWheelSpinFrequencyRatioString();
 		}
 	}
 
@@ -11352,6 +12050,12 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsWheelSpinFrequencyRatioString()
+	{
+		var wheelSpinPitchShift = _soundsWheelSpinFrequencyRatio * 100f - 100f;
+		SoundsWheelSpinFrequencyRatioString = wheelSpinPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( wheelSpinPitchShift >= 0f ? "+" : "" )}{wheelSpinPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsWheelSpinFrequencyRatioPlusButtonMappings { get; set; } = new();
@@ -11383,7 +12087,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsWheelSpinLoopStartMsString = $"{_soundsWheelSpinLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsWheelSpinLoopStartMsString();
 		}
 	}
 
@@ -11403,6 +12107,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsWheelSpinLoopStartMsString()
+	{
+		SoundsWheelSpinLoopStartMsString = $"{_soundsWheelSpinLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -11431,7 +12140,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsWheelSpinLoopEndMsString = $"{_soundsWheelSpinLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsWheelSpinLoopEndMsString();
 		}
 	}
 
@@ -11451,6 +12160,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsWheelSpinLoopEndMsString()
+	{
+		SoundsWheelSpinLoopEndMsString = $"{_soundsWheelSpinLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -11474,7 +12188,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsWheelSpinSensitivityString = $"{_soundsWheelSpinSensitivity * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsWheelSpinSensitivityString();
 		}
 	}
 
@@ -11494,6 +12208,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsWheelSpinSensitivityString()
+	{
+		SoundsWheelSpinSensitivityString = $"{_soundsWheelSpinSensitivity * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsWheelSpinSensitivityPlusButtonMappings { get; set; } = new();
@@ -11541,7 +12260,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsUndersteerVolumeString = $"{_soundsUndersteerVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsUndersteerVolumeString();
 		}
 	}
 
@@ -11561,6 +12280,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsUndersteerVolumeString()
+	{
+		SoundsUndersteerVolumeString = $"{_soundsUndersteerVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsUndersteerVolumePlusButtonMappings { get; set; } = new();
@@ -11587,8 +12311,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var understeerPitchShift = _soundsUndersteerFrequencyRatio * 100f - 100f;
-			SoundsUndersteerFrequencyRatioString = understeerPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( understeerPitchShift >= 0f ? "+" : "" )}{understeerPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsUndersteerFrequencyRatioString();
 		}
 	}
 
@@ -11608,6 +12331,12 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsUndersteerFrequencyRatioString()
+	{
+		var understeerPitchShift = _soundsUndersteerFrequencyRatio * 100f - 100f;
+		SoundsUndersteerFrequencyRatioString = understeerPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( understeerPitchShift >= 0f ? "+" : "" )}{understeerPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsUndersteerFrequencyRatioPlusButtonMappings { get; set; } = new();
@@ -11639,7 +12368,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsUndersteerLoopStartMsString = $"{_soundsUndersteerLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsUndersteerLoopStartMsString();
 		}
 	}
 
@@ -11659,6 +12388,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsUndersteerLoopStartMsString()
+	{
+		SoundsUndersteerLoopStartMsString = $"{_soundsUndersteerLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -11687,7 +12421,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsUndersteerLoopEndMsString = $"{_soundsUndersteerLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsUndersteerLoopEndMsString();
 		}
 	}
 
@@ -11707,6 +12441,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsUndersteerLoopEndMsString()
+	{
+		SoundsUndersteerLoopEndMsString = $"{_soundsUndersteerLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -11751,7 +12490,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsOversteerVolumeString = $"{_soundsOversteerVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsOversteerVolumeString();
 		}
 	}
 
@@ -11771,6 +12510,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsOversteerVolumeString()
+	{
+		SoundsOversteerVolumeString = $"{_soundsOversteerVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsOversteerVolumePlusButtonMappings { get; set; } = new();
@@ -11797,8 +12541,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var oversteerPitchShift = _soundsOversteerFrequencyRatio * 100f - 100f;
-			SoundsOversteerFrequencyRatioString = oversteerPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( oversteerPitchShift >= 0f ? "+" : "" )}{oversteerPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsOversteerFrequencyRatioString();
 		}
 	}
 
@@ -11818,6 +12561,12 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsOversteerFrequencyRatioString()
+	{
+		var oversteerPitchShift = _soundsOversteerFrequencyRatio * 100f - 100f;
+		SoundsOversteerFrequencyRatioString = oversteerPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( oversteerPitchShift >= 0f ? "+" : "" )}{oversteerPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsOversteerFrequencyRatioPlusButtonMappings { get; set; } = new();
@@ -11849,7 +12598,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsOversteerLoopStartMsString = $"{_soundsOversteerLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsOversteerLoopStartMsString();
 		}
 	}
 
@@ -11869,6 +12618,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsOversteerLoopStartMsString()
+	{
+		SoundsOversteerLoopStartMsString = $"{_soundsOversteerLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -11897,7 +12651,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsOversteerLoopEndMsString = $"{_soundsOversteerLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsOversteerLoopEndMsString();
 		}
 	}
 
@@ -11917,6 +12671,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsOversteerLoopEndMsString()
+	{
+		SoundsOversteerLoopEndMsString = $"{_soundsOversteerLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -11961,7 +12720,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsSeatOfPantsVolumeString = $"{_soundsSeatOfPantsVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsSeatOfPantsVolumeString();
 		}
 	}
 
@@ -11981,6 +12740,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsSeatOfPantsVolumeString()
+	{
+		SoundsSeatOfPantsVolumeString = $"{_soundsSeatOfPantsVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsSeatOfPantsVolumePlusButtonMappings { get; set; } = new();
@@ -12007,8 +12771,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var seatOfPantsPitchShift = _soundsSeatOfPantsFrequencyRatio * 100f - 100f;
-			SoundsSeatOfPantsFrequencyRatioString = seatOfPantsPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( seatOfPantsPitchShift >= 0f ? "+" : "" )}{seatOfPantsPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsSeatOfPantsFrequencyRatioString();
 		}
 	}
 
@@ -12028,6 +12791,12 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsSeatOfPantsFrequencyRatioString()
+	{
+		var seatOfPantsPitchShift = _soundsSeatOfPantsFrequencyRatio * 100f - 100f;
+		SoundsSeatOfPantsFrequencyRatioString = seatOfPantsPitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( seatOfPantsPitchShift >= 0f ? "+" : "" )}{seatOfPantsPitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsSeatOfPantsFrequencyRatioPlusButtonMappings { get; set; } = new();
@@ -12059,7 +12828,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsSeatOfPantsLoopStartMsString = $"{_soundsSeatOfPantsLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsSeatOfPantsLoopStartMsString();
 		}
 	}
 
@@ -12079,6 +12848,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsSeatOfPantsLoopStartMsString()
+	{
+		SoundsSeatOfPantsLoopStartMsString = $"{_soundsSeatOfPantsLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -12107,7 +12881,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsSeatOfPantsLoopEndMsString = $"{_soundsSeatOfPantsLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsSeatOfPantsLoopEndMsString();
 		}
 	}
 
@@ -12127,6 +12901,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsSeatOfPantsLoopEndMsString()
+	{
+		SoundsSeatOfPantsLoopEndMsString = $"{_soundsSeatOfPantsLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -12171,7 +12950,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsBrakeThrottleWarningVolumeString = $"{_soundsBrakeThrottleWarningVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsBrakeThrottleWarningVolumeString();
 		}
 	}
 
@@ -12191,6 +12970,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsBrakeThrottleWarningVolumeString()
+	{
+		SoundsBrakeThrottleWarningVolumeString = $"{_soundsBrakeThrottleWarningVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsBrakeThrottleWarningVolumePlusButtonMappings { get; set; } = new();
@@ -12217,8 +13001,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var pitchShift = _soundsBrakeThrottleWarningFrequencyRatio * 100f - 100f;
-			SoundsBrakeThrottleWarningFrequencyRatioString = pitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( pitchShift >= 0f ? "+" : "" )}{pitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsBrakeThrottleWarningFrequencyRatioString();
 		}
 	}
 
@@ -12238,6 +13021,12 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsBrakeThrottleWarningFrequencyRatioString()
+	{
+		var pitchShift = _soundsBrakeThrottleWarningFrequencyRatio * 100f - 100f;
+		SoundsBrakeThrottleWarningFrequencyRatioString = pitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( pitchShift >= 0f ? "+" : "" )}{pitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsBrakeThrottleWarningFrequencyRatioPlusButtonMappings { get; set; } = new();
@@ -12269,7 +13058,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsBrakeThrottleWarningLoopStartMsString = $"{_soundsBrakeThrottleWarningLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsBrakeThrottleWarningLoopStartMsString();
 		}
 	}
 
@@ -12289,6 +13078,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsBrakeThrottleWarningLoopStartMsString()
+	{
+		SoundsBrakeThrottleWarningLoopStartMsString = $"{_soundsBrakeThrottleWarningLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -12317,7 +13111,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsBrakeThrottleWarningLoopEndMsString = $"{_soundsBrakeThrottleWarningLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsBrakeThrottleWarningLoopEndMsString();
 		}
 	}
 
@@ -12337,6 +13131,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsBrakeThrottleWarningLoopEndMsString()
+	{
+		SoundsBrakeThrottleWarningLoopEndMsString = $"{_soundsBrakeThrottleWarningLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -12381,7 +13180,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			SoundsFfbClippingVolumeString = $"{_soundsFfbClippingVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsFfbClippingVolumeString();
 		}
 	}
 
@@ -12401,6 +13200,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsFfbClippingVolumeString()
+	{
+		SoundsFfbClippingVolumeString = $"{_soundsFfbClippingVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsFfbClippingVolumePlusButtonMappings { get; set; } = new();
@@ -12427,8 +13231,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			var pitchShift = _soundsFfbClippingFrequencyRatio * 100f - 100f;
-			SoundsFfbClippingFrequencyRatioString = pitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( pitchShift >= 0f ? "+" : "" )}{pitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateSoundsFfbClippingFrequencyRatioString();
 		}
 	}
 
@@ -12448,6 +13251,12 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsFfbClippingFrequencyRatioString()
+	{
+		var pitchShift = _soundsFfbClippingFrequencyRatio * 100f - 100f;
+		SoundsFfbClippingFrequencyRatioString = pitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( pitchShift >= 0f ? "+" : "" )}{pitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	public ButtonMappings SoundsFfbClippingFrequencyRatioPlusButtonMappings { get; set; } = new();
@@ -12479,7 +13288,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsFfbClippingLoopStartMsString = $"{_soundsFfbClippingLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsFfbClippingLoopStartMsString();
 		}
 	}
 
@@ -12499,6 +13308,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsFfbClippingLoopStartMsString()
+	{
+		SoundsFfbClippingLoopStartMsString = $"{_soundsFfbClippingLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -12527,7 +13341,7 @@ public class Settings : INotifyPropertyChanged
 				}
 			}
 
-			SoundsFfbClippingLoopEndMsString = $"{_soundsFfbClippingLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+			UpdateSoundsFfbClippingLoopEndMsString();
 		}
 	}
 
@@ -12547,6 +13361,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateSoundsFfbClippingLoopEndMsString()
+	{
+		SoundsFfbClippingLoopEndMsString = $"{_soundsFfbClippingLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
 	}
 
 	#endregion
@@ -12677,7 +13496,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			TradingPaintsMaxDownloadSpeedKbpsString = $"{(int) MathF.Round( _tradingPaintsMaxDownloadSpeedKbps )} KB/s";
+			UpdateTradingPaintsMaxDownloadSpeedKbpsString();
 		}
 	}
 
@@ -12697,6 +13516,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateTradingPaintsMaxDownloadSpeedKbpsString()
+	{
+		TradingPaintsMaxDownloadSpeedKbpsString = $"{(int) MathF.Round( _tradingPaintsMaxDownloadSpeedKbps )} KB/s";
 	}
 
 	#endregion
@@ -13222,7 +14046,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			AppUIScaleString = $"{_appUIScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateAppUIScaleString();
 		}
 	}
 
@@ -13242,6 +14066,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateAppUIScaleString()
+	{
+		AppUIScaleString = $"{_appUIScale * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -13410,7 +14239,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			CommentaryMasterVolumeString = $"{_commentaryMasterVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			UpdateCommentaryMasterVolumeString();
 		}
 	}
 
@@ -13430,6 +14259,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateCommentaryMasterVolumeString()
+	{
+		CommentaryMasterVolumeString = $"{_commentaryMasterVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
@@ -13597,7 +14431,7 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 
-			CommentarySpotterCarProximityReminderIntervalString = $"{_commentarySpotterCarProximityReminderInterval:F1} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
+			UpdateCommentarySpotterCarProximityReminderIntervalString();
 		}
 	}
 
@@ -13617,6 +14451,11 @@ public class Settings : INotifyPropertyChanged
 				OnPropertyChanged();
 			}
 		}
+	}
+
+	private void UpdateCommentarySpotterCarProximityReminderIntervalString()
+	{
+		CommentarySpotterCarProximityReminderIntervalString = $"{_commentarySpotterCarProximityReminderInterval:F1} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
 	}
 
 	#endregion
