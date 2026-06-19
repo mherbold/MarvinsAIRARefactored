@@ -20,7 +20,7 @@
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />
     </Window.DataContext>
 
-    <StackPanel Margin="40,30,40,40">
+    <StackPanel Margin="20">
         
         <TextBlock x:Name="CurrentVersion_TextBlock"
                    Style="{StaticResource MairaTextBlockStyle}"
@@ -31,7 +31,8 @@
         <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                    Text="{Binding Localization[Changelog]}" />
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto"
+        <ScrollViewer x:Name="ChangeLog_ScrollViewer"
+                      VerticalScrollBarVisibility="Auto"
                       MaxHeight="500">
 
             <Border BorderThickness="1,0,0,0"
