@@ -21,6 +21,28 @@ public partial class Localization : INotifyPropertyChanged
 
 	private string? _currentLanguageCode = null;
 
+	// True when the current language is written right-to-left (Hebrew, Arabic, Farsi, ...).
+	// Driven off the culture itself rather than a hardcoded list so it stays correct as languages are added.
+	public bool IsRightToLeft
+	{
+		get
+		{
+			if ( string.IsNullOrEmpty( _currentLanguageCode ) || ( _currentLanguageCode == "default" ) )
+			{
+				return false;
+			}
+
+			try
+			{
+				return CultureInfo.GetCultureInfo( _currentLanguageCode ).TextInfo.IsRightToLeft;
+			}
+			catch ( CultureNotFoundException )
+			{
+				return false;
+			}
+		}
+	}
+
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	[GeneratedRegex( @"^MarvinsAIRARefactored\.Resources\.Resources\.(?<languageCode>[a-z]{2,3}(?:-[A-Za-z0-9]+)*)\.resources$", RegexOptions.IgnoreCase, "en-US" )]
