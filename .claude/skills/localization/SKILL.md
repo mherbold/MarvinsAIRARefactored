@@ -5,9 +5,10 @@ description: >-
   resource files. Use whenever the task touches Resources*.resx or
   Localization.cs — e.g. adding a new UI string/label/tooltip/caption,
   adding a Localization["Key"] lookup, renaming or re-keying a localization
-  string, translating a string across all 28 languages, brand-prefixing or
-  changing a caption everywhere, or otherwise bulk-editing the resx string
-  tables. Performs these as one idempotent script run, never a per-file Edit loop.
+  string, translating a string across all languages, adding a brand-new language
+  (culture .resx), brand-prefixing or changing a caption everywhere, or otherwise
+  bulk-editing the resx string tables. Performs these as one idempotent script
+  run, never a per-file Edit loop.
 ---
 
 # Localization (Resources*.resx)
@@ -24,11 +25,12 @@ every localization edit.
 
 ## Where strings live (confirmed against the repo)
 
-- **28 `.resx` files** in `MarvinsAIRARefactored/Resources/`:
+- **`.resx` files** in `MarvinsAIRARefactored/Resources/` — one base + many cultures:
   - **Base / English:** `Resources.resx` (`ThisLanguage` = "English (United States)").
-  - **27 culture files:** `ca-ES, cs-CZ, cy-GB, da-DK, de-DE, es-ES, es-MX,
-    fi-FI, fr-CA, fr-FR, he-IL, hu-HU, hy-AM, it-IT, ja-JP, nb-NO, nl-NL, pl-PL,
-    pt-BR, pt-PT, ro-RO, ru-RU, sv-SE, th-TH, tr-TR, uk-UA, zh-Hans`.
+  - **Culture files:** `Resources.<code>.resx` (e.g. `ar-SA, de-DE, he-IL, ja-JP,
+    ru-RU, zh-Hans, …`). **The set keeps growing — don't trust a hardcoded count.**
+    Enumerate it live: `Glob Resources*.resx` (it was 34 files / ~590 keys as of the
+    `ar-SA` addition).
 - **Lookup convention:** UI code reads strings via `Localization["Key"]`
   (`DataContext/Localization.cs`). At runtime the chosen language's table is
   consulted first; missing/empty keys fall back to the base `Resources.resx`,
@@ -44,11 +46,12 @@ every localization edit.
   ```
   (The `Name1`/`Color1`/`Bitmap1` entries near the top of every file are resx
   schema boilerplate — not localization strings. Ignore them.)
-- **BOM convention is MIXED — preserve per file, never normalize.**
-  18 files carry a UTF-8 BOM (`ca-ES, cs-CZ, cy-GB, da-DK, fi-FI, fr-CA, he-IL,
-  hu-HU, ja-JP, nb-NO, nl-NL, pl-PL, ro-RO, sv-SE, th-TH, tr-TR, uk-UA, zh-Hans`),
-  the other 10 (including the base `Resources.resx`) do not. The script detects
-  and re-applies each file's own BOM on write.
+- **BOM convention is MIXED — preserve per file, never normalize.** Roughly half
+  the culture files carry a UTF-8 BOM (most non-Latin/RTL ones — e.g. `he-IL`,
+  `ja-JP`, `zh-Hans`, `ar-SA`), the rest (including the base `Resources.resx`) do
+  not. `transform-resx.ps1` detects and re-applies each file's own BOM on write.
+  For a **new** culture file, write WITH a BOM if the script is non-Latin/RTL
+  (matches the `he-IL`/CJK precedent); `new-language.ps1` defaults to BOM.
 - **Embedded whitespace:** some values contain literal TABs (e.g. `uk-UA`). The
   script edits the `<data>`/`<value>` block surgically, so such content is
   preserved — do not "clean it up" as a side effect.
@@ -107,6 +110,60 @@ individual result files with the Edit tool.
   `CLAUDE.md` (Debug/x64) — **not** `dotnet build` (it fails on the COM refs).
 
 ## Common tasks
+
+### Add a new language (a whole new culture .resx)
+
+`transform-resx.ps1` is the wrong tool here — it edits one key across existing
+files. Adding a language means generating one new file with **every** key
+translated. Use **[`new-language.ps1`](new-language.ps1)**, which clones the base
+`Resources.resx` structure exactly and swaps in your translations.
+
+**What you do NOT need to touch** (learned adding `ar-SA`):
+- No C# change to register the language. `Localization.Initialize()`
+  (`DataContext/Localization.cs`) scans the embedded compiled resources
+  (`Resources.<code>.resources`) and adds any whose table has a **`ThisLanguage`**
+  key to the in-app language list.
+- **RTL is automatic** — `Localization.IsRightToLeft` reads
+  `CultureInfo.GetCultureInfo(code).TextInfo.IsRightToLeft`, no hardcoded list.
+
+**The one wiring step that IS required:** add the file to
+`MarvinsAIRARefactored.csproj` as an `<EmbeddedResource>` (alphabetical order):
+```xml
+<EmbeddedResource Include="Resources\Resources.ar-SA.resx"><WithCulture>false</WithCulture></EmbeddedResource>
+```
+`EnableDefaultEmbeddedResourceItems` is **false**, so until you list it the file
+is invisible to the build and the language won't appear.
+
+**Steps:**
+1. Dump the base keys+English values to build your translation map from:
+   ```powershell
+   pwsh -NoProfile -Command '[xml]$x = Get-Content -Raw -Encoding UTF8 ../../../MarvinsAIRARefactored/Resources/Resources.resx; $x.root.data | ForEach-Object { "{0}`t{1}" -f $_.name, $_.value }'
+   ```
+2. Author a JSON map `{ "Key": "translated value", … }`. Conventions:
+   - **`ThisLanguage`** = `"Native (Country) - English (Country)"`
+     (e.g. `"العربية (المملكة العربية السعودية) - Arabic (Saudi Arabia)"`).
+   - **`_UC` twins:** scripts without letter case (Arabic, Hebrew, CJK, Thai) use
+     the **same** text for `Foo` and `Foo_UC`; only uppercase embedded Latin/brand
+     words if the original did (e.g. Hebrew `Wind`→"Typhoon …", `Wind_UC`→"TYPHOON …").
+   - **Omit keys you want left as the English passthrough** — runtime falls back to
+     base for any key not in your JSON. Leave out: SI/technical symbols
+     (` Nm`, ` Hz`, ` g`, ` m/s`, `%`, `°`, `RPM`, `POV`, `ms`), brand names
+     (`AppTitle`, `AdminBoxx`, `Trading Paints`, `Buy Me a Coffee`), and the
+     `✓`/`✗` permission glyphs (`KeyPermissionGranted`/`Missing`). Translate
+     word-based units (`sec`, `KPH`, `MPH`).
+3. Generate and **read the report**:
+   ```powershell
+   pwsh -NoProfile -File ./new-language.ps1 -LanguageCode ar-SA -Json ./ar.json
+   ```
+   Confirm "left as English" lists ONLY your intended keep-list, and "JSON typos"
+   is 0 (any typo'd key means a translation silently went nowhere).
+4. Register in the csproj (above), then **build** (VS-MSBuild Debug/x64 per
+   `CLAUDE.md`) and confirm exit 0. Optionally spot-check the file renders by
+   reading a few `<value>` lines (the terminal shows `?`/`�` for non-Latin even
+   when the bytes are correct — use the Read tool, not a grep dump, to eyeball it).
+
+A native speaker spot-check of sim-racing terminology is the ideal final polish
+but does not block shipping (untranslated/odd keys still fall back gracefully).
 
 ### Add a new UI string
 
