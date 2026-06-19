@@ -1883,7 +1883,13 @@
     <value>Filtrovať podľa názvu alebo cesty...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Vyhľadávajú sa spustené aplikácie...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>VIDITEĽNOSŤ OKNA</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Zobraziť / Skryť okno</value>
   </data>
+
+
 
 
 

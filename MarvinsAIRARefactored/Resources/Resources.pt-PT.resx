@@ -1869,7 +1869,13 @@
     <value>Filtrar por nome ou caminho...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>A procurar aplicações em execução...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>VISIBILIDADE DA JANELA</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Mostrar / Ocultar Janela</value>
   </data>
+
+
 
 
 

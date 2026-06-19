@@ -210,6 +210,18 @@
 
         </controls:MairaGroupBox>
 
+        <controls:MairaGroupBox Label="{Binding Localization[WindowVisibility_UC]}"
+                                Tag="HideIfAdminBoxx"
+                                HelpTopic="advanced/app-settings/#window-visibility">
+
+            <controls:MairaMappableButton x:Name="ToggleMainWindow_MairaMappableButton"
+                                          Label="{Binding Localization[ShowHideWindow]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/app-menu.png"
+                                          ButtonMappings="{Binding Settings.AppToggleMainWindowButtonMappings}"
+                                          Click="ToggleMainWindow_MairaMappableButton_Click" />
+
+        </controls:MairaGroupBox>
+
     </StackPanel>
 
 </UserControl>

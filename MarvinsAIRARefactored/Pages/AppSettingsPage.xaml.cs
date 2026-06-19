@@ -54,6 +54,13 @@ public partial class AppSettingsPage : UserControl
 		wizardWindow.ShowDialog();
 	}
 
+	private void ToggleMainWindow_MairaMappableButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.MainWindow.ToggleWindowVisibility();
+	}
+
 	#endregion
 
 	#region Logic

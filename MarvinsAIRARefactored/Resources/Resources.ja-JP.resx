@@ -1871,7 +1871,13 @@
     <value>名前またはパスで絞り込み...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>実行中のアプリを検索しています...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>ウィンドウの表示</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>ウィンドウの表示 / 非表示</value>
   </data>
+
+
 
 
 

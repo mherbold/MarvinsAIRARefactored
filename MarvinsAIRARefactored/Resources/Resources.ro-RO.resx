@@ -1868,7 +1868,13 @@
     <value>Filtrează după nume sau cale...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Se caută aplicațiile în execuție...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>VIZIBILITATEA FERESTREI</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Afișați / Ascundeți fereastra</value>
   </data>
+
+
 
 
 

@@ -1874,7 +1874,13 @@
     <value>Фільтрувати за назвою або шляхом...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Пошук запущених застосунків...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>ВИДИМІСТЬ ВІКНА</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Показати / Сховати вікно</value>
   </data>
+
+
 
 
 

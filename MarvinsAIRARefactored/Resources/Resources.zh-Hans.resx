@@ -1868,7 +1868,13 @@
     <value>按名称或路径筛选...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>正在搜索正在运行的应用...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>窗口可见性</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>显示 / 隐藏窗口</value>
   </data>
+
+
 
 
 

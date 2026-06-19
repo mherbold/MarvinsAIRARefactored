@@ -1873,7 +1873,13 @@ Hier ist der Link zum Spenden:</value>
     <value>Nach Name oder Pfad filtern...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Suche nach laufenden Apps...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>FENSTERSICHTBARKEIT</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Fenster anzeigen / ausblenden</value>
   </data>
+
+
 
 
 

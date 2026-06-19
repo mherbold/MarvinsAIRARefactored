@@ -14174,6 +14174,12 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region App - Toggle main window
+
+	public ButtonMappings AppToggleMainWindowButtonMappings { get; set; } = new();
+
+	#endregion
+
 	#region Commentary — Master enable
 
 	private bool _commentaryEnabled = false;

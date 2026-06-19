@@ -505,6 +505,10 @@ public static class MappableActionCatalog
 
 		Trigger( list, "TradingPaintsRedownloadButtonMappings", "TradingPaints", "Settings_UC", "RedownloadPaintFiles", app => app.TradingPaints.Reset() );
 
+		// ----- App settings -----
+
+		Trigger( list, "AppToggleMainWindowButtonMappings", "AppSettings", "WindowVisibility_UC", "ShowHideWindow", app => app.MainWindow.ToggleWindowVisibility() );
+
 		return list;
 	}
 

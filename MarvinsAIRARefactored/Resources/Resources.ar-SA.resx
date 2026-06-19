@@ -1883,7 +1883,13 @@
     <value>تصفية حسب الاسم أو المسار...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>جارٍ البحث عن التطبيقات قيد التشغيل...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>رؤية النافذة</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>إظهار / إخفاء النافذة</value>
   </data>
+
+
 
 
 

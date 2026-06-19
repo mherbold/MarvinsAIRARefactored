@@ -1868,7 +1868,13 @@
     <value>Filtrera efter namn eller sökväg...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Söker efter pågående appar...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>FÖNSTERSYNLIGHET</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Visa / Dölj fönster</value>
   </data>
+
+
 
 
 

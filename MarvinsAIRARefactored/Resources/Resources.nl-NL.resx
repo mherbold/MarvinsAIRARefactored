@@ -1868,7 +1868,13 @@
     <value>Filteren op naam of pad...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Zoeken naar actieve apps...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>VENSTERZICHTBAARHEID</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Venster tonen / verbergen</value>
   </data>
+
+
 
 
 

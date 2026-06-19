@@ -1868,7 +1868,13 @@
     <value>Զտել ըստ անվան կամ ուղու...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Աշխատող ծրագրերի որոնում...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>ՊԱՏՈՒՀԱՆԻ ՏԵՍԱՆԵԼԻՈՒԹՅՈՒՆ</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Ցույց տալ / Թաքցնել պատուհանը</value>
   </data>
+
+
 
 
 

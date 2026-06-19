@@ -488,6 +488,33 @@ public partial class MainWindow : Window
 		} );
 	}
 
+	// Toggles MAIRA between the foreground and minimized, for the mappable "show / hide window" input.
+	// First press brings the window to the foreground (even when it was merely hidden behind other
+	// windows); a second press minimizes it again. Minimizing routes through Window_StateChanged, which
+	// hides the window to the system tray when the "minimize to system tray" option is enabled, so this
+	// works whether or not that option is on. Wrapped in Dispatcher.Invoke because input actions can
+	// fire on the device-polling thread.
+	public void ToggleWindowVisibility()
+	{
+		Dispatcher.Invoke( () =>
+		{
+			var app = App.Instance!;
+
+			app.Logger.WriteLine( "[MainWindow] ToggleWindowVisibility >>>" );
+
+			if ( IsVisible && ( WindowState != WindowState.Minimized ) && IsActive )
+			{
+				WindowState = WindowState.Minimized;
+			}
+			else
+			{
+				MakeWindowVisible();
+			}
+
+			app.Logger.WriteLine( "[MainWindow] <<< ToggleWindowVisibility" );
+		} );
+	}
+
 	public void MakeWindowVisible()
 	{
 		Show();

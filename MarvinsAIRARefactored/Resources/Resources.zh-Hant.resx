@@ -1883,7 +1883,13 @@
     <value>依名稱或路徑篩選...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>正在搜尋執行中的應用程式...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>視窗可見性</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>顯示 / 隱藏視窗</value>
   </data>
+
+
 
 
 

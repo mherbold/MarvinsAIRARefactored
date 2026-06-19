@@ -1868,7 +1868,13 @@
     <value>Hidlo yn ôl enw neu lwybr...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Yn chwilio am apiau sy'n rhedeg...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>GWELEDEDD FFENESTR</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Dangos / Cuddio Ffenestr</value>
   </data>
+
+
 
 
 

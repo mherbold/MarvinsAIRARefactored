@@ -1868,7 +1868,13 @@
     <value>Szűrés név vagy elérési út szerint...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Futó alkalmazások keresése...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>ABLAK LÁTHATÓSÁGA</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Ablak megjelenítése / elrejtése</value>
   </data>
+
+
 
 
 

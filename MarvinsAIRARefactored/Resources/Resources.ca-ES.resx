@@ -1868,7 +1868,13 @@
     <value>Filtra per nom o camí...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>S'estan cercant aplicacions en execució...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>VISIBILITAT DE LA FINESTRA</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Mostra / Amaga la finestra</value>
   </data>
+
+
 
 
 

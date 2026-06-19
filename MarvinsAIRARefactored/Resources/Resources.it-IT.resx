@@ -1868,7 +1868,13 @@
     <value>Filtra per nome o percorso...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Ricerca delle app in esecuzione...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>VISIBILITÀ FINESTRA</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Mostra / Nascondi Finestra</value>
   </data>
+
+
 
 
 

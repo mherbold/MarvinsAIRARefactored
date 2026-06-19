@@ -1868,7 +1868,13 @@
     <value>กรองตามชื่อหรือเส้นทาง...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>กำลังค้นหาแอปที่กำลังทำงาน...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>การมองเห็นหน้าต่าง</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>แสดง / ซ่อนหน้าต่าง</value>
   </data>
+
+
 
 
 

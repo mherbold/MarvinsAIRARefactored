@@ -1868,7 +1868,13 @@
     <value>Ada veya yola göre filtrele...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Çalışan uygulamalar aranıyor...</value>
+  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+    <value>PENCERE GÖRÜNÜRLÜĞÜ</value>
+  </data>  <data name="ShowHideWindow" xml:space="preserve">
+    <value>Pencereyi Göster / Gizle</value>
   </data>
+
+
 
 
 
