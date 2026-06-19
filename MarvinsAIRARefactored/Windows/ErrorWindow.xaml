@@ -108,7 +108,7 @@
 
                         <TextBlock x:Name="Details_TextBlock"
                                    Style="{StaticResource MairaTextBlockStyle}"
-                                   TextWrapping="NoWrap"
+                                   TextWrapping="Wrap"
                                    Foreground="#eee"
                                    d:Text="Example details text" />
 
