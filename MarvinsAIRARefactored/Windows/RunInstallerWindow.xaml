@@ -10,8 +10,7 @@
         mc:Ignorable="d"
         Title="{Binding Localization[RunInstaller]}"
         Icon="/Artwork/AppIcon/maira-universal.ico"
-        Width="800"
-        SizeToContent="Height"
+        SizeToContent="WidthAndHeight"
         ResizeMode="NoResize"
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterOwner">
@@ -20,14 +19,14 @@
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />
     </Window.DataContext>
 
-    <StackPanel Margin="40">
+    <StackPanel Margin="20">
 
         <TextBlock Style="{StaticResource MairaTextBlockStyle}"
                    Text="{Binding Localization[RunInstallerQuestion]}"
                    HorizontalAlignment="Center" />
 
         <Grid HorizontalAlignment="Center"
-              Margin="0,10,0,0">
+              Margin="0,20,0,0">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

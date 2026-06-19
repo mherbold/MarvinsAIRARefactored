@@ -18,7 +18,7 @@
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />
     </Window.DataContext>
 
-    <StackPanel Margin="40,20,40,40">
+    <StackPanel Margin="20">
 
         <controls:MairaTextBox x:Name="ProfileName_MairaTextBox"
                                Label="{Binding Localization[ProfileName]}"

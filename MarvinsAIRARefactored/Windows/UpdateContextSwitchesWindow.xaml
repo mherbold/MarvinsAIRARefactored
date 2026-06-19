@@ -21,10 +21,9 @@
         <datacontext:ContextSwitches />
     </Window.DataContext>
 
-    <StackPanel Margin="40,20,40,40">
+    <StackPanel Margin="20">
 
-        <UniformGrid Columns="3"
-                     Margin="0,0,0,20">
+        <UniformGrid Columns="3">
 
             <controls:MairaSwitch  Margin="0,10,0,0"
                                    IsOn="{Binding PerWheelbase, Mode=TwoWay}"
@@ -54,7 +53,7 @@
         </UniformGrid>
 
         <Grid HorizontalAlignment="Center"
-              Margin="0,10,0,0">
+              Margin="0,20,0,0">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

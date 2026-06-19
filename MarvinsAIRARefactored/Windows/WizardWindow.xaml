@@ -19,7 +19,7 @@
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />
     </Window.DataContext>
 
-    <Grid Margin="20,40,0,0">
+    <Grid Margin="20,20,20,0">
 
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*" />
@@ -28,7 +28,7 @@
 
         <!-- Left 2/3: all step panels -->
         <StackPanel Grid.Column="0"
-                    Margin="0,0,20,40">
+                    Margin="0,0,20,20">
 
             <!-- Step 0: Welcome / Skip -->
             <StackPanel x:Name="Step0_Panel">
