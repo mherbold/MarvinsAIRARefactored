@@ -25,16 +25,17 @@
     <Binding Source="{x:Static datacontext:DataContext.Instance}" />
   </Window.DataContext>
 
-  <Border Background="Transparent"
-          CornerRadius="80"
-          ClipToBounds="True">
+  <Border Background="Transparent">
 
     <Grid>
-      <Grid.Clip>
-        <RectangleGeometry RadiusX="80"
-                           RadiusY="80"
-                           Rect="0,0,836,470" />
-      </Grid.Clip>
+      <!-- Feathered edge: instead of a hard clip, fade the content out over ~20px
+           using a pre-rendered alpha mask (white rounded rectangle, 20px inset,
+           ~80px corners, Gaussian-feathered). Its alpha channel drives the fade.
+           Regenerate via scripts/make-splash-mask.py if the splash size changes. -->
+      <Grid.OpacityMask>
+        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Misc/splash-screen-mask.png"
+                    Stretch="Fill" />
+      </Grid.OpacityMask>
 
       <Grid.RowDefinitions>
         <RowDefinition Height="*" />
