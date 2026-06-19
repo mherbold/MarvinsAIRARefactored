@@ -320,7 +320,7 @@ function paintCountries(d) {
 	const list = d.geo.countries || [];
 	if (!list.length) { ul.innerHTML = '<li class="pending">Geolocation backfill pending…</li>'; return; }
 	const max = list[0].users || 1;
-	ul.innerHTML = list.slice(0,30).map(c => `<li>
+	ul.innerHTML = list.slice(0,40).map(c => `<li>
 		<span class="flag">${flag(c.cc)}</span>
 		<span class="name">${countryName(c.cc)}</span>
 		<span class="bar" style="width:${Math.max(6, 90*c.users/max)}px"></span>
