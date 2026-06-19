@@ -1,0 +1,1875 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Algorithm" xml:space="preserve">
+    <value>Алгоритъм</value>
+  </data>
+  <data name="AppSettings" xml:space="preserve">
+    <value>Настройки на приложението</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App</value>
+  </data>
+  <data name="DetailBoostBias" xml:space="preserve">
+    <value>Отклонение на усилването на детайла</value>
+  </data>
+  <data name="DetailBoost" xml:space="preserve">
+    <value>Усилване на детайла</value>
+  </data>
+  <data name="FadeForceFeedback" xml:space="preserve">
+    <value>Затихване на силовата обратна връзка при влизане или излизане от колата</value>
+  </data>
+  <data name="RacingFriction" xml:space="preserve">
+    <value>Състезателно триене</value>
+  </data>
+  <data name="Graph" xml:space="preserve">
+    <value>Графика</value>
+  </data>
+  <data name="HeaderData_UC" xml:space="preserve">
+    <value>ДАННИ ОТ ЗАГЛАВКАТА</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Език</value>
+  </data>
+  <data name="Language_UC" xml:space="preserve">
+    <value>ЕЗИК</value>
+  </data>
+  <data name="DetailBooster" xml:space="preserve">
+    <value>Усилвател на детайла</value>
+  </data>
+  <data name="DeltaLimiter" xml:space="preserve">
+    <value>Ограничител на делта</value>
+  </data>
+  <data name="MaxForce" xml:space="preserve">
+    <value>Максимална сила</value>
+  </data>
+  <data name="Native60Hz" xml:space="preserve">
+    <value>Нативни 60 Hz</value>
+  </data>
+  <data name="Native360Hz" xml:space="preserve">
+    <value>Нативни 360 Hz</value>
+  </data>
+  <data name="NoFFBDevicesFound" xml:space="preserve">
+    <value>[Не са намерени устройства със силова обратна връзка]</value>
+  </data>
+  <data name="OFF" xml:space="preserve">
+    <value>ИЗКЛ.</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>Мощност</value>
+  </data>
+  <data name="RacingWheel" xml:space="preserve">
+    <value>Състезателен волан</value>
+  </data>
+  <data name="RacingWheel_UC" xml:space="preserve">
+    <value>СЪСТЕЗАТЕЛЕН ВОЛАН</value>
+  </data>
+  <data name="SteeringDevice" xml:space="preserve">
+    <value>Устройство за управление</value>
+  </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>Устройство за запис</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Нулиране</value>
+  </data>
+  <data name="SessionInformation_UC" xml:space="preserve">
+    <value>ИНФОРМАЦИЯ ЗА СЕСИЯТА</value>
+  </data>
+  <data name="Simulator" xml:space="preserve">
+    <value>Симулатор</value>
+  </data>
+  <data name="SimulatorNotRunning" xml:space="preserve">
+    <value>Симулаторът iRacing не е стартиран</value>
+  </data>
+  <data name="SoftLockStrength" xml:space="preserve">
+    <value>Сила на мекото заключване</value>
+  </data>
+  <data name="TelemetryData_UC" xml:space="preserve">
+    <value>ДАННИ ОТ ТЕЛЕМЕТРИЯТА</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Тест</value>
+  </data>
+  <data name="ThisLanguage" xml:space="preserve">
+    <value>Български (България) - Bulgarian (Bulgaria)</value>
+  </data>
+  <data name="TopmostWindow" xml:space="preserve">
+    <value>Прозорец най-отгоре</value>
+  </data>
+  <data name="TorqueUnits" xml:space="preserve">
+    <value> Nm</value>
+  </data>
+  <data name="DetailBoosterOn60Hz" xml:space="preserve">
+    <value>Усилвател на детайла (ниска латентност)</value>
+  </data>
+  <data name="AdminBoxx" xml:space="preserve">
+    <value>AdminBoxx</value>
+  </data>
+  <data name="ConnectToAdminBoxx" xml:space="preserve">
+    <value>Свързване с AdminBoxx</value>
+  </data>
+  <data name="UpdateButtonMappings" xml:space="preserve">
+    <value>Актуализиране на картографиране на входа</value>
+  </data>
+  <data name="PressTheRecordButton" xml:space="preserve">
+    <value>[Натиснете бутона за запис]</value>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>Бутон</value>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>Клик</value>
+  </data>
+  <data name="Hold" xml:space="preserve">
+    <value>Задържане</value>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>Клавиатура</value>
+  </data>
+  <data name="WaitingForInput" xml:space="preserve">
+    <value>[Изчакване на вход]</value>
+  </data>
+  <data name="DeltaLimit" xml:space="preserve">
+    <value>Лимит на делта</value>
+  </data>
+  <data name="DeltaLimitUnits" xml:space="preserve">
+    <value> Nm/s</value>
+  </data>
+  <data name="DeltaLimiterOn60Hz" xml:space="preserve">
+    <value>Ограничител на делта (ниска латентност)</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="Device_UC" xml:space="preserve">
+    <value>УСТРОЙСТВО</value>
+  </data>
+  <data name="OverallStrength_UC" xml:space="preserve">
+    <value>ОБЩА СИЛА</value>
+  </data>
+  <data name="AutoTarget" xml:space="preserve">
+    <value>Автоматична цел</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Изчистване</value>
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
+    <value>Профили на контролера</value>
+  </data>
+  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>ПРОФИЛИ НА КОНТРОЛЕРА</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профил</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Име на профила</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Нов профил</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Изтриване на профил</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Сигурни ли сте, че искате да изтриете този профил на контролера?</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Нов профил на контролера</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Копиране на текущите картографирания</value>
+  </data>
+  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>КАРТОГРАФИРАНЕ НА БУТОНИ</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Картографиране</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Запис</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(некартографиран)</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отказ</value>
+  </data>
+  <data name="CurrentForce" xml:space="preserve">
+    <value>Текуща сила</value>
+  </data>
+  <data name="AutoMaxForce" xml:space="preserve">
+    <value>Автоматична максимална сила</value>
+  </data>
+  <data name="OtherFeatures_UC" xml:space="preserve">
+    <value>ДРУГИ ФУНКЦИИ</value>
+  </data>
+  <data name="Switches_UC" xml:space="preserve">
+    <value>ПРЕВКЛЮЧВАТЕЛИ</value>
+  </data>
+  <data name="CrashProtection_UC" xml:space="preserve">
+    <value>ЗАЩИТА ПРИ УДАР</value>
+  </data>
+  <data name="GForceUnits" xml:space="preserve">
+    <value> g</value>
+  </data>
+  <data name="LongitudalGForce" xml:space="preserve">
+    <value>Надлъжно претоварване</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Продължителност</value>
+  </data>
+  <data name="ForceReduction" xml:space="preserve">
+    <value>Намаляване на силата</value>
+  </data>
+  <data name="SecondsUnits" xml:space="preserve">
+    <value> сек</value>
+  </data>
+  <data name="MPSUnits" xml:space="preserve">
+    <value> m/s</value>
+  </data>
+  <data name="CurbProtection_UC" xml:space="preserve">
+    <value>ЗАЩИТА ОТ БОРДЮРИ</value>
+  </data>
+  <data name="ShockVelocity" xml:space="preserve">
+    <value>Скорост на удара</value>
+  </data>
+  <data name="Pedals_UC" xml:space="preserve">
+    <value>ПЕДАЛИ SIMAGIC</value>
+  </data>
+  <data name="PedalsP1000" xml:space="preserve">
+    <value>Педали Simagic P1000</value>
+  </data>
+  <data name="PedalsP2000" xml:space="preserve">
+    <value>Педали Simagic P2000</value>
+  </data>
+  <data name="PedalsNone" xml:space="preserve">
+    <value>[Не са намерени съвместими педали Simagic]</value>
+  </data>
+  <data name="Clutch_UC" xml:space="preserve">
+    <value>СЪЕДИНИТЕЛ</value>
+  </data>
+  <data name="Brake_UC" xml:space="preserve">
+    <value>СПИРАЧКА</value>
+  </data>
+  <data name="Throttle_UC" xml:space="preserve">
+    <value>ГАЗ</value>
+  </data>
+  <data name="PedalEffects" xml:space="preserve">
+    <value>Ефекти на педалите</value>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>Сила</value>
+  </data>
+  <data name="HertzUnits" xml:space="preserve">
+    <value> Hz</value>
+  </data>
+  <data name="Frequency_UC" xml:space="preserve">
+    <value>ОБЩА ЧЕСТОТА</value>
+  </data>
+  <data name="Amplitude_UC" xml:space="preserve">
+    <value>ОБЩА АМПЛИТУДА</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Минимум</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Максимум</value>
+  </data>
+  <data name="Curve" xml:space="preserve">
+    <value>Крива</value>
+  </data>
+  <data name="GearChange" xml:space="preserve">
+    <value>Смяна на предавка</value>
+  </data>
+  <data name="ClutchSlip_UC" xml:space="preserve">
+    <value>ПРОБУКСУВАНЕ НА СЪЕДИНИТЕЛЯ</value>
+  </data>
+  <data name="SteeringEffects_UC" xml:space="preserve">
+    <value>ЕФЕКТИ НА УПРАВЛЕНИЕТО</value>
+  </data>
+  <data name="SteeringEffects" xml:space="preserve">
+    <value>Ефекти на управлението</value>
+  </data>
+  <data name="WheelLock_UC" xml:space="preserve">
+    <value>БЛОКИРАНЕ НА КОЛЕЛОТО</value>
+  </data>
+  <data name="WheelSpin_UC" xml:space="preserve">
+    <value>ПРОБУКСУВАНЕ НА КОЛЕЛОТО</value>
+  </data>
+  <data name="RPM_UC" xml:space="preserve">
+    <value>ОБОРОТИ</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>ОБОРОТИ ЗА СМЯНА</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Няма</value>
+  </data>
+  <data name="PerWheelbase" xml:space="preserve">
+    <value>За волан</value>
+  </data>
+  <data name="PerCar" xml:space="preserve">
+    <value>За кола</value>
+  </data>
+  <data name="PerTrack" xml:space="preserve">
+    <value>За писта</value>
+  </data>
+  <data name="PerTrackConfiguration" xml:space="preserve">
+    <value>За конфигурация на пистата</value>
+  </data>
+  <data name="PerWetDry" xml:space="preserve">
+    <value>За мокро/сухо</value>
+  </data>
+  <data name="Wet" xml:space="preserve">
+    <value>Мокро</value>
+  </data>
+  <data name="Dry" xml:space="preserve">
+    <value>Сухо</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>По подразбиране</value>
+  </data>
+  <data name="SaveThisSetting" xml:space="preserve">
+    <value>Запазване на тази настройка</value>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>Налична е нова версия!</value>
+  </data>
+  <data name="DownloadQuestion" xml:space="preserve">
+    <value>Искате ли да я изтеглите сега?</value>
+  </data>
+  <data name="RunInstaller" xml:space="preserve">
+    <value>Да се стартира ли инсталаторът?</value>
+  </data>
+  <data name="RunInstallerQuestion" xml:space="preserve">
+    <value>Искате ли да стартирате инсталатора сега?</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Проверка за актуализации при стартиране</value>
+  </data>
+  <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
+    <value>Свързване с AdminBoxx при стартиране на приложението</value>
+  </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Активиране на интеграцията с Xtreme Scoring Race Control</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>Яркост</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Сила на звука</value>
+  </data>
+  <data name="DeltaLimiterBias" xml:space="preserve">
+    <value>Отклонение на ограничителя на делта</value>
+  </data>
+  <data name="Output_UC" xml:space="preserve">
+    <value>ИЗХОД</value>
+  </data>
+  <data name="WheelLFE_UC" xml:space="preserve">
+    <value>LFE НА ВОЛАНА</value>
+  </data>
+  <data name="LFERecordingDevice" xml:space="preserve">
+    <value>Устройство за запис на LFE</value>
+  </data>
+  <data name="InputTorque60Hz" xml:space="preserve">
+    <value>Входен въртящ момент (60 Hz)</value>
+  </data>
+  <data name="InputTorque" xml:space="preserve">
+    <value>Входен въртящ момент</value>
+  </data>
+  <data name="OutputTorque" xml:space="preserve">
+    <value>Изходен въртящ момент</value>
+  </data>
+  <data name="TimerJitter" xml:space="preserve">
+    <value>Трептене на таймера</value>
+  </data>
+  <data name="InputLFE" xml:space="preserve">
+    <value>Входен LFE</value>
+  </data>
+  <data name="ABSEngaged_UC" xml:space="preserve">
+    <value>ABS АКТИВИРАН</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>[Деактивиран]</value>
+  </data>
+  <data name="RememberWindowPositionAndSize" xml:space="preserve">
+    <value>Запомняне на позицията и размера на прозореца</value>
+  </data>
+  <data name="FadeWithBrake" xml:space="preserve">
+    <value>Затихване със спирачката</value>
+  </data>
+  <data name="StartingRPM" xml:space="preserve">
+    <value>Начални обороти</value>
+  </data>
+  <data name="VibrateInTopGear" xml:space="preserve">
+    <value>Вибрация на най-висока предавка</value>
+  </data>
+  <data name="FadeWithThrottle" xml:space="preserve">
+    <value>Затихване с газта</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>Пулсиране</value>
+  </data>
+  <data name="StartingPoint" xml:space="preserve">
+    <value>Начална точка</value>
+  </data>
+  <data name="EndingPoint" xml:space="preserve">
+    <value>Крайна точка</value>
+  </data>
+  <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
+    <value>СМЯНА НА ПРЕДАВКА - ВКЛЮЧВАНЕ НА ПРЕДАВКА</value>
+  </data>
+  <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
+    <value>СМЯНА НА ПРЕДАВКА - ВКЛЮЧВАНЕ НА НЕУТРАЛНА</value>
+  </data>
+  <data name="AlwaysEnableFFB" xml:space="preserve">
+    <value>Активиране на FFB дори ако FFB на симулатора iRacing е включен</value>
+  </data>
+  <data name="ClutchPedalHaptics" xml:space="preserve">
+    <value>Хаптика на педала на съединителя</value>
+  </data>
+  <data name="BrakePedalHaptics" xml:space="preserve">
+    <value>Хаптика на педала на спирачката</value>
+  </data>
+  <data name="ThrottlePedalHaptics" xml:space="preserve">
+    <value>Хаптика на педала на газта</value>
+  </data>
+  <data name="NoiseDamper" xml:space="preserve">
+    <value>Заглушител на шума</value>
+  </data>
+  <data name="AppWindow_UC" xml:space="preserve">
+    <value>ПРОЗОРЕЦ НА ПРИЛОЖЕНИЕТО</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Светла тема</value>
+  </data>
+  <data name="UIScale" xml:space="preserve">
+    <value>Мащаб на интерфейса</value>
+  </data>
+  <data name="CloudService_UC" xml:space="preserve">
+    <value>ОБЛАЧНА УСЛУГА</value>
+  </data>
+  <data name="CheckNow" xml:space="preserve">
+    <value>Проверка сега</value>
+  </data>
+  <data name="CheckingForUpdate" xml:space="preserve">
+    <value>Проверка за актуализация...</value>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>Изтегляне на актуализация...</value>
+  </data>
+  <data name="Contribute_UC" xml:space="preserve">
+    <value>ДОПРИНЕСЕТЕ</value>
+  </data>
+  <data name="BuyMeACoffee" xml:space="preserve">
+    <value>Купете ми кафе</value>
+  </data>
+  <data name="DonationsText" xml:space="preserve">
+    <value>Даренията са напълно по желание. Никога няма да начислявам такси за използването на MAIRA. При все това, даренията ме карат да се чувствам топло и приятно и са страхотен стимул да продължа да работя по MAIRA. Огромно благодаря на всички, които вече са дарили!</value>
+  </data>
+  <data name="Donate_UC" xml:space="preserve">
+    <value>ДАРЕТЕ</value>
+  </data>
+  <data name="Donors_UC" xml:space="preserve">
+    <value>ДАРИТЕЛИ</value>
+  </data>
+  <data name="SuperDonors_UC" xml:space="preserve">
+    <value>СУПЕР ДАРИТЕЛИ</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Дарете</value>
+  </data>
+  <data name="CodeContributions_UC" xml:space="preserve">
+    <value>ПРИНОСИ В КОДА</value>
+  </data>
+  <data name="TranslationContributions_UC" xml:space="preserve">
+    <value>ПРИНОСИ В ПРЕВОДА</value>
+  </data>
+  <data name="CodeContributionsText" xml:space="preserve">
+    <value>Разработчик ли сте на C#? Този проект е отворен за приноси. Научете повече, като посетите хранилището в GitHub.</value>
+  </data>
+  <data name="TranslationContributionsText" xml:space="preserve">
+    <value>Сърдечно благодаря на всички изброени тук, които доброволно отделиха своето време и талант, за да преведат MarvinsAIRA на толкова много езици. Вашата работа помогна това приложение да стане достъпно за сим-състезатели по целия свят. Преводите вече се извършват автоматично от машина, така че повече помощ с превода не е необходима — но тези сътрудници винаги ще имат моята най-дълбока благодарност.</value>
+  </data>
+  <data name="GitHubRepository" xml:space="preserve">
+    <value>Хранилище в GitHub</value>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>Сътрудници</value>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>Показване на прозореца</value>
+  </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Показване на началния екран при стартиране</value>
+  </data>
+  <data name="ExitApp" xml:space="preserve">
+    <value>Изход от приложението</value>
+  </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Минимизиране вместо затваряне</value>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+    <value>Минимизиране в системната област</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Стартиране минимизирано</value>
+  </data>
+  <data name="StartWithWindows" xml:space="preserve">
+    <value>Стартиране с Windows</value>
+  </data>
+  <data name="TotalCompressionRate" xml:space="preserve">
+    <value>Обща степен на компресия</value>
+  </data>
+  <data name="SlewCompressionThreshold" xml:space="preserve">
+    <value>Праг на наклона</value>
+  </data>
+  <data name="SlewCompressionRate" xml:space="preserve">
+    <value>Степен на компресия на наклона</value>
+  </data>
+  <data name="TotalCompressionThreshold" xml:space="preserve">
+    <value>Общ праг</value>
+  </data>
+  <data name="SlewUnits" xml:space="preserve">
+    <value> Nm/ms</value>
+  </data>
+  <data name="WheelForce" xml:space="preserve">
+    <value>Сила на волана</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Задаване</value>
+  </data>
+  <data name="Preview_UC" xml:space="preserve">
+    <value>ПРЕГЛЕД</value>
+  </data>
+  <data name="NoRecordingsFound" xml:space="preserve">
+    <value>[Не са намерени записи]</value>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>Активиране на опростен режим</value>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Чувствителност</value>
+  </data>
+  <data name="SlewAndTotalCompression" xml:space="preserve">
+    <value>Компресия на наклона и обща компресия</value>
+  </data>
+  <data name="DiscordModerators_UC" xml:space="preserve">
+    <value>МОДЕРАТОРИ В DISCORD</value>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>Искам да благодаря на тези доброволни модератори за помощта при отговарянето на многото въпроси, задавани от потребителите на MAIRA, което ми позволява да имам повече време да се съсредоточа върху разработката на MAIRA!</value>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>Фърмуерът на AdminBoxx се актуализира</value>
+  </data>
+  <data name="AllowSuperStrength" xml:space="preserve">
+    <value>Разрешаване до 200% сила (потенциално опасно)</value>
+  </data>
+  <data name="ON" xml:space="preserve">
+    <value>ВКЛ.</value>
+  </data>
+  <data name="Sounds_UC" xml:space="preserve">
+    <value>ЗВУЦИ</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Активирано</value>
+  </data>
+  <data name="FrequencyRatio" xml:space="preserve">
+    <value>Височина на тона</value>
+  </data>
+  <data name="Fade" xml:space="preserve">
+    <value>Затихване</value>
+  </data>
+  <data name="SendChatMessages" xml:space="preserve">
+    <value>Изпращане на лични чат съобщения до водача</value>
+  </data>
+  <data name="Degrees" xml:space="preserve">
+    <value>°</value>
+  </data>
+  <data name="Master_UC" xml:space="preserve">
+    <value>ОБЩ</value>
+  </data>
+  <data name="CrashProtectionActivated" xml:space="preserve">
+    <value>Защитата при удар е активирана!</value>
+  </data>
+  <data name="CurbProtectionActivated" xml:space="preserve">
+    <value>Защитата от бордюри е активирана!</value>
+  </data>
+  <data name="PrivateMessages_UC" xml:space="preserve">
+    <value>ЛИЧНИ СЪОБЩЕНИЯ</value>
+  </data>
+  <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
+    <value>Активиране на съобщения за защита от бордюри</value>
+  </data>
+  <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
+    <value>Активиране на съобщения за защита при удар</value>
+  </data>
+  <data name="InputMappedSettingUpdateEnabled" xml:space="preserve">
+    <value>Активиране на съобщения за актуализиране на картографирани настройки</value>
+  </data>
+  <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
+    <value>Не се намирате на пистата Centripetal Circuit</value>
+  </data>
+  <data name="RunCalibration" xml:space="preserve">
+    <value>Стартиране на калибриране</value>
+  </data>
+  <data name="StopCalibration" xml:space="preserve">
+    <value>Спиране на калибрирането</value>
+  </data>
+  <data name="SteeringWheelLeft" xml:space="preserve">
+    <value>Волан наляво</value>
+  </data>
+  <data name="SteeringWheelCenter" xml:space="preserve">
+    <value>Волан в центъра</value>
+  </data>
+  <data name="SteeringWheelRight" xml:space="preserve">
+    <value>Волан надясно</value>
+  </data>
+  <data name="SteeringWheel90Left" xml:space="preserve">
+    <value>Волан 90° наляво</value>
+  </data>
+  <data name="MinThrottle" xml:space="preserve">
+    <value>Минимална газ</value>
+  </data>
+  <data name="MaxThrottle" xml:space="preserve">
+    <value>Максимална газ</value>
+  </data>
+  <data name="ShiftUp" xml:space="preserve">
+    <value>Превключване нагоре</value>
+  </data>
+  <data name="ShiftDown" xml:space="preserve">
+    <value>Превключване надолу</value>
+  </data>
+  <data name="MinBrake" xml:space="preserve">
+    <value>Минимална спирачка</value>
+  </data>
+  <data name="MaxBrake" xml:space="preserve">
+    <value>Максимална спирачка</value>
+  </data>
+  <data name="GripOMeter_UC" xml:space="preserve">
+    <value>ИЗМЕРВАТЕЛ НА СЦЕПЛЕНИЕТО</value>
+  </data>
+  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>ЕФЕКТ НА ВИБРАЦИЯ НА ВОЛАНА ПРИ НЕДОВОЛТАЖ</value>
+  </data>
+  <data name="Progress:" xml:space="preserve">
+    <value>Напредък:</value>
+  </data>
+  <data name="CalibrationFileNotSelected" xml:space="preserve">
+    <value>[Файл за калибриране не е избран]</value>
+  </data>
+  <data name="ParkedEffects_UC" xml:space="preserve">
+    <value>ЕФЕКТИ ПРИ ПАРКИРАНЕ</value>
+  </data>
+  <data name="ForceFeedbackStrength" xml:space="preserve">
+    <value>Сила на силовата обратна връзка</value>
+  </data>
+  <data name="WheelCenteringStrength" xml:space="preserve">
+    <value>Сила на центриране на волана</value>
+  </data>
+  <data name="CenterWheelWhileRacing" xml:space="preserve">
+    <value>Центриране на волана по време на състезание</value>
+  </data>
+  <data name="CenterWheelWhileParked" xml:space="preserve">
+    <value>Центриране на волана при паркиране</value>
+  </data>
+  <data name="ParkedFriction" xml:space="preserve">
+    <value>Триене при паркиране</value>
+  </data>
+  <data name="CurrentCarSetup" xml:space="preserve">
+    <value>Текуща настройка на колата:</value>
+  </data>
+  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>ЕФЕКТ НА ВИБРАЦИЯ НА ПЕДАЛА ПРИ НЕДОВОЛТАЖ</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Нещо се обърка</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Подробности</value>
+  </data>
+  <data name="ClassicMAIRAIsRunning" xml:space="preserve">
+    <value>Classic MAIRA в момента е стартиран - моля, излезте от classic MAIRA, преди да стартирате тази версия на MAIRA!</value>
+  </data>
+  <data name="ExceptionThrown" xml:space="preserve">
+    <value>Възникна изключение</value>
+  </data>
+  <data name="KPHUnits" xml:space="preserve">
+    <value> км/ч</value>
+  </data>
+  <data name="CalibrationFilesText" xml:space="preserve">
+    <value>Това са хората, които щедро отделиха част от свободното си време, за да направят калибрирания на ефектите на управлението на някои от любимите си коли и да качат тези файлове за калибриране!</value>
+  </data>
+  <data name="DegreesPerSecond" xml:space="preserve">
+    <value>°/s</value>
+  </data>
+  <data name="CalibrationFile_UC" xml:space="preserve">
+    <value>ФАЙЛ ЗА КАЛИБРИРАНЕ</value>
+  </data>
+  <data name="Understeer_UC" xml:space="preserve">
+    <value>НЕДОВОЛТАЖ</value>
+  </data>
+  <data name="Oversteer_UC" xml:space="preserve">
+    <value>СВРЪХВОЛТАЖ</value>
+  </data>
+  <data name="MinimumThreshold" xml:space="preserve">
+    <value>Минимален праг</value>
+  </data>
+  <data name="MaximumThreshold" xml:space="preserve">
+    <value>Максимален праг</value>
+  </data>
+  <data name="MinimumFrequency" xml:space="preserve">
+    <value>Минимална честота</value>
+  </data>
+  <data name="MaximumFrequency" xml:space="preserve">
+    <value>Максимална честота</value>
+  </data>
+  <data name="Calibration_UC" xml:space="preserve">
+    <value>КАЛИБРИРАНЕ</value>
+  </data>
+  <data name="VibrationPattern" xml:space="preserve">
+    <value>Модел на вибрация</value>
+  </data>
+  <data name="SineWave" xml:space="preserve">
+    <value>Синусоидална вълна</value>
+  </data>
+  <data name="SquareWave" xml:space="preserve">
+    <value>Правоъгълна вълна</value>
+  </data>
+  <data name="TriangleWave" xml:space="preserve">
+    <value>Триъгълна вълна</value>
+  </data>
+  <data name="SawtoothWaveIn" xml:space="preserve">
+    <value>Трионообразна вълна (възходяща)</value>
+  </data>
+  <data name="SawtoothWaveOut" xml:space="preserve">
+    <value>Трионообразна вълна (низходяща)</value>
+  </data>
+  <data name="DecreaseForce" xml:space="preserve">
+    <value>Намаляване на силата</value>
+  </data>
+  <data name="IncreaseForce" xml:space="preserve">
+    <value>Увеличаване на силата</value>
+  </data>
+  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>ЕФЕКТ НА ПОСТОЯННА СИЛА НА ВОЛАНА ПРИ НЕДОВОЛТАЖ</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value>Посока</value>
+  </data>
+  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>ЕФЕКТ НА ВИБРАЦИЯ НА ВОЛАНА ПРИ СВРЪХВОЛТАЖ</value>
+  </data>
+  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>ЕФЕКТ НА ПОСТОЯННА СИЛА НА ВОЛАНА ПРИ СВРЪХВОЛТАЖ</value>
+  </data>
+  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>ЕФЕКТ НА ВИБРАЦИЯ НА ПЕДАЛА ПРИ СВРЪХВОЛТАЖ</value>
+  </data>
+  <data name="UndersteerEffect" xml:space="preserve">
+    <value>Ефект на недоволтаж</value>
+  </data>
+  <data name="OversteerEffect" xml:space="preserve">
+    <value>Ефект на свръхволтаж</value>
+  </data>
+  <data name="ConfigurationFileIsInvalid" xml:space="preserve">
+    <value>Конфигурационният файл е невалиден!</value>
+  </data>
+  <data name="SpeechToText" xml:space="preserve">
+    <value>Субтитри</value>
+  </data>
+  <data name="OverlayWindow_UC" xml:space="preserve">
+    <value>ПРОЗОРЕЦ НА НАСЛАГВАНЕТО</value>
+  </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Управление на прозореца на наслагването</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>ВСИЧКИ НАСЛАГВАНИЯ</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Активиране на режим за редактиране</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Показване извън пистата</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Показване в режим на повторение</value>
+  </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Нулиране на всички прозорци на наслагване</value>
+  </data>
+  <data name="FFBDeviceNotSelected" xml:space="preserve">
+    <value>[Устройство за силова обратна връзка не е избрано]</value>
+  </data>
+  <data name="Algorithm_UC" xml:space="preserve">
+    <value>АЛГОРИТЪМ</value>
+  </data>
+  <data name="ReadyToDonate" xml:space="preserve">
+    <value>Готови ли сте да дарите?</value>
+  </data>
+  <data name="Contribute" xml:space="preserve">
+    <value>Допринесете</value>
+  </data>
+  <data name="CalibrationFileContributions_UC" xml:space="preserve">
+    <value>ПРИНОСИ ОТ ФАЙЛОВЕ ЗА КАЛИБРИРАНЕ</value>
+  </data>
+  <data name="AppSettings_UC" xml:space="preserve">
+    <value>НАСТРОЙКИ НА ПРИЛОЖЕНИЕТО</value>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>Помощник</value>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Стартиране на помощника</value>
+  </data>
+  <data name="Simulator_UC" xml:space="preserve">
+    <value>СИМУЛАТОР</value>
+  </data>
+  <data name="Graph_UC" xml:space="preserve">
+    <value>ГРАФИКА</value>
+  </data>
+  <data name="SpeechToText_UC" xml:space="preserve">
+    <value>СУБТИТРИ</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Дневник на промените</value>
+  </data>
+  <data name="ABSEngaged" xml:space="preserve">
+    <value>ABS активиран</value>
+  </data>
+  <data name="Amplitude" xml:space="preserve">
+    <value>Амплитуда</value>
+  </data>
+  <data name="ClutchSlip" xml:space="preserve">
+    <value>Пробуксуване на съединителя</value>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Честота</value>
+  </data>
+  <data name="RPM" xml:space="preserve">
+    <value>Обороти</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>Обороти за смяна</value>
+  </data>
+  <data name="Sounds" xml:space="preserve">
+    <value>Звуци</value>
+  </data>
+  <data name="Pedals" xml:space="preserve">
+    <value>Педали Simagic</value>
+  </data>
+  <data name="WheelLock" xml:space="preserve">
+    <value>Блокиране на колелото</value>
+  </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Пробуксуване на колелото</value>
+  </data>
+  <data name="GripOMeter" xml:space="preserve">
+    <value>Измервател на сцеплението</value>
+  </data>
+  <data name="MPHUnits" xml:space="preserve">
+    <value> мили/ч</value>
+  </data>
+  <data name="Wind_UC" xml:space="preserve">
+    <value>ВЯТЪР TYPHOON</value>
+  </data>
+  <data name="Wind" xml:space="preserve">
+    <value>Вятър Typhoon</value>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>ОБТЯГАЧ НА ПРЕДПАЗНИЯ КОЛАН</value>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>Обтягач на предпазния колан</value>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>Свързване с MAIRA обтягач на предпазния колан</value>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>Свързване с MAIRA обтягач на предпазния колан при стартиране на приложението</value>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>Минимален ъгъл</value>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>Неутрален ъгъл</value>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>Максимален ъгъл</value>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>Макс. претоварване</value>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>Изваждане на гравитацията</value>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>Режим</value>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>Деактивиран</value>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>Нормален</value>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>Обърнат</value>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Мъртва зона</value>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>Изглаждане</value>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>Мин. g</value>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>Макс. g</value>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>ЕФЕКТ НА УСЕЩАНЕ С ТЯЛОТО</value>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>ВИБРАЦИОННИ ЕФЕКТИ</value>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / Блокиране на колелото</value>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>Приплъзване на колелото</value>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>Бордюрна ивица</value>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>ЗАДВИЖВАНЕ</value>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>СТРАНИЧНО ЛЮЛЕЕНЕ</value>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>ВЕРТИКАЛНО ДВИЖЕНИЕ</value>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>ИЗХОД НА МОТОРА</value>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>Ляво рамо</value>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>Дясно рамо</value>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>Макс. скорост на мотора</value>
+  </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Обърнати рамена</value>
+  </data>
+  <data name="ConnectToWindOnStartup" xml:space="preserve">
+    <value>Свързване с MAIRA Wind при стартиране на приложението</value>
+  </data>
+  <data name="ConnectToWind" xml:space="preserve">
+    <value>Свързване с MAIRA Wind</value>
+  </data>
+  <data name="LeftFan" xml:space="preserve">
+    <value>Ляв вентилатор</value>
+  </data>
+  <data name="RightFan" xml:space="preserve">
+    <value>Десен вентилатор</value>
+  </data>
+  <data name="Connection_UC" xml:space="preserve">
+    <value>ВРЪЗКА</value>
+  </data>
+  <data name="Settings_UC" xml:space="preserve">
+    <value>НАСТРОЙКИ</value>
+  </data>
+  <data name="MasterWindPower" xml:space="preserve">
+    <value>Обща мощност на вятъра</value>
+  </data>
+  <data name="MinimumSpeed" xml:space="preserve">
+    <value>Минимална скорост</value>
+  </data>
+  <data name="WindCurving" xml:space="preserve">
+    <value>Извиване на вятъра</value>
+  </data>
+  <data name="FanPower_UC" xml:space="preserve">
+    <value>МОЩНОСТ НА ВЕНТИЛАТОРА</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Скорост</value>
+  </data>
+  <data name="FanPower" xml:space="preserve">
+    <value>Мощност на вентилатора</value>
+  </data>
+  <data name="DeviceNotFound" xml:space="preserve">
+    <value>Устройството липсва</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Опитай отново</value>
+  </data>
+  <data name="IRacingPaintFolder" xml:space="preserve">
+    <value>Папка за бои на iRacing</value>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>Макс. скорост на изтегляне</value>
+  </data>
+  <data name="TradingPaints" xml:space="preserve">
+    <value>Trading Paints</value>
+  </data>
+  <data name="TradingPaints_UC" xml:space="preserve">
+    <value>TRADING PAINTS</value>
+  </data>
+  <data name="TradingPaintsDisclaimer" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App (MAIRA) не е свързано с Trading Paints</value>
+  </data>
+  <data name="MultiAdjustmentToolkit" xml:space="preserve">
+    <value>Комплект за множество настройки</value>
+  </data>
+  <data name="TorqueCompression" xml:space="preserve">
+    <value>Компресия на въртящия момент</value>
+  </data>
+  <data name="SlewRateReduction" xml:space="preserve">
+    <value>Намаляване на скоростта на наклона</value>
+  </data>
+  <data name="SoftClipping" xml:space="preserve">
+    <value>Меко отрязване</value>
+  </data>
+  <data name="DetailGain" xml:space="preserve">
+    <value>Усилване на детайла +/- настройка</value>
+  </data>
+  <data name="OutputSmoothing" xml:space="preserve">
+    <value>Изглаждане на изхода</value>
+  </data>
+  <data name="SeatOfPants_UC" xml:space="preserve">
+    <value>УСЕЩАНЕ С ТЯЛОТО</value>
+  </data>
+  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
+    <value>ЕФЕКТ НА ВИБРАЦИЯ НА ВОЛАНА ПРИ УСЕЩАНЕ С ТЯЛОТО</value>
+  </data>
+  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>ЕФЕКТ НА ПОСТОЯННА СИЛА НА ВОЛАНА ПРИ УСЕЩАНЕ С ТЯЛОТО</value>
+  </data>
+  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
+    <value>ЕФЕКТ НА ВИБРАЦИЯ НА ПЕДАЛА ПРИ УСЕЩАНЕ С ТЯЛОТО</value>
+  </data>
+  <data name="SeatOfPantsEffect" xml:space="preserve">
+    <value>Ефект на усещане с тялото</value>
+  </data>
+  <data name="LateralAcceleration" xml:space="preserve">
+    <value>Странично ускорение (Ay)</value>
+  </data>
+  <data name="LateralVelocity" xml:space="preserve">
+    <value>Странична скорост (Vy)</value>
+  </data>
+  <data name="RatioOfVelocities" xml:space="preserve">
+    <value>Съотношение на скоростите (Vy/Vx)</value>
+  </data>
+  <data name="DefaultPage_UC" xml:space="preserve">
+    <value>СТРАНИЦА ПО ПОДРАЗБИРАНЕ</value>
+  </data>
+  <data name="Effects_UC" xml:space="preserve">
+    <value>ЕФЕКТИ</value>
+  </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>ЗВУК</value>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>ДИСПЛЕЙ</value>
+  </data>
+  <data name="AdminBoxx_UC" xml:space="preserve">
+    <value>ADMINBOXX</value>
+  </data>
+  <data name="Click_UC" xml:space="preserve">
+    <value>КЛИК</value>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Разрешаване на звуци по време на повторения</value>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>ПРЕДУПРЕЖДЕНИЕ ЗА СПИРАЧКА + ГАЗ</value>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>ОТРЯЗВАНЕ НА FFB</value>
+  </data>
+  <data name="PedalsP500" xml:space="preserve">
+    <value>Педали Simagic P500</value>
+  </data>
+  <data name="PedalsPrototype" xml:space="preserve">
+    <value>Прототипни педали</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Помощ</value>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value>ПОМОЩ</value>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value>ДОКУМЕНТАЦИЯ</value>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value>DISCORD</value>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value>ФОРУМИ</value>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value>Уебсайт с документация</value>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value>Сървър в Discord</value>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value>Форуми на iRacing</value>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value>Този уебсайт с документация е вечно в процес на изграждане, защото постоянно се добавят нови функции към това приложение. Актуализирам документацията възможно най-често, но ако информацията, която търсите, още не е тук, можете да опитате да потърсите в сървъра на Discord или във форумите на iRacing отговорите на въпросите си.</value>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value>Сървърът на MAIRA в Discord е най-бързият начин да получите отговори на въпросите си, ако не можете да ги намерите в документацията. Има доброволци, които помагат, и аз също се опитвам да помагам.</value>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value>Тук започна всичко. Можете да търсите отговори тук, но вече не съм толкова активен, колкото преди. Посещаването на сървъра в Discord е най-добрият начин да задавате въпроси.</value>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value>Педали Simagic P700</value>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>СЪСТОЯНИЕ НА ВЕНТИЛАТОРА</value>
+  </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value>360 Hz детайл</value>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value>Намаляване на наклона с отчитане на пика</value>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value>360 Hz върху 60 Hz, 10-30% отклонение</value>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value>360 Hz върху 60 Hz, 10% отклонение</value>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value>(Стойности по подразбиране) Нативни 60 Hz</value>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value>(Стойности по подразбиране) 360 Hz върху 60 Hz, 10-30% отклонение</value>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value>(Стойности по подразбиране) 360 Hz върху 60 Hz, 10% отклонение</value>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value>(Стойности по подразбиране) Нативни 360 Hz</value>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value>(Предварителна настройка) Основна обратна връзка от гумите, минимален детайл на повърхността</value>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value>(Предварителна настройка) Основна обратна връзка от гумите, умерен детайл на повърхността</value>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value>(Предварителна настройка) Умерено усилване на FFB динамиката</value>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value>(Предварителна настройка) Умерено намаляване на FFB динамиката</value>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value>Тип FFB + предварителни настройки</value>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>Странично претоварване</value>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value>POV</value>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value>Трябва да изберете файл за калибриране, за да работи този ефект.</value>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value>Режим на прогнозиране</value>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value>K1 (Прогноза 1/60 от секундата напред)</value>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value>K2 (Прогноза 2/60 от секундата напред)</value>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value>Смесване на прогнозата</value>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>Силовата обратна връзка беше изключена ръчно (аварийно спиране)</value>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>Симулаторът iRacing е в режим на повторение</value>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>Силовата обратна връзка е активирана в симулатора iRacing</value>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>FFB е деактивиран, защото се изпълнява калибриране</value>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value>Сила на вибрация при смяна на предавка</value>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value>Сила на вибрация на ABS</value>
+  </data>
+  <data name="GapMonitor" xml:space="preserve">
+    <value>Монитор на разликата</value>
+  </data>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value>НАСЛАГВАНИЯ</value>
+  </data>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value>МОНИТОР НА РАЗЛИКАТА</value>
+  </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Монитор на делта</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>МОНИТОР НА ДЕЛТА</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Обиколка</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>спрямо последната</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>спрямо П1</value>
+  </data>
+  <data name="Overlays" xml:space="preserve">
+    <value>Наслагвания</value>
+  </data>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value>Показване на заглавието на прозореца на наслагването</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Настройки на наслагването</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Цвят на фона</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Червено</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Зелено</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Синьо</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Непрозрачност</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Затваряне</value>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>АФИНИТЕТ КЪМ ПРОЦЕСОРА</value>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>(Предварителна настройка) Намаляване на големите неравности</value>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>Мениджър на приложения</value>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>МЕНИДЖЪР НА ПРИЛОЖЕНИЯ</value>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>ПРИЛОЖЕНИЯ ЗА СТАРТИРАНЕ</value>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>ПРИЛОЖЕНИЯ ЗА ПРЕКРАТЯВАНЕ</value>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>Път до изпълнимия файл</value>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>Аргументи</value>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>Забавяне след стартиране (сек)</value>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>Приоритет на процесора</value>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>Стил на прозореца</value>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>Прекратяване при прекъсване на връзката със симулатора</value>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>Избягване на основните процесорни ядра</value>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>Стартиране при прекъсване на връзката със симулатора</value>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>Неактивен</value>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>Под нормалния</value>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>Нормален</value>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>Над нормалния</value>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>Висок</value>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>Нормален</value>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>Минимизиран</value>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>Максимизиран</value>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>Скрит</value>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>Да започваме!</value>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>Пропускане</value>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>Назад</value>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>Напред</value>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>Да</value>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>Не</value>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>Затваряне</value>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>Поздрави, състезателю!</value>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>Аз съм Marvin Магьосника и съм тук, за да ти помогна да опитомиш могъщата MAIRA!</value>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>С едно махване на карираното ми знаме ще те преведа през най-важните настройки, за да можеш да излезеш на пистата възможно най-бързо. 🏁✨</value>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>Да започваме ли, или сам си опитен магьосник и предпочиташ да конфигурираш всичко ръчно?</value>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>Тема на приложението</value>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>Изберете дали предпочитате светла или тъмна тема. Превключете ключа отдолу, за да прегледате промяната на живо.</value>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>Волан</value>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>Изберете вашия волан със силова обратна връзка от списъка отдолу.</value>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value> Не виждате волана си? Уверете се, че е включен и свързан, след което списъкът ще се обнови автоматично.</value>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value> Потребители на Fanatec: воланите Fanatec обикновено се показват като две отделни устройства в списъка. Ако избраното не работи, опитайте да изберете другото!</value>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>Максимална сила на волана</value>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>Въведете максималната сила, която вашата база на волана е способна да произведе, в нютон-метри (Nm). MAIRA използва тази стойност, за да мащабира правилно цялата силова обратна връзка за вашия хардуер.</value>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value> Направихме предположение въз основа на избрания волан — но можете да го коригирате при необходимост.</value>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value> Важно: Ако вече сте ограничили максималния въртящ момент на волана си в софтуера на производителя (напр. Fanatec Wheel Control Panel, Moza Pit House и т.н.), въведете тази намалена стойност тук вместо физическия максимум на хардуера. MAIRA трябва да знае какво вашият волан реално ще достави, а не на какво е способен на теория.</value>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>Контроли за силата</value>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRA ви позволява да обвържете физически бутони на волана или контролера, за да увеличавате и намалявате силата на силовата обратна връзка в движение — без изобщо да напускате кокпита.</value>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>Кликнете върху бутоните - и + отдолу, за да зададете входове за всеки от тях. Тази стъпка е по желание — можете да я пропуснете и да настроите обвързванията по-късно от страницата Състезателен волан.</value>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value> След като входът е картографиран, рамката на бутона ще стане оранжева, за да потвърди това.</value>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>Сила</value>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>Автоматично задаване на макс. сила</value>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>Докато карате на пистата, MAIRA непрекъснато измерва действителния пиков въртящ момент, който вашият волан произвежда. Използва това измерване, за да предложи идеалната стойност за Максимална сила — такава, която използва пълния диапазон на волана ви, без изобщо да отрязва сигнала.</value>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>С функцията за автоматично задаване можете да обвържете физически бутон на волана или контролера с действието Задаване. Натиснете го по всяко време по време на сесия и MAIRA незабавно ще актуализира Максималната сила, за да съвпадне с измерения ви пик — без менюта, без прекъсвания.</value>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>Придружаващ бутон Изчистване нулира текущото измерване, за да можете да започнете ново отчитане — полезно е, ако колата ви е излязла извън пистата или е ударила нещо.</value>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>Искате ли да настроите функцията за автоматично задаване?</value>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>Настройка на автоматично задаване</value>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>Първо коригирайте резерва на Автоматичната цел по вкус, след което картографирайте бутоните Задаване и Изчистване.</value>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value> Автоматичната цел задава къде в силовия диапазон на волана трябва да попадне измереният пик. Намалете целта, за да запазите повече резерв над пика; увеличете я, за да използвате повече от диапазона на волана.</value>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>Алгоритъм</value>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>Как искате да усещате силовата си обратна връзка? Преместете плъзгача отдолу, за да кажете на MAIRA предпочитанието си, и тя ще конфигурира настройките на алгоритъма, детайла и изглаждането, за да съвпаднат.</value>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>Не се притеснявайте — винаги можете да настроите фино всичко ръчно на страницата Състезателен волан по-късно.</value>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>💤 Гладко усещане</value>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>Нормално</value>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>Усилване на детайлите ⚡</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>Копринено гладко</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>Силно ограничаване на делта при 250 Nm/s. Много спокойна, заоблена обратна връзка.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>Гладко</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>Ограничаване на делта при 500 Nm/s. По-меки ръбове и намалена острота.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>Леко гладко</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>Леко ограничаване на делта при 1000 Nm/s. Незначително омекотяване на преходните състояния.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>Нормално</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>Балансиран детайл и гладкост.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>Леко усилено</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>Фино подобряване на детайла при 50% усилване.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>Усилено</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>Ясно подобряване на детайла при 100% усилване.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>Много усилване</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>Агресивно подобряване на детайла при 150% усилване.</value>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>Всичко е готово!</value>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>Благодарим ви, че опитахте MAIRA! Помощникът вече е завършен.</value>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>Можете да стартирате този помощник по всяко време, като посетите страницата Настройки на приложението и кликнете върху бутона „Стартиране на помощника“.</value>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>Нови сте в MAIRA? Кликнете</value>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>тук</value>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>за да отворите документацията и да научите за често използваните контроли.</value>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Изходно устройство</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>ИЗХОДНО УСТРОЙСТВО</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Звуково устройство на Windows по подразбиране]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Начало на цикъла</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Край на цикъла</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
+  </data>
+  <data name="Commentary" xml:space="preserve">
+    <value>Коментар</value>
+  </data>
+  <data name="Commentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>АКАУНТ</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>СПИСЪК С ГЛАСОВЕ</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР НА ГЛАВНИЯ МЕХАНИК</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР НА НАБЛЮДАТЕЛЯ</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР НА СПОРТЕН КОМЕНТАТОР 1</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР НА СПОРТЕН КОМЕНТАТОР 2</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>КОМЕНТАР НА РЕПОРТЕРА В ПИТА</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>API ключ</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>Проверка на ключа</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  Ключът е проверен</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  Невалиден ключ</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[Изберете глас]</value>
+  </data>
+  <data name="ModelNotSelected" xml:space="preserve">
+    <value>[Изберете модел]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  Ключът е разпознат</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>Гласове — четене</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>Модели — достъп</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>Текст към реч — достъп</value>
+  </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Реч към текст — достъп</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>Потребител — четене</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Модел</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>Обща сила на звука</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Използване</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>Глас</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>Последователност</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>Драматичен</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>Усилване на сходството</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>Усилване на говорителя</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>Сила на звука на слота</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>Тест</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>Внимание / Жълт флаг</value>
+  </data>
+  <data name="CarProximity" xml:space="preserve">
+    <value>Сигнали за близост</value>
+  </data>
+  <data name="CarProximityReminderInterval" xml:space="preserve">
+    <value>Интервал на напомняне</value>
+  </data>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>ФРАЗИ ЗА КОМЕНТАР</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Персонализирайте фразите, изговаряни за всяко събитие на избрания език. Промените се запазват в папката Документи и заменят вградените фрази.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Нулиране на всички</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Нулиране</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Добавяне на фраза</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✓  Персонализираните фрази са запазени.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Всички фрази са нулирани до вградените стойности по подразбиране.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Търсене...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Нулиране до стойности по подразбиране</value>
+  </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Повторно изтегляне на файлове с бои</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Сигнали с флагове</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Стартиране...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Инициализиране на прозореца от най-високо ниво...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Инициализиране на мениджъра на звука...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>Инициализиране на AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Инициализиране на симулатора...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Инициализиране на Direct Input...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Инициализиране на Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Инициализиране на текст към реч...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Инициализиране на коментара...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Инициализиране на облачната услуга...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Инициализиране на графиката...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Инициализиране на педалите...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Инициализиране на състезателния волан...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Инициализиране на звуците...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>Инициализиране на LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Инициализиране на мултимедийния таймер...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Инициализиране на мениджъра на записи...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Инициализиране на маркерите за време...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Инициализиране на телеметрията...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Инициализиране на Wind...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Инициализиране на обтягача на предпазния колан...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>Инициализиране на HID монитора за горещо включване...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Инициализиране на Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Инициализиране на файла с настройки...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Инициализиране на главния прозорец...</value>
+  </data>
+</root>

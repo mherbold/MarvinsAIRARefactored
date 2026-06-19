@@ -1,0 +1,1875 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Algorithm" xml:space="preserve">
+    <value>Algoritms</value>
+  </data>
+  <data name="AppSettings" xml:space="preserve">
+    <value>Lietotnes iestatījumi</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App</value>
+  </data>
+  <data name="DetailBoostBias" xml:space="preserve">
+    <value>Detaļu pastiprinājuma novirze</value>
+  </data>
+  <data name="DetailBoost" xml:space="preserve">
+    <value>Detaļu pastiprinājums</value>
+  </data>
+  <data name="FadeForceFeedback" xml:space="preserve">
+    <value>Pakāpeniski izgaisināt spēka atgriezenisko saiti, iekāpjot vai izkāpjot no auto</value>
+  </data>
+  <data name="RacingFriction" xml:space="preserve">
+    <value>Sacīkšu berze</value>
+  </data>
+  <data name="Graph" xml:space="preserve">
+    <value>Grafiks</value>
+  </data>
+  <data name="HeaderData_UC" xml:space="preserve">
+    <value>GALVENES DATI</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>Valoda</value>
+  </data>
+  <data name="Language_UC" xml:space="preserve">
+    <value>VALODA</value>
+  </data>
+  <data name="DetailBooster" xml:space="preserve">
+    <value>Detaļu pastiprinātājs</value>
+  </data>
+  <data name="DeltaLimiter" xml:space="preserve">
+    <value>Deltas ierobežotājs</value>
+  </data>
+  <data name="MaxForce" xml:space="preserve">
+    <value>Maks. spēks</value>
+  </data>
+  <data name="Native60Hz" xml:space="preserve">
+    <value>Vietējais 60 Hz</value>
+  </data>
+  <data name="Native360Hz" xml:space="preserve">
+    <value>Vietējais 360 Hz</value>
+  </data>
+  <data name="NoFFBDevicesFound" xml:space="preserve">
+    <value>[Nav atrastas spēka atgriezeniskās saites ierīces]</value>
+  </data>
+  <data name="OFF" xml:space="preserve">
+    <value>IZSL.</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>Jauda</value>
+  </data>
+  <data name="RacingWheel" xml:space="preserve">
+    <value>Sacīkšu stūre</value>
+  </data>
+  <data name="RacingWheel_UC" xml:space="preserve">
+    <value>SACĪKŠU STŪRE</value>
+  </data>
+  <data name="SteeringDevice" xml:space="preserve">
+    <value>Stūres ierīce</value>
+  </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>Ierakstīšanas ierīce</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>Atiestatīt</value>
+  </data>
+  <data name="SessionInformation_UC" xml:space="preserve">
+    <value>SESIJAS INFORMĀCIJA</value>
+  </data>
+  <data name="Simulator" xml:space="preserve">
+    <value>Simulators</value>
+  </data>
+  <data name="SimulatorNotRunning" xml:space="preserve">
+    <value>iRacing simulators nedarbojas</value>
+  </data>
+  <data name="SoftLockStrength" xml:space="preserve">
+    <value>Mīkstās fiksācijas stiprums</value>
+  </data>
+  <data name="TelemetryData_UC" xml:space="preserve">
+    <value>TELEMETRIJAS DATI</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>Pārbaude</value>
+  </data>
+  <data name="ThisLanguage" xml:space="preserve">
+    <value>Latviešu (Latvija) - Latvian (Latvia)</value>
+  </data>
+  <data name="TopmostWindow" xml:space="preserve">
+    <value>Vienmēr virspusē</value>
+  </data>
+  <data name="TorqueUnits" xml:space="preserve">
+    <value> Nm</value>
+  </data>
+  <data name="DetailBoosterOn60Hz" xml:space="preserve">
+    <value>Detaļu pastiprinātājs (zema latentums)</value>
+  </data>
+  <data name="AdminBoxx" xml:space="preserve">
+    <value>AdminBoxx</value>
+  </data>
+  <data name="ConnectToAdminBoxx" xml:space="preserve">
+    <value>Savienoties ar AdminBoxx</value>
+  </data>
+  <data name="UpdateButtonMappings" xml:space="preserve">
+    <value>Atjaunināt ievades kartējumu</value>
+  </data>
+  <data name="PressTheRecordButton" xml:space="preserve">
+    <value>[Nospiediet ierakstīšanas pogu]</value>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>Poga</value>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>Klikšķis</value>
+  </data>
+  <data name="Hold" xml:space="preserve">
+    <value>Turēt</value>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>Tastatūra</value>
+  </data>
+  <data name="WaitingForInput" xml:space="preserve">
+    <value>[Gaida ievadi]</value>
+  </data>
+  <data name="DeltaLimit" xml:space="preserve">
+    <value>Deltas ierobežojums</value>
+  </data>
+  <data name="DeltaLimitUnits" xml:space="preserve">
+    <value> Nm/s</value>
+  </data>
+  <data name="DeltaLimiterOn60Hz" xml:space="preserve">
+    <value>Deltas ierobežotājs (zema latentums)</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="Device_UC" xml:space="preserve">
+    <value>IERĪCE</value>
+  </data>
+  <data name="OverallStrength_UC" xml:space="preserve">
+    <value>KOPĒJAIS STIPRUMS</value>
+  </data>
+  <data name="AutoTarget" xml:space="preserve">
+    <value>Automātiskais mērķis</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>Notīrīt</value>
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
+    <value>Kontrollera profili</value>
+  </data>
+  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>KONTROLLERA PROFILI</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profils</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Profila nosaukums</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Jauns profils</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Dzēst profilu</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Vai tiešām vēlaties dzēst šo kontrollera profilu?</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Jauns kontrollera profils</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Kopēt pašreizējos kartējumus</value>
+  </data>
+  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>POGU KARTĒJUMI</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Kartēt</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Ierakstīt</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(nav kartēts)</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Labi</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Atcelt</value>
+  </data>
+  <data name="CurrentForce" xml:space="preserve">
+    <value>Pašreizējais spēks</value>
+  </data>
+  <data name="AutoMaxForce" xml:space="preserve">
+    <value>Automātiskais maks. spēks</value>
+  </data>
+  <data name="OtherFeatures_UC" xml:space="preserve">
+    <value>CITAS FUNKCIJAS</value>
+  </data>
+  <data name="Switches_UC" xml:space="preserve">
+    <value>SLĒDŽI</value>
+  </data>
+  <data name="CrashProtection_UC" xml:space="preserve">
+    <value>AVĀRIJU AIZSARDZĪBA</value>
+  </data>
+  <data name="GForceUnits" xml:space="preserve">
+    <value> g</value>
+  </data>
+  <data name="LongitudalGForce" xml:space="preserve">
+    <value>Gareniskais G spēks</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>Ilgums</value>
+  </data>
+  <data name="ForceReduction" xml:space="preserve">
+    <value>Spēka samazinājums</value>
+  </data>
+  <data name="SecondsUnits" xml:space="preserve">
+    <value> sek.</value>
+  </data>
+  <data name="MPSUnits" xml:space="preserve">
+    <value> m/s</value>
+  </data>
+  <data name="CurbProtection_UC" xml:space="preserve">
+    <value>APMALES AIZSARDZĪBA</value>
+  </data>
+  <data name="ShockVelocity" xml:space="preserve">
+    <value>Trieciena ātrums</value>
+  </data>
+  <data name="Pedals_UC" xml:space="preserve">
+    <value>SIMAGIC PEDĀĻI</value>
+  </data>
+  <data name="PedalsP1000" xml:space="preserve">
+    <value>Simagic P1000 pedāļi</value>
+  </data>
+  <data name="PedalsP2000" xml:space="preserve">
+    <value>Simagic P2000 pedāļi</value>
+  </data>
+  <data name="PedalsNone" xml:space="preserve">
+    <value>[Nav atrasti saderīgi Simagic pedāļi]</value>
+  </data>
+  <data name="Clutch_UC" xml:space="preserve">
+    <value>SAJŪGS</value>
+  </data>
+  <data name="Brake_UC" xml:space="preserve">
+    <value>BREMZE</value>
+  </data>
+  <data name="Throttle_UC" xml:space="preserve">
+    <value>GĀZE</value>
+  </data>
+  <data name="PedalEffects" xml:space="preserve">
+    <value>Pedāļu efekti</value>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>Stiprums</value>
+  </data>
+  <data name="HertzUnits" xml:space="preserve">
+    <value> Hz</value>
+  </data>
+  <data name="Frequency_UC" xml:space="preserve">
+    <value>GLOBĀLĀ FREKVENCE</value>
+  </data>
+  <data name="Amplitude_UC" xml:space="preserve">
+    <value>GLOBĀLĀ AMPLITŪDA</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>Minimums</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>Maksimums</value>
+  </data>
+  <data name="Curve" xml:space="preserve">
+    <value>Līkne</value>
+  </data>
+  <data name="GearChange" xml:space="preserve">
+    <value>Pārnesuma maiņa</value>
+  </data>
+  <data name="ClutchSlip_UC" xml:space="preserve">
+    <value>SAJŪGA SLĪDĒŠANA</value>
+  </data>
+  <data name="SteeringEffects_UC" xml:space="preserve">
+    <value>STŪRES EFEKTI</value>
+  </data>
+  <data name="SteeringEffects" xml:space="preserve">
+    <value>Stūres efekti</value>
+  </data>
+  <data name="WheelLock_UC" xml:space="preserve">
+    <value>RITEŅU BLOĶĒŠANĀS</value>
+  </data>
+  <data name="WheelSpin_UC" xml:space="preserve">
+    <value>RITEŅU SLĪDĒŠANA</value>
+  </data>
+  <data name="RPM_UC" xml:space="preserve">
+    <value>APGR./MIN.</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>PĀRSLĒGŠANAS APGR./MIN.</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>Nav</value>
+  </data>
+  <data name="PerWheelbase" xml:space="preserve">
+    <value>Pēc stūres pamatnes</value>
+  </data>
+  <data name="PerCar" xml:space="preserve">
+    <value>Pēc auto</value>
+  </data>
+  <data name="PerTrack" xml:space="preserve">
+    <value>Pēc trases</value>
+  </data>
+  <data name="PerTrackConfiguration" xml:space="preserve">
+    <value>Pēc trases konfigurācijas</value>
+  </data>
+  <data name="PerWetDry" xml:space="preserve">
+    <value>Pēc slapja/sausa</value>
+  </data>
+  <data name="Wet" xml:space="preserve">
+    <value>Slapjš</value>
+  </data>
+  <data name="Dry" xml:space="preserve">
+    <value>Sauss</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Noklusējums</value>
+  </data>
+  <data name="SaveThisSetting" xml:space="preserve">
+    <value>Saglabāt šo iestatījumu</value>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>Pieejama jauna versija!</value>
+  </data>
+  <data name="DownloadQuestion" xml:space="preserve">
+    <value>Vai vēlaties to lejupielādēt tagad?</value>
+  </data>
+  <data name="RunInstaller" xml:space="preserve">
+    <value>Palaist instalētāju?</value>
+  </data>
+  <data name="RunInstallerQuestion" xml:space="preserve">
+    <value>Vai vēlaties palaist instalētāju tagad?</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>Pārbaudīt atjauninājumus startēšanas laikā</value>
+  </data>
+  <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
+    <value>Savienoties ar AdminBoxx lietotnes startēšanas laikā</value>
+  </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Iespējot Xtreme Scoring Race Control integrāciju</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>Spilgtums</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>Skaļums</value>
+  </data>
+  <data name="DeltaLimiterBias" xml:space="preserve">
+    <value>Deltas ierobežotāja novirze</value>
+  </data>
+  <data name="Output_UC" xml:space="preserve">
+    <value>IZVADE</value>
+  </data>
+  <data name="WheelLFE_UC" xml:space="preserve">
+    <value>STŪRES LFE</value>
+  </data>
+  <data name="LFERecordingDevice" xml:space="preserve">
+    <value>LFE ierakstīšanas ierīce</value>
+  </data>
+  <data name="InputTorque60Hz" xml:space="preserve">
+    <value>Ievades griezes moments (60 Hz)</value>
+  </data>
+  <data name="InputTorque" xml:space="preserve">
+    <value>Ievades griezes moments</value>
+  </data>
+  <data name="OutputTorque" xml:space="preserve">
+    <value>Izvades griezes moments</value>
+  </data>
+  <data name="TimerJitter" xml:space="preserve">
+    <value>Taimera trīce</value>
+  </data>
+  <data name="InputLFE" xml:space="preserve">
+    <value>Ievades LFE</value>
+  </data>
+  <data name="ABSEngaged_UC" xml:space="preserve">
+    <value>ABS IESLĒGTS</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>[Atspējots]</value>
+  </data>
+  <data name="RememberWindowPositionAndSize" xml:space="preserve">
+    <value>Atcerēties loga pozīciju un izmēru</value>
+  </data>
+  <data name="FadeWithBrake" xml:space="preserve">
+    <value>Izgaisināt ar bremzi</value>
+  </data>
+  <data name="StartingRPM" xml:space="preserve">
+    <value>Sākuma apgr./min.</value>
+  </data>
+  <data name="VibrateInTopGear" xml:space="preserve">
+    <value>Vibrēt augstākajā pārnesumā</value>
+  </data>
+  <data name="FadeWithThrottle" xml:space="preserve">
+    <value>Izgaisināt ar gāzi</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>Pulsēt</value>
+  </data>
+  <data name="StartingPoint" xml:space="preserve">
+    <value>Sākuma punkts</value>
+  </data>
+  <data name="EndingPoint" xml:space="preserve">
+    <value>Beigu punkts</value>
+  </data>
+  <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
+    <value>PĀRNESUMA MAIŅA - PĀRSLĒGŠANĀS PĀRNESUMĀ</value>
+  </data>
+  <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
+    <value>PĀRNESUMA MAIŅA - PĀRSLĒGŠANĀS NEITRĀLĀ</value>
+  </data>
+  <data name="AlwaysEnableFFB" xml:space="preserve">
+    <value>Iespējot FFB pat tad, ja iRacing simulatora FFB ir ieslēgts</value>
+  </data>
+  <data name="ClutchPedalHaptics" xml:space="preserve">
+    <value>Sajūga pedāļa haptika</value>
+  </data>
+  <data name="BrakePedalHaptics" xml:space="preserve">
+    <value>Bremzes pedāļa haptika</value>
+  </data>
+  <data name="ThrottlePedalHaptics" xml:space="preserve">
+    <value>Gāzes pedāļa haptika</value>
+  </data>
+  <data name="NoiseDamper" xml:space="preserve">
+    <value>Trokšņu slāpētājs</value>
+  </data>
+  <data name="AppWindow_UC" xml:space="preserve">
+    <value>LIETOTNES LOGS</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>Gaišā tēma</value>
+  </data>
+  <data name="UIScale" xml:space="preserve">
+    <value>UI mērogs</value>
+  </data>
+  <data name="CloudService_UC" xml:space="preserve">
+    <value>MĀKOŅPAKALPOJUMS</value>
+  </data>
+  <data name="CheckNow" xml:space="preserve">
+    <value>Pārbaudīt tagad</value>
+  </data>
+  <data name="CheckingForUpdate" xml:space="preserve">
+    <value>Pārbauda atjauninājumus...</value>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>Lejupielādē atjauninājumu...</value>
+  </data>
+  <data name="Contribute_UC" xml:space="preserve">
+    <value>IEGULDĪT</value>
+  </data>
+  <data name="BuyMeACoffee" xml:space="preserve">
+    <value>Nopērc man kafiju</value>
+  </data>
+  <data name="DonationsText" xml:space="preserve">
+    <value>Ziedojumi ir pilnīgi brīvprātīgi. Es nekad neiekasēšu maksu par MAIRA lietošanu. Tomēr ziedojumi liek man justies siltam un mīļam, un tie ir lielisks motivators turpināt darbu pie MAIRA. Milzīgs paldies visiem, kuri jau ir ziedojuši!</value>
+  </data>
+  <data name="Donate_UC" xml:space="preserve">
+    <value>ZIEDOT</value>
+  </data>
+  <data name="Donors_UC" xml:space="preserve">
+    <value>ZIEDOTĀJI</value>
+  </data>
+  <data name="SuperDonors_UC" xml:space="preserve">
+    <value>SUPERZIEDOTĀJI</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>Ziedot</value>
+  </data>
+  <data name="CodeContributions_UC" xml:space="preserve">
+    <value>KODA IEGULDĪJUMI</value>
+  </data>
+  <data name="TranslationContributions_UC" xml:space="preserve">
+    <value>TULKOŠANAS IEGULDĪJUMI</value>
+  </data>
+  <data name="CodeContributionsText" xml:space="preserve">
+    <value>Vai esi C# izstrādātājs? Šis projekts ir atvērts ieguldījumiem. Uzzini vairāk, apmeklējot GitHub repozitoriju.</value>
+  </data>
+  <data name="TranslationContributionsText" xml:space="preserve">
+    <value>Sirsnīgs paldies visiem šeit minētajiem, kuri brīvprātīgi veltīja savu laiku un talantu, lai pārtulkotu MarvinsAIRA tik daudzās valodās. Jūsu darbs palīdzēja padarīt šo lietotni pieejamu sim sacīkšu braucējiem visā pasaulē. Tulkojumus tagad automātiski veic mašīna, tāpēc turpmāka tulkošanas palīdzība nav nepieciešama — taču šiem ieguldītājiem vienmēr būs mana visdziļākā pateicība.</value>
+  </data>
+  <data name="GitHubRepository" xml:space="preserve">
+    <value>GitHub repozitorijs</value>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>Ieguldītāji</value>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>Rādīt logu</value>
+  </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>Rādīt uzplaiksnījuma ekrānu, startējot</value>
+  </data>
+  <data name="ExitApp" xml:space="preserve">
+    <value>Iziet no lietotnes</value>
+  </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>Minimizēt aizvēršanas vietā</value>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+    <value>Minimizēt sistēmas teknē</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>Startēt minimizētu</value>
+  </data>
+  <data name="StartWithWindows" xml:space="preserve">
+    <value>Startēt kopā ar Windows</value>
+  </data>
+  <data name="TotalCompressionRate" xml:space="preserve">
+    <value>Kopējais kompresijas līmenis</value>
+  </data>
+  <data name="SlewCompressionThreshold" xml:space="preserve">
+    <value>Mainīguma slieksnis</value>
+  </data>
+  <data name="SlewCompressionRate" xml:space="preserve">
+    <value>Mainīguma kompresijas līmenis</value>
+  </data>
+  <data name="TotalCompressionThreshold" xml:space="preserve">
+    <value>Kopējais slieksnis</value>
+  </data>
+  <data name="SlewUnits" xml:space="preserve">
+    <value> Nm/ms</value>
+  </data>
+  <data name="WheelForce" xml:space="preserve">
+    <value>Stūres spēks</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>Iestatīt</value>
+  </data>
+  <data name="Preview_UC" xml:space="preserve">
+    <value>PRIEKŠSKATĪJUMS</value>
+  </data>
+  <data name="NoRecordingsFound" xml:space="preserve">
+    <value>[Nav atrasti ieraksti]</value>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>Iespējot vienkāršo režīmu</value>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>Jutīgums</value>
+  </data>
+  <data name="SlewAndTotalCompression" xml:space="preserve">
+    <value>Mainīguma un kopējā kompresija</value>
+  </data>
+  <data name="DiscordModerators_UC" xml:space="preserve">
+    <value>DISCORD MODERATORI</value>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>Es vēlos pateikties šiem brīvprātīgajiem moderatoriem par palīdzību atbildēt uz daudzajiem MAIRA lietotāju jautājumiem, ļaujot man veltīt vairāk laika MAIRA izstrādei!</value>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>AdminBoxx programmaparatūra tiek atjaunināta</value>
+  </data>
+  <data name="AllowSuperStrength" xml:space="preserve">
+    <value>Atļaut stiprumu līdz 200% (potenciāli bīstami)</value>
+  </data>
+  <data name="ON" xml:space="preserve">
+    <value>IESL.</value>
+  </data>
+  <data name="Sounds_UC" xml:space="preserve">
+    <value>SKAŅAS</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>Iespējots</value>
+  </data>
+  <data name="FrequencyRatio" xml:space="preserve">
+    <value>Augstums</value>
+  </data>
+  <data name="Fade" xml:space="preserve">
+    <value>Izgaisināt</value>
+  </data>
+  <data name="SendChatMessages" xml:space="preserve">
+    <value>Sūtīt privātus tērzēšanas ziņojumus braucējam</value>
+  </data>
+  <data name="Degrees" xml:space="preserve">
+    <value>°</value>
+  </data>
+  <data name="Master_UC" xml:space="preserve">
+    <value>GALVENAIS</value>
+  </data>
+  <data name="CrashProtectionActivated" xml:space="preserve">
+    <value>Avāriju aizsardzība ir aktivizēta!</value>
+  </data>
+  <data name="CurbProtectionActivated" xml:space="preserve">
+    <value>Apmales aizsardzība ir aktivizēta!</value>
+  </data>
+  <data name="PrivateMessages_UC" xml:space="preserve">
+    <value>PRIVĀTIE ZIŅOJUMI</value>
+  </data>
+  <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
+    <value>Iespējot apmales aizsardzības ziņojumus</value>
+  </data>
+  <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
+    <value>Iespējot avāriju aizsardzības ziņojumus</value>
+  </data>
+  <data name="InputMappedSettingUpdateEnabled" xml:space="preserve">
+    <value>Iespējot ievadei kartēto iestatījumu atjaunināšanas ziņojumus</value>
+  </data>
+  <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
+    <value>Jūs neatrodaties Centripetal Circuit trasē</value>
+  </data>
+  <data name="RunCalibration" xml:space="preserve">
+    <value>Palaist kalibrāciju</value>
+  </data>
+  <data name="StopCalibration" xml:space="preserve">
+    <value>Apturēt kalibrāciju</value>
+  </data>
+  <data name="SteeringWheelLeft" xml:space="preserve">
+    <value>Stūre pa kreisi</value>
+  </data>
+  <data name="SteeringWheelCenter" xml:space="preserve">
+    <value>Stūre centrā</value>
+  </data>
+  <data name="SteeringWheelRight" xml:space="preserve">
+    <value>Stūre pa labi</value>
+  </data>
+  <data name="SteeringWheel90Left" xml:space="preserve">
+    <value>Stūre 90° pa kreisi</value>
+  </data>
+  <data name="MinThrottle" xml:space="preserve">
+    <value>Minimālā gāze</value>
+  </data>
+  <data name="MaxThrottle" xml:space="preserve">
+    <value>Maksimālā gāze</value>
+  </data>
+  <data name="ShiftUp" xml:space="preserve">
+    <value>Pārslēgt augšup</value>
+  </data>
+  <data name="ShiftDown" xml:space="preserve">
+    <value>Pārslēgt lejup</value>
+  </data>
+  <data name="MinBrake" xml:space="preserve">
+    <value>Minimālā bremze</value>
+  </data>
+  <data name="MaxBrake" xml:space="preserve">
+    <value>Maksimālā bremze</value>
+  </data>
+  <data name="GripOMeter_UC" xml:space="preserve">
+    <value>SAĶERES MĒRĪTĀJS</value>
+  </data>
+  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>NEPIETIEKAMAS STŪRĒŠANAS STŪRES VIBRĀCIJAS EFEKTS</value>
+  </data>
+  <data name="Progress:" xml:space="preserve">
+    <value>Progress:</value>
+  </data>
+  <data name="CalibrationFileNotSelected" xml:space="preserve">
+    <value>[Kalibrācijas fails nav atlasīts]</value>
+  </data>
+  <data name="ParkedEffects_UC" xml:space="preserve">
+    <value>STĀVĒŠANAS EFEKTI</value>
+  </data>
+  <data name="ForceFeedbackStrength" xml:space="preserve">
+    <value>Spēka atgriezeniskās saites stiprums</value>
+  </data>
+  <data name="WheelCenteringStrength" xml:space="preserve">
+    <value>Stūres centrēšanas stiprums</value>
+  </data>
+  <data name="CenterWheelWhileRacing" xml:space="preserve">
+    <value>Centrēt stūri braucot</value>
+  </data>
+  <data name="CenterWheelWhileParked" xml:space="preserve">
+    <value>Centrēt stūri stāvot</value>
+  </data>
+  <data name="ParkedFriction" xml:space="preserve">
+    <value>Stāvēšanas berze</value>
+  </data>
+  <data name="CurrentCarSetup" xml:space="preserve">
+    <value>Pašreizējais auto iestatījums:</value>
+  </data>
+  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>NEPIETIEKAMAS STŪRĒŠANAS PEDĀĻU VIBRĀCIJAS EFEKTS</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>Kaut kas nogāja greizi</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Detaļas</value>
+  </data>
+  <data name="ClassicMAIRAIsRunning" xml:space="preserve">
+    <value>Klasiskā MAIRA pašlaik darbojas - lūdzu, izejiet no klasiskās MAIRA, pirms palaižat šo MAIRA versiju!</value>
+  </data>
+  <data name="ExceptionThrown" xml:space="preserve">
+    <value>Tika izmests izņēmums</value>
+  </data>
+  <data name="KPHUnits" xml:space="preserve">
+    <value> KPH</value>
+  </data>
+  <data name="CalibrationFilesText" xml:space="preserve">
+    <value>Šie ir cilvēki, kuri dāsni veltīja daļu sava brīvā laika, lai veiktu stūres efektu kalibrācijas dažiem no saviem iemīļotākajiem auto un augšupielādētu šos kalibrācijas failus!</value>
+  </data>
+  <data name="DegreesPerSecond" xml:space="preserve">
+    <value>°/s</value>
+  </data>
+  <data name="CalibrationFile_UC" xml:space="preserve">
+    <value>KALIBRĀCIJAS FAILS</value>
+  </data>
+  <data name="Understeer_UC" xml:space="preserve">
+    <value>NEPIETIEKAMA STŪRĒŠANA</value>
+  </data>
+  <data name="Oversteer_UC" xml:space="preserve">
+    <value>PĀRMĒRĪGA STŪRĒŠANA</value>
+  </data>
+  <data name="MinimumThreshold" xml:space="preserve">
+    <value>Minimālais slieksnis</value>
+  </data>
+  <data name="MaximumThreshold" xml:space="preserve">
+    <value>Maksimālais slieksnis</value>
+  </data>
+  <data name="MinimumFrequency" xml:space="preserve">
+    <value>Minimālā frekvence</value>
+  </data>
+  <data name="MaximumFrequency" xml:space="preserve">
+    <value>Maksimālā frekvence</value>
+  </data>
+  <data name="Calibration_UC" xml:space="preserve">
+    <value>KALIBRĀCIJA</value>
+  </data>
+  <data name="VibrationPattern" xml:space="preserve">
+    <value>Vibrācijas raksts</value>
+  </data>
+  <data name="SineWave" xml:space="preserve">
+    <value>Sinusoīda</value>
+  </data>
+  <data name="SquareWave" xml:space="preserve">
+    <value>Taisnstūra vilnis</value>
+  </data>
+  <data name="TriangleWave" xml:space="preserve">
+    <value>Trīsstūra vilnis</value>
+  </data>
+  <data name="SawtoothWaveIn" xml:space="preserve">
+    <value>Zāģzobu vilnis (iekšā)</value>
+  </data>
+  <data name="SawtoothWaveOut" xml:space="preserve">
+    <value>Zāģzobu vilnis (ārā)</value>
+  </data>
+  <data name="DecreaseForce" xml:space="preserve">
+    <value>Samazināt spēku</value>
+  </data>
+  <data name="IncreaseForce" xml:space="preserve">
+    <value>Palielināt spēku</value>
+  </data>
+  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>NEPIETIEKAMAS STŪRĒŠANAS STŪRES NEMAINĪGĀ SPĒKA EFEKTS</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value>Virziens</value>
+  </data>
+  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>PĀRMĒRĪGAS STŪRĒŠANAS STŪRES VIBRĀCIJAS EFEKTS</value>
+  </data>
+  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>PĀRMĒRĪGAS STŪRĒŠANAS STŪRES NEMAINĪGĀ SPĒKA EFEKTS</value>
+  </data>
+  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>PĀRMĒRĪGAS STŪRĒŠANAS PEDĀĻU VIBRĀCIJAS EFEKTS</value>
+  </data>
+  <data name="UndersteerEffect" xml:space="preserve">
+    <value>Nepietiekamas stūrēšanas efekts</value>
+  </data>
+  <data name="OversteerEffect" xml:space="preserve">
+    <value>Pārmērīgas stūrēšanas efekts</value>
+  </data>
+  <data name="ConfigurationFileIsInvalid" xml:space="preserve">
+    <value>Konfigurācijas fails nav derīgs!</value>
+  </data>
+  <data name="SpeechToText" xml:space="preserve">
+    <value>Subtitri</value>
+  </data>
+  <data name="OverlayWindow_UC" xml:space="preserve">
+    <value>PĀRKLĀJUMA LOGS</value>
+  </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>Pārvaldīt pārklājuma logu</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>VISI PĀRKLĀJUMI</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>Iespējot rediģēšanas režīmu</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>Rādīt, kad ārpus trases</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>Rādīt atkārtojuma režīmā</value>
+  </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>Atiestatīt visus pārklājuma logus</value>
+  </data>
+  <data name="FFBDeviceNotSelected" xml:space="preserve">
+    <value>[Spēka atgriezeniskās saites ierīce nav atlasīta]</value>
+  </data>
+  <data name="Algorithm_UC" xml:space="preserve">
+    <value>ALGORITMS</value>
+  </data>
+  <data name="ReadyToDonate" xml:space="preserve">
+    <value>Gatavs ziedot?</value>
+  </data>
+  <data name="Contribute" xml:space="preserve">
+    <value>Ieguldīt</value>
+  </data>
+  <data name="CalibrationFileContributions_UC" xml:space="preserve">
+    <value>KALIBRĀCIJAS FAILU IEGULDĪJUMI</value>
+  </data>
+  <data name="AppSettings_UC" xml:space="preserve">
+    <value>LIETOTNES IESTATĪJUMI</value>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>Vednis</value>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>Palaist vedni</value>
+  </data>
+  <data name="Simulator_UC" xml:space="preserve">
+    <value>SIMULATORS</value>
+  </data>
+  <data name="Graph_UC" xml:space="preserve">
+    <value>GRAFIKS</value>
+  </data>
+  <data name="SpeechToText_UC" xml:space="preserve">
+    <value>SUBTITRI</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>Izmaiņu žurnāls</value>
+  </data>
+  <data name="ABSEngaged" xml:space="preserve">
+    <value>ABS ieslēgts</value>
+  </data>
+  <data name="Amplitude" xml:space="preserve">
+    <value>Amplitūda</value>
+  </data>
+  <data name="ClutchSlip" xml:space="preserve">
+    <value>Sajūga slīdēšana</value>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>Frekvence</value>
+  </data>
+  <data name="RPM" xml:space="preserve">
+    <value>Apgr./min.</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>Pārslēgšanas apgr./min.</value>
+  </data>
+  <data name="Sounds" xml:space="preserve">
+    <value>Skaņas</value>
+  </data>
+  <data name="Pedals" xml:space="preserve">
+    <value>Simagic pedāļi</value>
+  </data>
+  <data name="WheelLock" xml:space="preserve">
+    <value>Riteņu bloķēšanās</value>
+  </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>Riteņu slīdēšana</value>
+  </data>
+  <data name="GripOMeter" xml:space="preserve">
+    <value>Saķeres mērītājs</value>
+  </data>
+  <data name="MPHUnits" xml:space="preserve">
+    <value> MPH</value>
+  </data>
+  <data name="Wind_UC" xml:space="preserve">
+    <value>TYPHOON VĒJŠ</value>
+  </data>
+  <data name="Wind" xml:space="preserve">
+    <value>Typhoon vējš</value>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>DROŠĪBAS JOSTAS NOSPRIEGOTĀJS</value>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>Drošības jostas nospriegotājs</value>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>Savienoties ar MAIRA drošības jostas nospriegotāju</value>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>Savienoties ar MAIRA drošības jostas nospriegotāju lietotnes startēšanas laikā</value>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>Minimālais leņķis</value>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>Neitrālais leņķis</value>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>Maksimālais leņķis</value>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>Maks. G spēks</value>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>Atņemt gravitāciju</value>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>Režīms</value>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>Atspējots</value>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>Normāls</value>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>Apgriezts</value>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>Mirušā zona</value>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>Izlīdzināšana</value>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>Min. G</value>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>Maks. G</value>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>SĒDEKĻA SAJŪTAS EFEKTS</value>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>VIBRĀCIJAS EFEKTI</value>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / riteņu bloķēšanās</value>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>Riteņu slīdēšana</value>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>Vibrācijas josla</value>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>GROZĪŠANĀS</value>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>ŠŪPOŠANĀS</value>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>CILĀŠANĀS</value>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>MOTORA IZVADE</value>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>Kreisais plecs</value>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>Labais plecs</value>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>Maks. motora ātrums</value>
+  </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>Apgrieztas rokas</value>
+  </data>
+  <data name="ConnectToWindOnStartup" xml:space="preserve">
+    <value>Savienoties ar MAIRA vēju lietotnes startēšanas laikā</value>
+  </data>
+  <data name="ConnectToWind" xml:space="preserve">
+    <value>Savienoties ar MAIRA vēju</value>
+  </data>
+  <data name="LeftFan" xml:space="preserve">
+    <value>Kreisais ventilators</value>
+  </data>
+  <data name="RightFan" xml:space="preserve">
+    <value>Labais ventilators</value>
+  </data>
+  <data name="Connection_UC" xml:space="preserve">
+    <value>SAVIENOJUMS</value>
+  </data>
+  <data name="Settings_UC" xml:space="preserve">
+    <value>IESTATĪJUMI</value>
+  </data>
+  <data name="MasterWindPower" xml:space="preserve">
+    <value>Galvenā vēja jauda</value>
+  </data>
+  <data name="MinimumSpeed" xml:space="preserve">
+    <value>Minimālais ātrums</value>
+  </data>
+  <data name="WindCurving" xml:space="preserve">
+    <value>Vēja izliekums</value>
+  </data>
+  <data name="FanPower_UC" xml:space="preserve">
+    <value>VENTILATORA JAUDA</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>Ātrums</value>
+  </data>
+  <data name="FanPower" xml:space="preserve">
+    <value>Ventilatora jauda</value>
+  </data>
+  <data name="DeviceNotFound" xml:space="preserve">
+    <value>Ierīce trūkst</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Mēģināt vēlreiz</value>
+  </data>
+  <data name="IRacingPaintFolder" xml:space="preserve">
+    <value>iRacing krāsojuma mape</value>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>Maks. lejupielādes ātrums</value>
+  </data>
+  <data name="TradingPaints" xml:space="preserve">
+    <value>Trading Paints</value>
+  </data>
+  <data name="TradingPaints_UC" xml:space="preserve">
+    <value>TRADING PAINTS</value>
+  </data>
+  <data name="TradingPaintsDisclaimer" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App (MAIRA) nav saistīta ar Trading Paints</value>
+  </data>
+  <data name="MultiAdjustmentToolkit" xml:space="preserve">
+    <value>Vairāku pielāgojumu rīkkopa</value>
+  </data>
+  <data name="TorqueCompression" xml:space="preserve">
+    <value>Griezes momenta kompresija</value>
+  </data>
+  <data name="SlewRateReduction" xml:space="preserve">
+    <value>Mainīguma ātruma samazinājums</value>
+  </data>
+  <data name="SoftClipping" xml:space="preserve">
+    <value>Mīkstā nogriešana</value>
+  </data>
+  <data name="DetailGain" xml:space="preserve">
+    <value>Detaļu pastiprinājums +/- regulēšana</value>
+  </data>
+  <data name="OutputSmoothing" xml:space="preserve">
+    <value>Izvades izlīdzināšana</value>
+  </data>
+  <data name="SeatOfPants_UC" xml:space="preserve">
+    <value>SĒDEKĻA SAJŪTA</value>
+  </data>
+  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
+    <value>SĒDEKĻA SAJŪTAS STŪRES VIBRĀCIJAS EFEKTS</value>
+  </data>
+  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>SĒDEKĻA SAJŪTAS STŪRES NEMAINĪGĀ SPĒKA EFEKTS</value>
+  </data>
+  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
+    <value>SĒDEKĻA SAJŪTAS PEDĀĻU VIBRĀCIJAS EFEKTS</value>
+  </data>
+  <data name="SeatOfPantsEffect" xml:space="preserve">
+    <value>Sēdekļa sajūtas efekts</value>
+  </data>
+  <data name="LateralAcceleration" xml:space="preserve">
+    <value>Sānu paātrinājums (Ay)</value>
+  </data>
+  <data name="LateralVelocity" xml:space="preserve">
+    <value>Sānu ātrums (Vy)</value>
+  </data>
+  <data name="RatioOfVelocities" xml:space="preserve">
+    <value>Ātrumu attiecība (Vy/Vx)</value>
+  </data>
+  <data name="DefaultPage_UC" xml:space="preserve">
+    <value>NOKLUSĒJUMA LAPA</value>
+  </data>
+  <data name="Effects_UC" xml:space="preserve">
+    <value>EFEKTI</value>
+  </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>AUDIO</value>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>EKRĀNS</value>
+  </data>
+  <data name="AdminBoxx_UC" xml:space="preserve">
+    <value>ADMINBOXX</value>
+  </data>
+  <data name="Click_UC" xml:space="preserve">
+    <value>KLIKŠĶIS</value>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>Atļaut skaņas atkārtojumu laikā</value>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>BREMZES + GĀZES BRĪDINĀJUMS</value>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>FFB NOGRIEŠANA</value>
+  </data>
+  <data name="PedalsP500" xml:space="preserve">
+    <value>Simagic P500 pedāļi</value>
+  </data>
+  <data name="PedalsPrototype" xml:space="preserve">
+    <value>Prototipa pedāļi</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Palīdzība</value>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value>PALĪDZĪBA</value>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value>DOKUMENTĀCIJA</value>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value>DISCORD</value>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value>FORUMI</value>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value>Dokumentācijas vietne</value>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value>Discord serveris</value>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value>iRacing forumi</value>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value>Šī dokumentācijas vietne ir mūžīgi tapšanas procesā, jo šai lietotnei pastāvīgi tiek pievienotas jaunas funkcijas. Es atjauninu dokumentāciju tik bieži, cik vien varu, taču, ja meklētās informācijas tur vēl nav, atbildes uz saviem jautājumiem vari mēģināt meklēt Discord serverī vai iRacing forumos.</value>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value>MAIRA Discord serveris ir ātrākais veids, kā saņemt atbildes uz saviem jautājumiem, ja nevari tās atrast dokumentācijā. Tur palīdz brīvprātīgie, un arī es cenšos palīdzēt.</value>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value>Šeit viss sākās. Šeit vari meklēt atbildes, taču es vairs neesmu tik aktīvs kā agrāk. Discord servera apmeklēšana ir labākais veids, kā uzdot jautājumus.</value>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value>Simagic P700 pedāļi</value>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>VENTILATORA STATUSS</value>
+  </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value>360 Hz detaļas</value>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value>Maksimumu apzinošs mainīguma samazinājums</value>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value>360 Hz uz 60 Hz, 10-30% novirze</value>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value>360 Hz uz 60 Hz, 10% novirze</value>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value>(Noklusējuma vērtības) Vietējais 60 Hz</value>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value>(Noklusējuma vērtības) 360 Hz uz 60 Hz, 10-30% novirze</value>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value>(Noklusējuma vērtības) 360 Hz uz 60 Hz, 10% novirze</value>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value>(Noklusējuma vērtības) Vietējais 360 Hz</value>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value>(Sākotnējais iestatījums) Pamata riepu atgriezeniskā saite, minimālas virsmas detaļas</value>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value>(Sākotnējais iestatījums) Pamata riepu atgriezeniskā saite, mērenas virsmas detaļas</value>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value>(Sākotnējais iestatījums) Mēreni pastiprināt FFB dinamiku</value>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value>(Sākotnējais iestatījums) Mēreni samazināt FFB dinamiku</value>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value>FFB tips + sākotnējie iestatījumi</value>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>Sānu G spēks</value>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value>POV</value>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value>Lai šis efekts darbotos, jāatlasa kalibrācijas fails.</value>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value>Prognozēšanas režīms</value>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value>K1 (Prognozēt 1/60 s uz priekšu)</value>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value>K2 (Prognozēt 2/60 s uz priekšu)</value>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value>Prognozēšanas sajaukums</value>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>Spēka atgriezeniskā saite ir manuāli izslēgta (avārijas apturēšana)</value>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>iRacing simulators ir atkārtojuma režīmā</value>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>Spēka atgriezeniskā saite ir iespējota iRacing simulatorā</value>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>FFB ir atspējots, jo notiek kalibrācija</value>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value>Pārnesuma maiņas vibrācijas stiprums</value>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value>ABS vibrācijas stiprums</value>
+  </data>
+  <data name="GapMonitor" xml:space="preserve">
+    <value>Atstarpes monitors</value>
+  </data>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value>PĀRKLĀJUMI</value>
+  </data>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value>ATSTARPES MONITORS</value>
+  </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>Deltas monitors</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>DELTAS MONITORS</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>Aplis</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>pret pēdējo</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>pret P1</value>
+  </data>
+  <data name="Overlays" xml:space="preserve">
+    <value>Pārklājumi</value>
+  </data>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value>Rādīt pārklājuma loga virsrakstu</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>Pārklājuma iestatījumi</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>Fona krāsa</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>Sarkans</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>Zaļš</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>Zils</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>Necaurspīdīgums</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Aizvērt</value>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>CPU saistība</value>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>(Sākotnējais iestatījums) Samazināt lielos nelīdzenumus</value>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>Lietotņu pārvaldnieks</value>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>LIETOTŅU PĀRVALDNIEKS</value>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>PALAIŽAMĀS LIETOTNES</value>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>BEIDZAMĀS LIETOTNES</value>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>Izpildāmā faila ceļš</value>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>Argumenti</value>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>Aizkave pēc palaišanas (sek.)</value>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>CPU prioritāte</value>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>Loga stils</value>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>Beigt, atvienojoties no simulatora</value>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>Izvairīties no primārajiem CPU kodoliem</value>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>Palaist, atvienojoties no simulatora</value>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>Dīkstāve</value>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>Zem normas</value>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>Normāla</value>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>Virs normas</value>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>Augsta</value>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>Normāls</value>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>Minimizēts</value>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>Maksimizēts</value>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>Paslēpts</value>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>Sāksim!</value>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>Izlaist</value>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>Iepriekšējais</value>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>Nākamais</value>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>Jā</value>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>Nē</value>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>Aizvērt</value>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>Sveiks, braucēj!</value>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>Es esmu Marvins Vednis, un esmu šeit, lai palīdzētu tev savaldīt vareno MAIRA!</value>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>Ar savas rūtainās karoga vēzienu es vadīšu tevi cauri svarīgākajiem iestatījumiem, lai tu pēc iespējas ātrāk varētu nokļūt uz trases. 🏁✨</value>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>Vai sāksim, vai arī tu pats esi pieredzējis vednis un labprātāk visu konfigurē manuāli?</value>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>Lietotnes tēma</value>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>Izvēlies, vai tev labāk patīk gaišā vai tumšā tēma. Pārslēdz slēdzi zemāk, lai priekšskatītu izmaiņas tiešraidē.</value>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>Stūre</value>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>Atlasi savu spēka atgriezeniskās saites stūri no saraksta zemāk.</value>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value> Neredzi savu stūri? Pārliecinies, ka tā ir ieslēgta un pievienota, un saraksts atjaunināsies automātiski.</value>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value> Fanatec lietotājiem: Fanatec stūres parasti sarakstā parādās kā divas atsevišķas ierīces. Ja izvēlētā nedarbojas, mēģini atlasīt otru!</value>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>Maksimālais stūres spēks</value>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>Ievadi maksimālo spēku, ko tava stūres pamatne spēj radīt, ņūtonmetros (Nm). MAIRA izmanto šo vērtību, lai pareizi mērogotu visu spēka atgriezeniskās saites izvadi tavai aparatūrai.</value>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value> Mēs esam izdarījuši savu labāko minējumu, balstoties uz tavu atlasīto stūri — taču vari to pielāgot pēc vajadzības.</value>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value> Svarīgi: Ja esi jau ierobežojis savas stūres maksimālo griezes momenta izvadi sava stūres ražotāja programmatūrā (piemēram, Fanatec Wheel Control Panel, Moza Pit House utt.), ievadi šeit šo samazināto vērtību, nevis aparatūras fizisko maksimumu. MAIRA jāzina, ko tava stūre patiešām nodrošinās, nevis ko tā teorētiski spēj.</value>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>Stipruma vadīklas</value>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRA ļauj piesaistīt fiziskas pogas uz tavas stūres vai kontrollera, lai paaugstinātu un pazeminātu spēka atgriezeniskās saites stiprumu lidojumā — neatstājot kabīni.</value>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>Noklikšķini uz - un + pogām zemāk, lai piešķirtu ievades katrai no tām. Šis solis ir neobligāts — vari to izlaist un iestatīt piesaistes vēlāk no Sacīkšu stūres lapas.</value>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value> Tiklīdz ievade ir kartēta, pogas apmale kļūs oranža, lai to apstiprinātu.</value>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>Stiprums</value>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>Automātiski iestatīt maks. spēku</value>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>Kamēr brauc trasē, MAIRA nepārtraukti mēra faktisko maksimālo griezes momentu, ko rada tava stūre. Tā izmanto šo mērījumu, lai ieteiktu ideālo maks. spēka vērtību — tādu, kas izmanto visu tavas stūres diapazonu, nekad nenogriežot signālu.</value>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>Ar automātiskās iestatīšanas funkciju vari piesaistīt fizisku pogu uz savas stūres vai kontrollera Iestatīt darbībai. Nospied to jebkurā brīdī sesijas laikā, un MAIRA uzreiz atjauninās maks. spēku, lai tas atbilstu tavam izmērītajam maksimumam — bez izvēlnēm, bez pārtraukumiem.</value>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>Saistītā Notīrīt poga atiestata kārtējo mērījumu, lai tu varētu sākt jaunu nolasījumu — noderīgi, ja tavs auto ir izbraucis ārpus trases vai kaut kam ietriecies.</value>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>Vai vēlies iestatīt automātiskās iestatīšanas funkciju?</value>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>Automātiskās iestatīšanas konfigurēšana</value>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>Vispirms pielāgo Automātiskā mērķa rezervi pēc gaumes, tad kartē savas Iestatīt un Notīrīt pogas.</value>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value> Automātiskais mērķis nosaka, kurā vietā tavas stūres spēka diapazonā jānokļūst izmērītajam maksimumam. Pazemini mērķi, lai virs maksimuma saglabātu vairāk rezerves; paaugstini to, lai izmantotu vairāk no stūres diapazona.</value>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>Algoritms</value>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>Kā tev patīk, lai jūtas tava spēka atgriezeniskā saite? Pārvieto slīdni zemāk, lai pateiktu MAIRA savu vēlmi, un tā konfigurēs algoritma, detaļu un izlīdzināšanas iestatījumus tā, lai tie atbilstu.</value>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>Neuztraucies — tu vienmēr vari visu manuāli precīzi noregulēt Sacīkšu stūres lapā vēlāk.</value>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>💤 Gluda sajūta</value>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>Normāli</value>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>Pastiprināt detaļas ⚡</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>Zīdaini gluds</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>Spēcīga deltas ierobežošana pie 250 Nm/s. Ļoti mierīga, noapaļota atgriezeniskā saite.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>Gluds</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>Deltas ierobežošana pie 500 Nm/s. Mīkstākas malas un samazināts asums.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>Nedaudz gluds</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>Viegla deltas ierobežošana pie 1000 Nm/s. Neliela pārejas posmu mīkstināšana.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>Normāls</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>Līdzsvarotas detaļas un gludums.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>Nedaudz pastiprināts</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>Smalka detaļu uzlabošana pie 50% pastiprinājuma.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>Pastiprināts</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>Skaidra detaļu uzlabošana pie 100% pastiprinājuma.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>Daudz pastiprinājuma</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>Agresīva detaļu uzlabošana pie 150% pastiprinājuma.</value>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>Viss ir sagatavots!</value>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>Paldies, ka izmēģināji MAIRA! Vednis tagad ir pabeigts.</value>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>Tu vari atkārtoti palaist šo vedni jebkurā laikā, apmeklējot Lietotnes iestatījumu lapu un noklikšķinot uz pogas "Palaist vedni".</value>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>Jauns MAIRA lietotājs? Noklikšķini</value>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>šeit</value>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>lai atvērtu dokumentāciju un uzzinātu par biežāk lietotajām vadīklām.</value>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>Izvades ierīce</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>IZVADES IERĪCE</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[Noklusējuma Windows skaņas ierīce]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>Cikla sākums</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>Cikla beigas</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
+  </data>
+  <data name="Commentary" xml:space="preserve">
+    <value>Komentāri</value>
+  </data>
+  <data name="Commentary_UC" xml:space="preserve">
+    <value>KOMENTĀRI</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>KONTS</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>BALSU SARAKSTS</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>KOMANDAS VADĪTĀJA KOMENTĀRI</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>NOVĒROTĀJA KOMENTĀRI</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>SPORTA KOMENTĒTĀJA 1 KOMENTĀRI</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>SPORTA KOMENTĒTĀJA 2 KOMENTĀRI</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>BOKSU REPORTIERA KOMENTĀRI</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>API atslēga</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>Pārbaudīt atslēgu</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  Atslēga pārbaudīta</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  Atslēga nederīga</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[Atlasiet balsi]</value>
+  </data>
+  <data name="ModelNotSelected" xml:space="preserve">
+    <value>[Atlasiet modeli]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  Atslēga atpazīta</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>Balsis — lasīt</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>Modeļi — piekļuve</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>Teksts runā — piekļuve</value>
+  </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>Runa tekstā — piekļuve</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>Lietotājs — lasīt</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>Modelis</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>Galvenais skaļums</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>Lietojums</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>Balss</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>Konsekvence</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>Dramatisks</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>Līdzības pastiprinājums</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>Runātāja pastiprinājums</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>Slota skaļums</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>Pārbaude</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>Piesardzība / dzeltenais karogs</value>
+  </data>
+  <data name="CarProximity" xml:space="preserve">
+    <value>Tuvuma paziņojumi</value>
+  </data>
+  <data name="CarProximityReminderInterval" xml:space="preserve">
+    <value>Atgādinājuma intervāls</value>
+  </data>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>KOMENTĀRU FRĀZES</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>Pielāgo frāzes, kas tiek izrunātas katram notikumam atlasītajā valodā. Izmaiņas tiek saglabātas tavā Dokumentu mapē un aizstāj iebūvētās frāzes.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>Atiestatīt visu</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>Atiestatīt</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>Pievienot frāzi</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✓  Pielāgotās frāzes saglabātas.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>Visas frāzes atiestatītas uz iebūvētajiem noklusējumiem.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>Meklēt...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>Atiestatīt uz noklusējumiem</value>
+  </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>Atkārtoti lejupielādēt krāsojuma failus</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>Karogu paziņojumi</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>Startē...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>Inicializē augšējā līmeņa logu...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>Inicializē audio pārvaldnieku...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>Inicializē AdminBoxx...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>Inicializē simulatoru...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Inicializē Direct Input...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Inicializē Stream Deck...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>Inicializē tekstu runā...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>Inicializē komentārus...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>Inicializē mākoņpakalpojumu...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>Inicializē grafiku...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>Inicializē pedāļus...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>Inicializē sacīkšu stūri...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>Inicializē skaņas...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>Inicializē LFE...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>Inicializē multivides taimeri...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>Inicializē ierakstīšanas pārvaldnieku...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>Inicializē laika marķierus...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>Inicializē telemetriju...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Inicializē vēju...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>Inicializē drošības jostas nospriegotāju...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>Inicializē HID karstās pieslēgšanas monitoru...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Inicializē Trading Paints...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>Inicializē iestatījumu failu...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>Inicializē galveno logu...</value>
+  </data>
+</root>

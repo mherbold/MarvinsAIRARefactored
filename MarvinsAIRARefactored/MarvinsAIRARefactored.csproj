@@ -38,6 +38,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="Resources\Resources.resx" />
+    <EmbeddedResource Include="Resources\Resources.bg-BG.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.ca-ES.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.cs-CZ.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.cy-GB.resx"><WithCulture>false</WithCulture></EmbeddedResource>
@@ -45,6 +46,7 @@
     <EmbeddedResource Include="Resources\Resources.de-DE.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.es-ES.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.es-MX.resx"><WithCulture>false</WithCulture></EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resources.et-EE.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.fi-FI.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.fr-CA.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.fr-FR.resx"><WithCulture>false</WithCulture></EmbeddedResource>
@@ -53,6 +55,8 @@
     <EmbeddedResource Include="Resources\Resources.hy-AM.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.it-IT.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.ja-JP.resx"><WithCulture>false</WithCulture></EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resources.ko-KR.resx"><WithCulture>false</WithCulture></EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resources.lv-LV.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.nb-NO.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.nl-NL.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.pl-PL.resx"><WithCulture>false</WithCulture></EmbeddedResource>
@@ -60,11 +64,13 @@
     <EmbeddedResource Include="Resources\Resources.pt-PT.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.ro-RO.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.ru-RU.resx"><WithCulture>false</WithCulture></EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resources.sk-SK.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.sv-SE.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.th-TH.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.tr-TR.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.uk-UA.resx"><WithCulture>false</WithCulture></EmbeddedResource>
     <EmbeddedResource Include="Resources\Resources.zh-Hans.resx"><WithCulture>false</WithCulture></EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resources.zh-Hant.resx"><WithCulture>false</WithCulture></EmbeddedResource>
   </ItemGroup>
 
   <ItemGroup>

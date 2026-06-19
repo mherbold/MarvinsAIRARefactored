@@ -1,0 +1,1875 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Algorithm" xml:space="preserve">
+    <value>演算法</value>
+  </data>
+  <data name="AppSettings" xml:space="preserve">
+    <value>應用程式設定</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App</value>
+  </data>
+  <data name="DetailBoostBias" xml:space="preserve">
+    <value>細節增強偏向</value>
+  </data>
+  <data name="DetailBoost" xml:space="preserve">
+    <value>細節增強</value>
+  </data>
+  <data name="FadeForceFeedback" xml:space="preserve">
+    <value>進出車輛時淡出力回饋</value>
+  </data>
+  <data name="RacingFriction" xml:space="preserve">
+    <value>賽道摩擦力</value>
+  </data>
+  <data name="Graph" xml:space="preserve">
+    <value>圖表</value>
+  </data>
+  <data name="HeaderData_UC" xml:space="preserve">
+    <value>標頭資料</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="Language_UC" xml:space="preserve">
+    <value>語言</value>
+  </data>
+  <data name="DetailBooster" xml:space="preserve">
+    <value>細節增強器</value>
+  </data>
+  <data name="DeltaLimiter" xml:space="preserve">
+    <value>差量限制器</value>
+  </data>
+  <data name="MaxForce" xml:space="preserve">
+    <value>最大力道</value>
+  </data>
+  <data name="Native60Hz" xml:space="preserve">
+    <value>原生 60 Hz</value>
+  </data>
+  <data name="Native360Hz" xml:space="preserve">
+    <value>原生 360 Hz</value>
+  </data>
+  <data name="NoFFBDevicesFound" xml:space="preserve">
+    <value>[找不到力回饋裝置]</value>
+  </data>
+  <data name="OFF" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>功率</value>
+  </data>
+  <data name="RacingWheel" xml:space="preserve">
+    <value>賽車方向盤</value>
+  </data>
+  <data name="RacingWheel_UC" xml:space="preserve">
+    <value>賽車方向盤</value>
+  </data>
+  <data name="SteeringDevice" xml:space="preserve">
+    <value>轉向裝置</value>
+  </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>錄製裝置</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>重設</value>
+  </data>
+  <data name="SessionInformation_UC" xml:space="preserve">
+    <value>賽段資訊</value>
+  </data>
+  <data name="Simulator" xml:space="preserve">
+    <value>模擬器</value>
+  </data>
+  <data name="SimulatorNotRunning" xml:space="preserve">
+    <value>iRacing 模擬器未在執行</value>
+  </data>
+  <data name="SoftLockStrength" xml:space="preserve">
+    <value>軟鎖強度</value>
+  </data>
+  <data name="TelemetryData_UC" xml:space="preserve">
+    <value>遙測資料</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>測試</value>
+  </data>
+  <data name="ThisLanguage" xml:space="preserve">
+    <value>繁體中文 - Chinese (Traditional)</value>
+  </data>
+  <data name="TopmostWindow" xml:space="preserve">
+    <value>視窗置頂</value>
+  </data>
+  <data name="TorqueUnits" xml:space="preserve">
+    <value> Nm</value>
+  </data>
+  <data name="DetailBoosterOn60Hz" xml:space="preserve">
+    <value>細節增強器（低延遲）</value>
+  </data>
+  <data name="AdminBoxx" xml:space="preserve">
+    <value>AdminBoxx</value>
+  </data>
+  <data name="ConnectToAdminBoxx" xml:space="preserve">
+    <value>連線至 AdminBoxx</value>
+  </data>
+  <data name="UpdateButtonMappings" xml:space="preserve">
+    <value>更新輸入對應</value>
+  </data>
+  <data name="PressTheRecordButton" xml:space="preserve">
+    <value>[請按下錄製按鈕]</value>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>按鈕</value>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>點擊</value>
+  </data>
+  <data name="Hold" xml:space="preserve">
+    <value>按住</value>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>鍵盤</value>
+  </data>
+  <data name="WaitingForInput" xml:space="preserve">
+    <value>[等待輸入]</value>
+  </data>
+  <data name="DeltaLimit" xml:space="preserve">
+    <value>差量限制</value>
+  </data>
+  <data name="DeltaLimitUnits" xml:space="preserve">
+    <value> Nm/s</value>
+  </data>
+  <data name="DeltaLimiterOn60Hz" xml:space="preserve">
+    <value>差量限制器（低延遲）</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="Device_UC" xml:space="preserve">
+    <value>裝置</value>
+  </data>
+  <data name="OverallStrength_UC" xml:space="preserve">
+    <value>整體強度</value>
+  </data>
+  <data name="AutoTarget" xml:space="preserve">
+    <value>自動目標</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>清除</value>
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
+    <value>控制器設定檔</value>
+  </data>
+  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>控制器設定檔</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>設定檔</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>設定檔名稱</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>新增設定檔</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>刪除設定檔</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>您確定要刪除此控制器設定檔嗎？</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>新增控制器設定檔</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>複製目前的對應</value>
+  </data>
+  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>按鈕對應</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>對應</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>錄製</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>（未對應）</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>確定</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="CurrentForce" xml:space="preserve">
+    <value>目前力道</value>
+  </data>
+  <data name="AutoMaxForce" xml:space="preserve">
+    <value>自動最大力道</value>
+  </data>
+  <data name="OtherFeatures_UC" xml:space="preserve">
+    <value>其他功能</value>
+  </data>
+  <data name="Switches_UC" xml:space="preserve">
+    <value>開關</value>
+  </data>
+  <data name="CrashProtection_UC" xml:space="preserve">
+    <value>碰撞保護</value>
+  </data>
+  <data name="GForceUnits" xml:space="preserve">
+    <value> g</value>
+  </data>
+  <data name="LongitudalGForce" xml:space="preserve">
+    <value>縱向 G 力</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>持續時間</value>
+  </data>
+  <data name="ForceReduction" xml:space="preserve">
+    <value>力道衰減</value>
+  </data>
+  <data name="SecondsUnits" xml:space="preserve">
+    <value> 秒</value>
+  </data>
+  <data name="MPSUnits" xml:space="preserve">
+    <value> m/s</value>
+  </data>
+  <data name="CurbProtection_UC" xml:space="preserve">
+    <value>路緣保護</value>
+  </data>
+  <data name="ShockVelocity" xml:space="preserve">
+    <value>震動速度</value>
+  </data>
+  <data name="Pedals_UC" xml:space="preserve">
+    <value>SIMAGIC 踏板</value>
+  </data>
+  <data name="PedalsP1000" xml:space="preserve">
+    <value>Simagic P1000 踏板</value>
+  </data>
+  <data name="PedalsP2000" xml:space="preserve">
+    <value>Simagic P2000 踏板</value>
+  </data>
+  <data name="PedalsNone" xml:space="preserve">
+    <value>[找不到相容的 Simagic 踏板]</value>
+  </data>
+  <data name="Clutch_UC" xml:space="preserve">
+    <value>離合器</value>
+  </data>
+  <data name="Brake_UC" xml:space="preserve">
+    <value>煞車</value>
+  </data>
+  <data name="Throttle_UC" xml:space="preserve">
+    <value>油門</value>
+  </data>
+  <data name="PedalEffects" xml:space="preserve">
+    <value>踏板效果</value>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>強度</value>
+  </data>
+  <data name="HertzUnits" xml:space="preserve">
+    <value> Hz</value>
+  </data>
+  <data name="Frequency_UC" xml:space="preserve">
+    <value>全域頻率</value>
+  </data>
+  <data name="Amplitude_UC" xml:space="preserve">
+    <value>全域振幅</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>最小值</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>最大值</value>
+  </data>
+  <data name="Curve" xml:space="preserve">
+    <value>曲線</value>
+  </data>
+  <data name="GearChange" xml:space="preserve">
+    <value>換檔</value>
+  </data>
+  <data name="ClutchSlip_UC" xml:space="preserve">
+    <value>離合器打滑</value>
+  </data>
+  <data name="SteeringEffects_UC" xml:space="preserve">
+    <value>轉向效果</value>
+  </data>
+  <data name="SteeringEffects" xml:space="preserve">
+    <value>轉向效果</value>
+  </data>
+  <data name="WheelLock_UC" xml:space="preserve">
+    <value>車輪鎖死</value>
+  </data>
+  <data name="WheelSpin_UC" xml:space="preserve">
+    <value>車輪空轉</value>
+  </data>
+  <data name="RPM_UC" xml:space="preserve">
+    <value>RPM</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>換檔 RPM</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>無</value>
+  </data>
+  <data name="PerWheelbase" xml:space="preserve">
+    <value>依輪座</value>
+  </data>
+  <data name="PerCar" xml:space="preserve">
+    <value>依車輛</value>
+  </data>
+  <data name="PerTrack" xml:space="preserve">
+    <value>依賽道</value>
+  </data>
+  <data name="PerTrackConfiguration" xml:space="preserve">
+    <value>依賽道配置</value>
+  </data>
+  <data name="PerWetDry" xml:space="preserve">
+    <value>依乾/濕</value>
+  </data>
+  <data name="Wet" xml:space="preserve">
+    <value>濕</value>
+  </data>
+  <data name="Dry" xml:space="preserve">
+    <value>乾</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>預設</value>
+  </data>
+  <data name="SaveThisSetting" xml:space="preserve">
+    <value>儲存此設定</value>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>有新版本可用！</value>
+  </data>
+  <data name="DownloadQuestion" xml:space="preserve">
+    <value>您要立即下載嗎？</value>
+  </data>
+  <data name="RunInstaller" xml:space="preserve">
+    <value>執行安裝程式？</value>
+  </data>
+  <data name="RunInstallerQuestion" xml:space="preserve">
+    <value>您要立即執行安裝程式嗎？</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>啟動時檢查更新</value>
+  </data>
+  <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
+    <value>應用程式啟動時連線至 AdminBoxx</value>
+  </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>啟用 Xtreme Scoring Race Control 整合</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>亮度</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>音量</value>
+  </data>
+  <data name="DeltaLimiterBias" xml:space="preserve">
+    <value>差量限制器偏向</value>
+  </data>
+  <data name="Output_UC" xml:space="preserve">
+    <value>輸出</value>
+  </data>
+  <data name="WheelLFE_UC" xml:space="preserve">
+    <value>方向盤 LFE</value>
+  </data>
+  <data name="LFERecordingDevice" xml:space="preserve">
+    <value>LFE 錄製裝置</value>
+  </data>
+  <data name="InputTorque60Hz" xml:space="preserve">
+    <value>輸入扭力（60 Hz）</value>
+  </data>
+  <data name="InputTorque" xml:space="preserve">
+    <value>輸入扭力</value>
+  </data>
+  <data name="OutputTorque" xml:space="preserve">
+    <value>輸出扭力</value>
+  </data>
+  <data name="TimerJitter" xml:space="preserve">
+    <value>計時器抖動</value>
+  </data>
+  <data name="InputLFE" xml:space="preserve">
+    <value>輸入 LFE</value>
+  </data>
+  <data name="ABSEngaged_UC" xml:space="preserve">
+    <value>ABS 作動</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>[已停用]</value>
+  </data>
+  <data name="RememberWindowPositionAndSize" xml:space="preserve">
+    <value>記住視窗位置與大小</value>
+  </data>
+  <data name="FadeWithBrake" xml:space="preserve">
+    <value>隨煞車淡出</value>
+  </data>
+  <data name="StartingRPM" xml:space="preserve">
+    <value>起始 RPM</value>
+  </data>
+  <data name="VibrateInTopGear" xml:space="preserve">
+    <value>最高檔時震動</value>
+  </data>
+  <data name="FadeWithThrottle" xml:space="preserve">
+    <value>隨油門淡出</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>脈動</value>
+  </data>
+  <data name="StartingPoint" xml:space="preserve">
+    <value>起點</value>
+  </data>
+  <data name="EndingPoint" xml:space="preserve">
+    <value>終點</value>
+  </data>
+  <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
+    <value>換檔 - 入檔</value>
+  </data>
+  <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
+    <value>換檔 - 入空檔</value>
+  </data>
+  <data name="AlwaysEnableFFB" xml:space="preserve">
+    <value>即使 iRacing 模擬器力回饋開啟時仍啟用力回饋</value>
+  </data>
+  <data name="ClutchPedalHaptics" xml:space="preserve">
+    <value>離合器踏板觸覺回饋</value>
+  </data>
+  <data name="BrakePedalHaptics" xml:space="preserve">
+    <value>煞車踏板觸覺回饋</value>
+  </data>
+  <data name="ThrottlePedalHaptics" xml:space="preserve">
+    <value>油門踏板觸覺回饋</value>
+  </data>
+  <data name="NoiseDamper" xml:space="preserve">
+    <value>雜訊阻尼器</value>
+  </data>
+  <data name="AppWindow_UC" xml:space="preserve">
+    <value>應用程式視窗</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>淺色主題</value>
+  </data>
+  <data name="UIScale" xml:space="preserve">
+    <value>介面縮放</value>
+  </data>
+  <data name="CloudService_UC" xml:space="preserve">
+    <value>雲端服務</value>
+  </data>
+  <data name="CheckNow" xml:space="preserve">
+    <value>立即檢查</value>
+  </data>
+  <data name="CheckingForUpdate" xml:space="preserve">
+    <value>正在檢查更新…</value>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>正在下載更新…</value>
+  </data>
+  <data name="Contribute_UC" xml:space="preserve">
+    <value>貢獻</value>
+  </data>
+  <data name="BuyMeACoffee" xml:space="preserve">
+    <value>請我喝杯咖啡</value>
+  </data>
+  <data name="DonationsText" xml:space="preserve">
+    <value>捐款完全是自願的。我絕不會為使用 MAIRA 收取任何費用。話雖如此，收到捐款讓我感到溫暖窩心，也是激勵我持續開發 MAIRA 的一大動力。非常感謝所有已經捐款的人！</value>
+  </data>
+  <data name="Donate_UC" xml:space="preserve">
+    <value>捐款</value>
+  </data>
+  <data name="Donors_UC" xml:space="preserve">
+    <value>捐款者</value>
+  </data>
+  <data name="SuperDonors_UC" xml:space="preserve">
+    <value>超級捐款者</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>捐款</value>
+  </data>
+  <data name="CodeContributions_UC" xml:space="preserve">
+    <value>程式碼貢獻</value>
+  </data>
+  <data name="TranslationContributions_UC" xml:space="preserve">
+    <value>翻譯貢獻</value>
+  </data>
+  <data name="CodeContributionsText" xml:space="preserve">
+    <value>您是 C# 開發者嗎？本專案歡迎貢獻。請造訪 GitHub 儲存庫以了解更多。</value>
+  </data>
+  <data name="TranslationContributionsText" xml:space="preserve">
+    <value>由衷感謝此處列出的每一位志願者，他們貢獻時間與才能將 MarvinsAIRA 翻譯成這麼多種語言。您的努力讓全世界的模擬賽車玩家都能使用這款應用程式。翻譯現在已由機器自動處理，因此不再需要進一步的翻譯協助——但這些貢獻者永遠會獲得我最深的感激。</value>
+  </data>
+  <data name="GitHubRepository" xml:space="preserve">
+    <value>GitHub 儲存庫</value>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>貢獻者</value>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>顯示視窗</value>
+  </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>啟動時顯示啟動畫面</value>
+  </data>
+  <data name="ExitApp" xml:space="preserve">
+    <value>結束應用程式</value>
+  </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>以最小化取代關閉</value>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+    <value>最小化至系統匣</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>以最小化啟動</value>
+  </data>
+  <data name="StartWithWindows" xml:space="preserve">
+    <value>隨 Windows 啟動</value>
+  </data>
+  <data name="TotalCompressionRate" xml:space="preserve">
+    <value>總壓縮率</value>
+  </data>
+  <data name="SlewCompressionThreshold" xml:space="preserve">
+    <value>變化速率閾值</value>
+  </data>
+  <data name="SlewCompressionRate" xml:space="preserve">
+    <value>變化速率壓縮率</value>
+  </data>
+  <data name="TotalCompressionThreshold" xml:space="preserve">
+    <value>總閾值</value>
+  </data>
+  <data name="SlewUnits" xml:space="preserve">
+    <value> Nm/ms</value>
+  </data>
+  <data name="WheelForce" xml:space="preserve">
+    <value>方向盤力道</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="Preview_UC" xml:space="preserve">
+    <value>預覽</value>
+  </data>
+  <data name="NoRecordingsFound" xml:space="preserve">
+    <value>[找不到錄製檔]</value>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>啟用簡易模式</value>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>靈敏度</value>
+  </data>
+  <data name="SlewAndTotalCompression" xml:space="preserve">
+    <value>變化速率與總壓縮</value>
+  </data>
+  <data name="DiscordModerators_UC" xml:space="preserve">
+    <value>DISCORD 版主</value>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>我要感謝這些志願版主協助回答 MAIRA 使用者提出的眾多問題，讓我能有更多時間專注於 MAIRA 的開發！</value>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>AdminBoxx 韌體正在更新</value>
+  </data>
+  <data name="AllowSuperStrength" xml:space="preserve">
+    <value>允許最高 200% 強度（可能有危險）</value>
+  </data>
+  <data name="ON" xml:space="preserve">
+    <value>開啟</value>
+  </data>
+  <data name="Sounds_UC" xml:space="preserve">
+    <value>音效</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>已啟用</value>
+  </data>
+  <data name="FrequencyRatio" xml:space="preserve">
+    <value>音高</value>
+  </data>
+  <data name="Fade" xml:space="preserve">
+    <value>淡出</value>
+  </data>
+  <data name="SendChatMessages" xml:space="preserve">
+    <value>傳送私人聊天訊息給駕駛</value>
+  </data>
+  <data name="Degrees" xml:space="preserve">
+    <value>°</value>
+  </data>
+  <data name="Master_UC" xml:space="preserve">
+    <value>主控</value>
+  </data>
+  <data name="CrashProtectionActivated" xml:space="preserve">
+    <value>碰撞保護已啟動！</value>
+  </data>
+  <data name="CurbProtectionActivated" xml:space="preserve">
+    <value>路緣保護已啟動！</value>
+  </data>
+  <data name="PrivateMessages_UC" xml:space="preserve">
+    <value>私人訊息</value>
+  </data>
+  <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
+    <value>啟用路緣保護訊息</value>
+  </data>
+  <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
+    <value>啟用碰撞保護訊息</value>
+  </data>
+  <data name="InputMappedSettingUpdateEnabled" xml:space="preserve">
+    <value>啟用輸入對應設定更新訊息</value>
+  </data>
+  <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
+    <value>您不在 Centripetal Circuit 賽道上</value>
+  </data>
+  <data name="RunCalibration" xml:space="preserve">
+    <value>執行校準</value>
+  </data>
+  <data name="StopCalibration" xml:space="preserve">
+    <value>停止校準</value>
+  </data>
+  <data name="SteeringWheelLeft" xml:space="preserve">
+    <value>方向盤向左</value>
+  </data>
+  <data name="SteeringWheelCenter" xml:space="preserve">
+    <value>方向盤置中</value>
+  </data>
+  <data name="SteeringWheelRight" xml:space="preserve">
+    <value>方向盤向右</value>
+  </data>
+  <data name="SteeringWheel90Left" xml:space="preserve">
+    <value>方向盤向左 90°</value>
+  </data>
+  <data name="MinThrottle" xml:space="preserve">
+    <value>最小油門</value>
+  </data>
+  <data name="MaxThrottle" xml:space="preserve">
+    <value>最大油門</value>
+  </data>
+  <data name="ShiftUp" xml:space="preserve">
+    <value>升檔</value>
+  </data>
+  <data name="ShiftDown" xml:space="preserve">
+    <value>降檔</value>
+  </data>
+  <data name="MinBrake" xml:space="preserve">
+    <value>最小煞車</value>
+  </data>
+  <data name="MaxBrake" xml:space="preserve">
+    <value>最大煞車</value>
+  </data>
+  <data name="GripOMeter_UC" xml:space="preserve">
+    <value>抓地力計</value>
+  </data>
+  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>轉向不足方向盤震動效果</value>
+  </data>
+  <data name="Progress:" xml:space="preserve">
+    <value>進度：</value>
+  </data>
+  <data name="CalibrationFileNotSelected" xml:space="preserve">
+    <value>[未選擇校準檔案]</value>
+  </data>
+  <data name="ParkedEffects_UC" xml:space="preserve">
+    <value>停車效果</value>
+  </data>
+  <data name="ForceFeedbackStrength" xml:space="preserve">
+    <value>力回饋強度</value>
+  </data>
+  <data name="WheelCenteringStrength" xml:space="preserve">
+    <value>方向盤回正強度</value>
+  </data>
+  <data name="CenterWheelWhileRacing" xml:space="preserve">
+    <value>賽車時方向盤回正</value>
+  </data>
+  <data name="CenterWheelWhileParked" xml:space="preserve">
+    <value>停車時方向盤回正</value>
+  </data>
+  <data name="ParkedFriction" xml:space="preserve">
+    <value>停車摩擦力</value>
+  </data>
+  <data name="CurrentCarSetup" xml:space="preserve">
+    <value>目前車輛設定：</value>
+  </data>
+  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>轉向不足踏板震動效果</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>發生問題</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>詳細資訊</value>
+  </data>
+  <data name="ClassicMAIRAIsRunning" xml:space="preserve">
+    <value>傳統版 MAIRA 目前正在執行——請先結束傳統版 MAIRA 再執行此版本的 MAIRA！</value>
+  </data>
+  <data name="ExceptionThrown" xml:space="preserve">
+    <value>已擲出例外</value>
+  </data>
+  <data name="KPHUnits" xml:space="preserve">
+    <value> KPH</value>
+  </data>
+  <data name="CalibrationFilesText" xml:space="preserve">
+    <value>這些人慷慨地貢獻了部分閒暇時間，在他們最喜愛的一些車輛上執行轉向效果校準，並上傳了這些校準檔案！</value>
+  </data>
+  <data name="DegreesPerSecond" xml:space="preserve">
+    <value>°/s</value>
+  </data>
+  <data name="CalibrationFile_UC" xml:space="preserve">
+    <value>校準檔案</value>
+  </data>
+  <data name="Understeer_UC" xml:space="preserve">
+    <value>轉向不足</value>
+  </data>
+  <data name="Oversteer_UC" xml:space="preserve">
+    <value>轉向過度</value>
+  </data>
+  <data name="MinimumThreshold" xml:space="preserve">
+    <value>最小閾值</value>
+  </data>
+  <data name="MaximumThreshold" xml:space="preserve">
+    <value>最大閾值</value>
+  </data>
+  <data name="MinimumFrequency" xml:space="preserve">
+    <value>最小頻率</value>
+  </data>
+  <data name="MaximumFrequency" xml:space="preserve">
+    <value>最大頻率</value>
+  </data>
+  <data name="Calibration_UC" xml:space="preserve">
+    <value>校準</value>
+  </data>
+  <data name="VibrationPattern" xml:space="preserve">
+    <value>震動模式</value>
+  </data>
+  <data name="SineWave" xml:space="preserve">
+    <value>正弦波</value>
+  </data>
+  <data name="SquareWave" xml:space="preserve">
+    <value>方波</value>
+  </data>
+  <data name="TriangleWave" xml:space="preserve">
+    <value>三角波</value>
+  </data>
+  <data name="SawtoothWaveIn" xml:space="preserve">
+    <value>鋸齒波（進）</value>
+  </data>
+  <data name="SawtoothWaveOut" xml:space="preserve">
+    <value>鋸齒波（出）</value>
+  </data>
+  <data name="DecreaseForce" xml:space="preserve">
+    <value>減少力道</value>
+  </data>
+  <data name="IncreaseForce" xml:space="preserve">
+    <value>增加力道</value>
+  </data>
+  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>轉向不足方向盤恆定力效果</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value>方向</value>
+  </data>
+  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>轉向過度方向盤震動效果</value>
+  </data>
+  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>轉向過度方向盤恆定力效果</value>
+  </data>
+  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>轉向過度踏板震動效果</value>
+  </data>
+  <data name="UndersteerEffect" xml:space="preserve">
+    <value>轉向不足效果</value>
+  </data>
+  <data name="OversteerEffect" xml:space="preserve">
+    <value>轉向過度效果</value>
+  </data>
+  <data name="ConfigurationFileIsInvalid" xml:space="preserve">
+    <value>設定檔案無效！</value>
+  </data>
+  <data name="SpeechToText" xml:space="preserve">
+    <value>字幕</value>
+  </data>
+  <data name="OverlayWindow_UC" xml:space="preserve">
+    <value>重疊視窗</value>
+  </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>管理重疊視窗</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>所有重疊層</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>啟用編輯模式</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>離開賽道時顯示</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>在重播模式中顯示</value>
+  </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>重設所有重疊視窗</value>
+  </data>
+  <data name="FFBDeviceNotSelected" xml:space="preserve">
+    <value>[未選擇力回饋裝置]</value>
+  </data>
+  <data name="Algorithm_UC" xml:space="preserve">
+    <value>演算法</value>
+  </data>
+  <data name="ReadyToDonate" xml:space="preserve">
+    <value>準備好捐款了嗎？</value>
+  </data>
+  <data name="Contribute" xml:space="preserve">
+    <value>貢獻</value>
+  </data>
+  <data name="CalibrationFileContributions_UC" xml:space="preserve">
+    <value>校準檔案貢獻</value>
+  </data>
+  <data name="AppSettings_UC" xml:space="preserve">
+    <value>應用程式設定</value>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>精靈</value>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>啟動精靈</value>
+  </data>
+  <data name="Simulator_UC" xml:space="preserve">
+    <value>模擬器</value>
+  </data>
+  <data name="Graph_UC" xml:space="preserve">
+    <value>圖表</value>
+  </data>
+  <data name="SpeechToText_UC" xml:space="preserve">
+    <value>字幕</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>變更記錄</value>
+  </data>
+  <data name="ABSEngaged" xml:space="preserve">
+    <value>ABS 作動</value>
+  </data>
+  <data name="Amplitude" xml:space="preserve">
+    <value>振幅</value>
+  </data>
+  <data name="ClutchSlip" xml:space="preserve">
+    <value>離合器打滑</value>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>頻率</value>
+  </data>
+  <data name="RPM" xml:space="preserve">
+    <value>RPM</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>換檔 RPM</value>
+  </data>
+  <data name="Sounds" xml:space="preserve">
+    <value>音效</value>
+  </data>
+  <data name="Pedals" xml:space="preserve">
+    <value>Simagic 踏板</value>
+  </data>
+  <data name="WheelLock" xml:space="preserve">
+    <value>車輪鎖死</value>
+  </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>車輪空轉</value>
+  </data>
+  <data name="GripOMeter" xml:space="preserve">
+    <value>抓地力計</value>
+  </data>
+  <data name="MPHUnits" xml:space="preserve">
+    <value> MPH</value>
+  </data>
+  <data name="Wind_UC" xml:space="preserve">
+    <value>颱風風扇</value>
+  </data>
+  <data name="Wind" xml:space="preserve">
+    <value>颱風風扇</value>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>安全帶張緊器</value>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>安全帶張緊器</value>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>連線至 MAIRA 安全帶張緊器</value>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>應用程式啟動時連線至 MAIRA 安全帶張緊器</value>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>最小角度</value>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>中立角度</value>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>最大角度</value>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>最大 G 力</value>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>扣除重力</value>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>已停用</value>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>反向</value>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>死區</value>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>平滑化</value>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>最小 G</value>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>最大 G</value>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>體感效果</value>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>震動效果</value>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / 車輪鎖死</value>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>車輪打滑</value>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>減速帶</value>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>縱搖</value>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>橫擺</value>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>起伏</value>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>馬達輸出</value>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>左肩</value>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>右肩</value>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>最大馬達轉速</value>
+  </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>反向手臂</value>
+  </data>
+  <data name="ConnectToWindOnStartup" xml:space="preserve">
+    <value>應用程式啟動時連線至 MAIRA Wind</value>
+  </data>
+  <data name="ConnectToWind" xml:space="preserve">
+    <value>連線至 MAIRA Wind</value>
+  </data>
+  <data name="LeftFan" xml:space="preserve">
+    <value>左風扇</value>
+  </data>
+  <data name="RightFan" xml:space="preserve">
+    <value>右風扇</value>
+  </data>
+  <data name="Connection_UC" xml:space="preserve">
+    <value>連線</value>
+  </data>
+  <data name="Settings_UC" xml:space="preserve">
+    <value>設定</value>
+  </data>
+  <data name="MasterWindPower" xml:space="preserve">
+    <value>主風力功率</value>
+  </data>
+  <data name="MinimumSpeed" xml:space="preserve">
+    <value>最低速度</value>
+  </data>
+  <data name="WindCurving" xml:space="preserve">
+    <value>風力曲線</value>
+  </data>
+  <data name="FanPower_UC" xml:space="preserve">
+    <value>風扇功率</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>速度</value>
+  </data>
+  <data name="FanPower" xml:space="preserve">
+    <value>風扇功率</value>
+  </data>
+  <data name="DeviceNotFound" xml:space="preserve">
+    <value>裝置遺失</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>重試</value>
+  </data>
+  <data name="IRacingPaintFolder" xml:space="preserve">
+    <value>iRacing 塗裝資料夾</value>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>最大下載速度</value>
+  </data>
+  <data name="TradingPaints" xml:space="preserve">
+    <value>Trading Paints</value>
+  </data>
+  <data name="TradingPaints_UC" xml:space="preserve">
+    <value>TRADING PAINTS</value>
+  </data>
+  <data name="TradingPaintsDisclaimer" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App (MAIRA) 與 Trading Paints 無任何關聯</value>
+  </data>
+  <data name="MultiAdjustmentToolkit" xml:space="preserve">
+    <value>多重調整工具組</value>
+  </data>
+  <data name="TorqueCompression" xml:space="preserve">
+    <value>扭力壓縮</value>
+  </data>
+  <data name="SlewRateReduction" xml:space="preserve">
+    <value>變化速率衰減</value>
+  </data>
+  <data name="SoftClipping" xml:space="preserve">
+    <value>軟限幅</value>
+  </data>
+  <data name="DetailGain" xml:space="preserve">
+    <value>細節增益 +/- 調整</value>
+  </data>
+  <data name="OutputSmoothing" xml:space="preserve">
+    <value>輸出平滑化</value>
+  </data>
+  <data name="SeatOfPants_UC" xml:space="preserve">
+    <value>體感</value>
+  </data>
+  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
+    <value>體感方向盤震動效果</value>
+  </data>
+  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>體感方向盤恆定力效果</value>
+  </data>
+  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
+    <value>體感踏板震動效果</value>
+  </data>
+  <data name="SeatOfPantsEffect" xml:space="preserve">
+    <value>體感效果</value>
+  </data>
+  <data name="LateralAcceleration" xml:space="preserve">
+    <value>橫向加速度（Ay）</value>
+  </data>
+  <data name="LateralVelocity" xml:space="preserve">
+    <value>橫向速度（Vy）</value>
+  </data>
+  <data name="RatioOfVelocities" xml:space="preserve">
+    <value>速度比（Vy/Vx）</value>
+  </data>
+  <data name="DefaultPage_UC" xml:space="preserve">
+    <value>預設頁面</value>
+  </data>
+  <data name="Effects_UC" xml:space="preserve">
+    <value>效果</value>
+  </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>音訊</value>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>顯示</value>
+  </data>
+  <data name="AdminBoxx_UC" xml:space="preserve">
+    <value>ADMINBOXX</value>
+  </data>
+  <data name="Click_UC" xml:space="preserve">
+    <value>點擊</value>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>重播期間允許音效</value>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>煞車 + 油門警告</value>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>力回饋限幅</value>
+  </data>
+  <data name="PedalsP500" xml:space="preserve">
+    <value>Simagic P500 踏板</value>
+  </data>
+  <data name="PedalsPrototype" xml:space="preserve">
+    <value>原型踏板</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>說明</value>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value>說明</value>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value>文件</value>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value>DISCORD</value>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value>論壇</value>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value>文件網站</value>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value>Discord 伺服器</value>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value>iRacing 論壇</value>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value>這個文件網站永遠是個進行中的工作，因為這款應用程式持續不斷地新增功能。我會盡可能經常更新文件，但如果您尋找的資訊還沒有出現在這裡，您可以試著在 Discord 伺服器或 iRacing 論壇中尋找問題的答案。</value>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value>如果您在文件中找不到答案，MAIRA Discord 伺服器是取得問題解答最快的方式。這裡有志願者提供協助，我也會盡量幫忙。</value>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value>這是一切的起點。您可以在這裡尋找答案，但我在這裡已不如以往活躍。造訪 Discord 伺服器是提問的最佳方式。</value>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value>Simagic P700 踏板</value>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>風扇狀態</value>
+  </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value>360 Hz 細節</value>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value>峰值感知變化速率衰減</value>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value>360 Hz 疊加 60 Hz，10-30% 偏向</value>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value>360 Hz 疊加 60 Hz，10% 偏向</value>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value>（預設值）原生 60 Hz</value>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value>（預設值）360 Hz 疊加 60 Hz，10-30% 偏向</value>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value>（預設值）360 Hz 疊加 60 Hz，10% 偏向</value>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value>（預設值）原生 360 Hz</value>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value>（預設組合）核心輪胎回饋，最少路面細節</value>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value>（預設組合）核心輪胎回饋，適中路面細節</value>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value>（預設組合）適度增強力回饋動態</value>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value>（預設組合）適度降低力回饋動態</value>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value>力回饋類型 + 預設組合</value>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>橫向 G 力</value>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value>POV</value>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value>您必須選擇校準檔案，此效果才能運作。</value>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value>預測模式</value>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value>K1（預測 1/60 秒後）</value>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value>K2（預測 2/60 秒後）</value>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value>預測混合</value>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>力回饋已被手動關閉（緊急停止）</value>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>iRacing 模擬器處於重播模式</value>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>iRacing 模擬器中已啟用力回饋</value>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>因校準正在執行，力回饋已停用</value>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value>換檔震動強度</value>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value>ABS 震動強度</value>
+  </data>
+  <data name="GapMonitor" xml:space="preserve">
+    <value>差距監測器</value>
+  </data>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value>重疊層</value>
+  </data>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value>差距監測器</value>
+  </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>差量監測器</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>差量監測器</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>單圈</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>對比上一圈</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>對比 P1</value>
+  </data>
+  <data name="Overlays" xml:space="preserve">
+    <value>重疊層</value>
+  </data>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value>顯示重疊視窗標題</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>重疊層設定</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>背景顏色</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>紅</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>綠</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>藍</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>不透明度</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>CPU 親和性</value>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>（預設組合）降低大顛簸</value>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>應用程式管理員</value>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>應用程式管理員</value>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>要啟動的應用程式</value>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>要終止的應用程式</value>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>執行檔路徑</value>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>引數</value>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>啟動後延遲（秒）</value>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>CPU 優先順序</value>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>視窗樣式</value>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>模擬器中斷連線時終止</value>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>避開主要 CPU 核心</value>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>模擬器中斷連線時啟動</value>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>閒置</value>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>低於正常</value>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>高於正常</value>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>高</value>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>最小化</value>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>最大化</value>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>隱藏</value>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>開始吧！</value>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>略過</value>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>上一步</value>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>是</value>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>否</value>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>關閉</value>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>你好，賽車手！</value>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>我是巫師 Marvin，我來協助您馴服強大的 MAIRA！</value>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>揮舞我的方格旗，我會引導您完成最重要的設定，讓您能盡快上賽道。🏁✨</value>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>我們開始吧，還是您本身就是經驗豐富的巫師，偏好手動設定一切？</value>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>應用程式主題</value>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>選擇您偏好淺色還是深色主題。切換下方的開關即可即時預覽變化。</value>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>賽車方向盤</value>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>從下方清單中選擇您的力回饋賽車方向盤。</value>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value> 沒看到您的方向盤嗎？請確認它已開啟電源並連線，清單便會自動重新整理。</value>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value> Fanatec 使用者：Fanatec 方向盤通常會在清單中顯示為兩個獨立的裝置。如果您選擇的那個無法運作，請試著選擇另一個！</value>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>最大方向盤力道</value>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>輸入您的輪座能夠產生的最大力道，以牛頓米（Nm）為單位。MAIRA 會使用此數值正確地為您的硬體縮放所有力回饋輸出。</value>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value> 我們已根據您所選的方向盤做出最佳猜測——但如有需要，歡迎自行調整。</value>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value> 重要：如果您已在方向盤製造商的軟體中（例如 Fanatec Wheel Control Panel、Moza Pit House 等）限制了方向盤的最大扭力輸出，請在此處輸入該縮減後的數值，而非硬體的實體最大值。MAIRA 需要知道您的方向盤實際會傳遞多少力，而非理論上的能力。</value>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>強度控制</value>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRA 讓您能將方向盤或控制器上的實體按鈕綁定為即時提高與降低力回饋強度——完全不必離開座艙。</value>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>點擊下方的 - 與 + 按鈕，為每個按鈕指派輸入。此步驟為選用——您可以略過，稍後在賽車方向盤頁面設定綁定。</value>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value> 一旦對應了輸入，按鈕邊框便會變成橘色以確認。</value>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>強度</value>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>自動設定最大力道</value>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>當您在賽道上駕駛時，MAIRA 會持續測量您的方向盤實際產生的峰值扭力。它會利用該測量值來建議理想的最大力道數值——一個能充分運用方向盤完整範圍且絕不會讓訊號限幅的數值。</value>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>透過自動設定功能，您可以將方向盤或控制器上的實體按鈕綁定為「設定」動作。在賽段中的任何時刻按下它，MAIRA 便會立即將最大力道更新為符合您測得的峰值——無需選單，無需中斷。</value>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>搭配的「清除」按鈕會重設執行中的測量值，讓您能重新開始一次新的讀數——當您的車輛駛離賽道或撞到東西時很有用。</value>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>您要設定自動設定功能嗎？</value>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>自動設定設定</value>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>首先，依喜好調整自動目標餘裕，然後對應您的「設定」與「清除」按鈕。</value>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value> 自動目標設定測得的峰值應落在方向盤力道範圍中的位置。降低目標可在峰值之上保留更多餘裕；提高目標則可運用更多方向盤範圍。</value>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>演算法</value>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>您喜歡力回饋給您什麼樣的感受？移動下方的滑桿告訴 MAIRA 您的偏好，它便會配置演算法、細節與平滑化設定來符合。</value>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>別擔心——您之後隨時都能在賽車方向盤頁面手動微調一切。</value>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>💤 平順感受</value>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>增強細節 ⚡</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>絲滑平順</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>在 250 Nm/s 進行強力差量限制。非常平靜、圓潤的回饋。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>平順</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>在 500 Nm/s 進行差量限制。邊緣更柔和且銳利度降低。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>略為平順</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>在 1000 Nm/s 進行輕度差量限制。輕微的瞬態柔化。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>正常</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>細節與平順度的平衡。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>略為增強</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>在 50% 增強下的細微細節提升。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>增強</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>在 100% 增強下的清晰細節提升。</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>大量增強</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>在 150% 增強下的強烈細節提升。</value>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>全部設定完成！</value>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>感謝您試用 MAIRA！精靈現已完成。</value>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>您隨時可以前往應用程式設定頁面並點擊「啟動精靈」按鈕來重新執行此精靈。</value>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>初次使用 MAIRA？點擊</value>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>這裡</value>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>開啟文件並了解常用的控制項。</value>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>輸出裝置</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>輸出裝置</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[預設 Windows 音效裝置]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>循環起點</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>循環終點</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
+  </data>
+  <data name="Commentary" xml:space="preserve">
+    <value>解說</value>
+  </data>
+  <data name="Commentary_UC" xml:space="preserve">
+    <value>解說</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>帳戶</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>語音名單</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>技師長解說</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>觀察員解說</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>體育播報員 1 解說</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>體育播報員 2 解說</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>維修站記者解說</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>API 金鑰</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>驗證金鑰</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  金鑰已驗證</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  金鑰無效</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[選擇語音]</value>
+  </data>
+  <data name="ModelNotSelected" xml:space="preserve">
+    <value>[選擇模型]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  金鑰已識別</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>語音 — 讀取</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>模型 — 存取</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>文字轉語音 — 存取</value>
+  </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>語音轉文字 — 存取</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>使用者 — 讀取</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>模型</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>主音量</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>用量</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>語音</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>一致性</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>戲劇性</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>相似度增強</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>說話者增強</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>插槽音量</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>測試</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>注意 / 黃旗</value>
+  </data>
+  <data name="CarProximity" xml:space="preserve">
+    <value>接近呼叫</value>
+  </data>
+  <data name="CarProximityReminderInterval" xml:space="preserve">
+    <value>提醒間隔</value>
+  </data>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>解說語句</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>自訂所選語言中每個事件所說的語句。變更會儲存至您的「文件」資料夾，並覆寫內建語句。</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>全部重設</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>重設</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>新增語句</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✓  自訂語句已儲存。</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>所有語句已重設為內建預設值。</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>搜尋…</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>重設為預設值</value>
+  </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>重新下載塗裝檔案</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>旗號呼叫</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>正在啟動…</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>正在初始化最上層視窗…</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>正在初始化音訊管理員…</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>正在初始化 AdminBoxx…</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>正在初始化模擬器…</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>正在初始化 Direct Input…</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>正在初始化 Stream Deck…</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>正在初始化文字轉語音…</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>正在初始化解說…</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>正在初始化雲端服務…</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>正在初始化圖表…</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>正在初始化踏板…</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>正在初始化賽車方向盤…</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>正在初始化音效…</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>正在初始化 LFE…</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>正在初始化多媒體計時器…</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>正在初始化錄製管理員…</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>正在初始化計時標記…</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>正在初始化遙測…</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>正在初始化 Wind…</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>正在初始化安全帶張緊器…</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>正在初始化 HID 熱插拔監測器…</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>正在初始化 Trading Paints…</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>正在初始化設定檔…</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>正在初始化主視窗…</value>
+  </data>
+</root>

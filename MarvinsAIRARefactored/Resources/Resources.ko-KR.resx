@@ -1,0 +1,1875 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Algorithm" xml:space="preserve">
+    <value>알고리즘</value>
+  </data>
+  <data name="AppSettings" xml:space="preserve">
+    <value>앱 설정</value>
+  </data>
+  <data name="AppTitle" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App</value>
+  </data>
+  <data name="DetailBoostBias" xml:space="preserve">
+    <value>디테일 부스트 바이어스</value>
+  </data>
+  <data name="DetailBoost" xml:space="preserve">
+    <value>디테일 부스트</value>
+  </data>
+  <data name="FadeForceFeedback" xml:space="preserve">
+    <value>차량 승하차 시 포스 피드백 페이드</value>
+  </data>
+  <data name="RacingFriction" xml:space="preserve">
+    <value>레이싱 마찰</value>
+  </data>
+  <data name="Graph" xml:space="preserve">
+    <value>그래프</value>
+  </data>
+  <data name="HeaderData_UC" xml:space="preserve">
+    <value>헤더 데이터</value>
+  </data>
+  <data name="Language" xml:space="preserve">
+    <value>언어</value>
+  </data>
+  <data name="Language_UC" xml:space="preserve">
+    <value>언어</value>
+  </data>
+  <data name="DetailBooster" xml:space="preserve">
+    <value>디테일 부스터</value>
+  </data>
+  <data name="DeltaLimiter" xml:space="preserve">
+    <value>델타 리미터</value>
+  </data>
+  <data name="MaxForce" xml:space="preserve">
+    <value>최대 포스</value>
+  </data>
+  <data name="Native60Hz" xml:space="preserve">
+    <value>네이티브 60 Hz</value>
+  </data>
+  <data name="Native360Hz" xml:space="preserve">
+    <value>네이티브 360 Hz</value>
+  </data>
+  <data name="NoFFBDevicesFound" xml:space="preserve">
+    <value>[포스 피드백 장치를 찾을 수 없음]</value>
+  </data>
+  <data name="OFF" xml:space="preserve">
+    <value>끄기</value>
+  </data>
+  <data name="Power" xml:space="preserve">
+    <value>파워</value>
+  </data>
+  <data name="RacingWheel" xml:space="preserve">
+    <value>레이싱 휠</value>
+  </data>
+  <data name="RacingWheel_UC" xml:space="preserve">
+    <value>레이싱 휠</value>
+  </data>
+  <data name="SteeringDevice" xml:space="preserve">
+    <value>스티어링 장치</value>
+  </data>
+  <data name="RecordingDevice" xml:space="preserve">
+    <value>녹음 장치</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>초기화</value>
+  </data>
+  <data name="SessionInformation_UC" xml:space="preserve">
+    <value>세션 정보</value>
+  </data>
+  <data name="Simulator" xml:space="preserve">
+    <value>시뮬레이터</value>
+  </data>
+  <data name="SimulatorNotRunning" xml:space="preserve">
+    <value>iRacing 시뮬레이터가 실행되고 있지 않습니다</value>
+  </data>
+  <data name="SoftLockStrength" xml:space="preserve">
+    <value>소프트 락 강도</value>
+  </data>
+  <data name="TelemetryData_UC" xml:space="preserve">
+    <value>텔레메트리 데이터</value>
+  </data>
+  <data name="Test" xml:space="preserve">
+    <value>테스트</value>
+  </data>
+  <data name="ThisLanguage" xml:space="preserve">
+    <value>한국어 (대한민국) - Korean (South Korea)</value>
+  </data>
+  <data name="TopmostWindow" xml:space="preserve">
+    <value>항상 위에 표시</value>
+  </data>
+  <data name="TorqueUnits" xml:space="preserve">
+    <value> Nm</value>
+  </data>
+  <data name="DetailBoosterOn60Hz" xml:space="preserve">
+    <value>디테일 부스터 (낮은 지연)</value>
+  </data>
+  <data name="AdminBoxx" xml:space="preserve">
+    <value>AdminBoxx</value>
+  </data>
+  <data name="ConnectToAdminBoxx" xml:space="preserve">
+    <value>AdminBoxx에 연결</value>
+  </data>
+  <data name="UpdateButtonMappings" xml:space="preserve">
+    <value>입력 매핑 업데이트</value>
+  </data>
+  <data name="PressTheRecordButton" xml:space="preserve">
+    <value>[녹화 버튼을 누르세요]</value>
+  </data>
+  <data name="Button" xml:space="preserve">
+    <value>버튼</value>
+  </data>
+  <data name="Click" xml:space="preserve">
+    <value>클릭</value>
+  </data>
+  <data name="Hold" xml:space="preserve">
+    <value>홀드</value>
+  </data>
+  <data name="Keyboard" xml:space="preserve">
+    <value>키보드</value>
+  </data>
+  <data name="WaitingForInput" xml:space="preserve">
+    <value>[입력 대기 중]</value>
+  </data>
+  <data name="DeltaLimit" xml:space="preserve">
+    <value>델타 한계</value>
+  </data>
+  <data name="DeltaLimitUnits" xml:space="preserve">
+    <value> Nm/s</value>
+  </data>
+  <data name="DeltaLimiterOn60Hz" xml:space="preserve">
+    <value>델타 리미터 (낮은 지연)</value>
+  </data>
+  <data name="Percent" xml:space="preserve">
+    <value>%</value>
+  </data>
+  <data name="Device_UC" xml:space="preserve">
+    <value>장치</value>
+  </data>
+  <data name="OverallStrength_UC" xml:space="preserve">
+    <value>전체 강도</value>
+  </data>
+  <data name="AutoTarget" xml:space="preserve">
+    <value>자동 타겟</value>
+  </data>
+  <data name="Clear" xml:space="preserve">
+    <value>초기화</value>
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
+    <value>컨트롤러 프로필</value>
+  </data>
+  <data name="ControllerProfiles_UC" xml:space="preserve">
+    <value>컨트롤러 프로필</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>프로필</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>프로필 이름</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>새 프로필</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>프로필 삭제</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>이 컨트롤러 프로필을 삭제하시겠습니까?</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>새 컨트롤러 프로필</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>현재 매핑 복사</value>
+  </data>
+  <data name="ButtonMappings_UC" xml:space="preserve">
+    <value>버튼 매핑</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>매핑</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>녹화</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(매핑 안 됨)</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>확인</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>취소</value>
+  </data>
+  <data name="CurrentForce" xml:space="preserve">
+    <value>현재 포스</value>
+  </data>
+  <data name="AutoMaxForce" xml:space="preserve">
+    <value>자동 최대 포스</value>
+  </data>
+  <data name="OtherFeatures_UC" xml:space="preserve">
+    <value>기타 기능</value>
+  </data>
+  <data name="Switches_UC" xml:space="preserve">
+    <value>스위치</value>
+  </data>
+  <data name="CrashProtection_UC" xml:space="preserve">
+    <value>충돌 보호</value>
+  </data>
+  <data name="GForceUnits" xml:space="preserve">
+    <value> g</value>
+  </data>
+  <data name="LongitudalGForce" xml:space="preserve">
+    <value>종방향 G-포스</value>
+  </data>
+  <data name="Duration" xml:space="preserve">
+    <value>지속 시간</value>
+  </data>
+  <data name="ForceReduction" xml:space="preserve">
+    <value>포스 감소</value>
+  </data>
+  <data name="SecondsUnits" xml:space="preserve">
+    <value> 초</value>
+  </data>
+  <data name="MPSUnits" xml:space="preserve">
+    <value> m/s</value>
+  </data>
+  <data name="CurbProtection_UC" xml:space="preserve">
+    <value>커브 보호</value>
+  </data>
+  <data name="ShockVelocity" xml:space="preserve">
+    <value>충격 속도</value>
+  </data>
+  <data name="Pedals_UC" xml:space="preserve">
+    <value>SIMAGIC 페달</value>
+  </data>
+  <data name="PedalsP1000" xml:space="preserve">
+    <value>Simagic P1000 페달</value>
+  </data>
+  <data name="PedalsP2000" xml:space="preserve">
+    <value>Simagic P2000 페달</value>
+  </data>
+  <data name="PedalsNone" xml:space="preserve">
+    <value>[호환되는 Simagic 페달을 찾을 수 없음]</value>
+  </data>
+  <data name="Clutch_UC" xml:space="preserve">
+    <value>클러치</value>
+  </data>
+  <data name="Brake_UC" xml:space="preserve">
+    <value>브레이크</value>
+  </data>
+  <data name="Throttle_UC" xml:space="preserve">
+    <value>스로틀</value>
+  </data>
+  <data name="PedalEffects" xml:space="preserve">
+    <value>페달 효과</value>
+  </data>
+  <data name="Strength" xml:space="preserve">
+    <value>강도</value>
+  </data>
+  <data name="HertzUnits" xml:space="preserve">
+    <value> Hz</value>
+  </data>
+  <data name="Frequency_UC" xml:space="preserve">
+    <value>전체 주파수</value>
+  </data>
+  <data name="Amplitude_UC" xml:space="preserve">
+    <value>전체 진폭</value>
+  </data>
+  <data name="Minimum" xml:space="preserve">
+    <value>최소</value>
+  </data>
+  <data name="Maximum" xml:space="preserve">
+    <value>최대</value>
+  </data>
+  <data name="Curve" xml:space="preserve">
+    <value>커브</value>
+  </data>
+  <data name="GearChange" xml:space="preserve">
+    <value>기어 변속</value>
+  </data>
+  <data name="ClutchSlip_UC" xml:space="preserve">
+    <value>클러치 슬립</value>
+  </data>
+  <data name="SteeringEffects_UC" xml:space="preserve">
+    <value>스티어링 효과</value>
+  </data>
+  <data name="SteeringEffects" xml:space="preserve">
+    <value>스티어링 효과</value>
+  </data>
+  <data name="WheelLock_UC" xml:space="preserve">
+    <value>휠 락</value>
+  </data>
+  <data name="WheelSpin_UC" xml:space="preserve">
+    <value>휠 스핀</value>
+  </data>
+  <data name="RPM_UC" xml:space="preserve">
+    <value>RPM</value>
+  </data>
+  <data name="ShiftRPM_UC" xml:space="preserve">
+    <value>변속 RPM</value>
+  </data>
+  <data name="None" xml:space="preserve">
+    <value>없음</value>
+  </data>
+  <data name="PerWheelbase" xml:space="preserve">
+    <value>휠베이스별</value>
+  </data>
+  <data name="PerCar" xml:space="preserve">
+    <value>차량별</value>
+  </data>
+  <data name="PerTrack" xml:space="preserve">
+    <value>트랙별</value>
+  </data>
+  <data name="PerTrackConfiguration" xml:space="preserve">
+    <value>트랙 구성별</value>
+  </data>
+  <data name="PerWetDry" xml:space="preserve">
+    <value>젖음/마름별</value>
+  </data>
+  <data name="Wet" xml:space="preserve">
+    <value>젖음</value>
+  </data>
+  <data name="Dry" xml:space="preserve">
+    <value>마름</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>기본값</value>
+  </data>
+  <data name="SaveThisSetting" xml:space="preserve">
+    <value>이 설정 저장</value>
+  </data>
+  <data name="NewVersionAvailable" xml:space="preserve">
+    <value>새 버전이 있습니다!</value>
+  </data>
+  <data name="DownloadQuestion" xml:space="preserve">
+    <value>지금 다운로드하시겠습니까?</value>
+  </data>
+  <data name="RunInstaller" xml:space="preserve">
+    <value>설치 프로그램을 실행하시겠습니까?</value>
+  </data>
+  <data name="RunInstallerQuestion" xml:space="preserve">
+    <value>지금 설치 프로그램을 실행하시겠습니까?</value>
+  </data>
+  <data name="CheckForUpdates" xml:space="preserve">
+    <value>시작 시 업데이트 확인</value>
+  </data>
+  <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
+    <value>앱 시작 시 AdminBoxx에 연결</value>
+  </data>
+  <data name="EnableXsrcIntegration" xml:space="preserve">
+    <value>Xtreme Scoring Race Control 통합 활성화</value>
+  </data>
+  <data name="Brightness" xml:space="preserve">
+    <value>밝기</value>
+  </data>
+  <data name="Volume" xml:space="preserve">
+    <value>볼륨</value>
+  </data>
+  <data name="DeltaLimiterBias" xml:space="preserve">
+    <value>델타 리미터 바이어스</value>
+  </data>
+  <data name="Output_UC" xml:space="preserve">
+    <value>출력</value>
+  </data>
+  <data name="WheelLFE_UC" xml:space="preserve">
+    <value>휠 LFE</value>
+  </data>
+  <data name="LFERecordingDevice" xml:space="preserve">
+    <value>LFE 녹음 장치</value>
+  </data>
+  <data name="InputTorque60Hz" xml:space="preserve">
+    <value>입력 토크 (60 Hz)</value>
+  </data>
+  <data name="InputTorque" xml:space="preserve">
+    <value>입력 토크</value>
+  </data>
+  <data name="OutputTorque" xml:space="preserve">
+    <value>출력 토크</value>
+  </data>
+  <data name="TimerJitter" xml:space="preserve">
+    <value>타이머 지터</value>
+  </data>
+  <data name="InputLFE" xml:space="preserve">
+    <value>입력 LFE</value>
+  </data>
+  <data name="ABSEngaged_UC" xml:space="preserve">
+    <value>ABS 작동</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>[비활성화됨]</value>
+  </data>
+  <data name="RememberWindowPositionAndSize" xml:space="preserve">
+    <value>창 위치 및 크기 기억</value>
+  </data>
+  <data name="FadeWithBrake" xml:space="preserve">
+    <value>브레이크에 따라 페이드</value>
+  </data>
+  <data name="StartingRPM" xml:space="preserve">
+    <value>시작 RPM</value>
+  </data>
+  <data name="VibrateInTopGear" xml:space="preserve">
+    <value>최고 기어에서 진동</value>
+  </data>
+  <data name="FadeWithThrottle" xml:space="preserve">
+    <value>스로틀에 따라 페이드</value>
+  </data>
+  <data name="Pulsate" xml:space="preserve">
+    <value>맥동</value>
+  </data>
+  <data name="StartingPoint" xml:space="preserve">
+    <value>시작점</value>
+  </data>
+  <data name="EndingPoint" xml:space="preserve">
+    <value>끝점</value>
+  </data>
+  <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
+    <value>기어 변속 - 기어 넣기</value>
+  </data>
+  <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
+    <value>기어 변속 - 중립으로</value>
+  </data>
+  <data name="AlwaysEnableFFB" xml:space="preserve">
+    <value>iRacing 시뮬레이터 FFB가 켜져 있어도 FFB 활성화</value>
+  </data>
+  <data name="ClutchPedalHaptics" xml:space="preserve">
+    <value>클러치 페달 햅틱</value>
+  </data>
+  <data name="BrakePedalHaptics" xml:space="preserve">
+    <value>브레이크 페달 햅틱</value>
+  </data>
+  <data name="ThrottlePedalHaptics" xml:space="preserve">
+    <value>스로틀 페달 햅틱</value>
+  </data>
+  <data name="NoiseDamper" xml:space="preserve">
+    <value>노이즈 댐퍼</value>
+  </data>
+  <data name="AppWindow_UC" xml:space="preserve">
+    <value>앱 창</value>
+  </data>
+  <data name="LightTheme" xml:space="preserve">
+    <value>라이트 테마</value>
+  </data>
+  <data name="UIScale" xml:space="preserve">
+    <value>UI 배율</value>
+  </data>
+  <data name="CloudService_UC" xml:space="preserve">
+    <value>클라우드 서비스</value>
+  </data>
+  <data name="CheckNow" xml:space="preserve">
+    <value>지금 확인</value>
+  </data>
+  <data name="CheckingForUpdate" xml:space="preserve">
+    <value>업데이트 확인 중...</value>
+  </data>
+  <data name="DownloadingUpdate" xml:space="preserve">
+    <value>업데이트 다운로드 중...</value>
+  </data>
+  <data name="Contribute_UC" xml:space="preserve">
+    <value>기여</value>
+  </data>
+  <data name="BuyMeACoffee" xml:space="preserve">
+    <value>커피 한 잔 사주기</value>
+  </data>
+  <data name="DonationsText" xml:space="preserve">
+    <value>기부는 전적으로 선택 사항입니다. MAIRA 사용에 대해 어떤 비용도 청구하지 않습니다. 그렇긴 하지만 기부는 저를 따뜻하고 뿌듯하게 만들어 주며, MAIRA 개발을 계속하는 데 큰 동기가 됩니다. 이미 기부해 주신 모든 분들께 진심으로 감사드립니다!</value>
+  </data>
+  <data name="Donate_UC" xml:space="preserve">
+    <value>기부</value>
+  </data>
+  <data name="Donors_UC" xml:space="preserve">
+    <value>기부자</value>
+  </data>
+  <data name="SuperDonors_UC" xml:space="preserve">
+    <value>슈퍼 기부자</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>기부</value>
+  </data>
+  <data name="CodeContributions_UC" xml:space="preserve">
+    <value>코드 기여</value>
+  </data>
+  <data name="TranslationContributions_UC" xml:space="preserve">
+    <value>번역 기여</value>
+  </data>
+  <data name="CodeContributionsText" xml:space="preserve">
+    <value>C# 개발자이신가요? 이 프로젝트는 기여를 환영합니다. GitHub 저장소를 방문하여 자세히 알아보세요.</value>
+  </data>
+  <data name="TranslationContributionsText" xml:space="preserve">
+    <value>MarvinsAIRA를 수많은 언어로 번역하기 위해 시간과 재능을 자원해 주신 여기 명단의 모든 분들께 진심으로 감사드립니다. 여러분의 노력 덕분에 이 앱이 전 세계 심 레이서들에게 다가갈 수 있었습니다. 이제 번역은 기계가 자동으로 처리하므로 추가 번역 도움은 필요하지 않지만, 이 기여자분들께는 언제나 깊은 감사를 드립니다.</value>
+  </data>
+  <data name="GitHubRepository" xml:space="preserve">
+    <value>GitHub 저장소</value>
+  </data>
+  <data name="Contributors" xml:space="preserve">
+    <value>기여자</value>
+  </data>
+  <data name="ShowWindow" xml:space="preserve">
+    <value>창 표시</value>
+  </data>
+  <data name="ShowSplashScreen" xml:space="preserve">
+    <value>시작 시 스플래시 화면 표시</value>
+  </data>
+  <data name="ExitApp" xml:space="preserve">
+    <value>앱 종료</value>
+  </data>
+  <data name="MinimizeInsteadOfClosing" xml:space="preserve">
+    <value>닫는 대신 최소화</value>
+  </data>
+  <data name="MinimizeToSystemTray" xml:space="preserve">
+    <value>시스템 트레이로 최소화</value>
+  </data>
+  <data name="StartMinimized" xml:space="preserve">
+    <value>최소화된 상태로 시작</value>
+  </data>
+  <data name="StartWithWindows" xml:space="preserve">
+    <value>Windows 시작 시 실행</value>
+  </data>
+  <data name="TotalCompressionRate" xml:space="preserve">
+    <value>전체 압축률</value>
+  </data>
+  <data name="SlewCompressionThreshold" xml:space="preserve">
+    <value>슬루 임계값</value>
+  </data>
+  <data name="SlewCompressionRate" xml:space="preserve">
+    <value>슬루 압축률</value>
+  </data>
+  <data name="TotalCompressionThreshold" xml:space="preserve">
+    <value>전체 임계값</value>
+  </data>
+  <data name="SlewUnits" xml:space="preserve">
+    <value> Nm/ms</value>
+  </data>
+  <data name="WheelForce" xml:space="preserve">
+    <value>휠 포스</value>
+  </data>
+  <data name="Set" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="Preview_UC" xml:space="preserve">
+    <value>미리보기</value>
+  </data>
+  <data name="NoRecordingsFound" xml:space="preserve">
+    <value>[녹음을 찾을 수 없음]</value>
+  </data>
+  <data name="SimpleMode" xml:space="preserve">
+    <value>간단 모드 활성화</value>
+  </data>
+  <data name="Sensitivity" xml:space="preserve">
+    <value>감도</value>
+  </data>
+  <data name="SlewAndTotalCompression" xml:space="preserve">
+    <value>슬루 및 전체 압축</value>
+  </data>
+  <data name="DiscordModerators_UC" xml:space="preserve">
+    <value>DISCORD 운영자</value>
+  </data>
+  <data name="DiscordModeratorsText" xml:space="preserve">
+    <value>MAIRA 사용자들이 제기하는 수많은 질문에 답변해 주어 제가 MAIRA 개발에 더 집중할 시간을 가질 수 있도록 도와주신 자원봉사 운영자분들께 감사드립니다!</value>
+  </data>
+  <data name="AdminBoxxIsUpdating" xml:space="preserve">
+    <value>AdminBoxx 펌웨어를 업데이트하는 중입니다</value>
+  </data>
+  <data name="AllowSuperStrength" xml:space="preserve">
+    <value>최대 200% 강도 허용 (위험할 수 있음)</value>
+  </data>
+  <data name="ON" xml:space="preserve">
+    <value>켜기</value>
+  </data>
+  <data name="Sounds_UC" xml:space="preserve">
+    <value>사운드</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>활성화됨</value>
+  </data>
+  <data name="FrequencyRatio" xml:space="preserve">
+    <value>피치</value>
+  </data>
+  <data name="Fade" xml:space="preserve">
+    <value>페이드</value>
+  </data>
+  <data name="SendChatMessages" xml:space="preserve">
+    <value>드라이버에게 비공개 채팅 메시지 전송</value>
+  </data>
+  <data name="Degrees" xml:space="preserve">
+    <value>°</value>
+  </data>
+  <data name="Master_UC" xml:space="preserve">
+    <value>마스터</value>
+  </data>
+  <data name="CrashProtectionActivated" xml:space="preserve">
+    <value>충돌 보호가 활성화되었습니다!</value>
+  </data>
+  <data name="CurbProtectionActivated" xml:space="preserve">
+    <value>커브 보호가 활성화되었습니다!</value>
+  </data>
+  <data name="PrivateMessages_UC" xml:space="preserve">
+    <value>비공개 메시지</value>
+  </data>
+  <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
+    <value>커브 보호 메시지 활성화</value>
+  </data>
+  <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
+    <value>충돌 보호 메시지 활성화</value>
+  </data>
+  <data name="InputMappedSettingUpdateEnabled" xml:space="preserve">
+    <value>입력 매핑 설정 업데이트 메시지 활성화</value>
+  </data>
+  <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
+    <value>Centripetal Circuit 트랙에 있지 않습니다</value>
+  </data>
+  <data name="RunCalibration" xml:space="preserve">
+    <value>보정 실행</value>
+  </data>
+  <data name="StopCalibration" xml:space="preserve">
+    <value>보정 중지</value>
+  </data>
+  <data name="SteeringWheelLeft" xml:space="preserve">
+    <value>스티어링 휠 왼쪽</value>
+  </data>
+  <data name="SteeringWheelCenter" xml:space="preserve">
+    <value>스티어링 휠 중앙</value>
+  </data>
+  <data name="SteeringWheelRight" xml:space="preserve">
+    <value>스티어링 휠 오른쪽</value>
+  </data>
+  <data name="SteeringWheel90Left" xml:space="preserve">
+    <value>스티어링 휠 90° 왼쪽</value>
+  </data>
+  <data name="MinThrottle" xml:space="preserve">
+    <value>최소 스로틀</value>
+  </data>
+  <data name="MaxThrottle" xml:space="preserve">
+    <value>최대 스로틀</value>
+  </data>
+  <data name="ShiftUp" xml:space="preserve">
+    <value>기어 올리기</value>
+  </data>
+  <data name="ShiftDown" xml:space="preserve">
+    <value>기어 내리기</value>
+  </data>
+  <data name="MinBrake" xml:space="preserve">
+    <value>최소 브레이크</value>
+  </data>
+  <data name="MaxBrake" xml:space="preserve">
+    <value>최대 브레이크</value>
+  </data>
+  <data name="GripOMeter_UC" xml:space="preserve">
+    <value>그립-오-미터</value>
+  </data>
+  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>언더스티어 휠 진동 효과</value>
+  </data>
+  <data name="Progress:" xml:space="preserve">
+    <value>진행률:</value>
+  </data>
+  <data name="CalibrationFileNotSelected" xml:space="preserve">
+    <value>[보정 파일이 선택되지 않음]</value>
+  </data>
+  <data name="ParkedEffects_UC" xml:space="preserve">
+    <value>정차 효과</value>
+  </data>
+  <data name="ForceFeedbackStrength" xml:space="preserve">
+    <value>포스 피드백 강도</value>
+  </data>
+  <data name="WheelCenteringStrength" xml:space="preserve">
+    <value>휠 센터링 강도</value>
+  </data>
+  <data name="CenterWheelWhileRacing" xml:space="preserve">
+    <value>레이싱 중 휠 센터링</value>
+  </data>
+  <data name="CenterWheelWhileParked" xml:space="preserve">
+    <value>정차 중 휠 센터링</value>
+  </data>
+  <data name="ParkedFriction" xml:space="preserve">
+    <value>정차 마찰</value>
+  </data>
+  <data name="CurrentCarSetup" xml:space="preserve">
+    <value>현재 차량 셋업:</value>
+  </data>
+  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>언더스티어 페달 진동 효과</value>
+  </data>
+  <data name="ErrorTitle" xml:space="preserve">
+    <value>문제가 발생했습니다</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>세부 정보</value>
+  </data>
+  <data name="ClassicMAIRAIsRunning" xml:space="preserve">
+    <value>클래식 MAIRA가 현재 실행 중입니다. 이 버전의 MAIRA를 실행하기 전에 클래식 MAIRA를 종료하세요!</value>
+  </data>
+  <data name="ExceptionThrown" xml:space="preserve">
+    <value>예외가 발생했습니다</value>
+  </data>
+  <data name="KPHUnits" xml:space="preserve">
+    <value> KPH</value>
+  </data>
+  <data name="CalibrationFilesText" xml:space="preserve">
+    <value>자신이 가장 좋아하는 일부 차량에 스티어링 효과 보정을 실행하고 그 보정 파일을 업로드하는 데 소중한 시간을 너그럽게 내어 주신 분들입니다!</value>
+  </data>
+  <data name="DegreesPerSecond" xml:space="preserve">
+    <value>°/s</value>
+  </data>
+  <data name="CalibrationFile_UC" xml:space="preserve">
+    <value>보정 파일</value>
+  </data>
+  <data name="Understeer_UC" xml:space="preserve">
+    <value>언더스티어</value>
+  </data>
+  <data name="Oversteer_UC" xml:space="preserve">
+    <value>오버스티어</value>
+  </data>
+  <data name="MinimumThreshold" xml:space="preserve">
+    <value>최소 임계값</value>
+  </data>
+  <data name="MaximumThreshold" xml:space="preserve">
+    <value>최대 임계값</value>
+  </data>
+  <data name="MinimumFrequency" xml:space="preserve">
+    <value>최소 주파수</value>
+  </data>
+  <data name="MaximumFrequency" xml:space="preserve">
+    <value>최대 주파수</value>
+  </data>
+  <data name="Calibration_UC" xml:space="preserve">
+    <value>보정</value>
+  </data>
+  <data name="VibrationPattern" xml:space="preserve">
+    <value>진동 패턴</value>
+  </data>
+  <data name="SineWave" xml:space="preserve">
+    <value>사인파</value>
+  </data>
+  <data name="SquareWave" xml:space="preserve">
+    <value>사각파</value>
+  </data>
+  <data name="TriangleWave" xml:space="preserve">
+    <value>삼각파</value>
+  </data>
+  <data name="SawtoothWaveIn" xml:space="preserve">
+    <value>톱니파 (인)</value>
+  </data>
+  <data name="SawtoothWaveOut" xml:space="preserve">
+    <value>톱니파 (아웃)</value>
+  </data>
+  <data name="DecreaseForce" xml:space="preserve">
+    <value>포스 감소</value>
+  </data>
+  <data name="IncreaseForce" xml:space="preserve">
+    <value>포스 증가</value>
+  </data>
+  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>언더스티어 휠 일정 포스 효과</value>
+  </data>
+  <data name="Direction" xml:space="preserve">
+    <value>방향</value>
+  </data>
+  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
+    <value>오버스티어 휠 진동 효과</value>
+  </data>
+  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>오버스티어 휠 일정 포스 효과</value>
+  </data>
+  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
+    <value>오버스티어 페달 진동 효과</value>
+  </data>
+  <data name="UndersteerEffect" xml:space="preserve">
+    <value>언더스티어 효과</value>
+  </data>
+  <data name="OversteerEffect" xml:space="preserve">
+    <value>오버스티어 효과</value>
+  </data>
+  <data name="ConfigurationFileIsInvalid" xml:space="preserve">
+    <value>구성 파일이 유효하지 않습니다!</value>
+  </data>
+  <data name="SpeechToText" xml:space="preserve">
+    <value>자막</value>
+  </data>
+  <data name="OverlayWindow_UC" xml:space="preserve">
+    <value>오버레이 창</value>
+  </data>
+  <data name="ManageOverlayWindow" xml:space="preserve">
+    <value>오버레이 창 관리</value>
+  </data>
+  <data name="AllOverlays_UC" xml:space="preserve">
+    <value>모든 오버레이</value>
+  </data>
+  <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
+    <value>편집 모드 활성화</value>
+  </data>
+  <data name="ShowWhenOffTrack" xml:space="preserve">
+    <value>트랙 밖에 있을 때 표시</value>
+  </data>
+  <data name="ShowInReplayMode" xml:space="preserve">
+    <value>리플레이 모드에서 표시</value>
+  </data>
+  <data name="ResetAllOverlayWindows" xml:space="preserve">
+    <value>모든 오버레이 창 초기화</value>
+  </data>
+  <data name="FFBDeviceNotSelected" xml:space="preserve">
+    <value>[포스 피드백 장치가 선택되지 않음]</value>
+  </data>
+  <data name="Algorithm_UC" xml:space="preserve">
+    <value>알고리즘</value>
+  </data>
+  <data name="ReadyToDonate" xml:space="preserve">
+    <value>기부할 준비가 되셨나요?</value>
+  </data>
+  <data name="Contribute" xml:space="preserve">
+    <value>기여</value>
+  </data>
+  <data name="CalibrationFileContributions_UC" xml:space="preserve">
+    <value>보정 파일 기여</value>
+  </data>
+  <data name="AppSettings_UC" xml:space="preserve">
+    <value>앱 설정</value>
+  </data>
+  <data name="Wizard_UC" xml:space="preserve">
+    <value>마법사</value>
+  </data>
+  <data name="LaunchWizard" xml:space="preserve">
+    <value>마법사 실행</value>
+  </data>
+  <data name="Simulator_UC" xml:space="preserve">
+    <value>시뮬레이터</value>
+  </data>
+  <data name="Graph_UC" xml:space="preserve">
+    <value>그래프</value>
+  </data>
+  <data name="SpeechToText_UC" xml:space="preserve">
+    <value>자막</value>
+  </data>
+  <data name="Changelog" xml:space="preserve">
+    <value>변경 사항</value>
+  </data>
+  <data name="ABSEngaged" xml:space="preserve">
+    <value>ABS 작동</value>
+  </data>
+  <data name="Amplitude" xml:space="preserve">
+    <value>진폭</value>
+  </data>
+  <data name="ClutchSlip" xml:space="preserve">
+    <value>클러치 슬립</value>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>주파수</value>
+  </data>
+  <data name="RPM" xml:space="preserve">
+    <value>RPM</value>
+  </data>
+  <data name="ShiftRPM" xml:space="preserve">
+    <value>변속 RPM</value>
+  </data>
+  <data name="Sounds" xml:space="preserve">
+    <value>사운드</value>
+  </data>
+  <data name="Pedals" xml:space="preserve">
+    <value>Simagic 페달</value>
+  </data>
+  <data name="WheelLock" xml:space="preserve">
+    <value>휠 락</value>
+  </data>
+  <data name="WheelSpin" xml:space="preserve">
+    <value>휠 스핀</value>
+  </data>
+  <data name="GripOMeter" xml:space="preserve">
+    <value>그립-오-미터</value>
+  </data>
+  <data name="MPHUnits" xml:space="preserve">
+    <value> MPH</value>
+  </data>
+  <data name="Wind_UC" xml:space="preserve">
+    <value>태풍 바람</value>
+  </data>
+  <data name="Wind" xml:space="preserve">
+    <value>태풍 바람</value>
+  </data>
+  <data name="SeatBeltTensioner_UC" xml:space="preserve">
+    <value>안전벨트 텐셔너</value>
+  </data>
+  <data name="SeatBeltTensioner" xml:space="preserve">
+    <value>안전벨트 텐셔너</value>
+  </data>
+  <data name="ConnectToSBT" xml:space="preserve">
+    <value>MAIRA 안전벨트 텐셔너에 연결</value>
+  </data>
+  <data name="ConnectToSBTOnStartup" xml:space="preserve">
+    <value>앱 시작 시 MAIRA 안전벨트 텐셔너에 연결</value>
+  </data>
+  <data name="MinimumAngle" xml:space="preserve">
+    <value>최소 각도</value>
+  </data>
+  <data name="NeutralAngle" xml:space="preserve">
+    <value>중립 각도</value>
+  </data>
+  <data name="MaximumAngle" xml:space="preserve">
+    <value>최대 각도</value>
+  </data>
+  <data name="MaxGForce" xml:space="preserve">
+    <value>최대 G 포스</value>
+  </data>
+  <data name="SubtractGravity" xml:space="preserve">
+    <value>중력 빼기</value>
+  </data>
+  <data name="AxisMode" xml:space="preserve">
+    <value>모드</value>
+  </data>
+  <data name="AxisModeDisabled" xml:space="preserve">
+    <value>비활성화됨</value>
+  </data>
+  <data name="AxisModeNormal" xml:space="preserve">
+    <value>정상</value>
+  </data>
+  <data name="AxisModeInverted" xml:space="preserve">
+    <value>반전</value>
+  </data>
+  <data name="DeadZone" xml:space="preserve">
+    <value>데드 존</value>
+  </data>
+  <data name="Smoothing" xml:space="preserve">
+    <value>스무딩</value>
+  </data>
+  <data name="MinG" xml:space="preserve">
+    <value>최소 G</value>
+  </data>
+  <data name="MaxG" xml:space="preserve">
+    <value>최대 G</value>
+  </data>
+  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
+    <value>체감 효과</value>
+  </data>
+  <data name="VibrationEffects_UC" xml:space="preserve">
+    <value>진동 효과</value>
+  </data>
+  <data name="ABSWheelLock" xml:space="preserve">
+    <value>ABS / 휠 락</value>
+  </data>
+  <data name="WheelSlip" xml:space="preserve">
+    <value>휠 슬립</value>
+  </data>
+  <data name="RumbleStrip" xml:space="preserve">
+    <value>럼블 스트립</value>
+  </data>
+  <data name="Surge_UC" xml:space="preserve">
+    <value>서지</value>
+  </data>
+  <data name="Sway_UC" xml:space="preserve">
+    <value>스웨이</value>
+  </data>
+  <data name="Heave_UC" xml:space="preserve">
+    <value>히브</value>
+  </data>
+  <data name="MotorOutput_UC" xml:space="preserve">
+    <value>모터 출력</value>
+  </data>
+  <data name="LeftShoulder" xml:space="preserve">
+    <value>왼쪽 어깨</value>
+  </data>
+  <data name="RightShoulder" xml:space="preserve">
+    <value>오른쪽 어깨</value>
+  </data>
+  <data name="MaxMotorSpeed" xml:space="preserve">
+    <value>최대 모터 속도</value>
+  </data>
+  <data name="InvertedArms" xml:space="preserve">
+    <value>반전된 팔</value>
+  </data>
+  <data name="ConnectToWindOnStartup" xml:space="preserve">
+    <value>앱 시작 시 MAIRA Wind에 연결</value>
+  </data>
+  <data name="ConnectToWind" xml:space="preserve">
+    <value>MAIRA Wind에 연결</value>
+  </data>
+  <data name="LeftFan" xml:space="preserve">
+    <value>왼쪽 팬</value>
+  </data>
+  <data name="RightFan" xml:space="preserve">
+    <value>오른쪽 팬</value>
+  </data>
+  <data name="Connection_UC" xml:space="preserve">
+    <value>연결</value>
+  </data>
+  <data name="Settings_UC" xml:space="preserve">
+    <value>설정</value>
+  </data>
+  <data name="MasterWindPower" xml:space="preserve">
+    <value>마스터 바람 세기</value>
+  </data>
+  <data name="MinimumSpeed" xml:space="preserve">
+    <value>최소 속도</value>
+  </data>
+  <data name="WindCurving" xml:space="preserve">
+    <value>바람 커브</value>
+  </data>
+  <data name="FanPower_UC" xml:space="preserve">
+    <value>팬 세기</value>
+  </data>
+  <data name="Speed" xml:space="preserve">
+    <value>속도</value>
+  </data>
+  <data name="FanPower" xml:space="preserve">
+    <value>팬 세기</value>
+  </data>
+  <data name="DeviceNotFound" xml:space="preserve">
+    <value>장치 없음</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>재시도</value>
+  </data>
+  <data name="IRacingPaintFolder" xml:space="preserve">
+    <value>iRacing 페인트 폴더</value>
+  </data>
+  <data name="MaxDownloadSpeed" xml:space="preserve">
+    <value>최대 다운로드 속도</value>
+  </data>
+  <data name="TradingPaints" xml:space="preserve">
+    <value>Trading Paints</value>
+  </data>
+  <data name="TradingPaints_UC" xml:space="preserve">
+    <value>TRADING PAINTS</value>
+  </data>
+  <data name="TradingPaintsDisclaimer" xml:space="preserve">
+    <value>Marvin's Awesome iRacing App (MAIRA)는 Trading Paints와 제휴되어 있지 않습니다</value>
+  </data>
+  <data name="MultiAdjustmentToolkit" xml:space="preserve">
+    <value>멀티 조정 툴킷</value>
+  </data>
+  <data name="TorqueCompression" xml:space="preserve">
+    <value>토크 압축</value>
+  </data>
+  <data name="SlewRateReduction" xml:space="preserve">
+    <value>슬루율 감소</value>
+  </data>
+  <data name="SoftClipping" xml:space="preserve">
+    <value>소프트 클리핑</value>
+  </data>
+  <data name="DetailGain" xml:space="preserve">
+    <value>디테일 게인 +/- 조정</value>
+  </data>
+  <data name="OutputSmoothing" xml:space="preserve">
+    <value>출력 스무딩</value>
+  </data>
+  <data name="SeatOfPants_UC" xml:space="preserve">
+    <value>체감</value>
+  </data>
+  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
+    <value>체감 휠 진동 효과</value>
+  </data>
+  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
+    <value>체감 휠 일정 포스 효과</value>
+  </data>
+  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
+    <value>체감 페달 진동 효과</value>
+  </data>
+  <data name="SeatOfPantsEffect" xml:space="preserve">
+    <value>체감 효과</value>
+  </data>
+  <data name="LateralAcceleration" xml:space="preserve">
+    <value>횡방향 가속도 (Ay)</value>
+  </data>
+  <data name="LateralVelocity" xml:space="preserve">
+    <value>횡방향 속도 (Vy)</value>
+  </data>
+  <data name="RatioOfVelocities" xml:space="preserve">
+    <value>속도 비율 (Vy/Vx)</value>
+  </data>
+  <data name="DefaultPage_UC" xml:space="preserve">
+    <value>기본 페이지</value>
+  </data>
+  <data name="Effects_UC" xml:space="preserve">
+    <value>효과</value>
+  </data>
+  <data name="Audio_UC" xml:space="preserve">
+    <value>오디오</value>
+  </data>
+  <data name="Display_UC" xml:space="preserve">
+    <value>디스플레이</value>
+  </data>
+  <data name="AdminBoxx_UC" xml:space="preserve">
+    <value>ADMINBOXX</value>
+  </data>
+  <data name="Click_UC" xml:space="preserve">
+    <value>클릭</value>
+  </data>
+  <data name="AllowSoundsDuringReplays" xml:space="preserve">
+    <value>리플레이 중 사운드 허용</value>
+  </data>
+  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+    <value>브레이크 + 스로틀 경고</value>
+  </data>
+  <data name="FfbClipping_UC" xml:space="preserve">
+    <value>FFB 클리핑</value>
+  </data>
+  <data name="PedalsP500" xml:space="preserve">
+    <value>Simagic P500 페달</value>
+  </data>
+  <data name="PedalsPrototype" xml:space="preserve">
+    <value>프로토타입 페달</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>도움말</value>
+  </data>
+  <data name="Help_UC" xml:space="preserve">
+    <value>도움말</value>
+  </data>
+  <data name="Documentation_UC" xml:space="preserve">
+    <value>문서</value>
+  </data>
+  <data name="Discord_UC" xml:space="preserve">
+    <value>DISCORD</value>
+  </data>
+  <data name="Forums_UC" xml:space="preserve">
+    <value>포럼</value>
+  </data>
+  <data name="DocumentationWebsite" xml:space="preserve">
+    <value>문서 웹사이트</value>
+  </data>
+  <data name="DiscordServer" xml:space="preserve">
+    <value>Discord 서버</value>
+  </data>
+  <data name="iRacingForums" xml:space="preserve">
+    <value>iRacing 포럼</value>
+  </data>
+  <data name="DocumentationText" xml:space="preserve">
+    <value>이 문서 웹사이트는 항상 작업이 진행 중인 상태입니다. 이 앱에는 항상 새로운 기능이 추가되고 있기 때문입니다. 가능한 한 자주 문서를 업데이트하지만, 찾으시는 정보가 아직 없다면 Discord 서버나 iRacing 포럼에서 질문에 대한 답을 찾아보실 수 있습니다.</value>
+  </data>
+  <data name="DiscordText" xml:space="preserve">
+    <value>MAIRA Discord 서버는 문서에서 찾을 수 없는 질문에 대한 답을 가장 빠르게 얻을 수 있는 방법입니다. 자원봉사자들이 도움을 주고 있으며, 저도 도움을 드리려고 노력합니다.</value>
+  </data>
+  <data name="ForumsText" xml:space="preserve">
+    <value>여기서 모든 것이 시작되었습니다. 여기서 답을 찾아볼 수 있지만, 예전만큼 활발히 활동하지는 않습니다. Discord 서버를 방문하는 것이 질문하는 가장 좋은 방법입니다.</value>
+  </data>
+  <data name="PedalsP700" xml:space="preserve">
+    <value>Simagic P700 페달</value>
+  </data>
+  <data name="FanStatus_UC" xml:space="preserve">
+    <value>팬 상태</value>
+  </data>
+  <data name="Multi360HzDetail" xml:space="preserve">
+    <value>360 Hz 디테일</value>
+  </data>
+  <data name="SlewPeakMode" xml:space="preserve">
+    <value>피크 인식 슬루 감소</value>
+  </data>
+  <data name="HybridVariable30" xml:space="preserve">
+    <value>60 Hz 위 360 Hz, 10-30% 바이어스</value>
+  </data>
+  <data name="Hybrid10" xml:space="preserve">
+    <value>60 Hz 위 360 Hz, 10% 바이어스</value>
+  </data>
+  <data name="DefaultsNative60Hz" xml:space="preserve">
+    <value>(기본값) 네이티브 60 Hz</value>
+  </data>
+  <data name="DefaultsHybridVariable30" xml:space="preserve">
+    <value>(기본값) 60 Hz 위 360 Hz, 10-30% 바이어스</value>
+  </data>
+  <data name="DefaultsHybrid10" xml:space="preserve">
+    <value>(기본값) 60 Hz 위 360 Hz, 10% 바이어스</value>
+  </data>
+  <data name="DefaultsNative360Hz" xml:space="preserve">
+    <value>(기본값) 네이티브 360 Hz</value>
+  </data>
+  <data name="PresetBasicFFB" xml:space="preserve">
+    <value>(프리셋) 핵심 타이어 피드백, 최소 노면 디테일</value>
+  </data>
+  <data name="PresetBalancedFFB" xml:space="preserve">
+    <value>(프리셋) 핵심 타이어 피드백, 적당한 노면 디테일</value>
+  </data>
+  <data name="PresetBoostDetail" xml:space="preserve">
+    <value>(프리셋) FFB 다이내믹스 적당히 부스트</value>
+  </data>
+  <data name="PresetReduceDetail" xml:space="preserve">
+    <value>(프리셋) FFB 다이내믹스 적당히 감소</value>
+  </data>
+  <data name="FFBSource" xml:space="preserve">
+    <value>FFB 유형 + 프리셋</value>
+  </data>
+  <data name="LateralGForce" xml:space="preserve">
+    <value>횡방향 G-포스</value>
+  </data>
+  <data name="POV" xml:space="preserve">
+    <value>POV</value>
+  </data>
+  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
+    <value>이 효과가 작동하려면 보정 파일을 선택해야 합니다.</value>
+  </data>
+  <data name="PredictionMode" xml:space="preserve">
+    <value>예측 모드</value>
+  </data>
+  <data name="PredictK1" xml:space="preserve">
+    <value>K1 (1/60초 앞 예측)</value>
+  </data>
+  <data name="PredictK2" xml:space="preserve">
+    <value>K2 (2/60초 앞 예측)</value>
+  </data>
+  <data name="PredictionBlend" xml:space="preserve">
+    <value>예측 블렌드</value>
+  </data>
+  <data name="FFBIsDisabled" xml:space="preserve">
+    <value>포스 피드백이 수동으로 꺼졌습니다 (비상 정지)</value>
+  </data>
+  <data name="SimModeIsNotFull" xml:space="preserve">
+    <value>iRacing 시뮬레이터가 리플레이 모드입니다</value>
+  </data>
+  <data name="FFBIsEnabledInSimulator" xml:space="preserve">
+    <value>iRacing 시뮬레이터에서 포스 피드백이 활성화되어 있습니다</value>
+  </data>
+  <data name="CalibrationIsRunning" xml:space="preserve">
+    <value>보정이 실행 중이어서 FFB가 비활성화되었습니다</value>
+  </data>
+  <data name="GearChangeVibrateStrength" xml:space="preserve">
+    <value>기어 변속 진동 강도</value>
+  </data>
+  <data name="ABSVibrateStrength" xml:space="preserve">
+    <value>ABS 진동 강도</value>
+  </data>
+  <data name="GapMonitor" xml:space="preserve">
+    <value>갭 모니터</value>
+  </data>
+  <data name="Overlays_UC" xml:space="preserve">
+    <value>오버레이</value>
+  </data>
+  <data name="GapMonitor_UC" xml:space="preserve">
+    <value>갭 모니터</value>
+  </data>
+  <data name="DeltaMonitor" xml:space="preserve">
+    <value>델타 모니터</value>
+  </data>
+  <data name="DeltaMonitor_UC" xml:space="preserve">
+    <value>델타 모니터</value>
+  </data>
+  <data name="DeltaMonitorLapTime" xml:space="preserve">
+    <value>랩</value>
+  </data>
+  <data name="DeltaMonitorVsLastLap" xml:space="preserve">
+    <value>이전 대비</value>
+  </data>
+  <data name="DeltaMonitorVsLeader" xml:space="preserve">
+    <value>P1 대비</value>
+  </data>
+  <data name="Overlays" xml:space="preserve">
+    <value>오버레이</value>
+  </data>
+  <data name="ShowOverlayWindowTitle" xml:space="preserve">
+    <value>오버레이 창 제목 표시</value>
+  </data>
+  <data name="OverlaySettings" xml:space="preserve">
+    <value>오버레이 설정</value>
+  </data>
+  <data name="BackgroundColor" xml:space="preserve">
+    <value>배경색</value>
+  </data>
+  <data name="Red" xml:space="preserve">
+    <value>빨강</value>
+  </data>
+  <data name="Green" xml:space="preserve">
+    <value>초록</value>
+  </data>
+  <data name="Blue" xml:space="preserve">
+    <value>파랑</value>
+  </data>
+  <data name="Opacity" xml:space="preserve">
+    <value>불투명도</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="CPUAffinity_UC" xml:space="preserve">
+    <value>CPU 친화도</value>
+  </data>
+  <data name="PresetReduceBigBumps" xml:space="preserve">
+    <value>(프리셋) 큰 범프 감소</value>
+  </data>
+  <data name="AppManager" xml:space="preserve">
+    <value>앱 매니저</value>
+  </data>
+  <data name="AppManager_UC" xml:space="preserve">
+    <value>앱 매니저</value>
+  </data>
+  <data name="AppsToStart_UC" xml:space="preserve">
+    <value>실행할 앱</value>
+  </data>
+  <data name="AppsToTerminate_UC" xml:space="preserve">
+    <value>종료할 앱</value>
+  </data>
+  <data name="ExecutablePath" xml:space="preserve">
+    <value>실행 파일 경로</value>
+  </data>
+  <data name="Arguments" xml:space="preserve">
+    <value>인수</value>
+  </data>
+  <data name="DelayAfterStart" xml:space="preserve">
+    <value>시작 후 지연 (초)</value>
+  </data>
+  <data name="CpuPriority" xml:space="preserve">
+    <value>CPU 우선순위</value>
+  </data>
+  <data name="AppWindowStyle" xml:space="preserve">
+    <value>창 스타일</value>
+  </data>
+  <data name="TerminateOnDisconnect" xml:space="preserve">
+    <value>시뮬레이터 연결 해제 시 종료</value>
+  </data>
+  <data name="AvoidPrimaryCpuCores" xml:space="preserve">
+    <value>주 CPU 코어 회피</value>
+  </data>
+  <data name="LaunchOnDisconnect" xml:space="preserve">
+    <value>시뮬레이터 연결 해제 시 실행</value>
+  </data>
+  <data name="CpuPriorityIdle" xml:space="preserve">
+    <value>유휴</value>
+  </data>
+  <data name="CpuPriorityBelowNormal" xml:space="preserve">
+    <value>보통 이하</value>
+  </data>
+  <data name="CpuPriorityNormal" xml:space="preserve">
+    <value>보통</value>
+  </data>
+  <data name="CpuPriorityAboveNormal" xml:space="preserve">
+    <value>보통 이상</value>
+  </data>
+  <data name="CpuPriorityHigh" xml:space="preserve">
+    <value>높음</value>
+  </data>
+  <data name="WindowStyleNormal" xml:space="preserve">
+    <value>정상</value>
+  </data>
+  <data name="WindowStyleMinimized" xml:space="preserve">
+    <value>최소화</value>
+  </data>
+  <data name="WindowStyleMaximized" xml:space="preserve">
+    <value>최대화</value>
+  </data>
+  <data name="WindowStyleHidden" xml:space="preserve">
+    <value>숨김</value>
+  </data>
+  <data name="Wizard_LetsGo" xml:space="preserve">
+    <value>시작합시다!</value>
+  </data>
+  <data name="Wizard_Skip" xml:space="preserve">
+    <value>건너뛰기</value>
+  </data>
+  <data name="Wizard_Prev" xml:space="preserve">
+    <value>이전</value>
+  </data>
+  <data name="Wizard_Next" xml:space="preserve">
+    <value>다음</value>
+  </data>
+  <data name="Wizard_Yes" xml:space="preserve">
+    <value>예</value>
+  </data>
+  <data name="Wizard_No" xml:space="preserve">
+    <value>아니요</value>
+  </data>
+  <data name="Wizard_Close" xml:space="preserve">
+    <value>닫기</value>
+  </data>
+  <data name="Wizard_Step0_Title" xml:space="preserve">
+    <value>안녕하세요, 레이서!</value>
+  </data>
+  <data name="Wizard_Step0_Line1" xml:space="preserve">
+    <value>저는 마법사 Marvin입니다. 강력한 MAIRA를 길들이는 것을 도와드리려고 왔습니다!</value>
+  </data>
+  <data name="Wizard_Step0_Line2" xml:space="preserve">
+    <value>체커기를 한 번 흔들어 가장 중요한 설정들을 안내해 드릴 테니, 최대한 빨리 트랙에 오르실 수 있습니다. 🏁✨</value>
+  </data>
+  <data name="Wizard_Step0_Line3" xml:space="preserve">
+    <value>시작할까요, 아니면 직접 모든 것을 수동으로 설정하기를 원하는 숙련된 마법사이신가요?</value>
+  </data>
+  <data name="Wizard_Step1_Title" xml:space="preserve">
+    <value>앱 테마</value>
+  </data>
+  <data name="Wizard_Step1_Line1" xml:space="preserve">
+    <value>라이트 테마와 다크 테마 중 무엇을 선호하는지 선택하세요. 아래 스위치를 전환하여 변경 사항을 실시간으로 미리 보세요.</value>
+  </data>
+  <data name="Wizard_Step2_Title" xml:space="preserve">
+    <value>스티어링 휠</value>
+  </data>
+  <data name="Wizard_Step2_Line1" xml:space="preserve">
+    <value>아래 목록에서 포스 피드백 스티어링 휠을 선택하세요.</value>
+  </data>
+  <data name="Wizard_Step2_Hint1" xml:space="preserve">
+    <value> 휠이 보이지 않나요? 전원이 켜져 있고 연결되어 있는지 확인하면 목록이 자동으로 새로 고쳐집니다.</value>
+  </data>
+  <data name="Wizard_Step2_Hint2" xml:space="preserve">
+    <value> Fanatec 사용자: Fanatec 휠은 일반적으로 목록에 두 개의 별도 장치로 나타납니다. 선택한 것이 작동하지 않으면 다른 것을 선택해 보세요!</value>
+  </data>
+  <data name="Wizard_Step3_Title" xml:space="preserve">
+    <value>최대 휠 포스</value>
+  </data>
+  <data name="Wizard_Step3_Line1" xml:space="preserve">
+    <value>휠베이스가 낼 수 있는 최대 포스를 뉴턴미터(Nm) 단위로 입력하세요. MAIRA는 이 값을 사용하여 하드웨어에 맞게 모든 포스 피드백 출력을 올바르게 조정합니다.</value>
+  </data>
+  <data name="Wizard_Step3_Hint1" xml:space="preserve">
+    <value> 선택한 휠을 기반으로 최선의 추정값을 제시했지만, 필요하면 자유롭게 조정하세요.</value>
+  </data>
+  <data name="Wizard_Step3_Hint2" xml:space="preserve">
+    <value> 중요: 휠 제조사 소프트웨어(예: Fanatec Wheel Control Panel, Moza Pit House 등) 내에서 이미 휠의 최대 토크 출력을 제한했다면, 하드웨어의 물리적 최대값 대신 그 감소된 값을 여기에 입력하세요. MAIRA는 휠이 이론적으로 낼 수 있는 값이 아니라 실제로 전달할 값을 알아야 합니다.</value>
+  </data>
+  <data name="Wizard_Step4_Title" xml:space="preserve">
+    <value>강도 컨트롤</value>
+  </data>
+  <data name="Wizard_Step4_Line1" xml:space="preserve">
+    <value>MAIRA는 휠이나 컨트롤러의 물리적 버튼을 바인딩하여 콕핏을 떠나지 않고도 즉석에서 포스 피드백 강도를 높이고 낮출 수 있게 해줍니다.</value>
+  </data>
+  <data name="Wizard_Step4_Line2" xml:space="preserve">
+    <value>아래의 - 및 + 버튼을 클릭하여 각각에 입력을 할당하세요. 이 단계는 선택 사항입니다. 건너뛰고 나중에 레이싱 휠 페이지에서 바인딩을 설정할 수 있습니다.</value>
+  </data>
+  <data name="Wizard_Step4_Hint1" xml:space="preserve">
+    <value> 입력이 매핑되면 버튼 테두리가 주황색으로 변해 확인됩니다.</value>
+  </data>
+  <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
+    <value>강도</value>
+  </data>
+  <data name="Wizard_Step5_Title" xml:space="preserve">
+    <value>최대 포스 자동 설정</value>
+  </data>
+  <data name="Wizard_Step5_Line1" xml:space="preserve">
+    <value>트랙에서 주행하는 동안 MAIRA는 휠이 내는 실제 최대 토크를 지속적으로 측정합니다. 그 측정값을 사용하여 신호를 클리핑하지 않으면서 휠의 전체 범위를 사용하는 이상적인 최대 포스 값을 제안합니다.</value>
+  </data>
+  <data name="Wizard_Step5_Line2" xml:space="preserve">
+    <value>자동 설정 기능을 사용하면 휠이나 컨트롤러의 물리적 버튼을 설정 동작에 바인딩할 수 있습니다. 세션 중 언제든지 누르면 MAIRA가 측정된 최대값에 맞춰 최대 포스를 즉시 업데이트합니다. 메뉴도, 방해도 없습니다.</value>
+  </data>
+  <data name="Wizard_Step5_Line3" xml:space="preserve">
+    <value>함께 제공되는 초기화 버튼은 진행 중인 측정을 초기화하여 새로운 측정을 시작할 수 있게 합니다. 차량이 트랙을 벗어나거나 무언가에 부딪혔을 때 유용합니다.</value>
+  </data>
+  <data name="Wizard_Step5_Question" xml:space="preserve">
+    <value>자동 설정 기능을 설정하시겠습니까?</value>
+  </data>
+  <data name="Wizard_Step6_Title" xml:space="preserve">
+    <value>자동 설정 구성</value>
+  </data>
+  <data name="Wizard_Step6_Line1" xml:space="preserve">
+    <value>먼저 자동 타겟 헤드룸을 취향에 맞게 조정한 다음, 설정 및 초기화 버튼을 매핑하세요.</value>
+  </data>
+  <data name="Wizard_Step6_Hint1" xml:space="preserve">
+    <value> 자동 타겟은 측정된 최대값이 휠 포스 범위의 어디에 위치해야 하는지를 설정합니다. 타겟을 낮추면 최대값 위로 더 많은 헤드룸을 유지하고, 높이면 휠 범위를 더 많이 사용합니다.</value>
+  </data>
+  <data name="Wizard_Step7_Title" xml:space="preserve">
+    <value>알고리즘</value>
+  </data>
+  <data name="Wizard_Step7_Line1" xml:space="preserve">
+    <value>포스 피드백이 어떻게 느껴지길 원하시나요? 아래 슬라이더를 움직여 MAIRA에 선호도를 알려주면, 그에 맞게 알고리즘, 디테일, 스무딩 설정을 구성합니다.</value>
+  </data>
+  <data name="Wizard_Step7_Line2" xml:space="preserve">
+    <value>걱정 마세요. 나중에 레이싱 휠 페이지에서 언제든지 모든 것을 수동으로 미세 조정할 수 있습니다.</value>
+  </data>
+  <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
+    <value>💤 부드러운 느낌</value>
+  </data>
+  <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
+    <value>보통</value>
+  </data>
+  <data name="Wizard_Step7_SliderRight" xml:space="preserve">
+    <value>디테일 부스트 ⚡</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
+    <value>매우 부드러움</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
+    <value>250 Nm/s에서 강한 델타 제한. 매우 차분하고 둥근 피드백.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
+    <value>부드러움</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
+    <value>500 Nm/s에서 델타 제한. 부드러운 가장자리와 감소된 날카로움.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
+    <value>약간 부드러움</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
+    <value>1000 Nm/s에서 가벼운 델타 제한. 약간의 과도 신호 부드러움.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
+    <value>보통</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
+    <value>디테일과 부드러움의 균형.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
+    <value>약간 부스트</value>
+  </data>
+  <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
+    <value>50% 부스트로 미묘한 디테일 향상.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
+    <value>부스트</value>
+  </data>
+  <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
+    <value>100% 부스트로 뚜렷한 디테일 향상.</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
+    <value>강한 부스트</value>
+  </data>
+  <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
+    <value>150% 부스트로 공격적인 디테일 향상.</value>
+  </data>
+  <data name="Wizard_Final_Title" xml:space="preserve">
+    <value>모든 준비가 끝났습니다!</value>
+  </data>
+  <data name="Wizard_Final_Line1" xml:space="preserve">
+    <value>MAIRA를 사용해 주셔서 감사합니다! 마법사가 이제 완료되었습니다.</value>
+  </data>
+  <data name="Wizard_Final_Line2" xml:space="preserve">
+    <value>앱 설정 페이지를 방문하여 "마법사 실행" 버튼을 클릭하면 언제든지 이 마법사를 다시 실행할 수 있습니다.</value>
+  </data>
+  <data name="Wizard_Final_DocLinkPrefix" xml:space="preserve">
+    <value>MAIRA가 처음이신가요? 여기를</value>
+  </data>
+  <data name="Wizard_Final_DocLinkAnchor" xml:space="preserve">
+    <value>클릭</value>
+  </data>
+  <data name="Wizard_Final_DocLinkSuffix" xml:space="preserve">
+    <value>하여 문서를 열고 일반적인 컨트롤에 대해 알아보세요.</value>
+  </data>
+  <data name="OutputDevice" xml:space="preserve">
+    <value>출력 장치</value>
+  </data>
+  <data name="OutputDevice_UC" xml:space="preserve">
+    <value>출력 장치</value>
+  </data>
+  <data name="DefaultWindowsSoundDevice" xml:space="preserve">
+    <value>[기본 Windows 사운드 장치]</value>
+  </data>
+  <data name="LoopStart" xml:space="preserve">
+    <value>루프 시작</value>
+  </data>
+  <data name="LoopEnd" xml:space="preserve">
+    <value>루프 끝</value>
+  </data>
+  <data name="Milliseconds" xml:space="preserve">
+    <value>ms</value>
+  </data>
+  <data name="Commentary" xml:space="preserve">
+    <value>해설</value>
+  </data>
+  <data name="Commentary_UC" xml:space="preserve">
+    <value>해설</value>
+  </data>
+  <data name="Account_UC" xml:space="preserve">
+    <value>계정</value>
+  </data>
+  <data name="VoiceRoster_UC" xml:space="preserve">
+    <value>음성 명단</value>
+  </data>
+  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+    <value>크루 치프 해설</value>
+  </data>
+  <data name="SpotterCommentary_UC" xml:space="preserve">
+    <value>스포터 해설</value>
+  </data>
+  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+    <value>스포츠캐스터 1 해설</value>
+  </data>
+  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+    <value>스포츠캐스터 2 해설</value>
+  </data>
+  <data name="PitReporterCommentary_UC" xml:space="preserve">
+    <value>피트 리포터 해설</value>
+  </data>
+  <data name="ApiKey" xml:space="preserve">
+    <value>API 키</value>
+  </data>
+  <data name="VerifyKey" xml:space="preserve">
+    <value>키 확인</value>
+  </data>
+  <data name="KeyVerified" xml:space="preserve">
+    <value>✓  키가 확인되었습니다</value>
+  </data>
+  <data name="KeyInvalid" xml:space="preserve">
+    <value>✗  키가 잘못되었습니다</value>
+  </data>
+  <data name="VoiceNotSelected" xml:space="preserve">
+    <value>[음성을 선택하세요]</value>
+  </data>
+  <data name="ModelNotSelected" xml:space="preserve">
+    <value>[모델을 선택하세요]</value>
+  </data>
+  <data name="KeyRecognized" xml:space="preserve">
+    <value>✓  키가 인식되었습니다</value>
+  </data>
+  <data name="KeyPermissionGranted" xml:space="preserve">
+    <value>✓</value>
+  </data>
+  <data name="KeyPermissionMissing" xml:space="preserve">
+    <value>✗</value>
+  </data>
+  <data name="KeyPermissionVoiceRead" xml:space="preserve">
+    <value>음성 — 읽기</value>
+  </data>
+  <data name="KeyPermissionModelsRead" xml:space="preserve">
+    <value>모델 — 접근</value>
+  </data>
+  <data name="KeyPermissionTextToSpeech" xml:space="preserve">
+    <value>텍스트 음성 변환 — 접근</value>
+  </data>
+  <data name="KeyPermissionSpeechToText" xml:space="preserve">
+    <value>음성 텍스트 변환 — 접근</value>
+  </data>
+  <data name="KeyPermissionUserRead" xml:space="preserve">
+    <value>사용자 — 읽기</value>
+  </data>
+  <data name="Model" xml:space="preserve">
+    <value>모델</value>
+  </data>
+  <data name="MasterVolume" xml:space="preserve">
+    <value>마스터 볼륨</value>
+  </data>
+  <data name="Usage" xml:space="preserve">
+    <value>사용량</value>
+  </data>
+  <data name="Voice" xml:space="preserve">
+    <value>음성</value>
+  </data>
+  <data name="Consistency" xml:space="preserve">
+    <value>일관성</value>
+  </data>
+  <data name="Dramatic" xml:space="preserve">
+    <value>극적</value>
+  </data>
+  <data name="SimilarityBoost" xml:space="preserve">
+    <value>유사성 부스트</value>
+  </data>
+  <data name="SpeakerBoost" xml:space="preserve">
+    <value>스피커 부스트</value>
+  </data>
+  <data name="SlotVolume" xml:space="preserve">
+    <value>슬롯 볼륨</value>
+  </data>
+  <data name="TestVoice" xml:space="preserve">
+    <value>테스트</value>
+  </data>
+  <data name="Caution" xml:space="preserve">
+    <value>주의 / 옐로 플래그</value>
+  </data>
+  <data name="CarProximity" xml:space="preserve">
+    <value>근접 콜</value>
+  </data>
+  <data name="CarProximityReminderInterval" xml:space="preserve">
+    <value>알림 간격</value>
+  </data>
+  <data name="CommentaryPhrases_UC" xml:space="preserve">
+    <value>해설 문구</value>
+  </data>
+  <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
+    <value>선택한 언어로 각 이벤트에서 말하는 문구를 사용자 지정합니다. 변경 사항은 문서 폴더에 저장되며 기본 제공 문구를 덮어씁니다.</value>
+  </data>
+  <data name="ResetAllPhrases" xml:space="preserve">
+    <value>모두 초기화</value>
+  </data>
+  <data name="ResetEventPhrases" xml:space="preserve">
+    <value>초기화</value>
+  </data>
+  <data name="AddPhrase" xml:space="preserve">
+    <value>문구 추가</value>
+  </data>
+  <data name="PhraseEditorSaved" xml:space="preserve">
+    <value>✓  사용자 지정 문구가 저장되었습니다.</value>
+  </data>
+  <data name="PhraseEditorResetAll" xml:space="preserve">
+    <value>모든 문구가 기본 제공 기본값으로 초기화되었습니다.</value>
+  </data>
+  <data name="PhraseSearch" xml:space="preserve">
+    <value>검색...</value>
+  </data>
+  <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
+    <value>기본값으로 초기화</value>
+  </data>
+  <data name="RedownloadPaintFiles" xml:space="preserve">
+    <value>페인트 파일 다시 다운로드</value>
+  </data>
+  <data name="FlagCalls" xml:space="preserve">
+    <value>플래그 콜</value>
+  </data>
+  <data name="StartupWindowTitle" xml:space="preserve">
+    <value>시작 중...</value>
+  </data>
+  <data name="InitializingTopLevelWindow" xml:space="preserve">
+    <value>최상위 창 초기화 중...</value>
+  </data>
+  <data name="InitializingAudioManager" xml:space="preserve">
+    <value>오디오 매니저 초기화 중...</value>
+  </data>
+  <data name="InitializingAdminBoxx" xml:space="preserve">
+    <value>AdminBoxx 초기화 중...</value>
+  </data>
+  <data name="InitializingSimulator" xml:space="preserve">
+    <value>시뮬레이터 초기화 중...</value>
+  </data>
+  <data name="InitializingDirectInput" xml:space="preserve">
+    <value>Direct Input 초기화 중...</value>
+  </data>
+  <data name="InitializingStreamDeck" xml:space="preserve">
+    <value>Stream Deck 초기화 중...</value>
+  </data>
+  <data name="InitializingTextToSpeech" xml:space="preserve">
+    <value>텍스트 음성 변환 초기화 중...</value>
+  </data>
+  <data name="InitializingCommentary" xml:space="preserve">
+    <value>해설 초기화 중...</value>
+  </data>
+  <data name="InitializingCloudService" xml:space="preserve">
+    <value>클라우드 서비스 초기화 중...</value>
+  </data>
+  <data name="InitializingGraph" xml:space="preserve">
+    <value>그래프 초기화 중...</value>
+  </data>
+  <data name="InitializingPedals" xml:space="preserve">
+    <value>페달 초기화 중...</value>
+  </data>
+  <data name="InitializingRacingWheel" xml:space="preserve">
+    <value>레이싱 휠 초기화 중...</value>
+  </data>
+  <data name="InitializingSounds" xml:space="preserve">
+    <value>사운드 초기화 중...</value>
+  </data>
+  <data name="InitializingLFE" xml:space="preserve">
+    <value>LFE 초기화 중...</value>
+  </data>
+  <data name="InitializingMultimediaTimer" xml:space="preserve">
+    <value>멀티미디어 타이머 초기화 중...</value>
+  </data>
+  <data name="InitializingRecordingManager" xml:space="preserve">
+    <value>녹음 매니저 초기화 중...</value>
+  </data>
+  <data name="InitializingTimingMarkers" xml:space="preserve">
+    <value>타이밍 마커 초기화 중...</value>
+  </data>
+  <data name="InitializingTelemetry" xml:space="preserve">
+    <value>텔레메트리 초기화 중...</value>
+  </data>
+  <data name="InitializingWind" xml:space="preserve">
+    <value>Wind 초기화 중...</value>
+  </data>
+  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
+    <value>안전벨트 텐셔너 초기화 중...</value>
+  </data>
+  <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
+    <value>HID 핫 플러그 모니터 초기화 중...</value>
+  </data>
+  <data name="InitializingTradingPaints" xml:space="preserve">
+    <value>Trading Paints 초기화 중...</value>
+  </data>
+  <data name="InitializingSettingsFile" xml:space="preserve">
+    <value>설정 파일 초기화 중...</value>
+  </data>
+  <data name="InitializingMainWindow" xml:space="preserve">
+    <value>메인 창 초기화 중...</value>
+  </data>
+</root>
