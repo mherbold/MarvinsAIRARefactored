@@ -16,6 +16,10 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
+<li>Controller profiles - save and switch between named sets of button/input mappings</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li>SimHub plugin</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
@@ -225,7 +229,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section">Speech-to-Text</p>
+<p class="section">Captions</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -327,6 +331,18 @@
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
 <li>Gap Monitor - movable/scalable overlay displaying real-time gap information to cars ahead and behind</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Delta Monitor - movable/scalable overlay showing lap time and delta versus your last lap and versus the leader</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Grip-O-Meter - movable/scalable overlay showing real-time grip usage (under/oversteer and seat-of-pants forces)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>All overlays can be made visible and draggable, optionally shown when off track and in replay mode</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -364,47 +380,15 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Deutsch (Deutschland) - German (Germany)</li>
+<li>العربية (المملكة العربية السعودية) - Arabic (Saudi Arabia)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Português (Brasil) - Portuguese (Brazil)</li>
+<li>Български (България) - Bulgarian (Bulgaria)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Українська (Україна) - Ukrainian (Ukraine)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Español (España) - Spanish (Spain)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Français (France) - French (France)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Português (Portugal) - Portuguese (Portugal)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Русский (Россия) - Russian (Russia)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Polski (Polska) - Polish (Poland)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Dansk (Danmark) - Danish (Denmark)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Italiano (Italia) - Italian (Italy)</li>
-<!-- /wp:list-item -->
-
-<!-- wp:list-item -->
-<li>Nederlands (Nederland) - Dutch (Netherlands)</li>
+<li>Català (Espanya) - Catalán (Spain)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -412,15 +396,31 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Հայերեն (Հայաստան) - Armenian (Armenia)</li>
+<li>Cymraeg (Cymru) - Welsh (UK)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Türkçe (Türkiye) - Turkish (Turkey)</li>
+<li>Dansk (Danmark) - Danish (Denmark)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>简体中文 - Chinese (Simplified)</li>
+<li>Deutsch (Deutschland) - German (Germany)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Español (España) - Spanish (Spain)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Español (México) - Spanish (Mexico)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Eesti (Eesti) - Estonian (Estonia)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Suomi (Suomi) - Finnish (Finland)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -428,11 +428,95 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Català (Espanya) - Catalan (Spain)</li>
+<li>Français (France) - French (France)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>עברית (ישראל) - Hebrew (Israel)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>हिन्दी (भारत) - Hindi (India)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
 <li>Magyar (Magyarország) - Hungarian (Hungary)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Հայերեն (Հայաստան) - Armenian (Armenia)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Italiano (Italia) - Italian (Italy)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>日本語（日本） - Japanese (Japan)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>한국어 (대한민국) - Korean (South Korea)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Latviešu (Latvija) - Latvian (Latvia)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Norsk bokmål (Norge) - Norwegian Bokmål (Norway)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Nederlands (Nederland) - Dutch (Netherlands)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Polski (Polska) - Polish (Poland)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Português (Brasil) - Portuguese (Brazil)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Português (Portugal) - Portuguese (Portugal)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Română (România) - Romanian (Romania)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Русский (Россия) - Russian (Russia)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Slovenčina (Slovensko) - Slovak (Slovakia)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Svenska (Sverige) - Swedish (Sweden)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>ไทย (ประเทศไทย) - Thai (Thailand)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Türkçe (Türkiye) - Turkish (Turkey)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Українська (Україна) - Ukrainian (Ukraine)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>简体中文 - Chinese (Simplified)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>繁體中文 - Chinese (Traditional)</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list --></li>
 <!-- /wp:list-item -->
