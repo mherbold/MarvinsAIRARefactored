@@ -1857,6 +1857,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>ยกเลิก</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>เปลี่ยนชื่อโปรไฟล์</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>เปลี่ยนชื่อโปรไฟล์คอนโทรลเลอร์</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>กระบวนการที่กำลังทำงาน</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>กรองตามชื่อหรือเส้นทาง...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>กำลังค้นหาแอปที่กำลังทำงาน...</value>
+  </data>
+
+
+
 
 
 

@@ -1857,6 +1857,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>Zrušit</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Přejmenovat profil</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Přejmenovat profil ovladače</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Spuštěné procesy</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Filtrovat podle názvu nebo cesty...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Vyhledávání spuštěných aplikací...</value>
+  </data>
+
+
+
 
 
 

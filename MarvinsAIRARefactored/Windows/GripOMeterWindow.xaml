@@ -31,7 +31,10 @@
         <Binding Source="{x:Static datacontext:DataContext.Instance}" />
     </Window.DataContext>
 
-    <Grid>
+    <!-- Force the gauge to stay LTR even under RTL languages: the ball position encodes lateral G
+         direction (left/right is physically meaningful) and the edit-mode icons are pinned to the
+         right edge, so mirroring would invert the reading and misplace the controls. -->
+    <Grid FlowDirection="LeftToRight">
 
         <Grid.LayoutTransform>
             <ScaleTransform x:Name="RootScaleTransform"

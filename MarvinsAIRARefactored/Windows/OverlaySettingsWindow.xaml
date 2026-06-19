@@ -25,9 +25,13 @@
 
         <StackPanel Margin="0,0,0,10">
 
+            <!-- A #RRGGBB hex code is a technical identifier: pin the value LTR so the bidi
+                 algorithm doesn't push the leading '#' to the other end under RTL languages.
+                 IsValueLeftToRight scopes the flip to the value field, leaving the label RTL. -->
             <controls:MairaTextBox x:Name="Hex_MairaTextBox"
                                    Label="{Binding Localization[BackgroundColor]}"
                                    ValueChanged="Hex_MairaTextBox_ValueChanged"
+                                   IsValueLeftToRight="True"
                                    Margin="0,0,0,10" />
 
             <Grid>

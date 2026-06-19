@@ -1862,6 +1862,21 @@ Hier ist der Link zum Spenden:</value>
   </data>  <data name="Cancel" xml:space="preserve">
     <value>Abbrechen</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Profil umbenennen</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Controller-Profil umbenennen</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Laufende Prozesse</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Nach Name oder Pfad filtern...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Suche nach laufenden Apps...</value>
+  </data>
+
+
+
 
 
 

@@ -297,6 +297,12 @@
   <data name="CopyCurrentMappings" xml:space="preserve">
     <value>複製目前的對應</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>重新命名設定檔</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>重新命名控制器設定檔</value>
+  </data>
   <data name="ButtonMappings_UC" xml:space="preserve">
     <value>按鈕對應</value>
   </data>
@@ -1871,5 +1877,14 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>正在初始化主視窗…</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>執行中的處理程序</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>依名稱或路徑篩選...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>正在搜尋執行中的應用程式...</value>
   </data>
+
+
+
 </root>

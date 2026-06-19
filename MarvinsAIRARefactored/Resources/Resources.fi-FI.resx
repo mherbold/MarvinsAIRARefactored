@@ -1857,6 +1857,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>Peruuta</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Nimeä profiili uudelleen</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Nimeä ohjainprofiili uudelleen</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Käynnissä olevat prosessit</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Suodata nimen tai polun mukaan...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Etsitään käynnissä olevia sovelluksia...</value>
+  </data>
+
+
+
 
 
 

@@ -147,6 +147,16 @@ public partial class MainWindow : Window
 		{
 			var app = App.Instance!;
 
+			// Mirror the whole window layout for right-to-left languages (Hebrew, Arabic, ...).
+			// FlowDirection cascades to every child, so this single flip mirrors the entire UI.
+			FlowDirection = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization.IsRightToLeft
+				? System.Windows.FlowDirection.RightToLeft
+				: System.Windows.FlowDirection.LeftToRight;
+
+			// Re-localize the cached settings display strings (e.g. Strength's "100%"); these are only
+			// rebuilt when a setting changes, so a runtime language switch needs an explicit refresh.
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.UpdateLocalizedStrings();
+
 #if ADMINBOXX
 
 			Title = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "AdminBoxx" ] + " " + Misc.GetVersion();

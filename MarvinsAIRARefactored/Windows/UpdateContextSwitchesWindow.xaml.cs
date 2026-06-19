@@ -21,6 +21,8 @@ public partial class UpdateContextSwitchesWindow : Window
 
 		InitializeComponent();
 
+		Classes.WindowScaler.ApplyAppUIScale( this );
+
 		DataContext = contextSwitches;
 
 		_perWheelbase = contextSwitches.PerWheelbase;

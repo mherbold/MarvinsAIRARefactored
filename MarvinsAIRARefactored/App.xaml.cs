@@ -211,6 +211,10 @@ public partial class App : Application
 
 		Logger.Initialize();
 
+		// Mirror every window's layout for right-to-left languages. Registered before any window is
+		// shown so the splash screen and all dialogs/overlays pick it up automatically.
+		Misc.RegisterGlobalFlowDirectionHandler();
+
 #if !ADMINBOXX
 
 	DataContext.DataContext.Instance.Settings.AppCurrentLanguageCode = DataContext.DataContext.Instance.Localization.ChooseInitialLanguage();

@@ -135,8 +135,8 @@ namespace MarvinsAIRARefactored.Controls
 		#region User Control Events
 
 		// A WPF Popup is a separate top-level window and does not follow its placement target when the
-		// main window moves or resizes. Nudging the offset forces WPF to re-evaluate the Center placement
-		// so the menu card stays centered over the main window. Called from MainWindow's move/size events.
+		// main window moves or resizes. Nudging the offset forces WPF to re-evaluate the placement so the
+		// menu card stays anchored beneath the hamburger button. Called from MainWindow's move/size events.
 		public void ReanchorIfOpen()
 		{
 			if ( MenuPopup.IsOpen )
@@ -258,6 +258,16 @@ namespace MarvinsAIRARefactored.Controls
 		{
 			get => (bool) GetValue( IsMenuOpenProperty );
 			set => SetValue( IsMenuOpenProperty, value );
+		}
+
+		// The element the menu card anchors beneath (the hamburger button). MainWindow sets this so the
+		// Popup can place its top-left corner under the button instead of centering over the window.
+		public static readonly DependencyProperty PlacementTargetProperty = DependencyProperty.Register( nameof( PlacementTarget ), typeof( UIElement ), typeof( MairaAppMenuPopup ), new PropertyMetadata( null ) );
+
+		public UIElement? PlacementTarget
+		{
+			get => (UIElement?) GetValue( PlacementTargetProperty );
+			set => SetValue( PlacementTargetProperty, value );
 		}
 
 		#endregion

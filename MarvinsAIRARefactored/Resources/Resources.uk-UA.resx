@@ -1863,6 +1863,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>Скасувати</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Перейменувати профіль</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Перейменувати профіль контролера</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Запущені процеси</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Фільтрувати за назвою або шляхом...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Пошук запущених застосунків...</value>
+  </data>
+
+
+
 
 
 

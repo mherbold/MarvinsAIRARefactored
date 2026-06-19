@@ -297,6 +297,12 @@
   <data name="CopyCurrentMappings" xml:space="preserve">
     <value>Kopēt pašreizējos kartējumus</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Pārdēvēt profilu</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Pārdēvēt kontrollera profilu</value>
+  </data>
   <data name="ButtonMappings_UC" xml:space="preserve">
     <value>POGU KARTĒJUMI</value>
   </data>
@@ -1871,5 +1877,14 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Inicializē galveno logu...</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Aktīvie procesi</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Filtrēt pēc nosaukuma vai ceļa...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Notiek aktīvo lietotņu meklēšana...</value>
   </data>
+
+
+
 </root>

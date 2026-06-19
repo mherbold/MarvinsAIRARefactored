@@ -14,6 +14,8 @@ public partial class RunInstallerWindow : Window
 		app.MainWindow.MakeWindowVisible();
 
 		InitializeComponent();
+
+		Classes.WindowScaler.ApplyAppUIScale( this );
 	}
 
 	private void Install_MairaButton_Click( object sender, RoutedEventArgs e )

@@ -19,6 +19,8 @@ public partial class WizardWindow : Window
 
 		InitializeComponent();
 
+		Classes.WindowScaler.ApplyAppUIScale( this );
+
 		_stepPanels = [ Step1_Panel, Step2_Panel, Step3_Panel, Step4_Panel, Step5_Panel, Step6_Panel, Step7_Panel ];
 
 		UpdateSteeringDeviceOptions();

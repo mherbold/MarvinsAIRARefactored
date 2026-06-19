@@ -40,6 +40,11 @@
                             <Setter Property="Visibility"
                                     Value="Visible" />
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding IsValueLeftToRight, ElementName=Root}"
+                                     Value="True">
+                            <Setter Property="FlowDirection"
+                                    Value="LeftToRight" />
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </PasswordBox.Style>
@@ -99,6 +104,11 @@
                             <Setter Property="Visibility"
                                     Value="Collapsed" />
                         </DataTrigger>
+                        <DataTrigger Binding="{Binding IsValueLeftToRight, ElementName=Root}"
+                                     Value="True">
+                            <Setter Property="FlowDirection"
+                                    Value="LeftToRight" />
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBox.Style>
@@ -130,6 +140,11 @@
                             </MultiDataTrigger.Conditions>
                             <Setter Property="Visibility" Value="Visible" />
                         </MultiDataTrigger>
+                        <DataTrigger Binding="{Binding IsValueLeftToRight, ElementName=Root}"
+                                     Value="True">
+                            <Setter Property="FlowDirection"
+                                    Value="LeftToRight" />
+                        </DataTrigger>
                     </Style.Triggers>
                 </Style>
             </TextBlock.Style>

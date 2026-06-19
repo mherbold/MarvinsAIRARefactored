@@ -297,6 +297,12 @@
   <data name="CopyCurrentMappings" xml:space="preserve">
     <value>Копиране на текущите картографирания</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Преименуване на профил</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Преименуване на профил на контролера</value>
+  </data>
   <data name="ButtonMappings_UC" xml:space="preserve">
     <value>КАРТОГРАФИРАНЕ НА БУТОНИ</value>
   </data>
@@ -1871,5 +1877,14 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Инициализиране на главния прозорец...</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Изпълнявани процеси</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Филтриране по име или път...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Търсене на работещи приложения...</value>
   </data>
+
+
+
 </root>

@@ -297,6 +297,12 @@
   <data name="CopyCurrentMappings" xml:space="preserve">
     <value>Copy current mappings</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Rename Profile</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Rename Controller Profile</value>
+  </data>
   <data name="ButtonMappings_UC" xml:space="preserve">
     <value>BUTTON MAPPINGS</value>
   </data>
@@ -1871,5 +1877,14 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Initializing Main Window...</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Running Processes</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Filter by name or path...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Searching for running apps...</value>
   </data>
+
+
+
 </root>

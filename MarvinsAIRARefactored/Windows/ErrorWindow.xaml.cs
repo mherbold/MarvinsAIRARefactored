@@ -13,6 +13,8 @@ public partial class ErrorWindow : Window
 	{
 		InitializeComponent();
 
+		Classes.WindowScaler.ApplyAppUIScale( this );
+
 #if ADMINBOXX
 
 		Title = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "AdminBoxx" ];

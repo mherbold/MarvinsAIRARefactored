@@ -106,9 +106,14 @@
 
         </Border>
 
+        <!-- Edit-mode icons stay pinned to the physical lower-right corner even under RTL languages.
+             The wrapper fills the window (stretch) and is forced LTR, so the icons' right-alignment
+             resolves to physical right while the overlay's localized content stays RTL. -->
+        <Grid Grid.Row="0"
+              Grid.RowSpan="2"
+              FlowDirection="LeftToRight">
+
         <Border x:Name="GearIcon"
-                Grid.Row="0"
-                Grid.RowSpan="2"
                 Margin="0,0,90,6"
                 Padding="4"
                 CornerRadius="6"
@@ -134,8 +139,6 @@
         </Border>
 
         <Border x:Name="DragIcon"
-                Grid.Row="0"
-                Grid.RowSpan="2"
                 Margin="0,0,48,6"
                 Padding="4"
                 CornerRadius="6"
@@ -160,8 +163,6 @@
         </Border>
 
         <Border x:Name="ScaleIcon"
-                Grid.Row="0"
-                Grid.RowSpan="2"
                 Margin="0,0,6,6"
                 Padding="4"
                 CornerRadius="6"
@@ -182,6 +183,8 @@
                 </Rectangle.OpacityMask>
             </Rectangle>
         </Border>
+
+        </Grid>
 
     </Grid>
 

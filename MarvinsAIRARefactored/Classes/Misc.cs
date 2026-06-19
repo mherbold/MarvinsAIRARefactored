@@ -325,4 +325,32 @@ public class Misc
 
 		PInvoke.SetCursorPos( (int) Math.Round( p.X ), (int) Math.Round( p.Y ) );
 	}
+
+	// Mirrors a window's entire layout for right-to-left languages (Hebrew, Arabic, ...).
+	// FlowDirection cascades to every child, so this single assignment mirrors the whole window.
+	public static void ApplyFlowDirection( Window window )
+	{
+		if ( window == null )
+		{
+			return;
+		}
+
+		window.FlowDirection = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization.IsRightToLeft
+			? System.Windows.FlowDirection.RightToLeft
+			: System.Windows.FlowDirection.LeftToRight;
+	}
+
+	// Registers a single class handler so every Window in the app (current and future, dialogs and
+	// overlays) gets its FlowDirection set automatically when it loads. MainWindow additionally
+	// re-applies this in RefreshWindow() so a live language change mirrors it without a reopen.
+	public static void RegisterGlobalFlowDirectionHandler()
+	{
+		EventManager.RegisterClassHandler( typeof( Window ), FrameworkElement.LoadedEvent, new RoutedEventHandler( ( sender, _ ) =>
+		{
+			if ( sender is Window window )
+			{
+				ApplyFlowDirection( window );
+			}
+		} ) );
+	}
 }

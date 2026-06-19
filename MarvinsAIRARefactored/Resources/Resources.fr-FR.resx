@@ -1873,6 +1873,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>Annuler</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Renommer le profil</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Renommer le profil de contrôleur</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Processus en cours</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Filtrer par nom ou chemin...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Recherche des applications en cours...</value>
+  </data>
+
+
+
 
 
 

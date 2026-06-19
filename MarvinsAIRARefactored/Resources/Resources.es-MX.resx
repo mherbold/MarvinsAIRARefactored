@@ -1858,6 +1858,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>Cancelar</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Renombrar perfil</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Renombrar perfil de control</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Procesos en ejecución</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Filtrar por nombre o ruta...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Buscando aplicaciones en ejecución...</value>
+  </data>
+
+
+
 
 
 

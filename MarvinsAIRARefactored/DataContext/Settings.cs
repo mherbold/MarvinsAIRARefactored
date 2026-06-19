@@ -221,6 +221,40 @@ public class Settings : INotifyPropertyChanged
 		ApplyControllerProfile( name );
 	}
 
+	// Renames the named profile in place, preserving its mappings and keeping it active if it was the
+	// current profile. Does nothing if the source is missing, the names match, or the target name is
+	// already taken by another profile. Data-only.
+	public void RenameControllerProfile( string oldName, string newName )
+	{
+		SaveCurrentControllerProfile();
+
+		if ( oldName == newName )
+		{
+			return;
+		}
+
+		if ( !ControllerProfiles.TryGetValue( oldName, out var profile ) )
+		{
+			return;
+		}
+
+		if ( ControllerProfiles.ContainsKey( newName ) )
+		{
+			return;
+		}
+
+		profile.Name = newName;
+
+		ControllerProfiles.Remove( oldName );
+
+		ControllerProfiles[ newName ] = profile;
+
+		if ( CurrentControllerProfileName == oldName )
+		{
+			CurrentControllerProfileName = newName;
+		}
+	}
+
 	// Deletes the named profile, guaranteeing at least one profile always remains, then applies the
 	// surviving active profile. Data-only.
 	public void DeleteControllerProfile( string name )
@@ -363,6 +397,27 @@ public class Settings : INotifyPropertyChanged
 		WindSpeed8String = useMph ? $"{_windSpeed8 * MathZ.MPSToMPH:F0}" : $"{_windSpeed8 * MathZ.MPSToKPH:F0}";
 		WindSpeed9String = useMph ? $"{_windSpeed9 * MathZ.MPSToMPH:F0}" : $"{_windSpeed9 * MathZ.MPSToKPH:F0}";
 		WindSpeed10String = useMph ? $"{_windSpeed10 * MathZ.MPSToMPH:F0}" : $"{_windSpeed10 * MathZ.MPSToKPH:F0}";
+	}
+
+	// The various "...String" display properties cache a localized value (e.g. "100%") that is only
+	// recomputed when the underlying setting changes. When the user switches languages at runtime they
+	// would otherwise keep showing the previous language until the setting is touched, so this re-runs
+	// every Update*String() builder to re-localize them. These builders only rebuild a display string
+	// (no setter side effects), unlike the old Misc.ForcePropertySetters hack.
+	private static readonly MethodInfo[] _displayStringUpdaters = typeof( Settings )
+		.GetMethods( BindingFlags.NonPublic | BindingFlags.Instance )
+		.Where( method => method.Name.StartsWith( "Update", StringComparison.Ordinal ) && method.Name.EndsWith( "String", StringComparison.Ordinal ) && method.GetParameters().Length == 0 )
+		.ToArray();
+
+	/// <summary>Recomputes every localized display string. Call after a runtime language change.</summary>
+	public void UpdateLocalizedStrings()
+	{
+		foreach ( var updater in _displayStringUpdaters )
+		{
+			updater.Invoke( this, null );
+		}
+
+		UpdateSpeedUnitStrings();
 	}
 
 	#endregion

@@ -1857,6 +1857,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>取消</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>重命名配置文件</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>重命名控制器配置文件</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>正在运行的进程</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>按名称或路径筛选...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>正在搜索正在运行的应用...</value>
+  </data>
+
+
+
 
 
 

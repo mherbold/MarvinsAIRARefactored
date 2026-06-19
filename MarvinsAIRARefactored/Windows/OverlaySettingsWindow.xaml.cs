@@ -35,6 +35,8 @@ public partial class OverlaySettingsWindow : Window
 
 		InitializeComponent();
 
+		Classes.WindowScaler.ApplyAppUIScale( this );
+
 		_colorEnabled = colorEnabled;
 		_getColor = getColor;
 		_setColor = setColor;

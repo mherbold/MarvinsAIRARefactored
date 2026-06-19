@@ -39,6 +39,7 @@
 
                 <controls:MairaComboBox x:Name="TtsLanguage_MairaComboBox"
                                         Grid.Column="2"
+                                        FlowDirection="LeftToRight"
                                         Label="{Binding Localization[Language]}"
                                         SelectedValue="{Binding Settings.CommentaryElevenLabsLanguage, Mode=TwoWay}" />
 

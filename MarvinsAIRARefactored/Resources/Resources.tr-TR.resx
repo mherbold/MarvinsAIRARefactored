@@ -1857,6 +1857,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>İptal</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Profili yeniden adlandır</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Denetleyici profilini yeniden adlandır</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Çalışan İşlemler</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Ada veya yola göre filtrele...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Çalışan uygulamalar aranıyor...</value>
+  </data>
+
+
+
 
 
 

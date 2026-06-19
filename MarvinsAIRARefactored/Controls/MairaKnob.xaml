@@ -94,7 +94,11 @@
 
             </Grid>
 
-            <Grid Grid.Column="2">
+            <!-- Keep the +/- button pill in LTR order regardless of UI direction: the glyphs are
+                 universal, the segmented end-cap artwork breaks when mirrored, and the middle drag
+                 gesture (drag right = increase) must stay consistent. -->
+            <Grid Grid.Column="2"
+                  FlowDirection="LeftToRight">
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />

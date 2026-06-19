@@ -297,6 +297,12 @@
   <data name="CopyCurrentMappings" xml:space="preserve">
     <value>현재 매핑 복사</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>프로필 이름 바꾸기</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>컨트롤러 프로필 이름 바꾸기</value>
+  </data>
   <data name="ButtonMappings_UC" xml:space="preserve">
     <value>버튼 매핑</value>
   </data>
@@ -1871,5 +1877,14 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>메인 창 초기화 중...</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>실행 중인 프로세스</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>이름 또는 경로로 필터링...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>실행 중인 앱 검색 중...</value>
   </data>
+
+
+
 </root>

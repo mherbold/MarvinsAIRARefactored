@@ -1857,6 +1857,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>ביטול</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>שינוי שם פרופיל</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>שינוי שם פרופיל בקר</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>תהליכים פעילים</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>סינון לפי שם או נתיב...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>מחפש יישומים פעילים...</value>
+  </data>
+
+
+
 
 
 

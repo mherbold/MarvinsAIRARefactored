@@ -115,12 +115,20 @@
         <!-- The menu card lives in a Popup so it renders in its own top-level window and is no longer
              clipped to (or squeezed by) the main window. When the main window is narrower than the menu,
              the three columns now overflow past the window edges instead of being cut off. The scrim
-             above still fills the main window; only the card is free to extend beyond it. A Popup is a
-             separate HWND and does not inherit the main window's AppUIScale layout transform, so we
-             re-apply that scale to the card here. -->
+             above still fills the main window; only the card is free to extend beyond it. The Popup
+             already inherits the main window's AppUIScale because WPF applies the PlacementTarget's
+             visual-ancestor transforms to the popup content, so we must NOT re-apply that scale here
+             (doing so scaled the card by AppUIScale squared, making it too small below 100%).
+
+             The card is anchored to the hamburger button (PlacementTarget set by MainWindow) with
+             Placement="Bottom", which puts the card's top-left corner at the button's bottom-left corner
+             (so the card's left edge lines up with the button's left edge). A Popup ignores its child's
+             Margin when positioning, so the 20px gap below the button comes from VerticalOffset, not a
+             top margin. -->
         <Popup x:Name="MenuPopup"
-               PlacementTarget="{Binding ElementName=Root}"
-               Placement="Center"
+               PlacementTarget="{Binding PlacementTarget, ElementName=Root}"
+               Placement="Bottom"
+               VerticalOffset="20"
                AllowsTransparency="True"
                PopupAnimation="None"
                IsOpen="{Binding IsMenuOpen, ElementName=Root, Mode=OneWay}">
@@ -132,11 +140,6 @@
                     BorderThickness="2"
                     CornerRadius="10"
                     SnapsToDevicePixels="True">
-
-                <Border.LayoutTransform>
-                    <ScaleTransform ScaleX="{Binding DataContext.Settings.AppUIScale, ElementName=Root}"
-                                    ScaleY="{Binding DataContext.Settings.AppUIScale, ElementName=Root}" />
-                </Border.LayoutTransform>
 
                 <Grid x:Name="MenuGrid">
 

@@ -22,6 +22,8 @@ public partial class PickProcessWindow : Window
 	{
 		InitializeComponent();
 
+		Classes.WindowScaler.ApplyAppUIScale( this );
+
 		if ( System.ComponentModel.DesignerProperties.GetIsInDesignMode( this ) )
 		{
 			return;

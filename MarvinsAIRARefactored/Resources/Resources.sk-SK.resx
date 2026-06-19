@@ -297,6 +297,12 @@
   <data name="CopyCurrentMappings" xml:space="preserve">
     <value>Kopírovať aktuálne mapovania</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Premenovať profil</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Premenovať profil ovládača</value>
+  </data>
   <data name="ButtonMappings_UC" xml:space="preserve">
     <value>MAPOVANIA TLAČIDIEL</value>
   </data>
@@ -1871,5 +1877,14 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Inicializuje sa hlavné okno...</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Spustené procesy</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Filtrovať podľa názvu alebo cesty...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Vyhľadávajú sa spustené aplikácie...</value>
   </data>
+
+
+
 </root>

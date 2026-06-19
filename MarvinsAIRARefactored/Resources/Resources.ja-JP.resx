@@ -1860,6 +1860,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>キャンセル</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>プロファイル名を変更</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>コントローラープロファイル名を変更</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>実行中のプロセス</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>名前またはパスで絞り込み...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>実行中のアプリを検索しています...</value>
+  </data>
+
+
+
 
 
 

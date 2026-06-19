@@ -1857,6 +1857,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>Annuleren</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Profiel hernoemen</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Controllerprofiel hernoemen</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Actieve processen</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Filteren op naam of pad...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Zoeken naar actieve apps...</value>
+  </data>
+
+
+
 
 
 

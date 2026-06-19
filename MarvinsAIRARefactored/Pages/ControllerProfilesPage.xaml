@@ -46,6 +46,14 @@
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus-large.png"
                                           Click="NewProfile_MairaButton_Click" />
 
+                    <controls:MairaButton x:Name="RenameProfile_MairaButton"
+                                          Margin="0,10,0,0"
+                                          LabelOnRight="True"
+                                          IsSmall="True"
+                                          Label="{Binding Localization[RenameProfile]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                          Click="RenameProfile_MairaButton_Click" />
+
                     <controls:MairaButton x:Name="DeleteProfile_MairaButton"
                                           Margin="0,10,0,0"
                                           LabelOnRight="True"

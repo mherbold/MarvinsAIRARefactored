@@ -33,6 +33,7 @@
                 <controls:MairaComboBox x:Name="Language_MairaComboBox"
                                         Grid.Column="0"
                                         Grid.ColumnSpan="1"
+                                        FlowDirection="LeftToRight"
                                         SelectedValue="{Binding Settings.AppCurrentLanguageCode, Mode=TwoWay}" />
 
             </Grid>

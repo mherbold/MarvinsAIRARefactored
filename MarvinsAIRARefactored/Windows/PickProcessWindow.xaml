@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
         mc:Ignorable="d"
-        Title="Running Processes"
+        Title="{Binding Localization[RunningProcesses]}"
         Icon="/Artwork/AppIcon/maira-universal.ico"
         Width="600"
         Height="520"
@@ -13,6 +14,10 @@
         WindowStyle="SingleBorderWindow"
         WindowStartupLocation="CenterOwner"
         KeyDown="Window_KeyDown">
+
+  <Window.DataContext>
+    <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+  </Window.DataContext>
 
   <Window.Resources>
 
@@ -53,13 +58,13 @@
 
   </Window.Resources>
 
-  <Grid Margin="40,20,40,40">
+  <Grid Margin="20">
 
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="12" />
       <RowDefinition Height="*" />
-      <RowDefinition Height="40" />
+      <RowDefinition Height="20" />
       <RowDefinition Height="Auto" />
     </Grid.RowDefinitions>
 
@@ -80,12 +85,12 @@
                KeyDown="SearchBox_KeyDown" />
 
       <TextBlock IsHitTestVisible="False"
+                 Text="{Binding Localization[FilterByNameOrPath]}"
                  FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"
                  FontSize="18"
                  FontStyle="Italic"
                  Foreground="{DynamicResource Brush.Foreground.Muted}"
                  Padding="14,9">
-        Filter by name or path...
         <TextBlock.Style>
           <Style TargetType="TextBlock">
             <Setter Property="Visibility" Value="Collapsed" />
@@ -126,7 +131,7 @@
 
     <TextBlock x:Name="SearchingText"
                Grid.Row="2"
-               Text="Searching for running apps..."
+               Text="{Binding Localization[SearchingForRunningApps]}"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
                FontFamily="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow"

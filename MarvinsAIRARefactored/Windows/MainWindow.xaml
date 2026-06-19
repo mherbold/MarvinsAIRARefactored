@@ -146,6 +146,7 @@
               IsHitTestVisible="{Binding ElementName=AppMenuButton, Path=IsMenuOpen}">
 
             <controls:MairaAppMenuPopup x:Name="AppMenuPopup"
+                                        PlacementTarget="{Binding ElementName=AppMenuButton}"
                                         IsMenuOpen="{Binding ElementName=AppMenuButton, Path=IsMenuOpen, Mode=TwoWay}" />
 
         </Grid>

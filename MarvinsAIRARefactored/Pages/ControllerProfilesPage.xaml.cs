@@ -105,6 +105,43 @@ public partial class ControllerProfilesPage : UserControl
 		RefreshAll();
 	}
 
+	private void RenameProfile_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var settings = Settings;
+
+		var currentProfileName = settings.CurrentControllerProfileName;
+
+		var app = App.Instance!;
+
+		var renameControllerProfileWindow = new RenameControllerProfileWindow( currentProfileName )
+		{
+			Owner = app.MainWindow
+		};
+
+		renameControllerProfileWindow.ShowDialog();
+
+		if ( !renameControllerProfileWindow.Confirmed )
+		{
+			return;
+		}
+
+		var newProfileName = renameControllerProfileWindow.ProfileName.Trim();
+
+		// Ignore empty names, no-op renames, and collisions with an existing profile.
+		if ( ( newProfileName == string.Empty ) || ( newProfileName == currentProfileName ) || settings.ControllerProfiles.ContainsKey( newProfileName ) )
+		{
+			return;
+		}
+
+		app.Logger.WriteLine( $"[ControllerProfilesPage] Renaming controller profile '{currentProfileName}' to '{newProfileName}'" );
+
+		settings.RenameControllerProfile( currentProfileName, newProfileName );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		RefreshAll();
+	}
+
 	private void DeleteProfile_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var settings = Settings;
@@ -115,16 +152,19 @@ public partial class ControllerProfilesPage : UserControl
 			return;
 		}
 
-		var localization = Localization;
+		var app = App.Instance!;
 
-		var result = System.Windows.MessageBox.Show( $"{localization[ "DeleteProfileConfirmation" ]}\r\n\r\n{settings.CurrentControllerProfileName}", localization[ "DeleteProfile" ], MessageBoxButton.YesNo, MessageBoxImage.Warning );
+		var deleteControllerProfileWindow = new DeleteControllerProfileWindow( settings.CurrentControllerProfileName )
+		{
+			Owner = app.MainWindow
+		};
 
-		if ( result != MessageBoxResult.Yes )
+		deleteControllerProfileWindow.ShowDialog();
+
+		if ( !deleteControllerProfileWindow.Confirmed )
 		{
 			return;
 		}
-
-		var app = App.Instance!;
 
 		app.Logger.WriteLine( $"[ControllerProfilesPage] Deleting controller profile '{settings.CurrentControllerProfileName}'" );
 

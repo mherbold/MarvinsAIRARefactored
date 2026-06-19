@@ -5,8 +5,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:MarvinsAIRARefactored.Controls"
+             xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
              mc:Ignorable="d"
              d:DesignHeight="450">
+
+    <UserControl.Resources>
+
+        <!-- The drag-handle arrows point inward toward the center bars. Their positions mirror
+             automatically under RTL, but the bitmaps must be flipped horizontally so they keep
+             pointing inward. FlowDirection is pinned LTR so only this explicit flip applies. -->
+        <Style x:Key="DragHandleImageStyle" TargetType="Image">
+            <Setter Property="FlowDirection" Value="LeftToRight" />
+            <Setter Property="RenderTransformOrigin" Value="0.5,0.5" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization.IsRightToLeft}" Value="True">
+                    <Setter Property="RenderTransform">
+                        <Setter.Value>
+                            <ScaleTransform ScaleX="-1" />
+                        </Setter.Value>
+                    </Setter>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
 
     <Grid x:Name="Grid">
 
@@ -75,6 +97,7 @@
                Grid.Row="1"
                Grid.Column="0"
                Grid.ColumnSpan="2"
+               Style="{StaticResource DragHandleImageStyle}"
                Source="/MarvinsAIRARefactored;component/Artwork/Misc/left-drag-handle.png"
                Width="12"
                Height="20"
@@ -86,6 +109,7 @@
                Grid.Row="1"
                Grid.Column="2"
                Grid.ColumnSpan="2"
+               Style="{StaticResource DragHandleImageStyle}"
                Source="/MarvinsAIRARefactored;component/Artwork/Misc/right-drag-handle.png"
                Width="12"
                Height="20"

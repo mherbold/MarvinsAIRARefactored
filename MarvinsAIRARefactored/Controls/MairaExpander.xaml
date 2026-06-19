@@ -5,6 +5,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+             xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
              mc:Ignorable="d">
 
     <Grid>
@@ -54,6 +55,10 @@
                     <TextBlock.Style>
                         <Style TargetType="TextBlock"
                                BasedOn="{StaticResource MairaTextBlockStyle}">
+                            <!-- Expanded points down (▾) in any language. Collapsed points toward
+                                 the expand direction: right (▸) for LTR, left (◂) for RTL. The glyph
+                                 must be swapped explicitly because FlowDirection mirrors layout, not
+                                 the character itself. -->
                             <Setter Property="Text"
                                     Value="&#x25BE;" />
                             <Style.Triggers>
@@ -62,6 +67,16 @@
                                     <Setter Property="Text"
                                             Value="&#x25B8;" />
                                 </DataTrigger>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding IsExpanded, ElementName=Root}"
+                                                   Value="False" />
+                                        <Condition Binding="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization.IsRightToLeft}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Text"
+                                            Value="&#x25C2;" />
+                                </MultiDataTrigger>
                             </Style.Triggers>
                         </Style>
                     </TextBlock.Style>

@@ -22,6 +22,8 @@ public partial class UpdateButtonMappingsWindow : Window
 
 		InitializeComponent();
 
+		Classes.WindowScaler.ApplyAppUIScale( this );
+
 		_buttonMappings = buttonMappings;
 
 		if ( _buttonMappings.MappedButtons.Count == 0 )

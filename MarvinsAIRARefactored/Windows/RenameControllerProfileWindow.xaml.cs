@@ -3,23 +3,25 @@ using System.Windows;
 
 namespace MarvinsAIRARefactored.Windows;
 
-public partial class NewControllerProfileWindow : Window
+public partial class RenameControllerProfileWindow : Window
 {
 	public bool Confirmed { get; private set; } = false;
 	public string ProfileName { get; private set; } = string.Empty;
-	public bool CopyFromCurrent { get; private set; } = false;
 
-	public NewControllerProfileWindow()
+	public RenameControllerProfileWindow( string currentProfileName )
 	{
 		InitializeComponent();
 
 		Classes.WindowScaler.ApplyAppUIScale( this );
 
-		Loaded += NewControllerProfileWindow_Loaded;
+		ProfileName = currentProfileName;
+
+		Loaded += RenameControllerProfileWindow_Loaded;
 	}
 
-	private void NewControllerProfileWindow_Loaded( object sender, RoutedEventArgs e )
+	private void RenameControllerProfileWindow_Loaded( object sender, RoutedEventArgs e )
 	{
+		ProfileName_MairaTextBox.Value = ProfileName;
 		ProfileName_MairaTextBox.Focus();
 	}
 
@@ -27,7 +29,6 @@ public partial class NewControllerProfileWindow : Window
 	{
 		Confirmed = true;
 		ProfileName = ProfileName_MairaTextBox.Value ?? string.Empty;
-		CopyFromCurrent = CopyCurrentMappings_MairaSwitch.IsOn;
 
 		Close();
 	}

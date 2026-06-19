@@ -1857,6 +1857,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>Avbryt</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Byt namn på profil</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Byt namn på kontrollprofil</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Pågående processer</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Filtrera efter namn eller sökväg...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Söker efter pågående appar...</value>
+  </data>
+
+
+
 
 
 

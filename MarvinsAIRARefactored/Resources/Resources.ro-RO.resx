@@ -1857,6 +1857,21 @@
   </data>  <data name="Cancel" xml:space="preserve">
     <value>Anulează</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Redenumește profilul</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Redenumește profilul controllerului</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Procese în execuție</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Filtrează după nume sau cale...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Se caută aplicațiile în execuție...</value>
+  </data>
+
+
+
 
 
 

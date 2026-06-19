@@ -297,6 +297,12 @@
   <data name="CopyCurrentMappings" xml:space="preserve">
     <value>Kopeeri praegused vendused</value>
   </data>
+  <data name="RenameProfile" xml:space="preserve">
+    <value>Nimeta profiil ümber</value>
+  </data>
+  <data name="RenameControllerProfile" xml:space="preserve">
+    <value>Nimeta kontrolleri profiil ümber</value>
+  </data>
   <data name="ButtonMappings_UC" xml:space="preserve">
     <value>NUPUVENDUSED</value>
   </data>
@@ -1871,5 +1877,14 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Peaakna lähtestamine...</value>
+  </data>  <data name="RunningProcesses" xml:space="preserve">
+    <value>Töötavad protsessid</value>
+  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+    <value>Filtreeri nime või tee järgi...</value>
+  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+    <value>Töötavate rakenduste otsimine...</value>
   </data>
+
+
+
 </root>

@@ -111,6 +111,15 @@ public partial class MairaTextBox : UserControl
 		set => SetValue( IsPasswordProperty, value );
 	}
 
+	public static readonly DependencyProperty IsValueLeftToRightProperty = DependencyProperty.Register( nameof( IsValueLeftToRight ), typeof( bool ), typeof( MairaTextBox ), new PropertyMetadata( false ) );
+
+	/// <summary>When true, the value field renders left-to-right even under RTL languages. Use for technical identifiers (hex colors, URLs, API keys) where bidi reordering would corrupt the text. The label stays in the inherited (RTL) flow direction.</summary>
+	public bool IsValueLeftToRight
+	{
+		get => (bool) GetValue( IsValueLeftToRightProperty );
+		set => SetValue( IsValueLeftToRightProperty, value );
+	}
+
 	public static readonly DependencyProperty PlaceholderProperty = DependencyProperty.Register( nameof( Placeholder ), typeof( string ), typeof( MairaTextBox ), new PropertyMetadata( string.Empty ) );
 
 	/// <summary>Placeholder text shown when the text box is empty and has no label.</summary>
