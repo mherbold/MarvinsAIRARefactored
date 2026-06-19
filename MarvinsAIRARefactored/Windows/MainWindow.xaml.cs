@@ -166,6 +166,7 @@ public partial class MainWindow : Window
 			Title = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization[ "AppTitle" ] + " " + Misc.GetVersion();
 
 			_racingWheelPage.UpdateSteeringDeviceOptions();
+			_racingWheelPage.UpdateSteeringDeviceSection();
 			_racingWheelPage.UpdateAlgorithmOptions();
 			_racingWheelPage.UpdateMultiFFBSourceOptions();
 			_racingWheelPage.UpdatePredictionModeOptions();
