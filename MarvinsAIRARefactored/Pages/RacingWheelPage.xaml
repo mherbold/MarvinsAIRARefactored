@@ -169,7 +169,7 @@
                         <controls:MairaMappableButton x:Name="Set_MairaMappableButton"
                                                       Grid.Column="0"
                                                       Label="{Binding Localization[Set]}"
-                                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/ok.png"
                                                       ButtonMappings="{Binding Settings.RacingWheelSetButtonMappings}"
                                                       Click="Set_MairaMappableButton_Click" />
 

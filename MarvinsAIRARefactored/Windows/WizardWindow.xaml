@@ -430,7 +430,7 @@
                     <controls:MairaMappableButton Grid.Column="2"
                                                   x:Name="WizardSet_MairaMappableButton"
                                                   Label="{Binding Localization[Set]}"
-                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/ok.png"
                                                   ButtonMappings="{Binding Settings.RacingWheelSetButtonMappings}"
                                                   Click="WizardSet_MairaMappableButton_Click" />
 
@@ -595,7 +595,7 @@
                 <controls:MairaButton HorizontalAlignment="Center"
                                       x:Name="Close_MairaButton"
                                       Label="{Binding Localization[Wizard_Close]}"
-                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/ok.png"
                                       Click="Close_MairaButton_Click" />
 
             </StackPanel>

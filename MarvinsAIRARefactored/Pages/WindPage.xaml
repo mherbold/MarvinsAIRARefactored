@@ -351,15 +351,15 @@
                 <controls:MairaButton Grid.Column="0"
                                       Grid.Row="5"
                                       Label="{Binding Localization[Test]}"
-                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-white.png"
-                                      BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-orange.png"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/fan.png"
+                                      BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/fan-orange.png"
                                       Click="LeftTest_MairaButton_Click" />
 
                 <controls:MairaButton Grid.Column="1"
                                       Grid.Row="5"
                                       Label="{Binding Localization[Test]}"
-                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-white.png"
-                                      BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-orange.png"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/fan.png"
+                                      BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/fan-orange.png"
                                       Click="RightTest_MairaButton_Click" />
 
             </Grid>

@@ -1,6 +1,8 @@
 ﻿
 using System.Windows;
 
+using MarvinsAIRARefactored.Controls;
+
 using UserControl = System.Windows.Controls.UserControl;
 
 namespace MarvinsAIRARefactored.Pages;
@@ -58,6 +60,8 @@ public partial class WindPage : UserControl
 		_testingLeft = !_testingLeft;
 
 		app.Wind.TestLeft( _testingLeft );
+
+		( (MairaButton) sender ).Blink = _testingLeft;
 	}
 
 	private void RightTest_MairaButton_Click( object sender, RoutedEventArgs e )
@@ -67,6 +71,8 @@ public partial class WindPage : UserControl
 		_testingRight = !_testingRight;
 
 		app.Wind.TestRight( _testingRight );
+
+		( (MairaButton) sender ).Blink = _testingRight;
 	}
 
 	private void RetryDevice_MairaButton_Click( object sender, RoutedEventArgs e )

@@ -20,6 +20,14 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
   <ItemGroup>
+    <None Remove="Artwork\Buttons\eye.png" />
+    <None Remove="Artwork\Buttons\fan-orange.png" />
+    <None Remove="Artwork\Buttons\fan.png" />
+    <None Remove="Artwork\Buttons\key.png" />
+    <None Remove="Artwork\Buttons\ok.png" />
+    <None Remove="Artwork\Buttons\rename.png" />
+    <None Remove="Artwork\Buttons\search.png" />
+    <None Remove="Artwork\Buttons\wand.png" />
     <None Remove="Artwork\Misc\app-menu-helmet.png" />
     <None Remove="Artwork\Misc\splash-screen.png" />
     <None Remove="Artwork\Misc\splash-screen-mask.png" />
@@ -115,6 +123,10 @@
     <Resource Include="Artwork\Buttons\combo-box-ring.png" />
     <Resource Include="Artwork\Buttons\copy.png" />
     <Resource Include="Artwork\Buttons\drag.png" />
+    <Resource Include="Artwork\Buttons\eye.png" />
+    <Resource Include="Artwork\Buttons\fan-orange.png" />
+    <Resource Include="Artwork\Buttons\fan.png" />
+    <Resource Include="Artwork\Buttons\key.png" />
     <Resource Include="Artwork\Buttons\knob-middle-default.png" />
     <Resource Include="Artwork\Buttons\knob-middle-pressed.png" />
     <Resource Include="Artwork\Buttons\knob-minus-default.png" />
@@ -125,6 +137,7 @@
     <Resource Include="Artwork\Buttons\knob-plus-pressed.png" />
     <Resource Include="Artwork\Buttons\minus.png" />
     <Resource Include="Artwork\Buttons\next.png" />
+    <Resource Include="Artwork\Buttons\ok.png" />
     <Resource Include="Artwork\Buttons\pedal-maximum.png" />
     <Resource Include="Artwork\Buttons\pedal-minimum.png" />
     <Resource Include="Artwork\Buttons\plus-large.png" />
@@ -140,6 +153,7 @@
     <Resource Include="Artwork\Buttons\processes.png" />
     <Resource Include="Artwork\Buttons\record-orange.png" />
     <Resource Include="Artwork\Buttons\record-white.png" />
+    <Resource Include="Artwork\Buttons\rename.png" />
     <Resource Include="Artwork\Buttons\reset.png" />
     <Resource Include="Artwork\Buttons\ring-large-default.png" />
     <Resource Include="Artwork\Buttons\ring-large-mapped.png" />
@@ -148,6 +162,7 @@
     <Resource Include="Artwork\Buttons\ring-small-mapped.png" />
     <Resource Include="Artwork\Buttons\ring-small-pressed.png" />
     <Resource Include="Artwork\Buttons\run-calibration.png" />
+    <Resource Include="Artwork\Buttons\search.png" />
     <Resource Include="Artwork\Buttons\set.png" />
     <Resource Include="Artwork\Buttons\shift-down.png" />
     <Resource Include="Artwork\Buttons\shift-up.png" />
@@ -161,6 +176,7 @@
     <Resource Include="Artwork\Buttons\stop-calibration.png" />
     <Resource Include="Artwork\Buttons\vibrate-large.png" />
     <Resource Include="Artwork\Buttons\vibrate.png" />
+    <Resource Include="Artwork\Buttons\wand.png" />
     <Resource Include="Artwork\Flags\armenia_fluttering_flag_64.png" />
     <Resource Include="Artwork\Flags\brazil_fluttering_flag_64.png" />
     <Resource Include="Artwork\Flags\canada_fluttering_flag_64.png" />

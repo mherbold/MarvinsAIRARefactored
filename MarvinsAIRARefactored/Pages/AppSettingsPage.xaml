@@ -179,7 +179,7 @@
                 <controls:MairaButton x:Name="CheckNow_MairaButton"
                                       Grid.Column="4"
                                       Label="{Binding Localization[CheckNow]}"
-                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/search.png"
                                       Click="CheckNow_MairaButton_Click" />
 
             </Grid>
@@ -205,7 +205,7 @@
 
             <controls:MairaButton x:Name="LaunchWizard_MairaButton"
                                   Label="{Binding Localization[LaunchWizard]}"
-                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/wand.png"
                                   Click="LaunchWizard_MairaButton_Click" />
 
         </controls:MairaGroupBox>
@@ -216,7 +216,7 @@
 
             <controls:MairaMappableButton x:Name="ToggleMainWindow_MairaMappableButton"
                                           Label="{Binding Localization[ShowHideWindow]}"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/app-menu.png"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/eye.png"
                                           ButtonMappings="{Binding Settings.AppToggleMainWindowButtonMappings}"
                                           Click="ToggleMainWindow_MairaMappableButton_Click" />
 

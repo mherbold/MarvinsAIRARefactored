@@ -93,7 +93,7 @@
 
                     <controls:MairaButton Grid.Column="2"
                                           x:Name="VerifyKey_MairaButton"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/power-blue.png"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/key.png"
                                           Label="{Binding Localization[VerifyKey]}"
                                           Click="VerifyKey_MairaButton_Click"
                                           IsSmall="True"

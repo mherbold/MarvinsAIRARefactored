@@ -45,7 +45,7 @@
                                   LabelOnRight="True"
                                   IsSmall="True"
                                   Label="{Binding Localization[OK]}"
-                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/ok.png"
                                   Click="OK_MairaButton_Click" />
 
             <controls:MairaButton Grid.Column="2"

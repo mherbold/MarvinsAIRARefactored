@@ -51,7 +51,7 @@
                                           LabelOnRight="True"
                                           IsSmall="True"
                                           Label="{Binding Localization[RenameProfile]}"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
                                           Click="RenameProfile_MairaButton_Click" />
 
                     <controls:MairaButton x:Name="DeleteProfile_MairaButton"

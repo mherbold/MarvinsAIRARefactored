@@ -62,7 +62,7 @@
             </Grid.ColumnDefinitions>
 
             <controls:MairaButton Grid.Column="0"
-                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/ok.png"
                                   Click="Save_MairaButton_Click" />
 
             <controls:MairaButton Grid.Column="2"
