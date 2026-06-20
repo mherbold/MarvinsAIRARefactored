@@ -1874,7 +1874,13 @@
     <value>Mostra / Amaga la finestra</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Mida del pas</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>Interval de comprovació d'actualitzacions</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> h</value>
   </data>
+
+
 
 
 

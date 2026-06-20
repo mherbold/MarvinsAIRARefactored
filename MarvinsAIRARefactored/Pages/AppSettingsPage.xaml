@@ -161,47 +161,40 @@
                                 Tag="HideIfAdminBoxx"
                                 HelpTopic="advanced/app-settings/#cloud-service">
 
-            <Grid>
+            <StackPanel>
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="40" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
+                <Grid>
 
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
 
-                <controls:MairaSwitch Grid.Row="0"
-                                      Grid.Column="0"
-                                      Grid.ColumnSpan="3"
-                                      IsOn="{Binding Settings.AppCheckForUpdates, Mode=TwoWay}"
-                                      Label="{Binding Localization[CheckForUpdates]}" />
+                    <controls:MairaSwitch Grid.Column="0"
+                                          Grid.ColumnSpan="3"
+                                          IsOn="{Binding Settings.AppCheckForUpdates, Mode=TwoWay}"
+                                          Label="{Binding Localization[CheckForUpdates]}" />
+
+                    <controls:MairaKnob Grid.Column="4"
+                                        Label="{Binding Localization[UpdateCheckInterval]}"
+                                        Value="{Binding Settings.AppUpdateCheckIntervalHours, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.AppUpdateCheckIntervalHoursString}"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.029"
+                                        DefaultValue="1" />
+
+                </Grid>
 
                 <controls:MairaButton x:Name="CheckNow_MairaButton"
-                                      Grid.Row="1"
-                                      Grid.Column="0"
-                                      Grid.ColumnSpan="3"
-                                      Margin="0,10,0,0"
-                                      Label="{Binding Localization[CheckNow]}"
+                                      Margin="0,20,0,0"
                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/search.png"
+                                      Label="{Binding Localization[CheckNow]}"
                                       Click="CheckNow_MairaButton_Click" />
 
-                <controls:MairaKnob Grid.Row="0"
-                                    Grid.Column="4"
-                                    Grid.RowSpan="2"
-                                    Label="{Binding Localization[UpdateCheckInterval]}"
-                                    Value="{Binding Settings.AppUpdateCheckIntervalHours, Mode=TwoWay}"
-                                    ValueString="{Binding Settings.AppUpdateCheckIntervalHoursString}"
-                                    ClickStepSize="1"
-                                    DragStepSize="0.05"
-                                    DefaultValue="1" />
-
-            </Grid>
+            </StackPanel>
 
         </controls:MairaGroupBox>
 

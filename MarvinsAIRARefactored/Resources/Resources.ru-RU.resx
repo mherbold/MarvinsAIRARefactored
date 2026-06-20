@@ -1874,7 +1874,13 @@
     <value>Показать / Скрыть окно</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Размер шага</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>Интервал проверки обновлений</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> ч</value>
   </data>
+
+
 
 
 

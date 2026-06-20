@@ -1889,7 +1889,13 @@
     <value>إظهار / إخفاء النافذة</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>حجم الخطوة</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>الفاصل الزمني للتحقق من التحديثات</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> س</value>
   </data>
+
+
 
 
 

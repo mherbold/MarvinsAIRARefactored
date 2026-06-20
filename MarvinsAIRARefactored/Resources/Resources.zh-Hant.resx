@@ -1889,7 +1889,13 @@
     <value>顯示 / 隱藏視窗</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>步進值</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>更新檢查間隔</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> 小時</value>
   </data>
+
+
 
 
 

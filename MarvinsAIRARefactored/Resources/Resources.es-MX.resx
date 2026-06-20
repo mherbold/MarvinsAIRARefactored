@@ -1875,7 +1875,13 @@
     <value>Mostrar / Ocultar Ventana</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Tamaño de paso</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>Intervalo de comprobación de actualizaciones</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> h</value>
   </data>
+
+
 
 
 

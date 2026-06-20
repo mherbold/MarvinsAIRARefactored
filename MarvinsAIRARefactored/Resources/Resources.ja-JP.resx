@@ -1877,7 +1877,13 @@
     <value>ウィンドウの表示 / 非表示</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>ステップサイズ</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>更新チェック間隔</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> 時間</value>
   </data>
+
+
 
 
 

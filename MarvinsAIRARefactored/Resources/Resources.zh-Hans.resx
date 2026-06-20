@@ -1874,7 +1874,13 @@
     <value>显示 / 隐藏窗口</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>步长</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>更新检查间隔</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> 小时</value>
   </data>
+
+
 
 
 

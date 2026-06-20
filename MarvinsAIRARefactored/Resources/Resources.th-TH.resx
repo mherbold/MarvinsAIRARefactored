@@ -1874,7 +1874,13 @@
     <value>แสดง / ซ่อนหน้าต่าง</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>ขนาดขั้น</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>ช่วงเวลาตรวจสอบการอัปเดต</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> ชม.</value>
   </data>
+
+
 
 
 

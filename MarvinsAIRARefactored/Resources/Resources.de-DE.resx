@@ -1879,7 +1879,13 @@ Hier ist der Link zum Spenden:</value>
     <value>Fenster anzeigen / ausblenden</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Schrittweite</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>Intervall für Updateprüfung</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> Std</value>
   </data>
+
+
 
 
 

@@ -1874,7 +1874,13 @@
     <value>Ablak megjelenítése / elrejtése</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Lépésköz</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>Frissítés-ellenőrzési időköz</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> ó</value>
   </data>
+
+
 
 
 

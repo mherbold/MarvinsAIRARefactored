@@ -1874,7 +1874,13 @@
     <value>Venster tonen / verbergen</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Stapgrootte</value>
+  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+    <value>Interval voor updatecontrole</value>
+  </data>  <data name="HoursUnits" xml:space="preserve">
+    <value> u</value>
   </data>
+
+
 
 
 
