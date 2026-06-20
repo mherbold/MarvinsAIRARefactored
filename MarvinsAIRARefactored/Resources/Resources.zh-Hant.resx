@@ -1887,7 +1887,10 @@
     <value>視窗可見性</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>顯示 / 隱藏視窗</value>
+  </data>  <data name="StepSize" xml:space="preserve">
+    <value>步進值</value>
   </data>
+
 
 
 

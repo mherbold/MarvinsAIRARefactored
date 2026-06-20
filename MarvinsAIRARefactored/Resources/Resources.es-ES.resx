@@ -1872,7 +1872,10 @@
     <value>VISIBILIDAD DE LA VENTANA</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>Mostrar / Ocultar Ventana</value>
+  </data>  <data name="StepSize" xml:space="preserve">
+    <value>Tamaño de paso</value>
   </data>
+
 
 
 

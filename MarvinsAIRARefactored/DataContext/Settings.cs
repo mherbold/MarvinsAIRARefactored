@@ -114,6 +114,22 @@ public class Settings : INotifyPropertyChanged
 
 	public string CurrentControllerProfileName { get; set; } = ControllerProfile.DefaultProfileName;
 
+	// Universal knob step sizes - the per-step amount applied when a knob's +/- button is pressed (by
+	// mouse or by mapped input). Keyed by the knob's settings property base name (e.g. "RacingWheelStrength").
+	// This is intentionally NOT part of any controller profile: it is shared across every profile, so the
+	// step sizes survive profile switches. Missing entries fall back to the catalog default for that knob.
+	public SerializableDictionary<string, float> KnobStepSizes { get; set; } = [];
+
+	public float GetKnobStepSize( string propertyBaseName, float defaultStepSize )
+	{
+		return KnobStepSizes.TryGetValue( propertyBaseName, out var stepSize ) ? stepSize : defaultStepSize;
+	}
+
+	public void SetKnobStepSize( string propertyBaseName, float stepSize )
+	{
+		KnobStepSizes[ propertyBaseName ] = stepSize;
+	}
+
 	private static ButtonMappings.MappedButton.Button CloneButton( ButtonMappings.MappedButton.Button source )
 	{
 		return new ButtonMappings.MappedButton.Button

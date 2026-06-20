@@ -1872,7 +1872,10 @@
     <value>GWELEDEDD FFENESTR</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>Dangos / Cuddio Ffenestr</value>
+  </data>  <data name="StepSize" xml:space="preserve">
+    <value>Maint y Cam</value>
   </data>
+
 
 
 

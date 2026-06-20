@@ -1878,7 +1878,10 @@
     <value>ВИДИМІСТЬ ВІКНА</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>Показати / Сховати вікно</value>
+  </data>  <data name="StepSize" xml:space="preserve">
+    <value>Розмір кроку</value>
   </data>
+
 
 
 

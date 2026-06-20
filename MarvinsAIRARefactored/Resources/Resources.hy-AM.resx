@@ -1872,7 +1872,10 @@
     <value>ՊԱՏՈՒՀԱՆԻ ՏԵՍԱՆԵԼԻՈՒԹՅՈՒՆ</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>Ցույց տալ / Թաքցնել պատուհանը</value>
+  </data>  <data name="StepSize" xml:space="preserve">
+    <value>Քայլի չափ</value>
   </data>
+
 
 
 

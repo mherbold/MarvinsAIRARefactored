@@ -34,6 +34,12 @@ public sealed class MappableAction
 	public MappableActionDirection Direction { get; init; } = MappableActionDirection.None;
 	public required Action<App> OnFire { get; init; }               // the action body
 
+	// Knob actions only (null for triggers). StepSizeKey is the settings property base name shared by
+	// the +/- pair (e.g. "RacingWheelStrength") and is the key into the universal Settings.KnobStepSizes
+	// store; DefaultStepSize is the fallback step magnitude when the user has not overridden it.
+	public string? StepSizeKey { get; init; }
+	public float DefaultStepSize { get; init; }
+
 	public ButtonMappings GetButtonMappings( Settings settings )
 	{
 		if ( !_propertyCache.TryGetValue( SettingsPropertyName, out var propertyInfo ) )
@@ -57,6 +63,31 @@ public static class MappableActionCatalog
 	#endregion
 
 	public static IReadOnlyList<MappableAction> Actions { get; } = BuildActions();
+
+	// propBase -> default step magnitude, built from the knob actions above. Lets MairaKnob (which only
+	// knows the propBase derived from its binding) recover the catalog default without a settings lookup.
+	private static readonly Dictionary<string, float> _defaultStepSizes = BuildDefaultStepSizes();
+
+	private static Dictionary<string, float> BuildDefaultStepSizes()
+	{
+		var defaultStepSizes = new Dictionary<string, float>();
+
+		foreach ( var action in Actions )
+		{
+			if ( action.StepSizeKey != null )
+			{
+				defaultStepSizes[ action.StepSizeKey ] = action.DefaultStepSize;
+			}
+		}
+
+		return defaultStepSizes;
+	}
+
+	// True when propBase names a knob in the catalog; stepSize receives its default step magnitude.
+	public static bool TryGetDefaultStepSize( string propertyBaseName, out float stepSize )
+	{
+		return _defaultStepSizes.TryGetValue( propertyBaseName, out stepSize );
+	}
 
 	// Validate that the catalog covers every ButtonMappings-typed property on Settings exactly once.
 	// App calls this at startup and logs the result so a future mapping cannot be silently dropped
@@ -146,7 +177,9 @@ public static class MappableActionCatalog
 			LabelKey = labelKey,
 			Index = index,
 			Direction = MappableActionDirection.Increase,
-			OnFire = app => AdjustFloat( S, propBase, delta )
+			StepSizeKey = propBase,
+			DefaultStepSize = delta,
+			OnFire = app => AdjustFloat( S, propBase, S.GetKnobStepSize( propBase, delta ) )
 		} );
 
 		list.Add( new MappableAction
@@ -157,7 +190,9 @@ public static class MappableActionCatalog
 			LabelKey = labelKey,
 			Index = index,
 			Direction = MappableActionDirection.Decrease,
-			OnFire = app => AdjustFloat( S, propBase, -delta )
+			StepSizeKey = propBase,
+			DefaultStepSize = delta,
+			OnFire = app => AdjustFloat( S, propBase, -S.GetKnobStepSize( propBase, delta ) )
 		} );
 	}
 
@@ -166,8 +201,6 @@ public static class MappableActionCatalog
 	// and vice versa (matches the original auto-target behavior).
 	private static void RwKnob( List<MappableAction> list, string groupKey, string labelKey, string propBase, float delta, bool inverted = false )
 	{
-		var plusDelta = inverted ? -delta : delta;
-
 		list.Add( new MappableAction
 		{
 			SettingsPropertyName = propBase + "PlusButtonMappings",
@@ -175,11 +208,15 @@ public static class MappableActionCatalog
 			GroupLabelKey = groupKey,
 			LabelKey = labelKey,
 			Direction = MappableActionDirection.Increase,
+			StepSizeKey = propBase,
+			DefaultStepSize = delta,
 			OnFire = app =>
 			{
 				var settings = S;
 
-				AdjustFloat( settings, propBase, plusDelta );
+				var step = settings.GetKnobStepSize( propBase, delta );
+
+				AdjustFloat( settings, propBase, inverted ? -step : step );
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
@@ -195,11 +232,15 @@ public static class MappableActionCatalog
 			GroupLabelKey = groupKey,
 			LabelKey = labelKey,
 			Direction = MappableActionDirection.Decrease,
+			StepSizeKey = propBase,
+			DefaultStepSize = delta,
 			OnFire = app =>
 			{
 				var settings = S;
 
-				AdjustFloat( settings, propBase, -plusDelta );
+				var step = settings.GetKnobStepSize( propBase, delta );
+
+				AdjustFloat( settings, propBase, inverted ? step : -step );
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
@@ -221,11 +262,13 @@ public static class MappableActionCatalog
 			GroupLabelKey = groupKey,
 			LabelKey = labelKey,
 			Direction = MappableActionDirection.Increase,
+			StepSizeKey = propBase,
+			DefaultStepSize = delta,
 			OnFire = app =>
 			{
 				var settings = S;
 
-				AdjustFloat( settings, propBase, delta );
+				AdjustFloat( settings, propBase, settings.GetKnobStepSize( propBase, delta ) );
 
 				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
 				{
@@ -241,11 +284,13 @@ public static class MappableActionCatalog
 			GroupLabelKey = groupKey,
 			LabelKey = labelKey,
 			Direction = MappableActionDirection.Decrease,
+			StepSizeKey = propBase,
+			DefaultStepSize = delta,
 			OnFire = app =>
 			{
 				var settings = S;
 
-				AdjustFloat( settings, propBase, -delta );
+				AdjustFloat( settings, propBase, -settings.GetKnobStepSize( propBase, delta ) );
 
 				if ( settings.SteeringEffectsInputMappedSettingUpdateEnabled )
 				{

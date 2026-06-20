@@ -1,4 +1,5 @@
 
+using System.Globalization;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -17,6 +18,11 @@ public partial class ControllerProfilesPage : UserControl
 	private bool _refreshingProfileSelector = false;
 
 	private readonly Dictionary<MappableAction, TextBlock> _summaryTextBlocks = [];
+
+	// Step-size editors grouped by knob key, so editing the + row's box keeps the - row's box in sync
+	// (both rows of a knob share one universal step size).
+	private readonly Dictionary<string, List<MairaTextBox>> _stepSizeEditors = [];
+	private bool _syncingStepSizeEditors = false;
 
 	public ControllerProfilesPage()
 	{
@@ -258,6 +264,7 @@ public partial class ControllerProfilesPage : UserControl
 	{
 		Mappings_StackPanel.Children.Clear();
 		_summaryTextBlocks.Clear();
+		_stepSizeEditors.Clear();
 
 		var localization = Localization;
 
@@ -307,14 +314,19 @@ public partial class ControllerProfilesPage : UserControl
 
 		var grid = new Grid
 		{
-			Margin = new Thickness( 0, 3, 0, 3 )
+			Margin = new Thickness( 0, 3, 0, 3 ),
+
+			// Uniform row height so rows with a step-size editor (a 34px MairaTextBox) don't stand taller
+			// than rows without one - shorter rows grow to match rather than the list looking uneven.
+			MinHeight = 34
 		};
 
-		// Group label | direction (+/-) | control label | mapping summary | Map | Clear
+		// Group label | direction (+/-) | control label | mapping summary | step size | Map | Clear
 		grid.ColumnDefinitions.Add( new ColumnDefinition { Width = new GridLength( 3, GridUnitType.Star ) } );
 		grid.ColumnDefinitions.Add( new ColumnDefinition { Width = new GridLength( 30 ) } );
 		grid.ColumnDefinitions.Add( new ColumnDefinition { Width = new GridLength( 2, GridUnitType.Star ) } );
 		grid.ColumnDefinitions.Add( new ColumnDefinition { Width = new GridLength( 3, GridUnitType.Star ) } );
+		grid.ColumnDefinitions.Add( new ColumnDefinition { Width = new GridLength( 90 ) } );
 		grid.ColumnDefinitions.Add( new ColumnDefinition { Width = GridLength.Auto } );
 		grid.ColumnDefinitions.Add( new ColumnDefinition { Width = GridLength.Auto } );
 
@@ -376,6 +388,39 @@ public partial class ControllerProfilesPage : UserControl
 
 		_summaryTextBlocks[ mappableAction ] = summaryTextBlock;
 
+		// Knob actions (the +/- pairs) get an editable step-size field. The value is universal - stored in
+		// Settings.KnobStepSizes, shared across all controller profiles - and drives both the on-screen
+		// +/- buttons and mapped input. Trigger actions leave this column empty (their cells just reserve space).
+		if ( mappableAction.StepSizeKey is string stepSizeKey )
+		{
+			var currentStepSize = Settings.GetKnobStepSize( stepSizeKey, mappableAction.DefaultStepSize );
+
+			var stepSizeMairaTextBox = new MairaTextBox
+			{
+				FontSize = 20,
+				Width = 80,
+				HorizontalAlignment = System.Windows.HorizontalAlignment.Left,
+				VerticalAlignment = VerticalAlignment.Center,
+				ToolTip = localization[ "StepSize" ],
+				Tag = stepSizeKey,
+				Value = FormatStepSize( currentStepSize )
+			};
+
+			stepSizeMairaTextBox.ValueChanged += StepSize_MairaTextBox_ValueChanged;
+
+			if ( !_stepSizeEditors.TryGetValue( stepSizeKey, out var editors ) )
+			{
+				editors = [];
+
+				_stepSizeEditors[ stepSizeKey ] = editors;
+			}
+
+			editors.Add( stepSizeMairaTextBox );
+
+			Grid.SetColumn( stepSizeMairaTextBox, 4 );
+			grid.Children.Add( stepSizeMairaTextBox );
+		}
+
 		var mapMairaButton = new MairaButton
 		{
 			Label = localization[ "Map" ],
@@ -387,7 +432,7 @@ public partial class ControllerProfilesPage : UserControl
 
 		mapMairaButton.Click += Map_MairaButton_Click;
 
-		Grid.SetColumn( mapMairaButton, 4 );
+		Grid.SetColumn( mapMairaButton, 5 );
 		grid.Children.Add( mapMairaButton );
 
 		var clearMairaButton = new MairaButton
@@ -402,10 +447,71 @@ public partial class ControllerProfilesPage : UserControl
 
 		clearMairaButton.Click += Clear_MairaButton_Click;
 
-		Grid.SetColumn( clearMairaButton, 5 );
+		Grid.SetColumn( clearMairaButton, 6 );
 		grid.Children.Add( clearMairaButton );
 
 		return grid;
+	}
+
+	private void StepSize_MairaTextBox_ValueChanged( object sender, RoutedEventArgs e )
+	{
+		if ( _syncingStepSizeEditors )
+		{
+			return;
+		}
+
+		if ( ( sender is not MairaTextBox mairaTextBox ) || ( mairaTextBox.Tag is not string stepSizeKey ) )
+		{
+			return;
+		}
+
+		// Ignore unparseable or non-positive input (including intermediate states while the user is typing,
+		// e.g. "0." on the way to "0.05"). A zero/negative step would freeze the knob.
+		if ( !TryParseStepSize( mairaTextBox.Value, out var stepSize ) || ( stepSize <= 0f ) )
+		{
+			return;
+		}
+
+		var app = App.Instance!;
+
+		Settings.SetKnobStepSize( stepSizeKey, stepSize );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		// Mirror the value into the knob's other (+/-) editor without retriggering this handler.
+		if ( _stepSizeEditors.TryGetValue( stepSizeKey, out var editors ) )
+		{
+			_syncingStepSizeEditors = true;
+
+			var formatted = FormatStepSize( stepSize );
+
+			foreach ( var editor in editors )
+			{
+				if ( !ReferenceEquals( editor, mairaTextBox ) && ( editor.Value != formatted ) )
+				{
+					editor.Value = formatted;
+				}
+			}
+
+			_syncingStepSizeEditors = false;
+		}
+	}
+
+	private static string FormatStepSize( float stepSize )
+	{
+		return stepSize.ToString( "0.#####", CultureInfo.CurrentCulture );
+	}
+
+	private static bool TryParseStepSize( string? text, out float value )
+	{
+		text = ( text ?? string.Empty ).Trim();
+
+		if ( float.TryParse( text, NumberStyles.Float, CultureInfo.CurrentCulture, out value ) )
+		{
+			return true;
+		}
+
+		return float.TryParse( text.Replace( ',', '.' ), NumberStyles.Float, CultureInfo.InvariantCulture, out value );
 	}
 
 	private static string DirectionSymbol( MappableActionDirection direction )

@@ -2,6 +2,7 @@
 using System.Globalization;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Data;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -319,11 +320,62 @@ public partial class MairaKnob : UserControl
 	private void AdjustValue( float amount )
 	{
 		float oldValue = Value;
-		float newValue = oldValue + amount * StepSize;
+		float newValue = oldValue + amount * EffectiveStepSize;
 
 		Value = newValue;
 
 		ValueChangedCallback?.Invoke( newValue );
+	}
+
+	// The step size to apply per +/- press. For knobs wired to a mappable action (which is every knob on
+	// the racing wheel / steering effects / pedals / etc. pages) this is the universal, profile-independent
+	// value from Settings.KnobStepSizes - the same value used by mapped input - so the mouse and the mapped
+	// button always move the knob by the same amount. Knobs with no mapped action fall back to the XAML StepSize.
+	private float EffectiveStepSize
+	{
+		get
+		{
+			var stepSizeKey = ResolveStepSizeKey();
+
+			if ( ( stepSizeKey != null ) && MappableActionCatalog.TryGetDefaultStepSize( stepSizeKey, out var defaultStepSize ) )
+			{
+				return MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.GetKnobStepSize( stepSizeKey, defaultStepSize );
+			}
+
+			return StepSize;
+		}
+	}
+
+	// Recover the knob's settings property base name (e.g. "RacingWheelStrength") from its PlusButtonMappings
+	// binding path (e.g. "Settings.RacingWheelStrengthPlusButtonMappings"), which by convention is the
+	// MappableActionCatalog key for this knob. Resolved once and cached; null when the knob has no such binding.
+	private bool _stepSizeKeyResolved;
+	private string? _stepSizeKey;
+
+	private string? ResolveStepSizeKey()
+	{
+		if ( _stepSizeKeyResolved )
+		{
+			return _stepSizeKey;
+		}
+
+		_stepSizeKeyResolved = true;
+
+		if ( BindingOperations.GetBinding( this, PlusButtonMappingsProperty ) is System.Windows.Data.Binding binding )
+		{
+			var path = binding.Path?.Path ?? string.Empty;
+
+			var leaf = path.Contains( '.' ) ? path[ ( path.LastIndexOf( '.' ) + 1 ).. ] : path;
+
+			const string suffix = "PlusButtonMappings";
+
+			if ( leaf.EndsWith( suffix, StringComparison.Ordinal ) && ( leaf.Length > suffix.Length ) )
+			{
+				_stepSizeKey = leaf[ ..^suffix.Length ];
+			}
+		}
+
+		return _stepSizeKey;
 	}
 
 	private void EndDrag()
