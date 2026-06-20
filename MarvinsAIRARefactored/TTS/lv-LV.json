@@ -1,0 +1,115 @@
+{
+  "TestPhrase": [
+    "Braucēji, iedarbiniet motorus!",
+    "Sāksim sacīkstes!",
+    "Ja neesi pirmais, esi pēdējais.",
+    "Kā tev šodien klājas, draugs?",
+    "Rūtainais karogs ir izkārts — kādas sacīkstes!"
+  ],
+  "SpotterCarLeft": [
+    "Mašīna pa kreisi!",
+    "Mašīna tev pa kreisi!"
+  ],
+  "SpotterCarRight": [
+    "Mašīna pa labi!",
+    "Mašīna tev pa labi!"
+  ],
+  "SpotterClear": [
+    "Brīvs.",
+    "Tev ir brīvs."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Trīs blakus, tu esi vidū!",
+    "[urgently] Trīs blakus! Mašīna pa kreisi un pa labi!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Trīs blakus, tu esi kreisajā pusē!",
+    "[urgently] Trīs blakus! Mašīna tev pa labi!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Trīs blakus, tu esi labajā pusē!",
+    "[urgently] Trīs blakus! Mašīna tev pa kreisi!"
+  ],
+  "SpotterStillThere": [
+    "Vēl arvien tur.",
+    "Vēl arvien tev blakus.",
+    "Viņš vēl arvien tur.",
+    "Mašīna vēl arvien blakus."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Viens aplis līdz zaļajam!",
+    "Atlicis viens aplis līdz zaļajam!",
+    "Sagatavojies — viens aplis līdz zaļajam karogam!",
+    "Gandrīz klāt — vēl viens aplis līdz startam!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Zaļais karogs, brauc brauc brauc!",
+    "[excitedly] Zaļais karogs! Brauksim!",
+    "[excitedly] Esam zaļā, dod gāzi!",
+    "[excitedly] Zaļais karogs ir izkārts — brauc, brauc, brauc!",
+    "[excitedly] Ir zaļš, spied gāzi!"
+  ],
+  "SpotterFlagBlue": [
+    "Zilais karogs — laid viņus garām.",
+    "Zilais karogs, atkāpies.",
+    "Tev ir zilais karogs — dod ceļu.",
+    "Izkārts zilais karogs — laid līderi garām.",
+    "Atkāpies, zilais karogs."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Dzeltenais karogs — priekšā problēma, esi uzmanīgs!",
+    "[urgently] Dzeltenais karogs plīvo, samazini ātrumu!",
+    "[urgently] Dzeltenais karogs izkārts, priekšā nelaime!",
+    "[urgently] Dzeltenais karogs — uzmanies tur priekšā!",
+    "[urgently] Uzmanību, dzeltenais karogs — esi modrs!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Brīdinājuma karogs ir izkārts!",
+    "Trasē ir brīdinājums.",
+    "Pilns trases brīdinājums — samazini ātrumu.",
+    "Brīdinājuma karogs plīvo — saglabā tempu.",
+    "Brīdinājums izkārts, atslābini."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Uzmanies no atlūzām uz ceļa!",
+    "[urgently] Atlūzas uz trases — esi uzmanīgs!",
+    "[urgently] Priekšā ir atlūzas, esi modrs!",
+    "[urgently] Uzmanies, atlūzas uz braukšanas līnijas!"
+  ],
+  "SpotterFlagWhite": [
+    "Baltais karogs — pēdējais aplis!",
+    "Baltais karogs izkārts, pēdējais aplis!",
+    "Tas ir baltais karogs — viens atlicis!",
+    "Izkārts baltais karogs, dod visu!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Rūtainais karogs ir izkārts!",
+    "[excitedly] Rūtainais karogs — tas ir finišs!",
+    "[excitedly] Tas ir rūtainais, sacīkstes beigušās!",
+    "[excitedly] Rūtainais karogs plīvo — sacīkstes beigušās!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Tev ir melnais karogs — brauc iekšā!",
+    "[seriously] Izkārts melnais karogs, ved mašīnu iekšā.",
+    "[seriously] Melnais karogs — tagad dodies uz boksiem.",
+    "[seriously] Tev rāda melno karogu, brauc boksā šajā aplī."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Tu esi diskvalificēts — atgriezies boksā.",
+    "[seriously] Diskvalifikācijas karogs — atgriezies boksu joslā.",
+    "[seriously] Tu esi diskvalificēts, ved mašīnu iekšā.",
+    "[seriously] Melnais karogs ar krustu — tu esi diskvalificēts, brauc boksā tagad."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Remonta karogs — ved mašīnu boksā remontam.",
+    "[seriously] Tev ir remonta karogs, brauc boksā remontam.",
+    "[seriously] Izkārts remonta karogs — tavai mašīnai boksos nepieciešama uzmanība.",
+    "[seriously] Remonta karogs izkārts — brauc boksā šajā aplī remontam."
+  ],
+  "SpotterFlagStartReady": [
+    "Esi gatavs!",
+    "Gatavojies startam.",
+    "Sagatavojies — starts tuvojas!",
+    "Gandrīz laiks — esi gatavs braukt!"
+  ]
+}

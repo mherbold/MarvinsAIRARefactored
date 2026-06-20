@@ -1,0 +1,115 @@
+{
+  "TestPhrase": [
+    "車手們，發動你們的引擎！",
+    "我們去比賽吧！",
+    "不是第一就是最後。",
+    "今天怎麼樣，老兄？",
+    "方格旗出來了——多精彩的比賽！"
+  ],
+  "SpotterCarLeft": [
+    "左側有車！",
+    "左側！"
+  ],
+  "SpotterCarRight": [
+    "右側有車！",
+    "右側！"
+  ],
+  "SpotterClear": [
+    "前方清晰。",
+    "已清晰。"
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] 三車並排，你在中間！",
+    "[urgently] 三車並排！左右各有一輛車！"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] 三車並排，你在左側！",
+    "[urgently] 三車並排！你右側有車！"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] 三車並排，你在右側！",
+    "[urgently] 三車並排！你左側有車！"
+  ],
+  "SpotterStillThere": [
+    "還在那裡。",
+    "還在旁邊。",
+    "他還在那裡。",
+    "車仍在旁邊。"
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "綠燈前還有一圈！",
+    "綠旗前還剩一圈！",
+    "準備好 — 還有一圈就綠旗了！",
+    "快到了 — 再跑一圈就出發！"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] 綠旗，衝衝衝！",
+    "[excitedly] 綠旗！出發！",
+    "[excitedly] 綠旗了，踩油門！",
+    "[excitedly] 綠旗出來了 — 衝，衝，衝！",
+    "[excitedly] 綠旗，踩下去！"
+  ],
+  "SpotterFlagBlue": [
+    "藍旗 — 讓他們過去。",
+    "藍旗，讓開。",
+    "藍旗 — 讓出位置。",
+    "舉藍旗 — 讓領先者通過。",
+    "讓開，藍旗。"
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] 黃旗 — 前方有問題，小心！",
+    "[urgently] 黃旗揮動，減速！",
+    "[urgently] 黃旗出來了，前方有麻煩！",
+    "[urgently] 黃旗 — 注意前方！",
+    "[urgently] 注意，黃旗 — 保持警覺！"
+  ],
+  "SpotterFlagCautionWaving": [
+    "注意旗出來了！",
+    "賽道上出現注意旗。",
+    "全程注意 — 減速。",
+    "注意旗揮動 — 保持節奏。",
+    "注意旗出了，退後一些。"
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] 注意賽道上有碎片！",
+    "[urgently] 賽道有碎片 — 小心！",
+    "[urgently] 前方有碎片，保持警覺！",
+    "[urgently] 當心，賽道路線上有碎片！"
+  ],
+  "SpotterFlagWhite": [
+    "白旗 — 最後一圈！",
+    "白旗出來了，最後一圈！",
+    "白旗 — 還有一圈！",
+    "白旗展示，全力以赴！"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] 方格旗出來了！",
+    "[excitedly] 方格旗 — 終點到了！",
+    "[excitedly] 方格旗，比賽結束！",
+    "[excitedly] 方格旗飛揚 — 比賽結束！"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] 你被舉黑旗 — 進站！",
+    "[seriously] 黑旗展示，進入維修區。",
+    "[seriously] 黑旗 — 現在進維修區。",
+    "[seriously] 他們在向你展示黑旗，本圈進站。"
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] 你被取消資格了 — 回到維修區。",
+    "[seriously] 取消資格旗 — 返回維修區通道。",
+    "[seriously] 你被DQ了，把車開進來。",
+    "[seriously] 帶叉黑旗 — 你被取消資格了，現在進站。"
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] 肉丸旗 — 把車開進維修區修理。",
+    "[seriously] 你收到了肉丸旗，進站修理。",
+    "[seriously] 維修旗展示 — 你的車需要在維修區維護。",
+    "[seriously] 肉丸旗出來了 — 本圈進站維修。"
+  ],
+  "SpotterFlagStartReady": [
+    "準備好！",
+    "待命準備起跑。",
+    "準備好 — 起跑就要來了！",
+    "快到時間了 — 準備出發！"
+  ]
+}

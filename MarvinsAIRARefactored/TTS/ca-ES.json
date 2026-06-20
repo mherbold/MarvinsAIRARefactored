@@ -1,0 +1,115 @@
+{
+  "TestPhrase": [
+    "Pilots, engegueu els motors!",
+    "Som-hi a córrer!",
+    "Si no ets el primer, ets l'últim.",
+    "Com va tot avui, col·lega?",
+    "La bandera de quadres ja és fora; quina cursa!"
+  ],
+  "SpotterCarLeft": [
+    "Cotxe a l'esquerra!",
+    "Cotxe a la teva esquerra!"
+  ],
+  "SpotterCarRight": [
+    "Cotxe a la dreta!",
+    "Cotxe a la teva dreta!"
+  ],
+  "SpotterClear": [
+    "Lliure.",
+    "Estàs lliure."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Tres en línia, estàs al mig!",
+    "[urgently] Tres en línia! Cotxe a esquerra i dreta!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Tres en línia, estàs a l'esquerra!",
+    "[urgently] Tres en línia! Cotxe a la teva dreta!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Tres en línia, estàs a la dreta!",
+    "[urgently] Tres en línia! Cotxe a la teva esquerra!"
+  ],
+  "SpotterStillThere": [
+    "Encara hi és.",
+    "Encara és al teu costat.",
+    "Encara és aquí.",
+    "El cotxe segueix al teu costat."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Una volta per al verd!",
+    "Queda una volta per al verd!",
+    "Prepara't — una volta per a la bandera verda!",
+    "Gairebé hi som — una volta més abans de sortir en verd!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Bandera verda, vinga vinga vinga!",
+    "[excitedly] Bandera verda! Som-hi!",
+    "[excitedly] Som en verd, accelera!",
+    "[excitedly] La bandera verda ja és fora — vinga, vinga, vinga!",
+    "[excitedly] És verd, pitja l'accelerador!"
+  ],
+  "SpotterFlagBlue": [
+    "Bandera blava — deixa'ls passar.",
+    "Bandera blava, aparta't.",
+    "Tens bandera blava — cedeix el pas.",
+    "Bandera blava mostrada — deixa passar el líder.",
+    "Aparta't, bandera blava."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Bandera groga — problema al davant, vés amb compte!",
+    "[urgently] Bandera groga onejant, redueix la velocitat!",
+    "[urgently] Bandera groga fora, hi ha problemes al davant!",
+    "[urgently] Bandera groga — vigila allà dalt!",
+    "[urgently] Atenció, bandera groga — estigues atent!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "La bandera de precaució ja és fora!",
+    "Tenim precaució a la pista.",
+    "Precaució a tot el circuit — redueix la velocitat.",
+    "Bandera de precaució onejant — mantén el ritme.",
+    "Precaució activada, afluixa."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Compte amb les restes a la pista!",
+    "[urgently] Restes a la pista — vés amb compte!",
+    "[urgently] Hi ha restes al davant, estigues atent!",
+    "[urgently] Atenció, restes a la línia de cursa!"
+  ],
+  "SpotterFlagWhite": [
+    "Bandera blanca — última volta!",
+    "Bandera blanca fora, última volta!",
+    "Aquesta és la bandera blanca — en queda una!",
+    "Bandera blanca mostrada, fes que compti!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] La bandera de quadres ja és fora!",
+    "[excitedly] Bandera de quadres — això és el final!",
+    "[excitedly] És la de quadres, la cursa s'ha acabat!",
+    "[excitedly] La bandera de quadres oneja — cursa acabada!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Tens bandera negra — entra a boxes!",
+    "[seriously] Bandera negra mostrada, porta'l a dins.",
+    "[seriously] Bandera negra — ves a boxes ara.",
+    "[seriously] T'estan mostrant la bandera negra, entra a boxes aquesta volta."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Has estat desqualificat — torna a boxes.",
+    "[seriously] Bandera de desqualificació — torna al carril de boxes.",
+    "[seriously] Has estat desqualificat, porta el cotxe a dins.",
+    "[seriously] Bandera negra amb creu — estàs desqualificat, entra a boxes ara."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Bandera de reparació — porta el cotxe a boxes per reparar-lo.",
+    "[seriously] Tens la bandera de reparació, entra a boxes per reparar.",
+    "[seriously] Bandera de reparació mostrada — el teu cotxe necessita atenció a boxes.",
+    "[seriously] Bandera de reparació fora — entra a boxes aquesta volta per reparar."
+  ],
+  "SpotterFlagStartReady": [
+    "Prepara't!",
+    "A punt per a la sortida.",
+    "Prepara't — la sortida s'acosta!",
+    "Gairebé és l'hora — prepara't per sortir!"
+  ]
+}

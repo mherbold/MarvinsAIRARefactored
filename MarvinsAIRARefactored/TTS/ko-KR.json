@@ -1,0 +1,115 @@
+{
+  "TestPhrase": [
+    "선수 여러분, 엔진 시동을 거세요!",
+    "자, 레이스 시작하자!",
+    "1등이 아니면 꼴찌야.",
+    "오늘 좀 어때, 친구?",
+    "체커기가 나왔어 — 정말 멋진 레이스였어!"
+  ],
+  "SpotterCarLeft": [
+    "왼쪽에 차!",
+    "네 왼쪽에 차!"
+  ],
+  "SpotterCarRight": [
+    "오른쪽에 차!",
+    "네 오른쪽에 차!"
+  ],
+  "SpotterClear": [
+    "클리어.",
+    "이제 클리어야."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] 세 대 나란히, 네가 가운데야!",
+    "[urgently] 세 대 나란히! 왼쪽 오른쪽에 차!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] 세 대 나란히, 네가 왼쪽이야!",
+    "[urgently] 세 대 나란히! 네 오른쪽에 차!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] 세 대 나란히, 네가 오른쪽이야!",
+    "[urgently] 세 대 나란히! 네 왼쪽에 차!"
+  ],
+  "SpotterStillThere": [
+    "아직 있어.",
+    "아직 옆에 있어.",
+    "걔 아직 거기 있어.",
+    "차 아직 나란히 있어."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "그린까지 한 바퀴!",
+    "그린 전까지 한 바퀴 남았어!",
+    "준비해 — 그린 플래그까지 한 바퀴!",
+    "거의 다 왔어 — 출발 전 한 바퀴 더!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] 그린 플래그, 가자 가자 가자!",
+    "[excitedly] 그린 플래그! 출발!",
+    "[excitedly] 그린이야, 밟아!",
+    "[excitedly] 그린 플래그 나왔어 — 가, 가, 가!",
+    "[excitedly] 그린이야, 가속 페달 밟아!"
+  ],
+  "SpotterFlagBlue": [
+    "블루 플래그 — 보내줘.",
+    "블루 플래그, 비켜줘.",
+    "블루 플래그 받았어 — 길 내줘.",
+    "블루 플래그가 나왔어 — 선두 차 보내줘.",
+    "옆으로 비켜, 블루 플래그."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] 옐로 플래그 — 앞에 문제 있어, 조심해!",
+    "[urgently] 옐로 플래그 흔들리고 있어, 속도 줄여!",
+    "[urgently] 옐로 플래그 나왔어, 앞에 사고야!",
+    "[urgently] 옐로 플래그 — 저 앞 조심해!",
+    "[urgently] 주의, 옐로 플래그 — 긴장 늦추지 마!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "코션 플래그 나왔어!",
+    "트랙에 코션 떴어.",
+    "전 구간 코션 — 속도 줄여.",
+    "코션 플래그 흔들리고 있어 — 페이스 유지해.",
+    "코션 떴어, 속도 낮춰."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] 트랙 위 파편 조심해!",
+    "[urgently] 트랙에 파편이야 — 조심해!",
+    "[urgently] 앞에 파편 있어, 긴장 늦추지 마!",
+    "[urgently] 조심해, 주행 라인에 파편이야!"
+  ],
+  "SpotterFlagWhite": [
+    "화이트 플래그 — 마지막 바퀴!",
+    "화이트 플래그 나왔어, 마지막 바퀴!",
+    "화이트 플래그야 — 한 바퀴 남았어!",
+    "화이트 플래그 나왔어, 후회 없이 달려!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] 체커기가 나왔어!",
+    "[excitedly] 체커기 — 이게 피니시야!",
+    "[excitedly] 체커기야, 레이스 끝!",
+    "[excitedly] 체커기가 펄럭여 — 레이스 종료!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] 블랙 플래그 받았어 — 들어와!",
+    "[seriously] 블랙 플래그 나왔어, 차 들여와.",
+    "[seriously] 블랙 플래그 — 지금 피트로 가.",
+    "[seriously] 너한테 블랙 플래그 보여주고 있어, 이번 바퀴에 피트인해."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] 실격됐어 — 피트로 돌아와.",
+    "[seriously] 실격 플래그 — 피트 레인으로 복귀해.",
+    "[seriously] 실격됐어, 차 들여와.",
+    "[seriously] 엑스 표시 블랙 플래그 — 실격이야, 지금 피트인해."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] 수리 플래그 — 수리하러 차 들여와.",
+    "[seriously] 수리 플래그 받았어, 수리하러 피트인해.",
+    "[seriously] 수리 플래그 나왔어 — 차 피트에서 점검 받아야 해.",
+    "[seriously] 수리 플래그 나왔어 — 이번 바퀴에 수리하러 피트인해."
+  ],
+  "SpotterFlagStartReady": [
+    "준비해!",
+    "출발 대기해.",
+    "마음의 준비해 — 출발이 다가와!",
+    "거의 시간 됐어 — 출발 준비해!"
+  ]
+}

@@ -1,0 +1,115 @@
+{
+  "TestPhrase": [
+    "Jazdci, naštartujte motory!",
+    "Poďme pretekať!",
+    "Ak nie si prvý, si posledný.",
+    "Ako sa dnes máš, kamoš?",
+    "Šachovnicová vlajka je vonku — to boli preteky!"
+  ],
+  "SpotterCarLeft": [
+    "Auto vľavo!",
+    "Auto po tvojej ľavici!"
+  ],
+  "SpotterCarRight": [
+    "Auto vpravo!",
+    "Auto po tvojej pravici!"
+  ],
+  "SpotterClear": [
+    "Čisté.",
+    "Máš čisto."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Traja vedľa seba, si v strede!",
+    "[urgently] Traja vedľa seba! Auto vľavo aj vpravo!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Traja vedľa seba, si vľavo!",
+    "[urgently] Traja vedľa seba! Auto po tvojej pravici!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Traja vedľa seba, si vpravo!",
+    "[urgently] Traja vedľa seba! Auto po tvojej ľavici!"
+  ],
+  "SpotterStillThere": [
+    "Stále tam.",
+    "Stále vedľa teba.",
+    "Stále je tam.",
+    "Auto je stále vedľa."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Jedno kolo do zelenej!",
+    "Do zelenej zostáva jedno kolo!",
+    "Priprav sa — jedno kolo do zelenej vlajky!",
+    "Už takmer — ešte jedno kolo pred štartom!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Zelená vlajka, choď choď choď!",
+    "[excitedly] Zelená vlajka! Ideme!",
+    "[excitedly] Máme zelenú, šliapni na to!",
+    "[excitedly] Zelená vlajka je vonku — choď, choď, choď!",
+    "[excitedly] Je zelená, plyn na podlahu!"
+  ],
+  "SpotterFlagBlue": [
+    "Modrá vlajka — nechaj ich prejsť.",
+    "Modrá vlajka, uhni.",
+    "Máš modrú vlajku — daj prednosť.",
+    "Ukazujú modrú vlajku — nechaj lídra prejsť.",
+    "Uhni nabok, modrá vlajka."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Žltá vlajka — vpredu problém, buď opatrný!",
+    "[urgently] Mávajú žltou vlajkou, spomaľ!",
+    "[urgently] Žltá vlajka je vonku, vpredu sú problémy!",
+    "[urgently] Žltá vlajka — daj si pozor tam vpredu!",
+    "[urgently] Pozor, žltá vlajka — buď ostražitý!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Vlajka opatrnosti je vonku!",
+    "Na trati máme opatrnosť.",
+    "Opatrnosť na celej trati — spomaľ.",
+    "Mávajú vlajkou opatrnosti — udrž tempo.",
+    "Opatrnosť je vonku, poľav."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Pozor na trosky na trati!",
+    "[urgently] Trosky na trati — buď opatrný!",
+    "[urgently] Vpredu sú trosky, buď ostražitý!",
+    "[urgently] Pozor, trosky na pretekárskej stope!"
+  ],
+  "SpotterFlagWhite": [
+    "Biela vlajka — posledné kolo!",
+    "Biela vlajka je vonku, posledné kolo!",
+    "To je biela vlajka — ešte jedno kolo!",
+    "Ukázali bielu vlajku, vydaj zo seba všetko!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Šachovnicová vlajka je vonku!",
+    "[excitedly] Šachovnicová vlajka — to je cieľ!",
+    "[excitedly] Je to šachovnicová, preteky sú za nami!",
+    "[excitedly] Šachovnicová vlajka veje — koniec pretekov!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Máš čiernu vlajku — poď dnu!",
+    "[seriously] Ukázali čiernu vlajku, priveď auto.",
+    "[seriously] Čierna vlajka — choď hneď do boxov.",
+    "[seriously] Ukazujú ti čiernu vlajku, zajdi v tomto kole do boxov."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Bol si diskvalifikovaný — vráť sa do boxov.",
+    "[seriously] Vlajka diskvalifikácie — vráť sa do boxovej uličky.",
+    "[seriously] Bol si diskvalifikovaný, priveď auto dnu.",
+    "[seriously] Čierna vlajka s krížom — si diskvalifikovaný, choď hneď do boxov."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Vlajka opravy — priveď auto do boxov na opravu.",
+    "[seriously] Máš vlajku opravy, zajdi do boxov na opravu.",
+    "[seriously] Ukázali vlajku opravy — tvoje auto potrebuje v boxoch pozornosť.",
+    "[seriously] Vlajka opravy je vonku — zajdi v tomto kole do boxov na opravu."
+  ],
+  "SpotterFlagStartReady": [
+    "Priprav sa!",
+    "Priprav sa na štart.",
+    "Priprav sa — štart sa blíži!",
+    "Už takmer čas — priprav sa vyraziť!"
+  ]
+}

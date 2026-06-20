@@ -1,0 +1,115 @@
+{
+  "TestPhrase": [
+    "Yrwyr, taniwch eich injans!",
+    "Gadewch i ni rasio!",
+    "Os nad wyt ti'n gyntaf, ti'n olaf.",
+    "Sut wyt ti'n gwneud heddiw, gyfaill?",
+    "Mae'r faner sgwariau allan - am ras!"
+  ],
+  "SpotterCarLeft": [
+    "Car ar y chwith!",
+    "Car ar dy chwith!"
+  ],
+  "SpotterCarRight": [
+    "Car ar y dde!",
+    "Car ar dy dde!"
+  ],
+  "SpotterClear": [
+    "Clir.",
+    "Rwyt ti'n glir."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Tri led yn led, rwyt ti yn y canol!",
+    "[urgently] Tri led yn led! Car ar y chwith a'r dde!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Tri led yn led, rwyt ti ar y chwith!",
+    "[urgently] Tri led yn led! Car ar dy dde!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Tri led yn led, rwyt ti ar y dde!",
+    "[urgently] Tri led yn led! Car ar dy chwith!"
+  ],
+  "SpotterStillThere": [
+    "Yno o hyd.",
+    "Gyda ti o hyd.",
+    "Mae e yno o hyd.",
+    "Car wrth dy ochr o hyd."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Un lap at y faner werdd!",
+    "Un lap ar ôl cyn y faner werdd!",
+    "Bydd yn barod — un lap at y faner werdd!",
+    "Bron yna — un lap arall cyn i ni fynd yn wyrdd!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Baner werdd, ewch ewch ewch!",
+    "[excitedly] Baner werdd! Ffwrdd â ni!",
+    "[excitedly] Rydyn ni'n wyrdd, rho dy droed lawr!",
+    "[excitedly] Mae'r faner werdd allan — ewch, ewch, ewch!",
+    "[excitedly] Mae'n wyrdd, gwasga'r sbardun!"
+  ],
+  "SpotterFlagBlue": [
+    "Baner las — gad iddyn nhw fynd heibio.",
+    "Baner las, symuda draw.",
+    "Mae gen ti faner las — ildia'r ffordd.",
+    "Baner las wedi'i dangos — gad i'r arweinydd fynd heibio.",
+    "Symuda o'r ffordd, baner las."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Baner felen — problem o'n blaenau, bydd yn ofalus!",
+    "[urgently] Baner felen yn chwifio, arafa!",
+    "[urgently] Baner felen allan, mae trafferth o'n blaenau!",
+    "[urgently] Baner felen — gwylia dy hun lan fan'na!",
+    "[urgently] Pwyll, baner felen — bydd yn effro!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Mae'r faner rybudd allan!",
+    "Mae gennym rybudd ar y trac.",
+    "Rhybudd ar hyd y cwrs — arafa.",
+    "Baner rybudd yn chwifio — cadwa dy gyflymder.",
+    "Mae rhybudd allan, tynna'n ôl."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Gwylia am falurion ar y ffordd!",
+    "[urgently] Malurion ar y trac — bydd yn ofalus!",
+    "[urgently] Mae malurion o'n blaenau, bydd yn effro!",
+    "[urgently] Gwylia, malurion ar y llinell rasio!"
+  ],
+  "SpotterFlagWhite": [
+    "Baner wen — lap olaf!",
+    "Mae'r faner wen allan, lap olaf!",
+    "Dyna'r faner wen — un i fynd!",
+    "Baner wen wedi'i dangos, gwna iddi gyfri!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Mae'r faner sgwariau allan!",
+    "[excitedly] Baner sgwariau — dyna'r diwedd!",
+    "[excitedly] Dyma'r faner sgwariau, mae'r ras drosodd!",
+    "[excitedly] Mae'r faner sgwariau'n chwifio — ras drosodd!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Mae gen ti faner ddu — tyrd i mewn!",
+    "[seriously] Baner ddu wedi'i dangos, tyrd â hi i mewn.",
+    "[seriously] Baner ddu — anela am y pwll nawr.",
+    "[seriously] Maen nhw'n dangos y faner ddu i ti, tyrd i mewn y lap hon."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Rwyt ti wedi dy ddiarddel — tyrd yn ôl i'r pwll.",
+    "[seriously] Baner ddiarddel — dychwela i lôn y pwll.",
+    "[seriously] Rwyt ti wedi dy ddiarddel, tyrd â'r car i mewn.",
+    "[seriously] Baner ddu â chroes — rwyt ti wedi dy ddiarddel, tyrd i'r pwll nawr."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Baner atgyweirio — tyrd â dy gar i mewn i'w drwsio.",
+    "[seriously] Mae gen ti'r faner atgyweirio, tyrd i'r pwll i'w drwsio.",
+    "[seriously] Baner atgyweirio wedi'i dangos — mae angen sylw ar dy gar yn y pwll.",
+    "[seriously] Baner atgyweirio allan — tyrd i'r pwll y lap hon i'w drwsio."
+  ],
+  "SpotterFlagStartReady": [
+    "Bydd yn barod!",
+    "Bydd yn barod ar gyfer y cychwyn.",
+    "Paratoa dy hun — mae'r cychwyn yn dod!",
+    "Bron yn amser — bydd yn barod i fynd!"
+  ]
+}

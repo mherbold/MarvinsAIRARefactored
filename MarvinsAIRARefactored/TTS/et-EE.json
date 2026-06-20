@@ -1,0 +1,115 @@
+{
+  "TestPhrase": [
+    "Sõitjad, käivitage mootorid!",
+    "Lähme võidu sõitma!",
+    "Kui sa pole esimene, oled viimane.",
+    "Kuidas sul täna läheb, sõber?",
+    "Ruuduline lipp on väljas – milline sõit!"
+  ],
+  "SpotterCarLeft": [
+    "Auto vasakul!",
+    "Auto sinust vasakul!"
+  ],
+  "SpotterCarRight": [
+    "Auto paremal!",
+    "Auto sinust paremal!"
+  ],
+  "SpotterClear": [
+    "Vaba.",
+    "Sul on vaba."
+  ],
+  "SpotterThreeWideMiddle": [
+    "[urgently] Kolm kõrvuti, sa oled keskel!",
+    "[urgently] Kolm kõrvuti! Auto vasakul ja paremal!"
+  ],
+  "SpotterThreeWideLeft": [
+    "[urgently] Kolm kõrvuti, sa oled vasakul!",
+    "[urgently] Kolm kõrvuti! Auto sinust paremal!"
+  ],
+  "SpotterThreeWideRight": [
+    "[urgently] Kolm kõrvuti, sa oled paremal!",
+    "[urgently] Kolm kõrvuti! Auto sinust vasakul!"
+  ],
+  "SpotterStillThere": [
+    "Ikka seal.",
+    "Ikka sinu kõrval.",
+    "Ta on ikka seal.",
+    "Auto ikka kõrval."
+  ],
+  "SpotterFlagOneLapToGreen": [
+    "Üks ring rohelise lipuni!",
+    "Enne rohelist on jäänud üks ring!",
+    "Valmista end ette — üks ring rohelise lipuni!",
+    "Peaaegu kohal — veel üks ring enne starti!"
+  ],
+  "SpotterFlagGreen": [
+    "[excitedly] Roheline lipp, lähme lähme lähme!",
+    "[excitedly] Roheline lipp! Lähme!",
+    "[excitedly] Roheline, anna gaasi!",
+    "[excitedly] Roheline lipp on väljas — lähme, lähme, lähme!",
+    "[excitedly] On roheline, vajuta gaas põhja!"
+  ],
+  "SpotterFlagBlue": [
+    "Sinine lipp — lase nad mööda.",
+    "Sinine lipp, anna teed.",
+    "Sul on sinine lipp — anna teed.",
+    "Näidatakse sinist lippu — lase liider mööda.",
+    "Astu kõrvale, sinine lipp."
+  ],
+  "SpotterFlagYellowWaving": [
+    "[urgently] Kollane lipp — ees on probleem, ole ettevaatlik!",
+    "[urgently] Kollast lippu lehvitatakse, aeglusta!",
+    "[urgently] Kollane lipp väljas, ees on häda!",
+    "[urgently] Kollane lipp — ole seal ees ettevaatlik!",
+    "[urgently] Ettevaatust, kollane lipp — ole valvas!"
+  ],
+  "SpotterFlagCautionWaving": [
+    "Ohulipp on väljas!",
+    "Rajal on ohuolukord.",
+    "Täielik ohuolukord — aeglusta.",
+    "Ohulippu lehvitatakse — hoia tempot.",
+    "Oht on väljas, võta hoogu maha."
+  ],
+  "SpotterFlagDebris": [
+    "[urgently] Jälgi rajal olevat prahti!",
+    "[urgently] Praht rajal — ole ettevaatlik!",
+    "[urgently] Ees on praht, ole valvas!",
+    "[urgently] Ettevaatust, praht sõidujoonel!"
+  ],
+  "SpotterFlagWhite": [
+    "Valge lipp — viimane ring!",
+    "Valge lipp on väljas, viimane ring!",
+    "See on valge lipp — üks ring jäänud!",
+    "Valget lippu näidatakse, anna endast kõik!"
+  ],
+  "SpotterFlagCheckered": [
+    "[excitedly] Ruuduline lipp on väljas!",
+    "[excitedly] Ruuduline lipp — see on finiš!",
+    "[excitedly] See on ruuduline, sõit on läbi!",
+    "[excitedly] Ruuduline lipp lehvib — sõit läbi!"
+  ],
+  "SpotterFlagBlack": [
+    "[seriously] Sul on must lipp — tule sisse!",
+    "[seriously] Musta lippu näidatakse, too auto sisse.",
+    "[seriously] Must lipp — suundu kohe boksi.",
+    "[seriously] Sulle näidatakse musta lippu, tule sel ringil boksi."
+  ],
+  "SpotterFlagDisqualify": [
+    "[seriously] Sa diskvalifitseeriti — tule tagasi boksi.",
+    "[seriously] Diskvalifitseerimise lipp — naase boksiteele.",
+    "[seriously] Sa diskvalifitseeriti, too auto sisse.",
+    "[seriously] Must lipp ristiga — sa oled diskvalifitseeritud, tule kohe boksi."
+  ],
+  "SpotterFlagRepair": [
+    "[seriously] Remondilipp — too auto remonti boksi.",
+    "[seriously] Sul on remondilipp, tule boksi remonti.",
+    "[seriously] Remondilippu näidatakse — su auto vajab boksis tähelepanu.",
+    "[seriously] Remondilipp väljas — tule sel ringil boksi remonti."
+  ],
+  "SpotterFlagStartReady": [
+    "Ole valmis!",
+    "Ole stardiks valmis.",
+    "Valmista end ette — start on tulekul!",
+    "Peaaegu aeg — ole valmis startima!"
+  ]
+}

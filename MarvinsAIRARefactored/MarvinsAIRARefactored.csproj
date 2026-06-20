@@ -86,19 +86,28 @@
 
   <ItemGroup>
     <EmbeddedResource Include="AdminBoxx\code.py" />
+    <EmbeddedResource Include="TTS\ar-SA.json" />
+    <EmbeddedResource Include="TTS\bg-BG.json" />
+    <EmbeddedResource Include="TTS\ca-ES.json" />
     <EmbeddedResource Include="TTS\cs-CZ.json" />
+    <EmbeddedResource Include="TTS\cy-GB.json" />
     <EmbeddedResource Include="TTS\da-DK.json" />
     <EmbeddedResource Include="TTS\de-DE.json" />
     <EmbeddedResource Include="TTS\en-US.json" />
     <EmbeddedResource Include="TTS\es-ES.json" />
     <EmbeddedResource Include="TTS\es-MX.json" />
+    <EmbeddedResource Include="TTS\et-EE.json" />
     <EmbeddedResource Include="TTS\fi-FI.json" />
     <EmbeddedResource Include="TTS\fr-CA.json" />
     <EmbeddedResource Include="TTS\fr-FR.json" />
     <EmbeddedResource Include="TTS\he-IL.json" />
+    <EmbeddedResource Include="TTS\hi-IN.json" />
     <EmbeddedResource Include="TTS\hu-HU.json" />
+    <EmbeddedResource Include="TTS\hy-AM.json" />
     <EmbeddedResource Include="TTS\it-IT.json" />
     <EmbeddedResource Include="TTS\ja-JP.json" />
+    <EmbeddedResource Include="TTS\ko-KR.json" />
+    <EmbeddedResource Include="TTS\lv-LV.json" />
     <EmbeddedResource Include="TTS\nb-NO.json" />
     <EmbeddedResource Include="TTS\nl-NL.json" />
     <EmbeddedResource Include="TTS\pl-PL.json" />
@@ -106,11 +115,13 @@
     <EmbeddedResource Include="TTS\pt-PT.json" />
     <EmbeddedResource Include="TTS\ro-RO.json" />
     <EmbeddedResource Include="TTS\ru-RU.json" />
+    <EmbeddedResource Include="TTS\sk-SK.json" />
     <EmbeddedResource Include="TTS\sv-SE.json" />
     <EmbeddedResource Include="TTS\th-TH.json" />
     <EmbeddedResource Include="TTS\tr-TR.json" />
     <EmbeddedResource Include="TTS\uk-UA.json" />
     <EmbeddedResource Include="TTS\zh-Hans.json" />
+    <EmbeddedResource Include="TTS\zh-Hant.json" />
     <Resource Include="Artwork\AppIcon\adminboxx.ico" />
     <Resource Include="Artwork\AppIcon\maira-universal.ico" />
     <Resource Include="Artwork\Buttons\app-menu.png" />
