@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "הגנה מפני התרסקות פעילה!"
+  ],
+  "MairaCurbProtectionActive": [
+    "הגנת אבני שפה פעילה!"
+  ],
   "TestPhrase": [
     "נהגים, הפעילו את המנועים שלכם!",
     "בואו נרוץ!",

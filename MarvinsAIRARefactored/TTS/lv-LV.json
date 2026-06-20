@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "Sadursmes aizsardzība aktīva!"
+  ],
+  "MairaCurbProtectionActive": [
+    "Apmaļu aizsardzība aktīva!"
+  ],
   "TestPhrase": [
     "Braucēji, iedarbiniet motorus!",
     "Sāksim sacīkstes!",

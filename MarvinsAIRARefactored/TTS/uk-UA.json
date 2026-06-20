@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "Захист від ударів активний!"
+  ],
+  "MairaCurbProtectionActive": [
+    "Захист від поребриків активний!"
+  ],
   "TestPhrase": [
     "Гонщики, заводьте мотори!",
     "Поїхали!",

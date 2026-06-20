@@ -88,7 +88,7 @@ public sealed partial class TextToSpeech : IDisposable
 	/// Enqueues a TTS request for the given voice slot and text.
 	/// Returns immediately; playback happens asynchronously.
 	/// </summary>
-	/// <param name="slotIndex">Index into <see cref="DataContext.Settings.CommentaryVoiceSlots"/> (0–4).</param>
+	/// <param name="slotIndex">Index into <see cref="DataContext.Settings.CommentaryVoiceSlots"/> (0–5; slot 5 is MAIRA).</param>
 	/// <param name="text">The text to speak. May include ElevenLabs emotion tags, e.g. [excitedly].</param>
 	/// <param name="priority">1 = most urgent (spotter), 4 = low (colour commentary).</param>
 	public void Enqueue( int slotIndex, string text, int priority = 3 )

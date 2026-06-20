@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "Çarpışma koruması aktif!"
+  ],
+  "MairaCurbProtectionActive": [
+    "Kerb koruması aktif!"
+  ],
   "TestPhrase": [
     "Sürücüler, motorlarınızı çalıştırın!",
     "Hadi yarışalım!",

@@ -127,13 +127,107 @@
         </controls:MairaGroupBox>
 
         <!-- ================================================================ -->
-        <!-- VOICE ROSTER — slot 0: Crew Chief                               -->
+        <!-- VOICE ROSTER — MAIRA (slot 5) shown first, then slots 0-4        -->
         <!-- ================================================================ -->
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[VoiceRoster]}"
                                 HelpTopic="advanced/commentary/#voices">
 
             <StackPanel>
+
+                <!-- Slot 5 — MAIRA (system voice; displayed first) -->
+                <controls:MairaExpander x:Name="Slot5_Expander"
+                                        Label="{Binding Settings.CommentaryVoiceSlots[5].RoleLabel}"
+                                        Margin="0,0,0,20">
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="20" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="10" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <controls:MairaComboBox Grid.Row="0"
+                                                Grid.Column="0"
+                                                Grid.ColumnSpan="5"
+                                                Label="{Binding Localization[Voice]}"
+                                                SelectedValue="{Binding Settings.CommentaryVoiceSlots[5].VoiceId, Mode=TwoWay}" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[Consistency]}"
+                                            Value="{Binding Settings.CommentaryVoiceSlots[5].Stability, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.CommentaryVoiceSlots[5].StabilityString}"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
+                                            DefaultValue="0.50" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="2"
+                                            Label="{Binding Localization[Dramatic]}"
+                                            Value="{Binding Settings.CommentaryVoiceSlots[5].Style, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.CommentaryVoiceSlots[5].StyleString}"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
+                                            DefaultValue="0.10" />
+
+                        <controls:MairaKnob Grid.Row="2"
+                                            Grid.Column="4"
+                                            Label="{Binding Localization[SimilarityBoost]}"
+                                            Value="{Binding Settings.CommentaryVoiceSlots[5].SimilarityBoost, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.CommentaryVoiceSlots[5].SimilarityBoostString}"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
+                                            DefaultValue="0.75" />
+
+                        <controls:MairaKnob Grid.Row="4"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[SlotVolume]}"
+                                            Value="{Binding Settings.CommentaryVoiceSlots[5].Volume, Mode=TwoWay}"
+                                            ValueString="{Binding Settings.CommentaryVoiceSlots[5].VolumeString}"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
+                                            DefaultValue="1.0" />
+
+                        <StackPanel Grid.Row="4"
+                                    Grid.Column="2">
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.CommentaryVoiceSlots[5].Enabled, Mode=TwoWay}"
+                                                  IsEnabled="{Binding Settings.CommentaryVoiceSlots[5].HasVoiceSelected}"
+                                                  Label="{Binding Localization[Enabled]}"
+                                                  Margin="0,0,0,10" />
+
+                            <controls:MairaSwitch IsOn="{Binding Settings.CommentaryVoiceSlots[5].SpeakerBoost, Mode=TwoWay}"
+                                                  Label="{Binding Localization[SpeakerBoost]}" />
+
+                        </StackPanel>
+
+                        <controls:MairaButton Grid.Row="4"
+                                              Grid.Column="4"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                              Label="{Binding Localization[TestVoice]}"
+                                              Click="Slot5Test_MairaButton_Click"
+                                              IsSmall="True">
+                            <controls:MairaButton.Disabled>
+                                <MultiBinding Converter="{StaticResource BoolAllTrueNegationConverter}">
+                                    <Binding Path="Settings.CommentaryEnabled" />
+                                    <Binding Path="Settings.CommentaryVoiceSlots[5].Enabled" />
+                                </MultiBinding>
+                            </controls:MairaButton.Disabled>
+                        </controls:MairaButton>
+
+                    </Grid>
+                </controls:MairaExpander>
 
                 <!-- Slot 0 — Crew Chief -->
                 <controls:MairaExpander x:Name="Slot0_Expander"

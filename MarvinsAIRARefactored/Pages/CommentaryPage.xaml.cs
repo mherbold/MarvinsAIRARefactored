@@ -219,7 +219,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 		var placeholder = new KeyValuePair<string, string>( "", localization[ "VoiceNotSelected" ] );
 		var items = ( voices ?? _fallbackVoices ).Prepend( placeholder ).ToList();
 
-		foreach ( var expander in new[] { Slot0_Expander, Slot1_Expander, Slot2_Expander, Slot3_Expander, Slot4_Expander } )
+		foreach ( var expander in new[] { Slot5_Expander, Slot0_Expander, Slot1_Expander, Slot2_Expander, Slot3_Expander, Slot4_Expander } )
 		{
 			// ExpanderContent is a plain DP — not registered as a logical child — so
 			// LogicalTreeHelper won't cross that boundary. Access it directly instead.
@@ -374,6 +374,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 	private void Slot2Test_MairaButton_Click( object sender, RoutedEventArgs e ) => TestSlot( 2 );
 	private void Slot3Test_MairaButton_Click( object sender, RoutedEventArgs e ) => TestSlot( 3 );
 	private void Slot4Test_MairaButton_Click( object sender, RoutedEventArgs e ) => TestSlot( 4 );
+		private void Slot5Test_MairaButton_Click( object sender, RoutedEventArgs e ) => TestSlot( 5 );
 
 	private static void TestSlot( int slotIndex )
 	{
@@ -511,11 +512,37 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 			return;
 		}
 
-		// Use the first enabled slot that has a voice configured; otherwise slot 0 (Enqueue handles missing voice gracefully).
+		// Test with the same voice slot that actually speaks this event key live, so the preview
+		// matches what the user will hear (e.g. MAIRA system phrases use the MAIRA voice, not the
+		// first enabled slot). Unknown keys fall back to the first enabled slot that has a voice.
 		var slots = AppDataContext.Instance.Settings.CommentaryVoiceSlots;
-		var slotIndex = slots.FindIndex( s => s.Enabled && !string.IsNullOrWhiteSpace( s.VoiceId ) );
+		var slotIndex = SlotForEventKey( entry.EventKey );
+
+		if ( slotIndex < 0 )
+		{
+			slotIndex = slots.FindIndex( s => s.Enabled && !string.IsNullOrWhiteSpace( s.VoiceId ) );
+		}
 
 		App.Instance!.TextToSpeech.Enqueue( slotIndex < 0 ? 0 : slotIndex, entry.Text, priority: 1 );
+	}
+
+	/// <summary>
+	/// Returns the voice slot index that speaks the given commentary event key live, or -1 if the key
+	/// is not tied to a specific slot. Mirrors the routing in Commentary.cs (Spotter) and RacingWheel.cs (MAIRA).
+	/// </summary>
+	private static int SlotForEventKey( string eventKey )
+	{
+		if ( eventKey.StartsWith( "Maira", StringComparison.Ordinal ) )
+		{
+			return 5; // MAIRA system voice
+		}
+
+		if ( eventKey.StartsWith( "Spotter", StringComparison.Ordinal ) )
+		{
+			return 1; // Spotter
+		}
+
+		return -1;
 	}
 
 	private void AddPhrase_MairaButton_Click( object sender, RoutedEventArgs e )

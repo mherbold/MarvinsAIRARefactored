@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "حماية الاصطدام مفعّلة!"
+  ],
+  "MairaCurbProtectionActive": [
+    "حماية الحواف مفعّلة!"
+  ],
   "TestPhrase": [
     "أيها السائقون، أديروا محركاتكم!",
     "هيا بنا نتسابق!",

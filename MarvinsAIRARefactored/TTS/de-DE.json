@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "Crashschutz aktiv!"
+  ],
+  "MairaCurbProtectionActive": [
+    "Randsteinschutz aktiv!"
+  ],
   "TestPhrase": [
     "Fahrer, startet eure Motoren!",
     "Los geht's, auf die Strecke!",

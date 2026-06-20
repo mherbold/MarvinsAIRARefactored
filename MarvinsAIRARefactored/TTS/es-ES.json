@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "¡Protección contra choques activada!"
+  ],
+  "MairaCurbProtectionActive": [
+    "¡Protección de pianos activada!"
+  ],
   "TestPhrase": [
     "¡Pilotos, encended vuestros motores!",
     "¡A correr!",

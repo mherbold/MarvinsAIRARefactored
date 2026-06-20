@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "碰撞保护已激活！"
+  ],
+  "MairaCurbProtectionActive": [
+    "路缘保护已激活！"
+  ],
   "TestPhrase": [
     "车手们，发动你们的引擎！",
     "我们去比赛吧！",

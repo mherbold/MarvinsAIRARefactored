@@ -14503,7 +14503,8 @@ public class Settings : INotifyPropertyChanged
 		{
 			_commentaryVoiceSlots = value ?? VoiceSlotSettings.CreateDefaults();
 
-			// Ensure exactly 5 slots are always present, filling any missing tail entries with defaults.
+			// Ensure all slots are always present, filling any missing tail entries with defaults.
+			// (Older settings files saved with 5 slots gain the appended MAIRA slot here.)
 			var defaults = VoiceSlotSettings.CreateDefaults();
 
 			while ( _commentaryVoiceSlots.Count < defaults.Count )

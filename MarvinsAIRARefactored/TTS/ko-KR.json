@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "충돌 보호 활성화!"
+  ],
+  "MairaCurbProtectionActive": [
+    "커브 보호 활성화!"
+  ],
   "TestPhrase": [
     "선수 여러분, 엔진 시동을 거세요!",
     "자, 레이스 시작하자!",

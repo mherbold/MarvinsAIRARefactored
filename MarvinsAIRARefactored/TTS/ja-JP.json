@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "クラッシュ保護が有効です！"
+  ],
+  "MairaCurbProtectionActive": [
+    "縁石保護が有効です！"
+  ],
   "TestPhrase": [
     "ドライバーたち、エンジンをスタートさせろ！",
     "さあ、レースだ！",

@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "Törmäyssuoja aktiivinen!"
+  ],
+  "MairaCurbProtectionActive": [
+    "Reunakivisuoja aktiivinen!"
+  ],
   "TestPhrase": [
     "Kuljettajat, käynnistäkää moottorit!",
     "Ajetaan!",

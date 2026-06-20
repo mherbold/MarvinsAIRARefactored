@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "Protecție la impact activă!"
+  ],
+  "MairaCurbProtectionActive": [
+    "Protecție la borduri activă!"
+  ],
   "TestPhrase": [
     "Piloți, porniți motoarele!",
     "Să mergem la cursă!",

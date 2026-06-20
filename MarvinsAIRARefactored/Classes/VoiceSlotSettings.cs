@@ -6,7 +6,8 @@ namespace MarvinsAIRARefactored.Classes;
 
 /// <summary>
 /// Serializable settings for one commentary voice slot.
-/// Five slots are maintained in Settings.VoiceSlots (Crew Chief, Spotter, Sportscaster 1, Sportscaster 2, Pit Reporter).
+/// Six slots are maintained in Settings.VoiceSlots (Crew Chief, Spotter, Sportscaster 1, Sportscaster 2, Pit Reporter, MAIRA).
+/// MAIRA is appended last (index 5) so the existing slot indices remain stable, but it is displayed first in the UI.
 /// </summary>
 public class VoiceSlotSettings : INotifyPropertyChanged
 {
@@ -318,8 +319,26 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 	};
 
 	/// <summary>
+	/// MAIRA — the app's own system voice, used for MAIRA status announcements (e.g. crash/curb protection).
+	/// Clear, calm, and consistent. Appended last so existing slot indices stay stable; shown first in the UI.
+	/// </summary>
+	public static VoiceSlotSettings CreateMaira() => new()
+	{
+		RoleLabel = "MAIRA",
+		Enabled = true,
+		VoiceId = "",
+		VoiceName = "",
+		Stability = 0.50f,
+		Style = 0.10f,
+		SimilarityBoost = 0.75f,
+		SpeakerBoost = true,
+		Volume = 1.0f
+	};
+
+	/// <summary>
 	/// Returns the default slot list in canonical order:
-	/// [0] Crew Chief, [1] Spotter, [2] Sportscaster 1, [3] Sportscaster 2, [4] Pit Reporter.
+	/// [0] Crew Chief, [1] Spotter, [2] Sportscaster 1, [3] Sportscaster 2, [4] Pit Reporter, [5] MAIRA.
+	/// MAIRA is last to keep the earlier indices stable; the UI presents it first.
 	/// </summary>
 	public static List<VoiceSlotSettings> CreateDefaults() =>
 	[
@@ -327,6 +346,7 @@ public class VoiceSlotSettings : INotifyPropertyChanged
 		CreateSpotter(),
 		CreateSportscaster1(),
 		CreateSportscaster2(),
-		CreatePitReporter()
+		CreatePitReporter(),
+		CreateMaira()
 	];
 }

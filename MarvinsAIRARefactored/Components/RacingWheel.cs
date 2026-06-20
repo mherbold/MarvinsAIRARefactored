@@ -78,6 +78,9 @@ public class RacingWheel
 	private const float TestSignalTimeMS = 2000f;
 	private const float CrashProtectionRecoveryTime = 1000f;
 
+	// Commentary voice slot used for MAIRA system announcements (matches VoiceSlotSettings.CreateDefaults order).
+	private const int CommentarySlotMaira = 5;
+
 	private Guid? _currentRacingWheelGuid = null;
 
 	private bool _isSuspended = true;
@@ -203,6 +206,23 @@ public class RacingWheel
 			var label = ( groupKey == null ) ? localization[ labelKey ] : $"{localization[ groupKey ]} {localization[ labelKey ]}";
 
 			app.ChatQueue.SendMessage( $"/{playerName} (MAIRA) {label}", value );
+		}
+	}
+
+	/// <summary>
+	/// Speaks a MAIRA system announcement for the given commentary event key through the MAIRA voice slot.
+	/// Enqueue() already no-ops unless commentary is enabled and the MAIRA voice slot is enabled with a voice
+	/// selected, so this respects "as long as the voice is enabled" without any extra gating here.
+	/// </summary>
+	private static void SpeakMairaAnnouncement( string eventKey )
+	{
+		var app = App.Instance!;
+
+		var phrase = app.Commentary.Templates.GetRandomPhrase( eventKey );
+
+		if ( phrase != null )
+		{
+			app.TextToSpeech.Enqueue( CommentarySlotMaira, phrase, priority: 1 );
 		}
 	}
 
@@ -1209,6 +1229,8 @@ public class RacingWheel
 					{
 						SendChatMessage( null, "CrashProtectionActivated" );
 					}
+
+					SpeakMairaAnnouncement( "MairaCrashProtectionActive" );
 				}
 
 				_crashProtectionTimerMS = settings.RacingWheelCrashProtectionDuration * 1000f + CrashProtectionRecoveryTime;
@@ -1235,6 +1257,8 @@ public class RacingWheel
 					{
 						SendChatMessage( null, "CurbProtectionActivated" );
 					}
+
+					SpeakMairaAnnouncement( "MairaCurbProtectionActive" );
 				}
 
 				_curbProtectionTimerMS = settings.RacingWheelCurbProtectionDuration * 1000f;

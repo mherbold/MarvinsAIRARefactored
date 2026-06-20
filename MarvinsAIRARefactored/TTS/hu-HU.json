@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "Ütközésvédelem aktív!"
+  ],
+  "MairaCurbProtectionActive": [
+    "Rázókő-védelem aktív!"
+  ],
   "TestPhrase": [
     "Versenyzők, indítsátok a motorokat!",
     "Gyerünk versenyezni!",

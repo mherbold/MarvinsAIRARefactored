@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "Kokkupõrkekaitse aktiivne!"
+  ],
+  "MairaCurbProtectionActive": [
+    "Äärekivikaitse aktiivne!"
+  ],
   "TestPhrase": [
     "Sõitjad, käivitage mootorid!",
     "Lähme võidu sõitma!",

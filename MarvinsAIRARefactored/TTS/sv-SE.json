@@ -1,4 +1,10 @@
 {
+  "MairaCrashProtectionActive": [
+    "Krockskydd aktivt!"
+  ],
+  "MairaCurbProtectionActive": [
+    "Kerbskydd aktivt!"
+  ],
   "TestPhrase": [
     "Förare, starta era motorer!",
     "Nu kör vi!",
