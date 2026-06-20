@@ -196,7 +196,7 @@ public static class MappableActionCatalog
 		} );
 	}
 
-	// Racing wheel knob - chats via RacingWheel.SendChatMessage( labelKey, valueString ), guarded by
+	// Racing wheel knob - chats via RacingWheel.SendChatMessage( groupKey, labelKey, valueString ), guarded by
 	// RacingWheelInputMappedSettingUpdateEnabled. When inverted, the plus button decreases the value
 	// and vice versa (matches the original auto-target behavior).
 	private static void RwKnob( List<MappableAction> list, string groupKey, string labelKey, string propBase, float delta, bool inverted = false )
@@ -220,7 +220,7 @@ public static class MappableActionCatalog
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( labelKey, GetValueString( settings, propBase + "String" ) );
+					RacingWheel.SendChatMessage( groupKey, labelKey, GetValueString( settings, propBase + "String" ) );
 				}
 			}
 		} );
@@ -244,7 +244,7 @@ public static class MappableActionCatalog
 
 				if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 				{
-					RacingWheel.SendChatMessage( labelKey, GetValueString( settings, propBase + "String" ) );
+					RacingWheel.SendChatMessage( groupKey, labelKey, GetValueString( settings, propBase + "String" ) );
 				}
 			}
 		} );
@@ -318,7 +318,7 @@ public static class MappableActionCatalog
 
 			if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 			{
-				RacingWheel.SendChatMessage( "Power", settings.RacingWheelEnableForceFeedback ? Loc[ "ON" ] : Loc[ "OFF" ] );
+				RacingWheel.SendChatMessage( "Device", "Power", settings.RacingWheelEnableForceFeedback ? Loc[ "ON" ] : Loc[ "OFF" ] );
 			}
 		} );
 
@@ -330,7 +330,7 @@ public static class MappableActionCatalog
 
 			if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 			{
-				RacingWheel.SendChatMessage( "Test" );
+				RacingWheel.SendChatMessage( "Device", "Test" );
 			}
 		} );
 
@@ -342,7 +342,7 @@ public static class MappableActionCatalog
 
 			if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 			{
-				RacingWheel.SendChatMessage( "Reset" );
+				RacingWheel.SendChatMessage( "Device", "Reset" );
 			}
 		} );
 
@@ -356,7 +356,7 @@ public static class MappableActionCatalog
 			{
 				var autoTorqueString = $"{app.RacingWheel.GetCurrentAutoTorque():F1} {Loc[ "TorqueUnits" ]}";
 
-				RacingWheel.SendChatMessage( "Set", autoTorqueString );
+				RacingWheel.SendChatMessage( "OverallStrength", "Set", autoTorqueString );
 			}
 		} );
 
@@ -368,7 +368,7 @@ public static class MappableActionCatalog
 
 			if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 			{
-				RacingWheel.SendChatMessage( "Clear" );
+				RacingWheel.SendChatMessage( "OverallStrength", "Clear" );
 			}
 		} );
 

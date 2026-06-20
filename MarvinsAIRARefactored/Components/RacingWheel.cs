@@ -188,9 +188,11 @@ public class RacingWheel
 		return _autoTorque;
 	}
 
-	public static void SendChatMessage( string key, string? value = null )
+	public static void SendChatMessage( string? groupKey, string labelKey, string? value = null )
 	{
 		var app = App.Instance!;
+
+		var localization = DataContext.DataContext.Instance.Localization;
 
 		if ( DataContext.DataContext.Instance.Settings.RacingWheelSendChatMessages && ( app.Simulator.UserName != string.Empty ) )
 		{
@@ -198,7 +200,9 @@ public class RacingWheel
 
 			playerName = playerName.Replace( " ", "." );
 
-			app.ChatQueue.SendMessage( $"/{playerName} (MAIRA) {DataContext.DataContext.Instance.Localization[ key ]}", value );
+			var label = ( groupKey == null ) ? localization[ labelKey ] : $"{localization[ groupKey ]} {localization[ labelKey ]}";
+
+			app.ChatQueue.SendMessage( $"/{playerName} (MAIRA) {label}", value );
 		}
 	}
 
@@ -1203,7 +1207,7 @@ public class RacingWheel
 				{
 					if ( settings.RacingWheelCrashProtectionMessagesEnabled )
 					{
-						SendChatMessage( "CrashProtectionActivated" );
+						SendChatMessage( null, "CrashProtectionActivated" );
 					}
 				}
 
@@ -1229,7 +1233,7 @@ public class RacingWheel
 				{
 					if ( settings.RacingWheelCurbProtectionMessagesEnabled )
 					{
-						SendChatMessage( "CurbProtectionActivated" );
+						SendChatMessage( null, "CurbProtectionActivated" );
 					}
 				}
 
