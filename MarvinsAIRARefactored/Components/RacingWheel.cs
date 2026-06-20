@@ -380,7 +380,6 @@ public class RacingWheel
 			case Algorithm.SlewAndTotalCompression:
 			{
 				var normalizedRunningTorque = _algorithmProperties[ algorithmPropertyIndex, 1 ] / settings.RacingWheelMaxForce;
-
 				var normalizedDelta = ( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, 1 ] ) / settings.RacingWheelMaxForce;
 				var normalizedDeltaAbs = MathF.Abs( normalizedDelta );
 
@@ -436,13 +435,14 @@ public class RacingWheel
 				const int indexTicksSinceLast60Hz = 10;
 				const int indexPeakCountdown = 11;
 
-				var lastTorque60Hz = 0f;
 				var ticksSinceLast60Hz = 0f;
 				var peakCountdown = MathF.Max( 0f, _algorithmProperties[ algorithmPropertyIndex, indexPeakCountdown ] - 1f );
 				var hybridLastTorque = 0f;
+
 				if ( settings.RacingWheelAlgorithm == _lastAlgorithm[ algorithmPropertyIndex ] )
 				{
-					lastTorque60Hz = _algorithmProperties[ algorithmPropertyIndex, index60HzLastTorque ];
+					var lastTorque60Hz = _algorithmProperties[ algorithmPropertyIndex, index60HzLastTorque ];
+
 					ticksSinceLast60Hz = ( lastTorque60Hz == steeringWheelTorque60Hz ) ? ( _algorithmProperties[ algorithmPropertyIndex, indexTicksSinceLast60Hz ] + 1f ) : 0f;
 					hybridLastTorque = _algorithmProperties[ algorithmPropertyIndex, indexHybridLastTorque ];
 				}
@@ -482,9 +482,9 @@ public class RacingWheel
 				}
 
 				var normalizedHybridTorque = hybridTorque / settings.RacingWheelMaxForce;
-
 				var normalizedCompressedTorque = normalizedHybridTorque;
 				var compressionAmount = settings.RacingWheelMultiTorqueCompression;
+
 				if ( compressionAmount > 0f )
 				{
 					var compressionRate = MathF.Min( 2f * compressionAmount, 0.75f );
@@ -498,6 +498,7 @@ public class RacingWheel
 				var normalizedLastSlewReducedTorque = _algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastSlewReducedTorque ];
 				var slewAmount = settings.RacingWheelMultiSlewRateReduction;
 				var normalizedSlewReducedTorque = normalizedCompressedTorque;
+
 				if ( slewAmount > 0f )
 				{
 					var absNormalizedCompressedTorque = MathF.Abs( normalizedCompressedTorque );
@@ -541,12 +542,15 @@ public class RacingWheel
 				var normalizedDetailGainTorque = normalizedSlewReducedTorque;
 				var normalizedDetailGainLpfTorque = 0f;
 				var detailGain = MathZ.Lerp( 1f + settings.RacingWheelMultiDetailGain, 1f, curbProtectionLerpFactor );
+
 				if ( detailGain != 1f )
 				{
 					const float epsilonGuard = 1e-6f;
 
 					var normalizedLastDetailGainLpfTorque = _algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastDetailGainLpfTorque ];
+
 					normalizedDetailGainLpfTorque = MathZ.Lerp( normalizedLastDetailGainLpfTorque, normalizedSlewReducedTorque, 0.11809f );
+
 					var currentDeviation = normalizedSlewReducedTorque - normalizedDetailGainLpfTorque;
 					var lastDeviation = normalizedLastSlewReducedTorque - normalizedDetailGainLpfTorque;
 					var priorDeviation = normalizedLastSlewReducedTorque - normalizedLastDetailGainLpfTorque;
@@ -574,12 +578,16 @@ public class RacingWheel
 
 				var normalizedSmoothedTorque = normalizedDetailGainTorque;
 				var normalizedSmoothingLpfTorque = 0f;
+
 				if ( settings.RacingWheelMultiOutputSmoothing > 0f )
 				{
 					var normalizedLastSmoothingLpfTorque = _algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastSmoothingLpfTorque ];
+
 					normalizedSmoothingLpfTorque = MathZ.Lerp( normalizedLastSmoothingLpfTorque, normalizedDetailGainTorque, 0.22223f );
+
 					var smoothingRate = 0.9f * MathF.Pow( settings.RacingWheelMultiOutputSmoothing, 0.5f );
 					var lpfDeltaAdjustedTorque = _algorithmProperties[ algorithmPropertyIndex, indexNormalizedLastSmoothedTorque ] + normalizedSmoothingLpfTorque - normalizedLastSmoothingLpfTorque;
+
 					normalizedSmoothedTorque = MathZ.Lerp( normalizedDetailGainTorque, lpfDeltaAdjustedTorque, smoothingRate );
 				}
 
@@ -1185,7 +1193,7 @@ public class RacingWheel
 
 			// update auto torque
 
-			_autoTorque = _peakTorque * ( 1f + settings.RacingWheelAutoMargin );
+			_autoTorque = _peakTorque * settings.RacingWheelWheelForce / settings.RacingWheelAutoTarget;
 
 			// update crash protection
 

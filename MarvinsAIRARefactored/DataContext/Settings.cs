@@ -318,6 +318,62 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	// One-time migration from the old percentage-based RacingWheelAutoMargin to the new absolute-Nm
+	// RacingWheelAutoTarget. Converts the live and per-context values, carries the context scope and
+	// the input mappings (both the live working copy and every saved controller profile) across, then
+	// marks itself done. Must run BEFORE EnsureControllerProfilesInitialized so the renamed profile
+	// keys are in place when the active profile is applied. The old setting is left untouched (dormant)
+	// until it is eventually removed.
+	public void MigrateAutoMarginToAutoTarget()
+	{
+		if ( RacingWheelAutoTargetMigrated )
+		{
+			return;
+		}
+
+		RacingWheelAutoTargetMigrated = true;
+
+		RacingWheelAutoTarget = ConvertAutoMarginToAutoTarget( RacingWheelWheelForce, RacingWheelAutoMargin );
+
+		foreach ( var contextSettings in ContextSettingsDictionary.Values )
+		{
+			contextSettings.RacingWheelAutoTarget = ConvertAutoMarginToAutoTarget( contextSettings.RacingWheelWheelForce, contextSettings.RacingWheelAutoMargin );
+		}
+
+		RacingWheelAutoTargetContextSwitches = new ContextSwitches(
+			RacingWheelAutoMarginContextSwitches.PerWheelbase,
+			RacingWheelAutoMarginContextSwitches.PerCar,
+			RacingWheelAutoMarginContextSwitches.PerTrack,
+			RacingWheelAutoMarginContextSwitches.PerTrackConfiguration,
+			RacingWheelAutoMarginContextSwitches.PerWetDry );
+
+		RacingWheelAutoTargetPlusButtonMappings = CloneButtonMappings( RacingWheelAutoMarginPlusButtonMappings );
+		RacingWheelAutoTargetMinusButtonMappings = CloneButtonMappings( RacingWheelAutoMarginMinusButtonMappings );
+
+		foreach ( var profile in ControllerProfiles.Values )
+		{
+			MigrateProfileMapping( profile, "RacingWheelAutoMarginPlusButtonMappings", "RacingWheelAutoTargetPlusButtonMappings" );
+			MigrateProfileMapping( profile, "RacingWheelAutoMarginMinusButtonMappings", "RacingWheelAutoTargetMinusButtonMappings" );
+		}
+	}
+
+	// The old margin mapped the peak torque to WheelForce / (1 + margin) Nm - that torque is the new
+	// auto target. Clamped to [1, WheelForce] so it never exceeds the wheel force.
+	private static float ConvertAutoMarginToAutoTarget( float wheelForce, float autoMargin )
+	{
+		var autoTarget = wheelForce / ( 1f + autoMargin );
+
+		return Math.Clamp( autoTarget, 1f, wheelForce );
+	}
+
+	private static void MigrateProfileMapping( ControllerProfile profile, string oldKey, string newKey )
+	{
+		if ( !profile.ButtonMappings.ContainsKey( newKey ) && profile.ButtonMappings.TryGetValue( oldKey, out var mappings ) )
+		{
+			profile.ButtonMappings[ newKey ] = CloneButtonMappings( mappings );
+		}
+	}
+
 	#endregion
 
 	#region Context settings
@@ -458,10 +514,16 @@ public class Settings : INotifyPropertyChanged
 				RacingWheelStrength = RacingWheelWheelForce / RacingWheelMaxForce;
 			}
 
+			// Auto target can never exceed the wheel force - re-clamp it when the wheel force drops.
+			if ( _racingWheelAutoTarget > RacingWheelWheelForce )
+			{
+				RacingWheelAutoTarget = RacingWheelWheelForce;
+			}
+
 			UpdateRacingWheelWheelForceString();
 			UpdateRacingWheelStrengthString();
 			UpdateRacingWheelMaxForceString();
-			UpdateRacingWheelAutoMarginString();
+			UpdateRacingWheelAutoTargetString();
 			UpdateRacingWheelSlewCompressionThresholdString();
 			UpdateRacingWheelTotalCompressionThresholdString();
 			UpdateRacingWheelOutputMinimumString();
@@ -751,40 +813,74 @@ public class Settings : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
-
-			UpdateRacingWheelAutoMarginString();
 		}
 	}
 
-	private string _racingWheelAutoMarginString = string.Empty;
+	public ContextSwitches RacingWheelAutoMarginContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ButtonMappings RacingWheelAutoMarginPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelAutoMarginMinusButtonMappings { get; set; } = new();
 
-	[XmlIgnore]
-	public string RacingWheelAutoMarginString
+	#endregion
+
+	#region Racing wheel - Auto target
+
+	// Auto target replaces the old percentage-based RacingWheelAutoMargin. It stores the desired peak
+	// torque directly in Nm (like Max Force). One-time migration from the old setting happens on load
+	// (see MigrateAutoMarginToAutoTarget); RacingWheelAutoMargin is kept dormant until enough users
+	// have migrated. Auto target is never allowed to exceed the wheel force, so the auto-set max force
+	// (peak * WheelForce / AutoTarget) always sits at or above the measured peak.
+	private float _racingWheelAutoTarget = 10f;
+
+	public float RacingWheelAutoTarget
 	{
-		get => _racingWheelAutoMarginString;
+		get => _racingWheelAutoTarget;
 
 		set
 		{
-			if ( value != _racingWheelAutoMarginString )
+			value = float.IsNaN( value ) ? RacingWheelWheelForce : value;
+
+			value = Math.Clamp( value, 1f, RacingWheelWheelForce );
+
+			if ( value != _racingWheelAutoTarget )
 			{
-				_racingWheelAutoMarginString = value;
+				_racingWheelAutoTarget = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateRacingWheelAutoTargetString();
+		}
+	}
+
+	private string _racingWheelAutoTargetString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelAutoTargetString
+	{
+		get => _racingWheelAutoTargetString;
+
+		set
+		{
+			if ( value != _racingWheelAutoTargetString )
+			{
+				_racingWheelAutoTargetString = value;
 
 				OnPropertyChanged();
 			}
 		}
 	}
 
-	private void UpdateRacingWheelAutoMarginString()
+	private void UpdateRacingWheelAutoTargetString()
 	{
-		var convertedToTarget = 1 / ( 1 + _racingWheelAutoMargin );
-		var convertedToTorque = RacingWheelWheelForce * convertedToTarget;
-
-		RacingWheelAutoMarginString = $"{convertedToTarget * 100f:F1}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToTorque:F1}{DataContext.Instance.Localization[ "TorqueUnits" ]})";
+		RacingWheelAutoTargetString = $"{_racingWheelAutoTarget:F1} {DataContext.Instance.Localization[ "TorqueUnits" ]}";
 	}
 
-	public ContextSwitches RacingWheelAutoMarginContextSwitches { get; set; } = new( true, false, false, false, false );
-	public ButtonMappings RacingWheelAutoMarginPlusButtonMappings { get; set; } = new();
-	public ButtonMappings RacingWheelAutoMarginMinusButtonMappings { get; set; } = new();
+	public ContextSwitches RacingWheelAutoTargetContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ButtonMappings RacingWheelAutoTargetPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelAutoTargetMinusButtonMappings { get; set; } = new();
+
+	// Set true once the old RacingWheelAutoMargin value/mappings have been migrated into RacingWheelAutoTarget.
+	public bool RacingWheelAutoTargetMigrated { get; set; } = false;
 
 	#endregion
 

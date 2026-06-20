@@ -107,7 +107,17 @@ public class SettingsFile
 			app.Logger.WriteLine( "[SettingsFile] Settings file does not exist - we will create a new one" );
 
 			DataContext.DataContext.Instance.Settings.AppCurrentLanguageCode = DataContext.DataContext.Instance.Localization.ChooseInitialLanguage();
+
+			// Brand-new install: no old auto-margin to migrate. Seed auto target to the default (clamped to
+			// the wheel force) and mark the migration done so it never runs over these defaults.
+			DataContext.DataContext.Instance.Settings.RacingWheelAutoTarget = 10f;
+			DataContext.DataContext.Instance.Settings.RacingWheelAutoTargetMigrated = true;
 		}
+
+			// Migrate the old percentage-based auto margin to the new Nm-based auto target (value, scope,
+			// and input mappings). Must run before the controller profiles are initialized/applied so the
+			// renamed profile mapping keys are in place.
+			DataContext.DataContext.Instance.Settings.MigrateAutoMarginToAutoTarget();
 
 			// Migrate a pre-profiles settings file (snapshot the existing flat mappings into a
 			// "Default" controller profile) and guarantee a valid active profile.

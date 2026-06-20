@@ -381,7 +381,7 @@ public static class MappableActionCatalog
 
 		RwKnob( list, "OverallStrength_UC", "Strength", "RacingWheelStrength", 0.01f );
 		RwKnob( list, "OverallStrength_UC", "MaxForce", "RacingWheelMaxForce", 1f );
-		RwKnob( list, "OverallStrength_UC", "AutoTarget", "RacingWheelAutoMargin", 0.01f, inverted: true );
+		RwKnob( list, "OverallStrength_UC", "AutoTarget", "RacingWheelAutoTarget", 0.5f );
 		RwKnob( list, "Algorithm_UC", "PredictionBlend", "RacingWheelPredictionBlend", 0.05f );
 		RwKnob( list, "Algorithm_UC", "DetailBoost", "RacingWheelDetailBoost", 0.1f );
 		RwKnob( list, "Algorithm_UC", "DetailBoostBias", "RacingWheelDetailBoostBias", 0.01f );

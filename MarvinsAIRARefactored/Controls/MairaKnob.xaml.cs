@@ -115,14 +115,14 @@ public partial class MairaKnob : UserControl
 
 			if ( delta != 0 )
 			{
-				var amount = delta * 0.01f;
+				var amount = (float) delta;
 
 				if ( Reverse )
 				{
 					amount = -amount;
 				}
 
-				AdjustValue( amount );
+				AdjustValue( amount, DragStepSize );
 
 				PInvoke.SetCursorPos( _draggingCenter.X, _draggingCenter.Y );
 			}
@@ -137,8 +137,8 @@ public partial class MairaKnob : UserControl
 		}
 	}
 
-	private void Plus_MairaMappableButton_Click( object sender, RoutedEventArgs e ) => AdjustValue( Reverse ? -1f : 1f );
-	private void Minus_MairaMappableButton_Click( object sender, RoutedEventArgs e ) => AdjustValue( Reverse ? 1f : -1f );
+	private void Plus_MairaMappableButton_Click( object sender, RoutedEventArgs e ) => AdjustValue( Reverse ? -1f : 1f, EffectiveClickStepSize );
+	private void Minus_MairaMappableButton_Click( object sender, RoutedEventArgs e ) => AdjustValue( Reverse ? 1f : -1f, EffectiveClickStepSize );
 
 	private void Value_TextBlock_PreviewMouseLeftButtonDown( object sender, MouseButtonEventArgs e )
 	{
@@ -229,12 +229,25 @@ public partial class MairaKnob : UserControl
 		set => SetValue( ValueStringProperty, value );
 	}
 
-	public static readonly DependencyProperty StepSizeProperty = DependencyProperty.Register( nameof( StepSize ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( 0.01f ) );
+	// The increment applied per +/- button press (mouse click or mapped input). For knobs wired to a
+	// MappableActionCatalog action this is only a fallback - the universal Settings.KnobStepSizes value
+	// is used instead (see EffectiveClickStepSize), so it matters only for knobs with no mapped action.
+	public static readonly DependencyProperty ClickStepSizeProperty = DependencyProperty.Register( nameof( ClickStepSize ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( 0.01f ) );
 
-	public float StepSize
+	public float ClickStepSize
 	{
-		get => (float) GetValue( StepSizeProperty );
-		set => SetValue( StepSizeProperty, value );
+		get => (float) GetValue( ClickStepSizeProperty );
+		set => SetValue( ClickStepSizeProperty, value );
+	}
+
+	// The increment applied while dragging the knob. Always taken straight from XAML (never from the
+	// catalog), so a knob can drag at a much finer resolution than its +/- buttons step.
+	public static readonly DependencyProperty DragStepSizeProperty = DependencyProperty.Register( nameof( DragStepSize ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( 0.01f ) );
+
+	public float DragStepSize
+	{
+		get => (float) GetValue( DragStepSizeProperty );
+		set => SetValue( DragStepSizeProperty, value );
 	}
 
 	public static readonly DependencyProperty ValueChangedCallbackProperty = DependencyProperty.Register( nameof( ValueChangedCallback ), typeof( Action<float> ), typeof( MairaKnob ) );
@@ -317,21 +330,24 @@ public partial class MairaKnob : UserControl
 
 	#region Logic
 
-	private void AdjustValue( float amount )
+	// amount is the signed number of steps to apply (drag passes the pixel delta, the +/- buttons pass +/-1);
+	// stepSize is the per-step magnitude. Clicks pass EffectiveClickStepSize, drags pass DragStepSize.
+	private void AdjustValue( float amount, float stepSize )
 	{
 		float oldValue = Value;
-		float newValue = oldValue + amount * EffectiveStepSize;
+		float newValue = oldValue + amount * stepSize;
 
 		Value = newValue;
 
 		ValueChangedCallback?.Invoke( newValue );
 	}
 
-	// The step size to apply per +/- press. For knobs wired to a mappable action (which is every knob on
-	// the racing wheel / steering effects / pedals / etc. pages) this is the universal, profile-independent
-	// value from Settings.KnobStepSizes - the same value used by mapped input - so the mouse and the mapped
-	// button always move the knob by the same amount. Knobs with no mapped action fall back to the XAML StepSize.
-	private float EffectiveStepSize
+	// The step size to apply per +/- press (mouse click or mapped input). For knobs wired to a mappable
+	// action (which is every knob on the racing wheel / steering effects / pedals / etc. pages) this is the
+	// universal, profile-independent value from Settings.KnobStepSizes - the same value used by mapped input -
+	// so the on-screen buttons and the mapped button always move the knob by the same amount. Knobs with no
+	// mapped action fall back to the XAML ClickStepSize. Dragging never uses this - it uses DragStepSize.
+	private float EffectiveClickStepSize
 	{
 		get
 		{
@@ -342,7 +358,7 @@ public partial class MairaKnob : UserControl
 				return MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.GetKnobStepSize( stepSizeKey, defaultStepSize );
 			}
 
-			return StepSize;
+			return ClickStepSize;
 		}
 	}
 

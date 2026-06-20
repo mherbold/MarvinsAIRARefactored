@@ -11,6 +11,7 @@ public class ContextSettings
 	public float RacingWheelWheelForce { get; set; } = 5f;
 	public float RacingWheelStrength { get; set; } = 0.1f;
 	public float RacingWheelAutoMargin { get; set; } = 0f;
+	public float RacingWheelAutoTarget { get; set; } = 10f;
 	public RacingWheel.Algorithm RacingWheelAlgorithm { get; set; } = RacingWheel.Algorithm.DetailBooster;
 	public bool RacingWheelEnableSoftLimiter { get; set; } = true;
 	public float RacingWheelDetailBoost { get; set; } = 0.5f;

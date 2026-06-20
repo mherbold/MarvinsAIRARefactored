@@ -63,21 +63,24 @@
                                         Label="{Binding Localization[MinimumAngle]}"
                                         Value="{Binding Settings.SeatBeltTensionerMinimum, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerMinimumString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.0156"
                                         DefaultValue="60" />
 
                     <controls:MairaKnob Grid.Column="2"
                                         Label="{Binding Localization[NeutralAngle]}"
                                         Value="{Binding Settings.SeatBeltTensionerNeutral, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerNeutralString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.0104"
                                         DefaultValue="90" />
 
                     <controls:MairaKnob Grid.Column="4"
                                         Label="{Binding Localization[MaximumAngle]}"
                                         Value="{Binding Settings.SeatBeltTensionerMaximum, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerMaximumString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.0156"
                                         DefaultValue="120" />
 
                 </Grid>
@@ -96,7 +99,8 @@
                                         Label="{Binding Localization[MaxMotorSpeed]}"
                                         Value="{Binding Settings.SeatBeltTensionerMaxMotorSpeed, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerMaxMotorSpeedString}"
-                                        StepSize="5"
+                                        ClickStepSize="5"
+                                        DragStepSize="0.0408"
                                         DefaultValue="180" />
 
                     <controls:MairaSwitch Grid.Column="2"
@@ -156,7 +160,8 @@
                     <controls:MairaKnob Label="{Binding Localization[MaxGForce]}"
                                         Value="{Binding Settings.SeatBeltTensionerSurgeMaxG, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSurgeMaxGString}"
-                                        StepSize="0.1"
+                                        ClickStepSize="0.1"
+                                        DragStepSize="0.00866"
                                         DefaultValue="4"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeMaxGContextSwitches}" />
 
@@ -164,7 +169,8 @@
                                         Label="{Binding Localization[DeadZone]}"
                                         Value="{Binding Settings.SeatBeltTensionerSurgeDeadZone, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSurgeDeadZoneString}"
-                                        StepSize="0.01"
+                                        ClickStepSize="0.01"
+                                        DragStepSize="0.000172"
                                         DefaultValue="0"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeDeadZoneContextSwitches}" />
 
@@ -172,7 +178,8 @@
                                         Label="{Binding Localization[Smoothing]}"
                                         Value="{Binding Settings.SeatBeltTensionerSurgeSmoothing, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSurgeSmoothingString}"
-                                        StepSize="0.01"
+                                        ClickStepSize="0.01"
+                                        DragStepSize="0.000174"
                                         DefaultValue="0"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeSmoothingContextSwitches}" />
 
@@ -180,7 +187,8 @@
                                         Label="{Binding Localization[Curve]}"
                                         Value="{Binding Settings.SeatBeltTensionerSurgeCurve, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSurgeCurveString}"
-                                        StepSize="0.01"
+                                        ClickStepSize="0.01"
+                                        DragStepSize="0.000347"
                                         DefaultValue="0"
                                         ShowCurve="True"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeCurveContextSwitches}" />
@@ -281,7 +289,8 @@
                     <controls:MairaKnob Label="{Binding Localization[MaxGForce]}"
                                         Value="{Binding Settings.SeatBeltTensionerSwayMaxG, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSwayMaxGString}"
-                                        StepSize="0.1"
+                                        ClickStepSize="0.1"
+                                        DragStepSize="0.00866"
                                         DefaultValue="2"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSwayMaxGContextSwitches}" />
 
@@ -289,7 +298,8 @@
                                         Label="{Binding Localization[DeadZone]}"
                                         Value="{Binding Settings.SeatBeltTensionerSwayDeadZone, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSwayDeadZoneString}"
-                                        StepSize="0.01"
+                                        ClickStepSize="0.01"
+                                        DragStepSize="0.000172"
                                         DefaultValue="0.05"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSwayDeadZoneContextSwitches}" />
 
@@ -297,7 +307,8 @@
                                         Label="{Binding Localization[Smoothing]}"
                                         Value="{Binding Settings.SeatBeltTensionerSwaySmoothing, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSwaySmoothingString}"
-                                        StepSize="0.01"
+                                        ClickStepSize="0.01"
+                                        DragStepSize="0.000174"
                                         DefaultValue="0"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSwaySmoothingContextSwitches}" />
 
@@ -305,7 +316,8 @@
                                         Label="{Binding Localization[Curve]}"
                                         Value="{Binding Settings.SeatBeltTensionerSwayCurve, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSwayCurveString}"
-                                        StepSize="0.01"
+                                        ClickStepSize="0.01"
+                                        DragStepSize="0.000347"
                                         DefaultValue="0.15"
                                         ShowCurve="True"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSwayCurveContextSwitches}" />
@@ -406,7 +418,8 @@
                     <controls:MairaKnob Label="{Binding Localization[MaxGForce]}"
                                         Value="{Binding Settings.SeatBeltTensionerHeaveMaxG, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerHeaveMaxGString}"
-                                        StepSize="0.1"
+                                        ClickStepSize="0.1"
+                                        DragStepSize="0.00866"
                                         DefaultValue="1.5"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveMaxGContextSwitches}" />
 
@@ -414,7 +427,8 @@
                                         Label="{Binding Localization[DeadZone]}"
                                         Value="{Binding Settings.SeatBeltTensionerHeaveDeadZone, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerHeaveDeadZoneString}"
-                                        StepSize="0.01"
+                                        ClickStepSize="0.01"
+                                        DragStepSize="0.000172"
                                         DefaultValue="0.05"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveDeadZoneContextSwitches}" />
 
@@ -422,7 +436,8 @@
                                         Label="{Binding Localization[Smoothing]}"
                                         Value="{Binding Settings.SeatBeltTensionerHeaveSmoothing, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerHeaveSmoothingString}"
-                                        StepSize="0.01"
+                                        ClickStepSize="0.01"
+                                        DragStepSize="0.000174"
                                         DefaultValue="0.1"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveSmoothingContextSwitches}" />
 
@@ -430,7 +445,8 @@
                                         Label="{Binding Localization[Curve]}"
                                         Value="{Binding Settings.SeatBeltTensionerHeaveCurve, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerHeaveCurveString}"
-                                        StepSize="0.01"
+                                        ClickStepSize="0.01"
+                                        DragStepSize="0.000347"
                                         DefaultValue="0.15"
                                         ShowCurve="True"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveCurveContextSwitches}" />
@@ -520,7 +536,8 @@
                     <controls:MairaKnob Label="{Binding Localization[MinimumThreshold]}"
                                         Value="{Binding Settings.SteeringEffectsSeatOfPantsMinimumThreshold, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SteeringEffectsSeatOfPantsMinimumThresholdString}"
-                                        StepSize="0.1"
+                                        ClickStepSize="0.1"
+                                        DragStepSize="0.00868"
                                         ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsMinimumThresholdContextSwitches}"
                                         DefaultValue="0" />
 
@@ -528,7 +545,8 @@
                                         Label="{Binding Localization[MaximumThreshold]}"
                                         Value="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThreshold, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThresholdString}"
-                                        StepSize="0.1"
+                                        ClickStepSize="0.1"
+                                        DragStepSize="0.00868"
                                         ContextSwitches="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThresholdContextSwitches}"
                                         DefaultValue="3" />
 
@@ -545,14 +563,16 @@
                     <controls:MairaKnob Label="{Binding Localization[Amplitude]}"
                                         Value="{Binding Settings.SeatBeltTensionerSeatOfPantsAmplitude, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSeatOfPantsAmplitudeString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.0208"
                                         DefaultValue="120" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Curve]}"
                                         Value="{Binding Settings.SeatBeltTensionerSeatOfPantsCurve, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerSeatOfPantsCurveString}"
-                                        StepSize="0.01"
+                                        ClickStepSize="0.01"
+                                        DragStepSize="0.000347"
                                         DefaultValue="0.25"
                                         ShowCurve="True"
                                         ContextSwitches="{Binding Settings.SeatBeltTensionerSeatOfPantsCurveContextSwitches}" />
@@ -585,14 +605,16 @@
                                         Label="{Binding Localization[Frequency]}"
                                         Value="{Binding Settings.SeatBeltTensionerABSFrequency, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerABSFrequencyString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.0026"
                                         DefaultValue="10" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Amplitude]}"
                                         Value="{Binding Settings.SeatBeltTensionerABSAmplitude, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerABSAmplitudeString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.0104"
                                         DefaultValue="30" />
 
                     <controls:MairaButton x:Name="ABSTest_MairaButton"
@@ -612,14 +634,16 @@
                                         Label="{Binding Localization[Frequency]}"
                                         Value="{Binding Settings.SeatBeltTensionerWheelSlipFrequency, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerWheelSlipFrequencyString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.0026"
                                         DefaultValue="11" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Amplitude]}"
                                         Value="{Binding Settings.SeatBeltTensionerWheelSlipAmplitude, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerWheelSlipAmplitudeString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.0104"
                                         DefaultValue="30" />
 
                     <controls:MairaButton x:Name="WheelSlipTest_MairaButton"
@@ -639,14 +663,16 @@
                                         Label="{Binding Localization[Frequency]}"
                                         Value="{Binding Settings.SeatBeltTensionerRumbleFrequency, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerRumbleFrequencyString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.0026"
                                         DefaultValue="12" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Amplitude]}"
                                         Value="{Binding Settings.SeatBeltTensionerRumbleAmplitude, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SeatBeltTensionerRumbleAmplitudeString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.0104"
                                         DefaultValue="30" />
 
                     <controls:MairaButton x:Name="RumbleTest_MairaButton"

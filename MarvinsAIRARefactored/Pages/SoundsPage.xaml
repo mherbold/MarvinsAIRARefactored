@@ -65,7 +65,8 @@
                                     Label="{Binding Localization[Volume]}"
                                     Value="{Binding Settings.SoundsMasterVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsMasterVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsMasterVolumePlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsMasterVolumeMinusButtonMappings}"
                                     DefaultValue="0.75" />
@@ -106,7 +107,8 @@
                                     Label="{Binding Localization[Volume]}"
                                     Value="{Binding Settings.SoundsClickVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsClickVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsClickVolumePlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsClickVolumeMinusButtonMappings}"
                                     DefaultValue="0.75" />
@@ -115,7 +117,8 @@
                                     Label="{Binding Localization[FrequencyRatio]}"
                                     Value="{Binding Settings.SoundsClickFrequencyRatio, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsClickFrequencyRatioString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
                                     PlusButtonMappings="{Binding Settings.SoundsClickFrequencyRatioPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsClickFrequencyRatioMinusButtonMappings}"
                                     DefaultValue="1" />
@@ -171,7 +174,8 @@
                                     Label="{Binding Localization[Volume]}"
                                     Value="{Binding Settings.SoundsABSEngagedVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsABSEngagedVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsABSEngagedVolumePlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsABSEngagedVolumeMinusButtonMappings}"
                                     DefaultValue="0.75" />
@@ -180,7 +184,8 @@
                                     Label="{Binding Localization[FrequencyRatio]}"
                                     Value="{Binding Settings.SoundsABSEngagedFrequencyRatio, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsABSEngagedFrequencyRatioString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
                                     PlusButtonMappings="{Binding Settings.SoundsABSEngagedFrequencyRatioPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsABSEngagedFrequencyRatioMinusButtonMappings}"
                                     DefaultValue="1" />
@@ -189,14 +194,16 @@
                                     Label="{Binding Localization[LoopStart]}"
                                     Value="{Binding Settings.SoundsABSEngagedLoopStartMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsABSEngagedLoopStartMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Row="2" Grid.Column="4"
                                     Label="{Binding Localization[LoopEnd]}"
                                     Value="{Binding Settings.SoundsABSEngagedLoopEndMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsABSEngagedLoopEndMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <!-- col 6: Sensitivity (unused for ABSEngaged) -->
@@ -249,7 +256,8 @@
                                     Label="{Binding Localization[Volume]}"
                                     Value="{Binding Settings.SoundsWheelLockVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsWheelLockVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsWheelLockVolumePlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsWheelLockVolumeMinusButtonMappings}"
                                     DefaultValue="0.75" />
@@ -258,7 +266,8 @@
                                     Label="{Binding Localization[FrequencyRatio]}"
                                     Value="{Binding Settings.SoundsWheelLockFrequencyRatio, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsWheelLockFrequencyRatioString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
                                     PlusButtonMappings="{Binding Settings.SoundsWheelLockFrequencyRatioPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsWheelLockFrequencyRatioMinusButtonMappings}"
                                     DefaultValue="1" />
@@ -267,21 +276,24 @@
                                     Label="{Binding Localization[LoopStart]}"
                                     Value="{Binding Settings.SoundsWheelLockLoopStartMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsWheelLockLoopStartMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Row="2" Grid.Column="4"
                                     Label="{Binding Localization[LoopEnd]}"
                                     Value="{Binding Settings.SoundsWheelLockLoopEndMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsWheelLockLoopEndMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Row="0" Grid.Column="6"
                                     Label="{Binding Localization[Sensitivity]}"
                                     Value="{Binding Settings.SoundsWheelLockSensitivity, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsWheelLockSensitivityString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsWheelLockSensitivityPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsWheelLockSensitivityMinusButtonMappings}"
                                     DefaultValue="0.85" />
@@ -334,7 +346,8 @@
                                     Label="{Binding Localization[Volume]}"
                                     Value="{Binding Settings.SoundsWheelSpinVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsWheelSpinVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsWheelSpinVolumePlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsWheelSpinVolumeMinusButtonMappings}"
                                     DefaultValue="0.75" />
@@ -343,7 +356,8 @@
                                     Label="{Binding Localization[FrequencyRatio]}"
                                     Value="{Binding Settings.SoundsWheelSpinFrequencyRatio, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsWheelSpinFrequencyRatioString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
                                     PlusButtonMappings="{Binding Settings.SoundsWheelSpinFrequencyRatioPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsWheelSpinFrequencyRatioMinusButtonMappings}"
                                     DefaultValue="1" />
@@ -352,21 +366,24 @@
                                     Label="{Binding Localization[LoopStart]}"
                                     Value="{Binding Settings.SoundsWheelSpinLoopStartMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsWheelSpinLoopStartMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Row="2" Grid.Column="4"
                                     Label="{Binding Localization[LoopEnd]}"
                                     Value="{Binding Settings.SoundsWheelSpinLoopEndMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsWheelSpinLoopEndMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Row="0" Grid.Column="6"
                                     Label="{Binding Localization[Sensitivity]}"
                                     Value="{Binding Settings.SoundsWheelSpinSensitivity, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsWheelSpinSensitivityString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsWheelSpinSensitivityPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsWheelSpinSensitivityMinusButtonMappings}"
                                     DefaultValue="0.85" />
@@ -414,7 +431,8 @@
                                     Label="{Binding Localization[Volume]}"
                                     Value="{Binding Settings.SoundsUndersteerVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsUndersteerVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsUndersteerVolumePlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsUndersteerVolumeMinusButtonMappings}"
                                     DefaultValue="0.75" />
@@ -423,7 +441,8 @@
                                     Label="{Binding Localization[FrequencyRatio]}"
                                     Value="{Binding Settings.SoundsUndersteerFrequencyRatio, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsUndersteerFrequencyRatioString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
                                     PlusButtonMappings="{Binding Settings.SoundsUndersteerFrequencyRatioPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsUndersteerFrequencyRatioMinusButtonMappings}"
                                     DefaultValue="1" />
@@ -432,14 +451,16 @@
                                     Label="{Binding Localization[LoopStart]}"
                                     Value="{Binding Settings.SoundsUndersteerLoopStartMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsUndersteerLoopStartMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Row="2" Grid.Column="4"
                                     Label="{Binding Localization[LoopEnd]}"
                                     Value="{Binding Settings.SoundsUndersteerLoopEndMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsUndersteerLoopEndMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <!-- col 6: Sensitivity (unused for Understeer) -->
@@ -487,7 +508,8 @@
                                     Label="{Binding Localization[Volume]}"
                                     Value="{Binding Settings.SoundsOversteerVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsOversteerVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsOversteerVolumePlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsOversteerVolumeMinusButtonMappings}"
                                     DefaultValue="0.75" />
@@ -496,7 +518,8 @@
                                     Label="{Binding Localization[FrequencyRatio]}"
                                     Value="{Binding Settings.SoundsOversteerFrequencyRatio, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsOversteerFrequencyRatioString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
                                     PlusButtonMappings="{Binding Settings.SoundsOversteerFrequencyRatioPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsOversteerFrequencyRatioMinusButtonMappings}"
                                     DefaultValue="1" />
@@ -505,14 +528,16 @@
                                     Label="{Binding Localization[LoopStart]}"
                                     Value="{Binding Settings.SoundsOversteerLoopStartMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsOversteerLoopStartMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Row="2" Grid.Column="4"
                                     Label="{Binding Localization[LoopEnd]}"
                                     Value="{Binding Settings.SoundsOversteerLoopEndMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsOversteerLoopEndMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <!-- col 6: Sensitivity (unused for Oversteer) -->
@@ -560,7 +585,8 @@
                                     Label="{Binding Localization[Volume]}"
                                     Value="{Binding Settings.SoundsSeatOfPantsVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsSeatOfPantsVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsSeatOfPantsVolumePlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsSeatOfPantsVolumeMinusButtonMappings}"
                                     DefaultValue="0.75" />
@@ -569,7 +595,8 @@
                                     Label="{Binding Localization[FrequencyRatio]}"
                                     Value="{Binding Settings.SoundsSeatOfPantsFrequencyRatio, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsSeatOfPantsFrequencyRatioString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
                                     PlusButtonMappings="{Binding Settings.SoundsSeatOfPantsFrequencyRatioPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsSeatOfPantsFrequencyRatioMinusButtonMappings}"
                                     DefaultValue="1" />
@@ -578,14 +605,16 @@
                                     Label="{Binding Localization[LoopStart]}"
                                     Value="{Binding Settings.SoundsSeatOfPantsLoopStartMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsSeatOfPantsLoopStartMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Row="2" Grid.Column="4"
                                     Label="{Binding Localization[LoopEnd]}"
                                     Value="{Binding Settings.SoundsSeatOfPantsLoopEndMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsSeatOfPantsLoopEndMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <!-- col 6: Sensitivity (unused for SeatOfPants) -->
@@ -633,7 +662,8 @@
                                     Label="{Binding Localization[Volume]}"
                                     Value="{Binding Settings.SoundsBrakeThrottleWarningVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsBrakeThrottleWarningVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsBrakeThrottleWarningVolumePlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsBrakeThrottleWarningVolumeMinusButtonMappings}"
                                     DefaultValue="0.75" />
@@ -642,7 +672,8 @@
                                     Label="{Binding Localization[FrequencyRatio]}"
                                     Value="{Binding Settings.SoundsBrakeThrottleWarningFrequencyRatio, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsBrakeThrottleWarningFrequencyRatioString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
                                     PlusButtonMappings="{Binding Settings.SoundsBrakeThrottleWarningFrequencyRatioPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsBrakeThrottleWarningFrequencyRatioMinusButtonMappings}"
                                     DefaultValue="1" />
@@ -651,14 +682,16 @@
                                     Label="{Binding Localization[LoopStart]}"
                                     Value="{Binding Settings.SoundsBrakeThrottleWarningLoopStartMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsBrakeThrottleWarningLoopStartMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Row="2" Grid.Column="4"
                                     Label="{Binding Localization[LoopEnd]}"
                                     Value="{Binding Settings.SoundsBrakeThrottleWarningLoopEndMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsBrakeThrottleWarningLoopEndMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaButton Grid.Row="0" Grid.Column="8" Grid.RowSpan="3"
@@ -704,7 +737,8 @@
                                     Label="{Binding Localization[Volume]}"
                                     Value="{Binding Settings.SoundsFfbClippingVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsFfbClippingVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     PlusButtonMappings="{Binding Settings.SoundsFfbClippingVolumePlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsFfbClippingVolumeMinusButtonMappings}"
                                     DefaultValue="0.75" />
@@ -713,7 +747,8 @@
                                     Label="{Binding Localization[FrequencyRatio]}"
                                     Value="{Binding Settings.SoundsFfbClippingFrequencyRatio, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsFfbClippingFrequencyRatioString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000304"
                                     PlusButtonMappings="{Binding Settings.SoundsFfbClippingFrequencyRatioPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.SoundsFfbClippingFrequencyRatioMinusButtonMappings}"
                                     DefaultValue="1" />
@@ -722,14 +757,16 @@
                                     Label="{Binding Localization[LoopStart]}"
                                     Value="{Binding Settings.SoundsFfbClippingLoopStartMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsFfbClippingLoopStartMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaKnob Grid.Row="2" Grid.Column="4"
                                     Label="{Binding Localization[LoopEnd]}"
                                     Value="{Binding Settings.SoundsFfbClippingLoopEndMs, Mode=TwoWay}"
                                     ValueString="{Binding Settings.SoundsFfbClippingLoopEndMsString}"
-                                    StepSize="10"
+                                    ClickStepSize="10"
+                                    DragStepSize="0.1"
                                     DefaultValue="0" />
 
                 <controls:MairaButton Grid.Row="0" Grid.Column="8" Grid.RowSpan="3"

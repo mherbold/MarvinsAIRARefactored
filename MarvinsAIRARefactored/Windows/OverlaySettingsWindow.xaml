@@ -54,25 +54,29 @@
                                     Grid.Column="0"
                                     Grid.Row="0"
                                     Label="{Binding Localization[Red]}"
-                                    StepSize="0.01" />
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174" />
 
                 <controls:MairaKnob x:Name="G_MairaKnob"
                                     Grid.Column="2"
                                     Grid.Row="0"
                                     Label="{Binding Localization[Green]}"
-                                    StepSize="0.01" />
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174" />
 
                 <controls:MairaKnob x:Name="B_MairaKnob"
                                     Grid.Column="4"
                                     Grid.Row="0"
                                     Label="{Binding Localization[Blue]}"
-                                    StepSize="0.01" />
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174" />
 
                 <controls:MairaKnob x:Name="Opacity_MairaKnob"
                                     Grid.Column="0"
                                     Grid.Row="2"
                                     Label="{Binding Localization[Opacity]}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     Margin="0,0,0,16" />
 
             </Grid>

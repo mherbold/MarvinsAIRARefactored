@@ -47,7 +47,8 @@
                                     Label="{Binding Localization[MasterVolume]}"
                                     Value="{Binding Settings.CommentaryMasterVolume, Mode=TwoWay}"
                                     ValueString="{Binding Settings.CommentaryMasterVolumeString}"
-                                    StepSize="0.01"
+                                    ClickStepSize="0.01"
+                                    DragStepSize="0.000174"
                                     DefaultValue="0.85" />
 
             </Grid>
@@ -168,7 +169,8 @@
                                             Label="{Binding Localization[Consistency]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[0].Stability, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[0].StabilityString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.75" />
 
                         <controls:MairaKnob Grid.Row="2"
@@ -176,7 +178,8 @@
                                             Label="{Binding Localization[Dramatic]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[0].Style, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[0].StyleString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.30" />
 
                         <controls:MairaKnob Grid.Row="2"
@@ -184,7 +187,8 @@
                                             Label="{Binding Localization[SimilarityBoost]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[0].SimilarityBoost, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[0].SimilarityBoostString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.80" />
 
                         <controls:MairaKnob Grid.Row="4"
@@ -192,7 +196,8 @@
                                             Label="{Binding Localization[SlotVolume]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[0].Volume, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[0].VolumeString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="1.0" />
 
                         <StackPanel Grid.Row="4"
@@ -259,7 +264,8 @@
                                             Label="{Binding Localization[Consistency]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[1].Stability, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[1].StabilityString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.90" />
 
                         <controls:MairaKnob Grid.Row="2"
@@ -267,7 +273,8 @@
                                             Label="{Binding Localization[Dramatic]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[1].Style, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[1].StyleString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.15" />
 
                         <controls:MairaKnob Grid.Row="2"
@@ -275,7 +282,8 @@
                                             Label="{Binding Localization[SimilarityBoost]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[1].SimilarityBoost, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[1].SimilarityBoostString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.75" />
 
                         <controls:MairaKnob Grid.Row="4"
@@ -283,7 +291,8 @@
                                             Label="{Binding Localization[SlotVolume]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[1].Volume, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[1].VolumeString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="1.0" />
 
                         <StackPanel Grid.Row="4"
@@ -350,7 +359,8 @@
                                             Label="{Binding Localization[Consistency]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[2].Stability, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[2].StabilityString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.35" />
 
                         <controls:MairaKnob Grid.Row="2"
@@ -358,7 +368,8 @@
                                             Label="{Binding Localization[Dramatic]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[2].Style, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[2].StyleString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.75" />
 
                         <controls:MairaKnob Grid.Row="2"
@@ -366,7 +377,8 @@
                                             Label="{Binding Localization[SimilarityBoost]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[2].SimilarityBoost, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[2].SimilarityBoostString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.75" />
 
                         <controls:MairaKnob Grid.Row="4"
@@ -374,7 +386,8 @@
                                             Label="{Binding Localization[SlotVolume]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[2].Volume, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[2].VolumeString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="1.0" />
 
                         <StackPanel Grid.Row="4"
@@ -441,7 +454,8 @@
                                             Label="{Binding Localization[Consistency]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[3].Stability, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[3].StabilityString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.55" />
 
                         <controls:MairaKnob Grid.Row="2"
@@ -449,7 +463,8 @@
                                             Label="{Binding Localization[Dramatic]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[3].Style, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[3].StyleString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.50" />
 
                         <controls:MairaKnob Grid.Row="2"
@@ -457,7 +472,8 @@
                                             Label="{Binding Localization[SimilarityBoost]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[3].SimilarityBoost, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[3].SimilarityBoostString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.75" />
 
                         <controls:MairaKnob Grid.Row="4"
@@ -465,7 +481,8 @@
                                             Label="{Binding Localization[SlotVolume]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[3].Volume, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[3].VolumeString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="1.0" />
 
                         <StackPanel Grid.Row="4"
@@ -531,7 +548,8 @@
                                             Label="{Binding Localization[Consistency]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[4].Stability, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[4].StabilityString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.45" />
 
                         <controls:MairaKnob Grid.Row="2"
@@ -539,7 +557,8 @@
                                             Label="{Binding Localization[Dramatic]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[4].Style, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[4].StyleString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.65" />
 
                         <controls:MairaKnob Grid.Row="2"
@@ -547,7 +566,8 @@
                                             Label="{Binding Localization[SimilarityBoost]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[4].SimilarityBoost, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[4].SimilarityBoostString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="0.80" />
 
                         <controls:MairaKnob Grid.Row="4"
@@ -555,7 +575,8 @@
                                             Label="{Binding Localization[SlotVolume]}"
                                             Value="{Binding Settings.CommentaryVoiceSlots[4].Volume, Mode=TwoWay}"
                                             ValueString="{Binding Settings.CommentaryVoiceSlots[4].VolumeString}"
-                                            StepSize="0.05"
+                                            ClickStepSize="0.05"
+                                            DragStepSize="0.000174"
                                             DefaultValue="1.0" />
 
                         <StackPanel Grid.Row="4"
@@ -645,7 +666,8 @@
                                     Label="{Binding Localization[CarProximityReminderInterval]}"
                                     Value="{Binding Settings.CommentarySpotterCarProximityReminderInterval, Mode=TwoWay}"
                                     ValueString="{Binding Settings.CommentarySpotterCarProximityReminderIntervalString}"
-                                    StepSize="0.1"
+                                    ClickStepSize="0.1"
+                                    DragStepSize="0.0033"
                                     DefaultValue="3.0" />
 
             </Grid>

@@ -212,7 +212,8 @@
                                         Label="{Binding Localization[WheelForce]}"
                                         Value="{Binding Settings.RacingWheelWheelForce, Mode=TwoWay}"
                                         ValueString="{Binding Settings.RacingWheelWheelForceString}"
-                                        StepSize="1"
+                                        ClickStepSize="1"
+                                        DragStepSize="0.00833"
                                         ContextSwitches="{Binding Settings.RacingWheelWheelForceContextSwitches}"
                                         DefaultValue="5" />
                 </Grid>
@@ -418,14 +419,14 @@
                     <controls:MairaKnob Grid.Column="0"
                                         x:Name="WizardAutoTarget_MairaKnob"
                                         Label="{Binding Localization[AutoTarget]}"
-                                        Value="{Binding Settings.RacingWheelAutoMargin, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.RacingWheelAutoMarginString}"
-                                        StepSize="0.01"
-                                        ContextSwitches="{Binding Settings.RacingWheelAutoMarginContextSwitches}"
-                                        PlusButtonMappings="{Binding Settings.RacingWheelAutoMarginPlusButtonMappings}"
-                                        MinusButtonMappings="{Binding Settings.RacingWheelAutoMarginMinusButtonMappings}"
-                                        DefaultValue="0"
-                                        Reverse="True" />
+                                        Value="{Binding Settings.RacingWheelAutoTarget, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.RacingWheelAutoTargetString}"
+                                        ClickStepSize="0.5"
+                                        DragStepSize="0.00851"
+                                        ContextSwitches="{Binding Settings.RacingWheelAutoTargetContextSwitches}"
+                                        PlusButtonMappings="{Binding Settings.RacingWheelAutoTargetPlusButtonMappings}"
+                                        MinusButtonMappings="{Binding Settings.RacingWheelAutoTargetMinusButtonMappings}"
+                                        DefaultValue="10" />
 
                     <controls:MairaMappableButton Grid.Column="2"
                                                   x:Name="WizardSet_MairaMappableButton"

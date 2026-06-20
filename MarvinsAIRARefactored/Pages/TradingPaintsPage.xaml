@@ -62,7 +62,8 @@
                                         Label="{Binding Localization[MaxDownloadSpeed]}"
                                         Value="{Binding Settings.TradingPaintsMaxDownloadSpeedKbps, Mode=TwoWay}"
                                         ValueString="{Binding Settings.TradingPaintsMaxDownloadSpeedKbpsString}"
-                                        StepSize="64"
+                                        ClickStepSize="64"
+                                        DragStepSize="1.77"
                                         DefaultValue="1024" />
 
                 </Grid>

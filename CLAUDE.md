@@ -36,6 +36,7 @@ The project has a second build target called **AdminBoxx**, controlled via the `
 - **Localize** all UI strings — never hardcode labels or units; use `Localization["Key"]`.
 - **Custom controls only** — never use raw WPF `TextBox`, `ComboBox`, `Button`, `CheckBox`, `Slider`, `GroupBox`, or `TabItem` when a `Maira*` equivalent exists.
 - **Settings ordering** — properties in `Settings.cs` and `ContextSettings.cs` must match UI top-to-bottom / left-to-right order.
+- **`MairaKnob` step sizes are two separate things** — `ClickStepSize` is the +/- button increment (only a fallback for mappable knobs; their click step comes from the `MappableActionCatalog` `DefaultStepSize` / `Settings.KnobStepSizes`), and `DragStepSize` is the drag increment (always read from XAML). Set each deliberately — never just mirror one into the other. `DragStepSize` is much finer because it is applied per pixel of drag (drag value change = `pixelsMoved × DragStepSize`), so it is typically ~100× smaller than the click step; e.g. `RacingWheelAutoTarget` uses `ClickStepSize="0.5"` / `DragStepSize="0.001"`.
 
 ---
 

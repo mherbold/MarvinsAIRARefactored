@@ -149,7 +149,8 @@
                                     Label="{Binding Localization[UIScale]}"
                                     Value="{Binding Settings.AppUIScale, Mode=TwoWay}"
                                     ValueString="{Binding Settings.AppUIScaleString}"
-                                    StepSize="0.05"
+                                    ClickStepSize="0.05"
+                                    DragStepSize="0.00026"
                                     DefaultValue="1" />
 
             </Grid>
