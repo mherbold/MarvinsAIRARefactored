@@ -8,6 +8,9 @@ public partial class WizardWindow : Window
 {
 	private int _currentStep = 0;
 
+	// Seeds Auto Target once per wizard session (see SeedAutoTargetIfFirstRun).
+	private bool _autoTargetSeeded = false;
+
 	// Ordered list of intermediate step panels (between welcome and final)
 	private readonly StackPanel[] _stepPanels;
 
@@ -182,6 +185,36 @@ public partial class WizardWindow : Window
 		else
 		{
 			_stepPanels[ step - 1 ].Visibility = Visibility.Visible;
+		}
+
+		// When first arriving at the Auto-Set step, seed Auto Target (by now the wheel force is set).
+		if ( step == Array.IndexOf( _stepPanels, Step6_Panel ) + 1 )
+		{
+			SeedAutoTargetIfFirstRun();
+		}
+	}
+
+	/// <summary>
+	/// On the very first wizard run, default Auto Target to 10 Nm. This runs once per wizard session and
+	/// only before the wizard has ever completed, so re-running the wizard (or navigating back to this step)
+	/// never clobbers a value the user has set. RacingWheelAutoTarget clamps to [1, WheelForce], so the
+	/// effective seed is min( 10, WheelForce ) - which is why this must happen after the wheel-force step
+	/// rather than at settings-load time, when the wheel force is still the 5 Nm default.
+	/// </summary>
+	private void SeedAutoTargetIfFirstRun()
+	{
+		if ( _autoTargetSeeded )
+		{
+			return;
+		}
+
+		_autoTargetSeeded = true;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		if ( !settings.AppWizardHasRun )
+		{
+			settings.RacingWheelAutoTarget = 10f;
 		}
 	}
 

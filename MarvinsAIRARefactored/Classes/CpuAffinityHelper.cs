@@ -79,6 +79,34 @@ public static class CpuAffinityHelper
 		return affinityMaskBits;
 	}
 
+	public static ulong GetDefaultAffinityMask()
+	{
+		try
+		{
+			var physicalCoreOptions = GetPhysicalCoreOptions();
+
+			// Leave the first physical cores free by default. Exclude the lesser of 25% of the
+			// cores (one checkbox per physical core) and the first 2 cores.
+			var excludedCoreCount = Math.Min( physicalCoreOptions.Count / 4, 2 );
+
+			var affinityMaskBits = 0UL;
+
+			foreach ( var physicalCoreOption in physicalCoreOptions )
+			{
+				if ( physicalCoreOption.Index >= excludedCoreCount )
+				{
+					affinityMaskBits |= physicalCoreOption.AffinityMaskBits;
+				}
+			}
+
+			return affinityMaskBits == 0UL ? 0xFFFFFFFFFFFFFFFF : affinityMaskBits;
+		}
+		catch
+		{
+			return 0xFFFFFFFFFFFFFFFF;
+		}
+	}
+
 	public static ulong GetProcessAffinityMask( Process process )
 	{
 		if ( !GetProcessAffinityMask( process.Handle, out var processAffinityMask, out _ ) )

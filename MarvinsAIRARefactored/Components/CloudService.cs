@@ -17,9 +17,10 @@ public class CloudService
 	public bool CheckingForUpdate { get; private set; } = false;
 	public bool DownloadingUpdate { get; private set; } = false;
 
-	private static readonly TimeSpan UpdateCheckInterval = TimeSpan.FromHours( 1 );
-
-	private DateTime _nextUpdateCheckUtc = DateTime.MaxValue;
+	// UTC time of the most recent update check (or app startup); the next recurring check is due one
+	// AppUpdateCheckIntervalHours interval after this. The interval is read live in Tick so changes to the
+	// user's setting take effect immediately. DateTime.MaxValue means "not initialized yet" - nothing is due.
+	private DateTime _lastUpdateCheckUtc = DateTime.MaxValue;
 
 	public void Initialize()
 	{
@@ -27,10 +28,10 @@ public class CloudService
 
 		app.Logger.WriteLine( "[CloudService] Initialize >>>" );
 
-		// Schedule the first recurring update check one interval from now. The initial
-		// (startup) check is fired separately from App_Startup; this keeps users who never
+		// Use startup as the baseline for the first recurring update check (which is due one interval from
+		// now). The initial (startup) check is fired separately from App_Startup; this keeps users who never
 		// restart the app current by re-checking periodically while iRacing is not running.
-		_nextUpdateCheckUtc = DateTime.UtcNow + UpdateCheckInterval;
+		_lastUpdateCheckUtc = DateTime.UtcNow;
 
 		var networkInterfaceList = NetworkInterface.GetAllNetworkInterfaces();
 
@@ -67,12 +68,19 @@ public class CloudService
 			return;
 		}
 
-		if ( DateTime.UtcNow < _nextUpdateCheckUtc )
+		if ( _lastUpdateCheckUtc == DateTime.MaxValue )
 		{
 			return;
 		}
 
-		_nextUpdateCheckUtc = DateTime.UtcNow + UpdateCheckInterval;
+		var updateCheckInterval = TimeSpan.FromHours( DataContext.DataContext.Instance.Settings.AppUpdateCheckIntervalHours );
+
+		if ( DateTime.UtcNow < _lastUpdateCheckUtc + updateCheckInterval )
+		{
+			return;
+		}
+
+		_lastUpdateCheckUtc = DateTime.UtcNow;
 
 		_ = CheckForUpdates( false );
 	}

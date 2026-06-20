@@ -335,6 +335,15 @@ public partial class App : Application
 
 				Misc.ForcePropertySetters( settings );
 
+				try
+				{
+					CpuAffinityHelper.SetCpuAffinity( settings.AppAffinityMaskBits );
+				}
+				catch ( Exception ex )
+				{
+					Logger.WriteLine( $"[App] Failed to apply CPU affinity at startup: {ex.Message}" );
+				}
+
 				settings.UpdateSettings( false );
 
 				ApplyTheme( settings.AppLightThemeEnabled );

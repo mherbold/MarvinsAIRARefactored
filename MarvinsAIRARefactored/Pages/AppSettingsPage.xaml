@@ -171,17 +171,35 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <controls:MairaSwitch Grid.Column="0"
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+
+                <controls:MairaSwitch Grid.Row="0"
+                                      Grid.Column="0"
                                       Grid.ColumnSpan="3"
                                       IsOn="{Binding Settings.AppCheckForUpdates, Mode=TwoWay}"
-                                      Label="{Binding Localization[CheckForUpdates]}"
-                                      VerticalAlignment="Top" />
+                                      Label="{Binding Localization[CheckForUpdates]}" />
 
                 <controls:MairaButton x:Name="CheckNow_MairaButton"
-                                      Grid.Column="4"
+                                      Grid.Row="1"
+                                      Grid.Column="0"
+                                      Grid.ColumnSpan="3"
+                                      Margin="0,10,0,0"
                                       Label="{Binding Localization[CheckNow]}"
                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/search.png"
                                       Click="CheckNow_MairaButton_Click" />
+
+                <controls:MairaKnob Grid.Row="0"
+                                    Grid.Column="4"
+                                    Grid.RowSpan="2"
+                                    Label="{Binding Localization[UpdateCheckInterval]}"
+                                    Value="{Binding Settings.AppUpdateCheckIntervalHours, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.AppUpdateCheckIntervalHoursString}"
+                                    ClickStepSize="1"
+                                    DragStepSize="0.05"
+                                    DefaultValue="1" />
 
             </Grid>
 

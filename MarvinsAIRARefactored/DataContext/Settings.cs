@@ -14208,6 +14208,56 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region App - Update check interval
+
+	private float _appUpdateCheckIntervalHours = 1f;
+
+	public float AppUpdateCheckIntervalHours
+	{
+		get => _appUpdateCheckIntervalHours;
+
+		set
+		{
+			value = float.IsNaN( value ) ? 1f : value;
+
+			value = Math.Clamp( value, 1f, 168f );
+
+			if ( value != _appUpdateCheckIntervalHours )
+			{
+				_appUpdateCheckIntervalHours = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateAppUpdateCheckIntervalHoursString();
+		}
+	}
+
+	private string _appUpdateCheckIntervalHoursString = string.Empty;
+
+	[XmlIgnore]
+	public string AppUpdateCheckIntervalHoursString
+	{
+		get => _appUpdateCheckIntervalHoursString;
+
+		set
+		{
+			if ( value != _appUpdateCheckIntervalHoursString )
+			{
+				_appUpdateCheckIntervalHoursString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private void UpdateAppUpdateCheckIntervalHoursString()
+	{
+		AppUpdateCheckIntervalHoursString = $"{_appUpdateCheckIntervalHours:F0}{DataContext.Instance.Localization[ "HoursUnits" ]}";
+	}
+
+	#endregion
+
 	#region App - Light theme enabled
 
 	private bool _appLightThemeEnabled = false;
@@ -14256,7 +14306,7 @@ public class Settings : INotifyPropertyChanged
 
 	#region App - CPU affinity
 
-	private ulong _appAffinityMaskBits = 0xFFFFFFFFFFFFFFFF;
+	private ulong _appAffinityMaskBits = CpuAffinityHelper.GetDefaultAffinityMask();
 
 	public ulong AppAffinityMaskBits
 	{
