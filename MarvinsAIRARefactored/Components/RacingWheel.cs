@@ -384,7 +384,7 @@ public class RacingWheel
 				var normalizedDelta = ( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, 1 ] ) / settings.RacingWheelMaxForce;
 				var normalizedDeltaAbs = MathF.Abs( normalizedDelta );
 
-				var deltaLimit = settings.RacingWheelSlewCompressionThreshold / 500f;
+				var deltaLimit = MathZ.Lerp( settings.RacingWheelSlewCompressionThreshold / 500f, 0f, curbProtectionLerpFactor );
 
 				float oneMinusSlewCompressionRate;
 
@@ -396,6 +396,8 @@ public class RacingWheel
 				{
 					oneMinusSlewCompressionRate = MathF.Max( 0.75f, 1f - settings.RacingWheelSlewCompressionRate * 0.75f );
 				}
+
+				oneMinusSlewCompressionRate = MathZ.Lerp( oneMinusSlewCompressionRate, 0f, curbProtectionLerpFactor );
 
 				if ( normalizedDeltaAbs > deltaLimit )
 				{
@@ -445,7 +447,8 @@ public class RacingWheel
 					hybridLastTorque = _algorithmProperties[ algorithmPropertyIndex, indexHybridLastTorque ];
 				}
 
-				var hfScaledDelta = ( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, index360HzLastTorque ] ) * settings.RacingWheelMulti360HzDetail;
+				var multi360HzDetail = MathZ.Lerp( settings.RacingWheelMulti360HzDetail, 0f, curbProtectionLerpFactor );
+				var hfScaledDelta = ( steeringWheelTorque500Hz - _algorithmProperties[ algorithmPropertyIndex, index360HzLastTorque ] ) * multi360HzDetail;
 				var hybridTorque = 0f;
 
 				switch ( settings.RacingWheelMultiFFBSourceSelection )
