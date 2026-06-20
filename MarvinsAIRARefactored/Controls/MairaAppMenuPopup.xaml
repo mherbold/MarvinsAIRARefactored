@@ -33,12 +33,6 @@
                                         Value="{DynamicResource Brush.ListItem.Hover}" />
                             </Trigger>
 
-                            <DataTrigger Binding="{Binding IsVisible}"
-                                         Value="False">
-                                <Setter Property="Visibility"
-                                        Value="Collapsed" />
-                            </DataTrigger>
-
                         </Style.Triggers>
 
                     </Style>

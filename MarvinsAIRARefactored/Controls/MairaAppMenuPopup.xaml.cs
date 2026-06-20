@@ -28,7 +28,6 @@ namespace MarvinsAIRARefactored.Controls
 
 			private string _displayName = string.Empty;
 			private string _suffix = string.Empty;
-			private bool _isVisible = true;
 			private bool _isSelected = false;
 
 			public string DisplayName
@@ -63,21 +62,6 @@ namespace MarvinsAIRARefactored.Controls
 				}
 			}
 
-			public bool IsVisible
-			{
-				get => _isVisible;
-
-				set
-				{
-					if ( _isVisible != value )
-					{
-						_isVisible = value;
-
-						OnPropertyChanged();
-					}
-				}
-			}
-
 			public bool IsSelected
 			{
 				get => _isSelected;
@@ -105,6 +89,13 @@ namespace MarvinsAIRARefactored.Controls
 		public ObservableCollection<AppMenuItem> AppMenuItemsColumn3 { get; } = [];
 
 		private IEnumerable<AppMenuItem> AllMenuItems => AppMenuItemsColumn1.Concat( AppMenuItemsColumn2 ).Concat( AppMenuItemsColumn3 );
+
+		// AdminBoxx is shown only in English. It is added to / removed from column 1 (rather than hidden
+		// with a Visibility="Collapsed" trigger) because a Collapsed item does not reclaim
+		// its row under right-to-left FlowDirection (Arabic, Hebrew, ...) - it leaves a blank line where
+		// the item used to be. Removing the container outright avoids that quirk in every language.
+		private AppMenuItem? _adminBoxxMenuItem;
+		private int _adminBoxxColumn1Index;
 
 		public MairaAppMenuPopup()
 		{
@@ -333,7 +324,11 @@ namespace MarvinsAIRARefactored.Controls
 
 #endif
 
-			Add( AppMenuItemsColumn1, AppPage.AdminBoxx, _adminBoxxPage );
+			// Remember the slot AdminBoxx belongs in (right after Seat Belt Tensioner in the full build);
+			// RelocalizeAppMenuItems re-inserts it here when the language is English. See field comment.
+			_adminBoxxColumn1Index = AppMenuItemsColumn1.Count;
+			_adminBoxxMenuItem = new AppMenuItem { AppPage = AppPage.AdminBoxx, PageUserControl = _adminBoxxPage };
+			AppMenuItemsColumn1.Add( _adminBoxxMenuItem );
 
 #if !ADMINBOXX
 
@@ -444,11 +439,6 @@ namespace MarvinsAIRARefactored.Controls
 						menuItem.DisplayName = localization[ "SeatBeltTensioner" ];
 						break;
 
-					case AppPage.AdminBoxx:
-						menuItem.DisplayName = localization[ "AdminBoxx" ];
-						menuItem.IsVisible = isEnglish;
-						break;
-
 					case AppPage.Overlays:
 						menuItem.DisplayName = localization[ "Overlays" ];
 						break;
@@ -497,6 +487,24 @@ namespace MarvinsAIRARefactored.Controls
 					case AppPage.Debug:
 						menuItem.DisplayName = "Debug";
 						break;
+				}
+			}
+
+			// AdminBoxx is English-only. Add/remove it from the column instead of collapsing it, so the
+			// row is truly gone under right-to-left languages rather than leaving a blank line.
+			if ( _adminBoxxMenuItem != null )
+			{
+				_adminBoxxMenuItem.DisplayName = localization[ "AdminBoxx" ];
+
+				var adminBoxxPresent = AppMenuItemsColumn1.Contains( _adminBoxxMenuItem );
+
+				if ( isEnglish && !adminBoxxPresent )
+				{
+					AppMenuItemsColumn1.Insert( Math.Min( _adminBoxxColumn1Index, AppMenuItemsColumn1.Count ), _adminBoxxMenuItem );
+				}
+				else if ( !isEnglish && adminBoxxPresent )
+				{
+					AppMenuItemsColumn1.Remove( _adminBoxxMenuItem );
 				}
 			}
 
