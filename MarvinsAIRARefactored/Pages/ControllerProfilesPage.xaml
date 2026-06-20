@@ -71,7 +71,18 @@
         <controls:MairaGroupBox Label="{Binding Localization.Upper[ButtonMappings]}"
                                 HelpTopic="advanced/controller-profiles/#button-mappings">
 
-            <StackPanel x:Name="Mappings_StackPanel" />
+            <StackPanel>
+
+                <!-- Search box -->
+                <controls:MairaTextBox x:Name="MappingSearch_MairaTextBox"
+                                       FontSize="20"
+                                       Placeholder="{Binding Localization[Search]}"
+                                       Margin="0,0,0,20"
+                                       ValueChanged="MappingSearch_MairaTextBox_ValueChanged" />
+
+                <StackPanel x:Name="Mappings_StackPanel" />
+
+            </StackPanel>
 
         </controls:MairaGroupBox>
 

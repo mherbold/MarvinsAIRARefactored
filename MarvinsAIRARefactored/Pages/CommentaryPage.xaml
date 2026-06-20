@@ -769,19 +769,12 @@
                 <!-- Search box -->
                 <controls:MairaTextBox x:Name="PhraseSearch_MairaTextBox"
                                        FontSize="20"
-                                       Placeholder="{Binding Localization[PhraseSearch]}"
-                                       Margin="0,0,0,8"
+                                       Placeholder="{Binding Localization[Search]}"
+                                       Margin="0,0,0,20"
                                        ValueChanged="PhraseSearch_MairaTextBox_ValueChanged" />
 
-                <!-- Scrollable event-key list -->
-                <Border BorderThickness="1"
-                        BorderBrush="#30ffffff"
-                        CornerRadius="4">
-                    <ScrollViewer MaxHeight="500"
-                                  VerticalScrollBarVisibility="Auto"
-                                  Padding="4">
-
-                        <ItemsControl x:Name="PhraseEventKeys_ItemsControl">
+                <!-- Event-key list -->
+                <ItemsControl x:Name="PhraseEventKeys_ItemsControl">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <!-- DataContext is PhraseEventKeyViewModel -->
@@ -855,9 +848,6 @@
                                 </DataTemplate>
                             </ItemsControl.ItemTemplate>
                         </ItemsControl>
-
-                    </ScrollViewer>
-                </Border>
 
             </StackPanel>
 

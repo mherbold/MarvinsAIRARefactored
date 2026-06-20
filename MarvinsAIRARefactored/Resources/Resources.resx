@@ -1689,7 +1689,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>All phrases reset to built-in defaults.</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>Search...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

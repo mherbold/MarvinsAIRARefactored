@@ -1634,7 +1634,7 @@ Hier ist der Link zum Spenden:</value>
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>Alle Phrasen wurden auf die integrierten Standardwerte zurückgesetzt.</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>Suchen...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

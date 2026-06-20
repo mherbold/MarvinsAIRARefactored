@@ -1689,7 +1689,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>सभी वाक्यांश अंतर्निहित डिफ़ॉल्ट पर रीसेट किए गए।</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>खोजें...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

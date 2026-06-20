@@ -286,14 +286,27 @@ public partial class ControllerProfilesPage : UserControl
 			actions.Add( mappableAction );
 		}
 
+		var filter = MappingSearch_MairaTextBox?.Value ?? string.Empty;
+		var filtering = !string.IsNullOrWhiteSpace( filter );
+
 		foreach ( var categoryKey in categoryOrder )
 		{
+			var matchingActions = filtering
+				? actionsByCategory[ categoryKey ].Where( action => MatchesFilter( action, filter ) ).ToList()
+				: actionsByCategory[ categoryKey ];
+
+			// When filtering, skip categories with no matching actions entirely.
+			if ( matchingActions.Count == 0 )
+			{
+				continue;
+			}
+
 			var rowsStackPanel = new StackPanel
 			{
 				Margin = new Thickness( 0, 5, 0, 5 )
 			};
 
-			foreach ( var mappableAction in actionsByCategory[ categoryKey ] )
+			foreach ( var mappableAction in matchingActions )
 			{
 				rowsStackPanel.Children.Add( BuildRow( mappableAction ) );
 			}
@@ -301,11 +314,49 @@ public partial class ControllerProfilesPage : UserControl
 			var mairaExpander = new MairaExpander
 			{
 				Label = localization[ categoryKey ],
-				ExpanderContent = rowsStackPanel
+				ExpanderContent = rowsStackPanel,
+
+				// Auto-expand matching categories while a search is active so results are visible immediately.
+				IsExpanded = filtering
 			};
 
 			Mappings_StackPanel.Children.Add( mairaExpander );
 		}
+	}
+
+	private static bool MatchesFilter( MappableAction mappableAction, string filter )
+	{
+		var localization = Localization;
+
+		var controlLabel = localization[ mappableAction.LabelKey ];
+
+		if ( mappableAction.Index > 0 )
+		{
+			controlLabel = $"{controlLabel} {mappableAction.Index}";
+		}
+
+		return localization[ mappableAction.CategoryKey ].Contains( filter, StringComparison.OrdinalIgnoreCase )
+			|| localization[ mappableAction.GroupLabelKey ].Contains( filter, StringComparison.OrdinalIgnoreCase )
+			|| controlLabel.Contains( filter, StringComparison.OrdinalIgnoreCase );
+	}
+
+	private System.Windows.Threading.DispatcherTimer? _searchDebounceTimer;
+
+	private void MappingSearch_MairaTextBox_ValueChanged( object sender, RoutedEventArgs e )
+	{
+		if ( _searchDebounceTimer is null )
+		{
+			_searchDebounceTimer = new System.Windows.Threading.DispatcherTimer { Interval = TimeSpan.FromMilliseconds( 300 ) };
+
+			_searchDebounceTimer.Tick += ( _, _ ) =>
+			{
+				_searchDebounceTimer.Stop();
+				RebuildMappingList();
+			};
+		}
+
+		_searchDebounceTimer.Stop();
+		_searchDebounceTimer.Start();
 	}
 
 	private FrameworkElement BuildRow( MappableAction mappableAction )

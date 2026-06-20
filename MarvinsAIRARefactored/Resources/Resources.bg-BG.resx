@@ -1689,7 +1689,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>Всички фрази са нулирани до вградените стойности по подразбиране.</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>Търсене...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

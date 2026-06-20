@@ -1689,7 +1689,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>Všetky frázy obnovené na vstavané predvolené.</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>Hľadať...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

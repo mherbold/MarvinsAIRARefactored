@@ -443,7 +443,7 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 	{
 		if ( _searchDebounceTimer is null )
 		{
-			_searchDebounceTimer = new System.Windows.Threading.DispatcherTimer { Interval = TimeSpan.FromSeconds( 1 ) };
+			_searchDebounceTimer = new System.Windows.Threading.DispatcherTimer { Interval = TimeSpan.FromMilliseconds( 300 ) };
 
 			_searchDebounceTimer.Tick += ( _, _ ) =>
 			{

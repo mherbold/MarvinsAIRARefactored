@@ -1635,7 +1635,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>Усі фрази скинуто до вбудованих значень за замовчуванням.</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>Пошук...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

@@ -1630,7 +1630,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>Todas las frases restablecidas a los valores predeterminados integrados.</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>Buscar...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

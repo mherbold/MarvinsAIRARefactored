@@ -1689,7 +1689,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>Visas frāzes atiestatītas uz iebūvētajiem noklusējumiem.</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>Meklēt...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

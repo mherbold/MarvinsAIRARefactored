@@ -1629,7 +1629,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>วลีทั้งหมดถูกรีเซ็ตเป็นค่าเริ่มต้นที่ฝังอยู่</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>ค้นหา...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

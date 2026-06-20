@@ -1689,7 +1689,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>تمت إعادة تعيين كل العبارات إلى الإعدادات المدمجة الافتراضية.</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>بحث...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

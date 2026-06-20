@@ -1689,7 +1689,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>所有語句已重設為內建預設值。</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>搜尋…</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

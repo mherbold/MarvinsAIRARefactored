@@ -1689,7 +1689,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>Kõik fraasid lähtestatud sisseehitatud vaikeväärtustele.</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>Otsi...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">

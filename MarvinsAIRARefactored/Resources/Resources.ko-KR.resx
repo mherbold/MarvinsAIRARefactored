@@ -1689,7 +1689,7 @@
   <data name="PhraseEditorResetAll" xml:space="preserve">
     <value>모든 문구가 기본 제공 기본값으로 초기화되었습니다.</value>
   </data>
-  <data name="PhraseSearch" xml:space="preserve">
+  <data name="Search" xml:space="preserve">
     <value>검색...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
