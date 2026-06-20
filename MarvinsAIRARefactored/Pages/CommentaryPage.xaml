@@ -876,6 +876,12 @@
                                                             Margin="0,0,0,6">
                                         <StackPanel Margin="0,6,0,0">
 
+                                            <!-- Enable / disable this phrase group in live commentary -->
+                                            <controls:MairaSwitch IsOn="{Binding Enabled, Mode=TwoWay}"
+                                                                  Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[Enabled]}"
+                                                                  Toggled="PhraseGroupEnabled_MairaSwitch_Toggled"
+                                                                  Margin="0,0,0,10" />
+
                                             <!-- Existing phrases list -->
                                             <ItemsControl ItemsSource="{Binding Phrases}">
                                                 <ItemsControl.ItemTemplate>
@@ -914,7 +920,7 @@
                                             </ItemsControl>
 
                                             <!-- Add phrase + Reset buttons -->
-                                            <Grid Margin="0,4,0,0">
+                                            <Grid Margin="0,4,0,10">
                                                 <Grid.ColumnDefinitions>
                                                     <ColumnDefinition Width="Auto" />
                                                     <ColumnDefinition Width="10" />

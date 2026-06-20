@@ -14628,4 +14628,31 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	#endregion
+
+	#region Commentary — Disabled phrase groups
+
+	// Commentary phrase groups (event keys) the user has switched off in the phrase editor. A key is
+	// present here only when it is disabled; an absent key means enabled. Storing just the disabled keys
+	// keeps the settings file minimal and makes "absent = enabled" the default, so existing settings files
+	// and any newly added event keys default to on. Enforcement lives in CommentaryTemplates.GetRandomPhrase.
+	public SerializableDictionary<string, bool> CommentaryDisabledEventKeys { get; set; } = [];
+
+	public bool IsCommentaryEventKeyEnabled( string eventKey )
+	{
+		return !CommentaryDisabledEventKeys.ContainsKey( eventKey );
+	}
+
+	public void SetCommentaryEventKeyEnabled( string eventKey, bool enabled )
+	{
+		if ( enabled )
+		{
+			CommentaryDisabledEventKeys.Remove( eventKey );
+		}
+		else
+		{
+			CommentaryDisabledEventKeys[ eventKey ] = true;
+		}
+	}
+
+	#endregion
 }

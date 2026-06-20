@@ -75,6 +75,15 @@ public sealed class CommentaryTemplates
 	/// </summary>
 	public string? GetRandomPhrase( string eventKey )
 	{
+		// Respect the per-event-key enable/disable toggles from the commentary phrase editor.
+		// This is the single choke point every live call funnels through (spotter, flags, MAIRA),
+		// so one guard here silences a disabled group everywhere. The phrase editor's per-row Test
+		// button speaks its text directly and does not go through here, so previewing still works.
+		if ( !MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.IsCommentaryEventKeyEnabled( eventKey ) )
+		{
+			return null;
+		}
+
 		if ( !Phrases.TryGetValue( eventKey, out var variants ) || variants.Length == 0 )
 		{
 			return null;

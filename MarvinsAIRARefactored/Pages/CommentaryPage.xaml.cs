@@ -30,6 +30,9 @@ internal sealed class PhraseEventKeyViewModel
 {
 	public string EventKey { get; init; } = "";
 	public ObservableCollection<PhraseEntryViewModel> Phrases { get; init; } = [];
+
+	/// <summary>Whether this phrase group is spoken during live commentary. Persisted via Settings.CommentaryDisabledEventKeys.</summary>
+	public bool Enabled { get; set; } = true;
 }
 
 // ---------------------------------------------------------------------------
@@ -405,9 +408,11 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 
 		_phraseViewModels.Clear();
 
+		var settings = AppDataContext.Instance.Settings;
+
 		foreach ( var kv in templates.Phrases.OrderBy( kv => kv.Key ) )
 		{
-			var vm = new PhraseEventKeyViewModel { EventKey = kv.Key };
+			var vm = new PhraseEventKeyViewModel { EventKey = kv.Key, Enabled = settings.IsCommentaryEventKeyEnabled( kv.Key ) };
 
 			foreach ( var phrase in kv.Value )
 			{
@@ -543,6 +548,30 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 		}
 
 		return -1;
+	}
+
+	/// <summary>
+	/// Persists the enable/disable state for a phrase group when its header switch is toggled.
+	/// Idempotent: the switch fires this on load too, but the guard makes that a no-op so we only
+	/// queue a save on a genuine user change.
+	/// </summary>
+	private void PhraseGroupEnabled_MairaSwitch_Toggled( object? sender, EventArgs e )
+	{
+		if ( sender is not MairaSwitch mairaSwitch || mairaSwitch.DataContext is not PhraseEventKeyViewModel vm )
+		{
+			return;
+		}
+
+		var settings = AppDataContext.Instance.Settings;
+
+		if ( settings.IsCommentaryEventKeyEnabled( vm.EventKey ) == mairaSwitch.IsOn )
+		{
+			return;
+		}
+
+		settings.SetCommentaryEventKeyEnabled( vm.EventKey, mairaSwitch.IsOn );
+
+		App.Instance!.SettingsFile.QueueForSerialization = true;
 	}
 
 	private void AddPhrase_MairaButton_Click( object sender, RoutedEventArgs e )
