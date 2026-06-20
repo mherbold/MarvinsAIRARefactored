@@ -128,7 +128,7 @@
             </TabControl.Resources>
 
             <controls:MairaTabItem x:Name="HeaderData_TabItem"
-                                  Header="{Binding Localization[HeaderData_UC]}"
+                                  Header="{Binding Localization.Upper[HeaderData]}"
                                   HelpTopic="advanced/simulator/#header-data">
 
                 <Grid Margin="0,40,0,0">
@@ -156,7 +156,7 @@
             </controls:MairaTabItem>
 
             <controls:MairaTabItem x:Name="SessionInfo_TabItem"
-                                  Header="{Binding Localization[SessionInformation_UC]}"
+                                  Header="{Binding Localization.Upper[SessionInformation]}"
                                   HelpTopic="advanced/simulator/#session-information">
 
                 <Grid Margin="0,40,0,0">
@@ -184,7 +184,7 @@
             </controls:MairaTabItem>
 
             <controls:MairaTabItem x:Name="TelemetryData_TabItem"
-                                  Header="{Binding Localization[TelemetryData_UC]}"
+                                  Header="{Binding Localization.Upper[TelemetryData]}"
                                   HelpTopic="advanced/simulator/#telemetry-data">
 
                 <Grid Margin="0,40,0,0">

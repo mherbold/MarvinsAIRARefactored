@@ -55,10 +55,15 @@ every localization edit.
 - **Embedded whitespace:** some values contain literal TABs (e.g. `uk-UA`). The
   script edits the `<data>`/`<value>` block surgically, so such content is
   preserved — do not "clean it up" as a side effect.
-- **`_UC` keys:** ~110 keys have an uppercase twin, e.g. `Wind` → "Typhoon Wind"
-  and `Wind_UC` → "TYPHOON WIND". They are independent keys with their own
-  (uppercased) value, used where the UI wants all-caps. When you add or change a
-  string that has a `_UC` twin, update **both**.
+- **All-caps display — no `_UC` keys.** The resx holds a single normal-case
+  string per concept; the UI uppercases at runtime via the `Localization.Upper`
+  accessor (`DataContext/Localization.cs`), which cases with the *active language's*
+  culture (Turkish dotted-I, German eszett, no-op for case-less scripts). Bind in
+  XAML as `{Binding Localization.Upper[Key]}` and read in code as
+  `Localization.Upper["Key"]`. **Do not reintroduce `_UC` twin keys** — they were
+  retired (the old uppercase copies had drifted from their base translations).
+  `GlobalAmplitude`/`GlobalFrequency` exist as their own keys because their text
+  ("Global …") genuinely differs from the plain `Amplitude`/`Frequency` keys.
 
 ## Hard rules
 
@@ -142,9 +147,8 @@ is invisible to the build and the language won't appear.
 2. Author a JSON map `{ "Key": "translated value", … }`. Conventions:
    - **`ThisLanguage`** = `"Native (Country) - English (Country)"`
      (e.g. `"العربية (المملكة العربية السعودية) - Arabic (Saudi Arabia)"`).
-   - **`_UC` twins:** scripts without letter case (Arabic, Hebrew, CJK, Thai) use
-     the **same** text for `Foo` and `Foo_UC`; only uppercase embedded Latin/brand
-     words if the original did (e.g. Hebrew `Wind`→"Typhoon …", `Wind_UC`→"TYPHOON …").
+   - **No uppercase variants:** translate each key once in normal case. All-caps UI
+     is produced at runtime by `Localization.Upper` — never add an uppercased copy.
    - **Omit keys you want left as the English passthrough** — runtime falls back to
      base for any key not in your JSON. Leave out: SI/technical symbols
      (` Nm`, ` Hz`, ` g`, ` m/s`, `%`, `°`, `RPM`, `POV`, `ms`), brand names
@@ -177,9 +181,9 @@ but does not block shipping (untranslated/odd keys still fall back gracefully).
    translations, you can seed every file with the English value via `Add` (no
    `-BaseOnly`) and translate later — runtime falls back to base for any key left
    empty, so an untranslated key is safe but should be filled in.
-3. If the string has an all-caps `_UC` twin in the UI, add `Wind_Tooltip_UC` too
-   with the uppercased value.
-4. Reference it in code/XAML as `Localization["Wind_Tooltip"]`.
+3. Reference it in code/XAML as `Localization["Wind_Tooltip"]`. If it needs to
+   render all-caps, use `Localization.Upper["Wind_Tooltip"]` /
+   `{Binding Localization.Upper[Wind_Tooltip]}` — never add an uppercased twin key.
 
 ### Rename / re-key a string
 
@@ -191,7 +195,7 @@ pwsh -NoProfile -File ./transform-resx.ps1 -Operation Rename -Key OldName -NewKe
 ```
 
 Then update every `Localization["OldName"]` reference in code/XAML (use `Grep`),
-and rename the `_UC` twin (`OldName_UC` → `NewName_UC`) if one exists.
+including any `Localization.Upper["OldName"]` all-caps lookups.
 
 ### Transform an existing value everywhere
 

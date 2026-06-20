@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Device_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Device]}"
                                 HelpTopic="advanced/pedals/#device">
 
             <Grid>
@@ -49,7 +49,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Frequency_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[GlobalFrequency]}"
                                 HelpTopic="advanced/pedals/#frequency">
 
             <Grid>
@@ -100,7 +100,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Amplitude_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[GlobalAmplitude]}"
                                 HelpTopic="advanced/pedals/#amplitude">
 
             <Grid>
@@ -151,7 +151,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Clutch_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Clutch]}"
                                 HelpTopic="advanced/pedals/#brake-clutch-throttle">
 
             <Grid>
@@ -280,7 +280,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Brake_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Brake]}"
                                 HelpTopic="advanced/pedals/#brake-clutch-throttle">
 
             <Grid>
@@ -405,7 +405,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Throttle_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Throttle]}"
                                 HelpTopic="advanced/pedals/#brake-clutch-throttle">
 
             <Grid>
@@ -530,7 +530,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[GearChangeShiftIntoGear_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[GearChangeShiftIntoGear]}"
                                 HelpTopic="advanced/pedals/#gear-change-shift-into-gear">
 
             <Grid>
@@ -580,7 +580,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[GearChangeShiftIntoNeutral_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[GearChangeShiftIntoNeutral]}"
                                 HelpTopic="advanced/pedals/#gear-change-shift-into-neutral">
 
             <Grid>
@@ -630,7 +630,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[ABSEngaged_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[ABSEngaged]}"
                                 HelpTopic="advanced/pedals/#abs-engaged">
 
             <Grid>
@@ -675,7 +675,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[RPM_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[RPM]}"
                                 HelpTopic="advanced/pedals/#rpm">
 
             <Grid>
@@ -715,7 +715,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[ShiftRPM_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[ShiftRPM]}"
                                 HelpTopic="advanced/pedals/#shift-rpm">
 
             <Grid>
@@ -760,7 +760,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[WheelLock_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[WheelLock]}"
                                 HelpTopic="advanced/pedals/#wheel-lock">
 
             <Grid>
@@ -805,7 +805,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[WheelSpin_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[WheelSpin]}"
                                 HelpTopic="advanced/pedals/#wheel-spin">
 
             <Grid>
@@ -850,7 +850,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[ClutchSlip_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[ClutchSlip]}"
                                 HelpTopic="advanced/pedals/#clutch-slip">
 
             <Grid>
@@ -900,7 +900,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Understeer_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Understeer]}"
                                 HelpTopic="advanced/pedals/#understeer-oversteer-seat-of-pants">
 
             <Grid>
@@ -951,7 +951,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Oversteer_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Oversteer]}"
                                 HelpTopic="advanced/pedals/#understeer-oversteer-seat-of-pants">
 
             <Grid>
@@ -1002,7 +1002,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[SeatOfPants_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[SeatOfPants]}"
                                 HelpTopic="advanced/pedals/#understeer-oversteer-seat-of-pants">
 
             <Grid>
@@ -1053,7 +1053,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[OtherFeatures_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[OtherFeatures]}"
                                 HelpTopic="advanced/pedals/#other-features">
 
             <Grid>

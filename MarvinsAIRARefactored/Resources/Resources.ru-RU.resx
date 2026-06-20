@@ -141,13 +141,10 @@
   <data name="Graph" xml:space="preserve">
     <value>График</value>
   </data>
-  <data name="HeaderData_UC" xml:space="preserve">
-    <value>Header данные</value>
+  <data name="HeaderData" xml:space="preserve">
+    <value>Header Данные</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>Язык</value>
-  </data>
-  <data name="Language_UC" xml:space="preserve">
     <value>Язык</value>
   </data>
   <data name="DetailBooster" xml:space="preserve">
@@ -177,9 +174,6 @@
   <data name="RacingWheel" xml:space="preserve">
     <value>Руль</value>
   </data>
-  <data name="RacingWheel_UC" xml:space="preserve">
-    <value>Руль</value>
-  </data>
   <data name="SteeringDevice" xml:space="preserve">
     <value>Устройство ввода</value>
   </data>
@@ -189,8 +183,8 @@
   <data name="Reset" xml:space="preserve">
     <value>Сброс</value>
   </data>
-  <data name="SessionInformation_UC" xml:space="preserve">
-    <value>Информация о сессии</value>
+  <data name="SessionInformation" xml:space="preserve">
+    <value>Информация О Сессии</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Симулятор</value>
@@ -201,8 +195,8 @@
   <data name="SoftLockStrength" xml:space="preserve">
     <value>Ограничение soft lock</value>
   </data>
-  <data name="TelemetryData_UC" xml:space="preserve">
-    <value>Данные телеметрии</value>
+  <data name="TelemetryData" xml:space="preserve">
+    <value>Данные Телеметрии</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Тест</value>
@@ -258,11 +252,11 @@
   <data name="Percent" xml:space="preserve">
     <value>%</value>
   </data>
-  <data name="Device_UC" xml:space="preserve">
+  <data name="Device" xml:space="preserve">
     <value>Устройство</value>
   </data>
-  <data name="OverallStrength_UC" xml:space="preserve">
-    <value>Общая сила</value>
+  <data name="OverallStrength" xml:space="preserve">
+    <value>Общая Сила</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Автоцель</value>
@@ -276,14 +270,14 @@
   <data name="AutoMaxForce" xml:space="preserve">
     <value>Авто сила</value>
   </data>
-  <data name="OtherFeatures_UC" xml:space="preserve">
+  <data name="OtherFeatures" xml:space="preserve">
     <value>Иное</value>
   </data>
-  <data name="Switches_UC" xml:space="preserve">
+  <data name="Switches" xml:space="preserve">
     <value>Переключатели</value>
   </data>
-  <data name="CrashProtection_UC" xml:space="preserve">
-    <value>Защита от аварий</value>
+  <data name="CrashProtection" xml:space="preserve">
+    <value>Защита От Аварий</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value> g</value>
@@ -303,14 +297,11 @@
   <data name="MPSUnits" xml:space="preserve">
     <value> м/с</value>
   </data>
-  <data name="CurbProtection_UC" xml:space="preserve">
-    <value>Защита от поребриков</value>
+  <data name="CurbProtection" xml:space="preserve">
+    <value>Защита От Поребриков</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Скорость удара</value>
-  </data>
-  <data name="Pedals_UC" xml:space="preserve">
-    <value>SIMAGIC Педали</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Педали Simagic P1000 </value>
@@ -321,13 +312,13 @@
   <data name="PedalsNone" xml:space="preserve">
     <value>[Не найдено совместимых педалей Simagic]</value>
   </data>
-  <data name="Clutch_UC" xml:space="preserve">
+  <data name="Clutch" xml:space="preserve">
     <value>Сцепление</value>
   </data>
-  <data name="Brake_UC" xml:space="preserve">
+  <data name="Brake" xml:space="preserve">
     <value>Тормоз</value>
   </data>
-  <data name="Throttle_UC" xml:space="preserve">
+  <data name="Throttle" xml:space="preserve">
     <value>Газ</value>
   </data>
   <data name="PedalEffects" xml:space="preserve">
@@ -339,11 +330,11 @@
   <data name="HertzUnits" xml:space="preserve">
     <value> Гц</value>
   </data>
-  <data name="Frequency_UC" xml:space="preserve">
-    <value>ГЛОБАЛЬНАЯ ЧАСТОТА</value>
+  <data name="GlobalFrequency" xml:space="preserve">
+    <value>Глобальная Частота</value>
   </data>
-  <data name="Amplitude_UC" xml:space="preserve">
-    <value>ГЛОБАЛЬНАЯ АМПЛИТУДА</value>
+  <data name="GlobalAmplitude" xml:space="preserve">
+    <value>Глобальная Амплитуда</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Минимум</value>
@@ -357,26 +348,8 @@
   <data name="GearChange" xml:space="preserve">
     <value>Переключение передачи</value>
   </data>
-  <data name="ClutchSlip_UC" xml:space="preserve">
-    <value>Пробуксовка сцепления (clutch slip)</value>
-  </data>
-  <data name="SteeringEffects_UC" xml:space="preserve">
-    <value>Эффекты руля</value>
-  </data>
   <data name="SteeringEffects" xml:space="preserve">
     <value>Эффекты руля</value>
-  </data>
-  <data name="WheelLock_UC" xml:space="preserve">
-    <value>Блокировка колёс</value>
-  </data>
-  <data name="WheelSpin_UC" xml:space="preserve">
-    <value>Пробуксовка колёс</value>
-  </data>
-  <data name="RPM_UC" xml:space="preserve">
-    <value>Обороты (RPM)</value>
-  </data>
-  <data name="ShiftRPM_UC" xml:space="preserve">
-    <value>ОБОРОТЫ ПЕРЕКЛЮЧЕНИЯ</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Выкл</value>
@@ -438,11 +411,11 @@
   <data name="DeltaLimiterBias" xml:space="preserve">
     <value>Смещение (Delta Limiter Bias)</value>
   </data>
-  <data name="Output_UC" xml:space="preserve">
+  <data name="Output" xml:space="preserve">
     <value>Вывод</value>
   </data>
-  <data name="WheelLFE_UC" xml:space="preserve">
-    <value>Вибрация руля (LFE)</value>
+  <data name="WheelLFE" xml:space="preserve">
+    <value>Вибрация Руля (Lfe)</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Устройство записи LFE</value>
@@ -461,9 +434,6 @@
   </data>
   <data name="InputLFE" xml:space="preserve">
     <value>LFE вход</value>
-  </data>
-  <data name="ABSEngaged_UC" xml:space="preserve">
-    <value>Работа АБС </value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>[Выкл]</value>
@@ -492,11 +462,11 @@
   <data name="EndingPoint" xml:space="preserve">
     <value>Конечная точка</value>
   </data>
-  <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
-    <value>Переключение передачи - включение передачи</value>
+  <data name="GearChangeShiftIntoGear" xml:space="preserve">
+    <value>Переключение Передачи - Включение Передачи</value>
   </data>
-  <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
-    <value>Переключение передачи - включение нейтральной</value>
+  <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
+    <value>Переключение Передачи - Включение Нейтральной</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Выдавать FFB даже если оно включено в iRacing</value>
@@ -513,8 +483,8 @@
   <data name="NoiseDamper" xml:space="preserve">
     <value>Снижение шумов</value>
   </data>
-  <data name="AppWindow_UC" xml:space="preserve">
-    <value>Окно приложения</value>
+  <data name="AppWindow" xml:space="preserve">
+    <value>Окно Приложения</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Светлая тема</value>
@@ -522,8 +492,8 @@
   <data name="UIScale" xml:space="preserve">
     <value>Масштаб интерфейса</value>
   </data>
-  <data name="CloudService_UC" xml:space="preserve">
-    <value>Облачный сервис</value>
+  <data name="CloudService" xml:space="preserve">
+    <value>Облачный Сервис</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
     <value>Проверить сейчас</value>
@@ -534,31 +504,25 @@
   <data name="DownloadingUpdate" xml:space="preserve">
     <value>Загрузка обновления...</value>
   </data>
-  <data name="Contribute_UC" xml:space="preserve">
-    <value>Помочь</value>
-  </data>
   <data name="BuyMeACoffee" xml:space="preserve">
     <value>Купить мне кофе!</value>
   </data>
   <data name="DonationsText" xml:space="preserve">
     <value>Пожертвования абсолютно добровольные.Я никогда не буду брать плату за использование MAIRA. Но всё же они очень приятны и хорошо мотивируют продолжать работать над приложением. Большое спасибо всем, кто уже сделал пожертвование! Это можно сделать по ссылке:</value>
   </data>
-  <data name="Donate_UC" xml:space="preserve">
-    <value>Пожертвование</value>
-  </data>
-  <data name="Donors_UC" xml:space="preserve">
+  <data name="Donors" xml:space="preserve">
     <value>Доноры</value>
   </data>
-  <data name="SuperDonors_UC" xml:space="preserve">
+  <data name="SuperDonors" xml:space="preserve">
     <value>Супер Доноры</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Пожертвовать</value>
   </data>
-  <data name="CodeContributions_UC" xml:space="preserve">
+  <data name="CodeContributions" xml:space="preserve">
     <value>Программисты</value>
   </data>
-  <data name="TranslationContributions_UC" xml:space="preserve">
+  <data name="TranslationContributions" xml:space="preserve">
     <value>Переводчики</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
@@ -615,7 +579,7 @@
   <data name="Set" xml:space="preserve">
     <value>Задать</value>
   </data>
-  <data name="Preview_UC" xml:space="preserve">
+  <data name="Preview" xml:space="preserve">
     <value>Предпросмотр</value>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
@@ -630,7 +594,7 @@
   <data name="SlewAndTotalCompression" xml:space="preserve">
     <value>Скорость нарастания момента(Slew) и сжатие</value>
   </data>
-  <data name="DiscordModerators_UC" xml:space="preserve">
+  <data name="DiscordModerators" xml:space="preserve">
     <value>Модераторы Дискорда</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
@@ -644,9 +608,6 @@
   </data>
   <data name="ON" xml:space="preserve">
     <value>ВКЛ</value>
-  </data>
-  <data name="Sounds_UC" xml:space="preserve">
-    <value>Звуки</value>
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>Включено</value>
@@ -663,8 +624,8 @@
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>
-  <data name="Master_UC" xml:space="preserve">
-    <value>Общая громкость</value>
+  <data name="Master" xml:space="preserve">
+    <value>Общая Громкость</value>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
     <value>Защита от аварий включена!</value>
@@ -672,8 +633,8 @@
   <data name="CurbProtectionActivated" xml:space="preserve">
     <value>Защита от поребриков включена!</value>
   </data>
-  <data name="PrivateMessages_UC" xml:space="preserve">
-    <value>Личные сообщения</value>
+  <data name="PrivateMessages" xml:space="preserve">
+    <value>Личные Сообщения</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Включить сообщения о срабатывании защиты от поребриков</value>
@@ -723,11 +684,8 @@
   <data name="MaxBrake" xml:space="preserve">
     <value>Максимальный тормоз</value>
   </data>
-  <data name="GripOMeter_UC" xml:space="preserve">
-    <value>Grip-O-Meter</value>
-  </data>
-  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>Эффект вибрации андерстира</value>
+  <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
+    <value>Эффект Вибрации Андерстира</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Прогресс:</value>
@@ -735,8 +693,8 @@
   <data name="CalibrationFileNotSelected" xml:space="preserve">
     <value>[Файл калибровки не выбран]</value>
   </data>
-  <data name="ParkedEffects_UC" xml:space="preserve">
-    <value>Эффект на парковке</value>
+  <data name="ParkedEffects" xml:space="preserve">
+    <value>Эффект На Парковке</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Сила фидбека</value>
@@ -751,13 +709,13 @@
     <value>Центровать руль на парковке</value>
   </data>
   <data name="ParkedFriction" xml:space="preserve">
-    <value>Трение на паркове</value>
+    <value>Трение на парковке</value>
   </data>
   <data name="CurrentCarSetup" xml:space="preserve">
     <value>Текущие настройки автомобиля:</value>
   </data>
-  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>Эффект андерстира педали</value>
+  <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
+    <value>Эффект Андерстира Педали</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Что-то пошло не так</value>
@@ -780,14 +738,14 @@
   <data name="DegreesPerSecond" xml:space="preserve">
     <value>°/s</value>
   </data>
-  <data name="CalibrationFile_UC" xml:space="preserve">
-    <value>ФАЙЛ КАЛИБРОВКИ</value>
+  <data name="CalibrationFile" xml:space="preserve">
+    <value>Файл Калибровки</value>
   </data>
-  <data name="Understeer_UC" xml:space="preserve">
-    <value>АНДЕРСТИР</value>
+  <data name="Understeer" xml:space="preserve">
+    <value>Андерстир</value>
   </data>
-  <data name="Oversteer_UC" xml:space="preserve">
-    <value>ОВЕРСТИР</value>
+  <data name="Oversteer" xml:space="preserve">
+    <value>Оверстир</value>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
     <value>Минимальный предел</value>
@@ -801,8 +759,8 @@
   <data name="MaximumFrequency" xml:space="preserve">
     <value>Максимальная частота</value>
   </data>
-  <data name="Calibration_UC" xml:space="preserve">
-    <value>КАЛИБРОВКУ</value>
+  <data name="Calibration" xml:space="preserve">
+    <value>Калибровку</value>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
     <value>Шаблон вибрации</value>
@@ -828,20 +786,20 @@
   <data name="IncreaseForce" xml:space="preserve">
     <value>Увеличить силу</value>
   </data>
-  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>Эффект постоянного усилия от андерстира на руле</value>
+  <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
+    <value>Эффект Постоянного Усилия От Андерстира На Руле</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Направление</value>
   </data>
-  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>Эффект вибрации от оверстира на руле</value>
+  <data name="OversteerWheelVibrationEffect" xml:space="preserve">
+    <value>Эффект Вибрации От Оверстира На Руле</value>
   </data>
-  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>Эффект постоянного усилия от оверстира на руле</value>
+  <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
+    <value>Эффект Постоянного Усилия От Оверстира На Руле</value>
   </data>
-  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>Эффект вибрации от оверстира на педали</value>
+  <data name="OversteerPedalVibrationEffect" xml:space="preserve">
+    <value>Эффект Вибрации От Оверстира На Педали</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Эффект андерстира</value>
@@ -855,14 +813,14 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>Субтитры</value>
   </data>
-  <data name="OverlayWindow_UC" xml:space="preserve">
-    <value>ОКНО ОВЕРЛЕЯ</value>
+  <data name="OverlayWindow" xml:space="preserve">
+    <value>Окно Оверлея</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Управление окном оверлея</value>
   </data>
-  <data name="AllOverlays_UC" xml:space="preserve">
-    <value>ВСЕ ОВЕРЛЕИ</value>
+  <data name="AllOverlays" xml:space="preserve">
+    <value>Все Оверлеи</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Включить режим редактирования</value>
@@ -879,35 +837,20 @@
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Устройство с обратной связью на выбрано]</value>
   </data>
-  <data name="Algorithm_UC" xml:space="preserve">
-    <value>Алгоритм</value>
-  </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>Готовы задонатить?</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>Помочь</value>
   </data>
-  <data name="CalibrationFileContributions_UC" xml:space="preserve">
-    <value>Помогали с файлами калибровки</value>
+  <data name="CalibrationFileContributions" xml:space="preserve">
+    <value>Помогали С Файлами Калибровки</value>
   </data>
-  <data name="AppSettings_UC" xml:space="preserve">
-    <value>Настройки</value>
-  </data>
-  <data name="Wizard_UC" xml:space="preserve">
-    <value>МАСТЕР НАСТРОЙКИ</value>
+  <data name="Wizard" xml:space="preserve">
+    <value>Мастер Настройки</value>
   </data>
   <data name="LaunchWizard" xml:space="preserve">
     <value>Запустить мастер</value>
-  </data>
-  <data name="Simulator_UC" xml:space="preserve">
-    <value>Симулятор</value>
-  </data>
-  <data name="Graph_UC" xml:space="preserve">
-    <value>График</value>
-  </data>
-  <data name="SpeechToText_UC" xml:space="preserve">
-    <value>СУБТИТРЫ</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Список изменений</value>
@@ -948,14 +891,8 @@
   <data name="MPHUnits" xml:space="preserve">
     <value>Миля/ч</value>
   </data>
-  <data name="Wind_UC" xml:space="preserve">
-    <value>TYPHOON ВЕТЕР</value>
-  </data>
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Ветер</value>
-  </data>
-  <data name="SeatBeltTensioner_UC" xml:space="preserve">
-    <value>НАТЯЖИТЕЛЬ РЕМНЯ</value>
   </data>
   <data name="SeatBeltTensioner" xml:space="preserve">
     <value>Натяжитель ремня</value>
@@ -1005,11 +942,8 @@
   <data name="MaxG" xml:space="preserve">
     <value>Макс G</value>
   </data>
-  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
-    <value>ЭФФЕКТ ТАКТИЛЬНОГО ОЩУЩЕНИЯ</value>
-  </data>
-  <data name="VibrationEffects_UC" xml:space="preserve">
-    <value>ЭФФЕКТЫ ВИБРАЦИИ</value>
+  <data name="VibrationEffects" xml:space="preserve">
+    <value>Эффекты Вибрации</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
     <value>ABS / Блокировка колеса</value>
@@ -1020,17 +954,17 @@
   <data name="RumbleStrip" xml:space="preserve">
     <value>Шумовая полоса</value>
   </data>
-  <data name="Surge_UC" xml:space="preserve">
-    <value>ПРОДОЛЬНОЕ УСКОРЕНИЕ</value>
+  <data name="Surge" xml:space="preserve">
+    <value>Продольное Ускорение</value>
   </data>
-  <data name="Sway_UC" xml:space="preserve">
-    <value>БОКОВОЕ УСКОРЕНИЕ</value>
+  <data name="Sway" xml:space="preserve">
+    <value>Боковое Ускорение</value>
   </data>
-  <data name="Heave_UC" xml:space="preserve">
-    <value>ВЕРТИКАЛЬНОЕ УСКОРЕНИЕ</value>
+  <data name="Heave" xml:space="preserve">
+    <value>Вертикальное Ускорение</value>
   </data>
-  <data name="MotorOutput_UC" xml:space="preserve">
-    <value>ВЫХОД МОТОРА</value>
+  <data name="MotorOutput" xml:space="preserve">
+    <value>Выход Мотора</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Левое плечо</value>
@@ -1056,11 +990,11 @@
   <data name="RightFan" xml:space="preserve">
     <value>Правый вентилятор</value>
   </data>
-  <data name="Connection_UC" xml:space="preserve">
+  <data name="Connection" xml:space="preserve">
     <value>Соединение</value>
   </data>
-  <data name="Settings_UC" xml:space="preserve">
-    <value>НАСТРОЙКИ</value>
+  <data name="Settings" xml:space="preserve">
+    <value>Настройки</value>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
     <value>Общая сила ветра</value>
@@ -1070,9 +1004,6 @@
   </data>
   <data name="WindCurving" xml:space="preserve">
     <value>Кривая ветра</value>
-  </data>
-  <data name="FanPower_UC" xml:space="preserve">
-    <value>СИЛА ВЕНТИЛЯТОРА</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>Скорость</value>
@@ -1095,9 +1026,6 @@
   <data name="TradingPaints" xml:space="preserve">
     <value>Trading Paints</value>
   </data>
-  <data name="TradingPaints_UC" xml:space="preserve">
-    <value>TRADING PAINTS</value>
-  </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
     <value>Приложение Marvin's Awesome iRacing (MAIRA) не связано с Trading Paints.</value>
   </data>
@@ -1105,7 +1033,7 @@
     <value>Многофункциональная настройка</value>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
-    <value>Комрессия сигнала</value>
+    <value>Компрессия сигнала</value>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
     <value>Уменьшение Slew Rate</value>
@@ -1119,17 +1047,17 @@
   <data name="OutputSmoothing" xml:space="preserve">
     <value>Сглаживание выходного сигнала</value>
   </data>
-  <data name="SeatOfPants_UC" xml:space="preserve">
-    <value>SEAT-OF-PANTS</value>
+  <data name="SeatOfPants" xml:space="preserve">
+    <value>Seat-Of-Pants</value>
   </data>
-  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
-    <value>ЭФФЕКТ ВИБРАЦИИ ОТ SEAT-OF_PANTS НА РУЛЕ</value>
+  <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
+    <value>Эффект Вибрации От Seat-Of_Pants На Руле</value>
   </data>
-  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>ЭФФЕКТ ПОСТОЯННОГО УСИЛИЯ ОТ SEAT-OF-PANTS НА РУЛЕ</value>
+  <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
+    <value>Эффект Постоянного Усилия От Seat-Of-Pants На Руле</value>
   </data>
-  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
-    <value>ЭФФЕКТ ВИБРАЦИИ ОТ SEAT-OF-PANTS НА ПЕДАЛЯХ</value>
+  <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
+    <value>Эффект Вибрации От Seat-Of-Pants На Педалях</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
     <value>Эффект Seat-of-Pants</value>
@@ -1143,32 +1071,26 @@
   <data name="RatioOfVelocities" xml:space="preserve">
     <value>Отношение скоростей (Vy/Vx)</value>
   </data>
-  <data name="DefaultPage_UC" xml:space="preserve">
-    <value>СТРАНИЦА ПО-УМОЛЧАНИЮ</value>
+  <data name="DefaultPage" xml:space="preserve">
+    <value>Страница По-Умолчанию</value>
   </data>
-  <data name="Effects_UC" xml:space="preserve">
-    <value>ЭФФЕКТЫ</value>
+  <data name="Effects" xml:space="preserve">
+    <value>Эффекты</value>
   </data>
-  <data name="Audio_UC" xml:space="preserve">
+  <data name="Audio" xml:space="preserve">
     <value>Звук</value>
   </data>
-  <data name="Display_UC" xml:space="preserve">
+  <data name="Display" xml:space="preserve">
     <value>Дисплей</value>
-  </data>
-  <data name="AdminBoxx_UC" xml:space="preserve">
-    <value>ADMINBOXX</value>
-  </data>
-  <data name="Click_UC" xml:space="preserve">
-    <value>Клик</value>
   </data>
   <data name="AllowSoundsDuringReplays" xml:space="preserve">
     <value>Разрешить звуки во время повторов</value>
   </data>
-  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
-    <value>ПРЕДУПРЕЖДЕНИЕ ТОРМОЗ + ГАЗ</value>
+  <data name="BrakeThrottleWarning" xml:space="preserve">
+    <value>Предупреждение Тормоз + Газ</value>
   </data>
-  <data name="FfbClipping_UC" xml:space="preserve">
-    <value>КЛИППИНГ FFB</value>
+  <data name="FfbClipping" xml:space="preserve">
+    <value>Клиппинг Ffb</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Педали Simagic P500</value>
@@ -1179,17 +1101,14 @@
   <data name="Help" xml:space="preserve">
     <value>Помощь</value>
   </data>
-  <data name="Help_UC" xml:space="preserve">
-    <value>ПОМОЩЬ</value>
+  <data name="Documentation" xml:space="preserve">
+    <value>Документация</value>
   </data>
-  <data name="Documentation_UC" xml:space="preserve">
-    <value>ДОКУМЕНТАЦИЯ</value>
+  <data name="Discord" xml:space="preserve">
+    <value>Discord</value>
   </data>
-  <data name="Discord_UC" xml:space="preserve">
-    <value>DISCORD</value>
-  </data>
-  <data name="Forums_UC" xml:space="preserve">
-    <value>ФОРУМЫ</value>
+  <data name="Forums" xml:space="preserve">
+    <value>Форумы</value>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
     <value>Сайт с Документацией</value>
@@ -1212,8 +1131,8 @@
   <data name="PedalsP700" xml:space="preserve">
     <value>Педали Simagic P700</value>
   </data>
-  <data name="FanStatus_UC" xml:space="preserve">
-    <value>СТАТУС ВЕНТИЛЯТОРА</value>
+  <data name="FanStatus" xml:space="preserve">
+    <value>Статус Вентилятора</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>Детализация 360 Hz</value>
@@ -1296,14 +1215,8 @@
   <data name="GapMonitor" xml:space="preserve">
     <value>Монитор разрывов</value>
   </data>
-  <data name="Overlays_UC" xml:space="preserve">
-    <value>НАЛОЖЕНИЯ</value>
-  </data>
-  <data name="GapMonitor_UC" xml:space="preserve">
-    <value>МОНИТОР РАЗРЫВОВ</value>
-  </data>
   <data name="Overlays" xml:space="preserve">
-    <value>Оверелеи</value>
+    <value>Наложения</value>
   </data>
   <data name="ShowOverlayWindowTitle" xml:space="preserve">
     <value>Показать заголовок окна наложения</value>
@@ -1329,7 +1242,7 @@
   <data name="Close" xml:space="preserve">
     <value>Закрыть</value>
   </data>
-  <data name="CPUAffinity_UC" xml:space="preserve">
+  <data name="CPUAffinity" xml:space="preserve">
     <value>Привязка к Процессору</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
@@ -1338,14 +1251,11 @@
   <data name="AppManager" xml:space="preserve">
     <value>Менеджер приложений</value>
   </data>
-  <data name="AppManager_UC" xml:space="preserve">
-    <value>МЕНЕДЖЕР ПРИЛОЖЕНИЙ</value>
+  <data name="AppsToStart" xml:space="preserve">
+    <value>Приложения Для Запуска</value>
   </data>
-  <data name="AppsToStart_UC" xml:space="preserve">
-    <value>ПРИЛОЖЕНИЯ ДЛЯ ЗАПУСКА</value>
-  </data>
-  <data name="AppsToTerminate_UC" xml:space="preserve">
-    <value>ПРИЛОЖЕНИЯ ДЛЯ ЗАВЕРШЕНИЯ</value>
+  <data name="AppsToTerminate" xml:space="preserve">
+    <value>Приложения Для Завершения</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Путь к файлу</value>
@@ -1581,9 +1491,6 @@
   <data name="OutputDevice" xml:space="preserve">
     <value>Устройство вывода</value>
   </data>
-  <data name="OutputDevice_UC" xml:space="preserve">
-    <value>УСТРОЙСТВО ВЫВОДА</value>
-  </data>
   <data name="DefaultWindowsSoundDevice" xml:space="preserve">
     <value>[Звуковое устройство Windows по умолчанию]</value>
   </data>
@@ -1599,29 +1506,26 @@
   <data name="Commentary" xml:space="preserve">
     <value>Комментарий</value>
   </data>
-  <data name="Commentary_UC" xml:space="preserve">
-    <value>КОММЕНТАРИЙ</value>
+  <data name="Account" xml:space="preserve">
+    <value>Аккаунт</value>
   </data>
-  <data name="Account_UC" xml:space="preserve">
-    <value>АККАУНТ</value>
+  <data name="VoiceRoster" xml:space="preserve">
+    <value>Список Голосов</value>
   </data>
-  <data name="VoiceRoster_UC" xml:space="preserve">
-    <value>СПИСОК ГОЛОСОВ</value>
+  <data name="CrewChiefCommentary" xml:space="preserve">
+    <value>Комментарий Шефа Механиков</value>
   </data>
-  <data name="CrewChiefCommentary_UC" xml:space="preserve">
-    <value>КОММЕНТАРИЙ ШЕФА МЕХАНИКОВ</value>
+  <data name="SpotterCommentary" xml:space="preserve">
+    <value>Комментарий Споттера</value>
   </data>
-  <data name="SpotterCommentary_UC" xml:space="preserve">
-    <value>КОММЕНТАРИЙ СПОТТЕРА</value>
+  <data name="Sportscaster1Commentary" xml:space="preserve">
+    <value>Комментарий Спортивного Комментатора 1</value>
   </data>
-  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
-    <value>КОММЕНТАРИЙ СПОРТИВНОГО КОММЕНТАТОРА 1</value>
+  <data name="Sportscaster2Commentary" xml:space="preserve">
+    <value>Комментарий Спортивного Комментатора 2</value>
   </data>
-  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
-    <value>КОММЕНТАРИЙ СПОРТИВНОГО КОММЕНТАТОРА 2</value>
-  </data>
-  <data name="PitReporterCommentary_UC" xml:space="preserve">
-    <value>КОММЕНТАРИЙ РЕПОРТЁРА ИЗ ПИТЛЕЙНА</value>
+  <data name="PitReporterCommentary" xml:space="preserve">
+    <value>Комментарий Репортёра Из Питлейна</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>Ключ API</value>
@@ -1704,8 +1608,8 @@
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Интервал напоминания</value>
   </data>
-  <data name="CommentaryPhrases_UC" xml:space="preserve">
-    <value>ФРАЗЫ КОММЕНТАТОРА</value>
+  <data name="CommentaryPhrases" xml:space="preserve">
+    <value>Фразы Комментатора</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Настройте фразы, произносимые для каждого события на выбранном языке. Изменения сохраняются в папке «Документы» и заменяют встроенные фразы.</value>
@@ -1815,9 +1719,6 @@
   <data name="DeltaMonitor" xml:space="preserve">
     <value>Монитор дельты</value>
   </data>
-  <data name="DeltaMonitor_UC" xml:space="preserve">
-    <value>МОНИТОР ДЕЛЬТЫ</value>
-  </data>
   <data name="DeltaMonitorLapTime" xml:space="preserve">
     <value>Круг</value>
   </data>
@@ -1828,36 +1729,7 @@
     <value>vs. P1</value>
   </data>  <data name="ControllerProfiles" xml:space="preserve">
     <value>Профили контроллера</value>
-  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
-    <value>ПРОФИЛИ КОНТРОЛЛЕРА</value>
-  </data>  <data name="Profile" xml:space="preserve">
-    <value>Профиль</value>
-  </data>  <data name="ProfileName" xml:space="preserve">
-    <value>Имя профиля</value>
-  </data>  <data name="NewProfile" xml:space="preserve">
-    <value>Новый профиль</value>
-  </data>  <data name="DeleteProfile" xml:space="preserve">
-    <value>Удалить профиль</value>
-  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
-    <value>Вы действительно хотите удалить этот профиль контроллера?</value>
-  </data>  <data name="NewControllerProfile" xml:space="preserve">
-    <value>Новый профиль контроллера</value>
-  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
-    <value>Копировать текущие привязки</value>
-  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
-    <value>ПРИВЯЗКА КНОПОК</value>
-  </data>  <data name="Map" xml:space="preserve">
-    <value>Привязать</value>
-  </data>  <data name="Record" xml:space="preserve">
-    <value>Запись</value>
-  </data>  <data name="Unmapped" xml:space="preserve">
-    <value>(не привязано)</value>
-  </data>  <data name="OK" xml:space="preserve">
-    <value>OK</value>
-  </data>  <data name="Cancel" xml:space="preserve">
-    <value>Отмена</value>
-  </data>
-  <data name="RenameProfile" xml:space="preserve">
+  </data>  <data name="RenameProfile" xml:space="preserve">
     <value>Переименовать профиль</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
@@ -1868,8 +1740,8 @@
     <value>Фильтр по имени или пути...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Поиск запущенных приложений...</value>
-  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
-    <value>ВИДИМОСТЬ ОКНА</value>
+  </data>  <data name="WindowVisibility" xml:space="preserve">
+    <value>Видимость Окна</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>Показать / Скрыть окно</value>
   </data>  <data name="StepSize" xml:space="preserve">

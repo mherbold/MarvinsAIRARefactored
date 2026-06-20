@@ -510,79 +510,79 @@ namespace MarvinsAIRARefactored.Controls
 			switch ( SelectedAppPage )
 			{
 				case AppPage.Help:
-					SelectedAppPageText = localization[ "Help_UC" ];
+					SelectedAppPageText = localization.Upper[ "Help" ];
 					break;
 
 				case AppPage.RacingWheel:
-					SelectedAppPageText = localization[ "RacingWheel_UC" ];
+					SelectedAppPageText = localization.Upper[ "RacingWheel" ];
 					break;
 
 				case AppPage.SteeringEffects:
-					SelectedAppPageText = localization[ "SteeringEffects_UC" ];
+					SelectedAppPageText = localization.Upper[ "SteeringEffects" ];
 					break;
 
 				case AppPage.Pedals:
-					SelectedAppPageText = localization[ "Pedals_UC" ];
+					SelectedAppPageText = localization.Upper[ "Pedals" ];
 					break;
 
 				case AppPage.ControllerProfiles:
-					SelectedAppPageText = localization[ "ControllerProfiles_UC" ];
+					SelectedAppPageText = localization.Upper[ "ControllerProfiles" ];
 					break;
 
 				case AppPage.Wind:
-					SelectedAppPageText = localization[ "Wind_UC" ];
+					SelectedAppPageText = localization.Upper[ "Wind" ];
 					break;
 
 				case AppPage.SeatBeltTensioner:
-					SelectedAppPageText = localization[ "SeatBeltTensioner_UC" ];
+					SelectedAppPageText = localization.Upper[ "SeatBeltTensioner" ];
 					break;
 
 				case AppPage.AdminBoxx:
-					SelectedAppPageText = localization[ "AdminBoxx_UC" ];
+					SelectedAppPageText = localization.Upper[ "AdminBoxx" ];
 					break;
 
 				case AppPage.Overlays:
-					SelectedAppPageText = localization[ "Overlays_UC" ];
+					SelectedAppPageText = localization.Upper[ "Overlays" ];
 					break;
 
 				case AppPage.Sounds:
-					SelectedAppPageText = localization[ "Sounds_UC" ];
+					SelectedAppPageText = localization.Upper[ "Sounds" ];
 					break;
 
 				case AppPage.Commentary:
-					SelectedAppPageText = localization[ "Commentary_UC" ];
+					SelectedAppPageText = localization.Upper[ "Commentary" ];
 					break;
 
 				case AppPage.SpeechToText:
-					SelectedAppPageText = localization[ "SpeechToText_UC" ];
+					SelectedAppPageText = localization.Upper[ "SpeechToText" ];
 					break;
 
 				case AppPage.TradingPaints:
-					SelectedAppPageText = localization[ "TradingPaints_UC" ];
+					SelectedAppPageText = localization.Upper[ "TradingPaints" ];
 					break;
 
 				case AppPage.Graph:
-					SelectedAppPageText = localization[ "Graph_UC" ];
+					SelectedAppPageText = localization.Upper[ "Graph" ];
 					break;
 
 				case AppPage.Simulator:
-					SelectedAppPageText = localization[ "Simulator_UC" ];
+					SelectedAppPageText = localization.Upper[ "Simulator" ];
 					break;
 
 				case AppPage.AppManager:
-					SelectedAppPageText = localization[ "AppManager_UC" ];
+					SelectedAppPageText = localization.Upper[ "AppManager" ];
 					break;
 
 				case AppPage.AppSettings:
-					SelectedAppPageText = localization[ "AppSettings_UC" ];
+					SelectedAppPageText = localization.Upper[ "AppSettings" ];
 					break;
 
 				case AppPage.Contribute:
-					SelectedAppPageText = localization[ "Contribute_UC" ];
+					SelectedAppPageText = localization.Upper[ "Contribute" ];
 					break;
 
 				case AppPage.Donate:
-					SelectedAppPageText = localization[ "Donate_UC" ];
+					SelectedAppPageText = localization.Upper[ "Donate" ];
 					break;
 
 				case AppPage.Debug:

@@ -141,13 +141,10 @@
   <data name="Graph" xml:space="preserve">
     <value>グラフ</value>
   </data>
-  <data name="HeaderData_UC" xml:space="preserve">
+  <data name="HeaderData" xml:space="preserve">
     <value>ヘッダーデータ</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>言語</value>
-  </data>
-  <data name="Language_UC" xml:space="preserve">
     <value>言語</value>
   </data>
   <data name="DetailBooster" xml:space="preserve">
@@ -177,9 +174,6 @@
   <data name="RacingWheel" xml:space="preserve">
     <value>レーシングホイール</value>
   </data>
-  <data name="RacingWheel_UC" xml:space="preserve">
-    <value>レーシングホイール</value>
-  </data>
   <data name="SteeringDevice" xml:space="preserve">
     <value>ステアリングデバイス</value>
   </data>
@@ -189,7 +183,7 @@
   <data name="Reset" xml:space="preserve">
     <value>リセット</value>
   </data>
-  <data name="SessionInformation_UC" xml:space="preserve">
+  <data name="SessionInformation" xml:space="preserve">
     <value>セッション情報</value>
   </data>
   <data name="Simulator" xml:space="preserve">
@@ -201,7 +195,7 @@
   <data name="SoftLockStrength" xml:space="preserve">
     <value>ソフトロック強度</value>
   </data>
-  <data name="TelemetryData_UC" xml:space="preserve">
+  <data name="TelemetryData" xml:space="preserve">
     <value>テレメトリーデータ</value>
   </data>
   <data name="Test" xml:space="preserve">
@@ -258,10 +252,10 @@
   <data name="Percent" xml:space="preserve">
     <value>%</value>
   </data>
-  <data name="Device_UC" xml:space="preserve">
+  <data name="Device" xml:space="preserve">
     <value>デバイス</value>
   </data>
-  <data name="OverallStrength_UC" xml:space="preserve">
+  <data name="OverallStrength" xml:space="preserve">
     <value>全体強度</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
@@ -276,13 +270,13 @@
   <data name="AutoMaxForce" xml:space="preserve">
     <value>自動最大フォース</value>
   </data>
-  <data name="OtherFeatures_UC" xml:space="preserve">
+  <data name="OtherFeatures" xml:space="preserve">
     <value>その他の機能</value>
   </data>
-  <data name="Switches_UC" xml:space="preserve">
+  <data name="Switches" xml:space="preserve">
     <value>スイッチ</value>
   </data>
-  <data name="CrashProtection_UC" xml:space="preserve">
+  <data name="CrashProtection" xml:space="preserve">
     <value>クラッシュ保護</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
@@ -303,14 +297,11 @@
   <data name="MPSUnits" xml:space="preserve">
     <value> m/s</value>
   </data>
-  <data name="CurbProtection_UC" xml:space="preserve">
+  <data name="CurbProtection" xml:space="preserve">
     <value>カーブ保護</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>ショック速度</value>
-  </data>
-  <data name="Pedals_UC" xml:space="preserve">
-    <value>SIMAGIC ペダル</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Simagic P1000 ペダル</value>
@@ -321,13 +312,13 @@
   <data name="PedalsNone" xml:space="preserve">
     <value>[対応するSimagicペダルが見つかりません]</value>
   </data>
-  <data name="Clutch_UC" xml:space="preserve">
+  <data name="Clutch" xml:space="preserve">
     <value>クラッチ</value>
   </data>
-  <data name="Brake_UC" xml:space="preserve">
+  <data name="Brake" xml:space="preserve">
     <value>ブレーキ</value>
   </data>
-  <data name="Throttle_UC" xml:space="preserve">
+  <data name="Throttle" xml:space="preserve">
     <value>スロットル</value>
   </data>
   <data name="PedalEffects" xml:space="preserve">
@@ -339,10 +330,10 @@
   <data name="HertzUnits" xml:space="preserve">
     <value> Hz</value>
   </data>
-  <data name="Frequency_UC" xml:space="preserve">
+  <data name="GlobalFrequency" xml:space="preserve">
     <value>グローバル 周波数</value>
   </data>
-  <data name="Amplitude_UC" xml:space="preserve">
+  <data name="GlobalAmplitude" xml:space="preserve">
     <value>グローバル 振幅</value>
   </data>
   <data name="Minimum" xml:space="preserve">
@@ -357,26 +348,8 @@
   <data name="GearChange" xml:space="preserve">
     <value>ギアチェンジ</value>
   </data>
-  <data name="ClutchSlip_UC" xml:space="preserve">
-    <value>クラッチスリップ</value>
-  </data>
-  <data name="SteeringEffects_UC" xml:space="preserve">
-    <value>ステアリングエフェクト</value>
-  </data>
   <data name="SteeringEffects" xml:space="preserve">
     <value>ステアリングエフェクト</value>
-  </data>
-  <data name="WheelLock_UC" xml:space="preserve">
-    <value>ホイールロック</value>
-  </data>
-  <data name="WheelSpin_UC" xml:space="preserve">
-    <value>ホイールスピン</value>
-  </data>
-  <data name="RPM_UC" xml:space="preserve">
-    <value>回転/分</value>
-  </data>
-  <data name="ShiftRPM_UC" xml:space="preserve">
-    <value>シフト RPM</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>なし</value>
@@ -438,11 +411,11 @@
   <data name="DeltaLimiterBias" xml:space="preserve">
     <value>デルタリミッターバイアス</value>
   </data>
-  <data name="Output_UC" xml:space="preserve">
+  <data name="Output" xml:space="preserve">
     <value>出力</value>
   </data>
-  <data name="WheelLFE_UC" xml:space="preserve">
-    <value>ホイールLFE</value>
+  <data name="WheelLFE" xml:space="preserve">
+    <value>ホイールlfe</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>LFE録音デバイス</value>
@@ -461,9 +434,6 @@
   </data>
   <data name="InputLFE" xml:space="preserve">
     <value>入力LFE</value>
-  </data>
-  <data name="ABSEngaged_UC" xml:space="preserve">
-    <value>ABS作動中</value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>[無効]</value>
@@ -492,10 +462,10 @@
   <data name="EndingPoint" xml:space="preserve">
     <value>終了点</value>
   </data>
-  <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
+  <data name="GearChangeShiftIntoGear" xml:space="preserve">
     <value>ギアチェンジ - ギアに入れる</value>
   </data>
-  <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
+  <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
     <value>ギアチェンジ - ニュートラルに入れる</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
@@ -513,7 +483,7 @@
   <data name="NoiseDamper" xml:space="preserve">
     <value>ノイズダンパー</value>
   </data>
-  <data name="AppWindow_UC" xml:space="preserve">
+  <data name="AppWindow" xml:space="preserve">
     <value>アプリウィンドウ</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
@@ -522,7 +492,7 @@
   <data name="UIScale" xml:space="preserve">
     <value>UI拡大率</value>
   </data>
-  <data name="CloudService_UC" xml:space="preserve">
+  <data name="CloudService" xml:space="preserve">
     <value>クラウド サービス</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
@@ -534,9 +504,6 @@
   <data name="DownloadingUpdate" xml:space="preserve">
     <value>アップデートをダウンロードしています…</value>
   </data>
-  <data name="Contribute_UC" xml:space="preserve">
-    <value>貢献</value>
-  </data>
   <data name="BuyMeACoffee" xml:space="preserve">
     <value>コーヒーをおごる</value>
   </data>
@@ -545,22 +512,19 @@
 とはいえ、寄付していただけると非常にありがたいですし、今後のソフト開発をする上で大きなモチベーションにもなります。
 既にしていただいた方々には、多大なる感謝を申し上げますm(__)m</value>
   </data>
-  <data name="Donate_UC" xml:space="preserve">
-    <value>寄付</value>
-  </data>
-  <data name="Donors_UC" xml:space="preserve">
+  <data name="Donors" xml:space="preserve">
     <value>寄付者</value>
   </data>
-  <data name="SuperDonors_UC" xml:space="preserve">
+  <data name="SuperDonors" xml:space="preserve">
     <value>スーパー寄付者</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>寄付</value>
   </data>
-  <data name="CodeContributions_UC" xml:space="preserve">
+  <data name="CodeContributions" xml:space="preserve">
     <value>コードへの貢献</value>
   </data>
-  <data name="TranslationContributions_UC" xml:space="preserve">
+  <data name="TranslationContributions" xml:space="preserve">
     <value>翻訳への貢献</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
@@ -617,7 +581,7 @@
   <data name="Set" xml:space="preserve">
     <value>設定</value>
   </data>
-  <data name="Preview_UC" xml:space="preserve">
+  <data name="Preview" xml:space="preserve">
     <value>プレビュー</value>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
@@ -632,8 +596,8 @@
   <data name="SlewAndTotalCompression" xml:space="preserve">
     <value>スルーレートと総圧縮</value>
   </data>
-  <data name="DiscordModerators_UC" xml:space="preserve">
-    <value>DISCORD モデレーター</value>
+  <data name="DiscordModerators" xml:space="preserve">
+    <value>Discord モデレーター</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>MAIRAユーザーからの多くの質問に答えてくれるボランティアモデレーターの皆さんに感謝します。おかげでMAIRAの開発に集中できています！</value>
@@ -646,9 +610,6 @@
   </data>
   <data name="ON" xml:space="preserve">
     <value>オン</value>
-  </data>
-  <data name="Sounds_UC" xml:space="preserve">
-    <value>サウンド</value>
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>有効</value>
@@ -665,7 +626,7 @@
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>
-  <data name="Master_UC" xml:space="preserve">
+  <data name="Master" xml:space="preserve">
     <value>マスター</value>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
@@ -674,7 +635,7 @@
   <data name="CurbProtectionActivated" xml:space="preserve">
     <value>カーブ保護が作動しました！</value>
   </data>
-  <data name="PrivateMessages_UC" xml:space="preserve">
+  <data name="PrivateMessages" xml:space="preserve">
     <value>プライベートメッセージ</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
@@ -725,10 +686,7 @@
   <data name="MaxBrake" xml:space="preserve">
     <value>最大ブレーキ</value>
   </data>
-  <data name="GripOMeter_UC" xml:space="preserve">
-    <value>グリップメーター</value>
-  </data>
-  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
+  <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
     <value>ステアリング振動効果（アンダーステア）</value>
   </data>
   <data name="Progress:" xml:space="preserve">
@@ -737,7 +695,7 @@
   <data name="CalibrationFileNotSelected" xml:space="preserve">
     <value>[キャリブレーション ファイル 未選択]</value>
   </data>
-  <data name="ParkedEffects_UC" xml:space="preserve">
+  <data name="ParkedEffects" xml:space="preserve">
     <value>駐車中エフェクト</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
@@ -758,7 +716,7 @@
   <data name="CurrentCarSetup" xml:space="preserve">
     <value>現在のカーセットアップ：</value>
   </data>
-  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
+  <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>ペダル振動効果（アンダーステア）</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
@@ -782,13 +740,13 @@
   <data name="DegreesPerSecond" xml:space="preserve">
     <value>°/s</value>
   </data>
-  <data name="CalibrationFile_UC" xml:space="preserve">
+  <data name="CalibrationFile" xml:space="preserve">
     <value>キャリブレーションファイル</value>
   </data>
-  <data name="Understeer_UC" xml:space="preserve">
+  <data name="Understeer" xml:space="preserve">
     <value>アンダーステア</value>
   </data>
-  <data name="Oversteer_UC" xml:space="preserve">
+  <data name="Oversteer" xml:space="preserve">
     <value>オーバーステア</value>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
@@ -803,7 +761,7 @@
   <data name="MaximumFrequency" xml:space="preserve">
     <value>最大周波数</value>
   </data>
-  <data name="Calibration_UC" xml:space="preserve">
+  <data name="Calibration" xml:space="preserve">
     <value>キャリブレーション</value>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
@@ -830,19 +788,19 @@
   <data name="IncreaseForce" xml:space="preserve">
     <value>フォースを上げる</value>
   </data>
-  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
+  <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
     <value>ステアリングの定常力効果（アンダーステア）</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>方向</value>
   </data>
-  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
+  <data name="OversteerWheelVibrationEffect" xml:space="preserve">
     <value>ステアリング振動効果（オーバーステア）</value>
   </data>
-  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
+  <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
     <value>ステアリングの定常力効果（オーバーステア）</value>
   </data>
-  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
+  <data name="OversteerPedalVibrationEffect" xml:space="preserve">
     <value>ペダル振動効果（オーバーステア）</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
@@ -857,13 +815,13 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>字幕</value>
   </data>
-  <data name="OverlayWindow_UC" xml:space="preserve">
+  <data name="OverlayWindow" xml:space="preserve">
     <value>オーバーレイウィンドウ</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>オーバーレイウィンドウの管理</value>
   </data>
-  <data name="AllOverlays_UC" xml:space="preserve">
+  <data name="AllOverlays" xml:space="preserve">
     <value>すべてのオーバーレイ</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
@@ -881,35 +839,20 @@
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[フォースフィードバックデバイスが選択されていません]</value>
   </data>
-  <data name="Algorithm_UC" xml:space="preserve">
-    <value>アルゴリズム</value>
-  </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>寄付の準備はできていますか？</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>貢献する</value>
   </data>
-  <data name="CalibrationFileContributions_UC" xml:space="preserve">
+  <data name="CalibrationFileContributions" xml:space="preserve">
     <value>キャリブレーション ファイルへの貢献</value>
   </data>
-  <data name="AppSettings_UC" xml:space="preserve">
-    <value>アプリ設定</value>
-  </data>
-  <data name="Wizard_UC" xml:space="preserve">
+  <data name="Wizard" xml:space="preserve">
     <value>ウィザード</value>
   </data>
   <data name="LaunchWizard" xml:space="preserve">
     <value>ウィザードを起動</value>
-  </data>
-  <data name="Simulator_UC" xml:space="preserve">
-    <value>シミュレータ</value>
-  </data>
-  <data name="Graph_UC" xml:space="preserve">
-    <value>グラフ</value>
-  </data>
-  <data name="SpeechToText_UC" xml:space="preserve">
-    <value>字幕</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>変更履歴</value>
@@ -950,14 +893,8 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
-  <data name="Wind_UC" xml:space="preserve">
-    <value>TYPHOON ウィンド</value>
-  </data>
   <data name="Wind" xml:space="preserve">
     <value>Typhoon ウィンド</value>
-  </data>
-  <data name="SeatBeltTensioner_UC" xml:space="preserve">
-    <value>シートベルトテンショナー</value>
   </data>
   <data name="SeatBeltTensioner" xml:space="preserve">
     <value>シートベルトテンショナー</value>
@@ -1007,10 +944,7 @@
   <data name="MaxG" xml:space="preserve">
     <value>最大G</value>
   </data>
-  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
-    <value>シートオブパンツエフェクト</value>
-  </data>
-  <data name="VibrationEffects_UC" xml:space="preserve">
+  <data name="VibrationEffects" xml:space="preserve">
     <value>振動エフェクト</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
@@ -1022,16 +956,16 @@
   <data name="RumbleStrip" xml:space="preserve">
     <value>ランブルストリップ</value>
   </data>
-  <data name="Surge_UC" xml:space="preserve">
+  <data name="Surge" xml:space="preserve">
     <value>サージ</value>
   </data>
-  <data name="Sway_UC" xml:space="preserve">
+  <data name="Sway" xml:space="preserve">
     <value>スウェイ</value>
   </data>
-  <data name="Heave_UC" xml:space="preserve">
+  <data name="Heave" xml:space="preserve">
     <value>ヒーブ</value>
   </data>
-  <data name="MotorOutput_UC" xml:space="preserve">
+  <data name="MotorOutput" xml:space="preserve">
     <value>モーター出力</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
@@ -1058,10 +992,10 @@
   <data name="RightFan" xml:space="preserve">
     <value>右ファン</value>
   </data>
-  <data name="Connection_UC" xml:space="preserve">
+  <data name="Connection" xml:space="preserve">
     <value>接続</value>
   </data>
-  <data name="Settings_UC" xml:space="preserve">
+  <data name="Settings" xml:space="preserve">
     <value>設定</value>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
@@ -1072,9 +1006,6 @@
   </data>
   <data name="WindCurving" xml:space="preserve">
     <value>風カーブ</value>
-  </data>
-  <data name="FanPower_UC" xml:space="preserve">
-    <value>ファンパワー</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>速度</value>
@@ -1095,9 +1026,6 @@
     <value>最大ダウンロード速度</value>
   </data>
   <data name="TradingPaints" xml:space="preserve">
-    <value>トレーディングペイント</value>
-  </data>
-  <data name="TradingPaints_UC" xml:space="preserve">
     <value>トレーディングペイント</value>
   </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
@@ -1121,16 +1049,16 @@
   <data name="OutputSmoothing" xml:space="preserve">
     <value>出力スムージング</value>
   </data>
-  <data name="SeatOfPants_UC" xml:space="preserve">
+  <data name="SeatOfPants" xml:space="preserve">
     <value>シートオブパンツ</value>
   </data>
-  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
+  <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
     <value>ステアリング振動効果（シートオブパンツ）</value>
   </data>
-  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
+  <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
     <value>ステアリング定常力効果（シートオブパンツ）</value>
   </data>
-  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
+  <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
     <value>ペダル振動効果（シートオブパンツ）</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
@@ -1145,32 +1073,26 @@
   <data name="RatioOfVelocities" xml:space="preserve">
     <value>速度比（Vy/Vx）</value>
   </data>
-  <data name="DefaultPage_UC" xml:space="preserve">
+  <data name="DefaultPage" xml:space="preserve">
     <value>デフォルトページ</value>
   </data>
-  <data name="Effects_UC" xml:space="preserve">
+  <data name="Effects" xml:space="preserve">
     <value>エフェクト</value>
   </data>
-  <data name="Audio_UC" xml:space="preserve">
+  <data name="Audio" xml:space="preserve">
     <value>オーディオ</value>
   </data>
-  <data name="Display_UC" xml:space="preserve">
+  <data name="Display" xml:space="preserve">
     <value>表示</value>
-  </data>
-  <data name="AdminBoxx_UC" xml:space="preserve">
-    <value>ADMINBOXX</value>
-  </data>
-  <data name="Click_UC" xml:space="preserve">
-    <value>クリック</value>
   </data>
   <data name="AllowSoundsDuringReplays" xml:space="preserve">
     <value>リプレイ中のサウンドを許可</value>
   </data>
-  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+  <data name="BrakeThrottleWarning" xml:space="preserve">
     <value>ブレーキ＋スロットル警告</value>
   </data>
-  <data name="FfbClipping_UC" xml:space="preserve">
-    <value>FFBクリッピング</value>
+  <data name="FfbClipping" xml:space="preserve">
+    <value>Ffbクリッピング</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 ペダル</value>
@@ -1181,16 +1103,13 @@
   <data name="Help" xml:space="preserve">
     <value>ヘルプ</value>
   </data>
-  <data name="Help_UC" xml:space="preserve">
-    <value>ヘルプ</value>
-  </data>
-  <data name="Documentation_UC" xml:space="preserve">
+  <data name="Documentation" xml:space="preserve">
     <value>ドキュメント</value>
   </data>
-  <data name="Discord_UC" xml:space="preserve">
-    <value>DISCORD</value>
+  <data name="Discord" xml:space="preserve">
+    <value>Discord</value>
   </data>
-  <data name="Forums_UC" xml:space="preserve">
+  <data name="Forums" xml:space="preserve">
     <value>フォーラム</value>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
@@ -1215,7 +1134,7 @@
   <data name="PedalsP700" xml:space="preserve">
     <value>Simagic P700 ペダル</value>
   </data>
-  <data name="FanStatus_UC" xml:space="preserve">
+  <data name="FanStatus" xml:space="preserve">
     <value>ファンの状態</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
@@ -1299,12 +1218,6 @@
   <data name="GapMonitor" xml:space="preserve">
     <value>ギャップモニター</value>
   </data>
-  <data name="Overlays_UC" xml:space="preserve">
-    <value>オーバーレイ</value>
-  </data>
-  <data name="GapMonitor_UC" xml:space="preserve">
-    <value>ギャップモニター</value>
-  </data>
   <data name="Overlays" xml:space="preserve">
     <value>オーバーレイ</value>
   </data>
@@ -1332,7 +1245,7 @@
   <data name="Close" xml:space="preserve">
     <value>閉じる</value>
   </data>
-  <data name="CPUAffinity_UC" xml:space="preserve">
+  <data name="CPUAffinity" xml:space="preserve">
     <value>CPUアフィニティ</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
@@ -1341,13 +1254,10 @@
   <data name="AppManager" xml:space="preserve">
     <value>アプリマネージャー</value>
   </data>
-  <data name="AppManager_UC" xml:space="preserve">
-    <value>アプリマネージャー</value>
-  </data>
-  <data name="AppsToStart_UC" xml:space="preserve">
+  <data name="AppsToStart" xml:space="preserve">
     <value>起動するアプリ</value>
   </data>
-  <data name="AppsToTerminate_UC" xml:space="preserve">
+  <data name="AppsToTerminate" xml:space="preserve">
     <value>終了するアプリ</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
@@ -1584,9 +1494,6 @@
   <data name="OutputDevice" xml:space="preserve">
     <value>出力デバイス</value>
   </data>
-  <data name="OutputDevice_UC" xml:space="preserve">
-    <value>出力デバイス</value>
-  </data>
   <data name="DefaultWindowsSoundDevice" xml:space="preserve">
     <value>[Windowsの既定のサウンドデバイス]</value>
   </data>
@@ -1602,28 +1509,25 @@
   <data name="Commentary" xml:space="preserve">
     <value>実況</value>
   </data>
-  <data name="Commentary_UC" xml:space="preserve">
-    <value>実況</value>
-  </data>
-  <data name="Account_UC" xml:space="preserve">
+  <data name="Account" xml:space="preserve">
     <value>アカウント</value>
   </data>
-  <data name="VoiceRoster_UC" xml:space="preserve">
+  <data name="VoiceRoster" xml:space="preserve">
     <value>ボイスリスト</value>
   </data>
-  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+  <data name="CrewChiefCommentary" xml:space="preserve">
     <value>クルーチーフ実況</value>
   </data>
-  <data name="SpotterCommentary_UC" xml:space="preserve">
+  <data name="SpotterCommentary" xml:space="preserve">
     <value>スポッター実況</value>
   </data>
-  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+  <data name="Sportscaster1Commentary" xml:space="preserve">
     <value>スポーツキャスター1実況</value>
   </data>
-  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+  <data name="Sportscaster2Commentary" xml:space="preserve">
     <value>スポーツキャスター2実況</value>
   </data>
-  <data name="PitReporterCommentary_UC" xml:space="preserve">
+  <data name="PitReporterCommentary" xml:space="preserve">
     <value>ピットレポーター実況</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
@@ -1707,7 +1611,7 @@
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>リマインダー間隔</value>
   </data>
-  <data name="CommentaryPhrases_UC" xml:space="preserve">
+  <data name="CommentaryPhrases" xml:space="preserve">
     <value>実況フレーズ</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
@@ -1818,9 +1722,6 @@
   <data name="DeltaMonitor" xml:space="preserve">
     <value>デルタモニター</value>
   </data>
-  <data name="DeltaMonitor_UC" xml:space="preserve">
-    <value>デルタモニター</value>
-  </data>
   <data name="DeltaMonitorLapTime" xml:space="preserve">
     <value>ラップ</value>
   </data>
@@ -1831,36 +1732,7 @@
     <value>対 P1</value>
   </data>  <data name="ControllerProfiles" xml:space="preserve">
     <value>コントローラープロファイル</value>
-  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
-    <value>コントローラープロファイル</value>
-  </data>  <data name="Profile" xml:space="preserve">
-    <value>プロファイル</value>
-  </data>  <data name="ProfileName" xml:space="preserve">
-    <value>プロファイル名</value>
-  </data>  <data name="NewProfile" xml:space="preserve">
-    <value>新しいプロファイル</value>
-  </data>  <data name="DeleteProfile" xml:space="preserve">
-    <value>プロファイルを削除</value>
-  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
-    <value>このコントローラープロファイルを削除してもよろしいですか？</value>
-  </data>  <data name="NewControllerProfile" xml:space="preserve">
-    <value>新しいコントローラープロファイル</value>
-  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
-    <value>現在の割り当てをコピー</value>
-  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
-    <value>ボタン割り当て</value>
-  </data>  <data name="Map" xml:space="preserve">
-    <value>割り当て</value>
-  </data>  <data name="Record" xml:space="preserve">
-    <value>記録</value>
-  </data>  <data name="Unmapped" xml:space="preserve">
-    <value>（未割り当て）</value>
-  </data>  <data name="OK" xml:space="preserve">
-    <value>OK</value>
-  </data>  <data name="Cancel" xml:space="preserve">
-    <value>キャンセル</value>
-  </data>
-  <data name="RenameProfile" xml:space="preserve">
+  </data>  <data name="RenameProfile" xml:space="preserve">
     <value>プロファイル名を変更</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
@@ -1871,7 +1743,7 @@
     <value>名前またはパスで絞り込み...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>実行中のアプリを検索しています...</value>
-  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+  </data>  <data name="WindowVisibility" xml:space="preserve">
     <value>ウィンドウの表示</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>ウィンドウの表示 / 非表示</value>

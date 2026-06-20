@@ -22,7 +22,7 @@
     <StackPanel>
 
         <!-- Master enable switch -->
-        <controls:MairaGroupBox Label="{Binding Localization[AppManager_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[AppManager]}"
                                 HelpTopic="advanced/app-manager/#app-manager">
 
             <controls:MairaSwitch IsOn="{Binding Settings.AppManagerEnabled, Mode=TwoWay}"
@@ -31,7 +31,7 @@
         </controls:MairaGroupBox>
 
         <!-- Apps to Terminate -->
-        <controls:MairaGroupBox Label="{Binding Localization[AppsToTerminate_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[AppsToTerminate]}"
                                 HelpTopic="advanced/app-manager/#apps-to-terminate">
 
             <StackPanel>
@@ -131,7 +131,7 @@
         </controls:MairaGroupBox>
 
         <!-- Apps to Start -->
-        <controls:MairaGroupBox Label="{Binding Localization[AppsToStart_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[AppsToStart]}"
                                 HelpTopic="advanced/app-manager/#apps-to-launch">
 
             <StackPanel>

@@ -141,13 +141,10 @@
   <data name="Graph" xml:space="preserve">
     <value>الرسم البياني</value>
   </data>
-  <data name="HeaderData_UC" xml:space="preserve">
+  <data name="HeaderData" xml:space="preserve">
     <value>بيانات الترويسة</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>اللغة</value>
-  </data>
-  <data name="Language_UC" xml:space="preserve">
     <value>اللغة</value>
   </data>
   <data name="DetailBooster" xml:space="preserve">
@@ -177,9 +174,6 @@
   <data name="RacingWheel" xml:space="preserve">
     <value>عجلة السباق</value>
   </data>
-  <data name="RacingWheel_UC" xml:space="preserve">
-    <value>عجلة السباق</value>
-  </data>
   <data name="SteeringDevice" xml:space="preserve">
     <value>جهاز التوجيه</value>
   </data>
@@ -189,7 +183,7 @@
   <data name="Reset" xml:space="preserve">
     <value>إعادة تعيين</value>
   </data>
-  <data name="SessionInformation_UC" xml:space="preserve">
+  <data name="SessionInformation" xml:space="preserve">
     <value>معلومات الجلسة</value>
   </data>
   <data name="Simulator" xml:space="preserve">
@@ -201,7 +195,7 @@
   <data name="SoftLockStrength" xml:space="preserve">
     <value>قوة القفل الناعم</value>
   </data>
-  <data name="TelemetryData_UC" xml:space="preserve">
+  <data name="TelemetryData" xml:space="preserve">
     <value>بيانات القياس عن بُعد</value>
   </data>
   <data name="Test" xml:space="preserve">
@@ -258,10 +252,10 @@
   <data name="Percent" xml:space="preserve">
     <value>%</value>
   </data>
-  <data name="Device_UC" xml:space="preserve">
+  <data name="Device" xml:space="preserve">
     <value>الجهاز</value>
   </data>
-  <data name="OverallStrength_UC" xml:space="preserve">
+  <data name="OverallStrength" xml:space="preserve">
     <value>القوة الإجمالية</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
@@ -271,9 +265,6 @@
     <value>مسح</value>
   </data>
   <data name="ControllerProfiles" xml:space="preserve">
-    <value>ملفات تعريف وحدة التحكم</value>
-  </data>
-  <data name="ControllerProfiles_UC" xml:space="preserve">
     <value>ملفات تعريف وحدة التحكم</value>
   </data>
   <data name="Profile" xml:space="preserve">
@@ -303,7 +294,7 @@
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>إعادة تسمية ملف تعريف وحدة التحكم</value>
   </data>
-  <data name="ButtonMappings_UC" xml:space="preserve">
+  <data name="ButtonMappings" xml:space="preserve">
     <value>تعيينات الأزرار</value>
   </data>
   <data name="Map" xml:space="preserve">
@@ -327,13 +318,13 @@
   <data name="AutoMaxForce" xml:space="preserve">
     <value>أقصى قوة تلقائية</value>
   </data>
-  <data name="OtherFeatures_UC" xml:space="preserve">
+  <data name="OtherFeatures" xml:space="preserve">
     <value>ميزات أخرى</value>
   </data>
-  <data name="Switches_UC" xml:space="preserve">
+  <data name="Switches" xml:space="preserve">
     <value>المفاتيح</value>
   </data>
-  <data name="CrashProtection_UC" xml:space="preserve">
+  <data name="CrashProtection" xml:space="preserve">
     <value>الحماية من الاصطدام</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
@@ -354,14 +345,11 @@
   <data name="MPSUnits" xml:space="preserve">
     <value> m/s</value>
   </data>
-  <data name="CurbProtection_UC" xml:space="preserve">
+  <data name="CurbProtection" xml:space="preserve">
     <value>حماية الأرصفة</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>سرعة الصدمة</value>
-  </data>
-  <data name="Pedals_UC" xml:space="preserve">
-    <value>دواسات Simagic</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>دواسات Simagic P1000</value>
@@ -372,13 +360,13 @@
   <data name="PedalsNone" xml:space="preserve">
     <value>[لم يتم العثور على دواسات Simagic متوافقة]</value>
   </data>
-  <data name="Clutch_UC" xml:space="preserve">
+  <data name="Clutch" xml:space="preserve">
     <value>القابض</value>
   </data>
-  <data name="Brake_UC" xml:space="preserve">
+  <data name="Brake" xml:space="preserve">
     <value>الفرامل</value>
   </data>
-  <data name="Throttle_UC" xml:space="preserve">
+  <data name="Throttle" xml:space="preserve">
     <value>دواسة الوقود</value>
   </data>
   <data name="PedalEffects" xml:space="preserve">
@@ -390,10 +378,10 @@
   <data name="HertzUnits" xml:space="preserve">
     <value> Hz</value>
   </data>
-  <data name="Frequency_UC" xml:space="preserve">
+  <data name="GlobalFrequency" xml:space="preserve">
     <value>التردد العام</value>
   </data>
-  <data name="Amplitude_UC" xml:space="preserve">
+  <data name="GlobalAmplitude" xml:space="preserve">
     <value>السعة العامة</value>
   </data>
   <data name="Minimum" xml:space="preserve">
@@ -408,26 +396,8 @@
   <data name="GearChange" xml:space="preserve">
     <value>تغيير التروس</value>
   </data>
-  <data name="ClutchSlip_UC" xml:space="preserve">
-    <value>انزلاق القابض</value>
-  </data>
-  <data name="SteeringEffects_UC" xml:space="preserve">
-    <value>تأثيرات التوجيه</value>
-  </data>
   <data name="SteeringEffects" xml:space="preserve">
     <value>تأثيرات التوجيه</value>
-  </data>
-  <data name="WheelLock_UC" xml:space="preserve">
-    <value>قفل العجلات</value>
-  </data>
-  <data name="WheelSpin_UC" xml:space="preserve">
-    <value>دوران العجلات</value>
-  </data>
-  <data name="RPM_UC" xml:space="preserve">
-    <value>RPM</value>
-  </data>
-  <data name="ShiftRPM_UC" xml:space="preserve">
-    <value>دورات تبديل التروس</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>بلا</value>
@@ -489,11 +459,11 @@
   <data name="DeltaLimiterBias" xml:space="preserve">
     <value>انحياز محدّد دلتا</value>
   </data>
-  <data name="Output_UC" xml:space="preserve">
+  <data name="Output" xml:space="preserve">
     <value>الخرج</value>
   </data>
-  <data name="WheelLFE_UC" xml:space="preserve">
-    <value>LFE العجلة</value>
+  <data name="WheelLFE" xml:space="preserve">
+    <value>Lfe العجلة</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>جهاز تسجيل LFE</value>
@@ -512,9 +482,6 @@
   </data>
   <data name="InputLFE" xml:space="preserve">
     <value>LFE الإدخال</value>
-  </data>
-  <data name="ABSEngaged_UC" xml:space="preserve">
-    <value>ABS مُفعّل</value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>[معطّل]</value>
@@ -543,10 +510,10 @@
   <data name="EndingPoint" xml:space="preserve">
     <value>نقطة النهاية</value>
   </data>
-  <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
+  <data name="GearChangeShiftIntoGear" xml:space="preserve">
     <value>تغيير التروس - الدخول في ترس</value>
   </data>
-  <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
+  <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
     <value>تغيير التروس - الدخول في الوضع المحايد</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
@@ -564,7 +531,7 @@
   <data name="NoiseDamper" xml:space="preserve">
     <value>مخمّد الضوضاء</value>
   </data>
-  <data name="AppWindow_UC" xml:space="preserve">
+  <data name="AppWindow" xml:space="preserve">
     <value>نافذة التطبيق</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
@@ -573,7 +540,7 @@
   <data name="UIScale" xml:space="preserve">
     <value>مقياس الواجهة</value>
   </data>
-  <data name="CloudService_UC" xml:space="preserve">
+  <data name="CloudService" xml:space="preserve">
     <value>الخدمة السحابية</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
@@ -585,31 +552,25 @@
   <data name="DownloadingUpdate" xml:space="preserve">
     <value>جارٍ تنزيل التحديث...</value>
   </data>
-  <data name="Contribute_UC" xml:space="preserve">
-    <value>المساهمة</value>
-  </data>
   <data name="BuyMeACoffee" xml:space="preserve">
     <value>Buy Me a Coffee</value>
   </data>
   <data name="DonationsText" xml:space="preserve">
     <value>التبرعات اختيارية تمامًا. لن أفرض أي رسوم مقابل استخدام MAIRA. ومع ذلك، فإن التبرعات تشعرني بالدفء والامتنان، وهي حافز رائع لي لمواصلة العمل على MAIRA. شكرًا جزيلًا لكل من تبرّع بالفعل!</value>
   </data>
-  <data name="Donate_UC" xml:space="preserve">
-    <value>تبرّع</value>
-  </data>
-  <data name="Donors_UC" xml:space="preserve">
+  <data name="Donors" xml:space="preserve">
     <value>المتبرعون</value>
   </data>
-  <data name="SuperDonors_UC" xml:space="preserve">
+  <data name="SuperDonors" xml:space="preserve">
     <value>المتبرعون المميّزون</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>تبرّع</value>
   </data>
-  <data name="CodeContributions_UC" xml:space="preserve">
+  <data name="CodeContributions" xml:space="preserve">
     <value>مساهمات البرمجة</value>
   </data>
-  <data name="TranslationContributions_UC" xml:space="preserve">
+  <data name="TranslationContributions" xml:space="preserve">
     <value>مساهمات الترجمة</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
@@ -666,7 +627,7 @@
   <data name="Set" xml:space="preserve">
     <value>تعيين</value>
   </data>
-  <data name="Preview_UC" xml:space="preserve">
+  <data name="Preview" xml:space="preserve">
     <value>معاينة</value>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
@@ -681,7 +642,7 @@
   <data name="SlewAndTotalCompression" xml:space="preserve">
     <value>معدّل التغيّر والضغط الإجمالي</value>
   </data>
-  <data name="DiscordModerators_UC" xml:space="preserve">
+  <data name="DiscordModerators" xml:space="preserve">
     <value>مشرفو Discord</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
@@ -695,9 +656,6 @@
   </data>
   <data name="ON" xml:space="preserve">
     <value>تشغيل</value>
-  </data>
-  <data name="Sounds_UC" xml:space="preserve">
-    <value>الأصوات</value>
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>مُفعّل</value>
@@ -714,7 +672,7 @@
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>
-  <data name="Master_UC" xml:space="preserve">
+  <data name="Master" xml:space="preserve">
     <value>الرئيسي</value>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
@@ -723,7 +681,7 @@
   <data name="CurbProtectionActivated" xml:space="preserve">
     <value>تم تفعيل حماية الأرصفة!</value>
   </data>
-  <data name="PrivateMessages_UC" xml:space="preserve">
+  <data name="PrivateMessages" xml:space="preserve">
     <value>الرسائل الخاصة</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
@@ -774,10 +732,7 @@
   <data name="MaxBrake" xml:space="preserve">
     <value>الحد الأقصى للفرامل</value>
   </data>
-  <data name="GripOMeter_UC" xml:space="preserve">
-    <value>مقياس التماسك</value>
-  </data>
-  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
+  <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
     <value>تأثير اهتزاز العجلة عند نقص التوجيه</value>
   </data>
   <data name="Progress:" xml:space="preserve">
@@ -786,7 +741,7 @@
   <data name="CalibrationFileNotSelected" xml:space="preserve">
     <value>[لم يتم تحديد ملف معايرة]</value>
   </data>
-  <data name="ParkedEffects_UC" xml:space="preserve">
+  <data name="ParkedEffects" xml:space="preserve">
     <value>تأثيرات التوقف</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
@@ -807,7 +762,7 @@
   <data name="CurrentCarSetup" xml:space="preserve">
     <value>إعداد السيارة الحالي:</value>
   </data>
-  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
+  <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>تأثير اهتزاز الدواسة عند نقص التوجيه</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
@@ -831,13 +786,13 @@
   <data name="DegreesPerSecond" xml:space="preserve">
     <value>°/ث</value>
   </data>
-  <data name="CalibrationFile_UC" xml:space="preserve">
+  <data name="CalibrationFile" xml:space="preserve">
     <value>ملف المعايرة</value>
   </data>
-  <data name="Understeer_UC" xml:space="preserve">
+  <data name="Understeer" xml:space="preserve">
     <value>نقص التوجيه</value>
   </data>
-  <data name="Oversteer_UC" xml:space="preserve">
+  <data name="Oversteer" xml:space="preserve">
     <value>زيادة التوجيه</value>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
@@ -852,7 +807,7 @@
   <data name="MaximumFrequency" xml:space="preserve">
     <value>التردد الأقصى</value>
   </data>
-  <data name="Calibration_UC" xml:space="preserve">
+  <data name="Calibration" xml:space="preserve">
     <value>المعايرة</value>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
@@ -879,19 +834,19 @@
   <data name="IncreaseForce" xml:space="preserve">
     <value>زيادة القوة</value>
   </data>
-  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
+  <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
     <value>تأثير القوة الثابتة للعجلة عند نقص التوجيه</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>الاتجاه</value>
   </data>
-  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
+  <data name="OversteerWheelVibrationEffect" xml:space="preserve">
     <value>تأثير اهتزاز العجلة عند زيادة التوجيه</value>
   </data>
-  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
+  <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
     <value>تأثير القوة الثابتة للعجلة عند زيادة التوجيه</value>
   </data>
-  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
+  <data name="OversteerPedalVibrationEffect" xml:space="preserve">
     <value>تأثير اهتزاز الدواسة عند زيادة التوجيه</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
@@ -906,13 +861,13 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>التسميات التوضيحية</value>
   </data>
-  <data name="OverlayWindow_UC" xml:space="preserve">
+  <data name="OverlayWindow" xml:space="preserve">
     <value>نافذة التراكب</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>إدارة نافذة التراكب</value>
   </data>
-  <data name="AllOverlays_UC" xml:space="preserve">
+  <data name="AllOverlays" xml:space="preserve">
     <value>كل التراكبات</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
@@ -930,35 +885,20 @@
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[لم يتم تحديد جهاز ردود فعل القوة]</value>
   </data>
-  <data name="Algorithm_UC" xml:space="preserve">
-    <value>الخوارزمية</value>
-  </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>مستعد للتبرّع؟</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>المساهمة</value>
   </data>
-  <data name="CalibrationFileContributions_UC" xml:space="preserve">
+  <data name="CalibrationFileContributions" xml:space="preserve">
     <value>مساهمات ملفات المعايرة</value>
   </data>
-  <data name="AppSettings_UC" xml:space="preserve">
-    <value>إعدادات التطبيق</value>
-  </data>
-  <data name="Wizard_UC" xml:space="preserve">
+  <data name="Wizard" xml:space="preserve">
     <value>المعالج</value>
   </data>
   <data name="LaunchWizard" xml:space="preserve">
     <value>تشغيل المعالج</value>
-  </data>
-  <data name="Simulator_UC" xml:space="preserve">
-    <value>المحاكي</value>
-  </data>
-  <data name="Graph_UC" xml:space="preserve">
-    <value>الرسم البياني</value>
-  </data>
-  <data name="SpeechToText_UC" xml:space="preserve">
-    <value>التسميات التوضيحية</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>سجل التغييرات</value>
@@ -999,14 +939,8 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> ميل/س</value>
   </data>
-  <data name="Wind_UC" xml:space="preserve">
-    <value>رياح Typhoon</value>
-  </data>
   <data name="Wind" xml:space="preserve">
     <value>رياح Typhoon</value>
-  </data>
-  <data name="SeatBeltTensioner_UC" xml:space="preserve">
-    <value>مشداد حزام الأمان</value>
   </data>
   <data name="SeatBeltTensioner" xml:space="preserve">
     <value>مشداد حزام الأمان</value>
@@ -1056,10 +990,7 @@
   <data name="MaxG" xml:space="preserve">
     <value>أقصى قوة طرد</value>
   </data>
-  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
-    <value>تأثير الإحساس بالمقعد</value>
-  </data>
-  <data name="VibrationEffects_UC" xml:space="preserve">
+  <data name="VibrationEffects" xml:space="preserve">
     <value>تأثيرات الاهتزاز</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
@@ -1071,16 +1002,16 @@
   <data name="RumbleStrip" xml:space="preserve">
     <value>شريط الاهتزاز</value>
   </data>
-  <data name="Surge_UC" xml:space="preserve">
+  <data name="Surge" xml:space="preserve">
     <value>الاندفاع</value>
   </data>
-  <data name="Sway_UC" xml:space="preserve">
+  <data name="Sway" xml:space="preserve">
     <value>التمايل</value>
   </data>
-  <data name="Heave_UC" xml:space="preserve">
+  <data name="Heave" xml:space="preserve">
     <value>الحركة الرأسية</value>
   </data>
-  <data name="MotorOutput_UC" xml:space="preserve">
+  <data name="MotorOutput" xml:space="preserve">
     <value>خرج المحرك</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
@@ -1107,10 +1038,10 @@
   <data name="RightFan" xml:space="preserve">
     <value>المروحة اليمنى</value>
   </data>
-  <data name="Connection_UC" xml:space="preserve">
+  <data name="Connection" xml:space="preserve">
     <value>الاتصال</value>
   </data>
-  <data name="Settings_UC" xml:space="preserve">
+  <data name="Settings" xml:space="preserve">
     <value>الإعدادات</value>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
@@ -1121,9 +1052,6 @@
   </data>
   <data name="WindCurving" xml:space="preserve">
     <value>انحناء الرياح</value>
-  </data>
-  <data name="FanPower_UC" xml:space="preserve">
-    <value>طاقة المروحة</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>السرعة</value>
@@ -1146,9 +1074,6 @@
   <data name="TradingPaints" xml:space="preserve">
     <value>Trading Paints</value>
   </data>
-  <data name="TradingPaints_UC" xml:space="preserve">
-    <value>TRADING PAINTS</value>
-  </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
     <value>Marvin's Awesome iRacing App (MAIRA) غير تابع لـ Trading Paints</value>
   </data>
@@ -1170,16 +1095,16 @@
   <data name="OutputSmoothing" xml:space="preserve">
     <value>تنعيم الخرج</value>
   </data>
-  <data name="SeatOfPants_UC" xml:space="preserve">
+  <data name="SeatOfPants" xml:space="preserve">
     <value>الإحساس بالمقعد</value>
   </data>
-  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
+  <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
     <value>تأثير اهتزاز العجلة للإحساس بالمقعد</value>
   </data>
-  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
+  <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
     <value>تأثير القوة الثابتة للعجلة للإحساس بالمقعد</value>
   </data>
-  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
+  <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
     <value>تأثير اهتزاز الدواسة للإحساس بالمقعد</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
@@ -1194,31 +1119,25 @@
   <data name="RatioOfVelocities" xml:space="preserve">
     <value>نسبة السرعات (Vy/Vx)</value>
   </data>
-  <data name="DefaultPage_UC" xml:space="preserve">
+  <data name="DefaultPage" xml:space="preserve">
     <value>الصفحة الافتراضية</value>
   </data>
-  <data name="Effects_UC" xml:space="preserve">
+  <data name="Effects" xml:space="preserve">
     <value>التأثيرات</value>
   </data>
-  <data name="Audio_UC" xml:space="preserve">
+  <data name="Audio" xml:space="preserve">
     <value>الصوت</value>
   </data>
-  <data name="Display_UC" xml:space="preserve">
+  <data name="Display" xml:space="preserve">
     <value>العرض</value>
-  </data>
-  <data name="AdminBoxx_UC" xml:space="preserve">
-    <value>ADMINBOXX</value>
-  </data>
-  <data name="Click_UC" xml:space="preserve">
-    <value>نقر</value>
   </data>
   <data name="AllowSoundsDuringReplays" xml:space="preserve">
     <value>السماح بالأصوات أثناء عمليات إعادة العرض</value>
   </data>
-  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+  <data name="BrakeThrottleWarning" xml:space="preserve">
     <value>تحذير الفرامل + دواسة الوقود</value>
   </data>
-  <data name="FfbClipping_UC" xml:space="preserve">
+  <data name="FfbClipping" xml:space="preserve">
     <value>قص ردود فعل القوة</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
@@ -1230,16 +1149,13 @@
   <data name="Help" xml:space="preserve">
     <value>المساعدة</value>
   </data>
-  <data name="Help_UC" xml:space="preserve">
-    <value>المساعدة</value>
-  </data>
-  <data name="Documentation_UC" xml:space="preserve">
+  <data name="Documentation" xml:space="preserve">
     <value>الوثائق</value>
   </data>
-  <data name="Discord_UC" xml:space="preserve">
-    <value>DISCORD</value>
+  <data name="Discord" xml:space="preserve">
+    <value>Discord</value>
   </data>
-  <data name="Forums_UC" xml:space="preserve">
+  <data name="Forums" xml:space="preserve">
     <value>المنتديات</value>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
@@ -1263,7 +1179,7 @@
   <data name="PedalsP700" xml:space="preserve">
     <value>دواسات Simagic P700</value>
   </data>
-  <data name="FanStatus_UC" xml:space="preserve">
+  <data name="FanStatus" xml:space="preserve">
     <value>حالة المروحة</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
@@ -1347,16 +1263,7 @@
   <data name="GapMonitor" xml:space="preserve">
     <value>مراقب الفجوة</value>
   </data>
-  <data name="Overlays_UC" xml:space="preserve">
-    <value>التراكبات</value>
-  </data>
-  <data name="GapMonitor_UC" xml:space="preserve">
-    <value>مراقب الفجوة</value>
-  </data>
   <data name="DeltaMonitor" xml:space="preserve">
-    <value>مراقب الفارق</value>
-  </data>
-  <data name="DeltaMonitor_UC" xml:space="preserve">
     <value>مراقب الفارق</value>
   </data>
   <data name="DeltaMonitorLapTime" xml:space="preserve">
@@ -1395,7 +1302,7 @@
   <data name="Close" xml:space="preserve">
     <value>إغلاق</value>
   </data>
-  <data name="CPUAffinity_UC" xml:space="preserve">
+  <data name="CPUAffinity" xml:space="preserve">
     <value>تقارب وحدة المعالجة المركزية</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
@@ -1404,13 +1311,10 @@
   <data name="AppManager" xml:space="preserve">
     <value>مدير التطبيقات</value>
   </data>
-  <data name="AppManager_UC" xml:space="preserve">
-    <value>مدير التطبيقات</value>
-  </data>
-  <data name="AppsToStart_UC" xml:space="preserve">
+  <data name="AppsToStart" xml:space="preserve">
     <value>التطبيقات المراد تشغيلها</value>
   </data>
-  <data name="AppsToTerminate_UC" xml:space="preserve">
+  <data name="AppsToTerminate" xml:space="preserve">
     <value>التطبيقات المراد إنهاؤها</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
@@ -1647,9 +1551,6 @@
   <data name="OutputDevice" xml:space="preserve">
     <value>جهاز الإخراج</value>
   </data>
-  <data name="OutputDevice_UC" xml:space="preserve">
-    <value>جهاز الإخراج</value>
-  </data>
   <data name="DefaultWindowsSoundDevice" xml:space="preserve">
     <value>[جهاز صوت Windows الافتراضي]</value>
   </data>
@@ -1665,28 +1566,25 @@
   <data name="Commentary" xml:space="preserve">
     <value>التعليق</value>
   </data>
-  <data name="Commentary_UC" xml:space="preserve">
-    <value>التعليق</value>
-  </data>
-  <data name="Account_UC" xml:space="preserve">
+  <data name="Account" xml:space="preserve">
     <value>الحساب</value>
   </data>
-  <data name="VoiceRoster_UC" xml:space="preserve">
+  <data name="VoiceRoster" xml:space="preserve">
     <value>قائمة الأصوات</value>
   </data>
-  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+  <data name="CrewChiefCommentary" xml:space="preserve">
     <value>تعليق رئيس الطاقم</value>
   </data>
-  <data name="SpotterCommentary_UC" xml:space="preserve">
+  <data name="SpotterCommentary" xml:space="preserve">
     <value>تعليق المراقب</value>
   </data>
-  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+  <data name="Sportscaster1Commentary" xml:space="preserve">
     <value>تعليق المعلّق الرياضي 1</value>
   </data>
-  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+  <data name="Sportscaster2Commentary" xml:space="preserve">
     <value>تعليق المعلّق الرياضي 2</value>
   </data>
-  <data name="PitReporterCommentary_UC" xml:space="preserve">
+  <data name="PitReporterCommentary" xml:space="preserve">
     <value>تعليق مراسل محطة الصيانة</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
@@ -1770,7 +1668,7 @@
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>فترة التذكير</value>
   </data>
-  <data name="CommentaryPhrases_UC" xml:space="preserve">
+  <data name="CommentaryPhrases" xml:space="preserve">
     <value>عبارات التعليق</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
@@ -1883,7 +1781,7 @@
     <value>تصفية حسب الاسم أو المسار...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>جارٍ البحث عن التطبيقات قيد التشغيل...</value>
-  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+  </data>  <data name="WindowVisibility" xml:space="preserve">
     <value>رؤية النافذة</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>إظهار / إخفاء النافذة</value>

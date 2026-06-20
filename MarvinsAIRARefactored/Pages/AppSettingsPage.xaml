@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Language_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Language]}"
                                 Tag="HideIfAdminBoxx"
                                 HelpTopic="advanced/app-settings/#language">
 
@@ -40,7 +40,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[DefaultPage_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[DefaultPage]}"
                                 Tag="HideIfAdminBoxx"
                                 HelpTopic="advanced/app-settings/#default-page">
 
@@ -63,7 +63,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[AppWindow_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[AppWindow]}"
                                 HelpTopic="advanced/app-settings/#app-window">
 
             <Grid>
@@ -157,7 +157,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[CloudService_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[CloudService]}"
                                 Tag="HideIfAdminBoxx"
                                 HelpTopic="advanced/app-settings/#cloud-service">
 
@@ -198,7 +198,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[CPUAffinity_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization[CPUAffinity]}"
                                 Tag="HideIfAdminBoxx"
                                 HelpTopic="advanced/app-settings/#cpu-affinity">
 
@@ -211,7 +211,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Wizard_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Wizard]}"
                                 HelpTopic="advanced/app-settings/#wizard"
                                 Tag="HideIfAdminBoxx">
 
@@ -222,7 +222,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[WindowVisibility_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[WindowVisibility]}"
                                 Tag="HideIfAdminBoxx"
                                 HelpTopic="advanced/app-settings/#window-visibility">
 

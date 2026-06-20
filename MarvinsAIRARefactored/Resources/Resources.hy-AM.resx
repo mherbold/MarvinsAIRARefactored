@@ -127,10 +127,10 @@
     <value>Մարվինի Հիասքանչ ԱյՌեյսինգ Հավելված</value>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
-    <value>Մանրամասնության Ոււժեղացման Շեղում</value>
+    <value>Մանրամասնության Ուժեղացման Շեղում</value>
   </data>
   <data name="DetailBoost" xml:space="preserve">
-    <value>Մանրամասնության Ոււժեղացում</value>
+    <value>Մանրամասնության Ուժեղացում</value>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
     <value>Ֆորս Ֆիդբեքի Մարում Մեքենայից Ներս Կամ Ֆուրս Գալիս</value>
@@ -141,17 +141,14 @@
   <data name="Graph" xml:space="preserve">
     <value>Գրաֆ</value>
   </data>
-  <data name="HeaderData_UC" xml:space="preserve">
-    <value>ՎԵՐՆԱԳՐԻ ՏՎՅԱԼՆԵՐ</value>
+  <data name="HeaderData" xml:space="preserve">
+    <value>Վերնագրի Տվյալներ</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Լեզու</value>
   </data>
-  <data name="Language_UC" xml:space="preserve">
-    <value>ԼԵԶՈՒ</value>
-  </data>
   <data name="DetailBooster" xml:space="preserve">
-    <value>Մանրամասնության Ոււժեղացուցիչ</value>
+    <value>Մանրամասնության Ուժեղացուցիչ</value>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
     <value>Դելտայի Սահմանափակիչ</value>
@@ -177,9 +174,6 @@
   <data name="RacingWheel" xml:space="preserve">
     <value>Մրցարշավային ղեկ</value>
   </data>
-  <data name="RacingWheel_UC" xml:space="preserve">
-    <value>ՄՐՑԱՐՇԱՎԱՅԻՆ ՂԵԿ</value>
-  </data>
   <data name="SteeringDevice" xml:space="preserve">
     <value>Ղեկային սարք</value>
   </data>
@@ -189,8 +183,8 @@
   <data name="Reset" xml:space="preserve">
     <value>Վերագործարկում</value>
   </data>
-  <data name="SessionInformation_UC" xml:space="preserve">
-    <value>ՍԵՍԻԱՅԻ ՏՎՅԱԼՆԵՐ</value>
+  <data name="SessionInformation" xml:space="preserve">
+    <value>Սեսիայի Տվյալներ</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Սիմուլյատոր</value>
@@ -201,8 +195,8 @@
   <data name="SoftLockStrength" xml:space="preserve">
     <value>Փափուկ Սահմանափակման Ուժ</value>
   </data>
-  <data name="TelemetryData_UC" xml:space="preserve">
-    <value>ՏԵԼԵՄԵՏՐԻԱՅԻ ՏՎՅԱԼՆԵՐ</value>
+  <data name="TelemetryData" xml:space="preserve">
+    <value>Տելեմետրիայի Տվյալներ</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Թեստ</value>
@@ -217,7 +211,7 @@
     <value> Նմ</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value>Մանրամասնության Ոււժեղացուցիչ 60Հց</value>
+    <value>Մանրամասնության Ուժեղացուցիչ 60Հց</value>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
     <value>Ադմին Բոքս</value>
@@ -258,11 +252,11 @@
   <data name="Percent" xml:space="preserve">
     <value>%</value>
   </data>
-  <data name="Device_UC" xml:space="preserve">
-    <value>ՍԱՐՔ</value>
+  <data name="Device" xml:space="preserve">
+    <value>Սարք</value>
   </data>
-  <data name="OverallStrength_UC" xml:space="preserve">
-    <value>ԸՆԴՀԱՆՈՒՐ ՈՒԺ</value>
+  <data name="OverallStrength" xml:space="preserve">
+    <value>Ընդհանուր Ուժ</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Ավտո թիրախ</value>
@@ -276,14 +270,14 @@
   <data name="AutoMaxForce" xml:space="preserve">
     <value>Ավտոմատ Ուժ</value>
   </data>
-  <data name="OtherFeatures_UC" xml:space="preserve">
-    <value>ԱՅԼ ՀԱՏԿՈՒԹՅՈՒՆՆԵՐ</value>
+  <data name="OtherFeatures" xml:space="preserve">
+    <value>Այլ Հատկություններ</value>
   </data>
-  <data name="Switches_UC" xml:space="preserve">
-    <value>ԱՆՋԱՏԻՉՆԵՐ</value>
+  <data name="Switches" xml:space="preserve">
+    <value>Անջատիչներ</value>
   </data>
-  <data name="CrashProtection_UC" xml:space="preserve">
-    <value>ՎԹԱՐԻ ՊԱՇՏՊԱՆՈՒԹՅՈՒՆ</value>
+  <data name="CrashProtection" xml:space="preserve">
+    <value>Վթարի Պաշտպանություն</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value> g</value>
@@ -303,14 +297,11 @@
   <data name="MPSUnits" xml:space="preserve">
     <value>մ/վ</value>
   </data>
-  <data name="CurbProtection_UC" xml:space="preserve">
-    <value>ԲՈՐԴՅՈՒՐԻ ՊԱՇՏՊԱՆՈՒԹՅՈՒՆ</value>
+  <data name="CurbProtection" xml:space="preserve">
+    <value>Բորդյուրի Պաշտպանություն</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Հարվածի Արագություն</value>
-  </data>
-  <data name="Pedals_UC" xml:space="preserve">
-    <value>SIMAGIC ՈՏՆԱԿՆԵՐ</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Simagic P1000 ոտնակներ</value>
@@ -321,14 +312,14 @@
   <data name="PedalsNone" xml:space="preserve">
     <value>[Համատեղելի Simagic ոտնակներ չեն գտնվել]</value>
   </data>
-  <data name="Clutch_UC" xml:space="preserve">
-    <value>ԿՑԻՉ</value>
+  <data name="Clutch" xml:space="preserve">
+    <value>Կցիչ</value>
   </data>
-  <data name="Brake_UC" xml:space="preserve">
-    <value>ԱՐԳԵԼԱԿ</value>
+  <data name="Brake" xml:space="preserve">
+    <value>Արգելակ</value>
   </data>
-  <data name="Throttle_UC" xml:space="preserve">
-    <value>ԳԱԶ</value>
+  <data name="Throttle" xml:space="preserve">
+    <value>Գազ</value>
   </data>
   <data name="PedalEffects" xml:space="preserve">
     <value>Ոտնակների Էֆեկտներ</value>
@@ -339,11 +330,11 @@
   <data name="HertzUnits" xml:space="preserve">
     <value> Հց</value>
   </data>
-  <data name="Frequency_UC" xml:space="preserve">
-    <value>ԳԼՈԲԱԼ ՀԱՃԱԽԱԿԱՆՈՒԹՅՈՒՆ</value>
+  <data name="GlobalFrequency" xml:space="preserve">
+    <value>Գլոբալ Հաճախականություն</value>
   </data>
-  <data name="Amplitude_UC" xml:space="preserve">
-    <value>ԳԼՈԲԱԼ ԱՄՊԼԻՏՈՒԴ</value>
+  <data name="GlobalAmplitude" xml:space="preserve">
+    <value>Գլոբալ Ամպլիտուդ</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Նվազագույն</value>
@@ -357,26 +348,8 @@
   <data name="GearChange" xml:space="preserve">
     <value>Փոխանցման Փոփոխություն</value>
   </data>
-  <data name="ClutchSlip_UC" xml:space="preserve">
-    <value>ԿՑԻՉԻ ՍԱՀՔ</value>
-  </data>
-  <data name="SteeringEffects_UC" xml:space="preserve">
-    <value>ՂԵԿԻ ԷՖԵԿՏՆԵՐ</value>
-  </data>
   <data name="SteeringEffects" xml:space="preserve">
     <value>Ղեկի էֆեկտներ</value>
-  </data>
-  <data name="WheelLock_UC" xml:space="preserve">
-    <value>ԱՆԻՎՆԵՐԻ ԱՐԳԵԼԱՓԱԿՈՒՄ</value>
-  </data>
-  <data name="WheelSpin_UC" xml:space="preserve">
-    <value>ԱՆԻՎՆԵՐԻ ՍԱՀՔ</value>
-  </data>
-  <data name="RPM_UC" xml:space="preserve">
-    <value>ՊՏ/Ր</value>
-  </data>
-  <data name="ShiftRPM_UC" xml:space="preserve">
-    <value>ՓՈԽԱՆՑՄԱՆ RPM</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Չկա</value>
@@ -438,11 +411,11 @@
   <data name="DeltaLimiterBias" xml:space="preserve">
     <value>Դելտայի սահմանափակիչի շեղում</value>
   </data>
-  <data name="Output_UC" xml:space="preserve">
-    <value>ԵԼՔ</value>
+  <data name="Output" xml:space="preserve">
+    <value>Ելք</value>
   </data>
-  <data name="WheelLFE_UC" xml:space="preserve">
-    <value>ՂԵԿԻ LFE</value>
+  <data name="WheelLFE" xml:space="preserve">
+    <value>Ղեկի Lfe</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>LFE ձայնագրման սարք</value>
@@ -461,9 +434,6 @@
   </data>
   <data name="InputLFE" xml:space="preserve">
     <value>Մուտքային LFE</value>
-  </data>
-  <data name="ABSEngaged_UC" xml:space="preserve">
-    <value>ABS-Ը ՄԻԱՑՎԱԾ Է</value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>[Անջատված]</value>
@@ -492,11 +462,11 @@
   <data name="EndingPoint" xml:space="preserve">
     <value>Ավարտական կետ</value>
   </data>
-  <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
-    <value>ՓՈԽԱՆՑՈՒՄ՝ ՆԵՐԴՆԵԼ ՓՈԽԱՆՑՈՒՄ</value>
+  <data name="GearChangeShiftIntoGear" xml:space="preserve">
+    <value>Փոխանցում՝ Ներդնել Փոխանցում</value>
   </data>
-  <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
-    <value>ՓՈԽԱՆՑՈՒՄ՝ ՏԵՂԱԴՐԵԼ ՆԵՅՏՐԱԼ</value>
+  <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
+    <value>Փոխանցում՝ Տեղադրել Նեյտրալ</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Միացնել FFB-ն, նույնիսկ եթե iRacing-ի FFB-ն միացված է</value>
@@ -513,8 +483,8 @@
   <data name="NoiseDamper" xml:space="preserve">
     <value>Աղմուկի Խլացուցիչ</value>
   </data>
-  <data name="AppWindow_UC" xml:space="preserve">
-    <value>ՀԱՎԵԼՎԱԾԻ ՊԱՏՈՒՀԱՆ</value>
+  <data name="AppWindow" xml:space="preserve">
+    <value>Հավելվածի Պատուհան</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Բաց թեմա</value>
@@ -522,8 +492,8 @@
   <data name="UIScale" xml:space="preserve">
     <value>Միջերեսի Մասշտաբ</value>
   </data>
-  <data name="CloudService_UC" xml:space="preserve">
-    <value>ԱՄՊԱՅԻՆ ԾԱՌԱՅՈՒԹՅՈՒՆ</value>
+  <data name="CloudService" xml:space="preserve">
+    <value>Ամպային Ծառայություն</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
     <value>Ստուգել Հիմա</value>
@@ -534,32 +504,26 @@
   <data name="DownloadingUpdate" xml:space="preserve">
     <value>Ներբեռնում է թարմացումը...</value>
   </data>
-  <data name="Contribute_UC" xml:space="preserve">
-    <value>ՆԵՐԴՐՈՒՄ ԿԱՏԱՐԵԼ</value>
-  </data>
   <data name="BuyMeACoffee" xml:space="preserve">
     <value>Հյուրասիրիր սուրճով!</value>
   </data>
   <data name="DonationsText" xml:space="preserve">
     <value>Եթե ցանկանում եք աջակցել այս նախագծին, կարող եք կատարել նվիրատվություն՝ օգնելով զարգացմանը և նոր հնարավորություններին։</value>
   </data>
-  <data name="Donate_UC" xml:space="preserve">
-    <value>ՆՎԻՐԱՏՎՈՒԹՅՈՒՆՆԵՐ</value>
+  <data name="Donors" xml:space="preserve">
+    <value>Նվիրատուներ</value>
   </data>
-  <data name="Donors_UC" xml:space="preserve">
-    <value>ՆՎԻՐԱՏՈՒՆԵՐ</value>
-  </data>
-  <data name="SuperDonors_UC" xml:space="preserve">
-    <value>ՍՈՒՊԵՐ ՆՎԻՐԱՏՈՒՆԵՐ</value>
+  <data name="SuperDonors" xml:space="preserve">
+    <value>Սուպեր Նվիրատուներ</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Նվիրաբերել</value>
   </data>
-  <data name="CodeContributions_UC" xml:space="preserve">
-    <value>ԿՈԴԻ ՆԵՐԴՐՈՒՄՆԵՐ</value>
+  <data name="CodeContributions" xml:space="preserve">
+    <value>Կոդի Ներդրումներ</value>
   </data>
-  <data name="TranslationContributions_UC" xml:space="preserve">
-    <value>ԹԱՐԳՄԱՆՈՒԹՅՈՒՆՆԵՐԻ ՆԵՐԴՐՈՒՄՆԵՐ</value>
+  <data name="TranslationContributions" xml:space="preserve">
+    <value>Թարգմանությունների Ներդրումներ</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>Եթե դուք C# ծրագրավորող եք և ցանկանում եք ներդրում կատարել այս նախագծի կոդում, ահա GitHub պահոցի հղումը՝</value>
@@ -615,8 +579,8 @@
   <data name="Set" xml:space="preserve">
     <value>Սահմանել</value>
   </data>
-  <data name="Preview_UC" xml:space="preserve">
-    <value>ՆԱԽԱԴԻՏՈՒՄ</value>
+  <data name="Preview" xml:space="preserve">
+    <value>Նախադիտում</value>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Ձայնագրություններ չեն գտնվել]</value>
@@ -630,8 +594,8 @@
   <data name="SlewAndTotalCompression" xml:space="preserve">
     <value>Փոփոխության արագություն և ընդհանուր սեղմում</value>
   </data>
-  <data name="DiscordModerators_UC" xml:space="preserve">
-    <value>DISCORD ՄՈԴԵՐԱՏՈՐՆԵՐ</value>
+  <data name="DiscordModerators" xml:space="preserve">
+    <value>Discord Մոդերատորներ</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>Շնորհակալություն կամավոր մոդերատորներին՝ հարցերին պատասխանելու և համայնքին օգնելու համար, ինչը թույլ է տալիս ինձ ավելի շատ ժամանակ հատկացնել MAIRA-ի զարգացմանը։</value>
@@ -644,9 +608,6 @@
   </data>
   <data name="ON" xml:space="preserve">
     <value>Միացված</value>
-  </data>
-  <data name="Sounds_UC" xml:space="preserve">
-    <value>ՁԱՅՆԵՐ</value>
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>Միացված</value>
@@ -663,8 +624,8 @@
   <data name="Degrees" xml:space="preserve">
     <value>°</value>
   </data>
-  <data name="Master_UC" xml:space="preserve">
-    <value>ԳԼԽԱՎՈՐ</value>
+  <data name="Master" xml:space="preserve">
+    <value>Գլխավոր</value>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
     <value>Վթարի պաշտպանությունը ակտիվացվել է!</value>
@@ -672,8 +633,8 @@
   <data name="CurbProtectionActivated" xml:space="preserve">
     <value>Բորդյուրի պաշտպանությունը ակտիվացվել է!</value>
   </data>
-  <data name="PrivateMessages_UC" xml:space="preserve">
-    <value>ԱՆՁՆԱԿԱՆ ՀԱՂՈՐԴԱԳՐՈՒԹՅՈՒՆՆԵՐ</value>
+  <data name="PrivateMessages" xml:space="preserve">
+    <value>Անձնական Հաղորդագրություններ</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Միացնել բորդյուրի պաշտպանության հաղորդագրությունները</value>
@@ -723,11 +684,8 @@
   <data name="MaxBrake" xml:space="preserve">
     <value>Արգելակի Առավելագույն</value>
   </data>
-  <data name="GripOMeter_UC" xml:space="preserve">
-    <value>GRIP-O-METER</value>
-  </data>
-  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>ԱՆԴԵՐՍՏԻՐԻ՝ ՂԵԿԻ ԹՐԹՌՄԱՆ ԷՖԵԿՏ</value>
+  <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
+    <value>Անդերստիրի՝ Ղեկի Թրթռման Էֆեկտ</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Առաջընթաց:</value>
@@ -735,8 +693,8 @@
   <data name="CalibrationFileNotSelected" xml:space="preserve">
     <value>[Կալիբրացիոն ֆայլը ընտրված չէ]</value>
   </data>
-  <data name="ParkedEffects_UC" xml:space="preserve">
-    <value>ԿԱՅԱՆԱԾ ՎԻՃԱԿԻ ԷՖԵԿՏՆԵՐ</value>
+  <data name="ParkedEffects" xml:space="preserve">
+    <value>Կայանած Վիճակի Էֆեկտներ</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Ֆորս Ֆիդբեքի Ուժ</value>
@@ -756,8 +714,8 @@
   <data name="CurrentCarSetup" xml:space="preserve">
     <value>Ընթացիկ Մեքենայի Կարգավորում:</value>
   </data>
-  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>ԱՆԴԵՐՍՏԻՐԻ ՈՏՆԱԿԻ ԹՐԹՌՄԱՆ ԷՖԵԿՏ</value>
+  <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
+    <value>Անդերստիրի Ոտնակի Թրթռման Էֆեկտ</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Ինչ-որ բան սխալ գնաց</value>
@@ -780,14 +738,14 @@
   <data name="DegreesPerSecond" xml:space="preserve">
     <value>°/վ</value>
   </data>
-  <data name="CalibrationFile_UC" xml:space="preserve">
-    <value>ԿԱԼԻԲՐԱՑԻՈՆ ՖԱՅԼ</value>
+  <data name="CalibrationFile" xml:space="preserve">
+    <value>Կալիբրացիոն Ֆայլ</value>
   </data>
-  <data name="Understeer_UC" xml:space="preserve">
-    <value>ԱՆԴԵՐՍՏԻՐ</value>
+  <data name="Understeer" xml:space="preserve">
+    <value>Անդերստիր</value>
   </data>
-  <data name="Oversteer_UC" xml:space="preserve">
-    <value>ՕՎԵՐՍՏԻՐ</value>
+  <data name="Oversteer" xml:space="preserve">
+    <value>Օվերստիր</value>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
     <value>Նվազագույն Շեմ</value>
@@ -801,8 +759,8 @@
   <data name="MaximumFrequency" xml:space="preserve">
     <value>Առավելագույն Հաճախականություն</value>
   </data>
-  <data name="Calibration_UC" xml:space="preserve">
-    <value>ԿԱԼԻԲՐԱՑԻԱ</value>
+  <data name="Calibration" xml:space="preserve">
+    <value>Կալիբրացիա</value>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
     <value>Թրթռման Նախշ</value>
@@ -828,20 +786,20 @@
   <data name="IncreaseForce" xml:space="preserve">
     <value>Աճեցնել Ուժը</value>
   </data>
-  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>ԱՆԴԵՐՍՏԻՐԻ՝ ՂԵԿԻ ՄՇՏԱԿԱՆ ՈՒԺԻ ԷՖԵԿՏ</value>
+  <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
+    <value>Անդերստիրի՝ Ղեկի Մշտական Ուժի Էֆեկտ</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Ուղղություն</value>
   </data>
-  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
-    <value>ՕՎԵՐՍՏԻՐԻ՝ ՂԵԿԻ ԹՐԹՌՄԱՆ ԷՖԵԿՏ</value>
+  <data name="OversteerWheelVibrationEffect" xml:space="preserve">
+    <value>Օվերստիրի՝ Ղեկի Թրթռման Էֆեկտ</value>
   </data>
-  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>ՕՎԵՐՍՏԻՐԻ՝ ՂԵԿԻ ՄՇՏԱԿԱՆ ՈՒԺԻ ԷՖԵԿՏ</value>
+  <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
+    <value>Օվերստիրի՝ Ղեկի Մշտական Ուժի Էֆեկտ</value>
   </data>
-  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
-    <value>ՕՎԵՐՍՏԻՐԻ՝ ՈՏՆԱԿԻ ԹՐԹՌՄԱՆ ԷՖԵԿՏ</value>
+  <data name="OversteerPedalVibrationEffect" xml:space="preserve">
+    <value>Օվերստիրի՝ Ոտնակի Թրթռման Էֆեկտ</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Անդերստիր Էֆեկտ</value>
@@ -855,14 +813,14 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>Ենթագրեր</value>
   </data>
-  <data name="OverlayWindow_UC" xml:space="preserve">
-    <value>OVERLAY WINDOW</value>
+  <data name="OverlayWindow" xml:space="preserve">
+    <value>Overlay Window</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Կառավարել վերադրման պատուհանը</value>
   </data>
-  <data name="AllOverlays_UC" xml:space="preserve">
-    <value>ԲՈԼՈՐ ՎԵՐԱԴՐՈՒՄՆԵՐԸ</value>
+  <data name="AllOverlays" xml:space="preserve">
+    <value>Բոլոր Վերադրումները</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Միացնել խմբագրման ռեժիմը</value>
@@ -879,35 +837,20 @@
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[Force Feedback սարք ընտրված չէ]</value>
   </data>
-  <data name="Algorithm_UC" xml:space="preserve">
-    <value>ԱԼԳՈՐԻԹՄ</value>
-  </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>Պատրա՞ստ եք նվիրատվության։</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>Ներդրում կատարել</value>
   </data>
-  <data name="CalibrationFileContributions_UC" xml:space="preserve">
-    <value>ԿԱԼԻԲՐԱՑԻՈՆ ՖԱՅԼԵՐԻ ՆԵՐԴՐՈՒՄՆԵՐ</value>
+  <data name="CalibrationFileContributions" xml:space="preserve">
+    <value>Կալիբրացիոն Ֆայլերի Ներդրումներ</value>
   </data>
-  <data name="AppSettings_UC" xml:space="preserve">
-    <value>ՀԱՎԵԼՎԱԾ</value>
-  </data>
-  <data name="Wizard_UC" xml:space="preserve">
-    <value>ՀՐԱՁԻԳ</value>
+  <data name="Wizard" xml:space="preserve">
+    <value>Հրաձիգ</value>
   </data>
   <data name="LaunchWizard" xml:space="preserve">
     <value>Գործարկել հրաձիգը</value>
-  </data>
-  <data name="Simulator_UC" xml:space="preserve">
-    <value>ՍԻՄՈՒԼՅԱՏՈՐ</value>
-  </data>
-  <data name="Graph_UC" xml:space="preserve">
-    <value>ԳՐԱՖ</value>
-  </data>
-  <data name="SpeechToText_UC" xml:space="preserve">
-    <value>ԵՆԹԱԳՐԵՐ</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Փոփոխությունների ցուցակ</value>
@@ -948,14 +891,8 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> Մ/Ժ</value>
   </data>
-  <data name="Wind_UC" xml:space="preserve">
-    <value>TYPHOON ՔԱՄԻ</value>
-  </data>
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Քամի</value>
-  </data>
-  <data name="SeatBeltTensioner_UC" xml:space="preserve">
-    <value>ԿՐԾՔԱԿԱԼ ՁԳԻՉ</value>
   </data>
   <data name="SeatBeltTensioner" xml:space="preserve">
     <value>Կրծքակալ ձգիչ</value>
@@ -1005,11 +942,8 @@
   <data name="MaxG" xml:space="preserve">
     <value>G առավ</value>
   </data>
-  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
-    <value>ԱԹՈՌԻ ԱԶԴԵՑՈՒԹՅՈՒՆ</value>
-  </data>
-  <data name="VibrationEffects_UC" xml:space="preserve">
-    <value>ԹՐԹՌՄԱՆ ԱԶԴԵՑՈՒԹՅՈՒՆՆԵՐ</value>
+  <data name="VibrationEffects" xml:space="preserve">
+    <value>Թրթռման Ազդեցություններ</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
     <value>ABS / Անվի արգելափակում</value>
@@ -1020,17 +954,17 @@
   <data name="RumbleStrip" xml:space="preserve">
     <value>Ռումբ-շերտ</value>
   </data>
-  <data name="Surge_UC" xml:space="preserve">
-    <value>ՀՐՈՒՄ</value>
+  <data name="Surge" xml:space="preserve">
+    <value>Հրում</value>
   </data>
-  <data name="Sway_UC" xml:space="preserve">
-    <value>ՏԱՏԱՆՈՒՄ</value>
+  <data name="Sway" xml:space="preserve">
+    <value>Տատանում</value>
   </data>
-  <data name="Heave_UC" xml:space="preserve">
-    <value>ԲԱՐՁՐԱՑՈՒՄ</value>
+  <data name="Heave" xml:space="preserve">
+    <value>Բարձրացում</value>
   </data>
-  <data name="MotorOutput_UC" xml:space="preserve">
-    <value>ՇԱՐԺԻՉԻ ԵԼՔ</value>
+  <data name="MotorOutput" xml:space="preserve">
+    <value>Շարժիչի Ելք</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Ձախ ուս</value>
@@ -1056,11 +990,11 @@
   <data name="RightFan" xml:space="preserve">
     <value>Աջ օդախույզ</value>
   </data>
-  <data name="Connection_UC" xml:space="preserve">
+  <data name="Connection" xml:space="preserve">
     <value>Միացում</value>
   </data>
-  <data name="Settings_UC" xml:space="preserve">
-    <value>ԿԱՐԳԱՎՈՐՈՒՄՆԵՐ</value>
+  <data name="Settings" xml:space="preserve">
+    <value>Կարգավորումներ</value>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
     <value>Հիմնական քամու հզորություն</value>
@@ -1070,9 +1004,6 @@
   </data>
   <data name="WindCurving" xml:space="preserve">
     <value>Քամու կոր</value>
-  </data>
-  <data name="FanPower_UC" xml:space="preserve">
-    <value>ՕԴԱԽՈՒՅԶԻ ՀԶՈՐՈՒԹՅՈՒՆ</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>Արագություն</value>
@@ -1095,9 +1026,6 @@
   <data name="TradingPaints" xml:space="preserve">
     <value>Trading Paints</value>
   </data>
-  <data name="TradingPaints_UC" xml:space="preserve">
-    <value>TRADING PAINTS</value>
-  </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
     <value>Marvin's Awesome iRacing App (MAIRA)-ը կապ չունի Trading Paints-ի հետ</value>
   </data>
@@ -1119,17 +1047,17 @@
   <data name="OutputSmoothing" xml:space="preserve">
     <value>Ելքի հարթեցում</value>
   </data>
-  <data name="SeatOfPants_UC" xml:space="preserve">
-    <value>ԱԹՈՌԻ ԶԳԱՑՈՂՈՒԹՅՈՒՆ</value>
+  <data name="SeatOfPants" xml:space="preserve">
+    <value>Աթոռի Զգացողություն</value>
   </data>
-  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
-    <value>ԱԹՈՌԻ ԶԳԱՑՈՂՈՒԹՅՈՒՆ ԱՆԻՎԻ ԹՐԹՌՈՒՄ</value>
+  <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
+    <value>Աթոռի Զգացողություն Անիվի Թրթռում</value>
   </data>
-  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
-    <value>ԱԹՈՌԻ ԶԳԱՑՈՂՈՒԹՅՈՒՆ ԱՆԻՎԻ ՀԱՍՏԱՏՈՒՆ ՈՒԺ</value>
+  <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
+    <value>Աթոռի Զգացողություն Անիվի Հաստատուն Ուժ</value>
   </data>
-  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
-    <value>ԱԹՈՌԻ ԶԳԱՑՈՂՈՒԹՅՈՒՆ ՈՏՆԱԿԻ ԹՐԹՌՈՒՄ</value>
+  <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
+    <value>Աթոռի Զգացողություն Ոտնակի Թրթռում</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
     <value>Աթոռի զգացողության ազդեցություն</value>
@@ -1143,32 +1071,26 @@
   <data name="RatioOfVelocities" xml:space="preserve">
     <value>Արագությունների հարաբերակցություն (Vy/Vx)</value>
   </data>
-  <data name="DefaultPage_UC" xml:space="preserve">
-    <value>ԿԱՆԽԱԴՐՎԱԾ ԷՋ</value>
+  <data name="DefaultPage" xml:space="preserve">
+    <value>Կանխադրված Էջ</value>
   </data>
-  <data name="Effects_UC" xml:space="preserve">
-    <value>ԱԶԴԵՑՈՒԹՅՈՒՆՆԵՐ</value>
+  <data name="Effects" xml:space="preserve">
+    <value>Ազդեցություններ</value>
   </data>
-  <data name="Audio_UC" xml:space="preserve">
+  <data name="Audio" xml:space="preserve">
     <value>Աուդիո</value>
   </data>
-  <data name="Display_UC" xml:space="preserve">
+  <data name="Display" xml:space="preserve">
     <value>Էկրան</value>
-  </data>
-  <data name="AdminBoxx_UC" xml:space="preserve">
-    <value>Ադմին Բոքս</value>
-  </data>
-  <data name="Click_UC" xml:space="preserve">
-    <value>Սեղմում</value>
   </data>
   <data name="AllowSoundsDuringReplays" xml:space="preserve">
     <value>Թույլատրել հնչյուններ վերարտադրությունների ժամանակ</value>
   </data>
-  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
-    <value>ԱՐԳԵԼԱԿ + ԱՐԱԳԱՑՈՒՑԻՉ ԱԶԴԱՆՇԱՆ</value>
+  <data name="BrakeThrottleWarning" xml:space="preserve">
+    <value>Արգելակ + Արագացուցիչ Ազդանշան</value>
   </data>
-  <data name="FfbClipping_UC" xml:space="preserve">
-    <value>FFB ԿՏՐՈՒՄ</value>
+  <data name="FfbClipping" xml:space="preserve">
+    <value>Ffb Կտրում</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 ոտնակներ</value>
@@ -1179,17 +1101,14 @@
   <data name="Help" xml:space="preserve">
     <value>Օգնություն</value>
   </data>
-  <data name="Help_UC" xml:space="preserve">
-    <value>ՕԳՆՈՒԹՅՈՒՆ</value>
+  <data name="Documentation" xml:space="preserve">
+    <value>Փաստաթղթավորում</value>
   </data>
-  <data name="Documentation_UC" xml:space="preserve">
-    <value>ՓԱՍՏԱԹՂԹԱՎՈՐՈՒՄ</value>
+  <data name="Discord" xml:space="preserve">
+    <value>Discord</value>
   </data>
-  <data name="Discord_UC" xml:space="preserve">
-    <value>DISCORD</value>
-  </data>
-  <data name="Forums_UC" xml:space="preserve">
-    <value>ՖՈՐՈՒՄՆԵՐ</value>
+  <data name="Forums" xml:space="preserve">
+    <value>Ֆորումներ</value>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
     <value>Փաստաթղթավորման կայք</value>
@@ -1212,8 +1131,8 @@
   <data name="PedalsP700" xml:space="preserve">
     <value>Simagic P700 ոտնակներ</value>
   </data>
-  <data name="FanStatus_UC" xml:space="preserve">
-    <value>ՕԴԱԽՈՒՅԶԻ ԿԱՐԳԱՎԻՃԱԿ</value>
+  <data name="FanStatus" xml:space="preserve">
+    <value>Օդախույզի Կարգավիճակ</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>360 Հց մանրամասն</value>
@@ -1296,12 +1215,6 @@
   <data name="GapMonitor" xml:space="preserve">
     <value>Բացի մոնիտոր</value>
   </data>
-  <data name="Overlays_UC" xml:space="preserve">
-    <value>ՇԵՐՏ ԾԱԾԿՈՆՆԵՐ</value>
-  </data>
-  <data name="GapMonitor_UC" xml:space="preserve">
-    <value>ԲԱՑԻ ՄՈՆԻՏՈՐ</value>
-  </data>
   <data name="Overlays" xml:space="preserve">
     <value>Շերտ ծածկոններ</value>
   </data>
@@ -1329,7 +1242,7 @@
   <data name="Close" xml:space="preserve">
     <value>Փակել</value>
   </data>
-  <data name="CPUAffinity_UC" xml:space="preserve">
+  <data name="CPUAffinity" xml:space="preserve">
     <value>ՊՄ ԿԱՊՎԱԾՈՒԹՅՈՒՆ</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
@@ -1338,14 +1251,11 @@
   <data name="AppManager" xml:space="preserve">
     <value>Հավելվածների կառավարիչ</value>
   </data>
-  <data name="AppManager_UC" xml:space="preserve">
-    <value>ՀԱՎԵԼՎԱԾՆԵՐԻ ԿԱՌԱՎԱՐԻՉ</value>
+  <data name="AppsToStart" xml:space="preserve">
+    <value>Գործարկվող Հավելվածներ</value>
   </data>
-  <data name="AppsToStart_UC" xml:space="preserve">
-    <value>ԳՈՐԾԱՐԿՎՈՂ ՀԱՎԵԼՎԱԾՆԵՐ</value>
-  </data>
-  <data name="AppsToTerminate_UC" xml:space="preserve">
-    <value>ԴԱԴԱՐԵՑՎՈՂ ՀԱՎԵԼՎԱԾՆԵՐ</value>
+  <data name="AppsToTerminate" xml:space="preserve">
+    <value>Դադարեցվող Հավելվածներ</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Գործարկվող ֆայլի ուղի</value>
@@ -1435,7 +1345,7 @@
     <value>Հավելվածի թեմա</value>
   </data>
   <data name="Wizard_Step1_Line1" xml:space="preserve">
-    <value>Ընտրեք՝ նախընտրո՞ւմ եք բաց, թե մուգ թեմա: Ուղիղ նախադիտման համար օգտագործեք ստորև բերված ջկան:</value>
+    <value>Ընտրեք՝ նախընտրո՞ւմ եք բաց, թե մուգ թեմա: Ուղիղ նախադիտման համար օգտագործեք ստորև բերված անջատիչը:</value>
   </data>
   <data name="Wizard_Step2_Title" xml:space="preserve">
     <value>Ղեկ</value>
@@ -1579,19 +1489,16 @@
     <value>բացելու փաստաթղթավորումը և ծանոթանալու ընդհանուր կառավարիչներին:</value>
   </data>
   <data name="OutputDevice" xml:space="preserve">
-    <value>Ելքայի坯 սարք</value>
-  </data>
-  <data name="OutputDevice_UC" xml:space="preserve">
-    <value>ԵԼՔԱՅԻՆ ՍԱՌՔ</value>
+    <value>Ելքային սարք</value>
   </data>
   <data name="DefaultWindowsSoundDevice" xml:space="preserve">
-    <value>[Windows-ի կա坮խա噏րվծած ձայ坮այի坯 սարք]</value>
+    <value>[Windows-ի կանխադրված ձայնային սարք]</value>
   </data>
   <data name="LoopStart" xml:space="preserve">
-    <value>Հա坯գույցի սկի噭բ</value>
+    <value>Հանգույցի սկիզբ</value>
   </data>
   <data name="LoopEnd" xml:space="preserve">
-    <value>Հա坯գույցի վերջ</value>
+    <value>Հանգույցի վերջ</value>
   </data>
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
@@ -1599,29 +1506,26 @@
   <data name="Commentary" xml:space="preserve">
     <value>Մեկնաբանություն</value>
   </data>
-  <data name="Commentary_UC" xml:space="preserve">
-    <value>ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
+  <data name="Account" xml:space="preserve">
+    <value>Հաշիվ</value>
   </data>
-  <data name="Account_UC" xml:space="preserve">
-    <value>ՀԱՇԻՎ</value>
+  <data name="VoiceRoster" xml:space="preserve">
+    <value>Ձայների Ցուցակ</value>
   </data>
-  <data name="VoiceRoster_UC" xml:space="preserve">
-    <value>ՁԱՅՆԵՐԻ ՑՈՒՑԱԿ</value>
+  <data name="CrewChiefCommentary" xml:space="preserve">
+    <value>Անձնակազմի Ղեկավարի Մեկնաբանություն</value>
   </data>
-  <data name="CrewChiefCommentary_UC" xml:space="preserve">
-    <value>ԱՆՁՆԱԿԱԶՄԻ ՂԵԿԱՎԱՐԻ ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
+  <data name="SpotterCommentary" xml:space="preserve">
+    <value>Spotterի Մեկնաբանություն</value>
   </data>
-  <data name="SpotterCommentary_UC" xml:space="preserve">
-    <value>SPOTTERԻ ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
+  <data name="Sportscaster1Commentary" xml:space="preserve">
+    <value>Մարզական Մեկնաբան 1 Մեկնաբանություն</value>
   </data>
-  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
-    <value>ՄԱՐԶԱԿԱՆ ՄԵԿՆԱԲԱՆ 1 ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
+  <data name="Sportscaster2Commentary" xml:space="preserve">
+    <value>Մարզական Մեկնաբան 2 Մեկնաբանություն</value>
   </data>
-  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
-    <value>ՄԱՐԶԱԿԱՆ ՄԵԿՆԱԲԱՆ 2 ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
-  </data>
-  <data name="PitReporterCommentary_UC" xml:space="preserve">
-    <value>ՓԻԹ ՌԵՊՈՐՏԵՐԻ ՄԵԿՆԱԲԱՆՈՒԹՅՈՒՆ</value>
+  <data name="PitReporterCommentary" xml:space="preserve">
+    <value>Փիթ Ռեպորտերի Մեկնաբանություն</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>API բանալի</value>
@@ -1704,8 +1608,8 @@
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>Հիշեցման ընդմիջում</value>
   </data>
-  <data name="CommentaryPhrases_UC" xml:space="preserve">
-    <value>ՄԵԿՆԱԲԱՆՈՒԹՅԱՆ ԱՐՏԱՀԱՅՏՈՒԹՅՈՒՆՆԵՐ</value>
+  <data name="CommentaryPhrases" xml:space="preserve">
+    <value>Մեկնաբանության Արտահայտություններ</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Հարմարեցրեք արտահայտությունները, որոնք արտասանվում են յուրաքանչյուր իրադարձության համար ընտրված լեզվով: Փոփոխությունները պահվում են Փաստաթղթեր թղթապանակում և փոխարինում են ներկառուցված արտահայտությունները:</value>
@@ -1815,9 +1719,6 @@
   <data name="DeltaMonitor" xml:space="preserve">
     <value>Դելտա մոնիտոր</value>
   </data>
-  <data name="DeltaMonitor_UC" xml:space="preserve">
-    <value>ԴԵԼՏԱ ՄՈՆԻՏՈՐ</value>
-  </data>
   <data name="DeltaMonitorLapTime" xml:space="preserve">
     <value>Շրջան</value>
   </data>
@@ -1828,36 +1729,7 @@
     <value>vs. P1</value>
   </data>  <data name="ControllerProfiles" xml:space="preserve">
     <value>Կարգավորիչի պրոֆիլներ</value>
-  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
-    <value>ԿԱՐԳԱՎՈՐԻՉԻ ՊՐՈՖԻԼՆԵՐ</value>
-  </data>  <data name="Profile" xml:space="preserve">
-    <value>Պրոֆիլ</value>
-  </data>  <data name="ProfileName" xml:space="preserve">
-    <value>Պրոֆիլի անունը</value>
-  </data>  <data name="NewProfile" xml:space="preserve">
-    <value>Նոր պրոֆիլ</value>
-  </data>  <data name="DeleteProfile" xml:space="preserve">
-    <value>Ջնջել պրոֆիլը</value>
-  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
-    <value>Վստա՞հ եք, որ ցանկանում եք ջնջել այս կարգավորիչի պրոֆիլը։</value>
-  </data>  <data name="NewControllerProfile" xml:space="preserve">
-    <value>Նոր կարգավորիչի պրոֆիլ</value>
-  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
-    <value>Պատճենել ընթացիկ կապակցումները</value>
-  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
-    <value>ԿՈՃԱԿՆԵՐԻ ԿԱՊԱԿՑՈՒՄ</value>
-  </data>  <data name="Map" xml:space="preserve">
-    <value>Կապակցել</value>
-  </data>  <data name="Record" xml:space="preserve">
-    <value>Գրանցել</value>
-  </data>  <data name="Unmapped" xml:space="preserve">
-    <value>(չկապակցված)</value>
-  </data>  <data name="OK" xml:space="preserve">
-    <value>Լավ</value>
-  </data>  <data name="Cancel" xml:space="preserve">
-    <value>Չեղարկել</value>
-  </data>
-  <data name="RenameProfile" xml:space="preserve">
+  </data>  <data name="RenameProfile" xml:space="preserve">
     <value>Վերանվանել պրոֆիլը</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
@@ -1868,8 +1740,8 @@
     <value>Զտել ըստ անվան կամ ուղու...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Աշխատող ծրագրերի որոնում...</value>
-  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
-    <value>ՊԱՏՈՒՀԱՆԻ ՏԵՍԱՆԵԼԻՈՒԹՅՈՒՆ</value>
+  </data>  <data name="WindowVisibility" xml:space="preserve">
+    <value>Պատուհանի Տեսանելիություն</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>Ցույց տալ / Թաքցնել պատուհանը</value>
   </data>  <data name="StepSize" xml:space="preserve">

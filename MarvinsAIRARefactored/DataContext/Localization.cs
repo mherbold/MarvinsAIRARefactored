@@ -43,6 +43,29 @@ public partial class Localization : INotifyPropertyChanged
 		}
 	}
 
+	// Culture for the currently-loaded language, used for culture-correct casing
+	// (Turkish dotted-I, German eszett, no-op for case-less scripts). Falls back to
+	// en-US for the default/unknown language so casing still behaves sensibly.
+	private CultureInfo CurrentCulture
+	{
+		get
+		{
+			if ( string.IsNullOrEmpty( _currentLanguageCode ) || ( _currentLanguageCode == "default" ) )
+			{
+				return CultureInfo.GetCultureInfo( "en-US" );
+			}
+
+			try
+			{
+				return CultureInfo.GetCultureInfo( _currentLanguageCode );
+			}
+			catch ( CultureNotFoundException )
+			{
+				return CultureInfo.InvariantCulture;
+			}
+		}
+	}
+
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	[GeneratedRegex( @"^MarvinsAIRARefactored\.Resources\.Resources\.(?<languageCode>[a-z]{2,3}(?:-[A-Za-z0-9]+)*)\.resources$", RegexOptions.IgnoreCase, "en-US" )]
@@ -70,6 +93,19 @@ public partial class Localization : INotifyPropertyChanged
 				return $"!{key}!";
 			}
 		}
+	}
+
+	// Uppercased view of the localized string table, cased with the active
+	// language's culture. Bind in XAML as {Binding Localization.Upper[Key]} or read
+	// in code as Localization.Upper["Key"]. Lets the resx hold a single normal-case
+	// string instead of a second all-caps copy, and refreshes with the table since
+	// it hangs off the same object that raises PropertyChanged on language change.
+	public UpperCaseAccessor Upper => _upper ??= new UpperCaseAccessor( this );
+	private UpperCaseAccessor? _upper;
+
+	public sealed class UpperCaseAccessor( Localization owner )
+	{
+		public string this[ string key ] => owner[ key ].ToUpper( owner.CurrentCulture );
 	}
 
 	public void Initialize()

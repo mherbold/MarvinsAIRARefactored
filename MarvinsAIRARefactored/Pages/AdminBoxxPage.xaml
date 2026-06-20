@@ -20,7 +20,7 @@
                Height="72"
                RenderOptions.BitmapScalingMode="HighQuality" />
 
-        <controls:MairaGroupBox Label="{Binding Localization[Connection_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Connection]}"
                                 HelpTopic="advanced/adminboxx/#connection">
 
             <Grid>
@@ -81,7 +81,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Display_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Display]}"
                                 HelpTopic="advanced/adminboxx/#display">
 
             <Grid>
@@ -109,7 +109,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Audio_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Audio]}"
                                 HelpTopic="advanced/adminboxx/#audio">
 
             <Grid>

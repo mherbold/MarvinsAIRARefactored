@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[CalibrationFile_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[CalibrationFile]}"
                                 HelpTopic="advanced/steering-effects/#calibration-file">
 
             <StackPanel>
@@ -171,7 +171,7 @@
                             Opacity="0.75" />
 
                     <TextBlock Style="{StaticResource MairaTextBlockStyle}"
-                               Text="{Binding Localization[Understeer_UC]}"
+                               Text="{Binding Localization.Upper[Understeer]}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Padding="10,0"
@@ -184,7 +184,7 @@
 
             <StackPanel Grid.Column="2">
 
-                <controls:MairaGroupBox Label="{Binding Localization[Understeer_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[Understeer]}"
                                         HelpTopic="advanced/steering-effects/#enable-thresholds">
 
                     <Grid>
@@ -250,7 +250,7 @@
 
                 </controls:MairaGroupBox>
 
-                <controls:MairaGroupBox Label="{Binding Localization[UndersteerWheelVibrationEffect_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[UndersteerWheelVibrationEffect]}"
                                         HelpTopic="advanced/steering-effects/#wheel-vibration-effect"
                                         Tag="Understeer">
 
@@ -338,7 +338,7 @@
 
                 </controls:MairaGroupBox>
 
-                <controls:MairaGroupBox Label="{Binding Localization[UndersteerWheelConstantForceEffect_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[UndersteerWheelConstantForceEffect]}"
                                         HelpTopic="advanced/steering-effects/#wheel-constant-force-effect"
                                         Tag="Understeer">
 
@@ -388,7 +388,7 @@
 
                 </controls:MairaGroupBox>
 
-                <controls:MairaGroupBox Label="{Binding Localization[UndersteerPedalVibrationEffect_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[UndersteerPedalVibrationEffect]}"
                                         HelpTopic="advanced/steering-effects/#pedal-vibration-effect"
                                         Tag="Understeer">
 
@@ -468,7 +468,7 @@
                             Opacity="0.75" />
 
                     <TextBlock Style="{StaticResource MairaTextBlockStyle}"
-                               Text="{Binding Localization[Oversteer_UC]}"
+                               Text="{Binding Localization.Upper[Oversteer]}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Padding="10,0"
@@ -481,7 +481,7 @@
 
             <StackPanel Grid.Column="2">
 
-                <controls:MairaGroupBox Label="{Binding Localization[Oversteer_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[Oversteer]}"
                                         HelpTopic="advanced/steering-effects/#enable-thresholds">
 
                     <Grid>
@@ -547,7 +547,7 @@
 
                 </controls:MairaGroupBox>
 
-                <controls:MairaGroupBox Label="{Binding Localization[OversteerWheelVibrationEffect_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[OversteerWheelVibrationEffect]}"
                                         HelpTopic="advanced/steering-effects/#wheel-vibration-effect"
                                         Tag="Oversteer">
 
@@ -635,7 +635,7 @@
 
                 </controls:MairaGroupBox>
 
-                <controls:MairaGroupBox Label="{Binding Localization[OversteerWheelConstantForceEffect_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[OversteerWheelConstantForceEffect]}"
                                         HelpTopic="advanced/steering-effects/#wheel-constant-force-effect"
                                         Tag="Oversteer">
 
@@ -685,7 +685,7 @@
 
                 </controls:MairaGroupBox>
 
-                <controls:MairaGroupBox Label="{Binding Localization[OversteerPedalVibrationEffect_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[OversteerPedalVibrationEffect]}"
                                         HelpTopic="advanced/steering-effects/#pedal-vibration-effect"
                                         Tag="Oversteer">
 
@@ -765,7 +765,7 @@
                             Opacity="0.75" />
 
                     <TextBlock Style="{StaticResource MairaTextBlockStyle}"
-                               Text="{Binding Localization[SeatOfPants_UC]}"
+                               Text="{Binding Localization.Upper[SeatOfPants]}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                Padding="10,0"
@@ -778,7 +778,7 @@
 
             <StackPanel Grid.Column="2">
 
-                <controls:MairaGroupBox Label="{Binding Localization[SeatOfPants_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[SeatOfPants]}"
                                         HelpTopic="advanced/steering-effects/#enable-thresholds">
 
                     <Grid>
@@ -842,7 +842,7 @@
 
                 </controls:MairaGroupBox>
 
-                <controls:MairaGroupBox Label="{Binding Localization[SeatOfPantsWheelVibrationEffect_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[SeatOfPantsWheelVibrationEffect]}"
                                         HelpTopic="advanced/steering-effects/#wheel-vibration-effect"
                                         Tag="SeatOfPants">
 
@@ -930,7 +930,7 @@
 
                 </controls:MairaGroupBox>
 
-                <controls:MairaGroupBox Label="{Binding Localization[SeatOfPantsWheelConstantForceEffect_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[SeatOfPantsWheelConstantForceEffect]}"
                                         HelpTopic="advanced/steering-effects/#wheel-constant-force-effect"
                                         Tag="SeatOfPants">
 
@@ -980,7 +980,7 @@
 
                 </controls:MairaGroupBox>
 
-                <controls:MairaGroupBox Label="{Binding Localization[SeatOfPantsPedalVibrationEffect_UC]}"
+                <controls:MairaGroupBox Label="{Binding Localization.Upper[SeatOfPantsPedalVibrationEffect]}"
                                         HelpTopic="advanced/steering-effects/#pedal-vibration-effect"
                                         Tag="SeatOfPants">
 
@@ -1036,7 +1036,7 @@
 
         </Grid>
 
-        <controls:MairaGroupBox Label="{Binding Localization[PrivateMessages_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[PrivateMessages]}"
                                 HelpTopic="advanced/steering-effects/#private-messages">
 
             <Grid>
@@ -1058,7 +1058,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox x:Name="Calibration_MairaGroupBox"
-                                Label="{Binding Localization[Calibration_UC]}"
+                                Label="{Binding Localization.Upper[Calibration]}"
                                 HelpTopic="advanced/steering-effects/#calibration">
 
             <StackPanel>

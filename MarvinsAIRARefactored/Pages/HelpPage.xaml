@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Documentation_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Documentation]}">
 
                 <StackPanel>
 
@@ -61,7 +61,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Discord_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Discord]}">
 
             <StackPanel>
 
@@ -106,7 +106,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Forums_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Forums]}">
 
             <StackPanel>
 

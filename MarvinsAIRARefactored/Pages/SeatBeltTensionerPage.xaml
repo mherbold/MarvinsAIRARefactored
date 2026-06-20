@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Connection_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Connection]}"
                                 HelpTopic="advanced/seat-belt-tensioner/#connection">
 
             <StackPanel>
@@ -44,7 +44,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Calibration_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Calibration]}"
                                 HelpTopic="advanced/seat-belt-tensioner/#calibration">
 
             <StackPanel>
@@ -121,7 +121,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Surge_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Surge]}"
                                 HelpTopic="advanced/seat-belt-tensioner/#surge">
 
             <Grid>
@@ -250,7 +250,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Sway_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Sway]}"
                                 HelpTopic="advanced/seat-belt-tensioner/#sway">
 
             <Grid>
@@ -379,7 +379,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Heave_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Heave]}"
                                 HelpTopic="advanced/seat-belt-tensioner/#heave">
 
             <Grid>
@@ -508,7 +508,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[SeatOfPantsEffect_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[SeatOfPantsEffect]}"
                                 HelpTopic="advanced/seat-belt-tensioner/#seat-of-pants-effect">
 
             <Grid>
@@ -583,7 +583,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[VibrationEffects_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[VibrationEffects]}"
                                 HelpTopic="advanced/seat-belt-tensioner/#vibration-effects">
 
             <Grid>
@@ -687,7 +687,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[MotorOutput_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[MotorOutput]}"
                                 HelpTopic="advanced/seat-belt-tensioner/#motor-output">
 
             <Grid>

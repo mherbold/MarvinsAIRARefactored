@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[CodeContributions_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[CodeContributions]}">
 
             <Grid>
 
@@ -102,7 +102,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[TranslationContributions_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[TranslationContributions]}">
 
             <Grid>
 
@@ -411,7 +411,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[CalibrationFileContributions_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[CalibrationFileContributions]}">
 
             <Grid>
 
@@ -462,7 +462,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[DiscordModerators_UC]}">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[DiscordModerators]}">
 
             <Grid>
 

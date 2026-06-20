@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[ControllerProfiles_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[ControllerProfiles]}"
                                 HelpTopic="advanced/controller-profiles/">
 
             <Grid>
@@ -68,7 +68,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[ButtonMappings_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[ButtonMappings]}"
                                 HelpTopic="advanced/controller-profiles/#button-mappings">
 
             <StackPanel x:Name="Mappings_StackPanel" />

@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[SuperDonors_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[SuperDonors]}"
                                 SubLabel="❤️❤️❤️">
 
             <StackPanel>
@@ -133,7 +133,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Donors_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Donors]}"
                                 SubLabel="❤️">
 
             <UniformGrid Columns="3">

@@ -20,7 +20,7 @@
         <!-- ENABLED + LANGUAGE + MASTER VOLUME                               -->
         <!-- ================================================================ -->
 
-        <controls:MairaGroupBox Label="{Binding Localization[Master_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Master]}"
                                 HelpTopic="advanced/commentary/">
 
             <Grid>
@@ -59,7 +59,7 @@
         <!-- ACCOUNT                                                          -->
         <!-- ================================================================ -->
 
-        <controls:MairaGroupBox Label="{Binding Localization[Account_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Account]}"
                                 HelpTopic="advanced/commentary/#account">
 
             <Grid>
@@ -130,7 +130,7 @@
         <!-- VOICE ROSTER — slot 0: Crew Chief                               -->
         <!-- ================================================================ -->
 
-        <controls:MairaGroupBox Label="{Binding Localization[VoiceRoster_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[VoiceRoster]}"
                                 HelpTopic="advanced/commentary/#voices">
 
             <StackPanel>
@@ -617,7 +617,7 @@
         <!-- CREW CHIEF COMMENTARY                                           -->
         <!-- ================================================================ -->
 
-        <controls:MairaGroupBox Label="{Binding Localization[CrewChiefCommentary_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[CrewChiefCommentary]}"
                                 HelpTopic="advanced/commentary/#crew-chief"
                                 Visibility="Collapsed">
 
@@ -635,7 +635,7 @@
         <!-- SPOTTER COMMENTARY                                               -->
         <!-- ================================================================ -->
 
-        <controls:MairaGroupBox Label="{Binding Localization[SpotterCommentary_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[SpotterCommentary]}"
                                 HelpTopic="advanced/commentary/#spotter">
 
             <Grid>
@@ -678,7 +678,7 @@
         <!-- SPORTSCASTER 1 COMMENTARY                                        -->
         <!-- ================================================================ -->
 
-        <controls:MairaGroupBox Label="{Binding Localization[Sportscaster1Commentary_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Sportscaster1Commentary]}"
                                 HelpTopic="advanced/commentary/#sportscaster-1"
                                 Visibility="Collapsed">
 
@@ -696,7 +696,7 @@
         <!-- SPORTSCASTER 2 COMMENTARY                                        -->
         <!-- ================================================================ -->
 
-        <controls:MairaGroupBox Label="{Binding Localization[Sportscaster2Commentary_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Sportscaster2Commentary]}"
                                 HelpTopic="advanced/commentary/#sportscaster-2"
                                 Visibility="Collapsed">
 
@@ -714,7 +714,7 @@
         <!-- PIT REPORTER COMMENTARY                                          -->
         <!-- ================================================================ -->
 
-        <controls:MairaGroupBox Label="{Binding Localization[PitReporterCommentary_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[PitReporterCommentary]}"
                                 HelpTopic="advanced/commentary/#pit-reporter"
                                 Visibility="Collapsed">
 
@@ -733,7 +733,7 @@
         <!-- ================================================================ -->
 
         <controls:MairaGroupBox x:Name="CommentaryPhrases_MairaGroupBox"
-                                Label="{Binding Localization[CommentaryPhrases_UC]}"
+                                Label="{Binding Localization.Upper[CommentaryPhrases]}"
                                 HelpTopic="advanced/commentary/#phrases">
 
             <StackPanel>

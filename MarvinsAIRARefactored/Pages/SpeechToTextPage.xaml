@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[SpeechToText_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[SpeechToText]}"
                                 HelpTopic="advanced/speech-to-text/#speech-to-text">
 
             <Grid>
@@ -45,7 +45,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Account_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Account]}"
                                 HelpTopic="advanced/speech-to-text/#account">
 
             <Grid>
@@ -97,7 +97,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[OverlayWindow_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[OverlayWindow]}"
                                 HelpTopic="advanced/speech-to-text/#overlay-window">
 
             <Border BorderBrush="{DynamicResource Brush.Border.Normal}"

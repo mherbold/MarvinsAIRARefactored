@@ -141,13 +141,10 @@
   <data name="Graph" xml:space="preserve">
     <value>גרף</value>
   </data>
-  <data name="HeaderData_UC" xml:space="preserve">
+  <data name="HeaderData" xml:space="preserve">
     <value>נתוני כותרת</value>
   </data>
   <data name="Language" xml:space="preserve">
-    <value>שפה</value>
-  </data>
-  <data name="Language_UC" xml:space="preserve">
     <value>שפה</value>
   </data>
   <data name="DetailBooster" xml:space="preserve">
@@ -177,9 +174,6 @@
   <data name="RacingWheel" xml:space="preserve">
     <value>הגה מירוצים</value>
   </data>
-  <data name="RacingWheel_UC" xml:space="preserve">
-    <value>הגה מירוצים</value>
-  </data>
   <data name="SteeringDevice" xml:space="preserve">
     <value>התקן היגוי</value>
   </data>
@@ -189,7 +183,7 @@
   <data name="Reset" xml:space="preserve">
     <value>אפס</value>
   </data>
-  <data name="SessionInformation_UC" xml:space="preserve">
+  <data name="SessionInformation" xml:space="preserve">
     <value>מידע סשן</value>
   </data>
   <data name="Simulator" xml:space="preserve">
@@ -201,7 +195,7 @@
   <data name="SoftLockStrength" xml:space="preserve">
     <value>עוצמת נעילה רכה</value>
   </data>
-  <data name="TelemetryData_UC" xml:space="preserve">
+  <data name="TelemetryData" xml:space="preserve">
     <value>נתוני טלמטריה</value>
   </data>
   <data name="Test" xml:space="preserve">
@@ -258,10 +252,10 @@
   <data name="Percent" xml:space="preserve">
     <value>אחוז</value>
   </data>
-  <data name="Device_UC" xml:space="preserve">
+  <data name="Device" xml:space="preserve">
     <value>התקן</value>
   </data>
-  <data name="OverallStrength_UC" xml:space="preserve">
+  <data name="OverallStrength" xml:space="preserve">
     <value>עוצמה כללית</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
@@ -276,13 +270,13 @@
   <data name="AutoMaxForce" xml:space="preserve">
     <value>כוח מקסימלי אוטומטי</value>
   </data>
-  <data name="OtherFeatures_UC" xml:space="preserve">
+  <data name="OtherFeatures" xml:space="preserve">
     <value>תכונות נוספות</value>
   </data>
-  <data name="Switches_UC" xml:space="preserve">
+  <data name="Switches" xml:space="preserve">
     <value>מתגים</value>
   </data>
-  <data name="CrashProtection_UC" xml:space="preserve">
+  <data name="CrashProtection" xml:space="preserve">
     <value>הגנה מפני התנגשות</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
@@ -303,14 +297,11 @@
   <data name="MPSUnits" xml:space="preserve">
     <value>מייל בשנייה</value>
   </data>
-  <data name="CurbProtection_UC" xml:space="preserve">
+  <data name="CurbProtection" xml:space="preserve">
     <value>הגנה מפני שפות</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>מהירות זעזוע</value>
-  </data>
-  <data name="Pedals_UC" xml:space="preserve">
-    <value>SIMAGIC דוושות</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>דוושות Simagic P1000</value>
@@ -321,13 +312,13 @@
   <data name="PedalsNone" xml:space="preserve">
     <value>[לא נמצאו דוושות Simagic תואמות]</value>
   </data>
-  <data name="Clutch_UC" xml:space="preserve">
+  <data name="Clutch" xml:space="preserve">
     <value>מצמד</value>
   </data>
-  <data name="Brake_UC" xml:space="preserve">
+  <data name="Brake" xml:space="preserve">
     <value>בלם</value>
   </data>
-  <data name="Throttle_UC" xml:space="preserve">
+  <data name="Throttle" xml:space="preserve">
     <value>מצערת</value>
   </data>
   <data name="PedalEffects" xml:space="preserve">
@@ -339,10 +330,10 @@
   <data name="HertzUnits" xml:space="preserve">
     <value>הרץ</value>
   </data>
-  <data name="Frequency_UC" xml:space="preserve">
+  <data name="GlobalFrequency" xml:space="preserve">
     <value>תדר גלובלי</value>
   </data>
-  <data name="Amplitude_UC" xml:space="preserve">
+  <data name="GlobalAmplitude" xml:space="preserve">
     <value>משרעת גלובלית</value>
   </data>
   <data name="Minimum" xml:space="preserve">
@@ -357,26 +348,8 @@
   <data name="GearChange" xml:space="preserve">
     <value>החלפת הילוך</value>
   </data>
-  <data name="ClutchSlip_UC" xml:space="preserve">
-    <value>החלקת מצמד</value>
-  </data>
-  <data name="SteeringEffects_UC" xml:space="preserve">
-    <value>אפקטי היגוי</value>
-  </data>
   <data name="SteeringEffects" xml:space="preserve">
     <value>אפקטי היגוי</value>
-  </data>
-  <data name="WheelLock_UC" xml:space="preserve">
-    <value>נעילת גלגל</value>
-  </data>
-  <data name="WheelSpin_UC" xml:space="preserve">
-    <value>סחרור גלגל</value>
-  </data>
-  <data name="RPM_UC" xml:space="preserve">
-    <value>סל"ד</value>
-  </data>
-  <data name="ShiftRPM_UC" xml:space="preserve">
-    <value>סל״ד החלפה</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>ללא</value>
@@ -438,11 +411,11 @@
   <data name="DeltaLimiterBias" xml:space="preserve">
     <value>הטיית מגביל דלתא</value>
   </data>
-  <data name="Output_UC" xml:space="preserve">
+  <data name="Output" xml:space="preserve">
     <value>פלט</value>
   </data>
-  <data name="WheelLFE_UC" xml:space="preserve">
-    <value>LFE הגה</value>
+  <data name="WheelLFE" xml:space="preserve">
+    <value>Lfe הגה</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>התקן הקלטת LFE</value>
@@ -461,9 +434,6 @@
   </data>
   <data name="InputLFE" xml:space="preserve">
     <value>LFE כניסה</value>
-  </data>
-  <data name="ABSEngaged_UC" xml:space="preserve">
-    <value>ABS פעיל</value>
   </data>
   <data name="Disabled" xml:space="preserve">
     <value>[מושבת]</value>
@@ -492,10 +462,10 @@
   <data name="EndingPoint" xml:space="preserve">
     <value>נקודת סיום</value>
   </data>
-  <data name="GearChangeShiftIntoGear_UC" xml:space="preserve">
+  <data name="GearChangeShiftIntoGear" xml:space="preserve">
     <value>החלפת הילוך - כניסה להילוך</value>
   </data>
-  <data name="GearChangeShiftIntoNeutral_UC" xml:space="preserve">
+  <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
     <value>החלפת הילוך - כניסה לנייטרל</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
@@ -513,7 +483,7 @@
   <data name="NoiseDamper" xml:space="preserve">
     <value>מדכא רעש</value>
   </data>
-  <data name="AppWindow_UC" xml:space="preserve">
+  <data name="AppWindow" xml:space="preserve">
     <value>חלון אפליקציה</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
@@ -522,7 +492,7 @@
   <data name="UIScale" xml:space="preserve">
     <value>קנה מידה UI</value>
   </data>
-  <data name="CloudService_UC" xml:space="preserve">
+  <data name="CloudService" xml:space="preserve">
     <value>שירות ענן</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
@@ -534,31 +504,25 @@
   <data name="DownloadingUpdate" xml:space="preserve">
     <value>מוריד עדכון...</value>
   </data>
-  <data name="Contribute_UC" xml:space="preserve">
-    <value>תרום</value>
-  </data>
   <data name="BuyMeACoffee" xml:space="preserve">
     <value>קנה לי קפה</value>
   </data>
   <data name="DonationsText" xml:space="preserve">
     <value>תרומות הן לחלוטין אופציונליות. לעולם לא אגבה תשלום עבור שימוש ב-MAIRA. עם זאת, תרומות מחממות את ליבי ומהוות מניע גדול להמשיך לעבוד על MAIRA. תודה רבה לכל מי שכבר תרם!</value>
   </data>
-  <data name="Donate_UC" xml:space="preserve">
-    <value>תרומה</value>
-  </data>
-  <data name="Donors_UC" xml:space="preserve">
+  <data name="Donors" xml:space="preserve">
     <value>תורמים</value>
   </data>
-  <data name="SuperDonors_UC" xml:space="preserve">
+  <data name="SuperDonors" xml:space="preserve">
     <value>תורמים-על</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>תרום</value>
   </data>
-  <data name="CodeContributions_UC" xml:space="preserve">
+  <data name="CodeContributions" xml:space="preserve">
     <value>תרומות קוד</value>
   </data>
-  <data name="TranslationContributions_UC" xml:space="preserve">
+  <data name="TranslationContributions" xml:space="preserve">
     <value>תרומות תרגום</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
@@ -615,7 +579,7 @@
   <data name="Set" xml:space="preserve">
     <value>הגדר</value>
   </data>
-  <data name="Preview_UC" xml:space="preserve">
+  <data name="Preview" xml:space="preserve">
     <value>תצוגה מקדימה</value>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
@@ -630,7 +594,7 @@
   <data name="SlewAndTotalCompression" xml:space="preserve">
     <value>דחיסת Slew וכוללת</value>
   </data>
-  <data name="DiscordModerators_UC" xml:space="preserve">
+  <data name="DiscordModerators" xml:space="preserve">
     <value>מנהלי Discord</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
@@ -644,9 +608,6 @@
   </data>
   <data name="ON" xml:space="preserve">
     <value>פועל</value>
-  </data>
-  <data name="Sounds_UC" xml:space="preserve">
-    <value>צלילים</value>
   </data>
   <data name="Enabled" xml:space="preserve">
     <value>מופעל</value>
@@ -663,7 +624,7 @@
   <data name="Degrees" xml:space="preserve">
     <value>מעלות</value>
   </data>
-  <data name="Master_UC" xml:space="preserve">
+  <data name="Master" xml:space="preserve">
     <value>ראשי</value>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
@@ -672,7 +633,7 @@
   <data name="CurbProtectionActivated" xml:space="preserve">
     <value>הגנת השפות הופעלה!</value>
   </data>
-  <data name="PrivateMessages_UC" xml:space="preserve">
+  <data name="PrivateMessages" xml:space="preserve">
     <value>הודעות פרטיות</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
@@ -723,10 +684,7 @@
   <data name="MaxBrake" xml:space="preserve">
     <value>בלם מקסימלי</value>
   </data>
-  <data name="GripOMeter_UC" xml:space="preserve">
-    <value>גריפ-אומטר</value>
-  </data>
-  <data name="UndersteerWheelVibrationEffect_UC" xml:space="preserve">
+  <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
     <value>אפקט רטט הגה אנדרסטיר</value>
   </data>
   <data name="Progress:" xml:space="preserve">
@@ -735,7 +693,7 @@
   <data name="CalibrationFileNotSelected" xml:space="preserve">
     <value>[קובץ כיול לא נבחר]</value>
   </data>
-  <data name="ParkedEffects_UC" xml:space="preserve">
+  <data name="ParkedEffects" xml:space="preserve">
     <value>אפקטי חניה</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
@@ -756,7 +714,7 @@
   <data name="CurrentCarSetup" xml:space="preserve">
     <value>הגדרת רכב נוכחית:</value>
   </data>
-  <data name="UndersteerPedalVibrationEffect_UC" xml:space="preserve">
+  <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>אפקט רטט דוושה אנדרסטיר</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
@@ -780,13 +738,13 @@
   <data name="DegreesPerSecond" xml:space="preserve">
     <value>מעלות בשנייה</value>
   </data>
-  <data name="CalibrationFile_UC" xml:space="preserve">
+  <data name="CalibrationFile" xml:space="preserve">
     <value>קובץ כיול</value>
   </data>
-  <data name="Understeer_UC" xml:space="preserve">
+  <data name="Understeer" xml:space="preserve">
     <value>אנדרסטיר</value>
   </data>
-  <data name="Oversteer_UC" xml:space="preserve">
+  <data name="Oversteer" xml:space="preserve">
     <value>אוברסטיר</value>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
@@ -801,7 +759,7 @@
   <data name="MaximumFrequency" xml:space="preserve">
     <value>תדירות מקסימלית</value>
   </data>
-  <data name="Calibration_UC" xml:space="preserve">
+  <data name="Calibration" xml:space="preserve">
     <value>כיול</value>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
@@ -828,19 +786,19 @@
   <data name="IncreaseForce" xml:space="preserve">
     <value>הגדל כוח</value>
   </data>
-  <data name="UndersteerWheelConstantForceEffect_UC" xml:space="preserve">
+  <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
     <value>אפקט כוח קבוע בהגה אנדרסטיר</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>כיוון</value>
   </data>
-  <data name="OversteerWheelVibrationEffect_UC" xml:space="preserve">
+  <data name="OversteerWheelVibrationEffect" xml:space="preserve">
     <value>אפקט רטט הגה אוברסטיר</value>
   </data>
-  <data name="OversteerWheelConstantForceEffect_UC" xml:space="preserve">
+  <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
     <value>אפקט כוח קבוע בהגה אוברסטיר</value>
   </data>
-  <data name="OversteerPedalVibrationEffect_UC" xml:space="preserve">
+  <data name="OversteerPedalVibrationEffect" xml:space="preserve">
     <value>אפקט רטט דוושה אוברסטיר</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
@@ -855,13 +813,13 @@
   <data name="SpeechToText" xml:space="preserve">
     <value>כתוביות</value>
   </data>
-  <data name="OverlayWindow_UC" xml:space="preserve">
+  <data name="OverlayWindow" xml:space="preserve">
     <value>חלון כיסוי</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>נהל את חלון הכיסוי</value>
   </data>
-  <data name="AllOverlays_UC" xml:space="preserve">
+  <data name="AllOverlays" xml:space="preserve">
     <value>כל הכיסויים</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
@@ -879,35 +837,20 @@
   <data name="FFBDeviceNotSelected" xml:space="preserve">
     <value>[התקן כוח חוזר לא נבחר]</value>
   </data>
-  <data name="Algorithm_UC" xml:space="preserve">
-    <value>אלגוריתם</value>
-  </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>מוכן לתרום?</value>
   </data>
   <data name="Contribute" xml:space="preserve">
     <value>תרום</value>
   </data>
-  <data name="CalibrationFileContributions_UC" xml:space="preserve">
+  <data name="CalibrationFileContributions" xml:space="preserve">
     <value>תרומות קובץ כיול</value>
   </data>
-  <data name="AppSettings_UC" xml:space="preserve">
-    <value>הגדרות אפליקציה</value>
-  </data>
-  <data name="Wizard_UC" xml:space="preserve">
+  <data name="Wizard" xml:space="preserve">
     <value>אשף ההגדרות</value>
   </data>
   <data name="LaunchWizard" xml:space="preserve">
     <value>הפעל אשף</value>
-  </data>
-  <data name="Simulator_UC" xml:space="preserve">
-    <value>סימולטור</value>
-  </data>
-  <data name="Graph_UC" xml:space="preserve">
-    <value>גרף</value>
-  </data>
-  <data name="SpeechToText_UC" xml:space="preserve">
-    <value>כתוביות</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>יומן שינויים</value>
@@ -948,14 +891,8 @@
   <data name="MPHUnits" xml:space="preserve">
     <value>מייל בשעה</value>
   </data>
-  <data name="Wind_UC" xml:space="preserve">
-    <value>TYPHOON רוח</value>
-  </data>
   <data name="Wind" xml:space="preserve">
     <value>Typhoon רוח</value>
-  </data>
-  <data name="SeatBeltTensioner_UC" xml:space="preserve">
-    <value>מותח חגורת בטיחות</value>
   </data>
   <data name="SeatBeltTensioner" xml:space="preserve">
     <value>מותח חגורת בטיחות</value>
@@ -1005,10 +942,7 @@
   <data name="MaxG" xml:space="preserve">
     <value>G מקס'</value>
   </data>
-  <data name="SeatOfPantsEffect_UC" xml:space="preserve">
-    <value>אפקט תחושת הישיבה</value>
-  </data>
-  <data name="VibrationEffects_UC" xml:space="preserve">
+  <data name="VibrationEffects" xml:space="preserve">
     <value>אפקטי רטט</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
@@ -1020,16 +954,16 @@
   <data name="RumbleStrip" xml:space="preserve">
     <value>רצועת רעידות</value>
   </data>
-  <data name="Surge_UC" xml:space="preserve">
+  <data name="Surge" xml:space="preserve">
     <value>תנודה קדימה-אחורה</value>
   </data>
-  <data name="Sway_UC" xml:space="preserve">
+  <data name="Sway" xml:space="preserve">
     <value>נדנוד צדדי</value>
   </data>
-  <data name="Heave_UC" xml:space="preserve">
+  <data name="Heave" xml:space="preserve">
     <value>תנועה אנכית</value>
   </data>
-  <data name="MotorOutput_UC" xml:space="preserve">
+  <data name="MotorOutput" xml:space="preserve">
     <value>פלט מנוע</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
@@ -1056,10 +990,10 @@
   <data name="RightFan" xml:space="preserve">
     <value>מאוורר ימין</value>
   </data>
-  <data name="Connection_UC" xml:space="preserve">
+  <data name="Connection" xml:space="preserve">
     <value>חיבור</value>
   </data>
-  <data name="Settings_UC" xml:space="preserve">
+  <data name="Settings" xml:space="preserve">
     <value>הגדרות</value>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
@@ -1070,9 +1004,6 @@
   </data>
   <data name="WindCurving" xml:space="preserve">
     <value>עיקול רוח</value>
-  </data>
-  <data name="FanPower_UC" xml:space="preserve">
-    <value>עוצמת מאוורר</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>מהירות</value>
@@ -1093,9 +1024,6 @@
     <value>מהירות הורדה מרבית</value>
   </data>
   <data name="TradingPaints" xml:space="preserve">
-    <value>Trading Paints</value>
-  </data>
-  <data name="TradingPaints_UC" xml:space="preserve">
     <value>Trading Paints</value>
   </data>
   <data name="TradingPaintsDisclaimer" xml:space="preserve">
@@ -1119,16 +1047,16 @@
   <data name="OutputSmoothing" xml:space="preserve">
     <value>החלקת פלט</value>
   </data>
-  <data name="SeatOfPants_UC" xml:space="preserve">
+  <data name="SeatOfPants" xml:space="preserve">
     <value>תחושת מושב</value>
   </data>
-  <data name="SeatOfPantsWheelVibrationEffect_UC" xml:space="preserve">
+  <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
     <value>אפקט רטט הגה תחושת מושב</value>
   </data>
-  <data name="SeatOfPantsWheelConstantForceEffect_UC" xml:space="preserve">
+  <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
     <value>אפקט כוח קבוע הגה תחושת מושב</value>
   </data>
-  <data name="SeatOfPantsPedalVibrationEffect_UC" xml:space="preserve">
+  <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
     <value>אפקט רטט דוושה תחושת מושב</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
@@ -1143,32 +1071,26 @@
   <data name="RatioOfVelocities" xml:space="preserve">
     <value>יחס מהירויות (Vy/Vx)</value>
   </data>
-  <data name="DefaultPage_UC" xml:space="preserve">
+  <data name="DefaultPage" xml:space="preserve">
     <value>עמוד ברירת מחדל</value>
   </data>
-  <data name="Effects_UC" xml:space="preserve">
+  <data name="Effects" xml:space="preserve">
     <value>אפקטים</value>
   </data>
-  <data name="Audio_UC" xml:space="preserve">
+  <data name="Audio" xml:space="preserve">
     <value>שמע</value>
   </data>
-  <data name="Display_UC" xml:space="preserve">
+  <data name="Display" xml:space="preserve">
     <value>תצוגה</value>
-  </data>
-  <data name="AdminBoxx_UC" xml:space="preserve">
-    <value>AdminBoxx</value>
-  </data>
-  <data name="Click_UC" xml:space="preserve">
-    <value>לחיצה</value>
   </data>
   <data name="AllowSoundsDuringReplays" xml:space="preserve">
     <value>אפשר צלילים במהלך הקלטות חוזרות</value>
   </data>
-  <data name="BrakeThrottleWarning_UC" xml:space="preserve">
+  <data name="BrakeThrottleWarning" xml:space="preserve">
     <value>אזהרת בלם + גז</value>
   </data>
-  <data name="FfbClipping_UC" xml:space="preserve">
-    <value>חיתוך FFB</value>
+  <data name="FfbClipping" xml:space="preserve">
+    <value>חיתוך Ffb</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>דוושות Simagic P500</value>
@@ -1179,16 +1101,13 @@
   <data name="Help" xml:space="preserve">
     <value>עזרה</value>
   </data>
-  <data name="Help_UC" xml:space="preserve">
-    <value>עזרה</value>
-  </data>
-  <data name="Documentation_UC" xml:space="preserve">
+  <data name="Documentation" xml:space="preserve">
     <value>תיעוד</value>
   </data>
-  <data name="Discord_UC" xml:space="preserve">
+  <data name="Discord" xml:space="preserve">
     <value>Discord</value>
   </data>
-  <data name="Forums_UC" xml:space="preserve">
+  <data name="Forums" xml:space="preserve">
     <value>פורומים</value>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
@@ -1212,7 +1131,7 @@
   <data name="PedalsP700" xml:space="preserve">
     <value>דוושות Simagic P700</value>
   </data>
-  <data name="FanStatus_UC" xml:space="preserve">
+  <data name="FanStatus" xml:space="preserve">
     <value>סטטוס מאוורר</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
@@ -1296,12 +1215,6 @@
   <data name="GapMonitor" xml:space="preserve">
     <value>ניטור פערים</value>
   </data>
-  <data name="Overlays_UC" xml:space="preserve">
-    <value>כיסויים</value>
-  </data>
-  <data name="GapMonitor_UC" xml:space="preserve">
-    <value>ניטור פערים</value>
-  </data>
   <data name="Overlays" xml:space="preserve">
     <value>כיסויים</value>
   </data>
@@ -1329,7 +1242,7 @@
   <data name="Close" xml:space="preserve">
     <value>סגור</value>
   </data>
-  <data name="CPUAffinity_UC" xml:space="preserve">
+  <data name="CPUAffinity" xml:space="preserve">
     <value>זיקת מעבד</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
@@ -1338,13 +1251,10 @@
   <data name="AppManager" xml:space="preserve">
     <value>מנהל יישומים</value>
   </data>
-  <data name="AppManager_UC" xml:space="preserve">
-    <value>מנהל יישומים</value>
-  </data>
-  <data name="AppsToStart_UC" xml:space="preserve">
+  <data name="AppsToStart" xml:space="preserve">
     <value>יישומים להפעלה</value>
   </data>
-  <data name="AppsToTerminate_UC" xml:space="preserve">
+  <data name="AppsToTerminate" xml:space="preserve">
     <value>יישומים לסגירה</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
@@ -1581,9 +1491,6 @@
   <data name="OutputDevice" xml:space="preserve">
     <value>התקן פלט</value>
   </data>
-  <data name="OutputDevice_UC" xml:space="preserve">
-    <value>התקן פלט</value>
-  </data>
   <data name="DefaultWindowsSoundDevice" xml:space="preserve">
     <value>[התקן הצליל הברירת מחדל של Windows]</value>
   </data>
@@ -1599,28 +1506,25 @@
   <data name="Commentary" xml:space="preserve">
     <value>פרשנות</value>
   </data>
-  <data name="Commentary_UC" xml:space="preserve">
-    <value>פרשנות</value>
-  </data>
-  <data name="Account_UC" xml:space="preserve">
+  <data name="Account" xml:space="preserve">
     <value>חשבון</value>
   </data>
-  <data name="VoiceRoster_UC" xml:space="preserve">
+  <data name="VoiceRoster" xml:space="preserve">
     <value>רשימת קולות</value>
   </data>
-  <data name="CrewChiefCommentary_UC" xml:space="preserve">
+  <data name="CrewChiefCommentary" xml:space="preserve">
     <value>פרשנות ראש הצוות</value>
   </data>
-  <data name="SpotterCommentary_UC" xml:space="preserve">
-    <value>פרשנות ה-SPOTTER</value>
+  <data name="SpotterCommentary" xml:space="preserve">
+    <value>פרשנות ה-Spotter</value>
   </data>
-  <data name="Sportscaster1Commentary_UC" xml:space="preserve">
+  <data name="Sportscaster1Commentary" xml:space="preserve">
     <value>פרשנות הפרשן הספורטיבי 1</value>
   </data>
-  <data name="Sportscaster2Commentary_UC" xml:space="preserve">
+  <data name="Sportscaster2Commentary" xml:space="preserve">
     <value>פרשנות הפרשן הספורטיבי 2</value>
   </data>
-  <data name="PitReporterCommentary_UC" xml:space="preserve">
+  <data name="PitReporterCommentary" xml:space="preserve">
     <value>פרשנות כתב הפיט</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
@@ -1704,7 +1608,7 @@
   <data name="CarProximityReminderInterval" xml:space="preserve">
     <value>מרווח תזכורת</value>
   </data>
-  <data name="CommentaryPhrases_UC" xml:space="preserve">
+  <data name="CommentaryPhrases" xml:space="preserve">
     <value>ביטויי פרשנות</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
@@ -1795,7 +1699,7 @@
     <value>אתחול רוח...</value>
   </data>
   <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>אתחול מתיח חגורת הבטיחות...</value>
+    <value>אתחול מותח חגורת הבטיחות...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>אתחול HID Hot Plug Monitor...</value>
@@ -1815,9 +1719,6 @@
   <data name="DeltaMonitor" xml:space="preserve">
     <value>ניטור דלתא</value>
   </data>
-  <data name="DeltaMonitor_UC" xml:space="preserve">
-    <value>ניטור דלתא</value>
-  </data>
   <data name="DeltaMonitorLapTime" xml:space="preserve">
     <value>הקפה</value>
   </data>
@@ -1828,36 +1729,7 @@
     <value>מול P1</value>
   </data>  <data name="ControllerProfiles" xml:space="preserve">
     <value>פרופילי בקר</value>
-  </data>  <data name="ControllerProfiles_UC" xml:space="preserve">
-    <value>פרופילי בקר</value>
-  </data>  <data name="Profile" xml:space="preserve">
-    <value>פרופיל</value>
-  </data>  <data name="ProfileName" xml:space="preserve">
-    <value>שם הפרופיל</value>
-  </data>  <data name="NewProfile" xml:space="preserve">
-    <value>פרופיל חדש</value>
-  </data>  <data name="DeleteProfile" xml:space="preserve">
-    <value>מחק פרופיל</value>
-  </data>  <data name="DeleteProfileConfirmation" xml:space="preserve">
-    <value>האם אתה בטוח שברצונך למחוק פרופיל בקר זה?</value>
-  </data>  <data name="NewControllerProfile" xml:space="preserve">
-    <value>פרופיל בקר חדש</value>
-  </data>  <data name="CopyCurrentMappings" xml:space="preserve">
-    <value>העתק מיפויים נוכחיים</value>
-  </data>  <data name="ButtonMappings_UC" xml:space="preserve">
-    <value>מיפוי כפתורים</value>
-  </data>  <data name="Map" xml:space="preserve">
-    <value>מפה</value>
-  </data>  <data name="Record" xml:space="preserve">
-    <value>הקלט</value>
-  </data>  <data name="Unmapped" xml:space="preserve">
-    <value>(לא ממופה)</value>
-  </data>  <data name="OK" xml:space="preserve">
-    <value>אישור</value>
-  </data>  <data name="Cancel" xml:space="preserve">
-    <value>ביטול</value>
-  </data>
-  <data name="RenameProfile" xml:space="preserve">
+  </data>  <data name="RenameProfile" xml:space="preserve">
     <value>שינוי שם פרופיל</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
@@ -1868,7 +1740,7 @@
     <value>סינון לפי שם או נתיב...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>מחפש יישומים פעילים...</value>
-  </data>  <data name="WindowVisibility_UC" xml:space="preserve">
+  </data>  <data name="WindowVisibility" xml:space="preserve">
     <value>נראות החלון</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>הצג / הסתר חלון</value>

@@ -16,7 +16,7 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization[OutputDevice_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[OutputDevice]}"
                                 HelpTopic="advanced/sounds/#output-device">
 
             <Grid>
@@ -34,7 +34,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Master_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Master]}"
                                 HelpTopic="advanced/sounds/#master">
 
             <Grid>
@@ -75,7 +75,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Click_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Click]}"
                                 HelpTopic="advanced/sounds/#click">
 
             <Grid>
@@ -137,7 +137,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[ABSEngaged_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[ABSEngaged]}"
                                 HelpTopic="advanced/sounds/#abs-engaged">
 
             <Grid>
@@ -219,7 +219,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[WheelLock_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[WheelLock]}"
                                 HelpTopic="advanced/sounds/#wheel-lock">
 
             <Grid>
@@ -309,7 +309,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[WheelSpin_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[WheelSpin]}"
                                 HelpTopic="advanced/sounds/#wheel-spin">
 
             <Grid>
@@ -399,7 +399,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Understeer_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Understeer]}"
                                 HelpTopic="advanced/sounds/#understeer">
 
             <Grid>
@@ -476,7 +476,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[Oversteer_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Oversteer]}"
                                 HelpTopic="advanced/sounds/#oversteer">
 
             <Grid>
@@ -553,7 +553,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[SeatOfPants_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[SeatOfPants]}"
                                 HelpTopic="advanced/sounds/#seat-of-pants">
 
             <Grid>
@@ -630,7 +630,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[BrakeThrottleWarning_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[BrakeThrottleWarning]}"
                                 HelpTopic="advanced/sounds/#brake-throttle-warning">
 
             <Grid>
@@ -705,7 +705,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[FfbClipping_UC]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[FfbClipping]}"
                                 HelpTopic="advanced/sounds/#ffb-clipping">
 
             <Grid>
