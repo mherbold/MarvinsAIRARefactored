@@ -52,6 +52,22 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enable Xtreme Scoring Race Control Integration</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If this is ON, MAIRA hands race control over to <strong>Xtreme Scoring Race Control</strong> (XSRC). Instead of sending iRacing admin chat commands itself, MAIRA forwards each AdminBoxx admin action (such as yellow flag, black flag, clear flags, wave by, end of line, disqualify, remove driver, pace mode, caution laps, advance session, and chat toggle) to the running XSRC application, which then owns and issues the actual race-control commands.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Leave this OFF unless you are running Xtreme Scoring Race Control. When it is OFF, MAIRA sends the iRacing admin commands directly on your behalf.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Test</p>
 <!-- /wp:paragraph -->
 

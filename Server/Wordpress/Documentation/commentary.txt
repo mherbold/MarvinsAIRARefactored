@@ -1,5 +1,5 @@
 <!-- wp:paragraph -->
-<p>The Commentary page brings your iRacing sessions to life with AI-generated, real-time voice commentary powered by <a href="https://elevenlabs.io" target="_blank" rel="noreferrer noopener">ElevenLabs</a> text-to-speech. A full broadcast crew of up to five distinct voice roles — Crew Chief, Spotter, Sportscaster 1, Sportscaster 2, and Pit Reporter — reacts to on-track events as they happen.</p>
+<p>The Commentary page brings your iRacing sessions to life with AI-generated, real-time voice commentary powered by <a href="https://elevenlabs.io" target="_blank" rel="noreferrer noopener">ElevenLabs</a> text-to-speech. A full broadcast crew of up to five distinct voice roles — Crew Chief, Spotter, Sportscaster 1, Sportscaster 2, and Pit Reporter — reacts to on-track events as they happen, alongside a sixth <strong>MAIRA</strong> voice that speaks the app's own status announcements.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -7,7 +7,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><strong>Note:</strong> Currently only the <strong>Spotter</strong> role is fully implemented and visible in the UI. The Crew Chief, Sportscaster 1, Sportscaster 2, and Pit Reporter roles are still in development and are not yet available.</p>
+<p><strong>Note:</strong> Currently the <strong>Spotter</strong> and <strong>MAIRA</strong> roles are fully implemented and visible in the UI. The Crew Chief, Sportscaster 1, Sportscaster 2, and Pit Reporter roles are still in development and are not yet available.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -175,15 +175,19 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The Voice Roster contains five role slots, each representing a different on-air personality. You can assign any ElevenLabs voice to any slot, tune the voice parameters independently, and enable or disable each role separately.</p>
+<p>The Voice Roster contains six role slots, each representing a different on-air personality. You can assign any ElevenLabs voice to any slot, tune the voice parameters independently, and enable or disable each role separately.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The five roles are:</p>
+<p>The six roles are:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>MAIRA</strong> — The app's own system voice. Clear, calm, and consistent. Speaks MAIRA's own status announcements rather than race commentary — for example when crash protection or curb protection kicks in. Listed first in the UI.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
 <li><strong>Crew Chief</strong> — Tactical, authoritative, calm. Speaks directly to you about your own car: fuel warnings, tire warnings, pit window, incidents.</li>
 <!-- /wp:list-item -->
 
