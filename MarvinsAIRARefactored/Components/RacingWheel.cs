@@ -218,6 +218,13 @@ public class RacingWheel
 	{
 		var app = App.Instance!;
 
+		// No stacking: the MAIRA voice slot is used only for these protection announcements, so if one is already
+		// being spoken or is still queued, skip this one rather than piling another phrase on top of it.
+		if ( app.TextToSpeech.IsSlotBusy( CommentarySlotMaira ) )
+		{
+			return;
+		}
+
 		var phrase = app.Commentary.Templates.GetRandomPhrase( eventKey );
 
 		if ( phrase != null )

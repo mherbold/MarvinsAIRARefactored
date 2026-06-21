@@ -1,3 +1,4 @@
+using System.Collections.Concurrent;
 using System.IO;
 using System.Net.Http;
 using System.Security.Cryptography;
@@ -29,10 +30,21 @@ public sealed partial class TextToSpeech : IDisposable
 	// -------------------------------------------------------------------------
 
 	/// <summary>Lower numeric value = higher urgency (1 is most urgent).</summary>
-	private readonly Channel<SpeechRequest> _queue = Channel.CreateBounded<SpeechRequest>( new BoundedChannelOptions( 64 ) { FullMode = BoundedChannelFullMode.DropOldest, SingleReader = true } );
+	private readonly Channel<SpeechRequest> _queue;
+
+	/// <summary>Per-slot count of requests that are queued or currently playing, so callers can avoid stacking duplicate announcements on the same slot.</summary>
+	private readonly ConcurrentDictionary<int, int> _slotInFlightCounts = new();
 
 	private CancellationTokenSource _cts = new();
 	private Task? _consumerTask;
+
+	public TextToSpeech()
+	{
+		// DropOldest silently discards the oldest queued request on overflow; the itemDropped callback keeps the in-flight count honest.
+		_queue = Channel.CreateBounded<SpeechRequest>(
+			new BoundedChannelOptions( 64 ) { FullMode = BoundedChannelFullMode.DropOldest, SingleReader = true },
+			droppedRequest => DecrementSlotInFlight( droppedRequest.SlotIndex ) );
+	}
 
 	// Tracks the slot currently being played so interruption is slot-specific
 	private volatile int _playingSlotIndex = -1;
@@ -85,6 +97,12 @@ public sealed partial class TextToSpeech : IDisposable
 	public int GetSlotPlayingPriority( int slotIndex ) => _playingSlotIndex == slotIndex ? _playingPriority : int.MaxValue;
 
 	/// <summary>
+	/// Returns true if the given voice slot has any request that is queued or currently playing.
+	/// Safe to call from any thread.
+	/// </summary>
+	public bool IsSlotBusy( int slotIndex ) => _slotInFlightCounts.TryGetValue( slotIndex, out var count ) && count > 0;
+
+	/// <summary>
 	/// Enqueues a TTS request for the given voice slot and text.
 	/// Returns immediately; playback happens asynchronously.
 	/// </summary>
@@ -119,7 +137,10 @@ public sealed partial class TextToSpeech : IDisposable
 		var request = new SpeechRequest( slotIndex, slot.VoiceId, settings.CommentaryElevenLabsLanguage, text, priority, slot.Stability, slot.Style, slot.SimilarityBoost, slot.SpeakerBoost );
 
 		// Non-blocking try-write; channel drops oldest on overflow
-		_queue.Writer.TryWrite( request );
+		if ( _queue.Writer.TryWrite( request ) )
+		{
+			_slotInFlightCounts.AddOrUpdate( slotIndex, 1, ( _, count ) => count + 1 );
+		}
 	}
 
 	/// <summary>
@@ -172,6 +193,12 @@ public sealed partial class TextToSpeech : IDisposable
 	// Queue consumer
 	// -------------------------------------------------------------------------
 
+	/// <summary>Decrements the in-flight count for a slot (clamped at zero) once its request is dropped or finished.</summary>
+	private void DecrementSlotInFlight( int slotIndex )
+	{
+		_slotInFlightCounts.AddOrUpdate( slotIndex, 0, ( _, count ) => count > 0 ? count - 1 : 0 );
+	}
+
 	private async Task ConsumeQueueAsync( CancellationToken cancellationToken )
 	{
 		try
@@ -189,6 +216,10 @@ public sealed partial class TextToSpeech : IDisposable
 				catch ( Exception ex )
 				{
 					App.Instance!.Logger.WriteLine( $"[TextToSpeech] Unhandled error processing request: {ex.Message}" );
+				}
+				finally
+				{
+					DecrementSlotInFlight( request.SlotIndex );
 				}
 			}
 		}
