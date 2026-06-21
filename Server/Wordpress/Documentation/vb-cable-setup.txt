@@ -4,7 +4,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Speech To Text (STT) – capturing iRacing voice chat audio</li>
+<li>Captions – capturing iRacing voice chat audio</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -182,7 +182,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>For the MAIRA Speech-to-Text feature<!-- wp:list -->
+<li>For the MAIRA Captions feature<!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
 <li>Go to Audio</li>
 <!-- /wp:list-item -->
@@ -199,7 +199,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>When using both the Wheel LFE and Speech-to-Text features, I like to use CABLE-A for the voice chat, and CABLE-B ("B" for Bass Shaker) for the LFE.</p>
+<p>When using both the Wheel LFE and Captions features, I like to use CABLE-A for the voice chat, and CABLE-B ("B" for Bass Shaker) for the LFE.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

@@ -291,6 +291,10 @@
 
 <!-- wp:list-item -->
 <li>No need to run the Trading Paints app</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Optionally delete downloaded paints (keeping your own) when iRacing closes, to keep your paint folder from filling up</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

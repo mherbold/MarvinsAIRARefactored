@@ -404,6 +404,6 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/speech-to-text/" data-type="page" data-id="174">Speech to Text</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/captions/" data-type="page" data-id="174">Captions</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

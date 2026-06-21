@@ -198,15 +198,15 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Set this to be how strong you want the main weight of the force feedback experience to be, when using the auto-strength feature.</p>
+<p>Set this to how strong (in Nm) you want the main weight of the force feedback experience to be, when using the auto-strength feature.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>If you have a 20 Nm wheelbase, setting this to 50% means you only want to use half (10 Nm) when taking corners.  The rest is reserved for spikes (curb strikes, bananas, collisions, etc.)</p>
+<p>For example, if you have a 20 Nm wheelbase, setting this to 10 Nm means you only want to use half of your wheel for the main weight of cornering.  The rest (the remaining 10 Nm) is reserved for spikes (curb strikes, bananas, collisions, etc.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>You may want to set this to higher than 100% if you have a weak wheelbase, however this does mean the force feedback signal will clip when taking intense corners.</p>
+<p>Setting this closer to your Wheel Force uses more of your wheelbase for the main cornering weight, which leaves less headroom for spikes (so they may clip). Auto Target cannot be set higher than your Wheel Force.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -921,18 +921,6 @@
 
 <!-- wp:paragraph -->
 <p>Smooth fade-in/out of steering torque as iRacing transitions on/off track.</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: ON</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Enable Logitech RPM lights</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Uses Logitech’s LED SDK to drive RPM LEDs (when available).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->

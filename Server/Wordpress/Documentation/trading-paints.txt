@@ -122,7 +122,7 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/speech-to-text/" data-type="page" data-id="174">Speech to Text</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/captions/" data-type="page" data-id="174">Captions</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

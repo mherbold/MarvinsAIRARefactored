@@ -253,7 +253,7 @@ namespace MarvinsAIRARefactored.Controls
 					return "advanced/commentary/";
 
 				case AppPage.SpeechToText:
-					return "advanced/speech-to-text/";
+					return "advanced/captions/";
 
 				case AppPage.TradingPaints:
 					return "advanced/trading-paints/";
