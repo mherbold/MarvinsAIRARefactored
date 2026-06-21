@@ -4,6 +4,8 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Threading;
 
 #if ADMINBOXX
 
@@ -136,7 +138,63 @@ namespace MarvinsAIRARefactored.Controls
 
 				MenuPopup.HorizontalOffset = horizontalOffset + 1;
 				MenuPopup.HorizontalOffset = horizontalOffset;
+
+				// The window may have been moved to a shorter monitor while the menu was open, so the
+				// amount of vertical space below the card can change. Recompute the scroll cap to match.
+				UpdateMenuMaxHeight();
 			}
+		}
+
+		private void MenuPopup_Opened( object sender, EventArgs e )
+		{
+			// Wait until the popup has been laid out and placed on screen, otherwise PointToScreen below
+			// returns a stale position. Loaded priority runs after layout/render for this open.
+			Dispatcher.BeginInvoke( DispatcherPriority.Loaded, new Action( UpdateMenuMaxHeight ) );
+		}
+
+		// On a small / low-resolution monitor the menu card can be taller than the screen, which used to
+		// clip the bottom menu items (and the helmet artwork) off the visible area. The card content lives
+		// in a ScrollViewer whose vertical scrollbar is set to Auto, but it never engaged because nothing
+		// capped its height. Here we cap MenuScrollViewer.MaxHeight to the space remaining between the
+		// ScrollViewer's top and the bottom of the work area of the monitor it is on, so the card always
+		// fits and the scrollbar appears whenever the items don't.
+		private void UpdateMenuMaxHeight()
+		{
+			if ( !MenuPopup.IsOpen )
+			{
+				return;
+			}
+
+			// PointToScreen returns physical pixels and already reflects both the inherited AppUIScale
+			// (the popup content is scaled by the placement target's ancestor transform) and the monitor
+			// DPI, so the on-screen top is measured directly without any manual scaling.
+			var scrollViewerTop = MenuScrollViewer.PointToScreen( new System.Windows.Point( 0, 0 ) );
+
+			var screen = System.Windows.Forms.Screen.FromPoint( new System.Drawing.Point( (int) scrollViewerTop.X, (int) scrollViewerTop.Y ) );
+
+			var availablePhysical = screen.WorkingArea.Bottom - scrollViewerTop.Y;
+
+			// Convert the available physical height back into the ScrollViewer's own (unscaled) coordinate
+			// space: divide out the monitor DPI and the global AppUIScale, both of which inflate a local
+			// device-independent unit on its way to a screen pixel.
+			var dpiScaleY = VisualTreeHelper.GetDpi( MenuScrollViewer ).DpiScaleY;
+			var appUIScale = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.AppUIScale;
+			var effectiveScale = dpiScaleY * appUIScale;
+
+			if ( effectiveScale <= 0 )
+			{
+				return;
+			}
+
+			// Vertical chrome that sits below the ScrollViewer inside the card (in local units): the
+			// ScrollViewer bottom margin (10) + card padding bottom (20) + card border (2) + card margin
+			// to the screen edge (20). Subtracting it keeps that chrome on screen too.
+			const double chromeBelowScrollViewer = 52;
+
+			var maxHeight = ( availablePhysical / effectiveScale ) - chromeBelowScrollViewer;
+
+			// Never collapse the menu to nothing if the math goes sideways on an unusually tiny screen.
+			MenuScrollViewer.MaxHeight = Math.Max( 200, maxHeight );
 		}
 
 		private void Scrim_MouseDown( object sender, MouseButtonEventArgs e )

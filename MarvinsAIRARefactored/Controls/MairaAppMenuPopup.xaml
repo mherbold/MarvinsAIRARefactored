@@ -125,6 +125,7 @@
                VerticalOffset="20"
                AllowsTransparency="True"
                PopupAnimation="None"
+               Opened="MenuPopup_Opened"
                IsOpen="{Binding IsMenuOpen, ElementName=Root, Mode=OneWay}">
 
             <Border Background="{DynamicResource Brush.Background.Menu}"
@@ -141,17 +142,6 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <Image x:Name="Image"
-                           Grid.Row="0"
-                           HorizontalAlignment="Right"
-                           VerticalAlignment="Bottom"
-                           Height="300"
-                           Width="300"
-                           Margin="0,0,80,20"
-                           Source="/MarvinsAIRARefactored;component/Artwork/Misc/app-menu-helmet.png"
-                           RenderOptions.BitmapScalingMode="HighQuality"
-                           Stretch="Uniform" />
-
                     <Image x:Name="ColorImage"
                            Grid.Row="0"
                            HorizontalAlignment="Center"
@@ -167,30 +157,47 @@
                                   HorizontalScrollBarVisibility="Disabled"
                                   Margin="0,0,0,10">
 
-                        <StackPanel Orientation="Horizontal"
-                                    HorizontalAlignment="Center">
+                        <!-- The helmet lives inside the scrollable content (layered behind the columns)
+                             so it scrolls together with the menu items instead of staying pinned while
+                             the items move beneath it. -->
+                        <Grid>
 
-                            <ItemsControl ItemsSource="{Binding AppMenuItemsColumn1, ElementName=Root}"
-                                          ItemTemplate="{StaticResource AppMenuItemTemplate}"
-                                          VerticalAlignment="Top"
-                                          MinWidth="340"
-                                          Margin="10,0" />
+                            <Image x:Name="Image"
+                                   HorizontalAlignment="Right"
+                                   VerticalAlignment="Bottom"
+                                   Height="300"
+                                   Width="300"
+                                   Margin="0,0,80,20"
+                                   Source="/MarvinsAIRARefactored;component/Artwork/Misc/app-menu-helmet.png"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   Stretch="Uniform" />
 
-                            <ItemsControl x:Name="Column2Items"
-                                          ItemsSource="{Binding AppMenuItemsColumn2, ElementName=Root}"
-                                          ItemTemplate="{StaticResource AppMenuItemTemplate}"
-                                          VerticalAlignment="Top"
-                                          MinWidth="340"
-                                          Margin="10,0" />
+                            <StackPanel Orientation="Horizontal"
+                                        HorizontalAlignment="Center">
 
-                            <ItemsControl x:Name="Column3Items"
-                                          ItemsSource="{Binding AppMenuItemsColumn3, ElementName=Root}"
-                                          ItemTemplate="{StaticResource AppMenuItemTemplate}"
-                                          VerticalAlignment="Top"
-                                          MinWidth="340"
-                                          Margin="10,0" />
+                                <ItemsControl ItemsSource="{Binding AppMenuItemsColumn1, ElementName=Root}"
+                                              ItemTemplate="{StaticResource AppMenuItemTemplate}"
+                                              VerticalAlignment="Top"
+                                              MinWidth="340"
+                                              Margin="10,0" />
 
-                        </StackPanel>
+                                <ItemsControl x:Name="Column2Items"
+                                              ItemsSource="{Binding AppMenuItemsColumn2, ElementName=Root}"
+                                              ItemTemplate="{StaticResource AppMenuItemTemplate}"
+                                              VerticalAlignment="Top"
+                                              MinWidth="340"
+                                              Margin="10,0" />
+
+                                <ItemsControl x:Name="Column3Items"
+                                              ItemsSource="{Binding AppMenuItemsColumn3, ElementName=Root}"
+                                              ItemTemplate="{StaticResource AppMenuItemTemplate}"
+                                              VerticalAlignment="Top"
+                                              MinWidth="340"
+                                              Margin="10,0" />
+
+                            </StackPanel>
+
+                        </Grid>
 
                     </ScrollViewer>
 
