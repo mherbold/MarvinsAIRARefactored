@@ -1752,7 +1752,10 @@
     <value> ժ</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Ջնջել ներկերը iRacing-ը փակվելիս</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Թարմացումների ստուգում ընդմիջումով</value>
   </data>
+
 
 
 

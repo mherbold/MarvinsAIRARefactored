@@ -57,6 +57,14 @@ public class CloudService
 			return;
 		}
 
+		// The startup check (fired from App_Startup) is gated only on AppCheckForUpdates. Recurring interval
+		// re-checks additionally require AppCheckForUpdatesOnInterval, so the user can keep the launch check
+		// while disabling the periodic re-checks.
+		if ( !DataContext.DataContext.Instance.Settings.AppCheckForUpdatesOnInterval )
+		{
+			return;
+		}
+
 		// Never check for updates while the iRacing simulator is running.
 		if ( app.Simulator.IsConnected )
 		{

@@ -1752,7 +1752,10 @@
     <value> ч</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Удалять окраски при закрытии iRacing</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Проверять обновления по интервалу</value>
   </data>
+
 
 
 

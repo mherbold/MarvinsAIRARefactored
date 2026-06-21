@@ -1793,7 +1793,10 @@
     <value> hr</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Delete Paints When iRacing Closes</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Check For Updates On Interval</value>
   </data>
+
 
 
 

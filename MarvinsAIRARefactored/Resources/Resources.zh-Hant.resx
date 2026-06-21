@@ -1793,7 +1793,10 @@
     <value> 小時</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing 關閉時刪除塗裝</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>依間隔檢查更新</value>
   </data>
+
 
 
 

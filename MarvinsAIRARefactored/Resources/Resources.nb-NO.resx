@@ -1752,7 +1752,10 @@
     <value> t</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Slett maling når iRacing lukkes</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Se etter oppdateringer med intervall</value>
   </data>
+
 
 
 

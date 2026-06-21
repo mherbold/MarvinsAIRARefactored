@@ -1752,7 +1752,10 @@
     <value> sa</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing kapanınca boyamaları sil</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Güncellemeleri Aralıkla Kontrol Et</value>
   </data>
+
 
 
 

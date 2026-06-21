@@ -1752,7 +1752,10 @@
     <value> h</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Smazat malby při zavření iRacing</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Kontrola aktualizací v intervalu</value>
   </data>
+
 
 
 

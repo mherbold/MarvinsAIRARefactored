@@ -14236,6 +14236,27 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region App - Check for updates on interval
+
+	private bool _appCheckForUpdatesOnInterval = true;
+
+	public bool AppCheckForUpdatesOnInterval
+	{
+		get => _appCheckForUpdatesOnInterval;
+
+		set
+		{
+			if ( value != _appCheckForUpdatesOnInterval )
+			{
+				_appCheckForUpdatesOnInterval = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region App - Update check interval
 
 	private float _appUpdateCheckIntervalHours = 1f;

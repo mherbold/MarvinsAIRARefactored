@@ -1758,7 +1758,10 @@
     <value> год</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Видаляти забарвлення під час закриття iRacing</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Перевіряти оновлення з інтервалом</value>
   </data>
+
 
 
 

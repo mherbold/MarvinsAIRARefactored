@@ -1752,7 +1752,10 @@
     <value> godz.</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Usuń malowania po zamknięciu iRacing</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Sprawdzaj aktualizacje w odstępach</value>
   </data>
+
 
 
 

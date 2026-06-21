@@ -1752,7 +1752,10 @@
     <value> h</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Șterge vopselele la închiderea iRacing</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Verifică actualizări la interval</value>
   </data>
+
 
 
 

@@ -1752,7 +1752,10 @@
     <value> awr</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Dileu paent pan fydd iRacing yn cau</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Gwirio am Ddiweddariadau ar Gyfwng</value>
   </data>
+
 
 
 

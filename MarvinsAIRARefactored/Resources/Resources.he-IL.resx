@@ -1752,7 +1752,10 @@
     <value> שע'</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>מחק צביעות בעת סגירת iRacing</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>בדיקת עדכונים במרווחים</value>
   </data>
+
 
 
 

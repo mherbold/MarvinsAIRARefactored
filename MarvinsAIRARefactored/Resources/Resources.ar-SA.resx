@@ -1793,7 +1793,10 @@
     <value> س</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>حذف الطلاءات عند إغلاق iRacing</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>التحقق من التحديثات على فترات</value>
   </data>
+
 
 
 

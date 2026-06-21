@@ -1793,7 +1793,10 @@
     <value> घं</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing बंद होने पर पेंट हटाएं</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>अंतराल पर अपडेट जांचें</value>
   </data>
+
 
 
 

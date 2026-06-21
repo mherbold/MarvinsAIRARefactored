@@ -1752,7 +1752,10 @@
     <value> ó</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Festések törlése az iRacing bezárásakor</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>Frissítések keresése időközönként</value>
   </data>
+
 
 
 

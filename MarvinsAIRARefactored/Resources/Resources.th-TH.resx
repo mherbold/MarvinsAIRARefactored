@@ -1752,7 +1752,10 @@
     <value> ชม.</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>ลบลายสีเมื่อปิด iRacing</value>
+  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+    <value>ตรวจสอบการอัปเดตตามช่วงเวลา</value>
   </data>
+
 
 
 
