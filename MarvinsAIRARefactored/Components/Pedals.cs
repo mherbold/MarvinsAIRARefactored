@@ -437,7 +437,7 @@ public class Pedals
 
 	private (bool, float, float) DoShiftRPMEffect( App app, float amplitude )
 	{
-		if ( _testing || ( app.Simulator.RPM >= app.Simulator.ShiftLightsShiftRPM ) )
+		if ( _testing || ( ( app.Simulator.RPM >= app.Simulator.ShiftLightsShiftRPM ) && ( app.Simulator.NumForwardGears > 0 ) && ( app.Simulator.Gear < app.Simulator.NumForwardGears ) ) )
 		{
 			var settings = DataContext.DataContext.Instance.Settings;
 			var frequency = MathZ.Lerp( settings.PedalsMinimumFrequency, settings.PedalsMaximumFrequency, MathF.Pow( settings.PedalsShiftRPMFrequency, MathZ.CurveToPower( settings.PedalsFrequencyCurve ) ) );
