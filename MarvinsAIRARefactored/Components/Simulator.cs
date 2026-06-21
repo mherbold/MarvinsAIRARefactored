@@ -453,6 +453,7 @@ public partial class Simulator
 		app.SteeringEffects.SimulatorDisconnected();
 		app.SpeechToText.SimulatorDisconnected();
 		app.AppManager.SimulatorDisconnected();
+		app.TradingPaints.SimulatorDisconnected();
 
 		app.TimingMarkers.Reset();
 

@@ -1791,7 +1791,10 @@
     <value>업데이트 확인 간격</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> 시간</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>iRacing 종료 시 페인트 삭제</value>
   </data>
+
 
 
 

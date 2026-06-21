@@ -1791,7 +1791,10 @@
     <value>अपडेट जांच अंतराल</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> घं</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>iRacing बंद होने पर पेंट हटाएं</value>
   </data>
+
 
 
 

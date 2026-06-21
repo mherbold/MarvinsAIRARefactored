@@ -1750,7 +1750,10 @@
     <value>Güncelleme Kontrol Aralığı</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> sa</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>iRacing kapanınca boyamaları sil</value>
   </data>
+
 
 
 

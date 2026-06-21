@@ -1791,7 +1791,10 @@
     <value>Update Check Interval</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> hr</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Delete Paints When iRacing Closes</value>
   </data>
+
 
 
 

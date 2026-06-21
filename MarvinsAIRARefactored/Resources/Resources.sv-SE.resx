@@ -1750,7 +1750,10 @@
     <value>Intervall för uppdateringskontroll</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> tim</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Ta bort målningar när iRacing stängs</value>
   </data>
+
 
 
 

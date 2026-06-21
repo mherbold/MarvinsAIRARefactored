@@ -1755,7 +1755,10 @@ Hier ist der Link zum Spenden:</value>
     <value>Intervall für Updateprüfung</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> Std</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Paints löschen, wenn iRacing schließt</value>
   </data>
+
 
 
 

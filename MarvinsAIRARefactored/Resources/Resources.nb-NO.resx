@@ -1750,7 +1750,10 @@
     <value>Intervall for oppdateringssjekk</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> t</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Slett maling når iRacing lukkes</value>
   </data>
+
 
 
 

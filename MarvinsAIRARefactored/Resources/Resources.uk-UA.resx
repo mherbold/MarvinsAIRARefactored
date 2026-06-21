@@ -1756,7 +1756,10 @@
     <value>Інтервал перевірки оновлень</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> год</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Видаляти забарвлення під час закриття iRacing</value>
   </data>
+
 
 
 

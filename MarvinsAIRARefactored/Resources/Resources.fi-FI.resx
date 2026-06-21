@@ -1750,7 +1750,10 @@
     <value>Päivitysten tarkistusväli</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Poista maalaukset, kun iRacing suljetaan</value>
   </data>
+
 
 
 

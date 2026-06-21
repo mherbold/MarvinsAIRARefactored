@@ -1791,7 +1791,10 @@
     <value>الفاصل الزمني للتحقق من التحديثات</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> س</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>حذف الطلاءات عند إغلاق iRacing</value>
   </data>
+
 
 
 

@@ -1750,7 +1750,10 @@
     <value>Cyfwng Gwirio am Ddiweddariadau</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> awr</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Dileu paent pan fydd iRacing yn cau</value>
   </data>
+
 
 
 

@@ -18,6 +18,11 @@ public class TradingPaints
 	private static readonly HttpClient _http = CreateHttpClient();
 
 	private readonly HashSet<int> _seenUserIds = [];
+
+	// paint files downloaded during the current simulator session, and the subset that belong to the player
+	private readonly HashSet<string> _downloadedPaintFilePaths = new( StringComparer.OrdinalIgnoreCase );
+	private readonly HashSet<string> _playerPaintFilePaths = new( StringComparer.OrdinalIgnoreCase );
+
 	private readonly Lock _lock = new();
 
 	private readonly CancellationTokenSource _cancellationTokenSource = new();
@@ -103,6 +108,58 @@ public class TradingPaints
 		}
 	}
 
+	public void SimulatorDisconnected()
+	{
+		var app = App.Instance!;
+
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		var deletePaintFiles = settings.TradingPaintsEnabled && settings.TradingPaintsDeletePaintsOnSimulatorExit;
+
+		using ( _lock.EnterScope() )
+		{
+			if ( deletePaintFiles && ( _downloadedPaintFilePaths.Count > 0 ) )
+			{
+				app.Logger.WriteLine( "[TradingPaints] SimulatorDisconnected >>>" );
+
+				var deletedFileCount = 0;
+
+				foreach ( var paintFilePath in _downloadedPaintFilePaths )
+				{
+					// never delete the player's own paint files
+
+					if ( _playerPaintFilePaths.Contains( paintFilePath ) )
+					{
+						continue;
+					}
+
+					try
+					{
+						if ( File.Exists( paintFilePath ) )
+						{
+							File.Delete( paintFilePath );
+
+							deletedFileCount++;
+						}
+					}
+					catch ( Exception ex )
+					{
+						app.Logger.WriteLine( $"[TradingPaints] ERROR: Could not delete paint file '{paintFilePath}': {ex.Message}" );
+					}
+				}
+
+				app.Logger.WriteLine( $"[TradingPaints] Deleted {deletedFileCount} downloaded paint file(s)" );
+
+				app.Logger.WriteLine( "[TradingPaints] <<< SimulatorDisconnected" );
+			}
+
+			// always start the next simulator session with a clean slate
+
+			_downloadedPaintFilePaths.Clear();
+			_playerPaintFilePaths.Clear();
+		}
+	}
+
 	private async Task UpdateAsync()
 	{
 		var app = App.Instance!;
@@ -158,6 +215,10 @@ public class TradingPaints
 		var settings = DataContext.DataContext.Instance.Settings;
 
 		var sessionInfo = app.Simulator.IRSDK.Data.SessionInfo;
+
+		// the player's own user id (paint file keys are stored as absolute values)
+
+		var playerUserID = Math.Abs( sessionInfo.DriverInfo.DriverUserID );
 
 		// set super speedway flag
 
@@ -304,6 +365,18 @@ public class TradingPaints
 					}
 
 					File.Move( temporaryPath, finalPath );
+				}
+
+				// remember this paint file so we can optionally delete it when the simulator exits
+
+				using ( _lock.EnterScope() )
+				{
+					_downloadedPaintFilePaths.Add( finalPath );
+
+					if ( asset.UserID == playerUserID )
+					{
+						_playerPaintFilePaths.Add( finalPath );
+					}
 				}
 			}
 			catch

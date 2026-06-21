@@ -1750,7 +1750,10 @@
     <value>Interval kontroly aktualizací</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Smazat malby při zavření iRacing</value>
   </data>
+
 
 
 

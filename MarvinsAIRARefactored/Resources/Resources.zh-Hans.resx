@@ -1750,7 +1750,10 @@
     <value>更新检查间隔</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> 小时</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>iRacing 关闭时删除涂装</value>
   </data>
+
 
 
 

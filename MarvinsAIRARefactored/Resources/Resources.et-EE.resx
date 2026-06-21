@@ -1791,7 +1791,10 @@
     <value>Värskenduste kontrolli intervall</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> t</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Kustuta värvingud iRacingu sulgemisel</value>
   </data>
+
 
 
 

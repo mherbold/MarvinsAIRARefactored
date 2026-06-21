@@ -1753,7 +1753,10 @@
     <value>更新チェック間隔</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> 時間</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>iRacing 終了時にペイントを削除</value>
   </data>
+
 
 
 

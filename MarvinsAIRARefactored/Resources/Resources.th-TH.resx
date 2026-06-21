@@ -1750,7 +1750,10 @@
     <value>ช่วงเวลาตรวจสอบการอัปเดต</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> ชม.</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>ลบลายสีเมื่อปิด iRacing</value>
   </data>
+
 
 
 

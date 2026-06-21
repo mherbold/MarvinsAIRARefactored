@@ -1750,7 +1750,10 @@
     <value>Interval de comprovació d'actualitzacions</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Elimina les pintures en tancar iRacing</value>
   </data>
+
 
 
 

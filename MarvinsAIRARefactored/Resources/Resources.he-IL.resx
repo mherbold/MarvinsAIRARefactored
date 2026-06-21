@@ -1750,7 +1750,10 @@
     <value>מרווח בדיקת עדכונים</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> שע'</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>מחק צביעות בעת סגירת iRacing</value>
   </data>
+
 
 
 

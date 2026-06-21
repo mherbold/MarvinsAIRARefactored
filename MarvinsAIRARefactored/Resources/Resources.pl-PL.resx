@@ -1750,7 +1750,10 @@
     <value>Interwał sprawdzania aktualizacji</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> godz.</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Usuń malowania po zamknięciu iRacing</value>
   </data>
+
 
 
 

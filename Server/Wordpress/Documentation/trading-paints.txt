@@ -41,6 +41,40 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Delete Paints When iRacing Closes</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When enabled, MAIRA cleans up the paints it downloaded once the iRacing simulator closes, so they don’t accumulate in your paint folder over time.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>What happens when enabled</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>MAIRA keeps track of every paint file it downloads during the session.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>When iRacing closes, those downloaded paint files are deleted from your paint folder.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Your own paint files are always kept — only paints MAIRA downloaded for other drivers are removed.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Paint files that were already in your folder before MAIRA downloaded anything are left untouched.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">iRacing Paint Folder</p>
 <!-- /wp:paragraph -->
 

@@ -39,11 +39,18 @@
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
-                    <controls:MairaSwitch Grid.Row="0"
-                                          Grid.Column="0"
-                                          IsOn="{Binding Settings.TradingPaintsEnabled, Mode=TwoWay}"
-                                          Label="{Binding Localization[Enabled]}"
-                                          LabelPosition="Top" />
+                    <StackPanel Grid.Row="0"
+                                Grid.Column="0"
+                                Grid.ColumnSpan="3">
+
+                        <controls:MairaSwitch IsOn="{Binding Settings.TradingPaintsEnabled, Mode=TwoWay}"
+                                              Label="{Binding Localization[Enabled]}" />
+
+                        <controls:MairaSwitch Margin="0,10,0,0"
+                                              IsOn="{Binding Settings.TradingPaintsDeletePaintsOnSimulatorExit, Mode=TwoWay}"
+                                              Label="{Binding Localization[DeletePaintsOnSimulatorExit]}" />
+
+                    </StackPanel>
 
                     <Image Grid.Row="0"
                            Grid.Column="5"

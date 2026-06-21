@@ -13568,6 +13568,27 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Trading paints - Delete paints on simulator exit
+
+	private bool _tradingPaintsDeletePaintsOnSimulatorExit = false;
+
+	public bool TradingPaintsDeletePaintsOnSimulatorExit
+	{
+		get => _tradingPaintsDeletePaintsOnSimulatorExit;
+
+		set
+		{
+			if ( value != _tradingPaintsDeletePaintsOnSimulatorExit )
+			{
+				_tradingPaintsDeletePaintsOnSimulatorExit = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Trading paints - Folder
 
 	private string _tradingPaintsFolder = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), "iRacing", "paint" );

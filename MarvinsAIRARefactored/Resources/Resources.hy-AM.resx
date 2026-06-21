@@ -1750,7 +1750,10 @@
     <value>Թարմացումների ստուգման ընդմիջում</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> ժ</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Ջնջել ներկերը iRacing-ը փակվելիս</value>
   </data>
+
 
 
 

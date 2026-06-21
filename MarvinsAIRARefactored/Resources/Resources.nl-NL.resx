@@ -1750,7 +1750,10 @@
     <value>Interval voor updatecontrole</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> u</value>
+  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+    <value>Paints verwijderen wanneer iRacing sluit</value>
   </data>
+
 
 
 
