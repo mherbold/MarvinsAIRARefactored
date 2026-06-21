@@ -3,9 +3,14 @@ using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using System.Windows.Threading;
+
+using Windows.Win32;
+using Windows.Win32.Foundation;
+using Windows.Win32.UI.WindowsAndMessaging;
 
 using Simagic;
 
@@ -517,19 +522,58 @@ public partial class MainWindow : Window
 
 	public void MakeWindowVisible()
 	{
+		// Restore to the normal state BEFORE the first Show(). When the app starts minimized to the
+		// system tray the window has never been shown, so its first Show() would otherwise happen
+		// while WindowState is still Minimized - WPF then creates its render surface at the minimized
+		// (zero) size and the client area paints black until a later resize forces a recompose. Going
+		// Normal first makes WPF compose at the real window size, so content renders immediately.
+		WindowState = WindowState.Normal;
+
 		Show();
 
-		WindowState = WindowState.Normal;
+		ForceWindowToForeground();
 
 		Activate();
 
-		if ( !MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.AppTopmostWindowEnabled )
+		Focus();
+	}
+
+	// Forces the main window to the foreground, working around Windows' foreground lock.
+	//
+	// When the app is launched with "start minimized to system tray", MainWindow.Show() is never
+	// called at startup, so the process never owns the foreground. Windows then forbids it from
+	// calling SetForegroundWindow, and a plain Show()/Activate()/Focus() only flashes the taskbar
+	// button (the window won't appear until the user manually alt-tabs to it). Temporarily attaching
+	// our input queue to the current foreground window's thread lifts that restriction long enough
+	// to legitimately take the foreground.
+	private void ForceWindowToForeground()
+	{
+		var hwnd = (HWND) new WindowInteropHelper( this ).EnsureHandle();
+
+		var foregroundHwnd = PInvoke.GetForegroundWindow();
+
+		if ( foregroundHwnd == hwnd )
 		{
-			Topmost = true;
-			Topmost = false;
+			return;
 		}
 
-		Focus();
+		var currentThreadId = PInvoke.GetCurrentThreadId();
+		var foregroundThreadId = PInvoke.GetWindowThreadProcessId( foregroundHwnd, out _ );
+
+		var attachedToForegroundThread = false;
+
+		if ( ( foregroundThreadId != 0 ) && ( foregroundThreadId != currentThreadId ) )
+		{
+			attachedToForegroundThread = PInvoke.AttachThreadInput( currentThreadId, foregroundThreadId, true );
+		}
+
+		_ = PInvoke.ShowWindow( hwnd, SHOW_WINDOW_CMD.SW_RESTORE );
+		_ = PInvoke.SetForegroundWindow( hwnd );
+
+		if ( attachedToForegroundThread )
+		{
+			PInvoke.AttachThreadInput( currentThreadId, foregroundThreadId, false );
+		}
 	}
 
 	private void ExitApp()
