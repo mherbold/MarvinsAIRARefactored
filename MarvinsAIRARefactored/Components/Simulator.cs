@@ -1,4 +1,4 @@
-
+﻿
 using System.Globalization;
 using System.IO;
 using System.Text.RegularExpressions;
@@ -1034,21 +1034,24 @@ public partial class Simulator
 		{
 			if ( ( settings.RacingWheelCurbProtectionShockVelocity > 0f ) && ( settings.RacingWheelCurbProtectionDuration > 0f ) && ( settings.RacingWheelCurbProtectionForceReduction > 0f ) )
 			{
-				var maxShockVelocity = 0f;
-
-				for ( var i = 0; i < SamplesPerFrame360Hz; i++ )
+				if ( _activeResetBlockTimerFrames <= 0 )
 				{
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CFShockVel_ST[ i ] ) );
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CRShockVel_ST[ i ] ) );
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LFShockVel_ST[ i ] ) );
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LRShockVel_ST[ i ] ) );
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RFShockVel_ST[ i ] ) );
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RRShockVel_ST[ i ] ) );
-				}
+					var maxShockVelocity = 0f;
 
-				if ( maxShockVelocity >= settings.RacingWheelCurbProtectionShockVelocity )
-				{
-					app.RacingWheel.ActivateCurbProtection = true;
+					for ( var i = 0; i < SamplesPerFrame360Hz; i++ )
+					{
+						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CFShockVel_ST[ i ] ) );
+						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CRShockVel_ST[ i ] ) );
+						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LFShockVel_ST[ i ] ) );
+						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LRShockVel_ST[ i ] ) );
+						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RFShockVel_ST[ i ] ) );
+						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RRShockVel_ST[ i ] ) );
+					}
+
+					if ( maxShockVelocity >= settings.RacingWheelCurbProtectionShockVelocity )
+					{
+						app.RacingWheel.ActivateCurbProtection = true;
+					}
 				}
 			}
 		}
