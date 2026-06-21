@@ -98,7 +98,8 @@ function compute_metrics(): array
 		}
 
 		foreach ( $pdo->query( "SELECT g.countryCode AS cc, g.city AS city,
-				ROUND(AVG(g.lat),4) AS lat, ROUND(AVG(g.lon),4) AS lon, COUNT(*) AS users
+				ROUND(AVG(g.lat),4) AS lat, ROUND(AVG(g.lon),4) AS lon, COUNT(*) AS users,
+				COALESCE(ROUND(AVG(u.hits),1),0) AS avg_hits, COALESCE(SUM(u.hits),0) AS total_hits
 			FROM ( $latestIpPerUser ) latest
 			JOIN ip_geo g ON g.ipAddress = latest.ip
 			JOIN users  u ON u.id = latest.userId AND u." . REAL_USERS . "
@@ -106,7 +107,8 @@ function compute_metrics(): array
 			GROUP BY g.countryCode, g.city ORDER BY users DESC" ) as $row )
 		{
 			$cities[] = [ 'cc' => $row[ 'cc' ], 'city' => $row[ 'city' ],
-				'lat' => (float) $row[ 'lat' ], 'lon' => (float) $row[ 'lon' ], 'users' => (int) $row[ 'users' ] ];
+				'lat' => (float) $row[ 'lat' ], 'lon' => (float) $row[ 'lon' ], 'users' => (int) $row[ 'users' ],
+				'avg_hits' => (float) $row[ 'avg_hits' ], 'hits' => (int) $row[ 'total_hits' ] ];
 		}
 	}
 
@@ -194,6 +196,13 @@ if ( ( $_GET[ 'format' ] ?? '' ) === 'json' )
 	.chartbox.short { height: 240px; }
 	#map { height: 420px; border-radius: 12px; overflow: hidden; }
 	.leaflet-container { background: #0d1017; }
+	.maplegend { background: rgba(20,25,34,.92); color: var(--text); padding: 8px 10px; border-radius: 8px; font-size: 12px; line-height: 1.5; border: 1px solid var(--line); }
+	.maplegend .row { display: flex; align-items: center; gap: 5px; margin-top: 5px; }
+	.maplegend .row.sz { color: var(--muted); margin-top: 6px; }
+	.maplegend .sw { width: 13px; height: 13px; border-radius: 50%; display: inline-block; }
+	.maplegend .heatbar { height: 10px; width: 132px; border-radius: 5px; margin-top: 5px;
+		background: linear-gradient(90deg, rgb(38,70,220), rgb(0,180,216), rgb(80,200,120), rgb(255,214,64), rgb(255,138,30), rgb(224,36,36)); }
+	.maplegend .heatlabels { display: flex; justify-content: space-between; color: var(--muted); margin-top: 2px; }
 	.countries { list-style: none; margin: 0; padding: 0; max-height: 420px; overflow: auto; }
 	.countries li { display: flex; align-items: center; gap: 10px; padding: 7px 4px; border-bottom: 1px solid var(--line); }
 	.countries .flag { font-size: 18px; width: 24px; }
@@ -329,6 +338,41 @@ function paintCountries(d) {
 	document.getElementById('geoCoverage').textContent = cov.ips_total ? `· ${fmt(cov.ips_located)} of ${fmt(cov.ips_total)} IPs located` : '';
 }
 
+// Heatmap color by total checks in the city: blue (cold) -> red (hot), saturating at 150+.
+const HEAT = [
+	[0.00, [ 38,  70, 220]],   // blue
+	[0.30, [  0, 180, 216]],   // cyan
+	[0.55, [ 80, 200, 120]],   // green
+	[0.75, [255, 214,  64]],   // yellow
+	[0.90, [255, 138,  30]],   // orange
+	[1.00, [224,  36,  36]],   // red
+];
+function hitColor(h) {
+	const t = Math.max(0, Math.min(1, (h - 1) / 149));
+	for (let i = 1; i < HEAT.length; i++) {
+		if (t <= HEAT[i][0]) {
+			const t0 = HEAT[i-1][0], c0 = HEAT[i-1][1], t1 = HEAT[i][0], c1 = HEAT[i][1];
+			const f = (t - t0) / (t1 - t0);
+			const c = c0.map((v, j) => Math.round(v + (c1[j] - v) * f));
+			return `rgb(${c[0]},${c[1]},${c[2]})`;
+		}
+	}
+	return 'rgb(224,36,36)';
+}
+
+function addMapLegend() {
+	const lg = L.control({ position:'bottomright' });
+	lg.onAdd = () => {
+		const div = L.DomUtil.create('div', 'maplegend');
+		div.innerHTML = '<b>Total checks</b>'
+			+ '<div class="heatbar"></div>'
+			+ '<div class="heatlabels"><span>1</span><span>150+</span></div>'
+			+ '<div class="row sz">size = users</div>';
+		return div;
+	};
+	lg.addTo(map);
+}
+
 function paintMap(d) {
 	const cities = d.geo.cities || [];
 	const pending = document.getElementById('mapPending');
@@ -339,13 +383,16 @@ function paintMap(d) {
 		L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
 			attribution:'© OpenStreetMap, © CARTO', subdomains:'abcd', maxZoom:7, minZoom:1 }).addTo(map);
 		markerLayer = L.layerGroup().addTo(map);
+		addMapLegend();
 	}
 	markerLayer.clearLayers();
 	const max = Math.max(...cities.map(c=>c.users));
-	cities.forEach(c => {
+	// Draw coldest first so the hottest (highest total checks) bubbles render on top.
+	[...cities].sort((a, b) => a.hits - b.hits).forEach(c => {
 		const r = 4 + 16 * Math.sqrt(c.users / max);
-		L.circleMarker([c.lat, c.lon], { radius:r, color:'#ff7a18', weight:1, fillColor:'#ffb020', fillOpacity:.55 })
-			.bindPopup(`<b>${c.city}</b>, ${countryName(c.cc)}<br>${fmt(c.users)} user${c.users===1?'':'s'}`)
+		const col = hitColor(c.hits);
+		L.circleMarker([c.lat, c.lon], { radius:r, color:col, weight:1, fillColor:col, fillOpacity:.6 })
+			.bindPopup(`<b>${c.city}</b>, ${countryName(c.cc)}<br>${fmt(c.users)} user${c.users===1?'':'s'} · avg ${c.avg_hits} checks<br>${fmt(c.hits)} total checks`)
 			.addTo(markerLayer);
 	});
 }
