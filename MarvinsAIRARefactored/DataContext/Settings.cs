@@ -358,9 +358,16 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	// The old margin mapped the peak torque to WheelForce / (1 + margin) Nm - that torque is the new
-	// auto target. Clamped to [1, WheelForce] so it never exceeds the wheel force.
+	// auto target. Clamped to [1, WheelForce] so it never exceeds the wheel force. If the wheel force is
+	// below 1 Nm (e.g. an unconfigured context), there is no meaningful target, so just return the wheel
+	// force itself - clamping with min > max would throw an ArgumentException.
 	private static float ConvertAutoMarginToAutoTarget( float wheelForce, float autoMargin )
 	{
+		if ( wheelForce <= 1f )
+		{
+			return wheelForce;
+		}
+
 		var autoTarget = wheelForce / ( 1f + autoMargin );
 
 		return Math.Clamp( autoTarget, 1f, wheelForce );
