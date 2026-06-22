@@ -1754,7 +1754,16 @@
     <value>Poista maalaukset, kun iRacing suljetaan</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Tarkista päivitykset välein</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Harjoitus</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Aika-ajo</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Kilpailu</value>
   </data>
+
+
+
 
 
 

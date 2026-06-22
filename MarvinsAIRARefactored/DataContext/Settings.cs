@@ -14588,19 +14588,53 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Commentary — Spotter car proximity
+	#region Commentary — Spotter proximity calls (per session phase)
 
-	private bool _commentarySpotterCarProximity = true;
+	private bool _commentarySpotterProximityPractice = true;
 
-	public bool CommentarySpotterCarProximity
+	public bool CommentarySpotterProximityPractice
 	{
-		get => _commentarySpotterCarProximity;
+		get => _commentarySpotterProximityPractice;
 
 		set
 		{
-			if ( value != _commentarySpotterCarProximity )
+			if ( value != _commentarySpotterProximityPractice )
 			{
-				_commentarySpotterCarProximity = value;
+				_commentarySpotterProximityPractice = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentarySpotterProximityQualifying = true;
+
+	public bool CommentarySpotterProximityQualifying
+	{
+		get => _commentarySpotterProximityQualifying;
+
+		set
+		{
+			if ( value != _commentarySpotterProximityQualifying )
+			{
+				_commentarySpotterProximityQualifying = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentarySpotterProximityRace = true;
+
+	public bool CommentarySpotterProximityRace
+	{
+		get => _commentarySpotterProximityRace;
+
+		set
+		{
+			if ( value != _commentarySpotterProximityRace )
+			{
+				_commentarySpotterProximityRace = value;
 
 				OnPropertyChanged();
 			}
@@ -14609,19 +14643,53 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Commentary — Spotter flag calls
+	#region Commentary — Spotter flag calls (per session phase)
 
-	private bool _commentarySpotterFlagCalls = true;
+	private bool _commentarySpotterFlagCallsPractice = true;
 
-	public bool CommentarySpotterFlagCalls
+	public bool CommentarySpotterFlagCallsPractice
 	{
-		get => _commentarySpotterFlagCalls;
+		get => _commentarySpotterFlagCallsPractice;
 
 		set
 		{
-			if ( value != _commentarySpotterFlagCalls )
+			if ( value != _commentarySpotterFlagCallsPractice )
 			{
-				_commentarySpotterFlagCalls = value;
+				_commentarySpotterFlagCallsPractice = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentarySpotterFlagCallsQualifying = true;
+
+	public bool CommentarySpotterFlagCallsQualifying
+	{
+		get => _commentarySpotterFlagCallsQualifying;
+
+		set
+		{
+			if ( value != _commentarySpotterFlagCallsQualifying )
+			{
+				_commentarySpotterFlagCallsQualifying = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _commentarySpotterFlagCallsRace = true;
+
+	public bool CommentarySpotterFlagCallsRace
+	{
+		get => _commentarySpotterFlagCallsRace;
+
+		set
+		{
+			if ( value != _commentarySpotterFlagCallsRace )
+			{
+				_commentarySpotterFlagCallsRace = value;
 
 				OnPropertyChanged();
 			}

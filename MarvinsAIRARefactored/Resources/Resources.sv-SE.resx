@@ -1754,7 +1754,16 @@
     <value>Ta bort målningar när iRacing stängs</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Sök efter uppdateringar med intervall</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Träning</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Kval</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Lopp</value>
   </data>
+
+
+
 
 
 

@@ -1754,7 +1754,16 @@
     <value>iRacing 关闭时删除涂装</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>按间隔检查更新</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>练习</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>排位赛</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>正赛</value>
   </data>
+
+
+
 
 
 

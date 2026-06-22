@@ -1754,7 +1754,16 @@
     <value>Elimina les pintures en tancar iRacing</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Comprova actualitzacions a intervals</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Entrenament</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Classificació</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Cursa</value>
   </data>
+
+
+
 
 
 

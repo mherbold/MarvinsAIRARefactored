@@ -1754,7 +1754,16 @@
     <value>Smazat malby při zavření iRacing</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Kontrola aktualizací v intervalu</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Trénink</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Kvalifikace</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Závod</value>
   </data>
+
+
+
 
 
 

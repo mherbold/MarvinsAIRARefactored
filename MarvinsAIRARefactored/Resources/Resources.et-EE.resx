@@ -1795,7 +1795,16 @@
     <value>Kustuta värvingud iRacingu sulgemisel</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Kontrolli uuendusi intervalliga</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Treening</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Kvalifikatsioon</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Võistlus</value>
   </data>
+
+
+
 
 
 

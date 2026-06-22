@@ -1770,7 +1770,16 @@
     <value>Supprimer les peintures quand iRacing se ferme</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Recherche des mises à jour par intervalle</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Essais</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Qualifications</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Course</value>
   </data>
+
+
+
 
 
 

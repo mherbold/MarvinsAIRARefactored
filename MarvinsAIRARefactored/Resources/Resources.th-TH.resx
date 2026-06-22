@@ -1754,7 +1754,16 @@
     <value>ลบลายสีเมื่อปิด iRacing</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>ตรวจสอบการอัปเดตตามช่วงเวลา</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>ฝึกซ้อม</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>รอบคัดเลือก</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>แข่งขัน</value>
   </data>
+
+
+
 
 
 

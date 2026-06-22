@@ -17,6 +17,9 @@ public sealed class Commentary
 	private const int PriorityFlag      = 1;
 	private const int PriorityProximity = 3;
 
+	// Throttle Tick to 10 Hz (every 6 frames at 60 Hz) — commentary event detection does not need per-frame resolution
+	private const int UpdateInterval = 6;
+
 	// Commentary templates loaded per-language
 	private readonly CommentaryTemplates _templates = new();
 
@@ -33,6 +36,16 @@ public sealed class Commentary
 
 	// Whether the session is currently in a racing state (prevents commentary in warmup etc.)
 	private bool _isRacingActive = false;
+
+	// Tick throttle counter — staggered so component update phases don't all land on the same frame
+	private int _updateCounter = UpdateInterval + 6;
+
+	/// <summary>
+	/// Coarse session classification used to gate spotter commentary per session phase.
+	/// SessionTypes that do not map to one of these (Time Trial, Time Attack, Testing) get
+	/// <see cref="SessionPhase.None"/> and receive no spotter commentary at all.
+	/// </summary>
+	private enum SessionPhase { None, Practice, Qualifying, Race }
 
 	public void Initialize( string? language = null )
 	{
@@ -68,6 +81,15 @@ public sealed class Commentary
 	/// <summary>Called each timer tick by the App worker thread.</summary>
 	public void Tick( App app )
 	{
+		_updateCounter--;
+
+		if ( _updateCounter > 0 )
+		{
+			return;
+		}
+
+		_updateCounter = UpdateInterval;
+
 		if ( !IsCommentaryEnabled() || !_isRacingActive )
 		{
 			return;
@@ -76,22 +98,79 @@ public sealed class Commentary
 		var sim = app.Simulator;
 		var now = sim.SessionTime;
 
+		var sessionPhase = ClassifySession( sim.GetCurrentSessionType() );
+
+		// Spotter commentary is only played during practice, qualifying, and race sessions.
+		// Time Trial, Time Attack, and Testing sessions get no spotter commentary at all.
+		if ( sessionPhase == SessionPhase.None )
+		{
+			return;
+		}
+
 		// --- Flag calls (higher priority — checked first) ---
-		CheckFlagCalls( sim );
+		CheckFlagCalls( sim, sessionPhase );
 
 		// --- Spotter calls ---
-		CheckSpotterCalls( sim, now );
+		CheckSpotterCalls( sim, now, sessionPhase );
 	}
+
+	/// <summary>
+	/// Maps an iRacing SessionType string to a coarse <see cref="SessionPhase"/>:
+	/// Practice = any type containing "Practice" or "Warmup"; Qualifying = any type containing
+	/// "Qualify"; Race = "Race", "Heat", or "Consolation". Everything else maps to None.
+	/// </summary>
+	private static SessionPhase ClassifySession( string? sessionType )
+	{
+		if ( string.IsNullOrEmpty( sessionType ) )
+		{
+			return SessionPhase.None;
+		}
+
+		if ( sessionType.Contains( "Practice", StringComparison.OrdinalIgnoreCase ) || sessionType.Equals( "Warmup", StringComparison.OrdinalIgnoreCase ) )
+		{
+			return SessionPhase.Practice;
+		}
+
+		if ( sessionType.Contains( "Qualify", StringComparison.OrdinalIgnoreCase ) )
+		{
+			return SessionPhase.Qualifying;
+		}
+
+		if ( sessionType.Equals( "Race", StringComparison.OrdinalIgnoreCase )
+			|| sessionType.Equals( "Heat", StringComparison.OrdinalIgnoreCase )
+			|| sessionType.Equals( "Consolation", StringComparison.OrdinalIgnoreCase ) )
+		{
+			return SessionPhase.Race;
+		}
+
+		return SessionPhase.None;
+	}
+
+	private static bool AreProximityCallsEnabled( DataContext.Settings settings, SessionPhase sessionPhase ) => sessionPhase switch
+	{
+		SessionPhase.Practice   => settings.CommentarySpotterProximityPractice,
+		SessionPhase.Qualifying => settings.CommentarySpotterProximityQualifying,
+		SessionPhase.Race       => settings.CommentarySpotterProximityRace,
+		_                       => false
+	};
+
+	private static bool AreFlagCallsEnabled( DataContext.Settings settings, SessionPhase sessionPhase ) => sessionPhase switch
+	{
+		SessionPhase.Practice   => settings.CommentarySpotterFlagCallsPractice,
+		SessionPhase.Qualifying => settings.CommentarySpotterFlagCallsQualifying,
+		SessionPhase.Race       => settings.CommentarySpotterFlagCallsRace,
+		_                       => false
+	};
 
 	// -------------------------------------------------------------------------
 	// Event detection helpers
 	// -------------------------------------------------------------------------
 
-	private void CheckFlagCalls( Simulator sim )
+	private void CheckFlagCalls( Simulator sim, SessionPhase sessionPhase )
 	{
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		if ( !settings.CommentarySpotterEnabled || !settings.CommentarySpotterFlagCalls )
+		if ( !settings.CommentarySpotterEnabled || !AreFlagCallsEnabled( settings, sessionPhase ) )
 		{
 			return;
 		}
@@ -195,11 +274,11 @@ public sealed class Commentary
 		}
 	}
 
-	private void CheckSpotterCalls( Simulator sim, double now )
+	private void CheckSpotterCalls( Simulator sim, double now, SessionPhase sessionPhase )
 	{
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		if ( !settings.CommentarySpotterCarProximity )
+		if ( !AreProximityCallsEnabled( settings, sessionPhase ) )
 		{
 			return;
 		}

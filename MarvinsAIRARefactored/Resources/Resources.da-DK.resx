@@ -1754,7 +1754,16 @@
     <value>Slet malinger når iRacing lukker</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Søg efter opdateringer med interval</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Træning</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Kvalifikation</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Løb</value>
   </data>
+
+
+
 
 
 

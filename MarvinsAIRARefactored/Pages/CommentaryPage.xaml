@@ -742,21 +742,48 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
+                <!-- proximity calls -->
+                <StackPanel Grid.Column="2">
+
+                    <TextBlock Text="{Binding Localization[CarProximity]}"
+                               Style="{DynamicResource MairaTextBlockStyle}"
+                               Margin="0,0,0,6" />
+
+                    <controls:MairaSwitch IsOn="{Binding Settings.CommentarySpotterProximityPractice, Mode=TwoWay}"
+                                          Label="{Binding Localization[Practice]}" />
+
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          IsOn="{Binding Settings.CommentarySpotterProximityQualifying, Mode=TwoWay}"
+                                          Label="{Binding Localization[Qualifying]}" />
+
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          IsOn="{Binding Settings.CommentarySpotterProximityRace, Mode=TwoWay}"
+                                          Label="{Binding Localization[Race]}" />
+
+                </StackPanel>
+
+                <!-- flag calls -->
                 <StackPanel Grid.Column="0">
 
-                    <!-- proximity calls -->
-                    <controls:MairaSwitch IsOn="{Binding Settings.CommentarySpotterCarProximity, Mode=TwoWay}"
-                                          Label="{Binding Localization[CarProximity]}" />
+                    <TextBlock Text="{Binding Localization[FlagCalls]}"
+                               Style="{DynamicResource MairaTextBlockStyle}"
+                               Margin="0,0,0,6" />
 
-                    <!-- flag calls -->
+                    <controls:MairaSwitch IsOn="{Binding Settings.CommentarySpotterFlagCallsPractice, Mode=TwoWay}"
+                                          Label="{Binding Localization[Practice]}" />
+
                     <controls:MairaSwitch Margin="0,10,0,0"
-                                          IsOn="{Binding Settings.CommentarySpotterFlagCalls, Mode=TwoWay}"
-                                          Label="{Binding Localization[FlagCalls]}" />
+                                          IsOn="{Binding Settings.CommentarySpotterFlagCallsQualifying, Mode=TwoWay}"
+                                          Label="{Binding Localization[Qualifying]}" />
+
+                    <controls:MairaSwitch Margin="0,10,0,0"
+                                          IsOn="{Binding Settings.CommentarySpotterFlagCallsRace, Mode=TwoWay}"
+                                          Label="{Binding Localization[Race]}" />
 
                 </StackPanel>
 
                 <!-- reminder interval -->
-                <controls:MairaKnob Grid.Column="2"
+                <controls:MairaKnob Grid.Column="4"
                                     Label="{Binding Localization[CarProximityReminderInterval]}"
                                     Value="{Binding Settings.CommentarySpotterCarProximityReminderInterval, Mode=TwoWay}"
                                     ValueString="{Binding Settings.CommentarySpotterCarProximityReminderIntervalString}"

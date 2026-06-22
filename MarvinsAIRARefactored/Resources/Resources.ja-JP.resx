@@ -1757,7 +1757,16 @@
     <value>iRacing 終了時にペイントを削除</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>一定間隔で更新を確認</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>練習</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>予選</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>レース</value>
   </data>
+
+
+
 
 
 

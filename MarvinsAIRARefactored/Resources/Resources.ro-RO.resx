@@ -1754,7 +1754,16 @@
     <value>Șterge vopselele la închiderea iRacing</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Verifică actualizări la interval</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Antrenament</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Calificări</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Cursă</value>
   </data>
+
+
+
 
 
 

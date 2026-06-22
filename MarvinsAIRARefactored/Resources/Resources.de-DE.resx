@@ -1759,7 +1759,16 @@ Hier ist der Link zum Spenden:</value>
     <value>Paints löschen, wenn iRacing schließt</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>In Intervallen nach Updates suchen</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Training</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Qualifying</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Rennen</value>
   </data>
+
+
+
 
 
 

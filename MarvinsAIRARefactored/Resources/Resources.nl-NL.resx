@@ -1754,7 +1754,16 @@
     <value>Paints verwijderen wanneer iRacing sluit</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Controleer op updates met interval</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Training</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Kwalificatie</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Race</value>
   </data>
+
+
+
 
 
 

@@ -1754,7 +1754,16 @@
     <value>Excluir pinturas ao fechar o iRacing</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Verificar atualizações por intervalo</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>Treino</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>Classificação</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>Corrida</value>
   </data>
+
+
+
 
 
 

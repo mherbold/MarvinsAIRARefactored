@@ -1795,7 +1795,16 @@
     <value>حذف الطلاءات عند إغلاق iRacing</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>التحقق من التحديثات على فترات</value>
+  </data>  <data name="Practice" xml:space="preserve">
+    <value>تدريب</value>
+  </data>  <data name="Qualifying" xml:space="preserve">
+    <value>تأهيل</value>
+  </data>  <data name="Race" xml:space="preserve">
+    <value>سباق</value>
   </data>
+
+
+
 
 
 
