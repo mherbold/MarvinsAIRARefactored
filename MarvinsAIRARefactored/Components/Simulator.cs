@@ -144,6 +144,7 @@ public partial class Simulator
 	private float? _lapDistLastFrame = null;
 	private int? _radioTransmitCarIdxLastFrame = null;
 	private IRacingSdkEnum.Flags? _sessionFlagsLastFrame = null;
+	private int? _sessionNumLastFrame = null;
 	private IRacingSdkEnum.SessionState? _sessionStateLastFrame = null;
 	private int? _tickCountLastFrame = null;
 	private bool? _weatherDeclaredWetLastFrame = null;
@@ -283,6 +284,29 @@ public partial class Simulator
 				if ( driver.CarIdx == carIdx )
 				{
 					return driver;
+				}
+			}
+		}
+
+		return null;
+	}
+
+	/// <summary>
+	/// Returns the SessionType string (e.g. "Race", "Lone Qualify", "Open Practice", "Warmup")
+	/// for the currently active session, or null if it cannot be determined. The active session
+	/// is the entry in the Sessions array whose SessionNum matches the current telemetry SessionNum.
+	/// </summary>
+	public string? GetCurrentSessionType()
+	{
+		var sessionInfo = _irsdk.Data.SessionInfo;
+
+		if ( ( sessionInfo != null ) && ( sessionInfo.SessionInfo != null ) && ( sessionInfo.SessionInfo.Sessions != null ) )
+		{
+			foreach ( var session in sessionInfo.SessionInfo.Sessions )
+			{
+				if ( session.SessionNum == SessionNum )
+				{
+					return session.SessionType;
 				}
 			}
 		}
@@ -440,6 +464,7 @@ public partial class Simulator
 		_lapDistLastFrame = null;
 		_radioTransmitCarIdxLastFrame = null;
 		_sessionFlagsLastFrame = null;
+		_sessionNumLastFrame = null;
 		_sessionStateLastFrame = null;
 		_tickCountLastFrame = null;
 		_weatherDeclaredWetLastFrame = null;
@@ -781,6 +806,7 @@ public partial class Simulator
 		_lapDistLastFrame = LapDist;
 		_radioTransmitCarIdxLastFrame = RadioTransmitCarIdx;
 		_sessionFlagsLastFrame = SessionFlags;
+		_sessionNumLastFrame = SessionNum;
 		_sessionStateLastFrame = SessionState;
 		_weatherDeclaredWetLastFrame = WeatherDeclaredWet;
 
@@ -914,7 +940,14 @@ public partial class Simulator
 
 		if ( SessionFlags != _sessionFlagsLastFrame )
 		{
+			app.Logger.WriteLine( $"[Simulator] SessionFlags changed: 0x{(uint) ( _sessionFlagsLastFrame ?? 0 ):X8} -> 0x{(uint) SessionFlags:X8} ({GetSessionFlagsBreakdown( SessionFlags )})" );
+
 			app.AdminBoxx.SessionFlagsChanged();
+		}
+
+		if ( SessionNum != _sessionNumLastFrame )
+		{
+			app.Logger.WriteLine( $"[Simulator] SessionNum changed: {_sessionNumLastFrame?.ToString() ?? "(none)"} -> {SessionNum} (SessionType: {GetCurrentSessionType() ?? "(unknown)"})" );
 		}
 
 		if ( SessionState != _sessionStateLastFrame )
@@ -1115,6 +1148,33 @@ public partial class Simulator
 		// trigger the app worker thread
 
 		app.TriggerWorkerThread();
+	}
+
+	private static string GetSessionFlagsBreakdown( IRacingSdkEnum.Flags sessionFlags )
+	{
+		var bits = (uint) sessionFlags;
+
+		var bitsString = string.Empty;
+
+		foreach ( uint bitMask in Enum.GetValues( typeof( IRacingSdkEnum.Flags ) ) )
+		{
+			if ( ( bits & bitMask ) != 0 )
+			{
+				if ( bitsString != string.Empty )
+				{
+					bitsString += " | ";
+				}
+
+				bitsString += Enum.GetName( typeof( IRacingSdkEnum.Flags ), bitMask );
+			}
+		}
+
+		if ( bitsString == string.Empty )
+		{
+			bitsString = "(none)";
+		}
+
+		return bitsString;
 	}
 
 	private void UpdateTireProperties()
