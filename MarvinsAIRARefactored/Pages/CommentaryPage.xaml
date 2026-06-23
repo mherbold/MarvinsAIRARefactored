@@ -33,9 +33,10 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <controls:MairaSwitch IsOn="{Binding Settings.CommentaryEnabled, Mode=TwoWay}"
-                                      Label="{Binding Localization[Enabled]}"
-                                      LabelPosition="Top" />
+                <controls:MairaMappableSwitch IsOn="{Binding Settings.CommentaryEnabled, Mode=TwoWay}"
+                                              ButtonMappings="{Binding Settings.CommentaryEnabledButtonMappings}"
+                                              Label="{Binding Localization[Enabled]}"
+                                              LabelPosition="Top" />
 
                 <controls:MairaComboBox x:Name="TtsLanguage_MairaComboBox"
                                         Grid.Column="2"

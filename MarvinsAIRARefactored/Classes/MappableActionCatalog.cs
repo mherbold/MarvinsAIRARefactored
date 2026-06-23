@@ -550,6 +550,15 @@ public static class MappableActionCatalog
 
 		Trigger( list, "TradingPaintsRedownloadButtonMappings", "TradingPaints", "Settings", "RedownloadPaintFiles", app => app.TradingPaints.Reset() );
 
+		// ----- Commentary -----
+
+		Trigger( list, "CommentaryEnabledButtonMappings", "Commentary", "Master", "Enabled", app =>
+		{
+			var settings = S;
+
+			settings.CommentaryEnabled = !settings.CommentaryEnabled;
+		} );
+
 		// ----- App settings -----
 
 		Trigger( list, "AppToggleMainWindowButtonMappings", "AppSettings", "WindowVisibility", "ShowHideWindow", app => app.MainWindow.ToggleWindowVisibility() );

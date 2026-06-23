@@ -14410,6 +14410,8 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	public ButtonMappings CommentaryEnabledButtonMappings { get; set; } = new();
+
 	#endregion
 
 	#region Commentary — ElevenLabs Language
