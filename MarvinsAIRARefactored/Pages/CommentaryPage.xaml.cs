@@ -78,6 +78,17 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 
 	private async void Settings_PropertyChanged( object? sender, System.ComponentModel.PropertyChangedEventArgs e )
 	{
+		// This setting can be changed from a non-UI thread (e.g. the DirectInput polling thread toggles
+		// CommentaryEnabled via a mapped button). The handlers below touch UI elements, so re-dispatch to
+		// the UI thread before doing anything — otherwise the awaits inside resume on a thread-pool thread
+		// and the TextBlock writes throw "the calling thread cannot access this object".
+		if ( !Dispatcher.CheckAccess() )
+		{
+			_ = Dispatcher.InvokeAsync( () => Settings_PropertyChanged( sender, e ) );
+
+			return;
+		}
+
 		var app = App.Instance!;
 
 		switch ( e.PropertyName )
