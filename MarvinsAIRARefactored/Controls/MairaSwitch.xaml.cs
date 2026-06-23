@@ -61,6 +61,16 @@ public partial class MairaSwitch : UserControl
 		set => SetValue( ContextSwitchesProperty, value );
 	}
 
+	// Set by MairaMappableSwitch when the switch has a mapped input. Drives the orange "mapped" border on
+	// the checkbox. Defaults to false, so plain (non-mappable) switches never show the indicator.
+	public static readonly DependencyProperty IsMappedProperty = DependencyProperty.Register( nameof( IsMapped ), typeof( bool ), typeof( MairaSwitch ), new PropertyMetadata( false ) );
+
+	public bool IsMapped
+	{
+		get => (bool) GetValue( IsMappedProperty );
+		set => SetValue( IsMappedProperty, value );
+	}
+
 	#endregion
 
 	#region Event Handlers

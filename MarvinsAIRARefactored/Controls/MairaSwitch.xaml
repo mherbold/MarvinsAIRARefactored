@@ -70,6 +70,32 @@
 
             </Button.Style>
 
+            <Border BorderThickness="2"
+                    CornerRadius="8"
+                    Padding="1"
+                    Margin="-3">
+
+                <Border.Style>
+
+                    <Style TargetType="Border">
+
+                        <Setter Property="BorderBrush"
+                                Value="Transparent" />
+
+                        <Style.Triggers>
+
+                            <DataTrigger Binding="{Binding IsMapped, ElementName=Root}"
+                                         Value="True">
+                                <Setter Property="BorderBrush"
+                                        Value="{DynamicResource Brush.Accent}" />
+                            </DataTrigger>
+
+                        </Style.Triggers>
+
+                    </Style>
+
+                </Border.Style>
+
             <Border Width="24"
                     Height="24"
                     BorderThickness="2"
@@ -131,6 +157,8 @@
                     </TextBlock.Style>
 
                 </TextBlock>
+
+            </Border>
 
             </Border>
 
