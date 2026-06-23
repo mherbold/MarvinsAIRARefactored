@@ -69,6 +69,7 @@ public partial class ControllerProfilesPage : UserControl
 		app.RebuildButtonMappingIndex();
 
 		MairaMappableButton.RefreshAll();
+		MairaMappableSwitch.RefreshAll();
 
 		app.SettingsFile.QueueForSerialization = true;
 
@@ -105,6 +106,7 @@ public partial class ControllerProfilesPage : UserControl
 		app.RebuildButtonMappingIndex();
 
 		MairaMappableButton.RefreshAll();
+		MairaMappableSwitch.RefreshAll();
 
 		app.SettingsFile.QueueForSerialization = true;
 
@@ -179,6 +181,7 @@ public partial class ControllerProfilesPage : UserControl
 		app.RebuildButtonMappingIndex();
 
 		MairaMappableButton.RefreshAll();
+		MairaMappableSwitch.RefreshAll();
 
 		app.SettingsFile.QueueForSerialization = true;
 
@@ -204,6 +207,7 @@ public partial class ControllerProfilesPage : UserControl
 		app.RebuildButtonMappingIndex();
 
 		MairaMappableButton.RefreshAll();
+		MairaMappableSwitch.RefreshAll();
 
 		RefreshSummary( mappableAction );
 	}
@@ -222,6 +226,7 @@ public partial class ControllerProfilesPage : UserControl
 		app.RebuildButtonMappingIndex();
 
 		MairaMappableButton.RefreshAll();
+		MairaMappableSwitch.RefreshAll();
 
 		app.SettingsFile.QueueForSerialization = true;
 
