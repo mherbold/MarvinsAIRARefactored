@@ -463,6 +463,7 @@ public partial class App : Application
 
 #if !ADMINBOXX
 
+				// "Check For Updates On Startup" - an explicit per-launch check, independent of the interval.
 				if ( DataContext.DataContext.Instance.Settings.AppCheckForUpdates )
 				{
 					await CloudService.CheckForUpdates( false );

@@ -17,21 +17,11 @@ public class CloudService
 	public bool CheckingForUpdate { get; private set; } = false;
 	public bool DownloadingUpdate { get; private set; } = false;
 
-	// UTC time of the most recent update check (or app startup); the next recurring check is due one
-	// AppUpdateCheckIntervalHours interval after this. The interval is read live in Tick so changes to the
-	// user's setting take effect immediately. DateTime.MaxValue means "not initialized yet" - nothing is due.
-	private DateTime _lastUpdateCheckUtc = DateTime.MaxValue;
-
 	public void Initialize()
 	{
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[CloudService] Initialize >>>" );
-
-		// Use startup as the baseline for the first recurring update check (which is due one interval from
-		// now). The initial (startup) check is fired separately from App_Startup; this keeps users who never
-		// restart the app current by re-checking periodically while iRacing is not running.
-		_lastUpdateCheckUtc = DateTime.UtcNow;
 
 		var networkInterfaceList = NetworkInterface.GetAllNetworkInterfaces();
 
@@ -76,21 +66,23 @@ public class CloudService
 			return;
 		}
 
-		if ( _lastUpdateCheckUtc == DateTime.MaxValue )
+		if ( !IsUpdateCheckDue() )
 		{
 			return;
 		}
-
-		var updateCheckInterval = TimeSpan.FromHours( DataContext.DataContext.Instance.Settings.AppUpdateCheckIntervalHours );
-
-		if ( DateTime.UtcNow < _lastUpdateCheckUtc + updateCheckInterval )
-		{
-			return;
-		}
-
-		_lastUpdateCheckUtc = DateTime.UtcNow;
 
 		_ = CheckForUpdates( false );
+	}
+
+	// Returns true when the persisted last-check time is at least one interval in the past (or has never
+	// been set). The interval is read live so changes to the user's setting take effect immediately.
+	public bool IsUpdateCheckDue()
+	{
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		var updateCheckInterval = TimeSpan.FromHours( settings.AppUpdateCheckIntervalHours );
+
+		return DateTime.UtcNow >= settings.AppLastUpdateCheckUtc + updateCheckInterval;
 	}
 
 	class GetCurrentVersionResponse
@@ -105,6 +97,10 @@ public class CloudService
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[CloudService] CheckForUpdates >>>" );
+
+		// Record (and persist) the check time up front so the recurring-interval clock advances even if the
+		// network call below fails, and so it survives an app restart.
+		DataContext.DataContext.Instance.Settings.AppLastUpdateCheckUtc = DateTime.UtcNow;
 
 		try
 		{

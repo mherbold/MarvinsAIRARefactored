@@ -14236,6 +14236,30 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region App - Last update check (persisted across restarts)
+
+	// UTC time of the most recent update check. Persisted so the recurring-interval clock survives an
+	// app restart - e.g. with a 24h interval, restarting does not trigger a fresh check until 24h after
+	// the last one. DateTime.MinValue means "never checked" (a check is due immediately).
+	private DateTime _appLastUpdateCheckUtc = DateTime.MinValue;
+
+	public DateTime AppLastUpdateCheckUtc
+	{
+		get => _appLastUpdateCheckUtc;
+
+		set
+		{
+			if ( value != _appLastUpdateCheckUtc )
+			{
+				_appLastUpdateCheckUtc = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region App - Check for updates on interval
 
 	private bool _appCheckForUpdatesOnInterval = true;
