@@ -18,6 +18,7 @@ PROCESS_POWER_THROTTLING_STATE
 RegisterDeviceNotification
 SendInput
 SetCursorPos
+SHQueryUserNotificationState
 SetForegroundWindow
 SetProcessInformation
 SetWindowLong

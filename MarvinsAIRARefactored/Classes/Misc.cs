@@ -13,6 +13,7 @@ using System.Windows.Media;
 using Windows.Win32;
 using Windows.Win32.Foundation;
 using Windows.Win32.System.Threading;
+using Windows.Win32.UI.Shell;
 using Windows.Win32.UI.WindowsAndMessaging;
 
 using IWshRuntimeLibrary;
@@ -28,6 +29,25 @@ public class Misc
 		var systemVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
 		return systemVersion?.ToString() ?? string.Empty;
+	}
+
+	// Asks Windows whether now is a good time to show the user something. Returns true only when the
+	// notification state is QUNS_ACCEPTS_NOTIFICATIONS (normal desktop) - i.e. NOT while a full-screen
+	// game / app or presentation is running, the user is away or locked, or during Windows quiet hours.
+	// Fail-open: if the query fails (e.g. no active console session) we return true so an API quirk can
+	// never permanently inhibit user-facing prompts such as the update check.
+	public static bool WindowsAcceptsNotifications()
+	{
+		var hresult = PInvoke.SHQueryUserNotificationState( out var notificationState );
+
+		if ( hresult.Failed )
+		{
+			App.Instance?.Logger.WriteLine( $"[Misc] WindowsAcceptsNotifications SHQueryUserNotificationState failed: 0x{hresult.Value:X8}" );
+
+			return true;
+		}
+
+		return notificationState == QUERY_USER_NOTIFICATION_STATE.QUNS_ACCEPTS_NOTIFICATIONS;
 	}
 
 	public static unsafe void DisableThrottling()

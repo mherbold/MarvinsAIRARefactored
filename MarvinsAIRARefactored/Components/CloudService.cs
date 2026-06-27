@@ -55,8 +55,17 @@ public class CloudService
 			return;
 		}
 
-		// Never check for updates while the iRacing simulator is running.
+		// Never check for updates while the iRacing simulator is running. iRacing in windowed mode still
+		// reports QUNS_ACCEPTS_NOTIFICATIONS, so this guard remains necessary on top of the check below.
 		if ( app.Simulator.IsConnected )
+		{
+			return;
+		}
+
+		// The update flow ends in a modal prompt, so only check when Windows says it is OK to interrupt
+		// the user - i.e. no full-screen game / app or presentation is running, the user is present and
+		// unlocked, and it is not Windows quiet hours.
+		if ( !Misc.WindowsAcceptsNotifications() )
 		{
 			return;
 		}
