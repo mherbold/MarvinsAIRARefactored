@@ -19,6 +19,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'" />
+  <!-- Scripted AdminBoxx publish (build-adminboxx.ps1) passes /p:BuildAdminBoxx=true so a
+       Release build gets the ADMINBOXX define without manually toggling project settings.
+       Inactive for normal builds, so it doesn't affect MAIRA or the manual VS workflow. -->
+  <PropertyGroup Condition="'$(BuildAdminBoxx)'=='true'">
+    <DefineConstants>$(DefineConstants);ADMINBOXX</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <None Remove="Artwork\Buttons\eye.png" />
     <None Remove="Artwork\Buttons\fan-orange.png" />

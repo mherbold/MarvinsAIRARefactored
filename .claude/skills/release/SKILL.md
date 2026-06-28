@@ -98,6 +98,13 @@ The script pre-flights `az account show` and fails early with instructions if th
 login has lapsed. To produce an **unsigned** build for local testing only, pass
 `-SkipSigning` (never ship that output).
 
+**AdminBoxx** (the stripped-down sibling build, sent to its owner "Fish" — *not*
+part of this GitHub release flow) has its own one-command script,
+`scripts\build-adminboxx.ps1`. It reuses the same signing setup but builds with
+the ADMINBOXX define (`/p:BuildAdminBoxx=true`) and packages `AdminBoxx.iss`. Run
+it standalone when you need a fresh signed AdminBoxx installer; it's not invoked
+by this `/release` skill.
+
 The script's final lines are the result block you parse:
 
 ```

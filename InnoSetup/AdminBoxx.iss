@@ -41,6 +41,14 @@ SolidCompression=yes
 WizardStyle=modern
 CloseApplications=yes
 RestartApplications=yes
+; Code signing (Azure Artifact Signing). Active only when compiled with /DSignedBuild,
+; which build-adminboxx.ps1 passes alongside the /Smssign=... sign-tool command. When set,
+; Inno signs BOTH the generated installer and its embedded uninstaller. Compiling this
+; script directly in the Inno IDE (without the define) skips signing so the build still
+; succeeds.
+#ifdef SignedBuild
+SignTool=mssign
+#endif
 
 [Languages]
 Name: "english"; MessagesFile: "compiler:Default.isl"
