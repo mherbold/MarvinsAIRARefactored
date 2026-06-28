@@ -1771,7 +1771,10 @@
     <value>アクティブ</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>抑制</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>古いインストーラーを削除</value>
   </data>
+
 
 
 

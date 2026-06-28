@@ -207,6 +207,8 @@ public class CloudService
 								app.Logger.WriteLine( $"[CloudService] Update downloaded" );
 
 								updateDownloaded = true;
+
+								DeleteOldInstallers();
 							}
 						}
 
@@ -246,5 +248,42 @@ public class CloudService
 		}
 
 		app.Logger.WriteLine( "[CloudService] <<< CheckForUpdates" );
+	}
+
+	// Deletes downloaded installer executables from the documents folder, keeping only the three most
+	// recently written. Gated on the user's AppDeleteOldInstallers setting and best-effort: any failure
+	// (e.g. a file locked by an in-progress install) is logged and swallowed.
+	private void DeleteOldInstallers()
+	{
+		var app = App.Instance!;
+
+		if ( !DataContext.DataContext.Instance.Settings.AppDeleteOldInstallers )
+		{
+			return;
+		}
+
+		app.Logger.WriteLine( "[CloudService] DeleteOldInstallers >>>" );
+
+		try
+		{
+			var oldInstallerFileList = Directory.GetFiles( App.DocumentsFolder, "MarvinsAIRARefactored-Setup-*.exe" )
+				.Select( filePath => new FileInfo( filePath ) )
+				.OrderByDescending( fileInfo => fileInfo.LastWriteTimeUtc )
+				.Skip( 3 )
+				.ToList();
+
+			foreach ( var oldInstallerFile in oldInstallerFileList )
+			{
+				app.Logger.WriteLine( $"[CloudService] Deleting old installer {oldInstallerFile.Name}" );
+
+				oldInstallerFile.Delete();
+			}
+		}
+		catch ( Exception exception )
+		{
+			app.Logger.WriteLine( $"[CloudService] Failed trying to delete old installers: {exception.Message.Trim()}" );
+		}
+
+		app.Logger.WriteLine( "[CloudService] <<< DeleteOldInstallers" );
 	}
 }

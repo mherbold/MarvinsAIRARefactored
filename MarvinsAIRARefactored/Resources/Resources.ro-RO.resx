@@ -1768,7 +1768,10 @@
     <value>Activ</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Suprimat</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Șterge programele de instalare vechi</value>
   </data>
+
 
 
 

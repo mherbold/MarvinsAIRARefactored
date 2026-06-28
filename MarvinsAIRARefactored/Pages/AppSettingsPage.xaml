@@ -176,6 +176,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
                     <controls:MairaSwitch Grid.Row="0"
@@ -192,9 +193,16 @@
                                           IsOn="{Binding Settings.AppCheckForUpdatesOnInterval, Mode=TwoWay}"
                                           Label="{Binding Localization[CheckForUpdatesOnInterval]}" />
 
+                    <controls:MairaSwitch Grid.Row="2"
+                                          Grid.Column="0"
+                                          Grid.ColumnSpan="3"
+                                          Margin="0,10,0,0"
+                                          IsOn="{Binding Settings.AppDeleteOldInstallers, Mode=TwoWay}"
+                                          Label="{Binding Localization[DeleteOldInstallers]}" />
+
                     <controls:MairaKnob Grid.Row="0"
                                         Grid.Column="4"
-                                        Grid.RowSpan="2"
+                                        Grid.RowSpan="3"
                                         Label="{Binding Localization[UpdateCheckInterval]}"
                                         Value="{Binding Settings.AppUpdateCheckIntervalHours, Mode=TwoWay}"
                                         ValueString="{Binding Settings.AppUpdateCheckIntervalHoursString}"

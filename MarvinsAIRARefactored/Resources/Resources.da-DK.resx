@@ -1768,7 +1768,10 @@
     <value>Aktiv</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Undertrykt</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Slet gamle installationsprogrammer</value>
   </data>
+
 
 
 

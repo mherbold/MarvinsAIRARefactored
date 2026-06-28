@@ -1809,7 +1809,10 @@
     <value>Active</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Suppressed</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Delete Old Installers</value>
   </data>
+
 
 
 

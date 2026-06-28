@@ -1768,7 +1768,10 @@
     <value>Gweithredol</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Ataliedig</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Dileu Hen Osodwyr</value>
   </data>
+
 
 
 

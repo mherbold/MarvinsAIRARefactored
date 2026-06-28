@@ -1809,7 +1809,10 @@
     <value>Aktīvs</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Apspiests</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Dzēst vecos instalētājus</value>
   </data>
+
 
 
 

@@ -1768,7 +1768,10 @@
     <value>Actif</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Inhibé</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Supprimer les anciens programmes d'installation</value>
   </data>
+
 
 
 

@@ -1773,7 +1773,10 @@ Hier ist der Link zum Spenden:</value>
     <value>Aktiv</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Unterdrückt</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Alte Installationsprogramme löschen</value>
   </data>
+
 
 
 

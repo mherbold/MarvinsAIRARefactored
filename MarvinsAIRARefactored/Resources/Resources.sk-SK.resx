@@ -1809,7 +1809,10 @@
     <value>Aktívny</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Potlačené</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Odstrániť staré inštalátory</value>
   </data>
+
 
 
 

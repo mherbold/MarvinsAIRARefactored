@@ -1768,7 +1768,10 @@
     <value>Aktivní</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Potlačeno</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Odstranit staré instalátory</value>
   </data>
+
 
 
 

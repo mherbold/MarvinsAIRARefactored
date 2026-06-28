@@ -1768,7 +1768,10 @@
     <value>活动</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>已抑制</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>删除旧的安装程序</value>
   </data>
+
 
 
 

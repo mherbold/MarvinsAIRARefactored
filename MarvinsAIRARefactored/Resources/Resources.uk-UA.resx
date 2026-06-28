@@ -1774,7 +1774,10 @@
     <value>Активний</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Придушено</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Видаляти старі інсталятори</value>
   </data>
+
 
 
 

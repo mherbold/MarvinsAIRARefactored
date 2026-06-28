@@ -14281,6 +14281,27 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region App - Delete old installers
+
+	private bool _appDeleteOldInstallers = true;
+
+	public bool AppDeleteOldInstallers
+	{
+		get => _appDeleteOldInstallers;
+
+		set
+		{
+			if ( value != _appDeleteOldInstallers )
+			{
+				_appDeleteOldInstallers = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region App - Update check interval
 
 	private float _appUpdateCheckIntervalHours = 1f;

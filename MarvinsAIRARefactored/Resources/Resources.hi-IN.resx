@@ -1809,7 +1809,10 @@
     <value>सक्रिय</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>दबा हुआ</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>पुराने इंस्टॉलर हटाएँ</value>
   </data>
+
 
 
 

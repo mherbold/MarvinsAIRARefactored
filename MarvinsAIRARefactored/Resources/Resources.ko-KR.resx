@@ -1809,7 +1809,10 @@
     <value>활성</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>억제됨</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>오래된 설치 프로그램 삭제</value>
   </data>
+
 
 
 

@@ -1809,7 +1809,10 @@
     <value>Aktiivne</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Summutatud</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Kustuta vanad installerid</value>
   </data>
+
 
 
 

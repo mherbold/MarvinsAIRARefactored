@@ -1768,7 +1768,10 @@
     <value>Attivo</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Soppresso</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Elimina i vecchi programmi di installazione</value>
   </data>
+
 
 
 

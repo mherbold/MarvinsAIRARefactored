@@ -1809,7 +1809,10 @@
     <value>啟用中</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>已抑制</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>刪除舊的安裝程式</value>
   </data>
+
 
 
 

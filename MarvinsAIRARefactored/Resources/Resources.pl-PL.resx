@@ -1768,7 +1768,10 @@
     <value>Aktywny</value>
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Stłumiony</value>
+  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+    <value>Usuń stare instalatory</value>
   </data>
+
 
 
 
