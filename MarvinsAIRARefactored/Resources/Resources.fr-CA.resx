@@ -1760,7 +1760,19 @@
     <value>Qualifications</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Course</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>État</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Inactif</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Actif</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Inhibé</value>
   </data>
+
+
+
+
 
 
 

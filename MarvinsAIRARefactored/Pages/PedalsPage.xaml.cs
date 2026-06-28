@@ -2,7 +2,12 @@
 using System.Linq;
 using System.Windows;
 
+using Brush = System.Windows.Media.Brush;
+using SolidColorBrush = System.Windows.Media.SolidColorBrush;
+using Color = System.Windows.Media.Color;
+using TextBlock = System.Windows.Controls.TextBlock;
 using UserControl = System.Windows.Controls.UserControl;
+using Localization = MarvinsAIRARefactored.Components.Localization;
 
 using MarvinsAIRARefactored.Components;
 
@@ -10,9 +15,23 @@ namespace MarvinsAIRARefactored.Pages;
 
 public partial class PedalsPage : UserControl
 {
+	private const string ActiveBrushKey = "Brush.Accent";
+	private const string SuppressedBrushKey = "Brush.SteeringEffects.Understeer";
+
+	private static readonly Brush IdleBrush = CreateFrozenBrush( 0x88, 0x88, 0x88 );
+
 	public PedalsPage()
 	{
 		InitializeComponent();
+	}
+
+	private static SolidColorBrush CreateFrozenBrush( byte r, byte g, byte b )
+	{
+		var brush = new SolidColorBrush( Color.FromRgb( r, g, b ) );
+
+		brush.Freeze();
+
+		return brush;
 	}
 
 	#region User Control Events
@@ -120,6 +139,67 @@ public partial class PedalsPage : UserControl
 		ThrottleEffect3_MairaComboBox.ItemsSource = dictionary.ToList();
 
 		app.Logger.WriteLine( "[PedalsPage] <<< UpdateEffectOptions" );
+	}
+
+	public void UpdateEffectStatuses()
+	{
+		var app = App.Instance!;
+
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		UpdateStatusTextBlock( ClutchStatus1_TextBlock, app.Pedals.GetEffectStatus( 0, 0 ), localization );
+		UpdateStatusTextBlock( ClutchStatus2_TextBlock, app.Pedals.GetEffectStatus( 0, 1 ), localization );
+		UpdateStatusTextBlock( ClutchStatus3_TextBlock, app.Pedals.GetEffectStatus( 0, 2 ), localization );
+
+		UpdateStatusTextBlock( BrakeStatus1_TextBlock, app.Pedals.GetEffectStatus( 1, 0 ), localization );
+		UpdateStatusTextBlock( BrakeStatus2_TextBlock, app.Pedals.GetEffectStatus( 1, 1 ), localization );
+		UpdateStatusTextBlock( BrakeStatus3_TextBlock, app.Pedals.GetEffectStatus( 1, 2 ), localization );
+
+		UpdateStatusTextBlock( ThrottleStatus1_TextBlock, app.Pedals.GetEffectStatus( 2, 0 ), localization );
+		UpdateStatusTextBlock( ThrottleStatus2_TextBlock, app.Pedals.GetEffectStatus( 2, 1 ), localization );
+		UpdateStatusTextBlock( ThrottleStatus3_TextBlock, app.Pedals.GetEffectStatus( 2, 2 ), localization );
+	}
+
+	private static void UpdateStatusTextBlock( TextBlock textBlock, Pedals.EffectStatus status, Localization localization )
+	{
+		string text;
+
+		switch ( status )
+		{
+			case Pedals.EffectStatus.Active: text = localization[ "Active" ]; break;
+			case Pedals.EffectStatus.Suppressed: text = localization[ "Suppressed" ]; break;
+			case Pedals.EffectStatus.Idle: text = localization[ "Idle" ]; break;
+			default: text = string.Empty; break;
+		}
+
+		if ( textBlock.Text != text )
+		{
+			textBlock.Text = text;
+		}
+
+		// only re-apply the foreground when the status actually changes (the active / suppressed colors follow the theme)
+
+		if ( textBlock.Tag is Pedals.EffectStatus cachedStatus && ( cachedStatus == status ) )
+		{
+			return;
+		}
+
+		textBlock.Tag = status;
+
+		switch ( status )
+		{
+			case Pedals.EffectStatus.Active:
+				textBlock.SetResourceReference( System.Windows.Controls.TextBlock.ForegroundProperty, ActiveBrushKey );
+				break;
+
+			case Pedals.EffectStatus.Suppressed:
+				textBlock.SetResourceReference( System.Windows.Controls.TextBlock.ForegroundProperty, SuppressedBrushKey );
+				break;
+
+			default:
+				textBlock.Foreground = IdleBrush;
+				break;
+		}
 	}
 
 	#endregion

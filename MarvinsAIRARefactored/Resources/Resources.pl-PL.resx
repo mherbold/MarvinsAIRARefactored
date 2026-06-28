@@ -1760,7 +1760,19 @@
     <value>Kwalifikacje</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Wyścig</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Bezczynny</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Aktywny</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Stłumiony</value>
   </data>
+
+
+
+
 
 
 

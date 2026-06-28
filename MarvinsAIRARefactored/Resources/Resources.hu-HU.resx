@@ -1760,7 +1760,19 @@
     <value>Időmérő</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Verseny</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Állapot</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Tétlen</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Aktív</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Elnyomva</value>
   </data>
+
+
+
+
 
 
 

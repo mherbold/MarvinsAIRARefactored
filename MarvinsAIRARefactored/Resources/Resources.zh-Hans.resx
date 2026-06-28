@@ -1760,7 +1760,19 @@
     <value>排位赛</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>正赛</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>空闲</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>活动</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>已抑制</value>
   </data>
+
+
+
+
 
 
 

@@ -722,6 +722,8 @@ public partial class MainWindow : Window
 			_simulatorPage.HeaderData_HeaderDataViewer.InvalidateVisual();
 			_simulatorPage.SessionInfo_SessionInfoViewer.InvalidateVisual();
 			_simulatorPage.TelemetryData_TelemetryDataViewer.InvalidateVisual();
+
+			_pedalsPage.UpdateEffectStatuses();
 		}
 	}
 }

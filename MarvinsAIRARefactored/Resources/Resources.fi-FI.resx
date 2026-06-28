@@ -1760,7 +1760,19 @@
     <value>Aika-ajo</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Kilpailu</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Tila</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Joutilas</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Aktiivinen</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Estetty</value>
   </data>
+
+
+
+
 
 
 

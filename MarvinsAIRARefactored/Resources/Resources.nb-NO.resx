@@ -1760,7 +1760,19 @@
     <value>Kvalifisering</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Løp</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Inaktiv</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Aktiv</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Undertrykt</value>
   </data>
+
+
+
+
 
 
 

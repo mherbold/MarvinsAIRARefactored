@@ -1801,7 +1801,19 @@
     <value>تأهيل</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>سباق</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>الحالة</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>خامل</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>نشط</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>مكبوح</value>
   </data>
+
+
+
+
 
 
 

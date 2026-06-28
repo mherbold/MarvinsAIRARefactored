@@ -1760,7 +1760,19 @@
     <value>Classificació</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Cursa</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Estat</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Inactiu</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Actiu</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Suprimit</value>
   </data>
+
+
+
+
 
 
 

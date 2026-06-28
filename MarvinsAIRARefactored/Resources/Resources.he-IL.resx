@@ -1760,7 +1760,19 @@
     <value>מקצה דירוג</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>מרוץ</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>סטטוס</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>מנוחה</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>פעיל</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>מדוכא</value>
   </data>
+
+
+
+
 
 
 

@@ -1760,7 +1760,19 @@
     <value>Kwalificatie</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Race</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Status</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Inactief</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Actief</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Onderdrukt</value>
   </data>
+
+
+
+
 
 
 

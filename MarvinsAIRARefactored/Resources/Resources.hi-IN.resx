@@ -1801,7 +1801,19 @@
     <value>क्वालिफाइंग</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>रेस</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>स्थिति</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>निष्क्रिय</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>सक्रिय</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>दबा हुआ</value>
   </data>
+
+
+
+
 
 
 

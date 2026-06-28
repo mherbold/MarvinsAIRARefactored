@@ -1766,7 +1766,19 @@
     <value>Кваліфікація</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Перегони</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Статус</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Очікування</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Активний</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Придушено</value>
   </data>
+
+
+
+
 
 
 

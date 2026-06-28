@@ -1801,7 +1801,19 @@
     <value>Kvalifikācija</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Sacīkste</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Statuss</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Dīkstāve</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Aktīvs</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Apspiests</value>
   </data>
+
+
+
+
 
 
 

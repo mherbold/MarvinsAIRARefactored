@@ -1801,7 +1801,19 @@
     <value>Квалификация</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Състезание</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Състояние</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Бездействие</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Активен</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Потиснат</value>
   </data>
+
+
+
+
 
 
 

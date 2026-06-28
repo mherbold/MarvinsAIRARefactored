@@ -1760,7 +1760,19 @@
     <value>Որակավորում</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Մրցավազք</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Կարգավիճակ</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Պարապ</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Ակտիվ</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Ճնշված</value>
   </data>
+
+
+
+
 
 
 

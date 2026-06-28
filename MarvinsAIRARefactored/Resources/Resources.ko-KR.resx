@@ -1801,7 +1801,19 @@
     <value>예선</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>레이스</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>상태</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>대기</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>활성</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>억제됨</value>
   </data>
+
+
+
+
 
 
 

@@ -1760,7 +1760,19 @@
     <value>Calificări</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Cursă</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Stare</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Inactiv</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Activ</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Suprimat</value>
   </data>
+
+
+
+
 
 
 

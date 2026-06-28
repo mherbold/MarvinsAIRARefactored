@@ -1763,7 +1763,19 @@
     <value>予選</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>レース</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>ステータス</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>待機</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>アクティブ</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>抑制</value>
   </data>
+
+
+
+
 
 
 

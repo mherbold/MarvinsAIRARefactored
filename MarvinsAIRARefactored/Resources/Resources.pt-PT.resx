@@ -1761,7 +1761,19 @@
     <value>Qualificação</value>
   </data>  <data name="Race" xml:space="preserve">
     <value>Corrida</value>
+  </data>  <data name="Status" xml:space="preserve">
+    <value>Estado</value>
+  </data>  <data name="Idle" xml:space="preserve">
+    <value>Inativo</value>
+  </data>  <data name="Active" xml:space="preserve">
+    <value>Ativo</value>
+  </data>  <data name="Suppressed" xml:space="preserve">
+    <value>Suprimido</value>
   </data>
+
+
+
+
 
 
 

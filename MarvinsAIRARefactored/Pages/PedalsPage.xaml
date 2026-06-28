@@ -169,6 +169,8 @@
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="Auto" />
@@ -190,8 +192,29 @@
                                         SelectedValue="{Binding Settings.PedalsClutchEffect1, Mode=TwoWay}"
                                         ContextSwitches="{Binding Settings.PedalsClutchEffect1ContextSwitches}" />
 
+                <Grid Grid.Row="0"
+                      Grid.Column="4">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Text="{Binding Localization[Status]}"
+                               HorizontalAlignment="Center" />
+
+                    <TextBlock x:Name="ClutchStatus1_TextBlock"
+                               Grid.Row="1"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+
+                </Grid>
+
                 <controls:MairaKnob Grid.Row="0"
-                                    Grid.Column="4"
+                                    Grid.Column="6"
                                     Label="{Binding Localization[Strength]}"
                                     Value="{Binding Settings.PedalsClutchStrength1, Mode=TwoWay}"
                                     ValueString="{Binding Settings.PedalsClutchStrength1String}"
@@ -204,7 +227,7 @@
 
                 <controls:MairaMappableButton x:Name="ClutchTest1_MairaMappableButton"
                                               Grid.Row="0"
-                                              Grid.Column="6"
+                                              Grid.Column="8"
                                               Label="{Binding Localization[Test]}"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                               ButtonMappings="{Binding Settings.PedalsClutchTest1ButtonMappings}"
@@ -225,8 +248,15 @@
                                         Grid.Column="2"
                                         SelectedValue="{Binding Settings.PedalsClutchEffect2, Mode=TwoWay}" />
 
+                <TextBlock x:Name="ClutchStatus2_TextBlock"
+                           Grid.Row="2"
+                           Grid.Column="4"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+
                 <controls:MairaKnob Grid.Row="2"
-                                    Grid.Column="4"
+                                    Grid.Column="6"
                                     Value="{Binding Settings.PedalsClutchStrength2, Mode=TwoWay}"
                                     ValueString="{Binding Settings.PedalsClutchStrength2String}"
                                     ClickStepSize="0.05"
@@ -237,7 +267,7 @@
 
                 <controls:MairaMappableButton x:Name="ClutchTest2_MairaMappableButton"
                                               Grid.Row="2"
-                                              Grid.Column="6"
+                                              Grid.Column="8"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                               ButtonMappings="{Binding Settings.PedalsClutchTest2ButtonMappings}"
                                               Click="ClutchTest2_MairaMappableButton_Click"
@@ -257,8 +287,15 @@
                                         Grid.Column="2"
                                         SelectedValue="{Binding Settings.PedalsClutchEffect3, Mode=TwoWay}" />
 
+                <TextBlock x:Name="ClutchStatus3_TextBlock"
+                           Grid.Row="4"
+                           Grid.Column="4"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+
                 <controls:MairaKnob Grid.Row="4"
-                                    Grid.Column="4"
+                                    Grid.Column="6"
                                     Value="{Binding Settings.PedalsClutchStrength3, Mode=TwoWay}"
                                     ValueString="{Binding Settings.PedalsClutchStrength3String}"
                                     ClickStepSize="0.05"
@@ -269,7 +306,7 @@
 
                 <controls:MairaMappableButton x:Name="ClutchTest3_MairaMappableButton"
                                               Grid.Row="4"
-                                              Grid.Column="6"
+                                              Grid.Column="8"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                               ButtonMappings="{Binding Settings.PedalsClutchTest3ButtonMappings}"
                                               Click="ClutchTest3_MairaMappableButton_Click"
@@ -298,6 +335,8 @@
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="Auto" />
@@ -319,8 +358,29 @@
                                         SelectedValue="{Binding Settings.PedalsBrakeEffect1, Mode=TwoWay}"
                                         ContextSwitches="{Binding Settings.PedalsBrakeEffect1ContextSwitches}" />
 
+                <Grid Grid.Row="0"
+                      Grid.Column="4">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Text="{Binding Localization[Status]}"
+                               HorizontalAlignment="Center" />
+
+                    <TextBlock x:Name="BrakeStatus1_TextBlock"
+                               Grid.Row="1"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+
+                </Grid>
+
                 <controls:MairaKnob Grid.Row="0"
-                                    Grid.Column="4"
+                                    Grid.Column="6"
                                     Label="{Binding Localization[Strength]}"
                                     Value="{Binding Settings.PedalsBrakeStrength1, Mode=TwoWay}"
                                     ValueString="{Binding Settings.PedalsBrakeStrength1String}"
@@ -333,7 +393,7 @@
 
                 <controls:MairaMappableButton x:Name="BrakeTest1_MairaMappableButton"
                                               Grid.Row="0"
-                                              Grid.Column="6"
+                                              Grid.Column="8"
                                               Label="{Binding Localization[Test]}"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                               ButtonMappings="{Binding Settings.PedalsBrakeTest1ButtonMappings}"
@@ -352,8 +412,15 @@
                                         Grid.Column="2"
                                         SelectedValue="{Binding Settings.PedalsBrakeEffect2, Mode=TwoWay}" />
 
+                <TextBlock x:Name="BrakeStatus2_TextBlock"
+                           Grid.Row="2"
+                           Grid.Column="4"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+
                 <controls:MairaKnob Grid.Row="2"
-                                    Grid.Column="4"
+                                    Grid.Column="6"
                                     Value="{Binding Settings.PedalsBrakeStrength2, Mode=TwoWay}"
                                     ValueString="{Binding Settings.PedalsBrakeStrength2String}"
                                     ClickStepSize="0.05"
@@ -364,7 +431,7 @@
 
                 <controls:MairaMappableButton x:Name="BrakeTest2_MairaMappableButton"
                                               Grid.Row="2"
-                                              Grid.Column="6"
+                                              Grid.Column="8"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                               ButtonMappings="{Binding Settings.PedalsBrakeTest2ButtonMappings}"
                                               Click="BrakeTest2_MairaMappableButton_Click"
@@ -382,8 +449,15 @@
                                         Grid.Column="2"
                                         SelectedValue="{Binding Settings.PedalsBrakeEffect3, Mode=TwoWay}" />
 
+                <TextBlock x:Name="BrakeStatus3_TextBlock"
+                           Grid.Row="4"
+                           Grid.Column="4"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+
                 <controls:MairaKnob Grid.Row="4"
-                                    Grid.Column="4"
+                                    Grid.Column="6"
                                     Value="{Binding Settings.PedalsBrakeStrength3, Mode=TwoWay}"
                                     ValueString="{Binding Settings.PedalsBrakeStrength3String}"
                                     ClickStepSize="0.05"
@@ -394,7 +468,7 @@
 
                 <controls:MairaMappableButton x:Name="BrakeTest3_MairaMappableButton"
                                               Grid.Row="4"
-                                              Grid.Column="6"
+                                              Grid.Column="8"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                               ButtonMappings="{Binding Settings.PedalsBrakeTest3ButtonMappings}"
                                               Click="BrakeTest3_MairaMappableButton_Click"
@@ -423,6 +497,8 @@
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="120" />
+                    <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="40" />
                     <ColumnDefinition Width="Auto" />
@@ -444,8 +520,29 @@
                                         SelectedValue="{Binding Settings.PedalsThrottleEffect1, Mode=TwoWay}"
                                         ContextSwitches="{Binding Settings.PedalsThrottleEffect1ContextSwitches}" />
 
+                <Grid Grid.Row="0"
+                      Grid.Column="4">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Text="{Binding Localization[Status]}"
+                               HorizontalAlignment="Center" />
+
+                    <TextBlock x:Name="ThrottleStatus1_TextBlock"
+                               Grid.Row="1"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center" />
+
+                </Grid>
+
                 <controls:MairaKnob Grid.Row="0"
-                                    Grid.Column="4"
+                                    Grid.Column="6"
                                     Label="{Binding Localization[Strength]}"
                                     Value="{Binding Settings.PedalsThrottleStrength1, Mode=TwoWay}"
                                     ValueString="{Binding Settings.PedalsThrottleStrength1String}"
@@ -458,7 +555,7 @@
 
                 <controls:MairaMappableButton x:Name="ThrottleTest1_MairaMappableButton"
                                               Grid.Row="0"
-                                              Grid.Column="6"
+                                              Grid.Column="8"
                                               Label="{Binding Localization[Test]}"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                               ButtonMappings="{Binding Settings.PedalsThrottleTest1ButtonMappings}"
@@ -477,8 +574,15 @@
                                         Grid.Column="2"
                                         SelectedValue="{Binding Settings.PedalsThrottleEffect2, Mode=TwoWay}" />
 
+                <TextBlock x:Name="ThrottleStatus2_TextBlock"
+                           Grid.Row="2"
+                           Grid.Column="4"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+
                 <controls:MairaKnob Grid.Row="2"
-                                    Grid.Column="4"
+                                    Grid.Column="6"
                                     Value="{Binding Settings.PedalsThrottleStrength2, Mode=TwoWay}"
                                     ValueString="{Binding Settings.PedalsThrottleStrength2String}"
                                     ClickStepSize="0.05"
@@ -489,7 +593,7 @@
 
                 <controls:MairaMappableButton x:Name="ThrottleTest2_MairaMappableButton"
                                               Grid.Row="2"
-                                              Grid.Column="6"
+                                              Grid.Column="8"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                               ButtonMappings="{Binding Settings.PedalsThrottleTest2ButtonMappings}"
                                               Click="ThrottleTest2_MairaMappableButton_Click"
@@ -507,8 +611,15 @@
                                         Grid.Column="2"
                                         SelectedValue="{Binding Settings.PedalsThrottleEffect3, Mode=TwoWay}" />
 
+                <TextBlock x:Name="ThrottleStatus3_TextBlock"
+                           Grid.Row="4"
+                           Grid.Column="4"
+                           Style="{StaticResource MairaTextBlockStyle}"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Center" />
+
                 <controls:MairaKnob Grid.Row="4"
-                                    Grid.Column="4"
+                                    Grid.Column="6"
                                     Value="{Binding Settings.PedalsThrottleStrength3, Mode=TwoWay}"
                                     ValueString="{Binding Settings.PedalsThrottleStrength3String}"
                                     ClickStepSize="0.05"
@@ -519,7 +630,7 @@
 
                 <controls:MairaMappableButton x:Name="ThrottleTest3_MairaMappableButton"
                                               Grid.Row="4"
-                                              Grid.Column="6"
+                                              Grid.Column="8"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                               ButtonMappings="{Binding Settings.PedalsThrottleTest3ButtonMappings}"
                                               Click="ThrottleTest3_MairaMappableButton_Click"
