@@ -38,7 +38,10 @@
                            Style="{StaticResource MairaTextBlockStyle}"
                            FontSize="30"
                            Text="{Binding Localization[PedalsNone]}"
-                           VerticalAlignment="Center" />
+                           VerticalAlignment="Center"
+                           Background="Transparent"
+                           Cursor="Hand"
+                           MouseLeftButtonUp="Device_Label_MouseLeftButtonUp" />
 
                 <Image Grid.Column="4"
                        Source="{DynamicResource Image.SimagicLogo}"

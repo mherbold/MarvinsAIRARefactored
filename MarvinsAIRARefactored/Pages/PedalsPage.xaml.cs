@@ -36,6 +36,13 @@ public partial class PedalsPage : UserControl
 
 	#region User Control Events
 
+	private void Device_Label_MouseLeftButtonUp( object sender, System.Windows.Input.MouseButtonEventArgs e )
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		settings.PedalsEnabled = !settings.PedalsEnabled;
+	}
+
 	private void ClutchTest1_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
