@@ -17,10 +17,11 @@ description: >-
 # Release MarvinsAIRA Refactored
 
 This skill automates the release pipeline for **MarvinsAIRA Refactored**
-(repo `mherbold/MarvinsAIRARefactored`): build → publish → installer → GitHub
-**draft** release → (after the maintainer reviews and approves) publish the
-release and hand the maintainer ready-to-paste announcement text for the iRacing
-forum. The draft is a **review gate**: the skill creates it, the maintainer
+(repo `mherbold/MarvinsAIRARefactored`): build → publish → **sign** → installer
+→ GitHub **draft** release → (after the maintainer reviews and approves) publish
+the release and hand the maintainer ready-to-paste announcement text for the
+iRacing forum. The app exe, the installer, and the uninstaller are all
+code-signed with **Azure Artifact Signing** (cert issued to "Marvin Herbold"). The draft is a **review gate**: the skill creates it, the maintainer
 eyeballs it on GitHub, and only on their explicit approval does the skill flip it
 to published and produce the forum announcement text. **The skill does not post
 to the forum itself** — it outputs the comment text and the thread link, and the
@@ -62,16 +63,40 @@ script. The changelog needs judgment, so that stays in this workflow.
   check `gh api repos/mherbold/MarvinsAIRARefactored --jq .permissions.push` is
   `true` — if it's `false` you're on the wrong account (see Troubleshooting).
 
-## Step 1 — Build, publish, package the installer
+## Step 1 — Build, publish, sign, package the installer
 
 Run the bundled script with the **PowerShell tool**. It compiles Release|x64,
-publishes via `FolderProfile`, runs Inno Setup, and prints the version +
-installer path. It uses full Visual Studio MSBuild (this project's COM
-references break `dotnet build`/`publish`), so let it take a few minutes.
+publishes via `FolderProfile`, **code-signs** the published app exe, runs Inno
+Setup (which signs the installer + uninstaller), verifies the installer
+signature, and prints the version + installer path. It uses full Visual Studio
+MSBuild (this project's COM references break `dotnet build`/`publish`), so let it
+take a few minutes.
 
 ```powershell
 & "<repo-root>\.claude\skills\release\scripts\build-release.ps1"
 ```
+
+### Code signing (Azure Artifact Signing)
+
+Signing is on by default and the script **aborts** if anything can't be signed —
+an unsigned release must never reach users (it trips Windows SmartScreen and
+Controlled Folder Access). The signing identity is the maintainer's own
+certificate ("Marvin Herbold") via **Azure Artifact Signing**, East US
+(`https://eus.codesigning.azure.net`), account `mairasigning`, profile
+`maira-public-trust`. These values are baked into `build-release.ps1`.
+
+Build-machine prerequisites (one-time — already set up on the maintainer's box):
+
+- `winget install -e --id Microsoft.Azure.ArtifactSigningClientTools` (the signing
+  dlib + .NET 8 runtime; installs to `%LOCALAPPDATA%\Microsoft\MicrosoftArtifactSigningClientTools`).
+- `winget install -e --id Microsoft.AzureCLI`, then `az login`. The signer
+  authenticates as the logged-in Azure user — **no secret is stored on disk**.
+- The Azure account holds the **Artifact Signing Certificate Profile Signer**
+  role on the signing account.
+
+The script pre-flights `az account show` and fails early with instructions if the
+login has lapsed. To produce an **unsigned** build for local testing only, pass
+`-SkipSigning` (never ship that output).
 
 The script's final lines are the result block you parse:
 
@@ -342,6 +367,19 @@ only if they ask.
 
 - **Build/publish/installer failure** → reported by the script as
   `RELEASE_BUILD_FAILED`; surface the error and stop.
+- **Signing failure** → also surfaces as `RELEASE_BUILD_FAILED`. Common causes:
+  - *"Azure CLI is not logged in"* → the `az login` session expired. Re-run
+    `az login --tenant d6010dea-824b-4de3-90ca-086b0b51ca2e` (the maintainer's
+    tenant) and try again. The token lapses periodically, so this is the most
+    common signing failure.
+  - *signtool 403 / "Forbidden"* → either the endpoint region in the script
+    doesn't match the signing account's region, or the Azure account lost the
+    **Artifact Signing Certificate Profile Signer** role. The account is in
+    **East US**; the endpoint must stay `https://eus.codesigning.azure.net`.
+  - *"Artifact Signing dlib not found"* → the client tools aren't installed; run
+    `winget install -e --id Microsoft.Azure.ArtifactSigningClientTools`.
+  - As a last resort to get a build out the door, `-SkipSigning` produces an
+    unsigned installer — but do not publish it to users; fix signing instead.
 - **Wrong version extracted** → the script refuses to guess and fails; check
   that Inno Setup wrote `MarvinsAIRARefactored-Setup-*.exe` to
   `Documents\MarvinsAIRA Refactored`.

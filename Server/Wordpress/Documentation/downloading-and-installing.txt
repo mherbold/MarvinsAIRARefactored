@@ -49,7 +49,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>You might get this screen –</p>
+<p>On a brand-new release, you might still see a Windows SmartScreen warning like this –</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:image {"id":356,"sizeSlug":"full","linkDestination":"none","style":{"border":{"radius":{"topLeft":"8px","topRight":"8px","bottomLeft":"8px","bottomRight":"8px"}}}} -->
@@ -57,7 +57,7 @@
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
-<p>I ain’t paying $300 a year to Microsoft for a certificate to remove this whine screen. Just click on&nbsp;<strong>More info</strong>&nbsp;and then click on&nbsp;<strong>Run anyway</strong>. Or, if you don’t trust me, then don’t. The source code for MAIRA is public and can be reviewed by anyone.</p>
+<p>Good news — my app is now digitally signed with a proper code-signing certificate, so Windows shows <strong>Marvin Herbold</strong> as the verified publisher instead of scaring you with an “Unknown Publisher” warning. A brand-new release might still pop up a SmartScreen prompt for a little while, until Windows learns to trust that version — if you see one, just click on&nbsp;<strong>More info</strong>&nbsp;and then click on&nbsp;<strong>Run anyway</strong>. These warnings go away on their own as more people install each release. And as always, if you don’t trust me, then don’t — the source code for MAIRA is public and can be reviewed by anyone.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
