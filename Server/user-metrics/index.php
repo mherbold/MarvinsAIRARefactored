@@ -226,7 +226,7 @@ if ( ( $_GET[ 'format' ] ?? '' ) === 'json' )
 
 	<div class="grid kpis">
 		<div class="card hero"><div class="label">Total users who've tried MAIRA</div><div class="value" id="k_total">—</div><div class="foot" id="k_since">—</div></div>
-		<div class="card"><div class="label">Active now (15 min)</div><div class="value good" id="k_15m">—</div><div class="foot">racing right now</div></div>
+		<div class="card"><div class="label">Active · 1 hour</div><div class="value good" id="k_1h">—</div></div>
 		<div class="card"><div class="label">Active · 24 hours</div><div class="value" id="k_24h">—</div></div>
 		<div class="card"><div class="label">Active · 7 days</div><div class="value" id="k_7d">—</div></div>
 		<div class="card"><div class="label">Active · 30 days</div><div class="value" id="k_30d">—</div><div class="foot" id="k_sticky">—</div></div>
@@ -283,7 +283,7 @@ function paintKpis(d) {
 	const set = (id, v) => { const el = document.getElementById(id); if (el) el.textContent = v; };
 	set('k_total', fmt(k.total_users));
 	set('k_since', k.first_seen ? `serving since ${k.first_seen.slice(0,10)} · ${fmt(daysBetween(k.first_seen))} days` : '');
-	set('k_15m', fmt(k.active_15m));
+	set('k_1h', fmt(k.active_1h));
 	set('k_24h', fmt(k.active_24h));
 	set('k_7d',  fmt(k.active_7d));
 	set('k_30d', fmt(k.active_30d));
