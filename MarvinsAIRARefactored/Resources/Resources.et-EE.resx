@@ -1811,7 +1811,13 @@
     <value>Summutatud</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Kustuta vanad installerid</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Mitmesugust</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Ava dokumentide kaust</value>
   </data>
+
+
 
 
 

@@ -1770,7 +1770,13 @@
     <value>Onderdrukt</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Oude installatieprogramma's verwijderen</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Diversen</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Documentenmap openen</value>
   </data>
+
+
 
 
 

@@ -1811,7 +1811,13 @@
     <value>억제됨</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>오래된 설치 프로그램 삭제</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>기타</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>문서 폴더 열기</value>
   </data>
+
+
 
 
 

@@ -1770,7 +1770,13 @@
     <value>מדוכא</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>מחק תוכניות התקנה ישנות</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>שונות</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>פתח את תיקיית המסמכים</value>
   </data>
+
+
 
 
 

@@ -1770,7 +1770,13 @@
     <value>Suprimido</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Eliminar instaladores antiguos</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Varios</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Abrir carpeta de documentos</value>
   </data>
+
+
 
 
 

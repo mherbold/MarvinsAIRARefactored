@@ -1770,7 +1770,13 @@
     <value>Suprimat</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Șterge programele de instalare vechi</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Diverse</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Deschide folderul Documente</value>
   </data>
+
+
 
 
 

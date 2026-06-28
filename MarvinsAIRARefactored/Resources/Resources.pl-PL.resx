@@ -1770,7 +1770,13 @@
     <value>Stłumiony</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Usuń stare instalatory</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Różne</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Otwórz folder dokumentów</value>
   </data>
+
+
 
 
 

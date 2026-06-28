@@ -1770,7 +1770,13 @@
     <value>Estetty</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Poista vanhat asennusohjelmat</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Sekalaiset</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Avaa dokumenttikansio</value>
   </data>
+
+
 
 
 

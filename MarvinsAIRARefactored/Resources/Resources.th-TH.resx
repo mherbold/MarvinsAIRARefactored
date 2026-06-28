@@ -1770,7 +1770,13 @@
     <value>ถูกระงับ</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>ลบตัวติดตั้งเก่า</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>เบ็ดเตล็ด</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>เปิดโฟลเดอร์เอกสาร</value>
   </data>
+
+
 
 
 

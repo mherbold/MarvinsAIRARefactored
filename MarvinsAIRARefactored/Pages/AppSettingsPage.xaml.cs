@@ -61,6 +61,31 @@ public partial class AppSettingsPage : UserControl
 		app.MainWindow.ToggleWindowVisibility();
 	}
 
+	private void OpenDocumentsFolder_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		try
+		{
+			if ( !System.IO.Directory.Exists( App.DocumentsFolder ) )
+			{
+				System.IO.Directory.CreateDirectory( App.DocumentsFolder );
+			}
+
+			var processStartInfo = new System.Diagnostics.ProcessStartInfo
+			{
+				FileName = App.DocumentsFolder,
+				UseShellExecute = true
+			};
+
+			System.Diagnostics.Process.Start( processStartInfo );
+		}
+		catch ( Exception ex )
+		{
+			app.Logger.WriteLine( $"[AppSettingsPage] Error opening documents folder: {ex.Message}" );
+		}
+	}
+
 	#endregion
 
 	#region Logic

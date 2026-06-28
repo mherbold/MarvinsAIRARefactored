@@ -1776,7 +1776,13 @@
     <value>Придушено</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Видаляти старі інсталятори</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Різне</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Відкрити теку документів</value>
   </data>
+
+
 
 
 

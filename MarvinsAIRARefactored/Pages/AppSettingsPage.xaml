@@ -92,7 +92,8 @@
                                       Grid.ColumnSpan="3"
                                       Margin="0"
                                       IsOn="{Binding Settings.AppShowSplashScreen, Mode=TwoWay}"
-                                      Label="{Binding Localization[ShowSplashScreen]}" />
+                                      Label="{Binding Localization[ShowSplashScreen]}"
+                                      Tag="HideIfAdminBoxx" />
 
                 <controls:MairaSwitch Grid.Row="1"
                                       Grid.Column="0"
@@ -222,7 +223,7 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization[CPUAffinity]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[CPUAffinity]}"
                                 Tag="HideIfAdminBoxx"
                                 HelpTopic="advanced/app-settings/#cpu-affinity">
 
@@ -235,26 +236,40 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[Wizard]}"
-                                HelpTopic="advanced/app-settings/#wizard"
-                                Tag="HideIfAdminBoxx">
-
-            <controls:MairaButton x:Name="LaunchWizard_MairaButton"
-                                  Label="{Binding Localization[LaunchWizard]}"
-                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/wand.png"
-                                  Click="LaunchWizard_MairaButton_Click" />
-
-        </controls:MairaGroupBox>
-
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[WindowVisibility]}"
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Miscellaneous]}"
                                 Tag="HideIfAdminBoxx"
-                                HelpTopic="advanced/app-settings/#window-visibility">
+                                HelpTopic="advanced/app-settings/#miscellaneous">
 
-            <controls:MairaMappableButton x:Name="ToggleMainWindow_MairaMappableButton"
-                                          Label="{Binding Localization[ShowHideWindow]}"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/eye.png"
-                                          ButtonMappings="{Binding Settings.AppToggleMainWindowButtonMappings}"
-                                          Click="ToggleMainWindow_MairaMappableButton_Click" />
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <controls:MairaButton x:Name="LaunchWizard_MairaButton"
+                                      Grid.Column="0"
+                                      Label="{Binding Localization[LaunchWizard]}"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/wand.png"
+                                      Click="LaunchWizard_MairaButton_Click" />
+
+                <controls:MairaMappableButton x:Name="ToggleMainWindow_MairaMappableButton"
+                                              Grid.Column="2"
+                                              Label="{Binding Localization[ShowHideWindow]}"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/eye.png"
+                                              ButtonMappings="{Binding Settings.AppToggleMainWindowButtonMappings}"
+                                              Click="ToggleMainWindow_MairaMappableButton_Click" />
+
+                <controls:MairaButton x:Name="OpenDocumentsFolder_MairaButton"
+                                      Grid.Column="4"
+                                      Label="{Binding Localization[OpenDocumentsFolder]}"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/browse.png"
+                                      Click="OpenDocumentsFolder_MairaButton_Click" />
+
+            </Grid>
 
         </controls:MairaGroupBox>
 

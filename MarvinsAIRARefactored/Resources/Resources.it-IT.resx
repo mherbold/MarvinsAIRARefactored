@@ -1770,7 +1770,13 @@
     <value>Soppresso</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Elimina i vecchi programmi di installazione</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Varie</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Apri la cartella Documenti</value>
   </data>
+
+
 
 
 

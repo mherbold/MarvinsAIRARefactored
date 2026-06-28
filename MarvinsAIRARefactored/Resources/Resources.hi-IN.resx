@@ -1811,7 +1811,13 @@
     <value>दबा हुआ</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>पुराने इंस्टॉलर हटाएँ</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>विविध</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>दस्तावेज़ फ़ोल्डर खोलें</value>
   </data>
+
+
 
 
 

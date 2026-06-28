@@ -1770,7 +1770,13 @@
     <value>Ճնշված</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Ջնջել հին տեղադրիչները</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Տարբեր</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Բացել փաստաթղթերի թղթապանակը</value>
   </data>
+
+
 
 
 

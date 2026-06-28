@@ -1770,7 +1770,13 @@
     <value>Undertryckt</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Ta bort gamla installationsprogram</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Diverse</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Öppna dokumentmapp</value>
   </data>
+
+
 
 
 

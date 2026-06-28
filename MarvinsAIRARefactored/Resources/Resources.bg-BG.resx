@@ -1811,7 +1811,13 @@
     <value>Потиснат</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Изтриване на старите инсталатори</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Разни</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Отвори папката с документи</value>
   </data>
+
+
 
 
 

@@ -1770,7 +1770,13 @@
     <value>Ataliedig</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Dileu Hen Osodwyr</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Amrywiol</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Agor ffolder dogfennau</value>
   </data>
+
+
 
 
 

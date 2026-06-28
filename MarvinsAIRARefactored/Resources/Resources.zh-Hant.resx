@@ -1811,7 +1811,13 @@
     <value>已抑制</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>刪除舊的安裝程式</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>雜項</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>開啟文件資料夾</value>
   </data>
+
+
 
 
 

@@ -1811,7 +1811,13 @@
     <value>Suppressed</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Delete Old Installers</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Miscellaneous</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Open Documents Folder</value>
   </data>
+
+
 
 
 

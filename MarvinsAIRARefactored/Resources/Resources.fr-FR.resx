@@ -1786,7 +1786,13 @@
     <value>Inhibé</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Supprimer les anciens programmes d'installation</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Divers</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Ouvrir le dossier Documents</value>
   </data>
+
+
 
 
 

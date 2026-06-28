@@ -1770,7 +1770,13 @@
     <value>Подавлен</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Удалять старые установщики</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Разное</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Открыть папку документов</value>
   </data>
+
+
 
 
 

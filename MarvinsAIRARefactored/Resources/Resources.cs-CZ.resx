@@ -1770,7 +1770,13 @@
     <value>Potlačeno</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Odstranit staré instalátory</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Různé</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Otevřít složku dokumentů</value>
   </data>
+
+
 
 
 

@@ -1770,7 +1770,13 @@
     <value>Bastırıldı</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Eski yükleyicileri sil</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Çeşitli</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Belgeler klasörünü aç</value>
   </data>
+
+
 
 
 

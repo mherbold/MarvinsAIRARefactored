@@ -1775,7 +1775,13 @@ Hier ist der Link zum Spenden:</value>
     <value>Unterdrückt</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Alte Installationsprogramme löschen</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Verschiedenes</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Dokumentenordner öffnen</value>
   </data>
+
+
 
 
 

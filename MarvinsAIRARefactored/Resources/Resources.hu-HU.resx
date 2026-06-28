@@ -1770,7 +1770,13 @@
     <value>Elnyomva</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Régi telepítők törlése</value>
+  </data>  <data name="Miscellaneous" xml:space="preserve">
+    <value>Egyéb</value>
+  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+    <value>Dokumentumok mappa megnyitása</value>
   </data>
+
+
 
 
 
