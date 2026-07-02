@@ -1,4 +1,6 @@
 
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -9,16 +11,37 @@ using MarvinsAIRARefactored.Controls;
 
 namespace MarvinsAIRARefactored.Pages;
 
-public partial class SeatBeltTensionerPage : UserControl
+public partial class SeatBeltTensionerPage : UserControl, INotifyPropertyChanged
 {
 	private List<KeyValuePair<SeatBeltTensioner.AxisMode, string>> _axisModeOptions = [];
 
-	public string SurgeMinGString { get; set; } = "---";
-	public string SurgeMaxGString { get; set; } = "---";
-	public string SwayMinGString { get; set; } = "---";
-	public string SwayMaxGString { get; set; } = "---";
-	public string HeaveMinGString { get; set; } = "---";
-	public string HeaveMaxGString { get; set; } = "---";
+	public event PropertyChangedEventHandler? PropertyChanged;
+
+	private string _surgeMinGString = "---";
+	private string _surgeMaxGString = "---";
+	private string _swayMinGString = "---";
+	private string _swayMaxGString = "---";
+	private string _heaveMinGString = "---";
+	private string _heaveMaxGString = "---";
+
+	public string SurgeMinGString { get => _surgeMinGString; set => SetField( ref _surgeMinGString, value ); }
+	public string SurgeMaxGString { get => _surgeMaxGString; set => SetField( ref _surgeMaxGString, value ); }
+	public string SwayMinGString { get => _swayMinGString; set => SetField( ref _swayMinGString, value ); }
+	public string SwayMaxGString { get => _swayMaxGString; set => SetField( ref _swayMaxGString, value ); }
+	public string HeaveMinGString { get => _heaveMinGString; set => SetField( ref _heaveMinGString, value ); }
+	public string HeaveMaxGString { get => _heaveMaxGString; set => SetField( ref _heaveMaxGString, value ); }
+
+	private void SetField( ref string field, string value, [CallerMemberName] string? propertyName = null )
+	{
+		if ( field == value )
+		{
+			return;
+		}
+
+		field = value;
+
+		PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
+	}
 
 	public SeatBeltTensionerPage()
 	{
