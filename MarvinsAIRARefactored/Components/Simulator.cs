@@ -516,7 +516,20 @@ public partial class Simulator
 			ShiftLightsShiftRPM = sessionInfo.DriverInfo.DriverCarSLBlinkRPM;
 		}
 
-		SimMode = sessionInfo.WeekendInfo.SimMode;
+		// Only repaint the steering device fault message when the sim mode actually changes
+		// (OnSessionInfo can fire as often as every ~2 seconds). This covers the case where iRacing
+		// FFB is already enabled at connect time: no suspend/device transition fires in the FFB loop,
+		// so the empty -> "full" SimMode transition on connect is what refreshes the otherwise-stale
+		// "SimulatorNotRunning" message. On disconnect SimMode is reset to empty, so reconnects retrigger.
+
+		var newSimMode = sessionInfo.WeekendInfo.SimMode;
+
+		if ( newSimMode != SimMode )
+		{
+			SimMode = newSimMode;
+
+			_racingWheelPage.UpdateSteeringDeviceSection();
+		}
 
 		foreach ( var driver in sessionInfo.DriverInfo.Drivers )
 		{
