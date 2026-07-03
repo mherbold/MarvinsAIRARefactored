@@ -1,10 +1,12 @@
 
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Threading;
 
 using MarvinsAIRARefactored.DataContext;
 using MarvinsAIRARefactored.Windows;
 
+using Cursors = System.Windows.Input.Cursors;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 using Point = System.Windows.Point;
 using UserControl = System.Windows.Controls.UserControl;
@@ -14,6 +16,8 @@ namespace MarvinsAIRARefactored.Controls;
 
 public partial class MairaTriangleBalance : UserControl
 {
+	private const int ResetHoldMilliseconds = 1000;
+
 	// Triangle vertices in Triangle_Canvas coordinates - must match Triangle_Path.Data in the XAML.
 	// A = sway (top), B = surge (bottom left), C = heave (bottom right).
 	private static readonly Point VertexA = new( 100.0, 8.0 );
@@ -22,11 +26,21 @@ public partial class MairaTriangleBalance : UserControl
 
 	private bool _isDragging = false;
 
+	private readonly DispatcherTimer _resetDispatcherTimer = new() { Interval = TimeSpan.FromMilliseconds( 20 ) };
+	private DateTime _resetStartTime;
+	private bool _isResetting;
+
 	public MairaTriangleBalance()
 	{
 		InitializeComponent();
 
-		Loaded += ( sender, e ) => UpdateDotVisual();
+		_resetDispatcherTimer.Tick += ResetDispatcherTimer_Tick;
+
+		Loaded += ( sender, e ) =>
+		{
+			PositionDefaultDot();
+			UpdateDotVisual();
+		};
 	}
 
 	#region User Control Events
@@ -71,6 +85,23 @@ public partial class MairaTriangleBalance : UserControl
 			_isDragging = false;
 		}
 	}
+
+	private void Triangle_Canvas_PreviewMouseRightButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		e.Handled = true;
+
+		_resetStartTime = DateTime.Now;
+		_isResetting = true;
+
+		_resetDispatcherTimer.Start();
+
+		Mouse.OverrideCursor = Cursors.None;
+
+		CursorCountdownOverlay.Start();
+	}
+
+	private void Triangle_Canvas_PreviewMouseRightButtonUp( object sender, MouseButtonEventArgs e ) => CancelReset();
+	private void Triangle_Canvas_MouseLeave( object sender, MouseEventArgs e ) => CancelReset();
 
 	private void Label_TextBlock_PreviewMouseRightButtonDown( object sender, MouseButtonEventArgs e )
 	{
@@ -150,6 +181,38 @@ public partial class MairaTriangleBalance : UserControl
 		Triangle_Canvas.ReleaseMouseCapture();
 	}
 
+	private void ResetDispatcherTimer_Tick( object? sender, EventArgs e )
+	{
+		if ( !_isResetting )
+		{
+			return;
+		}
+
+		var elapsed = ( DateTime.Now - _resetStartTime ).TotalMilliseconds;
+		var progress = 1 - Math.Min( 1, elapsed / ResetHoldMilliseconds );
+
+		CursorCountdownOverlay.UpdateProgress( progress );
+
+		if ( elapsed >= ResetHoldMilliseconds )
+		{
+			SwayWeight = 1f / 3f;
+			SurgeWeight = 1f / 3f;
+
+			CancelReset();
+		}
+	}
+
+	private void CancelReset()
+	{
+		_isResetting = false;
+
+		_resetDispatcherTimer.Stop();
+
+		CursorCountdownOverlay.Stop();
+
+		Mouse.OverrideCursor = null;
+	}
+
 	// Convert the pointer position to barycentric weights (Cramer's rule), clamp into the triangle,
 	// and push the sway / surge weights into the dependency properties (heave is the remainder).
 	private void ApplyPointerPosition( Point position )
@@ -189,6 +252,18 @@ public partial class MairaTriangleBalance : UserControl
 
 		SwayWeight = swayWeight;
 		SurgeWeight = surgeWeight;
+	}
+
+	// Place the static default marker at the triangle centroid, which is where the movable dot
+	// rests at the equal-thirds default (sway = surge = heave = 1/3).
+	private void PositionDefaultDot()
+	{
+		var centroid = new Point(
+			( VertexA.X + VertexB.X + VertexC.X ) / 3.0,
+			( VertexA.Y + VertexB.Y + VertexC.Y ) / 3.0 );
+
+		System.Windows.Controls.Canvas.SetLeft( Default_Dot_Ellipse, centroid.X - Default_Dot_Ellipse.Width / 2.0 );
+		System.Windows.Controls.Canvas.SetTop( Default_Dot_Ellipse, centroid.Y - Default_Dot_Ellipse.Height / 2.0 );
 	}
 
 	private void UpdateDotVisual()

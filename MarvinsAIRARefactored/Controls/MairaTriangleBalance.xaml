@@ -77,7 +77,10 @@
                 MouseLeftButtonDown="Triangle_Canvas_MouseLeftButtonDown"
                 MouseMove="Triangle_Canvas_MouseMove"
                 MouseLeftButtonUp="Triangle_Canvas_MouseLeftButtonUp"
-                LostMouseCapture="Triangle_Canvas_LostMouseCapture">
+                LostMouseCapture="Triangle_Canvas_LostMouseCapture"
+                PreviewMouseRightButtonDown="Triangle_Canvas_PreviewMouseRightButtonDown"
+                PreviewMouseRightButtonUp="Triangle_Canvas_PreviewMouseRightButtonUp"
+                MouseLeave="Triangle_Canvas_MouseLeave">
 
             <Path x:Name="Triangle_Path"
                   Stroke="{DynamicResource Brush.Border.Normal}"
@@ -85,6 +88,13 @@
                   Fill="{DynamicResource Brush.Background.Popup}"
                   StrokeLineJoin="Round"
                   Data="M 100,8 L 8,152 L 192,152 Z" />
+
+            <!-- Static marker at the triangle centroid showing the default (equal-thirds) balance. -->
+            <Ellipse x:Name="Default_Dot_Ellipse"
+                     Width="6"
+                     Height="6"
+                     Fill="{DynamicResource Brush.Border.Normal}"
+                     IsHitTestVisible="False" />
 
             <Ellipse x:Name="Dot_Ellipse"
                      Width="14"
