@@ -405,32 +405,14 @@ public partial class MainWindow : Window
 		{
 			var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
 
-			switch ( app.Pedals.PedalsDevice )
+			_pedalsPage.Device_Label.Text = app.Pedals.PedalsDevice switch
 			{
-				case HPR.PedalsDevice.None:
-					_pedalsPage.Device_Label.Text = localization[ "PedalsNone" ];
-					break;
-
-				case HPR.PedalsDevice.P500:
-					_pedalsPage.Device_Label.Text = localization[ "PedalsP500" ];
-					break;
-
-				case HPR.PedalsDevice.P700:
-					_pedalsPage.Device_Label.Text = localization[ "PedalsP700" ];
-					break;
-
-				case HPR.PedalsDevice.P1000:
-					_pedalsPage.Device_Label.Text = localization[ "PedalsP1000" ];
-					break;
-
-				case HPR.PedalsDevice.P2000:
-					_pedalsPage.Device_Label.Text = localization[ "PedalsP2000" ];
-					break;
-
-				default:
-					_pedalsPage.Device_Label.Text = localization[ "PedalsPrototype" ];
-					break;
-			}
+				HPR.PedalsDevice.P500 => localization[ "PedalsP500" ],
+				HPR.PedalsDevice.P700 => localization[ "PedalsP700" ],
+				HPR.PedalsDevice.P1000 => localization[ "PedalsP1000" ],
+				HPR.PedalsDevice.P2000 => localization[ "PedalsP2000" ],
+				_ => localization[ "PedalsNone" ],
+			};
 		} );
 	}
 
