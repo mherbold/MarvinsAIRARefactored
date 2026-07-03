@@ -159,11 +159,35 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":" setting "} -->
+<p class=" setting ">Check For Updates On Interval</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When enabled, MAIRA also re-checks for a newer version at a regular interval while the app is running. The Update Check Interval below only runs when this is turned on.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":" setting "} -->
+<p class=" setting ">Delete Old Installers</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When enabled, MAIRA cleans up previously downloaded installer files so they don’t pile up in your Documents folder.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":" setting "} -->
 <p class=" setting ">Update Check Interval</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>How often MAIRA re-checks for a newer version while the app is running, in hours.</p>
+<p>How often MAIRA re-checks for a newer version while the app is running, in hours. This interval only runs when Check For Updates On Interval is enabled.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -191,19 +215,31 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="wizard">Wizard</p>
+<p class="section" id="miscellaneous">Miscellaneous</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Launch Wizard</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
 <p>Launch Wizard opens Marvin the Wizard, a step-by-step guide that walks you through the most important settings - app theme, steering wheel selection, and more - to get you on track quickly. It is the same wizard that appears the first time you run MAIRA, and you can re-run it any time from here.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="window-visibility">Window Visibility</p>
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Show / Hide Window</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
 <p>Show / Hide Window toggles the MAIRA main window between shown and hidden. You can map this action to a button on your wheel or controller so you can bring MAIRA up or tuck it away without leaving the cockpit.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Open Documents Folder</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Opens MAIRA’s Documents folder in Windows Explorer. This is where MAIRA stores its settings, logs, recordings, and other data files.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->
