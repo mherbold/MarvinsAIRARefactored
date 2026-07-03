@@ -16,7 +16,8 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[AllOverlays]}">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[AllOverlays]}"
+                                HelpTopic="advanced/overlays/#all-overlays">
 
             <StackPanel>
 
@@ -45,7 +46,8 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox x:Name="GapMonitor_MairaGroupBox"
-                                Label="{Binding Localization.Upper[GapMonitor]}">
+                                Label="{Binding Localization.Upper[GapMonitor]}"
+                                HelpTopic="advanced/overlays/#gap-monitor">
 
             <StackPanel>
 
@@ -61,7 +63,8 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox x:Name="DeltaMonitor_MairaGroupBox"
-                                Label="{Binding Localization.Upper[DeltaMonitor]}">
+                                Label="{Binding Localization.Upper[DeltaMonitor]}"
+                                HelpTopic="advanced/overlays/#delta-monitor">
 
             <StackPanel>
 
@@ -77,7 +80,8 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox x:Name="GripOMeter_MairaGroupBox"
-                                Label="{Binding Localization.Upper[GripOMeter]}">
+                                Label="{Binding Localization.Upper[GripOMeter]}"
+                                HelpTopic="advanced/overlays/#grip-o-meter">
 
             <StackPanel>
 
@@ -93,7 +97,8 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox x:Name="SpeechToText_MairaGroupBox"
-                                Label="{Binding Localization.Upper[SpeechToText]}">
+                                Label="{Binding Localization.Upper[SpeechToText]}"
+                                HelpTopic="advanced/overlays/#captions">
 
             <StackPanel>
 
