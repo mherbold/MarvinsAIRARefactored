@@ -65,6 +65,14 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Output Torque</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Shows the final force value MAIRA is sending to your wheel after processing (algorithms + effects + fades).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Input Torque (60 Hz)</p>
 <!-- /wp:paragraph -->
 
@@ -82,14 +90,6 @@
 
 <!-- wp:paragraph -->
 <p>More information about Wheel LFE can be found here - <a href="https://mairapp.com/home/documentation/advanced/racing-wheel/#wheel-lfe" data-type="page" data-id="164">Wheel LFE</a></p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Output Torque</p>
-<!-- /wp:paragraph -->
-
-<!-- wp:paragraph -->
-<p>Shows the final force value MAIRA is sending to your wheel after processing (algorithms + effects + fades).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -182,10 +182,10 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/trading-paints/" data-type="page" data-id="176">Trading Paints</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/simulator/" data-type="page" data-id="180">Simulator</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/simulator/" data-type="page" data-id="180">Simulator</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/other-stuff/troubleshooting/" data-type="page" data-id="152">Troubleshooting</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

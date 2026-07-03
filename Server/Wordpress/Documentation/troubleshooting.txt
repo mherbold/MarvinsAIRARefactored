@@ -19,6 +19,18 @@
 <p class="section">App Crashes</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>If MAIRA crashes or behaves unexpectedly, the most helpful thing you can do is grab the log file. Every time it runs, MAIRA writes a log to your documents folder, at <strong>Documents\MarvinsAIRA Refactored\MarvinsAIRA.log</strong>. This log records what the app was doing leading up to a problem, so it is usually the fastest way to figure out what went wrong.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When you report a crash, please attach this log file. If you can, reproduce the crash first and then grab the log right afterward, so it captures the failure.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You can report crashes (and anything else) on the <a href="https://discord.gg/Y7JN3BAz72" target="_blank" rel="noreferrer noopener">Discord Server</a> or on the <a href="https://forums.iracing.com/discussion/72467/marvins-awesome-iracing-app" target="_blank" rel="noreferrer noopener">iRacing Forum</a>. Including the log file with your report makes it much easier to diagnose and fix the issue.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:spacer -->
 <div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
@@ -28,7 +40,7 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/graph/" data-type="page" data-id="178">Graph</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

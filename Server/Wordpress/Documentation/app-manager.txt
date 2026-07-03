@@ -216,10 +216,10 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/simulator/" data-type="page" data-id="180">Simulator</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/basic/lets-go-just-the-basic-stuff/" data-type="page" data-id="150">Let’s Go! Just the Basic Stuff</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/racing-wheel/" data-type="page" data-id="164">Racing Wheel</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

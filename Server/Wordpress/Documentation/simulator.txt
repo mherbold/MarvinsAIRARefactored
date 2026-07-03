@@ -188,7 +188,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Unit: unit or enum type name (for example m/s, deg, or SDK enum identifiers)</li>
+<li>Unit: iRacing’s raw unit string for the variable (for example m/s, deg, or an SDK identifier like irsdk_TrkLoc). This column always shows the unit string as-is; decoded enum names appear in the Value column, and decoded bitfield flags are appended to the Description column.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -202,7 +202,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Booleans show as T / F and are color-highlighted.</li>
+<li>Booleans show as T / F and are color-coded: T is green and F is orange.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -210,7 +210,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Bitfields are shown in hex (example: 0x00000080) and MAIRA also appends a decoded list of active flags.</li>
+<li>Bitfields are shown in hex (example: 0x00000080) in the Value column, and MAIRA appends a decoded list of the active flags to the Description text (shown in orange).</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -224,10 +224,10 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/graph/" data-type="page" data-id="178">Graph</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/controller-profiles/" data-type="page" data-id="1034">Controller Profiles</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/app-manager/" data-type="page" data-id="852">App Manager</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/graph/" data-type="page" data-id="178">Graph</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

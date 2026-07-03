@@ -100,6 +100,34 @@
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Max Download Speed</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Limits how much of your internet bandwidth MAIRA uses while downloading paint files. Lower this if you want to keep bandwidth free for other things (such as iRacing itself) while paints are being fetched in the background.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The value can be set anywhere from 64 KB/s up to 10240 KB/s.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 1024 KB/s</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Re-download Paint Files</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Resets MAIRA’s Trading Paints integration and re-fetches all liveries for the drivers in your current iRacing session. MAIRA clears its record of which drivers it has already processed, then re-downloads their paints and reloads the textures in iRacing. This is useful if a paint failed to download or you want to force a fresh pull.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This button only does anything while the Trading Paints integration is enabled.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section">Disclaimer</p>
 <!-- /wp:paragraph -->
@@ -122,10 +150,10 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/captions/" data-type="page" data-id="174">Captions</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/overlays/" data-type="page" data-id="860">Overlays</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/graph/" data-type="page" data-id="178">Graph</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

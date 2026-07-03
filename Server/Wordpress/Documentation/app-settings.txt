@@ -252,10 +252,10 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/app-manager/" data-type="page" data-id="852">App Manager</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/trading-paints/" data-type="page" data-id="176">Trading Paints</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/other-stuff/troubleshooting/" data-type="page" data-id="152">Troubleshooting</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/controller-profiles/" data-type="page" data-id="1034">Controller Profiles</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

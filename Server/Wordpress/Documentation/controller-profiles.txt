@@ -1,0 +1,93 @@
+<!-- wp:paragraph -->
+<p>This page lets you save and switch between named sets of button and input mappings, called controller profiles. Whenever you map a physical button, knob, hat, or key to an action anywhere in MAIRA, that mapping is stored in the profile that is currently selected here. Create a separate profile for each of your wheels, button boxes, or controllers, then switch between them in one click when you swap hardware.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="controller-profiles">Controller Profiles</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Manages your controller profiles and selects which one is active.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Profile</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Selects the active controller profile. All button and input mappings across MAIRA belong to the profile chosen here, so switching profiles instantly swaps your entire set of mappings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">New Profile</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Creates a new controller profile. You are asked to enter a Profile Name, and you can turn on Copy current mappings to start the new profile as a duplicate of the one you have selected. Leave that switch off to start with a clean profile that has nothing mapped.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Rename Profile</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Renames the currently selected controller profile. Its mappings are kept as-is under the new name.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Delete Profile</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Deletes the currently selected controller profile after you confirm. MAIRA always keeps at least one profile, so this button is disabled when only one profile remains.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="button-mappings">Button Mappings</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This section shows every action in MAIRA that you can bind a physical input to, all in one place. The mappings you create here are saved in the currently selected controller profile.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Search</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Filters the list as you type. Matching categories expand automatically so you can find the action you want quickly. Clear the search box to show the full list again.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Mappable actions</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Actions are grouped into expandable categories. Each row names an action and shows a summary of what is currently mapped to it, or “(unmapped)” in orange when nothing is bound yet.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Press the Map button on a row to open the input configuration window, then press any input on your wheel, button box, Stream Deck, or keyboard to bind it. You can optionally press a second input for hold + click behavior. Press the Clear button to remove the mapping from that row. This is the same mapping workflow described under Input Mapping on the <a href="https://mairapp.com/home/documentation/basic/common-controls/" data-type="page" data-id="508">Common Controls</a> page.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Knob actions appear as a pair of rows, one for increasing (+) and one for decreasing (−) the value. These rows also include an editable Step Size field that sets how much the value changes each time the mapped input is pressed. The step size is shared by both the + and − rows of a knob, and applies across all controller profiles.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/app-settings/" data-type="page" data-id="182">App Settings</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/simulator/" data-type="page" data-id="180">Simulator</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

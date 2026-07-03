@@ -11,7 +11,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Connects/disconnects MAIRA to the wind controller over USB serial port.  If the checkbox remains unchecked after clicking on it, then that indicates some kind of issue occurred trying to connect to the MAIRA wind controller.</p>
+<p>Connects/disconnects MAIRA to the Typhoon Wind controller over USB serial port.  If the connection fails, MAIRA displays an error message describing what went wrong and shows a Retry button so you can attempt the connection again after resolving the issue.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -23,7 +23,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>If enabled, MAIRA automatically connects to the wind controller during app startup.</p>
+<p>If enabled, MAIRA automatically connects to the Typhoon Wind controller during app startup.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -104,6 +104,14 @@
 
 <!-- wp:paragraph -->
 <p>MAIRA computes car speed magnitude from iRacing car velocity, and finds where that speed fits among the 10 speed data points.  Then, it computes fan power using Hermite interpolation between points (smooth curve instead of sharp steps).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Reset to Defaults</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Restores the entire speed → fan power curve to its default shape, resetting every speed and fan power data point back to the factory settings.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

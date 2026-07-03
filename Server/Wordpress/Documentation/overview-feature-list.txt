@@ -89,6 +89,10 @@
 
 <!-- wp:list-item -->
 <li>Overlay to show how your car is behaving, similar to the skid-slip indicator on aircraft</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Robot driver - outputs steering, brake, throttle, and shift up/down to a vJoy virtual joystick, letting MAIRA drive the car on track to learn and measure it</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

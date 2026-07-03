@@ -152,6 +152,28 @@
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
+<!-- wp:paragraph -->
+<p>Selecting the cable inside MAIRA</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The Windows routing above sends the audio into the cable, but MAIRA also needs to be told which device to listen to. In MAIRA, choose “CABLE Output (VB-Audio Virtual Cable)” as the capture/recording device:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>For Wheel LFE — select CABLE Output as the recording device on the Racing Wheel page.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>For Captions — select CABLE Output as the recording device on the Speech-to-Text page.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>If you are using the paid VB-CABLE A+B version to run both features at once, pick the matching CABLE-A / CABLE-B Output device on each page so the two audio paths don’t conflict.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section">Configuring iRacing to Use VB-CABLE</p>
 <!-- /wp:paragraph -->

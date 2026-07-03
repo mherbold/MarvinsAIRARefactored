@@ -126,10 +126,10 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/commentary/" data-type="page">Commentary</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/adminboxx/" data-type="page" data-id="858">AdminBoxx</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/trading-paints/" data-type="page" data-id="176">Trading Paints</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/commentary/" data-type="page" data-id="937">Commentary</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->

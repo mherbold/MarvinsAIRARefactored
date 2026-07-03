@@ -59,7 +59,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Settings (gear)</strong> &ndash; opens a small window to set the overlay's background color and opacity, or reset them</li>
+<li><strong>Settings (gear)</strong> &ndash; opens a small window to adjust the overlay's appearance, or reset it. For the box overlays (Gap Monitor, Delta Monitor, and Captions) you can set the background color &ndash; using a #RRGGBB hex code or the separate Red, Green, and Blue knobs &ndash; along with the opacity. The Grip-O-Meter has no background color, so its window offers the opacity control only.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -297,11 +297,11 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/adminboxx/" data-type="page" data-id="858">AdminBoxx</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/sounds/" data-type="page" data-id="172">Sounds</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/sounds/" data-type="page" data-id="172">Sounds</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/trading-paints/" data-type="page" data-id="176">Trading Paints</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group --></div>
 <!-- /wp:group -->

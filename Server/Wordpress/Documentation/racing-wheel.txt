@@ -249,6 +249,10 @@
 <p>This section controls <em>how MAIRA processes iRacing’s steering torque signal</em> before sending it to your wheel.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p><strong>Note:</strong> The controls below the <strong>Algorithm</strong> selector are algorithm-specific. Only the ones that apply to the algorithm you have selected are shown — the rest are hidden. For example, the Delta Limit / Delta Limiter Bias knobs appear for the Delta Limiter algorithms, the Slew / Total Compression knobs appear for Slew and Total Compression, and the Multi controls (FFB Type + Presets, 360 Hz Detail, Torque Compression, Peak Aware Slew Reduction, Slew Rate Reduction, Detail Gain, Output Smoothing) appear for the Multi Adjustment Toolkit. So you will not see every setting listed here at the same time.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Algorithm</p>
 <!-- /wp:paragraph -->
@@ -408,11 +412,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Threshold at which slew compression starts clamping fast torque changes.</p>
+<p>Threshold at which slew compression starts clamping fast torque changes. The value is shown in Nm/ms and scales with your Max Force (displayed value = setting × Max Force ÷ 1000).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 0.02% of Max Force</p>
+<p class="default">Default: 2 (e.g. 0.06 Nm/ms at a 30 Nm Max Force)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -452,11 +456,61 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">FFB Type + Presets</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This dropdown is part of the <strong>Multi Adjustment Toolkit</strong> algorithm. It picks the underlying FFB source (and, for the presets, a matching bundle of Multi settings) that everything else in this section builds on. The choices are grouped:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>FFB sources</strong> — <strong>Native 60 Hz</strong>, <strong>360 Hz on 60 Hz, 10% Bias</strong>, <strong>360 Hz on 60 Hz, 10-30% Bias</strong>, and <strong>Native 360 Hz</strong>. These select the base signal (native rate, or the hybrid 360-on-60 modes with a chosen detail bias).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>(Default Values) …</strong> — picks that FFB source <em>and</em> resets the Multi controls to their default values for it.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>(Preset) …</strong> — named starting points such as <em>Core tire feedback, minimal / moderate surface detail</em>, <em>Moderately boost / reduce FFB dynamics</em>, and <em>Reduce Big Bumps</em>. Selecting a preset loads a ready-made combination of the settings below.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The (Default Values) and (Preset) entries are convenience actions — after you pick one, the dropdown snaps back to the matching FFB source and you can fine-tune the individual knobs from there.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">360 Hz Detail</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Amount of high-frequency (360 Hz) detail layered onto the signal. This applies only to the “360 Hz on 60 Hz” hybrid FFB sources — it is forced to 0% for Native 60 Hz and to 100% for Native 360 Hz. (Multi Adjustment Toolkit only.)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 100%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Torque Compression</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Compresses high-torque peaks to reduce clipping and keep more usable midrange.</p>
+<p>Compresses high-torque peaks to reduce clipping and keep more usable midrange. (Multi Adjustment Toolkit only.)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: 0%</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Peak Aware Slew Reduction</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When enabled, the Slew Rate Reduction stage becomes peak-aware, so it eases off around signal peaks instead of flattening them. (Multi Adjustment Toolkit only.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -468,23 +522,23 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Reduces how quickly torque can drop (and in some cases rise), smoothing sharp transitions.</p>
+<p>Reduces how quickly torque can drop (and in some cases rise), smoothing sharp transitions. (Multi Adjustment Toolkit only.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
+<p class="default">Default: 0%</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Detail Gain</p>
+<p class="setting">Detail Gain +/- Adjustment</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Boosts deviations from the “steady” component of the signal to enhance road detail.</p>
+<p>Boosts (or, below 0%, reduces) deviations from the “steady” component of the signal to enhance road detail. (Multi Adjustment Toolkit only.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
+<p class="default">Default: 0%</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -492,11 +546,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Adds smoothing to the final output to reduce chatter / jitter.</p>
+<p>Adds smoothing to the final output to reduce chatter / jitter. (Multi Adjustment Toolkit only.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
+<p class="default">Default: 0%</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -980,7 +1034,7 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/basic/lets-go-just-the-basic-stuff/" data-type="page" data-id="150">Let’s Go! Just the Basic Stuff</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/app-manager/" data-type="page" data-id="852">App Manager</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

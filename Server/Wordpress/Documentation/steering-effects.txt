@@ -323,6 +323,10 @@
 <p class="default">Default: OFF</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>Note: for the Seat-of-Pants effect only, the constant force Curve defaults to 25% rather than OFF.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="pedal-vibration-effect">Pedal Vibration Effect</p>
 <!-- /wp:paragraph -->
@@ -357,6 +361,34 @@
 
 <!-- wp:paragraph {"className":"default"} -->
 <p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="private-messages">Private Messages</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Send private chat messages to the driver</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When enabled, MAIRA sends you private iRacing chat messages during your session, such as a confirmation whenever a setting changes.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enable input mapped setting update messages</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When enabled, MAIRA shows a private chat message whenever you change a setting using a mapped input (for example, turning a knob on your steering wheel), so you can see the new value without looking away from the track.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

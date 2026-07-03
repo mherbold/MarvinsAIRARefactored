@@ -62,7 +62,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>If you have Simagic pedal haptic (HPR) devices on your pedals, then you should enable pedal haptics by ticking the first checkbox on the <strong>Pedals</strong> page. </p>
+<p>If you have Simagic pedal haptic (HPR) devices on your pedals, then you should enable pedal haptics by turning on the switch at the top of the <strong>Pedals</strong> page. Pedal haptics also work with some other brands via SimHub, so it’s worth trying even if you don’t have Simagic hardware.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -98,6 +98,6 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/racing-wheel/" data-type="page" data-id="164">Racing Wheel</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/app-manager/" data-type="page" data-id="852">App Manager</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
