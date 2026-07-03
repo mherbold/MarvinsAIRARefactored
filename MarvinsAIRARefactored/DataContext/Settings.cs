@@ -42,9 +42,9 @@ public class Settings : INotifyPropertyChanged
 
 				bool isXmlIgnored = propertyInfo.GetCustomAttribute<XmlIgnoreAttribute>() != null;
 
-				if ( ( propertyName != "AppWindowPositionAndSize" ) && !propertyName.EndsWith( "Scale" ) && !isXmlIgnored )
+				if ( !isXmlIgnored )
 				{
-					app.Logger.WriteLine( $"[Settings] Updating base setting {propertyName} to ({valueType}) {value}" );
+					app.SettingsFile.RecordChangedSetting( $"base:{propertyName}", $"[Settings] Updating base setting {propertyName} to ({valueType}) {value}" );
 				}
 
 				if ( !SuppressUpdatingOfContextSettings )
@@ -424,7 +424,7 @@ public class Settings : INotifyPropertyChanged
 								{
 									var valueType = settingsPropertyValue?.GetType().Name ?? "null";
 
-									app.Logger.WriteLine( $"[Settings] Updating context setting {contextSettingsProperty.Name} to ({valueType}) {settingsPropertyValue} from setting ({context.WheelbaseGuid}|{context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
+									app.SettingsFile.RecordChangedSetting( $"context:{contextSettingsProperty.Name}", $"[Settings] Updating context setting {contextSettingsProperty.Name} to ({valueType}) {settingsPropertyValue} from setting ({context.WheelbaseGuid}|{context.CarName}|{context.TrackName}|{context.TrackConfigurationName}|{context.WetDryName})" );
 
 									contextSettingsProperty.SetValue( contextSettings, settingsPropertyValue );
 								}

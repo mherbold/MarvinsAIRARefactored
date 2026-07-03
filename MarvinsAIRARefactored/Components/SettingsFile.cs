@@ -55,6 +55,16 @@ public class SettingsFile
 
 	private int _serializationCounter = 0;
 
+	// Log lines for settings that have changed since the last save, keyed so repeated changes to the same
+	// setting (e.g. window position while dragging) collapse to a single latest line instead of flooding
+	// the log every frame. Flushed to the log and cleared when the settings file is actually written in Tick.
+	private readonly Dictionary<string, string> _changedSettings = [];
+
+	public void RecordChangedSetting( string key, string message )
+	{
+		_changedSettings[ key ] = message;
+	}
+
 	public void Initialize()
 	{
 		var app = App.Instance!;
@@ -174,9 +184,16 @@ public class SettingsFile
 				// persisted store stays authoritative no matter where a mapping was edited.
 				DataContext.DataContext.Instance.Settings.SaveCurrentControllerProfile();
 
+				foreach ( var changedSetting in _changedSettings.Values )
+				{
+					app.Logger.WriteLine( changedSetting );
+				}
+
 				Serializer.Save( SettingsFilePath, DataContext.DataContext.Instance.Settings );
 
 				app.Logger.WriteLine( "[SettingsFile] Settings.xml file updated" );
+
+				_changedSettings.Clear();
 			}
 		}
 	}
