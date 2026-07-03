@@ -140,7 +140,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Works with the custom MAIRA <a href="https://mairapp.com/home/maira-typhoon-wind-kit/" data-type="page" data-id="72">Typhoon Wind Kit</a></li>
+<li>Works with the custom MAIRA <a href="https://mairapp.com/home/maira-typhoon-wind/" data-type="page" data-id="72">Typhoon Wind</a></li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -162,7 +162,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>USB serial-controlled G Tensioner integration</li>
+<li>USB serial-controlled <a href="https://mairapp.com/home/maira-g-tensioner/" data-type="page" data-id="647">G Tensioner</a> integration</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -378,7 +378,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><a href="https://mairapp.com/home/documentation/other-stuff/help-translate-maira/" data-type="page" data-id="215">Multiple language support!</a>  This is the list of languages supported in MAIRA and the percentage of text that has been translated for each language -<!-- wp:list -->
+<li>Multiple language support! This is the list of languages supported in MAIRA -<!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
 <li>English</li>
 <!-- /wp:list-item -->
