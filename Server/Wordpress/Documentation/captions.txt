@@ -34,6 +34,10 @@
 <p>When enabled, MAIRA starts audio capture, sends voice-chat audio to ElevenLabs for transcription, and updates the overlay with partial/final text as radio messages come in.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Recording Device</p>
 <!-- /wp:paragraph -->
@@ -44,6 +48,10 @@
 
 <!-- wp:paragraph -->
 <p>If your captions are blank or unreliable, this is the first setting to check.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: [Default Recording Device]</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -67,7 +75,21 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Checks whether your key is recognized and whether it has the required speech-to-text/account permissions.</p>
+<p>Checks whether your key is recognized and reports the status of the two ElevenLabs permissions captions require. Make sure both of these are enabled on your API key:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Speech to Text — Access</strong> (so MAIRA can transcribe voice chat audio into captions)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>User — Read</strong> (so MAIRA can display your subscription usage)</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>The result shows a per-permission indicator so you can see at a glance which, if either, is missing.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
