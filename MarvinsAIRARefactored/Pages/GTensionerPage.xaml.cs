@@ -11,9 +11,9 @@ using MarvinsAIRARefactored.Controls;
 
 namespace MarvinsAIRARefactored.Pages;
 
-public partial class SeatBeltTensionerPage : UserControl, INotifyPropertyChanged
+public partial class GTensionerPage : UserControl, INotifyPropertyChanged
 {
-	private List<KeyValuePair<SeatBeltTensioner.AxisMode, string>> _axisModeOptions = [];
+	private List<KeyValuePair<GTensioner.AxisMode, string>> _axisModeOptions = [];
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -24,12 +24,22 @@ public partial class SeatBeltTensionerPage : UserControl, INotifyPropertyChanged
 	private string _heaveMinGString = "---";
 	private string _heaveMaxGString = "---";
 
+	private string _autoTuneSurgeEffectiveString = "---";
+	private string _autoTuneSwayEffectiveString = "---";
+	private string _autoTuneHeaveEffectiveString = "---";
+	private string _autoTuneSopEffectiveString = "---";
+
 	public string SurgeMinGString { get => _surgeMinGString; set => SetField( ref _surgeMinGString, value ); }
 	public string SurgeMaxGString { get => _surgeMaxGString; set => SetField( ref _surgeMaxGString, value ); }
 	public string SwayMinGString { get => _swayMinGString; set => SetField( ref _swayMinGString, value ); }
 	public string SwayMaxGString { get => _swayMaxGString; set => SetField( ref _swayMaxGString, value ); }
 	public string HeaveMinGString { get => _heaveMinGString; set => SetField( ref _heaveMinGString, value ); }
 	public string HeaveMaxGString { get => _heaveMaxGString; set => SetField( ref _heaveMaxGString, value ); }
+
+	public string AutoTuneSurgeEffectiveString { get => _autoTuneSurgeEffectiveString; set => SetField( ref _autoTuneSurgeEffectiveString, value ); }
+	public string AutoTuneSwayEffectiveString { get => _autoTuneSwayEffectiveString; set => SetField( ref _autoTuneSwayEffectiveString, value ); }
+	public string AutoTuneHeaveEffectiveString { get => _autoTuneHeaveEffectiveString; set => SetField( ref _autoTuneHeaveEffectiveString, value ); }
+	public string AutoTuneSopEffectiveString { get => _autoTuneSopEffectiveString; set => SetField( ref _autoTuneSopEffectiveString, value ); }
 
 	private void SetField( ref string field, string value, [CallerMemberName] string? propertyName = null )
 	{
@@ -43,7 +53,7 @@ public partial class SeatBeltTensionerPage : UserControl, INotifyPropertyChanged
 		PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
 	}
 
-	public SeatBeltTensionerPage()
+	public GTensionerPage()
 	{
 		InitializeComponent();
 	}
@@ -53,11 +63,11 @@ public partial class SeatBeltTensionerPage : UserControl, INotifyPropertyChanged
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var dictionary = new Dictionary<SeatBeltTensioner.AxisMode, string>
+		var dictionary = new Dictionary<GTensioner.AxisMode, string>
 		{
-			{ SeatBeltTensioner.AxisMode.Disabled, localization[ "AxisModeDisabled" ] },
-			{ SeatBeltTensioner.AxisMode.Normal,   localization[ "AxisModeNormal" ] },
-			{ SeatBeltTensioner.AxisMode.Inverted, localization[ "AxisModeInverted" ] }
+			{ GTensioner.AxisMode.Disabled, localization[ "AxisModeDisabled" ] },
+			{ GTensioner.AxisMode.Normal,   localization[ "AxisModeNormal" ] },
+			{ GTensioner.AxisMode.Inverted, localization[ "AxisModeInverted" ] }
 		};
 
 		_axisModeOptions = dictionary.ToList();
@@ -65,16 +75,16 @@ public partial class SeatBeltTensionerPage : UserControl, INotifyPropertyChanged
 		Dispatcher.Invoke( () =>
 		{
 			SurgeMode_MairaComboBox.ItemsSource = _axisModeOptions;
-			SurgeMode_MairaComboBox.SelectedValue = settings.SeatBeltTensionerSurgeMode;
+			SurgeMode_MairaComboBox.SelectedValue = settings.GTensionerSurgeMode;
 
 			SwayMode_MairaComboBox.ItemsSource = _axisModeOptions;
-			SwayMode_MairaComboBox.SelectedValue = settings.SeatBeltTensionerSwayMode;
+			SwayMode_MairaComboBox.SelectedValue = settings.GTensionerSwayMode;
 
 			HeaveMode_MairaComboBox.ItemsSource = _axisModeOptions;
-			HeaveMode_MairaComboBox.SelectedValue = settings.SeatBeltTensionerHeaveMode;
+			HeaveMode_MairaComboBox.SelectedValue = settings.GTensionerHeaveMode;
 
 			SeatOfPantsMode_MairaComboBox.ItemsSource = _axisModeOptions;
-			SeatOfPantsMode_MairaComboBox.SelectedValue = settings.SeatBeltTensionerSeatOfPantsMode;
+			SeatOfPantsMode_MairaComboBox.SelectedValue = settings.GTensionerSeatOfPantsMode;
 		} );
 	}
 
@@ -101,7 +111,7 @@ public partial class SeatBeltTensionerPage : UserControl, INotifyPropertyChanged
 	{
 		var app = App.Instance!;
 
-		var isRunning = app.SeatBeltTensioner.IsTestRunning;
+		var isRunning = app.GTensioner.IsTestRunning;
 
 		SurgeTest_MairaButton.IsEnabled = !isRunning;
 		SwayTest_MairaButton.IsEnabled = !isRunning;
@@ -129,22 +139,22 @@ public partial class SeatBeltTensionerPage : UserControl, INotifyPropertyChanged
 
 	#region User Control Events
 
-	private void ConnectToSbt_MairaSwitch_Toggled( object sender, EventArgs e )
+	private void ConnectToGt_MairaSwitch_Toggled( object sender, EventArgs e )
 	{
 		var app = App.Instance!;
 
-		if ( ConnectToSbt_MairaSwitch.IsOn )
+		if ( ConnectToGt_MairaSwitch.IsOn )
 		{
-			if ( !app.SeatBeltTensioner.IsConnected )
+			if ( !app.GTensioner.IsConnected )
 			{
-				app.SeatBeltTensioner.Connect();
+				app.GTensioner.Connect();
 			}
 		}
 		else
 		{
-			if ( app.SeatBeltTensioner.IsConnected )
+			if ( app.GTensioner.IsConnected )
 			{
-				app.SeatBeltTensioner.Disconnect();
+				app.GTensioner.Disconnect();
 			}
 		}
 	}
@@ -153,93 +163,93 @@ public partial class SeatBeltTensionerPage : UserControl, INotifyPropertyChanged
 	{
 		var app = App.Instance!;
 
-		app.SeatBeltTensioner.RetryDevice();
+		app.GTensioner.RetryDevice();
 	}
 
 	private void SurgeMode_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
-		if ( sender is MairaComboBox combo && combo.SelectedValue is SeatBeltTensioner.AxisMode mode )
+		if ( sender is MairaComboBox combo && combo.SelectedValue is GTensioner.AxisMode mode )
 		{
-			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.SeatBeltTensionerSurgeMode = mode;
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.GTensionerSurgeMode = mode;
 		}
 	}
 
 	private void SwayMode_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
-		if ( sender is MairaComboBox combo && combo.SelectedValue is SeatBeltTensioner.AxisMode mode )
+		if ( sender is MairaComboBox combo && combo.SelectedValue is GTensioner.AxisMode mode )
 		{
-			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.SeatBeltTensionerSwayMode = mode;
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.GTensionerSwayMode = mode;
 		}
 	}
 
 	private void HeaveMode_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
-		if ( sender is MairaComboBox combo && combo.SelectedValue is SeatBeltTensioner.AxisMode mode )
+		if ( sender is MairaComboBox combo && combo.SelectedValue is GTensioner.AxisMode mode )
 		{
-			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.SeatBeltTensionerHeaveMode = mode;
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.GTensionerHeaveMode = mode;
 		}
 	}
 
 	private void SeatOfPantsMode_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
-		if ( sender is MairaComboBox combo && combo.SelectedValue is SeatBeltTensioner.AxisMode mode )
+		if ( sender is MairaComboBox combo && combo.SelectedValue is GTensioner.AxisMode mode )
 		{
-			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.SeatBeltTensionerSeatOfPantsMode = mode;
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.GTensionerSeatOfPantsMode = mode;
 		}
 	}
 
 	private void SurgeTest_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		App.Instance!.SeatBeltTensioner.StartTest( SeatBeltTensioner.TestAxis.Surge );
+		App.Instance!.GTensioner.StartTest( GTensioner.TestAxis.Surge );
 
 		UpdateTestStatus();
 	}
 
 	private void SwayTest_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		App.Instance!.SeatBeltTensioner.StartTest( SeatBeltTensioner.TestAxis.Sway );
+		App.Instance!.GTensioner.StartTest( GTensioner.TestAxis.Sway );
 
 		UpdateTestStatus();
 	}
 
 	private void HeaveTest_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		App.Instance!.SeatBeltTensioner.StartTest( SeatBeltTensioner.TestAxis.Heave );
+		App.Instance!.GTensioner.StartTest( GTensioner.TestAxis.Heave );
 
 		UpdateTestStatus();
 	}
 
 	private void StopTest_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		App.Instance!.SeatBeltTensioner.StopTest();
+		App.Instance!.GTensioner.StopTest();
 
 		UpdateTestStatus();
 	}
 
 	private void ABSTest_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		App.Instance!.SeatBeltTensioner.StartVibrationTest( SeatBeltTensioner.TestVibrationEffect.ABS );
+		App.Instance!.GTensioner.StartVibrationTest( GTensioner.TestVibrationEffect.ABS );
 
 		UpdateTestStatus();
 	}
 
 	private void WheelSlipTest_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		App.Instance!.SeatBeltTensioner.StartVibrationTest( SeatBeltTensioner.TestVibrationEffect.WheelSlip );
+		App.Instance!.GTensioner.StartVibrationTest( GTensioner.TestVibrationEffect.WheelSlip );
 
 		UpdateTestStatus();
 	}
 
 	private void RumbleTest_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		App.Instance!.SeatBeltTensioner.StartVibrationTest( SeatBeltTensioner.TestVibrationEffect.Rumble );
+		App.Instance!.GTensioner.StartVibrationTest( GTensioner.TestVibrationEffect.Rumble );
 
 		UpdateTestStatus();
 	}
 
 	private void CalibrationSweepTest_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		App.Instance!.SeatBeltTensioner.StartCalibrationSweepTest();
+		App.Instance!.GTensioner.StartCalibrationSweepTest();
 
 		UpdateTestStatus();
 	}

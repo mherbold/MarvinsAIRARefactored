@@ -33,6 +33,7 @@ public class SteeringEffects
 	public float UndersteerEffect { get; private set; } = 0f;
 	public float OversteerEffect { get; private set; } = 0f;
 	public float SeatOfPantsEffect { get; private set; } = 0f;
+	public float SeatOfPantsRaw { get; private set; } = 0f;
 	public float SkidSlip { get; private set; } = 0f;
 
 	public bool IsCalibrating => _calibrationPhase != CalibrationPhase.NotCalibrating;
@@ -172,6 +173,7 @@ public class SteeringEffects
 			UndersteerEffect = 0f;
 			OversteerEffect = 0f;
 			SeatOfPantsEffect = 0f;
+			SeatOfPantsRaw = 0f;
 			SkidSlip = 0f;
 
 			switch ( _calibrationPhase )
@@ -324,6 +326,8 @@ public class SteeringEffects
 
 				break;
 		}
+
+		SeatOfPantsRaw = speedFade * seatOfPantsEffect;
 
 		var absSeatOfPantsEffect = MathF.Abs( seatOfPantsEffect );
 

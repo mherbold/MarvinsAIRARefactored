@@ -141,7 +141,7 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 | Area | Files |
 |---|---|
 | Force feedback / wheel | `RacingWheel.cs`, `SteeringEffects.cs`, `DirectInput.cs`, `Drivers.cs` |
-| Pedals & haptics | `Pedals.cs`, `SeatBeltTensioner.cs`, `SeatBeltTensionerGraph.cs` |
+| Pedals & haptics | `Pedals.cs`, `GTensioner.cs`, `GTensionerGraph.cs` |
 | iRacing data | `Telemetry.cs`, `Simulator.cs` |
 | Audio | `AudioManager.cs`, `Sounds.cs`, `LFE.cs` |
 | Speech / commentary | `SpeechToText.cs`, `TextToSpeech.cs`, `Commentary.cs`, `ChatQueue.cs` |
@@ -162,7 +162,7 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 | Page | Backing component(s) |
 |---|---|
 | `SteeringEffectsPage` | `SteeringEffects.cs`, `RacingWheel.cs` |
-| `SeatBeltTensionerPage` | `SeatBeltTensioner.cs` |
+| `GTensionerPage` | `GTensioner.cs` |
 | `WindPage` | `Wind.cs` |
 | `SoundsPage` | `Sounds.cs`, `AudioManager.cs` |
 | `SpeechToTextPage` | `SpeechToText.cs` |

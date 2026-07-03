@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Szél</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Biztonsági öv feszítő</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Csatlakozás az öv feszítőhöz</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Csatlakozás a G Tensionerhez</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Csatlakozás indításkor</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Csatlakozás a G Tensionerhez indításkor</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Minimális szög</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Szél inicializálása...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Biztonsági öv feszítő inicializálása...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>G Tensioner inicializálása...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>HID Hot Plug Monitor inicializálása...</value>
@@ -1774,6 +1774,12 @@
     <value>Egyéb</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Dokumentumok mappa megnyitása</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Automatikus hangolás</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Egyensúly</value>
   </data>
 
 

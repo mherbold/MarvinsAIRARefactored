@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon 风</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>安全带张紧器</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>连接到 MAIRA 安全带张紧器</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>连接到 MAIRA G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>启动时连接到 MAIRA 安全带张紧器</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>启动时连接到 MAIRA G Tensioner</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>最小角度</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>初始化风...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>初始化安全带张紧器...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>初始化 G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>初始化HID热插拔监视器...</value>
@@ -1774,6 +1774,12 @@
     <value>杂项</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>打开文档文件夹</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>自动调校</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>平衡</value>
   </data>
 
 

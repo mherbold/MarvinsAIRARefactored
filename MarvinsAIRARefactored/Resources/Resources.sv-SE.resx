@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Vind</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Säkerhetsbältessträckare</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Anslut till MAIRA säkerhetsbältessträckare</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Anslut till MAIRA G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Anslut till MAIRA säkerhetsbältessträckare vid appstart</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Anslut till MAIRA G Tensioner vid appstart</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Minimivinkel</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Initierar vind...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Initierar säkerhetsbältespännare...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Initierar G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Initierar HID Hot Plug Monitor...</value>
@@ -1774,6 +1774,12 @@
     <value>Diverse</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Öppna dokumentmapp</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Autotuning</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balans</value>
   </data>
 
 

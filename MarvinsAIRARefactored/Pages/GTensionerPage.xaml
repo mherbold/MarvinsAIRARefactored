@@ -1,4 +1,4 @@
-<UserControl x:Class="MarvinsAIRARefactored.Pages.SeatBeltTensionerPage"
+<UserControl x:Class="MarvinsAIRARefactored.Pages.GTensionerPage"
              x:Name="Root"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -23,9 +23,9 @@
 
                 <StackPanel Orientation="Horizontal">
 
-                    <controls:MairaSwitch x:Name="ConnectToSbt_MairaSwitch"
-                                          Label="{Binding Localization[ConnectToSBT]}"
-                                          Toggled="ConnectToSbt_MairaSwitch_Toggled" />
+                    <controls:MairaSwitch x:Name="ConnectToGt_MairaSwitch"
+                                          Label="{Binding Localization[ConnectToGT]}"
+                                          Toggled="ConnectToGt_MairaSwitch_Toggled" />
 
                     <controls:MairaButton x:Name="RetryDevice_MairaButton"
                                           Margin="20,0,0,0"
@@ -38,8 +38,8 @@
 
                 <controls:MairaSwitch x:Name="ConnectOnStartup_MairaSwitch"
                                       Margin="0,10,0,0"
-                                      Label="{Binding Localization[ConnectToSBTOnStartup]}"
-                                      IsOn="{Binding Settings.SeatBeltTensionerConnectOnStartup, Mode=TwoWay}" />
+                                      Label="{Binding Localization[ConnectToGTOnStartup]}"
+                                      IsOn="{Binding Settings.GTensionerConnectOnStartup, Mode=TwoWay}" />
             </StackPanel>
 
         </controls:MairaGroupBox>
@@ -61,24 +61,24 @@
 
                     <controls:MairaKnob Grid.Column="0"
                                         Label="{Binding Localization[MinimumAngle]}"
-                                        Value="{Binding Settings.SeatBeltTensionerMinimum, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerMinimumString}"
+                                        Value="{Binding Settings.GTensionerMinimum, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerMinimumString}"
                                         ClickStepSize="1"
                                         DragStepSize="0.0156"
                                         DefaultValue="60" />
 
                     <controls:MairaKnob Grid.Column="2"
                                         Label="{Binding Localization[NeutralAngle]}"
-                                        Value="{Binding Settings.SeatBeltTensionerNeutral, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerNeutralString}"
+                                        Value="{Binding Settings.GTensionerNeutral, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerNeutralString}"
                                         ClickStepSize="1"
                                         DragStepSize="0.0104"
                                         DefaultValue="90" />
 
                     <controls:MairaKnob Grid.Column="4"
                                         Label="{Binding Localization[MaximumAngle]}"
-                                        Value="{Binding Settings.SeatBeltTensionerMaximum, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerMaximumString}"
+                                        Value="{Binding Settings.GTensionerMaximum, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerMaximumString}"
                                         ClickStepSize="1"
                                         DragStepSize="0.0156"
                                         DefaultValue="120" />
@@ -97,8 +97,8 @@
 
                     <controls:MairaKnob Grid.Column="0"
                                         Label="{Binding Localization[MaxMotorSpeed]}"
-                                        Value="{Binding Settings.SeatBeltTensionerMaxMotorSpeed, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerMaxMotorSpeedString}"
+                                        Value="{Binding Settings.GTensionerMaxMotorSpeed, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerMaxMotorSpeedString}"
                                         ClickStepSize="5"
                                         DragStepSize="0.0408"
                                         DefaultValue="180" />
@@ -107,7 +107,7 @@
                                           Label="{Binding Localization[InvertedArms]}"
                                           HorizontalAlignment="Center"
                                           VerticalAlignment="Center"
-                                          IsOn="{Binding Settings.SeatBeltTensionerInvertedArms, Mode=TwoWay}" />
+                                          IsOn="{Binding Settings.GTensionerInvertedArms, Mode=TwoWay}" />
 
                     <controls:MairaButton x:Name="CalibrationSweepTest_MairaButton"
                                           Grid.Column="4"
@@ -118,6 +118,102 @@
                 </Grid>
 
             </StackPanel>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[AutoTune]}"
+                                HelpTopic="advanced/seat-belt-tensioner/#auto-tune">
+
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0">
+
+                    <controls:MairaSwitch Label="{Binding Localization[Enabled]}"
+                                          IsOn="{Binding Settings.GTensionerAutoTuneEnabled, Mode=TwoWay}"
+                                          ContextSwitches="{Binding Settings.GTensionerAutoTuneEnabledContextSwitches}" />
+
+                </StackPanel>
+
+                <controls:MairaTriangleBalance Grid.Column="2"
+                                               Label="{Binding Localization[Balance]}"
+                                               SwayWeight="{Binding Settings.GTensionerAutoTuneSwayWeight, Mode=TwoWay}"
+                                               SurgeWeight="{Binding Settings.GTensionerAutoTuneSurgeWeight, Mode=TwoWay}"
+                                               ContextSwitches="{Binding Settings.GTensionerAutoTuneSwayWeightContextSwitches}"
+                                               IsEnabled="{Binding Settings.GTensionerAutoTuneEnabled}" />
+
+                <Grid Grid.Column="4"
+                      VerticalAlignment="Center">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Text="{Binding Localization[Surge]}" />
+
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="2"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Text="{Binding AutoTuneSurgeEffectiveString, ElementName=Root}" />
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Margin="0,5,0,0"
+                               Text="{Binding Localization[Sway]}" />
+
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="2"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Margin="0,5,0,0"
+                               Text="{Binding AutoTuneSwayEffectiveString, ElementName=Root}" />
+
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Margin="0,5,0,0"
+                               Text="{Binding Localization[Heave]}" />
+
+                    <TextBlock Grid.Row="2"
+                               Grid.Column="2"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Margin="0,5,0,0"
+                               Text="{Binding AutoTuneHeaveEffectiveString, ElementName=Root}" />
+
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="0"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Margin="0,5,0,0"
+                               Text="{Binding Localization[SeatOfPantsEffect]}" />
+
+                    <TextBlock Grid.Row="3"
+                               Grid.Column="2"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Margin="0,5,0,0"
+                               Text="{Binding AutoTuneSopEffectiveString, ElementName=Root}" />
+
+                </Grid>
+
+            </Grid>
 
         </controls:MairaGroupBox>
 
@@ -138,14 +234,14 @@
 
                     <controls:MairaComboBox x:Name="SurgeMode_MairaComboBox"
                                             Label="{Binding Localization[AxisMode]}"
-                                            ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeModeContextSwitches}"
+                                            ContextSwitches="{Binding Settings.GTensionerSurgeModeContextSwitches}"
                                             SelectionChanged="SurgeMode_MairaComboBox_SelectionChanged"
-                                            SelectedValue="{Binding Settings.SeatBeltTensionerSurgeMode, Mode=TwoWay}" />
+                                            SelectedValue="{Binding Settings.GTensionerSurgeMode, Mode=TwoWay}" />
 
                     <controls:MairaSwitch Margin="0,10,0,0"
                                           Label="{Binding Localization[SubtractGravity]}"
-                                          IsOn="{Binding Settings.SeatBeltTensionerSurgeSubtractGravity, Mode=TwoWay}"
-                                          ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeSubtractGravityContextSwitches}" />
+                                          IsOn="{Binding Settings.GTensionerSurgeSubtractGravity, Mode=TwoWay}"
+                                          ContextSwitches="{Binding Settings.GTensionerSurgeSubtractGravityContextSwitches}" />
 
                     <controls:MairaButton x:Name="SurgeTest_MairaButton"
                                           Margin="0,50,0,0"
@@ -158,40 +254,41 @@
                 <StackPanel Grid.Column="2">
 
                     <controls:MairaKnob Label="{Binding Localization[MaxGForce]}"
-                                        Value="{Binding Settings.SeatBeltTensionerSurgeMaxG, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerSurgeMaxGString}"
+                                        IsEnabled="{Binding Settings.GTensionerAutoTuneEnabled, Converter={StaticResource BoolNegationConverter}}"
+                                        Value="{Binding Settings.GTensionerSurgeMaxG, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerSurgeMaxGString}"
                                         ClickStepSize="0.1"
                                         DragStepSize="0.00866"
                                         DefaultValue="4"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeMaxGContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerSurgeMaxGContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[DeadZone]}"
-                                        Value="{Binding Settings.SeatBeltTensionerSurgeDeadZone, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerSurgeDeadZoneString}"
+                                        Value="{Binding Settings.GTensionerSurgeDeadZone, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerSurgeDeadZoneString}"
                                         ClickStepSize="0.01"
                                         DragStepSize="0.000172"
                                         DefaultValue="0"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeDeadZoneContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerSurgeDeadZoneContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Smoothing]}"
-                                        Value="{Binding Settings.SeatBeltTensionerSurgeSmoothing, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerSurgeSmoothingString}"
+                                        Value="{Binding Settings.GTensionerSurgeSmoothing, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerSurgeSmoothingString}"
                                         ClickStepSize="0.01"
                                         DragStepSize="0.000174"
                                         DefaultValue="0"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeSmoothingContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerSurgeSmoothingContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Curve]}"
-                                        Value="{Binding Settings.SeatBeltTensionerSurgeCurve, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerSurgeCurveString}"
+                                        Value="{Binding Settings.GTensionerSurgeCurve, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerSurgeCurveString}"
                                         ClickStepSize="0.01"
                                         DragStepSize="0.000347"
                                         DefaultValue="0"
                                         ShowCurve="True"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSurgeCurveContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerSurgeCurveContextSwitches}" />
 
                 </StackPanel>
 
@@ -267,14 +364,14 @@
 
                     <controls:MairaComboBox x:Name="SwayMode_MairaComboBox"
                                             Label="{Binding Localization[AxisMode]}"
-                                            ContextSwitches="{Binding Settings.SeatBeltTensionerSwayModeContextSwitches}"
+                                            ContextSwitches="{Binding Settings.GTensionerSwayModeContextSwitches}"
                                             SelectionChanged="SwayMode_MairaComboBox_SelectionChanged"
-                                            SelectedValue="{Binding Settings.SeatBeltTensionerSwayMode, Mode=TwoWay}" />
+                                            SelectedValue="{Binding Settings.GTensionerSwayMode, Mode=TwoWay}" />
 
                     <controls:MairaSwitch Margin="0,10,0,0"
                                           Label="{Binding Localization[SubtractGravity]}"
-                                          IsOn="{Binding Settings.SeatBeltTensionerSwaySubtractGravity, Mode=TwoWay}"
-                                          ContextSwitches="{Binding Settings.SeatBeltTensionerSwaySubtractGravityContextSwitches}" />
+                                          IsOn="{Binding Settings.GTensionerSwaySubtractGravity, Mode=TwoWay}"
+                                          ContextSwitches="{Binding Settings.GTensionerSwaySubtractGravityContextSwitches}" />
 
                     <controls:MairaButton x:Name="SwayTest_MairaButton"
                                           Margin="0,50,0,0"
@@ -287,40 +384,41 @@
                 <StackPanel Grid.Column="2">
 
                     <controls:MairaKnob Label="{Binding Localization[MaxGForce]}"
-                                        Value="{Binding Settings.SeatBeltTensionerSwayMaxG, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerSwayMaxGString}"
+                                        IsEnabled="{Binding Settings.GTensionerAutoTuneEnabled, Converter={StaticResource BoolNegationConverter}}"
+                                        Value="{Binding Settings.GTensionerSwayMaxG, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerSwayMaxGString}"
                                         ClickStepSize="0.1"
                                         DragStepSize="0.00866"
                                         DefaultValue="2"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSwayMaxGContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerSwayMaxGContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[DeadZone]}"
-                                        Value="{Binding Settings.SeatBeltTensionerSwayDeadZone, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerSwayDeadZoneString}"
+                                        Value="{Binding Settings.GTensionerSwayDeadZone, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerSwayDeadZoneString}"
                                         ClickStepSize="0.01"
                                         DragStepSize="0.000172"
                                         DefaultValue="0.05"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSwayDeadZoneContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerSwayDeadZoneContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Smoothing]}"
-                                        Value="{Binding Settings.SeatBeltTensionerSwaySmoothing, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerSwaySmoothingString}"
+                                        Value="{Binding Settings.GTensionerSwaySmoothing, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerSwaySmoothingString}"
                                         ClickStepSize="0.01"
                                         DragStepSize="0.000174"
                                         DefaultValue="0"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSwaySmoothingContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerSwaySmoothingContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Curve]}"
-                                        Value="{Binding Settings.SeatBeltTensionerSwayCurve, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerSwayCurveString}"
+                                        Value="{Binding Settings.GTensionerSwayCurve, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerSwayCurveString}"
                                         ClickStepSize="0.01"
                                         DragStepSize="0.000347"
                                         DefaultValue="0.15"
                                         ShowCurve="True"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSwayCurveContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerSwayCurveContextSwitches}" />
 
                 </StackPanel>
 
@@ -396,14 +494,14 @@
 
                     <controls:MairaComboBox x:Name="HeaveMode_MairaComboBox"
                                             Label="{Binding Localization[AxisMode]}"
-                                            ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveModeContextSwitches}"
+                                            ContextSwitches="{Binding Settings.GTensionerHeaveModeContextSwitches}"
                                             SelectionChanged="HeaveMode_MairaComboBox_SelectionChanged"
-                                            SelectedValue="{Binding Settings.SeatBeltTensionerHeaveMode, Mode=TwoWay}" />
+                                            SelectedValue="{Binding Settings.GTensionerHeaveMode, Mode=TwoWay}" />
 
                     <controls:MairaSwitch Margin="0,10,0,0"
                                           Label="{Binding Localization[SubtractGravity]}"
-                                          IsOn="{Binding Settings.SeatBeltTensionerHeaveSubtractGravity, Mode=TwoWay}"
-                                          ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveSubtractGravityContextSwitches}" />
+                                          IsOn="{Binding Settings.GTensionerHeaveSubtractGravity, Mode=TwoWay}"
+                                          ContextSwitches="{Binding Settings.GTensionerHeaveSubtractGravityContextSwitches}" />
 
                     <controls:MairaButton x:Name="HeaveTest_MairaButton"
                                           Margin="0,50,0,0"
@@ -416,40 +514,41 @@
                 <StackPanel Grid.Column="2">
 
                     <controls:MairaKnob Label="{Binding Localization[MaxGForce]}"
-                                        Value="{Binding Settings.SeatBeltTensionerHeaveMaxG, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerHeaveMaxGString}"
+                                        IsEnabled="{Binding Settings.GTensionerAutoTuneEnabled, Converter={StaticResource BoolNegationConverter}}"
+                                        Value="{Binding Settings.GTensionerHeaveMaxG, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerHeaveMaxGString}"
                                         ClickStepSize="0.1"
                                         DragStepSize="0.00866"
                                         DefaultValue="1.5"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveMaxGContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerHeaveMaxGContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[DeadZone]}"
-                                        Value="{Binding Settings.SeatBeltTensionerHeaveDeadZone, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerHeaveDeadZoneString}"
+                                        Value="{Binding Settings.GTensionerHeaveDeadZone, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerHeaveDeadZoneString}"
                                         ClickStepSize="0.01"
                                         DragStepSize="0.000172"
                                         DefaultValue="0.05"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveDeadZoneContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerHeaveDeadZoneContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Smoothing]}"
-                                        Value="{Binding Settings.SeatBeltTensionerHeaveSmoothing, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerHeaveSmoothingString}"
+                                        Value="{Binding Settings.GTensionerHeaveSmoothing, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerHeaveSmoothingString}"
                                         ClickStepSize="0.01"
                                         DragStepSize="0.000174"
                                         DefaultValue="0.1"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveSmoothingContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerHeaveSmoothingContextSwitches}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Curve]}"
-                                        Value="{Binding Settings.SeatBeltTensionerHeaveCurve, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerHeaveCurveString}"
+                                        Value="{Binding Settings.GTensionerHeaveCurve, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerHeaveCurveString}"
                                         ClickStepSize="0.01"
                                         DragStepSize="0.000347"
                                         DefaultValue="0.15"
                                         ShowCurve="True"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerHeaveCurveContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerHeaveCurveContextSwitches}" />
 
                 </StackPanel>
 
@@ -525,9 +624,9 @@
 
                     <controls:MairaComboBox x:Name="SeatOfPantsMode_MairaComboBox"
                                             Label="{Binding Localization[AxisMode]}"
-                                            ContextSwitches="{Binding Settings.SeatBeltTensionerSeatOfPantsModeContextSwitches}"
+                                            ContextSwitches="{Binding Settings.GTensionerSeatOfPantsModeContextSwitches}"
                                             SelectionChanged="SeatOfPantsMode_MairaComboBox_SelectionChanged"
-                                            SelectedValue="{Binding Settings.SeatBeltTensionerSeatOfPantsMode, Mode=TwoWay}" />
+                                            SelectedValue="{Binding Settings.GTensionerSeatOfPantsMode, Mode=TwoWay}" />
 
                 </StackPanel>
 
@@ -543,6 +642,7 @@
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[MaximumThreshold]}"
+                                        IsEnabled="{Binding Settings.GTensionerAutoTuneEnabled, Converter={StaticResource BoolNegationConverter}}"
                                         Value="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThreshold, Mode=TwoWay}"
                                         ValueString="{Binding Settings.SteeringEffectsSeatOfPantsMaximumThresholdString}"
                                         ClickStepSize="0.1"
@@ -561,21 +661,23 @@
                 <StackPanel Grid.Column="4">
 
                     <controls:MairaKnob Label="{Binding Localization[Amplitude]}"
-                                        Value="{Binding Settings.SeatBeltTensionerSeatOfPantsAmplitude, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerSeatOfPantsAmplitudeString}"
+                                        IsEnabled="{Binding Settings.GTensionerAutoTuneEnabled, Converter={StaticResource BoolNegationConverter}}"
+                                        Value="{Binding Settings.GTensionerSeatOfPantsAmplitude, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerSeatOfPantsAmplitudeString}"
                                         ClickStepSize="1"
                                         DragStepSize="0.0208"
                                         DefaultValue="120" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Curve]}"
-                                        Value="{Binding Settings.SeatBeltTensionerSeatOfPantsCurve, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerSeatOfPantsCurveString}"
+                                        IsEnabled="{Binding Settings.GTensionerAutoTuneEnabled, Converter={StaticResource BoolNegationConverter}}"
+                                        Value="{Binding Settings.GTensionerSeatOfPantsCurve, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerSeatOfPantsCurveString}"
                                         ClickStepSize="0.01"
                                         DragStepSize="0.000347"
                                         DefaultValue="0.25"
                                         ShowCurve="True"
-                                        ContextSwitches="{Binding Settings.SeatBeltTensionerSeatOfPantsCurveContextSwitches}" />
+                                        ContextSwitches="{Binding Settings.GTensionerSeatOfPantsCurveContextSwitches}" />
 
                 </StackPanel>
 
@@ -599,20 +701,20 @@
                 <StackPanel Grid.Column="0">
 
                     <controls:MairaSwitch Label="{Binding Localization[ABSWheelLock]}"
-                                          IsOn="{Binding Settings.SeatBeltTensionerABSEnabled, Mode=TwoWay}" />
+                                          IsOn="{Binding Settings.GTensionerABSEnabled, Mode=TwoWay}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Frequency]}"
-                                        Value="{Binding Settings.SeatBeltTensionerABSFrequency, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerABSFrequencyString}"
+                                        Value="{Binding Settings.GTensionerABSFrequency, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerABSFrequencyString}"
                                         ClickStepSize="1"
                                         DragStepSize="0.0026"
                                         DefaultValue="10" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Amplitude]}"
-                                        Value="{Binding Settings.SeatBeltTensionerABSAmplitude, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerABSAmplitudeString}"
+                                        Value="{Binding Settings.GTensionerABSAmplitude, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerABSAmplitudeString}"
                                         ClickStepSize="1"
                                         DragStepSize="0.0104"
                                         DefaultValue="30" />
@@ -628,20 +730,20 @@
                 <StackPanel Grid.Column="2">
 
                     <controls:MairaSwitch Label="{Binding Localization[WheelSlip]}"
-                                          IsOn="{Binding Settings.SeatBeltTensionerWheelSlipEnabled, Mode=TwoWay}" />
+                                          IsOn="{Binding Settings.GTensionerWheelSlipEnabled, Mode=TwoWay}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Frequency]}"
-                                        Value="{Binding Settings.SeatBeltTensionerWheelSlipFrequency, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerWheelSlipFrequencyString}"
+                                        Value="{Binding Settings.GTensionerWheelSlipFrequency, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerWheelSlipFrequencyString}"
                                         ClickStepSize="1"
                                         DragStepSize="0.0026"
                                         DefaultValue="11" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Amplitude]}"
-                                        Value="{Binding Settings.SeatBeltTensionerWheelSlipAmplitude, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerWheelSlipAmplitudeString}"
+                                        Value="{Binding Settings.GTensionerWheelSlipAmplitude, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerWheelSlipAmplitudeString}"
                                         ClickStepSize="1"
                                         DragStepSize="0.0104"
                                         DefaultValue="30" />
@@ -657,20 +759,20 @@
                 <StackPanel Grid.Column="4">
 
                     <controls:MairaSwitch Label="{Binding Localization[RumbleStrip]}"
-                                          IsOn="{Binding Settings.SeatBeltTensionerRumbleEnabled, Mode=TwoWay}" />
+                                          IsOn="{Binding Settings.GTensionerRumbleEnabled, Mode=TwoWay}" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Frequency]}"
-                                        Value="{Binding Settings.SeatBeltTensionerRumbleFrequency, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerRumbleFrequencyString}"
+                                        Value="{Binding Settings.GTensionerRumbleFrequency, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerRumbleFrequencyString}"
                                         ClickStepSize="1"
                                         DragStepSize="0.0026"
                                         DefaultValue="12" />
 
                     <controls:MairaKnob Margin="0,10,0,0"
                                         Label="{Binding Localization[Amplitude]}"
-                                        Value="{Binding Settings.SeatBeltTensionerRumbleAmplitude, Mode=TwoWay}"
-                                        ValueString="{Binding Settings.SeatBeltTensionerRumbleAmplitudeString}"
+                                        Value="{Binding Settings.GTensionerRumbleAmplitude, Mode=TwoWay}"
+                                        ValueString="{Binding Settings.GTensionerRumbleAmplitudeString}"
                                         ClickStepSize="1"
                                         DragStepSize="0.0104"
                                         DefaultValue="30" />

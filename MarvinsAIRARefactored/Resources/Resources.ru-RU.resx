@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Ветер</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Натяжитель ремня</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Подключить к натяжителю</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Подключить к G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Подключать при запуске</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Подключать к G Tensioner при запуске</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Минимальный угол</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Инициализация ветра...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Инициализация натяжителя ремня безопасности...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Инициализация G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Инициализация монитора горячего подключения HID...</value>
@@ -1774,6 +1774,12 @@
     <value>Разное</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Открыть папку документов</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Автонастройка</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Баланс</value>
   </data>
 
 

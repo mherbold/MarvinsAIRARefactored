@@ -898,14 +898,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Вітер</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Натягувач ременя безпеки</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Підключитися до MAIRA Seat Belt Tensioner</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Підключитися до MAIRA G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Підключатися до MAIRA Seat Belt Tensioner при запуску програми</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Підключатися до MAIRA G Tensioner при запуску програми</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Мінімальний кут</value>
@@ -1704,8 +1704,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Ініціалізація вітру...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Ініціалізація натягувача ременя безпеки...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Ініціалізація G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Ініціалізація монітора HID Hot Plug...</value>
@@ -1780,6 +1780,12 @@
     <value>Різне</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Відкрити теку документів</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Автоналаштування</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Баланс</value>
   </data>
 
 

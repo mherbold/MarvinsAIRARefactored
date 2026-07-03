@@ -942,14 +942,14 @@
   <data name="Wind" xml:space="preserve">
     <value>टाइफून विंड</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>सीट बेल्ट टेंशनर</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>MAIRA सीट बेल्ट टेंशनर से कनेक्ट करें</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>MAIRA G Tensioner से कनेक्ट करें</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>ऐप स्टार्टअप पर MAIRA सीट बेल्ट टेंशनर से कनेक्ट करें</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>ऐप स्टार्टअप पर MAIRA G Tensioner से कनेक्ट करें</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>न्यूनतम कोण</value>
@@ -1761,8 +1761,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Wind प्रारंभ हो रहा है...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>सीट बेल्ट टेंशनर प्रारंभ हो रहा है...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>G Tensioner प्रारंभ हो रहा है...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>HID हॉट प्लग मॉनिटर प्रारंभ हो रहा है...</value>
@@ -1815,6 +1815,12 @@
     <value>विविध</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>दस्तावेज़ फ़ोल्डर खोलें</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>स्वचालित ट्यूनिंग</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>संतुलन</value>
   </data>
 
 

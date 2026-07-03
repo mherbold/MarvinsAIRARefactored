@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Vind</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Selestrammer</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Opret forbindelse til strammer</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Opret forbindelse til G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Opret forbindelse ved appstart</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Opret forbindelse til G Tensioner ved appstart</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Minimumsvinkel</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Initialiserer Vind...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Initialiserer Sikkerhedsbælteanordning...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Initialiserer G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Initialiserer HID Hot Plug Monitor...</value>
@@ -1774,6 +1774,12 @@
     <value>Diverse</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Åbn dokumentmappe</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Autotuning</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
   </data>
 
 

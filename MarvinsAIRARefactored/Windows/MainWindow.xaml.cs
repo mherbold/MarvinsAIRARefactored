@@ -33,7 +33,7 @@ public partial class MainWindow : Window
 		Pedals,
 		ControllerProfiles,
 		Wind,
-		SeatBeltTensioner,
+		GTensioner,
 		AdminBoxx,
 		Overlays,
 		Sounds,
@@ -57,7 +57,7 @@ public partial class MainWindow : Window
 	public static readonly PedalsPage _pedalsPage = new();
 	public static readonly ControllerProfilesPage _controllerProfilesPage = new();
 	public static readonly WindPage _windPage = new();
-	public static readonly SeatBeltTensionerPage _seatBeltTensionerPage = new();
+	public static readonly GTensionerPage _gTensionerPage = new();
 	public static readonly OverlaysPage _overlaysPage = new();
 	public static readonly SoundsPage _soundsPage = new();
 	public static readonly SpeechToTextPage _speechToTextPage = new();
@@ -185,8 +185,8 @@ public partial class MainWindow : Window
 
 			_pedalsPage.UpdateEffectOptions();
 
-			_seatBeltTensionerPage.UpdateAxisModeOptions();
-			_seatBeltTensionerPage.UpdateSeatOfPantsAlgorithmOptions();
+			_gTensionerPage.UpdateAxisModeOptions();
+			_gTensionerPage.UpdateSeatOfPantsAlgorithmOptions();
 
 			_soundsPage.UpdateOutputDeviceOptions();
 

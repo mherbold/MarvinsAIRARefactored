@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Tuuli</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Turvavyön kiristäjä</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Yhdistä MAIRA-turvavyön kiristäjään</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Yhdistä MAIRA G Tensioneriin</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Yhdistä MAIRA-turvavyön kiristäjään sovelluksen käynnistyessä</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Yhdistä MAIRA G Tensioneriin sovelluksen käynnistyessä</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Minimikulma</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Alustetaan Tuuli...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Alustetaan Turvavöiden Jännitys...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Alustetaan G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Alustetaan HID-kuumaliitäntömonitori...</value>
@@ -1774,6 +1774,12 @@
     <value>Sekalaiset</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Avaa dokumenttikansio</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Automaattiviritys</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Tasapaino</value>
   </data>
 
 

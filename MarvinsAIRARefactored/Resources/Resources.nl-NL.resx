@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Wind</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Gordelspanner</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Verbinden met spanner</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Verbinden met G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Verbinden bij opstarten van de app</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Verbinden met G Tensioner bij opstarten van de app</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Minimale hoek</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Wind initialiseren...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Veiligheidsgordelspanner initialiseren...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>G Tensioner initialiseren...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>HID Hot Plug Monitor initialiseren...</value>
@@ -1774,6 +1774,12 @@
     <value>Diversen</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Documentenmap openen</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Automatisch afstemmen</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balans</value>
   </data>
 
 

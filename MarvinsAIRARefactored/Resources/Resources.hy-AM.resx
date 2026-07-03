@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Քամի</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Կրծքակալ ձգիչ</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Միանալ ձգիչին</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Միանալ G Tensioner-ին</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Միանալ հավելվածի գործարկմանը</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Միանալ G Tensioner-ին հավելվածի գործարկման ժամանակ</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Նվազագույն անկյուն</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Քամու համակարգի նախաստեղծում...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Անվտանգության գոտու լարիչի նախաստեղծում...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>G Tensioner-ի նախաստեղծում...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>HID Hot Plug դիտարկչի նախաստեղծում...</value>
@@ -1774,6 +1774,12 @@
     <value>Տարբեր</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Բացել փաստաթղթերի թղթապանակը</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Ավտոմատ կարգավորում</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Հավասարակշռություն</value>
   </data>
 
 

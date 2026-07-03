@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Vent</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Tendeur de ceinture</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Se connecter au tendeur</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Se connecter au G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Se connecter au démarrage de l'application</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Se connecter au G Tensioner au démarrage de l'application</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Angle minimum</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Initialisation du Vent...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Initialisation du Tendeur de Ceinture de Sécurité...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Initialisation du G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Initialisation du Moniteur Hot Plug HID...</value>
@@ -1774,6 +1774,12 @@
     <value>Divers</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Ouvrir le dossier Documents</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Réglage automatique</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
   </data>
 
 

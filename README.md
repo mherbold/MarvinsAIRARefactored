@@ -36,7 +36,7 @@ At a very high level, the solution looks like this:
 Examples (not exhaustive):
 
 - **Force feedback / wheel** — `RacingWheel`, `SteeringEffects`, `DirectInput`, `Drivers`
-- **Pedals & haptics** — `Pedals`, `SeatBeltTensioner`, `SeatBeltTensionerGraph`
+- **Pedals & haptics** — `Pedals`, `GTensioner`, `GTensionerGraph`
 - **iRacing data** — `Simulator` (iRacing telemetry, **IRSDKSharper**), `Telemetry` (memory-mapped IPC), `TimingMarkers`
 - **Audio** — `AudioManager`, `Sounds`, `LFE`
 - **Speech / commentary** — `SpeechToText`, `TextToSpeech`, `Commentary`, `ChatQueue`
@@ -61,7 +61,7 @@ Examples (not exhaustive):
   - `RacingWheelPage`
   - `SteeringEffectsPage`
   - `PedalsPage`
-  - `SeatBeltTensionerPage`
+  - `GTensionerPage`
   - `WindPage`
   - `SoundsPage`
   - `SpeechToTextPage`
@@ -156,7 +156,7 @@ The project uses **composition** heavily with fairly shallow inheritance. The ma
 - `RacingWheelPage`
 - `SteeringEffectsPage`
 - `PedalsPage`
-- `SeatBeltTensionerPage`
+- `GTensionerPage`
 - `WindPage`
 - `SoundsPage`
 - `SpeechToTextPage`
@@ -269,7 +269,7 @@ App
  ├─ Commentary
  ├─ SpeechToText
  ├─ Wind
- ├─ SeatBeltTensioner
+ ├─ GTensioner
  ├─ HidHotPlugMonitor
  ├─ TradingPaints
  └─ AppManager

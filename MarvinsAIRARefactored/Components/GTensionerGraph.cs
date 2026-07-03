@@ -6,7 +6,7 @@ using Image = System.Windows.Controls.Image;
 
 namespace MarvinsAIRARefactored.Components;
 
-public class SeatBeltTensionerGraph : GraphBase
+public class GTensionerGraph : GraphBase
 {
 	private float r;
 	private float g;

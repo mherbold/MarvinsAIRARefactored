@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon רוח</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>מותח חגורת בטיחות</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>התחבר ל-MAIRA מותח חגורה</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>התחבר ל-MAIRA G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>התחבר ל-MAIRA מותח חגורה בעת הפעלת האפליקציה</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>התחבר ל-MAIRA G Tensioner בעת הפעלת האפליקציה</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>זווית מינימלית</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>אתחול רוח...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>אתחול מותח חגורת הבטיחות...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>אתחול G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>אתחול HID Hot Plug Monitor...</value>
@@ -1774,6 +1774,12 @@
     <value>שונות</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>פתח את תיקיית המסמכים</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>כוונון אוטומטי</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>איזון</value>
   </data>
 
 

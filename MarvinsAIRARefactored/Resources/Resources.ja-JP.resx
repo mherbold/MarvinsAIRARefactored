@@ -896,14 +896,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon ウィンド</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>シートベルトテンショナー</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>MAIRAシートベルトテンショナーに接続</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>MAIRA G Tensionerに接続</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>起動時にMAIRAシートベルトテンショナーに接続する</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>起動時にMAIRA G Tensionerに接続する</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>最小角度</value>
@@ -1701,8 +1701,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>ウィンドを初期化中...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>シートベルトテンショナーを初期化中...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>G Tensionerを初期化中...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>HIDホットプラグモニターを初期化中...</value>
@@ -1777,6 +1777,12 @@
     <value>その他</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>ドキュメントフォルダーを開く</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>オートチューン</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>バランス</value>
   </data>
 
 

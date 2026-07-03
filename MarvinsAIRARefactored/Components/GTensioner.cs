@@ -5,7 +5,7 @@ using MarvinsAIRARefactored.Windows;
 
 namespace MarvinsAIRARefactored.Components;
 
-public class SeatBeltTensioner
+public class GTensioner
 {
 	public enum AxisMode
 	{
@@ -70,12 +70,12 @@ public class SeatBeltTensioner
 
 	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( "MAIRA SBT" );
 
-	private readonly SeatBeltTensionerGraph _surgeGraph = new();
-	private readonly SeatBeltTensionerGraph _swayGraph = new();
-	private readonly SeatBeltTensionerGraph _heaveGraph = new();
+	private readonly GTensionerGraph _surgeGraph = new();
+	private readonly GTensionerGraph _swayGraph = new();
+	private readonly GTensionerGraph _heaveGraph = new();
 
-	private readonly SeatBeltTensionerGraph _leftShoulderGraph = new();
-	private readonly SeatBeltTensionerGraph _rightShoulderGraph = new();
+	private readonly GTensionerGraph _leftShoulderGraph = new();
+	private readonly GTensionerGraph _rightShoulderGraph = new();
 
 	private int _updateCounter = UpdateInterval + 2;
 	private int _lastSentLeftTenths = -1;
@@ -110,6 +110,40 @@ public class SeatBeltTensioner
 
 	private bool _wasOnTrack = false;
 
+	// --- Auto-tune ---
+
+	private const float AutoTuneFloorG = 1f;                       // learned target never below 1 G (also the SoP floor, in raw signal units)
+	private const float AutoTuneDrainPerUpdate = 2f / 60f / 20f;   // seen peaks drain 2 G per 60 seconds at 20 Hz updates
+	private const float AutoTuneApproachAlpha = 0.14f;             // ~95% convergence in 1 second at 20 Hz
+	private const float AutoTuneMinSpeed = 8.9408f;                // 20 mph in m/s - below this, learning is frozen
+	private const int AutoTuneWriteInterval = 200;                 // settings write-back every 10 seconds at 20 Hz
+	private const float AutoTuneMinWeight = 0.001f;                // divide-by-zero guard for the balance weights
+	private const float AutoTuneWriteEpsilon = 0.01f;              // minimum change worth persisting
+	private const float AutoTuneReseedEpsilon = 0.005f;            // external settings change (context switch) detection
+
+	private bool _autoTuneSeeded = false;
+	private bool _autoTuneWasEnabled = false;
+	private bool _autoTuneGateWasActive = false;
+
+	private float _autoTuneSurgePeakG = AutoTuneFloorG;
+	private float _autoTuneSwayPeakG = AutoTuneFloorG;
+	private float _autoTuneHeavePeakG = AutoTuneFloorG;
+	private float _autoTuneSopPeak = AutoTuneFloorG;
+
+	private float _autoTuneSurgeEffectiveG = AutoTuneFloorG;
+	private float _autoTuneSwayEffectiveG = AutoTuneFloorG;
+	private float _autoTuneHeaveEffectiveG = AutoTuneFloorG;
+	private float _autoTuneSopEffectiveScale = AutoTuneFloorG;
+
+	private float _lastWrittenSurgeMaxG = 0f;
+	private float _lastWrittenSwayMaxG = 0f;
+	private float _lastWrittenHeaveMaxG = 0f;
+	private float _lastWrittenSopScale = 0f;
+
+	private int _autoTuneWriteCounter = 0;
+
+	private SteeringEffects.SeatOfPantsAlgorithm _autoTuneSopAlgorithm = SteeringEffects.SeatOfPantsAlgorithm.YAcceleration;
+
 	// Test sweep state
 	private TestAxis _testAxis = TestAxis.None;
 	private int _testStep = 0;
@@ -123,26 +157,26 @@ public class SeatBeltTensioner
 	private int _calibrationSweepLeftPos = 0;
 	private int _calibrationSweepRightPos = 0;
 
-	public SeatBeltTensioner()
+	public GTensioner()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] Constructor >>>" );
+		app.Logger.WriteLine( "[GTensioner] Constructor >>>" );
 
 		_usbSerialPortHelper.PortClosed += OnPortClosed;
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] <<< Constructor" );
+		app.Logger.WriteLine( "[GTensioner] <<< Constructor" );
 	}
 
 	public void Initialize()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] Initialize >>>" );
+		app.Logger.WriteLine( "[GTensioner] Initialize >>>" );
 
 		_usbSerialPortHelper.Initialize();
 
-		var sbtPage = MainWindow._seatBeltTensionerPage;
+		var sbtPage = MainWindow._gTensionerPage;
 
 		_surgeGraph.Initialize( sbtPage.SurgeGraph_Image, 1f, 0.08f, 0.58f );
 		_swayGraph.Initialize( sbtPage.SwayGraph_Image, 0.5f, 1f, 0f );
@@ -153,37 +187,37 @@ public class SeatBeltTensioner
 
 		if ( !_usbSerialPortHelper.DeviceFound )
 		{
-			app.Logger.WriteLine( "[SeatBeltTensioner] Device not found - disabling SeatBeltTensionerEnabled" );
+			app.Logger.WriteLine( "[GTensioner] Device not found - disabling GTensionerEnabled" );
 
 			var localization = DataContext.DataContext.Instance.Localization;
 
 			app.Dispatcher.Invoke( () =>
 			{
-				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.IsEnabled = false;
-				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
-				MainWindow._seatBeltTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
+				MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsEnabled = false;
+				MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
+				MainWindow._gTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
 			} );
 		}
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] <<< Initialize" );
+		app.Logger.WriteLine( "[GTensioner] <<< Initialize" );
 	}
 
 	public void Shutdown()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] Shutdown >>>" );
+		app.Logger.WriteLine( "[GTensioner] Shutdown >>>" );
 
 		Disconnect();
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] <<< Shutdown" );
+		app.Logger.WriteLine( "[GTensioner] <<< Shutdown" );
 	}
 
 	public void RetryDevice()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] RetryDevice >>>" );
+		app.Logger.WriteLine( "[GTensioner] RetryDevice >>>" );
 
 		_usbSerialPortHelper.Initialize();
 
@@ -191,24 +225,24 @@ public class SeatBeltTensioner
 		{
 			if ( _usbSerialPortHelper.DeviceFound )
 			{
-				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.IsEnabled = true;
-				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = string.Empty;
-				MainWindow._seatBeltTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Collapsed;
+				MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsEnabled = true;
+				MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = string.Empty;
+				MainWindow._gTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Collapsed;
 			}
 			else
 			{
-				MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = _usbSerialPortHelper.LastErrorMessage;
+				MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = _usbSerialPortHelper.LastErrorMessage;
 			}
 		} );
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] <<< RetryDevice" );
+		app.Logger.WriteLine( "[GTensioner] <<< RetryDevice" );
 	}
 
 	public bool Connect()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] Connect >>>" );
+		app.Logger.WriteLine( "[GTensioner] Connect >>>" );
 
 		IsConnected = _usbSerialPortHelper.Open();
 
@@ -222,11 +256,11 @@ public class SeatBeltTensioner
 
 		app.Dispatcher.Invoke( () =>
 		{
-			MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.IsOn = IsConnected;
-			MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = IsConnected ? string.Empty : _usbSerialPortHelper.LastErrorMessage;
+			MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsOn = IsConnected;
+			MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = IsConnected ? string.Empty : _usbSerialPortHelper.LastErrorMessage;
 		} );
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] <<< Connect" );
+		app.Logger.WriteLine( "[GTensioner] <<< Connect" );
 
 		return IsConnected;
 	}
@@ -235,7 +269,13 @@ public class SeatBeltTensioner
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] Disconnect >>>" );
+		app.Logger.WriteLine( "[GTensioner] Disconnect >>>" );
+
+		// Persist any pending auto-tuned values before going quiet
+		if ( _autoTuneSeeded )
+		{
+			WriteBackAutoTunedSettings( DataContext.DataContext.Instance.Settings );
+		}
 
 		IsConnected = false;
 
@@ -252,10 +292,10 @@ public class SeatBeltTensioner
 
 		app.Dispatcher.Invoke( () =>
 		{
-			MainWindow._seatBeltTensionerPage.ConnectToSbt_MairaSwitch.ErrorMessage = string.Empty;
+			MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = string.Empty;
 		} );
 
-		app.Logger.WriteLine( "[SeatBeltTensioner] <<< Disconnect" );
+		app.Logger.WriteLine( "[GTensioner] <<< Disconnect" );
 	}
 
 	public void SendCalibration()
@@ -267,9 +307,9 @@ public class SeatBeltTensioner
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		var neutralTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerNeutral * 10f ), 0, 1800 );
-		var minimumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMinimum * 10f ), 0, 900 );
-		var maximumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMaximum * 10f ), 900, 1800 );
+		var neutralTenths = Math.Clamp( (int) Math.Round( settings.GTensionerNeutral * 10f ), 0, 1800 );
+		var minimumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMinimum * 10f ), 0, 900 );
+		var maximumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMaximum * 10f ), 900, 1800 );
 
 		neutralTenths = Math.Clamp( neutralTenths, minimumTenths, maximumTenths );
 
@@ -288,7 +328,7 @@ public class SeatBeltTensioner
 		var settings = DataContext.DataContext.Instance.Settings;
 
 		// Settings stores deg/sec; Nano expects tenths-of-a-degree/sec
-		var maxMovementTenthsPerSec = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerMaxMotorSpeed * 10f ), 50, 5000 );
+		var maxMovementTenthsPerSec = Math.Clamp( (int) MathF.Round( settings.GTensionerMaxMotorSpeed * 10f ), 50, 5000 );
 
 		_usbSerialPortHelper.WriteLine( $"ML{maxMovementTenthsPerSec:D4}R{maxMovementTenthsPerSec:D4}" );
 	}
@@ -302,7 +342,7 @@ public class SeatBeltTensioner
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		var value = settings.SeatBeltTensionerInvertedArms ? 1 : 0;
+		var value = settings.GTensionerInvertedArms ? 1 : 0;
 
 		_usbSerialPortHelper.WriteLine( $"IL{value:D4}R{value:D4}" );
 	}
@@ -343,8 +383,8 @@ public class SeatBeltTensioner
 	{
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		var minimumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMinimum * 10f ), 0, 900 );
-		var maximumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMaximum * 10f ), 900, 1800 );
+		var minimumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMinimum * 10f ), 0, 900 );
+		var maximumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMaximum * 10f ), 900, 1800 );
 
 		leftTargetPositionTenths = Math.Clamp( leftTargetPositionTenths, minimumTenths, maximumTenths );
 		rightTargetPositionTenths = Math.Clamp( rightTargetPositionTenths, minimumTenths, maximumTenths );
@@ -412,9 +452,9 @@ public class SeatBeltTensioner
 		_sampleCount = 0;
 
 		// Get and sanitize settings
-		var minimumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMinimum * 10f ), 0, 900 );
-		var neutralTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerNeutral * 10f ), 0, 1800 );
-		var maximumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMaximum * 10f ), 900, 1800 );
+		var minimumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMinimum * 10f ), 0, 900 );
+		var neutralTenths = Math.Clamp( (int) Math.Round( settings.GTensionerNeutral * 10f ), 0, 1800 );
+		var maximumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMaximum * 10f ), 900, 1800 );
 
 		// Compute gravity components in car body space using averaged pitch and roll.
 		// iRacing includes gravity in the acceleration telemetry (specific force), so we subtract
@@ -430,9 +470,9 @@ public class SeatBeltTensioner
 		var gravLat = MathZ.OneG * cosPitch * sinRoll;
 		var gravVert = MathZ.OneG * cosPitch * cosRoll;
 
-		var longAccel = settings.SeatBeltTensionerSurgeSubtractGravity ? longAccelAvg - gravLong : longAccelAvg;
-		var latAccel = settings.SeatBeltTensionerSwaySubtractGravity ? latAccelAvg - gravLat : latAccelAvg;
-		var vertAccel = settings.SeatBeltTensionerHeaveSubtractGravity ? vertAccelAvg - gravVert : vertAccelAvg;
+		var longAccel = settings.GTensionerSurgeSubtractGravity ? longAccelAvg - gravLong : longAccelAvg;
+		var latAccel = settings.GTensionerSwaySubtractGravity ? latAccelAvg - gravLat : latAccelAvg;
+		var vertAccel = settings.GTensionerHeaveSubtractGravity ? vertAccelAvg - gravVert : vertAccelAvg;
 
 		// Track min/max G values per axis
 		var longG = longAccel / MathZ.OneG;
@@ -447,44 +487,169 @@ public class SeatBeltTensioner
 		if ( vertG > _heaveMaxG ) _heaveMaxG = vertG;
 
 		// Update min/max G display strings
-		MainWindow._seatBeltTensionerPage.SurgeMinGString = _surgeMinG < float.MaxValue ? $"{_surgeMinG:F2} G" : "---";
-		MainWindow._seatBeltTensionerPage.SurgeMaxGString = _surgeMaxG > float.MinValue ? $"{_surgeMaxG:F2} G" : "---";
-		MainWindow._seatBeltTensionerPage.SwayMinGString = _swayMinG < float.MaxValue ? $"{_swayMinG:F2} G" : "---";
-		MainWindow._seatBeltTensionerPage.SwayMaxGString = _swayMaxG > float.MinValue ? $"{_swayMaxG:F2} G" : "---";
-		MainWindow._seatBeltTensionerPage.HeaveMinGString = _heaveMinG < float.MaxValue ? $"{_heaveMinG:F2} G" : "---";
-		MainWindow._seatBeltTensionerPage.HeaveMaxGString = _heaveMaxG > float.MinValue ? $"{_heaveMaxG:F2} G" : "---";
+		MainWindow._gTensionerPage.SurgeMinGString = _surgeMinG < float.MaxValue ? $"{_surgeMinG:F2} G" : "---";
+		MainWindow._gTensionerPage.SurgeMaxGString = _surgeMaxG > float.MinValue ? $"{_surgeMaxG:F2} G" : "---";
+		MainWindow._gTensionerPage.SwayMinGString = _swayMinG < float.MaxValue ? $"{_swayMinG:F2} G" : "---";
+		MainWindow._gTensionerPage.SwayMaxGString = _swayMaxG > float.MinValue ? $"{_swayMaxG:F2} G" : "---";
+		MainWindow._gTensionerPage.HeaveMinGString = _heaveMinG < float.MaxValue ? $"{_heaveMinG:F2} G" : "---";
+		MainWindow._gTensionerPage.HeaveMaxGString = _heaveMaxG > float.MinValue ? $"{_heaveMaxG:F2} G" : "---";
+
+		// --- Auto-tune: learn the car's G envelope and adapt the per-axis max G scalings ---
+
+		var autoTuneOn = settings.GTensionerAutoTuneEnabled;
+
+		// On the enabled -> disabled transition, persist the last auto-tuned values so they become
+		// the user's manual starting point
+		if ( !autoTuneOn && _autoTuneWasEnabled && _autoTuneSeeded )
+		{
+			WriteBackAutoTunedSettings( settings );
+		}
+
+		_autoTuneWasEnabled = autoTuneOn;
+
+		float surgeMaxG;
+		float swayMaxG;
+		float heaveMaxG;
+
+		if ( autoTuneOn )
+		{
+			// Balance weights - heave is the remainder; renormalize defensively
+			var swayWeight = settings.GTensionerAutoTuneSwayWeight;
+			var surgeWeight = settings.GTensionerAutoTuneSurgeWeight;
+			var heaveWeight = MathF.Max( 0f, 1f - swayWeight - surgeWeight );
+
+			var weightSum = swayWeight + surgeWeight + heaveWeight;
+
+			if ( weightSum > 0f )
+			{
+				swayWeight /= weightSum;
+				surgeWeight /= weightSum;
+				heaveWeight /= weightSum;
+			}
+			else
+			{
+				swayWeight = surgeWeight = heaveWeight = 1f / 3f;
+			}
+
+			// Seed on first enable, or reseed when the settings changed externally (car/track context switch)
+			if ( !_autoTuneSeeded
+				|| ( MathF.Abs( settings.GTensionerSurgeMaxG - _lastWrittenSurgeMaxG ) > AutoTuneReseedEpsilon )
+				|| ( MathF.Abs( settings.GTensionerSwayMaxG - _lastWrittenSwayMaxG ) > AutoTuneReseedEpsilon )
+				|| ( MathF.Abs( settings.GTensionerHeaveMaxG - _lastWrittenHeaveMaxG ) > AutoTuneReseedEpsilon )
+				|| ( MathF.Abs( settings.GTensionerAutoTuneSeatOfPantsScale - _lastWrittenSopScale ) > AutoTuneReseedEpsilon ) )
+			{
+				SeedAutoTune( settings, swayWeight, surgeWeight, heaveWeight );
+			}
+
+			// Learning gate: only adapt while cleanly driving on the track surface
+			var gateActive = app.Simulator.IsOnTrack
+				&& ( app.Simulator.PlayerTrackSurface == IRSDKSharper.IRacingSdkEnum.TrkLoc.OnTrack )
+				&& !app.RacingWheel.CrashProtectionIsActive
+				&& !app.RacingWheel.CurbProtectionIsActive
+				&& ( app.Simulator.Speed >= AutoTuneMinSpeed );
+
+			if ( gateActive )
+			{
+				// Seen peaks drain slowly toward zero and raise instantly on new extremes
+				_autoTuneSurgePeakG = MathF.Max( _autoTuneSurgePeakG - AutoTuneDrainPerUpdate, MathF.Abs( longG ) );
+				_autoTuneSwayPeakG = MathF.Max( _autoTuneSwayPeakG - AutoTuneDrainPerUpdate, MathF.Abs( latG ) );
+				_autoTuneHeavePeakG = MathF.Max( _autoTuneHeavePeakG - AutoTuneDrainPerUpdate, MathF.Abs( vertG ) );
+
+				// The seat of pants raw signal changes units with the algorithm - restart its tracker on a change
+				if ( settings.SteeringEffectsSeatOfPantsAlgorithm != _autoTuneSopAlgorithm )
+				{
+					_autoTuneSopAlgorithm = settings.SteeringEffectsSeatOfPantsAlgorithm;
+					_autoTuneSopPeak = AutoTuneFloorG;
+				}
+
+				_autoTuneSopPeak = MathF.Max( _autoTuneSopPeak - AutoTuneDrainPerUpdate, MathF.Abs( app.SteeringEffects.SeatOfPantsRaw ) );
+			}
+
+			// Weight-scaled targets - center of the triangle (w = 1/3) applies the learned peak exactly;
+			// dragging toward a tip strengthens that axis (smaller max G) and fades the others out
+			var surgeTargetG = Math.Clamp( MathF.Max( AutoTuneFloorG, _autoTuneSurgePeakG ) / ( 3f * MathF.Max( surgeWeight, AutoTuneMinWeight ) ), 0.1f, 50f );
+			var swayTargetG = Math.Clamp( MathF.Max( AutoTuneFloorG, _autoTuneSwayPeakG ) / ( 3f * MathF.Max( swayWeight, AutoTuneMinWeight ) ), 0.1f, 50f );
+			var heaveTargetG = Math.Clamp( MathF.Max( AutoTuneFloorG, _autoTuneHeavePeakG ) / ( 3f * MathF.Max( heaveWeight, AutoTuneMinWeight ) ), 0.1f, 50f );
+
+			// The seat of pants scale is coupled to the sway weight so both effects rise and fall together
+			var sopTargetScale = Math.Clamp( MathF.Max( AutoTuneFloorG, _autoTuneSopPeak ) / ( 3f * MathF.Max( swayWeight, AutoTuneMinWeight ) ), 0.05f, 50f );
+
+			// Smoothly approach the targets (about one second to arrive)
+			_autoTuneSurgeEffectiveG += AutoTuneApproachAlpha * ( surgeTargetG - _autoTuneSurgeEffectiveG );
+			_autoTuneSwayEffectiveG += AutoTuneApproachAlpha * ( swayTargetG - _autoTuneSwayEffectiveG );
+			_autoTuneHeaveEffectiveG += AutoTuneApproachAlpha * ( heaveTargetG - _autoTuneHeaveEffectiveG );
+			_autoTuneSopEffectiveScale += AutoTuneApproachAlpha * ( sopTargetScale - _autoTuneSopEffectiveScale );
+
+			surgeMaxG = _autoTuneSurgeEffectiveG;
+			swayMaxG = _autoTuneSwayEffectiveG;
+			heaveMaxG = _autoTuneHeaveEffectiveG;
+
+			// Persist to settings on a slow throttle (also refreshes the disabled knob displays)
+			_autoTuneWriteCounter++;
+
+			var gateFallingEdge = _autoTuneGateWasActive && !gateActive;
+
+			if ( ( _autoTuneWriteCounter >= AutoTuneWriteInterval ) || gateFallingEdge )
+			{
+				_autoTuneWriteCounter = 0;
+
+				WriteBackAutoTunedSettings( settings );
+			}
+
+			_autoTuneGateWasActive = gateActive;
+
+			// Live readouts on the auto-tune section of the page
+			MainWindow._gTensionerPage.AutoTuneSurgeEffectiveString = $"{_autoTuneSurgeEffectiveG:F2} G";
+			MainWindow._gTensionerPage.AutoTuneSwayEffectiveString = $"{_autoTuneSwayEffectiveG:F2} G";
+			MainWindow._gTensionerPage.AutoTuneHeaveEffectiveString = $"{_autoTuneHeaveEffectiveG:F2} G";
+			MainWindow._gTensionerPage.AutoTuneSopEffectiveString = $"{_autoTuneSopEffectiveScale:F2}";
+		}
+		else
+		{
+			_autoTuneSeeded = false;
+			_autoTuneGateWasActive = false;
+
+			surgeMaxG = settings.GTensionerSurgeMaxG;
+			swayMaxG = settings.GTensionerSwayMaxG;
+			heaveMaxG = settings.GTensionerHeaveMaxG;
+
+			MainWindow._gTensionerPage.AutoTuneSurgeEffectiveString = "---";
+			MainWindow._gTensionerPage.AutoTuneSwayEffectiveString = "---";
+			MainWindow._gTensionerPage.AutoTuneHeaveEffectiveString = "---";
+			MainWindow._gTensionerPage.AutoTuneSopEffectiveString = "---";
+		}
 
 		// Surge normalized [-1..1]: acceleration tightens both belts, braking loosens both belts
-		var surgeNormalized = Math.Clamp( longAccel / MathZ.OneG / settings.SeatBeltTensionerSurgeMaxG, -1f, 1f );
+		var surgeNormalized = Math.Clamp( longAccel / MathZ.OneG / surgeMaxG, -1f, 1f );
 
 		// Sway normalized [-1..1]: positive biases right belt tighter, left belt looser
-		var swayNormalized = Math.Clamp( -latAccel / MathZ.OneG / settings.SeatBeltTensionerSwayMaxG, -1f, 1f );
+		var swayNormalized = Math.Clamp( -latAccel / MathZ.OneG / swayMaxG, -1f, 1f );
 
 		// Heave normalized [-1..1]
-		var heaveNormalized = Math.Clamp( vertAccel / MathZ.OneG / settings.SeatBeltTensionerHeaveMaxG, -1f, 1f );
+		var heaveNormalized = Math.Clamp( vertAccel / MathZ.OneG / heaveMaxG, -1f, 1f );
 
 		// Apply axis mode (disable / normal / inverted)
-		surgeNormalized = ApplyAxisMode( surgeNormalized, settings.SeatBeltTensionerSurgeMode );
-		swayNormalized = ApplyAxisMode( swayNormalized, settings.SeatBeltTensionerSwayMode );
-		heaveNormalized = ApplyAxisMode( heaveNormalized, settings.SeatBeltTensionerHeaveMode );
+		surgeNormalized = ApplyAxisMode( surgeNormalized, settings.GTensionerSurgeMode );
+		swayNormalized = ApplyAxisMode( swayNormalized, settings.GTensionerSwayMode );
+		heaveNormalized = ApplyAxisMode( heaveNormalized, settings.GTensionerHeaveMode );
 
 		// Apply dead zone per axis
-		surgeNormalized = ApplyDeadZone( surgeNormalized, settings.SeatBeltTensionerSurgeDeadZone );
-		swayNormalized = ApplyDeadZone( swayNormalized, settings.SeatBeltTensionerSwayDeadZone );
-		heaveNormalized = ApplyDeadZone( heaveNormalized, settings.SeatBeltTensionerHeaveDeadZone );
+		surgeNormalized = ApplyDeadZone( surgeNormalized, settings.GTensionerSurgeDeadZone );
+		swayNormalized = ApplyDeadZone( swayNormalized, settings.GTensionerSwayDeadZone );
+		heaveNormalized = ApplyDeadZone( heaveNormalized, settings.GTensionerHeaveDeadZone );
 
 		// Apply curve per axis
-		surgeNormalized = ApplyCurve( surgeNormalized, settings.SeatBeltTensionerSurgeCurve );
-		swayNormalized = ApplyCurve( swayNormalized, settings.SeatBeltTensionerSwayCurve );
-		heaveNormalized = ApplyCurve( heaveNormalized, settings.SeatBeltTensionerHeaveCurve );
+		surgeNormalized = ApplyCurve( surgeNormalized, settings.GTensionerSurgeCurve );
+		swayNormalized = ApplyCurve( swayNormalized, settings.GTensionerSwayCurve );
+		heaveNormalized = ApplyCurve( heaveNormalized, settings.GTensionerHeaveCurve );
 
 		// Apply EMA smoothing per axis (low-latency: alpha = 1 - smoothing)
-		surgeNormalized = ApplySmoothing( surgeNormalized, ref _surgeSmoothed, settings.SeatBeltTensionerSurgeSmoothing );
-		swayNormalized = ApplySmoothing( swayNormalized, ref _swaySmoothed, settings.SeatBeltTensionerSwaySmoothing );
-		heaveNormalized = ApplySmoothing( heaveNormalized, ref _heaveSmoothed, settings.SeatBeltTensionerHeaveSmoothing );
+		surgeNormalized = ApplySmoothing( surgeNormalized, ref _surgeSmoothed, settings.GTensionerSurgeSmoothing );
+		swayNormalized = ApplySmoothing( swayNormalized, ref _swaySmoothed, settings.GTensionerSwaySmoothing );
+		heaveNormalized = ApplySmoothing( heaveNormalized, ref _heaveSmoothed, settings.GTensionerHeaveSmoothing );
 
 		// Update graphs if on the SBT page
-		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.SeatBeltTensioner )
+		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.GTensioner )
 		{
 			_surgeGraph.Advance( surgeNormalized );
 			_swayGraph.Advance( swayNormalized );
@@ -526,24 +691,43 @@ public class SeatBeltTensioner
 		}
 
 		// --- Seat of Pants effect (effect 1): tighten-only SoP offset added directly to positions ---
-		if ( settings.SeatBeltTensionerSeatOfPantsMode != AxisMode.Disabled )
+		if ( settings.GTensionerSeatOfPantsMode != AxisMode.Disabled )
 		{
-			var rawSop = App.Instance!.SteeringEffects.SeatOfPantsEffect;
+			float sop;
+			float amplitudeTenths;
 
-			// Apply mode (Normal or Inverted)
-			var sop = ApplyAxisMode( rawSop, settings.SeatBeltTensionerSeatOfPantsMode );
+			if ( autoTuneOn )
+			{
+				// Internal auto-tuned path: normalize the raw (pre-threshold) signal by the learned scale,
+				// shape it with the sway curve, and size the amplitude to the full sway belt travel so a
+				// full-scale seat of pants offset cancels a full-scale sway contribution exactly
+				var rawSop = App.Instance!.SteeringEffects.SeatOfPantsRaw;
 
-			// Apply curve
-			sop = ApplyCurve( sop, settings.SeatBeltTensionerSeatOfPantsCurve );
+				sop = Math.Clamp( rawSop / MathF.Max( _autoTuneSopEffectiveScale, 0.01f ), -1f, 1f );
+				sop = ApplyAxisMode( sop, settings.GTensionerSeatOfPantsMode );
+				sop = ApplyCurve( sop, settings.GTensionerSwayCurve );
 
-			var amplitudeTenths = settings.SeatBeltTensionerSeatOfPantsAmplitude * 10f;
+				amplitudeTenths = maximumTenths - neutralTenths;
+			}
+			else
+			{
+				var rawSop = App.Instance!.SteeringEffects.SeatOfPantsEffect;
+
+				// Apply mode (Normal or Inverted)
+				sop = ApplyAxisMode( rawSop, settings.GTensionerSeatOfPantsMode );
+
+				// Apply curve
+				sop = ApplyCurve( sop, settings.GTensionerSeatOfPantsCurve );
+
+				amplitudeTenths = settings.GTensionerSeatOfPantsAmplitude * 10f;
+			}
 
 			leftTargetPositionTenths = Math.Clamp( leftTargetPositionTenths + (int) MathF.Round( -sop * amplitudeTenths ), minimumTenths, maximumTenths );
 			rightTargetPositionTenths = Math.Clamp( rightTargetPositionTenths + (int) MathF.Round( sop * amplitudeTenths ), minimumTenths, maximumTenths );
 		}
 
 		// Update shoulder graphs if on the SBT page
-		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.SeatBeltTensioner )
+		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.GTensioner )
 		{
 			// Remap tenths to [-1..1]: -1=minimum, 0=neutral, +1=maximum (piecewise linear)
 			var leftShoulderNormalized = leftTargetPositionTenths <= neutralTenths ? (float) ( leftTargetPositionTenths - neutralTenths ) / ( neutralTenths - minimumTenths ) : (float) ( leftTargetPositionTenths - neutralTenths ) / ( maximumTenths - neutralTenths );
@@ -556,14 +740,14 @@ public class SeatBeltTensioner
 			_rightShoulderGraph.WritePixels();
 
 			// Update overlay text for active vibration effects
-			var absActive = settings.SeatBeltTensionerABSEnabled && IsABSOrWheelLockActive( app );
-			var wheelSlipActive = settings.SeatBeltTensionerWheelSlipEnabled && IsWheelSpinActive( app );
-			var rumbleLeftActive = settings.SeatBeltTensionerRumbleEnabled && IsRumbleActiveLeft( app );
-			var rumbleRightActive = settings.SeatBeltTensionerRumbleEnabled && IsRumbleActiveRight( app );
+			var absActive = settings.GTensionerABSEnabled && IsABSOrWheelLockActive( app );
+			var wheelSlipActive = settings.GTensionerWheelSlipEnabled && IsWheelSpinActive( app );
+			var rumbleLeftActive = settings.GTensionerRumbleEnabled && IsRumbleActiveLeft( app );
+			var rumbleRightActive = settings.GTensionerRumbleEnabled && IsRumbleActiveRight( app );
 
 			app.Dispatcher.InvokeAsync( () =>
 			{
-				var page = MainWindow._seatBeltTensionerPage;
+				var page = MainWindow._gTensionerPage;
 				page.UpdateShoulderOverlays( absActive, wheelSlipActive, rumbleLeftActive, rumbleRightActive );
 			} );
 		}
@@ -574,20 +758,20 @@ public class SeatBeltTensioner
 		var rightEffectFreqHz = 0;
 		var rightEffectAmplitudeDeg = 0;
 
-		if ( settings.SeatBeltTensionerABSEnabled && IsABSOrWheelLockActive( app ) )
+		if ( settings.GTensionerABSEnabled && IsABSOrWheelLockActive( app ) )
 		{
-			leftEffectFreqHz = rightEffectFreqHz = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerABSFrequency ), 0, 15 );
-			leftEffectAmplitudeDeg = rightEffectAmplitudeDeg = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerABSAmplitude ), 0, 60 );
+			leftEffectFreqHz = rightEffectFreqHz = Math.Clamp( (int) MathF.Round( settings.GTensionerABSFrequency ), 0, 15 );
+			leftEffectAmplitudeDeg = rightEffectAmplitudeDeg = Math.Clamp( (int) MathF.Round( settings.GTensionerABSAmplitude ), 0, 60 );
 		}
-		else if ( settings.SeatBeltTensionerWheelSlipEnabled && IsWheelSpinActive( app ) )
+		else if ( settings.GTensionerWheelSlipEnabled && IsWheelSpinActive( app ) )
 		{
-			leftEffectFreqHz = rightEffectFreqHz = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerWheelSlipFrequency ), 0, 15 );
-			leftEffectAmplitudeDeg = rightEffectAmplitudeDeg = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerWheelSlipAmplitude ), 0, 60 );
+			leftEffectFreqHz = rightEffectFreqHz = Math.Clamp( (int) MathF.Round( settings.GTensionerWheelSlipFrequency ), 0, 15 );
+			leftEffectAmplitudeDeg = rightEffectAmplitudeDeg = Math.Clamp( (int) MathF.Round( settings.GTensionerWheelSlipAmplitude ), 0, 60 );
 		}
-		else if ( settings.SeatBeltTensionerRumbleEnabled )
+		else if ( settings.GTensionerRumbleEnabled )
 		{
-			var rumbleFreqHz = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerRumbleFrequency ), 0, 15 );
-			var rumbleAmplitudeDeg = Math.Clamp( (int) MathF.Round( settings.SeatBeltTensionerRumbleAmplitude ), 0, 60 );
+			var rumbleFreqHz = Math.Clamp( (int) MathF.Round( settings.GTensionerRumbleFrequency ), 0, 15 );
+			var rumbleAmplitudeDeg = Math.Clamp( (int) MathF.Round( settings.GTensionerRumbleAmplitude ), 0, 60 );
 
 			if ( IsRumbleActiveLeft( app ) )
 			{
@@ -688,9 +872,9 @@ public class SeatBeltTensioner
 			return;
 		}
 
-		var minimumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMinimum * 10f ), 0, 900 );
-		var neutralTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerNeutral * 10f ), 0, 1800 );
-		var maximumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMaximum * 10f ), 900, 1800 );
+		var minimumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMinimum * 10f ), 0, 900 );
+		var neutralTenths = Math.Clamp( (int) Math.Round( settings.GTensionerNeutral * 10f ), 0, 1800 );
+		var maximumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMaximum * 10f ), 900, 1800 );
 
 		// Normalize by each axis' MaxG setting, then apply axis mode
 		var surgeNormalized = 0f;
@@ -700,13 +884,13 @@ public class SeatBeltTensioner
 		switch ( _testAxis )
 		{
 			case TestAxis.Surge:
-				surgeNormalized = ApplyAxisMode( Math.Clamp( -rawG / settings.SeatBeltTensionerSurgeMaxG, -1f, 1f ), settings.SeatBeltTensionerSurgeMode );
+				surgeNormalized = ApplyAxisMode( Math.Clamp( -rawG / settings.GTensionerSurgeMaxG, -1f, 1f ), settings.GTensionerSurgeMode );
 				break;
 			case TestAxis.Sway:
-				swayNormalized = ApplyAxisMode( Math.Clamp( rawG / settings.SeatBeltTensionerSwayMaxG, -1f, 1f ), settings.SeatBeltTensionerSwayMode );
+				swayNormalized = ApplyAxisMode( Math.Clamp( rawG / settings.GTensionerSwayMaxG, -1f, 1f ), settings.GTensionerSwayMode );
 				break;
 			case TestAxis.Heave:
-				heaveNormalized = ApplyAxisMode( Math.Clamp( rawG / settings.SeatBeltTensionerHeaveMaxG, -1f, 1f ), settings.SeatBeltTensionerHeaveMode );
+				heaveNormalized = ApplyAxisMode( Math.Clamp( rawG / settings.GTensionerHeaveMaxG, -1f, 1f ), settings.GTensionerHeaveMode );
 				break;
 		}
 
@@ -746,7 +930,7 @@ public class SeatBeltTensioner
 
 		app?.Dispatcher.InvokeAsync( () =>
 		{
-			MainWindow._seatBeltTensionerPage.UpdateTestStatus();
+			MainWindow._gTensionerPage.UpdateTestStatus();
 		} );
 	}
 
@@ -770,7 +954,7 @@ public class SeatBeltTensioner
 	{
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		var minimumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMinimum * 10f ), 0, 900 );
+		var minimumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMinimum * 10f ), 0, 900 );
 
 		_calibrationSweepGoingUp = true;
 		_calibrationSweepLeftPos = minimumTenths;
@@ -783,11 +967,11 @@ public class SeatBeltTensioner
 
 	private void UpdateCalibrationSweepTest( App app, DataContext.Settings settings )
 	{
-		var minimumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMinimum * 10f ), 0, 900 );
-		var maximumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMaximum * 10f ), 900, 1800 );
+		var minimumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMinimum * 10f ), 0, 900 );
+		var maximumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMaximum * 10f ), 900, 1800 );
 
 		// Step size per update (20 Hz): deg/sec → tenths/sec → tenths/update
-		var stepTenths = Math.Max( 1, (int) MathF.Round( settings.SeatBeltTensionerMaxMotorSpeed * 10f / 20f ) );
+		var stepTenths = Math.Max( 1, (int) MathF.Round( settings.GTensionerMaxMotorSpeed * 10f / 20f ) );
 
 		if ( _calibrationSweepGoingUp )
 		{
@@ -844,9 +1028,9 @@ public class SeatBeltTensioner
 	{
 		return _vibrationTestEffect switch
 		{
-			TestVibrationEffect.ABS => ((int) MathF.Round( settings.SeatBeltTensionerABSFrequency ), (int) MathF.Round( settings.SeatBeltTensionerABSAmplitude )),
-			TestVibrationEffect.WheelSlip => ((int) MathF.Round( settings.SeatBeltTensionerWheelSlipFrequency ), (int) MathF.Round( settings.SeatBeltTensionerWheelSlipAmplitude )),
-			TestVibrationEffect.Rumble => ((int) MathF.Round( settings.SeatBeltTensionerRumbleFrequency ), (int) MathF.Round( settings.SeatBeltTensionerRumbleAmplitude )),
+			TestVibrationEffect.ABS => ((int) MathF.Round( settings.GTensionerABSFrequency ), (int) MathF.Round( settings.GTensionerABSAmplitude )),
+			TestVibrationEffect.WheelSlip => ((int) MathF.Round( settings.GTensionerWheelSlipFrequency ), (int) MathF.Round( settings.GTensionerWheelSlipAmplitude )),
+			TestVibrationEffect.Rumble => ((int) MathF.Round( settings.GTensionerRumbleFrequency ), (int) MathF.Round( settings.GTensionerRumbleAmplitude )),
 			_ => (0, 0)
 		};
 	}
@@ -859,7 +1043,7 @@ public class SeatBeltTensioner
 		{
 			if ( IsConnected )
 			{
-				var minimumTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerMinimum * 10f ), 0, 900 );
+				var minimumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMinimum * 10f ), 0, 900 );
 
 				_lastSentLeftEffectFreqHz = -1;
 				_lastSentLeftEffectAmplitudeDeg = -1;
@@ -888,7 +1072,7 @@ public class SeatBeltTensioner
 			return;
 		}
 
-		var neutralTenths = Math.Clamp( (int) Math.Round( settings.SeatBeltTensionerNeutral * 10f ), 0, 1800 );
+		var neutralTenths = Math.Clamp( (int) Math.Round( settings.GTensionerNeutral * 10f ), 0, 1800 );
 
 		if ( _vibrationTestStep == 1 )
 		{
@@ -957,6 +1141,69 @@ public class SeatBeltTensioner
 		return smoothed;
 	}
 
+	// Initialize the auto-tune state from the persisted settings - on first enable and again whenever
+	// the settings change underneath us (car/track context switch). The persisted values are the
+	// weight-scaled effective values, so the underlying learned peaks are recovered by inverting
+	// effective = peak / (3 x weight).
+	private void SeedAutoTune( DataContext.Settings settings, float swayWeight, float surgeWeight, float heaveWeight )
+	{
+		_autoTuneSeeded = true;
+
+		_autoTuneSurgeEffectiveG = settings.GTensionerSurgeMaxG;
+		_autoTuneSwayEffectiveG = settings.GTensionerSwayMaxG;
+		_autoTuneHeaveEffectiveG = settings.GTensionerHeaveMaxG;
+		_autoTuneSopEffectiveScale = settings.GTensionerAutoTuneSeatOfPantsScale;
+
+		_autoTuneSurgePeakG = MathF.Max( AutoTuneFloorG, _autoTuneSurgeEffectiveG * 3f * surgeWeight );
+		_autoTuneSwayPeakG = MathF.Max( AutoTuneFloorG, _autoTuneSwayEffectiveG * 3f * swayWeight );
+		_autoTuneHeavePeakG = MathF.Max( AutoTuneFloorG, _autoTuneHeaveEffectiveG * 3f * heaveWeight );
+		_autoTuneSopPeak = MathF.Max( AutoTuneFloorG, _autoTuneSopEffectiveScale * 3f * swayWeight );
+
+		_autoTuneSopAlgorithm = settings.SteeringEffectsSeatOfPantsAlgorithm;
+
+		_lastWrittenSurgeMaxG = settings.GTensionerSurgeMaxG;
+		_lastWrittenSwayMaxG = settings.GTensionerSwayMaxG;
+		_lastWrittenHeaveMaxG = settings.GTensionerHeaveMaxG;
+		_lastWrittenSopScale = settings.GTensionerAutoTuneSeatOfPantsScale;
+
+		_autoTuneWriteCounter = 0;
+	}
+
+	// Persist the auto-tuned effective values into the settings (throttled by the caller). The setters
+	// clamp, refresh the knob display strings, sync the per-context settings, and queue serialization.
+	// Read each property back afterwards so our own (possibly clamped) writes are not mistaken for
+	// external context switches by the reseed check.
+	private void WriteBackAutoTunedSettings( DataContext.Settings settings )
+	{
+		if ( MathF.Abs( _autoTuneSurgeEffectiveG - _lastWrittenSurgeMaxG ) > AutoTuneWriteEpsilon )
+		{
+			settings.GTensionerSurgeMaxG = _autoTuneSurgeEffectiveG;
+
+			_lastWrittenSurgeMaxG = settings.GTensionerSurgeMaxG;
+		}
+
+		if ( MathF.Abs( _autoTuneSwayEffectiveG - _lastWrittenSwayMaxG ) > AutoTuneWriteEpsilon )
+		{
+			settings.GTensionerSwayMaxG = _autoTuneSwayEffectiveG;
+
+			_lastWrittenSwayMaxG = settings.GTensionerSwayMaxG;
+		}
+
+		if ( MathF.Abs( _autoTuneHeaveEffectiveG - _lastWrittenHeaveMaxG ) > AutoTuneWriteEpsilon )
+		{
+			settings.GTensionerHeaveMaxG = _autoTuneHeaveEffectiveG;
+
+			_lastWrittenHeaveMaxG = settings.GTensionerHeaveMaxG;
+		}
+
+		if ( MathF.Abs( _autoTuneSopEffectiveScale - _lastWrittenSopScale ) > AutoTuneWriteEpsilon )
+		{
+			settings.GTensionerAutoTuneSeatOfPantsScale = _autoTuneSopEffectiveScale;
+
+			_lastWrittenSopScale = settings.GTensionerAutoTuneSeatOfPantsScale;
+		}
+	}
+
 	private void ResetMinMaxG()
 	{
 		_surgeMinG = float.MaxValue;
@@ -966,12 +1213,12 @@ public class SeatBeltTensioner
 		_heaveMinG = float.MaxValue;
 		_heaveMaxG = float.MinValue;
 
-		MainWindow._seatBeltTensionerPage.SurgeMinGString = "---";
-		MainWindow._seatBeltTensionerPage.SurgeMaxGString = "---";
-		MainWindow._seatBeltTensionerPage.SwayMinGString = "---";
-		MainWindow._seatBeltTensionerPage.SwayMaxGString = "---";
-		MainWindow._seatBeltTensionerPage.HeaveMinGString = "---";
-		MainWindow._seatBeltTensionerPage.HeaveMaxGString = "---";
+		MainWindow._gTensionerPage.SurgeMinGString = "---";
+		MainWindow._gTensionerPage.SurgeMaxGString = "---";
+		MainWindow._gTensionerPage.SwayMinGString = "---";
+		MainWindow._gTensionerPage.SwayMaxGString = "---";
+		MainWindow._gTensionerPage.HeaveMinGString = "---";
+		MainWindow._gTensionerPage.HeaveMaxGString = "---";
 	}
 
 	private void OnPortClosed( object? sender, EventArgs e )

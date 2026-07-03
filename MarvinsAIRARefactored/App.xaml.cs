@@ -70,7 +70,7 @@ public partial class App : Application
 	public Commentary Commentary { get; private set; } = null!;
 	public SpeechToText SpeechToText { get; private set; } = null!;
 	public Wind Wind { get; private set; } = null!;
-	public SeatBeltTensioner SeatBeltTensioner { get; private set; } = null!;
+	public GTensioner GTensioner { get; private set; } = null!;
 	public HidHotPlugMonitor HidHotPlugMonitor { get; private set; } = null!;
 	public TradingPaints TradingPaints { get; private set; } = null!;
 	public AppManager AppManager { get; private set; } = null!;
@@ -143,7 +143,7 @@ public partial class App : Application
 		Commentary = new();
 		SpeechToText = new();
 		Wind = new();
-		SeatBeltTensioner = new();
+		GTensioner = new();
 		HidHotPlugMonitor = new();
 		TradingPaints = new();
 		AppManager = new();
@@ -314,7 +314,7 @@ public partial class App : Application
 				RunStartupStep( "InitializingTimingMarkers", TimingMarkers.Initialize );
 				RunStartupStep( "InitializingTelemetry", Telemetry.Initialize );
 				RunStartupStep( "InitializingWind", Wind.Initialize );
-				RunStartupStep( "InitializingSeatBeltTensioner", SeatBeltTensioner.Initialize );
+				RunStartupStep( "InitializingGTensioner", GTensioner.Initialize );
 				RunStartupStep( "InitializingHidHotPlugMonitor", HidHotPlugMonitor.Initialize );
 				RunStartupStep( "InitializingTradingPaints", TradingPaints.Initialize );
 				RunStartupStep( "InitializingSettingsFile", SettingsFile.Initialize );
@@ -451,9 +451,9 @@ public partial class App : Application
 					Wind.Connect();
 				}
 
-				if ( DataContext.DataContext.Instance.Settings.SeatBeltTensionerConnectOnStartup )
+				if ( DataContext.DataContext.Instance.Settings.GTensionerConnectOnStartup )
 				{
-					SeatBeltTensioner.Connect();
+					GTensioner.Connect();
 				}
 
 				if ( DataContext.DataContext.Instance.Settings.AdminBoxxConnectOnStartup )
@@ -711,7 +711,7 @@ public partial class App : Application
 						app.Telemetry.Tick( app );
 						app.Commentary.Tick( app );
 						app.Wind.Tick( app );
-						app.SeatBeltTensioner.Tick( app );
+						app.GTensioner.Tick( app );
 						app.CloudService.Tick( app );
 
 						app.GripOMeterWindow?.Tick( app );

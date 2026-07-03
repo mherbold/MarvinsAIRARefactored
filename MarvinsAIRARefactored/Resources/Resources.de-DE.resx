@@ -897,14 +897,14 @@ Hier ist der Link zum Spenden:</value>
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Wind</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Gurtstraffer</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Verbinde mit MAIRA Gurtstraffer</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Verbinde mit MAIRA G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Verbinde mit MAIRA Gurtstraffer bei App-Start</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Verbinde mit MAIRA G Tensioner bei App-Start</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Minimaler Winkel</value>
@@ -1703,8 +1703,8 @@ Hier ist der Link zum Spenden:</value>
   <data name="InitializingWind" xml:space="preserve">
     <value>Wind wird initialisiert...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Sicherheitsgurtstraffer wird initialisiert...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>G Tensioner wird initialisiert...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>HID-Hot-Plug-Monitor wird initialisiert...</value>
@@ -1779,6 +1779,12 @@ Hier ist der Link zum Spenden:</value>
     <value>Verschiedenes</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Dokumentenordner öffnen</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Auto-Tuning</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
   </data>
 
 

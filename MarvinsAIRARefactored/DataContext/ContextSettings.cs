@@ -199,28 +199,32 @@ public class ContextSettings
 
 	#endregion
 
-	#region Seat Belt Tensioner
+	#region G Tensioner
 
-	public SeatBeltTensioner.AxisMode SeatBeltTensionerSurgeMode { get; set; } = SeatBeltTensioner.AxisMode.Normal;
-	public bool SeatBeltTensionerSurgeSubtractGravity { get; set; } = true;
-	public float SeatBeltTensionerSurgeMaxG { get; set; } = 4f;
-	public float SeatBeltTensionerSurgeDeadZone { get; set; } = 0f;
-	public float SeatBeltTensionerSurgeSmoothing { get; set; } = 0f;
-	public float SeatBeltTensionerSurgeCurve { get; set; } = 0f;
-	public SeatBeltTensioner.AxisMode SeatBeltTensionerSwayMode { get; set; } = SeatBeltTensioner.AxisMode.Normal;
-	public bool SeatBeltTensionerSwaySubtractGravity { get; set; } = true;
-	public float SeatBeltTensionerSwayMaxG { get; set; } = 2f;
-	public float SeatBeltTensionerSwayDeadZone { get; set; } = 0.05f;
-	public float SeatBeltTensionerSwaySmoothing { get; set; } = 0f;
-	public float SeatBeltTensionerSwayCurve { get; set; } = 0.15f;
-	public SeatBeltTensioner.AxisMode SeatBeltTensionerHeaveMode { get; set; } = SeatBeltTensioner.AxisMode.Normal;
-	public bool SeatBeltTensionerHeaveSubtractGravity { get; set; } = true;
-	public float SeatBeltTensionerHeaveMaxG { get; set; } = 1.5f;
-	public float SeatBeltTensionerHeaveDeadZone { get; set; } = 0.05f;
-	public float SeatBeltTensionerHeaveSmoothing { get; set; } = 0.1f;
-	public float SeatBeltTensionerHeaveCurve { get; set; } = 0.15f;
-	public SeatBeltTensioner.AxisMode SeatBeltTensionerSeatOfPantsMode { get; set; } = SeatBeltTensioner.AxisMode.Normal;
-	public float SeatBeltTensionerSeatOfPantsCurve { get; set; } = 0.25f;
+	public bool GTensionerAutoTuneEnabled { get; set; } = true;
+	public float GTensionerAutoTuneSwayWeight { get; set; } = 1f / 3f;
+	public float GTensionerAutoTuneSurgeWeight { get; set; } = 1f / 3f;
+	public float GTensionerAutoTuneSeatOfPantsScale { get; set; } = 1f;
+	public GTensioner.AxisMode GTensionerSurgeMode { get; set; } = GTensioner.AxisMode.Normal;
+	public bool GTensionerSurgeSubtractGravity { get; set; } = true;
+	public float GTensionerSurgeMaxG { get; set; } = 4f;
+	public float GTensionerSurgeDeadZone { get; set; } = 0f;
+	public float GTensionerSurgeSmoothing { get; set; } = 0f;
+	public float GTensionerSurgeCurve { get; set; } = 0f;
+	public GTensioner.AxisMode GTensionerSwayMode { get; set; } = GTensioner.AxisMode.Normal;
+	public bool GTensionerSwaySubtractGravity { get; set; } = true;
+	public float GTensionerSwayMaxG { get; set; } = 2f;
+	public float GTensionerSwayDeadZone { get; set; } = 0.05f;
+	public float GTensionerSwaySmoothing { get; set; } = 0f;
+	public float GTensionerSwayCurve { get; set; } = 0.15f;
+	public GTensioner.AxisMode GTensionerHeaveMode { get; set; } = GTensioner.AxisMode.Normal;
+	public bool GTensionerHeaveSubtractGravity { get; set; } = true;
+	public float GTensionerHeaveMaxG { get; set; } = 1.5f;
+	public float GTensionerHeaveDeadZone { get; set; } = 0.05f;
+	public float GTensionerHeaveSmoothing { get; set; } = 0.1f;
+	public float GTensionerHeaveCurve { get; set; } = 0.15f;
+	public GTensioner.AxisMode GTensionerSeatOfPantsMode { get; set; } = GTensioner.AxisMode.Normal;
+	public float GTensionerSeatOfPantsCurve { get; set; } = 0.25f;
 
 	#endregion
 }

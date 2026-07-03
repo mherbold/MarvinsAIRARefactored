@@ -942,14 +942,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Вятър Typhoon</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Обтягач на предпазния колан</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Свързване с MAIRA обтягач на предпазния колан</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Свързване с MAIRA G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Свързване с MAIRA обтягач на предпазния колан при стартиране на приложението</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Свързване с MAIRA G Tensioner при стартиране на приложението</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Минимален ъгъл</value>
@@ -1761,8 +1761,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Инициализиране на Wind...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Инициализиране на обтягача на предпазния колан...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Инициализиране на G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Инициализиране на HID монитора за горещо включване...</value>
@@ -1815,6 +1815,12 @@
     <value>Разни</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Отвори папката с документи</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Автонастройка</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Баланс</value>
   </data>
 
 

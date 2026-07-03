@@ -942,14 +942,14 @@
   <data name="Wind" xml:space="preserve">
     <value>رياح Typhoon</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>مشداد حزام الأمان</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>الاتصال بمشداد حزام أمان MAIRA</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>الاتصال بـ MAIRA G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>الاتصال بمشداد حزام أمان MAIRA عند بدء تشغيل التطبيق</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>الاتصال بـ MAIRA G Tensioner عند بدء تشغيل التطبيق</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>الزاوية الدنيا</value>
@@ -1761,8 +1761,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>جارٍ تهيئة الرياح...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>جارٍ تهيئة مشداد حزام الأمان...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>جارٍ تهيئة G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>جارٍ تهيئة مراقب التوصيل السريع لأجهزة HID...</value>
@@ -1815,6 +1815,12 @@
     <value>متنوع</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>فتح مجلد المستندات</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>الضبط التلقائي</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>التوازن</value>
   </data>
 
 

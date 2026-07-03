@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>TyphoonVítr</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Napínač bezpečnostního pásu</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Připojit k napínači</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Připojit k G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Připojit při spuštění aplikace</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Připojit k G Tensioner při spuštění aplikace</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Minimální úhel</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Inicializuji Vítr...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Inicializuji Zesilovací Pas Bezpečnosti...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Inicializuji G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Inicializuji Monitor Hot Plug HID...</value>
@@ -1774,6 +1774,12 @@
     <value>Různé</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Otevřít složku dokumentů</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Automatické ladění</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Vyvážení</value>
   </data>
 
 

@@ -240,7 +240,7 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.Wind:
 					return "advanced/wind/";
 
-				case AppPage.SeatBeltTensioner:
+				case AppPage.GTensioner:
 					return "advanced/seat-belt-tensioner/";
 
 				case AppPage.Overlays:
@@ -378,11 +378,11 @@ namespace MarvinsAIRARefactored.Controls
 			Add( AppMenuItemsColumn1, AppPage.SteeringEffects, _steeringEffectsPage );
 			Add( AppMenuItemsColumn1, AppPage.Pedals, _pedalsPage );
 			Add( AppMenuItemsColumn1, AppPage.Wind, _windPage );
-			Add( AppMenuItemsColumn1, AppPage.SeatBeltTensioner, _seatBeltTensionerPage );
+			Add( AppMenuItemsColumn1, AppPage.GTensioner, _gTensionerPage );
 
 #endif
 
-			// Remember the slot AdminBoxx belongs in (right after Seat Belt Tensioner in the full build);
+			// Remember the slot AdminBoxx belongs in (right after G Tensioner in the full build);
 			// RelocalizeAppMenuItems re-inserts it here when the language is English. See field comment.
 			_adminBoxxColumn1Index = AppMenuItemsColumn1.Count;
 			_adminBoxxMenuItem = new AppMenuItem { AppPage = AppPage.AdminBoxx, PageUserControl = _adminBoxxPage };
@@ -493,8 +493,8 @@ namespace MarvinsAIRARefactored.Controls
 						menuItem.DisplayName = localization[ "Wind" ];
 						break;
 
-					case AppPage.SeatBeltTensioner:
-						menuItem.DisplayName = localization[ "SeatBeltTensioner" ];
+					case AppPage.GTensioner:
+						menuItem.DisplayName = localization[ "GTensioner" ];
 						break;
 
 					case AppPage.Overlays:
@@ -599,8 +599,8 @@ namespace MarvinsAIRARefactored.Controls
 					SelectedAppPageText = localization.Upper[ "Wind" ];
 					break;
 
-				case AppPage.SeatBeltTensioner:
-					SelectedAppPageText = localization.Upper[ "SeatBeltTensioner" ];
+				case AppPage.GTensioner:
+					SelectedAppPageText = localization.Upper[ "GTensioner" ];
 					break;
 
 				case AppPage.AdminBoxx:

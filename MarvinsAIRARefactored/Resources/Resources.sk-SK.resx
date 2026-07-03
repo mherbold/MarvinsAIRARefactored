@@ -942,14 +942,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Vietor Typhoon</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Napínač bezpečnostného pásu</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Pripojiť k napínaču bezpečnostného pásu MAIRA</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Pripojiť k MAIRA G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Pripojiť k napínaču bezpečnostného pásu MAIRA pri spustení aplikácie</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Pripojiť k MAIRA G Tensioner pri spustení aplikácie</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Minimálny uhol</value>
@@ -1761,8 +1761,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Inicializuje sa vietor...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Inicializuje sa napínač bezpečnostného pásu...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Inicializuje sa G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Inicializuje sa monitor HID hot plug...</value>
@@ -1815,6 +1815,12 @@
     <value>Rôzne</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Otvoriť priečinok dokumentov</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Automatické ladenie</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Vyváženie</value>
   </data>
 
 

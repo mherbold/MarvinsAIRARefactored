@@ -942,14 +942,14 @@
   <data name="Wind" xml:space="preserve">
     <value>태풍 바람</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>안전벨트 텐셔너</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>MAIRA 안전벨트 텐셔너에 연결</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>MAIRA G Tensioner에 연결</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>앱 시작 시 MAIRA 안전벨트 텐셔너에 연결</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>앱 시작 시 MAIRA G Tensioner에 연결</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>최소 각도</value>
@@ -1761,8 +1761,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Wind 초기화 중...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>안전벨트 텐셔너 초기화 중...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>G Tensioner 초기화 중...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>HID 핫 플러그 모니터 초기화 중...</value>
@@ -1815,6 +1815,12 @@
     <value>기타</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>문서 폴더 열기</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>자동 튜닝</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>밸런스</value>
   </data>
 
 

@@ -942,14 +942,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Wind</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Seat Belt Tensioner</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Connect to MAIRA Seat Belt Tensioner</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Connect to MAIRA G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Connect to MAIRA Seat Belt Tensioner on App Startup</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Connect to MAIRA G Tensioner on App Startup</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Minimum Angle</value>
@@ -1761,8 +1761,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Initializing Wind...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Initializing Seat Belt Tensioner...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Initializing G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Initializing HID Hot Plug Monitor...</value>
@@ -1815,6 +1815,12 @@
     <value>Miscellaneous</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Open Documents Folder</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Auto-Tune</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balance</value>
   </data>
 
 

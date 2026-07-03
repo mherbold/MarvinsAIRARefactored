@@ -942,14 +942,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon vējš</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Drošības jostas nospriegotājs</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Savienoties ar MAIRA drošības jostas nospriegotāju</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Savienoties ar MAIRA G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Savienoties ar MAIRA drošības jostas nospriegotāju lietotnes startēšanas laikā</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Savienoties ar MAIRA G Tensioner lietotnes startēšanas laikā</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Minimālais leņķis</value>
@@ -1761,8 +1761,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Inicializē vēju...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Inicializē drošības jostas nospriegotāju...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Inicializē G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Inicializē HID karstās pieslēgšanas monitoru...</value>
@@ -1815,6 +1815,12 @@
     <value>Dažādi</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Atvērt dokumentu mapi</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Automātiskā regulēšana</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Līdzsvars</value>
   </data>
 
 

@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Vânt</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Tensionator centură</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Conectare la tensionator</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Conectare la G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Conectare la pornirea aplicației</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Conectare la G Tensioner la pornirea aplicației</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Unghi minim</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Inițializare Vânt...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Inițializare Tensioner Centură Siguranță...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Inițializare G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Inițializare HID Hot Plug Monitor...</value>
@@ -1774,6 +1774,12 @@
     <value>Diverse</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Deschide folderul Documente</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Reglare automată</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Balans</value>
   </data>
 
 

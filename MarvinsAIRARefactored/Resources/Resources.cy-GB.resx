@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon Gwynt</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>Tynnwr gwregys</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>Cysylltu â'r tynnwr</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>Cysylltu â'r G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>Cysylltu wrth lansio'r ap</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>Cysylltu â'r G Tensioner wrth lansio'r ap</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>Ongl leiaf</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>Yn Cychwyn Gwynt...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>Yn Cychwyn Tensionydd Gwregys Diogelwch...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>Yn Cychwyn G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>Yn Cychwyn Monitro Hot Plug HID...</value>
@@ -1774,6 +1774,12 @@
     <value>Amrywiol</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Agor ffolder dogfennau</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>Awto-diwnio</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>Cydbwysedd</value>
   </data>
 
 

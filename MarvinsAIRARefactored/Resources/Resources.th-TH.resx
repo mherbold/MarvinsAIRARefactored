@@ -894,14 +894,14 @@
   <data name="Wind" xml:space="preserve">
     <value>Typhoon ลม</value>
   </data>
-  <data name="SeatBeltTensioner" xml:space="preserve">
-    <value>เข็มขัดนิรภัยแบบตึง</value>
+  <data name="GTensioner" xml:space="preserve">
+    <value>G Tensioner</value>
   </data>
-  <data name="ConnectToSBT" xml:space="preserve">
-    <value>เชื่อมต่อกับระบบตึงเข็มขัด</value>
+  <data name="ConnectToGT" xml:space="preserve">
+    <value>เชื่อมต่อกับ G Tensioner</value>
   </data>
-  <data name="ConnectToSBTOnStartup" xml:space="preserve">
-    <value>เชื่อมต่อเมื่อเริ่มต้น</value>
+  <data name="ConnectToGTOnStartup" xml:space="preserve">
+    <value>เชื่อมต่อกับ G Tensioner เมื่อเริ่มต้น</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
     <value>มุมน้อยสุด</value>
@@ -1698,8 +1698,8 @@
   <data name="InitializingWind" xml:space="preserve">
     <value>กำลังเริ่มต้นลม...</value>
   </data>
-  <data name="InitializingSeatBeltTensioner" xml:space="preserve">
-    <value>กำลังเริ่มต้น Seat Belt Tensioner...</value>
+  <data name="InitializingGTensioner" xml:space="preserve">
+    <value>กำลังเริ่มต้น G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
     <value>กำลังเริ่มต้น HID Hot Plug Monitor...</value>
@@ -1774,6 +1774,12 @@
     <value>เบ็ดเตล็ด</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>เปิดโฟลเดอร์เอกสาร</value>
+  </data>
+  <data name="AutoTune" xml:space="preserve">
+    <value>ปรับจูนอัตโนมัติ</value>
+  </data>
+  <data name="Balance" xml:space="preserve">
+    <value>สมดุล</value>
   </data>
 
 
