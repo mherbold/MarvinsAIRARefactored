@@ -35,6 +35,14 @@
 <p>Turns the AdminBoxx connection on/off. If the device is not detected, MAIRA disables this control and shows <strong>Device not found</strong>.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Retry</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>When the device is not detected, a <strong>Retry</strong> button appears next to the connection switch. Press it to have MAIRA re-scan for the AdminBoxx hardware — for example after you plug it in or reconnect the USB cable. If the device is found, the switch is re-enabled and the Retry button disappears.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph -->
 <p>When MAIRA successfully connects, it enables LED control, starts keep-alive communication, requests the firmware version from the box, and enables the Test button.</p>
 <!-- /wp:paragraph -->
