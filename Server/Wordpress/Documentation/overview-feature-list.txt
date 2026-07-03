@@ -157,12 +157,12 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section">Seat belt tensioner</p>
+<p class="section">G Tensioner</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>USB serial-controlled seat belt tensioner integration</li>
+<li>USB serial-controlled G Tensioner integration</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

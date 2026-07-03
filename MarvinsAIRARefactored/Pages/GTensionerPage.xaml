@@ -17,7 +17,7 @@
     <StackPanel>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[Connection]}"
-                                HelpTopic="advanced/seat-belt-tensioner/#connection">
+                                HelpTopic="advanced/g-tensioner/#connection">
 
             <StackPanel>
 
@@ -45,7 +45,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[Calibration]}"
-                                HelpTopic="advanced/seat-belt-tensioner/#calibration">
+                                HelpTopic="advanced/g-tensioner/#calibration">
 
             <StackPanel>
 
@@ -122,7 +122,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[AutoTune]}"
-                                HelpTopic="advanced/seat-belt-tensioner/#auto-tune">
+                                HelpTopic="advanced/g-tensioner/#auto-tune">
 
             <Grid>
 
@@ -218,7 +218,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[Surge]}"
-                                HelpTopic="advanced/seat-belt-tensioner/#surge">
+                                HelpTopic="advanced/g-tensioner/#surge">
 
             <Grid>
 
@@ -348,7 +348,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[Sway]}"
-                                HelpTopic="advanced/seat-belt-tensioner/#sway">
+                                HelpTopic="advanced/g-tensioner/#sway">
 
             <Grid>
 
@@ -478,7 +478,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[Heave]}"
-                                HelpTopic="advanced/seat-belt-tensioner/#heave">
+                                HelpTopic="advanced/g-tensioner/#heave">
 
             <Grid>
 
@@ -608,7 +608,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[SeatOfPantsEffect]}"
-                                HelpTopic="advanced/seat-belt-tensioner/#seat-of-pants-effect">
+                                HelpTopic="advanced/g-tensioner/#seat-of-pants-effect">
 
             <Grid>
 
@@ -686,7 +686,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[VibrationEffects]}"
-                                HelpTopic="advanced/seat-belt-tensioner/#vibration-effects">
+                                HelpTopic="advanced/g-tensioner/#vibration-effects">
 
             <Grid>
 
@@ -790,7 +790,7 @@
         </controls:MairaGroupBox>
 
         <controls:MairaGroupBox Label="{Binding Localization.Upper[MotorOutput]}"
-                                HelpTopic="advanced/seat-belt-tensioner/#motor-output">
+                                HelpTopic="advanced/g-tensioner/#motor-output">
 
             <Grid>
 

@@ -241,7 +241,7 @@ namespace MarvinsAIRARefactored.Controls
 					return "advanced/wind/";
 
 				case AppPage.GTensioner:
-					return "advanced/seat-belt-tensioner/";
+					return "advanced/g-tensioner/";
 
 				case AppPage.Overlays:
 					return "advanced/overlays/";

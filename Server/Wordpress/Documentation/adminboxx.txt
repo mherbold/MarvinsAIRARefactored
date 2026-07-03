@@ -198,7 +198,7 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/seat-belt-tensioner/" data-type="page" data-id="849">Seat Belt Tensioner</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/g-tensioner/" data-type="page" data-id="849">G Tensioner</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

@@ -1,5 +1,5 @@
 <!-- wp:paragraph -->
-<p>This page controls MAIRA’s <a href="https://mairapp.com/home/maira-typhoon-wind-kit/" data-type="page" data-id="72">Typhoon Wind Kit</a> fans. MAIRA calculates fan power from iRacing vehicle motion and sends left/right commands to the fan controller. It also displays live fan power % and fan RPM reported back by the hardware.</p>
+<p>This page controls MAIRA’s <a href="https://mairapp.com/home/maira-typhoon-wind/" data-type="page" data-id="72">Typhoon Wind</a> fans. MAIRA calculates fan power from iRacing vehicle motion and sends left/right commands to the fan controller. It also displays live fan power % and fan RPM reported back by the hardware.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -158,6 +158,6 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/seat-belt-tensioner/" data-type="page" data-id="849">Seat Belt Tensioner</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/g-tensioner/" data-type="page" data-id="849">G Tensioner</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
