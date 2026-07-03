@@ -8,7 +8,7 @@ using MarvinsAIRARefactored.Windows;
 
 namespace MarvinsAIRARefactored.Components;
 
-public partial class Wind
+public partial class TyphoonWind
 {
 	private const int UpdateInterval = 12;
 
@@ -35,59 +35,59 @@ public partial class Wind
 	[GeneratedRegex( @"^\s*L(?<left>\d+)\s*R(?<right>\d+)\s*$", RegexOptions.IgnoreCase | RegexOptions.Compiled | RegexOptions.CultureInvariant )]
 	private static partial Regex FanRPMRegex();
 
-	public Wind()
+	public TyphoonWind()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[Wind] Constructor >>>" );
+		app.Logger.WriteLine( "[TyphoonWind] Constructor >>>" );
 
 		_usbSerialPortHelper.DataReceived += OnDataReceived;
 		_usbSerialPortHelper.PortClosed += OnPortClosed;
 
-		app.Logger.WriteLine( "[Wind] <<< Constructor" );
+		app.Logger.WriteLine( "[TyphoonWind] <<< Constructor" );
 	}
 
 	public void Initialize()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[Wind] Initialize >>>" );
+		app.Logger.WriteLine( "[TyphoonWind] Initialize >>>" );
 
 		_usbSerialPortHelper.Initialize();
 
 		if ( !_usbSerialPortHelper.DeviceFound )
 		{
-			app.Logger.WriteLine( "[Wind] Device not found - disabling WindConnectOnStartup" );
+			app.Logger.WriteLine( "[TyphoonWind] Device not found - disabling TyphoonWindConnectOnStartup" );
 
 			var localization = DataContext.DataContext.Instance.Localization;
 
 			app.Dispatcher.Invoke( () =>
 			{
-				MainWindow._windPage.ConnectToWind_MairaSwitch.IsEnabled = false;
-				MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
-				MainWindow._windPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
+				MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.IsEnabled = false;
+				MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
+				MainWindow._typhoonWindPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
 			} );
 		}
 
-		app.Logger.WriteLine( "[Wind] <<< Initialize" );
+		app.Logger.WriteLine( "[TyphoonWind] <<< Initialize" );
 	}
 
 	public void Shutdown()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[Wind] Shutdown >>>" );
+		app.Logger.WriteLine( "[TyphoonWind] Shutdown >>>" );
 
 		Disconnect();
 
-		app.Logger.WriteLine( "[Wind] <<< Shutdown" );
+		app.Logger.WriteLine( "[TyphoonWind] <<< Shutdown" );
 	}
 
 	public void RetryDevice()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[Wind] RetryDevice >>>" );
+		app.Logger.WriteLine( "[TyphoonWind] RetryDevice >>>" );
 
 		_usbSerialPortHelper.Initialize();
 
@@ -95,34 +95,34 @@ public partial class Wind
 		{
 			if ( _usbSerialPortHelper.DeviceFound )
 			{
-				MainWindow._windPage.ConnectToWind_MairaSwitch.IsEnabled = true;
-				MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = string.Empty;
-				MainWindow._windPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Collapsed;
+				MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.IsEnabled = true;
+				MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.ErrorMessage = string.Empty;
+				MainWindow._typhoonWindPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Collapsed;
 			}
 			else
 			{
-				MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = _usbSerialPortHelper.LastErrorMessage;
+				MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.ErrorMessage = _usbSerialPortHelper.LastErrorMessage;
 			}
 		} );
 
-		app.Logger.WriteLine( "[Wind] <<< RetryDevice" );
+		app.Logger.WriteLine( "[TyphoonWind] <<< RetryDevice" );
 	}
 
 	public bool Connect()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[Wind] Connect >>>" );
+		app.Logger.WriteLine( "[TyphoonWind] Connect >>>" );
 
 		IsConnected = _usbSerialPortHelper.Open();
 
 		app.Dispatcher.Invoke( () =>
 		{
-			MainWindow._windPage.ConnectToWind_MairaSwitch.IsOn = IsConnected;
-			MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = IsConnected ? string.Empty : _usbSerialPortHelper.LastErrorMessage;
+			MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.IsOn = IsConnected;
+			MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.ErrorMessage = IsConnected ? string.Empty : _usbSerialPortHelper.LastErrorMessage;
 		} );
 
-		app.Logger.WriteLine( "[Wind] <<< Connect" );
+		app.Logger.WriteLine( "[TyphoonWind] <<< Connect" );
 
 		return IsConnected;
 	}
@@ -131,7 +131,7 @@ public partial class Wind
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[Wind] Disconnect >>>" );
+		app.Logger.WriteLine( "[TyphoonWind] Disconnect >>>" );
 
 		IsConnected = false;
 
@@ -142,10 +142,10 @@ public partial class Wind
 
 		app.Dispatcher.Invoke( () =>
 		{
-			MainWindow._windPage.ConnectToWind_MairaSwitch.ErrorMessage = string.Empty;
+			MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.ErrorMessage = string.Empty;
 		} );
 
-		app.Logger.WriteLine( "[Wind] <<< Disconnect" );
+		app.Logger.WriteLine( "[TyphoonWind] <<< Disconnect" );
 	}
 
 	public void TestLeft( bool enable )
@@ -213,35 +213,35 @@ public partial class Wind
 
 		Span<float> speedArray = stackalloc float[ 10 ];
 
-		speedArray[ 0 ] = settings.WindSpeed1;
-		speedArray[ 1 ] = settings.WindSpeed2;
-		speedArray[ 2 ] = settings.WindSpeed3;
-		speedArray[ 3 ] = settings.WindSpeed4;
-		speedArray[ 4 ] = settings.WindSpeed5;
-		speedArray[ 5 ] = settings.WindSpeed6;
-		speedArray[ 6 ] = settings.WindSpeed7;
-		speedArray[ 7 ] = settings.WindSpeed8;
-		speedArray[ 8 ] = settings.WindSpeed9;
-		speedArray[ 9 ] = settings.WindSpeed10;
+		speedArray[ 0 ] = settings.TyphoonWindSpeed1;
+		speedArray[ 1 ] = settings.TyphoonWindSpeed2;
+		speedArray[ 2 ] = settings.TyphoonWindSpeed3;
+		speedArray[ 3 ] = settings.TyphoonWindSpeed4;
+		speedArray[ 4 ] = settings.TyphoonWindSpeed5;
+		speedArray[ 5 ] = settings.TyphoonWindSpeed6;
+		speedArray[ 6 ] = settings.TyphoonWindSpeed7;
+		speedArray[ 7 ] = settings.TyphoonWindSpeed8;
+		speedArray[ 8 ] = settings.TyphoonWindSpeed9;
+		speedArray[ 9 ] = settings.TyphoonWindSpeed10;
 
 		Span<float> fanPowerArray = stackalloc float[ 10 ];
 
-		fanPowerArray[ 0 ] = settings.WindFanPower1;
-		fanPowerArray[ 1 ] = settings.WindFanPower2;
-		fanPowerArray[ 2 ] = settings.WindFanPower3;
-		fanPowerArray[ 3 ] = settings.WindFanPower4;
-		fanPowerArray[ 4 ] = settings.WindFanPower5;
-		fanPowerArray[ 5 ] = settings.WindFanPower6;
-		fanPowerArray[ 6 ] = settings.WindFanPower7;
-		fanPowerArray[ 7 ] = settings.WindFanPower8;
-		fanPowerArray[ 8 ] = settings.WindFanPower9;
-		fanPowerArray[ 9 ] = settings.WindFanPower10;
+		fanPowerArray[ 0 ] = settings.TyphoonWindFanPower1;
+		fanPowerArray[ 1 ] = settings.TyphoonWindFanPower2;
+		fanPowerArray[ 2 ] = settings.TyphoonWindFanPower3;
+		fanPowerArray[ 3 ] = settings.TyphoonWindFanPower4;
+		fanPowerArray[ 4 ] = settings.TyphoonWindFanPower5;
+		fanPowerArray[ 5 ] = settings.TyphoonWindFanPower6;
+		fanPowerArray[ 6 ] = settings.TyphoonWindFanPower7;
+		fanPowerArray[ 7 ] = settings.TyphoonWindFanPower8;
+		fanPowerArray[ 8 ] = settings.TyphoonWindFanPower9;
+		fanPowerArray[ 9 ] = settings.TyphoonWindFanPower10;
 
 		var velocity = MathF.Sqrt( app.Simulator.VelocityX * app.Simulator.VelocityX + app.Simulator.VelocityY * app.Simulator.VelocityY );
 
-		var speed = MathF.Max( velocity, settings.WindMinimumSpeed );
+		var speed = MathF.Max( velocity, settings.TyphoonWindMinimumSpeed );
 
-		var fanPower = settings.WindFanPower10;
+		var fanPower = settings.TyphoonWindFanPower10;
 
 		for ( var speedIndex = 0; speedIndex < speedArray.Length; speedIndex++ )
 		{
@@ -275,21 +275,21 @@ public partial class Wind
 		// VelocityY * 0.08f means that at 12.5 m/s (45 km/h) sideways velocity, the wind will be fully curved
 		// YawRate * 1.91f means that at 0.523 rad/s (30 deg/s) yaw rate, the wind will be fully curved
 
-		var curveFactor = Math.Clamp( app.Simulator.VelocityY * 0.08f * settings.WindCurving + app.Simulator.YawRate * 1.91f * settings.WindCurving, -1f, 1f );
+		var curveFactor = Math.Clamp( app.Simulator.VelocityY * 0.08f * settings.TyphoonWindCurving + app.Simulator.YawRate * 1.91f * settings.TyphoonWindCurving, -1f, 1f );
 
 		// Negative curveFactor biases wind towards the left fan, positive towards the right fan
 
 		if ( _previewActive )
 		{
-			var previewFanPower = _previewPowerNormalized * settings.WindMasterWindPower * 320f;
+			var previewFanPower = _previewPowerNormalized * settings.TyphoonWindMasterWindPower * 320f;
 
 			_leftFanPower = previewFanPower;
 			_rightFanPower = previewFanPower;
 		}
 		else if ( app.Simulator.IsOnTrack )
 		{
-			_leftFanPower = fanPower * ( 1f + MathF.Min( 0, curveFactor ) ) * settings.WindMasterWindPower * 320f;
-			_rightFanPower = fanPower * ( 1f - MathF.Max( 0, curveFactor ) ) * settings.WindMasterWindPower * 320f;
+			_leftFanPower = fanPower * ( 1f + MathF.Min( 0, curveFactor ) ) * settings.TyphoonWindMasterWindPower * 320f;
+			_rightFanPower = fanPower * ( 1f - MathF.Max( 0, curveFactor ) ) * settings.TyphoonWindMasterWindPower * 320f;
 		}
 		else
 		{
@@ -334,11 +334,11 @@ public partial class Wind
 
 			Update( app );
 
-			MainWindow._windPage.LeftFanPower_TextBlock.Text = $"{_leftFanPower * 100f / 320f:F0}";
-			MainWindow._windPage.RightFanPower_TextBlock.Text = $"{_rightFanPower * 100f / 320f:F0}";
+			MainWindow._typhoonWindPage.LeftFanPower_TextBlock.Text = $"{_leftFanPower * 100f / 320f:F0}";
+			MainWindow._typhoonWindPage.RightFanPower_TextBlock.Text = $"{_rightFanPower * 100f / 320f:F0}";
 
-			MainWindow._windPage.LeftFanRPM_TextBlock.Text = $"{_leftFanRPM}";
-			MainWindow._windPage.RightFanRPM_TextBlock.Text = $"{_rightFanRPM}";
+			MainWindow._typhoonWindPage.LeftFanRPM_TextBlock.Text = $"{_leftFanRPM}";
+			MainWindow._typhoonWindPage.RightFanRPM_TextBlock.Text = $"{_rightFanRPM}";
 		}
 	}
 }

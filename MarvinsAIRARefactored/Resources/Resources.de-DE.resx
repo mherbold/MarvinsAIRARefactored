@@ -894,7 +894,7 @@ Hier ist der Link zum Spenden:</value>
   <data name="MPHUnits" xml:space="preserve">
     <value>MPH</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon Wind</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -982,10 +982,10 @@ Hier ist der Link zum Spenden:</value>
     <value>Invertierte Arme</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Verbinde zu MAIRA-Wind bei App-Start</value>
+    <value>Verbinde zu MAIRA Typhoon Wind bei App-Start</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Verbinde zu MAIRA Wind</value>
+    <value>Verbinde zu MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>linker Ventilator</value>
@@ -1005,7 +1005,7 @@ Hier ist der Link zum Spenden:</value>
   <data name="MinimumSpeed" xml:space="preserve">
     <value>Minimale Geschwindigkeit</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Wind Regler</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1701,7 +1701,7 @@ Hier ist der Link zum Spenden:</value>
     <value>Telemetrie wird initialisiert...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Wind wird initialisiert...</value>
+    <value>Typhoon Wind wird initialisiert...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>G Tensioner wird initialisiert...</value>

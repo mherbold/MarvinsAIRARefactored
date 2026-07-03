@@ -961,7 +961,7 @@ public partial class Simulator
 			{
 				DataContext.DataContext.Instance.Settings.UpdateSpeedUnitStrings();
 
-				_windPage.UpdateSpeedUnitLabel();
+				_typhoonWindPage.UpdateSpeedUnitLabel();
 			} );
 		}
 

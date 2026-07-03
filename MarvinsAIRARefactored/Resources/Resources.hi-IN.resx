@@ -939,7 +939,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> मील/घंटा</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>टाइफून विंड</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -1027,10 +1027,10 @@
     <value>उल्टे आर्म्स</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>ऐप स्टार्टअप पर MAIRA Wind से कनेक्ट करें</value>
+    <value>ऐप स्टार्टअप पर MAIRA Typhoon Wind से कनेक्ट करें</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>MAIRA Wind से कनेक्ट करें</value>
+    <value>MAIRA Typhoon Wind से कनेक्ट करें</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>बायां फैन</value>
@@ -1050,7 +1050,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>न्यूनतम गति</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>विंड कर्विंग</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1759,7 +1759,7 @@
     <value>टेलीमेट्री प्रारंभ हो रही है...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Wind प्रारंभ हो रहा है...</value>
+    <value>Typhoon Wind प्रारंभ हो रहा है...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>G Tensioner प्रारंभ हो रहा है...</value>

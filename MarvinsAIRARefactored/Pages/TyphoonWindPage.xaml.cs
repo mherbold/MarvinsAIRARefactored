@@ -7,12 +7,12 @@ using UserControl = System.Windows.Controls.UserControl;
 
 namespace MarvinsAIRARefactored.Pages;
 
-public partial class WindPage : UserControl
+public partial class TyphoonWindPage : UserControl
 {
 	bool _testingLeft = false;
 	bool _testingRight = false;
 
-	public WindPage()
+	public TyphoonWindPage()
 	{
 		InitializeComponent();
 
@@ -39,16 +39,16 @@ public partial class WindPage : UserControl
 
 		if ( ConnectToWind_MairaSwitch.IsOn )
 		{
-			if ( !app.Wind.IsConnected )
+			if ( !app.TyphoonWind.IsConnected )
 			{
-				app.Wind.Connect();
+				app.TyphoonWind.Connect();
 			}
 		}
 		else
 		{
-			if ( app.Wind.IsConnected )
+			if ( app.TyphoonWind.IsConnected )
 			{
-				app.Wind.Disconnect();
+				app.TyphoonWind.Disconnect();
 			}
 		}
 	}
@@ -59,7 +59,7 @@ public partial class WindPage : UserControl
 
 		_testingLeft = !_testingLeft;
 
-		app.Wind.TestLeft( _testingLeft );
+		app.TyphoonWind.TestLeft( _testingLeft );
 
 		( (MairaButton) sender ).Blink = _testingLeft;
 	}
@@ -70,7 +70,7 @@ public partial class WindPage : UserControl
 
 		_testingRight = !_testingRight;
 
-		app.Wind.TestRight( _testingRight );
+		app.TyphoonWind.TestRight( _testingRight );
 
 		( (MairaButton) sender ).Blink = _testingRight;
 	}
@@ -79,34 +79,34 @@ public partial class WindPage : UserControl
 	{
 		var app = App.Instance!;
 
-		app.Wind.RetryDevice();
+		app.TyphoonWind.RetryDevice();
 	}
 
 	private void ResetFanPowerCurveToDefaults_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		settings.WindSpeed1    = 0f;
-		settings.WindSpeed2    = 3.313f;
-		settings.WindSpeed3    = 9.373f;
-		settings.WindSpeed4    = 17.208f;
-		settings.WindSpeed5    = 26.494f;
-		settings.WindSpeed6    = 37.047f;
-		settings.WindSpeed7    = 48.672f;
-		settings.WindSpeed8    = 61.374f;
-		settings.WindSpeed9    = 74.935f;
-		settings.WindSpeed10   = 89.408f;
+		settings.TyphoonWindSpeed1    = 0f;
+		settings.TyphoonWindSpeed2    = 3.313f;
+		settings.TyphoonWindSpeed3    = 9.373f;
+		settings.TyphoonWindSpeed4    = 17.208f;
+		settings.TyphoonWindSpeed5    = 26.494f;
+		settings.TyphoonWindSpeed6    = 37.047f;
+		settings.TyphoonWindSpeed7    = 48.672f;
+		settings.TyphoonWindSpeed8    = 61.374f;
+		settings.TyphoonWindSpeed9    = 74.935f;
+		settings.TyphoonWindSpeed10   = 89.408f;
 
-		settings.WindFanPower1  = 0f;
-		settings.WindFanPower2  = 0.125f;
-		settings.WindFanPower3  = 0.25f;
-		settings.WindFanPower4  = 0.375f;
-		settings.WindFanPower5  = 0.5f;
-		settings.WindFanPower6  = 0.625f;
-		settings.WindFanPower7  = 0.75f;
-		settings.WindFanPower8  = 0.8333f;
-		settings.WindFanPower9  = 0.9167f;
-		settings.WindFanPower10 = 1f;
+		settings.TyphoonWindFanPower1  = 0f;
+		settings.TyphoonWindFanPower2  = 0.125f;
+		settings.TyphoonWindFanPower3  = 0.25f;
+		settings.TyphoonWindFanPower4  = 0.375f;
+		settings.TyphoonWindFanPower5  = 0.5f;
+		settings.TyphoonWindFanPower6  = 0.625f;
+		settings.TyphoonWindFanPower7  = 0.75f;
+		settings.TyphoonWindFanPower8  = 0.8333f;
+		settings.TyphoonWindFanPower9  = 0.9167f;
+		settings.TyphoonWindFanPower10 = 1f;
 	}
 
 	#endregion

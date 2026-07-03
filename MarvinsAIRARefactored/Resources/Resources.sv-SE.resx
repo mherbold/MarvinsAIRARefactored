@@ -891,7 +891,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon Vind</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -979,10 +979,10 @@
     <value>Inverterade armar</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Anslut till MAIRA Wind vid appstart</value>
+    <value>Anslut till MAIRA Typhoon Wind vid appstart</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Anslut till MAIRA Wind</value>
+    <value>Anslut till MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>Vänster fläkt</value>
@@ -1002,7 +1002,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>Minimihastighet</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Vindkurvning</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1696,7 +1696,7 @@
     <value>Initierar telemetri...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Initierar vind...</value>
+    <value>Initierar Typhoon Wind...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>Initierar G Tensioner...</value>

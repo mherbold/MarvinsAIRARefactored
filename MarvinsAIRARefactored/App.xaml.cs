@@ -69,7 +69,7 @@ public partial class App : Application
 	public TextToSpeech TextToSpeech { get; private set; } = null!;
 	public Commentary Commentary { get; private set; } = null!;
 	public SpeechToText SpeechToText { get; private set; } = null!;
-	public Wind Wind { get; private set; } = null!;
+	public TyphoonWind TyphoonWind { get; private set; } = null!;
 	public GTensioner GTensioner { get; private set; } = null!;
 	public HidHotPlugMonitor HidHotPlugMonitor { get; private set; } = null!;
 	public TradingPaints TradingPaints { get; private set; } = null!;
@@ -142,7 +142,7 @@ public partial class App : Application
 		TextToSpeech = new();
 		Commentary = new();
 		SpeechToText = new();
-		Wind = new();
+		TyphoonWind = new();
 		GTensioner = new();
 		HidHotPlugMonitor = new();
 		TradingPaints = new();
@@ -313,7 +313,7 @@ public partial class App : Application
 				RunStartupStep( "InitializingRecordingManager", RecordingManager.Initialize );
 				RunStartupStep( "InitializingTimingMarkers", TimingMarkers.Initialize );
 				RunStartupStep( "InitializingTelemetry", Telemetry.Initialize );
-				RunStartupStep( "InitializingWind", Wind.Initialize );
+				RunStartupStep( "InitializingWind", TyphoonWind.Initialize );
 				RunStartupStep( "InitializingGTensioner", GTensioner.Initialize );
 				RunStartupStep( "InitializingHidHotPlugMonitor", HidHotPlugMonitor.Initialize );
 				RunStartupStep( "InitializingTradingPaints", TradingPaints.Initialize );
@@ -446,9 +446,9 @@ public partial class App : Application
 
 #endif
 
-				if ( DataContext.DataContext.Instance.Settings.WindConnectOnStartup )
+				if ( DataContext.DataContext.Instance.Settings.TyphoonWindConnectOnStartup )
 				{
-					Wind.Connect();
+					TyphoonWind.Connect();
 				}
 
 				if ( DataContext.DataContext.Instance.Settings.GTensionerConnectOnStartup )
@@ -710,7 +710,7 @@ public partial class App : Application
 						app.TimingMarkers.Tick( app );
 						app.Telemetry.Tick( app );
 						app.Commentary.Tick( app );
-						app.Wind.Tick( app );
+						app.TyphoonWind.Tick( app );
 						app.GTensioner.Tick( app );
 						app.CloudService.Tick( app );
 

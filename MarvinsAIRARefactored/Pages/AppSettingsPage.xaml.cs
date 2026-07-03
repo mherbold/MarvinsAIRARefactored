@@ -114,7 +114,7 @@ public partial class AppSettingsPage : UserControl
 			{ MainWindow.AppPage.RacingWheel, localization[ "RacingWheel" ] },
 			{ MainWindow.AppPage.SteeringEffects, localization[ "SteeringEffects" ] },
 			{ MainWindow.AppPage.Pedals, localization[ "Pedals" ] },
-			{ MainWindow.AppPage.Wind, localization[ "Wind" ] },
+			{ MainWindow.AppPage.TyphoonWind, localization[ "TyphoonWind" ] },
 			{ MainWindow.AppPage.GTensioner, localization[ "GTensioner" ] },
 			{ MainWindow.AppPage.Sounds, localization[ "Sounds" ] },
 			{ MainWindow.AppPage.Commentary, localization[ "Commentary" ] },

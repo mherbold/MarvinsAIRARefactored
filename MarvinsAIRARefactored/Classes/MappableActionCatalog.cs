@@ -166,7 +166,7 @@ public static class MappableActionCatalog
 		} );
 	}
 
-	// Plain knob (no chat message) - Pedals, Wind, Sounds, AdminBoxx
+	// Plain knob (no chat message) - Pedals, TyphoonWind, Sounds, AdminBoxx
 	private static void PlainKnob( List<MappableAction> list, string category, string groupKey, string labelKey, string propBase, float delta, int index = 0 )
 	{
 		list.Add( new MappableAction
@@ -511,11 +511,11 @@ public static class MappableActionCatalog
 		PlainKnob( list, "Pedals", "ClutchSlip", "Frequency", "PedalsClutchSlipFrequency", 0.01f );
 		PlainKnob( list, "Pedals", "OtherFeatures", "NoiseDamper", "PedalsNoiseDamper", 0.01f );
 
-		// ----- Wind -----
+		// ----- TyphoonWind -----
 
-		PlainKnob( list, "Wind", "Settings", "MasterWindPower", "WindMasterWindPower", 0.01f );
-		PlainKnob( list, "Wind", "Settings", "MinimumSpeed", "WindMinimumSpeed", 0.5f );
-		PlainKnob( list, "Wind", "Settings", "WindCurving", "WindCurving", 0.01f );
+		PlainKnob( list, "TyphoonWind", "Settings", "MasterWindPower", "TyphoonWindMasterWindPower", 0.01f );
+		PlainKnob( list, "TyphoonWind", "Settings", "MinimumSpeed", "TyphoonWindMinimumSpeed", 0.5f );
+		PlainKnob( list, "TyphoonWind", "Settings", "TyphoonWindCurving", "TyphoonWindCurving", 0.01f );
 
 		// ----- Sounds -----
 

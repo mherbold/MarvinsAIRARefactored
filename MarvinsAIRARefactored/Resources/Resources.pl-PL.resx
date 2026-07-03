@@ -891,7 +891,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value>mi/h</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon Wiatr</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -979,10 +979,10 @@
     <value>Odwrócone ramiona</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Połącz z MAIRA Wind przy Starcie Aplikacji</value>
+    <value>Połącz z MAIRA Typhoon Wind przy Starcie Aplikacji</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Połącz z MAIRA Wind</value>
+    <value>Połącz z MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>Lewy Wiatrak</value>
@@ -1002,7 +1002,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>Prędkość Minimalna</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Zakrzywienie Wiatru</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1696,7 +1696,7 @@
     <value>Inicjalizacja Telemetrii...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Inicjalizacja Wiatru...</value>
+    <value>Inicjalizacja Typhoon Wind...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>Inicjalizacja G Tensioner...</value>

@@ -893,7 +893,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon ウィンド</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -981,10 +981,10 @@
     <value>アーム反転</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>起動時にMAIRA Windに接続する</value>
+    <value>起動時にMAIRA Typhoon Windに接続する</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>MAIRA Windに接続</value>
+    <value>MAIRA Typhoon Windに接続</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>左ファン</value>
@@ -1004,7 +1004,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>最低速度</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>風カーブ</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1699,7 +1699,7 @@
     <value>テレメトリーを初期化中...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>ウィンドを初期化中...</value>
+    <value>Typhoon Windを初期化中...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>G Tensionerを初期化中...</value>

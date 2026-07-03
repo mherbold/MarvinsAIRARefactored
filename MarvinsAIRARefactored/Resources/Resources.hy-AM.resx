@@ -891,7 +891,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> Մ/Ժ</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon Քամի</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -979,10 +979,10 @@
     <value>Շրջված թևեր</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Միանալ MAIRA Wind-ին հավելվածի գործարկմանը</value>
+    <value>Միանալ MAIRA Typhoon Wind-ին հավելվածի գործարկմանը</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Միանալ MAIRA Wind-ին</value>
+    <value>Միանալ MAIRA Typhoon Wind-ին</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>Ձախ օդախույզ</value>
@@ -1002,7 +1002,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>Նվազագույն արագություն</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Քամու կոր</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1696,7 +1696,7 @@
     <value>Տելեմետրիայի նախաստեղծում...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Քամու համակարգի նախաստեղծում...</value>
+    <value>Typhoon Wind համակարգի նախաստեղծում...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>G Tensioner-ի նախաստեղծում...</value>

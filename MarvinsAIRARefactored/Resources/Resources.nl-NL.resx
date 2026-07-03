@@ -891,7 +891,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon Wind</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -979,10 +979,10 @@
     <value>Omgekeerde armen</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Verbind met MAIRA Wind tijdens opstarten</value>
+    <value>Verbind met MAIRA Typhoon Wind tijdens opstarten</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Verbind met MAIRA Wind</value>
+    <value>Verbind met MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>Ventilator links</value>
@@ -1002,7 +1002,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>Minimale snelheid</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Windkromming</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1696,7 +1696,7 @@
     <value>Telemetrie initialiseren...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Wind initialiseren...</value>
+    <value>Typhoon Wind initialiseren...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>G Tensioner initialiseren...</value>

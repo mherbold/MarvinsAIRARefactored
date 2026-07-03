@@ -32,7 +32,7 @@ public partial class MainWindow : Window
 		SteeringEffects,
 		Pedals,
 		ControllerProfiles,
-		Wind,
+		TyphoonWind,
 		GTensioner,
 		AdminBoxx,
 		Overlays,
@@ -56,7 +56,7 @@ public partial class MainWindow : Window
 	public static readonly SteeringEffectsPage _steeringEffectsPage = new();
 	public static readonly PedalsPage _pedalsPage = new();
 	public static readonly ControllerProfilesPage _controllerProfilesPage = new();
-	public static readonly WindPage _windPage = new();
+	public static readonly TyphoonWindPage _typhoonWindPage = new();
 	public static readonly GTensionerPage _gTensionerPage = new();
 	public static readonly OverlaysPage _overlaysPage = new();
 	public static readonly SoundsPage _soundsPage = new();

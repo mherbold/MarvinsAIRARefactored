@@ -93,7 +93,7 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
 | `Microsoft.Web.WebView2` (1.0.4022.49) | Embedded Chromium browser (Speech-to-Text bridge) |
 | `Microsoft.Windows.CsWin32` (0.3.287) | Source-generated P/Invoke wrappers |
 | `SharpZipLib` (1.4.2) | BZip2 decompression (TradingPaints livery downloads) |
-| `System.IO.Ports` (10.0.9) | USB serial communication (AdminBoxx, Wind, SBT) |
+| `System.IO.Ports` (10.0.9) | USB serial communication (AdminBoxx, TyphoonWind, SBT) |
 | `System.Management` (10.0.9) | WMI queries (device enumeration) |
 | `System.Net.Http` (4.3.4) | Legacy HTTP API compatibility support |
 | `System.Text.RegularExpressions` (4.3.1) | Regex API compatibility support |
@@ -145,7 +145,7 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 | iRacing data | `Telemetry.cs`, `Simulator.cs` |
 | Audio | `AudioManager.cs`, `Sounds.cs`, `LFE.cs` |
 | Speech / commentary | `SpeechToText.cs`, `TextToSpeech.cs`, `Commentary.cs`, `ChatQueue.cs` |
-| Hardware integrations | `Wind.cs`, `AdminBoxx.cs`, `StreamDeck.cs`, `VirtualJoystick.cs`, `HidHotPlugMonitor.cs` |
+| Hardware integrations | `TyphoonWind.cs`, `AdminBoxx.cs`, `StreamDeck.cs`, `VirtualJoystick.cs`, `HidHotPlugMonitor.cs` |
 | Cloud / external | `CloudService.cs`, `TradingPaints.cs` |
 | App / utility | `AppManager.cs`, `Logger.cs`, `Debug.cs`, `Graph.cs`, `RecordingManager.cs`, `TimingMarkers.cs`, `SettingsFile.cs`, `MultimediaTimer.cs`, `TopLevelWindow.cs` |
 
@@ -163,7 +163,7 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 |---|---|
 | `SteeringEffectsPage` | `SteeringEffects.cs`, `RacingWheel.cs` |
 | `GTensionerPage` | `GTensioner.cs` |
-| `WindPage` | `Wind.cs` |
+| `TyphoonWindPage` | `TyphoonWind.cs` |
 | `SoundsPage` | `Sounds.cs`, `AudioManager.cs` |
 | `SpeechToTextPage` | `SpeechToText.cs` |
 | `CommentaryPage` | `Commentary.cs`, `TextToSpeech.cs`, `ElevenLabs.cs` |

@@ -40,7 +40,7 @@ Examples (not exhaustive):
 - **iRacing data** — `Simulator` (iRacing telemetry, **IRSDKSharper**), `Telemetry` (memory-mapped IPC), `TimingMarkers`
 - **Audio** — `AudioManager`, `Sounds`, `LFE`
 - **Speech / commentary** — `SpeechToText`, `TextToSpeech`, `Commentary`, `ChatQueue`
-- **Hardware integrations** — `Wind`, `AdminBoxx`, `StreamDeck`, `VirtualJoystick`, `HidHotPlugMonitor`
+- **Hardware integrations** — `TyphoonWind`, `AdminBoxx`, `StreamDeck`, `VirtualJoystick`, `HidHotPlugMonitor`
 - **Cloud / external** — `CloudService`, `TradingPaints`
 - **App / utility** — `AppManager`, `Logger`, `Debug`, `Graph`, `RecordingManager`, `MultimediaTimer`, `SettingsFile`, `TopLevelWindow`
 
@@ -62,7 +62,7 @@ Examples (not exhaustive):
   - `SteeringEffectsPage`
   - `PedalsPage`
   - `GTensionerPage`
-  - `WindPage`
+  - `TyphoonWindPage`
   - `SoundsPage`
   - `SpeechToTextPage`
   - `CommentaryPage`
@@ -157,7 +157,7 @@ The project uses **composition** heavily with fairly shallow inheritance. The ma
 - `SteeringEffectsPage`
 - `PedalsPage`
 - `GTensionerPage`
-- `WindPage`
+- `TyphoonWindPage`
 - `SoundsPage`
 - `SpeechToTextPage`
 - `CommentaryPage`
@@ -268,7 +268,7 @@ App
  ├─ TextToSpeech
  ├─ Commentary
  ├─ SpeechToText
- ├─ Wind
+ ├─ TyphoonWind
  ├─ GTensioner
  ├─ HidHotPlugMonitor
  ├─ TradingPaints
@@ -342,7 +342,7 @@ SettingsFile
 - `LFE`
 - `VirtualJoystick`
 - `StreamDeck`
-- `Wind`
+- `TyphoonWind`
 - `AdminBoxx`
 
 Each:
@@ -465,7 +465,7 @@ The pattern is **MVVM-flavored** but:
    - `Pedals`:
      - Reads telemetry (brake pressure, ABS, etc.).
      - Applies calibration from `Settings`.
-   - `LFE`, `Wind`, `AdminBoxx`, `VirtualJoystick`:
+   - `LFE`, `TyphoonWind`, `AdminBoxx`, `VirtualJoystick`:
      - Consume relevant telemetry and configuration.
 
 3. **Hardware Output**
@@ -493,7 +493,7 @@ iRacing (IRSDK)
    ↓
 Simulator
    ↓
-Components (RacingWheel, Pedals, LFE, Wind, etc.)
+Components (RacingWheel, Pedals, LFE, TyphoonWind, etc.)
    ↓
 Hardware & I/O (DirectInput, Audio, VirtualJoystick, AdminBoxx)
    ↓                ↓

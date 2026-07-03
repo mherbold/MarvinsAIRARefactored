@@ -891,7 +891,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value>mph</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>TyphoonVítr</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -979,10 +979,10 @@
     <value>Převrácená ramena</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Připojit se k MAIRA Wind při spuštění aplikace</value>
+    <value>Připojit se k MAIRA Typhoon Wind při spuštění aplikace</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Připojit se k MAIRA Wind</value>
+    <value>Připojit se k MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>Levý ventilátor</value>
@@ -1002,7 +1002,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>Minimální rychlost</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Křivka větru</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1696,7 +1696,7 @@
     <value>Inicializuji Telemetrii...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Inicializuji Vítr...</value>
+    <value>Inicializuji Typhoon Wind...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>Inicializuji G Tensioner...</value>

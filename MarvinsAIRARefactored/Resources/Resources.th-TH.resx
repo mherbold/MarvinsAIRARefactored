@@ -891,7 +891,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value>ไมล์/ชม.</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon ลม</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -979,10 +979,10 @@
     <value>แขนกลับด้าน</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>เชื่อมต่อ MAIRA Wind เมื่อเปิดแอป</value>
+    <value>เชื่อมต่อ MAIRA Typhoon Wind เมื่อเปิดแอป</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>เชื่อมต่อ MAIRA Wind</value>
+    <value>เชื่อมต่อ MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>พัดลมซ้าย</value>
@@ -1002,7 +1002,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>ความเร็วต่ำสุด</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>เส้นโค้งลม</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1696,7 +1696,7 @@
     <value>กำลังเริ่มต้น Telemetry...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>กำลังเริ่มต้นลม...</value>
+    <value>กำลังเริ่มต้น Typhoon Wind...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>กำลังเริ่มต้น G Tensioner...</value>

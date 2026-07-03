@@ -939,7 +939,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon vējš</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -1027,10 +1027,10 @@
     <value>Apgrieztas rokas</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Savienoties ar MAIRA vēju lietotnes startēšanas laikā</value>
+    <value>Savienoties ar MAIRA Typhoon Wind lietotnes startēšanas laikā</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Savienoties ar MAIRA vēju</value>
+    <value>Savienoties ar MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>Kreisais ventilators</value>
@@ -1050,7 +1050,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>Minimālais ātrums</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Vēja izliekums</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1759,7 +1759,7 @@
     <value>Inicializē telemetriju...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Inicializē vēju...</value>
+    <value>Inicializē Typhoon Wind...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>Inicializē G Tensioner...</value>

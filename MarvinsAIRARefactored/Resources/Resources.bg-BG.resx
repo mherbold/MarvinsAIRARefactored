@@ -939,7 +939,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> мили/ч</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Вятър Typhoon</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -1027,10 +1027,10 @@
     <value>Обърнати рамена</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Свързване с MAIRA Wind при стартиране на приложението</value>
+    <value>Свързване с MAIRA Typhoon Wind при стартиране на приложението</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Свързване с MAIRA Wind</value>
+    <value>Свързване с MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>Ляв вентилатор</value>
@@ -1050,7 +1050,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>Минимална скорост</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Извиване на вятъра</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1759,7 +1759,7 @@
     <value>Инициализиране на телеметрията...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Инициализиране на Wind...</value>
+    <value>Инициализиране на Typhoon Wind...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>Инициализиране на G Tensioner...</value>

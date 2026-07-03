@@ -191,11 +191,11 @@ public class ContextSettings
 
 	#endregion
 
-	#region Wind
+	#region TyphoonWind
 
-	public float WindMasterWindPower { get; set; } = 1f;
-	public float WindMinimumSpeed { get; set; } = 0f;
-	public float WindCurving { get; set; } = 1f;
+	public float TyphoonWindMasterWindPower { get; set; } = 1f;
+	public float TyphoonWindMinimumSpeed { get; set; } = 0f;
+	public float TyphoonWindCurving { get; set; } = 1f;
 
 	#endregion
 

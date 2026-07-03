@@ -891,7 +891,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value>MYA</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon Gwynt</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -979,10 +979,10 @@
     <value>Breichiau Gwrthdro</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Cysylltu â MAIRA Wind wrth Gychwyn yr Ap</value>
+    <value>Cysylltu â MAIRA Typhoon Wind wrth Gychwyn yr Ap</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Cysylltu â MAIRA Wind</value>
+    <value>Cysylltu â MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>Ffan Chwith</value>
@@ -1002,7 +1002,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>Cyflymder Lleiafswm</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Cromlinedd Gwynt</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1696,7 +1696,7 @@
     <value>Yn Cychwyn Telemetreg...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Yn Cychwyn Gwynt...</value>
+    <value>Yn Cychwyn Typhoon Wind...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>Yn Cychwyn G Tensioner...</value>

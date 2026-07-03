@@ -237,8 +237,8 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.ControllerProfiles:
 					return "advanced/controller-profiles/";
 
-				case AppPage.Wind:
-					return "advanced/wind/";
+				case AppPage.TyphoonWind:
+					return "advanced/typhoon-wind/";
 
 				case AppPage.GTensioner:
 					return "advanced/g-tensioner/";
@@ -377,7 +377,7 @@ namespace MarvinsAIRARefactored.Controls
 			Add( AppMenuItemsColumn1, AppPage.RacingWheel, _racingWheelPage );
 			Add( AppMenuItemsColumn1, AppPage.SteeringEffects, _steeringEffectsPage );
 			Add( AppMenuItemsColumn1, AppPage.Pedals, _pedalsPage );
-			Add( AppMenuItemsColumn1, AppPage.Wind, _windPage );
+			Add( AppMenuItemsColumn1, AppPage.TyphoonWind, _typhoonWindPage );
 			Add( AppMenuItemsColumn1, AppPage.GTensioner, _gTensionerPage );
 
 #endif
@@ -489,8 +489,8 @@ namespace MarvinsAIRARefactored.Controls
 						menuItem.DisplayName = localization[ "ControllerProfiles" ];
 						break;
 
-					case AppPage.Wind:
-						menuItem.DisplayName = localization[ "Wind" ];
+					case AppPage.TyphoonWind:
+						menuItem.DisplayName = localization[ "TyphoonWind" ];
 						break;
 
 					case AppPage.GTensioner:
@@ -595,8 +595,8 @@ namespace MarvinsAIRARefactored.Controls
 					SelectedAppPageText = localization.Upper[ "ControllerProfiles" ];
 					break;
 
-				case AppPage.Wind:
-					SelectedAppPageText = localization.Upper[ "Wind" ];
+				case AppPage.TyphoonWind:
+					SelectedAppPageText = localization.Upper[ "TyphoonWind" ];
 					break;
 
 				case AppPage.GTensioner:

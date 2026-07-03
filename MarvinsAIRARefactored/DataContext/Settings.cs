@@ -453,29 +453,29 @@ public class Settings : INotifyPropertyChanged
 
 		var useMph = app.Simulator.DisplayUnits == 0;
 
-		if ( _windMinimumSpeed == 0f )
+		if ( _typhoonWindMinimumSpeed == 0f )
 		{
-			WindMinimumSpeedString = DataContext.Instance.Localization[ "OFF" ];
+			TyphoonWindMinimumSpeedString = DataContext.Instance.Localization[ "OFF" ];
 		}
 		else if ( useMph )
 		{
-			WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
+			TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
 		}
 		else
 		{
-			WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
+			TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
 		}
 
-		WindSpeed1String = useMph ? $"{_windSpeed1 * MathZ.MPSToMPH:F0}" : $"{_windSpeed1 * MathZ.MPSToKPH:F0}";
-		WindSpeed2String = useMph ? $"{_windSpeed2 * MathZ.MPSToMPH:F0}" : $"{_windSpeed2 * MathZ.MPSToKPH:F0}";
-		WindSpeed3String = useMph ? $"{_windSpeed3 * MathZ.MPSToMPH:F0}" : $"{_windSpeed3 * MathZ.MPSToKPH:F0}";
-		WindSpeed4String = useMph ? $"{_windSpeed4 * MathZ.MPSToMPH:F0}" : $"{_windSpeed4 * MathZ.MPSToKPH:F0}";
-		WindSpeed5String = useMph ? $"{_windSpeed5 * MathZ.MPSToMPH:F0}" : $"{_windSpeed5 * MathZ.MPSToKPH:F0}";
-		WindSpeed6String = useMph ? $"{_windSpeed6 * MathZ.MPSToMPH:F0}" : $"{_windSpeed6 * MathZ.MPSToKPH:F0}";
-		WindSpeed7String = useMph ? $"{_windSpeed7 * MathZ.MPSToMPH:F0}" : $"{_windSpeed7 * MathZ.MPSToKPH:F0}";
-		WindSpeed8String = useMph ? $"{_windSpeed8 * MathZ.MPSToMPH:F0}" : $"{_windSpeed8 * MathZ.MPSToKPH:F0}";
-		WindSpeed9String = useMph ? $"{_windSpeed9 * MathZ.MPSToMPH:F0}" : $"{_windSpeed9 * MathZ.MPSToKPH:F0}";
-		WindSpeed10String = useMph ? $"{_windSpeed10 * MathZ.MPSToMPH:F0}" : $"{_windSpeed10 * MathZ.MPSToKPH:F0}";
+		TyphoonWindSpeed1String = useMph ? $"{_typhoonWindSpeed1 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed1 * MathZ.MPSToKPH:F0}";
+		TyphoonWindSpeed2String = useMph ? $"{_typhoonWindSpeed2 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed2 * MathZ.MPSToKPH:F0}";
+		TyphoonWindSpeed3String = useMph ? $"{_typhoonWindSpeed3 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed3 * MathZ.MPSToKPH:F0}";
+		TyphoonWindSpeed4String = useMph ? $"{_typhoonWindSpeed4 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed4 * MathZ.MPSToKPH:F0}";
+		TyphoonWindSpeed5String = useMph ? $"{_typhoonWindSpeed5 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed5 * MathZ.MPSToKPH:F0}";
+		TyphoonWindSpeed6String = useMph ? $"{_typhoonWindSpeed6 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed6 * MathZ.MPSToKPH:F0}";
+		TyphoonWindSpeed7String = useMph ? $"{_typhoonWindSpeed7 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed7 * MathZ.MPSToKPH:F0}";
+		TyphoonWindSpeed8String = useMph ? $"{_typhoonWindSpeed8 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed8 * MathZ.MPSToKPH:F0}";
+		TyphoonWindSpeed9String = useMph ? $"{_typhoonWindSpeed9 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed9 * MathZ.MPSToKPH:F0}";
+		TyphoonWindSpeed10String = useMph ? $"{_typhoonWindSpeed10 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed10 * MathZ.MPSToKPH:F0}";
 	}
 
 	// The various "...String" display properties cache a localized value (e.g. "100%") that is only
@@ -7677,19 +7677,19 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Wind - Connect on startup
+	#region TyphoonWind - Connect on startup
 
-	private bool _windConnectOnStartup = false;
+	private bool _typhoonWindConnectOnStartup = false;
 
-	public bool WindConnectOnStartup
+	public bool TyphoonWindConnectOnStartup
 	{
-		get => _windConnectOnStartup;
+		get => _typhoonWindConnectOnStartup;
 
 		set
 		{
-			if ( value != _windConnectOnStartup )
+			if ( value != _typhoonWindConnectOnStartup )
 			{
-				_windConnectOnStartup = value;
+				_typhoonWindConnectOnStartup = value;
 
 				OnPropertyChanged();
 			}
@@ -7698,21 +7698,21 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Wind - Master wind power
+	#region TyphoonWind - Master wind power
 
-	private float _windMasterWindPower = 1f;
+	private float _typhoonWindMasterWindPower = 1f;
 
-	public float WindMasterWindPower
+	public float TyphoonWindMasterWindPower
 	{
-		get => _windMasterWindPower;
+		get => _typhoonWindMasterWindPower;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windMasterWindPower )
+			if ( value != _typhoonWindMasterWindPower )
 			{
-				_windMasterWindPower = value;
+				_typhoonWindMasterWindPower = value;
 
 				OnPropertyChanged();
 			}
@@ -7721,18 +7721,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windMasterWindPowerString = string.Empty;
+	private string _typhoonWindMasterWindPowerString = string.Empty;
 
 	[XmlIgnore]
-	public string WindMasterWindPowerString
+	public string TyphoonWindMasterWindPowerString
 	{
-		get => _windMasterWindPowerString;
+		get => _typhoonWindMasterWindPowerString;
 
 		set
 		{
-			if ( value != _windMasterWindPowerString )
+			if ( value != _typhoonWindMasterWindPowerString )
 			{
-				_windMasterWindPowerString = value;
+				_typhoonWindMasterWindPowerString = value;
 
 				OnPropertyChanged();
 			}
@@ -7741,37 +7741,37 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindMasterWindPowerString()
 	{
-		if ( _windMasterWindPower == 0f )
+		if ( _typhoonWindMasterWindPower == 0f )
 		{
-			WindMasterWindPowerString = DataContext.Instance.Localization[ "OFF" ];
+			TyphoonWindMasterWindPowerString = DataContext.Instance.Localization[ "OFF" ];
 		}
 		else
 		{
-			WindMasterWindPowerString = $"{_windMasterWindPower * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			TyphoonWindMasterWindPowerString = $"{_typhoonWindMasterWindPower * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
-	public ContextSwitches WindMasterWindPowerContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings WindMasterWindPowerPlusButtonMappings { get; set; } = new();
-	public ButtonMappings WindMasterWindPowerMinusButtonMappings { get; set; } = new();
+	public ContextSwitches TyphoonWindMasterWindPowerContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings TyphoonWindMasterWindPowerPlusButtonMappings { get; set; } = new();
+	public ButtonMappings TyphoonWindMasterWindPowerMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
-	#region Wind - Minimum speed
+	#region TyphoonWind - Minimum speed
 
-	private float _windMinimumSpeed = 0f;
+	private float _typhoonWindMinimumSpeed = 0f;
 
-	public float WindMinimumSpeed
+	public float TyphoonWindMinimumSpeed
 	{
-		get => _windMinimumSpeed;
+		get => _typhoonWindMinimumSpeed;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windMinimumSpeed )
+			if ( value != _typhoonWindMinimumSpeed )
 			{
-				_windMinimumSpeed = value;
+				_typhoonWindMinimumSpeed = value;
 
 				OnPropertyChanged();
 			}
@@ -7780,18 +7780,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windMinimumSpeedString = string.Empty;
+	private string _typhoonWindMinimumSpeedString = string.Empty;
 
 	[XmlIgnore]
-	public string WindMinimumSpeedString
+	public string TyphoonWindMinimumSpeedString
 	{
-		get => _windMinimumSpeedString;
+		get => _typhoonWindMinimumSpeedString;
 
 		set
 		{
-			if ( value != _windMinimumSpeedString )
+			if ( value != _typhoonWindMinimumSpeedString )
 			{
-				_windMinimumSpeedString = value;
+				_typhoonWindMinimumSpeedString = value;
 
 				OnPropertyChanged();
 			}
@@ -7800,9 +7800,9 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindMinimumSpeedString()
 	{
-		if ( _windMinimumSpeed == 0f )
+		if ( _typhoonWindMinimumSpeed == 0f )
 		{
-			WindMinimumSpeedString = DataContext.Instance.Localization[ "OFF" ];
+			TyphoonWindMinimumSpeedString = DataContext.Instance.Localization[ "OFF" ];
 		}
 		else
 		{
@@ -7810,36 +7810,36 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
+				TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
 			}
 			else
 			{
-				WindMinimumSpeedString = $"{_windMinimumSpeed * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
+				TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
 			}
 		}
 	}
 
-	public ContextSwitches WindMinimumSpeedContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings WindMinimumSpeedPlusButtonMappings { get; set; } = new();
-	public ButtonMappings WindMinimumSpeedMinusButtonMappings { get; set; } = new();
+	public ContextSwitches TyphoonWindMinimumSpeedContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings TyphoonWindMinimumSpeedPlusButtonMappings { get; set; } = new();
+	public ButtonMappings TyphoonWindMinimumSpeedMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
-	#region Wind - Curving
+	#region TyphoonWind - Curving
 
-	private float _windCurving = 1f;
+	private float _typhoonWindCurving = 1f;
 
-	public float WindCurving
+	public float TyphoonWindCurving
 	{
-		get => _windCurving;
+		get => _typhoonWindCurving;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windCurving )
+			if ( value != _typhoonWindCurving )
 			{
-				_windCurving = value;
+				_typhoonWindCurving = value;
 
 				OnPropertyChanged();
 			}
@@ -7848,18 +7848,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windCurvingString = string.Empty;
+	private string _typhoonWindCurvingString = string.Empty;
 
 	[XmlIgnore]
-	public string WindCurvingString
+	public string TyphoonWindCurvingString
 	{
-		get => _windCurvingString;
+		get => _typhoonWindCurvingString;
 
 		set
 		{
-			if ( value != _windCurvingString )
+			if ( value != _typhoonWindCurvingString )
 			{
-				_windCurvingString = value;
+				_typhoonWindCurvingString = value;
 
 				OnPropertyChanged();
 			}
@@ -7868,59 +7868,59 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindCurvingString()
 	{
-		if ( _windCurving == 0f )
+		if ( _typhoonWindCurving == 0f )
 		{
-			WindCurvingString = DataContext.Instance.Localization[ "OFF" ];
+			TyphoonWindCurvingString = DataContext.Instance.Localization[ "OFF" ];
 		}
 		else
 		{
-			WindCurvingString = $"{_windCurving * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+			TyphoonWindCurvingString = $"{_typhoonWindCurving * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 		}
 	}
 
-	public ContextSwitches WindCurvingContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings WindCurvingPlusButtonMappings { get; set; } = new();
-	public ButtonMappings WindCurvingMinusButtonMappings { get; set; } = new();
+	public ContextSwitches TyphoonWindCurvingContextSwitches { get; set; } = new( false, false, false, false, false );
+	public ButtonMappings TyphoonWindCurvingPlusButtonMappings { get; set; } = new();
+	public ButtonMappings TyphoonWindCurvingMinusButtonMappings { get; set; } = new();
 
 	#endregion
 
-	#region Wind - Speed 1
+	#region TyphoonWind - Speed 1
 
-	private float _windSpeed1 = 0f;
+	private float _typhoonWindSpeed1 = 0f;
 
-	public float WindSpeed1
+	public float TyphoonWindSpeed1
 	{
-		get => _windSpeed1;
+		get => _typhoonWindSpeed1;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windSpeed1 )
+			if ( value != _typhoonWindSpeed1 )
 			{
-				_windSpeed1 = value;
+				_typhoonWindSpeed1 = value;
 
 				OnPropertyChanged();
 
-				WindSpeed2 = MathF.Max( WindSpeed2, _windSpeed1 );
+				TyphoonWindSpeed2 = MathF.Max( TyphoonWindSpeed2, _typhoonWindSpeed1 );
 			}
 
 			UpdateWindSpeed1String();
 		}
 	}
 
-	private string _windSpeed1String = string.Empty;
+	private string _typhoonWindSpeed1String = string.Empty;
 
 	[XmlIgnore]
-	public string WindSpeed1String
+	public string TyphoonWindSpeed1String
 	{
-		get => _windSpeed1String;
+		get => _typhoonWindSpeed1String;
 
 		set
 		{
-			if ( value != _windSpeed1String )
+			if ( value != _typhoonWindSpeed1String )
 			{
-				_windSpeed1String = value;
+				_typhoonWindSpeed1String = value;
 
 				OnPropertyChanged();
 			}
@@ -7933,31 +7933,31 @@ public class Settings : INotifyPropertyChanged
 
 		if ( app.Simulator.DisplayUnits == 0 )
 		{
-			WindSpeed1String = $"{_windSpeed1 * MathZ.MPSToMPH:F0}";
+			TyphoonWindSpeed1String = $"{_typhoonWindSpeed1 * MathZ.MPSToMPH:F0}";
 		}
 		else
 		{
-			WindSpeed1String = $"{_windSpeed1 * MathZ.MPSToKPH:F0}";
+			TyphoonWindSpeed1String = $"{_typhoonWindSpeed1 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
 	#endregion
 
-	#region Wind - Fan power 1
+	#region TyphoonWind - Fan power 1
 
-	private float _windFanPower1 = 0f;
+	private float _typhoonWindFanPower1 = 0f;
 
-	public float WindFanPower1
+	public float TyphoonWindFanPower1
 	{
-		get => _windFanPower1;
+		get => _typhoonWindFanPower1;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windFanPower1 )
+			if ( value != _typhoonWindFanPower1 )
 			{
-				_windFanPower1 = value;
+				_typhoonWindFanPower1 = value;
 
 				OnPropertyChanged();
 			}
@@ -7966,18 +7966,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windFanPower1String = string.Empty;
+	private string _typhoonWindFanPower1String = string.Empty;
 
 	[XmlIgnore]
-	public string WindFanPower1String
+	public string TyphoonWindFanPower1String
 	{
-		get => _windFanPower1String;
+		get => _typhoonWindFanPower1String;
 
 		set
 		{
-			if ( value != _windFanPower1String )
+			if ( value != _typhoonWindFanPower1String )
 			{
-				_windFanPower1String = value;
+				_typhoonWindFanPower1String = value;
 
 				OnPropertyChanged();
 			}
@@ -7986,49 +7986,49 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindFanPower1String()
 	{
-		WindFanPower1String = $"{_windFanPower1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		TyphoonWindFanPower1String = $"{_typhoonWindFanPower1 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
 
-	#region Wind - Speed 2
+	#region TyphoonWind - Speed 2
 
-	private float _windSpeed2 = 3.313f;
+	private float _typhoonWindSpeed2 = 3.313f;
 
-	public float WindSpeed2
+	public float TyphoonWindSpeed2
 	{
-		get => _windSpeed2;
+		get => _typhoonWindSpeed2;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windSpeed2 )
+			if ( value != _typhoonWindSpeed2 )
 			{
-				_windSpeed2 = value;
+				_typhoonWindSpeed2 = value;
 
 				OnPropertyChanged();
 
-				WindSpeed1 = MathF.Min( WindSpeed1, _windSpeed2 );
-				WindSpeed3 = MathF.Max( WindSpeed3, _windSpeed2 );
+				TyphoonWindSpeed1 = MathF.Min( TyphoonWindSpeed1, _typhoonWindSpeed2 );
+				TyphoonWindSpeed3 = MathF.Max( TyphoonWindSpeed3, _typhoonWindSpeed2 );
 			}
 
 			UpdateWindSpeed2String();
 		}
 	}
 
-	private string _windSpeed2String = string.Empty;
+	private string _typhoonWindSpeed2String = string.Empty;
 
 	[XmlIgnore]
-	public string WindSpeed2String
+	public string TyphoonWindSpeed2String
 	{
-		get => _windSpeed2String;
+		get => _typhoonWindSpeed2String;
 
 		set
 		{
-			if ( value != _windSpeed2String )
+			if ( value != _typhoonWindSpeed2String )
 			{
-				_windSpeed2String = value;
+				_typhoonWindSpeed2String = value;
 
 				OnPropertyChanged();
 			}
@@ -8041,31 +8041,31 @@ public class Settings : INotifyPropertyChanged
 
 		if ( app.Simulator.DisplayUnits == 0 )
 		{
-			WindSpeed2String = $"{_windSpeed2 * MathZ.MPSToMPH:F0}";
+			TyphoonWindSpeed2String = $"{_typhoonWindSpeed2 * MathZ.MPSToMPH:F0}";
 		}
 		else
 		{
-			WindSpeed2String = $"{_windSpeed2 * MathZ.MPSToKPH:F0}";
+			TyphoonWindSpeed2String = $"{_typhoonWindSpeed2 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
 	#endregion
 
-	#region Wind - Fan power 2
+	#region TyphoonWind - Fan power 2
 
-	private float _windFanPower2 = 0.125f;
+	private float _typhoonWindFanPower2 = 0.125f;
 
-	public float WindFanPower2
+	public float TyphoonWindFanPower2
 	{
-		get => _windFanPower2;
+		get => _typhoonWindFanPower2;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windFanPower2 )
+			if ( value != _typhoonWindFanPower2 )
 			{
-				_windFanPower2 = value;
+				_typhoonWindFanPower2 = value;
 
 				OnPropertyChanged();
 			}
@@ -8074,18 +8074,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windFanPower2String = string.Empty;
+	private string _typhoonWindFanPower2String = string.Empty;
 
 	[XmlIgnore]
-	public string WindFanPower2String
+	public string TyphoonWindFanPower2String
 	{
-		get => _windFanPower2String;
+		get => _typhoonWindFanPower2String;
 
 		set
 		{
-			if ( value != _windFanPower2String )
+			if ( value != _typhoonWindFanPower2String )
 			{
-				_windFanPower2String = value;
+				_typhoonWindFanPower2String = value;
 
 				OnPropertyChanged();
 			}
@@ -8094,49 +8094,49 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindFanPower2String()
 	{
-		WindFanPower2String = $"{_windFanPower2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		TyphoonWindFanPower2String = $"{_typhoonWindFanPower2 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
 
-	#region Wind - Speed 3
+	#region TyphoonWind - Speed 3
 
-	private float _windSpeed3 = 9.373f;
+	private float _typhoonWindSpeed3 = 9.373f;
 
-	public float WindSpeed3
+	public float TyphoonWindSpeed3
 	{
-		get => _windSpeed3;
+		get => _typhoonWindSpeed3;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windSpeed3 )
+			if ( value != _typhoonWindSpeed3 )
 			{
-				_windSpeed3 = value;
+				_typhoonWindSpeed3 = value;
 
 				OnPropertyChanged();
 
-				WindSpeed2 = MathF.Min( WindSpeed2, _windSpeed3 );
-				WindSpeed4 = MathF.Max( WindSpeed4, _windSpeed3 );
+				TyphoonWindSpeed2 = MathF.Min( TyphoonWindSpeed2, _typhoonWindSpeed3 );
+				TyphoonWindSpeed4 = MathF.Max( TyphoonWindSpeed4, _typhoonWindSpeed3 );
 			}
 
 			UpdateWindSpeed3String();
 		}
 	}
 
-	private string _windSpeed3String = string.Empty;
+	private string _typhoonWindSpeed3String = string.Empty;
 
 	[XmlIgnore]
-	public string WindSpeed3String
+	public string TyphoonWindSpeed3String
 	{
-		get => _windSpeed3String;
+		get => _typhoonWindSpeed3String;
 
 		set
 		{
-			if ( value != _windSpeed3String )
+			if ( value != _typhoonWindSpeed3String )
 			{
-				_windSpeed3String = value;
+				_typhoonWindSpeed3String = value;
 
 				OnPropertyChanged();
 			}
@@ -8149,31 +8149,31 @@ public class Settings : INotifyPropertyChanged
 
 		if ( app.Simulator.DisplayUnits == 0 )
 		{
-			WindSpeed3String = $"{_windSpeed3 * MathZ.MPSToMPH:F0}";
+			TyphoonWindSpeed3String = $"{_typhoonWindSpeed3 * MathZ.MPSToMPH:F0}";
 		}
 		else
 		{
-			WindSpeed3String = $"{_windSpeed3 * MathZ.MPSToKPH:F0}";
+			TyphoonWindSpeed3String = $"{_typhoonWindSpeed3 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
 	#endregion
 
-	#region Wind - Fan power 3
+	#region TyphoonWind - Fan power 3
 
-	private float _windFanPower3 = 0.25f;
+	private float _typhoonWindFanPower3 = 0.25f;
 
-	public float WindFanPower3
+	public float TyphoonWindFanPower3
 	{
-		get => _windFanPower3;
+		get => _typhoonWindFanPower3;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windFanPower3 )
+			if ( value != _typhoonWindFanPower3 )
 			{
-				_windFanPower3 = value;
+				_typhoonWindFanPower3 = value;
 
 				OnPropertyChanged();
 			}
@@ -8182,18 +8182,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windFanPower3String = string.Empty;
+	private string _typhoonWindFanPower3String = string.Empty;
 
 	[XmlIgnore]
-	public string WindFanPower3String
+	public string TyphoonWindFanPower3String
 	{
-		get => _windFanPower3String;
+		get => _typhoonWindFanPower3String;
 
 		set
 		{
-			if ( value != _windFanPower3String )
+			if ( value != _typhoonWindFanPower3String )
 			{
-				_windFanPower3String = value;
+				_typhoonWindFanPower3String = value;
 
 				OnPropertyChanged();
 			}
@@ -8202,49 +8202,49 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindFanPower3String()
 	{
-		WindFanPower3String = $"{_windFanPower3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		TyphoonWindFanPower3String = $"{_typhoonWindFanPower3 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
 
-	#region Wind - Speed 4
+	#region TyphoonWind - Speed 4
 
-	private float _windSpeed4 = 17.208f;
+	private float _typhoonWindSpeed4 = 17.208f;
 
-	public float WindSpeed4
+	public float TyphoonWindSpeed4
 	{
-		get => _windSpeed4;
+		get => _typhoonWindSpeed4;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windSpeed4 )
+			if ( value != _typhoonWindSpeed4 )
 			{
-				_windSpeed4 = value;
+				_typhoonWindSpeed4 = value;
 
 				OnPropertyChanged();
 
-				WindSpeed3 = MathF.Min( WindSpeed3, _windSpeed4 );
-				WindSpeed5 = MathF.Max( WindSpeed5, _windSpeed4 );
+				TyphoonWindSpeed3 = MathF.Min( TyphoonWindSpeed3, _typhoonWindSpeed4 );
+				TyphoonWindSpeed5 = MathF.Max( TyphoonWindSpeed5, _typhoonWindSpeed4 );
 			}
 
 			UpdateWindSpeed4String();
 		}
 	}
 
-	private string _windSpeed4String = string.Empty;
+	private string _typhoonWindSpeed4String = string.Empty;
 
 	[XmlIgnore]
-	public string WindSpeed4String
+	public string TyphoonWindSpeed4String
 	{
-		get => _windSpeed4String;
+		get => _typhoonWindSpeed4String;
 
 		set
 		{
-			if ( value != _windSpeed4String )
+			if ( value != _typhoonWindSpeed4String )
 			{
-				_windSpeed4String = value;
+				_typhoonWindSpeed4String = value;
 
 				OnPropertyChanged();
 			}
@@ -8257,31 +8257,31 @@ public class Settings : INotifyPropertyChanged
 
 		if ( app.Simulator.DisplayUnits == 0 )
 		{
-			WindSpeed4String = $"{_windSpeed4 * MathZ.MPSToMPH:F0}";
+			TyphoonWindSpeed4String = $"{_typhoonWindSpeed4 * MathZ.MPSToMPH:F0}";
 		}
 		else
 		{
-			WindSpeed4String = $"{_windSpeed4 * MathZ.MPSToKPH:F0}";
+			TyphoonWindSpeed4String = $"{_typhoonWindSpeed4 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
 	#endregion
 
-	#region Wind - Fan power 4
+	#region TyphoonWind - Fan power 4
 
-	private float _windFanPower4 = 0.375f;
+	private float _typhoonWindFanPower4 = 0.375f;
 
-	public float WindFanPower4
+	public float TyphoonWindFanPower4
 	{
-		get => _windFanPower4;
+		get => _typhoonWindFanPower4;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windFanPower4 )
+			if ( value != _typhoonWindFanPower4 )
 			{
-				_windFanPower4 = value;
+				_typhoonWindFanPower4 = value;
 
 				OnPropertyChanged();
 			}
@@ -8290,18 +8290,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windFanPower4String = string.Empty;
+	private string _typhoonWindFanPower4String = string.Empty;
 
 	[XmlIgnore]
-	public string WindFanPower4String
+	public string TyphoonWindFanPower4String
 	{
-		get => _windFanPower4String;
+		get => _typhoonWindFanPower4String;
 
 		set
 		{
-			if ( value != _windFanPower4String )
+			if ( value != _typhoonWindFanPower4String )
 			{
-				_windFanPower4String = value;
+				_typhoonWindFanPower4String = value;
 
 				OnPropertyChanged();
 			}
@@ -8310,49 +8310,49 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindFanPower4String()
 	{
-		WindFanPower4String = $"{_windFanPower4 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		TyphoonWindFanPower4String = $"{_typhoonWindFanPower4 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
 
-	#region Wind - Speed 5
+	#region TyphoonWind - Speed 5
 
-	private float _windSpeed5 = 26.494f;
+	private float _typhoonWindSpeed5 = 26.494f;
 
-	public float WindSpeed5
+	public float TyphoonWindSpeed5
 	{
-		get => _windSpeed5;
+		get => _typhoonWindSpeed5;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windSpeed5 )
+			if ( value != _typhoonWindSpeed5 )
 			{
-				_windSpeed5 = value;
+				_typhoonWindSpeed5 = value;
 
 				OnPropertyChanged();
 
-				WindSpeed4 = MathF.Min( WindSpeed4, _windSpeed5 );
-				WindSpeed6 = MathF.Max( WindSpeed6, _windSpeed5 );
+				TyphoonWindSpeed4 = MathF.Min( TyphoonWindSpeed4, _typhoonWindSpeed5 );
+				TyphoonWindSpeed6 = MathF.Max( TyphoonWindSpeed6, _typhoonWindSpeed5 );
 			}
 
 			UpdateWindSpeed5String();
 		}
 	}
 
-	private string _windSpeed5String = string.Empty;
+	private string _typhoonWindSpeed5String = string.Empty;
 
 	[XmlIgnore]
-	public string WindSpeed5String
+	public string TyphoonWindSpeed5String
 	{
-		get => _windSpeed5String;
+		get => _typhoonWindSpeed5String;
 
 		set
 		{
-			if ( value != _windSpeed5String )
+			if ( value != _typhoonWindSpeed5String )
 			{
-				_windSpeed5String = value;
+				_typhoonWindSpeed5String = value;
 
 				OnPropertyChanged();
 			}
@@ -8365,31 +8365,31 @@ public class Settings : INotifyPropertyChanged
 
 		if ( app.Simulator.DisplayUnits == 0 )
 		{
-			WindSpeed5String = $"{_windSpeed5 * MathZ.MPSToMPH:F0}";
+			TyphoonWindSpeed5String = $"{_typhoonWindSpeed5 * MathZ.MPSToMPH:F0}";
 		}
 		else
 		{
-			WindSpeed5String = $"{_windSpeed5 * MathZ.MPSToKPH:F0}";
+			TyphoonWindSpeed5String = $"{_typhoonWindSpeed5 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
 	#endregion
 
-	#region Wind - Fan power 5
+	#region TyphoonWind - Fan power 5
 
-	private float _windFanPower5 = 0.5f;
+	private float _typhoonWindFanPower5 = 0.5f;
 
-	public float WindFanPower5
+	public float TyphoonWindFanPower5
 	{
-		get => _windFanPower5;
+		get => _typhoonWindFanPower5;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windFanPower5 )
+			if ( value != _typhoonWindFanPower5 )
 			{
-				_windFanPower5 = value;
+				_typhoonWindFanPower5 = value;
 
 				OnPropertyChanged();
 			}
@@ -8398,18 +8398,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windFanPower5String = string.Empty;
+	private string _typhoonWindFanPower5String = string.Empty;
 
 	[XmlIgnore]
-	public string WindFanPower5String
+	public string TyphoonWindFanPower5String
 	{
-		get => _windFanPower5String;
+		get => _typhoonWindFanPower5String;
 
 		set
 		{
-			if ( value != _windFanPower5String )
+			if ( value != _typhoonWindFanPower5String )
 			{
-				_windFanPower5String = value;
+				_typhoonWindFanPower5String = value;
 
 				OnPropertyChanged();
 			}
@@ -8418,49 +8418,49 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindFanPower5String()
 	{
-		WindFanPower5String = $"{_windFanPower5 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		TyphoonWindFanPower5String = $"{_typhoonWindFanPower5 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
 
-	#region Wind - Speed 6
+	#region TyphoonWind - Speed 6
 
-	private float _windSpeed6 = 37.047f;
+	private float _typhoonWindSpeed6 = 37.047f;
 
-	public float WindSpeed6
+	public float TyphoonWindSpeed6
 	{
-		get => _windSpeed6;
+		get => _typhoonWindSpeed6;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windSpeed6 )
+			if ( value != _typhoonWindSpeed6 )
 			{
-				_windSpeed6 = value;
+				_typhoonWindSpeed6 = value;
 
 				OnPropertyChanged();
 
-				WindSpeed5 = MathF.Min( WindSpeed5, _windSpeed6 );
-				WindSpeed7 = MathF.Max( WindSpeed7, _windSpeed6 );
+				TyphoonWindSpeed5 = MathF.Min( TyphoonWindSpeed5, _typhoonWindSpeed6 );
+				TyphoonWindSpeed7 = MathF.Max( TyphoonWindSpeed7, _typhoonWindSpeed6 );
 			}
 
 			UpdateWindSpeed6String();
 		}
 	}
 
-	private string _windSpeed6String = string.Empty;
+	private string _typhoonWindSpeed6String = string.Empty;
 
 	[XmlIgnore]
-	public string WindSpeed6String
+	public string TyphoonWindSpeed6String
 	{
-		get => _windSpeed6String;
+		get => _typhoonWindSpeed6String;
 
 		set
 		{
-			if ( value != _windSpeed6String )
+			if ( value != _typhoonWindSpeed6String )
 			{
-				_windSpeed6String = value;
+				_typhoonWindSpeed6String = value;
 
 				OnPropertyChanged();
 			}
@@ -8473,31 +8473,31 @@ public class Settings : INotifyPropertyChanged
 
 		if ( app.Simulator.DisplayUnits == 0 )
 		{
-			WindSpeed6String = $"{_windSpeed6 * MathZ.MPSToMPH:F0}";
+			TyphoonWindSpeed6String = $"{_typhoonWindSpeed6 * MathZ.MPSToMPH:F0}";
 		}
 		else
 		{
-			WindSpeed6String = $"{_windSpeed6 * MathZ.MPSToKPH:F0}";
+			TyphoonWindSpeed6String = $"{_typhoonWindSpeed6 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
 	#endregion
 
-	#region Wind - Fan power 6
+	#region TyphoonWind - Fan power 6
 
-	private float _windFanPower6 = 0.625f;
+	private float _typhoonWindFanPower6 = 0.625f;
 
-	public float WindFanPower6
+	public float TyphoonWindFanPower6
 	{
-		get => _windFanPower6;
+		get => _typhoonWindFanPower6;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windFanPower6 )
+			if ( value != _typhoonWindFanPower6 )
 			{
-				_windFanPower6 = value;
+				_typhoonWindFanPower6 = value;
 
 				OnPropertyChanged();
 			}
@@ -8506,18 +8506,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windFanPower6String = string.Empty;
+	private string _typhoonWindFanPower6String = string.Empty;
 
 	[XmlIgnore]
-	public string WindFanPower6String
+	public string TyphoonWindFanPower6String
 	{
-		get => _windFanPower6String;
+		get => _typhoonWindFanPower6String;
 
 		set
 		{
-			if ( value != _windFanPower6String )
+			if ( value != _typhoonWindFanPower6String )
 			{
-				_windFanPower6String = value;
+				_typhoonWindFanPower6String = value;
 
 				OnPropertyChanged();
 			}
@@ -8526,49 +8526,49 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindFanPower6String()
 	{
-		WindFanPower6String = $"{_windFanPower6 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		TyphoonWindFanPower6String = $"{_typhoonWindFanPower6 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
 
-	#region Wind - Speed 7
+	#region TyphoonWind - Speed 7
 
-	private float _windSpeed7 = 48.672f;
+	private float _typhoonWindSpeed7 = 48.672f;
 
-	public float WindSpeed7
+	public float TyphoonWindSpeed7
 	{
-		get => _windSpeed7;
+		get => _typhoonWindSpeed7;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windSpeed7 )
+			if ( value != _typhoonWindSpeed7 )
 			{
-				_windSpeed7 = value;
+				_typhoonWindSpeed7 = value;
 
 				OnPropertyChanged();
 
-				WindSpeed6 = MathF.Min( WindSpeed6, _windSpeed7 );
-				WindSpeed8 = MathF.Max( WindSpeed8, _windSpeed7 );
+				TyphoonWindSpeed6 = MathF.Min( TyphoonWindSpeed6, _typhoonWindSpeed7 );
+				TyphoonWindSpeed8 = MathF.Max( TyphoonWindSpeed8, _typhoonWindSpeed7 );
 			}
 
 			UpdateWindSpeed7String();
 		}
 	}
 
-	private string _windSpeed7String = string.Empty;
+	private string _typhoonWindSpeed7String = string.Empty;
 
 	[XmlIgnore]
-	public string WindSpeed7String
+	public string TyphoonWindSpeed7String
 	{
-		get => _windSpeed7String;
+		get => _typhoonWindSpeed7String;
 
 		set
 		{
-			if ( value != _windSpeed7String )
+			if ( value != _typhoonWindSpeed7String )
 			{
-				_windSpeed7String = value;
+				_typhoonWindSpeed7String = value;
 
 				OnPropertyChanged();
 			}
@@ -8581,31 +8581,31 @@ public class Settings : INotifyPropertyChanged
 
 		if ( app.Simulator.DisplayUnits == 0 )
 		{
-			WindSpeed7String = $"{_windSpeed7 * MathZ.MPSToMPH:F0}";
+			TyphoonWindSpeed7String = $"{_typhoonWindSpeed7 * MathZ.MPSToMPH:F0}";
 		}
 		else
 		{
-			WindSpeed7String = $"{_windSpeed7 * MathZ.MPSToKPH:F0}";
+			TyphoonWindSpeed7String = $"{_typhoonWindSpeed7 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
 	#endregion
 
-	#region Wind - Fan power 7
+	#region TyphoonWind - Fan power 7
 
-	private float _windFanPower7 = 0.75f;
+	private float _typhoonWindFanPower7 = 0.75f;
 
-	public float WindFanPower7
+	public float TyphoonWindFanPower7
 	{
-		get => _windFanPower7;
+		get => _typhoonWindFanPower7;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windFanPower7 )
+			if ( value != _typhoonWindFanPower7 )
 			{
-				_windFanPower7 = value;
+				_typhoonWindFanPower7 = value;
 
 				OnPropertyChanged();
 			}
@@ -8614,18 +8614,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windFanPower7String = string.Empty;
+	private string _typhoonWindFanPower7String = string.Empty;
 
 	[XmlIgnore]
-	public string WindFanPower7String
+	public string TyphoonWindFanPower7String
 	{
-		get => _windFanPower7String;
+		get => _typhoonWindFanPower7String;
 
 		set
 		{
-			if ( value != _windFanPower7String )
+			if ( value != _typhoonWindFanPower7String )
 			{
-				_windFanPower7String = value;
+				_typhoonWindFanPower7String = value;
 
 				OnPropertyChanged();
 			}
@@ -8634,49 +8634,49 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindFanPower7String()
 	{
-		WindFanPower7String = $"{_windFanPower7 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		TyphoonWindFanPower7String = $"{_typhoonWindFanPower7 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
 
-	#region Wind - Speed 8
+	#region TyphoonWind - Speed 8
 
-	private float _windSpeed8 = 61.374f;
+	private float _typhoonWindSpeed8 = 61.374f;
 
-	public float WindSpeed8
+	public float TyphoonWindSpeed8
 	{
-		get => _windSpeed8;
+		get => _typhoonWindSpeed8;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windSpeed8 )
+			if ( value != _typhoonWindSpeed8 )
 			{
-				_windSpeed8 = value;
+				_typhoonWindSpeed8 = value;
 
 				OnPropertyChanged();
 
-				WindSpeed7 = MathF.Min( WindSpeed7, _windSpeed8 );
-				WindSpeed9 = MathF.Max( WindSpeed9, _windSpeed8 );
+				TyphoonWindSpeed7 = MathF.Min( TyphoonWindSpeed7, _typhoonWindSpeed8 );
+				TyphoonWindSpeed9 = MathF.Max( TyphoonWindSpeed9, _typhoonWindSpeed8 );
 			}
 
 			UpdateWindSpeed8String();
 		}
 	}
 
-	private string _windSpeed8String = string.Empty;
+	private string _typhoonWindSpeed8String = string.Empty;
 
 	[XmlIgnore]
-	public string WindSpeed8String
+	public string TyphoonWindSpeed8String
 	{
-		get => _windSpeed8String;
+		get => _typhoonWindSpeed8String;
 
 		set
 		{
-			if ( value != _windSpeed8String )
+			if ( value != _typhoonWindSpeed8String )
 			{
-				_windSpeed8String = value;
+				_typhoonWindSpeed8String = value;
 
 				OnPropertyChanged();
 			}
@@ -8689,31 +8689,31 @@ public class Settings : INotifyPropertyChanged
 
 		if ( app.Simulator.DisplayUnits == 0 )
 		{
-			WindSpeed8String = $"{_windSpeed8 * MathZ.MPSToMPH:F0}";
+			TyphoonWindSpeed8String = $"{_typhoonWindSpeed8 * MathZ.MPSToMPH:F0}";
 		}
 		else
 		{
-			WindSpeed8String = $"{_windSpeed8 * MathZ.MPSToKPH:F0}";
+			TyphoonWindSpeed8String = $"{_typhoonWindSpeed8 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
 	#endregion
 
-	#region Wind - Fan power 8
+	#region TyphoonWind - Fan power 8
 
-	private float _windFanPower8 = 0.8333f;
+	private float _typhoonWindFanPower8 = 0.8333f;
 
-	public float WindFanPower8
+	public float TyphoonWindFanPower8
 	{
-		get => _windFanPower8;
+		get => _typhoonWindFanPower8;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windFanPower8 )
+			if ( value != _typhoonWindFanPower8 )
 			{
-				_windFanPower8 = value;
+				_typhoonWindFanPower8 = value;
 
 				OnPropertyChanged();
 			}
@@ -8722,18 +8722,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windFanPower8String = string.Empty;
+	private string _typhoonWindFanPower8String = string.Empty;
 
 	[XmlIgnore]
-	public string WindFanPower8String
+	public string TyphoonWindFanPower8String
 	{
-		get => _windFanPower8String;
+		get => _typhoonWindFanPower8String;
 
 		set
 		{
-			if ( value != _windFanPower8String )
+			if ( value != _typhoonWindFanPower8String )
 			{
-				_windFanPower8String = value;
+				_typhoonWindFanPower8String = value;
 
 				OnPropertyChanged();
 			}
@@ -8742,49 +8742,49 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindFanPower8String()
 	{
-		WindFanPower8String = $"{_windFanPower8 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		TyphoonWindFanPower8String = $"{_typhoonWindFanPower8 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
 
-	#region Wind - Speed 9
+	#region TyphoonWind - Speed 9
 
-	private float _windSpeed9 = 74.935f;
+	private float _typhoonWindSpeed9 = 74.935f;
 
-	public float WindSpeed9
+	public float TyphoonWindSpeed9
 	{
-		get => _windSpeed9;
+		get => _typhoonWindSpeed9;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windSpeed9 )
+			if ( value != _typhoonWindSpeed9 )
 			{
-				_windSpeed9 = value;
+				_typhoonWindSpeed9 = value;
 
 				OnPropertyChanged();
 
-				WindSpeed8 = MathF.Min( WindSpeed8, _windSpeed9 );
-				WindSpeed10 = MathF.Max( WindSpeed10, _windSpeed9 );
+				TyphoonWindSpeed8 = MathF.Min( TyphoonWindSpeed8, _typhoonWindSpeed9 );
+				TyphoonWindSpeed10 = MathF.Max( TyphoonWindSpeed10, _typhoonWindSpeed9 );
 			}
 
 			UpdateWindSpeed9String();
 		}
 	}
 
-	private string _windSpeed9String = string.Empty;
+	private string _typhoonWindSpeed9String = string.Empty;
 
 	[XmlIgnore]
-	public string WindSpeed9String
+	public string TyphoonWindSpeed9String
 	{
-		get => _windSpeed9String;
+		get => _typhoonWindSpeed9String;
 
 		set
 		{
-			if ( value != _windSpeed9String )
+			if ( value != _typhoonWindSpeed9String )
 			{
-				_windSpeed9String = value;
+				_typhoonWindSpeed9String = value;
 
 				OnPropertyChanged();
 			}
@@ -8797,31 +8797,31 @@ public class Settings : INotifyPropertyChanged
 
 		if ( app.Simulator.DisplayUnits == 0 )
 		{
-			WindSpeed9String = $"{_windSpeed9 * MathZ.MPSToMPH:F0}";
+			TyphoonWindSpeed9String = $"{_typhoonWindSpeed9 * MathZ.MPSToMPH:F0}";
 		}
 		else
 		{
-			WindSpeed9String = $"{_windSpeed9 * MathZ.MPSToKPH:F0}";
+			TyphoonWindSpeed9String = $"{_typhoonWindSpeed9 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
 	#endregion
 
-	#region Wind - Fan power 9
+	#region TyphoonWind - Fan power 9
 
-	private float _windFanPower9 = 0.9167f;
+	private float _typhoonWindFanPower9 = 0.9167f;
 
-	public float WindFanPower9
+	public float TyphoonWindFanPower9
 	{
-		get => _windFanPower9;
+		get => _typhoonWindFanPower9;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windFanPower9 )
+			if ( value != _typhoonWindFanPower9 )
 			{
-				_windFanPower9 = value;
+				_typhoonWindFanPower9 = value;
 
 				OnPropertyChanged();
 			}
@@ -8830,18 +8830,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windFanPower9String = string.Empty;
+	private string _typhoonWindFanPower9String = string.Empty;
 
 	[XmlIgnore]
-	public string WindFanPower9String
+	public string TyphoonWindFanPower9String
 	{
-		get => _windFanPower9String;
+		get => _typhoonWindFanPower9String;
 
 		set
 		{
-			if ( value != _windFanPower9String )
+			if ( value != _typhoonWindFanPower9String )
 			{
-				_windFanPower9String = value;
+				_typhoonWindFanPower9String = value;
 
 				OnPropertyChanged();
 			}
@@ -8850,48 +8850,48 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindFanPower9String()
 	{
-		WindFanPower9String = $"{_windFanPower9 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		TyphoonWindFanPower9String = $"{_typhoonWindFanPower9 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion
 
-	#region Wind - Speed 10
+	#region TyphoonWind - Speed 10
 
-	private float _windSpeed10 = 89.408f;
+	private float _typhoonWindSpeed10 = 89.408f;
 
-	public float WindSpeed10
+	public float TyphoonWindSpeed10
 	{
-		get => _windSpeed10;
+		get => _typhoonWindSpeed10;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 100f );
 
-			if ( value != _windSpeed10 )
+			if ( value != _typhoonWindSpeed10 )
 			{
-				_windSpeed10 = value;
+				_typhoonWindSpeed10 = value;
 
 				OnPropertyChanged();
 
-				WindSpeed9 = MathF.Min( WindSpeed9, _windSpeed10 );
+				TyphoonWindSpeed9 = MathF.Min( TyphoonWindSpeed9, _typhoonWindSpeed10 );
 			}
 
 			UpdateWindSpeed10String();
 		}
 	}
 
-	private string _windSpeed10String = string.Empty;
+	private string _typhoonWindSpeed10String = string.Empty;
 
 	[XmlIgnore]
-	public string WindSpeed10String
+	public string TyphoonWindSpeed10String
 	{
-		get => _windSpeed10String;
+		get => _typhoonWindSpeed10String;
 
 		set
 		{
-			if ( value != _windSpeed10String )
+			if ( value != _typhoonWindSpeed10String )
 			{
-				_windSpeed10String = value;
+				_typhoonWindSpeed10String = value;
 
 				OnPropertyChanged();
 			}
@@ -8904,31 +8904,31 @@ public class Settings : INotifyPropertyChanged
 
 		if ( app.Simulator.DisplayUnits == 0 )
 		{
-			WindSpeed10String = $"{_windSpeed10 * MathZ.MPSToMPH:F0}";
+			TyphoonWindSpeed10String = $"{_typhoonWindSpeed10 * MathZ.MPSToMPH:F0}";
 		}
 		else
 		{
-			WindSpeed10String = $"{_windSpeed10 * MathZ.MPSToKPH:F0}";
+			TyphoonWindSpeed10String = $"{_typhoonWindSpeed10 * MathZ.MPSToKPH:F0}";
 		}
 	}
 
 	#endregion
 
-	#region Wind - Fan power 10
+	#region TyphoonWind - Fan power 10
 
-	private float _windFanPower10 = 1f;
+	private float _typhoonWindFanPower10 = 1f;
 
-	public float WindFanPower10
+	public float TyphoonWindFanPower10
 	{
-		get => _windFanPower10;
+		get => _typhoonWindFanPower10;
 
 		set
 		{
 			value = Math.Clamp( value, 0f, 1f );
 
-			if ( value != _windFanPower10 )
+			if ( value != _typhoonWindFanPower10 )
 			{
-				_windFanPower10 = value;
+				_typhoonWindFanPower10 = value;
 
 				OnPropertyChanged();
 			}
@@ -8937,18 +8937,18 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private string _windFanPower10String = string.Empty;
+	private string _typhoonWindFanPower10String = string.Empty;
 
 	[XmlIgnore]
-	public string WindFanPower10String
+	public string TyphoonWindFanPower10String
 	{
-		get => _windFanPower10String;
+		get => _typhoonWindFanPower10String;
 
 		set
 		{
-			if ( value != _windFanPower10String )
+			if ( value != _typhoonWindFanPower10String )
 			{
-				_windFanPower10String = value;
+				_typhoonWindFanPower10String = value;
 
 				OnPropertyChanged();
 			}
@@ -8957,7 +8957,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateWindFanPower10String()
 	{
-		WindFanPower10String = $"{_windFanPower10 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+		TyphoonWindFanPower10String = $"{_typhoonWindFanPower10 * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
 	}
 
 	#endregion

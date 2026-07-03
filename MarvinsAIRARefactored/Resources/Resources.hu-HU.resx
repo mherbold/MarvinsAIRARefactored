@@ -891,7 +891,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon Szél</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -979,10 +979,10 @@
     <value>Fordított karok</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Csatlakozás a MAIRA Windhez az alkalmazás indításakor</value>
+    <value>Csatlakozás a MAIRA Typhoon Windhez az alkalmazás indításakor</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>Csatlakozás a MAIRA Windhez</value>
+    <value>Csatlakozás a MAIRA Typhoon Windhez</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>Bal ventilátor</value>
@@ -1002,7 +1002,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>Minimális sebesség</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Szélgörbe</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1696,7 +1696,7 @@
     <value>Telemetria inicializálása...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Szél inicializálása...</value>
+    <value>Typhoon Wind inicializálása...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>G Tensioner inicializálása...</value>

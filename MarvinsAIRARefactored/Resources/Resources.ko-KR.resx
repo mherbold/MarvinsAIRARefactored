@@ -939,7 +939,7 @@
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
-  <data name="Wind" xml:space="preserve">
+  <data name="TyphoonWind" xml:space="preserve">
     <value>태풍 바람</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
@@ -1027,10 +1027,10 @@
     <value>반전된 팔</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>앱 시작 시 MAIRA Wind에 연결</value>
+    <value>앱 시작 시 MAIRA Typhoon Wind에 연결</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
-    <value>MAIRA Wind에 연결</value>
+    <value>MAIRA Typhoon Wind에 연결</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
     <value>왼쪽 팬</value>
@@ -1050,7 +1050,7 @@
   <data name="MinimumSpeed" xml:space="preserve">
     <value>최소 속도</value>
   </data>
-  <data name="WindCurving" xml:space="preserve">
+  <data name="TyphoonWindCurving" xml:space="preserve">
     <value>바람 커브</value>
   </data>
   <data name="Speed" xml:space="preserve">
@@ -1759,7 +1759,7 @@
     <value>텔레메트리 초기화 중...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Wind 초기화 중...</value>
+    <value>Typhoon Wind 초기화 중...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
     <value>G Tensioner 초기화 중...</value>

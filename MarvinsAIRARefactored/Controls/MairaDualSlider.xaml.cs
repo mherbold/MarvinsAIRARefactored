@@ -88,7 +88,7 @@ public partial class MairaDualSlider : UserControl
 
 			RightDragHandle_Image.CaptureMouse();
 
-			app.Wind.StartPreview( ( RightValue - RightMinValue ) / ( RightMaxValue - RightMinValue ) );
+			app.TyphoonWind.StartPreview( ( RightValue - RightMinValue ) / ( RightMaxValue - RightMinValue ) );
 
 			e.Handled = true;
 		}
@@ -133,7 +133,7 @@ public partial class MairaDualSlider : UserControl
 			{
 				RightValue = Math.Clamp( RightValue - delta * 0.001f * ( RightMaxValue - RightMinValue ), RightMinValue, RightMaxValue );
 
-				app.Wind.StartPreview( ( RightValue - RightMinValue ) / ( RightMaxValue - RightMinValue ) );
+				app.TyphoonWind.StartPreview( ( RightValue - RightMinValue ) / ( RightMaxValue - RightMinValue ) );
 
 				PInvoke.SetCursorPos( _draggingCenter.X, _draggingCenter.Y );
 			}
@@ -262,7 +262,7 @@ public partial class MairaDualSlider : UserControl
 
 		if ( !_isDraggingLeftHandle )
 		{
-			app.Wind.StopPreview();
+			app.TyphoonWind.StopPreview();
 		}
 	}
 
