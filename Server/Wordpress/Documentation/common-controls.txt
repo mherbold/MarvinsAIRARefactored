@@ -65,7 +65,15 @@
 <!-- /wp:image -->
 
 <!-- wp:paragraph -->
-<p>To use the infinite slider control, hold down the left mouse button while the cursor is above the infinite slider icon, and then move the mouse left to decrease the value, or right to increase the value.</p>
+<p>To use the infinite slider control, hold down the left mouse button while the cursor is above the infinite slider icon, and then move the mouse to change the value. Moving up and to the right increases the value, while moving down and to the left decreases it, so you can drag in whichever direction is most comfortable.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>You can also nudge the value one step at a time with the <strong>+</strong> and <strong>−</strong> buttons on either side of the infinite slider. These buttons move the value in deliberately larger steps than dragging does — dragging changes the value very finely per pixel of mouse movement, while each click of a button applies a coarser, whole step. This makes dragging good for fine tuning and the buttons good for quick, repeatable adjustments.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If you want to set an exact value, click on the numeric value shown on the infinite slider. This turns the value into an editable text box where you can type the value directly and press <strong>Enter</strong> to apply it (or press <strong>Escape</strong> to cancel). For settings that are shown as a percentage, just type the percentage — MAIRA converts it for you.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -102,6 +110,10 @@
 
 <!-- wp:paragraph -->
 <p>Press the x button to remove the input mapping.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>All of your button and input mappings are organized into named <strong>Controller Profiles</strong>, so you can keep more than one complete set of mappings and switch between them. The dedicated <a href="https://mairapp.com/home/documentation/advanced/controller-profiles/" data-type="page">Controller Profiles</a> page lets you create, rename, and delete profiles, and select which saved profile is active. This is handy when you use different wheels, button boxes, or Stream Deck layouts, or want separate mapping sets for different types of racing.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
