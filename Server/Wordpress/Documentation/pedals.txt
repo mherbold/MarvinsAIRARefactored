@@ -498,6 +498,6 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/wind/" data-type="page" data-id="170">Wind</a></p>
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/typhoon-wind/" data-type="page" data-id="170">Typhoon Wind</a></p>
 <!-- /wp:paragraph --></div>
 <!-- /wp:group -->
