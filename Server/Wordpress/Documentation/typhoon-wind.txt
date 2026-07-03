@@ -7,7 +7,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Connect to MAIRA Wind</p>
+<p class="setting">Connect to MAIRA Typhoon Wind</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -19,7 +19,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Connect to MAIRA Wind on App Startup</p>
+<p class="setting">Connect to MAIRA Typhoon Wind on App Startup</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
