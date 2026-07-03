@@ -7,7 +7,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><strong>Note:</strong> Currently the <strong>Spotter</strong> and <strong>MAIRA</strong> roles are fully implemented and visible in the UI. The Crew Chief, Sportscaster 1, Sportscaster 2, and Pit Reporter roles are still in development and are not yet available.</p>
+<p><strong>Note:</strong> Currently only the <strong>MAIRA</strong> and <strong>Spotter</strong> roles are shipped and visible in the app — these are the only roster slots and sections you will see on the page. The <strong>Crew Chief</strong>, <strong>Sportscaster 1</strong>, <strong>Sportscaster 2</strong>, and <strong>Pit Reporter</strong> roles are still in development and are not yet available, so their roster slots and sections are hidden for now. They are described below so you know what is coming, but you cannot use them yet.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -31,7 +31,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Selects the language used for all generated commentary phrases. MAIRA ships with phrase templates for 25 languages. Changing this setting takes effect immediately — no restart required.</p>
+<p>Selects the language used for all generated commentary phrases. MAIRA ships with phrase templates for 36 languages. Changing this setting takes effect immediately — no restart required.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -167,7 +167,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>MAIRA also displays your current session character usage and ElevenLabs subscription billing-period usage beneath the model selector, so you can keep an eye on your quota.</p>
+<p>Beneath the model selector, MAIRA displays a single <strong>Usage</strong> progress bar showing your ElevenLabs subscription usage — the characters consumed so far in the current billing period against your plan's limit — so you can keep an eye on your quota.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -175,7 +175,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The Voice Roster contains six role slots, each representing a different on-air personality. You can assign any ElevenLabs voice to any slot, tune the voice parameters independently, and enable or disable each role separately.</p>
+<p>The Voice Roster is designed around six role slots, each representing a different on-air personality. You can assign any ElevenLabs voice to a slot, tune the voice parameters independently, and enable or disable each role separately.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Currently only the <strong>MAIRA</strong> and <strong>Spotter</strong> slots are shown in the app. The Crew Chief, Sportscaster 1, Sportscaster 2, and Pit Reporter slots are still in development and are hidden for now — they are listed below so you know what each role will do, but you cannot assign or use them yet.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -188,7 +192,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Crew Chief</strong> — Tactical, authoritative, calm. Speaks directly to you about your own car: fuel warnings, tire warnings, pit window, incidents.</li>
+<li><strong>Crew Chief</strong> <em>(not yet available)</em> — Tactical, authoritative, calm. Speaks directly to you about your own car: fuel warnings, tire warnings, pit window, incidents.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -196,15 +200,15 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Sportscaster 1</strong> — Warm, theatrical, lead play-by-play. Calls session starts/ends, overtakes, and fastest laps.</li>
+<li><strong>Sportscaster 1</strong> <em>(not yet available)</em> — Warm, theatrical, lead play-by-play. Calls session starts/ends, overtakes, and fastest laps.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Sportscaster 2</strong> — Analytical, measured, colour commentary. Calls overtakes for other drivers, close battles, and caution flags.</li>
+<li><strong>Sportscaster 2</strong> <em>(not yet available)</em> — Analytical, measured, colour commentary. Calls overtakes for other drivers, close battles, and caution flags.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Pit Reporter</strong> — Energetic, on-the-ground, breathless. Calls pit stop entries and exits for other cars in the field.</li>
+<li><strong>Pit Reporter</strong> <em>(not yet available)</em> — Energetic, on-the-ground, breathless. Calls pit stop entries and exits for other cars in the field.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -341,15 +345,33 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Car Proximity</p>
+<p class="setting">Proximity Calls</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
 <p>Enables proximity calls — "car left", "car right", "car on both sides", and "clear" — whenever another car is alongside you on track. These calls are made in real time every tick while a car is present, with a configurable reminder interval to avoid repeating the same call too rapidly.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>This is not a single on/off toggle. Instead you get three independent switches, one for each session phase, so you can decide exactly when the spotter calls proximity:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Practice</strong> — proximity calls during practice sessions.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Qualifying</strong> — proximity calls during qualifying sessions.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Race</strong> — proximity calls during race sessions.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: ON</p>
+<p class="default">Default: Practice ON, Qualifying ON, Race ON</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -360,8 +382,26 @@
 <p>Enables the spotter to announce flag conditions such as caution flags and green flag restarts.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>Like Proximity Calls, this is not a single on/off toggle — it is three independent per-phase switches:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Practice</strong> — flag calls during practice sessions.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Qualifying</strong> — flag calls during qualifying sessions.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Race</strong> — flag calls during race sessions.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: ON</p>
+<p class="default">Default: Practice ON, Qualifying ON, Race ON</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -377,11 +417,81 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="phrases">Commentary Phrases</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This section is a phrase editor that lets you customize the exact things MAIRA can say. For each on-track event, MAIRA keeps a list of phrases and picks one at random when the event fires. Here you can read those phrases, edit them, add your own, remove ones you don't like, and turn whole groups off. Edits are made in the currently selected Language (from the Master section) and are saved to your Documents folder, where they override the built-in phrases.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Search...</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Type here to filter the list of event groups below. Only the groups whose event key matches what you type remain shown, which makes it easy to jump to a specific call in a long list.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Event groups</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The phrases are organized into expandable groups, one per event key (for example the different spotter proximity and flag calls). Click a group to expand it and reveal that event's Enable switch, its list of phrases, and the buttons for adding, removing, and resetting phrases.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Enabled (per group)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Each event group has its own Enable switch. Turn it off to stop MAIRA from ever using that group of phrases in live commentary, even when the event itself occurs. Groups you switch off are remembered between sessions; every group is enabled by default.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: ON (every group enabled)</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Phrase list</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Inside each group is the list of phrases MAIRA can say for that event. Edit any phrase directly in its text box — your change is saved when the box loses focus. Each phrase row also has two buttons:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li><strong>Test</strong> — sends this single phrase to ElevenLabs and plays it back, so you can hear exactly how it will sound with the current voice and language.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Remove (−)</strong> — deletes this phrase from the group.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Add Phrase</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds a new, empty phrase to the group so you can type your own line for that event. You can use the same emotion cue tags (such as <em>[excitedly]</em> or <em>[urgently]</em>) that the built-in phrases use when the Eleven v3 model is selected.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Reset</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Restores just this event group's phrases back to MAIRA's built-in set for the current language, discarding any edits, additions, or removals you made to that group.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section">How Commentary Works</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>MAIRA monitors iRacing telemetry every frame and fires commentary events when specific on-track situations occur. Each event type has an independent cooldown timer to prevent the same call from triggering too frequently. When an event fires, MAIRA picks a random phrase from its built-in template library (available in 25 languages), substitutes in the relevant driver names, positions, and lap times, and sends the text to ElevenLabs.</p>
+<p>MAIRA monitors iRacing telemetry every frame and fires commentary events when specific on-track situations occur. Each event type has an independent cooldown timer to prevent the same call from triggering too frequently. When an event fires, MAIRA picks a random phrase from its built-in template library (available in 36 languages), substitutes in the relevant driver names, positions, and lap times, and sends the text to ElevenLabs.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
