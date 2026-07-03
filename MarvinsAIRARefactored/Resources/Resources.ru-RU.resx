@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Педали Simagic P500</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Прототип педалей</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Помощь</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>Громкость слота</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Тест</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Осторожно / Жёлтый флаг</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Баланс</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>Назначения кнопок</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Отмена</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Копировать текущие назначения</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Удалить профиль</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Вы уверены, что хотите удалить этот профиль контроллера?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Назначить</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Новый профиль контроллера</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Новый профиль</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>ОК</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Профиль</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Имя профиля</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Записать</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(не назначено)</value>
   </data>
 
 

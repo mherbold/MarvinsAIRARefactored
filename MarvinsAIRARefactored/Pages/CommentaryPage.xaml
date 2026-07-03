@@ -216,7 +216,7 @@
                         <controls:MairaButton Grid.Row="4"
                                               Grid.Column="4"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
-                                              Label="{Binding Localization[TestVoice]}"
+                                              Label="{Binding Localization[Test]}"
                                               Click="Slot5Test_MairaButton_Click"
                                               IsSmall="True">
                             <controls:MairaButton.Disabled>
@@ -311,7 +311,7 @@
                         <controls:MairaButton Grid.Row="4"
                                               Grid.Column="4"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
-                                              Label="{Binding Localization[TestVoice]}"
+                                              Label="{Binding Localization[Test]}"
                                               Click="Slot0Test_MairaButton_Click"
                                               IsSmall="True">
                             <controls:MairaButton.Disabled>
@@ -406,7 +406,7 @@
                         <controls:MairaButton Grid.Row="4"
                                               Grid.Column="4"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
-                                              Label="{Binding Localization[TestVoice]}"
+                                              Label="{Binding Localization[Test]}"
                                               Click="Slot1Test_MairaButton_Click"
                                               IsSmall="True">
                             <controls:MairaButton.Disabled>
@@ -501,7 +501,7 @@
                         <controls:MairaButton Grid.Row="4"
                                               Grid.Column="4"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
-                                              Label="{Binding Localization[TestVoice]}"
+                                              Label="{Binding Localization[Test]}"
                                               Click="Slot2Test_MairaButton_Click"
                                               IsSmall="True">
                             <controls:MairaButton.Disabled>
@@ -596,7 +596,7 @@
                         <controls:MairaButton Grid.Row="4"
                                               Grid.Column="4"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
-                                              Label="{Binding Localization[TestVoice]}"
+                                              Label="{Binding Localization[Test]}"
                                               Click="Slot3Test_MairaButton_Click"
                                               IsSmall="True">
                             <controls:MairaButton.Disabled>
@@ -690,7 +690,7 @@
                         <controls:MairaButton Grid.Row="4"
                                               Grid.Column="4"
                                               Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
-                                              Label="{Binding Localization[TestVoice]}"
+                                              Label="{Binding Localization[Test]}"
                                               Click="Slot4Test_MairaButton_Click"
                                               IsSmall="True">
                             <controls:MairaButton.Disabled>

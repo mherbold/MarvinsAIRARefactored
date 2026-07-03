@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Pedale Simagic P500</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Pedale prototip</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Ajutor</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>Volum slot</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Test</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Atenție / Steag galben</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Balans</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>Asocieri de butoane</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anulează</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Copiază asocierile curente</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Șterge profilul</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Sigur doriți să ștergeți acest profil de controler?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Asociază</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Profil de controler nou</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Profil nou</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Numele profilului</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Înregistrează</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(neasociat)</value>
   </data>
 
 

@@ -1143,9 +1143,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 pedaalid</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Prototüübi pedaalid</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Abi</value>
   </data>
@@ -1655,9 +1652,6 @@
   </data>
   <data name="SlotVolume" xml:space="preserve">
     <value>Pesa helitugevus</value>
-  </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Test</value>
   </data>
   <data name="Caution" xml:space="preserve">
     <value>Ettevaatust / kollane lipp</value>

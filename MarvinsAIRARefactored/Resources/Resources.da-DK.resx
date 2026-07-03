@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 Pedaler</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Prototype Pedaler</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Hjælp</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>Slot-lydstyrke</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Test</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Advarsel / Gult flag</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Balance</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>Knaptildelinger</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuller</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Kopiér nuværende tildelinger</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Slet profil</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Er du sikker på, at du vil slette denne controllerprofil?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Tildel</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Ny controllerprofil</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Ny profil</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Profilnavn</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Optag</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(ikke tildelt)</value>
   </data>
 
 

@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>แป้นเหยียบ Simagic P500</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>แป้นเหยียบต้นแบบ</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>ช่วยเหลือ</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>ระดับเสียงช่อง</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>ทดสอบ</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>ระวัง / ธงเหลือง</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>สมดุล</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>การแมปปุ่ม</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ยกเลิก</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>คัดลอกการแมปปัจจุบัน</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>ลบโปรไฟล์</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>คุณแน่ใจหรือไม่ว่าต้องการลบโปรไฟล์คอนโทรลเลอร์นี้?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>แมป</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>โปรไฟล์คอนโทรลเลอร์ใหม่</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>โปรไฟล์ใหม่</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>ตกลง</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>โปรไฟล์</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>ชื่อโปรไฟล์</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>บันทึก</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(ยังไม่ได้แมป)</value>
   </data>
 
 

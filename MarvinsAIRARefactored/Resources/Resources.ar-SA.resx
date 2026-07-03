@@ -1143,9 +1143,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>دواسات Simagic P500</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>دواسات أولية</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>المساعدة</value>
   </data>
@@ -1655,9 +1652,6 @@
   </data>
   <data name="SlotVolume" xml:space="preserve">
     <value>مستوى صوت الفتحة</value>
-  </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>اختبار</value>
   </data>
   <data name="Caution" xml:space="preserve">
     <value>تحذير / علم أصفر</value>

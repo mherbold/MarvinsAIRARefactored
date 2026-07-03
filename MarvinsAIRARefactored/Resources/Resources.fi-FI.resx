@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 -polkimet</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Prototyyppipolkimet</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Ohje</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>Paikavoimakkuus</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Testi</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Varoitus / Keltainen lippu</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Tasapaino</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>Painikemääritykset</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Peruuta</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Kopioi nykyiset määritykset</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Poista profiili</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Haluatko varmasti poistaa tämän ohjainprofiilin?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Määritä</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Uusi ohjainprofiili</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Uusi profiili</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profiili</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Profiilin nimi</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Nauhoita</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(ei määritetty)</value>
   </data>
 
 

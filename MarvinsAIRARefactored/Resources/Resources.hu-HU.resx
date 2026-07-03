@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 pedálok</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Prototípus pedálok</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Súgó</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>Slot hangerő</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Teszt</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Vigyázat / Sárga zászló</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Egyensúly</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>Gombkiosztások</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Mégse</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Jelenlegi kiosztások másolása</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Profil törlése</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Biztosan törli ezt a vezérlőprofilt?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Hozzárendelés</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Új vezérlőprofil</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Új profil</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Profil neve</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Rögzítés</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(nincs hozzárendelve)</value>
   </data>
 
 

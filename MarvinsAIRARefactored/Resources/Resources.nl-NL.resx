@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500-pedalen</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Prototype-pedalen</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>Slot­volume</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Test</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Voorzichtig / Gele vlag</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Balans</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>Knoptoewijzingen</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Annuleren</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Huidige toewijzingen kopiëren</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Profiel verwijderen</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Weet je zeker dat je dit controllerprofiel wilt verwijderen?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Toewijzen</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Nieuw controllerprofiel</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Nieuw profiel</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profiel</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Profielnaam</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Opnemen</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(niet toegewezen)</value>
   </data>
 
 

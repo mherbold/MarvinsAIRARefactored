@@ -1143,9 +1143,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 페달</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>프로토타입 페달</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>도움말</value>
   </data>
@@ -1655,9 +1652,6 @@
   </data>
   <data name="SlotVolume" xml:space="preserve">
     <value>슬롯 볼륨</value>
-  </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>테스트</value>
   </data>
   <data name="Caution" xml:space="preserve">
     <value>주의 / 옐로 플래그</value>

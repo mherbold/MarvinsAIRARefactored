@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>דוושות Simagic P500</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>דוושות אב-טיפוס</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>עזרה</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>עוצמת ערוץ</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>בדיקה</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>זהירות / דגל צהוב</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>איזון</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>מיפויי כפתורים</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>ביטול</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>העתק את המיפויים הנוכחיים</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>מחק פרופיל</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>האם אתה בטוח שברצונך למחוק את פרופיל הבקר הזה?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>מפה</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>פרופיל בקר חדש</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>פרופיל חדש</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>אישור</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>פרופיל</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>שם הפרופיל</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>הקלט</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(לא ממופה)</value>
   </data>
 
 

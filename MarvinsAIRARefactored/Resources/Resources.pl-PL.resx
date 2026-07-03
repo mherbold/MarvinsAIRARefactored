@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Pedały Simagic P500</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Pedały prototypowe</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Pomoc</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>Głośność slotu</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Test</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Ostrożnie / Żółta flaga</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Balans</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>Przypisania przycisków</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Anuluj</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Kopiuj bieżące przypisania</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Usuń profil</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Czy na pewno chcesz usunąć ten profil kontrolera?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Przypisz</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Nowy profil kontrolera</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Nowy profil</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Nazwa profilu</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Nagraj</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(nieprzypisane)</value>
   </data>
 
 

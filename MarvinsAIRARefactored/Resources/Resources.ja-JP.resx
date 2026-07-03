@@ -1097,9 +1097,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 ペダル</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>プロトタイプ ペダル</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>ヘルプ</value>
   </data>
@@ -1599,9 +1596,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>スロット音量</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>テスト</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>コーション / 黄旗</value>
   </data>
@@ -1783,6 +1777,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>バランス</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>ボタンの割り当て</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>キャンセル</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>現在の割り当てをコピー</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>プロファイルを削除</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>このコントローラープロファイルを削除してもよろしいですか？</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>割り当て</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>新しいコントローラープロファイル</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>新しいプロファイル</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>プロファイル</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>プロファイル名</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>記録</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>（未割り当て）</value>
   </data>
 
 

@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Pedalau Simagic P500</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Pedalau Prototeip</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Cymorth</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>Cyfaint Slot</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Prawf</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Rhybudd / Baner Felen</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Cydbwysedd</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>Mapiadau Botymau</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Canslo</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Copïo'r mapiadau presennol</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Dileu Proffil</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Ydych chi'n siŵr eich bod am ddileu'r proffil rheolydd hwn?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Mapio</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Proffil Rheolydd Newydd</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Proffil Newydd</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>Iawn</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Proffil</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Enw'r Proffil</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Recordio</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(heb ei fapio)</value>
   </data>
 
 

@@ -1143,9 +1143,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 पैडल</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>प्रोटोटाइप पैडल</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>सहायता</value>
   </data>
@@ -1655,9 +1652,6 @@
   </data>
   <data name="SlotVolume" xml:space="preserve">
     <value>स्लॉट वॉल्यूम</value>
-  </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>टेस्ट</value>
   </data>
   <data name="Caution" xml:space="preserve">
     <value>सावधानी / पीला झंडा</value>

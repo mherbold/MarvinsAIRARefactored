@@ -1095,9 +1095,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 踏板</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>原型踏板</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>帮助</value>
   </data>
@@ -1596,9 +1593,6 @@
   <data name="SlotVolume" xml:space="preserve">
     <value>槽位音量</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>测试</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>注意 / 黄旗</value>
   </data>
@@ -1780,6 +1774,45 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>平衡</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>按钮映射</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>复制当前映射</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>删除配置文件</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>确定要删除此控制器配置文件吗？</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>映射</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>新建控制器配置文件</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>新建配置文件</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>确定</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>配置文件</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>配置文件名称</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>录制</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>（未映射）</value>
   </data>
 
 

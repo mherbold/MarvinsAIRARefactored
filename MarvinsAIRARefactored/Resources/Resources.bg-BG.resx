@@ -1143,9 +1143,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Педали Simagic P500</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Прототипни педали</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Помощ</value>
   </data>
@@ -1655,9 +1652,6 @@
   </data>
   <data name="SlotVolume" xml:space="preserve">
     <value>Сила на звука на слота</value>
-  </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Тест</value>
   </data>
   <data name="Caution" xml:space="preserve">
     <value>Внимание / Жълт флаг</value>

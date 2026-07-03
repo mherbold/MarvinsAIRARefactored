@@ -1099,9 +1099,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 Pedale</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>Pedal Prototyp</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>Hilfe</value>
   </data>
@@ -1601,9 +1598,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="SlotVolume" xml:space="preserve">
     <value>Slot-Lautstärke</value>
   </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>Testen</value>
-  </data>
   <data name="Caution" xml:space="preserve">
     <value>Vorsicht / Gelbe Flagge</value>
   </data>
@@ -1785,6 +1779,45 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Balance</value>
+  </data>
+  <data name="ButtonMappings" xml:space="preserve">
+    <value>Tastenzuordnungen</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Abbrechen</value>
+  </data>
+  <data name="CopyCurrentMappings" xml:space="preserve">
+    <value>Aktuelle Zuordnungen kopieren</value>
+  </data>
+  <data name="DeleteProfile" xml:space="preserve">
+    <value>Profil löschen</value>
+  </data>
+  <data name="DeleteProfileConfirmation" xml:space="preserve">
+    <value>Möchten Sie dieses Controller-Profil wirklich löschen?</value>
+  </data>
+  <data name="Map" xml:space="preserve">
+    <value>Zuordnen</value>
+  </data>
+  <data name="NewControllerProfile" xml:space="preserve">
+    <value>Neues Controller-Profil</value>
+  </data>
+  <data name="NewProfile" xml:space="preserve">
+    <value>Neues Profil</value>
+  </data>
+  <data name="OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profil</value>
+  </data>
+  <data name="ProfileName" xml:space="preserve">
+    <value>Profilname</value>
+  </data>
+  <data name="Record" xml:space="preserve">
+    <value>Aufnehmen</value>
+  </data>
+  <data name="Unmapped" xml:space="preserve">
+    <value>(nicht zugeordnet)</value>
   </data>
 
 

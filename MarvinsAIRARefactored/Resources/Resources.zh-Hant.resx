@@ -1143,9 +1143,6 @@
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 踏板</value>
   </data>
-  <data name="PedalsPrototype" xml:space="preserve">
-    <value>原型踏板</value>
-  </data>
   <data name="Help" xml:space="preserve">
     <value>說明</value>
   </data>
@@ -1655,9 +1652,6 @@
   </data>
   <data name="SlotVolume" xml:space="preserve">
     <value>插槽音量</value>
-  </data>
-  <data name="TestVoice" xml:space="preserve">
-    <value>測試</value>
   </data>
   <data name="Caution" xml:space="preserve">
     <value>注意 / 黃旗</value>
