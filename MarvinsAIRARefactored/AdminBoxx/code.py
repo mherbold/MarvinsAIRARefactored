@@ -9,7 +9,7 @@ from adafruit_neotrellis.neotrellis import NeoTrellis
 from adafruit_neotrellis.multitrellis import MultiTrellis
 
 # Version
-VERSION = "4.0.6"
+VERSION = "4.0.7"
 
 # Configuration
 num_rows = 4
@@ -18,16 +18,71 @@ heartbeat_timeout = 2
 
 # Color constants
 disabled = (0, 0, 0)
+
 white = (32, 32, 32)
-red = (32, 32, 32)
+red = (32, 0, 0)
 yellow = (32, 32, 0)
+
+dark_white = (4, 4, 4)
 dark_red = (4, 0, 0)
 dark_yellow = (4, 4, 0)
 
-# Initialize I2C and trellis
-i2c_bus = busio.I2C(board.SCL, board.SDA)
-trellises = [[NeoTrellis(i2c_bus, addr=0x2E), NeoTrellis(i2c_bus, addr=0x2F)]]
-trellis = MultiTrellis(trellises)
+# Hardware watchdog: if the main loop or any I2C call ever stalls (for example a
+# power glitch on PC restart leaves the NeoTrellis bus wedged mid-startup), the
+# board hard-resets and re-runs startup instead of freezing with LEDs half-lit
+# until it is physically unplugged. Wrapped in try/except so the firmware still
+# runs on any board that lacks watchdog support.
+try:
+    import microcontroller
+    from watchdog import WatchDogMode
+
+    watchdog = microcontroller.watchdog
+    watchdog.timeout = 5
+    watchdog.mode = WatchDogMode.RESET
+    watchdog.feed()
+    print("Watchdog enabled.")
+
+except Exception as e:
+    watchdog = None
+    print(f"Watchdog not available: {e}")
+
+def feed_watchdog():
+    if watchdog is not None:
+        watchdog.feed()
+
+# Give the NeoTrellis boards a moment to settle after a (possibly glitchy) power-up
+time.sleep(1)
+
+# Initialize I2C and trellis, retrying so a transient power/I2C glitch self-recovers
+# instead of hanging. If the bus was already claimed on a failed attempt, deinit it
+# first so the pins are free for the next try.
+i2c_bus = None
+trellises = None
+trellis = None
+
+while True:
+    try:
+        if i2c_bus is None:
+            i2c_bus = busio.I2C(board.SCL, board.SDA)
+
+        trellises = [[NeoTrellis(i2c_bus, addr=0x2E), NeoTrellis(i2c_bus, addr=0x2F)]]
+        trellis = MultiTrellis(trellises)
+        break
+
+    except Exception as e:
+        print(f"I2C/trellis init failed, retrying: {e}")
+
+        if i2c_bus is not None:
+            try:
+                i2c_bus.deinit()
+
+            except Exception:
+                pass
+
+            i2c_bus = None
+
+        feed_watchdog()
+        time.sleep(1)
 
 # Set all LEDs to one color
 def set_all_leds(color):
@@ -44,6 +99,8 @@ def get_key_for(x, y):
 
 # Indicate startup
 print("Starting up.")
+
+feed_watchdog()
 
 set_all_leds(white)
 time.sleep(0.4)
@@ -100,6 +157,7 @@ def non_blocking_sleep(duration):
         if usb_cdc.data.in_waiting:
             return
             
+        feed_watchdog()
         trellis.sync()
         time.sleep(0.01)
 
@@ -134,6 +192,7 @@ set_all_leds(disabled)
 # Main loop
 while True:
     current_time = time.monotonic()
+    feed_watchdog()
     trellis.sync()
 
     # Recovery button hold check
@@ -162,6 +221,7 @@ while True:
         recovery_button_start = None
         
     while usb_cdc.data.in_waiting:
+        feed_watchdog()
         current_time = time.monotonic()
         byte = usb_cdc.data.read(1)
 
@@ -257,7 +317,7 @@ while True:
         set_all_leds(disabled)
 
         if not usb_connected:
-            flash_led(3, 3, red)
+            flash_led(3, 3, white)
 
         else:
             flash_led(3, 3, yellow)
@@ -265,7 +325,7 @@ while True:
         non_blocking_sleep(300)
 
         if not usb_connected:
-            trellis.color(3, 3, dark_red)
+            trellis.color(3, 3, dark_white)
 
         else:
             trellis.color(3, 3, dark_yellow)
