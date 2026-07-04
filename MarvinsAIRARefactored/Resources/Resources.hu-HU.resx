@@ -1813,7 +1813,10 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(nincs hozzárendelve)</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>Autónkénti overlay pozíció és méretezés engedélyezése</value>
   </data>
+
 
 
 

@@ -1813,7 +1813,10 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(niet toegewezen)</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>Overlaypositie en -schaal per auto inschakelen</value>
   </data>
+
 
 
 

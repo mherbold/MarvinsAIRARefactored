@@ -1819,7 +1819,10 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(не призначено)</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>Увімкнути положення та масштаб оверлея для кожного авто</value>
   </data>
+
 
 
 

@@ -133,6 +133,10 @@ public class SettingsFile
 			// "Default" controller profile) and guarantee a valid active profile.
 			DataContext.DataContext.Instance.Settings.EnsureControllerProfilesInitialized();
 
+			// One-time: seed the non-car overlay layout from the existing top-level overlay position/scale values
+			// so users upgrading from a version without per-car overlays keep their current layout.
+			DataContext.DataContext.Instance.Settings.MigrateOverlayLayoutToNonCarBaseline();
+
 			Settings.SuppressUpdatingOfContextSettings = false;
 
 			PauseSerialization = false;

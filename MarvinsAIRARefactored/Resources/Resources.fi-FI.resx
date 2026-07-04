@@ -1813,7 +1813,10 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(ei määritetty)</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>Ota käyttöön autokohtainen peitteen sijainti ja skaalaus</value>
   </data>
+
 
 
 

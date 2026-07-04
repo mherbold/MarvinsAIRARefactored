@@ -1813,7 +1813,10 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(sense assignar)</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>Activa la posició i l'escala de la superposició per cotxe</value>
   </data>
+
 
 
 

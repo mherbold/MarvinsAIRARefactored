@@ -1815,7 +1815,10 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Tasakaal</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>Luba ülekatte asukoht ja mastaap iga auto jaoks</value>
   </data>
+
 
 
 

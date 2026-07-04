@@ -1816,7 +1816,10 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>（未割り当て）</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>車種ごとのオーバーレイの位置とスケールを有効にする</value>
   </data>
+
 
 
 

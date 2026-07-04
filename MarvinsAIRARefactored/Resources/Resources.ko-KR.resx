@@ -1815,7 +1815,10 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>밸런스</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>차량별 오버레이 위치 및 크기 조정 활성화</value>
   </data>
+
 
 
 

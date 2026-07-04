@@ -1815,7 +1815,10 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Vyváženie</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>Povoliť pozíciu a mierku prekrytia pre každé auto</value>
   </data>
+
 
 
 

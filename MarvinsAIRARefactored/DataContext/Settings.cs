@@ -52,6 +52,12 @@ public class Settings : INotifyPropertyChanged
 					UpdateSettings( true );
 				}
 
+				// persist overlay position/scale changes to the active (per-car or non-car) overlay layout store
+				if ( !SuppressUpdatingOfContextSettings && OverlayLayoutPropertyNames.Contains( propertyName ) )
+				{
+					SaveActiveOverlayLayout();
+				}
+
 				if ( !isXmlIgnored )
 				{
 					app.SettingsFile.QueueForSerialization = true;
@@ -444,6 +450,13 @@ public class Settings : INotifyPropertyChanged
 		}
 
 		SuppressUpdatingOfContextSettings = false;
+
+		// read mode runs on car / session / weather change and at startup; refresh the overlays to the layout
+		// for the now-current car (or the non-car layout when per-car is disabled or no car is active)
+		if ( !updateContextSettings )
+		{
+			LoadOverlayLayout();
+		}
 	}
 
 	/// <summary>Updates only the display strings that depend on the iRacing speed units (MPH vs KPH).</summary>
@@ -10715,6 +10728,158 @@ public class Settings : INotifyPropertyChanged
 			app.UpdateDeltaMonitorWindowVisibility();
 			app.UpdateGripOMeterWindowVisibility();
 		}
+	}
+
+	#endregion
+
+	#region Overlays - Per-car position and scaling
+
+	private bool _overlaysEnablePerCarPositionAndScaling = true;
+
+	public bool OverlaysEnablePerCarPositionAndScaling
+	{
+		get => _overlaysEnablePerCarPositionAndScaling;
+
+		set
+		{
+			if ( value != _overlaysEnablePerCarPositionAndScaling )
+			{
+				_overlaysEnablePerCarPositionAndScaling = value;
+
+				OnPropertyChanged();
+
+				// swap the live overlay layout to match the new mode as soon as the user flips the switch
+				// (SuppressUpdatingOfContextSettings is true during settings deserialization, so this is skipped there)
+				if ( !SuppressUpdatingOfContextSettings )
+				{
+					LoadOverlayLayout();
+				}
+			}
+		}
+	}
+
+	// The non-car overlay layout: used when per-car overlays are disabled, and copied into a car's entry the
+	// first time that car is seen (it acts as the default layout for new cars).
+	public OverlayLayoutSettings OverlaysNonCarLayout { get; set; } = new();
+
+	// Per-car overlay layouts, keyed by iRacing car screen name (the same identifier Context uses for PerCar).
+	public SerializableDictionary<string, OverlayLayoutSettings> OverlaysCarLayoutDictionary { get; set; } = [];
+
+	// One-time flag: set once the existing (pre-feature) top-level overlay position/scale values have been seeded
+	// into OverlaysNonCarLayout, so users upgrading from a version without per-car overlays keep their layout.
+	public bool OverlaysLayoutMigrated { get; set; } = false;
+
+	// The eight live overlay position/scale properties that participate in the per-car layout system.
+	private static readonly HashSet<string> OverlayLayoutPropertyNames = new()
+	{
+		nameof( OverlaysGapMonitorWindowPosition ), nameof( OverlaysGapMonitorWindowScale ),
+		nameof( OverlaysDeltaMonitorWindowPosition ), nameof( OverlaysDeltaMonitorWindowScale ),
+		nameof( OverlaysGripOMeterWindowPosition ), nameof( OverlaysGripOMeterWindowScale ),
+		nameof( OverlaysSpeechToTextWindowPosition ), nameof( OverlaysSpeechToTextWindowScale ),
+	};
+
+	// Returns the layout store the overlays should currently read from / write to. With per-car enabled and a car
+	// active, this is that car's entry (created from the non-car layout the first time the car is seen); otherwise
+	// it is the shared non-car layout.
+	private OverlayLayoutSettings GetActiveOverlayLayout()
+	{
+		var app = App.Instance!;
+
+		if ( OverlaysEnablePerCarPositionAndScaling )
+		{
+			var carScreenName = app.Simulator.CarScreenName;
+
+			if ( !string.IsNullOrEmpty( carScreenName ) )
+			{
+				if ( !OverlaysCarLayoutDictionary.TryGetValue( carScreenName, out var carLayout ) )
+				{
+					carLayout = OverlaysNonCarLayout.Clone();
+
+					OverlaysCarLayoutDictionary.Add( carScreenName, carLayout );
+
+					app.SettingsFile.QueueForSerialization = true;
+
+					app.Logger.WriteLine( $"[Settings] Created per-car overlay layout for \"{carScreenName}\" from the non-car layout" );
+				}
+
+				return carLayout;
+			}
+		}
+
+		return OverlaysNonCarLayout;
+	}
+
+	// Copies the active layout's stored values into the live overlay properties and repositions any open overlay
+	// windows. Called on every car/session change (via UpdateSettings) and when the master switch is toggled.
+	public void LoadOverlayLayout()
+	{
+		var app = App.Instance!;
+
+		var layout = GetActiveOverlayLayout();
+
+		// suppress so the setters below don't immediately write the values straight back to the store
+		var wasSuppressed = SuppressUpdatingOfContextSettings;
+
+		SuppressUpdatingOfContextSettings = true;
+
+		OverlaysGapMonitorWindowPosition = layout.GapMonitorWindowPosition;
+		OverlaysGapMonitorWindowScale = layout.GapMonitorWindowScale;
+		OverlaysDeltaMonitorWindowPosition = layout.DeltaMonitorWindowPosition;
+		OverlaysDeltaMonitorWindowScale = layout.DeltaMonitorWindowScale;
+		OverlaysGripOMeterWindowPosition = layout.GripOMeterWindowPosition;
+		OverlaysGripOMeterWindowScale = layout.GripOMeterWindowScale;
+		OverlaysSpeechToTextWindowPosition = layout.SpeechToTextWindowPosition;
+		OverlaysSpeechToTextWindowScale = layout.SpeechToTextWindowScale;
+
+		SuppressUpdatingOfContextSettings = wasSuppressed;
+
+		// window scale re-applies automatically through the XAML ScaleTransform binding; position does not, so
+		// nudge any open windows to the freshly loaded position
+		app.GapMonitorWindow?.ApplyPositionFromSettings();
+		app.DeltaMonitorWindow?.ApplyPositionFromSettings();
+		app.GripOMeterWindow?.ApplyPositionFromSettings();
+		app.SpeechToTextWindow?.ApplyPositionFromSettings();
+	}
+
+	// Copies the live overlay properties into the active layout store. Called whenever one of the eight live
+	// overlay layout properties changes (drag / scale / reset).
+	private void SaveActiveOverlayLayout()
+	{
+		var layout = GetActiveOverlayLayout();
+
+		layout.GapMonitorWindowPosition = OverlaysGapMonitorWindowPosition;
+		layout.GapMonitorWindowScale = OverlaysGapMonitorWindowScale;
+		layout.DeltaMonitorWindowPosition = OverlaysDeltaMonitorWindowPosition;
+		layout.DeltaMonitorWindowScale = OverlaysDeltaMonitorWindowScale;
+		layout.GripOMeterWindowPosition = OverlaysGripOMeterWindowPosition;
+		layout.GripOMeterWindowScale = OverlaysGripOMeterWindowScale;
+		layout.SpeechToTextWindowPosition = OverlaysSpeechToTextWindowPosition;
+		layout.SpeechToTextWindowScale = OverlaysSpeechToTextWindowScale;
+
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+	}
+
+	// One-time migration: seed the non-car layout from the existing top-level overlay position/scale values so
+	// users upgrading from a version without per-car overlays keep their current layout as the non-car default.
+	public void MigrateOverlayLayoutToNonCarBaseline()
+	{
+		if ( OverlaysLayoutMigrated )
+		{
+			return;
+		}
+
+		OverlaysNonCarLayout.GapMonitorWindowPosition = OverlaysGapMonitorWindowPosition;
+		OverlaysNonCarLayout.GapMonitorWindowScale = OverlaysGapMonitorWindowScale;
+		OverlaysNonCarLayout.DeltaMonitorWindowPosition = OverlaysDeltaMonitorWindowPosition;
+		OverlaysNonCarLayout.DeltaMonitorWindowScale = OverlaysDeltaMonitorWindowScale;
+		OverlaysNonCarLayout.GripOMeterWindowPosition = OverlaysGripOMeterWindowPosition;
+		OverlaysNonCarLayout.GripOMeterWindowScale = OverlaysGripOMeterWindowScale;
+		OverlaysNonCarLayout.SpeechToTextWindowPosition = OverlaysSpeechToTextWindowPosition;
+		OverlaysNonCarLayout.SpeechToTextWindowScale = OverlaysSpeechToTextWindowScale;
+
+		OverlaysLayoutMigrated = true;
+
+		App.Instance!.SettingsFile.QueueForSerialization = true;
 	}
 
 	#endregion

@@ -1813,7 +1813,10 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(ยังไม่ได้แมป)</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>เปิดใช้งานตำแหน่งและขนาดของโอเวอร์เลย์แยกตามรถ</value>
   </data>
+
 
 
 

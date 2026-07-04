@@ -35,6 +35,11 @@
                                       IsOn="{Binding Settings.OverlaysShowInReplayMode, Mode=TwoWay}"
                                       Label="{Binding Localization[ShowInReplayMode]}" />
 
+                <controls:MairaSwitch x:Name="EnablePerCarPositionAndScaling_MairaSwitch"
+                                      Margin="0,10,0,0"
+                                      IsOn="{Binding Settings.OverlaysEnablePerCarPositionAndScaling, Mode=TwoWay}"
+                                      Label="{Binding Localization[EnablePerCarOverlayPositionAndScaling]}" />
+
                 <controls:MairaButton x:Name="ResetAllOverlays_MairaButton"
                                       Margin="0,20,0,0"
                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"

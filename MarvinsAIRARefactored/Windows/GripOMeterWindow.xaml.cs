@@ -102,6 +102,18 @@ public partial class GripOMeterWindow : Window
 		Top = 0;
 	}
 
+	// Re-applies the window position from settings (used when the active overlay layout changes, e.g. on a car
+	// change). Scale re-applies automatically through the XAML ScaleTransform binding, so only position is set here.
+	public void ApplyPositionFromSettings()
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var rectangle = settings.OverlaysGripOMeterWindowPosition;
+
+		Left = rectangle.Location.X;
+		Top = rectangle.Location.Y;
+	}
+
 	public void MakeDraggable()
 	{
 		_isDraggable = App.Instance!.OverlaysDraggable;

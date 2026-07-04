@@ -1815,7 +1815,10 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>平衡</value>
+  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+    <value>啟用每輛車的疊加層位置與縮放</value>
   </data>
+
 
 
 
