@@ -128,7 +128,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>While Auto-Tune is ON, the Max g force knobs for Surge, Sway, and Heave — along with the Seat of Pants Amplitude and Curve — are driven automatically and appear disabled. Turning Auto-Tune OFF hands control back to you and keeps the last learned values as your manual starting point.</p>
+<p>While Auto-Tune is ON, the Max g force knobs for Surge, Sway, and Heave — along with the Seat of Pants Amplitude and Curve — are driven automatically and appear disabled. Turning Auto-Tune OFF hands control back to you and restores your own manual settings.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -160,7 +160,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Learning only happens while you are cleanly driving on the track surface above about 20 mph (32 km/h) — it pauses when you are off track, in the pits, or while crash or curb protection is active. Learned peaks decay slowly over time so the tune keeps adapting as grip and conditions change, and the values are saved periodically. Because Auto-Tune uses MAIRA's per-context system, each car (and any other context dimension you configure) learns and keeps its own tune.</p>
+<p>Learning only happens while you are cleanly driving on the track surface above about 20 mph (32 km/h) — it pauses when you are off track, in the pits, or while crash or curb protection is active. Sudden one-off spikes in the G forces are ignored as well, so a single bump, curb strike, or light contact cannot skew the tune. Learned peaks decay slowly over time so the tune keeps adapting as grip and conditions change. The learned values are not saved — Auto-Tune starts fresh from a light baseline each time you go on track and reconverges within a second or two. Its on/off state and the balance are still remembered per car through MAIRA's per-context system.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

@@ -114,16 +114,12 @@ public class GTensioner
 
 	private const float AutoTuneFloorG = 1f;                       // learned target never below 1 G (also the SoP floor, in raw signal units)
 	private const float AutoTuneDrainPerUpdate = 1f / 300f / 20f;  // seen peaks drain 1 G per 300 seconds at 20 Hz updates
+	private const float AutoTuneAttackPerUpdate = 0.1f;            // seen peaks rise at most 0.1 G per 20 Hz update (2 G/sec) so brief spikes can't yank them up
 	private const float AutoTuneApproachAlpha = 0.14f;             // ~95% convergence in 1 second at 20 Hz
 	private const float AutoTuneMinSpeed = 8.9408f;                // 20 mph in m/s - below this, learning is frozen
-	private const int AutoTuneWriteInterval = 200;                 // settings write-back every 10 seconds at 20 Hz
 	private const float AutoTuneMinWeight = 0.001f;                // divide-by-zero guard for the balance weights
-	private const float AutoTuneWriteEpsilon = 0.01f;              // minimum change worth persisting
-	private const float AutoTuneReseedEpsilon = 0.005f;            // external settings change (context switch) detection
 
-	private bool _autoTuneSeeded = false;
 	private bool _autoTuneWasEnabled = false;
-	private bool _autoTuneGateWasActive = false;
 
 	private float _autoTuneSurgePeakG = AutoTuneFloorG;
 	private float _autoTuneSwayPeakG = AutoTuneFloorG;
@@ -134,13 +130,6 @@ public class GTensioner
 	private float _autoTuneSwayEffectiveG = AutoTuneFloorG;
 	private float _autoTuneHeaveEffectiveG = AutoTuneFloorG;
 	private float _autoTuneSopEffectiveScale = AutoTuneFloorG;
-
-	private float _lastWrittenSurgeMaxG = 0f;
-	private float _lastWrittenSwayMaxG = 0f;
-	private float _lastWrittenHeaveMaxG = 0f;
-	private float _lastWrittenSopScale = 0f;
-
-	private int _autoTuneWriteCounter = 0;
 
 	private SteeringEffects.SeatOfPantsAlgorithm _autoTuneSopAlgorithm = SteeringEffects.SeatOfPantsAlgorithm.YAcceleration;
 
@@ -270,12 +259,6 @@ public class GTensioner
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[GTensioner] Disconnect >>>" );
-
-		// Persist any pending auto-tuned values before going quiet
-		if ( _autoTuneSeeded )
-		{
-			WriteBackAutoTunedSettings( DataContext.DataContext.Instance.Settings );
-		}
 
 		IsConnected = false;
 
@@ -495,14 +478,18 @@ public class GTensioner
 		MainWindow._gTensionerPage.HeaveMaxGString = _heaveMaxG > float.MinValue ? $"{_heaveMaxG:F2} G" : "---";
 
 		// --- Auto-tune: learn the car's G envelope and adapt the per-axis max G scalings ---
+		//
+		// The learned values are deliberately never persisted. They re-initialize to the 1 G floor on
+		// every track entry (see Tick) and whenever auto-tune is switched on, then reconverge to the
+		// car/track within a second or two - so there is nothing worth saving, and no settings-file or
+		// log churn from constant write-backs.
 
 		var autoTuneOn = settings.GTensionerAutoTuneEnabled;
 
-		// On the enabled -> disabled transition, persist the last auto-tuned values so they become
-		// the user's manual starting point
-		if ( !autoTuneOn && _autoTuneWasEnabled && _autoTuneSeeded )
+		// Start learning fresh from the 1 G floor whenever auto-tune is switched on
+		if ( autoTuneOn && !_autoTuneWasEnabled )
 		{
-			WriteBackAutoTunedSettings( settings );
+			ResetAutoTune();
 		}
 
 		_autoTuneWasEnabled = autoTuneOn;
@@ -531,16 +518,6 @@ public class GTensioner
 				swayWeight = surgeWeight = heaveWeight = 1f / 3f;
 			}
 
-			// Seed on first enable, or reseed when the settings changed externally (car/track context switch)
-			if ( !_autoTuneSeeded
-				|| ( MathF.Abs( settings.GTensionerSurgeMaxG - _lastWrittenSurgeMaxG ) > AutoTuneReseedEpsilon )
-				|| ( MathF.Abs( settings.GTensionerSwayMaxG - _lastWrittenSwayMaxG ) > AutoTuneReseedEpsilon )
-				|| ( MathF.Abs( settings.GTensionerHeaveMaxG - _lastWrittenHeaveMaxG ) > AutoTuneReseedEpsilon )
-				|| ( MathF.Abs( settings.GTensionerAutoTuneSeatOfPantsScale - _lastWrittenSopScale ) > AutoTuneReseedEpsilon ) )
-			{
-				SeedAutoTune( settings, swayWeight, surgeWeight, heaveWeight );
-			}
-
 			// Learning gate: only adapt while cleanly driving on the track surface
 			var gateActive = app.Simulator.IsOnTrack
 				&& ( app.Simulator.PlayerTrackSurface == IRSDKSharper.IRacingSdkEnum.TrkLoc.OnTrack )
@@ -550,10 +527,11 @@ public class GTensioner
 
 			if ( gateActive )
 			{
-				// Seen peaks drain slowly toward zero and raise instantly on new extremes
-				_autoTuneSurgePeakG = MathF.Max( _autoTuneSurgePeakG - AutoTuneDrainPerUpdate, MathF.Abs( longG ) );
-				_autoTuneSwayPeakG = MathF.Max( _autoTuneSwayPeakG - AutoTuneDrainPerUpdate, MathF.Abs( latG ) );
-				_autoTuneHeavePeakG = MathF.Max( _autoTuneHeavePeakG - AutoTuneDrainPerUpdate, MathF.Abs( vertG ) );
+				// Seen peaks drain slowly toward zero and rise toward new extremes at a bounded
+				// rate, so brief G spikes can only nudge the learned envelope instead of yanking it up
+				_autoTuneSurgePeakG = UpdateAutoTunePeak( _autoTuneSurgePeakG, MathF.Abs( longG ) );
+				_autoTuneSwayPeakG = UpdateAutoTunePeak( _autoTuneSwayPeakG, MathF.Abs( latG ) );
+				_autoTuneHeavePeakG = UpdateAutoTunePeak( _autoTuneHeavePeakG, MathF.Abs( vertG ) );
 
 				// The seat of pants raw signal changes units with the algorithm - restart its tracker on a change
 				if ( settings.SteeringEffectsSeatOfPantsAlgorithm != _autoTuneSopAlgorithm )
@@ -562,7 +540,7 @@ public class GTensioner
 					_autoTuneSopPeak = AutoTuneFloorG;
 				}
 
-				_autoTuneSopPeak = MathF.Max( _autoTuneSopPeak - AutoTuneDrainPerUpdate, MathF.Abs( app.SteeringEffects.SeatOfPantsRaw ) );
+				_autoTuneSopPeak = UpdateAutoTunePeak( _autoTuneSopPeak, MathF.Abs( app.SteeringEffects.SeatOfPantsRaw ) );
 			}
 
 			// Weight-scaled targets - center of the triangle (w = 1/3) applies the learned peak exactly;
@@ -584,20 +562,6 @@ public class GTensioner
 			swayMaxG = _autoTuneSwayEffectiveG;
 			heaveMaxG = _autoTuneHeaveEffectiveG;
 
-			// Persist to settings on a slow throttle (also refreshes the disabled knob displays)
-			_autoTuneWriteCounter++;
-
-			var gateFallingEdge = _autoTuneGateWasActive && !gateActive;
-
-			if ( ( _autoTuneWriteCounter >= AutoTuneWriteInterval ) || gateFallingEdge )
-			{
-				_autoTuneWriteCounter = 0;
-
-				WriteBackAutoTunedSettings( settings );
-			}
-
-			_autoTuneGateWasActive = gateActive;
-
 			// Live readouts on the auto-tune section of the page
 			MainWindow._gTensionerPage.AutoTuneSurgeEffectiveString = $"{_autoTuneSurgeEffectiveG:F2} G";
 			MainWindow._gTensionerPage.AutoTuneSwayEffectiveString = $"{_autoTuneSwayEffectiveG:F2} G";
@@ -606,9 +570,6 @@ public class GTensioner
 		}
 		else
 		{
-			_autoTuneSeeded = false;
-			_autoTuneGateWasActive = false;
-
 			surgeMaxG = settings.GTensionerSurgeMaxG;
 			swayMaxG = settings.GTensionerSwayMaxG;
 			heaveMaxG = settings.GTensionerHeaveMaxG;
@@ -1141,67 +1102,36 @@ public class GTensioner
 		return smoothed;
 	}
 
-	// Initialize the auto-tune state from the persisted settings - on first enable and again whenever
-	// the settings change underneath us (car/track context switch). The persisted values are the
-	// weight-scaled effective values, so the underlying learned peaks are recovered by inverting
-	// effective = peak / (3 x weight).
-	private void SeedAutoTune( DataContext.Settings settings, float swayWeight, float surgeWeight, float heaveWeight )
+	// Envelope follower for the auto-tune peaks: drains slowly toward zero and rises toward new
+	// extremes at a bounded attack rate. A brief spike lifts the peak by at most one attack step
+	// (which then drains away), so a single outlier reading can no longer define the learned envelope
+	// and mute the belts for the full drain interval. Sustained events (braking zones, corners) span
+	// many updates and are still captured in full.
+	private static float UpdateAutoTunePeak( float peak, float instant )
 	{
-		_autoTuneSeeded = true;
+		var drained = peak - AutoTuneDrainPerUpdate;
+		var attackLimited = MathF.Min( instant, peak + AutoTuneAttackPerUpdate );
 
-		_autoTuneSurgeEffectiveG = settings.GTensionerSurgeMaxG;
-		_autoTuneSwayEffectiveG = settings.GTensionerSwayMaxG;
-		_autoTuneHeaveEffectiveG = settings.GTensionerHeaveMaxG;
-		_autoTuneSopEffectiveScale = settings.GTensionerAutoTuneSeatOfPantsScale;
-
-		_autoTuneSurgePeakG = MathF.Max( AutoTuneFloorG, _autoTuneSurgeEffectiveG * 3f * surgeWeight );
-		_autoTuneSwayPeakG = MathF.Max( AutoTuneFloorG, _autoTuneSwayEffectiveG * 3f * swayWeight );
-		_autoTuneHeavePeakG = MathF.Max( AutoTuneFloorG, _autoTuneHeaveEffectiveG * 3f * heaveWeight );
-		_autoTuneSopPeak = MathF.Max( AutoTuneFloorG, _autoTuneSopEffectiveScale * 3f * swayWeight );
-
-		_autoTuneSopAlgorithm = settings.SteeringEffectsSeatOfPantsAlgorithm;
-
-		_lastWrittenSurgeMaxG = settings.GTensionerSurgeMaxG;
-		_lastWrittenSwayMaxG = settings.GTensionerSwayMaxG;
-		_lastWrittenHeaveMaxG = settings.GTensionerHeaveMaxG;
-		_lastWrittenSopScale = settings.GTensionerAutoTuneSeatOfPantsScale;
-
-		_autoTuneWriteCounter = 0;
+		return MathF.Max( drained, attackLimited );
 	}
 
-	// Persist the auto-tuned effective values into the settings (throttled by the caller). The setters
-	// clamp, refresh the knob display strings, sync the per-context settings, and queue serialization.
-	// Read each property back afterwards so our own (possibly clamped) writes are not mistaken for
-	// external context switches by the reseed check.
-	private void WriteBackAutoTunedSettings( DataContext.Settings settings )
+	// Re-initialize the auto-tune state to the 1 G floor for every axis. Called on each track entry
+	// (see Tick) and whenever auto-tune is switched on. The learned values are never persisted, so
+	// there is nothing to restore - the tuner simply relearns the car/track envelope from scratch,
+	// which converges within a second or two.
+	private void ResetAutoTune()
 	{
-		if ( MathF.Abs( _autoTuneSurgeEffectiveG - _lastWrittenSurgeMaxG ) > AutoTuneWriteEpsilon )
-		{
-			settings.GTensionerSurgeMaxG = _autoTuneSurgeEffectiveG;
+		_autoTuneSurgePeakG = AutoTuneFloorG;
+		_autoTuneSwayPeakG = AutoTuneFloorG;
+		_autoTuneHeavePeakG = AutoTuneFloorG;
+		_autoTuneSopPeak = AutoTuneFloorG;
 
-			_lastWrittenSurgeMaxG = settings.GTensionerSurgeMaxG;
-		}
+		_autoTuneSurgeEffectiveG = AutoTuneFloorG;
+		_autoTuneSwayEffectiveG = AutoTuneFloorG;
+		_autoTuneHeaveEffectiveG = AutoTuneFloorG;
+		_autoTuneSopEffectiveScale = AutoTuneFloorG;
 
-		if ( MathF.Abs( _autoTuneSwayEffectiveG - _lastWrittenSwayMaxG ) > AutoTuneWriteEpsilon )
-		{
-			settings.GTensionerSwayMaxG = _autoTuneSwayEffectiveG;
-
-			_lastWrittenSwayMaxG = settings.GTensionerSwayMaxG;
-		}
-
-		if ( MathF.Abs( _autoTuneHeaveEffectiveG - _lastWrittenHeaveMaxG ) > AutoTuneWriteEpsilon )
-		{
-			settings.GTensionerHeaveMaxG = _autoTuneHeaveEffectiveG;
-
-			_lastWrittenHeaveMaxG = settings.GTensionerHeaveMaxG;
-		}
-
-		if ( MathF.Abs( _autoTuneSopEffectiveScale - _lastWrittenSopScale ) > AutoTuneWriteEpsilon )
-		{
-			settings.GTensionerAutoTuneSeatOfPantsScale = _autoTuneSopEffectiveScale;
-
-			_lastWrittenSopScale = settings.GTensionerAutoTuneSeatOfPantsScale;
-		}
+		_autoTuneSopAlgorithm = DataContext.DataContext.Instance.Settings.SteeringEffectsSeatOfPantsAlgorithm;
 	}
 
 	private void ResetMinMaxG()
@@ -1228,12 +1158,13 @@ public class GTensioner
 
 	public void Tick( App app )
 	{
-		// Detect rising edge of IsOnTrack to reset min/max G
+		// Detect rising edge of IsOnTrack to reset min/max G and re-seed auto-tune to the 1 G floor
 		var isOnTrack = app.Simulator.IsOnTrack;
 
 		if ( isOnTrack && !_wasOnTrack )
 		{
 			ResetMinMaxG();
+			ResetAutoTune();
 		}
 
 		_wasOnTrack = isOnTrack;

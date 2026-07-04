@@ -9296,31 +9296,6 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region G Tensioner - Auto-Tune Seat of Pants Scale
-
-	private float _gTensionerAutoTuneSeatOfPantsScale = 1f;
-
-	public float GTensionerAutoTuneSeatOfPantsScale
-	{
-		get => _gTensionerAutoTuneSeatOfPantsScale;
-
-		set
-		{
-			value = Math.Clamp( value, 0.05f, 50f );
-
-			if ( value != _gTensionerAutoTuneSeatOfPantsScale )
-			{
-				_gTensionerAutoTuneSeatOfPantsScale = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches GTensionerAutoTuneSeatOfPantsScaleContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
 	#region G Tensioner - Surge Mode
 
 	private Components.GTensioner.AxisMode _gTensionerSurgeMode = Components.GTensioner.AxisMode.Normal;

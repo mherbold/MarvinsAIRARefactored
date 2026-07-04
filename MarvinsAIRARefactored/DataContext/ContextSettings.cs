@@ -204,7 +204,6 @@ public class ContextSettings
 	public bool GTensionerAutoTuneEnabled { get; set; } = true;
 	public float GTensionerAutoTuneSwayWeight { get; set; } = 1f / 3f;
 	public float GTensionerAutoTuneSurgeWeight { get; set; } = 1f / 3f;
-	public float GTensionerAutoTuneSeatOfPantsScale { get; set; } = 1f;
 	public GTensioner.AxisMode GTensionerSurgeMode { get; set; } = GTensioner.AxisMode.Normal;
 	public bool GTensionerSurgeSubtractGravity { get; set; } = true;
 	public float GTensionerSurgeMaxG { get; set; } = 4f;
