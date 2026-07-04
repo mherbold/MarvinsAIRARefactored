@@ -113,7 +113,7 @@ public class GTensioner
 	// --- Auto-tune ---
 
 	private const float AutoTuneFloorG = 1f;                       // learned target never below 1 G (also the SoP floor, in raw signal units)
-	private const float AutoTuneDrainPerUpdate = 2f / 60f / 20f;   // seen peaks drain 2 G per 60 seconds at 20 Hz updates
+	private const float AutoTuneDrainPerUpdate = 1f / 300f / 20f;  // seen peaks drain 1 G per 300 seconds at 20 Hz updates
 	private const float AutoTuneApproachAlpha = 0.14f;             // ~95% convergence in 1 second at 20 Hz
 	private const float AutoTuneMinSpeed = 8.9408f;                // 20 mph in m/s - below this, learning is frozen
 	private const int AutoTuneWriteInterval = 200;                 // settings write-back every 10 seconds at 20 Hz
