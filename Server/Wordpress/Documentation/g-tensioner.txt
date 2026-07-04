@@ -572,7 +572,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 10 Hz</p>
+<p class="default">Default: 8 Hz</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -608,7 +608,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 11 Hz</p>
+<p class="default">Default: 10 Hz</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->

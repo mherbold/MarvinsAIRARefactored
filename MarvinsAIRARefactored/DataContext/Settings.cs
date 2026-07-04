@@ -10219,7 +10219,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private float _gTensionerABSFrequency = 10f;
+	private float _gTensionerABSFrequency = 8f;
 
 	public float GTensionerABSFrequency
 	{
@@ -10328,7 +10328,7 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	private float _gTensionerWheelSlipFrequency = 11f;
+	private float _gTensionerWheelSlipFrequency = 10f;
 
 	public float GTensionerWheelSlipFrequency
 	{
