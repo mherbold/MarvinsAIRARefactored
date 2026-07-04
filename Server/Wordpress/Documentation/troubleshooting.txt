@@ -20,7 +20,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>If MAIRA crashes or behaves unexpectedly, the most helpful thing you can do is grab the log file. Every time it runs, MAIRA writes a log to your documents folder, at <strong>Documents\MarvinsAIRA Refactored\MarvinsAIRA.log</strong>. This log records what the app was doing leading up to a problem, so it is usually the fastest way to figure out what went wrong.</p>
+<p>If MAIRA crashes or behaves unexpectedly, the most helpful thing you can do is grab the log file. Every time it runs, MAIRA writes a new log file to <strong>Documents\MarvinsAIRA Refactored\Logs</strong>, named after the date and time it started (for example <strong>MAIRA - 2026-07-04 14-30-15.log</strong>). Grab the most recent one — it records what the app was doing leading up to a problem, so it is usually the fastest way to figure out what went wrong. MAIRA keeps the last 7 days of logs and removes older ones automatically.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

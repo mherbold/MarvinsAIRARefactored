@@ -19,35 +19,72 @@ public sealed class Logger
 	{
 		WriteLine( "[Logger] Initialize >>>" );
 
+		var now = DateTime.Now;
+
 #if !ADMINBOXX
 
-		var filePath = Path.Combine( App.DocumentsFolder, "MarvinsAIRA.log" );
+		var fileNamePrefix = "MAIRA";
+		var obsoleteLogFileName = "MarvinsAIRA.log";
 
 #else
 
-		var filePath = Path.Combine( App.DocumentsFolder, "AdminBoxx.log" );
+		var fileNamePrefix = "AdminBoxx";
+		var obsoleteLogFileName = "AdminBoxx.log";
 
 #endif
 
-		// Delete old log file if it's older than 240 minutes
+		// Each run of MAIRA writes to its own log file inside the "Logs" subfolder.
 
-		if ( File.Exists( filePath ) )
+		var logsFolder = Path.Combine( App.DocumentsFolder, "Logs" );
+
+		Directory.CreateDirectory( logsFolder );
+
+		var filePath = Path.Combine( logsFolder, $"{fileNamePrefix} - {now:yyyy-MM-dd HH-mm-ss}.log" );
+
+		// Delete the obsolete log file from the documents root (superseded by the "Logs" subfolder)
+
+		var obsoleteLogFilePath = Path.Combine( App.DocumentsFolder, obsoleteLogFileName );
+
+		if ( File.Exists( obsoleteLogFilePath ) )
 		{
-			var lastWriteTime = File.GetLastWriteTime( filePath );
+			WriteLine( "[Logger] Deleting obsolete log file" );
 
-			if ( lastWriteTime.CompareTo( DateTime.Now.AddMinutes( -240 ) ) < 0 )
+			try
 			{
-				WriteLine( "[Logger] Deleting old log file" );
+				File.Delete( obsoleteLogFilePath );
+			}
+			catch ( Exception exception )
+			{
+				WriteLine( $"[Logger] Exception caught: {exception.Message.Trim()}" );
+			}
+		}
 
-				try
+		// Delete log files older than 7 days
+
+		WriteLine( "[Logger] Deleting log files older than 7 days" );
+
+		try
+		{
+			var cutoffTime = now.AddDays( -7 );
+
+			foreach ( var existingLogFilePath in Directory.EnumerateFiles( logsFolder, $"{fileNamePrefix} - *.log" ) )
+			{
+				if ( File.GetLastWriteTime( existingLogFilePath ).CompareTo( cutoffTime ) < 0 )
 				{
-					File.Delete( filePath );
-				}
-				catch ( Exception exception )
-				{
-					WriteLine( $"[Logger] Exception caught: {exception.Message.Trim()}" );
+					try
+					{
+						File.Delete( existingLogFilePath );
+					}
+					catch ( Exception exception )
+					{
+						WriteLine( $"[Logger] Exception caught deleting {Path.GetFileName( existingLogFilePath )}: {exception.Message.Trim()}" );
+					}
 				}
 			}
+		}
+		catch ( Exception exception )
+		{
+			WriteLine( $"[Logger] Exception caught: {exception.Message.Trim()}" );
 		}
 
 		WriteLine( "[Logger] Opening log file" );
@@ -63,7 +100,7 @@ public sealed class Logger
 
 			// Open stream + writer.
 
-			_fileStream = new FileStream( filePath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite );
+			_fileStream = new FileStream( filePath, FileMode.Create, FileAccess.Write, FileShare.ReadWrite );
 
 			// BOM-less UTF8 is usually nicer for log files; if you truly want BOM, change to "true".
 
