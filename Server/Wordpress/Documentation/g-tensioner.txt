@@ -128,7 +128,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>While Auto-Tune is ON, the Max g force knobs for Surge, Sway, and Heave — along with the Seat of Pants Maximum threshold, Amplitude, and Curve — are driven automatically and appear disabled. Turning Auto-Tune OFF hands control back to you and keeps the last learned values as your manual starting point.</p>
+<p>While Auto-Tune is ON, the Max g force knobs for Surge, Sway, and Heave — along with the Seat of Pants Amplitude and Curve — are driven automatically and appear disabled. Turning Auto-Tune OFF hands control back to you and keeps the last learned values as your manual starting point.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -472,7 +472,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>When Auto-Tune is enabled, the seat-of-pants strength is set automatically (scaled together with the sway balance) and the Maximum threshold, Amplitude, and Curve controls below are disabled.</p>
+<p>When Auto-Tune is enabled, the seat-of-pants strength is set automatically (scaled together with the sway balance) and the Amplitude and Curve controls below are disabled.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -504,7 +504,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The signal level at which the seat-of-pants effect reaches full amplitude. Signals above this threshold are clamped to full effect. This control is disabled while Auto-Tune is enabled.</p>
+<p>The signal level at which the seat-of-pants effect reaches full amplitude. Signals above this threshold are clamped to full effect.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
