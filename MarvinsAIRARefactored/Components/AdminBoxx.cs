@@ -40,6 +40,7 @@ public partial class AdminBoxx
 
 	public bool IsConnected { get; private set; } = false;
 	public bool IsUpdating { get; private set; } = false;
+	public int UpdateProgressPercent { get; private set; } = 0;
 
 	private const int _numColumns = 8;
 	private const int _numRows = 4;
@@ -751,6 +752,8 @@ public partial class AdminBoxx
 			_updatePyCurrentLine = 0;
 			_updatePyLines = codePy.Split( [ "\r\n", "\r", "\n" ], StringSplitOptions.None );
 
+			UpdateProgressPercent = 0;
+
 			IsUpdating = true;
 
 			app.MainWindow.UpdateStatus();
@@ -770,6 +773,15 @@ public partial class AdminBoxx
 					_usbSerialPortHelper.Write( data );
 
 					_updatePyCurrentLine++;
+
+					var updateProgressPercent = _updatePyCurrentLine * 100 / _updatePyLines.Length;
+
+					if ( updateProgressPercent != UpdateProgressPercent )
+					{
+						UpdateProgressPercent = updateProgressPercent;
+
+						App.Instance!.MainWindow.UpdateStatus();
+					}
 				}
 				else
 				{

@@ -238,6 +238,7 @@ public partial class MainWindow : Window
 			else if ( app.AdminBoxx.IsUpdating )
 			{
 				statusText1 = localization[ "AdminBoxxIsUpdating" ];
+				statusText2 = $"{app.AdminBoxx.UpdateProgressPercent}{localization[ "Percent" ]}";
 
 				statusStyle = MairaStatusBar.StatusStyleEnum.Warning;
 			}

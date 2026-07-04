@@ -194,7 +194,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>During this process, the AdminBoxx status in MAIRA shows that the firmware is being updated. When the transfer completes, the device reboots and reconnects using the new firmware.</p>
+<p>During this process, the AdminBoxx status in MAIRA shows that the firmware is being updated along with a progress percentage that climbs from 0% to 100% as the new code is transferred. When the transfer completes, the device reboots and reconnects using the new firmware.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:spacer -->
