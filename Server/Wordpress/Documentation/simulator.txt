@@ -8,15 +8,15 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Header Data</li>
+<li>Header data</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Session Information</li>
+<li>Session information</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Telemetry Data</li>
+<li>Telemetry data</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -25,7 +25,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="header-data">Header Data</p>
+<p class="section" id="header-data">Header data</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -107,7 +107,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="session-information">Session Information</p>
+<p class="section" id="session-information">Session information</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -151,7 +151,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="telemetry-data">Telemetry Data</p>
+<p class="section" id="telemetry-data">Telemetry data</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

@@ -1,6 +1,6 @@
 <!-- wp:group {"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:paragraph -->
-<p>Steering Effects generates extra feedback signals based on how the car is behaving, then feeds those signals into:</p>
+<p>Steering effects generates extra feedback signals based on how the car is behaving, then feeds those signals into:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -26,7 +26,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="calibration-file">Calibration File</p>
+<p class="section" id="calibration-file">Calibration file</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -81,15 +81,15 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Wheel Vibration Effect</li>
+<li>Wheel vibration effect</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Wheel Constant Force Effect</li>
+<li>Wheel constant force effect</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Pedal Vibration Effect</li>
+<li>Pedal vibration effect</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -114,7 +114,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Minimum Threshold</p>
+<p class="setting">Minimum threshold</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -126,7 +126,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Maximum Threshold</p>
+<p class="setting">Maximum threshold</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -151,24 +151,24 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Lateral Acceleration (Ay)</li>
+<li>Lateral acceleration (Ay)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Lateral Velocity (Vy)</li>
+<li>Lateral velocity (Vy)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Ratio of Velocities (Vy/Vx)</li>
+<li>Ratio of velocities (Vy/Vx)</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>Lateral Velocity (Vy) is what the original version of MAIRA used. The refactored version uses Ratio of Velocities (Vy/Vx) by default instead, because this algorithm establishes a relationship between the forward velocity of the car vs. the lateral velocity of the car.</p>
+<p>Lateral velocity (Vy) is what the original version of MAIRA used. The refactored version uses Ratio of velocities (Vy/Vx) by default instead, because this algorithm establishes a relationship between the forward velocity of the car vs. the lateral velocity of the car.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: Ratio of Velocities (Vy/Vx)</p>
+<p class="default">Default: Ratio of velocities (Vy/Vx)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -188,7 +188,7 @@
 <!-- /wp:table -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="wheel-vibration-effect">Wheel Vibration Effect</p>
+<p class="section" id="wheel-vibration-effect">Wheel vibration effect</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -196,11 +196,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Vibration Pattern</p>
+<p class="setting">Vibration pattern</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Options: None, Sine Wave, Square Wave, Triangle Wave, Sawtooth Wave (In/Out)</p>
+<p>Options: None, Sine wave, Square wave, Triangle wave, Sawtooth wave (In/Out)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:columns {"className":"is-style-default"} -->
@@ -240,7 +240,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: Sine Wave for understeer, None for other effects</p>
+<p class="default">Default: Sine wave for understeer, None for other effects</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -256,7 +256,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Minimum Frequency</p>
+<p class="setting">Minimum frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -268,7 +268,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Maximum Frequency</p>
+<p class="setting">Maximum frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -288,7 +288,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="wheel-constant-force-effect">Wheel Constant Force Effect</p>
+<p class="section" id="wheel-constant-force-effect">Wheel constant force effect</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -300,7 +300,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Options: None, Decrease Force, Increase Force</p>
+<p>Options: None, Decrease force, Increase force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -328,11 +328,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="pedal-vibration-effect">Pedal Vibration Effect</p>
+<p class="section" id="pedal-vibration-effect">Pedal vibration effect</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Minimum Frequency</p>
+<p class="setting">Minimum frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -344,7 +344,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Maximum Frequency</p>
+<p class="setting">Maximum frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -364,7 +364,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="private-messages">Private Messages</p>
+<p class="section" id="private-messages">Private messages</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->

@@ -49,7 +49,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>For example, selecting "Per Car" + "Per Wet/Dry" means that not only will you have separate settings for each car, you will also have separate dry and wet settings for each car.</p>
+<p>For example, selecting "Per car" + "Per wet/dry" means that not only will you have separate settings for each car, you will also have separate dry and wet settings for each car.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

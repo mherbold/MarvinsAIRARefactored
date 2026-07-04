@@ -184,7 +184,7 @@
     <value>Lähtesta</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Seansi Teave</value>
+    <value>Seansi teave</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Simulaator</value>
@@ -196,7 +196,7 @@
     <value>Pehme luku tugevus</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Telemeetria Andmed</value>
+    <value>Telemeetria andmed</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Test</value>
@@ -256,7 +256,7 @@
     <value>Seade</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Üldine Tugevus</value>
+    <value>Üldine tugevus</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Automaatne siht</value>
@@ -319,7 +319,7 @@
     <value>Automaatne maksimaalne jõud</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Muud Funktsioonid</value>
+    <value>Muud funktsioonid</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Lülitid</value>
@@ -331,7 +331,7 @@
     <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>Pikisuunaline G-jõud</value>
+    <value>Pikisuunaline g-jõud</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Kestus</value>
@@ -379,10 +379,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Üldine Sagedus</value>
+    <value>Üldine sagedus</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Üldine Amplituud</value>
+    <value>Üldine amplituud</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Miinimum</value>
@@ -511,10 +511,10 @@
     <value>Lõpp-punkt</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Käiguvahetus - Käigu Sissepanek</value>
+    <value>Käiguvahetus - käigu sissepanek</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Käiguvahetus - Vabakäigule</value>
+    <value>Käiguvahetus - vabakäigule</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Luba FFB, kuigi iRacingu simulaatori FFB on sees</value>
@@ -532,7 +532,7 @@
     <value>Mürasummuti</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Rakenduse Aken</value>
+    <value>Rakenduse aken</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Hele teema</value>
@@ -643,7 +643,7 @@
     <value>Muutuskiiruse ja üldine tihendus</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Discordi Moderaatorid</value>
+    <value>Discordi moderaatorid</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>Soovin tänada neid vabatahtlikke moderaatoreid, kes aitavad vastata MAIRA kasutajate paljudele küsimustele, andes mulle rohkem aega keskenduda MAIRA arendamisele!</value>
@@ -733,7 +733,7 @@
     <value>Maksimaalne pidur</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Alajuhtivuse Rooli Vibratsiooniefekt</value>
+    <value>Alajuhtivuse rooli vibratsiooniefekt</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Edenemine:</value>
@@ -742,7 +742,7 @@
     <value>[Kalibreerimisfaili pole valitud]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Pargitud Efektid</value>
+    <value>Pargitud efektid</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Jõutagasiside tugevus</value>
@@ -763,7 +763,7 @@
     <value>Praegune auto seadistus:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Alajuhtivuse Pedaali Vibratsiooniefekt</value>
+    <value>Alajuhtivuse pedaali vibratsiooniefekt</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Midagi läks valesti</value>
@@ -835,19 +835,19 @@
     <value>Suurenda jõudu</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Alajuhtivuse Rooli Konstantse Jõu Efekt</value>
+    <value>Alajuhtivuse rooli konstantse jõu efekt</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Suund</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Ülejuhtivuse Rooli Vibratsiooniefekt</value>
+    <value>Ülejuhtivuse rooli vibratsiooniefekt</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Ülejuhtivuse Rooli Konstantse Jõu Efekt</value>
+    <value>Ülejuhtivuse rooli konstantse jõu efekt</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Ülejuhtivuse Pedaali Vibratsiooniefekt</value>
+    <value>Ülejuhtivuse pedaali vibratsiooniefekt</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Alajuhtivuse efekt</value>
@@ -868,7 +868,7 @@
     <value>Halda ülekatteakent</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Kõik Ülekatted</value>
+    <value>Kõik ülekatted</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Luba redigeerimisrežiim</value>
@@ -892,7 +892,7 @@
     <value>Panusta</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Kalibreerimisfailide Panused</value>
+    <value>Kalibreerimisfailide panused</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Viisard</value>
@@ -961,7 +961,7 @@
     <value>Maksimaalne nurk</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Maksimaalne G-jõud</value>
+    <value>Maksimaalne g-jõud</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Lahuta raskusjõud</value>
@@ -985,10 +985,10 @@
     <value>Pehmendamine</value>
   </data>
   <data name="MinG" xml:space="preserve">
-    <value>Min G</value>
+    <value>Min g</value>
   </data>
   <data name="MaxG" xml:space="preserve">
-    <value>Max G</value>
+    <value>Max g</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
     <value>Vibratsiooniefektid</value>
@@ -1012,7 +1012,7 @@
     <value>Vertikaalliikumine</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
-    <value>Mootori Väljund</value>
+    <value>Mootori väljund</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Vasak õlg</value>
@@ -1099,13 +1099,13 @@
     <value>Istmetunnetus</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Istmetunnetuse Rooli Vibratsiooniefekt</value>
+    <value>Istmetunnetuse rooli vibratsiooniefekt</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Istmetunnetuse Rooli Konstantse Jõu Efekt</value>
+    <value>Istmetunnetuse rooli konstantse jõu efekt</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Istmetunnetuse Pedaali Vibratsiooniefekt</value>
+    <value>Istmetunnetuse pedaali vibratsiooniefekt</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
     <value>Istmetunnetuse efekt</value>
@@ -1135,10 +1135,10 @@
     <value>Luba helid korduste ajal</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Piduri + Gaasi Hoiatus</value>
+    <value>Piduri + gaasi hoiatus</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
-    <value>Ffb Kärpimine</value>
+    <value>Ffb kärpimine</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 pedaalid</value>
@@ -1177,7 +1177,7 @@
     <value>Simagic P700 pedaalid</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Ventilaatori Olek</value>
+    <value>Ventilaatori olek</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>360 Hz detail</value>
@@ -1192,7 +1192,7 @@
     <value>360 Hz 60 Hz peal, 10% kallak</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Vaikeväärtused) Loomulik 60 Hz</value>
+    <value>(Vaikeväärtused) loomulik 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Vaikeväärtused) 360 Hz 60 Hz peal, 10-30% kallak</value>
@@ -1201,25 +1201,25 @@
     <value>(Vaikeväärtused) 360 Hz 60 Hz peal, 10% kallak</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Vaikeväärtused) Loomulik 360 Hz</value>
+    <value>(Vaikeväärtused) loomulik 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Eelseadistus) Põhiline rehvitagasiside, minimaalne pinnadetail</value>
+    <value>(Eelseadistus) põhiline rehvitagasiside, minimaalne pinnadetail</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Eelseadistus) Põhiline rehvitagasiside, mõõdukas pinnadetail</value>
+    <value>(Eelseadistus) põhiline rehvitagasiside, mõõdukas pinnadetail</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Eelseadistus) Võimenda mõõdukalt FFB dünaamikat</value>
+    <value>(Eelseadistus) võimenda mõõdukalt FFB dünaamikat</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Eelseadistus) Vähenda mõõdukalt FFB dünaamikat</value>
+    <value>(Eelseadistus) vähenda mõõdukalt FFB dünaamikat</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>FFB tüüp + eelseadistused</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Külgsuunaline G-jõud</value>
+    <value>Külgsuunaline g-jõud</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1303,16 +1303,16 @@
     <value>PROTSESSORI SEOTUS</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Eelseadistus) Vähenda suuri konarusi</value>
+    <value>(Eelseadistus) vähenda suuri konarusi</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Rakenduste haldur</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Käivitatavad Rakendused</value>
+    <value>Käivitatavad rakendused</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Suletavad Rakendused</value>
+    <value>Suletavad rakendused</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Käivitatava faili tee</value>
@@ -1567,22 +1567,22 @@
     <value>Konto</value>
   </data>
   <data name="VoiceRoster" xml:space="preserve">
-    <value>Häälte Nimekiri</value>
+    <value>Häälte nimekiri</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Mehhaanikute Juhi Kommentaar</value>
+    <value>Mehhaanikute juhi kommentaar</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Vaatleja Kommentaar</value>
+    <value>Vaatleja kommentaar</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Spordikommentaator 1 Kommentaar</value>
+    <value>Spordikommentaator 1 kommentaar</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Spordikommentaator 2 Kommentaar</value>
+    <value>Spordikommentaator 2 kommentaar</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Boksireporteri Kommentaar</value>
+    <value>Boksireporteri kommentaar</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>API-võti</value>
@@ -1663,7 +1663,7 @@
     <value>Meeldetuletuse intervall</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Kommentaari Fraasid</value>
+    <value>Kommentaari fraasid</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Kohanda iga sündmuse jaoks räägitavaid fraase valitud keeles. Muudatused salvestatakse su dokumentide kausta ja alistavad sisseehitatud fraasid.</value>
@@ -1711,7 +1711,7 @@
     <value>Simulaatori lähtestamine...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Direct Input lähtestamine...</value>
+    <value>Direct input lähtestamine...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Stream Decki lähtestamine...</value>
@@ -1776,9 +1776,9 @@
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Töötavate rakenduste otsimine...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Akna Nähtavus</value>
+    <value>Akna nähtavus</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Näita / Peida aken</value>
+    <value>Näita / peida aken</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Sammu suurus</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">

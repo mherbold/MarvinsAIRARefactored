@@ -184,7 +184,7 @@
     <value>Resetten</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Sessie Informatie</value>
+    <value>Sessie informatie</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Simulator</value>
@@ -196,7 +196,7 @@
     <value>Eindaanslag sterkte</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Telemetrie Gegevens</value>
+    <value>Telemetrie gegevens</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Test</value>
@@ -256,7 +256,7 @@
     <value>Apparaat</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Algemene Sterkte</value>
+    <value>Algemene sterkte</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Automatisch doel</value>
@@ -271,19 +271,19 @@
     <value>Automatische sterkte</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Overige Functies</value>
+    <value>Overige functies</value>
   </data>
   <data name="Switches" xml:space="preserve">
-    <value>Overige Instellingen</value>
+    <value>Overige instellingen</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Bescherming Bij Crashes</value>
+    <value>Bescherming bij crashes</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>G-Kracht</value>
+    <value>G-kracht</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Lengte in seconden</value>
@@ -298,7 +298,7 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Bescherming Bij Curbstones</value>
+    <value>Bescherming bij curbstones</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Snelheid</value>
@@ -331,10 +331,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Globale Frequentie</value>
+    <value>Globale frequentie</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Globale Amplitude</value>
+    <value>Globale amplitude</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
@@ -397,7 +397,7 @@
     <value>Controleer op updates</value>
   </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
-    <value>Verbind met AdminBoxx bij App opstarten</value>
+    <value>Verbind met AdminBoxx bij app opstarten</value>
   </data>
   <data name="EnableXsrcIntegration" xml:space="preserve">
     <value>Xtreme Scoring Race Control-integratie inschakelen</value>
@@ -418,7 +418,7 @@
     <value>Wiel Lfe</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
-    <value>LFE Opname apparaat</value>
+    <value>LFE opname apparaat</value>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Ingangskoppel (60 Hz)</value>
@@ -463,10 +463,10 @@
     <value>Eindpunt pedaal</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Schakelen - In Versnelling</value>
+    <value>Schakelen - in versnelling</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Schakelen - In Neutraal</value>
+    <value>Schakelen - in neutraal</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Schakel FFB in, ook als iRacing FFB actief is.</value>
@@ -490,7 +490,7 @@
     <value>Licht thema</value>
   </data>
   <data name="UIScale" xml:space="preserve">
-    <value>UI Schaal</value>
+    <value>UI schaal</value>
   </data>
   <data name="CloudService" xml:space="preserve">
     <value>Clouddienst</value>
@@ -514,16 +514,16 @@
     <value>Donateurs</value>
   </data>
   <data name="SuperDonors" xml:space="preserve">
-    <value>Super Donateurs</value>
+    <value>Super donateurs</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Doneer</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Code Bijdragers</value>
+    <value>Code bijdragers</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Vertaling Mede Mogelijk Gemaakt Door</value>
+    <value>Vertaling mede mogelijk gemaakt door</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>Ben jij een C# programmeur? Dit project accepteert nieuwe teamleden. Voor meer informatie, bezoek de Github Repository</value>
@@ -544,7 +544,7 @@
     <value>Toon opstartscherm bij het starten</value>
   </data>
   <data name="ExitApp" xml:space="preserve">
-    <value>Sluit App</value>
+    <value>Sluit app</value>
   </data>
   <data name="MinimizeInsteadOfClosing" xml:space="preserve">
     <value>Minimaliseren in plaats van sluiten</value>
@@ -559,16 +559,16 @@
     <value>Automatisch starten met Windows</value>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value>Total: Compressiesnelheid</value>
+    <value>Total: compressiesnelheid</value>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Snelheidsverandering: Compressiedrempel</value>
+    <value>Snelheidsverandering: compressiedrempel</value>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Snelheidsverandering: Compressiesnelheid</value>
+    <value>Snelheidsverandering: compressiesnelheid</value>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value>Total: Compressiedrempel</value>
+    <value>Total: compressiedrempel</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
     <value> Nm/ms</value>
@@ -595,7 +595,7 @@
     <value>Snelheidsverandering en totale compressie</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Discord-Moderators</value>
+    <value>Discord-moderators</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>Speciale dank aan alle vrijwilligers die helpen bij beantwoorden van de vele vragen van mede MAIRA gebruikers. Dit geeft mij de tijd om volledig te focussen op het ontwikkelen van MAIRA!</value>
@@ -664,7 +664,7 @@
     <value>Stuur rechts</value>
   </data>
   <data name="SteeringWheel90Left" xml:space="preserve">
-    <value>Stuur 90° Links</value>
+    <value>Stuur 90° links</value>
   </data>
   <data name="MinThrottle" xml:space="preserve">
     <value>Minimale gaspositie</value>
@@ -685,7 +685,7 @@
     <value>Maximale remkracht</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Onderstuur Stuur Vibratie Effect</value>
+    <value>Onderstuur stuur vibratie effect</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Voortgang:</value>
@@ -694,10 +694,10 @@
     <value>[Kalibratiebestand niet geselecteerd]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Stilstand Effect</value>
+    <value>Stilstand effect</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
-    <value>Force Feedback kracht</value>
+    <value>Force feedback kracht</value>
   </data>
   <data name="WheelCenteringStrength" xml:space="preserve">
     <value>Stuur centrering kracht</value>
@@ -715,7 +715,7 @@
     <value>Huidige wagen setup:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Onderstuur Pedaal Effect</value>
+    <value>Onderstuur pedaal effect</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Er is iets misgegaan</value>
@@ -787,19 +787,19 @@
     <value>Meer kracht</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Onderstuur Constante Kracht-Effect (Stuurwiel)</value>
+    <value>Onderstuur constante kracht-effect (stuurwiel)</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Richting</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Overstuur Stuurwieltrillingseffect</value>
+    <value>Overstuur stuurwieltrillingseffect</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Overstuur Constante Kracht-Effect (Stuurwiel)</value>
+    <value>Overstuur constante kracht-effect (stuurwiel)</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Overstuur Pedaaltrillingseffect</value>
+    <value>Overstuur pedaaltrillingseffect</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Onderstuur-effect</value>
@@ -814,13 +814,13 @@
     <value>Ondertitels</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Overlay-Venster</value>
+    <value>Overlay-venster</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Overlay-venster beheren</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Alle Overlays</value>
+    <value>Alle overlays</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Bewerkingsmodus inschakelen</value>
@@ -835,7 +835,7 @@
     <value>Alle overlay-vensters resetten</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
-    <value>[Force Feedback apparaat niet geselecteerd]</value>
+    <value>[Force feedback apparaat niet geselecteerd]</value>
   </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>Klaar om te doneren?</value>
@@ -877,7 +877,7 @@
     <value>Geluiden</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Pedalen</value>
+    <value>Simagic pedalen</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Blokkeren van een wiel</value>
@@ -913,7 +913,7 @@
     <value>Maximale hoek</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Maximale G-kracht</value>
+    <value>Maximale g-kracht</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Zwaartekracht aftrekken</value>
@@ -946,7 +946,7 @@
     <value>Trileffecten</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Wielblokkering</value>
+    <value>ABS / wielblokkering</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Wieldoordraaien</value>
@@ -1018,7 +1018,7 @@
     <value>Opnieuw proberen</value>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
-    <value>iRacing Paint map</value>
+    <value>iRacing paint map</value>
   </data>
   <data name="MaxDownloadSpeed" xml:space="preserve">
     <value>Maximale downloadsnelheid</value>
@@ -1048,22 +1048,22 @@
     <value>Uitgangsafvlakking</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Seat-Of-Pants</value>
+    <value>Seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Seat-Of-Pants Stuurwielvibratie-Effect</value>
+    <value>Seat-of-pants stuurwielvibratie-effect</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Seat-Of-Pants Stuurwiel Constante Kracht-Effect</value>
+    <value>Seat-of-pants stuurwiel constante kracht-effect</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Seat-Of-Pants Pedaalvibratie-Effect</value>
+    <value>Seat-of-pants pedaalvibratie-effect</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value>Seat-of-Pants-effect</value>
+    <value>Seat-of-pants-effect</value>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value>Laterale Acceleratie</value>
+    <value>Laterale acceleratie</value>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
     <value>Laterale snelheid</value>
@@ -1087,10 +1087,10 @@
     <value>Sta geluiden toe tijdens herhalingen</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Waarschuwing Rem + Gas</value>
+    <value>Waarschuwing rem + gas</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
-    <value>Ffb Clipping</value>
+    <value>Ffb clipping</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500-pedalen</value>
@@ -1132,7 +1132,7 @@
     <value>Ventilatorstatus</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
-    <value>360 Hz Detail</value>
+    <value>360 Hz detail</value>
   </data>
   <data name="SlewPeakMode" xml:space="preserve">
     <value>Piekbewuste slewbeperking</value>
@@ -1144,7 +1144,7 @@
     <value>360 Hz op 60 Hz, bias 10%</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Standaardwaarden) Native 60 Hz</value>
+    <value>(Standaardwaarden) native 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Standaardwaarden) 360 Hz op 60 Hz, bias 10-30%</value>
@@ -1153,13 +1153,13 @@
     <value>(Standaardwaarden) 360 Hz op 60 Hz, bias 10%</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Standaardwaarden) Native 360 Hz</value>
+    <value>(Standaardwaarden) native 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Voorinstelling) Basisband-feedback, minimaal oppervlaktedetail</value>
+    <value>(Voorinstelling) basisband-feedback, minimaal oppervlaktedetail</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Voorinstelling) Basisband-feedback, matig oppervlaktedetail</value>
+    <value>(Voorinstelling) basisband-feedback, matig oppervlaktedetail</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
     <value>(Voorinstelling) FFB-dynamiek matig versterken</value>
@@ -1171,7 +1171,7 @@
     <value>FFB-type + voorinstellingen</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Laterale G-kracht</value>
+    <value>Laterale g-kracht</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1183,10 +1183,10 @@
     <value>Voorspellingsmodus</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Voorspel 1/60 s vooruit)</value>
+    <value>K1 (voorspel 1/60 s vooruit)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Voorspel 2/60 s vooruit)</value>
+    <value>K2 (voorspel 2/60 s vooruit)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
     <value>Voorspellingsvermenging</value>
@@ -1243,16 +1243,16 @@
     <value>CPU-AFFINITEIT</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Voorinstelling) Grote hobbels verminderen</value>
+    <value>(Voorinstelling) grote hobbels verminderen</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>App-beheer</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Te Starten Apps</value>
+    <value>Te starten apps</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Te Beëindigen Apps</value>
+    <value>Te beëindigen apps</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Pad naar uitvoerbaar bestand</value>
@@ -1327,7 +1327,7 @@
     <value>Sluiten</value>
   </data>
   <data name="Wizard_Step0_Title" xml:space="preserve">
-    <value>Hallo, Coureur!</value>
+    <value>Hallo, coureur!</value>
   </data>
   <data name="Wizard_Step0_Line1" xml:space="preserve">
     <value>Ik ben Marvin de Assistent, hier om je te helpen het krachtige MAIRA te temmen!</value>
@@ -1510,19 +1510,19 @@
     <value>Stemmenlijst</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Crew Chief Commentaar</value>
+    <value>Crew chief commentaar</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Spotter Commentaar</value>
+    <value>Spotter commentaar</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Sportcommentator 1 Commentaar</value>
+    <value>Sportcommentator 1 commentaar</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Sportcommentator 2 Commentaar</value>
+    <value>Sportcommentator 2 commentaar</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Pit-Reporter Commentaar</value>
+    <value>Pit-reporter commentaar</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>API-sleutel</value>
@@ -1552,19 +1552,19 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Stemmen — Lezen</value>
+    <value>Stemmen — lezen</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Modellen — Toegang</value>
+    <value>Modellen — toegang</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Tekst naar spraak — Toegang</value>
+    <value>Tekst naar spraak — toegang</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Spraak naar tekst — Toegang</value>
+    <value>Spraak naar tekst — toegang</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>Gebruiker — Lezen</value>
+    <value>Gebruiker — lezen</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Model</value>
@@ -1594,7 +1594,7 @@
     <value>Slot­volume</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Voorzichtig / Gele vlag</value>
+    <value>Voorzichtig / gele vlag</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Nabijheids­meldingen</value>
@@ -1603,7 +1603,7 @@
     <value>Herinnerings­interval</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Commentaar Zinnen</value>
+    <value>Commentaar zinnen</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Pas de zinnen aan die worden gesproken voor elke gebeurtenis in de geselecteerde taal. Wijzigingen worden opgeslagen in de map Documenten en overschrijven de ingebouwde zinnen.</value>
@@ -1696,7 +1696,7 @@
     <value>G Tensioner initialiseren...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
-    <value>HID Hot Plug Monitor initialiseren...</value>
+    <value>HID hot plug monitor initialiseren...</value>
   </data>
   <data name="InitializingTradingPaints" xml:space="preserve">
     <value>Trading Paints initialiseren...</value>

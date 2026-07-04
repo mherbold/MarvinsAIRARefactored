@@ -4,7 +4,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Steering Device</p>
+<p class="setting">Steering device</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -62,7 +62,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="overall-strength">Overall Strength</p>
+<p class="section" id="overall-strength">Overall strength</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -70,7 +70,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Wheel Force</p>
+<p class="setting">Wheel force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -114,7 +114,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Max Force</p>
+<p class="setting">Max force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -131,16 +131,16 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Changing Wheel Force or Strength will update Max Force automatically.</li>
+<li>Changing Wheel force or Strength will update Max force automatically.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Changing Max Force will update Strength automatically.</li>
+<li>Changing Max force will update Strength automatically.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>iRacing's native FFB also has a "Max Force" setting in their UI, which works exactly like how it works in MAIRA.  You can copy and paste iRacing's Max Force setting if you want the FFB strength to feel the same.</p>
+<p>iRacing's native FFB also has a "Max force" setting in their UI, which works exactly like how it works in MAIRA.  You can copy and paste iRacing's Max force setting if you want the FFB strength to feel the same.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -161,7 +161,7 @@
 
 <!-- wp:list {"ordered":true} -->
 <ol class="wp-block-list"><!-- wp:list-item -->
-<li>Set the <strong>Auto Target</strong> number</li>
+<li>Set the <strong>Auto target</strong> number</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -194,7 +194,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Auto Target</p>
+<p class="setting">Auto target</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -206,7 +206,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Setting this closer to your Wheel Force uses more of your wheelbase for the main cornering weight, which leaves less headroom for spikes (so they may clip). Auto Target cannot be set higher than your Wheel Force.</p>
+<p>Setting this closer to your Wheel force uses more of your wheelbase for the main cornering weight, which leaves less headroom for spikes (so they may clip). Auto target cannot be set higher than your Wheel force.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -214,7 +214,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>When you press the <strong>Set</strong> button, the auto-strength feature goes ahead and sets the <em>Max Force</em> to the measured max force (Auto Max Force) value.</p>
+<p>When you press the <strong>Set</strong> button, the auto-strength feature goes ahead and sets the <em>Max force</em> to the measured max force (Auto max force) value.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -226,7 +226,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Current Force</p>
+<p class="setting">Current force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -234,11 +234,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Auto Max Force</p>
+<p class="setting">Auto max force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The measured max force, that will be applied to the Max Force setting if you hit the <strong>Set</strong> button.</p>
+<p>The measured max force, that will be applied to the Max force setting if you hit the <strong>Set</strong> button.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -250,7 +250,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p><strong>Note:</strong> The controls below the <strong>Algorithm</strong> selector are algorithm-specific. Only the ones that apply to the algorithm you have selected are shown — the rest are hidden. For example, the Delta Limit / Delta Limiter Bias knobs appear for the Delta Limiter algorithms, the Slew / Total Compression knobs appear for Slew and Total Compression, and the Multi controls (FFB Type + Presets, 360 Hz Detail, Torque Compression, Peak Aware Slew Reduction, Slew Rate Reduction, Detail Gain, Output Smoothing) appear for the Multi Adjustment Toolkit. So you will not see every setting listed here at the same time.</p>
+<p><strong>Note:</strong> The controls below the <strong>Algorithm</strong> selector are algorithm-specific. Only the ones that apply to the algorithm you have selected are shown — the rest are hidden. For example, the Delta limit / Delta limiter bias knobs appear for the Delta limiter algorithms, the Slew / total compression knobs appear for Slew and total compression, and the Multi controls (FFB type + presets, 360 Hz detail, Torque compression, Peak aware slew reduction, Slew rate reduction, Detail gain, Output smoothing) appear for the Multi adjustment toolkit. So you will not see every setting listed here at the same time.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -271,36 +271,36 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Detail Booster</strong>: Boost details for more road feeling</li>
+<li><strong>Detail booster</strong>: Boost details for more road feeling</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Delta Limiter</strong>: Cuts down on details for a smoother feeling</li>
+<li><strong>Delta limiter</strong>: Cuts down on details for a smoother feeling</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Detail Booster (Low Latency)</strong>: Same as detail booster, but with lower latency</li>
+<li><strong>Detail booster (low latency)</strong>: Same as detail booster, but with lower latency</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Delta Limiter (Low Latency)</strong>: Same as delta limiter, but with lower latency</li>
+<li><strong>Delta limiter (low latency)</strong>: Same as delta limiter, but with lower latency</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Slew and Total Compression</strong>: Reduces aggressive increases in torque (slew) and decreases large torque output (total)</li>
+<li><strong>Slew and total compression</strong>: Reduces aggressive increases in torque (slew) and decreases large torque output (total)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Multi Adjustment Toolkit</strong>: Selects FFB type, adjusts the amount of high frequency FFB (360 Hz Detail - 360 Hz on 60 Hz FFB only), decreases large torque output (Torque Compression), reduces aggressive increases in torque (Slew Rate Reduction), decreases or increases FFB dynamics (Detail Gain +/- Adjustment), and smooths FFB (Output Smoothing)</li>
+<li><strong>Multi adjustment toolkit</strong>: Selects FFB type, adjusts the amount of high frequency FFB (360 Hz detail - 360 Hz on 60 Hz FFB only), decreases large torque output (Torque compression), reduces aggressive increases in torque (Slew rate reduction), decreases or increases FFB dynamics (Detail gain +/- adjustment), and smooths FFB (Output smoothing)</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: Detail Booster (Low Latency)</p>
+<p class="default">Default: Detail booster (low latency)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Soft Clipping</p>
+<p class="setting">Soft clipping</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -312,7 +312,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Prediction Mode</p>
+<p class="setting">Prediction mode</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -338,7 +338,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Prediction Blend</p>
+<p class="setting">Prediction blend</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -360,7 +360,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Detail Boost</p>
+<p class="setting">Detail boost</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -372,7 +372,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Detail Boost Bias</p>
+<p class="setting">Detail boost bias</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -384,7 +384,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Delta Limit</p>
+<p class="setting">Delta limit</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -396,7 +396,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Delta Limiter Bias</p>
+<p class="setting">Delta limiter bias</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -408,19 +408,19 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Slew Threshold</p>
+<p class="setting">Slew threshold</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Threshold at which slew compression starts clamping fast torque changes. The value is shown in Nm/ms and scales with your Max Force (displayed value = setting × Max Force ÷ 1000).</p>
+<p>Threshold at which slew compression starts clamping fast torque changes. The value is shown in Nm/ms and scales with your Max force (displayed value = setting × Max force ÷ 1000).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 2 (e.g. 0.06 Nm/ms at a 30 Nm Max Force)</p>
+<p class="default">Default: 2 (e.g. 0.06 Nm/ms at a 30 Nm Max force)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Slew Compression Rate</p>
+<p class="setting">Slew compression rate</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -432,7 +432,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Total Threshold</p>
+<p class="setting">Total threshold</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -440,15 +440,15 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: 65% of Max Force</p>
+<p class="default">Default: 65% of Max force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Total Compression Rate</p>
+<p class="setting">Total compression rate</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>How much the overall signal is compressed beyond the Total Threshold.</p>
+<p>How much the overall signal is compressed beyond the Total threshold.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -456,16 +456,16 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">FFB Type + Presets</p>
+<p class="setting">FFB type + presets</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>This dropdown is part of the <strong>Multi Adjustment Toolkit</strong> algorithm. It picks the underlying FFB source (and, for the presets, a matching bundle of Multi settings) that everything else in this section builds on. The choices are grouped:</p>
+<p>This dropdown is part of the <strong>Multi adjustment toolkit</strong> algorithm. It picks the underlying FFB source (and, for the presets, a matching bundle of Multi settings) that everything else in this section builds on. The choices are grouped:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>FFB sources</strong> — <strong>Native 60 Hz</strong>, <strong>360 Hz on 60 Hz, 10% Bias</strong>, <strong>360 Hz on 60 Hz, 10-30% Bias</strong>, and <strong>Native 360 Hz</strong>. These select the base signal (native rate, or the hybrid 360-on-60 modes with a chosen detail bias).</li>
+<li><strong>FFB sources</strong> — <strong>Native 60 Hz</strong>, <strong>360 Hz on 60 Hz, 10% bias</strong>, <strong>360 Hz on 60 Hz, 10-30% bias</strong>, and <strong>Native 360 Hz</strong>. These select the base signal (native rate, or the hybrid 360-on-60 modes with a chosen detail bias).</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -482,11 +482,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">360 Hz Detail</p>
+<p class="setting">360 Hz detail</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Amount of high-frequency (360 Hz) detail layered onto the signal. This applies only to the “360 Hz on 60 Hz” hybrid FFB sources — it is forced to 0% for Native 60 Hz and to 100% for Native 360 Hz. (Multi Adjustment Toolkit only.)</p>
+<p>Amount of high-frequency (360 Hz) detail layered onto the signal. This applies only to the “360 Hz on 60 Hz” hybrid FFB sources — it is forced to 0% for Native 60 Hz and to 100% for Native 360 Hz. (Multi adjustment toolkit only.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -494,11 +494,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Torque Compression</p>
+<p class="setting">Torque compression</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Compresses high-torque peaks to reduce clipping and keep more usable midrange. (Multi Adjustment Toolkit only.)</p>
+<p>Compresses high-torque peaks to reduce clipping and keep more usable midrange. (Multi adjustment toolkit only.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -506,11 +506,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Peak Aware Slew Reduction</p>
+<p class="setting">Peak aware slew reduction</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>When enabled, the Slew Rate Reduction stage becomes peak-aware, so it eases off around signal peaks instead of flattening them. (Multi Adjustment Toolkit only.)</p>
+<p>When enabled, the Slew rate reduction stage becomes peak-aware, so it eases off around signal peaks instead of flattening them. (Multi adjustment toolkit only.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -518,11 +518,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Slew Rate Reduction</p>
+<p class="setting">Slew rate reduction</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Reduces how quickly torque can drop (and in some cases rise), smoothing sharp transitions. (Multi Adjustment Toolkit only.)</p>
+<p>Reduces how quickly torque can drop (and in some cases rise), smoothing sharp transitions. (Multi adjustment toolkit only.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -530,11 +530,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Detail Gain +/- Adjustment</p>
+<p class="setting">Detail gain +/- adjustment</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Boosts (or, below 0%, reduces) deviations from the “steady” component of the signal to enhance road detail. (Multi Adjustment Toolkit only.)</p>
+<p>Boosts (or, below 0%, reduces) deviations from the “steady” component of the signal to enhance road detail. (Multi adjustment toolkit only.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -542,11 +542,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Output Smoothing</p>
+<p class="setting">Output smoothing</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Adds smoothing to the final output to reduce chatter / jitter. (Multi Adjustment Toolkit only.)</p>
+<p>Adds smoothing to the final output to reduce chatter / jitter. (Multi adjustment toolkit only.)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -662,7 +662,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">LFE Recording Device</p>
+<p class="setting">LFE recording device</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -686,11 +686,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="crash-protection">Crash Protection</p>
+<p class="section" id="crash-protection">Crash protection</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Crash Protection reduces wheel force temporarily when a crash-like event is detected.</p>
+<p>Crash protection reduces wheel force temporarily when a crash-like event is detected.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -698,7 +698,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Threshold for longitudinal G (braking / impacts) to trigger Crash Protection.</p>
+<p>Threshold for longitudinal G (braking / impacts) to trigger Crash protection.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -710,7 +710,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Threshold for lateral G (side impacts) to trigger Crash Protection.</p>
+<p>Threshold for lateral G (side impacts) to trigger Crash protection.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -722,7 +722,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>How long Crash Protection remains active (seconds), plus a short recovery ramp.</p>
+<p>How long Crash protection remains active (seconds), plus a short recovery ramp.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -730,11 +730,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Force Reduction</p>
+<p class="setting">Force reduction</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>How much force is reduced when Crash Protection triggers.</p>
+<p>How much force is reduced when Crash protection triggers.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -742,19 +742,19 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="curb-protection">Curb Protection</p>
+<p class="section" id="curb-protection">Curb protection</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Curb Protection reduces algorithm aggressiveness temporarily when shock velocity spikes (curbs, bumps).</p>
+<p>Curb protection reduces algorithm aggressiveness temporarily when shock velocity spikes (curbs, bumps).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Shock Velocity</p>
+<p class="setting">Shock velocity</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Threshold for suspension shock velocity to trigger Curb Protection.</p>
+<p>Threshold for suspension shock velocity to trigger Curb protection.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -774,7 +774,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Force Reduction</p>
+<p class="setting">Force reduction</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -786,7 +786,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="parked-effects">Parked Effects</p>
+<p class="section" id="parked-effects">Parked effects</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -794,7 +794,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Force Feedback Strength</p>
+<p class="setting">Force feedback strength</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -806,7 +806,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Parked Friction</p>
+<p class="setting">Parked friction</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -818,11 +818,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="other-features">Other Features</p>
+<p class="section" id="other-features">Other features</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Soft Lock Strength</p>
+<p class="setting">Soft lock strength</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -834,7 +834,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Racing Friction</p>
+<p class="setting">Racing friction</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -846,7 +846,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Wheel Centering Strength</p>
+<p class="setting">Wheel centering strength</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -862,7 +862,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Gear Change Vibrate Strength</p>
+<p class="setting">Gear change vibrate strength</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -874,7 +874,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">ABS Vibrate Strength</p>
+<p class="setting">ABS vibrate strength</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -886,7 +886,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="private-messages">Private Messages</p>
+<p class="section" id="private-messages">Private messages</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -922,7 +922,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Sends a message when Crash Protection triggers.</p>
+<p>Sends a message when Crash protection triggers.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -934,7 +934,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Sends a message when Curb Protection triggers.</p>
+<p>Sends a message when Curb protection triggers.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -990,7 +990,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Use with caution: this can produce very high forces depending on your Wheel Force and Max Force.</p>
+<p>Use with caution: this can produce very high forces depending on your Wheel force and Max force.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->

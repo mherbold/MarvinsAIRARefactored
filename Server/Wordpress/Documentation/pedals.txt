@@ -28,7 +28,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>[No Compatible Simagic Pedals Found] or Simagic P500/P700/P1000/P2000 Pedals</p>
+<p>[No compatible Simagic pedals found] or Simagic P500/P700/P1000/P2000 Pedals</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -138,19 +138,19 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Choose from: None, Gear Change, ABS Engaged, RPM, Understeer Effect, Oversteer Effect, Seat Of Pants Effect, Wheel Lock, Wheel Spin, Clutch Slip, or Shift RPM.</p>
+<p>Choose from: None, Gear change, ABS engaged, RPM, Understeer effect, Oversteer effect, Seat of pants effect, Wheel lock, Wheel spin, Clutch slip, or Shift RPM.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default for Clutch: Gear Change / Clutch Slip / None</p>
+<p class="default">Default for Clutch: Gear change / Clutch slip / None</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default for Brake: ABS Engaged / Wheel Lock / Understeer Effect</p>
+<p class="default">Default for Brake: ABS engaged / Wheel lock / Understeer effect</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default for Throttle: Wheel Spin / RPM / Oversteer Effect</p>
+<p class="default">Default for Throttle: Wheel spin / RPM / Oversteer effect</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -174,7 +174,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="gear-change-shift-into-gear">Gear Change - Shift Into Gear</p>
+<p class="section" id="gear-change-shift-into-gear">Gear change - shift into gear</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -206,7 +206,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="gear-change-shift-into-neutral">Gear Change - Shift Into Neutral</p>
+<p class="section" id="gear-change-shift-into-neutral">Gear change - shift into neutral</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -238,7 +238,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="abs-engaged">ABS Engaged</p>
+<p class="section" id="abs-engaged">ABS engaged</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -262,7 +262,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Fade With Brake</p>
+<p class="setting">Fade with brake</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -294,7 +294,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Vibrate In Top Gear</p>
+<p class="setting">Vibrate in top gear</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -306,7 +306,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Fade With Throttle</p>
+<p class="setting">Fade with throttle</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -354,7 +354,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="wheel-lock">Wheel Lock</p>
+<p class="section" id="wheel-lock">Wheel lock</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -382,7 +382,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Fade With Brake</p>
+<p class="setting">Fade with brake</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -394,7 +394,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="wheel-spin">Wheel Spin</p>
+<p class="section" id="wheel-spin">Wheel spin</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -422,7 +422,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Fade With Throttle</p>
+<p class="setting">Fade with throttle</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -434,7 +434,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="clutch-slip">Clutch Slip</p>
+<p class="section" id="clutch-slip">Clutch slip</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -442,7 +442,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Starting Point</p>
+<p class="setting">Starting point</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -450,7 +450,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Ending Point</p>
+<p class="setting">Ending point</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -474,7 +474,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Minimum Frequency</p>
+<p class="setting">Minimum frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -486,7 +486,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Maximum Frequency</p>
+<p class="setting">Maximum frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -506,11 +506,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="other-features">Other Features</p>
+<p class="section" id="other-features">Other features</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Noise Damper</p>
+<p class="setting">Noise damper</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

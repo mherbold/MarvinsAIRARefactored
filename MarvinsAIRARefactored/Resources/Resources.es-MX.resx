@@ -121,7 +121,7 @@
     <value>Algoritmo</value>
   </data>
   <data name="AppSettings" xml:space="preserve">
-    <value>Configuración del App</value>
+    <value>Configuración del app</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>Marvin's Awesome iRacing App</value>
@@ -142,7 +142,7 @@
     <value>Gráfico </value>
   </data>
   <data name="HeaderData" xml:space="preserve">
-    <value>Datos De Encabezado</value>
+    <value>Datos de encabezado</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Idioma</value>
@@ -184,7 +184,7 @@
     <value>Restablecer</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Información De Sesión</value>
+    <value>Información de sesión</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Simulador</value>
@@ -196,7 +196,7 @@
     <value>Intensidad de bloqueo suave</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Datos De Telemetría</value>
+    <value>Datos de telemetría</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Prueba</value>
@@ -256,7 +256,7 @@
     <value>Dispositivo</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Intensidad General</value>
+    <value>Intensidad general</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Objetivo automático</value>
@@ -271,19 +271,19 @@
     <value>Fuerza máxima automática</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Otras Funciones</value>
+    <value>Otras funciones</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Interruptores</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Protección Ante Choques</value>
+    <value>Protección ante choques</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>Fuerza G longitudinal</value>
+    <value>Fuerza g longitudinal</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Duración</value>
@@ -298,7 +298,7 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Protección Ante Bordillos</value>
+    <value>Protección ante bordillos</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Velocidad de impacto</value>
@@ -331,10 +331,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Frecuencia Global</value>
+    <value>Frecuencia global</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Amplitud Global</value>
+    <value>Amplitud global</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Mínimo</value>
@@ -416,7 +416,7 @@
     <value>Salida</value>
   </data>
   <data name="WheelLFE" xml:space="preserve">
-    <value>Lfe Del Volante</value>
+    <value>Lfe del volante</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Dispositivo de grabación LFE</value>
@@ -440,7 +440,7 @@
     <value>[Desactivado]</value>
   </data>
   <data name="RememberWindowPositionAndSize" xml:space="preserve">
-    <value>Recordar Posición y Tamaño de la Ventana</value>
+    <value>Recordar posición y tamaño de la ventana</value>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
     <value>Atenuar con freno</value>
@@ -464,10 +464,10 @@
     <value>Punto final</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Cambio De Marcha - Entrar En Marcha</value>
+    <value>Cambio de marcha - entrar en marcha</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Cambio De Marcha - Entrar En Neutro</value>
+    <value>Cambio de marcha - entrar en neutro</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Activar FFB aunque el simulador iRacing tenga FFB encendido</value>
@@ -485,16 +485,16 @@
     <value>Amortiguador de ruido</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Ventana De Aplicación</value>
+    <value>Ventana de aplicación</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>Tema Claro</value>
+    <value>Tema claro</value>
   </data>
   <data name="UIScale" xml:space="preserve">
-    <value>Tamaño de la Interfaz Grafica</value>
+    <value>Tamaño de la interfaz grafica</value>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Servicio Nube</value>
+    <value>Servicio nube</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
     <value>Buscar ahora</value>
@@ -521,10 +521,10 @@
     <value>Donar</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Contribuciones De Código</value>
+    <value>Contribuciones de código</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Contribuciones De Traducción</value>
+    <value>Contribuciones de traducción</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>¿Eres desarrollador de C#? Este proyecto está abierto a contribuciones. Obtén más información visitando el repositorio de GitHub.</value>
@@ -554,7 +554,7 @@
     <value>Minimizar a la barra de tareas</value>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Empezar Minimizado</value>
+    <value>Empezar minimizado</value>
   </data>
   <data name="StartWithWindows" xml:space="preserve">
     <value>Empezar con Windows</value>
@@ -563,10 +563,10 @@
     <value>Tasa de compresión total</value>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Umbral de Slew</value>
+    <value>Umbral de slew</value>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Tasa de compresión Slew</value>
+    <value>Tasa de compresión slew</value>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
     <value>Umbral total</value>
@@ -581,7 +581,7 @@
     <value>Establecer</value>
   </data>
   <data name="Preview" xml:space="preserve">
-    <value>Vista Previa</value>
+    <value>Vista previa</value>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[No se encontraron grabaciones]</value>
@@ -593,10 +593,10 @@
     <value>Sensibilidad</value>
   </data>
   <data name="SlewAndTotalCompression" xml:space="preserve">
-    <value>Compresión Slew y total</value>
+    <value>Compresión slew y total</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Moderadores De Discord</value>
+    <value>Moderadores de Discord</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>Quiero agradecer a estos moderadores voluntarios por ayudar a responder las muchas preguntas de los usuarios de MAIRA, lo que me permite tener más tiempo para concentrarme en el desarrollo de MAIRA.</value>
@@ -635,7 +635,7 @@
     <value>¡La protección ante bordillos se ha activado!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Mensajes Privados</value>
+    <value>Mensajes privados</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Activar mensajes de protección ante bordillos</value>
@@ -686,7 +686,7 @@
     <value>Freno máximo</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Efecto De Vibración Del Volante En Subviraje</value>
+    <value>Efecto de vibración del volante en subviraje</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Progreso:</value>
@@ -695,7 +695,7 @@
     <value>[Archivo de calibración no seleccionado]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Efectos Estacionado</value>
+    <value>Efectos estacionado</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Intensidad de la fuerza de retroalimentación</value>
@@ -716,7 +716,7 @@
     <value>Configuración actual del auto:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Efecto De Vibración Del Pedal En Subviraje</value>
+    <value>Efecto de vibración del pedal en subviraje</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Algo salió mal</value>
@@ -740,7 +740,7 @@
     <value>°/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>Archivo De Calibración</value>
+    <value>Archivo de calibración</value>
   </data>
   <data name="Understeer" xml:space="preserve">
     <value>Subviraje</value>
@@ -788,19 +788,19 @@
     <value>Aumentar fuerza</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Efecto De Fuerza Constante Del Volante En Subviraje</value>
+    <value>Efecto de fuerza constante del volante en subviraje</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Dirección</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Efecto De Vibración Del Volante En Sobreviraje</value>
+    <value>Efecto de vibración del volante en sobreviraje</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Efecto De Fuerza Constante Del Volante En Sobreviraje</value>
+    <value>Efecto de fuerza constante del volante en sobreviraje</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Efecto De Vibración Del Pedal En Sobreviraje</value>
+    <value>Efecto de vibración del pedal en sobreviraje</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Efecto de subviraje</value>
@@ -815,13 +815,13 @@
     <value>Subtítulos</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Ventana De Superposición</value>
+    <value>Ventana de superposición</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Administrar la ventana de superposición</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Todas Las Superposiciones</value>
+    <value>Todas las superposiciones</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Activar modo de edición</value>
@@ -845,7 +845,7 @@
     <value>Contribuir</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Contribuciones De Archivo De Calibración</value>
+    <value>Contribuciones de archivo de calibración</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Asistente</value>
@@ -878,7 +878,7 @@
     <value>Sonidos</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Pedales</value>
+    <value>Simagic pedales</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Bloqueo de rueda</value>
@@ -887,13 +887,13 @@
     <value>Giro de rueda</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value>Grip-O-Metro</value>
+    <value>Grip-o-metro</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
-    <value>Typhoon Viento</value>
+    <value>Typhoon viento</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
     <value>G Tensioner</value>
@@ -914,7 +914,7 @@
     <value>Ángulo máximo</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Fuerza G máxima</value>
+    <value>Fuerza g máxima</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Restar gravedad</value>
@@ -944,10 +944,10 @@
     <value>G máx</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
-    <value>Efectos De Vibración</value>
+    <value>Efectos de vibración</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Bloqueo de rueda</value>
+    <value>ABS / bloqueo de rueda</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Deslizamiento de rueda</value>
@@ -965,7 +965,7 @@
     <value>Cabeceo</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
-    <value>Salida Del Motor</value>
+    <value>Salida del motor</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Hombro izquierdo</value>
@@ -1037,7 +1037,7 @@
     <value>Compresión de torque</value>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
-    <value>Reducción de tasa Slew</value>
+    <value>Reducción de tasa slew</value>
   </data>
   <data name="SoftClipping" xml:space="preserve">
     <value>Recorte suave</value>
@@ -1049,16 +1049,16 @@
     <value>Suavizado de salida</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Intuición De Asiento</value>
+    <value>Intuición de asiento</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Efecto De Vibración Del Volante Por Intuición</value>
+    <value>Efecto de vibración del volante por intuición</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Efecto De Fuerza Constante Del Volante Por Intuición</value>
+    <value>Efecto de fuerza constante del volante por intuición</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Efecto De Vibración Del Pedal Por Intuición</value>
+    <value>Efecto de vibración del pedal por intuición</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
     <value>Efecto de intuición de asiento</value>
@@ -1073,7 +1073,7 @@
     <value>Relación de velocidades (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Página Predeterminada</value>
+    <value>Página predeterminada</value>
   </data>
   <data name="Effects" xml:space="preserve">
     <value>Efectos</value>
@@ -1088,7 +1088,7 @@
     <value>Permitir sonidos durante repeticiones</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Aviso Freno + Acelerador</value>
+    <value>Aviso freno + acelerador</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
     <value>Recorte Ffb</value>
@@ -1130,7 +1130,7 @@
     <value>Pedales Simagic P700</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Estado Del Ventilador</value>
+    <value>Estado del ventilador</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>Detalle a 360 Hz</value>
@@ -1145,7 +1145,7 @@
     <value>360 Hz en 60 Hz, sesgo 10%</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Valores predeterminados) Nativo 60 Hz</value>
+    <value>(Valores predeterminados) nativo 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Valores predeterminados) 360 Hz en 60 Hz, sesgo 10-30%</value>
@@ -1154,25 +1154,25 @@
     <value>(Valores predeterminados) 360 Hz en 60 Hz, sesgo 10%</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Valores predeterminados) Nativo 360 Hz</value>
+    <value>(Valores predeterminados) nativo 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Ajuste) Retroalimentación básica de neumático, detalle mínimo de superficie</value>
+    <value>(Ajuste) retroalimentación básica de neumático, detalle mínimo de superficie</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Ajuste) Retroalimentación básica de neumático, detalle moderado de superficie</value>
+    <value>(Ajuste) retroalimentación básica de neumático, detalle moderado de superficie</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Ajuste) Aumentar moderadamente la dinámica FFB</value>
+    <value>(Ajuste) aumentar moderadamente la dinámica FFB</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Ajuste) Reducir moderadamente la dinámica FFB</value>
+    <value>(Ajuste) reducir moderadamente la dinámica FFB</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>Tipo FFB + ajustes</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Fuerza G lateral</value>
+    <value>Fuerza g lateral</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1184,10 +1184,10 @@
     <value>Modo de predicción</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Predecir 1/60 s adelante)</value>
+    <value>K1 (predecir 1/60 s adelante)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Predecir 2/60 s adelante)</value>
+    <value>K2 (predecir 2/60 s adelante)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
     <value>Mezcla de predicción</value>
@@ -1244,16 +1244,16 @@
     <value>AFINIDAD DE CPU</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Ajuste) Reducir grandes baches</value>
+    <value>(Ajuste) reducir grandes baches</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Gestor de aplicaciones</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Aplicaciones Para Iniciar</value>
+    <value>Aplicaciones para iniciar</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Aplicaciones Para Cerrar</value>
+    <value>Aplicaciones para cerrar</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Ruta del ejecutable</value>
@@ -1328,7 +1328,7 @@
     <value>Cerrar</value>
   </data>
   <data name="Wizard_Step0_Title" xml:space="preserve">
-    <value>¡Hola, Piloto!</value>
+    <value>¡Hola, piloto!</value>
   </data>
   <data name="Wizard_Step0_Line1" xml:space="preserve">
     <value>¡Soy Marvin el Asistente y estoy aquí para ayudarte a dominar el poderoso MAIRA!</value>
@@ -1508,22 +1508,22 @@
     <value>Cuenta</value>
   </data>
   <data name="VoiceRoster" xml:space="preserve">
-    <value>Lista De Voces</value>
+    <value>Lista de voces</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Comentario Del Jefe De Equipo</value>
+    <value>Comentario del jefe de equipo</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Comentario Del Spotter</value>
+    <value>Comentario del spotter</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Comentario Del Comentarista Deportivo 1</value>
+    <value>Comentario del comentarista deportivo 1</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Comentario Del Comentarista Deportivo 2</value>
+    <value>Comentario del comentarista deportivo 2</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Comentario Del Reportero De Pits</value>
+    <value>Comentario del reportero de pits</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>Clave API</value>
@@ -1553,19 +1553,19 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Voces — Lectura</value>
+    <value>Voces — lectura</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Modelos — Acceso</value>
+    <value>Modelos — acceso</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Texto a voz — Acceso</value>
+    <value>Texto a voz — acceso</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Voz a texto — Acceso</value>
+    <value>Voz a texto — acceso</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>Usuario — Lectura</value>
+    <value>Usuario — lectura</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Modelo</value>
@@ -1595,7 +1595,7 @@
     <value>Volumen de ranura</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Precaución / Bandera amarilla</value>
+    <value>Precaución / bandera amarilla</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Avisos de proximidad</value>
@@ -1604,7 +1604,7 @@
     <value>Intervalo de recordatorio</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Frases De Comentario</value>
+    <value>Frases de comentario</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Personaliza las frases que se hablan para cada evento en el idioma seleccionado. Los cambios se guardan en tu carpeta Documentos y reemplazan las frases integradas.</value>
@@ -1637,58 +1637,58 @@
     <value>Iniciando...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
-    <value>Inicializando Ventana de Nivel Superior...</value>
+    <value>Inicializando ventana de nivel superior...</value>
   </data>
   <data name="InitializingAudioManager" xml:space="preserve">
-    <value>Inicializando Administrador de Audio...</value>
+    <value>Inicializando administrador de audio...</value>
   </data>
   <data name="InitializingAdminBoxx" xml:space="preserve">
     <value>Inicializando AdminBoxx...</value>
   </data>
   <data name="InitializingSimulator" xml:space="preserve">
-    <value>Inicializando Simulador...</value>
+    <value>Inicializando simulador...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inicializando Entrada Directa...</value>
+    <value>Inicializando entrada directa...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inicializando Stream Deck...</value>
   </data>
   <data name="InitializingTextToSpeech" xml:space="preserve">
-    <value>Inicializando Texto a Voz...</value>
+    <value>Inicializando texto a voz...</value>
   </data>
   <data name="InitializingCommentary" xml:space="preserve">
-    <value>Inicializando Comentario...</value>
+    <value>Inicializando comentario...</value>
   </data>
   <data name="InitializingCloudService" xml:space="preserve">
-    <value>Inicializando Servicio en la Nube...</value>
+    <value>Inicializando servicio en la nube...</value>
   </data>
   <data name="InitializingGraph" xml:space="preserve">
-    <value>Inicializando Gráfico...</value>
+    <value>Inicializando gráfico...</value>
   </data>
   <data name="InitializingPedals" xml:space="preserve">
-    <value>Inicializando Pedales...</value>
+    <value>Inicializando pedales...</value>
   </data>
   <data name="InitializingRacingWheel" xml:space="preserve">
-    <value>Inicializando Volante de Carreras...</value>
+    <value>Inicializando volante de carreras...</value>
   </data>
   <data name="InitializingSounds" xml:space="preserve">
-    <value>Inicializando Sonidos...</value>
+    <value>Inicializando sonidos...</value>
   </data>
   <data name="InitializingLFE" xml:space="preserve">
     <value>Inicializando LFE...</value>
   </data>
   <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Inicializando Temporizador Multimedia...</value>
+    <value>Inicializando temporizador multimedia...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
-    <value>Inicializando Administrador de Grabación...</value>
+    <value>Inicializando administrador de grabación...</value>
   </data>
   <data name="InitializingTimingMarkers" xml:space="preserve">
-    <value>Inicializando Marcadores de Tiempo...</value>
+    <value>Inicializando marcadores de tiempo...</value>
   </data>
   <data name="InitializingTelemetry" xml:space="preserve">
-    <value>Inicializando Telemetría...</value>
+    <value>Inicializando telemetría...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
     <value>Inicializando Typhoon Wind...</value>
@@ -1697,16 +1697,16 @@
     <value>Inicializando G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
-    <value>Inicializando Monitor Hot Plug HID...</value>
+    <value>Inicializando monitor hot plug HID...</value>
   </data>
   <data name="InitializingTradingPaints" xml:space="preserve">
     <value>Inicializando Trading Paints...</value>
   </data>
   <data name="InitializingSettingsFile" xml:space="preserve">
-    <value>Inicializando Archivo de Configuración...</value>
+    <value>Inicializando archivo de configuración...</value>
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
-    <value>Inicializando Ventana Principal...</value>
+    <value>Inicializando ventana principal...</value>
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Volver a descargar archivos de pintura</value>
@@ -1736,9 +1736,9 @@
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Buscando aplicaciones en ejecución...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Visibilidad De La Ventana</value>
+    <value>Visibilidad de la ventana</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Mostrar / Ocultar Ventana</value>
+    <value>Mostrar / ocultar ventana</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Tamaño de paso</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">

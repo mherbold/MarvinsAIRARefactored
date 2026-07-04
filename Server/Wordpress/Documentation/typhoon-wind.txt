@@ -19,7 +19,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Connect to MAIRA Typhoon Wind on App Startup</p>
+<p class="setting">Connect to MAIRA Typhoon Wind on app startup</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -39,7 +39,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Master Wind Power</p>
+<p class="setting">Master wind power</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -51,7 +51,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Minimum Speed</p>
+<p class="setting">Minimum speed</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -63,7 +63,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Wind Curving</p>
+<p class="setting">Wind curving</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -75,7 +75,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="fan-power">Fan Power</p>
+<p class="section" id="fan-power">Fan power</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -107,7 +107,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Reset to Defaults</p>
+<p class="setting">Reset to defaults</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -115,11 +115,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="fan-status">Fan Status</p>
+<p class="section" id="fan-status">Fan status</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Left Fan / Right Fan</p>
+<p class="setting">Left fan / Right fan</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

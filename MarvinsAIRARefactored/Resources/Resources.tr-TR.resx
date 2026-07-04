@@ -127,34 +127,34 @@
     <value>Marvin'in Muhteşem iRacing Uygulaması</value>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
-    <value>Detay Güçlendirme Eğilimi</value>
+    <value>Detay güçlendirme eğilimi</value>
   </data>
   <data name="DetailBoost" xml:space="preserve">
-    <value>Detay Güçlendirme</value>
+    <value>Detay güçlendirme</value>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
     <value>Araca binerken veya inerken force feedback azalır</value>
   </data>
   <data name="RacingFriction" xml:space="preserve">
-    <value>Yarış Sürtünmesi</value>
+    <value>Yarış sürtünmesi</value>
   </data>
   <data name="Graph" xml:space="preserve">
     <value>Grafik</value>
   </data>
   <data name="HeaderData" xml:space="preserve">
-    <value>Başlık Verileri</value>
+    <value>Başlık verileri</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Dil</value>
   </data>
   <data name="DetailBooster" xml:space="preserve">
-    <value>Detay Güçlendirme</value>
+    <value>Detay güçlendirme</value>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
-    <value>Delta Sınırlayıcı</value>
+    <value>Delta sınırlayıcı</value>
   </data>
   <data name="MaxForce" xml:space="preserve">
-    <value>Maksimum Güç</value>
+    <value>Maksimum güç</value>
   </data>
   <data name="Native60Hz" xml:space="preserve">
     <value>Doğal 60 Hz</value>
@@ -163,7 +163,7 @@
     <value>Doğal 360 Hz</value>
   </data>
   <data name="NoFFBDevicesFound" xml:space="preserve">
-    <value>[Force Feedback Cihazı Bulunamadı]</value>
+    <value>[Force feedback cihazı bulunamadı]</value>
   </data>
   <data name="OFF" xml:space="preserve">
     <value>KAPALI</value>
@@ -184,7 +184,7 @@
     <value>Sıfırla</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Oturum Bilgileri</value>
+    <value>Oturum bilgileri</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Simülatör</value>
@@ -193,10 +193,10 @@
     <value>iRacing çalışmıyor</value>
   </data>
   <data name="SoftLockStrength" xml:space="preserve">
-    <value>Yumuşak Kilitleme Kuvveti</value>
+    <value>Yumuşak kilitleme kuvveti</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Telemetri Verisi</value>
+    <value>Telemetri verisi</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Test et</value>
@@ -205,25 +205,25 @@
     <value>Türkçe (Türkiye) - Turkish (Turkey)</value>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
-    <value>En Üstteki Pencere</value>
+    <value>En üstteki pencere</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
     <value> Nm</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value>60 Hz Detay Güçlendirme</value>
+    <value>60 Hz detay güçlendirme</value>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
     <value>AdminBoxx</value>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
-    <value>AdminBoxx Bağlan</value>
+    <value>AdminBoxx bağlan</value>
   </data>
   <data name="UpdateButtonMappings" xml:space="preserve">
-    <value>Giriş Eşleşmesini Güncelle</value>
+    <value>Giriş eşleşmesini güncelle</value>
   </data>
   <data name="PressTheRecordButton" xml:space="preserve">
-    <value>[Kaydetme Butonuna Basın]</value>
+    <value>[Kaydetme butonuna basın]</value>
   </data>
   <data name="Button" xml:space="preserve">
     <value>Buton</value>
@@ -232,22 +232,22 @@
     <value>Tıkla</value>
   </data>
   <data name="Hold" xml:space="preserve">
-    <value>Basılı Tut</value>
+    <value>Basılı tut</value>
   </data>
   <data name="Keyboard" xml:space="preserve">
     <value>Klavye</value>
   </data>
   <data name="WaitingForInput" xml:space="preserve">
-    <value>[Tuşa Basma Bekleniyor]</value>
+    <value>[Tuşa basma bekleniyor]</value>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value>Delta Sınırlayıcı</value>
+    <value>Delta sınırlayıcı</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
     <value> Nm/s</value>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
-    <value>Delta Sınırlayıcı 60 Hz</value>
+    <value>Delta sınırlayıcı 60 Hz</value>
   </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
@@ -256,7 +256,7 @@
     <value>Cihaz</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Ortalama Kuvvet</value>
+    <value>Ortalama kuvvet</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Otomatik hedef</value>
@@ -265,31 +265,31 @@
     <value>Temizle</value>
   </data>
   <data name="CurrentForce" xml:space="preserve">
-    <value>Şu Anki Kuvvet</value>
+    <value>Şu anki kuvvet</value>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
-    <value>Kuvveti Otomatik Ayarla</value>
+    <value>Kuvveti otomatik ayarla</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Diğer Özellikler</value>
+    <value>Diğer özellikler</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Anahtarlar</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Kaza Koruması</value>
+    <value>Kaza koruması</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>G-Kuvveti</value>
+    <value>G-kuvveti</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Süre</value>
   </data>
   <data name="ForceReduction" xml:space="preserve">
-    <value>Kuvvet Azaltması</value>
+    <value>Kuvvet azaltması</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
     <value> san</value>
@@ -298,16 +298,16 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Kerb Koruması</value>
+    <value>Kerb koruması</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
-    <value>Şok Hızı</value>
+    <value>Şok hızı</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
-    <value>Simagic P1000 Pedalı</value>
+    <value>Simagic P1000 pedalı</value>
   </data>
   <data name="PedalsP2000" xml:space="preserve">
-    <value>Simagic P2000 Pedalı</value>
+    <value>Simagic P2000 pedalı</value>
   </data>
   <data name="PedalsNone" xml:space="preserve">
     <value>[Uyumlu simagic pedalı bulunamadı]</value>
@@ -322,7 +322,7 @@
     <value>Gaz</value>
   </data>
   <data name="PedalEffects" xml:space="preserve">
-    <value>Pedal Efektleri</value>
+    <value>Pedal efektleri</value>
   </data>
   <data name="Strength" xml:space="preserve">
     <value>Kuvvet</value>
@@ -331,10 +331,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Küresel Frekans</value>
+    <value>Küresel frekans</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Küresel Genlik</value>
+    <value>Küresel genlik</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
@@ -346,28 +346,28 @@
     <value>Eğri</value>
   </data>
   <data name="GearChange" xml:space="preserve">
-    <value>Vites Değişikliği</value>
+    <value>Vites değişikliği</value>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
-    <value>Direksiyon Efektleri</value>
+    <value>Direksiyon efektleri</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Yok</value>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value>Direksiyon Seti Başına</value>
+    <value>Direksiyon seti başına</value>
   </data>
   <data name="PerCar" xml:space="preserve">
-    <value>Araç Başına</value>
+    <value>Araç başına</value>
   </data>
   <data name="PerTrack" xml:space="preserve">
-    <value>Pist Başına</value>
+    <value>Pist başına</value>
   </data>
   <data name="PerTrackConfiguration" xml:space="preserve">
-    <value>Pist Ayarlaması Başına</value>
+    <value>Pist ayarlaması başına</value>
   </data>
   <data name="PerWetDry" xml:space="preserve">
-    <value>Islak/Kuru Başına</value>
+    <value>Islak/kuru başına</value>
   </data>
   <data name="Wet" xml:space="preserve">
     <value>Islak</value>
@@ -379,10 +379,10 @@
     <value>Varsayılan</value>
   </data>
   <data name="SaveThisSetting" xml:space="preserve">
-    <value>Ayarları Kaydet</value>
+    <value>Ayarları kaydet</value>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>Yeni Versiyon Var!</value>
+    <value>Yeni versiyon var!</value>
   </data>
   <data name="DownloadQuestion" xml:space="preserve">
     <value>Şimdi indirmek ister misiniz?</value>
@@ -394,10 +394,10 @@
     <value>Yükleyiciyi şimdi çalıştırmak ister misiniz?</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
-    <value>Başlangıçta Güncellemeleri Kontrol Et</value>
+    <value>Başlangıçta güncellemeleri kontrol et</value>
   </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
-    <value>Uygulama Başlangıcında AdminBoxx Bağlan</value>
+    <value>Uygulama başlangıcında AdminBoxx bağlan</value>
   </data>
   <data name="EnableXsrcIntegration" xml:space="preserve">
     <value>Xtreme Scoring Race Control entegrasyonunu etkinleştir</value>
@@ -406,10 +406,10 @@
     <value>Parlaklık</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Ses Seviyesi</value>
+    <value>Ses seviyesi</value>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Delta Sınırlayıcı Eğilimi</value>
+    <value>Delta sınırlayıcı eğilimi</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Çıkış</value>
@@ -418,85 +418,85 @@
     <value>Direksiyon Lfe</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
-    <value>LFE Kaydedici Cihaz</value>
+    <value>LFE kaydedici cihaz</value>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
-    <value>Giriş Torku (60 Hz)</value>
+    <value>Giriş torku (60 Hz)</value>
   </data>
   <data name="InputTorque" xml:space="preserve">
-    <value>Giriş Torku</value>
+    <value>Giriş torku</value>
   </data>
   <data name="OutputTorque" xml:space="preserve">
-    <value>Çıkış Torku</value>
+    <value>Çıkış torku</value>
   </data>
   <data name="TimerJitter" xml:space="preserve">
-    <value>Zamanlayıcı Titreşimi</value>
+    <value>Zamanlayıcı titreşimi</value>
   </data>
   <data name="InputLFE" xml:space="preserve">
     <value>Giriş LFE</value>
   </data>
   <data name="Disabled" xml:space="preserve">
-    <value>[Devre Dışı]</value>
+    <value>[Devre dışı]</value>
   </data>
   <data name="RememberWindowPositionAndSize" xml:space="preserve">
-    <value>Pencere Konumunu ve Boyutunu Hatırla</value>
+    <value>Pencere konumunu ve boyutunu hatırla</value>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
-    <value>Fren Zayıflaması</value>
+    <value>Fren zayıflaması</value>
   </data>
   <data name="StartingRPM" xml:space="preserve">
-    <value>Başlangıç Devri</value>
+    <value>Başlangıç devri</value>
   </data>
   <data name="VibrateInTopGear" xml:space="preserve">
-    <value>Son Viteste Titreme</value>
+    <value>Son viteste titreme</value>
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
-    <value>Gaz Zayıflaması</value>
+    <value>Gaz zayıflaması</value>
   </data>
   <data name="Pulsate" xml:space="preserve">
     <value>Nabız</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
-    <value>Başlangıç Noktası</value>
+    <value>Başlangıç noktası</value>
   </data>
   <data name="EndingPoint" xml:space="preserve">
-    <value>Bitiş Noktası</value>
+    <value>Bitiş noktası</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Vıtes Değışımı - Vıtes Değıştırme</value>
+    <value>Vıtes değışımı - vıtes değıştırme</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Vıtes Değışımı - Boşta Vıtes</value>
+    <value>Vıtes değışımı - boşta vıtes</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>iRacing FFB açık olsa bile FFB etkinleştir</value>
   </data>
   <data name="ClutchPedalHaptics" xml:space="preserve">
-    <value>Debriyaj Pedal Titreşimi</value>
+    <value>Debriyaj pedal titreşimi</value>
   </data>
   <data name="BrakePedalHaptics" xml:space="preserve">
-    <value>Fren Pedal Titreşimi</value>
+    <value>Fren pedal titreşimi</value>
   </data>
   <data name="ThrottlePedalHaptics" xml:space="preserve">
-    <value>Gaz Pedal Titreşimi</value>
+    <value>Gaz pedal titreşimi</value>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
-    <value>Gürültü Sönümleyici</value>
+    <value>Gürültü sönümleyici</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Uygulama Penceresi</value>
+    <value>Uygulama penceresi</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>Açık Tema</value>
+    <value>Açık tema</value>
   </data>
   <data name="UIScale" xml:space="preserve">
-    <value>UI Ölçeği</value>
+    <value>UI ölçeği</value>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Bulut Hizmeti</value>
+    <value>Bulut hizmeti</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
-    <value>Şimdi Kontrol Et</value>
+    <value>Şimdi kontrol et</value>
   </data>
   <data name="CheckingForUpdate" xml:space="preserve">
     <value>Güncelleme kontrol ediliyor...</value>
@@ -514,16 +514,16 @@
     <value>Bağışçılar</value>
   </data>
   <data name="SuperDonors" xml:space="preserve">
-    <value>Super Bağışçılar</value>
+    <value>Super bağışçılar</value>
   </data>
   <data name="Donate" xml:space="preserve">
-    <value>Bağış Yap</value>
+    <value>Bağış yap</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Kod İçin Katkıda Bulunanlar</value>
+    <value>Kod için katkıda bulunanlar</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Çeviri İçin Katkıda Bulunanlar</value>
+    <value>Çeviri için katkıda bulunanlar</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>C# geliştiricisiyseniz ve bu projeye kod katkısında bulunmak istiyorsanız, GitHub deposuna buradan ulaşabilirsiniz:</value>
@@ -538,43 +538,43 @@
     <value>Katkıda bulunanlar</value>
   </data>
   <data name="ShowWindow" xml:space="preserve">
-    <value>Pencereyi Görüntüle</value>
+    <value>Pencereyi görüntüle</value>
   </data>
   <data name="ShowSplashScreen" xml:space="preserve">
     <value>Başlangıçta açılış ekranını göster</value>
   </data>
   <data name="ExitApp" xml:space="preserve">
-    <value>Uygulamayı Kapat</value>
+    <value>Uygulamayı kapat</value>
   </data>
   <data name="MinimizeInsteadOfClosing" xml:space="preserve">
     <value>Kapatmak yerine simge durumuna küçült</value>
   </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
-    <value>Sistem Tepsisine Küçült</value>
+    <value>Sistem tepsisine küçült</value>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Küçültülmüş Halde Başlat</value>
+    <value>Küçültülmüş halde başlat</value>
   </data>
   <data name="StartWithWindows" xml:space="preserve">
-    <value>Başlangıçta Çalıştır</value>
+    <value>Başlangıçta çalıştır</value>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value>Toplam: Sıkıştırma Oranı</value>
+    <value>Toplam: sıkıştırma oranı</value>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Slew: Sıkıştırma Eşiği</value>
+    <value>Slew: sıkıştırma eşiği</value>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Slew: Sıkıştırma Oranı</value>
+    <value>Slew: sıkıştırma oranı</value>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value>Toplam: Sıkıştırma Eşiği</value>
+    <value>Toplam: sıkıştırma eşiği</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
     <value> Nm/ms</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
-    <value>Direksiyon Kuvveti</value>
+    <value>Direksiyon kuvveti</value>
   </data>
   <data name="Set" xml:space="preserve">
     <value>Ayarla</value>
@@ -583,7 +583,7 @@
     <value>Önızleme</value>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
-    <value>[Kayıt Bulunamadı]</value>
+    <value>[Kayıt bulunamadı]</value>
   </data>
   <data name="SimpleMode" xml:space="preserve">
     <value>Basit modu etkinleştir</value>
@@ -592,10 +592,10 @@
     <value>Hassasiyet</value>
   </data>
   <data name="SlewAndTotalCompression" xml:space="preserve">
-    <value>Slew ve Toplam Sıkıştırma</value>
+    <value>Slew ve toplam sıkıştırma</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Discord Moderatörleri</value>
+    <value>Discord moderatörleri</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>MAIRA kullanıcılarının sorduğu birçok soruyu yanıtlamaya yardımcı olan bu gönüllü moderatörlere teşekkür etmek istiyorum. Bu sayede MAIRA'nın geliştirilmesine daha fazla zaman ayırabiliyorum!</value>
@@ -625,7 +625,7 @@
     <value>°</value>
   </data>
   <data name="Master" xml:space="preserve">
-    <value>Ana Ses</value>
+    <value>Ana ses</value>
   </data>
   <data name="CrashProtectionActivated" xml:space="preserve">
     <value>Çarpışma koruması etkinleştirildi!</value>
@@ -634,7 +634,7 @@
     <value>Kerb koruması etkinleştirildi!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Özel Mesajlar</value>
+    <value>Özel mesajlar</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Kerb koruma mesajlarını etkinleştir</value>
@@ -649,58 +649,58 @@
     <value>Centripetal Circuit pistinde değilsiniz</value>
   </data>
   <data name="RunCalibration" xml:space="preserve">
-    <value>Kalibrasyonu Başlat</value>
+    <value>Kalibrasyonu başlat</value>
   </data>
   <data name="StopCalibration" xml:space="preserve">
-    <value>Kalibrasyonu Durdur</value>
+    <value>Kalibrasyonu durdur</value>
   </data>
   <data name="SteeringWheelLeft" xml:space="preserve">
-    <value>Direksiyon Simidi Sol</value>
+    <value>Direksiyon simidi sol</value>
   </data>
   <data name="SteeringWheelCenter" xml:space="preserve">
-    <value>Direksiyon Simidi Merkez</value>
+    <value>Direksiyon simidi merkez</value>
   </data>
   <data name="SteeringWheelRight" xml:space="preserve">
-    <value>Direksiyon Simidi Sağ</value>
+    <value>Direksiyon simidi sağ</value>
   </data>
   <data name="SteeringWheel90Left" xml:space="preserve">
-    <value>Direksiyon Simidi 90° Sol</value>
+    <value>Direksiyon simidi 90° sol</value>
   </data>
   <data name="MinThrottle" xml:space="preserve">
-    <value>Minimum Gaz</value>
+    <value>Minimum gaz</value>
   </data>
   <data name="MaxThrottle" xml:space="preserve">
-    <value>Maksimum Gaz</value>
+    <value>Maksimum gaz</value>
   </data>
   <data name="ShiftUp" xml:space="preserve">
-    <value>Vites Yükselt</value>
+    <value>Vites yükselt</value>
   </data>
   <data name="ShiftDown" xml:space="preserve">
-    <value>Vites Düşür</value>
+    <value>Vites düşür</value>
   </data>
   <data name="MinBrake" xml:space="preserve">
-    <value>Minimum Fren</value>
+    <value>Minimum fren</value>
   </data>
   <data name="MaxBrake" xml:space="preserve">
-    <value>Maksimum Fren</value>
+    <value>Maksimum fren</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Önden Kayma Titreşim Efekti</value>
+    <value>Önden kayma titreşim efekti</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>İlerleme:</value>
   </data>
   <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Kalibrasyon Dosyası Seçilmedi]</value>
+    <value>[Kalibrasyon dosyası seçilmedi]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Park Hali Efektleri</value>
+    <value>Park hali efektleri</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
-    <value>Force Feedback Kuvveti</value>
+    <value>Force feedback kuvveti</value>
   </data>
   <data name="WheelCenteringStrength" xml:space="preserve">
-    <value>Merkezleme Kuvveti</value>
+    <value>Merkezleme kuvveti</value>
   </data>
   <data name="CenterWheelWhileRacing" xml:space="preserve">
     <value>Yarışırken merkezleme yap</value>
@@ -709,16 +709,16 @@
     <value>Park edildiğinde merkezleme yap</value>
   </data>
   <data name="ParkedFriction" xml:space="preserve">
-    <value>Park Halinde Sürtünme</value>
+    <value>Park halinde sürtünme</value>
   </data>
   <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Şu Anki Araç Ayarı:</value>
+    <value>Şu anki araç ayarı:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Önden Kayma Pedal Titreşim Efekti</value>
+    <value>Önden kayma pedal titreşim efekti</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value>Bir şeyler Ters Gitti</value>
+    <value>Bir şeyler ters gitti</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Detaylar</value>
@@ -727,7 +727,7 @@
     <value>Klasik MAIRA şu anda çalışıyor - lütfen bu MAIRA sürümünü çalıştırmadan önce klasik MAIRA'dan çıkın!</value>
   </data>
   <data name="ExceptionThrown" xml:space="preserve">
-    <value>Beklenmeyen Bir Hata Meydana Geldi</value>
+    <value>Beklenmeyen bir hata meydana geldi</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
     <value> KMH</value>
@@ -739,88 +739,88 @@
     <value>°/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>Kalıbrasyon Dosyası</value>
+    <value>Kalıbrasyon dosyası</value>
   </data>
   <data name="Understeer" xml:space="preserve">
-    <value>Önden Kayma</value>
+    <value>Önden kayma</value>
   </data>
   <data name="Oversteer" xml:space="preserve">
-    <value>Arkadan Kayma</value>
+    <value>Arkadan kayma</value>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
-    <value>Minimum Eşik</value>
+    <value>Minimum eşik</value>
   </data>
   <data name="MaximumThreshold" xml:space="preserve">
-    <value>Maksimum Eşik</value>
+    <value>Maksimum eşik</value>
   </data>
   <data name="MinimumFrequency" xml:space="preserve">
-    <value>Minimum Frekans</value>
+    <value>Minimum frekans</value>
   </data>
   <data name="MaximumFrequency" xml:space="preserve">
-    <value>Maksimum Frekans</value>
+    <value>Maksimum frekans</value>
   </data>
   <data name="Calibration" xml:space="preserve">
     <value>Kalıbrasyon</value>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
-    <value>Titreşim Deseni</value>
+    <value>Titreşim deseni</value>
   </data>
   <data name="SineWave" xml:space="preserve">
-    <value>Sinüs Dalgası</value>
+    <value>Sinüs dalgası</value>
   </data>
   <data name="SquareWave" xml:space="preserve">
-    <value>Kare Dalga</value>
+    <value>Kare dalga</value>
   </data>
   <data name="TriangleWave" xml:space="preserve">
-    <value>Üçgen Dalga</value>
+    <value>Üçgen dalga</value>
   </data>
   <data name="SawtoothWaveIn" xml:space="preserve">
-    <value>Testere Dişi Dalga (İç)</value>
+    <value>Testere dişi dalga (iç)</value>
   </data>
   <data name="SawtoothWaveOut" xml:space="preserve">
-    <value>Testere Dişi Dalga (Dış)</value>
+    <value>Testere dişi dalga (dış)</value>
   </data>
   <data name="DecreaseForce" xml:space="preserve">
-    <value>Kuvveti Azalt</value>
+    <value>Kuvveti azalt</value>
   </data>
   <data name="IncreaseForce" xml:space="preserve">
-    <value>Kuvveti Artır</value>
+    <value>Kuvveti artır</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Önden Kayma Tekerlek Sabit Kuvvet Etkisi</value>
+    <value>Önden kayma tekerlek sabit kuvvet etkisi</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Yön</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Arkadan Kayma Titreşim Efekti</value>
+    <value>Arkadan kayma titreşim efekti</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Arkadan Kayma Tekerleği Sabit Kuvvet Etkisi</value>
+    <value>Arkadan kayma tekerleği sabit kuvvet etkisi</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Arkadan Kayma Pedal Titreşim Efekti</value>
+    <value>Arkadan kayma pedal titreşim efekti</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
-    <value>Önden Kayma Efekti</value>
+    <value>Önden kayma efekti</value>
   </data>
   <data name="OversteerEffect" xml:space="preserve">
-    <value>Arkadan Kayma Efekti</value>
+    <value>Arkadan kayma efekti</value>
   </data>
   <data name="ConfigurationFileIsInvalid" xml:space="preserve">
-    <value>Yapılandırma Dosyası Geçersiz!</value>
+    <value>Yapılandırma dosyası geçersiz!</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
     <value>Altyazılar</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Kaplama Penceresi</value>
+    <value>Kaplama penceresi</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Kaplama penceresini yönet</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Tüm Kaplamalar</value>
+    <value>Tüm kaplamalar</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Düzenleme modunu etkinleştir</value>
@@ -835,7 +835,7 @@
     <value>Tüm kaplama pencerelerini sıfırla</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
-    <value>[Force Feedback aygıt seçilmedi]</value>
+    <value>[Force feedback aygıt seçilmedi]</value>
   </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>Bağış yapmaya hazır mısınız?</value>
@@ -844,7 +844,7 @@
     <value>Katkıda bulun</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Kalibrasyon Dosyası Katkıları</value>
+    <value>Kalibrasyon dosyası katkıları</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Sihirbaz</value>
@@ -856,13 +856,13 @@
     <value>Değişiklik günlüğü</value>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
-    <value>ABS Devrede</value>
+    <value>ABS devrede</value>
   </data>
   <data name="Amplitude" xml:space="preserve">
     <value>Genlik</value>
   </data>
   <data name="ClutchSlip" xml:space="preserve">
-    <value>Debriyaj Kayması</value>
+    <value>Debriyaj kayması</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frekans</value>
@@ -877,22 +877,22 @@
     <value>Sesler</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Pedallar</value>
+    <value>Simagic pedallar</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
-    <value>Direksiyon Kilidi</value>
+    <value>Direksiyon kilidi</value>
   </data>
   <data name="WheelSpin" xml:space="preserve">
-    <value>Direksiyon Dönüş</value>
+    <value>Direksiyon dönüş</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value>Grip-O-Metre</value>
+    <value>Grip-o-metre</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
-    <value>Typhoon Rüzgar</value>
+    <value>Typhoon rüzgar</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
     <value>G Tensioner</value>
@@ -913,7 +913,7 @@
     <value>Maksimum açı</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Maksimum G kuvveti</value>
+    <value>Maksimum g kuvveti</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Yerçekimini çıkar</value>
@@ -943,10 +943,10 @@
     <value>G maks</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
-    <value>Titreşim Etkileri</value>
+    <value>Titreşim etkileri</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Tekerlek kilitlenmesi</value>
+    <value>ABS / tekerlek kilitlenmesi</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Tekerlek kayması</value>
@@ -964,7 +964,7 @@
     <value>Kalkma</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
-    <value>Motor Çıkışı</value>
+    <value>Motor çıkışı</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Sol omuz</value>
@@ -976,7 +976,7 @@
     <value>Maksimum motor hızı</value>
   </data>
   <data name="InvertedArms" xml:space="preserve">
-    <value>Ters Kollar</value>
+    <value>Ters kollar</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Uygulama başlangıcında MAIRA Typhoon Wind'e bağlan</value>
@@ -985,10 +985,10 @@
     <value>MAIRA Typhoon Wind'e bağlan</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
-    <value>Sol Fan</value>
+    <value>Sol fan</value>
   </data>
   <data name="RightFan" xml:space="preserve">
-    <value>Sağ Fan</value>
+    <value>Sağ fan</value>
   </data>
   <data name="Connection" xml:space="preserve">
     <value>Bağlantı</value>
@@ -997,28 +997,28 @@
     <value>Ayarlar</value>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
-    <value>Ana Rüzgar Gücü</value>
+    <value>Ana rüzgar gücü</value>
   </data>
   <data name="MinimumSpeed" xml:space="preserve">
-    <value>Minimum Hız</value>
+    <value>Minimum hız</value>
   </data>
   <data name="TyphoonWindCurving" xml:space="preserve">
-    <value>Rüzgar Eğrisi</value>
+    <value>Rüzgar eğrisi</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>Hız</value>
   </data>
   <data name="FanPower" xml:space="preserve">
-    <value>Fan Gücü</value>
+    <value>Fan gücü</value>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value>Cihaz Bulunamadı</value>
+    <value>Cihaz bulunamadı</value>
   </data>
   <data name="Retry" xml:space="preserve">
     <value>Yeniden dene</value>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
-    <value>iRacing Boya Klasörü</value>
+    <value>iRacing boya klasörü</value>
   </data>
   <data name="MaxDownloadSpeed" xml:space="preserve">
     <value>Maksimum indirme hızı</value>
@@ -1030,49 +1030,49 @@
     <value>Marvin's Awesome iRacing App (MAIRA), Trading Paints ile bağlantılı değildir</value>
   </data>
   <data name="MultiAdjustmentToolkit" xml:space="preserve">
-    <value>Çoklu Ayar Araç Seti</value>
+    <value>Çoklu ayar araç seti</value>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
-    <value>Tork Sıkıştırma</value>
+    <value>Tork sıkıştırma</value>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
-    <value>Slew Hızı Azaltma</value>
+    <value>Slew hızı azaltma</value>
   </data>
   <data name="SoftClipping" xml:space="preserve">
-    <value>Yumuşak Kırpma</value>
+    <value>Yumuşak kırpma</value>
   </data>
   <data name="DetailGain" xml:space="preserve">
-    <value>Ayrıntı Kazancı +/- Ayarı</value>
+    <value>Ayrıntı kazancı +/- ayarı</value>
   </data>
   <data name="OutputSmoothing" xml:space="preserve">
-    <value>Çıkış Yumuşatma</value>
+    <value>Çıkış yumuşatma</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Seat-Of-Pants</value>
+    <value>Seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Seat-Of-Pants Direksiyon Vibrasyon Etkisi</value>
+    <value>Seat-of-pants direksiyon vibrasyon etkisi</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Seat-Of-Pants Direksiyon Sabit Kuvveti Etkisi</value>
+    <value>Seat-of-pants direksiyon sabit kuvveti etkisi</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Seat-Of-Pants Pedal Vibrasyon Etkisi</value>
+    <value>Seat-of-pants pedal vibrasyon etkisi</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value>Seat-of-Pants Etkisi</value>
+    <value>Seat-of-pants etkisi</value>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value>Yanal İvme (Ay)</value>
+    <value>Yanal ivme (Ay)</value>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
-    <value>Yanal Hız (Vy)</value>
+    <value>Yanal hız (Vy)</value>
   </data>
   <data name="RatioOfVelocities" xml:space="preserve">
-    <value>Hız Oranı (Vy/Vx)</value>
+    <value>Hız oranı (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Varsayılan Sayfa</value>
+    <value>Varsayılan sayfa</value>
   </data>
   <data name="Effects" xml:space="preserve">
     <value>Etkiler</value>
@@ -1087,13 +1087,13 @@
     <value>Tekrar oynatmalar sırasında seslere izin ver</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Uyarı Fren + Gaz</value>
+    <value>Uyarı fren + gaz</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
-    <value>Ffb Kesmesi</value>
+    <value>Ffb kesmesi</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value>Simagic P500 Pedalları</value>
+    <value>Simagic P500 pedalları</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Yardım</value>
@@ -1108,13 +1108,13 @@
     <value>Forumlar</value>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
-    <value>Dokümantasyon Web Sitesi</value>
+    <value>Dokümantasyon web sitesi</value>
   </data>
   <data name="DiscordServer" xml:space="preserve">
-    <value>Discord Sunucusu</value>
+    <value>Discord sunucusu</value>
   </data>
   <data name="iRacingForums" xml:space="preserve">
-    <value>iRacing Forumları</value>
+    <value>iRacing forumları</value>
   </data>
   <data name="DocumentationText" xml:space="preserve">
     <value>Bu dokümantasyon web sitesi sürekli geliştirilmektedir çünkü uygulamaya her zaman yeni özellikler eklenmektedir. Dokümantasyonu mümkün olduğunca sık güncelliyorum; ancak aradığınız bilgi henüz orada değilse Discord sunucusuna veya iRacing forumlarına bakabilirsiniz.</value>
@@ -1126,13 +1126,13 @@
     <value>Her şeyin başladığı yer burasıdır. Burada cevap arayabilirsiniz ancak eskisi kadar aktif değilim. Soru sormak için Discord sunucusunu ziyaret etmek en iyi yoldur.</value>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value>Simagic P700 Pedalları</value>
+    <value>Simagic P700 pedalları</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Fan Durumu</value>
+    <value>Fan durumu</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
-    <value>360 Hz Ayrıntı</value>
+    <value>360 Hz ayrıntı</value>
   </data>
   <data name="SlewPeakMode" xml:space="preserve">
     <value>Tepe noktası farkında slew sınırlaması</value>
@@ -1144,7 +1144,7 @@
     <value>60 Hz üzerinde 360 Hz, önyargı %10</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Varsayılanlar) Yerel 60 Hz</value>
+    <value>(Varsayılanlar) yerel 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Varsayılanlar) 60 Hz üzerinde 360 Hz, önyargı %10-30</value>
@@ -1153,13 +1153,13 @@
     <value>(Varsayılanlar) 60 Hz üzerinde 360 Hz, önyargı %10</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Varsayılanlar) Yerel 360 Hz</value>
+    <value>(Varsayılanlar) yerel 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Önayar) Temel lastik geri bildirimi, minimum yüzey ayrıntısı</value>
+    <value>(Önayar) temel lastik geri bildirimi, minimum yüzey ayrıntısı</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Önayar) Temel lastik geri bildirimi, orta yüzey ayrıntısı</value>
+    <value>(Önayar) temel lastik geri bildirimi, orta yüzey ayrıntısı</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
     <value>(Önayar) FFB dinamiğini orta düzeyde artır</value>
@@ -1171,7 +1171,7 @@
     <value>FFB türü + önayarlar</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Yanal G kuvveti</value>
+    <value>Yanal g kuvveti</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1219,7 +1219,7 @@
     <value>Katman penceresi başlığını göster</value>
   </data>
   <data name="OverlaySettings" xml:space="preserve">
-    <value>Kaplama Ayarları</value>
+    <value>Kaplama ayarları</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
     <value>Arka plan rengi</value>
@@ -1243,16 +1243,16 @@
     <value>CPU AFFİNİTESİ</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Önayar) Büyük tümsekleri azalt</value>
+    <value>(Önayar) büyük tümsekleri azalt</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Uygulama yöneticisi</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Başlatılacak Uygulamalar</value>
+    <value>Başlatılacak uygulamalar</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Sonlandırılacak Uygulamalar</value>
+    <value>Sonlandırılacak uygulamalar</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Yürütülebilir dosya yolu</value>
@@ -1327,7 +1327,7 @@
     <value>Kapat</value>
   </data>
   <data name="Wizard_Step0_Title" xml:space="preserve">
-    <value>Merhaba, Sürücü!</value>
+    <value>Merhaba, sürücü!</value>
   </data>
   <data name="Wizard_Step0_Line1" xml:space="preserve">
     <value>Ben Asistan Marvin, güçlü MAIRA'yı ehlileştirmenize yardımcı olmak için buradayım!</value>
@@ -1489,7 +1489,7 @@
     <value>Çıkış aygıtı</value>
   </data>
   <data name="DefaultWindowsSoundDevice" xml:space="preserve">
-    <value>[Varsayılan Windows Ses Aygıtı]</value>
+    <value>[Varsayılan Windows ses aygıtı]</value>
   </data>
   <data name="LoopStart" xml:space="preserve">
     <value>Döngü başlangıcı</value>
@@ -1507,28 +1507,28 @@
     <value>Hesap</value>
   </data>
   <data name="VoiceRoster" xml:space="preserve">
-    <value>Ses Listesi</value>
+    <value>Ses listesi</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Ekip Şefi Yorumu</value>
+    <value>Ekip şefi yorumu</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Spotter Yorumu</value>
+    <value>Spotter yorumu</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Spor Yorumcusu 1 Yorumu</value>
+    <value>Spor yorumcusu 1 yorumu</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Spor Yorumcusu 2 Yorumu</value>
+    <value>Spor yorumcusu 2 yorumu</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Pit Muhabiri Yorumu</value>
+    <value>Pit muhabiri yorumu</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
-    <value>API Anahtarı</value>
+    <value>API anahtarı</value>
   </data>
   <data name="VerifyKey" xml:space="preserve">
-    <value>Anahtarı Doğrula</value>
+    <value>Anahtarı doğrula</value>
   </data>
   <data name="KeyVerified" xml:space="preserve">
     <value>✓  Anahtar doğrulandı</value>
@@ -1537,10 +1537,10 @@
     <value>✗  Anahtar geçersiz</value>
   </data>
   <data name="VoiceNotSelected" xml:space="preserve">
-    <value>[Ses Seç]</value>
+    <value>[Ses seç]</value>
   </data>
   <data name="ModelNotSelected" xml:space="preserve">
-    <value>[Model Seç]</value>
+    <value>[Model seç]</value>
   </data>
   <data name="KeyRecognized" xml:space="preserve">
     <value>✓  Anahtar tanındı</value>
@@ -1552,25 +1552,25 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Sesler — Okuma</value>
+    <value>Sesler — okuma</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Modeller — Erişim</value>
+    <value>Modeller — erişim</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Metinden Sese — Erişim</value>
+    <value>Metinden sese — erişim</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Sesten Metne — Erişim</value>
+    <value>Sesten metne — erişim</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>Kullanıcı — Okuma</value>
+    <value>Kullanıcı — okuma</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Model</value>
   </data>
   <data name="MasterVolume" xml:space="preserve">
-    <value>Ana Ses Seviyesi</value>
+    <value>Ana ses seviyesi</value>
   </data>
   <data name="Usage" xml:space="preserve">
     <value>Kullanım</value>
@@ -1585,25 +1585,25 @@
     <value>Dramatik</value>
   </data>
   <data name="SimilarityBoost" xml:space="preserve">
-    <value>Benzerlik Güçlendirme</value>
+    <value>Benzerlik güçlendirme</value>
   </data>
   <data name="SpeakerBoost" xml:space="preserve">
-    <value>Hoparlör Güçlendirme</value>
+    <value>Hoparlör güçlendirme</value>
   </data>
   <data name="SlotVolume" xml:space="preserve">
-    <value>Yuva Ses Seviyesi</value>
+    <value>Yuva ses seviyesi</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Dikkat / Sarı Bayrak</value>
+    <value>Dikkat / sarı bayrak</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
-    <value>Yakınlık Çağrıları</value>
+    <value>Yakınlık çağrıları</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
-    <value>Hatırlatma Aralığı</value>
+    <value>Hatırlatma aralığı</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Yorum İfadeleri</value>
+    <value>Yorum ifadeleri</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Seçilen dilde her etkinlik için söylenen ifadeleri özelleştirin. Değişiklikler Belgeler klasörünüze kaydedilir ve yerleşik ifadelerin yerine geçer.</value>
@@ -1636,76 +1636,76 @@
     <value>Başlatılıyor...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
-    <value>Üst Düzey Pencere Başlatılıyor...</value>
+    <value>Üst düzey pencere başlatılıyor...</value>
   </data>
   <data name="InitializingAudioManager" xml:space="preserve">
-    <value>Ses Yöneticisi Başlatılıyor...</value>
+    <value>Ses yöneticisi başlatılıyor...</value>
   </data>
   <data name="InitializingAdminBoxx" xml:space="preserve">
-    <value>AdminBoxx Başlatılıyor...</value>
+    <value>AdminBoxx başlatılıyor...</value>
   </data>
   <data name="InitializingSimulator" xml:space="preserve">
-    <value>Simülatör Başlatılıyor...</value>
+    <value>Simülatör başlatılıyor...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Doğrudan Giriş Başlatılıyor...</value>
+    <value>Doğrudan giriş başlatılıyor...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
-    <value>Stream Deck Başlatılıyor...</value>
+    <value>Stream Deck başlatılıyor...</value>
   </data>
   <data name="InitializingTextToSpeech" xml:space="preserve">
-    <value>Metin-Konuşma Başlatılıyor...</value>
+    <value>Metin-konuşma başlatılıyor...</value>
   </data>
   <data name="InitializingCommentary" xml:space="preserve">
-    <value>Yorum Başlatılıyor...</value>
+    <value>Yorum başlatılıyor...</value>
   </data>
   <data name="InitializingCloudService" xml:space="preserve">
-    <value>Bulut Hizmeti Başlatılıyor...</value>
+    <value>Bulut hizmeti başlatılıyor...</value>
   </data>
   <data name="InitializingGraph" xml:space="preserve">
-    <value>Grafik Başlatılıyor...</value>
+    <value>Grafik başlatılıyor...</value>
   </data>
   <data name="InitializingPedals" xml:space="preserve">
-    <value>Pedallar Başlatılıyor...</value>
+    <value>Pedallar başlatılıyor...</value>
   </data>
   <data name="InitializingRacingWheel" xml:space="preserve">
-    <value>Yarış Direksiyonu Başlatılıyor...</value>
+    <value>Yarış direksiyonu başlatılıyor...</value>
   </data>
   <data name="InitializingSounds" xml:space="preserve">
-    <value>Sesler Başlatılıyor...</value>
+    <value>Sesler başlatılıyor...</value>
   </data>
   <data name="InitializingLFE" xml:space="preserve">
-    <value>LFE Başlatılıyor...</value>
+    <value>LFE başlatılıyor...</value>
   </data>
   <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Multimedya Zamanlayıcısı Başlatılıyor...</value>
+    <value>Multimedya zamanlayıcısı başlatılıyor...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
-    <value>Kayıt Yöneticisi Başlatılıyor...</value>
+    <value>Kayıt yöneticisi başlatılıyor...</value>
   </data>
   <data name="InitializingTimingMarkers" xml:space="preserve">
-    <value>Zamanlama İşaretleri Başlatılıyor...</value>
+    <value>Zamanlama işaretleri başlatılıyor...</value>
   </data>
   <data name="InitializingTelemetry" xml:space="preserve">
-    <value>Telemetri Başlatılıyor...</value>
+    <value>Telemetri başlatılıyor...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
-    <value>Typhoon Wind Başlatılıyor...</value>
+    <value>Typhoon Wind başlatılıyor...</value>
   </data>
   <data name="InitializingGTensioner" xml:space="preserve">
-    <value>G Tensioner Başlatılıyor...</value>
+    <value>G Tensioner başlatılıyor...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
-    <value>HID Hot Plug Monitor Başlatılıyor...</value>
+    <value>HID hot plug monitor başlatılıyor...</value>
   </data>
   <data name="InitializingTradingPaints" xml:space="preserve">
-    <value>Trading Paints Başlatılıyor...</value>
+    <value>Trading Paints başlatılıyor...</value>
   </data>
   <data name="InitializingSettingsFile" xml:space="preserve">
-    <value>Ayarlar Dosyası Başlatılıyor...</value>
+    <value>Ayarlar dosyası başlatılıyor...</value>
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
-    <value>Ana Pencere Başlatılıyor...</value>
+    <value>Ana pencere başlatılıyor...</value>
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Boya dosyalarını yeniden indir</value>
@@ -1729,25 +1729,25 @@
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Denetleyici profilini yeniden adlandır</value>
   </data>  <data name="RunningProcesses" xml:space="preserve">
-    <value>Çalışan İşlemler</value>
+    <value>Çalışan işlemler</value>
   </data>  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Ada veya yola göre filtrele...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Çalışan uygulamalar aranıyor...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Pencere Görünürlüğü</value>
+    <value>Pencere görünürlüğü</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Pencereyi Göster / Gizle</value>
+    <value>Pencereyi göster / gizle</value>
   </data>  <data name="StepSize" xml:space="preserve">
-    <value>Adım Boyutu</value>
+    <value>Adım boyutu</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">
-    <value>Güncelleme Kontrol Aralığı</value>
+    <value>Güncelleme kontrol aralığı</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> sa</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing kapanınca boyamaları sil</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
-    <value>Güncellemeleri Aralıkla Kontrol Et</value>
+    <value>Güncellemeleri aralıkla kontrol et</value>
   </data>  <data name="Practice" xml:space="preserve">
     <value>Antrenman</value>
   </data>  <data name="Qualifying" xml:space="preserve">
@@ -1776,7 +1776,7 @@
     <value>Denge</value>
   </data>
   <data name="ButtonMappings" xml:space="preserve">
-    <value>Düğme Atamaları</value>
+    <value>Düğme atamaları</value>
   </data>
   <data name="Cancel" xml:space="preserve">
     <value>İptal</value>

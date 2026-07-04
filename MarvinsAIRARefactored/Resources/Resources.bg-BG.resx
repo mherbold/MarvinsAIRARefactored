@@ -142,7 +142,7 @@
     <value>Графика</value>
   </data>
   <data name="HeaderData" xml:space="preserve">
-    <value>Данни От Заглавката</value>
+    <value>Данни от заглавката</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Език</value>
@@ -184,7 +184,7 @@
     <value>Нулиране</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Информация За Сесията</value>
+    <value>Информация за сесията</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Симулатор</value>
@@ -196,7 +196,7 @@
     <value>Сила на мекото заключване</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Данни От Телеметрията</value>
+    <value>Данни от телеметрията</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Тест</value>
@@ -256,7 +256,7 @@
     <value>Устройство</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Обща Сила</value>
+    <value>Обща сила</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Автоматична цел</value>
@@ -295,7 +295,7 @@
     <value>Преименуване на профил на контролера</value>
   </data>
   <data name="ButtonMappings" xml:space="preserve">
-    <value>Картографиране На Бутони</value>
+    <value>Картографиране на бутони</value>
   </data>
   <data name="Map" xml:space="preserve">
     <value>Картографиране</value>
@@ -319,13 +319,13 @@
     <value>Автоматична максимална сила</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Други Функции</value>
+    <value>Други функции</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Превключватели</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Защита При Удар</value>
+    <value>Защита при удар</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value> g</value>
@@ -346,7 +346,7 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Защита От Бордюри</value>
+    <value>Защита от бордюри</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Скорост на удара</value>
@@ -379,10 +379,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Обща Честота</value>
+    <value>Обща честота</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Обща Амплитуда</value>
+    <value>Обща амплитуда</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Минимум</value>
@@ -463,7 +463,7 @@
     <value>Изход</value>
   </data>
   <data name="WheelLFE" xml:space="preserve">
-    <value>Lfe На Волана</value>
+    <value>Lfe на волана</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Устройство за запис на LFE</value>
@@ -511,10 +511,10 @@
     <value>Крайна точка</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Смяна На Предавка - Включване На Предавка</value>
+    <value>Смяна на предавка - включване на предавка</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Смяна На Предавка - Включване На Неутрална</value>
+    <value>Смяна на предавка - включване на неутрална</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Активиране на FFB дори ако FFB на симулатора iRacing е включен</value>
@@ -532,7 +532,7 @@
     <value>Заглушител на шума</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Прозорец На Приложението</value>
+    <value>Прозорец на приложението</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Светла тема</value>
@@ -541,7 +541,7 @@
     <value>Мащаб на интерфейса</value>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Облачна Услуга</value>
+    <value>Облачна услуга</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
     <value>Проверка сега</value>
@@ -562,16 +562,16 @@
     <value>Дарители</value>
   </data>
   <data name="SuperDonors" xml:space="preserve">
-    <value>Супер Дарители</value>
+    <value>Супер дарители</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Дарете</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Приноси В Кода</value>
+    <value>Приноси в кода</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Приноси В Превода</value>
+    <value>Приноси в превода</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>Разработчик ли сте на C#? Този проект е отворен за приноси. Научете повече, като посетите хранилището в GitHub.</value>
@@ -643,7 +643,7 @@
     <value>Компресия на наклона и обща компресия</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Модератори В Discord</value>
+    <value>Модератори в Discord</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>Искам да благодаря на тези доброволни модератори за помощта при отговарянето на многото въпроси, задавани от потребителите на MAIRA, което ми позволява да имам повече време да се съсредоточа върху разработката на MAIRA!</value>
@@ -682,7 +682,7 @@
     <value>Защитата от бордюри е активирана!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Лични Съобщения</value>
+    <value>Лични съобщения</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Активиране на съобщения за защита от бордюри</value>
@@ -733,7 +733,7 @@
     <value>Максимална спирачка</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Ефект На Вибрация На Волана При Недозавиване</value>
+    <value>Ефект на вибрация на волана при недозавиване</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Напредък:</value>
@@ -742,7 +742,7 @@
     <value>[Файл за калибриране не е избран]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Ефекти При Паркиране</value>
+    <value>Ефекти при паркиране</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Сила на силовата обратна връзка</value>
@@ -763,7 +763,7 @@
     <value>Текуща настройка на колата:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Ефект На Вибрация На Педала При Недозавиване</value>
+    <value>Ефект на вибрация на педала при недозавиване</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Нещо се обърка</value>
@@ -787,7 +787,7 @@
     <value>°/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>Файл За Калибриране</value>
+    <value>Файл за калибриране</value>
   </data>
   <data name="Understeer" xml:space="preserve">
     <value>Недозавиване</value>
@@ -835,19 +835,19 @@
     <value>Увеличаване на силата</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Ефект На Постоянна Сила На Волана При Недозавиване</value>
+    <value>Ефект на постоянна сила на волана при недозавиване</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Посока</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Ефект На Вибрация На Волана При Презавиване</value>
+    <value>Ефект на вибрация на волана при презавиване</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Ефект На Постоянна Сила На Волана При Презавиване</value>
+    <value>Ефект на постоянна сила на волана при презавиване</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Ефект На Вибрация На Педала При Презавиване</value>
+    <value>Ефект на вибрация на педала при презавиване</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Ефект на недозавиване</value>
@@ -862,13 +862,13 @@
     <value>Субтитри</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Прозорец На Наслагването</value>
+    <value>Прозорец на наслагването</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Управление на прозореца на наслагването</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Всички Наслагвания</value>
+    <value>Всички наслагвания</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Активиране на режим за редактиране</value>
@@ -892,7 +892,7 @@
     <value>Допринесете</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Приноси От Файлове За Калибриране</value>
+    <value>Приноси от файлове за калибриране</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Помощник</value>
@@ -991,10 +991,10 @@
     <value>Макс. g</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
-    <value>Вибрационни Ефекти</value>
+    <value>Вибрационни ефекти</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Блокиране на колелото</value>
+    <value>ABS / блокиране на колелото</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Приплъзване на колелото</value>
@@ -1006,13 +1006,13 @@
     <value>Задвижване</value>
   </data>
   <data name="Sway" xml:space="preserve">
-    <value>Странично Люлеене</value>
+    <value>Странично люлеене</value>
   </data>
   <data name="Heave" xml:space="preserve">
-    <value>Вертикално Движение</value>
+    <value>Вертикално движение</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
-    <value>Изход На Мотора</value>
+    <value>Изход на мотора</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Ляво рамо</value>
@@ -1096,16 +1096,16 @@
     <value>Изглаждане на изхода</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Усещане С Тялото</value>
+    <value>Усещане с тялото</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Ефект На Вибрация На Волана При Усещане С Тялото</value>
+    <value>Ефект на вибрация на волана при усещане с тялото</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Ефект На Постоянна Сила На Волана При Усещане С Тялото</value>
+    <value>Ефект на постоянна сила на волана при усещане с тялото</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Ефект На Вибрация На Педала При Усещане С Тялото</value>
+    <value>Ефект на вибрация на педала при усещане с тялото</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
     <value>Ефект на усещане с тялото</value>
@@ -1120,7 +1120,7 @@
     <value>Съотношение на скоростите (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Страница По Подразбиране</value>
+    <value>Страница по подразбиране</value>
   </data>
   <data name="Effects" xml:space="preserve">
     <value>Ефекти</value>
@@ -1135,10 +1135,10 @@
     <value>Разрешаване на звуци по време на повторения</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Предупреждение За Спирачка + Газ</value>
+    <value>Предупреждение за спирачка + газ</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
-    <value>Отрязване На Ffb</value>
+    <value>Отрязване на Ffb</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Педали Simagic P500</value>
@@ -1177,7 +1177,7 @@
     <value>Педали Simagic P700</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Състояние На Вентилатора</value>
+    <value>Състояние на вентилатора</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>360 Hz детайл</value>
@@ -1192,7 +1192,7 @@
     <value>360 Hz върху 60 Hz, 10% отклонение</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Стойности по подразбиране) Нативни 60 Hz</value>
+    <value>(Стойности по подразбиране) нативни 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Стойности по подразбиране) 360 Hz върху 60 Hz, 10-30% отклонение</value>
@@ -1201,7 +1201,7 @@
     <value>(Стойности по подразбиране) 360 Hz върху 60 Hz, 10% отклонение</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Стойности по подразбиране) Нативни 360 Hz</value>
+    <value>(Стойности по подразбиране) нативни 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
     <value>(Предварителна настройка) Основна обратна връзка от гумите, минимален детайл на повърхността</value>
@@ -1210,10 +1210,10 @@
     <value>(Предварителна настройка) Основна обратна връзка от гумите, умерен детайл на повърхността</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Предварителна настройка) Умерено усилване на FFB динамиката</value>
+    <value>(Предварителна настройка) умерено усилване на FFB динамиката</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Предварителна настройка) Умерено намаляване на FFB динамиката</value>
+    <value>(Предварителна настройка) умерено намаляване на FFB динамиката</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>Тип FFB + предварителни настройки</value>
@@ -1231,10 +1231,10 @@
     <value>Режим на прогнозиране</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Прогноза 1/60 от секундата напред)</value>
+    <value>K1 (прогноза 1/60 от секундата напред)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Прогноза 2/60 от секундата напред)</value>
+    <value>K2 (прогноза 2/60 от секундата напред)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
     <value>Смесване на прогнозата</value>
@@ -1303,16 +1303,16 @@
     <value>АФИНИТЕТ КЪМ ПРОЦЕСОРА</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Предварителна настройка) Намаляване на големите неравности</value>
+    <value>(Предварителна настройка) намаляване на големите неравности</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Мениджър на приложения</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Приложения За Стартиране</value>
+    <value>Приложения за стартиране</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Приложения За Прекратяване</value>
+    <value>Приложения за прекратяване</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Път до изпълнимия файл</value>
@@ -1567,22 +1567,22 @@
     <value>Акаунт</value>
   </data>
   <data name="VoiceRoster" xml:space="preserve">
-    <value>Списък С Гласове</value>
+    <value>Списък с гласове</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Коментар На Главния Механик</value>
+    <value>Коментар на главния механик</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Коментар На Наблюдателя</value>
+    <value>Коментар на наблюдателя</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Коментар На Спортен Коментатор 1</value>
+    <value>Коментар на спортен коментатор 1</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Коментар На Спортен Коментатор 2</value>
+    <value>Коментар на спортен коментатор 2</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Коментар На Репортера В Пита</value>
+    <value>Коментар на репортера в пита</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>API ключ</value>
@@ -1654,7 +1654,7 @@
     <value>Сила на звука на слота</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Внимание / Жълт флаг</value>
+    <value>Внимание / жълт флаг</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Сигнали за близост</value>
@@ -1663,7 +1663,7 @@
     <value>Интервал на напомняне</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Фрази За Коментар</value>
+    <value>Фрази за коментар</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Персонализирайте фразите, изговаряни за всяко събитие на избрания език. Промените се запазват в папката Документи и заменят вградените фрази.</value>
@@ -1711,7 +1711,7 @@
     <value>Инициализиране на симулатора...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Инициализиране на Direct Input...</value>
+    <value>Инициализиране на direct input...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Инициализиране на Stream Deck...</value>
@@ -1776,9 +1776,9 @@
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Търсене на работещи приложения...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Видимост На Прозореца</value>
+    <value>Видимост на прозореца</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Покажи / Скрий прозореца</value>
+    <value>Покажи / скрий прозореца</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Размер на стъпката</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">

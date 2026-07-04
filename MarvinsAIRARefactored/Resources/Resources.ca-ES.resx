@@ -142,7 +142,7 @@
     <value>Gràfic</value>
   </data>
   <data name="HeaderData" xml:space="preserve">
-    <value>Dades De Capçalera</value>
+    <value>Dades de capçalera</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Idioma</value>
@@ -184,7 +184,7 @@
     <value>Restablir</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Informació De La Sessió</value>
+    <value>Informació de la sessió</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Simulador</value>
@@ -196,7 +196,7 @@
     <value>Intensitat del bloqueig suau</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Dades De Telemetria</value>
+    <value>Dades de telemetria</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Prova</value>
@@ -241,7 +241,7 @@
     <value>[Esperant entrada]</value>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value>Límit Delta</value>
+    <value>Límit delta</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
     <value>Nm/s</value>
@@ -256,7 +256,7 @@
     <value>Dispositiu</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Força General</value>
+    <value>Força general</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Objectiu automàtic</value>
@@ -271,19 +271,19 @@
     <value>Força màxima automàtica</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Altres Funcions</value>
+    <value>Altres funcions</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Commutadors</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Protecció Contra Xocs</value>
+    <value>Protecció contra xocs</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value>G</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>Força G</value>
+    <value>Força g</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Durada</value>
@@ -298,7 +298,7 @@
     <value>m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Protecció De Voreres</value>
+    <value>Protecció de voreres</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Velocitat de xoc</value>
@@ -331,10 +331,10 @@
     <value>Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Freqüència Global</value>
+    <value>Freqüència global</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Amplitud Global</value>
+    <value>Amplitud global</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Mínim</value>
@@ -409,13 +409,13 @@
     <value>Volum</value>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Biaix del limitador Delta</value>
+    <value>Biaix del limitador delta</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Sortida</value>
   </data>
   <data name="WheelLFE" xml:space="preserve">
-    <value>Lfe Del Volant</value>
+    <value>Lfe del volant</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Dispositiu de gravació LFE</value>
@@ -430,7 +430,7 @@
     <value>Parell de sortida</value>
   </data>
   <data name="TimerJitter" xml:space="preserve">
-    <value>Temporitzador de Jitter</value>
+    <value>Temporitzador de jitter</value>
   </data>
   <data name="InputLFE" xml:space="preserve">
     <value>Entrada LFE</value>
@@ -463,10 +463,10 @@
     <value>Punt final</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Canvi De Marxa - Entrar En Marxa</value>
+    <value>Canvi de marxa - entrar en marxa</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Canvi De Marxa - Canvi A Punt Neutre</value>
+    <value>Canvi de marxa - canvi a punt neutre</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Habilita FFB fins i tot si el simulador FFB de l'iRacing està activat</value>
@@ -484,7 +484,7 @@
     <value>Amortidor de soroll</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Finestra De L'aplicatiu</value>
+    <value>Finestra de l'aplicatiu</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Tema clar</value>
@@ -493,7 +493,7 @@
     <value>Escala de la interfície gràfica</value>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Servei Al Núvol</value>
+    <value>Servei al núvol</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
     <value>Comprova ara</value>
@@ -520,10 +520,10 @@
     <value>Donació</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Contribucions De Codi</value>
+    <value>Contribucions de codi</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Contribucions De Traducció</value>
+    <value>Contribucions de traducció</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>Ets desenvolupador de C#? Aquest projecte està obert a contribucions!! Més informació visitant el repositori de GitHub.</value>
@@ -595,7 +595,7 @@
     <value>Compressió slew i total</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Moderadors De Discord</value>
+    <value>Moderadors de Discord</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>Vull agrair a aquests moderadors voluntaris que m'hagin ajudat a respondre les moltes preguntes plantejades pels usuaris de MAIRA, cosa que m'ha permès tenir més temps per centrar-me en el desenvolupament de MAIRA!</value>
@@ -634,7 +634,7 @@
     <value>La protecció de voreres s'ha activat!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Missatges Privats</value>
+    <value>Missatges privats</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Activa els missatges de protecció de voreres</value>
@@ -685,7 +685,7 @@
     <value>Fre màxim</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Efecte De Vibració Del Volant En Subviratge</value>
+    <value>Efecte de vibració del volant en subviratge</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Progrés:</value>
@@ -694,7 +694,7 @@
     <value>[Fitxer de calibració no seleccionat]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Efectes Aparcat</value>
+    <value>Efectes aparcat</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Força de retroalimentació</value>
@@ -715,7 +715,7 @@
     <value>Configuració actual del cotxe:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Efecte De Vibració Del Pedal En Subviratge</value>
+    <value>Efecte de vibració del pedal en subviratge</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Alguna cosa va anar malament</value>
@@ -739,7 +739,7 @@
     <value>º/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>Fitxer De Calibració</value>
+    <value>Fitxer de calibració</value>
   </data>
   <data name="Understeer" xml:space="preserve">
     <value>Subviratge</value>
@@ -787,19 +787,19 @@
     <value>Augmenta la força</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Efecte De Força Constant Del Volant En Subviratge</value>
+    <value>Efecte de força constant del volant en subviratge</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Direcció</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Efecte De Vibració Del Volant En Sobreviratge</value>
+    <value>Efecte de vibració del volant en sobreviratge</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Efecte De Força Constant Del Volant En Sobreviratge</value>
+    <value>Efecte de força constant del volant en sobreviratge</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Efecte De Vibració Del Pedal En Sobreviratge</value>
+    <value>Efecte de vibració del pedal en sobreviratge</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Efecte de subviratge</value>
@@ -814,13 +814,13 @@
     <value>Subtítols</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Finestra Superposada</value>
+    <value>Finestra superposada</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Gestiona la finestra superposada</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Totes Les Superposicions</value>
+    <value>Totes les superposicions</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Activa el mode d'edició</value>
@@ -844,7 +844,7 @@
     <value>Contribueix</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Contribució D'arxius De Calibratge</value>
+    <value>Contribució d'arxius de calibratge</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Assistent</value>
@@ -877,7 +877,7 @@
     <value>Sons</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Pedals</value>
+    <value>Simagic pedals</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Bloqueig de roda</value>
@@ -886,13 +886,13 @@
     <value>Gir de roda</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value>Grip-O-Metre</value>
+    <value>Grip-o-metre</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
     <value>mi/h</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
-    <value>Typhoon Vent</value>
+    <value>Typhoon vent</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
     <value>G Tensioner</value>
@@ -913,7 +913,7 @@
     <value>Angle màxim</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Força G màxima</value>
+    <value>Força g màxima</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Resta la gravetat</value>
@@ -943,10 +943,10 @@
     <value>G màx</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
-    <value>Efectes De Vibració</value>
+    <value>Efectes de vibració</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Bloqueig de roda</value>
+    <value>ABS / bloqueig de roda</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Lliscament de roda</value>
@@ -964,7 +964,7 @@
     <value>Capcineig</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
-    <value>Sortida Del Motor</value>
+    <value>Sortida del motor</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Espatlla esquerra</value>
@@ -976,7 +976,7 @@
     <value>Velocitat màxima del motor</value>
   </data>
   <data name="InvertedArms" xml:space="preserve">
-    <value>Braços Invertits</value>
+    <value>Braços invertits</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
     <value>Connecta a MAIRA Typhoon Wind en iniciar l'aplicació</value>
@@ -1048,19 +1048,19 @@
     <value>Suavitzat de sortida</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Seat-Of-Pants</value>
+    <value>Seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Efecte De Vibració Del Volant Seat-Of-Pants</value>
+    <value>Efecte de vibració del volant seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Efecte De Força Constant Del Volant Seat-Of-Pants</value>
+    <value>Efecte de força constant del volant seat-of-pants</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Efecte De Vibració Del Pedal Seat-Of-Pants</value>
+    <value>Efecte de vibració del pedal seat-of-pants</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value>Efecte Seat-of-Pants</value>
+    <value>Efecte seat-of-pants</value>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
     <value>Acceleració lateral (Ay)</value>
@@ -1072,7 +1072,7 @@
     <value>Relació de velocitats (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Pàgina Per Defecte</value>
+    <value>Pàgina per defecte</value>
   </data>
   <data name="Effects" xml:space="preserve">
     <value>Efectes</value>
@@ -1084,10 +1084,10 @@
     <value>Pantalla</value>
   </data>
   <data name="AllowSoundsDuringReplays" xml:space="preserve">
-    <value>Permet Sons Durant les Reproduccions</value>
+    <value>Permet sons durant les reproduccions</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Avís Fren + Accelerador</value>
+    <value>Avís fren + accelerador</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
     <value>Retall Ffb</value>
@@ -1129,7 +1129,7 @@
     <value>Pedals Simagic P700</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Estat Del Ventilador</value>
+    <value>Estat del ventilador</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>Detall 360 Hz</value>
@@ -1144,7 +1144,7 @@
     <value>360 Hz sobre 60 Hz, biaix 10%</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Valors predeterminats) Natiu 60 Hz</value>
+    <value>(Valors predeterminats) natiu 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Valors predeterminats) 360 Hz sobre 60 Hz, biaix 10-30%</value>
@@ -1153,25 +1153,25 @@
     <value>(Valors predeterminats) 360 Hz sobre 60 Hz, biaix 10%</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Valors predeterminats) Natiu 360 Hz</value>
+    <value>(Valors predeterminats) natiu 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Preajust) Retroalimentació de banda base, detall de superfície mínim</value>
+    <value>(Preajust) retroalimentació de banda base, detall de superfície mínim</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Preajust) Retroalimentació de banda base, detall de superfície moderat</value>
+    <value>(Preajust) retroalimentació de banda base, detall de superfície moderat</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Preajust) Augmenta moderadament la dinàmica FFB</value>
+    <value>(Preajust) augmenta moderadament la dinàmica FFB</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Preajust) Redueix moderadament la dinàmica FFB</value>
+    <value>(Preajust) redueix moderadament la dinàmica FFB</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>Tipus FFB + preajustos</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Força G lateral</value>
+    <value>Força g lateral</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1183,10 +1183,10 @@
     <value>Mode de predicció</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Preveu 1/60 s endavant)</value>
+    <value>K1 (preveu 1/60 s endavant)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Preveu 2/60 s endavant)</value>
+    <value>K2 (preveu 2/60 s endavant)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
     <value>Fusió de predicció</value>
@@ -1243,16 +1243,16 @@
     <value>AFINITAT DE CPU</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Preajust) Redueix els grans bonys</value>
+    <value>(Preajust) redueix els grans bonys</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Gestor d'aplicacions</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Aplicacions Per Iniciar</value>
+    <value>Aplicacions per iniciar</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Aplicacions Per Tancar</value>
+    <value>Aplicacions per tancar</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Ruta de l'executable</value>
@@ -1327,7 +1327,7 @@
     <value>Tanca</value>
   </data>
   <data name="Wizard_Step0_Title" xml:space="preserve">
-    <value>Hola, Pilot!</value>
+    <value>Hola, pilot!</value>
   </data>
   <data name="Wizard_Step0_Line1" xml:space="preserve">
     <value>Sóc en Marvin l'Assistent, aquí per ajudar-te a domar el potent MAIRA!</value>
@@ -1507,22 +1507,22 @@
     <value>Compte</value>
   </data>
   <data name="VoiceRoster" xml:space="preserve">
-    <value>Llistat De Veus</value>
+    <value>Llistat de veus</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Comentari Del Mecànic En Cap</value>
+    <value>Comentari del mecànic en cap</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Comentari Del Spotter</value>
+    <value>Comentari del spotter</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Comentari Del Comentarista Esportiu 1</value>
+    <value>Comentari del comentarista esportiu 1</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Comentari Del Comentarista Esportiu 2</value>
+    <value>Comentari del comentarista esportiu 2</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Comentari Del Reporter De Boxes</value>
+    <value>Comentari del reporter de boxes</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>Clau API</value>
@@ -1552,19 +1552,19 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Veus — Lectura</value>
+    <value>Veus — lectura</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Models — Accés</value>
+    <value>Models — accés</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Text a veu — Accés</value>
+    <value>Text a veu — accés</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Veu a text — Accés</value>
+    <value>Veu a text — accés</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>Usuari — Lectura</value>
+    <value>Usuari — lectura</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Model</value>
@@ -1594,7 +1594,7 @@
     <value>Volum de ranura</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Precaució / Bandera groga</value>
+    <value>Precaució / bandera groga</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Avisos de proximitat</value>
@@ -1603,7 +1603,7 @@
     <value>Interval de recordatori</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Frases Del Comentari</value>
+    <value>Frases del comentari</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Personalitzeu les frases que es diuen per a cada esdeveniment en l'idioma seleccionat. Els canvis es desen a la carpeta Documents i substitueixen les frases integrades.</value>
@@ -1636,58 +1636,58 @@
     <value>Iniciant...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
-    <value>Inicialitzant Finestra de Nivell Superior...</value>
+    <value>Inicialitzant finestra de nivell superior...</value>
   </data>
   <data name="InitializingAudioManager" xml:space="preserve">
-    <value>Inicialitzant Gestor d'Àudio...</value>
+    <value>Inicialitzant gestor d'Àudio...</value>
   </data>
   <data name="InitializingAdminBoxx" xml:space="preserve">
     <value>Inicialitzant AdminBoxx...</value>
   </data>
   <data name="InitializingSimulator" xml:space="preserve">
-    <value>Inicialitzant Simulador...</value>
+    <value>Inicialitzant simulador...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inicialitzant Entrada Directa...</value>
+    <value>Inicialitzant entrada directa...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inicialitzant Stream Deck...</value>
   </data>
   <data name="InitializingTextToSpeech" xml:space="preserve">
-    <value>Inicialitzant Conversió de Text a Veu...</value>
+    <value>Inicialitzant conversió de text a veu...</value>
   </data>
   <data name="InitializingCommentary" xml:space="preserve">
-    <value>Inicialitzant Comentari...</value>
+    <value>Inicialitzant comentari...</value>
   </data>
   <data name="InitializingCloudService" xml:space="preserve">
-    <value>Inicialitzant Servei al Núvol...</value>
+    <value>Inicialitzant servei al núvol...</value>
   </data>
   <data name="InitializingGraph" xml:space="preserve">
-    <value>Inicialitzant Gràfic...</value>
+    <value>Inicialitzant gràfic...</value>
   </data>
   <data name="InitializingPedals" xml:space="preserve">
-    <value>Inicialitzant Pedals...</value>
+    <value>Inicialitzant pedals...</value>
   </data>
   <data name="InitializingRacingWheel" xml:space="preserve">
-    <value>Inicialitzant Volant de Carreres...</value>
+    <value>Inicialitzant volant de carreres...</value>
   </data>
   <data name="InitializingSounds" xml:space="preserve">
-    <value>Inicialitzant Sons...</value>
+    <value>Inicialitzant sons...</value>
   </data>
   <data name="InitializingLFE" xml:space="preserve">
     <value>Inicialitzant LFE...</value>
   </data>
   <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Inicialitzant Temporitzador Multimèdia...</value>
+    <value>Inicialitzant temporitzador multimèdia...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
-    <value>Inicialitzant Gestor de Gravació...</value>
+    <value>Inicialitzant gestor de gravació...</value>
   </data>
   <data name="InitializingTimingMarkers" xml:space="preserve">
-    <value>Inicialitzant Marcadors de Temps...</value>
+    <value>Inicialitzant marcadors de temps...</value>
   </data>
   <data name="InitializingTelemetry" xml:space="preserve">
-    <value>Inicialitzant Telemetria...</value>
+    <value>Inicialitzant telemetria...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
     <value>Inicialitzant Typhoon Wind...</value>
@@ -1696,16 +1696,16 @@
     <value>Inicialitzant G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
-    <value>Inicialitzant Monitor Hot Plug HID...</value>
+    <value>Inicialitzant monitor hot plug HID...</value>
   </data>
   <data name="InitializingTradingPaints" xml:space="preserve">
     <value>Inicialitzant Trading Paints...</value>
   </data>
   <data name="InitializingSettingsFile" xml:space="preserve">
-    <value>Inicialitzant Fitxer de Configuració...</value>
+    <value>Inicialitzant fitxer de configuració...</value>
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
-    <value>Inicialitzant Finestra Principal...</value>
+    <value>Inicialitzant finestra principal...</value>
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Torna a baixar els fitxers de pintura</value>
@@ -1735,9 +1735,9 @@
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>S'estan cercant aplicacions en execució...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Visibilitat De La Finestra</value>
+    <value>Visibilitat de la finestra</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Mostra / Amaga la finestra</value>
+    <value>Mostra / amaga la finestra</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Mida del pas</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">

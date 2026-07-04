@@ -16,7 +16,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Turns the App Manager feature on/off.</p>
+<p>Turns the App manager feature on/off.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -40,7 +40,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Executable Path</p>
+<p class="setting">Executable path</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -52,7 +52,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Launch on Simulator Disconnect</p>
+<p class="setting">Launch on simulator disconnect</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -80,7 +80,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Executable Path</p>
+<p class="setting">Executable path</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -104,7 +104,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Delay After Start (sec)</p>
+<p class="setting">Delay after start (sec)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -120,7 +120,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">CPU Priority</p>
+<p class="setting">CPU priority</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -136,7 +136,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Window Style</p>
+<p class="setting">Window style</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -152,7 +152,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Avoid Primary CPU Cores</p>
+<p class="setting">Avoid primary CPU cores</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -172,7 +172,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Terminate on Simulator Disconnect</p>
+<p class="setting">Terminate on simulator disconnect</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

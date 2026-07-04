@@ -121,40 +121,40 @@
     <value>Algorithm</value>
   </data>
   <data name="AppSettings" xml:space="preserve">
-    <value>App Settings</value>
+    <value>App settings</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>Marvin's Awesome iRacing App</value>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
-    <value>Detail Boost Bias</value>
+    <value>Detail boost bias</value>
   </data>
   <data name="DetailBoost" xml:space="preserve">
-    <value>Detail Boost</value>
+    <value>Detail boost</value>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
     <value>Fade force feedback when entering or exiting car</value>
   </data>
   <data name="RacingFriction" xml:space="preserve">
-    <value>Racing Friction</value>
+    <value>Racing friction</value>
   </data>
   <data name="Graph" xml:space="preserve">
     <value>Graph</value>
   </data>
   <data name="HeaderData" xml:space="preserve">
-    <value>Header Data</value>
+    <value>Header data</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Language</value>
   </data>
   <data name="DetailBooster" xml:space="preserve">
-    <value>Detail Booster</value>
+    <value>Detail booster</value>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
-    <value>Delta Limiter</value>
+    <value>Delta limiter</value>
   </data>
   <data name="MaxForce" xml:space="preserve">
-    <value>Max Force</value>
+    <value>Max force</value>
   </data>
   <data name="Native60Hz" xml:space="preserve">
     <value>Native 60 Hz</value>
@@ -163,7 +163,7 @@
     <value>Native 360 Hz</value>
   </data>
   <data name="NoFFBDevicesFound" xml:space="preserve">
-    <value>[No Force Feedback Devices Found]</value>
+    <value>[No force feedback devices found]</value>
   </data>
   <data name="OFF" xml:space="preserve">
     <value>OFF</value>
@@ -172,19 +172,19 @@
     <value>Power</value>
   </data>
   <data name="RacingWheel" xml:space="preserve">
-    <value>Racing Wheel</value>
+    <value>Racing wheel</value>
   </data>
   <data name="SteeringDevice" xml:space="preserve">
-    <value>Steering Device</value>
+    <value>Steering device</value>
   </data>
   <data name="RecordingDevice" xml:space="preserve">
-    <value>Recording Device</value>
+    <value>Recording device</value>
   </data>
   <data name="Reset" xml:space="preserve">
     <value>Reset</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Session Information</value>
+    <value>Session information</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Simulator</value>
@@ -193,10 +193,10 @@
     <value>The iRacing simulator is not running</value>
   </data>
   <data name="SoftLockStrength" xml:space="preserve">
-    <value>Soft Lock Strength</value>
+    <value>Soft lock strength</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Telemetry Data</value>
+    <value>Telemetry data</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Test</value>
@@ -205,13 +205,13 @@
     <value>English (United States)</value>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
-    <value>Topmost Window</value>
+    <value>Topmost window</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
     <value> Nm</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value>Detail Booster (Low Latency)</value>
+    <value>Detail booster (low latency)</value>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
     <value>AdminBoxx</value>
@@ -220,10 +220,10 @@
     <value>Connect to AdminBoxx</value>
   </data>
   <data name="UpdateButtonMappings" xml:space="preserve">
-    <value>Update Input Mapping</value>
+    <value>Update input mapping</value>
   </data>
   <data name="PressTheRecordButton" xml:space="preserve">
-    <value>[Press The Record Button]</value>
+    <value>[Press the record button]</value>
   </data>
   <data name="Button" xml:space="preserve">
     <value>Button</value>
@@ -238,16 +238,16 @@
     <value>Keyboard</value>
   </data>
   <data name="WaitingForInput" xml:space="preserve">
-    <value>[Waiting For Input]</value>
+    <value>[Waiting for input]</value>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value>Delta Limit</value>
+    <value>Delta limit</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
     <value> Nm/s</value>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
-    <value>Delta Limiter (Low Latency)</value>
+    <value>Delta limiter (low latency)</value>
   </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
@@ -256,46 +256,46 @@
     <value>Device</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Overall Strength</value>
+    <value>Overall strength</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
-    <value>Auto Target</value>
+    <value>Auto target</value>
   </data>
   <data name="Clear" xml:space="preserve">
     <value>Clear</value>
   </data>
   <data name="ControllerProfiles" xml:space="preserve">
-    <value>Controller Profiles</value>
+    <value>Controller profiles</value>
   </data>
   <data name="Profile" xml:space="preserve">
     <value>Profile</value>
   </data>
   <data name="ProfileName" xml:space="preserve">
-    <value>Profile Name</value>
+    <value>Profile name</value>
   </data>
   <data name="NewProfile" xml:space="preserve">
-    <value>New Profile</value>
+    <value>New profile</value>
   </data>
   <data name="DeleteProfile" xml:space="preserve">
-    <value>Delete Profile</value>
+    <value>Delete profile</value>
   </data>
   <data name="DeleteProfileConfirmation" xml:space="preserve">
     <value>Are you sure you want to delete this controller profile?</value>
   </data>
   <data name="NewControllerProfile" xml:space="preserve">
-    <value>New Controller Profile</value>
+    <value>New controller profile</value>
   </data>
   <data name="CopyCurrentMappings" xml:space="preserve">
     <value>Copy current mappings</value>
   </data>
   <data name="RenameProfile" xml:space="preserve">
-    <value>Rename Profile</value>
+    <value>Rename profile</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
-    <value>Rename Controller Profile</value>
+    <value>Rename controller profile</value>
   </data>
   <data name="ButtonMappings" xml:space="preserve">
-    <value>Button Mappings</value>
+    <value>Button mappings</value>
   </data>
   <data name="Map" xml:space="preserve">
     <value>Map</value>
@@ -313,19 +313,19 @@
     <value>Cancel</value>
   </data>
   <data name="CurrentForce" xml:space="preserve">
-    <value>Current Force</value>
+    <value>Current force</value>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
-    <value>Auto Max Force</value>
+    <value>Auto max force</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Other Features</value>
+    <value>Other features</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Switches</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Crash Protection</value>
+    <value>Crash protection</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value> g</value>
@@ -337,7 +337,7 @@
     <value>Duration</value>
   </data>
   <data name="ForceReduction" xml:space="preserve">
-    <value>Force Reduction</value>
+    <value>Force reduction</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
     <value> sec</value>
@@ -346,19 +346,19 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Curb Protection</value>
+    <value>Curb protection</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
-    <value>Shock Velocity</value>
+    <value>Shock velocity</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
-    <value>Simagic P1000 Pedals</value>
+    <value>Simagic P1000 pedals</value>
   </data>
   <data name="PedalsP2000" xml:space="preserve">
-    <value>Simagic P2000 Pedals</value>
+    <value>Simagic P2000 pedals</value>
   </data>
   <data name="PedalsNone" xml:space="preserve">
-    <value>[No Compatible Simagic Pedals Found]</value>
+    <value>[No compatible Simagic pedals found]</value>
   </data>
   <data name="Clutch" xml:space="preserve">
     <value>Clutch</value>
@@ -370,7 +370,7 @@
     <value>Throttle</value>
   </data>
   <data name="PedalEffects" xml:space="preserve">
-    <value>Pedal Effects</value>
+    <value>Pedal effects</value>
   </data>
   <data name="Strength" xml:space="preserve">
     <value>Strength</value>
@@ -379,10 +379,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Global Frequency</value>
+    <value>Global frequency</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Global Amplitude</value>
+    <value>Global amplitude</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
@@ -394,28 +394,28 @@
     <value>Curve</value>
   </data>
   <data name="GearChange" xml:space="preserve">
-    <value>Gear Change</value>
+    <value>Gear change</value>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
-    <value>Steering Effects</value>
+    <value>Steering effects</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>None</value>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value>Per Wheelbase</value>
+    <value>Per wheelbase</value>
   </data>
   <data name="PerCar" xml:space="preserve">
-    <value>Per Car</value>
+    <value>Per car</value>
   </data>
   <data name="PerTrack" xml:space="preserve">
-    <value>Per Track</value>
+    <value>Per track</value>
   </data>
   <data name="PerTrackConfiguration" xml:space="preserve">
-    <value>Per Track Configuration</value>
+    <value>Per track configuration</value>
   </data>
   <data name="PerWetDry" xml:space="preserve">
-    <value>Per Wet/Dry</value>
+    <value>Per wet/dry</value>
   </data>
   <data name="Wet" xml:space="preserve">
     <value>Wet</value>
@@ -427,10 +427,10 @@
     <value>Default</value>
   </data>
   <data name="SaveThisSetting" xml:space="preserve">
-    <value>Save This Setting</value>
+    <value>Save this setting</value>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>New Version Available!</value>
+    <value>New version available!</value>
   </data>
   <data name="DownloadQuestion" xml:space="preserve">
     <value>Would you like to download it now?</value>
@@ -442,13 +442,13 @@
     <value>Would you like to run the installer now?</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
-    <value>Check For Updates On Startup</value>
+    <value>Check for updates on startup</value>
   </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
-    <value>Connect to AdminBoxx on App Startup</value>
+    <value>Connect to AdminBoxx on app startup</value>
   </data>
   <data name="EnableXsrcIntegration" xml:space="preserve">
-    <value>Enable Xtreme Scoring Race Control Integration</value>
+    <value>Enable Xtreme Scoring Race Control integration</value>
   </data>
   <data name="Brightness" xml:space="preserve">
     <value>Brightness</value>
@@ -457,7 +457,7 @@
     <value>Volume</value>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Delta Limiter Bias</value>
+    <value>Delta limiter bias</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Output</value>
@@ -466,19 +466,19 @@
     <value>Wheel LFE</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
-    <value>LFE Recording Device</value>
+    <value>LFE recording device</value>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
-    <value>Input Torque (60 Hz)</value>
+    <value>Input torque (60 Hz)</value>
   </data>
   <data name="InputTorque" xml:space="preserve">
-    <value>Input Torque</value>
+    <value>Input torque</value>
   </data>
   <data name="OutputTorque" xml:space="preserve">
-    <value>Output Torque</value>
+    <value>Output torque</value>
   </data>
   <data name="TimerJitter" xml:space="preserve">
-    <value>Timer Jitter</value>
+    <value>Timer jitter</value>
   </data>
   <data name="InputLFE" xml:space="preserve">
     <value>Input LFE</value>
@@ -487,64 +487,64 @@
     <value>[Disabled]</value>
   </data>
   <data name="RememberWindowPositionAndSize" xml:space="preserve">
-    <value>Remember Window Position and Size</value>
+    <value>Remember window position and size</value>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
-    <value>Fade With Brake</value>
+    <value>Fade with brake</value>
   </data>
   <data name="StartingRPM" xml:space="preserve">
     <value>Starting RPM</value>
   </data>
   <data name="VibrateInTopGear" xml:space="preserve">
-    <value>Vibrate In Top Gear</value>
+    <value>Vibrate in top gear</value>
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
-    <value>Fade With Throttle</value>
+    <value>Fade with throttle</value>
   </data>
   <data name="Pulsate" xml:space="preserve">
     <value>Pulsate</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
-    <value>Starting Point</value>
+    <value>Starting point</value>
   </data>
   <data name="EndingPoint" xml:space="preserve">
-    <value>Ending Point</value>
+    <value>Ending point</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Gear Change - Shift Into Gear</value>
+    <value>Gear change - shift into gear</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Gear Change - Shift Into Neutral</value>
+    <value>Gear change - shift into neutral</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Enable FFB even if iRacing simulator FFB is on</value>
   </data>
   <data name="ClutchPedalHaptics" xml:space="preserve">
-    <value>Clutch Pedal Haptics</value>
+    <value>Clutch pedal haptics</value>
   </data>
   <data name="BrakePedalHaptics" xml:space="preserve">
-    <value>Brake Pedal Haptics</value>
+    <value>Brake pedal haptics</value>
   </data>
   <data name="ThrottlePedalHaptics" xml:space="preserve">
-    <value>Throttle Pedal Haptics</value>
+    <value>Throttle pedal haptics</value>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
-    <value>Noise Damper</value>
+    <value>Noise damper</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>App Window</value>
+    <value>App window</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
-    <value>Light Theme</value>
+    <value>Light theme</value>
   </data>
   <data name="UIScale" xml:space="preserve">
-    <value>UI Scale</value>
+    <value>UI scale</value>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Cloud Service</value>
+    <value>Cloud service</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
-    <value>Check Now</value>
+    <value>Check now</value>
   </data>
   <data name="CheckingForUpdate" xml:space="preserve">
     <value>Checking for update...</value>
@@ -562,16 +562,16 @@
     <value>Donors</value>
   </data>
   <data name="SuperDonors" xml:space="preserve">
-    <value>Super Donors</value>
+    <value>Super donors</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Donate</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Code Contributions</value>
+    <value>Code contributions</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Translation Contributions</value>
+    <value>Translation contributions</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>Are you a C# developer? This project is open to contributions. Learn more by visiting the GitHub repository.</value>
@@ -580,49 +580,49 @@
     <value>A heartfelt thank you to everyone listed here who volunteered their time and talent to translate MarvinsAIRA into so many languages. Your work helped make this app accessible to sim racers all over the world. Translations are now handled automatically by machine, so no further translation help is needed — but these contributors will always have my deepest gratitude.</value>
   </data>
   <data name="GitHubRepository" xml:space="preserve">
-    <value>GitHub Repository</value>
+    <value>GitHub repository</value>
   </data>
   <data name="Contributors" xml:space="preserve">
     <value>Contributors</value>
   </data>
   <data name="ShowWindow" xml:space="preserve">
-    <value>Show Window</value>
+    <value>Show window</value>
   </data>
   <data name="ShowSplashScreen" xml:space="preserve">
-    <value>Show Splash Screen When Starting Up</value>
+    <value>Show splash screen when starting up</value>
   </data>
   <data name="ExitApp" xml:space="preserve">
-    <value>Exit App</value>
+    <value>Exit app</value>
   </data>
   <data name="MinimizeInsteadOfClosing" xml:space="preserve">
-    <value>Minimize Instead Of Closing</value>
+    <value>Minimize instead of closing</value>
   </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
-    <value>Minimize To System Tray</value>
+    <value>Minimize to system tray</value>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Start Minimized</value>
+    <value>Start minimized</value>
   </data>
   <data name="StartWithWindows" xml:space="preserve">
-    <value>Start With Windows</value>
+    <value>Start with Windows</value>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value>Total Compression Rate</value>
+    <value>Total compression rate</value>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Slew Threshold</value>
+    <value>Slew threshold</value>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Slew Compression Rate</value>
+    <value>Slew compression rate</value>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value>Total Threshold</value>
+    <value>Total threshold</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
     <value> Nm/ms</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
-    <value>Wheel Force</value>
+    <value>Wheel force</value>
   </data>
   <data name="Set" xml:space="preserve">
     <value>Set</value>
@@ -631,7 +631,7 @@
     <value>Preview</value>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
-    <value>[No Recordings Found]</value>
+    <value>[No recordings found]</value>
   </data>
   <data name="SimpleMode" xml:space="preserve">
     <value>Enable simple mode</value>
@@ -640,10 +640,10 @@
     <value>Sensitivity</value>
   </data>
   <data name="SlewAndTotalCompression" xml:space="preserve">
-    <value>Slew and Total Compression</value>
+    <value>Slew and total compression</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Discord Moderators</value>
+    <value>Discord moderators</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>I want to thank these volunteer moderators for helping answer the many questions posed by MAIRA users, allowing me to have more time to focus on the development of MAIRA!</value>
@@ -682,7 +682,7 @@
     <value>Curb protection has been activated!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Private Messages</value>
+    <value>Private messages</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Enable curb protection messages</value>
@@ -697,58 +697,58 @@
     <value>You are not on the Centripetal Circuit track</value>
   </data>
   <data name="RunCalibration" xml:space="preserve">
-    <value>Run Calibration</value>
+    <value>Run calibration</value>
   </data>
   <data name="StopCalibration" xml:space="preserve">
-    <value>Stop Calibration</value>
+    <value>Stop calibration</value>
   </data>
   <data name="SteeringWheelLeft" xml:space="preserve">
-    <value>Steering Wheel Left</value>
+    <value>Steering wheel left</value>
   </data>
   <data name="SteeringWheelCenter" xml:space="preserve">
-    <value>Steering Wheel Center</value>
+    <value>Steering wheel center</value>
   </data>
   <data name="SteeringWheelRight" xml:space="preserve">
-    <value>Steering Wheel Right</value>
+    <value>Steering wheel right</value>
   </data>
   <data name="SteeringWheel90Left" xml:space="preserve">
-    <value>Steering Wheel 90° Left</value>
+    <value>Steering wheel 90° left</value>
   </data>
   <data name="MinThrottle" xml:space="preserve">
-    <value>Minimum Throttle</value>
+    <value>Minimum throttle</value>
   </data>
   <data name="MaxThrottle" xml:space="preserve">
-    <value>Maximum Throttle</value>
+    <value>Maximum throttle</value>
   </data>
   <data name="ShiftUp" xml:space="preserve">
-    <value>Shift Up</value>
+    <value>Shift up</value>
   </data>
   <data name="ShiftDown" xml:space="preserve">
-    <value>Shift Down</value>
+    <value>Shift down</value>
   </data>
   <data name="MinBrake" xml:space="preserve">
-    <value>Minimum Brake</value>
+    <value>Minimum brake</value>
   </data>
   <data name="MaxBrake" xml:space="preserve">
-    <value>Maximum Brake</value>
+    <value>Maximum brake</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Understeer Wheel Vibration Effect</value>
+    <value>Understeer wheel vibration effect</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Progress:</value>
   </data>
   <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Calibration File Not Selected]</value>
+    <value>[Calibration file not selected]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Parked Effects</value>
+    <value>Parked effects</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
-    <value>Force Feedback Strength</value>
+    <value>Force feedback strength</value>
   </data>
   <data name="WheelCenteringStrength" xml:space="preserve">
-    <value>Wheel Centering Strength</value>
+    <value>Wheel centering strength</value>
   </data>
   <data name="CenterWheelWhileRacing" xml:space="preserve">
     <value>Center wheel while racing</value>
@@ -757,16 +757,16 @@
     <value>Center wheel while parked</value>
   </data>
   <data name="ParkedFriction" xml:space="preserve">
-    <value>Parked Friction</value>
+    <value>Parked friction</value>
   </data>
   <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Current Car Setup:</value>
+    <value>Current car setup:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Understeer Pedal Vibration Effect</value>
+    <value>Understeer pedal vibration effect</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value>Something Went Wrong</value>
+    <value>Something went wrong</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Details</value>
@@ -787,7 +787,7 @@
     <value>°/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>Calibration File</value>
+    <value>Calibration file</value>
   </data>
   <data name="Understeer" xml:space="preserve">
     <value>Understeer</value>
@@ -796,79 +796,79 @@
     <value>Oversteer</value>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
-    <value>Minimum Threshold</value>
+    <value>Minimum threshold</value>
   </data>
   <data name="MaximumThreshold" xml:space="preserve">
-    <value>Maximum Threshold</value>
+    <value>Maximum threshold</value>
   </data>
   <data name="MinimumFrequency" xml:space="preserve">
-    <value>Minimum Frequency</value>
+    <value>Minimum frequency</value>
   </data>
   <data name="MaximumFrequency" xml:space="preserve">
-    <value>Maximum Frequency</value>
+    <value>Maximum frequency</value>
   </data>
   <data name="Calibration" xml:space="preserve">
     <value>Calibration</value>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
-    <value>Vibration Pattern</value>
+    <value>Vibration pattern</value>
   </data>
   <data name="SineWave" xml:space="preserve">
-    <value>Sine Wave</value>
+    <value>Sine wave</value>
   </data>
   <data name="SquareWave" xml:space="preserve">
-    <value>Square Wave</value>
+    <value>Square wave</value>
   </data>
   <data name="TriangleWave" xml:space="preserve">
-    <value>Triangle Wave</value>
+    <value>Triangle wave</value>
   </data>
   <data name="SawtoothWaveIn" xml:space="preserve">
-    <value>Sawtooth Wave (In)</value>
+    <value>Sawtooth wave (in)</value>
   </data>
   <data name="SawtoothWaveOut" xml:space="preserve">
-    <value>Sawtooth Wave (Out)</value>
+    <value>Sawtooth wave (out)</value>
   </data>
   <data name="DecreaseForce" xml:space="preserve">
-    <value>Decrease Force</value>
+    <value>Decrease force</value>
   </data>
   <data name="IncreaseForce" xml:space="preserve">
-    <value>Increase Force</value>
+    <value>Increase force</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Understeer Wheel Constant Force Effect</value>
+    <value>Understeer wheel constant force effect</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Direction</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Oversteer Wheel Vibration Effect</value>
+    <value>Oversteer wheel vibration effect</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Oversteer Wheel Constant Force Effect</value>
+    <value>Oversteer wheel constant force effect</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Oversteer Pedal Vibration Effect</value>
+    <value>Oversteer pedal vibration effect</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
-    <value>Understeer Effect</value>
+    <value>Understeer effect</value>
   </data>
   <data name="OversteerEffect" xml:space="preserve">
-    <value>Oversteer Effect</value>
+    <value>Oversteer effect</value>
   </data>
   <data name="ConfigurationFileIsInvalid" xml:space="preserve">
-    <value>Configuration File Is Invalid!</value>
+    <value>Configuration file is invalid!</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
     <value>Captions</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Overlay Window</value>
+    <value>Overlay window</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
-    <value>Manage Overlay Window</value>
+    <value>Manage overlay window</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>All Overlays</value>
+    <value>All overlays</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Enable edit mode</value>
@@ -883,7 +883,7 @@
     <value>Reset all overlay windows</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
-    <value>[Force Feedback Device Not Selected]</value>
+    <value>[Force feedback device not selected]</value>
   </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>Ready to donate?</value>
@@ -892,25 +892,25 @@
     <value>Contribute</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Calibration File Contributions</value>
+    <value>Calibration file contributions</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Wizard</value>
   </data>
   <data name="LaunchWizard" xml:space="preserve">
-    <value>Launch Wizard</value>
+    <value>Launch wizard</value>
   </data>
   <data name="Changelog" xml:space="preserve">
     <value>Changelog</value>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
-    <value>ABS Engaged</value>
+    <value>ABS engaged</value>
   </data>
   <data name="Amplitude" xml:space="preserve">
     <value>Amplitude</value>
   </data>
   <data name="ClutchSlip" xml:space="preserve">
-    <value>Clutch Slip</value>
+    <value>Clutch slip</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Frequency</value>
@@ -925,13 +925,13 @@
     <value>Sounds</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Pedals</value>
+    <value>Simagic pedals</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
-    <value>Wheel Lock</value>
+    <value>Wheel lock</value>
   </data>
   <data name="WheelSpin" xml:space="preserve">
-    <value>Wheel Spin</value>
+    <value>Wheel spin</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
     <value>Grip-O-Meter</value>
@@ -949,19 +949,19 @@
     <value>Connect to MAIRA G Tensioner</value>
   </data>
   <data name="ConnectToGTOnStartup" xml:space="preserve">
-    <value>Connect to MAIRA G Tensioner on App Startup</value>
+    <value>Connect to MAIRA G Tensioner on app startup</value>
   </data>
   <data name="MinimumAngle" xml:space="preserve">
-    <value>Minimum Angle</value>
+    <value>Minimum angle</value>
   </data>
   <data name="NeutralAngle" xml:space="preserve">
-    <value>Neutral Angle</value>
+    <value>Neutral angle</value>
   </data>
   <data name="MaximumAngle" xml:space="preserve">
-    <value>Maximum Angle</value>
+    <value>Maximum angle</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Max G Force</value>
+    <value>Max g force</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Subtract gravity</value>
@@ -979,28 +979,28 @@
     <value>Inverted</value>
   </data>
   <data name="DeadZone" xml:space="preserve">
-    <value>Dead Zone</value>
+    <value>Dead zone</value>
   </data>
   <data name="Smoothing" xml:space="preserve">
     <value>Smoothing</value>
   </data>
   <data name="MinG" xml:space="preserve">
-    <value>Min G</value>
+    <value>Min g</value>
   </data>
   <data name="MaxG" xml:space="preserve">
-    <value>Max G</value>
+    <value>Max g</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
-    <value>Vibration Effects</value>
+    <value>Vibration effects</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Wheel Lock</value>
+    <value>ABS / wheel lock</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
-    <value>Wheel Slip</value>
+    <value>Wheel slip</value>
   </data>
   <data name="RumbleStrip" xml:space="preserve">
-    <value>Rumble Strip</value>
+    <value>Rumble strip</value>
   </data>
   <data name="Surge" xml:space="preserve">
     <value>Surge</value>
@@ -1012,31 +1012,31 @@
     <value>Heave</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
-    <value>Motor Output</value>
+    <value>Motor output</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
-    <value>Left Shoulder</value>
+    <value>Left shoulder</value>
   </data>
   <data name="RightShoulder" xml:space="preserve">
-    <value>Right Shoulder</value>
+    <value>Right shoulder</value>
   </data>
   <data name="MaxMotorSpeed" xml:space="preserve">
-    <value>Max Motor Speed</value>
+    <value>Max motor speed</value>
   </data>
   <data name="InvertedArms" xml:space="preserve">
-    <value>Inverted Arms</value>
+    <value>Inverted arms</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Connect to MAIRA Typhoon Wind on App Startup</value>
+    <value>Connect to MAIRA Typhoon Wind on app startup</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
     <value>Connect to MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
-    <value>Left Fan</value>
+    <value>Left fan</value>
   </data>
   <data name="RightFan" xml:space="preserve">
-    <value>Right Fan</value>
+    <value>Right fan</value>
   </data>
   <data name="Connection" xml:space="preserve">
     <value>Connection</value>
@@ -1045,31 +1045,31 @@
     <value>Settings</value>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
-    <value>Master Wind Power</value>
+    <value>Master wind power</value>
   </data>
   <data name="MinimumSpeed" xml:space="preserve">
-    <value>Minimum Speed</value>
+    <value>Minimum speed</value>
   </data>
   <data name="TyphoonWindCurving" xml:space="preserve">
-    <value>Wind Curving</value>
+    <value>Wind curving</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>Speed</value>
   </data>
   <data name="FanPower" xml:space="preserve">
-    <value>Fan Power</value>
+    <value>Fan power</value>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value>Device Missing</value>
+    <value>Device missing</value>
   </data>
   <data name="Retry" xml:space="preserve">
     <value>Retry</value>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
-    <value>iRacing Paint Folder</value>
+    <value>iRacing paint folder</value>
   </data>
   <data name="MaxDownloadSpeed" xml:space="preserve">
-    <value>Max Download Speed</value>
+    <value>Max download speed</value>
   </data>
   <data name="TradingPaints" xml:space="preserve">
     <value>Trading Paints</value>
@@ -1078,49 +1078,49 @@
     <value>Marvin's Awesome iRacing App (MAIRA) is not affiliated with Trading Paints</value>
   </data>
   <data name="MultiAdjustmentToolkit" xml:space="preserve">
-    <value>Multi-Adjustment Toolkit</value>
+    <value>Multi-adjustment toolkit</value>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
-    <value>Torque Compression</value>
+    <value>Torque compression</value>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
-    <value>Slew Rate Reduction</value>
+    <value>Slew rate reduction</value>
   </data>
   <data name="SoftClipping" xml:space="preserve">
-    <value>Soft Clipping</value>
+    <value>Soft clipping</value>
   </data>
   <data name="DetailGain" xml:space="preserve">
-    <value>Detail Gain +/- Adjustment</value>
+    <value>Detail gain +/- adjustment</value>
   </data>
   <data name="OutputSmoothing" xml:space="preserve">
-    <value>Output Smoothing</value>
+    <value>Output smoothing</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Seat-of-Pants</value>
+    <value>Seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Seat-of-Pants Wheel Vibration Effect</value>
+    <value>Seat-of-pants wheel vibration effect</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Seat-of-Pants Wheel Constant Force Effect</value>
+    <value>Seat-of-pants wheel constant force effect</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Seat-of-Pants Pedal Vibration Effect</value>
+    <value>Seat-of-pants pedal vibration effect</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value>Seat-of-Pants Effect</value>
+    <value>Seat-of-pants effect</value>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value>Lateral Acceleration (Ay)</value>
+    <value>Lateral acceleration (Ay)</value>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
-    <value>Lateral Velocity (Vy)</value>
+    <value>Lateral velocity (Vy)</value>
   </data>
   <data name="RatioOfVelocities" xml:space="preserve">
-    <value>Ratio of Velocities (Vy/Vx)</value>
+    <value>Ratio of velocities (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Default Page</value>
+    <value>Default page</value>
   </data>
   <data name="Effects" xml:space="preserve">
     <value>Effects</value>
@@ -1132,16 +1132,16 @@
     <value>Display</value>
   </data>
   <data name="AllowSoundsDuringReplays" xml:space="preserve">
-    <value>Allow Sounds During Replays</value>
+    <value>Allow sounds during replays</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Brake + Throttle Warning</value>
+    <value>Brake + throttle warning</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
-    <value>FFB Clipping</value>
+    <value>FFB clipping</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value>Simagic P500 Pedals</value>
+    <value>Simagic P500 pedals</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
@@ -1156,13 +1156,13 @@
     <value>Forums</value>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
-    <value>Documentation Website</value>
+    <value>Documentation website</value>
   </data>
   <data name="DiscordServer" xml:space="preserve">
-    <value>Discord Server</value>
+    <value>Discord server</value>
   </data>
   <data name="iRacingForums" xml:space="preserve">
-    <value>iRacing Forums</value>
+    <value>iRacing forums</value>
   </data>
   <data name="DocumentationText" xml:space="preserve">
     <value>This documentation website is a forever work in progress, because new features are being added to this app all the time.  I do update the documentation as often as I can, but if the information you are looking for isn't there yet, you can try looking in the Discord server, or in the iRacing forums, for the answers to your questions.</value>
@@ -1174,49 +1174,49 @@
     <value>This is where it all started.  You can look for answers in here, but I am not as active here as I used to be.  Visiting the Discord server is the best way to ask questions.</value>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value>Simagic P700 Pedals</value>
+    <value>Simagic P700 pedals</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Fan Status</value>
+    <value>Fan status</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
-    <value>360 Hz Detail</value>
+    <value>360 Hz detail</value>
   </data>
   <data name="SlewPeakMode" xml:space="preserve">
-    <value>Peak Aware Slew Reduction</value>
+    <value>Peak aware slew reduction</value>
   </data>
   <data name="HybridVariable30" xml:space="preserve">
-    <value>360 Hz on 60 Hz, 10-30% Bias</value>
+    <value>360 Hz on 60 Hz, 10-30% bias</value>
   </data>
   <data name="Hybrid10" xml:space="preserve">
-    <value>360 Hz on 60 Hz, 10% Bias</value>
+    <value>360 Hz on 60 Hz, 10% bias</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Default Values) Native 60 Hz</value>
+    <value>(Default values) native 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
-    <value>(Default Values) 360 Hz on 60 Hz, 10-30% Bias</value>
+    <value>(Default values) 360 Hz on 60 Hz, 10-30% bias</value>
   </data>
   <data name="DefaultsHybrid10" xml:space="preserve">
-    <value>(Default Values) 360 Hz on 60 Hz, 10% Bias</value>
+    <value>(Default values) 360 Hz on 60 Hz, 10% bias</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Default Values) Native 360 Hz</value>
+    <value>(Default values) native 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Preset) Core tire feedback, minimal surface detail</value>
+    <value>(Preset) core tire feedback, minimal surface detail</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Preset) Core tire feedback, moderate surface detail</value>
+    <value>(Preset) core tire feedback, moderate surface detail</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Preset) Moderately boost FFB Dynamics</value>
+    <value>(Preset) moderately boost FFB dynamics</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Preset) Moderately reduce FFB dynamics</value>
+    <value>(Preset) moderately reduce FFB dynamics</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
-    <value>FFB Type + Presets</value>
+    <value>FFB type + presets</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
     <value>Lateral G-Force</value>
@@ -1228,16 +1228,16 @@
     <value>You must select a calibration file for this effect to work.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
-    <value>Prediction Mode</value>
+    <value>Prediction mode</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Predict 1/60s ahead)</value>
+    <value>K1 (predict 1/60s ahead)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Predict 2/60s ahead)</value>
+    <value>K2 (predict 2/60s ahead)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
-    <value>Prediction Blend</value>
+    <value>Prediction blend</value>
   </data>
   <data name="FFBIsDisabled" xml:space="preserve">
     <value>Force feedback has been manually shut off (emergency stop)</value>
@@ -1252,16 +1252,16 @@
     <value>FFB is disabled because calibration is running</value>
   </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
-    <value>Gear Change Vibrate Strength</value>
+    <value>Gear change vibrate strength</value>
   </data>
   <data name="ABSVibrateStrength" xml:space="preserve">
-    <value>ABS Vibrate Strength</value>
+    <value>ABS vibrate strength</value>
   </data>
   <data name="GapMonitor" xml:space="preserve">
-    <value>Gap Monitor</value>
+    <value>Gap monitor</value>
   </data>
   <data name="DeltaMonitor" xml:space="preserve">
-    <value>Delta Monitor</value>
+    <value>Delta monitor</value>
   </data>
   <data name="DeltaMonitorLapTime" xml:space="preserve">
     <value>Lap</value>
@@ -1279,7 +1279,7 @@
     <value>Show the overlay window title</value>
   </data>
   <data name="OverlaySettings" xml:space="preserve">
-    <value>Overlay Settings</value>
+    <value>Overlay settings</value>
   </data>
   <data name="BackgroundColor" xml:space="preserve">
     <value>Background color</value>
@@ -1300,55 +1300,55 @@
     <value>Close</value>
   </data>
   <data name="CPUAffinity" xml:space="preserve">
-    <value>CPU Affinity</value>
+    <value>CPU affinity</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Preset) Reduce Big Bumps</value>
+    <value>(Preset) reduce big bumps</value>
   </data>
   <data name="AppManager" xml:space="preserve">
-    <value>App Manager</value>
+    <value>App manager</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Apps To Launch</value>
+    <value>Apps to launch</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Apps To Terminate</value>
+    <value>Apps to terminate</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
-    <value>Executable Path</value>
+    <value>Executable path</value>
   </data>
   <data name="Arguments" xml:space="preserve">
     <value>Arguments</value>
   </data>
   <data name="DelayAfterStart" xml:space="preserve">
-    <value>Delay After Start (sec)</value>
+    <value>Delay after start (sec)</value>
   </data>
   <data name="CpuPriority" xml:space="preserve">
-    <value>CPU Priority</value>
+    <value>CPU priority</value>
   </data>
   <data name="AppWindowStyle" xml:space="preserve">
-    <value>Window Style</value>
+    <value>Window style</value>
   </data>
   <data name="TerminateOnDisconnect" xml:space="preserve">
-    <value>Terminate on Simulator Disconnect</value>
+    <value>Terminate on simulator disconnect</value>
   </data>
   <data name="AvoidPrimaryCpuCores" xml:space="preserve">
-    <value>Avoid Primary CPU Cores</value>
+    <value>Avoid primary CPU cores</value>
   </data>
   <data name="LaunchOnDisconnect" xml:space="preserve">
-    <value>Launch on Simulator Disconnect</value>
+    <value>Launch on simulator disconnect</value>
   </data>
   <data name="CpuPriorityIdle" xml:space="preserve">
     <value>Idle</value>
   </data>
   <data name="CpuPriorityBelowNormal" xml:space="preserve">
-    <value>Below Normal</value>
+    <value>Below normal</value>
   </data>
   <data name="CpuPriorityNormal" xml:space="preserve">
     <value>Normal</value>
   </data>
   <data name="CpuPriorityAboveNormal" xml:space="preserve">
-    <value>Above Normal</value>
+    <value>Above normal</value>
   </data>
   <data name="CpuPriorityHigh" xml:space="preserve">
     <value>High</value>
@@ -1387,7 +1387,7 @@
     <value>Close</value>
   </data>
   <data name="Wizard_Step0_Title" xml:space="preserve">
-    <value>Greetings, Racer!</value>
+    <value>Greetings, racer!</value>
   </data>
   <data name="Wizard_Step0_Line1" xml:space="preserve">
     <value>I'm Marvin the Wizard, and I'm here to help you tame the mighty MAIRA!</value>
@@ -1399,13 +1399,13 @@
     <value>Shall we begin, or are you an experienced wizard yourself and prefer to configure everything manually?</value>
   </data>
   <data name="Wizard_Step1_Title" xml:space="preserve">
-    <value>App Theme</value>
+    <value>App theme</value>
   </data>
   <data name="Wizard_Step1_Line1" xml:space="preserve">
     <value>Choose whether you prefer a light or dark theme. Toggle the switch below to preview the change live.</value>
   </data>
   <data name="Wizard_Step2_Title" xml:space="preserve">
-    <value>Steering Wheel</value>
+    <value>Steering wheel</value>
   </data>
   <data name="Wizard_Step2_Line1" xml:space="preserve">
     <value>Select your force-feedback steering wheel from the list below.</value>
@@ -1417,7 +1417,7 @@
     <value> Fanatec users: Fanatec wheels typically appear as two separate devices in the list. If the one you selected doesn't work, try selecting the other one!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
-    <value>Maximum Wheel Force</value>
+    <value>Maximum wheel force</value>
   </data>
   <data name="Wizard_Step3_Line1" xml:space="preserve">
     <value>Enter the maximum force your wheelbase is capable of producing, in Newton-meters (Nm). MAIRA uses this value to correctly scale all force feedback output for your hardware.</value>
@@ -1429,7 +1429,7 @@
     <value> Important: If you have already limited your wheel's maximum torque output inside your wheel manufacturer's software (e.g., Fanatec Wheel Control Panel, Moza Pit House, etc.), enter that reduced value here instead of the hardware's physical maximum. MAIRA needs to know what your wheel will actually deliver, not what it's capable of in theory.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
-    <value>Strength Controls</value>
+    <value>Strength controls</value>
   </data>
   <data name="Wizard_Step4_Line1" xml:space="preserve">
     <value>MAIRA lets you bind physical buttons on your wheel or controller to raise and lower the Force Feedback Strength on the fly — without ever leaving the cockpit.</value>
@@ -1444,7 +1444,7 @@
     <value>Strength</value>
   </data>
   <data name="Wizard_Step5_Title" xml:space="preserve">
-    <value>Auto-Set Max Force</value>
+    <value>Auto-set max force</value>
   </data>
   <data name="Wizard_Step5_Line1" xml:space="preserve">
     <value>While you are driving on track, MAIRA continuously measures the actual peak torque your wheel produces. It uses that measurement to suggest the ideal Max Force value — one that uses your wheel's full range without ever clipping the signal.</value>
@@ -1456,10 +1456,10 @@
     <value>A companion Clear button resets the running measurement so you can start a fresh reading — useful if your car has gone off track or hit something.</value>
   </data>
   <data name="Wizard_Step5_Question" xml:space="preserve">
-    <value>Would you like to set up the Auto-Set feature?</value>
+    <value>Would you like to set up the auto-set feature?</value>
   </data>
   <data name="Wizard_Step6_Title" xml:space="preserve">
-    <value>Auto-Set Setup</value>
+    <value>Auto-set setup</value>
   </data>
   <data name="Wizard_Step6_Line1" xml:space="preserve">
     <value>First, adjust the Auto Target headroom to taste, then map your Set and Clear buttons.</value>
@@ -1477,16 +1477,16 @@
     <value>Don't worry — you can always fine-tune everything manually on the Racing Wheel page later.</value>
   </data>
   <data name="Wizard_Step7_SliderLeft" xml:space="preserve">
-    <value>💤 Smooth Feeling</value>
+    <value>💤 Smooth feeling</value>
   </data>
   <data name="Wizard_Step7_SliderCenter" xml:space="preserve">
     <value>Normal</value>
   </data>
   <data name="Wizard_Step7_SliderRight" xml:space="preserve">
-    <value>Boost Details ⚡</value>
+    <value>Boost details ⚡</value>
   </data>
   <data name="Wizard_Step7_Preset_MaxSmooth_Name" xml:space="preserve">
-    <value>Silky Smooth</value>
+    <value>Silky smooth</value>
   </data>
   <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
     <value>Heavy delta limiting at 250 Nm/s. Very calm, rounded feedback.</value>
@@ -1498,7 +1498,7 @@
     <value>Delta limiting at 500 Nm/s. Softer edges and reduced sharpness.</value>
   </data>
   <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
-    <value>Slightly Smooth</value>
+    <value>Slightly smooth</value>
   </data>
   <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
     <value>Light delta limiting at 1000 Nm/s. Minor transient softening.</value>
@@ -1510,7 +1510,7 @@
     <value>Balanced detail and smoothness.</value>
   </data>
   <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
-    <value>Slightly Boosted</value>
+    <value>Slightly boosted</value>
   </data>
   <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
     <value>Subtle detail enhancement at 50% boost.</value>
@@ -1522,7 +1522,7 @@
     <value>Clear detail enhancement at 100% boost.</value>
   </data>
   <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
-    <value>A Lot of Boost</value>
+    <value>A lot of boost</value>
   </data>
   <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
     <value>Aggressive detail enhancement at 150% boost.</value>
@@ -1549,13 +1549,13 @@
     <value>Output device</value>
   </data>
   <data name="DefaultWindowsSoundDevice" xml:space="preserve">
-    <value>[Default Windows Sound Device]</value>
+    <value>[Default Windows sound device]</value>
   </data>
   <data name="LoopStart" xml:space="preserve">
-    <value>Loop Start</value>
+    <value>Loop start</value>
   </data>
   <data name="LoopEnd" xml:space="preserve">
-    <value>Loop End</value>
+    <value>Loop end</value>
   </data>
   <data name="Milliseconds" xml:space="preserve">
     <value>ms</value>
@@ -1567,28 +1567,28 @@
     <value>Account</value>
   </data>
   <data name="VoiceRoster" xml:space="preserve">
-    <value>Voice Roster</value>
+    <value>Voice roster</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Crew Chief Commentary</value>
+    <value>Crew chief commentary</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Spotter Commentary</value>
+    <value>Spotter commentary</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Sportscaster 1 Commentary</value>
+    <value>Sportscaster 1 commentary</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Sportscaster 2 Commentary</value>
+    <value>Sportscaster 2 commentary</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Pit Reporter Commentary</value>
+    <value>Pit reporter commentary</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
-    <value>API Key</value>
+    <value>API key</value>
   </data>
   <data name="VerifyKey" xml:space="preserve">
-    <value>Verify Key</value>
+    <value>Verify key</value>
   </data>
   <data name="KeyVerified" xml:space="preserve">
     <value>✓  Key verified</value>
@@ -1597,10 +1597,10 @@
     <value>✗  Key invalid</value>
   </data>
   <data name="VoiceNotSelected" xml:space="preserve">
-    <value>[Select a Voice]</value>
+    <value>[Select a voice]</value>
   </data>
   <data name="ModelNotSelected" xml:space="preserve">
-    <value>[Select a Model]</value>
+    <value>[Select a model]</value>
   </data>
   <data name="KeyRecognized" xml:space="preserve">
     <value>✓  Key recognized</value>
@@ -1612,25 +1612,25 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Voices — Read</value>
+    <value>Voices — read</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Models — Access</value>
+    <value>Models — access</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Text to Speech — Access</value>
+    <value>Text to speech — access</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Speech to Text — Access</value>
+    <value>Speech to text — access</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>User — Read</value>
+    <value>User — read</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Model</value>
   </data>
   <data name="MasterVolume" xml:space="preserve">
-    <value>Master Volume</value>
+    <value>Master volume</value>
   </data>
   <data name="Usage" xml:space="preserve">
     <value>Usage</value>
@@ -1645,37 +1645,37 @@
     <value>Dramatic</value>
   </data>
   <data name="SimilarityBoost" xml:space="preserve">
-    <value>Similarity Boost</value>
+    <value>Similarity boost</value>
   </data>
   <data name="SpeakerBoost" xml:space="preserve">
-    <value>Speaker Boost</value>
+    <value>Speaker boost</value>
   </data>
   <data name="SlotVolume" xml:space="preserve">
-    <value>Slot Volume</value>
+    <value>Slot volume</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Caution / Yellow Flag</value>
+    <value>Caution / yellow flag</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
-    <value>Proximity Calls</value>
+    <value>Proximity calls</value>
   </data>
   <data name="CarProximityReminderInterval" xml:space="preserve">
-    <value>Reminder Interval</value>
+    <value>Reminder interval</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Commentary Phrases</value>
+    <value>Commentary phrases</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Customize the phrases spoken for each event in the selected language. Changes are saved to your Documents folder and override the built-in phrases.</value>
   </data>
   <data name="ResetAllPhrases" xml:space="preserve">
-    <value>Reset All</value>
+    <value>Reset all</value>
   </data>
   <data name="ResetEventPhrases" xml:space="preserve">
     <value>Reset</value>
   </data>
   <data name="AddPhrase" xml:space="preserve">
-    <value>Add Phrase</value>
+    <value>Add phrase</value>
   </data>
   <data name="PhraseEditorSaved" xml:space="preserve">
     <value>✓  Custom phrases saved.</value>
@@ -1687,70 +1687,70 @@
     <value>Search...</value>
   </data>
   <data name="ResetFanPowerCurveToDefaults" xml:space="preserve">
-    <value>Reset to Defaults</value>
+    <value>Reset to defaults</value>
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
-    <value>Re-download Paint Files</value>
+    <value>Re-download paint files</value>
   </data>
   <data name="FlagCalls" xml:space="preserve">
-    <value>Flag Calls</value>
+    <value>Flag calls</value>
   </data>
   <data name="StartupWindowTitle" xml:space="preserve">
     <value>Starting up...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
-    <value>Initializing Top Level Window...</value>
+    <value>Initializing top level window...</value>
   </data>
   <data name="InitializingAudioManager" xml:space="preserve">
-    <value>Initializing Audio Manager...</value>
+    <value>Initializing audio manager...</value>
   </data>
   <data name="InitializingAdminBoxx" xml:space="preserve">
     <value>Initializing AdminBoxx...</value>
   </data>
   <data name="InitializingSimulator" xml:space="preserve">
-    <value>Initializing Simulator...</value>
+    <value>Initializing simulator...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Initializing Direct Input...</value>
+    <value>Initializing direct input...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Initializing Stream Deck...</value>
   </data>
   <data name="InitializingTextToSpeech" xml:space="preserve">
-    <value>Initializing Text To Speech...</value>
+    <value>Initializing text to speech...</value>
   </data>
   <data name="InitializingCommentary" xml:space="preserve">
-    <value>Initializing Commentary...</value>
+    <value>Initializing commentary...</value>
   </data>
   <data name="InitializingCloudService" xml:space="preserve">
-    <value>Initializing Cloud Service...</value>
+    <value>Initializing cloud service...</value>
   </data>
   <data name="InitializingGraph" xml:space="preserve">
-    <value>Initializing Graph...</value>
+    <value>Initializing graph...</value>
   </data>
   <data name="InitializingPedals" xml:space="preserve">
-    <value>Initializing Pedals...</value>
+    <value>Initializing pedals...</value>
   </data>
   <data name="InitializingRacingWheel" xml:space="preserve">
-    <value>Initializing Racing Wheel...</value>
+    <value>Initializing racing wheel...</value>
   </data>
   <data name="InitializingSounds" xml:space="preserve">
-    <value>Initializing Sounds...</value>
+    <value>Initializing sounds...</value>
   </data>
   <data name="InitializingLFE" xml:space="preserve">
     <value>Initializing LFE...</value>
   </data>
   <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Initializing Multimedia Timer...</value>
+    <value>Initializing multimedia timer...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
-    <value>Initializing Recording Manager...</value>
+    <value>Initializing recording manager...</value>
   </data>
   <data name="InitializingTimingMarkers" xml:space="preserve">
-    <value>Initializing Timing Markers...</value>
+    <value>Initializing timing markers...</value>
   </data>
   <data name="InitializingTelemetry" xml:space="preserve">
-    <value>Initializing Telemetry...</value>
+    <value>Initializing telemetry...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
     <value>Initializing Typhoon Wind...</value>
@@ -1759,36 +1759,36 @@
     <value>Initializing G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
-    <value>Initializing HID Hot Plug Monitor...</value>
+    <value>Initializing HID hot plug monitor...</value>
   </data>
   <data name="InitializingTradingPaints" xml:space="preserve">
     <value>Initializing Trading Paints...</value>
   </data>
   <data name="InitializingSettingsFile" xml:space="preserve">
-    <value>Initializing Settings File...</value>
+    <value>Initializing settings file...</value>
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
-    <value>Initializing Main Window...</value>
+    <value>Initializing main window...</value>
   </data>  <data name="RunningProcesses" xml:space="preserve">
-    <value>Running Processes</value>
+    <value>Running processes</value>
   </data>  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filter by name or path...</value>
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Searching for running apps...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Window Visibility</value>
+    <value>Window visibility</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Show / Hide Window</value>
+    <value>Show / hide window</value>
   </data>  <data name="StepSize" xml:space="preserve">
-    <value>Step Size</value>
+    <value>Step size</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">
-    <value>Update Check Interval</value>
+    <value>Update check interval</value>
   </data>  <data name="HoursUnits" xml:space="preserve">
     <value> hr</value>
   </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
-    <value>Delete Paints When iRacing Closes</value>
+    <value>Delete paints when iRacing closes</value>
   </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
-    <value>Check For Updates On Interval</value>
+    <value>Check for updates on interval</value>
   </data>  <data name="Practice" xml:space="preserve">
     <value>Practice</value>
   </data>  <data name="Qualifying" xml:space="preserve">
@@ -1804,19 +1804,19 @@
   </data>  <data name="Suppressed" xml:space="preserve">
     <value>Suppressed</value>
   </data>  <data name="DeleteOldInstallers" xml:space="preserve">
-    <value>Delete Old Installers</value>
+    <value>Delete old installers</value>
   </data>  <data name="Miscellaneous" xml:space="preserve">
     <value>Miscellaneous</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
-    <value>Open Documents Folder</value>
+    <value>Open documents folder</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
-    <value>Auto-Tune</value>
+    <value>Auto-tune</value>
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Balance</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
-    <value>Enable Per-Car Overlay Position and Scaling</value>
+    <value>Enable per-car overlay position and scaling</value>
   </data>
 
 

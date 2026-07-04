@@ -256,7 +256,7 @@
     <value>Enhet</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Samlad Styrka</value>
+    <value>Samlad styrka</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Automål</value>
@@ -271,7 +271,7 @@
     <value>Automatisk maxkraft</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Andra Funktioner</value>
+    <value>Andra funktioner</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Switchar</value>
@@ -283,7 +283,7 @@
     <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>Longitudinell G-kraft</value>
+    <value>Longitudinell g-kraft</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Varaktighet</value>
@@ -331,10 +331,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Global Frekvens</value>
+    <value>Global frekvens</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Global Amplitud</value>
+    <value>Global amplitud</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
@@ -463,10 +463,10 @@
     <value>Slutpunkt</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Växling - Lägg I Växel</value>
+    <value>Växling - lägg I växel</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Växling - Lägg I Neutral</value>
+    <value>Växling - lägg I neutral</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Aktivera FFB även om iRacing simulator FFB är på</value>
@@ -595,7 +595,7 @@
     <value>Slew och total kompression</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Discord-Moderatorer</value>
+    <value>Discord-moderatorer</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>Jag vill tacka dessa frivilliga moderatorer för att ha hjälpt till att besvara de många frågorna från MAIRA-användare, vilket ger mig mer tid att fokusera på utvecklingen av MAIRA!</value>
@@ -634,7 +634,7 @@
     <value>Kantskyddet har aktiverats!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Privata Meddelanden</value>
+    <value>Privata meddelanden</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Aktivera kantskyddsmeddelanden</value>
@@ -685,7 +685,7 @@
     <value>Maximum broms</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Understyring Rattvibration</value>
+    <value>Understyring rattvibration</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Framsteg:</value>
@@ -694,7 +694,7 @@
     <value>[Kalibreringsfil ej vald]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Parkerade Effekter</value>
+    <value>Parkerade effekter</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Kraftåterkopplingsstyrka</value>
@@ -715,7 +715,7 @@
     <value>Aktuell bilinställning:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Understyring Pedalvibration</value>
+    <value>Understyring pedalvibration</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Något gick fel</value>
@@ -787,19 +787,19 @@
     <value>Öka kraft</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Understyring Rat Konstant Kraft</value>
+    <value>Understyring rat konstant kraft</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Riktning</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Överstyring Rattvibration</value>
+    <value>Överstyring rattvibration</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Överstyring Rat Konstant Kraft</value>
+    <value>Överstyring rat konstant kraft</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Överstyring Pedalvibration</value>
+    <value>Överstyring pedalvibration</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Understyrningseffekt</value>
@@ -820,7 +820,7 @@
     <value>Hantera överläggsfönster</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Alla Överlägg</value>
+    <value>Alla överlägg</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Aktivera redigeringsläge</value>
@@ -844,7 +844,7 @@
     <value>Bidra</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Kalibreringsfil-Bidrag</value>
+    <value>Kalibreringsfil-bidrag</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Guide</value>
@@ -877,7 +877,7 @@
     <value>Ljud</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Pedaler</value>
+    <value>Simagic pedaler</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Hjulblockning</value>
@@ -892,7 +892,7 @@
     <value> MPH</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
-    <value>Typhoon Vind</value>
+    <value>Typhoon vind</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
     <value>G Tensioner</value>
@@ -913,7 +913,7 @@
     <value>Maximivinkel</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Max G-kraft</value>
+    <value>Max g-kraft</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Subtrahera gravitation</value>
@@ -937,16 +937,16 @@
     <value>Utjämning</value>
   </data>
   <data name="MinG" xml:space="preserve">
-    <value>Min G</value>
+    <value>Min g</value>
   </data>
   <data name="MaxG" xml:space="preserve">
-    <value>Max G</value>
+    <value>Max g</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
     <value>Vibrationseffekter</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Hjulblockning</value>
+    <value>ABS / hjulblockning</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Hjulglidning</value>
@@ -1051,13 +1051,13 @@
     <value>Säteskänsla</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Säteskänsla Rattvibration</value>
+    <value>Säteskänsla rattvibration</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Säteskänsla Rat Konstant Kraft</value>
+    <value>Säteskänsla rat konstant kraft</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Säteskänsla Pedalvibration</value>
+    <value>Säteskänsla pedalvibration</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
     <value>Säteskänslaeffekt</value>
@@ -1087,10 +1087,10 @@
     <value>Tillåt ljud under uppspelningar</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Varning Broms + Gas</value>
+    <value>Varning broms + gas</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
-    <value>Ffb Klippning</value>
+    <value>Ffb klippning</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500-pedaler</value>
@@ -1135,7 +1135,7 @@
     <value>360 Hz detalj</value>
   </data>
   <data name="SlewPeakMode" xml:space="preserve">
-    <value>Toppmedveten Slew-minskning</value>
+    <value>Toppmedveten slew-minskning</value>
   </data>
   <data name="HybridVariable30" xml:space="preserve">
     <value>360 Hz på 60 Hz, 10-30% bias</value>
@@ -1144,7 +1144,7 @@
     <value>360 Hz på 60 Hz, 10% bias</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Standardvärden) Inbyggd 60 Hz</value>
+    <value>(Standardvärden) inbyggd 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Standardvärden) 360 Hz på 60 Hz, 10-30% bias</value>
@@ -1153,25 +1153,25 @@
     <value>(Standardvärden) 360 Hz på 60 Hz, 10% bias</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Standardvärden) Inbyggd 360 Hz</value>
+    <value>(Standardvärden) inbyggd 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Förinställning) Grundläggande däcksåterkoppling, minimal ytdetalj</value>
+    <value>(Förinställning) grundläggande däcksåterkoppling, minimal ytdetalj</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Förinställning) Grundläggande däcksåterkoppling, måttlig ytdetalj</value>
+    <value>(Förinställning) grundläggande däcksåterkoppling, måttlig ytdetalj</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Förinställning) Öka FFB-dynamik måttligt</value>
+    <value>(Förinställning) öka FFB-dynamik måttligt</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Förinställning) Minska FFB-dynamik måttligt</value>
+    <value>(Förinställning) minska FFB-dynamik måttligt</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>FFB-typ + förinställningar</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Lateral G-kraft</value>
+    <value>Lateral g-kraft</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1183,10 +1183,10 @@
     <value>Prediktionsläge</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Förutsäg 1/60s framåt)</value>
+    <value>K1 (förutsäg 1/60s framåt)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Förutsäg 2/60s framåt)</value>
+    <value>K2 (förutsäg 2/60s framåt)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
     <value>Prediktion blandning</value>
@@ -1243,16 +1243,16 @@
     <value>CPU-TILLHÖRIGHET</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Förinställning) Minska stora stötar</value>
+    <value>(Förinställning) minska stora stötar</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Apphanterare</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Appar Att Starta</value>
+    <value>Appar att starta</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Appar Att Avsluta</value>
+    <value>Appar att avsluta</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Sökväg till körbar fil</value>
@@ -1396,10 +1396,10 @@
     <value>En tillhörande Clear-knapp återställer den löpande mätningen så att du kan börja en ny avläsning – användbart om din bil har kört av banan eller krockat med något.</value>
   </data>
   <data name="Wizard_Step5_Question" xml:space="preserve">
-    <value>Vill du ställa in Auto-Set-funktionen?</value>
+    <value>Vill du ställa in auto-set-funktionen?</value>
   </data>
   <data name="Wizard_Step6_Title" xml:space="preserve">
-    <value>Auto-Set-konfiguration</value>
+    <value>Auto-set-konfiguration</value>
   </data>
   <data name="Wizard_Step6_Line1" xml:space="preserve">
     <value>Justera först Auto Target-utrymmet efter smak och mappa sedan dina Set- och Clear-knappar.</value>
@@ -1510,19 +1510,19 @@
     <value>Röstlista</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Crew Chief-Kommentar</value>
+    <value>Crew chief-kommentar</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Spotter-Kommentar</value>
+    <value>Spotter-kommentar</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Sportkommentator 1-Kommentar</value>
+    <value>Sportkommentator 1-kommentar</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Sportkommentator 2-Kommentar</value>
+    <value>Sportkommentator 2-kommentar</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Pit-Reporter-Kommentar</value>
+    <value>Pit-reporter-kommentar</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>API-nyckel</value>
@@ -1552,19 +1552,19 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Röster — Läsning</value>
+    <value>Röster — läsning</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Modeller — Åtkomst</value>
+    <value>Modeller — åtkomst</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Text till tal — Åtkomst</value>
+    <value>Text till tal — åtkomst</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Tal till text — Åtkomst</value>
+    <value>Tal till text — åtkomst</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>Användare — Läsning</value>
+    <value>Användare — läsning</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Modell</value>
@@ -1594,7 +1594,7 @@
     <value>Slot­volym</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Varning / Gul flagg</value>
+    <value>Varning / gul flagg</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Närhetsanrop</value>
@@ -1696,7 +1696,7 @@
     <value>Initierar G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
-    <value>Initierar HID Hot Plug Monitor...</value>
+    <value>Initierar HID hot plug monitor...</value>
   </data>
   <data name="InitializingTradingPaints" xml:space="preserve">
     <value>Initierar Trading Paints...</value>
@@ -1737,7 +1737,7 @@
   </data>  <data name="WindowVisibility" xml:space="preserve">
     <value>Fönstersynlighet</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Visa / Dölj fönster</value>
+    <value>Visa / dölj fönster</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Stegstorlek</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">

@@ -298,7 +298,7 @@
     <value>m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Schutz Bei Randsteinen</value>
+    <value>Schutz bei Randsteinen</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Dämpfergeschwindigkeit</value>
@@ -466,7 +466,7 @@
     <value>Gangwechsel - Gang Einlegen</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Gangwechsel - In Leerlauf Schalten</value>
+    <value>Gangwechsel - in Leerlauf Schalten</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Aktiviere FFB auch wenn iRacing FFB aktiviert ist</value>
@@ -607,7 +607,7 @@ Hier ist der Link zum Spenden:</value>
     <value>Die AdminBoxx Firmware wird aktualisiert</value>
   </data>
   <data name="AllowSuperStrength" xml:space="preserve">
-    <value>Bis zu 200 % Stärke erlauben (Auf eigene Gefahr!)</value>
+    <value>Bis zu 200 % Stärke erlauben (auf eigene Gefahr!)</value>
   </data>
   <data name="ON" xml:space="preserve">
     <value>EIN</value>
@@ -697,7 +697,7 @@ Hier ist der Link zum Spenden:</value>
     <value>[Kalibrierungsdatei nicht ausgewählt]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Effekte Bei Stehendem Fahrzeug</value>
+    <value>Effekte bei Stehendem Fahrzeug</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Force Feedback Stärke</value>
@@ -847,7 +847,7 @@ Hier ist der Link zum Spenden:</value>
     <value>Mitwirkende</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Beiträge Zur Kalibrierungsdatei</value>
+    <value>Beiträge zur Kalibrierungsdatei</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Assistent</value>

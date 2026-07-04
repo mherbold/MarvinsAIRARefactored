@@ -184,7 +184,7 @@
     <value>Visszaállítás</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Munkamenet-Információ</value>
+    <value>Munkamenet-információ</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Szimulátor</value>
@@ -256,7 +256,7 @@
     <value>Eszköz</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Általános Erő</value>
+    <value>Általános erő</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Automatikus célpont</value>
@@ -271,19 +271,19 @@
     <value>Auto max erő</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Egyéb Funkciók</value>
+    <value>Egyéb funkciók</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Kapcsolók</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Baleset Védelem</value>
+    <value>Baleset védelem</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>Hosszirányú G-erő</value>
+    <value>Hosszirányú g-erő</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Időtartam</value>
@@ -298,7 +298,7 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Rázókő Védelem</value>
+    <value>Rázókő védelem</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Ütközési sebesség</value>
@@ -331,10 +331,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Globális Frekvencia</value>
+    <value>Globális frekvencia</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Globális Amplitúdó</value>
+    <value>Globális amplitúdó</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
@@ -463,10 +463,10 @@
     <value>Végpont</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Sebességváltás - Fokozatba Váltás</value>
+    <value>Sebességváltás - fokozatba váltás</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Sebességváltás - Üresbe Váltás</value>
+    <value>Sebességváltás - üresbe váltás</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>FFB engedélyezés ha az iRacing FFB engedélyezve van</value>
@@ -484,7 +484,7 @@
     <value>Zajcsillapító</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Alkalmazás Ablak</value>
+    <value>Alkalmazás ablak</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Világos téma</value>
@@ -514,16 +514,16 @@
     <value>Támogatók</value>
   </data>
   <data name="SuperDonors" xml:space="preserve">
-    <value>Szuper Támogatók</value>
+    <value>Szuper támogatók</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Támogatás</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Kód Hozzájárulások</value>
+    <value>Kód hozzájárulások</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Fordítás Hozzájárulások</value>
+    <value>Fordítás hozzájárulások</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>Te C# fejlesztő vagy? Ez a projekt nyitott a hozzájárulásokra. További információért látogasd meg a GitHub oldalt.</value>
@@ -595,7 +595,7 @@
     <value>Slew és teljes tömörítés</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Discord Moderátorok</value>
+    <value>Discord moderátorok</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>Köszönetet szeretnék mondani ezeknek az önkéntes moderátoroknak, akik segítettek megválaszolni a MAIRA felhasználók számos kérdését, így több időm maradt a MAIRA fejlesztésére!</value>
@@ -634,7 +634,7 @@
     <value>Rázókő védelem aktiválva!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Privát Üzenetek</value>
+    <value>Privát üzenetek</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Rázókő védelem üzenetek engedélyezése</value>
@@ -685,7 +685,7 @@
     <value>Maximális fék</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Alulkormányzási Kormány Vibrációs Hatás</value>
+    <value>Alulkormányzási kormány vibrációs hatás</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Haladás:</value>
@@ -694,7 +694,7 @@
     <value>[Kalibrálási fájl nincs kiválasztva]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Parkolt Hatások</value>
+    <value>Parkolt hatások</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Erővisszajelzés erőssége</value>
@@ -715,7 +715,7 @@
     <value>Jelenlegi autó beállítás:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Alulkormányzási Pedál Vibrációs Hatás</value>
+    <value>Alulkormányzási pedál vibrációs hatás</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Valami baj történt</value>
@@ -739,7 +739,7 @@
     <value>°/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>Kalibrálási Fájl</value>
+    <value>Kalibrálási fájl</value>
   </data>
   <data name="Understeer" xml:space="preserve">
     <value>Alulkormányzás</value>
@@ -787,19 +787,19 @@
     <value>Erő növelése</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Alulkormányzási Kormány Állandó Erő Hatás</value>
+    <value>Alulkormányzási kormány állandó erő hatás</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Irány</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Túlkormányzási Kormány Vibrációs Hatás</value>
+    <value>Túlkormányzási kormány vibrációs hatás</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Túlkormányzási Kormány Állandó Erő Hatás</value>
+    <value>Túlkormányzási kormány állandó erő hatás</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Túlkormányzási Pedál Vibrációs Hatás</value>
+    <value>Túlkormányzási pedál vibrációs hatás</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Alulkormányzási hatás</value>
@@ -814,13 +814,13 @@
     <value>Feliratok</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Overlay Ablak</value>
+    <value>Overlay ablak</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Overlay ablak kezelése</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Minden Overlay</value>
+    <value>Minden overlay</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Szerkesztési mód bekapcsolása</value>
@@ -844,7 +844,7 @@
     <value>Közreműködések</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Kalibráció Hozzájárulások</value>
+    <value>Kalibráció hozzájárulások</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Varázsló</value>
@@ -877,7 +877,7 @@
     <value>Hangok</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Pedál</value>
+    <value>Simagic pedál</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Kerékblokkolás</value>
@@ -886,13 +886,13 @@
     <value>Kerékpörgés</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value>Grip-O-Mérő</value>
+    <value>Grip-o-mérő</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
-    <value>Typhoon Szél</value>
+    <value>Typhoon szél</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
     <value>G Tensioner</value>
@@ -913,7 +913,7 @@
     <value>Maximális szög</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Maximális G-erő</value>
+    <value>Maximális g-erő</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Gravitáció levonása</value>
@@ -937,16 +937,16 @@
     <value>Simítás</value>
   </data>
   <data name="MinG" xml:space="preserve">
-    <value>Min G</value>
+    <value>Min g</value>
   </data>
   <data name="MaxG" xml:space="preserve">
-    <value>Max G</value>
+    <value>Max g</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
-    <value>Rezgési Hatások</value>
+    <value>Rezgési hatások</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Kerékblokkolás</value>
+    <value>ABS / kerékblokkolás</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Kerékcsúszás</value>
@@ -955,16 +955,16 @@
     <value>Rezgősáv</value>
   </data>
   <data name="Surge" xml:space="preserve">
-    <value>Hosszirányú Gyorsulás</value>
+    <value>Hosszirányú gyorsulás</value>
   </data>
   <data name="Sway" xml:space="preserve">
-    <value>Oldalirányú Mozgás</value>
+    <value>Oldalirányú mozgás</value>
   </data>
   <data name="Heave" xml:space="preserve">
-    <value>Függőleges Mozgás</value>
+    <value>Függőleges mozgás</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
-    <value>Motor Kimenet</value>
+    <value>Motor kimenet</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Bal váll</value>
@@ -1048,19 +1048,19 @@
     <value>Kimenet simítás</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Seat-Of-Pants</value>
+    <value>Seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Seat-Of-Pants Kormány Vibrációs Hatás</value>
+    <value>Seat-of-pants kormány vibrációs hatás</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Seat-Of-Pants Kormány Állandó Erő Hatás</value>
+    <value>Seat-of-pants kormány állandó erő hatás</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Seat-Of-Pants Pedál Vibrációs Hatás</value>
+    <value>Seat-of-pants pedál vibrációs hatás</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value>Seat-of-Pants hatás</value>
+    <value>Seat-of-pants hatás</value>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
     <value>Oldalsó gyorsulás (Ay)</value>
@@ -1072,7 +1072,7 @@
     <value>Sebességek aránya (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Alapértelmezett Oldal</value>
+    <value>Alapértelmezett oldal</value>
   </data>
   <data name="Effects" xml:space="preserve">
     <value>Effektek</value>
@@ -1087,10 +1087,10 @@
     <value>Hangok engedélyezése visszajátszások közben</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Figyelmeztetés Fék + Gáz</value>
+    <value>Figyelmeztetés fék + gáz</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
-    <value>Ffb Vágás</value>
+    <value>Ffb vágás</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 pedálok</value>
@@ -1129,7 +1129,7 @@
     <value>Simagic P700 pedálok</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Ventilátor Állapot</value>
+    <value>Ventilátor állapot</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>360 Hz részletesség</value>
@@ -1144,7 +1144,7 @@
     <value>360 Hz 60 Hz-en, 10% arány</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Alapértékek) Natív 60 Hz</value>
+    <value>(Alapértékek) natív 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Alapértékek) 360 Hz 60 Hz-en, 10-30% arány</value>
@@ -1153,25 +1153,25 @@
     <value>(Alapértékek) 360 Hz 60 Hz-en, 10% arány</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Alapértékek) Natív 360 Hz</value>
+    <value>(Alapértékek) natív 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Előbeállítás) Alapvető gumiabroncs-visszajelzés, minimális felszíni részlet</value>
+    <value>(Előbeállítás) alapvető gumiabroncs-visszajelzés, minimális felszíni részlet</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Előbeállítás) Alapvető gumiabroncs-visszajelzés, mérsékelt felszíni részlet</value>
+    <value>(Előbeállítás) alapvető gumiabroncs-visszajelzés, mérsékelt felszíni részlet</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Előbeállítás) Mérsékelten növeli az FFB dinamikát</value>
+    <value>(Előbeállítás) mérsékelten növeli az FFB dinamikát</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Előbeállítás) Mérsékelten csökkenti az FFB dinamikát</value>
+    <value>(Előbeállítás) mérsékelten csökkenti az FFB dinamikát</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>FFB típus + előbeállítások</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Oldalsó G-erő</value>
+    <value>Oldalsó g-erő</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1183,10 +1183,10 @@
     <value>Előrejelzési mód</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Előrejelzés 1/60 mp előre)</value>
+    <value>K1 (előrejelzés 1/60 mp előre)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Előrejelzés 2/60 mp előre)</value>
+    <value>K2 (előrejelzés 2/60 mp előre)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
     <value>Előrejelzés keverés</value>
@@ -1243,16 +1243,16 @@
     <value>CPU AFFINITÁS</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Előbeállítás) Nagy dudorok csökkentése</value>
+    <value>(Előbeállítás) nagy dudorok csökkentése</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Alkalmazáskezelő</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Indítandó Alkalmazások</value>
+    <value>Indítandó alkalmazások</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Leállítandó Alkalmazások</value>
+    <value>Leállítandó alkalmazások</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Futtatható fájl elérési útja</value>
@@ -1345,7 +1345,7 @@
     <value>Válaszd ki a kormányodat az alábbi listából.</value>
   </data>
   <data name="Wizard_Step2_Title" xml:space="preserve">
-    <value>Force Feedback mód</value>
+    <value>Force feedback mód</value>
   </data>
   <data name="Wizard_Step2_Line1" xml:space="preserve">
     <value>Válaszd ki a beállításodhoz legjobban illő módot.</value>
@@ -1510,19 +1510,19 @@
     <value>Hanglista</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Csapatvezető Kommentár</value>
+    <value>Csapatvezető kommentár</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Spotter Kommentár</value>
+    <value>Spotter kommentár</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Sportkommentátor 1 Kommentár</value>
+    <value>Sportkommentátor 1 kommentár</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Sportkommentátor 2 Kommentár</value>
+    <value>Sportkommentátor 2 kommentár</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Pit Riporter Kommentár</value>
+    <value>Pit riporter kommentár</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>API kulcs</value>
@@ -1552,19 +1552,19 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Hangok — Olvasás</value>
+    <value>Hangok — olvasás</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Modellek — Hozzáférés</value>
+    <value>Modellek — hozzáférés</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Szövegfelolvasás — Hozzáférés</value>
+    <value>Szövegfelolvasás — hozzáférés</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Beszédből szöveg — Hozzáférés</value>
+    <value>Beszédből szöveg — hozzáférés</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>Felhasználó — Olvasás</value>
+    <value>Felhasználó — olvasás</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Modell</value>
@@ -1594,7 +1594,7 @@
     <value>Slot hangerő</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Vigyázat / Sárga zászló</value>
+    <value>Vigyázat / sárga zászló</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Közelségi figyelmeztetések</value>
@@ -1603,7 +1603,7 @@
     <value>Emlékeztető intervallum</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Kommentár Mondatok</value>
+    <value>Kommentár mondatok</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Testreszabhatja a kiválasztott nyelvben az egyes eseményekre kimondott mondatokat. A változtatások a Dokumentumok mappába kerülnek mentésre, és felülírják a beépített mondatokat.</value>
@@ -1696,7 +1696,7 @@
     <value>G Tensioner inicializálása...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
-    <value>HID Hot Plug Monitor inicializálása...</value>
+    <value>HID hot plug monitor inicializálása...</value>
   </data>
   <data name="InitializingTradingPaints" xml:space="preserve">
     <value>Trading Paints inicializálása...</value>
@@ -1735,7 +1735,7 @@
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Futó alkalmazások keresése...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Ablak Láthatósága</value>
+    <value>Ablak láthatósága</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
     <value>Ablak megjelenítése / elrejtése</value>
   </data>  <data name="StepSize" xml:space="preserve">

@@ -4,11 +4,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section">Racing Wheel</p>
+<p class="section">Racing wheel</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Wheel Force</p>
+<p class="setting">Wheel force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -20,11 +20,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Max Force</p>
+<p class="setting">Max force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Set the Max Force according to the car you are driving.  Here's another handy table -</p>
+<p>Set the Max force according to the car you are driving.  Here's another handy table -</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:table -->
@@ -49,11 +49,11 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Detail Booster (Low Latency)</strong>: if you want to boost details (feel more road)</li>
+<li><strong>Detail booster (low latency)</strong>: if you want to boost details (feel more road)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Delta Limiter (Low Latency)</strong>: if you prefer a smoother driving experience.</li>
+<li><strong>Delta limiter (low latency)</strong>: if you prefer a smoother driving experience.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

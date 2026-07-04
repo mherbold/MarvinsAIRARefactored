@@ -41,7 +41,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Delete Paints When iRacing Closes</p>
+<p class="setting">Delete paints when iRacing closes</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -75,7 +75,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">iRacing Paint Folder</p>
+<p class="setting">iRacing paint folder</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -101,7 +101,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Max Download Speed</p>
+<p class="setting">Max download speed</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -117,7 +117,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Re-download Paint Files</p>
+<p class="setting">Re-download paint files</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

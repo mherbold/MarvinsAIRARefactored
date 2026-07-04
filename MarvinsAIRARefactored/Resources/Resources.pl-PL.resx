@@ -127,16 +127,16 @@
     <value>Marvin's Awesome iRacing App</value>
   </data>
   <data name="DetailBoostBias" xml:space="preserve">
-    <value>Balans Wzmocnienia Detali</value>
+    <value>Balans wzmocnienia detali</value>
   </data>
   <data name="DetailBoost" xml:space="preserve">
-    <value>Wzmocnienie Detali</value>
+    <value>Wzmocnienie detali</value>
   </data>
   <data name="FadeForceFeedback" xml:space="preserve">
-    <value>Stopniowy Zanik Force feedbacku podczas wchodzenia i wychodzenia z auta</value>
+    <value>Stopniowy zanik force feedbacku podczas wchodzenia i wychodzenia z auta</value>
   </data>
   <data name="RacingFriction" xml:space="preserve">
-    <value>Opór Kierownicy Podczas Wyścigu</value>
+    <value>Opór kierownicy podczas wyścigu</value>
   </data>
   <data name="Graph" xml:space="preserve">
     <value>Wykres</value>
@@ -148,13 +148,13 @@
     <value>Język</value>
   </data>
   <data name="DetailBooster" xml:space="preserve">
-    <value>Wzmacniacz Detali</value>
+    <value>Wzmacniacz detali</value>
   </data>
   <data name="DeltaLimiter" xml:space="preserve">
-    <value>Ogranicznik Delty</value>
+    <value>Ogranicznik delty</value>
   </data>
   <data name="MaxForce" xml:space="preserve">
-    <value>Maksymalna Siła FFB</value>
+    <value>Maksymalna siła FFB</value>
   </data>
   <data name="Native60Hz" xml:space="preserve">
     <value>Natywne 60 Hz</value>
@@ -163,7 +163,7 @@
     <value>Natywne 360 Hz</value>
   </data>
   <data name="NoFFBDevicesFound" xml:space="preserve">
-    <value>[Nie znaleziono urządzeń Force Feedback ]</value>
+    <value>[Nie znaleziono urządzeń force feedback ]</value>
   </data>
   <data name="OFF" xml:space="preserve">
     <value>Wyłącz</value>
@@ -175,7 +175,7 @@
     <value>Kierownica</value>
   </data>
   <data name="SteeringDevice" xml:space="preserve">
-    <value>Urządzenie Sterujące</value>
+    <value>Urządzenie sterujące</value>
   </data>
   <data name="RecordingDevice" xml:space="preserve">
     <value>Urządzenie nagrywające</value>
@@ -184,7 +184,7 @@
     <value>Resetuj</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Informacje O Sesji</value>
+    <value>Informacje o sesji</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Symulator</value>
@@ -193,10 +193,10 @@
     <value>Symulator iRacing nie jest uruchomiony</value>
   </data>
   <data name="SoftLockStrength" xml:space="preserve">
-    <value>Siła Krańcowej Blokady Obrotu Kierownicy</value>
+    <value>Siła krańcowej blokady obrotu kierownicy</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Dane Telemetryczne</value>
+    <value>Dane telemetryczne</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Testuj</value>
@@ -205,13 +205,13 @@
     <value>Polski (Polska) - Polish (Poland)</value>
   </data>
   <data name="TopmostWindow" xml:space="preserve">
-    <value>Zawsze Na Wierzchu</value>
+    <value>Zawsze na wierzchu</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
     <value>Nm</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value>Wzmocnienie Detali Przy 60 Hz</value>
+    <value>Wzmocnienie detali przy 60 Hz</value>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
     <value>AdminBoxx</value>
@@ -220,10 +220,10 @@
     <value>Połącz z AdminBoxx</value>
   </data>
   <data name="UpdateButtonMappings" xml:space="preserve">
-    <value>Aktualizuj Mapowanie Przycisków</value>
+    <value>Aktualizuj mapowanie przycisków</value>
   </data>
   <data name="PressTheRecordButton" xml:space="preserve">
-    <value>[Naciśnij Przycisk Nagrywania]</value>
+    <value>[Naciśnij przycisk nagrywania]</value>
   </data>
   <data name="Button" xml:space="preserve">
     <value>Przycisk</value>
@@ -238,16 +238,16 @@
     <value>Klawiatura</value>
   </data>
   <data name="WaitingForInput" xml:space="preserve">
-    <value>[Czekam Na wciśnięcie guzika]</value>
+    <value>[Czekam na wciśnięcie guzika]</value>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
-    <value>Limit Delty</value>
+    <value>Limit delty</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
     <value>Nm/s</value>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
-    <value>Limit Delty Przy 60 Hz</value>
+    <value>Limit delty przy 60 Hz</value>
   </data>
   <data name="Percent" xml:space="preserve">
     <value>%</value>
@@ -256,7 +256,7 @@
     <value>Urządzenie </value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Ogólna Siła</value>
+    <value>Ogólna siła</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Cel automatyczny</value>
@@ -265,31 +265,31 @@
     <value>Wyzeruj</value>
   </data>
   <data name="CurrentForce" xml:space="preserve">
-    <value>Moc Aktualna</value>
+    <value>Moc aktualna</value>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
-    <value>Auto Moc Maksymalna</value>
+    <value>Auto moc maksymalna</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Inne Funkcje</value>
+    <value>Inne funkcje</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Przełączniki</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Zabezpieczenie Podczas Uderzenia Na Torze</value>
+    <value>Zabezpieczenie podczas uderzenia na torze</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value>g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>Siła G (przeciążenie)</value>
+    <value>Siła g (przeciążenie)</value>
   </data>
   <data name="Duration" xml:space="preserve">
-    <value>Czas Trwania</value>
+    <value>Czas trwania</value>
   </data>
   <data name="ForceReduction" xml:space="preserve">
-    <value>Redukcja Mocy</value>
+    <value>Redukcja mocy</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
     <value> sek</value>
@@ -298,10 +298,10 @@
     <value>m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Zabezpieczenie Podczas Ostrego Najazdu Na Krawężnik</value>
+    <value>Zabezpieczenie podczas ostrego najazdu na krawężnik</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
-    <value>Prędkość Uderzenia</value>
+    <value>Prędkość uderzenia</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
     <value>Pedały Simagic P1000 </value>
@@ -310,7 +310,7 @@
     <value>Pedały Simagic P2000 </value>
   </data>
   <data name="PedalsNone" xml:space="preserve">
-    <value>[Nie Znaleziono Kompatybilnych Pedałów Simagic ]</value>
+    <value>[Nie znaleziono kompatybilnych pedałów Simagic ]</value>
   </data>
   <data name="Clutch" xml:space="preserve">
     <value>Sprzęgło</value>
@@ -322,7 +322,7 @@
     <value>Przepustnica</value>
   </data>
   <data name="PedalEffects" xml:space="preserve">
-    <value>Efekty Pedałów</value>
+    <value>Efekty pedałów</value>
   </data>
   <data name="Strength" xml:space="preserve">
     <value>Wzmocnienie</value>
@@ -331,10 +331,10 @@
     <value>Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Globalna Częstotliwość</value>
+    <value>Globalna częstotliwość</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Globalna Amplituda</value>
+    <value>Globalna amplituda</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
@@ -346,28 +346,28 @@
     <value>Krzywa</value>
   </data>
   <data name="GearChange" xml:space="preserve">
-    <value>Zmiana Biegu</value>
+    <value>Zmiana biegu</value>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
-    <value>Efekty Układu Kierowniczego</value>
+    <value>Efekty układu kierowniczego</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Brak</value>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value>Osobno Dla Bazy</value>
+    <value>Osobno dla bazy</value>
   </data>
   <data name="PerCar" xml:space="preserve">
-    <value>Osobno Dla Auta</value>
+    <value>Osobno dla auta</value>
   </data>
   <data name="PerTrack" xml:space="preserve">
-    <value>Osobno Dla Toru</value>
+    <value>Osobno dla toru</value>
   </data>
   <data name="PerTrackConfiguration" xml:space="preserve">
-    <value>Osobno Dla Konfiguracji Toru</value>
+    <value>Osobno dla konfiguracji toru</value>
   </data>
   <data name="PerWetDry" xml:space="preserve">
-    <value>Osobno dla Mokro/Sucho</value>
+    <value>Osobno dla mokro/sucho</value>
   </data>
   <data name="Wet" xml:space="preserve">
     <value>Mokro</value>
@@ -379,22 +379,22 @@
     <value>Domyślny</value>
   </data>
   <data name="SaveThisSetting" xml:space="preserve">
-    <value>Zapisz To Ustawienie</value>
+    <value>Zapisz to ustawienie</value>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>Nowa Wersja Dostępna!</value>
+    <value>Nowa wersja dostępna!</value>
   </data>
   <data name="DownloadQuestion" xml:space="preserve">
     <value>Czy chcesz teraz ją pobrać?</value>
   </data>
   <data name="RunInstaller" xml:space="preserve">
-    <value>Uruchomić Instalator?</value>
+    <value>Uruchomić instalator?</value>
   </data>
   <data name="RunInstallerQuestion" xml:space="preserve">
     <value>Czy chcesz teraz uruchomić instalator?</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
-    <value>Sprawdź Aktualizacje Podczas Uruchamiania</value>
+    <value>Sprawdź aktualizacje podczas uruchamiania</value>
   </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Połącz z AdminBoxx podczas uruchamiania</value>
@@ -409,28 +409,28 @@
     <value>Głośność</value>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Balans Limitu Delty</value>
+    <value>Balans limitu delty</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Końcowe Efekty ( Ustaw Minimum Dla Słabych Baz Pasek/Zębatki, Maksimum Dla Mocnych Dd )</value>
   </data>
   <data name="WheelLFE" xml:space="preserve">
-    <value>Efekty Lfe Gry</value>
+    <value>Efekty Lfe gry</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
-    <value>Urządzenie Zapisu Sygnału LFE</value>
+    <value>Urządzenie zapisu sygnału LFE</value>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
-    <value>Moment Wejściowy (60 Hz)</value>
+    <value>Moment wejściowy (60 Hz)</value>
   </data>
   <data name="InputTorque" xml:space="preserve">
-    <value>Moment Wejściowy</value>
+    <value>Moment wejściowy</value>
   </data>
   <data name="OutputTorque" xml:space="preserve">
-    <value>Moment Wyjściowy</value>
+    <value>Moment wyjściowy</value>
   </data>
   <data name="TimerJitter" xml:space="preserve">
-    <value>Pomiar Nieregularności (Jitter)</value>
+    <value>Pomiar nieregularności (jitter)</value>
   </data>
   <data name="InputLFE" xml:space="preserve">
     <value>Wejście sygnału LFE</value>
@@ -439,52 +439,52 @@
     <value>[Wyłączony]</value>
   </data>
   <data name="RememberWindowPositionAndSize" xml:space="preserve">
-    <value>Pamiętaj Pozycję i Rozmiar Okna</value>
+    <value>Pamiętaj pozycję i rozmiar okna</value>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
-    <value>Stopniowy zanik z  wciśniętym Hamulcem</value>
+    <value>Stopniowy zanik z  wciśniętym hamulcem</value>
   </data>
   <data name="StartingRPM" xml:space="preserve">
-    <value>Startowe Obr./Min</value>
+    <value>Startowe obr./min</value>
   </data>
   <data name="VibrateInTopGear" xml:space="preserve">
-    <value>Wibracje na Najwyższym Biegu</value>
+    <value>Wibracje na najwyższym biegu</value>
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
-    <value>Stopniowy zanik z  wciśniętą Przepustnicą</value>
+    <value>Stopniowy zanik z  wciśniętą przepustnicą</value>
   </data>
   <data name="Pulsate" xml:space="preserve">
     <value>Pulsowanie</value>
   </data>
   <data name="StartingPoint" xml:space="preserve">
-    <value>Punkt Początkowy</value>
+    <value>Punkt początkowy</value>
   </data>
   <data name="EndingPoint" xml:space="preserve">
-    <value>Punkt Końcowy</value>
+    <value>Punkt końcowy</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Zmiana Biegu – Na Inny Bieg</value>
+    <value>Zmiana biegu – na inny bieg</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Zmiana Biegu _ Na Położenie Neutralne</value>
+    <value>Zmiana biegu _ na położenie neutralne</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Włącz FFB nawet jeśli symulator iRacing ma włączony FFB</value>
   </data>
   <data name="ClutchPedalHaptics" xml:space="preserve">
-    <value>Haptyka Pedału Sprzęgła</value>
+    <value>Haptyka pedału sprzęgła</value>
   </data>
   <data name="BrakePedalHaptics" xml:space="preserve">
-    <value>Haptyka Pedału Hamulca</value>
+    <value>Haptyka pedału hamulca</value>
   </data>
   <data name="ThrottlePedalHaptics" xml:space="preserve">
-    <value>Haptyka Pedału Gazu</value>
+    <value>Haptyka pedału gazu</value>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
-    <value>Tłumienie Szumów</value>
+    <value>Tłumienie szumów</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Okno Aplikacji</value>
+    <value>Okno aplikacji</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Jasny motyw</value>
@@ -493,10 +493,10 @@
     <value>Skala interfejsu</value>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Magazyn Chmura</value>
+    <value>Magazyn chmura</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
-    <value>Sprawdź Teraz</value>
+    <value>Sprawdź teraz</value>
   </data>
   <data name="CheckingForUpdate" xml:space="preserve">
     <value>Sprawdzanie dostępności aktualizacji...</value>
@@ -514,16 +514,16 @@
     <value>Darczyńcy</value>
   </data>
   <data name="SuperDonors" xml:space="preserve">
-    <value>Super Darczyńcy</value>
+    <value>Super darczyńcy</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Wspomóż</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Współtwórcy Kodu</value>
+    <value>Współtwórcy kodu</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Współtwórcy Tłumaczeń</value>
+    <value>Współtwórcy tłumaczeń</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>Jeśli jesteś programistą C# i chciałbyś dodać kod do tego projektu, oto link do repozytorium GitHub:</value>
@@ -538,43 +538,43 @@
     <value>Współautorzy</value>
   </data>
   <data name="ShowWindow" xml:space="preserve">
-    <value>Pokaż Okno</value>
+    <value>Pokaż okno</value>
   </data>
   <data name="ShowSplashScreen" xml:space="preserve">
     <value>Pokaż ekran powitalny podczas uruchamiania</value>
   </data>
   <data name="ExitApp" xml:space="preserve">
-    <value>Wyjdź z Aplikacji</value>
+    <value>Wyjdź z aplikacji</value>
   </data>
   <data name="MinimizeInsteadOfClosing" xml:space="preserve">
     <value>Minimalizuj zamiast zamykać</value>
   </data>
   <data name="MinimizeToSystemTray" xml:space="preserve">
-    <value>Minimalizuj Do Zasobnika Systemowego</value>
+    <value>Minimalizuj do zasobnika systemowego</value>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Uruchom Zminimalizowane</value>
+    <value>Uruchom zminimalizowane</value>
   </data>
   <data name="StartWithWindows" xml:space="preserve">
     <value>Uruchom z Windows</value>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value>Całkowite: Współczynnik Kompresji</value>
+    <value>Całkowite: współczynnik kompresji</value>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Rotacja: Próg Kompresji</value>
+    <value>Rotacja: próg kompresji</value>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Rotacja: Stopień Kompresji</value>
+    <value>Rotacja: stopień kompresji</value>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value>Całkowite: Próg Kompresji</value>
+    <value>Całkowite: próg kompresji</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
     <value>Nm/ms</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
-    <value>Moc Bazy Kierownicy</value>
+    <value>Moc bazy kierownicy</value>
   </data>
   <data name="Set" xml:space="preserve">
     <value>Ustaw</value>
@@ -583,7 +583,7 @@
     <value>Podgląd</value>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
-    <value>[Nie Znaleziono Nagrań]</value>
+    <value>[Nie znaleziono nagrań]</value>
   </data>
   <data name="SimpleMode" xml:space="preserve">
     <value>Włącz tryb prosty</value>
@@ -592,7 +592,7 @@
     <value>Czułość</value>
   </data>
   <data name="SlewAndTotalCompression" xml:space="preserve">
-    <value>Rotacja i Całkowita Kompresja</value>
+    <value>Rotacja i całkowita kompresja</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
     <value>Moderatorzy Discord</value>
@@ -604,7 +604,7 @@
     <value>Firmware AdminBoxx jest aktualizowane</value>
   </data>
   <data name="AllowSuperStrength" xml:space="preserve">
-    <value>Pozwalaj na maksimum 200% Siły (potencjalnie niebezpieczne)</value>
+    <value>Pozwalaj na maksimum 200% siły (potencjalnie niebezpieczne)</value>
   </data>
   <data name="ON" xml:space="preserve">
     <value>Włącz</value>
@@ -634,7 +634,7 @@
     <value>Ochrona dla najazdu na krawężnik aktywowana!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Wiadomości Prywatne</value>
+    <value>Wiadomości prywatne</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Włącz ochronę dla najazdu na krawężnik</value>
@@ -649,58 +649,58 @@
     <value>Nie jesteś na torze Centripetal Circuit</value>
   </data>
   <data name="RunCalibration" xml:space="preserve">
-    <value>Uruchom Kalibrację</value>
+    <value>Uruchom kalibrację</value>
   </data>
   <data name="StopCalibration" xml:space="preserve">
-    <value>Zatrzymaj Kalibrację</value>
+    <value>Zatrzymaj kalibrację</value>
   </data>
   <data name="SteeringWheelLeft" xml:space="preserve">
-    <value>Koło Kierownicy w Lewo</value>
+    <value>Koło kierownicy w lewo</value>
   </data>
   <data name="SteeringWheelCenter" xml:space="preserve">
-    <value>Koło Kierownicy na Środek</value>
+    <value>Koło kierownicy na środek</value>
   </data>
   <data name="SteeringWheelRight" xml:space="preserve">
-    <value>Koło Kierownicy w Prawo</value>
+    <value>Koło kierownicy w prawo</value>
   </data>
   <data name="SteeringWheel90Left" xml:space="preserve">
-    <value>Koło Kierownicy 90° w Lewo</value>
+    <value>Koło kierownicy 90° w lewo</value>
   </data>
   <data name="MinThrottle" xml:space="preserve">
-    <value>Minimum Gazu</value>
+    <value>Minimum gazu</value>
   </data>
   <data name="MaxThrottle" xml:space="preserve">
-    <value>Maksimum Gazu</value>
+    <value>Maksimum gazu</value>
   </data>
   <data name="ShiftUp" xml:space="preserve">
-    <value>Wyższy Bieg</value>
+    <value>Wyższy bieg</value>
   </data>
   <data name="ShiftDown" xml:space="preserve">
-    <value>Niższy Bieg</value>
+    <value>Niższy bieg</value>
   </data>
   <data name="MinBrake" xml:space="preserve">
-    <value>Minimum Hamulca</value>
+    <value>Minimum hamulca</value>
   </data>
   <data name="MaxBrake" xml:space="preserve">
-    <value>Maksimum Hamulca</value>
+    <value>Maksimum hamulca</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Efekt Wibracji Kierownicy (Podsterowność)</value>
+    <value>Efekt wibracji kierownicy (podsterowność)</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Postęp:</value>
   </data>
   <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Efekty Układu Kierowniczego Wyłączone]</value>
+    <value>[Efekty układu kierowniczego wyłączone]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Efekty Parkowania</value>
+    <value>Efekty parkowania</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
-    <value>Siła Force Feedback</value>
+    <value>Siła force feedback</value>
   </data>
   <data name="WheelCenteringStrength" xml:space="preserve">
-    <value>Siła Centrowania Koła Kierownicy</value>
+    <value>Siła centrowania koła kierownicy</value>
   </data>
   <data name="CenterWheelWhileRacing" xml:space="preserve">
     <value>Centruj koło kierownicy podczas wyścigu</value>
@@ -709,16 +709,16 @@
     <value>Centruj koło kierownicy gdy parkujesz</value>
   </data>
   <data name="ParkedFriction" xml:space="preserve">
-    <value>Opór Kierownicy Podczas Parkowania</value>
+    <value>Opór kierownicy podczas parkowania</value>
   </data>
   <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Aktualna Konfiguracja Samochodu</value>
+    <value>Aktualna konfiguracja samochodu</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Efekt Wibracji Pedału (Podsterowność) </value>
+    <value>Efekt wibracji pedału (podsterowność) </value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
-    <value>Coś Poszło Nie Tak</value>
+    <value>Coś poszło nie tak</value>
   </data>
   <data name="Details" xml:space="preserve">
     <value>Szczegóły</value>
@@ -739,7 +739,7 @@
     <value>°/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>Plik Kalibracji</value>
+    <value>Plik kalibracji</value>
   </data>
   <data name="Understeer" xml:space="preserve">
     <value>Podsterowność</value>
@@ -748,22 +748,22 @@
     <value>Nadsterowność</value>
   </data>
   <data name="MinimumThreshold" xml:space="preserve">
-    <value>Minimalny Próg</value>
+    <value>Minimalny próg</value>
   </data>
   <data name="MaximumThreshold" xml:space="preserve">
-    <value>Maksymalny Próg</value>
+    <value>Maksymalny próg</value>
   </data>
   <data name="MinimumFrequency" xml:space="preserve">
-    <value>Minimalna Częstotliwość</value>
+    <value>Minimalna częstotliwość</value>
   </data>
   <data name="MaximumFrequency" xml:space="preserve">
-    <value>Maksymalna Częstotliwość</value>
+    <value>Maksymalna częstotliwość</value>
   </data>
   <data name="Calibration" xml:space="preserve">
     <value>Kalibracja</value>
   </data>
   <data name="VibrationPattern" xml:space="preserve">
-    <value>Typ Wibracji</value>
+    <value>Typ wibracji</value>
   </data>
   <data name="SineWave" xml:space="preserve">
     <value>Sinusoida</value>
@@ -781,25 +781,25 @@
     <value>Fala piłokształtna (opadająca)</value>
   </data>
   <data name="DecreaseForce" xml:space="preserve">
-    <value>Zmniejsz Siłę</value>
+    <value>Zmniejsz siłę</value>
   </data>
   <data name="IncreaseForce" xml:space="preserve">
-    <value>Zwiększ Siłę</value>
+    <value>Zwiększ siłę</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Efekt Stałej Siły Na Kierownicy (Podsterowność)</value>
+    <value>Efekt stałej siły na kierownicy (podsterowność)</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Kierunek</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Efekt Wibracji Kierownicy (Nadsterowność)</value>
+    <value>Efekt wibracji kierownicy (nadsterowność)</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Efekt Stałej Siły Na Kierownicy (Nadsterowność)</value>
+    <value>Efekt stałej siły na kierownicy (nadsterowność)</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Efekt Wibracji Pedału (Nadsterowność)</value>
+    <value>Efekt wibracji pedału (nadsterowność)</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Efekt podsterowności</value>
@@ -808,19 +808,19 @@
     <value>Efekt nadsterowności</value>
   </data>
   <data name="ConfigurationFileIsInvalid" xml:space="preserve">
-    <value>Plik Konfiguracji Jest Nieprawidłowy</value>
+    <value>Plik konfiguracji jest nieprawidłowy</value>
   </data>
   <data name="SpeechToText" xml:space="preserve">
     <value>Napisy</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Okno Nakładki</value>
+    <value>Okno nakładki</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Zarządzaj oknem nakładki</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Wszystkie Nakładki</value>
+    <value>Wszystkie nakładki</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Włącz tryb edycji</value>
@@ -835,7 +835,7 @@
     <value>Zresetuj wszystkie okna nakładek</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
-    <value>[Force Feedback urządzenie nie wybrano]</value>
+    <value>[Force feedback urządzenie nie wybrano]</value>
   </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>Gotowy, aby przekazać darowiznę?</value>
@@ -844,7 +844,7 @@
     <value>Współpraca</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Wkład W Pliki Kalibracji</value>
+    <value>Wkład w pliki kalibracji</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Kreator</value>
@@ -856,19 +856,19 @@
     <value>Dziennik zmian</value>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
-    <value>ABS Włączony</value>
+    <value>ABS włączony</value>
   </data>
   <data name="Amplitude" xml:space="preserve">
     <value>Amplituda</value>
   </data>
   <data name="ClutchSlip" xml:space="preserve">
-    <value>Uślizg Sprzęgła</value>
+    <value>Uślizg sprzęgła</value>
   </data>
   <data name="Frequency" xml:space="preserve">
     <value>Częstotliwość</value>
   </data>
   <data name="RPM" xml:space="preserve">
-    <value>Obr./Min</value>
+    <value>Obr./min</value>
   </data>
   <data name="ShiftRPM" xml:space="preserve">
     <value>Obroty zmiany biegu</value>
@@ -877,22 +877,22 @@
     <value>Dźwięki</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Pedały</value>
+    <value>Simagic pedały</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
-    <value>Zblokowane Koła</value>
+    <value>Zblokowane koła</value>
   </data>
   <data name="WheelSpin" xml:space="preserve">
     <value>Poślizg kół</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value>Odczucia Przyczepności</value>
+    <value>Odczucia przyczepności</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
     <value>mi/h</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
-    <value>Typhoon Wiatr</value>
+    <value>Typhoon wiatr</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
     <value>G Tensioner</value>
@@ -937,16 +937,16 @@
     <value>Wygładzanie</value>
   </data>
   <data name="MinG" xml:space="preserve">
-    <value>Min G</value>
+    <value>Min g</value>
   </data>
   <data name="MaxG" xml:space="preserve">
-    <value>Maks G</value>
+    <value>Maks g</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
-    <value>Efekty Wibracji</value>
+    <value>Efekty wibracji</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Blokada koła</value>
+    <value>ABS / blokada koła</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Poślizg koła</value>
@@ -958,13 +958,13 @@
     <value>Szarpnięcie</value>
   </data>
   <data name="Sway" xml:space="preserve">
-    <value>Przechył Boczny</value>
+    <value>Przechył boczny</value>
   </data>
   <data name="Heave" xml:space="preserve">
-    <value>Wzdłużny Ruch</value>
+    <value>Wzdłużny ruch</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
-    <value>Wyjście Silnika</value>
+    <value>Wyjście silnika</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Lewe ramię</value>
@@ -979,16 +979,16 @@
     <value>Odwrócone ramiona</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Połącz z MAIRA Typhoon Wind przy Starcie Aplikacji</value>
+    <value>Połącz z MAIRA Typhoon Wind przy starcie aplikacji</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
     <value>Połącz z MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
-    <value>Lewy Wiatrak</value>
+    <value>Lewy wiatrak</value>
   </data>
   <data name="RightFan" xml:space="preserve">
-    <value>Prawy Wiatrak</value>
+    <value>Prawy wiatrak</value>
   </data>
   <data name="Connection" xml:space="preserve">
     <value>Połączenie</value>
@@ -997,28 +997,28 @@
     <value>Ustawienia</value>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
-    <value>Główna Moc Wiatru</value>
+    <value>Główna moc wiatru</value>
   </data>
   <data name="MinimumSpeed" xml:space="preserve">
-    <value>Prędkość Minimalna</value>
+    <value>Prędkość minimalna</value>
   </data>
   <data name="TyphoonWindCurving" xml:space="preserve">
-    <value>Zakrzywienie Wiatru</value>
+    <value>Zakrzywienie wiatru</value>
   </data>
   <data name="Speed" xml:space="preserve">
     <value>Prędkość</value>
   </data>
   <data name="FanPower" xml:space="preserve">
-    <value>Moc Wiatraka</value>
+    <value>Moc wiatraka</value>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
-    <value>Brak Urządzenia</value>
+    <value>Brak urządzenia</value>
   </data>
   <data name="Retry" xml:space="preserve">
     <value>Ponów</value>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
-    <value>iRacing Paint Folder</value>
+    <value>iRacing paint folder</value>
   </data>
   <data name="MaxDownloadSpeed" xml:space="preserve">
     <value>Maks. prędkość pobierania</value>
@@ -1030,52 +1030,52 @@
     <value>Marvin's Awesome iRacing App (MAIRA) nie jest powiązany z Trading Paints</value>
   </data>
   <data name="MultiAdjustmentToolkit" xml:space="preserve">
-    <value>Manualna Korekta Parametrów</value>
+    <value>Manualna korekta parametrów</value>
   </data>
   <data name="TorqueCompression" xml:space="preserve">
-    <value>Kompresja Momentu Obrotowego</value>
+    <value>Kompresja momentu obrotowego</value>
   </data>
   <data name="SlewRateReduction" xml:space="preserve">
-    <value>Redukcja Szybkości Narastania</value>
+    <value>Redukcja szybkości narastania</value>
   </data>
   <data name="SoftClipping" xml:space="preserve">
-    <value>Łagodzenie Przesteru</value>
+    <value>Łagodzenie przesteru</value>
   </data>
   <data name="DetailGain" xml:space="preserve">
-    <value>Przyrost Detali</value>
+    <value>Przyrost detali</value>
   </data>
   <data name="OutputSmoothing" xml:space="preserve">
-    <value>Wygładzanie Na Wyjściu</value>
+    <value>Wygładzanie na wyjściu</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Odczucia Przyczepności</value>
+    <value>Odczucia przyczepności</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Odczucia Przyczepności Efekt Wibracji Kierownicy</value>
+    <value>Odczucia przyczepności efekt wibracji kierownicy</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Odczucia Przyczepności Efekt Stałej Siły</value>
+    <value>Odczucia przyczepności efekt stałej siły</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Odczucia Przyczepności Efekt Wibracji Pedału</value>
+    <value>Odczucia przyczepności efekt wibracji pedału</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value>Efekt Seat-of-Pants</value>
+    <value>Efekt seat-of-pants</value>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value>Przyspieszenie Boczne (Ay)</value>
+    <value>Przyspieszenie boczne (Ay)</value>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
-    <value>Prędkość Boczna (Vy)</value>
+    <value>Prędkość boczna (Vy)</value>
   </data>
   <data name="RatioOfVelocities" xml:space="preserve">
-    <value>Stosunek Prędkości (Vy/Vx)</value>
+    <value>Stosunek prędkości (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Zakładka Domyślna</value>
+    <value>Zakładka domyślna</value>
   </data>
   <data name="Effects" xml:space="preserve">
-    <value>Dodatkowe Efekty</value>
+    <value>Dodatkowe efekty</value>
   </data>
   <data name="Audio" xml:space="preserve">
     <value>Audio</value>
@@ -1087,7 +1087,7 @@
     <value>Zezwól na dźwięki podczas powtórek</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Ostrzeżenie Hamulec + Gaz</value>
+    <value>Ostrzeżenie hamulec + gaz</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
     <value>Przycinanie Ffb</value>
@@ -1129,7 +1129,7 @@
     <value>Pedały Simagic P700</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Status Wentylatora</value>
+    <value>Status wentylatora</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>Częstotliwość 360 Hz</value>
@@ -1138,37 +1138,37 @@
     <value>Redukcja szybkości ze świadomością szczytu</value>
   </data>
   <data name="HybridVariable30" xml:space="preserve">
-    <value>360 Hz przy 60 Hz, 10-30% Bias</value>
+    <value>360 Hz przy 60 Hz, 10-30% bias</value>
   </data>
   <data name="Hybrid10" xml:space="preserve">
-    <value>360 Hz przy 60 Hz, 10% Bias</value>
+    <value>360 Hz przy 60 Hz, 10% bias</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Wartości domyślne) Bazowe 60 Hz</value>
+    <value>(Wartości domyślne) bazowe 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
-    <value>(Wartości domyślne) 360 Hz przy 60 Hz, 10%-30% Bias</value>
+    <value>(Wartości domyślne) 360 Hz przy 60 Hz, 10%-30% bias</value>
   </data>
   <data name="DefaultsHybrid10" xml:space="preserve">
-    <value>(Wartości domyślne) 360 Hz przy 60 Hz, 10% Bias</value>
+    <value>(Wartości domyślne) 360 Hz przy 60 Hz, 10% bias</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Wartości domyślne) Bazowe 360 Hz</value>
+    <value>(Wartości domyślne) bazowe 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Preset) Główne czucie opon, minimalne detale nawierzchni</value>
+    <value>(Preset) główne czucie opon, minimalne detale nawierzchni</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Preset) Główne czucie opon, umiarkowane detale nawierzchni</value>
+    <value>(Preset) główne czucie opon, umiarkowane detale nawierzchni</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Preset) Umiarkowanie zwiększ dynamikę FFB</value>
+    <value>(Preset) umiarkowanie zwiększ dynamikę FFB</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Preset) Umiarkowanie zmniejsz dynamikę FFB</value>
+    <value>(Preset) umiarkowanie zmniejsz dynamikę FFB</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
-    <value>Rodzaj FFB + Presety</value>
+    <value>Rodzaj FFB + presety</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
     <value>Przeciążenie boczne</value>
@@ -1183,10 +1183,10 @@
     <value>Tryb predykcji</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Przewidywanie 1/60 s wprzód)</value>
+    <value>K1 (przewidywanie 1/60 s wprzód)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Przewidywanie 2/60 s wprzód)</value>
+    <value>K2 (przewidywanie 2/60 s wprzód)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
     <value>Mieszanie predykcji</value>
@@ -1243,16 +1243,16 @@
     <value>Przypisanie rdzenia CPU</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Preset) Zmniejsz duże wstrząsy</value>
+    <value>(Preset) zmniejsz duże wstrząsy</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Menedżer aplikacji</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Aplikacje Do Uruchomienia</value>
+    <value>Aplikacje do uruchomienia</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Aplikacje Do Zamknięcia</value>
+    <value>Aplikacje do zamknięcia</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Ścieżka do pliku</value>
@@ -1348,7 +1348,7 @@
     <value>Tryb force feedback</value>
   </data>
   <data name="Wizard_Step2_Line1" xml:space="preserve">
-    <value>Wybierz tryb najlepiej pasujący do Twojego zestawu.</value>
+    <value>Wybierz tryb najlepiej pasujący do twojego zestawu.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
     <value>Natywny 60 Hz to standardowy tryb dla większości kierownic.</value>
@@ -1507,22 +1507,22 @@
     <value>Konto</value>
   </data>
   <data name="VoiceRoster" xml:space="preserve">
-    <value>Lista Głosów</value>
+    <value>Lista głosów</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Komentarz Szefa Mechaników</value>
+    <value>Komentarz szefa mechaników</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Komentarz Spottera</value>
+    <value>Komentarz spottera</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Komentarz Komentatora Sportowego 1</value>
+    <value>Komentarz komentatora sportowego 1</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Komentarz Komentatora Sportowego 2</value>
+    <value>Komentarz komentatora sportowego 2</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Komentarz Reportera Z Alei Serwisowej</value>
+    <value>Komentarz reportera z alei serwisowej</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>Klucz API</value>
@@ -1552,19 +1552,19 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Głosy — Odczyt</value>
+    <value>Głosy — odczyt</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Modele — Dostęp</value>
+    <value>Modele — dostęp</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Zamiana tekstu na mowę — Dostęp</value>
+    <value>Zamiana tekstu na mowę — dostęp</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Mowa na tekst — Dostęp</value>
+    <value>Mowa na tekst — dostęp</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>Użytkownik — Odczyt</value>
+    <value>Użytkownik — odczyt</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Model</value>
@@ -1594,7 +1594,7 @@
     <value>Głośność slotu</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Ostrożnie / Żółta flaga</value>
+    <value>Ostrożnie / żółta flaga</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Sygnały zbliżenia</value>
@@ -1603,7 +1603,7 @@
     <value>Interwał przypomnień</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Frazy Komentarza</value>
+    <value>Frazy komentarza</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Dostosuj frazy mówione dla każdego zdarzenia w wybranym języku. Zmiany są zapisywane w folderze Dokumenty i zastępują wbudowane frazy.</value>
@@ -1636,58 +1636,58 @@
     <value>Uruchamianie...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
-    <value>Inicjalizacja Okna Najwyższego Poziomu...</value>
+    <value>Inicjalizacja okna najwyższego poziomu...</value>
   </data>
   <data name="InitializingAudioManager" xml:space="preserve">
-    <value>Inicjalizacja Menedżera Audio...</value>
+    <value>Inicjalizacja menedżera audio...</value>
   </data>
   <data name="InitializingAdminBoxx" xml:space="preserve">
     <value>Inicjalizacja AdminBoxx...</value>
   </data>
   <data name="InitializingSimulator" xml:space="preserve">
-    <value>Inicjalizacja Symulatora...</value>
+    <value>Inicjalizacja symulatora...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inicjalizacja Bezpośredniego Wejścia...</value>
+    <value>Inicjalizacja bezpośredniego wejścia...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inicjalizacja Stream Deck...</value>
   </data>
   <data name="InitializingTextToSpeech" xml:space="preserve">
-    <value>Inicjalizacja Tekstu na Mowę...</value>
+    <value>Inicjalizacja tekstu na mowę...</value>
   </data>
   <data name="InitializingCommentary" xml:space="preserve">
-    <value>Inicjalizacja Komentarza...</value>
+    <value>Inicjalizacja komentarza...</value>
   </data>
   <data name="InitializingCloudService" xml:space="preserve">
-    <value>Inicjalizacja Usługi Chmurowej...</value>
+    <value>Inicjalizacja usługi chmurowej...</value>
   </data>
   <data name="InitializingGraph" xml:space="preserve">
-    <value>Inicjalizacja Wykresu...</value>
+    <value>Inicjalizacja wykresu...</value>
   </data>
   <data name="InitializingPedals" xml:space="preserve">
-    <value>Inicjalizacja Pedałów...</value>
+    <value>Inicjalizacja pedałów...</value>
   </data>
   <data name="InitializingRacingWheel" xml:space="preserve">
-    <value>Inicjalizacja Kierownicy Wyścigowej...</value>
+    <value>Inicjalizacja kierownicy wyścigowej...</value>
   </data>
   <data name="InitializingSounds" xml:space="preserve">
-    <value>Inicjalizacja Dźwięków...</value>
+    <value>Inicjalizacja dźwięków...</value>
   </data>
   <data name="InitializingLFE" xml:space="preserve">
     <value>Inicjalizacja LFE...</value>
   </data>
   <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Inicjalizacja Licznika Multimedialnego...</value>
+    <value>Inicjalizacja licznika multimedialnego...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
-    <value>Inicjalizacja Menedżera Nagrywania...</value>
+    <value>Inicjalizacja menedżera nagrywania...</value>
   </data>
   <data name="InitializingTimingMarkers" xml:space="preserve">
-    <value>Inicjalizacja Znaczników Czasu...</value>
+    <value>Inicjalizacja znaczników czasu...</value>
   </data>
   <data name="InitializingTelemetry" xml:space="preserve">
-    <value>Inicjalizacja Telemetrii...</value>
+    <value>Inicjalizacja telemetrii...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
     <value>Inicjalizacja Typhoon Wind...</value>
@@ -1696,16 +1696,16 @@
     <value>Inicjalizacja G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
-    <value>Inicjalizacja HID Hot Plug Monitor...</value>
+    <value>Inicjalizacja HID hot plug monitor...</value>
   </data>
   <data name="InitializingTradingPaints" xml:space="preserve">
     <value>Inicjalizacja Trading Paints...</value>
   </data>
   <data name="InitializingSettingsFile" xml:space="preserve">
-    <value>Inicjalizacja Pliku Ustawień...</value>
+    <value>Inicjalizacja pliku ustawień...</value>
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
-    <value>Inicjalizacja Okna Głównego...</value>
+    <value>Inicjalizacja okna głównego...</value>
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Pobierz ponownie pliki malowań</value>
@@ -1735,9 +1735,9 @@
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Wyszukiwanie uruchomionych aplikacji...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Widoczność Okna</value>
+    <value>Widoczność okna</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Pokaż / Ukryj okno</value>
+    <value>Pokaż / ukryj okno</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Wielkość kroku</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">

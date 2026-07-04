@@ -39,7 +39,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Recording Device</p>
+<p class="setting">Recording device</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -51,7 +51,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: [Default Recording Device]</p>
+<p class="default">Default: [Default Recording device]</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -63,7 +63,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">API Key</p>
+<p class="setting">API key</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -71,7 +71,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Verify Key</p>
+<p class="setting">Verify key</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -80,11 +80,11 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Speech to Text — Access</strong> (so MAIRA can transcribe voice chat audio into captions)</li>
+<li><strong>Speech to text — access</strong> (so MAIRA can transcribe voice chat audio into captions)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>User — Read</strong> (so MAIRA can display your subscription usage)</li>
+<li><strong>User — read</strong> (so MAIRA can display your subscription usage)</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -109,7 +109,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Manage Overlay Window</p>
+<p class="setting">Manage overlay window</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

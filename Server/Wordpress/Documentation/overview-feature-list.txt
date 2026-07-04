@@ -338,11 +338,11 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Gap Monitor - movable/scalable overlay displaying real-time gap information to cars ahead and behind</li>
+<li>Gap monitor - movable/scalable overlay displaying real-time gap information to cars ahead and behind</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Delta Monitor - movable/scalable overlay showing lap time and delta versus your last lap and versus the leader</li>
+<li>Delta monitor - movable/scalable overlay showing lap time and delta versus your last lap and versus the leader</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -539,7 +539,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section">App Manager</p>
+<p class="section">App manager</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->

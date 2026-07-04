@@ -9,11 +9,11 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Gap Monitor</strong> &ndash; the closest car ahead and behind, with race info and time gaps</li>
+<li><strong>Gap monitor</strong> &ndash; the closest car ahead and behind, with race info and time gaps</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Delta Monitor</strong> &ndash; your current lap time and how you are doing against your last lap and the leader</li>
+<li><strong>Delta monitor</strong> &ndash; your current lap time and how you are doing against your last lap and the leader</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -30,7 +30,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="all-overlays">All Overlays</p>
+<p class="section" id="all-overlays">All overlays</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -59,7 +59,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>Settings (gear)</strong> &ndash; opens a small window to adjust the overlay's appearance, or reset it. For the box overlays (Gap Monitor, Delta Monitor, and Captions) you can set the background color &ndash; using a #RRGGBB hex code or the separate Red, Green, and Blue knobs &ndash; along with the opacity. The Grip-O-Meter has no background color, so its window offers the opacity control only.</li>
+<li><strong>Settings (gear)</strong> &ndash; opens a small window to adjust the overlay's appearance, or reset it. For the box overlays (Gap monitor, Delta monitor, and Captions) you can set the background color &ndash; using a #RRGGBB hex code or the separate Red, Green, and Blue knobs &ndash; along with the opacity. The Grip-O-Meter has no background color, so its window offers the opacity control only.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -132,11 +132,11 @@
 <!-- /wp:columns -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="gap-monitor">Gap Monitor</p>
+<p class="section" id="gap-monitor">Gap monitor</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The Gap Monitor shows the closest car ahead and the closest car behind you, along with useful race information such as car number, race position, iRating, driver name, and the time gap.</p>
+<p>The Gap monitor shows the closest car ahead and the closest car behind you, along with useful race information such as car number, race position, iRating, driver name, and the time gap.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -148,7 +148,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Turns the Gap Monitor overlay on/off. When ON, MAIRA automatically shows the overlay while connected to iRacing and on track.</p>
+<p>Turns the Gap monitor overlay on/off. When ON, MAIRA automatically shows the overlay while connected to iRacing and on track.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -156,7 +156,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Show Overlay Window Title</p>
+<p class="setting">Show overlay window title</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -180,11 +180,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="delta-monitor">Delta Monitor</p>
+<p class="section" id="delta-monitor">Delta monitor</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The Delta Monitor shows your current lap time and how you are doing compared with your own last lap and the session leader.</p>
+<p>The Delta monitor shows your current lap time and how you are doing compared with your own last lap and the session leader.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -210,7 +210,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Turns the Delta Monitor overlay on/off. When ON, MAIRA automatically shows the overlay while connected to iRacing and on track.</p>
+<p>Turns the Delta monitor overlay on/off. When ON, MAIRA automatically shows the overlay while connected to iRacing and on track.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -218,7 +218,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Show Overlay Window Title</p>
+<p class="setting">Show overlay window title</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -264,7 +264,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Show Overlay Window Title</p>
+<p class="setting">Show overlay window title</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -296,7 +296,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Show Overlay Window Title</p>
+<p class="setting">Show overlay window title</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

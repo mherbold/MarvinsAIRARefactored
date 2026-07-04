@@ -57,7 +57,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Input Torque</p>
+<p class="setting">Input torque</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -65,7 +65,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Output Torque</p>
+<p class="setting">Output torque</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -73,7 +73,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Input Torque (60 Hz)</p>
+<p class="setting">Input torque (60 Hz)</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -93,7 +93,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Clutch Pedal Haptics</p>
+<p class="setting">Clutch pedal haptics</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -101,7 +101,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Brake Pedal Haptics</p>
+<p class="setting">Brake pedal haptics</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -109,7 +109,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Throttle Pedal Haptics</p>
+<p class="setting">Throttle pedal haptics</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -117,7 +117,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Timer Jitter</p>
+<p class="setting">Timer jitter</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -156,15 +156,15 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>If Output Torque is clipping, the top or bottom gutter turns solid red.</li>
+<li>If Output torque is clipping, the top or bottom gutter turns solid red.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>If Curb Protection is active, the gutters show yellow checkers.</li>
+<li>If Curb protection is active, the gutters show yellow checkers.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>If Crash Protection is active, the gutters show orange checkers.</li>
+<li>If Crash protection is active, the gutters show orange checkers.</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

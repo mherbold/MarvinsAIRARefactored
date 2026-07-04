@@ -32,7 +32,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Connect to MAIRA G Tensioner on App Startup</p>
+<p class="setting">Connect to MAIRA G Tensioner on app startup</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -52,7 +52,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Minimum Angle</p>
+<p class="setting">Minimum angle</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -64,7 +64,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Neutral Angle</p>
+<p class="setting">Neutral angle</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -76,7 +76,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Maximum Angle</p>
+<p class="setting">Maximum angle</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -88,7 +88,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Max Motor Speed</p>
+<p class="setting">Max motor speed</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -100,7 +100,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Inverted Arms</p>
+<p class="setting">Inverted arms</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -124,11 +124,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Auto-Tune learns the G forces your car actually produces while you drive and continuously sets the Max G Force for the surge, sway, and heave axes (along with the seat-of-pants scale) for you. This keeps the belts using their full range on any car without having to hand-tune each one.</p>
+<p>Auto-Tune learns the G forces your car actually produces while you drive and continuously sets the Max g force for the surge, sway, and heave axes (along with the seat-of-pants scale) for you. This keeps the belts using their full range on any car without having to hand-tune each one.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>While Auto-Tune is ON, the Max G Force knobs for Surge, Sway, and Heave — along with the Seat of Pants Maximum Threshold, Amplitude, and Curve — are driven automatically and appear disabled. Turning Auto-Tune OFF hands control back to you and keeps the last learned values as your manual starting point.</p>
+<p>While Auto-Tune is ON, the Max g force knobs for Surge, Sway, and Heave — along with the Seat of Pants Maximum threshold, Amplitude, and Curve — are driven automatically and appear disabled. Turning Auto-Tune OFF hands control back to you and keeps the last learned values as your manual starting point.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -136,7 +136,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Turns Auto-Tune on or off. When ON, MAIRA learns and adapts the per-axis Max G Force and the seat-of-pants scale as you drive.</p>
+<p>Turns Auto-Tune on or off. When ON, MAIRA learns and adapts the per-axis Max g force and the seat-of-pants scale as you drive.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -182,7 +182,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Axis Mode</p>
+<p class="setting">Axis mode</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -194,7 +194,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Subtract Gravity</p>
+<p class="setting">Subtract gravity</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -206,7 +206,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Max G Force</p>
+<p class="setting">Max g force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -218,7 +218,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Dead Zone</p>
+<p class="setting">Dead zone</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -262,7 +262,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The graph on the right shows the live surge signal. The Min G and Max G values beneath it are the smallest and largest surge acceleration seen since you last went on track, which is handy for choosing a Max G Force by hand.</p>
+<p>The graph on the right shows the live surge signal. The Min g and Max g values beneath it are the smallest and largest surge acceleration seen since you last went on track, which is handy for choosing a Max g force by hand.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -284,7 +284,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Axis Mode</p>
+<p class="setting">Axis mode</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -296,7 +296,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Subtract Gravity</p>
+<p class="setting">Subtract gravity</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -308,7 +308,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Max G Force</p>
+<p class="setting">Max g force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -320,7 +320,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Dead Zone</p>
+<p class="setting">Dead zone</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -364,7 +364,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The graph on the right shows the live sway signal. The Min G and Max G values beneath it are the smallest and largest sway acceleration seen since you last went on track, which is handy for choosing a Max G Force by hand.</p>
+<p>The graph on the right shows the live sway signal. The Min g and Max g values beneath it are the smallest and largest sway acceleration seen since you last went on track, which is handy for choosing a Max g force by hand.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -380,7 +380,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Axis Mode</p>
+<p class="setting">Axis mode</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -392,7 +392,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Subtract Gravity</p>
+<p class="setting">Subtract gravity</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -404,7 +404,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Max G Force</p>
+<p class="setting">Max g force</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -416,7 +416,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Dead Zone</p>
+<p class="setting">Dead zone</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -460,7 +460,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The graph on the right shows the live heave signal. The Min G and Max G values beneath it are the smallest and largest heave acceleration seen since you last went on track, which is handy for choosing a Max G Force by hand.</p>
+<p>The graph on the right shows the live heave signal. The Min g and Max g values beneath it are the smallest and largest heave acceleration seen since you last went on track, which is handy for choosing a Max g force by hand.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -472,11 +472,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>When Auto-Tune is enabled, the seat-of-pants strength is set automatically (scaled together with the sway balance) and the Maximum Threshold, Amplitude, and Curve controls below are disabled.</p>
+<p>When Auto-Tune is enabled, the seat-of-pants strength is set automatically (scaled together with the sway balance) and the Maximum threshold, Amplitude, and Curve controls below are disabled.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Axis Mode</p>
+<p class="setting">Axis mode</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -488,7 +488,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Minimum Threshold</p>
+<p class="setting">Minimum threshold</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -500,7 +500,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Maximum Threshold</p>
+<p class="setting">Maximum threshold</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -552,7 +552,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">ABS / Wheel Lock</p>
+<p class="setting">ABS / wheel lock</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -564,7 +564,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">ABS / Wheel Lock — Frequency</p>
+<p class="setting">ABS / wheel lock — Frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -576,7 +576,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">ABS / Wheel Lock — Amplitude</p>
+<p class="setting">ABS / wheel lock — Amplitude</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -588,7 +588,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Wheel Slip</p>
+<p class="setting">Wheel slip</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -600,7 +600,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Wheel Slip — Frequency</p>
+<p class="setting">Wheel slip — Frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -612,7 +612,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Wheel Slip — Amplitude</p>
+<p class="setting">Wheel slip — Amplitude</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -624,7 +624,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Rumble Strip</p>
+<p class="setting">Rumble strip</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -636,7 +636,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Rumble Strip — Frequency</p>
+<p class="setting">Rumble strip — Frequency</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -648,7 +648,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Rumble Strip — Amplitude</p>
+<p class="setting">Rumble strip — Amplitude</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -668,7 +668,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>These are display-only graphs. They are useful for seeing how MAIRA is blending all axes into final belt commands. When a vibration effect (ABS / Wheel Lock, Wheel Slip, or Rumble Strip) is active, a label appears on the relevant graph to indicate which effect is running.</p>
+<p>These are display-only graphs. They are useful for seeing how MAIRA is blending all axes into final belt commands. When a vibration effect (ABS / wheel lock, Wheel slip, or Rumble strip) is active, a label appears on the relevant graph to indicate which effect is running.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->

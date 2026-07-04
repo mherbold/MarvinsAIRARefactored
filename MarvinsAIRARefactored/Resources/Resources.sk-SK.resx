@@ -142,7 +142,7 @@
     <value>Graf</value>
   </data>
   <data name="HeaderData" xml:space="preserve">
-    <value>Dáta Hlavičky</value>
+    <value>Dáta hlavičky</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Jazyk</value>
@@ -184,7 +184,7 @@
     <value>Obnoviť</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Informácie O Relácii</value>
+    <value>Informácie o relácii</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Simulátor</value>
@@ -196,7 +196,7 @@
     <value>Sila mäkkého dorazu</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Telemetrické Dáta</value>
+    <value>Telemetrické dáta</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Test</value>
@@ -256,7 +256,7 @@
     <value>Zariadenie</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Celková Sila</value>
+    <value>Celková sila</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Automatický cieľ</value>
@@ -295,7 +295,7 @@
     <value>Premenovať profil ovládača</value>
   </data>
   <data name="ButtonMappings" xml:space="preserve">
-    <value>Mapovania Tlačidiel</value>
+    <value>Mapovania tlačidiel</value>
   </data>
   <data name="Map" xml:space="preserve">
     <value>Mapovať</value>
@@ -319,19 +319,19 @@
     <value>Automatická maximálna sila</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Ďalšie Funkcie</value>
+    <value>Ďalšie funkcie</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Prepínače</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Ochrana Pri Nehode</value>
+    <value>Ochrana pri nehode</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>Pozdĺžne G-sily</value>
+    <value>Pozdĺžne g-sily</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Trvanie</value>
@@ -346,7 +346,7 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Ochrana Pri Obrubníkoch</value>
+    <value>Ochrana pri obrubníkoch</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Rýchlosť nárazu</value>
@@ -379,10 +379,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Globálna Frekvencia</value>
+    <value>Globálna frekvencia</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Globálna Amplitúda</value>
+    <value>Globálna amplitúda</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
@@ -463,7 +463,7 @@
     <value>Výstup</value>
   </data>
   <data name="WheelLFE" xml:space="preserve">
-    <value>Lfe Volantu</value>
+    <value>Lfe volantu</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Nahrávacie zariadenie LFE</value>
@@ -511,10 +511,10 @@
     <value>Koncový bod</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Zmena Prevodu – Zaradenie Prevodu</value>
+    <value>Zmena prevodu – zaradenie prevodu</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Zmena Prevodu – Zaradenie Neutrálu</value>
+    <value>Zmena prevodu – zaradenie neutrálu</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Povoliť FFB aj keď je FFB simulátora iRacing zapnuté</value>
@@ -532,7 +532,7 @@
     <value>Tlmič šumu</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Okno Aplikácie</value>
+    <value>Okno aplikácie</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Svetlý motív</value>
@@ -541,7 +541,7 @@
     <value>Mierka rozhrania</value>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Cloudová Služba</value>
+    <value>Cloudová služba</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
     <value>Skontrolovať teraz</value>
@@ -562,16 +562,16 @@
     <value>Darcovia</value>
   </data>
   <data name="SuperDonors" xml:space="preserve">
-    <value>Super Darcovia</value>
+    <value>Super darcovia</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Darovať</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Príspevky Kódu</value>
+    <value>Príspevky kódu</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Príspevky Prekladov</value>
+    <value>Príspevky prekladov</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>Ste vývojár v jazyku C#? Tento projekt je otvorený príspevkom. Viac sa dozviete na úložisku GitHub.</value>
@@ -682,7 +682,7 @@
     <value>Ochrana pri obrubníkoch bola aktivovaná!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Súkromné Správy</value>
+    <value>Súkromné správy</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Povoliť správy ochrany pri obrubníkoch</value>
@@ -733,7 +733,7 @@
     <value>Maximálna brzda</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Efekt Vibrácie Volantu Pri Nedotáčavosti</value>
+    <value>Efekt vibrácie volantu pri nedotáčavosti</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Priebeh:</value>
@@ -742,7 +742,7 @@
     <value>[Nie je vybraný kalibračný súbor]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Efekty Pri Zaparkovaní</value>
+    <value>Efekty pri zaparkovaní</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Sila silovej spätnej väzby</value>
@@ -763,7 +763,7 @@
     <value>Aktuálne nastavenie auta:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Efekt Vibrácie Pedálu Pri Nedotáčavosti</value>
+    <value>Efekt vibrácie pedálu pri nedotáčavosti</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Niečo sa pokazilo</value>
@@ -787,7 +787,7 @@
     <value>°/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>Kalibračný Súbor</value>
+    <value>Kalibračný súbor</value>
   </data>
   <data name="Understeer" xml:space="preserve">
     <value>Nedotáčavosť</value>
@@ -835,19 +835,19 @@
     <value>Zvýšiť silu</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Efekt Konštantnej Sily Volantu Pri Nedotáčavosti</value>
+    <value>Efekt konštantnej sily volantu pri nedotáčavosti</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Smer</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Efekt Vibrácie Volantu Pri Pretáčavosti</value>
+    <value>Efekt vibrácie volantu pri pretáčavosti</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Efekt Konštantnej Sily Volantu Pri Pretáčavosti</value>
+    <value>Efekt konštantnej sily volantu pri pretáčavosti</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Efekt Vibrácie Pedálu Pri Pretáčavosti</value>
+    <value>Efekt vibrácie pedálu pri pretáčavosti</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Efekt nedotáčavosti</value>
@@ -862,13 +862,13 @@
     <value>Titulky</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Prekryvné Okno</value>
+    <value>Prekryvné okno</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Spravovať prekryvné okno</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Všetky Prekrytia</value>
+    <value>Všetky prekrytia</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Povoliť režim úprav</value>
@@ -892,7 +892,7 @@
     <value>Prispieť</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Príspevky Kalibračných Súborov</value>
+    <value>Príspevky kalibračných súborov</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Sprievodca</value>
@@ -961,7 +961,7 @@
     <value>Maximálny uhol</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Max G-sila</value>
+    <value>Max g-sila</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Odčítať gravitáciu</value>
@@ -985,13 +985,13 @@
     <value>Vyhladzovanie</value>
   </data>
   <data name="MinG" xml:space="preserve">
-    <value>Min G</value>
+    <value>Min g</value>
   </data>
   <data name="MaxG" xml:space="preserve">
-    <value>Max G</value>
+    <value>Max g</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
-    <value>Vibračné Efekty</value>
+    <value>Vibračné efekty</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
     <value>ABS / zablokovanie kolies</value>
@@ -1006,13 +1006,13 @@
     <value>Zrýchlenie</value>
   </data>
   <data name="Sway" xml:space="preserve">
-    <value>Bočný Pohyb</value>
+    <value>Bočný pohyb</value>
   </data>
   <data name="Heave" xml:space="preserve">
     <value>Zdvih</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
-    <value>Výstup Motora</value>
+    <value>Výstup motora</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Ľavé rameno</value>
@@ -1096,16 +1096,16 @@
     <value>Vyhladzovanie výstupu</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Pocit Zo Sedadla</value>
+    <value>Pocit zo sedadla</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Efekt Vibrácie Volantu – Pocit Zo Sedadla</value>
+    <value>Efekt vibrácie volantu – pocit zo sedadla</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Efekt Konštantnej Sily Volantu – Pocit Zo Sedadla</value>
+    <value>Efekt konštantnej sily volantu – pocit zo sedadla</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Efekt Vibrácie Pedálu – Pocit Zo Sedadla</value>
+    <value>Efekt vibrácie pedálu – pocit zo sedadla</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
     <value>Efekt pocitu zo sedadla</value>
@@ -1120,7 +1120,7 @@
     <value>Pomer rýchlostí (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Predvolená Stránka</value>
+    <value>Predvolená stránka</value>
   </data>
   <data name="Effects" xml:space="preserve">
     <value>Efekty</value>
@@ -1135,7 +1135,7 @@
     <value>Povoliť zvuky počas prehrávaní</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Varovanie Brzda + Plyn</value>
+    <value>Varovanie brzda + plyn</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
     <value>Orezávanie Ffb</value>
@@ -1177,7 +1177,7 @@
     <value>Pedále Simagic P700</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Stav Ventilátora</value>
+    <value>Stav ventilátora</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>Detail 360 Hz</value>
@@ -1192,7 +1192,7 @@
     <value>360 Hz na 60 Hz, vyváženie 10 %</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Predvolené hodnoty) Natívne 60 Hz</value>
+    <value>(Predvolené hodnoty) natívne 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Predvolené hodnoty) 360 Hz na 60 Hz, vyváženie 10 – 30 %</value>
@@ -1201,25 +1201,25 @@
     <value>(Predvolené hodnoty) 360 Hz na 60 Hz, vyváženie 10 %</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Predvolené hodnoty) Natívne 360 Hz</value>
+    <value>(Predvolené hodnoty) natívne 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Predvoľba) Základná spätná väzba pneumatík, minimum detailov povrchu</value>
+    <value>(Predvoľba) základná spätná väzba pneumatík, minimum detailov povrchu</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Predvoľba) Základná spätná väzba pneumatík, mierne detaily povrchu</value>
+    <value>(Predvoľba) základná spätná väzba pneumatík, mierne detaily povrchu</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Predvoľba) Mierne zvýšenie dynamiky FFB</value>
+    <value>(Predvoľba) mierne zvýšenie dynamiky FFB</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Predvoľba) Mierne zníženie dynamiky FFB</value>
+    <value>(Predvoľba) mierne zníženie dynamiky FFB</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>Typ FFB + predvoľby</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Bočné G-sily</value>
+    <value>Bočné g-sily</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1303,16 +1303,16 @@
     <value>AFINITA CPU</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Predvoľba) Znížiť veľké nerovnosti</value>
+    <value>(Predvoľba) znížiť veľké nerovnosti</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Správca aplikácií</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Aplikácie Na Spustenie</value>
+    <value>Aplikácie na spustenie</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Aplikácie Na Ukončenie</value>
+    <value>Aplikácie na ukončenie</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Cesta k spustiteľnému súboru</value>
@@ -1567,22 +1567,22 @@
     <value>Účet</value>
   </data>
   <data name="VoiceRoster" xml:space="preserve">
-    <value>Zoznam Hlasov</value>
+    <value>Zoznam hlasov</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Komentár Vedúceho Tímu</value>
+    <value>Komentár vedúceho tímu</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Komentár Pozorovateľa</value>
+    <value>Komentár pozorovateľa</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Komentár Športového Komentátora 1</value>
+    <value>Komentár športového komentátora 1</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Komentár Športového Komentátora 2</value>
+    <value>Komentár športového komentátora 2</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Komentár Reportéra Z Boxov</value>
+    <value>Komentár reportéra z boxov</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>Kľúč API</value>
@@ -1663,7 +1663,7 @@
     <value>Interval pripomenutia</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Frázy Komentára</value>
+    <value>Frázy komentára</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Prispôsobte si frázy vyslovované pre každú udalosť vo vybranom jazyku. Zmeny sa ukladajú do priečinka Dokumenty a prepíšu vstavané frázy.</value>
@@ -1711,7 +1711,7 @@
     <value>Inicializuje sa simulátor...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inicializuje sa Direct Input...</value>
+    <value>Inicializuje sa direct input...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inicializuje sa Stream Deck...</value>
@@ -1776,9 +1776,9 @@
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Vyhľadávajú sa spustené aplikácie...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Viditeľnosť Okna</value>
+    <value>Viditeľnosť okna</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Zobraziť / Skryť okno</value>
+    <value>Zobraziť / skryť okno</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Veľkosť kroku</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">

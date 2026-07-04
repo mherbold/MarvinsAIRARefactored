@@ -121,7 +121,7 @@
     <value>Algoritm</value>
   </data>
   <data name="AppSettings" xml:space="preserve">
-    <value>Setări Aplicație</value>
+    <value>Setări aplicație</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>Marvin's Awesome iRacing App</value>
@@ -142,7 +142,7 @@
     <value>Grafic</value>
   </data>
   <data name="HeaderData" xml:space="preserve">
-    <value>Date Antet</value>
+    <value>Date antet</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Limbă</value>
@@ -163,7 +163,7 @@
     <value>Nativ 360 Hz</value>
   </data>
   <data name="NoFFBDevicesFound" xml:space="preserve">
-    <value>[Nu s-au găsit dispozitive Force Feedback]</value>
+    <value>[Nu s-au găsit dispozitive force feedback]</value>
   </data>
   <data name="OFF" xml:space="preserve">
     <value>OPRIT</value>
@@ -184,7 +184,7 @@
     <value>Resetare</value>
   </data>
   <data name="SessionInformation" xml:space="preserve">
-    <value>Informații Sesiune</value>
+    <value>Informații sesiune</value>
   </data>
   <data name="Simulator" xml:space="preserve">
     <value>Simulator</value>
@@ -196,7 +196,7 @@
     <value>Puterea blocării moi</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Date Telemetrie</value>
+    <value>Date telemetrie</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Test</value>
@@ -256,7 +256,7 @@
     <value>Dispozitiv</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Putere Generală</value>
+    <value>Putere generală</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Țintă automată</value>
@@ -271,19 +271,19 @@
     <value>Forță maximă automată</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Alte Funcționalități</value>
+    <value>Alte funcționalități</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Comutatoare</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Protecție La Coliziune</value>
+    <value>Protecție la coliziune</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>Forță G longitudinală</value>
+    <value>Forță g longitudinală</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Durată</value>
@@ -298,7 +298,7 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Protecție La Borduri</value>
+    <value>Protecție la borduri</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Viteză de șoc</value>
@@ -331,10 +331,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Frecvență Globală</value>
+    <value>Frecvență globală</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Amplitudine Globală</value>
+    <value>Amplitudine globală</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minim</value>
@@ -349,7 +349,7 @@
     <value>Schimbare viteză</value>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
-    <value>Efecte Volan</value>
+    <value>Efecte volan</value>
   </data>
   <data name="None" xml:space="preserve">
     <value>Niciunul</value>
@@ -394,7 +394,7 @@
     <value>Doriți să rulați instalatorul acum?</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
-    <value>Verifică Updateuri Start</value>
+    <value>Verifică updateuri start</value>
   </data>
   <data name="ConnectToAdminBoxxOnStartup" xml:space="preserve">
     <value>Conectare la AdminBoxx la pornirea aplicației</value>
@@ -415,7 +415,7 @@
     <value>Ieșire</value>
   </data>
   <data name="WheelLFE" xml:space="preserve">
-    <value>Lfe Volan</value>
+    <value>Lfe volan</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
     <value>Dispozitiv înregistrare LFE</value>
@@ -463,10 +463,10 @@
     <value>Punct final</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Schimbare Viteză - Intrare În Viteză</value>
+    <value>Schimbare viteză - intrare în viteză</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Schimbare Viteză - Intrare În Neutru</value>
+    <value>Schimbare viteză - intrare în neutru</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Activare FFB chiar dacă FFB-ul simulatorului iRacing este activ</value>
@@ -484,7 +484,7 @@
     <value>Amortizor de zgomot</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Fereastră Aplicație</value>
+    <value>Fereastră aplicație</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Temă deschisă</value>
@@ -493,10 +493,10 @@
     <value>Scală UI</value>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Serviciu Cloud</value>
+    <value>Serviciu cloud</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
-    <value>Verifică Acum</value>
+    <value>Verifică acum</value>
   </data>
   <data name="CheckingForUpdate" xml:space="preserve">
     <value>Se verifică actualizările...</value>
@@ -514,16 +514,16 @@
     <value>Donatori</value>
   </data>
   <data name="SuperDonors" xml:space="preserve">
-    <value>Super Donatori</value>
+    <value>Super donatori</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Donează</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Contribuții De Cod</value>
+    <value>Contribuții de cod</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
-    <value>Contribuții De Traducere</value>
+    <value>Contribuții de traducere</value>
   </data>
   <data name="CodeContributionsText" xml:space="preserve">
     <value>Ești dezvoltator C#? Acest proiect este deschis contribuțiilor. Află mai mult vizitând depozitul GitHub.</value>
@@ -553,7 +553,7 @@
     <value>Minimizare în bara de sistem</value>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Pornește Minimizat</value>
+    <value>Pornește minimizat</value>
   </data>
   <data name="StartWithWindows" xml:space="preserve">
     <value>Pornește cu Windows</value>
@@ -562,10 +562,10 @@
     <value>Rată compresie totală</value>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Prag Slew</value>
+    <value>Prag slew</value>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Rată compresie Slew</value>
+    <value>Rată compresie slew</value>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
     <value>Prag total</value>
@@ -592,7 +592,7 @@
     <value>Sensibilitate</value>
   </data>
   <data name="SlewAndTotalCompression" xml:space="preserve">
-    <value>Compresie Slew și totală</value>
+    <value>Compresie slew și totală</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
     <value>Moderatori Discord</value>
@@ -634,7 +634,7 @@
     <value>Protecția la borduri a fost activată!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Mesaje Private</value>
+    <value>Mesaje private</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Activare mesaje protecție la borduri</value>
@@ -685,7 +685,7 @@
     <value>Frână maximă</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Efect Vibrație Volan Subviraj</value>
+    <value>Efect vibrație volan subviraj</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Progres:</value>
@@ -694,7 +694,7 @@
     <value>[Fișier calibrare neselectat]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Efecte Parcat</value>
+    <value>Efecte parcat</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Puterea forței de reacție</value>
@@ -715,7 +715,7 @@
     <value>Configurația curentă a mașinii:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Efect Vibrație Pedală Subviraj</value>
+    <value>Efect vibrație pedală subviraj</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Ceva a mers greșit</value>
@@ -739,7 +739,7 @@
     <value>°/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>Fișier Calibrare</value>
+    <value>Fișier calibrare</value>
   </data>
   <data name="Understeer" xml:space="preserve">
     <value>Subviraj</value>
@@ -787,19 +787,19 @@
     <value>Mărire forță</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Efect Forță Constantă Volan Subviraj</value>
+    <value>Efect forță constantă volan subviraj</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Direcție</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Efect Vibrație Volan Supraviraj</value>
+    <value>Efect vibrație volan supraviraj</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Efect Forță Constantă Volan Supraviraj</value>
+    <value>Efect forță constantă volan supraviraj</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Efect Vibrație Pedală Supraviraj</value>
+    <value>Efect vibrație pedală supraviraj</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Efect subviraj</value>
@@ -814,13 +814,13 @@
     <value>Subtitrări</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Fereastră Overlay</value>
+    <value>Fereastră overlay</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Gestionează fereastra overlay</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Toate Overlay-Urile</value>
+    <value>Toate overlay-urile</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Activează modul de editare</value>
@@ -835,7 +835,7 @@
     <value>Resetează toate ferestrele overlay</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
-    <value>[Dispozitiv Force Feedback neselectat]</value>
+    <value>[Dispozitiv force feedback neselectat]</value>
   </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>Gata să donați?</value>
@@ -844,7 +844,7 @@
     <value>Contribuie</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Contribuții Fișier Calibrare</value>
+    <value>Contribuții fișier calibrare</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Vrăjitor</value>
@@ -877,7 +877,7 @@
     <value>Sunete</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Pedale</value>
+    <value>Simagic pedale</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Blocare roată</value>
@@ -886,13 +886,13 @@
     <value>Patinare roată</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value>Grip-O-Metru</value>
+    <value>Grip-o-metru</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
-    <value>Typhoon Vânt</value>
+    <value>Typhoon vânt</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
     <value>G Tensioner</value>
@@ -913,7 +913,7 @@
     <value>Unghi maxim</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Forță G maximă</value>
+    <value>Forță g maximă</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Scade gravitația</value>
@@ -943,10 +943,10 @@
     <value>G max</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
-    <value>Efecte De Vibrație</value>
+    <value>Efecte de vibrație</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Blocarea roții</value>
+    <value>ABS / blocarea roții</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Patinaj roată</value>
@@ -964,7 +964,7 @@
     <value>Tangaj</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
-    <value>Ieșire Motor</value>
+    <value>Ieșire motor</value>
   </data>
   <data name="LeftShoulder" xml:space="preserve">
     <value>Umăr stâng</value>
@@ -1048,19 +1048,19 @@
     <value>Netezire ieșire</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Seat-Of-Pants</value>
+    <value>Seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Efect Vibrație Volan Seat-Of-Pants</value>
+    <value>Efect vibrație volan seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Efect Forță Constantă Volan Seat-Of-Pants</value>
+    <value>Efect forță constantă volan seat-of-pants</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Efect Vibrație Pedală Seat-Of-Pants</value>
+    <value>Efect vibrație pedală seat-of-pants</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value>Efect Seat-of-Pants</value>
+    <value>Efect seat-of-pants</value>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
     <value>Accelerație laterală (Ay)</value>
@@ -1072,7 +1072,7 @@
     <value>Raport viteze (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Pagină Implicită</value>
+    <value>Pagină implicită</value>
   </data>
   <data name="Effects" xml:space="preserve">
     <value>Efecte</value>
@@ -1087,7 +1087,7 @@
     <value>Permite sunete în timpul reluărilor</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Avertisment Frână + Accelerație</value>
+    <value>Avertisment frână + accelerație</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
     <value>Tăiere Ffb</value>
@@ -1129,7 +1129,7 @@
     <value>Pedale Simagic P700</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Stare Ventilator</value>
+    <value>Stare ventilator</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>Detaliu 360 Hz</value>
@@ -1144,7 +1144,7 @@
     <value>360 Hz pe 60 Hz, polarizare 10%</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Valori implicite) Nativ 60 Hz</value>
+    <value>(Valori implicite) nativ 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Valori implicite) 360 Hz pe 60 Hz, polarizare 10-30%</value>
@@ -1153,25 +1153,25 @@
     <value>(Valori implicite) 360 Hz pe 60 Hz, polarizare 10%</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Valori implicite) Nativ 360 Hz</value>
+    <value>(Valori implicite) nativ 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Preset) Feedback de bandă de bază, detaliu suprafață minim</value>
+    <value>(Preset) feedback de bandă de bază, detaliu suprafață minim</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Preset) Feedback de bandă de bază, detaliu suprafață moderat</value>
+    <value>(Preset) feedback de bandă de bază, detaliu suprafață moderat</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Preset) Crește moderat dinamica FFB</value>
+    <value>(Preset) crește moderat dinamica FFB</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Preset) Reduce moderat dinamica FFB</value>
+    <value>(Preset) reduce moderat dinamica FFB</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>Tip FFB + preseturi</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Forță G laterală</value>
+    <value>Forță g laterală</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1183,10 +1183,10 @@
     <value>Mod predicție</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Prezice cu 1/60 s înainte)</value>
+    <value>K1 (prezice cu 1/60 s înainte)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Prezice cu 2/60 s înainte)</value>
+    <value>K2 (prezice cu 2/60 s înainte)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
     <value>Amestecare predicție</value>
@@ -1243,16 +1243,16 @@
     <value>AFINITATE CPU</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Preset) Reduce denivelările mari</value>
+    <value>(Preset) reduce denivelările mari</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Manager aplicații</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Aplicații De Pornit</value>
+    <value>Aplicații de pornit</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Aplicații De Terminat</value>
+    <value>Aplicații de terminat</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Cale executabil</value>
@@ -1327,7 +1327,7 @@
     <value>Închide</value>
   </data>
   <data name="Wizard_Step0_Title" xml:space="preserve">
-    <value>Bun venit, Pilot!</value>
+    <value>Bun venit, pilot!</value>
   </data>
   <data name="Wizard_Step0_Line1" xml:space="preserve">
     <value>Sunt Marvin Asistentul, aici pentru a te ajuta să îmblânzești puternicul MAIRA!</value>
@@ -1507,22 +1507,22 @@
     <value>Cont</value>
   </data>
   <data name="VoiceRoster" xml:space="preserve">
-    <value>Listă De Voci</value>
+    <value>Listă de voci</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Comentariu Șef De Echipă</value>
+    <value>Comentariu șef de echipă</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Comentariu Spotter</value>
+    <value>Comentariu spotter</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Comentariu Comentator Sportiv 1</value>
+    <value>Comentariu comentator sportiv 1</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Comentariu Comentator Sportiv 2</value>
+    <value>Comentariu comentator sportiv 2</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Comentariu Reporter Din Pit</value>
+    <value>Comentariu reporter din pit</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>Cheie API</value>
@@ -1552,19 +1552,19 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Voci — Citire</value>
+    <value>Voci — citire</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Modele — Acces</value>
+    <value>Modele — acces</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Text în vorbire — Acces</value>
+    <value>Text în vorbire — acces</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Vorbire în text — Acces</value>
+    <value>Vorbire în text — acces</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>Utilizator — Citire</value>
+    <value>Utilizator — citire</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Model</value>
@@ -1594,7 +1594,7 @@
     <value>Volum slot</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Atenție / Steag galben</value>
+    <value>Atenție / steag galben</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Apeluri de proximitate</value>
@@ -1603,7 +1603,7 @@
     <value>Interval de reamintire</value>
   </data>
   <data name="CommentaryPhrases" xml:space="preserve">
-    <value>Fraze Comentariu</value>
+    <value>Fraze comentariu</value>
   </data>
   <data name="EditCommentaryPhrasesDescription" xml:space="preserve">
     <value>Personalizați frazele rostite pentru fiecare eveniment în limba selectată. Modificările sunt salvate în dosarul Documente și înlocuiesc frazele încorporate.</value>
@@ -1636,58 +1636,58 @@
     <value>Se inițiază...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
-    <value>Inițializare Fereastra de Nivel Superior...</value>
+    <value>Inițializare fereastra de nivel superior...</value>
   </data>
   <data name="InitializingAudioManager" xml:space="preserve">
-    <value>Inițializare Audio Manager...</value>
+    <value>Inițializare audio manager...</value>
   </data>
   <data name="InitializingAdminBoxx" xml:space="preserve">
     <value>Inițializare AdminBoxx...</value>
   </data>
   <data name="InitializingSimulator" xml:space="preserve">
-    <value>Inițializare Simulator...</value>
+    <value>Inițializare simulator...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inițializare Intrare Directă...</value>
+    <value>Inițializare intrare directă...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inițializare Stream Deck...</value>
   </data>
   <data name="InitializingTextToSpeech" xml:space="preserve">
-    <value>Inițializare Text-to-Speech...</value>
+    <value>Inițializare text-to-speech...</value>
   </data>
   <data name="InitializingCommentary" xml:space="preserve">
-    <value>Inițializare Comentariu...</value>
+    <value>Inițializare comentariu...</value>
   </data>
   <data name="InitializingCloudService" xml:space="preserve">
-    <value>Inițializare Serviciu Cloud...</value>
+    <value>Inițializare serviciu cloud...</value>
   </data>
   <data name="InitializingGraph" xml:space="preserve">
-    <value>Inițializare Grafic...</value>
+    <value>Inițializare grafic...</value>
   </data>
   <data name="InitializingPedals" xml:space="preserve">
-    <value>Inițializare Pedale...</value>
+    <value>Inițializare pedale...</value>
   </data>
   <data name="InitializingRacingWheel" xml:space="preserve">
-    <value>Inițializare Roată de Curse...</value>
+    <value>Inițializare roată de curse...</value>
   </data>
   <data name="InitializingSounds" xml:space="preserve">
-    <value>Inițializare Sunete...</value>
+    <value>Inițializare sunete...</value>
   </data>
   <data name="InitializingLFE" xml:space="preserve">
     <value>Inițializare LFE...</value>
   </data>
   <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Inițializare Timer Multimedia...</value>
+    <value>Inițializare timer multimedia...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
-    <value>Inițializare Manager Înregistrare...</value>
+    <value>Inițializare manager înregistrare...</value>
   </data>
   <data name="InitializingTimingMarkers" xml:space="preserve">
-    <value>Inițializare Marcatori Timp...</value>
+    <value>Inițializare marcatori timp...</value>
   </data>
   <data name="InitializingTelemetry" xml:space="preserve">
-    <value>Inițializare Telemetrie...</value>
+    <value>Inițializare telemetrie...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
     <value>Inițializare Typhoon Wind...</value>
@@ -1696,16 +1696,16 @@
     <value>Inițializare G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
-    <value>Inițializare HID Hot Plug Monitor...</value>
+    <value>Inițializare HID hot plug monitor...</value>
   </data>
   <data name="InitializingTradingPaints" xml:space="preserve">
     <value>Inițializare Trading Paints...</value>
   </data>
   <data name="InitializingSettingsFile" xml:space="preserve">
-    <value>Inițializare Fișier Setări...</value>
+    <value>Inițializare fișier setări...</value>
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
-    <value>Inițializare Fereastra Principală...</value>
+    <value>Inițializare fereastra principală...</value>
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Descarcă din nou fișierele de vopsea</value>
@@ -1735,9 +1735,9 @@
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Se caută aplicațiile în execuție...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Vizibilitatea Ferestrei</value>
+    <value>Vizibilitatea ferestrei</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Afișați / Ascundeți fereastra</value>
+    <value>Afișați / ascundeți fereastra</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Dimensiunea pasului</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">
@@ -1767,7 +1767,7 @@
   </data>  <data name="Miscellaneous" xml:space="preserve">
     <value>Diverse</value>
   </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
-    <value>Deschide folderul Documente</value>
+    <value>Deschide folderul documente</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
     <value>Reglare automată</value>

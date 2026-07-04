@@ -271,7 +271,7 @@
     <value>Automaattinen maksimivoima</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Muut Ominaisuudet</value>
+    <value>Muut ominaisuudet</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Kytkimet</value>
@@ -283,7 +283,7 @@
     <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>Pitkittäinen G-voima</value>
+    <value>Pitkittäinen g-voima</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Kesto</value>
@@ -331,10 +331,10 @@
     <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Globaali Taajuus</value>
+    <value>Globaali taajuus</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Globaali Amplitudi</value>
+    <value>Globaali amplitudi</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimi</value>
@@ -463,10 +463,10 @@
     <value>Lopetuspiste</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Vaihteenvaihto - Vaihteelle</value>
+    <value>Vaihteenvaihto - vaihteelle</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Vaihteenvaihto - Vapaalle</value>
+    <value>Vaihteenvaihto - vapaalle</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Ota FFB käyttöön vaikka iRacing-simulaattorin FFB on päällä</value>
@@ -595,7 +595,7 @@
     <value>Slew- ja kokonaispakkaus</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Discord-Moderaattorit</value>
+    <value>Discord-moderaattorit</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>Haluan kiittää näitä vapaaehtoisia moderaattoreita, jotka ovat auttaneet vastaamaan MAIRA-käyttäjien lukuisiin kysymyksiin, antaen minulle enemmän aikaa keskittyä MAIRA:n kehittämiseen!</value>
@@ -685,7 +685,7 @@
     <value>Maksimijarru</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Aliohjauksen Rattivärähtelytehoste</value>
+    <value>Aliohjauksen rattivärähtelytehoste</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Edistyminen:</value>
@@ -694,7 +694,7 @@
     <value>[Kalibrointitiedostoa ei valittu]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Pysäköitynä-Tehosteet</value>
+    <value>Pysäköitynä-tehosteet</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
     <value>Voimapalautteen voimakkuus</value>
@@ -715,7 +715,7 @@
     <value>Nykyinen auton asetus:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Aliohjauksen Polkimenvärähtelytehoste</value>
+    <value>Aliohjauksen polkimenvärähtelytehoste</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>Jokin meni pieleen</value>
@@ -787,19 +787,19 @@
     <value>Lisää voimaa</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Aliohjauksen Ratin Vakiovoimatehoste</value>
+    <value>Aliohjauksen ratin vakiovoimatehoste</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Suunta</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Yliohjauksen Rattivärähtelytehoste</value>
+    <value>Yliohjauksen rattivärähtelytehoste</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Yliohjauksen Ratin Vakiovoimatehoste</value>
+    <value>Yliohjauksen ratin vakiovoimatehoste</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Yliohjauksen Polkimenvärähtelytehoste</value>
+    <value>Yliohjauksen polkimenvärähtelytehoste</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Aliohjaustehosta</value>
@@ -820,7 +820,7 @@
     <value>Hallitse peiteikkunaa</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Kaikki Peitteet</value>
+    <value>Kaikki peitteet</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Ota muokkaustila käyttöön</value>
@@ -877,7 +877,7 @@
     <value>Äänet</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Polkimet</value>
+    <value>Simagic polkimet</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Pyörän lukitus</value>
@@ -886,13 +886,13 @@
     <value>Pyörän pyöriminen</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
-    <value>Grip-O-Mittari</value>
+    <value>Grip-o-mittari</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
     <value> MPH</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
-    <value>Typhoon Tuuli</value>
+    <value>Typhoon tuuli</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
     <value>G Tensioner</value>
@@ -913,7 +913,7 @@
     <value>Maksimikulma</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Maks G-voima</value>
+    <value>Maks g-voima</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Vähennä painovoima</value>
@@ -937,16 +937,16 @@
     <value>Tasoitus</value>
   </data>
   <data name="MinG" xml:space="preserve">
-    <value>Min G</value>
+    <value>Min g</value>
   </data>
   <data name="MaxG" xml:space="preserve">
-    <value>Maks G</value>
+    <value>Maks g</value>
   </data>
   <data name="VibrationEffects" xml:space="preserve">
-    <value>Värähtely Tehosteet</value>
+    <value>Värähtely tehosteet</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Pyörän lukitus</value>
+    <value>ABS / pyörän lukitus</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Pyörän luisto</value>
@@ -1051,13 +1051,13 @@
     <value>Istuintuntemus</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Istuintuntemuksen Rattivärähtelytehoste</value>
+    <value>Istuintuntemuksen rattivärähtelytehoste</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Istuintuntemuksen Ratin Vakiovoimatehoste</value>
+    <value>Istuintuntemuksen ratin vakiovoimatehoste</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Istuintuntemuksen Polkimenvärähtelytehoste</value>
+    <value>Istuintuntemuksen polkimenvärähtelytehoste</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
     <value>Istuintuntemustehosta</value>
@@ -1087,10 +1087,10 @@
     <value>Salli äänet toistojen aikana</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Varoitus Jarru + Kaasu</value>
+    <value>Varoitus jarru + kaasu</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
-    <value>Ffb-Leikkaus</value>
+    <value>Ffb-leikkaus</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
     <value>Simagic P500 -polkimet</value>
@@ -1129,49 +1129,49 @@
     <value>Simagic P700 -polkimet</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Tuulettimen Tila</value>
+    <value>Tuulettimen tila</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>360 Hz yksityiskohta</value>
   </data>
   <data name="SlewPeakMode" xml:space="preserve">
-    <value>Huippuherkkä Slew-vähennys</value>
+    <value>Huippuherkkä slew-vähennys</value>
   </data>
   <data name="HybridVariable30" xml:space="preserve">
-    <value>360 Hz 60 Hz:llä, 10–30 % painotus</value>
+    <value>360 Hz 60 hz:llä, 10–30 % painotus</value>
   </data>
   <data name="Hybrid10" xml:space="preserve">
-    <value>360 Hz 60 Hz:llä, 10 % painotus</value>
+    <value>360 Hz 60 hz:llä, 10 % painotus</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Oletusarvot) Natiivi 60 Hz</value>
+    <value>(Oletusarvot) natiivi 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
-    <value>(Oletusarvot) 360 Hz 60 Hz:llä, 10–30 % painotus</value>
+    <value>(Oletusarvot) 360 Hz 60 hz:llä, 10–30 % painotus</value>
   </data>
   <data name="DefaultsHybrid10" xml:space="preserve">
-    <value>(Oletusarvot) 360 Hz 60 Hz:llä, 10 % painotus</value>
+    <value>(Oletusarvot) 360 Hz 60 hz:llä, 10 % painotus</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Oletusarvot) Natiivi 360 Hz</value>
+    <value>(Oletusarvot) natiivi 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Esiasetus) Perustason rengaspalaute, minimaalinen pintayksityiskohta</value>
+    <value>(Esiasetus) perustason rengaspalaute, minimaalinen pintayksityiskohta</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Esiasetus) Perustason rengaspalaute, kohtalainen pintayksityiskohta</value>
+    <value>(Esiasetus) perustason rengaspalaute, kohtalainen pintayksityiskohta</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Esiasetus) Tehosta FFB-dynamiikkaa kohtalaisesti</value>
+    <value>(Esiasetus) tehosta FFB-dynamiikkaa kohtalaisesti</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Esiasetus) Vähennä FFB-dynamiikkaa kohtalaisesti</value>
+    <value>(Esiasetus) vähennä FFB-dynamiikkaa kohtalaisesti</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>FFB-tyyppi + esiasetukset</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Sivuttainen G-voima</value>
+    <value>Sivuttainen g-voima</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1183,10 +1183,10 @@
     <value>Ennustetila</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Ennusta 1/60s eteenpäin)</value>
+    <value>K1 (ennusta 1/60s eteenpäin)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Ennusta 2/60s eteenpäin)</value>
+    <value>K2 (ennusta 2/60s eteenpäin)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
     <value>Ennustuksen sekoitus</value>
@@ -1243,16 +1243,16 @@
     <value>SUORITTIMEN SUOSITUS</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Esiasetus) Vähennä suuria töyssyjä</value>
+    <value>(Esiasetus) vähennä suuria töyssyjä</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>Sovellushallinta</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Käynnistettävät Sovellukset</value>
+    <value>Käynnistettävät sovellukset</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Lopetettavat Sovellukset</value>
+    <value>Lopetettavat sovellukset</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Suoritettavan tiedoston polku</value>
@@ -1396,10 +1396,10 @@
     <value>Liittyvä Tyhjennä-painike nollaa jatkuvan mittauksen, jotta voit aloittaa uuden lukeman – käytännöllinen, jos autosi on ajanut pois radalta tai törmännyt johonkin.</value>
   </data>
   <data name="Wizard_Step5_Question" xml:space="preserve">
-    <value>Haluatko määrittää Auto-Set-toiminnon?</value>
+    <value>Haluatko määrittää auto-set-toiminnon?</value>
   </data>
   <data name="Wizard_Step6_Title" xml:space="preserve">
-    <value>Auto-Set-konfiguraatio</value>
+    <value>Auto-set-konfiguraatio</value>
   </data>
   <data name="Wizard_Step6_Line1" xml:space="preserve">
     <value>Säädä ensin Auto Target -tila maun mukaan ja kartoita sitten Aseta- ja Tyhjennä-painikkeet.</value>
@@ -1510,19 +1510,19 @@
     <value>Äänilista</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Tallinpäällikön Kommentaari</value>
+    <value>Tallinpäällikön kommentaari</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Spotteri-Kommentaari</value>
+    <value>Spotteri-kommentaari</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Urheiluselostajan 1 Kommentaari</value>
+    <value>Urheiluselostajan 1 kommentaari</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Urheiluselostajan 2 Kommentaari</value>
+    <value>Urheiluselostajan 2 kommentaari</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Varikkoraportoijan Kommentaari</value>
+    <value>Varikkoraportoijan kommentaari</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>API-avain</value>
@@ -1552,19 +1552,19 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Äänet — Luku</value>
+    <value>Äänet — luku</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Mallit — Käyttöoikeus</value>
+    <value>Mallit — käyttöoikeus</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Tekstistä puheeksi — Käyttöoikeus</value>
+    <value>Tekstistä puheeksi — käyttöoikeus</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Puheesta tekstiksi — Käyttöoikeus</value>
+    <value>Puheesta tekstiksi — käyttöoikeus</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>Käyttäjä — Luku</value>
+    <value>Käyttäjä — luku</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Malli</value>
@@ -1594,7 +1594,7 @@
     <value>Paikavoimakkuus</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Varoitus / Keltainen lippu</value>
+    <value>Varoitus / keltainen lippu</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Läheisyysilmoitukset</value>
@@ -1636,58 +1636,58 @@
     <value>Käynnistetään...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
-    <value>Alustetaan Ylimmän Tason Ikkuna...</value>
+    <value>Alustetaan ylimmän tason ikkuna...</value>
   </data>
   <data name="InitializingAudioManager" xml:space="preserve">
-    <value>Alustetaan Äänenhallinta...</value>
+    <value>Alustetaan äänenhallinta...</value>
   </data>
   <data name="InitializingAdminBoxx" xml:space="preserve">
     <value>Alustetaan AdminBoxx...</value>
   </data>
   <data name="InitializingSimulator" xml:space="preserve">
-    <value>Alustetaan Simulaattori...</value>
+    <value>Alustetaan simulaattori...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Alustetaan Suora Tulo...</value>
+    <value>Alustetaan suora tulo...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Alustetaan Stream Deck...</value>
   </data>
   <data name="InitializingTextToSpeech" xml:space="preserve">
-    <value>Alustetaan Tekstistä Puheeksi...</value>
+    <value>Alustetaan tekstistä puheeksi...</value>
   </data>
   <data name="InitializingCommentary" xml:space="preserve">
-    <value>Alustetaan Kommentaari...</value>
+    <value>Alustetaan kommentaari...</value>
   </data>
   <data name="InitializingCloudService" xml:space="preserve">
-    <value>Alustetaan Pilvipalvelu...</value>
+    <value>Alustetaan pilvipalvelu...</value>
   </data>
   <data name="InitializingGraph" xml:space="preserve">
-    <value>Alustetaan Kaavio...</value>
+    <value>Alustetaan kaavio...</value>
   </data>
   <data name="InitializingPedals" xml:space="preserve">
-    <value>Alustetaan Polkimet...</value>
+    <value>Alustetaan polkimet...</value>
   </data>
   <data name="InitializingRacingWheel" xml:space="preserve">
-    <value>Alustetaan Kilpailuohjauspyörä...</value>
+    <value>Alustetaan kilpailuohjauspyörä...</value>
   </data>
   <data name="InitializingSounds" xml:space="preserve">
-    <value>Alustetaan Äänet...</value>
+    <value>Alustetaan äänet...</value>
   </data>
   <data name="InitializingLFE" xml:space="preserve">
     <value>Alustetaan LFE...</value>
   </data>
   <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Alustetaan Multimedia-ajastin...</value>
+    <value>Alustetaan multimedia-ajastin...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
-    <value>Alustetaan Tallennuksenhallinta...</value>
+    <value>Alustetaan tallennuksenhallinta...</value>
   </data>
   <data name="InitializingTimingMarkers" xml:space="preserve">
-    <value>Alustetaan Ajoitusmerkit...</value>
+    <value>Alustetaan ajoitusmerkit...</value>
   </data>
   <data name="InitializingTelemetry" xml:space="preserve">
-    <value>Alustetaan Telemetria...</value>
+    <value>Alustetaan telemetria...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
     <value>Alustetaan Typhoon Wind...</value>
@@ -1702,10 +1702,10 @@
     <value>Alustetaan Trading Paints...</value>
   </data>
   <data name="InitializingSettingsFile" xml:space="preserve">
-    <value>Alustetaan Asetustiedosto...</value>
+    <value>Alustetaan asetustiedosto...</value>
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
-    <value>Alustetaan Pääikkuna...</value>
+    <value>Alustetaan pääikkuna...</value>
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Lataa maalitiedostot uudelleen</value>
@@ -1735,9 +1735,9 @@
   </data>  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Etsitään käynnissä olevia sovelluksia...</value>
   </data>  <data name="WindowVisibility" xml:space="preserve">
-    <value>Ikkunan Näkyvyys</value>
+    <value>Ikkunan näkyvyys</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Näytä / Piilota ikkuna</value>
+    <value>Näytä / piilota ikkuna</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Askelkoko</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">

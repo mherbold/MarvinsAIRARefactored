@@ -3,7 +3,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="controller-profiles">Controller Profiles</p>
+<p class="section" id="controller-profiles">Controller profiles</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -19,15 +19,15 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">New Profile</p>
+<p class="setting">New profile</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Creates a new controller profile. You are asked to enter a Profile Name, and you can turn on Copy current mappings to start the new profile as a duplicate of the one you have selected. Leave that switch off to start with a clean profile that has nothing mapped.</p>
+<p>Creates a new controller profile. You are asked to enter a Profile name, and you can turn on Copy current mappings to start the new profile as a duplicate of the one you have selected. Leave that switch off to start with a clean profile that has nothing mapped.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Rename Profile</p>
+<p class="setting">Rename profile</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -35,7 +35,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Delete Profile</p>
+<p class="setting">Delete profile</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -43,7 +43,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="button-mappings">Button Mappings</p>
+<p class="section" id="button-mappings">Button mappings</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -71,7 +71,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Knob actions appear as a pair of rows, one for increasing (+) and one for decreasing (−) the value. These rows also include an editable Step Size field that sets how much the value changes each time the mapped input is pressed. The step size is shared by both the + and − rows of a knob, and applies across all controller profiles.</p>
+<p>Knob actions appear as a pair of rows, one for increasing (+) and one for decreasing (−) the value. These rows also include an editable Step size field that sets how much the value changes each time the mapped input is pressed. The step size is shared by both the + and − rows of a knob, and applies across all controller profiles.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:group {"layout":{"type":"constrained"}} -->

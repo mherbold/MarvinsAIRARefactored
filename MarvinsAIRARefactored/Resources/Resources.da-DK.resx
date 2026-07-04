@@ -136,13 +136,13 @@
     <value>Fade force feedback ved ind- eller udstigning af bilen</value>
   </data>
   <data name="RacingFriction" xml:space="preserve">
-    <value>Racing Friktion</value>
+    <value>Racing friktion</value>
   </data>
   <data name="Graph" xml:space="preserve">
     <value>Graf</value>
   </data>
   <data name="HeaderData" xml:space="preserve">
-    <value>Overskrift Data</value>
+    <value>Overskrift data</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Sprog</value>
@@ -154,7 +154,7 @@
     <value>Delta begrænser</value>
   </data>
   <data name="MaxForce" xml:space="preserve">
-    <value>Max Styrke</value>
+    <value>Max styrke</value>
   </data>
   <data name="Native60Hz" xml:space="preserve">
     <value>Naturlig 60 Hz</value>
@@ -163,7 +163,7 @@
     <value>Naturlig 360 Hz</value>
   </data>
   <data name="NoFFBDevicesFound" xml:space="preserve">
-    <value>[Ingen Force Feedback-enheder fundet]</value>
+    <value>[Ingen force feedback-enheder fundet]</value>
   </data>
   <data name="OFF" xml:space="preserve">
     <value>Slukket</value>
@@ -196,7 +196,7 @@
     <value>Blød låse styrke</value>
   </data>
   <data name="TelemetryData" xml:space="preserve">
-    <value>Telemetri Data</value>
+    <value>Telemetri data</value>
   </data>
   <data name="Test" xml:space="preserve">
     <value>Afprøv</value>
@@ -238,7 +238,7 @@
     <value>Tastatur</value>
   </data>
   <data name="WaitingForInput" xml:space="preserve">
-    <value>[Venter på Input]</value>
+    <value>[Venter på input]</value>
   </data>
   <data name="DeltaLimit" xml:space="preserve">
     <value>Delta grænse</value>
@@ -256,7 +256,7 @@
     <value>Enhed</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Samlet Styrke</value>
+    <value>Samlet styrke</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Automatisk mål</value>
@@ -268,28 +268,28 @@
     <value>Nuværende kraft</value>
   </data>
   <data name="AutoMaxForce" xml:space="preserve">
-    <value>Auto Kraft</value>
+    <value>Auto kraft</value>
   </data>
   <data name="OtherFeatures" xml:space="preserve">
-    <value>Andre Funktioner</value>
+    <value>Andre funktioner</value>
   </data>
   <data name="Switches" xml:space="preserve">
     <value>Afbrydere</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Crash Beskyttelse</value>
+    <value>Crash beskyttelse</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
     <value>Gforce</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
-    <value>G-Kraft</value>
+    <value>G-kraft</value>
   </data>
   <data name="Duration" xml:space="preserve">
     <value>Varighed</value>
   </data>
   <data name="ForceReduction" xml:space="preserve">
-    <value>Kraft Reduktion</value>
+    <value>Kraft reduktion</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
     <value>sek</value>
@@ -298,16 +298,16 @@
     <value>m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Curb Beskyttelse</value>
+    <value>Curb beskyttelse</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Stød hastighed</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
-    <value>Simagic P1000 Pedaler</value>
+    <value>Simagic P1000 pedaler</value>
   </data>
   <data name="PedalsP2000" xml:space="preserve">
-    <value>Simagic P2000 Pedaler</value>
+    <value>Simagic P2000 pedaler</value>
   </data>
   <data name="PedalsNone" xml:space="preserve">
     <value>[Ingen kompatible Simagic-pedaler fundet]</value>
@@ -331,10 +331,10 @@
     <value>Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
-    <value>Global Frekvens</value>
+    <value>Global frekvens</value>
   </data>
   <data name="GlobalAmplitude" xml:space="preserve">
-    <value>Global Amplitude</value>
+    <value>Global amplitude</value>
   </data>
   <data name="Minimum" xml:space="preserve">
     <value>Minimum</value>
@@ -346,7 +346,7 @@
     <value>Kurve</value>
   </data>
   <data name="GearChange" xml:space="preserve">
-    <value>Gear Skift</value>
+    <value>Gear skift</value>
   </data>
   <data name="SteeringEffects" xml:space="preserve">
     <value>Styrings effekter</value>
@@ -355,19 +355,19 @@
     <value>ingen</value>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value>Pr Base</value>
+    <value>Pr base</value>
   </data>
   <data name="PerCar" xml:space="preserve">
-    <value>Pr Bil</value>
+    <value>Pr bil</value>
   </data>
   <data name="PerTrack" xml:space="preserve">
-    <value>Pr Bane</value>
+    <value>Pr bane</value>
   </data>
   <data name="PerTrackConfiguration" xml:space="preserve">
-    <value>Pr Bane Konfiguration</value>
+    <value>Pr bane konfiguration</value>
   </data>
   <data name="PerWetDry" xml:space="preserve">
-    <value>Pr Våd/Tør</value>
+    <value>Pr våd/tør</value>
   </data>
   <data name="Wet" xml:space="preserve">
     <value>Våd</value>
@@ -382,7 +382,7 @@
     <value>Gem indstilling</value>
   </data>
   <data name="NewVersionAvailable" xml:space="preserve">
-    <value>Ny Version tilgængelig!</value>
+    <value>Ny version tilgængelig!</value>
   </data>
   <data name="DownloadQuestion" xml:space="preserve">
     <value>Vil du downloade ny version nu.?</value>
@@ -406,10 +406,10 @@
     <value>Lys</value>
   </data>
   <data name="Volume" xml:space="preserve">
-    <value>Lyd Styrke</value>
+    <value>Lyd styrke</value>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Delta Limiter Bias</value>
+    <value>Delta limiter bias</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Udgang</value>
@@ -427,7 +427,7 @@
     <value>Indgangs moment</value>
   </data>
   <data name="OutputTorque" xml:space="preserve">
-    <value>Udgangs Moment</value>
+    <value>Udgangs moment</value>
   </data>
   <data name="TimerJitter" xml:space="preserve">
     <value>Timer-jitter</value>
@@ -448,7 +448,7 @@
     <value>Start RPM</value>
   </data>
   <data name="VibrateInTopGear" xml:space="preserve">
-    <value>Vibrer i Højeste Gear</value>
+    <value>Vibrer i højeste gear</value>
   </data>
   <data name="FadeWithThrottle" xml:space="preserve">
     <value>Fade med gas</value>
@@ -460,13 +460,13 @@
     <value>Udgangspunkt</value>
   </data>
   <data name="EndingPoint" xml:space="preserve">
-    <value>Slut Punkt</value>
+    <value>Slut punkt</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
-    <value>Gearskift - Skift Til Gear</value>
+    <value>Gearskift - skift til gear</value>
   </data>
   <data name="GearChangeShiftIntoNeutral" xml:space="preserve">
-    <value>Gearskift - Skift Til Neutral</value>
+    <value>Gearskift - skift til neutral</value>
   </data>
   <data name="AlwaysEnableFFB" xml:space="preserve">
     <value>Aktiver FFB, selvom iRacing FFB er aktiveret</value>
@@ -475,25 +475,25 @@
     <value>Koblings pedalens haptics</value>
   </data>
   <data name="BrakePedalHaptics" xml:space="preserve">
-    <value>Bremse Pedal Haptics</value>
+    <value>Bremse pedal haptics</value>
   </data>
   <data name="ThrottlePedalHaptics" xml:space="preserve">
-    <value>Gas Pedal Haptics</value>
+    <value>Gas pedal haptics</value>
   </data>
   <data name="NoiseDamper" xml:space="preserve">
     <value>Støj dæmper</value>
   </data>
   <data name="AppWindow" xml:space="preserve">
-    <value>Program Vindue</value>
+    <value>Program vindue</value>
   </data>
   <data name="LightTheme" xml:space="preserve">
     <value>Lyst tema</value>
   </data>
   <data name="UIScale" xml:space="preserve">
-    <value>UI Størrelse</value>
+    <value>UI størrelse</value>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Cloud-Tjeneste</value>
+    <value>Cloud-tjeneste</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
     <value>Tjek nu</value>
@@ -505,7 +505,7 @@
     <value>Henter opdatering</value>
   </data>
   <data name="BuyMeACoffee" xml:space="preserve">
-    <value>Køb mig en kop kaffe! - Støt MAIRA</value>
+    <value>Køb mig en kop kaffe! - støt MAIRA</value>
   </data>
   <data name="DonationsText" xml:space="preserve">
     <value>Donationer er helt valgfrie. Jeg vil aldrig opkræve gebyrer for at bruge MAIRA. Når det er sagt, så får donationer mig til at føle mig varm og tryg, og det er en stor motivation for mig til at fortsætte med at arbejde på MAIRA. En stor tak til alle, der allerede har doneret! Her er linket til at donere:</value>
@@ -514,13 +514,13 @@
     <value>Donatorer</value>
   </data>
   <data name="SuperDonors" xml:space="preserve">
-    <value>Super Donatorer</value>
+    <value>Super donatorer</value>
   </data>
   <data name="Donate" xml:space="preserve">
     <value>Donere</value>
   </data>
   <data name="CodeContributions" xml:space="preserve">
-    <value>Code Hjælpere</value>
+    <value>Code hjælpere</value>
   </data>
   <data name="TranslationContributions" xml:space="preserve">
     <value>Oversættere</value>
@@ -538,13 +538,13 @@
     <value>Bidragydere</value>
   </data>
   <data name="ShowWindow" xml:space="preserve">
-    <value>Vis Vindue</value>
+    <value>Vis vindue</value>
   </data>
   <data name="ShowSplashScreen" xml:space="preserve">
     <value>Vis opstartsskærm ved opstart</value>
   </data>
   <data name="ExitApp" xml:space="preserve">
-    <value>Luk Program</value>
+    <value>Luk program</value>
   </data>
   <data name="MinimizeInsteadOfClosing" xml:space="preserve">
     <value>Minimer i stedet for at lukke</value>
@@ -553,28 +553,28 @@
     <value>Minimer til process linjen</value>
   </data>
   <data name="StartMinimized" xml:space="preserve">
-    <value>Start Minimeret</value>
+    <value>Start minimeret</value>
   </data>
   <data name="StartWithWindows" xml:space="preserve">
     <value>Start med Windows</value>
   </data>
   <data name="TotalCompressionRate" xml:space="preserve">
-    <value>Total: Kompressions hastighed</value>
+    <value>Total: kompressions hastighed</value>
   </data>
   <data name="SlewCompressionThreshold" xml:space="preserve">
-    <value>Svingkraft: Compression Threshold</value>
+    <value>Svingkraft: compression threshold</value>
   </data>
   <data name="SlewCompressionRate" xml:space="preserve">
-    <value>Svingkraft: Kompressions tærskel</value>
+    <value>Svingkraft: kompressions tærskel</value>
   </data>
   <data name="TotalCompressionThreshold" xml:space="preserve">
-    <value>Total: Kompressionstærskel</value>
+    <value>Total: kompressionstærskel</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
     <value>Nm/ms</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
-    <value>Base Styrke</value>
+    <value>Base styrke</value>
   </data>
   <data name="Set" xml:space="preserve">
     <value>Sæt</value>
@@ -595,7 +595,7 @@
     <value>Svingkraft og total kompression</value>
   </data>
   <data name="DiscordModerators" xml:space="preserve">
-    <value>Discord-Moderatorer</value>
+    <value>Discord-moderatorer</value>
   </data>
   <data name="DiscordModeratorsText" xml:space="preserve">
     <value>Jeg vil gerne takke disse frivillige moderatorer for at hjælpe med at besvare de mange spørgsmål fra MAIRA-brugere, hvilket giver mig mere tid til at fokusere på udviklingen af ​​MAIRA!</value>
@@ -634,7 +634,7 @@
     <value>Curb beskyttelse er aktiveret!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
-    <value>Privat Beskeder</value>
+    <value>Privat beskeder</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
     <value>Aktivér meddelelser om curb beskyttelse</value>
@@ -649,73 +649,73 @@
     <value>Du er ikke på banen "Centripetal Circuit" </value>
   </data>
   <data name="RunCalibration" xml:space="preserve">
-    <value>Start Kalibrering</value>
+    <value>Start kalibrering</value>
   </data>
   <data name="StopCalibration" xml:space="preserve">
-    <value>Stop Kalibrering</value>
+    <value>Stop kalibrering</value>
   </data>
   <data name="SteeringWheelLeft" xml:space="preserve">
-    <value>Rat Venstre</value>
+    <value>Rat venstre</value>
   </data>
   <data name="SteeringWheelCenter" xml:space="preserve">
-    <value>Centrer Base</value>
+    <value>Centrer base</value>
   </data>
   <data name="SteeringWheelRight" xml:space="preserve">
-    <value>Rat Højre</value>
+    <value>Rat højre</value>
   </data>
   <data name="SteeringWheel90Left" xml:space="preserve">
-    <value>Base 90° Venstre</value>
+    <value>Base 90° venstre</value>
   </data>
   <data name="MinThrottle" xml:space="preserve">
-    <value>Minimum Gas</value>
+    <value>Minimum gas</value>
   </data>
   <data name="MaxThrottle" xml:space="preserve">
-    <value>Maximum Gas</value>
+    <value>Maximum gas</value>
   </data>
   <data name="ShiftUp" xml:space="preserve">
-    <value>Skift Op</value>
+    <value>Skift op</value>
   </data>
   <data name="ShiftDown" xml:space="preserve">
-    <value>Skift Ned</value>
+    <value>Skift ned</value>
   </data>
   <data name="MinBrake" xml:space="preserve">
-    <value>Minimum Brems</value>
+    <value>Minimum brems</value>
   </data>
   <data name="MaxBrake" xml:space="preserve">
-    <value>Maximum Brems</value>
+    <value>Maximum brems</value>
   </data>
   <data name="UndersteerWheelVibrationEffect" xml:space="preserve">
-    <value>Understyring Vibrations Effekt</value>
+    <value>Understyring vibrations effekt</value>
   </data>
   <data name="Progress:" xml:space="preserve">
     <value>Fremskridt:</value>
   </data>
   <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Konfigurations Fil -ikke valgt]</value>
+    <value>[Konfigurations fil -ikke valgt]</value>
   </data>
   <data name="ParkedEffects" xml:space="preserve">
-    <value>Parkerings Effekt</value>
+    <value>Parkerings effekt</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
-    <value>Force Feedback Styrke</value>
+    <value>Force feedback styrke</value>
   </data>
   <data name="WheelCenteringStrength" xml:space="preserve">
-    <value>Base Centrerings Styrke</value>
+    <value>Base centrerings styrke</value>
   </data>
   <data name="CenterWheelWhileRacing" xml:space="preserve">
-    <value>Centrer rat under Race</value>
+    <value>Centrer rat under race</value>
   </data>
   <data name="CenterWheelWhileParked" xml:space="preserve">
     <value>Centrer rat under parkering</value>
   </data>
   <data name="ParkedFriction" xml:space="preserve">
-    <value>Parkerings Modstand</value>
+    <value>Parkerings modstand</value>
   </data>
   <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Nuværende Setup:</value>
+    <value>Nuværende setup:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
-    <value>Understyrings Pedal Vibrations Effekt</value>
+    <value>Understyrings pedal vibrations effekt</value>
   </data>
   <data name="ErrorTitle" xml:space="preserve">
     <value>UPS!! Noget gik Galt</value>
@@ -739,7 +739,7 @@
     <value>°/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>Kalibrerings Filer</value>
+    <value>Kalibrerings filer</value>
   </data>
   <data name="Understeer" xml:space="preserve">
     <value>Understyring</value>
@@ -754,10 +754,10 @@
     <value>Maximum tærskel</value>
   </data>
   <data name="MinimumFrequency" xml:space="preserve">
-    <value>Minimum Frekvens</value>
+    <value>Minimum frekvens</value>
   </data>
   <data name="MaximumFrequency" xml:space="preserve">
-    <value>Maximum Frekvens</value>
+    <value>Maximum frekvens</value>
   </data>
   <data name="Calibration" xml:space="preserve">
     <value>Kalibrering</value>
@@ -787,19 +787,19 @@
     <value>Øg kraften</value>
   </data>
   <data name="UndersteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Understyring Konstante Kraft Effekt</value>
+    <value>Understyring konstante kraft effekt</value>
   </data>
   <data name="Direction" xml:space="preserve">
     <value>Retning</value>
   </data>
   <data name="OversteerWheelVibrationEffect" xml:space="preserve">
-    <value>Overstyrings Vibrations Effekt</value>
+    <value>Overstyrings vibrations effekt</value>
   </data>
   <data name="OversteerWheelConstantForceEffect" xml:space="preserve">
-    <value>Konstant Overstyrings Kraft</value>
+    <value>Konstant overstyrings kraft</value>
   </data>
   <data name="OversteerPedalVibrationEffect" xml:space="preserve">
-    <value>Overstyrings Pedal Vibrations Effekt</value>
+    <value>Overstyrings pedal vibrations effekt</value>
   </data>
   <data name="UndersteerEffect" xml:space="preserve">
     <value>Understyrings effekt</value>
@@ -820,7 +820,7 @@
     <value>Administrer overlejringsvindue</value>
   </data>
   <data name="AllOverlays" xml:space="preserve">
-    <value>Alle Overlejringer</value>
+    <value>Alle overlejringer</value>
   </data>
   <data name="MakeAllOverlaysVisibleAndDraggable" xml:space="preserve">
     <value>Aktivér redigeringstilstand</value>
@@ -835,7 +835,7 @@
     <value>Nulstil alle overlejringsvinduer</value>
   </data>
   <data name="FFBDeviceNotSelected" xml:space="preserve">
-    <value>[Force Feedback enhed ikke valgt]</value>
+    <value>[Force feedback enhed ikke valgt]</value>
   </data>
   <data name="ReadyToDonate" xml:space="preserve">
     <value>Klar til at donere?</value>
@@ -844,7 +844,7 @@
     <value>Støt</value>
   </data>
   <data name="CalibrationFileContributions" xml:space="preserve">
-    <value>Bidrag Til Kalibreringsfiler</value>
+    <value>Bidrag til kalibreringsfiler</value>
   </data>
   <data name="Wizard" xml:space="preserve">
     <value>Guide</value>
@@ -877,7 +877,7 @@
     <value>Lyde</value>
   </data>
   <data name="Pedals" xml:space="preserve">
-    <value>Simagic Pedaler</value>
+    <value>Simagic pedaler</value>
   </data>
   <data name="WheelLock" xml:space="preserve">
     <value>Hjul lås</value>
@@ -892,7 +892,7 @@
     <value>MPH</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
-    <value>Typhoon Vind</value>
+    <value>Typhoon vind</value>
   </data>
   <data name="GTensioner" xml:space="preserve">
     <value>G Tensioner</value>
@@ -913,7 +913,7 @@
     <value>Maksimumsvinkel</value>
   </data>
   <data name="MaxGForce" xml:space="preserve">
-    <value>Maksimal G-kraft</value>
+    <value>Maksimal g-kraft</value>
   </data>
   <data name="SubtractGravity" xml:space="preserve">
     <value>Træk tyngdekraft fra</value>
@@ -946,7 +946,7 @@
     <value>Vibrationseffekter</value>
   </data>
   <data name="ABSWheelLock" xml:space="preserve">
-    <value>ABS / Hjulblokering</value>
+    <value>ABS / hjulblokering</value>
   </data>
   <data name="WheelSlip" xml:space="preserve">
     <value>Hjulspind</value>
@@ -979,16 +979,16 @@
     <value>Inverterede arme</value>
   </data>
   <data name="ConnectToWindOnStartup" xml:space="preserve">
-    <value>Tilslut til MAIRA Typhoon Wind ved App Start</value>
+    <value>Tilslut til MAIRA Typhoon Wind ved app start</value>
   </data>
   <data name="ConnectToWind" xml:space="preserve">
     <value>Tilsluttet til MAIRA Typhoon Wind</value>
   </data>
   <data name="LeftFan" xml:space="preserve">
-    <value>Venstre Ventilator</value>
+    <value>Venstre ventilator</value>
   </data>
   <data name="RightFan" xml:space="preserve">
-    <value>Højre Ventilator</value>
+    <value>Højre ventilator</value>
   </data>
   <data name="Connection" xml:space="preserve">
     <value>Tilslutning</value>
@@ -997,10 +997,10 @@
     <value>Indstillinger</value>
   </data>
   <data name="MasterWindPower" xml:space="preserve">
-    <value>Vind Styrke</value>
+    <value>Vind styrke</value>
   </data>
   <data name="MinimumSpeed" xml:space="preserve">
-    <value>Minimum Hastighed</value>
+    <value>Minimum hastighed</value>
   </data>
   <data name="TyphoonWindCurving" xml:space="preserve">
     <value>Vind kurver</value>
@@ -1009,7 +1009,7 @@
     <value>Hastighed</value>
   </data>
   <data name="FanPower" xml:space="preserve">
-    <value>Ventilator Strøm</value>
+    <value>Ventilator strøm</value>
   </data>
   <data name="DeviceNotFound" xml:space="preserve">
     <value>Enhed mangler</value>
@@ -1018,7 +1018,7 @@
     <value>Prøv igen</value>
   </data>
   <data name="IRacingPaintFolder" xml:space="preserve">
-    <value>iRacing Paint Mappe</value>
+    <value>iRacing paint mappe</value>
   </data>
   <data name="MaxDownloadSpeed" xml:space="preserve">
     <value>Maksimal downloadhastighed</value>
@@ -1048,19 +1048,19 @@
     <value>Udlign output</value>
   </data>
   <data name="SeatOfPants" xml:space="preserve">
-    <value>Seat-Of-Pants</value>
+    <value>Seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Seat-Of-Pants - Base Vibrations Effekt</value>
+    <value>Seat-of-pants - base vibrations effekt</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Seat-Of-Pants - Base Konstant Kraft Effekt</value>
+    <value>Seat-of-pants - base konstant kraft effekt</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Seat-Of-Pants Pedal Vibrations Effekt</value>
+    <value>Seat-of-pants pedal vibrations effekt</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value>Seat-of-Box-effekt</value>
+    <value>Seat-of-box-effekt</value>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
     <value>Sidevejs acceleration (Ay)</value>
@@ -1072,7 +1072,7 @@
     <value>Hastigheds forhold (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Standard Side</value>
+    <value>Standard side</value>
   </data>
   <data name="Effects" xml:space="preserve">
     <value>Effekter</value>
@@ -1087,13 +1087,13 @@
     <value>Tillad lyde under afspilninger</value>
   </data>
   <data name="BrakeThrottleWarning" xml:space="preserve">
-    <value>Advarsel Bremse + Gas</value>
+    <value>Advarsel bremse + gas</value>
   </data>
   <data name="FfbClipping" xml:space="preserve">
-    <value>Ffb Klipning</value>
+    <value>Ffb klipning</value>
   </data>
   <data name="PedalsP500" xml:space="preserve">
-    <value>Simagic P500 Pedaler</value>
+    <value>Simagic P500 pedaler</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Hjælp</value>
@@ -1126,10 +1126,10 @@
     <value>Det er her, det hele startede. Du kan søge efter svar her, men jeg er ikke så aktiv her som tidligere. At besøge Discord-serveren er den bedste måde at stille spørgsmål på.</value>
   </data>
   <data name="PedalsP700" xml:space="preserve">
-    <value>Simagic P700 Pedals</value>
+    <value>Simagic P700 pedals</value>
   </data>
   <data name="FanStatus" xml:space="preserve">
-    <value>Fan-Status</value>
+    <value>Fan-status</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
     <value>360 Hz detail</value>
@@ -1144,7 +1144,7 @@
     <value>360 Hz på 60 Hz, bias 10%</value>
   </data>
   <data name="DefaultsNative60Hz" xml:space="preserve">
-    <value>(Standardværdier) Nativ 60 Hz</value>
+    <value>(Standardværdier) nativ 60 Hz</value>
   </data>
   <data name="DefaultsHybridVariable30" xml:space="preserve">
     <value>(Standardværdier) 360 Hz på 60 Hz, bias 10-30%</value>
@@ -1153,25 +1153,25 @@
     <value>(Standardværdier) 360 Hz på 60 Hz, bias 10%</value>
   </data>
   <data name="DefaultsNative360Hz" xml:space="preserve">
-    <value>(Standardværdier) Nativ 360 Hz</value>
+    <value>(Standardværdier) nativ 360 Hz</value>
   </data>
   <data name="PresetBasicFFB" xml:space="preserve">
-    <value>(Forudindstilling) Grundlæggende pneumatisk feedback, minimalt overfladedetalje</value>
+    <value>(Forudindstilling) grundlæggende pneumatisk feedback, minimalt overfladedetalje</value>
   </data>
   <data name="PresetBalancedFFB" xml:space="preserve">
-    <value>(Forudindstilling) Grundlæggende pneumatisk feedback, moderat overfladedetalje</value>
+    <value>(Forudindstilling) grundlæggende pneumatisk feedback, moderat overfladedetalje</value>
   </data>
   <data name="PresetBoostDetail" xml:space="preserve">
-    <value>(Forudindstilling) Forøg FFB-dynamik moderat</value>
+    <value>(Forudindstilling) forøg FFB-dynamik moderat</value>
   </data>
   <data name="PresetReduceDetail" xml:space="preserve">
-    <value>(Forudindstilling) Reducer FFB-dynamik moderat</value>
+    <value>(Forudindstilling) reducer FFB-dynamik moderat</value>
   </data>
   <data name="FFBSource" xml:space="preserve">
     <value>FFB-type + forudindstillinger</value>
   </data>
   <data name="LateralGForce" xml:space="preserve">
-    <value>Lateral G-kraft</value>
+    <value>Lateral g-kraft</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
@@ -1183,10 +1183,10 @@
     <value>Forudsigelsestilstand</value>
   </data>
   <data name="PredictK1" xml:space="preserve">
-    <value>K1 (Forudsig 1/60 s frem)</value>
+    <value>K1 (forudsig 1/60 s frem)</value>
   </data>
   <data name="PredictK2" xml:space="preserve">
-    <value>K2 (Forudsig 2/60 s frem)</value>
+    <value>K2 (forudsig 2/60 s frem)</value>
   </data>
   <data name="PredictionBlend" xml:space="preserve">
     <value>Forudsigelsesblanding</value>
@@ -1243,16 +1243,16 @@
     <value>CPU-AFFINITET</value>
   </data>
   <data name="PresetReduceBigBumps" xml:space="preserve">
-    <value>(Forudindstilling) Reducer store bump</value>
+    <value>(Forudindstilling) reducer store bump</value>
   </data>
   <data name="AppManager" xml:space="preserve">
     <value>App-styring</value>
   </data>
   <data name="AppsToStart" xml:space="preserve">
-    <value>Apps Der Skal Startes</value>
+    <value>Apps der skal startes</value>
   </data>
   <data name="AppsToTerminate" xml:space="preserve">
-    <value>Apps Der Skal Afsluttes</value>
+    <value>Apps der skal afsluttes</value>
   </data>
   <data name="ExecutablePath" xml:space="preserve">
     <value>Sti til eksekverbar</value>
@@ -1327,7 +1327,7 @@
     <value>Luk</value>
   </data>
   <data name="Wizard_Step0_Title" xml:space="preserve">
-    <value>Hej, Kører!</value>
+    <value>Hej, kører!</value>
   </data>
   <data name="Wizard_Step0_Line1" xml:space="preserve">
     <value>Jeg er Marvin Assistenten, her for at hjælpe dig med at tæmme den kraftfulde MAIRA!</value>
@@ -1510,19 +1510,19 @@
     <value>Stemmeliste</value>
   </data>
   <data name="CrewChiefCommentary" xml:space="preserve">
-    <value>Crew Chief Kommentar</value>
+    <value>Crew chief kommentar</value>
   </data>
   <data name="SpotterCommentary" xml:space="preserve">
-    <value>Spotter Kommentar</value>
+    <value>Spotter kommentar</value>
   </data>
   <data name="Sportscaster1Commentary" xml:space="preserve">
-    <value>Sportkommentator 1 Kommentar</value>
+    <value>Sportkommentator 1 kommentar</value>
   </data>
   <data name="Sportscaster2Commentary" xml:space="preserve">
-    <value>Sportkommentator 2 Kommentar</value>
+    <value>Sportkommentator 2 kommentar</value>
   </data>
   <data name="PitReporterCommentary" xml:space="preserve">
-    <value>Pit Reporter Kommentar</value>
+    <value>Pit reporter kommentar</value>
   </data>
   <data name="ApiKey" xml:space="preserve">
     <value>API-nøgle</value>
@@ -1552,19 +1552,19 @@
     <value>✗</value>
   </data>
   <data name="KeyPermissionVoiceRead" xml:space="preserve">
-    <value>Stemmer — Læsning</value>
+    <value>Stemmer — læsning</value>
   </data>
   <data name="KeyPermissionModelsRead" xml:space="preserve">
-    <value>Modeller — Adgang</value>
+    <value>Modeller — adgang</value>
   </data>
   <data name="KeyPermissionTextToSpeech" xml:space="preserve">
-    <value>Tekst til tale — Adgang</value>
+    <value>Tekst til tale — adgang</value>
   </data>
   <data name="KeyPermissionSpeechToText" xml:space="preserve">
-    <value>Tale til tekst — Adgang</value>
+    <value>Tale til tekst — adgang</value>
   </data>
   <data name="KeyPermissionUserRead" xml:space="preserve">
-    <value>Bruger — Læsning</value>
+    <value>Bruger — læsning</value>
   </data>
   <data name="Model" xml:space="preserve">
     <value>Model</value>
@@ -1594,7 +1594,7 @@
     <value>Slot-lydstyrke</value>
   </data>
   <data name="Caution" xml:space="preserve">
-    <value>Advarsel / Gult flag</value>
+    <value>Advarsel / gult flag</value>
   </data>
   <data name="CarProximity" xml:space="preserve">
     <value>Nærhedsopkald</value>
@@ -1636,58 +1636,58 @@
     <value>Starter...</value>
   </data>
   <data name="InitializingTopLevelWindow" xml:space="preserve">
-    <value>Initialiserer Topniveauvindue...</value>
+    <value>Initialiserer topniveauvindue...</value>
   </data>
   <data name="InitializingAudioManager" xml:space="preserve">
-    <value>Initialiserer Lydmanager...</value>
+    <value>Initialiserer lydmanager...</value>
   </data>
   <data name="InitializingAdminBoxx" xml:space="preserve">
     <value>Initialiserer AdminBoxx...</value>
   </data>
   <data name="InitializingSimulator" xml:space="preserve">
-    <value>Initialiserer Simulator...</value>
+    <value>Initialiserer simulator...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Initialiserer Direkte Input...</value>
+    <value>Initialiserer direkte input...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Initialiserer Stream Deck...</value>
   </data>
   <data name="InitializingTextToSpeech" xml:space="preserve">
-    <value>Initialiserer Tekst til Tale...</value>
+    <value>Initialiserer tekst til tale...</value>
   </data>
   <data name="InitializingCommentary" xml:space="preserve">
-    <value>Initialiserer Kommentar...</value>
+    <value>Initialiserer kommentar...</value>
   </data>
   <data name="InitializingCloudService" xml:space="preserve">
-    <value>Initialiserer Skytjeneste...</value>
+    <value>Initialiserer skytjeneste...</value>
   </data>
   <data name="InitializingGraph" xml:space="preserve">
-    <value>Initialiserer Graf...</value>
+    <value>Initialiserer graf...</value>
   </data>
   <data name="InitializingPedals" xml:space="preserve">
-    <value>Initialiserer Pedaler...</value>
+    <value>Initialiserer pedaler...</value>
   </data>
   <data name="InitializingRacingWheel" xml:space="preserve">
-    <value>Initialiserer Racingrat...</value>
+    <value>Initialiserer racingrat...</value>
   </data>
   <data name="InitializingSounds" xml:space="preserve">
-    <value>Initialiserer Lyde...</value>
+    <value>Initialiserer lyde...</value>
   </data>
   <data name="InitializingLFE" xml:space="preserve">
     <value>Initialiserer LFE...</value>
   </data>
   <data name="InitializingMultimediaTimer" xml:space="preserve">
-    <value>Initialiserer Medietimer...</value>
+    <value>Initialiserer medietimer...</value>
   </data>
   <data name="InitializingRecordingManager" xml:space="preserve">
-    <value>Initialiserer Optagelseshåndtering...</value>
+    <value>Initialiserer optagelseshåndtering...</value>
   </data>
   <data name="InitializingTimingMarkers" xml:space="preserve">
-    <value>Initialiserer Tidsmarkører...</value>
+    <value>Initialiserer tidsmarkører...</value>
   </data>
   <data name="InitializingTelemetry" xml:space="preserve">
-    <value>Initialiserer Telemetri...</value>
+    <value>Initialiserer telemetri...</value>
   </data>
   <data name="InitializingWind" xml:space="preserve">
     <value>Initialiserer Typhoon Wind...</value>
@@ -1696,16 +1696,16 @@
     <value>Initialiserer G Tensioner...</value>
   </data>
   <data name="InitializingHidHotPlugMonitor" xml:space="preserve">
-    <value>Initialiserer HID Hot Plug Monitor...</value>
+    <value>Initialiserer HID hot plug monitor...</value>
   </data>
   <data name="InitializingTradingPaints" xml:space="preserve">
     <value>Initialiserer Trading Paints...</value>
   </data>
   <data name="InitializingSettingsFile" xml:space="preserve">
-    <value>Initialiserer Indstillingsfil...</value>
+    <value>Initialiserer indstillingsfil...</value>
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
-    <value>Initialiserer Hovedvindue...</value>
+    <value>Initialiserer hovedvindue...</value>
   </data>
   <data name="RedownloadPaintFiles" xml:space="preserve">
     <value>Hent malingsfiler igen</value>
@@ -1737,7 +1737,7 @@
   </data>  <data name="WindowVisibility" xml:space="preserve">
     <value>Vinduessynlighed</value>
   </data>  <data name="ShowHideWindow" xml:space="preserve">
-    <value>Vis / Skjul Vindue</value>
+    <value>Vis / skjul vindue</value>
   </data>  <data name="StepSize" xml:space="preserve">
     <value>Trinstørrelse</value>
   </data>  <data name="UpdateCheckInterval" xml:space="preserve">

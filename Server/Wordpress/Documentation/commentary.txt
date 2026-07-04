@@ -39,7 +39,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Master Volume</p>
+<p class="setting">Master volume</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -90,7 +90,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Under the <strong>API Keys</strong> section, click <strong>Create API Key</strong>.</li>
+<li>Under the <strong>API keys</strong> section, click <strong>Create API key</strong>.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -112,7 +112,7 @@
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li><strong>Voices — Read</strong> (so MAIRA can populate the voice picker)</li>
+<li><strong>Voices — read</strong> (so MAIRA can populate the voice picker)</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -124,7 +124,7 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li><strong>User — Read</strong> (so MAIRA can display your subscription usage)</li>
+<li><strong>User — read</strong> (so MAIRA can display your subscription usage)</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 
@@ -134,11 +134,11 @@
 
 <!-- wp:list {"ordered":true} -->
 <ol class="wp-block-list"><!-- wp:list-item -->
-<li>Paste your API key into the <strong>API Key</strong> field on this page.</li>
+<li>Paste your API key into the <strong>API key</strong> field on this page.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Click the <strong>Verify Key</strong> button. MAIRA will check all four required permissions and report the result.</li>
+<li>Click the <strong>Verify key</strong> button. MAIRA will check all four required permissions and report the result.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
@@ -171,11 +171,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="voices">Voice Roster</p>
+<p class="section" id="voices">Voice roster</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The Voice Roster is designed around six role slots, each representing a different on-air personality. You can assign any ElevenLabs voice to a slot, tune the voice parameters independently, and enable or disable each role separately.</p>
+<p>The Voice roster is designed around six role slots, each representing a different on-air personality. You can assign any ElevenLabs voice to a slot, tune the voice parameters independently, and enable or disable each role separately.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -241,7 +241,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Similarity Boost</p>
+<p class="setting">Similarity boost</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -249,11 +249,11 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Slot Volume</p>
+<p class="setting">Slot volume</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Per-slot volume level. This is multiplied with the Master Volume to produce the final playback level for this role.</p>
+<p>Per-slot volume level. This is multiplied with the Master volume to produce the final playback level for this role.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -269,7 +269,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Speaker Boost</p>
+<p class="setting">Speaker boost</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -337,7 +337,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="spotter">Spotter Commentary</p>
+<p class="section" id="spotter">Spotter commentary</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -345,7 +345,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Proximity Calls</p>
+<p class="setting">Proximity calls</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -375,7 +375,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Flag Calls</p>
+<p class="setting">Flag calls</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -383,7 +383,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Like Proximity Calls, this is not a single on/off toggle — it is three independent per-phase switches:</p>
+<p>Like Proximity calls, this is not a single on/off toggle — it is three independent per-phase switches:</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
@@ -405,7 +405,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Car Proximity Reminder Interval</p>
+<p class="setting">Car proximity reminder interval</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -417,7 +417,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="phrases">Commentary Phrases</p>
+<p class="section" id="phrases">Commentary phrases</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -471,7 +471,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"setting"} -->
-<p class="setting">Add Phrase</p>
+<p class="setting">Add phrase</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
