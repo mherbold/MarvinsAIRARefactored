@@ -123,6 +123,16 @@
                                             Grid.Row="6"
                                             Label="{Binding Localization[Usage]}"/>
 
+                <!-- Row 5: Hard voice-synthesis error (e.g. a paid voice on a free subscription); collapsed until one occurs -->
+                <TextBlock x:Name="SynthesisError_TextBlock"
+                           Grid.Row="8"
+                           Style="{DynamicResource MairaTextBlockStyle}"
+                           Foreground="{DynamicResource Brush.Accent}"
+                           TextWrapping="Wrap"
+                           Visibility="Collapsed"
+                           d:Text="[401] This voice is only available to paid subscribers"
+                           d:Visibility="Visible" />
+
             </Grid>
 
         </controls:MairaGroupBox>
@@ -958,14 +968,14 @@
 
                                                 <controls:MairaButton Grid.Column="0"
                                                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
-                                                                      Label="{Binding DataContext.Localization[AddPhrase], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                      Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[AddPhrase]}"
                                                                       IsSmall="True"
                                                                       Tag="{Binding}"
                                                                       Click="AddPhrase_MairaButton_Click" />
 
                                                 <controls:MairaButton Grid.Column="2"
                                                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
-                                                                      Label="{Binding DataContext.Localization[ResetEventPhrases], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                      Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[ResetEventPhrases]}"
                                                                       IsSmall="True"
                                                                       Tag="{Binding}"
                                                                       Click="ResetEventPhrases_MairaButton_Click" />

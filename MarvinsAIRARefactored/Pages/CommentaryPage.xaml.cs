@@ -56,6 +56,46 @@ public partial class CommentaryPage : System.Windows.Controls.UserControl
 
 		Loaded += ( _, _ ) => App.Instance!.SpeechToText.UpdateSubscriptionUsage += UpdateSubscriptionUsage;
 		Unloaded += ( _, _ ) => App.Instance!.SpeechToText.UpdateSubscriptionUsage -= UpdateSubscriptionUsage;
+
+		Loaded += ( _, _ ) =>
+		{
+			App.Instance!.TextToSpeech.SynthesisError += OnSynthesisError;
+
+			// Show any error that occurred before this page was loaded / re-activated.
+			ShowSynthesisError( App.Instance!.TextToSpeech.LastSynthesisError );
+		};
+
+		Unloaded += ( _, _ ) => App.Instance!.TextToSpeech.SynthesisError -= OnSynthesisError;
+	}
+
+	/// <summary>
+	/// Displays (or clears) a hard TTS synthesis error under the Usage bar. Raised from the TTS queue consumer,
+	/// so re-dispatch to the UI thread before touching the TextBlock.
+	/// </summary>
+	private void OnSynthesisError( string? message )
+	{
+		if ( !Dispatcher.CheckAccess() )
+		{
+			_ = Dispatcher.InvokeAsync( () => ShowSynthesisError( message ) );
+
+			return;
+		}
+
+		ShowSynthesisError( message );
+	}
+
+	private void ShowSynthesisError( string? message )
+	{
+		if ( string.IsNullOrWhiteSpace( message ) )
+		{
+			SynthesisError_TextBlock.Text = "";
+			SynthesisError_TextBlock.Visibility = Visibility.Collapsed;
+		}
+		else
+		{
+			SynthesisError_TextBlock.Text = message;
+			SynthesisError_TextBlock.Visibility = Visibility.Visible;
+		}
 	}
 
 	private void UpdateSubscriptionUsage( CancellationToken cancellationToken = default )

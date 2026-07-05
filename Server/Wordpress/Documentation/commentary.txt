@@ -170,6 +170,10 @@
 <p>Beneath the model selector, MAIRA displays a single <strong>Usage</strong> progress bar showing your ElevenLabs subscription usage — the characters consumed so far in the current billing period against your plan's limit — so you can keep an eye on your quota.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p>If ElevenLabs rejects a voice request — for example a voice that is only available on a paid plan, or a monthly quota that has run out — MAIRA now shows the reason in orange text directly beneath the Usage bar. When commentary stays silent, look here first: the message includes the response code and ElevenLabs' own explanation, so you know exactly what needs fixing. The notice clears automatically the next time a voice plays successfully.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="voices">Voice roster</p>
 <!-- /wp:paragraph -->

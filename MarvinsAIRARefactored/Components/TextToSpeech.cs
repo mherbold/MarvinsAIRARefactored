@@ -57,6 +57,20 @@ public sealed partial class TextToSpeech : IDisposable
 
 	public event Action<CancellationToken>? UpdateSubscriptionUsage;
 
+	/// <summary>
+	/// Raised when a TTS synthesis request fails (a non-success ElevenLabs response or a network error) so the UI
+	/// can surface the reason to the user, or with <c>null</c> to clear a previously shown error once audio plays
+	/// again. Fired only when the state actually changes, so live commentary does not spam redundant clears.
+	/// Raised from the background queue consumer — marshal to the UI thread in the handler.
+	/// </summary>
+	public event Action<string?>? SynthesisError;
+
+	/// <summary>
+	/// The most recent synthesis error message, or <c>null</c> if the last attempt succeeded. Lets a page that
+	/// loads (or is re-activated) after an error initialise its display without waiting for the next event.
+	/// </summary>
+	public string? LastSynthesisError { get; private set; }
+
 	public void Initialize()
 	{
 		var app = App.Instance!;
@@ -199,6 +213,19 @@ public sealed partial class TextToSpeech : IDisposable
 		_slotInFlightCounts.AddOrUpdate( slotIndex, 0, ( _, count ) => count > 0 ? count - 1 : 0 );
 	}
 
+	/// <summary>Updates <see cref="LastSynthesisError"/> and raises <see cref="SynthesisError"/>, but only when the message actually changes so repeated successes during live commentary do not fire redundant clears.</summary>
+	private void ReportSynthesisError( string? message )
+	{
+		if ( message == LastSynthesisError )
+		{
+			return;
+		}
+
+		LastSynthesisError = message;
+
+		SynthesisError?.Invoke( message );
+	}
+
 	private async Task ConsumeQueueAsync( CancellationToken cancellationToken )
 	{
 		try
@@ -251,12 +278,17 @@ public sealed partial class TextToSpeech : IDisposable
 		}
 		else
 		{
-			mp3Bytes = await CallApiAsync( slot, request.Text, settings.CommentaryElevenLabsModelId, cancellationToken );
+			var ( bytes, error ) = await CallApiAsync( slot, request.Text, settings.CommentaryElevenLabsModelId, cancellationToken );
 
-			if ( mp3Bytes is null )
+			if ( bytes is null )
 			{
+				// Surface the hard error to the user (e.g. a paid voice on a free subscription) instead of failing silently.
+				ReportSynthesisError( error );
+
 				return;
 			}
+
+			mp3Bytes = bytes;
 
 			// Fire-and-forget cache write — does not block playback
 			_ = WriteCacheAsync( cacheFile, mp3Bytes );
@@ -264,6 +296,9 @@ public sealed partial class TextToSpeech : IDisposable
 			// Update subscription usage after successful TTS call
 			UpdateSubscriptionUsage?.Invoke( cancellationToken );
 		}
+
+		// Reaching here means we have audio to play — clear any error left over from a previous failed attempt.
+		ReportSynthesisError( null );
 
 		var volume = MathZ.Saturate( slot.Volume * settings.CommentaryMasterVolume );
 
@@ -291,7 +326,7 @@ public sealed partial class TextToSpeech : IDisposable
 	// API call
 	// -------------------------------------------------------------------------
 
-	private static async Task<byte[]?> CallApiAsync( VoiceSlotSettings slot, string text, string modelId, CancellationToken cancellationToken )
+	private static async Task<(byte[]? Bytes, string? Error)> CallApiAsync( VoiceSlotSettings slot, string text, string modelId, CancellationToken cancellationToken )
 	{
 		var app = App.Instance!;
 		var apiKey = DataContext.DataContext.Instance.Settings.CommentaryElevenLabsApiKey;
@@ -300,7 +335,7 @@ public sealed partial class TextToSpeech : IDisposable
 		{
 			app.Logger.WriteLine( "[TextToSpeech] No API key configured." );
 
-			return null;
+			return ( null, "[no API key]" );
 		}
 
 		var url = $"https://api.elevenlabs.io/v1/text-to-speech/{slot.VoiceId}?output_format=mp3_44100_128";
@@ -340,17 +375,57 @@ public sealed partial class TextToSpeech : IDisposable
 
 				app.Logger.WriteLine( $"[TextToSpeech] API error {(int) response.StatusCode}: {error}" );
 
-				return null;
+				return ( null, FormatApiError( (int) response.StatusCode, error ) );
 			}
 
-			return await response.Content.ReadAsByteArrayAsync( cancellationToken );
+			return ( await response.Content.ReadAsByteArrayAsync( cancellationToken ), null );
+		}
+		catch ( OperationCanceledException )
+		{
+			// Shutdown / pipeline cancellation — not a user-facing error.
+			throw;
 		}
 		catch ( Exception ex )
 		{
 			app.Logger.WriteLine( $"[TextToSpeech] CallApiAsync exception: {ex.Message}" );
 
-			return null;
+			return ( null, ex.Message );
 		}
+	}
+
+	/// <summary>
+	/// Builds a concise, user-readable message from an ElevenLabs error response. Extracts the human-readable
+	/// "detail.message" from the JSON body when present (e.g. "This voice is only available to paid subscribers"),
+	/// falling back to the raw body. Prefixed with the HTTP status code in brackets so it stays locale-neutral.
+	/// </summary>
+	private static string FormatApiError( int statusCode, string body )
+	{
+		var detail = body.Trim();
+
+		try
+		{
+			var detailToken = JObject.Parse( body )[ "detail" ];
+
+			if ( detailToken is JObject detailObject )
+			{
+				detail = detailObject[ "message" ]?.Value<string>()?.Trim() ?? detailObject.ToString();
+			}
+			else if ( detailToken is not null )
+			{
+				detail = detailToken.Value<string>()?.Trim() ?? detail;
+			}
+		}
+		catch
+		{
+			// Non-JSON body — keep the raw text.
+		}
+
+		if ( detail.Length > 300 )
+		{
+			detail = detail[ ..300 ] + "…";
+		}
+
+		return string.IsNullOrWhiteSpace( detail ) ? $"[{statusCode}]" : $"[{statusCode}] {detail}";
 	}
 
 	/// <summary>Removes ElevenLabs emotion/direction tags such as [urgently] from text for models that do not support them.</summary>

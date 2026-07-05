@@ -77,7 +77,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <controls:MairaTextBox Grid.Column="0"
-                                                               Label="{Binding DataContext.Localization[ExecutablePath], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                               Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[ExecutablePath]}"
                                                                Value="{Binding ExecutablePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                                                Tag="{Binding}"
                                                                LostFocus="TerminateEntry_LostFocus" />
@@ -108,7 +108,7 @@
                                     <!-- Row 2: Launch on disconnect -->
                                     <controls:MairaSwitch Grid.Row="2"
                                                           IsOn="{Binding LaunchOnSimulatorDisconnect, Mode=TwoWay}"
-                                                          Label="{Binding DataContext.Localization[LaunchOnDisconnect], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                          Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[LaunchOnDisconnect]}"
                                                           Toggled="TerminateEntry_Toggled" />
 
                                 </Grid>
@@ -176,7 +176,7 @@
                                         </Grid.ColumnDefinitions>
 
                                         <controls:MairaTextBox Grid.Column="0"
-                                                               Label="{Binding DataContext.Localization[ExecutablePath], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                               Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[ExecutablePath]}"
                                                                Value="{Binding Entry.ExecutablePath, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                                                Tag="{Binding}"
                                                                LostFocus="StartEntry_LostFocus" />
@@ -240,21 +240,21 @@
 
                                         <!-- Arguments -->
                                         <controls:MairaTextBox Grid.Column="0"
-                                                               Label="{Binding DataContext.Localization[Arguments], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                               Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[Arguments]}"
                                                                Value="{Binding Entry.Arguments, Mode=TwoWay, UpdateSourceTrigger=LostFocus}"
                                                                Tag="{Binding}"
                                                                LostFocus="StartEntry_LostFocus" />
 
                                         <!-- Delay After Start -->
                                         <controls:MairaTextBox Grid.Column="2"
-                                                               Label="{Binding DataContext.Localization[DelayAfterStart], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                               Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[DelayAfterStart]}"
                                                                Value="{Binding Entry.DelayAfterStartSeconds, Mode=TwoWay, UpdateSourceTrigger=LostFocus, StringFormat=F1}"
                                                                Tag="{Binding}"
                                                                LostFocus="StartEntry_LostFocus" />
 
                                         <!-- CPU Priority -->
                                         <controls:MairaComboBox Grid.Column="4"
-                                                                Label="{Binding DataContext.Localization[CpuPriority], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[CpuPriority]}"
                                                                 SelectedValue="{Binding Entry.CpuPriority, Mode=TwoWay}"
                                                                 Loaded="CpuPriorityComboBox_Loaded"
                                                                 Tag="{Binding}"
@@ -262,7 +262,7 @@
 
                                         <!-- Window Style -->
                                         <controls:MairaComboBox Grid.Column="6"
-                                                                Label="{Binding DataContext.Localization[AppWindowStyle], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                                Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[AppWindowStyle]}"
                                                                 SelectedValue="{Binding Entry.WindowStyle, Mode=TwoWay}"
                                                                 Loaded="WindowStyleComboBox_Loaded"
                                                                 Tag="{Binding}"
@@ -273,13 +273,13 @@
                                     <!-- Row 3: Avoid primary CPU cores -->
                                     <controls:MairaSwitch Grid.Row="4"
                                                           IsOn="{Binding Entry.AvoidPrimaryCpuCores, Mode=TwoWay}"
-                                                          Label="{Binding DataContext.Localization[AvoidPrimaryCpuCores], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                          Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[AvoidPrimaryCpuCores]}"
                                                           Toggled="StartEntry_Toggled" />
 
                                     <!-- Row 4: Terminate on disconnect -->
                                     <controls:MairaSwitch Grid.Row="6"
                                                           IsOn="{Binding Entry.TerminateOnSimulatorDisconnect, Mode=TwoWay}"
-                                                          Label="{Binding DataContext.Localization[TerminateOnDisconnect], RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                                          Label="{Binding Source={x:Static datacontext:DataContext.Instance}, Path=Localization[TerminateOnDisconnect]}"
                                                           Toggled="StartEntry_Toggled" />
 
                                 </Grid>
