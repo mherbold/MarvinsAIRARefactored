@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>Kalibrasyon devam ettiğinden FFB devre dışı</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Vites değişim devri titreşim şiddeti</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Vites değişiminde titreşim şiddeti</value>
   </data>

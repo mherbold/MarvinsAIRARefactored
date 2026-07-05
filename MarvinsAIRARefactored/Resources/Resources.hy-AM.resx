@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB-ն անջատված է, քանի որ չափաբերումն ընթացքի մեջ է</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Փոխանցման RPM թրթռման ուժ</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Հաղորդագրության թրթռման ուժ փոխման ժամանակ</value>
   </data>

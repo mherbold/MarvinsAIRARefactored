@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB je zakázáno, protože probíhá kalibrace</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Intenzita vibrace při otáčkách řazení</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Intenzita vibrace při řazení</value>
   </data>

@@ -1206,6 +1206,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>キャリブレーション実行中のためFFBは無効です</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>シフトRPM振動強度</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>ギアチェンジ振動強度</value>
   </data>

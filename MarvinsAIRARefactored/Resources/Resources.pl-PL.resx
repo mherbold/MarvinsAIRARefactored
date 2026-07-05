@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB jest wyłączony, ponieważ trwa kalibracja</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Siła wibracji przy obrotach zmiany biegu</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Siła wibracji przy zmianie biegu</value>
   </data>

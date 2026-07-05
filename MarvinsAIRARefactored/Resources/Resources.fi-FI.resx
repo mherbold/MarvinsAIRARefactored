@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB on poistettu käytöstä, koska kalibrointi on käynnissä</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Vaihto-RPM-värähtelyjen voimakkuus</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Vaihteenvaihtovärähtelyjen voimakkuus</value>
   </data>

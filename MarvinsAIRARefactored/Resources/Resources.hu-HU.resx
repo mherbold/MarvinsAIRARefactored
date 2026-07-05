@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>Az FFB le van tiltva, mert kalibrálás fut</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Váltási fordulatszám rezgési erőssége</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Sebességváltás rezgési erőssége</value>
   </data>

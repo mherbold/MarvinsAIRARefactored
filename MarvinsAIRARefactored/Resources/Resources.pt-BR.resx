@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>O FFB está desativado porque a calibração está em andamento</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Intensidade de vibração no RPM de troca</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Intensidade de vibração na troca de marcha</value>
   </data>

@@ -909,6 +909,16 @@
                 </Grid.ColumnDefinitions>
 
                 <controls:MairaKnob Grid.Column="0"
+                                    Label="{Binding Localization[ShiftRPMVibrateStrength]}"
+                                    Value="{Binding Settings.RacingWheelShiftRPMVibrateStrength, Mode=TwoWay}"
+                                    ValueString="{Binding Settings.RacingWheelShiftRPMVibrateStrengthString}"
+                                    ClickStepSize="0.05"
+                                    DragStepSize="0.000174"
+                                    ContextSwitches="{Binding Settings.RacingWheelShiftRPMVibrateStrengthContextSwitches}"
+                                    PlusButtonMappings="{Binding Settings.RacingWheelShiftRPMVibrateStrengthPlusButtonMappings}"
+                                    MinusButtonMappings="{Binding Settings.RacingWheelShiftRPMVibrateStrengthMinusButtonMappings}"
+                                    DefaultValue="0.0" />
+                <controls:MairaKnob Grid.Column="2"
                                     Label="{Binding Localization[GearChangeVibrateStrength]}"
                                     Value="{Binding Settings.RacingWheelGearChangeVibrateStrength, Mode=TwoWay}"
                                     ValueString="{Binding Settings.RacingWheelGearChangeVibrateStrengthString}"
@@ -918,7 +928,7 @@
                                     PlusButtonMappings="{Binding Settings.RacingWheelGearChangeVibrateStrengthPlusButtonMappings}"
                                     MinusButtonMappings="{Binding Settings.RacingWheelGearChangeVibrateStrengthMinusButtonMappings}"
                                     DefaultValue="0.0" />
-                <controls:MairaKnob Grid.Column="2"
+                <controls:MairaKnob Grid.Column="4"
                                     Label="{Binding Localization[ABSVibrateStrength]}"
                                     Value="{Binding Settings.RacingWheelABSVibrateStrength, Mode=TwoWay}"
                                     ValueString="{Binding Settings.RacingWheelABSVibrateStrengthString}"

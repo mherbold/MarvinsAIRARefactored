@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB отключён, так как выполняется калибровка</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Сила вибрации на оборотах переключения</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Сила вибрации при переключении передач</value>
   </data>

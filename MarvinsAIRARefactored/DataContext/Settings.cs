@@ -548,6 +548,7 @@ public class Settings : INotifyPropertyChanged
 			UpdateRacingWheelTotalCompressionThresholdString();
 			UpdateRacingWheelOutputMinimumString();
 			UpdateRacingWheelOutputMaximumString();
+			UpdateRacingWheelShiftRPMVibrateStrengthString();
 			UpdateRacingWheelGearChangeVibrateStrengthString();
 			UpdateRacingWheelABSVibrateStrengthString();
 
@@ -2898,6 +2899,67 @@ public class Settings : INotifyPropertyChanged
 	public ContextSwitches RacingWheelWheelCenteringStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
 	public ButtonMappings RacingWheelWheelCenteringStrengthPlusButtonMappings { get; set; } = new();
 	public ButtonMappings RacingWheelWheelCenteringStrengthMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Racing wheel - Shift RPM vibrate strength
+
+	private float _racingWheelShiftRPMVibrateStrength = 0.0f;
+
+	public float RacingWheelShiftRPMVibrateStrength
+	{
+		get => _racingWheelShiftRPMVibrateStrength;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _racingWheelShiftRPMVibrateStrength )
+			{
+				_racingWheelShiftRPMVibrateStrength = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateRacingWheelShiftRPMVibrateStrengthString();
+		}
+	}
+
+	private string _racingWheelShiftRPMVibrateStrengthString = string.Empty;
+
+	[XmlIgnore]
+	public string RacingWheelShiftRPMVibrateStrengthString
+	{
+		get => _racingWheelShiftRPMVibrateStrengthString;
+
+		set
+		{
+			if ( value != _racingWheelShiftRPMVibrateStrengthString )
+			{
+				_racingWheelShiftRPMVibrateStrengthString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private void UpdateRacingWheelShiftRPMVibrateStrengthString()
+	{
+		if ( _racingWheelShiftRPMVibrateStrength == 0f )
+		{
+			RacingWheelShiftRPMVibrateStrengthString = DataContext.Instance.Localization[ "OFF" ];
+		}
+		else
+		{
+			var convertedToTorque = RacingWheelWheelForce * _racingWheelShiftRPMVibrateStrength;
+
+			RacingWheelShiftRPMVibrateStrengthString = $"{_racingWheelShiftRPMVibrateStrength * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]} ({convertedToTorque:F1}{DataContext.Instance.Localization[ "TorqueUnits" ]})";
+		}
+	}
+
+	public ContextSwitches RacingWheelShiftRPMVibrateStrengthContextSwitches { get; set; } = new( true, false, false, false, false );
+	public ButtonMappings RacingWheelShiftRPMVibrateStrengthPlusButtonMappings { get; set; } = new();
+	public ButtonMappings RacingWheelShiftRPMVibrateStrengthMinusButtonMappings { get; set; } = new();
 
 	#endregion
 

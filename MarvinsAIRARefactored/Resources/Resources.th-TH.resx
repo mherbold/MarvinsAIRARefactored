@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB ถูกปิดใช้งานเนื่องจากการสอบเทียบกำลังทำงาน</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>ความแรงการสั่นที่รอบเปลี่ยนเกียร์</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>ความแรงการสั่นเมื่อเปลี่ยนเกียร์</value>
   </data>

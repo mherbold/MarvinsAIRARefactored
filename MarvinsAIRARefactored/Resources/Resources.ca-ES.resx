@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB desactivat perquè la calibració està en curs</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Intensitat de vibració a les RPM de canvi</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Intensitat de vibració en canviar de marxa</value>
   </data>

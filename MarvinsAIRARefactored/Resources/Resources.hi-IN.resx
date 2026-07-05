@@ -1251,6 +1251,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>कैलिब्रेशन चल रहा है इसलिए FFB अक्षम है</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>शिफ्ट RPM कंपन स्ट्रेंथ</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>गियर चेंज कंपन स्ट्रेंथ</value>
   </data>

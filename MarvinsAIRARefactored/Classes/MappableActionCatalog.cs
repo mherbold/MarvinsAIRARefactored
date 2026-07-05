@@ -412,6 +412,7 @@ public static class MappableActionCatalog
 		RwKnob( list, "OtherFeatures", "SoftLockStrength", "RacingWheelSoftLockStrength", 0.05f );
 		RwKnob( list, "OtherFeatures", "RacingFriction", "RacingWheelFriction", 0.05f );
 		RwKnob( list, "OtherFeatures", "WheelCenteringStrength", "RacingWheelWheelCenteringStrength", 0.05f );
+		RwKnob( list, "Effects", "ShiftRPMVibrateStrength", "RacingWheelShiftRPMVibrateStrength", 0.05f );
 		RwKnob( list, "Effects", "GearChangeVibrateStrength", "RacingWheelGearChangeVibrateStrength", 0.05f );
 		RwKnob( list, "Effects", "ABSVibrateStrength", "RacingWheelABSVibrateStrength", 0.05f );
 

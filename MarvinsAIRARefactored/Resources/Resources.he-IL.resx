@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB מושבת כי כיול פועל</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>עוצמת רטט סל״ד החלפה</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>עוצמת רטט החלפת הילוך</value>
   </data>

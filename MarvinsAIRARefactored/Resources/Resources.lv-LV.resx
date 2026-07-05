@@ -1251,6 +1251,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB ir atspējots, jo notiek kalibrācija</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Pārslēgšanas apgr./min. vibrācijas stiprums</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Pārnesuma maiņas vibrācijas stiprums</value>
   </data>

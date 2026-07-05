@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB is uitgeschakeld omdat kalibratie bezig is</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Trillingssterkte bij schakeltoerental</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Trillingssterkte bij schakelen</value>
   </data>

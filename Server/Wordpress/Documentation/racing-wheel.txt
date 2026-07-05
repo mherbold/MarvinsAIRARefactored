@@ -862,6 +862,18 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Shift RPM vibrate strength</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Adds a pulsed vibration once your engine RPM reaches the shift point, nudging you to upshift. It stays active until you shift up (and does nothing in top gear). Setting this to 0% turns the effect off.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
 <p class="setting">Gear change vibrate strength</p>
 <!-- /wp:paragraph -->
 

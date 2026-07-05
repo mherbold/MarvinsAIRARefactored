@@ -1251,6 +1251,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB е деактивиран, защото се изпълнява калибриране</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Сила на вибрация при обороти за смяна</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Сила на вибрация при смяна на предавка</value>
   </data>

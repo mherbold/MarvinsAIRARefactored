@@ -113,6 +113,7 @@ public class RacingWheel
 	private float _understeerEffectTimerMS = 0f;
 	private float _oversteerEffectTimerMS = 0f;
 	private float _seatOfPantsEffectTimerMS = 0f;
+	private float _vibrateOnShiftRPMTimerMS = 0f;
 	private float _vibrateOnGearChangeTimerMS = 0f;
 	private float _vibrateOnABSTimerMS = 0f;
 
@@ -918,6 +919,40 @@ public class RacingWheel
 				}
 
 				vibrationTorque += seatOfPantsEffectTorque * settings.SteeringEffectsSeatOfPantsWheelVibrationStrength * MathF.Pow( absSeatOfPantsEffect, MathZ.CurveToPower( settings.SteeringEffectsSeatOfPantsWheelVibrationCurve ) );
+			}
+
+			// shift rpm vibration effect
+
+			if ( _usingSteeringWheelTorqueData && ( settings.RacingWheelShiftRPMVibrateStrength > 0f ) )
+			{
+				if ( ( app.Simulator.RPM >= app.Simulator.ShiftLightsShiftRPM ) && ( app.Simulator.NumForwardGears > 0 ) && ( app.Simulator.Gear < app.Simulator.NumForwardGears ) )
+				{
+					var frequency = 40f;
+					var pulseFrequency = 6f;
+					var timeInSeconds = _vibrateOnShiftRPMTimerMS * 0.001f;
+
+					var pulsate = MathF.Sin( timeInSeconds * MathF.Tau * pulseFrequency );
+
+					if ( pulsate >= 0f )
+					{
+						var sine = MathF.Sin( timeInSeconds * MathF.Tau * frequency );
+
+						vibrationTorque += ( sine >= 0f ) ? settings.RacingWheelShiftRPMVibrateStrength : -settings.RacingWheelShiftRPMVibrateStrength;
+					}
+
+					_vibrateOnShiftRPMTimerMS += deltaMilliseconds;
+
+					var periodMS = 500f; // 20 cycles of the 40 Hz vibration and 3 cycles of the 6 Hz pulse
+
+					if ( _vibrateOnShiftRPMTimerMS >= periodMS )
+					{
+						_vibrateOnShiftRPMTimerMS -= periodMS * MathF.Floor( _vibrateOnShiftRPMTimerMS / periodMS );
+					}
+				}
+				else
+				{
+					_vibrateOnShiftRPMTimerMS = 0f;
+				}
 			}
 
 			// gear change vibration effect

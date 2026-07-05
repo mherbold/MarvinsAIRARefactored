@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB wedi'i analluogi oherwydd bod calibradu ar y gweill</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Cryfder dirgryniad RPM newid</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Cryfder dirgryniad wrth newid gêr</value>
   </data>

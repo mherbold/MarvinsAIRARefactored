@@ -1209,6 +1209,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB вимкнено через виконання калібрування</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Сила вібрації на обертах перемикання</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Сила вібрації при перемиканні передач</value>
   </data>

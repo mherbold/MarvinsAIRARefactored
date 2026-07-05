@@ -1219,6 +1219,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>Le FFB est désactivé car la calibration est en cours</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Force de vibration au régime de passage</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Force de vibration lors des changements de vitesse</value>
   </data>

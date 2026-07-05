@@ -1203,6 +1203,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB er deaktivert fordi kalibrering kjører</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Skifte-RPM vibrasjonsstyrke</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Girskift vibrasjonsstyrke</value>
   </data>

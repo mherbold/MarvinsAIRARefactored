@@ -1251,6 +1251,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>보정이 실행 중이어서 FFB가 비활성화되었습니다</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>변속 RPM 진동 강도</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>기어 변속 진동 강도</value>
   </data>

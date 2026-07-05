@@ -1251,6 +1251,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB on keelatud, kuna kalibreerimine on käimas</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Vahetuse p/min vibratsiooni tugevus</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Käiguvahetuse vibratsiooni tugevus</value>
   </data>

@@ -1251,6 +1251,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>تم تعطيل ردود فعل القوة لأن المعايرة قيد التشغيل</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>قوة اهتزاز دورات تبديل التروس</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>قوة اهتزاز تغيير التروس</value>
   </data>

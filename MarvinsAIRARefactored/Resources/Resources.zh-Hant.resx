@@ -1251,6 +1251,9 @@
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>因校準正在執行，力回饋已停用</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>換檔 RPM 震動強度</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>換檔震動強度</value>
   </data>

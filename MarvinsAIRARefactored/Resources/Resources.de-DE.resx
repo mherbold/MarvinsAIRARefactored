@@ -1208,6 +1208,9 @@ Hier ist der Link zum Spenden:</value>
   <data name="CalibrationIsRunning" xml:space="preserve">
     <value>FFB ist wegen laufender Kalibrierung ausgeschaltet.</value>
   </data>
+  <data name="ShiftRPMVibrateStrength" xml:space="preserve">
+    <value>Schalt-Drehzahl Vibrationsstärke</value>
+  </data>
   <data name="GearChangeVibrateStrength" xml:space="preserve">
     <value>Gangwechsel Vibrationsstärke</value>
   </data>
