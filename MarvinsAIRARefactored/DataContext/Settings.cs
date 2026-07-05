@@ -10809,7 +10809,23 @@ public class Settings : INotifyPropertyChanged
 		SuppressUpdatingOfContextSettings = wasSuppressed;
 
 		// window scale re-applies automatically through the XAML ScaleTransform binding; position does not, so
-		// nudge any open windows to the freshly loaded position
+		// nudge any open windows to the freshly loaded position. Window.Left/Top have UI-thread affinity, and this
+		// method also runs on the iRacing telemetry thread (connect / disconnect / car / session change), so marshal
+		// the repositioning onto the UI thread whenever we are not already on it.
+		if ( app.Dispatcher.CheckAccess() )
+		{
+			ApplyOverlayLayoutPositions( app );
+		}
+		else
+		{
+			app.Dispatcher.BeginInvoke( () => ApplyOverlayLayoutPositions( app ) );
+		}
+	}
+
+	// Nudges any open overlay windows to their freshly loaded layout positions. Must run on the UI thread because
+	// Window.Left/Top have thread affinity; LoadOverlayLayout handles the dispatcher marshaling.
+	private static void ApplyOverlayLayoutPositions( App app )
+	{
 		app.GapMonitorWindow?.ApplyPositionFromSettings();
 		app.DeltaMonitorWindow?.ApplyPositionFromSettings();
 		app.GripOMeterWindow?.ApplyPositionFromSettings();
