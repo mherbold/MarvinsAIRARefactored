@@ -114,6 +114,7 @@ public class GTensioner
 
 	private const float AutoTuneFloorG = 1f;                       // learned target never below 1 G (also the SoP floor, in raw signal units)
 	private const float AutoTuneDrainPerUpdate = 1f / 300f / 20f;  // seen peaks drain 1 G per 300 seconds at 20 Hz updates
+	private const float AutoTuneSopDrainPerUpdate = AutoTuneDrainPerUpdate * 10f;  // the seat of pants peak falls back toward its 1 G floor 10x faster than the G-axis peaks
 	private const float AutoTuneAttackPerUpdate = 0.1f;            // seen peaks rise at most 0.1 G per 20 Hz update (2 G/sec) so brief spikes can't yank them up
 	private const float AutoTuneApproachAlpha = 0.14f;             // ~95% convergence in 1 second at 20 Hz
 	private const float AutoTuneMinSpeed = 8.9408f;                // 20 mph in m/s - below this, learning is frozen
@@ -540,7 +541,7 @@ public class GTensioner
 					_autoTuneSopPeak = AutoTuneFloorG;
 				}
 
-				_autoTuneSopPeak = UpdateAutoTunePeak( _autoTuneSopPeak, MathF.Abs( app.SteeringEffects.SeatOfPantsRaw ) );
+				_autoTuneSopPeak = UpdateAutoTunePeak( _autoTuneSopPeak, MathF.Abs( app.SteeringEffects.SeatOfPantsRaw ), AutoTuneSopDrainPerUpdate );
 			}
 
 			// Weight-scaled targets - center of the triangle (w = 1/3) applies the learned peak exactly;
@@ -1107,9 +1108,9 @@ public class GTensioner
 	// (which then drains away), so a single outlier reading can no longer define the learned envelope
 	// and mute the belts for the full drain interval. Sustained events (braking zones, corners) span
 	// many updates and are still captured in full.
-	private static float UpdateAutoTunePeak( float peak, float instant )
+	private static float UpdateAutoTunePeak( float peak, float instant, float drainPerUpdate = AutoTuneDrainPerUpdate )
 	{
-		var drained = peak - AutoTuneDrainPerUpdate;
+		var drained = peak - drainPerUpdate;
 		var attackLimited = MathF.Min( instant, peak + AutoTuneAttackPerUpdate );
 
 		return MathF.Max( drained, attackLimited );
