@@ -149,6 +149,10 @@ public partial class Simulator
 	private int? _tickCountLastFrame = null;
 	private bool? _weatherDeclaredWetLastFrame = null;
 
+	// the simulator sometimes turns on the wrong session flag bits - these latches let us filter the erroneous ones out
+	private bool _ignoreOneLapToGreenUntilNextSession = false;
+	private bool _ignoreBlueUntilCleared = false;
+
 	private IRacingSdkDatum? _brakeABSactiveDatum = null;
 	private IRacingSdkDatum? _brakeDatum = null;
 	private IRacingSdkDatum? _carIdxBestLapTimeDatum = null;
@@ -468,6 +472,9 @@ public partial class Simulator
 		_sessionStateLastFrame = null;
 		_tickCountLastFrame = null;
 		_weatherDeclaredWetLastFrame = null;
+
+		_ignoreOneLapToGreenUntilNextSession = false;
+		_ignoreBlueUntilCleared = false;
 
 		DataContext.DataContext.Instance.Settings.UpdateSettings( false );
 
@@ -870,6 +877,10 @@ public partial class Simulator
 		SessionLapsRemainEx = _irsdk.Data.GetInt( _sessionLapsRemainExDatum );
 		SessionNum = _irsdk.Data.GetInt( _sessionNumDatum );
 		SessionState = (IRacingSdkEnum.SessionState) _irsdk.Data.GetInt( _sessionStateDatum );
+
+		// work around simulator bugs that turn on the wrong session flag bits (needs SessionNum already read above)
+
+		SessionFlags = FilterBuggySessionFlags( SessionFlags );
 		SessionTime = _irsdk.Data.GetDouble( _sessionTimeDatum );
 		SessionTimeRemain = _irsdk.Data.GetDouble( _sessionTimeRemainDatum );
 		Speed = _irsdk.Data.GetFloat( _speedDatum );
@@ -1161,6 +1172,51 @@ public partial class Simulator
 		// trigger the app worker thread
 
 		app.TriggerWorkerThread();
+	}
+
+	private IRacingSdkEnum.Flags FilterBuggySessionFlags( IRacingSdkEnum.Flags sessionFlags )
+	{
+		// the simulator sometimes turns on the wrong session flag bits - filter out the ones we know are bogus
+
+		// bug 1: once the checkered flag is raised, a "one lap to green" flag no longer makes sense - ignore it for the
+		// rest of the session (the latch is cleared on the next session or on simulator disconnect)
+
+		if ( SessionNum != _sessionNumLastFrame )
+		{
+			_ignoreOneLapToGreenUntilNextSession = false;
+		}
+
+		if ( ( sessionFlags & IRacingSdkEnum.Flags.Checkered ) != 0 )
+		{
+			_ignoreOneLapToGreenUntilNextSession = true;
+		}
+
+		if ( _ignoreOneLapToGreenUntilNextSession )
+		{
+			sessionFlags &= ~IRacingSdkEnum.Flags.OneLapToGreen;
+		}
+
+		// bug 2: the simulator briefly raises the blue flag at the same time as "start go" - ignore the blue flag while
+		// this is happening and stop ignoring it once the blue flag is no longer raised
+
+		if ( ( sessionFlags & IRacingSdkEnum.Flags.Blue ) != 0 )
+		{
+			if ( ( sessionFlags & IRacingSdkEnum.Flags.StartGo ) != 0 )
+			{
+				_ignoreBlueUntilCleared = true;
+			}
+		}
+		else
+		{
+			_ignoreBlueUntilCleared = false;
+		}
+
+		if ( _ignoreBlueUntilCleared )
+		{
+			sessionFlags &= ~IRacingSdkEnum.Flags.Blue;
+		}
+
+		return sessionFlags;
 	}
 
 	private static string GetSessionFlagsBreakdown( IRacingSdkEnum.Flags sessionFlags )
