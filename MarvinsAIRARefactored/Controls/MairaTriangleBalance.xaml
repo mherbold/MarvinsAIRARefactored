@@ -61,6 +61,7 @@
 
         <TextBlock Grid.Row="1"
                    Style="{StaticResource MairaTextBlockStyle}"
+                   Foreground="{DynamicResource Brush.Accent}"
                    HorizontalAlignment="Center"
                    Margin="0,4,0,2"
                    Text="{Binding Localization[Sway]}" />
@@ -116,11 +117,13 @@
 
             <TextBlock Grid.Column="0"
                        Style="{StaticResource MairaTextBlockStyle}"
+                       Foreground="{DynamicResource Brush.Accent}"
                        HorizontalAlignment="Left"
                        Text="{Binding Localization[Surge]}" />
 
             <TextBlock Grid.Column="1"
                        Style="{StaticResource MairaTextBlockStyle}"
+                       Foreground="{DynamicResource Brush.Accent}"
                        HorizontalAlignment="Right"
                        Text="{Binding Localization[Heave]}" />
 
