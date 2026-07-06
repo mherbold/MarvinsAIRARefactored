@@ -32,7 +32,7 @@ function compute_metrics(): array
 		COALESCE(SUM(hits),0)                               AS total_checks,
 		ROUND(AVG(hits),1)                                  AS avg_checks,
 		COALESCE(MAX(hits),0)                               AS max_checks,
-		SUM(hits > 1)                                       AS returning_users,
+		SUM(hits >= 20)                                     AS returning_users,
 		SUM(lastModified >= NOW() - INTERVAL 15 MINUTE)     AS active_15m,
 		SUM(lastModified >= NOW() - INTERVAL 1 HOUR)        AS active_1h,
 		SUM(lastModified >= NOW() - INTERVAL 24 HOUR)       AS active_24h,
@@ -235,7 +235,7 @@ if ( ( $_GET[ 'format' ] ?? '' ) === 'json' )
 		<div class="card"><div class="label">New · 7 days</div><div class="value accent" id="k_new7d">—</div></div>
 		<div class="card"><div class="label">New · 30 days</div><div class="value accent" id="k_new30d">—</div></div>
 		<div class="card"><div class="label">Total version checks</div><div class="value" id="k_checks">—</div><div class="foot" id="k_avg">—</div></div>
-		<div class="card"><div class="label">Returning users</div><div class="value" id="k_return">—</div><div class="foot">ran more than once</div></div>
+		<div class="card"><div class="label">Returning users</div><div class="value" id="k_return">—</div><div class="foot">checked 20+ times</div></div>
 		<div class="card"><div class="label">Distinct networks</div><div class="value" id="k_ips">—</div><div class="foot">unique IP addresses</div></div>
 	</div>
 
