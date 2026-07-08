@@ -45,7 +45,12 @@ public partial class AdminBoxx
 	private const int _numColumns = 8;
 	private const int _numRows = 4;
 
-	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( string.Empty, "MI_00", "239A", "80F2" );
+	// The data port is found by probing every VID/PID-matching port with a version request (command 130,
+	// which every firmware version answers with "V<version>") - this picks the correct port regardless of
+	// interface layout (firmware 4.1.0+ exposes only the data port on MI_00; older firmware and recovery
+	// mode put the CircuitPython console on MI_00 and the data port on MI_02) and rejects unrelated devices
+	// that use the same USB chip. "MI_00" is an ordering hint so the data port is probed before the console.
+	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( string.Empty, "MI_00", "239A", "80F2", probeData: [ 130, 255 ], probeResponseRegex: StaticVersionNumberRegex );
 
 	private readonly Color[,] _colors = new Color[ _numRows, _numColumns ];
 
@@ -288,6 +293,16 @@ public partial class AdminBoxx
 		app.Logger.WriteLine( "[AdminBoxx] Connect >>>" );
 
 		IsConnected = _usbSerialPortHelper.Open();
+
+		if ( !IsConnected )
+		{
+			// The device may have re-enumerated on a different COM port (hard reset after a firmware update, or a replug)
+			app.Logger.WriteLine( "[AdminBoxx] Open failed - rescanning for the device and retrying" );
+
+			_usbSerialPortHelper.Initialize();
+
+			IsConnected = _usbSerialPortHelper.Open();
+		}
 
 		if ( IsConnected )
 		{

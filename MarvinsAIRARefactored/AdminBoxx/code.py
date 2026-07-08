@@ -4,17 +4,89 @@ import board
 import busio
 import usb_cdc
 import supervisor
+import microcontroller
 
 from adafruit_neotrellis.neotrellis import NeoTrellis
 from adafruit_neotrellis.multitrellis import MultiTrellis
 
 # Version
-VERSION = "4.0.7"
+VERSION = "4.1.0"
 
 # Configuration
 num_rows = 4
 num_columns = 8
 heartbeat_timeout = 2
+
+# boot.py self-update: the firmware update protocol can only rewrite code.py,
+# so code.py carries the desired boot.py contents and rewrites the file on the
+# device whenever it differs, then hard-resets so the new USB configuration
+# takes effect. In recovery mode the filesystem belongs to the host PC, the
+# write raises OSError, and the update is skipped (recovery mode intentionally
+# keeps the console and USB drive enabled).
+#
+# IMPORTANT: Keep BOOT_PY identical to the boot.py file in the repo.
+BOOT_PY = """\
+import usb_cdc
+import storage
+import os
+import time
+
+# AdminBoxx boot.py - version 2
+#
+# SimHub protection: SimHub's Arduino feature opens every free COM port and
+# writes its protocol handshake, which begins with byte 0x03. On the
+# CircuitPython console (REPL) port, 0x03 is Ctrl-C, which raises
+# KeyboardInterrupt, stops code.py, and leaves the board dead at the REPL
+# until it is power cycled. To protect against this, the console port is only
+# enabled in recovery mode - in normal operation only the data port exists,
+# and the data port treats 0x03 as ordinary data.
+#
+# IMPORTANT: Keep this file identical to the BOOT_PY constant in code.py -
+# code.py rewrites boot.py on the device whenever the two differ.
+
+# Wait briefly to ensure file system is ready
+time.sleep(0.5)
+
+# Recovery mode (hold the recovery button for 5 seconds) enables the USB drive
+# and the serial console; normal mode disables both.
+if "enable_usb_drive.txt" in os.listdir("/"):
+    print("Recovery mode - enabling USB drive and serial console.")
+    usb_cdc.enable(console=True, data=True)
+    storage.enable_usb_drive()
+
+else:
+    print("Normal mode - disabling USB drive and serial console.")
+    usb_cdc.enable(console=False, data=True)
+    storage.disable_usb_drive()
+"""
+
+try:
+    try:
+        with open("/boot.py") as f:
+            current_boot_py = f.read()
+
+    except OSError:
+        current_boot_py = ""
+
+    if current_boot_py != BOOT_PY:
+        print("Updating boot.py.")
+
+        with open("/boot.py", "w") as f:
+            f.write(BOOT_PY)
+
+        with open("/boot.py") as f:
+            update_verified = f.read() == BOOT_PY
+
+        if update_verified:
+            print("boot.py updated - hard resetting to apply the new USB configuration.")
+            time.sleep(0.5)
+            microcontroller.reset()
+
+        else:
+            print("boot.py update verification failed - continuing without resetting.")
+
+except Exception as e:
+    print(f"Skipped boot.py update: {e}")
 
 # Color constants
 disabled = (0, 0, 0)
@@ -33,7 +105,6 @@ dark_yellow = (4, 4, 0)
 # until it is physically unplugged. Wrapped in try/except so the firmware still
 # runs on any board that lacks watchdog support.
 try:
-    import microcontroller
     from watchdog import WatchDogMode
 
     watchdog = microcontroller.watchdog
