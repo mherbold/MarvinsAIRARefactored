@@ -2,15 +2,17 @@
 using System.IO.Ports;
 using System.Management;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace MarvinsAIRARefactored.Classes;
 
 // Set to true to enable verbose logging of the noisy read/write functions. Leave false for daily use to keep the log file small.
 #pragma warning disable CS0162 // Unreachable code detected (intentional: _verboseLogging is a compile-time toggle)
 
-public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdMustNotContain = "", string vid = "", string pid = "", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One ) : IDisposable
+public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdToAvoid = "", string vid = "", string pid = "", int baudRate = 115200, Parity parity = Parity.None, int dataBits = 8, StopBits stopBits = StopBits.One, byte[]? probeData = null, Regex? probeResponseRegex = null ) : IDisposable
 {
 	private const bool _verboseLogging = false;
+	private const int _probeTimeoutMilliseconds = 1500;
 
 	public bool DeviceFound { get => _portName != string.Empty; }
 	public string LastErrorMessage { get; private set; } = string.Empty;
@@ -19,7 +21,10 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 	public event EventHandler? PortClosed = null;
 
 	private readonly string _handshake = handshake;
-	private readonly string _deviceIdMustNotContain = deviceIdMustNotContain;
+	private readonly string _deviceIdToAvoid = deviceIdToAvoid;
+
+	private readonly byte[]? _probeData = probeData;
+	private readonly Regex? _probeResponseRegex = probeResponseRegex;
 
 	private readonly string _vid = vid.ToUpper();
 	private readonly string _pid = pid.ToUpper();
@@ -44,7 +49,7 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		var stopwatch = System.Diagnostics.Stopwatch.StartNew();
 
 		app.Logger.WriteLine( "[UsbSerialPortHelper] Initialize >>>" );
-		app.Logger.WriteLine( $"[UsbSerialPortHelper] Search criteria: handshake='{_handshake}', deviceIdMustNotContain='{_deviceIdMustNotContain}', vid='{_vid}', pid='{_pid}', baudRate={_baudRate}, parity={_parity}, dataBits={_dataBits}, stopBits={_stopBits}" );
+		app.Logger.WriteLine( $"[UsbSerialPortHelper] Search criteria: handshake='{_handshake}', deviceIdToAvoid='{_deviceIdToAvoid}', vid='{_vid}', pid='{_pid}', baudRate={_baudRate}, parity={_parity}, dataBits={_dataBits}, stopBits={_stopBits}" );
 
 		_portName = string.Empty;
 		LastErrorMessage = string.Empty;
@@ -55,6 +60,8 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 			using var devices = searcher.Get();
 
 			var inspectedDeviceCount = 0;
+			var fallbackPortName = string.Empty;
+			var candidatePorts = new List<(string portName, bool isPreferred)>();
 
 			foreach ( var device in devices )
 			{
@@ -141,14 +148,6 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 				}
 				else
 				{
-					var deviceIdIsGood = ( _deviceIdMustNotContain == string.Empty ) || !deviceId.Contains( _deviceIdMustNotContain, StringComparison.OrdinalIgnoreCase );
-
-					if ( !deviceIdIsGood )
-					{
-						app.Logger.WriteLine( $"[UsbSerialPortHelper] Skipping '{portName}' because PNPDeviceID contains excluded token '{_deviceIdMustNotContain}'" );
-						continue;
-					}
-
 					if ( ( _vid == string.Empty ) || ( _pid == string.Empty ) )
 					{
 						app.Logger.WriteLine( "[UsbSerialPortHelper] VID/PID mode selected but VID or PID is empty; skipping device matching" );
@@ -162,12 +161,53 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 
 					if ( matchesVid && matchesPid )
 					{
-						_portName = portName;
+						var isPreferredPort = ( _deviceIdToAvoid == string.Empty ) || !deviceId.Contains( _deviceIdToAvoid, StringComparison.OrdinalIgnoreCase );
 
-						app.Logger.WriteLine( $"[UsbSerialPortHelper] Selected port '{_portName}' based on VID/PID match" );
+						if ( ( _probeData != null ) && ( _probeResponseRegex != null ) )
+						{
+							candidatePorts.Add( (portName, isPreferredPort) );
 
-						break;
+							app.Logger.WriteLine( $"[UsbSerialPortHelper] Port '{portName}' matches VID/PID; added as a probe candidate (isPreferred={isPreferredPort})" );
+
+							continue;
+						}
+
+						if ( isPreferredPort )
+						{
+							_portName = portName;
+
+							app.Logger.WriteLine( $"[UsbSerialPortHelper] Selected port '{_portName}' based on VID/PID match" );
+
+							break;
+						}
+
+						if ( fallbackPortName == string.Empty )
+						{
+							fallbackPortName = portName;
+
+							app.Logger.WriteLine( $"[UsbSerialPortHelper] Port '{portName}' matches VID/PID but PNPDeviceID contains '{_deviceIdToAvoid}'; keeping it as a fallback" );
+						}
 					}
+				}
+			}
+
+			if ( ( _portName == string.Empty ) && ( fallbackPortName != string.Empty ) )
+			{
+				_portName = fallbackPortName;
+
+				app.Logger.WriteLine( $"[UsbSerialPortHelper] Selected fallback port '{_portName}' because no VID/PID match without '{_deviceIdToAvoid}' was found" );
+			}
+
+			// Probe candidates preferred-first so the data port answers before the console port (old firmware) is ever written to
+			foreach ( var (candidatePortName, _) in candidatePorts.OrderByDescending( candidate => candidate.isPreferred ) )
+			{
+				if ( ProbePort( candidatePortName ) )
+				{
+					_portName = candidatePortName;
+
+					app.Logger.WriteLine( $"[UsbSerialPortHelper] Selected port '{_portName}' based on successful probe response" );
+
+					break;
 				}
 			}
 
@@ -188,6 +228,60 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdM
 		}
 
 		app.Logger.WriteLine( $"[UsbSerialPortHelper] <<< Initialize (DeviceFound={DeviceFound}, SelectedPort='{_portName}', elapsed={stopwatch.ElapsedMilliseconds}ms)" );
+	}
+
+	// Writes the probe message to the port and waits for a response line matching the expected pattern.
+	// Only called on ports that already match the VID/PID filter - probe bytes must never be written to unrelated devices.
+	private bool ProbePort( string portName )
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( $"[UsbSerialPortHelper] Probing '{portName}'" );
+
+		try
+		{
+			using var testPort = new SerialPort( portName, _baudRate, _parity, _dataBits, _stopBits )
+			{
+				Handshake = Handshake.None,
+				Encoding = Encoding.ASCII,
+				ReadTimeout = 500,
+				WriteTimeout = 500,
+				NewLine = "\n"
+			};
+
+			testPort.Open();
+			testPort.DiscardInBuffer();
+			testPort.DiscardOutBuffer();
+			testPort.Write( _probeData!, 0, _probeData!.Length );
+
+			var responseBuffer = new StringBuilder();
+			var stopwatch = System.Diagnostics.Stopwatch.StartNew();
+
+			while ( stopwatch.ElapsedMilliseconds < _probeTimeoutMilliseconds )
+			{
+				Thread.Sleep( 50 );
+
+				responseBuffer.Append( testPort.ReadExisting() );
+
+				foreach ( var line in responseBuffer.ToString().Split( '\n' ) )
+				{
+					if ( _probeResponseRegex!.IsMatch( line.TrimEnd( '\r' ) ) )
+					{
+						app.Logger.WriteLine( $"[UsbSerialPortHelper] Probe successful on '{portName}': '{line.TrimEnd( '\r' )}'" );
+
+						return true;
+					}
+				}
+			}
+
+			app.Logger.WriteLine( $"[UsbSerialPortHelper] Probe timed out on '{portName}'; response so far: '{responseBuffer}'" );
+		}
+		catch ( Exception exception )
+		{
+			app.Logger.WriteLine( $"[UsbSerialPortHelper] Probe failed on '{portName}': {exception.Message}" );
+		}
+
+		return false;
 	}
 
 	public bool Open()
