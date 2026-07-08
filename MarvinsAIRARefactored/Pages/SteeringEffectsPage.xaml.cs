@@ -162,57 +162,6 @@ public partial class SteeringEffectsPage : UserControl
 		app.Logger.WriteLine( "[SteeringEffectsPage] <<< UpdateCalibrationFileNameOptions" );
 	}
 
-	public void UpdateVibrationPatternOptions()
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[SteeringEffectsPage] SetVibrationPatternMairaComboBoxItemsSource >>>" );
-
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-
-		var dictionary = new Dictionary<RacingWheel.VibrationPattern, string>
-		{
-			{ RacingWheel.VibrationPattern.None, localization[ "None" ] },
-			{ RacingWheel.VibrationPattern.SineWave, localization[ "SineWave" ] },
-			{ RacingWheel.VibrationPattern.SquareWave, localization[ "SquareWave" ] },
-			{ RacingWheel.VibrationPattern.TriangleWave, localization[ "TriangleWave" ] },
-			{ RacingWheel.VibrationPattern.SawtoothWaveIn, localization[ "SawtoothWaveIn" ] },
-			{ RacingWheel.VibrationPattern.SawtoothWaveOut, localization[ "SawtoothWaveOut" ] }
-		};
-
-		UndersteerWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
-
-		OversteerWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
-
-		SeatOfPantsWheelVibrationPattern_MairaComboBox.ItemsSource = dictionary.ToList();
-
-		app.Logger.WriteLine( "[SteeringEffectsPage] <<< SetVibrationPatternMairaComboBoxItemsSource" );
-	}
-
-	public void UpdateConstantForceDirectionOptions()
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[SteeringEffectsPage] SetConstantForceDirectionMairaComboBoxItemsSource >>>" );
-
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-
-		var dictionary = new Dictionary<RacingWheel.ConstantForceDirection, string>
-		{
-			{ RacingWheel.ConstantForceDirection.None, localization[ "None" ] },
-			{ RacingWheel.ConstantForceDirection.DecreaseForce, localization[ "DecreaseForce" ] },
-			{ RacingWheel.ConstantForceDirection.IncreaseForce, localization[ "IncreaseForce" ] }
-		};
-
-		UndersteerWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
-
-		OversteerWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
-
-		SeatOfPantsWheelConstantForceDirection_MairaComboBox.ItemsSource = dictionary.ToList();
-
-		app.Logger.WriteLine( "[SteeringEffectsPage] <<< SetConstantForceDirectionMairaComboBoxItemsSource" );
-	}
-
 	public void UpdateSeatOfPantsAlgorithmOptions()
 	{
 		var app = App.Instance!;
@@ -254,42 +203,6 @@ public partial class SteeringEffectsPage : UserControl
 		}
 	}
 
-	private void UndersteerWheelVibrationPattern_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
-	{
-		var comboBox = sender as ComboBox;
-
-		if ( comboBox is not null )
-		{
-			if ( comboBox.SelectedValue is not null )
-			{
-				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
-
-				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
-
-				UndersteerWheelVibrationStrength_MairaKnob.Visibility = visibility;
-				UndersteerWheelVibrationRow2_Grid.Visibility = visibility;
-			}
-		}
-	}
-
-	private void UndersteerWheelConstantForceEffect_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
-	{
-		var comboBox = sender as ComboBox;
-
-		if ( comboBox is not null )
-		{
-			if ( comboBox.SelectedValue is not null )
-			{
-				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
-
-				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
-
-				UndersteerWheelConstantForceStrength_MairaKnob.Visibility = visibility;
-				UndersteerWheelConstantForceCurve_MairaKnob.Visibility = visibility;
-			}
-		}
-	}
-
 	private void OversteerEnabled_Toggled( object sender, EventArgs e )
 	{
 		var mairaSwitch = sender as MairaSwitch;
@@ -300,42 +213,6 @@ public partial class SteeringEffectsPage : UserControl
 		}
 	}
 
-	private void OversteerWheelVibrationPattern_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
-	{
-		var comboBox = sender as ComboBox;
-
-		if ( comboBox is not null )
-		{
-			if ( comboBox.SelectedValue is not null )
-			{
-				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
-
-				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
-
-				OversteerWheelVibrationStrength_MairaKnob.Visibility = visibility;
-				OversteerWheelVibrationRow2_Grid.Visibility = visibility;
-			}
-		}
-	}
-
-	private void OversteerWheelConstantForceEffect_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
-	{
-		var comboBox = sender as ComboBox;
-
-		if ( comboBox is not null )
-		{
-			if ( comboBox.SelectedValue is not null )
-			{
-				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
-
-				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
-
-				OversteerWheelConstantForceStrength_MairaKnob.Visibility = visibility;
-				OversteerWheelConstantForceCurve_MairaKnob.Visibility = visibility;
-			}
-		}
-	}
-
 	private void SeatOfPantsEnabled_Toggled( object sender, EventArgs e )
 	{
 		var mairaSwitch = sender as MairaSwitch;
@@ -343,42 +220,6 @@ public partial class SteeringEffectsPage : UserControl
 		if ( mairaSwitch is not null )
 		{
 			Misc.ApplyToTaggedElements( Root, "SeatOfPants", element => element.Visibility = ( ( mairaSwitch.IsOn == true ) ? Visibility.Visible : Visibility.Collapsed ) );
-		}
-	}
-
-	private void SeatOfPantsWheelVibrationPattern_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
-	{
-		var comboBox = sender as ComboBox;
-
-		if ( comboBox is not null )
-		{
-			if ( comboBox.SelectedValue is not null )
-			{
-				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
-
-				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
-
-				SeatOfPantsWheelVibrationStrength_MairaKnob.Visibility = visibility;
-				SeatOfPantsWheelVibrationRow2_Grid.Visibility = visibility;
-			}
-		}
-	}
-
-	private void SeatOfPantsWheelConstantForceEffect_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
-	{
-		var comboBox = sender as ComboBox;
-
-		if ( comboBox is not null )
-		{
-			if ( comboBox.SelectedValue is not null )
-			{
-				var selectedValue = (RacingWheel.VibrationPattern) comboBox.SelectedValue;
-
-				var visibility = selectedValue == RacingWheel.VibrationPattern.None ? Visibility.Collapsed : Visibility.Visible;
-
-				SeatOfPantsWheelConstantForceStrength_MairaKnob.Visibility = visibility;
-				SeatOfPantsWheelConstantForceCurve_MairaKnob.Visibility = visibility;
-			}
 		}
 	}
 

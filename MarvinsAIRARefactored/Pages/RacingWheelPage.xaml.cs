@@ -9,6 +9,9 @@ using Point = System.Windows.Point;
 using UserControl = System.Windows.Controls.UserControl;
 
 using MarvinsAIRARefactored.Components;
+using MarvinsAIRARefactored.Controls;
+using MarvinsAIRARefactored.FFB;
+using MarvinsAIRARefactored.Windows;
 
 namespace MarvinsAIRARefactored.Pages;
 
@@ -211,81 +214,210 @@ public partial class RacingWheelPage : UserControl
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateSteeringDeviceOptions" );
 	}
 
-	public void UpdateAlgorithmOptions()
+	private bool _refreshingStackSelector = false;
+
+	public void UpdateFFBStackOptions()
 	{
-		var app = App.Instance!;
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		app.Logger.WriteLine( "[RacingWheelPage] UpdateAlgorithmOptions >>>" );
+		_refreshingStackSelector = true;
 
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		var items = new List<KeyValuePair<string, string>>();
 
-		var dictionary = new Dictionary<RacingWheel.Algorithm, string>
+		foreach ( var stackName in settings.RacingWheelStacks.Keys )
 		{
-			{ RacingWheel.Algorithm.Native60Hz, localization[ "Native60Hz" ] },
-			{ RacingWheel.Algorithm.Native360Hz, localization[ "Native360Hz" ] },
-			{ RacingWheel.Algorithm.DetailBooster, localization[ "DetailBooster" ] },
-			{ RacingWheel.Algorithm.DeltaLimiter, localization[ "DeltaLimiter" ] },
-			{ RacingWheel.Algorithm.DetailBoosterOn60Hz, localization[ "DetailBoosterOn60Hz" ] },
-			{ RacingWheel.Algorithm.DeltaLimiterOn60Hz, localization[ "DeltaLimiterOn60Hz" ] },
-			{ RacingWheel.Algorithm.SlewAndTotalCompression, localization[ "SlewAndTotalCompression" ] },
-			{ RacingWheel.Algorithm.MultiAdjustmentToolkit, localization[ "MultiAdjustmentToolkit" ] }
-		};
+			items.Add( new KeyValuePair<string, string>( stackName, stackName ) );
+		}
 
-		Algorithm_MairaComboBox.ItemsSource = dictionary.ToList();
+		Stack_MairaComboBox.ItemsSource = items;
+		Stack_MairaComboBox.SelectedValue = settings.RacingWheelSelectedStackName;
 
-		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateAlgorithmOptions" );
+		var isBuiltIn = settings.RacingWheelStacks.TryGetValue( settings.RacingWheelSelectedStackName, out var stack ) && stack.IsBuiltIn;
+
+		// Built-in stacks cannot be renamed or deleted, but can be reset to their defaults.
+		RenameStack_MairaButton.Disabled = isBuiltIn;
+		DeleteStack_MairaButton.Disabled = isBuiltIn;
+		ResetStack_MairaButton.Visibility = isBuiltIn ? Visibility.Visible : Visibility.Collapsed;
+
+		_refreshingStackSelector = false;
+
+		// Rebuild the module cards so their (localized) module names and setting labels refresh — this runs from
+		// MainWindow.RefreshWindow, which is the app's relocalization entry point, so the editor follows a
+		// runtime language switch.
+		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelStackViewModel.RebuildFromCurrentSelection();
 	}
 
-	public void UpdateMultiFFBSourceOptions()
+	private void Stack_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[RacingWheelPage] UpdateFFBSourceOptions >>>" );
-
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-
-		var dictionary = new Dictionary<RacingWheel.MultiFFBSourceOptions, string>
+		if ( _refreshingStackSelector )
 		{
-			{ RacingWheel.MultiFFBSourceOptions.Native60Hz, localization[ "Native60Hz" ] },
-			{ RacingWheel.MultiFFBSourceOptions.HybridVariable30, localization[ "HybridVariable30" ] },
-			{ RacingWheel.MultiFFBSourceOptions.Hybrid10, localization[ "Hybrid10" ] },
-			{ RacingWheel.MultiFFBSourceOptions.Native360Hz, localization[ "Native360Hz" ] },
-			{ RacingWheel.MultiFFBSourceOptions._Dummy1_, "_" },
-			{ RacingWheel.MultiFFBSourceOptions.DefaultsNative60Hz, localization[ "DefaultsNative60Hz" ] },
-			{ RacingWheel.MultiFFBSourceOptions.DefaultsHybridVariable30, localization[ "DefaultsHybridVariable30" ] },
-			{ RacingWheel.MultiFFBSourceOptions.DefaultsHybrid10, localization[ "DefaultsHybrid10" ] },
-			{ RacingWheel.MultiFFBSourceOptions.DefaultsNative360Hz, localization[ "DefaultsNative360Hz" ] },
-			{ RacingWheel.MultiFFBSourceOptions._Dummy2_, "_" },
-			{ RacingWheel.MultiFFBSourceOptions.PresetBasicFFB, localization[ "PresetBasicFFB" ] },
-			{ RacingWheel.MultiFFBSourceOptions.PresetBalancedFFB, localization[ "PresetBalancedFFB" ] },
-			{ RacingWheel.MultiFFBSourceOptions.PresetBoostDetail, localization[ "PresetBoostDetail" ] },
-			{ RacingWheel.MultiFFBSourceOptions.PresetReduceDetail, localization[ "PresetReduceDetail" ] },
-			{ RacingWheel.MultiFFBSourceOptions.PresetReduceBigBumps, localization[ "PresetReduceBigBumps" ] }
-		};
+			return;
+		}
 
-		MultiFFBSource_MairaComboBox.ItemsSource = dictionary;
+		if ( Stack_MairaComboBox.SelectedValue is not string stackName )
+		{
+			return;
+		}
 
-		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateFFBSourceOptions" );
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		if ( stackName == settings.RacingWheelSelectedStackName )
+		{
+			return;
+		}
+
+		settings.SelectFFBStack( stackName );
+
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBStackOptions();
 	}
 
-	public void UpdatePredictionModeOptions()
+	private void NewStack_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[RacingWheelPage] UpdatePredictionModeOptions >>>" );
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+		var window = new RenameControllerProfileWindow( string.Empty ) { Owner = app.MainWindow };
 
-		var dictionary = new Dictionary<RacingWheel.PredictionMode, string>
+		window.ShowDialog();
+
+		if ( !window.Confirmed )
 		{
-			{ RacingWheel.PredictionMode.Disabled, localization[ "Disabled" ] },
-			{ RacingWheel.PredictionMode.PredictK1, localization[ "PredictK1" ] },
-			{ RacingWheel.PredictionMode.PredictK2, localization[ "PredictK2" ] }
-		};
+			return;
+		}
 
-		PredictionMode_MairaComboBox.ItemsSource = dictionary.ToList();
+		var name = window.ProfileName.Trim();
 
-		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdatePredictionModeOptions" );
+		if ( ( name == string.Empty ) || settings.RacingWheelStacks.ContainsKey( name ) )
+		{
+			return;
+		}
+
+		settings.CreateFFBStack( name, copyFromCurrent: true );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBStackOptions();
+	}
+
+	private void RenameStack_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var currentName = settings.RacingWheelSelectedStackName;
+
+		if ( settings.RacingWheelStacks.TryGetValue( currentName, out var currentStack ) && currentStack.IsBuiltIn )
+		{
+			return;
+		}
+
+		var window = new RenameControllerProfileWindow( currentName ) { Owner = app.MainWindow };
+
+		window.ShowDialog();
+
+		if ( !window.Confirmed )
+		{
+			return;
+		}
+
+		var newName = window.ProfileName.Trim();
+
+		if ( ( newName == string.Empty ) || ( newName == currentName ) || settings.RacingWheelStacks.ContainsKey( newName ) )
+		{
+			return;
+		}
+
+		settings.RenameFFBStack( currentName, newName );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBStackOptions();
+	}
+
+	private void DeleteStack_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var currentName = settings.RacingWheelSelectedStackName;
+
+		if ( settings.RacingWheelStacks.TryGetValue( currentName, out var currentStack ) && currentStack.IsBuiltIn )
+		{
+			return;
+		}
+
+		var window = new DeleteControllerProfileWindow( currentName ) { Owner = app.MainWindow };
+
+		window.ShowDialog();
+
+		if ( !window.Confirmed )
+		{
+			return;
+		}
+
+		settings.DeleteFFBStack( currentName );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBStackOptions();
+	}
+
+	private void ResetStack_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		settings.ResetBuiltInFFBStack( settings.RacingWheelSelectedStackName );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBStackOptions();
+	}
+
+	private void StackValuesScope_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var window = new UpdateContextSwitchesWindow( settings.RacingWheelStackValuesContextSwitches ) { Owner = app.MainWindow };
+
+		window.ShowDialog();
+	}
+
+	private void AddModule_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelStackViewModel.AddSelectedModule();
+	}
+
+	private void RemoveModule_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelStackViewModel.RemoveModule( moduleViewModel );
+		}
+	}
+
+	private void MoveModuleUp_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelStackViewModel.MoveModule( moduleViewModel, -1 );
+		}
+	}
+
+	private void MoveModuleDown_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelStackViewModel.MoveModule( moduleViewModel, 1 );
+		}
 	}
 
 	public void UpdatePreviewRecordingsOptions()

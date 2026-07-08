@@ -1058,57 +1058,49 @@ public partial class Simulator
 			_activeResetBlockTimerFrames--;
 		}
 
-		// crash protection processing
+		// crash protection processing (thresholds now come from the live FFB stack's crash protection module; an
+		// off/disabled/would-do-nothing module publishes >= 20, same "disabled" semantics as the old guards)
 
-		if ( IsOnTrack )
+		if ( IsOnTrack && ( _activeResetBlockTimerFrames <= 0 ) )
 		{
-			if ( ( settings.RacingWheelCrashProtectionDuration > 0f ) && ( settings.RacingWheelCrashProtectionForceReduction > 0f ) )
-			{
-				if ( _activeResetBlockTimerFrames <= 0 )
-				{
-					if ( settings.RacingWheelCrashProtectionLongitudalGForce < 20f )
-					{
-						if ( LongitudinalGForce >= settings.RacingWheelCrashProtectionLongitudalGForce )
-						{
-							app.RacingWheel.ActivateCrashProtection = true;
-						}
-					}
+			var crashLongGForceThreshold = app.RacingWheel.CrashProtectionLongGForceThreshold;
+			var crashLatGForceThreshold = app.RacingWheel.CrashProtectionLatGForceThreshold;
 
-					if ( settings.RacingWheelCrashProtectionLateralGForce < 20f )
-					{
-						if ( LateralGForce >= settings.RacingWheelCrashProtectionLateralGForce )
-						{
-							app.RacingWheel.ActivateCrashProtection = true;
-						}
-					}
-				}
+			if ( ( crashLongGForceThreshold < 20f ) && ( LongitudinalGForce >= crashLongGForceThreshold ) )
+			{
+				app.RacingWheel.ActivateCrashProtection = true;
+			}
+
+			if ( ( crashLatGForceThreshold < 20f ) && ( LateralGForce >= crashLatGForceThreshold ) )
+			{
+				app.RacingWheel.ActivateCrashProtection = true;
 			}
 		}
 
-		// curb protection processing
+		// curb protection processing (shock-velocity threshold now comes from the live FFB stack's curb protection
+		// module; an off/disabled/would-do-nothing module publishes 0, same "disabled" semantics as the old guards)
 
-		if ( IsOnTrack )
+		if ( IsOnTrack && ( _activeResetBlockTimerFrames <= 0 ) )
 		{
-			if ( ( settings.RacingWheelCurbProtectionShockVelocity > 0f ) && ( settings.RacingWheelCurbProtectionDuration > 0f ) && ( settings.RacingWheelCurbProtectionForceReduction > 0f ) )
+			var curbShockVelocityThreshold = app.RacingWheel.CurbProtectionShockVelocityThreshold;
+
+			if ( curbShockVelocityThreshold > 0f )
 			{
-				if ( _activeResetBlockTimerFrames <= 0 )
+				var maxShockVelocity = 0f;
+
+				for ( var i = 0; i < SamplesPerFrame360Hz; i++ )
 				{
-					var maxShockVelocity = 0f;
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CFShockVel_ST[ i ] ) );
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CRShockVel_ST[ i ] ) );
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LFShockVel_ST[ i ] ) );
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LRShockVel_ST[ i ] ) );
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RFShockVel_ST[ i ] ) );
+					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RRShockVel_ST[ i ] ) );
+				}
 
-					for ( var i = 0; i < SamplesPerFrame360Hz; i++ )
-					{
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CFShockVel_ST[ i ] ) );
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CRShockVel_ST[ i ] ) );
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LFShockVel_ST[ i ] ) );
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LRShockVel_ST[ i ] ) );
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RFShockVel_ST[ i ] ) );
-						maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RRShockVel_ST[ i ] ) );
-					}
-
-					if ( maxShockVelocity >= settings.RacingWheelCurbProtectionShockVelocity )
-					{
-						app.RacingWheel.ActivateCurbProtection = true;
-					}
+				if ( maxShockVelocity >= curbShockVelocityThreshold )
+				{
+					app.RacingWheel.ActivateCurbProtection = true;
 				}
 			}
 		}

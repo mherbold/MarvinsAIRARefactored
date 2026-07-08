@@ -122,6 +122,12 @@ public class SettingsFile
 			// the wheel force) and mark the migration done so it never runs over these defaults.
 			DataContext.DataContext.Instance.Settings.RacingWheelAutoTarget = 10f;
 			DataContext.DataContext.Instance.Settings.RacingWheelAutoTargetMigrated = true;
+
+			// Brand-new install: no old per-algorithm FFB settings to migrate. Mark it done so the stacks are
+			// built fresh from defaults (via EnsureBuiltInFFBStacksInitialized below) without running the mapping.
+			// Stamp the current stack schema too so the regenerate-on-upgrade path never runs over fresh defaults.
+			DataContext.DataContext.Instance.Settings.RacingWheelFFBStacksMigrated = true;
+			DataContext.DataContext.Instance.Settings.RacingWheelFFBStackSchemaVersion = Settings.CurrentFFBStackSchemaVersion;
 		}
 
 			// Migrate the old percentage-based auto margin to the new Nm-based auto target (value, scope,
@@ -137,9 +143,34 @@ public class SettingsFile
 			// so users upgrading from a version without per-car overlays keep their current layout.
 			DataContext.DataContext.Instance.Settings.MigrateOverlayLayoutToNonCarBaseline();
 
+			// Every launch: (re)create any missing built-in FFB stacks and repair the selection. Then one-time:
+			// migrate the old per-algorithm settings + per-context values into the modular stack model (no-op once
+			// RacingWheelFFBStacksMigrated is set, incl. fresh installs which pre-set it above).
+			DataContext.DataContext.Instance.Settings.EnsureBuiltInFFBStacksInitialized();
+			DataContext.DataContext.Instance.Settings.MigrateToFFBStacks();
+
+			// Regenerate the built-in stacks from the dormant old settings if the stored file predates a change to
+			// the built-in stack layout (e.g. the Output curve/min/max split into their own modules). If it did,
+			// remember to persist below (the bumped schema version must reach disk so this runs only once).
+			var regeneratedFFBStacks = DataContext.DataContext.Instance.Settings.UpgradeFFBStackSchemaIfNeeded();
+
+			// Build the live FFB stack engine from the (now migrated) selected stack so it is ready to drive FFB
+			// immediately; the first per-context reload will rebuild it with this car/track's values.
+			app.RacingWheel.RebuildLiveEngine();
+
+			// Populate the RacingWheelPage stack editor card tree from the selected stack.
+			Settings.RebuildStackEditorViewModel();
+
 			Settings.SuppressUpdatingOfContextSettings = false;
 
 			PauseSerialization = false;
+
+			// Persist a one-time FFB stack schema regeneration now that serialization is un-paused (the setter
+			// ignores a queue request while paused), so the bumped schema version reaches disk and it runs once.
+			if ( regeneratedFFBStacks )
+			{
+				QueueForSerialization = true;
+			}
 
 			// Sync the AppShowSplashScreen setting with the DisableSplashScreen.txt file state
 			// This ensures the setting reflects reality if the user manually deleted the file
