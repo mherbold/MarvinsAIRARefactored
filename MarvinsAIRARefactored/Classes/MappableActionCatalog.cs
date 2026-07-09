@@ -89,7 +89,7 @@ public static class MappableActionCatalog
 		return _defaultStepSizes.TryGetValue( propertyBaseName, out stepSize );
 	}
 
-	// Wheel-effect knobs whose UI moved into the modular FFB stack (milestone 4). Their +/- input-mapping
+	// Wheel-effect knobs whose UI moved into the modular FFB graph (milestone 4). Their +/- input-mapping
 	// properties are kept dormant on Settings (still serialized) for one release, but are no longer in the
 	// catalog, so Validate() excludes them from the coverage check (they will be removed together later).
 	private static readonly HashSet<string> RetiredKnobBaseNames = BuildRetiredKnobBaseNames();

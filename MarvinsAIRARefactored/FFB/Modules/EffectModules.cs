@@ -84,7 +84,7 @@ public sealed class CrashProtectionModule : FFBModule
 
 /// <summary>
 /// Curb protection (old 1294–1318). PrePass advances the timer (re-armed by <c>ctx.CurbProtectionTriggered</c>)
-/// and publishes <see cref="FFBStackEngine.CurbProtectionFactor"/> BEFORE the signal loop, so downstream
+/// and publishes <see cref="FFBGraphEngine.CurbProtectionFactor"/> BEFORE the signal loop, so downstream
 /// curb-consuming DSP modules see it exactly where the old algorithm did. The signal is passed through.
 /// </summary>
 public sealed class CurbProtectionModule : FFBModule

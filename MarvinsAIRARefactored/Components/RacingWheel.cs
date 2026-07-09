@@ -133,12 +133,12 @@ public class RacingWheel
 
 	private readonly GraphBase _algorithmPreviewGraphBase = new();
 
-	// Milestone 3: the modular FFB stack now drives all wheel processing. _liveEngine (volatile) is evaluated by
-	// this 360 Hz worker-thread Update and rebuilt/swapped on the UI thread on stack/context changes (the reader
+	// Milestone 3: the modular FFB graph now drives all wheel processing. _liveEngine (volatile) is evaluated by
+	// this 360 Hz worker-thread Update and rebuilt/swapped on the UI thread on graph/context changes (the reader
 	// picks up the new reference next tick, same one-tick tolerance as the old _lastAlgorithm reset).
 	// _previewEngine is driven only by Tick (dispatcher) over a recording for the editor preview.
-	private volatile FFBStackEngine _liveEngine = new();
-	private readonly FFBStackEngine _previewEngine = new();
+	private volatile FFBGraphEngine _liveEngine = new();
+	private readonly FFBGraphEngine _previewEngine = new();
 
 	private int _updateCounter = UpdateInterval + 4;
 
@@ -200,20 +200,20 @@ public class RacingWheel
 	}
 
 	/// <summary>
-	/// Rebuild the live FFB stack engine from the currently selected stack and swap the volatile reference.
-	/// UI thread only (structure edits / stack selection / per-context reload). Tolerant of a missing selection
-	/// or empty stack dictionary (e.g. during settings load before the built-ins are ensured) — leaves the
+	/// Rebuild the live FFB graph engine from the currently selected graph and swap the volatile reference.
+	/// UI thread only (structure edits / graph selection / per-context reload). Tolerant of a missing selection
+	/// or empty graph dictionary (e.g. during settings load before the built-ins are ensured) — leaves the
 	/// current engine in place. Milestone 2: the engine is kept valid but does not yet drive FFB output.
 	/// </summary>
 	public void RebuildLiveEngine()
 	{
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		if ( settings.RacingWheelStacks.TryGetValue( settings.RacingWheelSelectedStackName, out var stack ) )
+		if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) )
 		{
-			var engine = new FFBStackEngine();
+			var engine = new FFBGraphEngine();
 
-			engine.Rebuild( stack );
+			engine.Rebuild( graph );
 
 			_liveEngine = engine;
 		}
@@ -227,7 +227,7 @@ public class RacingWheel
 
 	/// <summary>
 	/// Edit-time atomic write of a single module setting value into BOTH the live and preview engines. UI thread
-	/// only (the stack editor knob/switch/choice view-models). Atomic float writes the 360 Hz reader tolerates.
+	/// only (the graph editor knob/switch/choice view-models). Atomic float writes the 360 Hz reader tolerates.
 	/// </summary>
 	public void SetEngineValue( string moduleId, string key, float value )
 	{
@@ -314,7 +314,7 @@ public class RacingWheel
 			}
 
 			// (understeer/oversteer/seat-of-pants/shift-RPM/gear-change/ABS vibrations are now generator modules
-			// evaluated inside the FFB stack engine below)
+			// evaluated inside the FFB graph engine below)
 
 			// check if we want to suspend or unsuspend force feedback
 
@@ -588,7 +588,7 @@ public class RacingWheel
 
 			var parkedFactor = MathZ.Saturate( 1f - ( app.Simulator.Velocity / 2.2352f ) );
 
-			// build the per-tick context and evaluate the whole FFB stack (algorithm + effects + vibration generators)
+			// build the per-tick context and evaluate the whole FFB graph (algorithm + effects + vibration generators)
 
 			var tickContext = BuildTickContext( app, deltaMilliseconds, _predictedSteeringWheelTorque60Hz, steeringWheelTorque500Hz, settings.RacingWheelMaxForce, inputLFEMagnitude, parkedFactor, crashProtectionTriggered, curbProtectionTriggered );
 
@@ -707,7 +707,7 @@ public class RacingWheel
 	}
 
 		/// <summary>
-		/// Assembles the per-tick auxiliary input for the FFB stack engine from the current torque samples,
+		/// Assembles the per-tick auxiliary input for the FFB graph engine from the current torque samples,
 		/// telemetry, wheel hardware state, and the one-shot protection pulses. Built once per 360 Hz tick with no
 		/// allocation (the struct is passed by readonly reference into every module).
 		/// </summary>
@@ -761,9 +761,11 @@ public class RacingWheel
 
 			_racingWheelPage.AutoForce_TextBlock.Text = $"{_autoTorque:F1} {DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
 
-			// update the FFB stack preview: replay the loaded recording through the preview engine (rebuilt from the
-			// currently selected stack) with a neutral context, so only the algorithm chain contributes — matching
-			// the old preview which passed a zero curb factor and showed just the algorithm
+			// update the FFB graph preview: replay the loaded recording through the preview engine (rebuilt from the
+			// currently selected graph) with a neutral context, so only the algorithm chain contributes. The traces
+			// tap the module selected in the node editor — red = its input A, green = its input B (dual-input
+			// modules only), blue = its output. For the Output module (the default selection) red/green show the
+			// two sources and blue shows the final normalized output, like the old whole-graph preview.
 
 			if ( UpdateAlgorithmPreview )
 			{
@@ -773,14 +775,43 @@ public class RacingWheel
 
 				var recording = app.RecordingManager.Recording;
 
-				if ( settings.RacingWheelStacks.TryGetValue( settings.RacingWheelSelectedStackName, out var previewStack ) )
+				if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var previewGraph ) )
 				{
-					_previewEngine.Rebuild( previewStack );
+					_previewEngine.Rebuild( previewGraph );
 				}
 
 				_previewEngine.ResetState();
 
 				var maxForce = settings.RacingWheelMaxForce;
+
+				// resolve the selected module's taps once, before the replay loop
+
+				var selectedModule = DataContext.DataContext.Instance.RacingWheelGraphViewModel.SelectedModule;
+
+				var selectedIndex = selectedModule != null ? _previewEngine.IndexOf( selectedModule.ModuleId ) : -1;
+				var selectedIsOutput = ( selectedModule == null ) || selectedModule.IsOutput || ( selectedIndex < 0 );
+
+				int redIndex;
+				int greenIndex;
+				int blueIndex;
+
+				if ( selectedIsOutput )
+				{
+					redIndex = _previewEngine.IndexOf( FFBGraph.Source60ModuleId );
+					greenIndex = _previewEngine.IndexOf( FFBGraph.Source360ModuleId );
+					blueIndex = -1;   // final output is already normalized — read MainOutput directly
+				}
+				else
+				{
+					( redIndex, greenIndex ) = _previewEngine.GetResolvedInputs( selectedIndex );
+
+					if ( selectedModule!.SignalInputCount < 2 )
+					{
+						greenIndex = -1;   // single-input module — no green trace
+					}
+
+					blueIndex = selectedIndex;
+				}
 
 				for ( var x = 0; x < _algorithmPreviewGraphBase.BitmapWidth; x++ )
 				{
@@ -793,16 +824,25 @@ public class RacingWheel
 
 						_previewEngine.Process( in previewContext );
 
-						var outputTorque = _previewEngine.MainOutput;
+						// the main bus is in Nm until the Output module normalizes it, so tapped signals are
+						// scaled by max force for display; the final output is already normalized
 
-						_algorithmPreviewGraphBase.Update( inputTorque500Hz / maxForce, 1f, 0f, 0f );
-						_algorithmPreviewGraphBase.Update( outputTorque, 0f, 1f, 1f );
+						var blueValue = blueIndex >= 0 ? _previewEngine.GetSignal( blueIndex ) / maxForce : _previewEngine.MainOutput;
 
-						if ( outputTorque <= -0.99f )
+						_algorithmPreviewGraphBase.Update( _previewEngine.GetSignal( redIndex ) / maxForce, 1f, 0f, 0f );
+
+						if ( greenIndex >= 0 )
+						{
+							_algorithmPreviewGraphBase.Update( _previewEngine.GetSignal( greenIndex ) / maxForce, 0f, 1f, 0f );
+						}
+
+						_algorithmPreviewGraphBase.Update( blueValue, 0f, 1f, 1f );
+
+						if ( blueValue <= -0.99f )
 						{
 							_algorithmPreviewGraphBase.SetGutterColors( 0, 0, 0xFFFF0000, 0xFFFF0000 );
 						}
-						else if ( outputTorque >= 0.99f )
+						else if ( blueValue >= 0.99f )
 						{
 							_algorithmPreviewGraphBase.SetGutterColors( 0xFFFF0000, 0xFFFF0000, 0, 0 );
 						}

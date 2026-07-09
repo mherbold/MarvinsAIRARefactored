@@ -8,7 +8,7 @@ using Settings = MarvinsAIRARefactored.DataContext.Settings;
 namespace MarvinsAIRARefactored.FFB;
 
 /// <summary>
-/// Builds the built-in stacks by COMPOSING the DSP primitives so each one reproduces an old algorithm (per the
+/// Builds the built-in graphs by COMPOSING the DSP primitives so each one reproduces an old algorithm (per the
 /// decomposition identities documented in DspModules), and converts the old flat settings into the equivalent
 /// module setting values.
 /// <para>Values are read through a reflection <see cref="SettingsSource"/> so the exact same builder maps from
@@ -18,11 +18,11 @@ namespace MarvinsAIRARefactored.FFB;
 /// Multi source mode, so building from any source yields identical module ids and therefore stable composite
 /// value keys.</para>
 /// </summary>
-public static class FFBStackMigration
+public static class FFBGraphMigration
 {
-	// ---- built-in stack display names -------------------------------------------------------------------
+	// ---- built-in graph display names -------------------------------------------------------------------
 
-	public static string BuiltInStackNameFor( RacingWheel.Algorithm algorithm )
+	public static string BuiltInGraphNameFor( RacingWheel.Algorithm algorithm )
 	{
 		return algorithm switch
 		{
@@ -53,7 +53,7 @@ public static class FFBStackMigration
 	}
 
 	/// <summary>
-	/// The old wheel-side setting base names whose per-context switches are OR-unioned into the single FFB stack
+	/// The old wheel-side setting base names whose per-context switches are OR-unioned into the single FFB graph
 	/// values scope at migration time (granularity loss — noted in the release notes). Reflection reads each
 	/// <c>{name}ContextSwitches</c> tolerantly, so names without a context-switch property are simply skipped.
 	/// </summary>
@@ -113,13 +113,13 @@ public static class FFBStackMigration
 
 	private sealed class Builder
 	{
-		public readonly FFBStack Stack;
+		public readonly FFBGraph Graph;
 		private readonly string _keyPrefix;
 		private int _seq;
 
 		public Builder( string name, string keyPrefix )
 		{
-			Stack = new FFBStack { Name = name, IsBuiltIn = true };
+			Graph = new FFBGraph { Name = name, IsBuiltIn = true };
 			_keyPrefix = keyPrefix;
 		}
 
@@ -144,21 +144,21 @@ public static class FFBStackMigration
 				data.SettingValues[ key ] = value;
 			}
 
-			Stack.Modules.Add( data );
+			Graph.Modules.Add( data );
 
 			return id;
 		}
 
 		public void AddSources( SettingsSource src )
 		{
-			var source60 = new FFBModuleData( FFBStack.Source60ModuleId, FFBModuleRegistry.Source60HzType );
+			var source60 = new FFBModuleData( FFBGraph.Source60ModuleId, FFBModuleRegistry.Source60HzType );
 
 			source60.SettingValues[ "PredictionMode" ] = src.E( "RacingWheelPredictionMode" );
 			source60.SettingValues[ "PredictionBlend" ] = src.F( "RacingWheelPredictionBlend" );
 
-			Stack.Modules.Add( source60 );
+			Graph.Modules.Add( source60 );
 
-			Stack.Modules.Add( new FFBModuleData( FFBStack.Source360ModuleId, FFBModuleRegistry.Source360HzType ) );
+			Graph.Modules.Add( new FFBModuleData( FFBGraph.Source360ModuleId, FFBModuleRegistry.Source360HzType ) );
 		}
 
 		public void AddOutput( string inputA, SettingsSource src )
@@ -189,7 +189,7 @@ public static class FFBStackMigration
 				( "Enabled", oldMinimum > 0f ? 1f : 0f ),
 				( "Minimum", oldMinimum * maxForce ) );
 
-			Stack.Modules.Add( new FFBModuleData( FFBStack.OutputModuleId, FFBModuleRegistry.OutputType )
+			Graph.Modules.Add( new FFBModuleData( FFBGraph.OutputModuleId, FFBModuleRegistry.OutputType )
 			{
 				InputAModuleId = minimum
 			} );
@@ -200,8 +200,8 @@ public static class FFBStackMigration
 
 	private static string AppendAlgorithmModules( Builder builder, RacingWheel.Algorithm algorithm, RacingWheel.MultiFFBSourceOptions structureMultiSource, SettingsSource src )
 	{
-		var s60 = FFBStack.Source60ModuleId;
-		var s360 = FFBStack.Source360ModuleId;
+		var s60 = FFBGraph.Source60ModuleId;
+		var s360 = FFBGraph.Source360ModuleId;
 
 		switch ( algorithm )
 		{
@@ -255,8 +255,8 @@ public static class FFBStackMigration
 
 	private static string AppendMultiModules( Builder builder, RacingWheel.MultiFFBSourceOptions structureMultiSource, SettingsSource src )
 	{
-		var s60 = FFBStack.Source60ModuleId;
-		var s360 = FFBStack.Source360ModuleId;
+		var s60 = FFBGraph.Source60ModuleId;
+		var s360 = FFBGraph.Source360ModuleId;
 
 		var detail = src.F( "RacingWheelMulti360HzDetail" );
 
@@ -357,7 +357,7 @@ public static class FFBStackMigration
 
 	private static void AppendVibrationGenerators( Builder builder, SettingsSource src )
 	{
-		var s360 = FFBStack.Source360ModuleId;
+		var s360 = FFBGraph.Source360ModuleId;
 
 		builder.Add( FFBModuleRegistry.UndersteerVibrationType, s360,
 			( "Enabled", src.B( "SteeringEffectsUndersteerEnabled" ) ),
@@ -388,15 +388,15 @@ public static class FFBStackMigration
 		builder.Add( FFBModuleRegistry.ABSVibrationType, s360, ( "Strength", src.F( "RacingWheelABSVibrateStrength" ) ) );
 	}
 
-	/// <summary>Build one full built-in stack (sources + curb tap + algorithm + effect tail + generators + Output) with values from <paramref name="src"/>. Deterministic module ids come from the algorithm-based key prefix.</summary>
-	private static FFBStack BuildFullStack( RacingWheel.Algorithm algorithm, RacingWheel.MultiFFBSourceOptions structureMultiSource, SettingsSource src )
+	/// <summary>Build one full built-in graph (sources + curb tap + algorithm + effect tail + generators + Output) with values from <paramref name="src"/>. Deterministic module ids come from the algorithm-based key prefix.</summary>
+	private static FFBGraph BuildFullGraph( RacingWheel.Algorithm algorithm, RacingWheel.MultiFFBSourceOptions structureMultiSource, SettingsSource src )
 	{
-		var builder = new Builder( BuiltInStackNameFor( algorithm ), $"BuiltIn.{algorithm}" );
+		var builder = new Builder( BuiltInGraphNameFor( algorithm ), $"BuiltIn.{algorithm}" );
 
 		builder.AddSources( src );
 
 		// curb protection sits early (pass-through) so its PrePass publishes the curb factor before the chain
-		builder.Add( FFBModuleRegistry.CurbProtectionType, FFBStack.Source360ModuleId,
+		builder.Add( FFBModuleRegistry.CurbProtectionType, FFBGraph.Source360ModuleId,
 			( "ShockVelocity", src.F( "RacingWheelCurbProtectionShockVelocity" ) ),
 			( "Duration", src.F( "RacingWheelCurbProtectionDuration" ) ),
 			( "ForceReduction", src.F( "RacingWheelCurbProtectionForceReduction" ) ) );
@@ -409,21 +409,21 @@ public static class FFBStackMigration
 
 		builder.AddOutput( centering, src );
 
-		return builder.Stack;
+		return builder.Graph;
 	}
 
 	// ---- public builders --------------------------------------------------------------------------------
 
 	/// <summary>
-	/// Build a minimal parity stack (Source60, Source360, the algorithm's DSP core, Output) with all values
+	/// Build a minimal parity graph (Source60, Source360, the algorithm's DSP core, Output) with all values
 	/// baked from <paramref name="settings"/>. No effect tail or generators — under the neutral preview context
 	/// those are inert anyway, so this isolates the DSP + Output math the milestone-1 parity harness verifies.
 	/// </summary>
-	public static FFBStack BuildParityStack( RacingWheel.Algorithm algorithm, RacingWheel.MultiFFBSourceOptions multiSource, Settings settings )
+	public static FFBGraph BuildParityGraph( RacingWheel.Algorithm algorithm, RacingWheel.MultiFFBSourceOptions multiSource, Settings settings )
 	{
 		var src = new SettingsSource( settings, settings );
 
-		var builder = new Builder( BuiltInStackNameFor( algorithm ), $"Parity.{algorithm}.{multiSource}" );
+		var builder = new Builder( BuiltInGraphNameFor( algorithm ), $"Parity.{algorithm}.{multiSource}" );
 
 		builder.AddSources( src );
 
@@ -431,50 +431,50 @@ public static class FFBStackMigration
 
 		builder.AddOutput( lastId, src );
 
-		return builder.Stack;
+		return builder.Graph;
 	}
 
 	/// <summary>
-	/// Build the full set of named built-in stacks: one per old algorithm, each with the standard effect tail
+	/// Build the full set of named built-in graphs: one per old algorithm, each with the standard effect tail
 	/// (in old pipeline order) and the six vibration generators. All values are baked from the live
-	/// <paramref name="settings"/>; the Multi stack's source-stage structure uses the (collapsed) live Multi
+	/// <paramref name="settings"/>; the Multi graph's source-stage structure uses the (collapsed) live Multi
 	/// source mode.
 	/// </summary>
-	public static List<FFBStack> CreateBuiltInStacks( Settings settings )
+	public static List<FFBGraph> CreateBuiltInGraphs( Settings settings )
 	{
 		var src = new SettingsSource( settings, settings );
 		var structureMultiSource = CollapseMultiSource( settings.RacingWheelMultiFFBSourceSelection );
 
-		var stacks = new List<FFBStack>();
+		var graphs = new List<FFBGraph>();
 
 		foreach ( var algorithm in Enum.GetValues<RacingWheel.Algorithm>() )
 		{
-			stacks.Add( BuildFullStack( algorithm, structureMultiSource, src ) );
+			graphs.Add( BuildFullGraph( algorithm, structureMultiSource, src ) );
 		}
 
-		return stacks;
+		return graphs;
 	}
 
 	/// <summary>
 	/// Map an old settings source (the live <c>Settings</c> or one <c>ContextSettings</c>) into the per-context
-	/// composite value dictionary for ALL built-in stacks. Structure uses the (collapsed) live Multi source mode
-	/// so the module ids — and therefore the composite keys — match the baseline built-in stacks exactly.
+	/// composite value dictionary for ALL built-in graphs. Structure uses the (collapsed) live Multi source mode
+	/// so the module ids — and therefore the composite keys — match the baseline built-in graphs exactly.
 	/// </summary>
-	public static FFBStackValues MapOldSettingsIntoStackValues( object source, Settings live, RacingWheel.MultiFFBSourceOptions structureMultiSource )
+	public static FFBGraphValues MapOldSettingsIntoGraphValues( object source, Settings live, RacingWheel.MultiFFBSourceOptions structureMultiSource )
 	{
 		var src = new SettingsSource( source, live );
 
-		var values = new FFBStackValues();
+		var values = new FFBGraphValues();
 
 		foreach ( var algorithm in Enum.GetValues<RacingWheel.Algorithm>() )
 		{
-			var stack = BuildFullStack( algorithm, structureMultiSource, src );
+			var graph = BuildFullGraph( algorithm, structureMultiSource, src );
 
-			foreach ( var module in stack.Modules )
+			foreach ( var module in graph.Modules )
 			{
 				foreach ( var pair in module.SettingValues )
 				{
-					values[ FFBStackValues.ComposeKey( module.ModuleId, pair.Key ) ] = pair.Value;
+					values[ FFBGraphValues.ComposeKey( module.ModuleId, pair.Key ) ] = pair.Value;
 				}
 			}
 		}

@@ -4,7 +4,7 @@ using MarvinsAIRARefactored.Classes;
 namespace MarvinsAIRARefactored.FFB.Modules;
 
 // New telemetry-driven "creative" modules (milestone 6). Unlike the DSP/effect modules these have no old-code
-// equivalent — they are optional flavor the user can add to a stack. The DSP primitives themselves (filters,
+// equivalent — they are optional flavor the user can add to a graph. The DSP primitives themselves (filters,
 // mixer, gain, compressors) remain the main creativity enablers; these add speed/slip-driven texture.
 
 /// <summary>

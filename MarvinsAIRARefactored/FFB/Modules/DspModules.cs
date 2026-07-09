@@ -4,8 +4,8 @@ using MarvinsAIRARefactored.Classes;
 namespace MarvinsAIRARefactored.FFB.Modules;
 
 // Generic DSP primitives operating in the Nm main-bus domain. The old monolithic algorithms
-// (RacingWheel.ProcessAlgorithm) are recreated by COMPOSING these primitives in the built-in stacks; see
-// FFBStackMigration for the exact wiring. Decomposition identities (verified algebraically):
+// (RacingWheel.ProcessAlgorithm) are recreated by COMPOSING these primitives in the built-in graphs; see
+// FFBGraphMigration for the exact wiring. Decomposition identities (verified algebraically):
 //   out = Lerp(out_prev + g·Δin, anchor, b)  ==  LPF_b(anchor) + g·HPF_b(in)
 // where LPF_b(x): y = Lerp(y_prev, x, b), and HPF_b(x) = x − LPF_b(x). DetailBooster uses g=1+Boost,
 // anchor=in; DeltaLimiter uses g=1, in=rate-limited copy; Hybrid10 uses b=0.1, anchor=60 Hz, g=Detail.

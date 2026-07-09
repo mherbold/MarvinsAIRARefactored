@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -30,6 +30,9 @@
     <None Remove="Artwork\Buttons\fan-orange.png" />
     <None Remove="Artwork\Buttons\fan.png" />
     <None Remove="Artwork\Buttons\key.png" />
+    <None Remove="Artwork\Buttons\grid.png" />
+    <None Remove="Artwork\Buttons\knob-minus.png" />
+    <None Remove="Artwork\Buttons\knob-plus.png" />
     <None Remove="Artwork\Buttons\ok.png" />
     <None Remove="Artwork\Buttons\rename.png" />
     <None Remove="Artwork\Buttons\search.png" />
@@ -133,6 +136,9 @@
     <Resource Include="Artwork\Buttons\app-menu.png" />
     <Resource Include="Artwork\Buttons\browse.png" />
     <Resource Include="Artwork\Buttons\clear.png" />
+    <Resource Include="Artwork\Buttons\grid.png" />
+    <Resource Include="Artwork\Buttons\knob-minus.png" />
+    <Resource Include="Artwork\Buttons\knob-plus.png" />
     <Resource Include="Artwork\Buttons\combo-box-caret.png" />
     <Resource Include="Artwork\Buttons\combo-box-checked.png" />
     <Resource Include="Artwork\Buttons\combo-box-default.png" />

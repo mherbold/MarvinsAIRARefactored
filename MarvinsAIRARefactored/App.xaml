@@ -125,7 +125,8 @@
                                 <Grid Grid.Column="2"
                                       Width="32"
                                       Height="32"
-                                      HorizontalAlignment="Right">
+                                      HorizontalAlignment="Right"
+                                      VerticalAlignment="Bottom">
 
                                     <!-- Ring: Border.Normal (medium gray) in default; Border.Hover on hover; Border.Active when open -->
                                     <Rectangle x:Name="GlyphRing"
@@ -340,10 +341,12 @@
                                               IsChecked="{Binding IsDropDownOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}">
 
                                     <Grid ClipToBounds="True">
+
                                         <TextBlock Text="{Binding SelectedItem.Value, RelativeSource={RelativeSource TemplatedParent}}"
                                                    TextTrimming="CharacterEllipsis"
                                                    TextWrapping="NoWrap"
-                                                   VerticalAlignment="Center" />
+                                                   VerticalAlignment="Bottom" />
+
                                     </Grid>
 
                                 </ToggleButton>
@@ -524,80 +527,80 @@
 
             </Style>
 
-                    <!-- MairaListButtonStyle: compact button for use in list-row controls (App Manager, etc.) -->
+            <!-- MairaListButtonStyle: compact button for use in list-row controls (App Manager, etc.) -->
 
-                    <Style TargetType="{x:Type Button}"
-                           x:Key="MairaListButtonStyle">
+            <Style TargetType="{x:Type Button}"
+                   x:Key="MairaListButtonStyle">
 
-                        <Setter Property="FontFamily"
-                                Value="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow" />
-                        <Setter Property="FontSize"
-                                Value="18" />
-                        <Setter Property="Foreground"
-                                Value="{DynamicResource Brush.Foreground.Secondary}" />
-                        <Setter Property="Background"
-                                Value="{DynamicResource Brush.ListButton.Background}" />
-                        <Setter Property="BorderBrush"
-                                Value="{DynamicResource Brush.Border.Normal}" />
-                        <Setter Property="BorderThickness"
-                                Value="1" />
-                        <Setter Property="Padding"
-                                Value="12,6" />
-                        <Setter Property="Cursor"
-                                Value="Hand" />
+                <Setter Property="FontFamily"
+                        Value="pack://application:,,,/MarvinsAIRARefactored;component/Fonts/#Aptos Narrow" />
+                <Setter Property="FontSize"
+                        Value="18" />
+                <Setter Property="Foreground"
+                        Value="{DynamicResource Brush.Foreground.Secondary}" />
+                <Setter Property="Background"
+                        Value="{DynamicResource Brush.ListButton.Background}" />
+                <Setter Property="BorderBrush"
+                        Value="{DynamicResource Brush.Border.Normal}" />
+                <Setter Property="BorderThickness"
+                        Value="1" />
+                <Setter Property="Padding"
+                        Value="12,6" />
+                <Setter Property="Cursor"
+                        Value="Hand" />
 
-                        <Setter Property="Template">
+                <Setter Property="Template">
 
-                            <Setter.Value>
+                    <Setter.Value>
 
-                                <ControlTemplate TargetType="Button">
+                        <ControlTemplate TargetType="Button">
 
-                                    <Border x:Name="Border"
-                                            Background="{TemplateBinding Background}"
-                                            BorderBrush="{TemplateBinding BorderBrush}"
-                                            BorderThickness="{TemplateBinding BorderThickness}"
-                                            CornerRadius="4"
-                                            Padding="{TemplateBinding Padding}">
+                            <Border x:Name="Border"
+                                    Background="{TemplateBinding Background}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    CornerRadius="4"
+                                    Padding="{TemplateBinding Padding}">
 
-                                        <ContentPresenter HorizontalAlignment="Center"
-                                                          VerticalAlignment="Center" />
+                                <ContentPresenter HorizontalAlignment="Center"
+                                                  VerticalAlignment="Center" />
 
-                                    </Border>
+                            </Border>
 
-                                    <ControlTemplate.Triggers>
+                            <ControlTemplate.Triggers>
 
-                                        <Trigger Property="IsMouseOver"
-                                                 Value="True">
-                                            <Setter TargetName="Border"
-                                                    Property="Background"
-                                                    Value="{DynamicResource Brush.ListButton.Hover}" />
-                                            <Setter TargetName="Border"
-                                                    Property="BorderBrush"
-                                                    Value="{DynamicResource Brush.Border.Hover}" />
-                                        </Trigger>
+                                <Trigger Property="IsMouseOver"
+                                         Value="True">
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{DynamicResource Brush.ListButton.Hover}" />
+                                    <Setter TargetName="Border"
+                                            Property="BorderBrush"
+                                            Value="{DynamicResource Brush.Border.Hover}" />
+                                </Trigger>
 
-                                        <Trigger Property="IsPressed"
-                                                 Value="True">
-                                            <Setter TargetName="Border"
-                                                    Property="Background"
-                                                    Value="{DynamicResource Brush.Accent}" />
-                                            <Setter TargetName="Border"
-                                                    Property="BorderBrush"
-                                                    Value="{DynamicResource Brush.Accent}" />
-                                        </Trigger>
+                                <Trigger Property="IsPressed"
+                                         Value="True">
+                                    <Setter TargetName="Border"
+                                            Property="Background"
+                                            Value="{DynamicResource Brush.Accent}" />
+                                    <Setter TargetName="Border"
+                                            Property="BorderBrush"
+                                            Value="{DynamicResource Brush.Accent}" />
+                                </Trigger>
 
-                                    </ControlTemplate.Triggers>
+                            </ControlTemplate.Triggers>
 
-                                </ControlTemplate>
+                        </ControlTemplate>
 
-                            </Setter.Value>
+                    </Setter.Value>
 
-                        </Setter>
+                </Setter>
 
-                    </Style>
+            </Style>
 
-                </ResourceDictionary>
+        </ResourceDictionary>
 
-            </Application.Resources>
+    </Application.Resources>
 
-        </Application>
+</Application>

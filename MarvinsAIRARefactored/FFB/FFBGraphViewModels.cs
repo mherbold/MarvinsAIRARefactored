@@ -8,9 +8,9 @@ using System.Windows.Controls;
 
 namespace MarvinsAIRARefactored.FFB;
 
-// View-models backing the RacingWheelPage FFB stack editor. The editor binds to
-// DataContext.Instance.RacingWheelStackViewModel, which mirrors the currently selected stack's modules. Edits
-// mutate the FFBStack model, push atomic values into both engines, keep the per-context store in sync, queue
+// View-models backing the RacingWheelPage FFB graph editor. The editor binds to
+// DataContext.Instance.RacingWheelGraphViewModel, which mirrors the currently selected graph's modules. Edits
+// mutate the FFBGraph model, push atomic values into both engines, keep the per-context store in sync, queue
 // serialization, and refresh the preview — the same responsibilities the old per-setting INPC setters had.
 //
 // Milestone 5 will localize the display names/labels (currently derived from the stable keys); for now they are
@@ -174,7 +174,7 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 
 			ValueString = Format( clamped );
 
-			DataContext.DataContext.Instance.Settings.SyncFFBStackModuleValues( true );
+			DataContext.DataContext.Instance.Settings.SyncFFBGraphModuleValues( true );
 
 			app.SettingsFile.RecordChangedSetting( $"ffb:{_moduleId}/{_descriptor.Key}", $"[Settings] Updating FFB module setting {_moduleId}/{_descriptor.Key} to {clamped}" );
 			app.SettingsFile.QueueForSerialization = true;
@@ -245,14 +245,14 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 /// <summary>View-model for one module card: display name, enable toggle, input routing combos, and setting VMs.</summary>
 public sealed class FFBModuleViewModel : INotifyPropertyChanged
 {
-	private readonly FFBStackViewModel _owner;
+	private readonly FFBGraphViewModel _owner;
 	private readonly FFBModuleData _model;
 	private readonly FFBModuleDescriptor _descriptor;
 
 	private string _displayName = string.Empty;
 	private List<KeyValuePair<string, string>> _eligibleInputs = [];
 
-	public FFBModuleViewModel( FFBStackViewModel owner, FFBModuleData model, FFBModuleDescriptor descriptor )
+	public FFBModuleViewModel( FFBGraphViewModel owner, FFBModuleData model, FFBModuleDescriptor descriptor )
 	{
 		_owner = owner;
 		_model = model;
@@ -271,11 +271,13 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 	public string ModuleId => _model.ModuleId;
 	public string ModuleType => _model.ModuleType;
 
+	public FFBModuleDescriptor Descriptor => _descriptor;
+
 	public bool IsFixed => _descriptor.IsSource || _descriptor.IsOutput;
 	public bool IsGenerator => _descriptor.IsGenerator;
+	public bool IsOutput => _descriptor.IsOutput;
 	public bool CanToggleEnabled => !IsFixed;
 	public bool CanRemove => !IsFixed;
-	public bool CanReorder => !IsFixed;
 
 	public int SignalInputCount => _descriptor.SignalInputCount;
 	public bool ShowInputA => _descriptor.SignalInputCount >= 1;
@@ -294,6 +296,57 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 			if ( value != _displayName )
 			{
 				_displayName = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _isSelected = false;
+
+	/// <summary>Whether this module is the one selected in the node editor (drives the node highlight and which
+	/// module the settings panel and preview show). Session-only — set via <see cref="FFBGraphViewModel.SelectedModule"/>.</summary>
+	public bool IsSelected
+	{
+		get => _isSelected;
+
+		set
+		{
+			if ( value != _isSelected )
+			{
+				_isSelected = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	/// <summary>Node editor canvas position. Written during a drag — display-only, so no engine rebuild here; the
+	/// editor queues one serialization when the drag ends.</summary>
+	public double NodeX
+	{
+		get => _model.NodeX;
+
+		set
+		{
+			if ( (float) value != _model.NodeX )
+			{
+				_model.NodeX = (float) value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public double NodeY
+	{
+		get => _model.NodeY;
+
+		set
+		{
+			if ( (float) value != _model.NodeY )
+			{
+				_model.NodeY = (float) value;
 
 				OnPropertyChanged();
 			}
@@ -340,7 +393,7 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 
 			app.RacingWheel.SetEngineValue( _model.ModuleId, "Enabled", newValue );
 
-			DataContext.DataContext.Instance.Settings.SyncFFBStackModuleValues( true );
+			DataContext.DataContext.Instance.Settings.SyncFFBGraphModuleValues( true );
 
 			app.SettingsFile.QueueForSerialization = true;
 			app.RacingWheel.UpdateAlgorithmPreview = true;
@@ -387,29 +440,50 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 			_model.InputAModuleId = value;
 		}
 
-		// routing is structure: rebuild the live engine and refresh the preview
-		var app = App.Instance!;
-
-		app.RacingWheel.RebuildLiveEngine();
-		app.SettingsFile.QueueForSerialization = true;
-		app.RacingWheel.UpdateAlgorithmPreview = true;
-
 		OnPropertyChanged( isInputB ? nameof( InputBSelectedId ) : nameof( InputASelectedId ) );
+
+		// routing is structure: re-derive the evaluation order, rebuild the live engine, and refresh the preview.
+		// The card rebuild is deferred so the combo box driving this setter finishes its selection-changed first.
+		_owner.CommitWiringChange();
 	}
 }
 
-/// <summary>The stack editor's root VM: the module cards for the currently selected stack, plus structure edits.</summary>
-public sealed class FFBStackViewModel : INotifyPropertyChanged
+/// <summary>One display-only wire on the node canvas: the source module's output feeding one of the target
+/// module's inputs. Rebuilt wholesale whenever the card tree rebuilds — re-wiring happens via the input combos.</summary>
+public sealed class FFBNodeWireViewModel( string sourceModuleId, string targetModuleId, bool isInputB )
 {
-	private FFBStack? _stack;
+	public string SourceModuleId { get; } = sourceModuleId;
+	public string TargetModuleId { get; } = targetModuleId;
+	public bool IsInputB { get; } = isInputB;
+}
+
+/// <summary>The graph editor's root VM: the module cards for the currently selected graph, plus structure edits.</summary>
+public sealed class FFBGraphViewModel : INotifyPropertyChanged
+{
+	private FFBGraph? _graph;
+
+	private string? _selectedModuleId = null;
+	private FFBModuleViewModel? _selectedModule = null;
+	private bool _rebuildQueued = false;
 
 	public ObservableCollection<FFBModuleViewModel> Modules { get; } = [];
 
+	/// <summary>The non-generator modules (sources, DSP/effects, Output) — the nodes shown on the graph canvas.</summary>
+	public ObservableCollection<FFBModuleViewModel> MainModules { get; } = [];
+
+	/// <summary>The generator modules — the cards shown in the vibration effects section.</summary>
+	public ObservableCollection<FFBModuleViewModel> GeneratorModules { get; } = [];
+
+	/// <summary>Display-only wires between the graph canvas nodes.</summary>
+	public ObservableCollection<FFBNodeWireViewModel> Wires { get; } = [];
+
 	// Built on access (not in the constructor) so it is not evaluated during DataContext static construction,
 	// before Localization exists, and so its module names re-localize on a language switch.
-	public List<KeyValuePair<string, string>> AddableModuleTypes => BuildAddableModuleTypes();
+	public List<KeyValuePair<string, string>> AddableModuleTypes => BuildAddableModuleTypes( generators: false );
+	public List<KeyValuePair<string, string>> AddableGeneratorModuleTypes => BuildAddableModuleTypes( generators: true );
 
 	private string _selectedAddableModuleType = string.Empty;
+	private string _selectedAddableGeneratorModuleType = string.Empty;
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -430,7 +504,58 @@ public sealed class FFBStackViewModel : INotifyPropertyChanged
 		}
 	}
 
-	private static List<KeyValuePair<string, string>> BuildAddableModuleTypes()
+	public string SelectedAddableGeneratorModuleType
+	{
+		get => _selectedAddableGeneratorModuleType;
+
+		set
+		{
+			if ( value != _selectedAddableGeneratorModuleType )
+			{
+				_selectedAddableGeneratorModuleType = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	/// <summary>
+	/// The module selected on the node canvas — the settings panel shows its card and the preview taps its
+	/// signals. Session-only (not persisted); falls back to the Output module whenever the stored selection
+	/// disappears (graph switch, context reload, module removal). Selection is presentation state, so setting it
+	/// never rebuilds an engine — it only refreshes the preview.
+	/// </summary>
+	public FFBModuleViewModel? SelectedModule
+	{
+		get => _selectedModule;
+
+		set
+		{
+			if ( value == _selectedModule )
+			{
+				return;
+			}
+
+			_selectedModule = value;
+			_selectedModuleId = value?.ModuleId;
+
+			foreach ( var module in Modules )
+			{
+				module.IsSelected = module == value;
+			}
+
+			OnPropertyChanged();
+
+			var app = App.Instance;
+
+			if ( app != null )
+			{
+				app.RacingWheel.UpdateAlgorithmPreview = true;
+			}
+		}
+	}
+
+	private static List<KeyValuePair<string, string>> BuildAddableModuleTypes( bool generators )
 	{
 		var list = new List<KeyValuePair<string, string>>();
 
@@ -442,31 +567,50 @@ public sealed class FFBStackViewModel : INotifyPropertyChanged
 				continue;
 			}
 
+			if ( descriptor.IsGenerator != generators )
+			{
+				continue;
+			}
+
 			list.Add( new KeyValuePair<string, string>( descriptor.TypeKey, FFBDisplayNames.Module( descriptor.TypeKey ) ) );
 		}
 
 		return list.OrderBy( pair => pair.Value ).ToList();
 	}
 
-	/// <summary>Rebuild the whole card tree from the currently selected stack. UI thread only.</summary>
+	/// <summary>Rebuild the whole card tree from the currently selected graph. UI thread only.</summary>
 	public void RebuildFromCurrentSelection()
 	{
 		Modules.Clear();
+		MainModules.Clear();
+		GeneratorModules.Clear();
+		Wires.Clear();
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		if ( !settings.RacingWheelStacks.TryGetValue( settings.RacingWheelSelectedStackName, out var stack ) )
+		if ( !settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) )
 		{
-			_stack = null;
+			_graph = null;
+
+			SelectedModule = null;
 
 			return;
 		}
 
-		_stack = stack;
+		_graph = graph;
+
+		// lay the nodes out automatically the first time this graph is shown in the node editor (legacy data,
+		// freshly migrated built-ins, and reset built-ins all arrive with every position at 0,0)
+		if ( FFBGraphTopology.NeedsAutoLayout( graph ) )
+		{
+			FFBGraphTopology.ApplyAutoLayout( graph );
+
+			App.Instance!.SettingsFile.QueueForSerialization = true;
+		}
 
 		var moduleViewModels = new List<FFBModuleViewModel>();
 
-		foreach ( var module in stack.Modules )
+		foreach ( var module in graph.Modules )
 		{
 			var descriptor = FFBModuleRegistry.TryGet( module.ModuleType );
 
@@ -476,30 +620,88 @@ public sealed class FFBStackViewModel : INotifyPropertyChanged
 			}
 		}
 
-		for ( var i = 0; i < moduleViewModels.Count; i++ )
+		// display names have no list-index prefix (the evaluation order is derived automatically now); duplicate
+		// module types are disambiguated as "Gain", "Gain (2)", ...
+		var nameCounts = new Dictionary<string, int>( StringComparer.Ordinal );
+
+		foreach ( var moduleViewModel in moduleViewModels )
 		{
-			moduleViewModels[ i ].DisplayName = $"{i + 1} · {FFBDisplayNames.Module( moduleViewModels[ i ].ModuleType )}";
+			var name = FFBDisplayNames.Module( moduleViewModel.ModuleType );
+
+			var count = nameCounts.TryGetValue( name, out var seen ) ? seen + 1 : 1;
+
+			nameCounts[ name ] = count;
+
+			moduleViewModel.DisplayName = count > 1 ? $"{name} ({count})" : name;
 		}
 
-		for ( var i = 0; i < moduleViewModels.Count; i++ )
+		// eligible inputs: any non-generator, non-Output module that is not downstream of the consumer (no cycles)
+		foreach ( var moduleViewModel in moduleViewModels )
 		{
-			var eligible = new List<KeyValuePair<string, string>>();
-
-			for ( var j = 0; j < i; j++ )
+			if ( moduleViewModel.SignalInputCount < 1 )
 			{
-				if ( !moduleViewModels[ j ].IsGenerator )
-				{
-					eligible.Add( new KeyValuePair<string, string>( moduleViewModels[ j ].ModuleId, moduleViewModels[ j ].DisplayName ) );
-				}
+				continue;
 			}
 
-			moduleViewModels[ i ].SetEligibleInputs( eligible );
+			var downstream = FFBGraphTopology.ReachableFrom( graph, moduleViewModel.ModuleId );
+
+			var eligible = new List<KeyValuePair<string, string>>();
+
+			foreach ( var candidate in moduleViewModels )
+			{
+				if ( candidate.IsGenerator || candidate.IsOutput || downstream.Contains( candidate.ModuleId ) )
+				{
+					continue;
+				}
+
+				eligible.Add( new KeyValuePair<string, string>( candidate.ModuleId, candidate.DisplayName ) );
+			}
+
+			moduleViewModel.SetEligibleInputs( eligible );
 		}
 
 		foreach ( var moduleViewModel in moduleViewModels )
 		{
 			Modules.Add( moduleViewModel );
+
+			if ( moduleViewModel.IsGenerator )
+			{
+				GeneratorModules.Add( moduleViewModel );
+			}
+			else
+			{
+				MainModules.Add( moduleViewModel );
+			}
 		}
+
+		// one display wire per visible input of each canvas node
+		foreach ( var moduleViewModel in MainModules )
+		{
+			var module = graph.Modules.Find( m => m.ModuleId == moduleViewModel.ModuleId );
+
+			if ( module == null )
+			{
+				continue;
+			}
+
+			if ( moduleViewModel.ShowInputA )
+			{
+				Wires.Add( new FFBNodeWireViewModel( module.InputAModuleId, module.ModuleId, isInputB: false ) );
+			}
+
+			if ( moduleViewModel.ShowInputB )
+			{
+				Wires.Add( new FFBNodeWireViewModel( module.InputBModuleId, module.ModuleId, isInputB: true ) );
+			}
+		}
+
+		// restore the selection by id (the VM instances were just recreated), falling back to the Output module
+		var restored = moduleViewModels.Find( moduleViewModel => moduleViewModel.ModuleId == _selectedModuleId )
+			?? moduleViewModels.Find( moduleViewModel => moduleViewModel.IsOutput );
+
+		_selectedModule = null;   // force the setter to fire even when the id did not change
+
+		SelectedModule = restored;
 	}
 
 	/// <summary>Recompute every knob's value string. WheelForce/MaxForce-scaled displays (strengths, output min/max, compression thresholds) depend on live force settings, so this is called when those change. UI thread only.</summary>
@@ -522,117 +724,191 @@ public sealed class FFBStackViewModel : INotifyPropertyChanged
 		}
 	}
 
+	public void AddSelectedGeneratorModule()
+	{
+		if ( !string.IsNullOrEmpty( SelectedAddableGeneratorModuleType ) )
+		{
+			AddModule( SelectedAddableGeneratorModuleType );
+		}
+	}
+
 	public void AddModule( string moduleType )
 	{
-		if ( ( _stack == null ) || ( FFBModuleRegistry.TryGet( moduleType ) == null ) )
+		if ( _graph == null )
+		{
+			return;
+		}
+
+		var descriptor = FFBModuleRegistry.TryGet( moduleType );
+
+		if ( descriptor == null )
 		{
 			return;
 		}
 
 		var module = new FFBModuleData( Guid.NewGuid().ToString( "N" ), moduleType )
 		{
-			InputAModuleId = FFBStack.Source360ModuleId,
-			InputBModuleId = FFBStack.Source360ModuleId
+			InputAModuleId = FFBGraph.Source360ModuleId,
+			InputBModuleId = FFBGraph.Source360ModuleId
 		};
 
-		_stack.Modules.Insert( _stack.OutputIndex, module );
+		if ( !descriptor.IsGenerator )
+		{
+			PlaceNewNode( module );
+
+			_selectedModuleId = module.ModuleId;   // select the new node once the rebuild recreates the VMs
+		}
+
+		_graph.Modules.Insert( _graph.OutputIndex, module );
 
 		CommitStructureChange();
+	}
+
+	// Drop a new node just left of the Output node, stepping down until the spot is free so consecutive adds
+	// don't stack on top of each other. An explicit position also keeps NeedsAutoLayout from re-laying-out the
+	// whole graph on the next rebuild.
+	private void PlaceNewNode( FFBModuleData module )
+	{
+		if ( _graph == null )
+		{
+			return;
+		}
+
+		var output = _graph.Modules.Find( m => m.ModuleId == FFBGraph.OutputModuleId );
+
+		var x = Math.Max( FFBGraphTopology.LayoutMargin, ( output?.NodeX ?? 0f ) - FFBGraphTopology.NodeWidth - FFBGraphTopology.HorizontalGap );
+		var y = Math.Max( FFBGraphTopology.LayoutMargin, output?.NodeY ?? FFBGraphTopology.LayoutMargin );
+
+		while ( _graph.Modules.Exists( m => ( Math.Abs( m.NodeX - x ) < 10f ) && ( Math.Abs( m.NodeY - y ) < 10f ) ) )
+		{
+			y += FFBGraphTopology.NodeHeight + FFBGraphTopology.VerticalGap;
+		}
+
+		module.NodeX = x;
+		module.NodeY = y;
 	}
 
 	public void RemoveModule( FFBModuleViewModel moduleViewModel )
 	{
-		if ( ( _stack == null ) || !moduleViewModel.CanRemove )
+		if ( ( _graph == null ) || !moduleViewModel.CanRemove )
 		{
 			return;
 		}
 
-		_stack.Modules.RemoveAll( module => module.ModuleId == moduleViewModel.ModuleId );
+		_graph.Modules.RemoveAll( module => module.ModuleId == moduleViewModel.ModuleId );
 
 		// repoint any inputs that referenced the removed module back to the 360 Hz source
-		foreach ( var module in _stack.Modules )
+		foreach ( var module in _graph.Modules )
 		{
 			if ( module.InputAModuleId == moduleViewModel.ModuleId )
 			{
-				module.InputAModuleId = FFBStack.Source360ModuleId;
+				module.InputAModuleId = FFBGraph.Source360ModuleId;
 			}
 
 			if ( module.InputBModuleId == moduleViewModel.ModuleId )
 			{
-				module.InputBModuleId = FFBStack.Source360ModuleId;
+				module.InputBModuleId = FFBGraph.Source360ModuleId;
 			}
 		}
 
 		CommitStructureChange();
 	}
 
-	public void MoveModule( FFBModuleViewModel moduleViewModel, int direction )
+	/// <summary>Re-run the automatic layered layout over the current graph's nodes (the auto-layout button on the
+	/// node editor). Positions are display-only, so no engine rebuild — just persist and refresh the canvas.</summary>
+	public void AutoLayout()
 	{
-		if ( ( _stack == null ) || !moduleViewModel.CanReorder )
+		if ( _graph == null )
 		{
 			return;
 		}
 
-		var index = _stack.Modules.FindIndex( module => module.ModuleId == moduleViewModel.ModuleId );
-		var target = index + direction;
+		FFBGraphTopology.ApplyAutoLayout( _graph );
 
-		// user modules live strictly between the two sources (slots 0-1) and the trailing Output module
-		if ( ( index < 2 ) || ( target < 2 ) || ( target >= _stack.OutputIndex ) )
+		if ( DataContext.DataContext.Instance.Settings.RacingWheelFFBGraphSnapToGrid )
 		{
-			return;
+			FFBGraphTopology.SnapAllToGrid( _graph );
 		}
 
-		( _stack.Modules[ index ], _stack.Modules[ target ] ) = ( _stack.Modules[ target ], _stack.Modules[ index ] );
+		App.Instance!.SettingsFile.QueueForSerialization = true;
 
-		ValidateInputReferences();
-
-		CommitStructureChange();
+		RebuildFromCurrentSelection();
 	}
 
-	// A reorder or removal can leave an input pointing at a module that is no longer earlier in the list; reset
-	// any such forward/dangling reference to the 360 Hz source (the engine falls back the same way).
-	private void ValidateInputReferences()
+	/// <summary>Snap every canvas node to the grid (the snap-to-grid toggle was just switched on).</summary>
+	public void SnapAllToGrid()
 	{
-		if ( _stack == null )
+		if ( _graph == null )
 		{
 			return;
 		}
 
-		var indexById = new Dictionary<string, int>( StringComparer.Ordinal );
+		FFBGraphTopology.SnapAllToGrid( _graph );
 
-		for ( var i = 0; i < _stack.Modules.Count; i++ )
-		{
-			indexById[ _stack.Modules[ i ].ModuleId ] = i;
-		}
+		App.Instance!.SettingsFile.QueueForSerialization = true;
 
-		for ( var i = 0; i < _stack.Modules.Count; i++ )
-		{
-			var module = _stack.Modules[ i ];
-
-			if ( !indexById.TryGetValue( module.InputAModuleId, out var indexA ) || ( indexA >= i ) )
-			{
-				module.InputAModuleId = FFBStack.Source360ModuleId;
-			}
-
-			if ( !indexById.TryGetValue( module.InputBModuleId, out var indexB ) || ( indexB >= i ) )
-			{
-				module.InputBModuleId = FFBStack.Source360ModuleId;
-			}
-		}
+		RebuildFromCurrentSelection();
 	}
 
-	private void CommitStructureChange()
+	/// <summary>An input re-wire committed from a module's input combo. The evaluation order is re-derived and the
+	/// engines rebuilt immediately, but the card rebuild is deferred to the dispatcher so the combo box whose
+	/// selection-changed drove this call is not torn down mid-event.</summary>
+	public void CommitWiringChange()
 	{
+		CommitStructureChange( deferRebuild: true );
+	}
+
+	private void CommitStructureChange( bool deferRebuild = false )
+	{
+		if ( _graph != null )
+		{
+			// restore the "inputs reference earlier modules" invariant before any engine sees the new structure
+			FFBGraphTopology.SortTopologically( _graph );
+		}
+
 		var app = App.Instance!;
 
 		app.RacingWheel.RebuildLiveEngine();
 
-		DataContext.DataContext.Instance.Settings.SyncFFBStackModuleValues( true );
+		DataContext.DataContext.Instance.Settings.SyncFFBGraphModuleValues( true );
 
 		app.SettingsFile.QueueForSerialization = true;
 		app.RacingWheel.UpdateAlgorithmPreview = true;
 
-		RebuildFromCurrentSelection();
+		if ( deferRebuild )
+		{
+			QueueRebuild();
+		}
+		else
+		{
+			RebuildFromCurrentSelection();
+		}
+	}
+
+	private void QueueRebuild()
+	{
+		if ( _rebuildQueued )
+		{
+			return;
+		}
+
+		var dispatcher = System.Windows.Application.Current?.Dispatcher;
+
+		if ( dispatcher == null )
+		{
+			RebuildFromCurrentSelection();
+
+			return;
+		}
+
+		_rebuildQueued = true;
+
+		dispatcher.BeginInvoke( System.Windows.Threading.DispatcherPriority.Background, () =>
+		{
+			_rebuildQueued = false;
+
+			RebuildFromCurrentSelection();
+		} );
 	}
 }
 

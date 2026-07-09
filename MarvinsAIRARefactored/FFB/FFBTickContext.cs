@@ -2,7 +2,7 @@
 namespace MarvinsAIRARefactored.FFB;
 
 /// <summary>
-/// Per-tick auxiliary input for the FFB stack engine. Built once per 360 Hz tick (no allocation) and
+/// Per-tick auxiliary input for the FFB graph engine. Built once per 360 Hz tick (no allocation) and
 /// passed by readonly reference into every module's PrePass/Process. Everything a module might need from
 /// the outside world (torque samples, telemetry, wheel state, protection pulses) lives here so the modules
 /// themselves stay free of App/Simulator references and remain testable in isolation.

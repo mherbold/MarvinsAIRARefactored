@@ -214,72 +214,72 @@ public partial class RacingWheelPage : UserControl
 		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdateSteeringDeviceOptions" );
 	}
 
-	private bool _refreshingStackSelector = false;
+	private bool _refreshingGraphSelector = false;
 
-	public void UpdateFFBStackOptions()
+	public void UpdateFFBGraphOptions()
 	{
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		_refreshingStackSelector = true;
+		_refreshingGraphSelector = true;
 
 		var items = new List<KeyValuePair<string, string>>();
 
-		foreach ( var stackName in settings.RacingWheelStacks.Keys )
+		foreach ( var graphName in settings.RacingWheelFFBGraphs.Keys )
 		{
-			items.Add( new KeyValuePair<string, string>( stackName, stackName ) );
+			items.Add( new KeyValuePair<string, string>( graphName, graphName ) );
 		}
 
-		Stack_MairaComboBox.ItemsSource = items;
-		Stack_MairaComboBox.SelectedValue = settings.RacingWheelSelectedStackName;
+		Graph_MairaComboBox.ItemsSource = items;
+		Graph_MairaComboBox.SelectedValue = settings.RacingWheelSelectedFFBGraphName;
 
-		var isBuiltIn = settings.RacingWheelStacks.TryGetValue( settings.RacingWheelSelectedStackName, out var stack ) && stack.IsBuiltIn;
+		var isBuiltIn = settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) && graph.IsBuiltIn;
 
-		// Built-in stacks cannot be renamed or deleted, but can be reset to their defaults.
-		RenameStack_MairaButton.Disabled = isBuiltIn;
-		DeleteStack_MairaButton.Disabled = isBuiltIn;
-		ResetStack_MairaButton.Visibility = isBuiltIn ? Visibility.Visible : Visibility.Collapsed;
+		// Built-in graphs cannot be renamed or deleted, but can be reset to their defaults.
+		RenameGraph_MairaButton.Disabled = isBuiltIn;
+		DeleteGraph_MairaButton.Disabled = isBuiltIn;
+		ResetGraph_MairaButton.Visibility = isBuiltIn ? Visibility.Visible : Visibility.Collapsed;
 
-		_refreshingStackSelector = false;
+		_refreshingGraphSelector = false;
 
 		// Rebuild the module cards so their (localized) module names and setting labels refresh — this runs from
 		// MainWindow.RefreshWindow, which is the app's relocalization entry point, so the editor follows a
 		// runtime language switch.
-		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelStackViewModel.RebuildFromCurrentSelection();
+		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.RebuildFromCurrentSelection();
 	}
 
-	private void Stack_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
+	private void Graph_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
-		if ( _refreshingStackSelector )
+		if ( _refreshingGraphSelector )
 		{
 			return;
 		}
 
-		if ( Stack_MairaComboBox.SelectedValue is not string stackName )
+		if ( Graph_MairaComboBox.SelectedValue is not string graphName )
 		{
 			return;
 		}
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		if ( stackName == settings.RacingWheelSelectedStackName )
+		if ( graphName == settings.RacingWheelSelectedFFBGraphName )
 		{
 			return;
 		}
 
-		settings.SelectFFBStack( stackName );
+		settings.SelectFFBGraph( graphName );
 
 		App.Instance!.SettingsFile.QueueForSerialization = true;
 
-		UpdateFFBStackOptions();
+		UpdateFFBGraphOptions();
 	}
 
-	private void NewStack_MairaButton_Click( object sender, RoutedEventArgs e )
+	private void NewGraph_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var window = new RenameControllerProfileWindow( string.Empty ) { Owner = app.MainWindow };
+		var window = new NewFFBGraphWindow { Owner = app.MainWindow };
 
 		window.ShowDialog();
 
@@ -288,29 +288,29 @@ public partial class RacingWheelPage : UserControl
 			return;
 		}
 
-		var name = window.ProfileName.Trim();
+		var name = window.GraphName.Trim();
 
-		if ( ( name == string.Empty ) || settings.RacingWheelStacks.ContainsKey( name ) )
+		if ( ( name == string.Empty ) || settings.RacingWheelFFBGraphs.ContainsKey( name ) )
 		{
 			return;
 		}
 
-		settings.CreateFFBStack( name, copyFromCurrent: true );
+		settings.CreateFFBGraph( name, window.CopyFromCurrent );
 
 		app.SettingsFile.QueueForSerialization = true;
 
-		UpdateFFBStackOptions();
+		UpdateFFBGraphOptions();
 	}
 
-	private void RenameStack_MairaButton_Click( object sender, RoutedEventArgs e )
+	private void RenameGraph_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var currentName = settings.RacingWheelSelectedStackName;
+		var currentName = settings.RacingWheelSelectedFFBGraphName;
 
-		if ( settings.RacingWheelStacks.TryGetValue( currentName, out var currentStack ) && currentStack.IsBuiltIn )
+		if ( settings.RacingWheelFFBGraphs.TryGetValue( currentName, out var currentGraph ) && currentGraph.IsBuiltIn )
 		{
 			return;
 		}
@@ -326,27 +326,27 @@ public partial class RacingWheelPage : UserControl
 
 		var newName = window.ProfileName.Trim();
 
-		if ( ( newName == string.Empty ) || ( newName == currentName ) || settings.RacingWheelStacks.ContainsKey( newName ) )
+		if ( ( newName == string.Empty ) || ( newName == currentName ) || settings.RacingWheelFFBGraphs.ContainsKey( newName ) )
 		{
 			return;
 		}
 
-		settings.RenameFFBStack( currentName, newName );
+		settings.RenameFFBGraph( currentName, newName );
 
 		app.SettingsFile.QueueForSerialization = true;
 
-		UpdateFFBStackOptions();
+		UpdateFFBGraphOptions();
 	}
 
-	private void DeleteStack_MairaButton_Click( object sender, RoutedEventArgs e )
+	private void DeleteGraph_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		var currentName = settings.RacingWheelSelectedStackName;
+		var currentName = settings.RacingWheelSelectedFFBGraphName;
 
-		if ( settings.RacingWheelStacks.TryGetValue( currentName, out var currentStack ) && currentStack.IsBuiltIn )
+		if ( settings.RacingWheelFFBGraphs.TryGetValue( currentName, out var currentGraph ) && currentGraph.IsBuiltIn )
 		{
 			return;
 		}
@@ -360,92 +360,63 @@ public partial class RacingWheelPage : UserControl
 			return;
 		}
 
-		settings.DeleteFFBStack( currentName );
+		settings.DeleteFFBGraph( currentName );
 
 		app.SettingsFile.QueueForSerialization = true;
 
-		UpdateFFBStackOptions();
+		UpdateFFBGraphOptions();
 	}
 
-	private void ResetStack_MairaButton_Click( object sender, RoutedEventArgs e )
+	private void ResetGraph_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		settings.ResetBuiltInFFBStack( settings.RacingWheelSelectedStackName );
+		settings.ResetBuiltInFFBGraph( settings.RacingWheelSelectedFFBGraphName );
 
 		app.SettingsFile.QueueForSerialization = true;
 
-		UpdateFFBStackOptions();
-	}
-
-	private void StackValuesScope_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance!;
-
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
-		var window = new UpdateContextSwitchesWindow( settings.RacingWheelStackValuesContextSwitches ) { Owner = app.MainWindow };
-
-		window.ShowDialog();
+		UpdateFFBGraphOptions();
 	}
 
 	private void AddModule_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelStackViewModel.AddSelectedModule();
+		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.AddSelectedModule();
 	}
 
 	private void RemoveModule_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
 		{
-			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelStackViewModel.RemoveModule( moduleViewModel );
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.RemoveModule( moduleViewModel );
 		}
 	}
 
-	private void MoveModuleUp_MairaButton_Click( object sender, RoutedEventArgs e )
+	private void AddGeneratorModule_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
-		{
-			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelStackViewModel.MoveModule( moduleViewModel, -1 );
-		}
+		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.AddSelectedGeneratorModule();
 	}
 
-	private void MoveModuleDown_MairaButton_Click( object sender, RoutedEventArgs e )
+	private void ChooseRecording_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
-		{
-			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelStackViewModel.MoveModule( moduleViewModel, 1 );
-		}
+		var app = App.Instance!;
+
+		var window = new ChooseRecordingWindow { Owner = app.MainWindow };
+
+		window.ShowDialog();
 	}
 
+	// The recordings list now lives in the choose-recording dialog; refresh it if one is open (this is still
+	// called when the recording manager loads or saves recordings).
 	public void UpdatePreviewRecordingsOptions()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[RacingWheelPage] UpdatePreviewRecordingsOptions >>>" );
-
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-
-		var dictionary = new Dictionary<string, string>();
-
-		if ( app.RecordingManager.Recordings.Count == 0 )
-		{
-			dictionary.Add( string.Empty, localization[ "NoRecordingsFound" ] );
-		}
-
-		foreach ( var recording in app.RecordingManager.Recordings )
-		{
-			dictionary.Add( recording.Key, recording.Value.Description! );
-		}
-
 		app.Dispatcher.Invoke( () =>
 		{
-			PreviewRecordings_MairaComboBox.ItemsSource = dictionary.OrderBy( keyValuePair => keyValuePair.Value ).ToList();
+			ChooseRecordingWindow.Current?.RefreshRecordingsList();
 		} );
-
-		app.Logger.WriteLine( "[RacingWheelPage] <<< UpdatePreviewRecordingsOptions" );
 	}
 
 	public void UpdateLFERecordingDeviceOptions()

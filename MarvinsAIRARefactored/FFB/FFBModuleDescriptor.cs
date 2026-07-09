@@ -2,7 +2,7 @@
 namespace MarvinsAIRARefactored.FFB;
 
 /// <summary>
-/// How a module setting is presented in the stack editor and how its stored float is interpreted.
+/// How a module setting is presented in the graph editor and how its stored float is interpreted.
 /// </summary>
 public enum FFBSettingType
 {

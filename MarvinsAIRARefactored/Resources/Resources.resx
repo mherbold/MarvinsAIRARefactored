@@ -1842,28 +1842,25 @@
 
 
 
-  <data name="FFBStack" xml:space="preserve">
-    <value>FFB stack</value>
-  </data>
-  <data name="Stack" xml:space="preserve">
-    <value>Stack</value>
-  </data>
-  <data name="NewStack" xml:space="preserve">
-    <value>New</value>
-  </data>
-  <data name="RenameStack" xml:space="preserve">
-    <value>Rename</value>
-  </data>
-  <data name="DeleteStack" xml:space="preserve">
-    <value>Delete</value>
-  </data>
-  <data name="ResetStack" xml:space="preserve">
-    <value>Reset</value>
-  </data>
-  <data name="PerContextValues" xml:space="preserve">
-    <value>Per-context values</value>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB graph</value>
   </data>
   <data name="AddModule" xml:space="preserve">
     <value>Add module</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Choose recording</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>New graph</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Graph name</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Clone current graph</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Start empty graph</value>
   </data>
 </root>

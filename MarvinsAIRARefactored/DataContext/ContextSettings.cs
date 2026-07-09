@@ -53,11 +53,11 @@ public class ContextSettings
 	public bool RacingWheelCenterWheelWhileParked { get; set; } = true;
 	public bool RacingWheelFadeEnabled { get; set; } = true;
 
-	// Modular FFB stack (replaces the old per-algorithm settings above). The selected stack name is synced by
+	// Modular FFB graph (replaces the old per-algorithm settings above). The selected graph name is synced by
 	// the existing UpdateSettings reflection loop (it has a matching Settings property + ContextSwitches). The
-	// module values are a purpose-built snapshot keyed by "{moduleId}/{settingKey}" (see Settings.SyncFFBStackModuleValues).
-	public string RacingWheelSelectedStackName { get; set; } = "";
-	public FFBStackValues RacingWheelStackModuleValues { get; set; } = [];
+	// module values are a purpose-built snapshot keyed by "{moduleId}/{settingKey}" (see Settings.SyncFFBGraphModuleValues).
+	public string RacingWheelSelectedFFBGraphName { get; set; } = "";
+	public FFBGraphValues RacingWheelFFBGraphModuleValues { get; set; } = [];
 
 	#endregion
 

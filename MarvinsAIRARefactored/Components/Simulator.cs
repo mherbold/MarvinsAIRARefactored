@@ -1058,7 +1058,7 @@ public partial class Simulator
 			_activeResetBlockTimerFrames--;
 		}
 
-		// crash protection processing (thresholds now come from the live FFB stack's crash protection module; an
+		// crash protection processing (thresholds now come from the live FFB graph's crash protection module; an
 		// off/disabled/would-do-nothing module publishes >= 20, same "disabled" semantics as the old guards)
 
 		if ( IsOnTrack && ( _activeResetBlockTimerFrames <= 0 ) )
@@ -1077,7 +1077,7 @@ public partial class Simulator
 			}
 		}
 
-		// curb protection processing (shock-velocity threshold now comes from the live FFB stack's curb protection
+		// curb protection processing (shock-velocity threshold now comes from the live FFB graph's curb protection
 		// module; an off/disabled/would-do-nothing module publishes 0, same "disabled" semantics as the old guards)
 
 		if ( IsOnTrack && ( _activeResetBlockTimerFrames <= 0 ) )

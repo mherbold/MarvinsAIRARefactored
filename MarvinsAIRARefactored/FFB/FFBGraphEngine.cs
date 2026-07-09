@@ -4,15 +4,15 @@ using MarvinsAIRARefactored.Components;
 namespace MarvinsAIRARefactored.FFB;
 
 /// <summary>
-/// Evaluates one <see cref="FFBStack"/>. Two instances exist at runtime: a live engine (driven by the 360 Hz
+/// Evaluates one <see cref="FFBGraph"/>. Two instances exist at runtime: a live engine (driven by the 360 Hz
 /// worker thread) and a preview engine (driven by the dispatcher over a recording). Both are built from the
-/// same stack model but keep independent state.
+/// same graph model but keep independent state.
 /// <para>Threading: structure edits build a brand-new engine on the UI thread and the caller swaps a volatile
 /// reference so the 360 Hz reader picks it up on its next tick. Knob edits arrive via <see cref="SetValue"/> as
 /// atomic single-float writes the reader tolerates. The arrays (<c>_modules</c>, <c>_signals</c>) are never
 /// mutated in place after Rebuild — always rebuild-and-swap.</para>
 /// </summary>
-public sealed class FFBStackEngine
+public sealed class FFBGraphEngine
 {
 	private FFBModule[] _modules = [];
 	private FFBModuleDescriptor[] _descriptors = [];
@@ -37,19 +37,19 @@ public sealed class FFBStackEngine
 	public RacingWheel.PredictionMode PredictionMode = RacingWheel.PredictionMode.Disabled;
 	public float PredictionBlend = 0f;
 
-	/// <summary>The stack model this engine was last built from (for the preview replay / editor).</summary>
-	public FFBStack? Stack { get; private set; }
+	/// <summary>The graph model this engine was last built from (for the preview replay / editor).</summary>
+	public FFBGraph? Graph { get; private set; }
 
 	/// <summary>
-	/// Rebuild the engine from a stack model. UI thread only; allocates the module and signal arrays. A module
+	/// Rebuild the engine from a graph model. UI thread only; allocates the module and signal arrays. A module
 	/// may only reference an EARLIER module's output (or a source); forward/dangling references fall back to the
 	/// 360 Hz source, which also covers reorder/remove edges.
 	/// </summary>
-	public void Rebuild( FFBStack stack )
+	public void Rebuild( FFBGraph graph )
 	{
-		Stack = stack;
+		Graph = graph;
 
-		var moduleCount = stack.Modules.Count;
+		var moduleCount = graph.Modules.Count;
 
 		var modules = new FFBModule[ moduleCount ];
 		var descriptors = new FFBModuleDescriptor[ moduleCount ];
@@ -58,16 +58,16 @@ public sealed class FFBStackEngine
 
 		for ( var i = 0; i < moduleCount; i++ )
 		{
-			_indexById[ stack.Modules[ i ].ModuleId ] = i;
+			_indexById[ graph.Modules[ i ].ModuleId ] = i;
 		}
 
 		// locate the 360 Hz source (the fallback target for invalid input references)
 
-		_source360Index = _indexById.TryGetValue( FFBStack.Source360ModuleId, out var source360Index ) ? source360Index : 0;
+		_source360Index = _indexById.TryGetValue( FFBGraph.Source360ModuleId, out var source360Index ) ? source360Index : 0;
 
 		for ( var i = 0; i < moduleCount; i++ )
 		{
-			var model = stack.Modules[ i ];
+			var model = graph.Modules[ i ];
 
 			var descriptor = FFBModuleRegistry.TryGet( model.ModuleType ) ?? FFBModuleRegistry.Get( FFBModuleRegistry.Source360HzType );
 
@@ -103,7 +103,7 @@ public sealed class FFBStackEngine
 		return _source360Index;
 	}
 
-	/// <summary>Zero every module's internal state (used before a preview replay and on stack/context change).</summary>
+	/// <summary>Zero every module's internal state (used before a preview replay and on graph/context change).</summary>
 	public void ResetState()
 	{
 		for ( var i = 0; i < _modules.Length; i++ )
@@ -151,6 +151,37 @@ public sealed class FFBStackEngine
 		_modules[ index ].SetValue( settingIndex, value );
 
 		RefreshAggregates();
+	}
+
+	/// <summary>Index of a module in the signal array, or -1 when the id is unknown. Preview taps only.</summary>
+	public int IndexOf( string moduleId )
+	{
+		return _indexById.TryGetValue( moduleId, out var index ) ? index : -1;
+	}
+
+	/// <summary>
+	/// A module's signal value from the last <see cref="Process"/> call (0 when out of range). Preview engine
+	/// only — call on the same thread that drives Process, after it returns; never tap the live engine this way.
+	/// </summary>
+	public float GetSignal( int index )
+	{
+		var signals = _signals;
+
+		return ( index >= 0 ) && ( index < signals.Length ) ? signals[ index ] : 0f;
+	}
+
+	/// <summary>A module's resolved input indices (already fallback-resolved to the 360 Hz source where the
+	/// stored reference was invalid). Preview taps only; returns sources for an out-of-range index.</summary>
+	public ( int inputAIndex, int inputBIndex ) GetResolvedInputs( int index )
+	{
+		var modules = _modules;
+
+		if ( ( index < 0 ) || ( index >= modules.Length ) )
+		{
+			return ( _source360Index, _source360Index );
+		}
+
+		return ( modules[ index ].InputAIndex, modules[ index ].InputBIndex );
 	}
 
 	/// <summary>

@@ -20,9 +20,9 @@
 
         <converters:BooleanToVisibilityCollapsedConverter x:Key="BoolToVisibility" />
 
-        <!-- Module-setting templates for the FFB stack editor cards. DataContext = FFBModuleSettingViewModel. -->
+        <!-- Module-setting templates for the FFB graph editor cards. DataContext = FFBModuleSettingViewModel. -->
 
-        <DataTemplate x:Key="FFBStackKnobTemplate">
+        <DataTemplate x:Key="FFBGraphKnobTemplate">
             <controls:MairaKnob Label="{Binding Label}"
                                 Value="{Binding Value, Mode=TwoWay}"
                                 ValueString="{Binding ValueString}"
@@ -33,140 +33,96 @@
                                 Margin="20,0,20,10" />
         </DataTemplate>
 
-        <DataTemplate x:Key="FFBStackSwitchTemplate">
+        <DataTemplate x:Key="FFBGraphSwitchTemplate">
             <controls:MairaSwitch Label="{Binding Label}"
                                   IsOn="{Binding IsOn, Mode=TwoWay}"
                                   Margin="20,0,20,10" />
         </DataTemplate>
 
-        <DataTemplate x:Key="FFBStackChoiceTemplate">
+        <DataTemplate x:Key="FFBGraphChoiceTemplate">
             <controls:MairaComboBox Label="{Binding Label}"
                                     ItemsSource="{Binding ChoiceOptions}"
                                     SelectedValue="{Binding ChoiceIndex, Mode=TwoWay}"
                                     Margin="20,0,20,10" />
         </DataTemplate>
 
-        <ffb:FFBSettingTemplateSelector x:Key="FFBStackSettingTemplateSelector"
-                                        KnobTemplate="{StaticResource FFBStackKnobTemplate}"
-                                        SwitchTemplate="{StaticResource FFBStackSwitchTemplate}"
-                                        ChoiceTemplate="{StaticResource FFBStackChoiceTemplate}" />
+        <ffb:FFBSettingTemplateSelector x:Key="FFBGraphSettingTemplateSelector"
+                                        KnobTemplate="{StaticResource FFBGraphKnobTemplate}"
+                                        SwitchTemplate="{StaticResource FFBGraphSwitchTemplate}"
+                                        ChoiceTemplate="{StaticResource FFBGraphChoiceTemplate}" />
 
         <!-- Module card. DataContext = FFBModuleViewModel. -->
 
-        <DataTemplate x:Key="FFBStackModuleCardTemplate">
+        <DataTemplate x:Key="FFBGraphModuleCardTemplate">
 
-            <Grid Margin="0,0,0,20">
+            <StackPanel Grid.Column="1"
+                        Margin="0,10">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="20" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="20" />
-                    <ColumnDefinition Width="Auto" />
-                </Grid.ColumnDefinitions>
+                <Grid Margin="0,0,0,10">
 
-                <Border Grid.Column="0"
-                        BorderBrush="{DynamicResource Brush.SteeringEffects.Understeer}"
-                        BorderThickness="2"
-                        Width="4"
-                        CornerRadius="1"
-                        Opacity="0.75" />
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
 
-                <StackPanel Grid.Column="2"
-                            Margin="0,10">
+                    <controls:MairaSwitch Grid.Column="0"
+                                          IsOn="{Binding Enabled, Mode=TwoWay}"
+                                          VerticalAlignment="Center"
+                                          Visibility="{Binding CanToggleEnabled, Converter={StaticResource BoolToVisibility}}" />
 
-                    <Grid Margin="0,0,0,10">
+                    <TextBlock Grid.Column="1"
+                               Text="{Binding DisplayName}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               FontSize="30" />
 
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="40" />
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="40" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
+                    <controls:MairaButton Grid.Column="2"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
+                                          IsSmall="True"
+                                          Tag="{Binding}"
+                                          Margin="10,0,0,0"
+                                          Click="RemoveModule_MairaButton_Click"
+                                          Visibility="{Binding CanRemove, Converter={StaticResource BoolToVisibility}}" />
 
-                        <controls:MairaSwitch Grid.Column="0"
-                                              IsOn="{Binding Enabled, Mode=TwoWay}"
-                                              VerticalAlignment="Center"
-                                              Visibility="{Binding CanToggleEnabled, Converter={StaticResource BoolToVisibility}}" />
+                </Grid>
 
-                        <TextBlock Grid.Column="1"
-                                   Text="{Binding DisplayName}"
-                                   Style="{StaticResource MairaTextBlockStyle}"
-                                   FontSize="30" />
+                <Grid Margin="0,0,0,10">
 
-                        <controls:MairaButton Grid.Column="3"
-                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/shift-up.png"
-                                              IsSmall="True"
-                                              Tag="{Binding}"
-                                              Click="MoveModuleUp_MairaButton_Click"
-                                              Visibility="{Binding CanReorder, Converter={StaticResource BoolToVisibility}}" />
+                    <Grid.ColumnDefinitions>
 
-                        <controls:MairaButton Grid.Column="4"
-                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/shift-down.png"
-                                              IsSmall="True"
-                                              Margin="4,0,0,0"
-                                              Tag="{Binding}"
-                                              Click="MoveModuleDown_MairaButton_Click"
-                                              Visibility="{Binding CanReorder, Converter={StaticResource BoolToVisibility}}" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="*" />
 
-                        <controls:MairaButton Grid.Column="5"
-                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
-                                              IsSmall="True"
-                                              Margin="4,0,0,0"
-                                              Tag="{Binding}"
-                                              Click="RemoveModule_MairaButton_Click"
-                                              Visibility="{Binding CanRemove, Converter={StaticResource BoolToVisibility}}" />
+                    </Grid.ColumnDefinitions>
 
-                    </Grid>
+                    <controls:MairaComboBox Grid.Column="0"
+                                            Label="{Binding InputALabel}"
+                                            ItemsSource="{Binding EligibleInputs}"
+                                            SelectedValue="{Binding InputASelectedId, Mode=TwoWay}"
+                                            Margin="0,0,0,10"
+                                            Visibility="{Binding ShowInputA, Converter={StaticResource BoolToVisibility}}" />
 
-                    <Grid Margin="0,0,0,10">
+                    <controls:MairaComboBox Grid.Column="2"
+                                            Label="{Binding InputBLabel}"
+                                            ItemsSource="{Binding EligibleInputs}"
+                                            SelectedValue="{Binding InputBSelectedId, Mode=TwoWay}"
+                                            Margin="0,0,0,10"
+                                            Visibility="{Binding ShowInputB, Converter={StaticResource BoolToVisibility}}" />
 
-                        <Grid.ColumnDefinitions>
+                </Grid>
 
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="40" />
-                            <ColumnDefinition Width="*" />
+                <ItemsControl ItemsSource="{Binding Settings}"
+                              Margin="-20,0,-20,0"
+                              ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="3" />
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
 
-                        </Grid.ColumnDefinitions>
-
-                        <controls:MairaComboBox Grid.Column="0"
-                                                Label="{Binding InputALabel}"
-                                                ItemsSource="{Binding EligibleInputs}"
-                                                SelectedValue="{Binding InputASelectedId, Mode=TwoWay}"
-                                                Margin="0,0,0,10"
-                                                Visibility="{Binding ShowInputA, Converter={StaticResource BoolToVisibility}}" />
-
-                        <controls:MairaComboBox Grid.Column="2"
-                                                Label="{Binding InputBLabel}"
-                                                ItemsSource="{Binding EligibleInputs}"
-                                                SelectedValue="{Binding InputBSelectedId, Mode=TwoWay}"
-                                                Margin="0,0,0,10"
-                                                Visibility="{Binding ShowInputB, Converter={StaticResource BoolToVisibility}}" />
-
-                    </Grid>
-
-                    <ItemsControl ItemsSource="{Binding Settings}"
-                                  Margin="-20,0,-20,0"
-                                  ItemTemplateSelector="{StaticResource FFBStackSettingTemplateSelector}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <UniformGrid Columns="3" />
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                    </ItemsControl>
-
-                </StackPanel>
-
-                <Border Grid.Column="4"
-                        BorderBrush="{DynamicResource Brush.SteeringEffects.Understeer}"
-                        BorderThickness="2"
-                        Width="4"
-                        CornerRadius="1"
-                        Opacity="0.75" />
-
-            </Grid>
+            </StackPanel>
 
         </DataTemplate>
 
@@ -392,70 +348,192 @@
 
         </controls:MairaGroupBox>
 
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[FFBStack]}"
-                                HelpTopic="advanced/racing-wheel/#ffb-stack">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[FFBGraph]}"
+                                HelpTopic="advanced/racing-wheel/#ffb-graph">
 
             <StackPanel>
 
-                <!-- Stack selection + management -->
+                <!-- Graph selection + management -->
                 <Grid Margin="0,0,0,40">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="40" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <controls:MairaComboBox x:Name="Stack_MairaComboBox"
+                    <controls:MairaComboBox x:Name="Graph_MairaComboBox"
                                             Grid.Column="0"
-                                            Label="{Binding Localization[Stack]}"
-                                            ContextSwitches="{Binding Settings.RacingWheelSelectedStackNameContextSwitches}"
-                                            SelectionChanged="Stack_MairaComboBox_SelectionChanged" />
+                                            Label="{Binding Localization[Graph]}"
+                                            ContextSwitches="{Binding Settings.RacingWheelSelectedFFBGraphNameContextSwitches}"
+                                            SelectionChanged="Graph_MairaComboBox_SelectionChanged" />
 
-                    <StackPanel Grid.Column="2"
-                                Orientation="Horizontal">
+                    <controls:MairaButton Grid.Column="1"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="NewGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
 
-                        <controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
-                                              Label="{Binding Localization[NewStack]}"
-                                              IsSmall="True"
-                                              Click="NewStack_MairaButton_Click" />
+                    <controls:MairaButton Grid.Column="2"
+                                          x:Name="RenameGraph_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="RenameGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
 
-                        <controls:MairaButton x:Name="RenameStack_MairaButton"
-                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
-                                              Label="{Binding Localization[RenameStack]}"
-                                              IsSmall="True"
-                                              Margin="20,0,0,0"
-                                              Click="RenameStack_MairaButton_Click" />
+                    <controls:MairaButton Grid.Column="3"
+                                          x:Name="DeleteGraph_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="DeleteGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
 
-                        <controls:MairaButton x:Name="DeleteStack_MairaButton"
-                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
-                                              Label="{Binding Localization[DeleteStack]}"
-                                              IsSmall="True"
-                                              Margin="20,0,0,0"
-                                              Click="DeleteStack_MairaButton_Click" />
-
-                        <controls:MairaButton x:Name="ResetStack_MairaButton"
-                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
-                                              Label="{Binding Localization[ResetStack]}"
-                                              IsSmall="True"
-                                              Margin="20,0,0,0"
-                                              Click="ResetStack_MairaButton_Click" />
-
-                        <controls:MairaButton Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/wand.png"
-                                              Label="{Binding Localization[PerContextValues]}"
-                                              IsSmall="True"
-                                              Margin="20,0,0,0"
-                                              Click="StackValuesScope_MairaButton_Click" />
-
-                    </StackPanel>
+                    <controls:MairaButton Grid.Column="4"
+                                          x:Name="ResetGraph_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="ResetGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
 
                 </Grid>
 
-                <!-- Module cards -->
-                <ItemsControl ItemsSource="{Binding RacingWheelStackViewModel.Modules}"
-                              ItemTemplate="{StaticResource FFBStackModuleCardTemplate}" />
-
                 <!-- Add module -->
+                <Grid Margin="0,0,0,40">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <controls:MairaComboBox Grid.Column="0"
+                                            Label="{Binding Localization[AddModule]}"
+                                            ItemsSource="{Binding RacingWheelGraphViewModel.AddableModuleTypes}"
+                                            SelectedValue="{Binding RacingWheelGraphViewModel.SelectedAddableModuleType, Mode=TwoWay}" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="AddModule_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+                </Grid>
+
+                <!-- Node graph -->
+                <controls:FFBGraphEditor Margin="0,0,0,20" />
+
+                <!-- Selected module settings (the one card for whichever node is selected on the graph above) -->
+                <ContentControl Content="{Binding RacingWheelGraphViewModel.SelectedModule}"
+                                ContentTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
+
+                <!-- Preview: the selected module's signals replayed over the loaded recording (red = input A,
+                     green = input B, blue = output; for the Output module red/green are the two sources). The
+                     record + choose-recording buttons float over the graph's top-right corner. -->
+                <Grid Tag="Complex">
+
+                    <Border BorderThickness="2"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
+                            CornerRadius="5"
+                            Padding="0,0,0,6">
+
+                        <ScrollViewer x:Name="Preview_ScrollViewer"
+                                      HorizontalScrollBarVisibility="Auto"
+                                      VerticalScrollBarVisibility="Disabled"
+                                      MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
+                                      PreviewMouseWheel="Preview_ScrollViewer_PreviewMouseWheel"
+                                      Loaded="Preview_ScrollViewer_Loaded">
+
+                            <Image x:Name="AlgorithmPreview_Image"
+                                   Height="301"
+                                   Width="3840"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   MouseEnter="AlgorithmPreview_Image_MouseEnter"
+                                   MouseLeave="AlgorithmPreview_Image_MouseLeave"
+                                   MouseMove="AlgorithmPreview_Image_MouseMove" />
+
+                        </ScrollViewer>
+
+                    </Border>
+
+                    <StackPanel Orientation="Horizontal"
+                                HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                Margin="0,8,8,0"
+                                Panel.ZIndex="1">
+
+                        <controls:MairaButton x:Name="ChooseRecording_MairaButton"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/browse.png"
+                                              IsSmall="True"
+                                              Click="ChooseRecording_MairaButton_Click" />
+
+                        <controls:MairaMappableButton x:Name="Record_MairaMappableButton"
+                                                      ButtonMappings="{Binding Settings.RacingWheelStartRecordingMappings}"
+                                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-white.png"
+                                                      BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-orange.png"
+                                                      Click="StartRecording_MairaMappableButton_Click"
+                                                      IsSmall="True"
+                                                      Margin="8,0,0,0" />
+
+                    </StackPanel>
+
+                    <Popup x:Name="PreviewZoom_Popup"
+                           Placement="Relative"
+                           PlacementTarget="{Binding ElementName=AlgorithmPreview_Image}"
+                           AllowsTransparency="True"
+                           PopupAnimation="Fade"
+                           StaysOpen="True">
+
+                        <Border Width="256"
+                                Height="256"
+                                CornerRadius="16"
+                                Background="{DynamicResource Brush.Background.Popup}"
+                                BorderBrush="#FFF"
+                                BorderThickness="1"
+                                SnapsToDevicePixels="True"
+                                ClipToBounds="True">
+
+                            <Border CornerRadius="16"
+                                    RenderOptions.BitmapScalingMode="NearestNeighbor">
+
+                                <Border.Background>
+
+                                    <ImageBrush x:Name="PreviewZoom_Brush"
+                                                ImageSource="{Binding ElementName=AlgorithmPreview_Image, Path=Source}"
+                                                ViewboxUnits="RelativeToBoundingBox"
+                                                Viewbox="0,0,1,1"
+                                                Stretch="Fill" />
+
+                                </Border.Background>
+
+                            </Border>
+
+                        </Border>
+
+                    </Popup>
+
+                </Grid>
+
+            </StackPanel>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[VibrationEffects]}"
+                                HelpTopic="advanced/racing-wheel/#vibration-effects"
+                                Tag="Complex">
+
+            <StackPanel>
+
+                <!-- Vibration / texture generator cards (no wiring — they feed the vibration bus directly) -->
+                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.GeneratorModules}"
+                              ItemTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
+
+                <!-- Add effect -->
                 <Grid Margin="0,40,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
@@ -465,117 +543,16 @@
 
                     <controls:MairaComboBox Grid.Column="0"
                                             Label="{Binding Localization[AddModule]}"
-                                            ItemsSource="{Binding RacingWheelStackViewModel.AddableModuleTypes}"
-                                            SelectedValue="{Binding RacingWheelStackViewModel.SelectedAddableModuleType, Mode=TwoWay}" />
+                                            ItemsSource="{Binding RacingWheelGraphViewModel.AddableGeneratorModuleTypes}"
+                                            SelectedValue="{Binding RacingWheelGraphViewModel.SelectedAddableGeneratorModuleType, Mode=TwoWay}" />
 
                     <controls:MairaButton Grid.Column="2"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
-                                          Label="{Binding Localization[AddModule]}"
                                           IsSmall="True"
-                                          Click="AddModule_MairaButton_Click" />
+                                          Click="AddGeneratorModule_MairaButton_Click" />
                 </Grid>
 
             </StackPanel>
-
-        </controls:MairaGroupBox>
-
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[Preview]}"
-                                HelpTopic="advanced/racing-wheel/#preview"
-                                Tag="Complex">
-
-            <Grid>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto" />
-                    <RowDefinition Height="10" />
-                    <RowDefinition Height="Auto" />
-                </Grid.RowDefinitions>
-
-                <Border Grid.Row="0"
-                        BorderThickness="2"
-                        BorderBrush="{DynamicResource Brush.Border.Normal}"
-                        Background="{DynamicResource Brush.Background.Popup}"
-                        CornerRadius="5"
-                        Padding="0,0,0,6">
-
-                    <ScrollViewer x:Name="Preview_ScrollViewer"
-                                  HorizontalScrollBarVisibility="Auto"
-                                  VerticalScrollBarVisibility="Disabled"
-                                  MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
-                                  PreviewMouseWheel="Preview_ScrollViewer_PreviewMouseWheel"
-                                  Loaded="Preview_ScrollViewer_Loaded">
-
-                        <Image x:Name="AlgorithmPreview_Image"
-                               Height="301"
-                               Width="3840"
-                               RenderOptions.BitmapScalingMode="HighQuality"
-                               MouseEnter="AlgorithmPreview_Image_MouseEnter"
-                               MouseLeave="AlgorithmPreview_Image_MouseLeave"
-                               MouseMove="AlgorithmPreview_Image_MouseMove" />
-
-                    </ScrollViewer>
-
-                </Border>
-
-                <Popup x:Name="PreviewZoom_Popup"
-                       Grid.Row="0"
-                       Placement="Relative"
-                       PlacementTarget="{Binding ElementName=AlgorithmPreview_Image}"
-                       AllowsTransparency="True"
-                       PopupAnimation="Fade"
-                       StaysOpen="True">
-
-                    <Border Width="256"
-                            Height="256"
-                            CornerRadius="16"
-                            Background="{DynamicResource Brush.Background.Popup}"
-                            BorderBrush="#FFF"
-                            BorderThickness="1"
-                            SnapsToDevicePixels="True"
-                            ClipToBounds="True">
-
-                        <Border CornerRadius="16"
-                                RenderOptions.BitmapScalingMode="NearestNeighbor">
-
-                            <Border.Background>
-
-                                <ImageBrush x:Name="PreviewZoom_Brush"
-                                            ImageSource="{Binding ElementName=AlgorithmPreview_Image, Path=Source}"
-                                            ViewboxUnits="RelativeToBoundingBox"
-                                            Viewbox="0,0,1,1"
-                                            Stretch="Fill" />
-
-                            </Border.Background>
-
-                        </Border>
-
-                    </Border>
-
-                </Popup>
-
-                <Grid Grid.Row="2">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="10" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <controls:MairaComboBox x:Name="PreviewRecordings_MairaComboBox"
-                                            Grid.Column="0"
-                                            SelectedValue="{Binding Settings.RacingWheelSelectedRecording, Mode=TwoWay}" />
-
-                    <controls:MairaMappableButton x:Name="Record_MairaMappableButton"
-                                                  Grid.Column="2"
-                                                  ButtonMappings="{Binding Settings.RacingWheelStartRecordingMappings}"
-                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-white.png"
-                                                  BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-orange.png"
-                                                  Click="StartRecording_MairaMappableButton_Click"
-                                                  IsSmall="True" />
-
-                </Grid>
-
-            </Grid>
 
         </controls:MairaGroupBox>
 

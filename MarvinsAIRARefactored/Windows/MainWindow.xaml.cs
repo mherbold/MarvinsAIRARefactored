@@ -172,7 +172,7 @@ public partial class MainWindow : Window
 
 			_racingWheelPage.UpdateSteeringDeviceOptions();
 			_racingWheelPage.UpdateSteeringDeviceSection();
-			_racingWheelPage.UpdateFFBStackOptions();
+			_racingWheelPage.UpdateFFBGraphOptions();
 			_racingWheelPage.UpdatePreviewRecordingsOptions();
 			_racingWheelPage.UpdateLFERecordingDeviceOptions();
 

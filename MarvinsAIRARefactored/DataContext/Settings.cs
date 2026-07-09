@@ -22,7 +22,7 @@ public class Settings : INotifyPropertyChanged
 	private bool _updatingRacingWheelRelatedSettings = false;
 	private bool _updatingPedalsRelatedSettings = false;
 	private bool _updatingRacingWheelMultiSettings = false;
-	private bool _updatingFFBStackModuleValues = false;
+	private bool _updatingFFBGraphModuleValues = false;
 
 	#region INotifyProperty stuff
 
@@ -391,49 +391,50 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Racing wheel - FFB stack management, sync, and migration
+	#region Racing wheel - FFB graph management, sync, and migration
 
 	private static ContextSwitches CloneContextSwitches( ContextSwitches source )
 	{
 		return new ContextSwitches( source.PerWheelbase, source.PerCar, source.PerTrack, source.PerTrackConfiguration, source.PerWetDry );
 	}
 
-	// Rebuilds the RacingWheelPage stack editor card tree from the currently selected stack. UI thread only.
-	public static void RebuildStackEditorViewModel()
+	// Rebuilds the RacingWheelPage graph editor card tree from the currently selected graph. UI thread only.
+	public static void RebuildGraphEditorViewModel()
 	{
-		DataContext.Instance.RacingWheelStackViewModel.RebuildFromCurrentSelection();
+		DataContext.Instance.RacingWheelGraphViewModel.RebuildFromCurrentSelection();
 	}
 
-	// Syncs the CURRENT stack's per-module setting values to/from the per-context store, mirroring UpdateSettings
-	// but on the independent RacingWheelStackValuesContextSwitches scope. Write path: copy the selected stack's
+	// Syncs the CURRENT graph's per-module setting values to/from the per-context store, mirroring UpdateSettings
+	// on the graph-selection scope (RacingWheelSelectedFFBGraphNameContextSwitches — one scope covers both which
+	// graph is selected and its module values). Write path: copy the selected graph's
 	// module SettingValues into this context's snapshot. Read path (context changed): copy the snapshot back into
-	// the stack, then rebuild the live engine (subsumes a plain state reset). Composite keys are
+	// the graph, then rebuild the live engine (subsumes a plain state reset). Composite keys are
 	// "{moduleId}/{settingKey}"; only keys the module actually carries are synced (so DSP modules with no baked
 	// Enabled stay at their always-on default). Called at the end of UpdateSettings; module-edit setters (the
 	// milestone-4 editor VM) also call it directly with true.
-	public void SyncFFBStackModuleValues( bool updateContextSettings )
+	public void SyncFFBGraphModuleValues( bool updateContextSettings )
 	{
-		if ( _updatingFFBStackModuleValues )
+		if ( _updatingFFBGraphModuleValues )
 		{
 			return;
 		}
 
-		if ( !RacingWheelStacks.TryGetValue( RacingWheelSelectedStackName, out var stack ) )
+		if ( !RacingWheelFFBGraphs.TryGetValue( RacingWheelSelectedFFBGraphName, out var graph ) )
 		{
 			return;
 		}
 
-		_updatingFFBStackModuleValues = true;
+		_updatingFFBGraphModuleValues = true;
 
-		var context = new Context( RacingWheelStackValuesContextSwitches );
+		var context = new Context( RacingWheelSelectedFFBGraphNameContextSwitches );
 		var contextSettings = FindContextSettings( context );
-		var contextValues = contextSettings.RacingWheelStackModuleValues;
+		var contextValues = contextSettings.RacingWheelFFBGraphModuleValues;
 
-		foreach ( var module in stack.Modules )
+		foreach ( var module in graph.Modules )
 		{
 			foreach ( var settingKey in module.SettingValues.Keys.ToArray() )
 			{
-				var compositeKey = FFBStackValues.ComposeKey( module.ModuleId, settingKey );
+				var compositeKey = FFBGraphValues.ComposeKey( module.ModuleId, settingKey );
 
 				if ( updateContextSettings )
 				{
@@ -446,177 +447,177 @@ public class Settings : INotifyPropertyChanged
 			}
 		}
 
-		_updatingFFBStackModuleValues = false;
+		_updatingFFBGraphModuleValues = false;
 
 		if ( !updateContextSettings )
 		{
 			App.Instance!.RacingWheel.RebuildLiveEngine();
 
-			RebuildStackEditorViewModel();
+			RebuildGraphEditorViewModel();
 		}
 	}
 
-	// Data-only named-stack management (ControllerProfiles precedent). The UI layer (milestone 4) rebuilds the
+	// Data-only named-graph management (ControllerProfiles precedent). The UI layer (milestone 4) rebuilds the
 	// editor view-model, and serialization is queued by the caller / by OnPropertyChanged as usual.
 
-	public void SelectFFBStack( string name )
+	public void SelectFFBGraph( string name )
 	{
-		if ( ( name == RacingWheelSelectedStackName ) || !RacingWheelStacks.ContainsKey( name ) )
+		if ( ( name == RacingWheelSelectedFFBGraphName ) || !RacingWheelFFBGraphs.ContainsKey( name ) )
 		{
 			return;
 		}
 
-		// Persist the outgoing stack's values into this context while it is still selected.
-		SyncFFBStackModuleValues( true );
+		// Persist the outgoing graph's values into this context while it is still selected.
+		SyncFFBGraphModuleValues( true );
 
 		// Change the selection. The setter fires OnPropertyChanged -> UpdateSettings(true), which syncs the
-		// selected-stack NAME to this context via the reflection loop; the re-entrancy guard blocks the paired
-		// value write-back so the incoming stack's saved context values are not clobbered by its baseline.
-		_updatingFFBStackModuleValues = true;
-		RacingWheelSelectedStackName = name;
-		_updatingFFBStackModuleValues = false;
+		// selected-graph NAME to this context via the reflection loop; the re-entrancy guard blocks the paired
+		// value write-back so the incoming graph's saved context values are not clobbered by its baseline.
+		_updatingFFBGraphModuleValues = true;
+		RacingWheelSelectedFFBGraphName = name;
+		_updatingFFBGraphModuleValues = false;
 
-		// Load the newly selected stack's values for this context and rebuild the engine + editor.
-		SyncFFBStackModuleValues( false );
+		// Load the newly selected graph's values for this context and rebuild the engine + editor.
+		SyncFFBGraphModuleValues( false );
 
 		App.Instance!.SettingsFile.QueueForSerialization = true;
 	}
 
-	public void CreateFFBStack( string name, bool copyFromCurrent )
+	public void CreateFFBGraph( string name, bool copyFromCurrent )
 	{
-		SyncFFBStackModuleValues( true );
+		SyncFFBGraphModuleValues( true );
 
-		FFBStack stack;
+		FFBGraph graph;
 
-		if ( copyFromCurrent && RacingWheelStacks.TryGetValue( RacingWheelSelectedStackName, out var current ) )
+		if ( copyFromCurrent && RacingWheelFFBGraphs.TryGetValue( RacingWheelSelectedFFBGraphName, out var current ) )
 		{
-			stack = current.Clone();
+			graph = current.Clone();
 
-			// A copied stack needs fresh module ids for its non-fixed modules so its per-context values do not
-			// collide with the source stack's (the shared source/output ids stay).
-			RegenerateUserStackModuleIds( stack );
+			// A copied graph needs fresh module ids for its non-fixed modules so its per-context values do not
+			// collide with the source graph's (the shared source/output ids stay).
+			RegenerateUserGraphModuleIds( graph );
 		}
 		else
 		{
-			stack = FFBStack.CreateEmpty( name );
+			graph = FFBGraph.CreateEmpty( name );
 		}
 
-		stack.Name = name;
-		stack.IsBuiltIn = false;
+		graph.Name = name;
+		graph.IsBuiltIn = false;
 
-		RacingWheelStacks[ name ] = stack;
+		RacingWheelFFBGraphs[ name ] = graph;
 
-		RacingWheelSelectedStackName = name;
+		RacingWheelSelectedFFBGraphName = name;
 
-		SyncFFBStackModuleValues( true );
+		SyncFFBGraphModuleValues( true );
 	}
 
-	// Rewrites the ContextSettings.RacingWheelSelectedStackName occurrences and the live selection. Built-ins
+	// Rewrites the ContextSettings.RacingWheelSelectedFFBGraphName occurrences and the live selection. Built-ins
 	// cannot be renamed. Does nothing if the source is missing, names match, or the target is taken.
-	public void RenameFFBStack( string oldName, string newName )
+	public void RenameFFBGraph( string oldName, string newName )
 	{
-		if ( ( oldName == newName ) || !RacingWheelStacks.TryGetValue( oldName, out var stack ) || stack.IsBuiltIn || RacingWheelStacks.ContainsKey( newName ) )
+		if ( ( oldName == newName ) || !RacingWheelFFBGraphs.TryGetValue( oldName, out var graph ) || graph.IsBuiltIn || RacingWheelFFBGraphs.ContainsKey( newName ) )
 		{
 			return;
 		}
 
-		stack.Name = newName;
+		graph.Name = newName;
 
-		RacingWheelStacks.Remove( oldName );
-		RacingWheelStacks[ newName ] = stack;
+		RacingWheelFFBGraphs.Remove( oldName );
+		RacingWheelFFBGraphs[ newName ] = graph;
 
 		foreach ( var contextSettings in ContextSettingsDictionary.Values )
 		{
-			if ( contextSettings.RacingWheelSelectedStackName == oldName )
+			if ( contextSettings.RacingWheelSelectedFFBGraphName == oldName )
 			{
-				contextSettings.RacingWheelSelectedStackName = newName;
+				contextSettings.RacingWheelSelectedFFBGraphName = newName;
 			}
 		}
 
-		if ( RacingWheelSelectedStackName == oldName )
+		if ( RacingWheelSelectedFFBGraphName == oldName )
 		{
-			RacingWheelSelectedStackName = newName;
+			RacingWheelSelectedFFBGraphName = newName;
 		}
 	}
 
-	// Built-ins cannot be deleted. Guarantees at least one stack and a valid selection remain, and prunes the
-	// deleted stack's now-orphaned per-context value keys.
-	public void DeleteFFBStack( string name )
+	// Built-ins cannot be deleted. Guarantees at least one graph and a valid selection remain, and prunes the
+	// deleted graph's now-orphaned per-context value keys.
+	public void DeleteFFBGraph( string name )
 	{
-		if ( !RacingWheelStacks.TryGetValue( name, out var stack ) || stack.IsBuiltIn )
+		if ( !RacingWheelFFBGraphs.TryGetValue( name, out var graph ) || graph.IsBuiltIn )
 		{
 			return;
 		}
 
 		var orphanedModuleIds = new HashSet<string>( StringComparer.Ordinal );
 
-		foreach ( var module in stack.Modules )
+		foreach ( var module in graph.Modules )
 		{
-			if ( module.ModuleId is not ( FFBStack.Source60ModuleId or FFBStack.Source360ModuleId or FFBStack.OutputModuleId ) )
+			if ( module.ModuleId is not ( FFBGraph.Source60ModuleId or FFBGraph.Source360ModuleId or FFBGraph.OutputModuleId ) )
 			{
 				orphanedModuleIds.Add( module.ModuleId );
 			}
 		}
 
-		RacingWheelStacks.Remove( name );
+		RacingWheelFFBGraphs.Remove( name );
 
 		foreach ( var contextSettings in ContextSettingsDictionary.Values )
 		{
-			var keysToRemove = contextSettings.RacingWheelStackModuleValues.Keys.Where( key => orphanedModuleIds.Contains( key[ ..Math.Max( 0, key.IndexOf( '/' ) ) ] ) ).ToArray();
+			var keysToRemove = contextSettings.RacingWheelFFBGraphModuleValues.Keys.Where( key => orphanedModuleIds.Contains( key[ ..Math.Max( 0, key.IndexOf( '/' ) ) ] ) ).ToArray();
 
 			foreach ( var key in keysToRemove )
 			{
-				contextSettings.RacingWheelStackModuleValues.Remove( key );
+				contextSettings.RacingWheelFFBGraphModuleValues.Remove( key );
 			}
 
-			if ( contextSettings.RacingWheelSelectedStackName == name )
+			if ( contextSettings.RacingWheelSelectedFFBGraphName == name )
 			{
-				contextSettings.RacingWheelSelectedStackName = string.Empty;
+				contextSettings.RacingWheelSelectedFFBGraphName = string.Empty;
 			}
 		}
 
-		if ( !RacingWheelStacks.ContainsKey( RacingWheelSelectedStackName ) )
+		if ( !RacingWheelFFBGraphs.ContainsKey( RacingWheelSelectedFFBGraphName ) )
 		{
-			RacingWheelSelectedStackName = RacingWheelStacks.Keys.First();
+			RacingWheelSelectedFFBGraphName = RacingWheelFFBGraphs.Keys.First();
 		}
 
-		SyncFFBStackModuleValues( false );
+		SyncFFBGraphModuleValues( false );
 	}
 
-	// Rebuilds a built-in stack from the live settings, preserving its deterministic module ids (so per-context
+	// Rebuilds a built-in graph from the live settings, preserving its deterministic module ids (so per-context
 	// value keys stay valid) while resetting its structure and baseline values.
-	public void ResetBuiltInFFBStack( string name )
+	public void ResetBuiltInFFBGraph( string name )
 	{
-		var freshStack = FFBStackMigration.CreateBuiltInStacks( this ).FirstOrDefault( stack => stack.Name == name );
+		var freshGraph = FFBGraphMigration.CreateBuiltInGraphs( this ).FirstOrDefault( graph => graph.Name == name );
 
-		if ( freshStack == null )
+		if ( freshGraph == null )
 		{
 			return;
 		}
 
-		RacingWheelStacks[ name ] = freshStack;
+		RacingWheelFFBGraphs[ name ] = freshGraph;
 
-		if ( RacingWheelSelectedStackName == name )
+		if ( RacingWheelSelectedFFBGraphName == name )
 		{
 			App.Instance!.RacingWheel.RebuildLiveEngine();
 
-			RebuildStackEditorViewModel();
+			RebuildGraphEditorViewModel();
 		}
 	}
 
-	private static void RegenerateUserStackModuleIds( FFBStack stack )
+	private static void RegenerateUserGraphModuleIds( FFBGraph graph )
 	{
 		var idMap = new Dictionary<string, string>( StringComparer.Ordinal );
 
-		foreach ( var module in stack.Modules )
+		foreach ( var module in graph.Modules )
 		{
-			if ( module.ModuleId is not ( FFBStack.Source60ModuleId or FFBStack.Source360ModuleId or FFBStack.OutputModuleId ) )
+			if ( module.ModuleId is not ( FFBGraph.Source60ModuleId or FFBGraph.Source360ModuleId or FFBGraph.OutputModuleId ) )
 			{
 				idMap[ module.ModuleId ] = Guid.NewGuid().ToString( "N" );
 			}
 		}
 
-		foreach ( var module in stack.Modules )
+		foreach ( var module in graph.Modules )
 		{
 			if ( idMap.TryGetValue( module.ModuleId, out var newId ) )
 			{
@@ -635,102 +636,109 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	// Runs every launch (from SettingsFile.Initialize): (re)creates any missing built-in stacks from the live
+	// Runs every launch (from SettingsFile.Initialize): (re)creates any missing built-in graphs from the live
 	// settings and repairs the selection if it is empty or dangling.
-	public void EnsureBuiltInFFBStacksInitialized()
+	public void EnsureBuiltInFFBGraphsInitialized()
 	{
-		foreach ( var stack in FFBStackMigration.CreateBuiltInStacks( this ) )
+		foreach ( var graph in FFBGraphMigration.CreateBuiltInGraphs( this ) )
 		{
-			if ( !RacingWheelStacks.ContainsKey( stack.Name ) )
+			if ( !RacingWheelFFBGraphs.ContainsKey( graph.Name ) )
 			{
-				RacingWheelStacks[ stack.Name ] = stack;
+				RacingWheelFFBGraphs[ graph.Name ] = graph;
 			}
 		}
 
-		if ( string.IsNullOrEmpty( RacingWheelSelectedStackName ) || !RacingWheelStacks.ContainsKey( RacingWheelSelectedStackName ) )
+		if ( string.IsNullOrEmpty( RacingWheelSelectedFFBGraphName ) || !RacingWheelFFBGraphs.ContainsKey( RacingWheelSelectedFFBGraphName ) )
 		{
-			var defaultName = FFBStackMigration.BuiltInStackNameFor( RacingWheelAlgorithm );
+			var defaultName = FFBGraphMigration.BuiltInGraphNameFor( RacingWheelAlgorithm );
 
-			RacingWheelSelectedStackName = RacingWheelStacks.ContainsKey( defaultName ) ? defaultName : RacingWheelStacks.Keys.First();
+			RacingWheelSelectedFFBGraphName = RacingWheelFFBGraphs.ContainsKey( defaultName ) ? defaultName : RacingWheelFFBGraphs.Keys.First();
 		}
 	}
 
-	// One-time migration of the old per-algorithm settings into the modular FFB stack model. Runs after the
+	// One-time migration of the old per-algorithm settings into the modular FFB graph model. Runs after the
 	// built-ins exist, under paused serialization (SettingsFile.Initialize). Fresh installs pre-set the flag so
 	// this never runs over defaults. Old Settings/ContextSettings/ContextSwitches stay dormant (still serialized)
 	// for one release (RacingWheelAutoMargin precedent).
-	public void MigrateToFFBStacks()
+	public void MigrateToFFBGraphs()
 	{
-		if ( RacingWheelFFBStacksMigrated )
+		if ( RacingWheelFFBGraphsMigrated )
 		{
 			return;
 		}
 
-		RacingWheelFFBStacksMigrated = true;
+		RacingWheelFFBGraphsMigrated = true;
 
-		EnsureBuiltInFFBStacksInitialized();
+		EnsureBuiltInFFBGraphsInitialized();
 
-		var structureMultiSource = FFBStackMigration.CollapseMultiSource( RacingWheelMultiFFBSourceSelection );
+		var structureMultiSource = FFBGraphMigration.CollapseMultiSource( RacingWheelMultiFFBSourceSelection );
 
 		foreach ( var contextSettings in ContextSettingsDictionary.Values )
 		{
-			contextSettings.RacingWheelStackModuleValues = FFBStackMigration.MapOldSettingsIntoStackValues( contextSettings, this, structureMultiSource );
-			contextSettings.RacingWheelSelectedStackName = FFBStackMigration.BuiltInStackNameFor( contextSettings.RacingWheelAlgorithm );
+			contextSettings.RacingWheelFFBGraphModuleValues = FFBGraphMigration.MapOldSettingsIntoGraphValues( contextSettings, this, structureMultiSource );
+			contextSettings.RacingWheelSelectedFFBGraphName = FFBGraphMigration.BuiltInGraphNameFor( contextSettings.RacingWheelAlgorithm );
 		}
 
-		// selected-stack scope follows the old algorithm scope; the single values scope is the OR-union of every
-		// migrated wheel setting's scope (granularity loss - noted in release notes).
-		RacingWheelSelectedStackNameContextSwitches = CloneContextSwitches( RacingWheelAlgorithmContextSwitches );
-		RacingWheelStackValuesContextSwitches = ComputeMigratedValuesScope();
+		// one scope covers both the selected graph and its module values: the OR-union of the old algorithm scope
+		// and every migrated wheel setting's scope (granularity loss - noted in release notes).
+		var algorithmScope = RacingWheelAlgorithmContextSwitches;
+		var valuesScope = ComputeMigratedValuesScope();
 
-		RacingWheelSelectedStackName = FFBStackMigration.BuiltInStackNameFor( RacingWheelAlgorithm );
+		RacingWheelSelectedFFBGraphNameContextSwitches = new ContextSwitches(
+			algorithmScope.PerWheelbase || valuesScope.PerWheelbase,
+			algorithmScope.PerCar || valuesScope.PerCar,
+			algorithmScope.PerTrack || valuesScope.PerTrack,
+			algorithmScope.PerTrackConfiguration || valuesScope.PerTrackConfiguration,
+			algorithmScope.PerWetDry || valuesScope.PerWetDry );
 
-		App.Instance!.Logger.WriteLine( $"[Settings] Migrated to FFB stacks: {RacingWheelStacks.Count} built-in stacks, {ContextSettingsDictionary.Count} contexts, selected '{RacingWheelSelectedStackName}', values scope ({RacingWheelStackValuesContextSwitches.PerWheelbase}|{RacingWheelStackValuesContextSwitches.PerCar}|{RacingWheelStackValuesContextSwitches.PerTrack}|{RacingWheelStackValuesContextSwitches.PerTrackConfiguration}|{RacingWheelStackValuesContextSwitches.PerWetDry})" );
+		RacingWheelSelectedFFBGraphName = FFBGraphMigration.BuiltInGraphNameFor( RacingWheelAlgorithm );
 
-		RacingWheelFFBStackSchemaVersion = CurrentFFBStackSchemaVersion;
+		App.Instance!.Logger.WriteLine( $"[Settings] Migrated to FFB graphs: {RacingWheelFFBGraphs.Count} built-in graphs, {ContextSettingsDictionary.Count} contexts, selected '{RacingWheelSelectedFFBGraphName}', scope ({RacingWheelSelectedFFBGraphNameContextSwitches.PerWheelbase}|{RacingWheelSelectedFFBGraphNameContextSwitches.PerCar}|{RacingWheelSelectedFFBGraphNameContextSwitches.PerTrack}|{RacingWheelSelectedFFBGraphNameContextSwitches.PerTrackConfiguration}|{RacingWheelSelectedFFBGraphNameContextSwitches.PerWetDry})" );
+
+		RacingWheelFFBGraphSchemaVersion = CurrentFFBGraphSchemaVersion;
 	}
 
-	// Regenerates the built-in FFB stacks (and their per-context values) from the still-dormant old per-algorithm
-	// settings when a stored file predates a change to the built-in stack layout (see CurrentFFBStackSchemaVersion).
-	// Runs every launch after MigrateToFFBStacks; a no-op once the stored version is current or the file has not yet
+	// Regenerates the built-in FFB graphs (and their per-context values) from the still-dormant old per-algorithm
+	// settings when a stored file predates a change to the built-in graph layout (see CurrentFFBGraphSchemaVersion).
+	// Runs every launch after MigrateToFFBGraphs; a no-op once the stored version is current or the file has not yet
 	// been migrated (a just-migrated file is already current, and fresh installs are stamped current on creation).
-	// The built-in stacks are rebuilt in place and every context's values are re-derived, so any tuning made
-	// DIRECTLY in the new stack editor since migration is reset (the old settings remain the source of truth for one
-	// release). User-created stacks are left intact structurally, but their per-context value overrides are dropped.
+	// The built-in graphs are rebuilt in place and every context's values are re-derived, so any tuning made
+	// DIRECTLY in the new graph editor since migration is reset (the old settings remain the source of truth for one
+	// release). User-created graphs are left intact structurally, but their per-context value overrides are dropped.
 	// Returns true if it regenerated (so the caller can queue serialization once serialization is un-paused - the
 	// bumped version must reach disk or this would re-run, and re-reset editor tweaks, on every launch).
-	public bool UpgradeFFBStackSchemaIfNeeded()
+	public bool UpgradeFFBGraphSchemaIfNeeded()
 	{
-		if ( !RacingWheelFFBStacksMigrated || ( RacingWheelFFBStackSchemaVersion >= CurrentFFBStackSchemaVersion ) )
+		if ( !RacingWheelFFBGraphsMigrated || ( RacingWheelFFBGraphSchemaVersion >= CurrentFFBGraphSchemaVersion ) )
 		{
 			return false;
 		}
 
-		RacingWheelFFBStackSchemaVersion = CurrentFFBStackSchemaVersion;
+		RacingWheelFFBGraphSchemaVersion = CurrentFFBGraphSchemaVersion;
 
-		// rebuild every built-in stack in place with the new module layout (overwrites the stored built-ins)
-		foreach ( var stack in FFBStackMigration.CreateBuiltInStacks( this ) )
+		// rebuild every built-in graph in place with the new module layout (overwrites the stored built-ins)
+		foreach ( var graph in FFBGraphMigration.CreateBuiltInGraphs( this ) )
 		{
-			RacingWheelStacks[ stack.Name ] = stack;
+			RacingWheelFFBGraphs[ graph.Name ] = graph;
 		}
 
-		// re-derive every context's stack values from the (still-present) old settings so the new module ids resolve
-		var structureMultiSource = FFBStackMigration.CollapseMultiSource( RacingWheelMultiFFBSourceSelection );
+		// re-derive every context's graph values from the (still-present) old settings so the new module ids resolve
+		var structureMultiSource = FFBGraphMigration.CollapseMultiSource( RacingWheelMultiFFBSourceSelection );
 
 		foreach ( var contextSettings in ContextSettingsDictionary.Values )
 		{
-			contextSettings.RacingWheelStackModuleValues = FFBStackMigration.MapOldSettingsIntoStackValues( contextSettings, this, structureMultiSource );
+			contextSettings.RacingWheelFFBGraphModuleValues = FFBGraphMigration.MapOldSettingsIntoGraphValues( contextSettings, this, structureMultiSource );
 		}
 
 		// repair the selection if it now dangles (built-in names are unchanged, so this is only defensive). The
 		// caller (SettingsFile.Initialize) rebuilds the live engine + editor next, and the first per-context reload
 		// applies this car/track's values - the same follow-up the one-time migration relies on.
-		if ( !RacingWheelStacks.ContainsKey( RacingWheelSelectedStackName ) )
+		if ( !RacingWheelFFBGraphs.ContainsKey( RacingWheelSelectedFFBGraphName ) )
 		{
-			RacingWheelSelectedStackName = RacingWheelStacks.Keys.First();
+			RacingWheelSelectedFFBGraphName = RacingWheelFFBGraphs.Keys.First();
 		}
 
-		App.Instance!.Logger.WriteLine( $"[Settings] Regenerated FFB stacks for schema v{CurrentFFBStackSchemaVersion}: {RacingWheelStacks.Count} built-in stacks, {ContextSettingsDictionary.Count} contexts re-mapped from old settings" );
+		App.Instance!.Logger.WriteLine( $"[Settings] Regenerated FFB graphs for schema v{CurrentFFBGraphSchemaVersion}: {RacingWheelFFBGraphs.Count} built-in graphs, {ContextSettingsDictionary.Count} contexts re-mapped from old settings" );
 
 		return true;
 	}
@@ -743,7 +751,7 @@ public class Settings : INotifyPropertyChanged
 		var perTrackConfiguration = false;
 		var perWetDry = false;
 
-		foreach ( var baseName in FFBStackMigration.MigratedWheelSettingBaseNames )
+		foreach ( var baseName in FFBGraphMigration.MigratedWheelSettingBaseNames )
 		{
 			var contextSwitchesProperty = GetType().GetProperty( $"{baseName}ContextSwitches" );
 
@@ -824,11 +832,11 @@ public class Settings : INotifyPropertyChanged
 
 		SuppressUpdatingOfContextSettings = false;
 
-		// FFB stack per-module values ride their own context-switch set (RacingWheelStackValuesContextSwitches),
-		// not the paired-property reflection loop above, so sync them here after the loop. This covers all four
-		// context-change call sites and the write path automatically. The selected-stack NAME itself is synced by
-		// the reflection loop (it has a matching ContextSwitches + ContextSettings property).
-		SyncFFBStackModuleValues( updateContextSettings );
+		// FFB graph per-module values ride the graph-selection context scope but live outside the paired-property
+		// reflection loop above (their store is a composite-key dictionary), so sync them here after the loop.
+		// This covers all four context-change call sites and the write path automatically. The selected-graph
+		// NAME itself is synced by the reflection loop (it has a matching ContextSwitches + ContextSettings property).
+		SyncFFBGraphModuleValues( updateContextSettings );
 
 		// read mode runs on car / session / weather change and at startup; refresh the overlays to the layout
 		// for the now-current car (or the non-car layout when per-car is disabled or no car is active)
@@ -938,8 +946,8 @@ public class Settings : INotifyPropertyChanged
 			UpdateSteeringEffectsSeatOfPantsWheelVibrationStrengthString();
 			UpdateSteeringEffectsSeatOfPantsWheelConstantForceStrengthString();
 
-			// FFB stack knobs whose display is scaled by wheel force (strengths, output min/max, compression thresholds) must re-render.
-			DataContext.Instance.RacingWheelStackViewModel.RefreshValueStrings();
+			// FFB graph knobs whose display is scaled by wheel force (strengths, output min/max, compression thresholds) must re-render.
+			DataContext.Instance.RacingWheelGraphViewModel.RefreshValueStrings();
 
 			var app = App.Instance!;
 
@@ -1325,33 +1333,33 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Racing wheel - FFB stack
+	#region Racing wheel - FFB graph
 
-	// The modular FFB stack replaces the old per-algorithm settings (kept dormant above for one release).
-	// RacingWheelStacks is the named store (built-ins + user stacks), global like ControllerProfiles. The
-	// selected stack NAME is per-context (matching ContextSwitches + ContextSettings property, synced by the
-	// UpdateSettings reflection loop). Per-module VALUES ride a separate context scope
-	// (RacingWheelStackValuesContextSwitches) and are synced by SyncFFBStackModuleValues.
-	public SerializableDictionary<string, FFBStack> RacingWheelStacks { get; set; } = [];
+	// The modular FFB graph replaces the old per-algorithm settings (kept dormant above for one release).
+	// RacingWheelFFBGraphs is the named store (built-ins + user graphs), global like ControllerProfiles. The
+	// selected graph NAME is per-context (matching ContextSwitches + ContextSettings property, synced by the
+	// UpdateSettings reflection loop). Per-module VALUES ride the SAME context scope
+	// (RacingWheelSelectedFFBGraphNameContextSwitches) and are synced by SyncFFBGraphModuleValues.
+	public SerializableDictionary<string, FFBGraph> RacingWheelFFBGraphs { get; set; } = [];
 
-	private string _racingWheelSelectedStackName = "";
+	private string _racingWheelSelectedFFBGraphName = "";
 
-	public string RacingWheelSelectedStackName
+	public string RacingWheelSelectedFFBGraphName
 	{
-		get => _racingWheelSelectedStackName;
+		get => _racingWheelSelectedFFBGraphName;
 
 		set
 		{
-			if ( value != _racingWheelSelectedStackName )
+			if ( value != _racingWheelSelectedFFBGraphName )
 			{
-				_racingWheelSelectedStackName = value;
+				_racingWheelSelectedFFBGraphName = value;
 
 				OnPropertyChanged();
 			}
 
-			// Swap the live engine to the newly selected stack. Skipped while settings are loading or while the
+			// Swap the live engine to the newly selected graph. Skipped while settings are loading or while the
 			// UpdateSettings reflection loop is running (SuppressUpdatingOfContextSettings) — in the read-path
-			// case SyncFFBStackModuleValues rebuilds after loading this context's values (precedent:
+			// case SyncFFBGraphModuleValues rebuilds after loading this context's values (precedent:
 			// RacingWheelAlgorithm setter's UI refresh).
 			if ( !SuppressUpdatingOfContextSettings )
 			{
@@ -1360,23 +1368,39 @@ public class Settings : INotifyPropertyChanged
 				app.RacingWheel.RebuildLiveEngine();
 				app.RacingWheel.UpdateAlgorithmPreview = true;
 
-				RebuildStackEditorViewModel();
+				RebuildGraphEditorViewModel();
 			}
 		}
 	}
 
-	public ContextSwitches RacingWheelSelectedStackNameContextSwitches { get; set; } = new( false, false, false, false, false );
+	// One scope for the whole FFB graph feature: which graph is selected AND its per-module values.
+	public ContextSwitches RacingWheelSelectedFFBGraphNameContextSwitches { get; set; } = new( true, true, false, false, false );
 
-	// The per-context scope for FFB stack module VALUES (independent of the selected-stack-name scope above).
-	public ContextSwitches RacingWheelStackValuesContextSwitches { get; set; } = new( true, true, false, false, false );
+	// Snap-to-grid toggle on the node editor (global — not per-context).
+	private bool _racingWheelFFBGraphSnapToGrid = false;
 
-	public bool RacingWheelFFBStacksMigrated { get; set; } = false;
+	public bool RacingWheelFFBGraphSnapToGrid
+	{
+		get => _racingWheelFFBGraphSnapToGrid;
 
-	// Structural version of the built-in FFB stacks. Bumped when the module layout of a built-in stack changes
+		set
+		{
+			if ( value != _racingWheelFFBGraphSnapToGrid )
+			{
+				_racingWheelFFBGraphSnapToGrid = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	public bool RacingWheelFFBGraphsMigrated { get; set; } = false;
+
+	// Structural version of the built-in FFB graphs. Bumped when the module layout of a built-in graph changes
 	// (e.g. splitting the Output module's curve/min/max into their own modules); a stored file below the current
-	// version is regenerated from the still-dormant old settings on load. See UpgradeFFBStackSchemaIfNeeded.
-	public const int CurrentFFBStackSchemaVersion = 1;
-	public int RacingWheelFFBStackSchemaVersion { get; set; } = 0;
+	// version is regenerated from the still-dormant old settings on load. See UpgradeFFBGraphSchemaIfNeeded.
+	public const int CurrentFFBGraphSchemaVersion = 1;
+	public int RacingWheelFFBGraphSchemaVersion { get; set; } = 0;
 
 	#endregion
 

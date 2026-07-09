@@ -4,7 +4,7 @@ using MarvinsAIRARefactored.Classes;
 namespace MarvinsAIRARefactored.FFB.Modules;
 
 // Output-stage shapers, split out of the old monolithic Output module so they can be placed at any point in a
-// stack (like Gain). Curve and the soft limiter are unit-interval operations, so they normalize by MaxForce,
+// graph (like Gain). Curve and the soft limiter are unit-interval operations, so they normalize by MaxForce,
 // apply, then denormalize (keeping the Nm main-bus convention). Maximum and Minimum are expressed directly in Nm,
 // so they act on the bus value with no conversion. Placed in the old order (Curve -> SoftLimiter -> Maximum ->
 // Minimum) ahead of a bare Output, they reproduce the old OutputModule tail exactly.

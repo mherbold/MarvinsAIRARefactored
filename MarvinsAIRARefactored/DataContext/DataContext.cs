@@ -19,9 +19,9 @@ public class DataContext : INotifyPropertyChanged
 
 	public Localization Localization { get; }
 
-	// Root VM for the RacingWheelPage FFB stack editor. Rebuilt from the currently selected stack on selection /
-	// stack-management / per-context changes (see FFBStackViewModel.RebuildFromCurrentSelection).
-	public FFB.FFBStackViewModel RacingWheelStackViewModel { get; } = new();
+	// Root VM for the RacingWheelPage FFB graph editor. Rebuilt from the currently selected graph on selection /
+	// graph-management / per-context changes (see FFBGraphViewModel.RebuildFromCurrentSelection).
+	public FFB.FFBGraphViewModel RacingWheelGraphViewModel { get; } = new();
 
 	private Settings _settings;
 	public Settings Settings

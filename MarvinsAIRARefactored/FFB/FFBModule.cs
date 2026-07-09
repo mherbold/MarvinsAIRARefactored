@@ -2,7 +2,7 @@
 namespace MarvinsAIRARefactored.FFB;
 
 /// <summary>
-/// Abstract runtime base for every FFB module. One instance lives inside an <see cref="FFBStackEngine"/>.
+/// Abstract runtime base for every FFB module. One instance lives inside an <see cref="FFBGraphEngine"/>.
 /// Setting values are resolved into the flat <see cref="_v"/> array (in effective-descriptor order, so
 /// index 0 is always the reserved Enabled switch) at Configure time; the hot path reads them with no
 /// dictionary lookups, no allocation, and no locks. Edit-time knob changes arrive via <see cref="SetValue"/>
@@ -13,9 +13,9 @@ public abstract class FFBModule
 	public FFBModuleData Model = null!;
 
 	/// <summary>The engine that owns this module (set on Rebuild). Curb-consuming modules read
-	/// <see cref="FFBStackEngine.CurbProtectionFactor"/> from it, exactly where the old code read
+	/// <see cref="FFBGraphEngine.CurbProtectionFactor"/> from it, exactly where the old code read
 	/// curbProtectionLerpFactor.</summary>
-	public FFBStackEngine Owner = null!;
+	public FFBGraphEngine Owner = null!;
 
 	protected float[] _v = [];                 // resolved setting values, effective-descriptor order (0 = Enabled)
 
@@ -53,7 +53,7 @@ public abstract class FFBModule
 		}
 	}
 
-	/// <summary>Zero all internal (per-tick recursive) state. Called on Rebuild and stack/context change.</summary>
+	/// <summary>Zero all internal (per-tick recursive) state. Called on Rebuild and graph/context change.</summary>
 	public abstract void Reset();
 
 	/// <summary>
