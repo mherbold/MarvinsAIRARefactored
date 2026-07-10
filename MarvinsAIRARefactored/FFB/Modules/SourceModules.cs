@@ -36,3 +36,18 @@ public sealed class Source360HzModule : FFBModule
 		return ctx.Torque360Hz;
 	}
 }
+
+/// <summary>
+/// LFE source. Emits the low-frequency-effects audio magnitude scaled to full wheel force (Nm), gated on
+/// being on track (old 1413–1416). Wire it through a Gain module and blend it into the main signal with a
+/// Mixer — a Gain of 0.05 summed in reproduces the old LFE mix at its default 5% strength.
+/// </summary>
+public sealed class SourceLFEModule : FFBModule
+{
+	public override void Reset() { }
+
+	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
+	{
+		return ctx.IsOnTrack ? ctx.LFEMagnitude * ctx.MaxForce : 0f;
+	}
+}

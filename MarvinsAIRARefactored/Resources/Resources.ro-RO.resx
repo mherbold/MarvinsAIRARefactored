@@ -1818,7 +1818,217 @@
     <value>(neasociat)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activează poziția și scalarea suprapunerii pentru fiecare mașină</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>Sursă 60 Hz</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>Sursă 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>Sursă LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Ieșire</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Filtru trece-jos</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Filtru trece-sus</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Amplificare</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Sumă</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Amestecare</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Limitator de variație</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Compresor de variație</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Compresor</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Accentuator de tranzienți</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Netezire adaptivă</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Amestecare adaptivă</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Curbă</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Limitator moale</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Maxim</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Minim</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Protecție la coliziune</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Protecție la borduri</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Putere parcat</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Blocare moale</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Fricțiune</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Centrare volan</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Forță subviraj</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Forță supraviraj</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Forță seat-of-pants</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Vibrație subviraj</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Vibrație supraviraj</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibrație seat-of-pants</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Vibrație turație de schimbare</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Vibrație schimbare viteză</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>Vibrație ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Amplificare după viteză</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Textură drum</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Textură alunecare</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Dither cuplu</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Pantă</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Tăiere</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Amplificare</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Mix</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Limită</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Prag</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Knee</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Raport</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Mod vârf</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Cantitate</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Tăiere la vârf</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Forță G longitudinală</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Forță G laterală</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>În cursă</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Parcat</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Model</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Viteză minimă</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Viteză maximă</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Amplificare la viteză minimă</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Amplificare la viteză maximă</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Un pol</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Doi poli</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Intrare</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Intrare A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Intrare B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Adaugă modul</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Alege înregistrarea</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Clonează graficul curent</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>Grafic FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Nume grafic</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Grafic nou</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Începe cu un grafic gol</value>
+  </data>
+
 
 
 

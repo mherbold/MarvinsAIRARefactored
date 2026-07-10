@@ -1818,7 +1818,217 @@
     <value>(atanmamış)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Araç başına katman konumu ve ölçeklendirmesini etkinleştir</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz kaynağı</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz kaynağı</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE kaynağı</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Çıkış</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Alçak geçiren filtre</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Yüksek geçiren filtre</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Kazanç</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Toplama</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Karışım</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Değişim hızı sınırlayıcı</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Değişim hızı sıkıştırıcı</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Sıkıştırıcı</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Transient güçlendirici</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Uyarlanabilir yumuşatıcı</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Uyarlanabilir karışım</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Eğri</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Yumuşak sınırlayıcı</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Maksimum</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Kaza koruması</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Kerb koruması</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Park halinde kuvvet</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Yumuşak kilitleme</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Sürtünme</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Merkezleme</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Önden kayma kuvveti</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Arkadan kayma kuvveti</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Seat-of-pants kuvveti</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Önden kayma titreşimi</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Arkadan kayma titreşimi</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Seat-of-pants titreşimi</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Vites değişim devri titreşimi</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Vites değişikliği titreşimi</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS titreşimi</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Hız kazancı</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Yol dokusu</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Kayma dokusu</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Tork dither</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Eğim</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Kesim frekansı</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Kazanç</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Karışım oranı</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Sınır</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Eşik</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Knee</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Oran</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Tepe modu</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Miktar</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Tepe kesim frekansı</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Boyuna G kuvveti</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Yanal G kuvveti</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Yarış sırasında</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Park halindeyken</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Desen</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Minimum hız</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Maksimum hız</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Minimum hızda kazanç</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Maksimum hızda kazanç</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Tek kutuplu</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Çift kutuplu</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Giriş</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Giriş A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Giriş B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Modül ekle</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Kayıt seç</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Mevcut grafiği kopyala</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB grafiği</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Grafik adı</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Yeni grafik</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Boş grafikle başla</value>
+  </data>
+
 
 
 

@@ -87,7 +87,7 @@ public class Graph : GraphBase
 				{
 					var layer = _layerArray[ (int) layerIndex ];
 
-					Update( layer.value, layer.r, layer.g, layer.b );
+					UpdateSolidFill( layer.value, layer.r, layer.g, layer.b );
 				}
 			}
 

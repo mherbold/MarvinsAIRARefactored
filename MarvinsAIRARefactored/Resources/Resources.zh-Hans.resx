@@ -1818,7 +1818,217 @@
     <value>（未映射）</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>启用每辆车的叠加层位置和缩放</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz 信号源</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz 信号源</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE 信号源</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>输出</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>低通滤波器</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>高通滤波器</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>增益</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>叠加</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>混合</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>变化率限制器</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>变化率压缩器</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>压缩器</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>瞬态增强器</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>自适应平滑器</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>自适应混合</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>曲线</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>软限制器</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>最大值</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>最小值</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>碰撞保护</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>路肩效果保护</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>停车力度</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>软锁</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>摩擦</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>方向盘回中</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>转向不足力</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>转向过度力</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Seat-of-Pants 力</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>转向不足振动</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>转向过度振动</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Seat-of-Pants 振动</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>换挡转速振动</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>换挡振动</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS 振动</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>速度增益</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>路面纹理</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>打滑纹理</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>扭矩抖动</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>斜率</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>截止频率</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>增益</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>混合比</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>限制</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>阈值</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>拐点</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>压缩比</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>峰值模式</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>量</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>峰值截止频率</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>纵向 G 力</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>横向 G 力</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>行驶时</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>停车时</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>模式</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>最低速度</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>最高速度</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>最低速度增益</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>最高速度增益</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>一阶</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>二阶</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>输入</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>输入 A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>输入 B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>添加模块</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>选择录制文件</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>克隆当前图表</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB 图表</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>图表名称</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>新建图表</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>从空白图表开始</value>
+  </data>
+
 
 
 

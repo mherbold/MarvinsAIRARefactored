@@ -1818,7 +1818,217 @@
     <value>(nepřiřazeno)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Povolit pozici a měřítko překryvu pro každé auto</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>Zdroj 60 Hz</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>Zdroj 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>Zdroj LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Výstup</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Dolní propust</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Horní propust</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Zesílení</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Součet</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Míchání</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Omezovač rychlosti změny</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Kompresor rychlosti změny</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Kompresor</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Zvýraznění transientů</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Adaptivní vyhlazování</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Adaptivní míchání</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Křivka</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Měkký limiter</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Ochrana při nárazu</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Ochrana při přejetí obrubníku</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Síla při stání</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Doraz řízení</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Odpor</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Centrování volantu</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Síla nedotáčivosti</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Síla přetáčivosti</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Síla seat-of-pants</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Vibrace nedotáčivosti</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Vibrace přetáčivosti</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibrace seat-of-pants</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Vibrace otáček řazení</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Vibrace přeřazení</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>Vibrace ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Zesílení podle rychlosti</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Textura vozovky</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Textura skluzu</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Dithering momentu</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Strmost</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Mezní frekvence</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Zesílení</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Mix</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Limit</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Práh</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Koleno</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Poměr</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Špičkový režim</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Množství</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Mezní frekvence špiček</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Podélné přetížení G</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Boční přetížení G</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Během závodu</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Při stání</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Vzor</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Minimální rychlost</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Maximální rychlost</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Zesílení při min. rychlosti</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Zesílení při max. rychlosti</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Jeden pól</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Dva póly</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Vstup</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Vstup A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Vstup B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Přidat modul</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Vybrat nahrávku</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Klonovat aktuální graf</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>Graf FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Název grafu</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Nový graf</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Začít s prázdným grafem</value>
+  </data>
+
 
 
 

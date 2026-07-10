@@ -1399,7 +1399,7 @@ public class Settings : INotifyPropertyChanged
 	// Structural version of the built-in FFB graphs. Bumped when the module layout of a built-in graph changes
 	// (e.g. splitting the Output module's curve/min/max into their own modules); a stored file below the current
 	// version is regenerated from the still-dormant old settings on load. See UpgradeFFBGraphSchemaIfNeeded.
-	public const int CurrentFFBGraphSchemaVersion = 1;
+	public const int CurrentFFBGraphSchemaVersion = 16;
 	public int RacingWheelFFBGraphSchemaVersion { get; set; } = 0;
 
 	#endregion

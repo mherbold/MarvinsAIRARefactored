@@ -9,9 +9,10 @@
              d:DesignWidth="800"
              d:DesignHeight="400">
 
-	<!-- Node-graph editor for the FFB graph: one draggable box per main-signal module, with display-only bezier
-	     wires connecting module outputs to inputs. Clicking a node selects it (the settings panel and preview
-	     follow); re-wiring happens via the input combos on the selected module's settings panel. -->
+	<!-- Node-graph editor for the FFB graph: one draggable box per main-signal module, with bezier wires
+	     connecting module outputs to inputs. Clicking a node selects it (the settings panel and preview follow);
+	     re-wiring happens by dragging from a connector dot to a compatible dot on another node, or via the input
+	     combos on the selected module's settings panel. -->
 
 	<UserControl.Resources>
 		<converters:BooleanToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsed" />
@@ -152,8 +153,8 @@
 			<!-- canvas tools (pinned to the corner, outside the scrolling canvas): snap-to-grid toggle + auto layout -->
 			<StackPanel Orientation="Horizontal"
 			            HorizontalAlignment="Right"
-			            VerticalAlignment="Bottom"
-			            Margin="0,0,8,14"
+			            VerticalAlignment="Top"
+			            Margin="0,8,8,0"
 			            Panel.ZIndex="1">
 
 				<local:MairaButton x:Name="SnapToGrid_MairaButton"

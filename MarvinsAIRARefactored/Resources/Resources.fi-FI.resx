@@ -1818,7 +1818,217 @@
     <value>(ei määritetty)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Ota käyttöön autokohtainen peitteen sijainti ja skaalaus</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz -lähde</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz -lähde</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE-lähde</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Ulostulo</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Alipäästösuodatin</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Ylipäästösuodatin</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Vahvistus</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Summaus</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Sekoitus</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Muutosnopeuden rajoitin</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Muutosnopeuden kompressori</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Kompressori</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Transienttikorostin</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Adaptiivinen tasoitin</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Adaptiivinen sekoitus</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Käyrä</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Pehmeä rajoitin</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Maksimi</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Minimi</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Törmäyssuoja</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Reunakivisuoja</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Pysäköitynä-voimakkuus</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Pehmeä lukko</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Kitka</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Ratin keskitys</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Aliohjausvoima</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Yliohjausvoima</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Istuintuntemusvoima</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Aliohjausvärähtely</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Yliohjausvärähtely</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Istuintuntemusvärähtely</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Vaihto-RPM-värähtely</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Vaihteenvaihtovärähtely</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS-värähtely</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Nopeusvahvistus</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Tietekstuuri</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Luistotekstuuri</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Vääntömomentin dither</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Jyrkkyys</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Rajataajuus</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Vahvistus</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Sekoitussuhde</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Raja</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Kynnys</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Polvi</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Suhde</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Huipputila</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Määrä</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Huippujen rajataajuus</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Pitkittäinen G-voima</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Sivuttainen G-voima</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Kilpailun aikana</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Pysäköitynä</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Kuvio</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Minimivauhti</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Maksimivauhti</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Vahvistus minimivauhdissa</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Vahvistus maksimivauhdissa</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Yksinapainen</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Kaksinapainen</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Sisääntulo</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Sisääntulo A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Sisääntulo B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Lisää moduuli</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Valitse tallennus</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Kloonaa nykyinen kaavio</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB-kaavio</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Kaavion nimi</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Uusi kaavio</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Aloita tyhjä kaavio</value>
+  </data>
+
 
 
 

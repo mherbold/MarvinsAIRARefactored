@@ -7,6 +7,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
 
+using Cursors = System.Windows.Input.Cursors;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 using Point = System.Windows.Point;
 using UserControl = System.Windows.Controls.UserControl;
@@ -17,10 +18,13 @@ namespace MarvinsAIRARefactored.Controls;
 
 /// <summary>
 /// Node-graph editor for the FFB graph. Nodes are the non-generator module view-models (positions live in the
-/// model via <see cref="FFBModuleViewModel.NodeX"/>/<see cref="FFBModuleViewModel.NodeY"/>); wires are display-only
-/// bezier paths recomputed from those positions, so no visual-tree measuring is needed. Dragging a node writes
-/// positions through the view-model and queues one settings serialization when the drag ends — node positions are
-/// presentation state and never rebuild an engine.
+/// model via <see cref="FFBModuleViewModel.NodeX"/>/<see cref="FFBModuleViewModel.NodeY"/>); wires are bezier
+/// paths recomputed from those positions, so no visual-tree measuring is needed. Dragging a node writes positions
+/// through the view-model and queues one settings serialization when the drag ends — node positions are
+/// presentation state and never rebuild an engine. Pressing on (or near) a connector dot starts a wire drag
+/// instead: a dashed pending wire follows the mouse and dropping it on a compatible connector commits through the
+/// same input-selection setters as the settings-panel combos (eligibility/cycle rules, topological re-sort, engine
+/// rebuild, and the deferred card rebuild are all shared with that path).
 /// </summary>
 public partial class FFBGraphEditor : UserControl
 {
@@ -36,6 +40,13 @@ public partial class FFBGraphEditor : UserControl
 	private const double MaxNodeY = 3000.0;
 	private const double DragThreshold = 3.0;
 
+	// the connector dots are only 10px, so grabbing and dropping use forgiving radii (nearest connector wins)
+	private const double ConnectorGrabRadius = 14.0;
+	private const double ConnectorDropRadius = 20.0;
+
+	private enum ConnectorKind { None, InputA, InputB, Output }
+	private enum WireDragMode { None, FromOutput, FromInput }
+
 	private FFBGraphViewModel? _viewModel = null;
 	private readonly List<FFBModuleViewModel> _subscribedModules = [];
 
@@ -45,6 +56,11 @@ public partial class FFBGraphEditor : UserControl
 	private double _dragStartNodeX = 0.0;
 	private double _dragStartNodeY = 0.0;
 	private bool _dragMoved = false;
+
+	private WireDragMode _wireDragMode = WireDragMode.None;
+	private FFBModuleViewModel? _wireDragModule = null;
+	private bool _wireDragIsInputB = false;
+	private Path? _pendingWirePath = null;
 
 	public FFBGraphEditor()
 	{
@@ -169,6 +185,23 @@ public partial class FFBGraphEditor : UserControl
 		// the canvas under the still-pressed cursor
 		_viewModel.SelectedModule = module;
 
+		// a press on (or near) a connector dot starts a wire drag instead of a node drag
+		var connector = HitTestConnector( module, e.GetPosition( element ), ConnectorGrabRadius );
+
+		if ( connector != ConnectorKind.None )
+		{
+			_wireDragMode = ( connector == ConnectorKind.Output ) ? WireDragMode.FromOutput : WireDragMode.FromInput;
+			_wireDragModule = module;
+			_wireDragIsInputB = connector == ConnectorKind.InputB;
+			_dragElement = element;
+
+			element.CaptureMouse();
+
+			e.Handled = true;
+
+			return;
+		}
+
 		_dragModule = module;
 		_dragElement = element;
 		_dragStartPoint = e.GetPosition( Nodes_ItemsControl );
@@ -183,7 +216,25 @@ public partial class FFBGraphEditor : UserControl
 
 	private void Node_MouseMove( object sender, MouseEventArgs e )
 	{
-		if ( ( _dragModule == null ) || ( _dragElement == null ) || !_dragElement.IsMouseCaptured )
+		if ( ( _dragElement == null ) || !_dragElement.IsMouseCaptured )
+		{
+			// not dragging — show a crosshair when hovering a connector dot so the wire-drag affordance is visible
+			if ( ( sender is FrameworkElement hoverElement ) && ( hoverElement.DataContext is FFBModuleViewModel hoverModule ) )
+			{
+				hoverElement.Cursor = HitTestConnector( hoverModule, e.GetPosition( hoverElement ), ConnectorGrabRadius ) != ConnectorKind.None ? Cursors.Cross : Cursors.Hand;
+			}
+
+			return;
+		}
+
+		if ( _wireDragMode != WireDragMode.None )
+		{
+			UpdatePendingWire( e.GetPosition( Nodes_ItemsControl ) );
+
+			return;
+		}
+
+		if ( _dragModule == null )
 		{
 			return;
 		}
@@ -224,7 +275,11 @@ public partial class FFBGraphEditor : UserControl
 
 		_dragElement.ReleaseMouseCapture();
 
-		if ( _dragMoved )
+		if ( _wireDragMode != WireDragMode.None )
+		{
+			CompleteWireDrag( e.GetPosition( Nodes_ItemsControl ) );
+		}
+		else if ( _dragMoved )
 		{
 			// one serialization for the whole drag — positions are display-only, no engine rebuild
 			App.Instance!.SettingsFile.QueueForSerialization = true;
@@ -233,6 +288,9 @@ public partial class FFBGraphEditor : UserControl
 		_dragModule = null;
 		_dragElement = null;
 		_dragMoved = false;
+		_wireDragMode = WireDragMode.None;
+		_wireDragModule = null;
+		_wireDragIsInputB = false;
 
 		e.Handled = true;
 	}
@@ -268,6 +326,260 @@ public partial class FFBGraphEditor : UserControl
 
 	#endregion
 
+	#region Wire dragging
+
+	// connector centers in node-local coordinates — must match the connector Ellipses in the DataTemplate
+	private static ConnectorKind HitTestConnector( FFBModuleViewModel module, Point positionInNode, double radius )
+	{
+		var best = ConnectorKind.None;
+		var bestDistanceSquared = radius * radius;
+
+		void Consider( ConnectorKind kind, double connectorX, double connectorY )
+		{
+			var deltaX = positionInNode.X - connectorX;
+			var deltaY = positionInNode.Y - connectorY;
+
+			var distanceSquared = deltaX * deltaX + deltaY * deltaY;
+
+			if ( distanceSquared <= bestDistanceSquared )
+			{
+				bestDistanceSquared = distanceSquared;
+				best = kind;
+			}
+		}
+
+		if ( !module.IsOutput )
+		{
+			Consider( ConnectorKind.Output, NodeWidth - ConnectorInset, NodeHeight / 2.0 );
+		}
+
+		if ( module.ShowInputA )
+		{
+			Consider( ConnectorKind.InputA, ConnectorInset, module.ShowInputB ? DualInputAOffsetY : NodeHeight / 2.0 );
+		}
+
+		if ( module.ShowInputB )
+		{
+			Consider( ConnectorKind.InputB, ConnectorInset, DualInputBOffsetY );
+		}
+
+		return best;
+	}
+
+	private static Point OutputConnectorPoint( FFBModuleViewModel module )
+	{
+		return new Point( module.NodeX + NodeWidth - ConnectorInset, module.NodeY + NodeHeight / 2.0 );
+	}
+
+	private static Point InputConnectorPoint( FFBModuleViewModel module, bool isInputB )
+	{
+		var inputOffsetY = module.ShowInputB ? ( isInputB ? DualInputBOffsetY : DualInputAOffsetY ) : NodeHeight / 2.0;
+
+		return new Point( module.NodeX + ConnectorInset, module.NodeY + inputOffsetY );
+	}
+
+	// the wire-drop eligibility rule is the target's EligibleInputs list — the exact same set the settings-panel
+	// input combos offer (excludes self, generators, the Output module, and anything downstream = no cycles)
+	private static bool IsEligibleInput( FFBModuleViewModel target, string sourceModuleId )
+	{
+		foreach ( var eligibleInput in target.EligibleInputs )
+		{
+			if ( eligibleInput.Key == sourceModuleId )
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	private ( FFBModuleViewModel target, bool isInputB )? FindInputConnectorAt( Point position, FFBModuleViewModel sourceModule )
+	{
+		( FFBModuleViewModel, bool )? best = null;
+
+		var bestDistanceSquared = ConnectorDropRadius * ConnectorDropRadius;
+
+		if ( _viewModel == null )
+		{
+			return best;
+		}
+
+		foreach ( var module in _viewModel.MainModules )
+		{
+			if ( !IsEligibleInput( module, sourceModule.ModuleId ) )
+			{
+				continue;
+			}
+
+			for ( var inputIndex = 0; inputIndex < module.SignalInputCount; inputIndex++ )
+			{
+				var isInputB = inputIndex == 1;
+
+				var connectorPoint = InputConnectorPoint( module, isInputB );
+
+				var deltaX = position.X - connectorPoint.X;
+				var deltaY = position.Y - connectorPoint.Y;
+
+				var distanceSquared = deltaX * deltaX + deltaY * deltaY;
+
+				if ( distanceSquared <= bestDistanceSquared )
+				{
+					bestDistanceSquared = distanceSquared;
+					best = ( module, isInputB );
+				}
+			}
+		}
+
+		return best;
+	}
+
+	private FFBModuleViewModel? FindOutputConnectorAt( Point position, FFBModuleViewModel targetModule )
+	{
+		FFBModuleViewModel? best = null;
+
+		var bestDistanceSquared = ConnectorDropRadius * ConnectorDropRadius;
+
+		if ( _viewModel == null )
+		{
+			return best;
+		}
+
+		foreach ( var module in _viewModel.MainModules )
+		{
+			if ( module.IsOutput || !IsEligibleInput( targetModule, module.ModuleId ) )
+			{
+				continue;
+			}
+
+			var connectorPoint = OutputConnectorPoint( module );
+
+			var deltaX = position.X - connectorPoint.X;
+			var deltaY = position.Y - connectorPoint.Y;
+
+			var distanceSquared = deltaX * deltaX + deltaY * deltaY;
+
+			if ( distanceSquared <= bestDistanceSquared )
+			{
+				bestDistanceSquared = distanceSquared;
+				best = module;
+			}
+		}
+
+		return best;
+	}
+
+	private void UpdatePendingWire( Point position )
+	{
+		if ( _wireDragModule == null )
+		{
+			return;
+		}
+
+		Point start;
+		Point end;
+		bool validDrop;
+
+		if ( _wireDragMode == WireDragMode.FromOutput )
+		{
+			start = OutputConnectorPoint( _wireDragModule );
+
+			var target = FindInputConnectorAt( position, _wireDragModule );
+
+			validDrop = target != null;
+
+			// snap the loose end onto the connector while hovering a valid drop point
+			end = ( target != null ) ? InputConnectorPoint( target.Value.target, target.Value.isInputB ) : position;
+		}
+		else
+		{
+			end = InputConnectorPoint( _wireDragModule, _wireDragIsInputB );
+
+			var source = FindOutputConnectorAt( position, _wireDragModule );
+
+			validDrop = source != null;
+
+			start = ( source != null ) ? OutputConnectorPoint( source ) : position;
+		}
+
+		if ( ( _pendingWirePath == null ) || !Wires_Canvas.Children.Contains( _pendingWirePath ) )
+		{
+			// RedrawWires clears the canvas wholesale (e.g. the selection change at drag start), so re-add lazily
+			_pendingWirePath = new Path
+			{
+				StrokeThickness = 2.0,
+				StrokeDashArray = new DoubleCollection { 4.0, 3.0 },
+				StrokeStartLineCap = PenLineCap.Round,
+				StrokeEndLineCap = PenLineCap.Round,
+				IsHitTestVisible = false
+			};
+
+			Wires_Canvas.Children.Add( _pendingWirePath );
+		}
+
+		var controlOffset = Math.Max( 50.0, Math.Abs( end.X - start.X ) / 2.0 );
+
+		var pathFigure = new PathFigure { StartPoint = start };
+
+		pathFigure.Segments.Add( new BezierSegment( new Point( start.X + controlOffset, start.Y ), new Point( end.X - controlOffset, end.Y ), end, isStroked: true ) );
+
+		_pendingWirePath.Data = new PathGeometry { Figures = { pathFigure } };
+		_pendingWirePath.SetResourceReference( Shape.StrokeProperty, validDrop ? "Brush.Accent" : "Brush.Foreground.Muted" );
+		_pendingWirePath.Opacity = validDrop ? 1.0 : 0.7;
+	}
+
+	private void CompleteWireDrag( Point position )
+	{
+		if ( _pendingWirePath != null )
+		{
+			Wires_Canvas.Children.Remove( _pendingWirePath );
+
+			_pendingWirePath = null;
+		}
+
+		if ( _wireDragModule == null )
+		{
+			return;
+		}
+
+		// committing through the input-selection setters runs the exact same path as the settings-panel combos
+		// (topological re-sort, engine rebuild, sync + serialization, deferred card rebuild); an ineligible or
+		// empty drop point simply abandons the pending wire
+		if ( _wireDragMode == WireDragMode.FromOutput )
+		{
+			var target = FindInputConnectorAt( position, _wireDragModule );
+
+			if ( target != null )
+			{
+				if ( target.Value.isInputB )
+				{
+					target.Value.target.InputBSelectedId = _wireDragModule.ModuleId;
+				}
+				else
+				{
+					target.Value.target.InputASelectedId = _wireDragModule.ModuleId;
+				}
+			}
+		}
+		else
+		{
+			var source = FindOutputConnectorAt( position, _wireDragModule );
+
+			if ( source != null )
+			{
+				if ( _wireDragIsInputB )
+				{
+					_wireDragModule.InputBSelectedId = source.ModuleId;
+				}
+				else
+				{
+					_wireDragModule.InputASelectedId = source.ModuleId;
+				}
+			}
+		}
+	}
+
+	#endregion
+
 	#region Wire drawing
 
 	private void RedrawWires()
@@ -291,11 +603,8 @@ public partial class FFBGraphEditor : UserControl
 				continue;
 			}
 
-			var start = new Point( source.NodeX + NodeWidth - ConnectorInset, source.NodeY + NodeHeight / 2.0 );
-
-			var inputOffsetY = target.ShowInputB ? ( wire.IsInputB ? DualInputBOffsetY : DualInputAOffsetY ) : NodeHeight / 2.0;
-
-			var end = new Point( target.NodeX + ConnectorInset, target.NodeY + inputOffsetY );
+			var start = OutputConnectorPoint( source );
+			var end = InputConnectorPoint( target, wire.IsInputB );
 
 			var pathFigure = new PathFigure { StartPoint = start };
 

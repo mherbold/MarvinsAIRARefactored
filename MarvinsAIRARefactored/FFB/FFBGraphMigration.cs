@@ -159,6 +159,7 @@ public static class FFBGraphMigration
 			Graph.Modules.Add( source60 );
 
 			Graph.Modules.Add( new FFBModuleData( FFBGraph.Source360ModuleId, FFBModuleRegistry.Source360HzType ) );
+			Graph.Modules.Add( new FFBModuleData( FFBGraph.SourceLFEModuleId, FFBModuleRegistry.SourceLFEType ) );
 		}
 
 		public void AddOutput( string inputA, SettingsSource src )
@@ -198,6 +199,23 @@ public static class FFBGraphMigration
 
 	// ---- DSP-core assembly ------------------------------------------------------------------------------
 
+	// The filter modules' Cutoff is stored in Hz; the old bias settings were the one-pole coefficient α of
+	// y += α(x − y) at the 360 Hz tick rate. Invert α = 1 − e^(−2π·fc/360): fc = −360·ln(1−α)/2π, clamped to
+	// Nyquist (α = 1, which killed the detail entirely, maps to +∞).
+	private static float CoefficientToCutoffHz( float coefficient )
+	{
+		coefficient = Math.Clamp( coefficient, 0f, 1f );
+
+		return MathF.Min( -360f * MathF.Log( 1f - coefficient ) / MathF.Tau, 180f );
+	}
+
+	// Old compression rates were the fraction removed from the over-threshold excess (rate = 1 − 1/ratio).
+	// Invert to the knob's N:1 ratio, capped at the knob max (rate → 1 means an ∞:1 hard ceiling).
+	private static float RateToRatio( float rate )
+	{
+		return rate >= 0.95f ? 20f : MathF.Min( 1f / ( 1f - rate ), 20f );
+	}
+
 	private static string AppendAlgorithmModules( Builder builder, RacingWheel.Algorithm algorithm, RacingWheel.MultiFFBSourceOptions structureMultiSource, SettingsSource src )
 	{
 		var s60 = FFBGraph.Source60ModuleId;
@@ -217,10 +235,18 @@ public static class FFBGraphMigration
 				var anchor = ( algorithm == RacingWheel.Algorithm.DetailBoosterOn60Hz ) ? s60 : s360;
 				var bias = src.F( "RacingWheelDetailBoostBias" );
 
-				var lpf = builder.Add( FFBModuleRegistry.LowPassFilterType, anchor, ( "Smoothing", bias ) );
-				var detail = builder.Add( FFBModuleRegistry.DetailExtractorType, s360, ( "Smoothing", bias ), ( "Gain", 1f + src.F( "RacingWheelDetailBoost" ) ) );
+				var lpf = builder.Add( FFBModuleRegistry.LowPassFilterType, anchor, ( "Cutoff", CoefficientToCutoffHz( bias ) ) );
+				var detail = builder.Add( FFBModuleRegistry.HighPassFilterType, s360, ( "Cutoff", CoefficientToCutoffHz( bias ) ) );
 
-				return builder.Add2( FFBModuleRegistry.MixerType, lpf, detail, ( "Mode", Modules.MixerModule.ModeAdd ), ( "LevelB", 1f ) );
+				// the extractor no longer has a built-in gain — boost via a dedicated Gain module (clamped to its range)
+				var boostGain = MathF.Min( 1f + src.F( "RacingWheelDetailBoost" ), 5f );
+
+				if ( boostGain != 1f )
+				{
+					detail = builder.Add( FFBModuleRegistry.GainType, detail, ( "Gain", boostGain ) );
+				}
+
+				return builder.Add2( FFBModuleRegistry.AddType, lpf, detail );
 			}
 
 			case RacingWheel.Algorithm.DeltaLimiter:
@@ -229,21 +255,42 @@ public static class FFBGraphMigration
 				var anchor = ( algorithm == RacingWheel.Algorithm.DeltaLimiterOn60Hz ) ? s60 : s360;
 				var bias = src.F( "RacingWheelDeltaLimiterBias" );
 
-				var rate = builder.Add( FFBModuleRegistry.RateLimiterType, s360, ( "Limit", src.F( "RacingWheelDeltaLimit" ) ) );
-				var detail = builder.Add( FFBModuleRegistry.DetailExtractorType, rate, ( "Smoothing", bias ), ( "Gain", 1f ) );
-				var lpf = builder.Add( FFBModuleRegistry.LowPassFilterType, anchor, ( "Smoothing", bias ) );
+				// old Limit units were (knob/500) Nm per tick; the slew limiter takes honest Nm/s → ×(360/500)
+				var rate = builder.Add( FFBModuleRegistry.SlewLimiterType, s360, ( "Limit", src.F( "RacingWheelDeltaLimit" ) * 0.72f ) );
+				var detail = builder.Add( FFBModuleRegistry.HighPassFilterType, rate, ( "Cutoff", CoefficientToCutoffHz( bias ) ) );
+				var lpf = builder.Add( FFBModuleRegistry.LowPassFilterType, anchor, ( "Cutoff", CoefficientToCutoffHz( bias ) ) );
 
-				return builder.Add2( FFBModuleRegistry.MixerType, lpf, detail, ( "Mode", Modules.MixerModule.ModeAdd ), ( "LevelB", 1f ) );
+				return builder.Add2( FFBModuleRegistry.AddType, lpf, detail );
 			}
 
 			case RacingWheel.Algorithm.SlewAndTotalCompression:
 			{
-				return builder.Add( FFBModuleRegistry.SlewCompressorType, s360,
-					( "Mode", Modules.SlewCompressorModule.ModeLinear ),
-					( "Threshold", src.F( "RacingWheelSlewCompressionThreshold" ) ),
-					( "Rate", src.F( "RacingWheelSlewCompressionRate" ) ),
-					( "TotalCompressionThreshold", src.F( "RacingWheelTotalCompressionThreshold" ) ),
-					( "TotalCompressionRate", src.F( "RacingWheelTotalCompressionRate" ) ) );
+				// old threshold was (knob/500) of full scale per tick → Nm/s = knob × 0.72 × maxForce; the old
+				// embedded total compression becomes a separate forward Compressor (the old feedback coupling —
+				// compressed output feeding the slew integrator — is gone; slight feel change), with the old
+				// width = threshold convention carried into its Knee
+				var wheelForce = src.F( "RacingWheelWheelForce" );
+				var strength = src.F( "RacingWheelStrength" );
+				var maxForce = strength != 0f ? wheelForce / strength : wheelForce;
+
+				var slew = builder.Add( FFBModuleRegistry.SlewCompressorType, s360,
+					( "Threshold", src.F( "RacingWheelSlewCompressionThreshold" ) * 0.72f * maxForce ),
+					( "Knee", 0f ),
+					( "Ratio", RateToRatio( src.F( "RacingWheelSlewCompressionRate" ) ) ) );
+
+				var totalCompressionRate = src.F( "RacingWheelTotalCompressionRate" );
+
+				if ( totalCompressionRate <= 0f )
+				{
+					return slew;
+				}
+
+				var totalCompressionThresholdNm = src.F( "RacingWheelTotalCompressionThreshold" ) * maxForce;
+
+				return builder.Add( FFBModuleRegistry.CompressorType, slew,
+					( "Threshold", totalCompressionThresholdNm ),
+					( "Knee", totalCompressionThresholdNm ),
+					( "Ratio", RateToRatio( totalCompressionRate ) ) );
 			}
 
 			case RacingWheel.Algorithm.MultiAdjustmentToolkit:
@@ -270,17 +317,35 @@ public static class FFBGraphMigration
 
 			case RacingWheel.MultiFFBSourceOptions.Hybrid10:
 			{
-				var lpf = builder.Add( FFBModuleRegistry.LowPassFilterType, s60, ( "Smoothing", 0.1f ) );
-				var detailId = builder.Add( FFBModuleRegistry.DetailExtractorType, s360, ( "Smoothing", 0.1f ), ( "Gain", detail ) );
+				var lpf = builder.Add( FFBModuleRegistry.LowPassFilterType, s60, ( "Cutoff", CoefficientToCutoffHz( 0.1f ) ) );
+				var detailId = builder.Add( FFBModuleRegistry.HighPassFilterType, s360, ( "Cutoff", CoefficientToCutoffHz( 0.1f ) ) );
 
-				sourceId = builder.Add2( FFBModuleRegistry.MixerType, lpf, detailId, ( "Mode", Modules.MixerModule.ModeAdd ), ( "LevelB", 1f ) );
+				if ( detail != 1f )
+				{
+					detailId = builder.Add( FFBModuleRegistry.GainType, detailId, ( "Gain", detail ) );
+				}
+
+				sourceId = builder.Add2( FFBModuleRegistry.AddType, lpf, detailId );
 				break;
 			}
 
 			case RacingWheel.MultiFFBSourceOptions.HybridVariable30:
-				sourceId = builder.Add2( FFBModuleRegistry.AdaptiveBlendType, s360, s60,
-					( "Detail", detail ), ( "Mix", 0.3f ), ( "PeakMix", 0.1f ), ( "HoldTicks", 10f ) );
+			{
+				// old Mix/PeakMix were one-pole coefficients → Hz corners; the old 10-tick hold → ms; the old
+				// Detail knob is now a Gain on the A input (input A enters only via its delta, so it is exact)
+				var detailId = s360;
+
+				if ( detail != 1f )
+				{
+					detailId = builder.Add( FFBModuleRegistry.GainType, s360, ( "Gain", detail ) );
+				}
+
+				sourceId = builder.Add2( FFBModuleRegistry.AdaptiveBlendType, detailId, s60,
+					( "Cutoff", CoefficientToCutoffHz( 0.3f ) ),
+					( "PeakCutoff", CoefficientToCutoffHz( 0.1f ) ),
+					( "Hold", 10f * 1000f / 360f ) );
 				break;
+			}
 
 			case RacingWheel.MultiFFBSourceOptions.Native360Hz:
 			default:
@@ -290,25 +355,52 @@ public static class FFBGraphMigration
 
 		var torqueCompression = src.F( "RacingWheelMultiTorqueCompression" );
 
+		// the compressor now takes Nm (threshold/width) and an N:1 ratio — convert the old fractions with this
+		// source's full-scale reference (WheelForce / Strength, same as AddOutput) and the old rate via 1/(1−rate)
+		var wheelForce = src.F( "RacingWheelWheelForce" );
+		var strength = src.F( "RacingWheelStrength" );
+		var maxForce = strength != 0f ? wheelForce / strength : wheelForce;
+
+		var oldCompressionRate = MathF.Min( 2f * torqueCompression, 0.75f );
+
 		var compressorId = builder.Add( FFBModuleRegistry.CompressorType, sourceId,
-			( "Threshold", 1f - 0.75f * torqueCompression ),
-			( "Rate", MathF.Min( 2f * torqueCompression, 0.75f ) ),
-			( "Width", MathF.Min( torqueCompression, 0.5f ) ) );
+			( "Threshold", ( 1f - 0.75f * torqueCompression ) * maxForce ),
+			( "Ratio", RateToRatio( oldCompressionRate ) ),
+			( "Knee", MathF.Min( torqueCompression, 0.5f ) * maxForce ) );
 
 		var slewAmount = src.F( "RacingWheelMultiSlewRateReduction" );
 
-		var slewId = builder.Add( FFBModuleRegistry.SlewCompressorType, compressorId,
-			( "Mode", Modules.SlewCompressorModule.ModeSoft ),
-			( "Threshold", 0.01f - 0.0095f * slewAmount ),
-			( "Rate", MathF.Min( MathF.Pow( slewAmount, 0.55f ), 0.9f ) ),
-			( "Width", MathF.Min( MathF.Pow( slewAmount, 0.005f ), 0.0025f ) ),
-			( "PeakMode", src.B( "RacingWheelMultiEnableSlewPeakMode" ) ) );
+		// old soft-mode threshold/width were normalized-per-tick values → Nm/s = value × maxForce × 360; the old
+		// stage was inert at slewAmount 0 (its derived rate hit 0), so it is omitted entirely there
+		var slewId = compressorId;
 
-		var detailGainId = builder.Add( FFBModuleRegistry.DetailEnhancerType, slewId,
-			( "Smoothing", 0.11809f ), ( "Gain", src.F( "RacingWheelMultiDetailGain" ) ) );
+		if ( slewAmount > 0f )
+		{
+			slewId = builder.Add( FFBModuleRegistry.SlewCompressorType, compressorId,
+				( "Threshold", ( 0.01f - 0.0095f * slewAmount ) * maxForce * 360f ),
+				( "Knee", MathF.Min( MathF.Pow( slewAmount, 0.005f ), 0.0025f ) * maxForce * 360f ),
+				( "Ratio", RateToRatio( MathF.Min( MathF.Pow( slewAmount, 0.55f ), 0.9f ) ) ),
+				( "PeakMode", src.B( "RacingWheelMultiEnableSlewPeakMode" ) ) );
+		}
 
-		return builder.Add( FFBModuleRegistry.SmootherType, detailGainId,
-			( "Amount", src.F( "RacingWheelMultiOutputSmoothing" ) ), ( "Smoothing", 0.22223f ) );
+		// the transient enhancer outputs detail only — the old DetailGain stage (body + enhanced detail) is
+		// recomposed as LowPassFilter + TransientEnhancer summed by a Mixer, with the old 1+gain multiplier
+		// baked into the enhancer's Gain; gain 0 meant pass-through, so the whole stage is omitted there
+		var multiDetailGain = src.F( "RacingWheelMultiDetailGain" );
+
+		var detailGainId = slewId;
+
+		if ( multiDetailGain != 0f )
+		{
+			var bodyId = builder.Add( FFBModuleRegistry.LowPassFilterType, slewId, ( "Cutoff", CoefficientToCutoffHz( 0.11809f ) ) );
+			var transientId = builder.Add( FFBModuleRegistry.TransientEnhancerType, slewId,
+				( "Cutoff", CoefficientToCutoffHz( 0.11809f ) ), ( "Gain", Math.Clamp( 1f + multiDetailGain, 0f, 5f ) ) );
+
+			detailGainId = builder.Add2( FFBModuleRegistry.AddType, bodyId, transientId );
+		}
+
+		return builder.Add( FFBModuleRegistry.AdaptiveSmootherType, detailGainId,
+			( "Amount", src.F( "RacingWheelMultiOutputSmoothing" ) ) );
 	}
 
 	// ---- effect tail + generators (baked from source) ---------------------------------------------------
@@ -341,7 +433,18 @@ public static class FFBGraphMigration
 
 		var parked = builder.Add( FFBModuleRegistry.ParkedStrengthType, crash, ( "Strength", src.F( "RacingWheelParkedStrength" ) ) );
 
-		var lfe = builder.Add( FFBModuleRegistry.LFEMixType, parked, ( "Strength", src.F( "RacingWheelLFEStrength" ) ) );
+		// LFE is a source now — the old LFE mix stage becomes LFE source -> Gain (old strength) summed in by
+		// a Mixer; strength 0 meant no effect, so the whole stage is omitted there
+		var lfeStrength = src.F( "RacingWheelLFEStrength" );
+
+		var lfe = parked;
+
+		if ( lfeStrength > 0f )
+		{
+			var lfeGain = builder.Add( FFBModuleRegistry.GainType, FFBGraph.SourceLFEModuleId, ( "Gain", lfeStrength ) );
+
+			lfe = builder.Add2( FFBModuleRegistry.AddType, parked, lfeGain );
+		}
 
 		var softLock = builder.Add( FFBModuleRegistry.SoftLockType, lfe, ( "Strength", src.F( "RacingWheelSoftLockStrength" ) ) );
 

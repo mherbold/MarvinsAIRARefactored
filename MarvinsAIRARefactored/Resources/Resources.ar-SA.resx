@@ -1820,7 +1820,217 @@
     <value>التوازن</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>تمكين موضع وحجم التراكب لكل سيارة</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>مصدر 60 Hz</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>مصدر 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>مصدر LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>الخرج</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>مرشح تمرير منخفض</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>مرشح تمرير عالي</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>الكسب</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>الجمع</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>المزج</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>محدد معدل التغير</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>ضاغط معدل التغير</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>الضاغط</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>معزز العابرات</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>منعم تكيفي</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>مزج تكيفي</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>المنحنى</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>محدد ناعم</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>الحد الأقصى</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>الحد الأدنى</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>الحماية من الاصطدام</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>حماية الأرصفة</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>قوة التوقف</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>القفل الناعم</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>الاحتكاك</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>توسيط العجلة</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>قوة نقص التوجيه</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>قوة زيادة التوجيه</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>قوة الإحساس بالمقعد</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>اهتزاز نقص التوجيه</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>اهتزاز زيادة التوجيه</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>اهتزاز الإحساس بالمقعد</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>اهتزاز دورات تبديل التروس</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>اهتزاز تغيير التروس</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>اهتزاز ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>كسب السرعة</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>ملمس الطريق</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>ملمس الانزلاق</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>ديذر العزم</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>الميل</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>تردد القطع</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>الكسب</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>المزيج</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>الحد</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>العتبة</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>الركبة</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>النسبة</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>وضع الذروة</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>المقدار</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>قطع الذروة</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>قوة G الطولية</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>قوة G الجانبية</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>أثناء السباق</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>أثناء التوقف</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>النمط</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>السرعة الدنيا</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>السرعة القصوى</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>الكسب عند السرعة الدنيا</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>الكسب عند السرعة القصوى</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>قطب واحد</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>قطبان</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>الإدخال</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>الإدخال A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>الإدخال B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>إضافة وحدة</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>اختيار تسجيل</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>استنساخ الرسم البياني الحالي</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>رسم FFB البياني</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>اسم الرسم البياني</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>رسم بياني جديد</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>البدء برسم بياني فارغ</value>
+  </data>
+
 
 
 

@@ -15,6 +15,10 @@ public class GraphBase
 	public int BitmapWidth { get; private set; }
 	public int BitmapHeight { get; private set; }
 
+	/// <summary>When false, the first and last grid lines (the ±100% clipping lines) are not drawn. The FFB graph
+	/// preview turns them off unless the Output module is selected — clipping only means something there.</summary>
+	public bool DrawClippingLines { get; set; } = true;
+
 	private int _bitmapStride;
 	private int _bitmapHeightMinusOne;
 
@@ -30,7 +34,7 @@ public class GraphBase
 		0xFF444444,
 		0xFF666688,
 		0xFF444444,
-		0xFFFFFFFF,
+		0xFF000000,
 		0xFF444444,
 		0xFF666688,
 		0xFF444444,
@@ -42,7 +46,7 @@ public class GraphBase
 		0xFF444444,
 		0xFF666688,
 		0xFF444444,
-		0xFFFFFFFF,
+		0xFF000000,
 		0xFF444444,
 		0xFF666688,
 		0xFF444444,
@@ -96,20 +100,28 @@ public class GraphBase
 		_x = 0;
 	}
 
+	// Map a -1..1 value to its pixel row (top = +1, bottom = -1), inside the gutters.
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void Update( float value, float r, float g, float b )
+	private int ValueToY( float value )
+	{
+		// clamp y value to -1..1 range, where -1 is the bottom of the graph, 0 is the middle and 1 is the top
+		var y = Math.Clamp( value, -1f, 1f );
+
+		// invert y value and shift it to 0..1 range, where 0 is the top of the graph and 1 is the bottom
+		y = y * -0.5f + 0.5f;
+
+		return (int) Math.Round( y * ( BitmapHeight - GutterSize * 2 ) ) + GutterSize;
+	}
+
+	/// <summary>Render a value as a solid fill from the zero line to the value.</summary>
+	[MethodImpl( MethodImplOptions.AggressiveInlining )]
+	public void UpdateSolidFill( float value, float r, float g, float b )
 	{
 		if ( _colorMixArray != null )
 		{
-			// clamp y value to -1..1 range, where -1 is the bottom of the graph, 0 is the middle and 1 is the top
-			var y = Math.Clamp( value, -1f, 1f );
-
-			// invert y value and shift it to 0..1 range, where 0 is the top of the graph and 1 is the bottom
-			y = y * -0.5f + 0.5f;
-
 			// calculate the y position of the value on the graph
 			var iY1 = _bitmapHeightMinusOne / 2;
-			var iY2 = (int) Math.Round( y * ( BitmapHeight - GutterSize * 2 ) ) + GutterSize;
+			var iY2 = ValueToY( value );
 
 			var delta = iY2 - iY1;
 
@@ -126,6 +138,51 @@ public class GraphBase
 				_colorMixArray[ iY, 3 ] += b;
 
 				iY += sign;
+			}
+		}
+	}
+
+	/// <summary>Render a value as a connected line — this column is painted only from the previous column's value
+	/// to this one, so consecutive calls trace a continuous 1-px-wide waveform instead of a fill from zero. The
+	/// space between the centerline and the value is filled with solid black first, occluding any traces already
+	/// drawn there this column (so the line reads as a silhouette over the solid-fill traces).</summary>
+	[MethodImpl( MethodImplOptions.AggressiveInlining )]
+	public void UpdateLine( float previousValue, float value, float r, float g, float b )
+	{
+		if ( _colorMixArray != null )
+		{
+			// fill from the centerline to the value with solid black (assignment, not additive — this erases
+			// whatever was already mixed into those rows, e.g. the solid-fill traces drawn before this call)
+			var centerY = _bitmapHeightMinusOne / 2;
+			var valueY = ValueToY( value );
+
+			var sign = Math.Sign( valueY - centerY );
+			var range = Math.Abs( valueY - centerY );
+
+			var fillY = centerY;
+
+			for ( var i = 1; i <= range; i++ )
+			{
+				_colorMixArray[ fillY, 0 ] = 1f;
+				_colorMixArray[ fillY, 1 ] = 0f;
+				_colorMixArray[ fillY, 2 ] = 0f;
+				_colorMixArray[ fillY, 3 ] = 0f;
+
+				fillY += sign;
+			}
+
+			// draw the vertical segment connecting the two values, inclusive, so steep slopes stay connected
+			var previousY = ValueToY( previousValue );
+
+			var minY = Math.Min( previousY, valueY );
+			var maxY = Math.Max( previousY, valueY );
+
+			for ( var iY = minY; iY <= maxY; iY++ )
+			{
+				_colorMixArray[ iY, 0 ] = 1f;
+				_colorMixArray[ iY, 1 ] += r;
+				_colorMixArray[ iY, 2 ] += g;
+				_colorMixArray[ iY, 3 ] += b;
 			}
 		}
 	}
@@ -175,6 +232,11 @@ public class GraphBase
 
 			for ( var i = 0; i <= 8; i++ )
 			{
+				if ( !DrawClippingLines && ( ( i == 0 ) || ( i == 8 ) ) )
+				{
+					continue;
+				}
+
 				var y = gridSize * i + GutterSize;
 
 				if ( ( _colorArray[ y, _x ] == 0 ) || ( ( i & 3 ) == 0 ) )

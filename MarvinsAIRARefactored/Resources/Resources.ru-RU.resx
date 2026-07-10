@@ -1818,7 +1818,217 @@
     <value>(не назначено)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Включить положение и масштаб оверлея для каждой машины</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>Источник 60 Hz</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>Источник 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>Источник LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Вывод</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Фильтр НЧ</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Фильтр ВЧ</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Усиление</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Сумма</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Смешивание</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Ограничитель нарастания</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Компрессор нарастания</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Компрессор</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Усилитель транзиентов</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Адаптивное сглаживание</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Адаптивное смешивание</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Кривая</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Мягкий лимитер</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Максимум</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Минимум</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Защита от аварий</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Защита от поребриков</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Сила на парковке</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Soft lock</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Трение</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Центровка руля</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Сила андерстира</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Сила оверстира</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Сила seat-of-pants</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Вибрация андерстира</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Вибрация оверстира</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Вибрация seat-of-pants</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Вибрация оборотов переключения</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Вибрация переключения передачи</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>Вибрация ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Усиление от скорости</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Текстура дороги</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Текстура скольжения</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Дизеринг момента</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Крутизна</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Частота среза</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Усиление</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Микс</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Лимит</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Порог</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Колено</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Соотношение</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Пиковый режим</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Величина</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Частота среза пиков</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Продольная сила G</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Поперечная сила G</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Во время гонки</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>На парковке</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Шаблон</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Минимальная скорость</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Максимальная скорость</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Усиление на мин. скорости</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Усиление на макс. скорости</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Один полюс</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Два полюса</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Вход</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Вход A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Вход B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Добавить модуль</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Выбор записи</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Клонировать текущий график</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>График FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Название графика</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Новый график</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Начать с пустого графика</value>
+  </data>
+
 
 
 

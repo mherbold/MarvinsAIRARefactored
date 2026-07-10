@@ -16,20 +16,20 @@ public static class FFBModuleRegistry
 
 	public const string Source60HzType = "Source60Hz";
 	public const string Source360HzType = "Source360Hz";
+	public const string SourceLFEType = "SourceLFE";
 	public const string OutputType = "Output";
 
 	public const string LowPassFilterType = "LowPassFilter";
-	public const string DetailExtractorType = "DetailExtractor";
+	public const string HighPassFilterType = "HighPassFilter";
 	public const string GainType = "Gain";
-	public const string MixerType = "Mixer";
-	public const string RateLimiterType = "RateLimiter";
+	public const string AddType = "Add";
+	public const string BlendType = "Blend";
+	public const string SlewLimiterType = "SlewLimiter";
 	public const string SlewCompressorType = "SlewCompressor";
 	public const string CompressorType = "Compressor";
-	public const string DetailEnhancerType = "DetailEnhancer";
-	public const string SmootherType = "Smoother";
+	public const string TransientEnhancerType = "TransientEnhancer";
+	public const string AdaptiveSmootherType = "AdaptiveSmoother";
 	public const string AdaptiveBlendType = "AdaptiveBlend";
-
-	// output-stage shapers (split out of the Output module so they can be placed anywhere)
 	public const string CurveType = "Curve";
 	public const string SoftLimiterType = "SoftLimiter";
 	public const string MaximumType = "Maximum";
@@ -38,7 +38,6 @@ public static class FFBModuleRegistry
 	public const string CrashProtectionType = "CrashProtection";
 	public const string CurbProtectionType = "CurbProtection";
 	public const string ParkedStrengthType = "ParkedStrength";
-	public const string LFEMixType = "LFEMix";
 	public const string SoftLockType = "SoftLock";
 	public const string FrictionType = "Friction";
 	public const string WheelCenteringType = "WheelCentering";
@@ -63,8 +62,7 @@ public static class FFBModuleRegistry
 	// Choice option localization keys. Reuse the existing (already-translated) keys where they exist so choices
 	// are localized for free; new option sets use short words that read fine via the humanized fallback.
 	private static readonly string[] PredictionModeChoices = [ "Disabled", "PredictK1", "PredictK2" ];
-	private static readonly string[] MixerModeChoices = [ "Add", "Blend" ];
-	private static readonly string[] SlewModeChoices = [ "Linear", "Soft" ];
+	private static readonly string[] FilterSlopeChoices = [ "OnePole", "TwoPole" ];
 	private static readonly string[] ConstantForceDirectionChoices = [ "None", "DecreaseForce", "IncreaseForce" ];
 	private static readonly string[] VibrationPatternChoices = [ "None", "SineWave", "SquareWave", "TriangleWave", "SawtoothWaveIn", "SawtoothWaveOut" ];
 
@@ -163,74 +161,71 @@ public static class FFBModuleRegistry
 
 			Descriptor( Source360HzType, 0, () => new Source360HzModule(), isSource: true, settings: [] ),
 
+			Descriptor( SourceLFEType, 0, () => new SourceLFEModule(), isSource: true, settings: [] ),
+
 			// ---- generic DSP ----
 			Descriptor( LowPassFilterType, 1, () => new LowPassFilterModule(), settings:
 			[
-				Knob( "Smoothing", 0f, 1f, 0f, 0.01f, F.Percent() )
+				Choice( "Slope", 0f, FilterSlopeChoices ),
+				Knob( "Cutoff", 0f, 180f, 0f, 1f, F.Number( 1, "HertzUnits" ) )
 			] ),
 
-			Descriptor( DetailExtractorType, 1, () => new DetailExtractorModule(), settings:
+			Descriptor( HighPassFilterType, 1, () => new HighPassFilterModule(), settings:
 			[
-				Knob( "Smoothing", 0f, 1f, 0f, 0.01f, F.Percent() ),
-				Knob( "Gain", 0f, 11f, 1f, 0.1f, F.Number( 2 ) )
+				Choice( "Slope", 0f, FilterSlopeChoices ),
+				Knob( "Cutoff", 0f, 180f, 0f, 1f, F.Number( 1, "HertzUnits" ) )
 			] ),
 
 			Descriptor( GainType, 1, () => new GainModule(), settings:
 			[
-				Knob( "Gain", -2f, 2f, 1f, 0.05f, F.Number( 2 ) )
+				Knob( "Gain", -5f, 5f, 1f, 0.05f, F.Number( 2 ) )
 			] ),
 
-			Descriptor( MixerType, 2, () => new MixerModule(), settings:
+			Descriptor( AddType, 2, () => new AddModule(), settings: [] ),
+
+			Descriptor( BlendType, 2, () => new BlendModule(), settings:
 			[
-				Choice( "Mode", MixerModule.ModeAdd, MixerModeChoices ),
-				Knob( "Mix", 0f, 1f, 0.5f, 0.01f, F.Percent() ),
-				Knob( "LevelB", 0f, 2f, 1f, 0.05f, F.Number( 2 ) )
+				Knob( "Mix", 0f, 1f, 0.5f, 0.01f, F.Percent() )
 			] ),
 
-			Descriptor( RateLimiterType, 1, () => new RateLimiterModule(), settings:
+			Descriptor( SlewLimiterType, 1, () => new SlewLimiterModule(), settings:
 			[
-				Knob( "Limit", 10f, 2000f, 500f, 10f, F.Number( 0, "DeltaLimitUnits" ) )
+				Knob( "Limit", 1f, 1500f, 360f, 10f, F.Number( 0, "DeltaLimitUnits" ) )
 			] ),
 
 			Descriptor( SlewCompressorType, 1, () => new SlewCompressorModule(), settings:
 			[
-				Choice( "Mode", SlewCompressorModule.ModeLinear, SlewModeChoices ),
-				Knob( "Threshold", 0f, 10f, 2f, 0.1f, F.SlewThreshold ),
-				Knob( "Rate", 0f, 1f, 0.65f, 0.01f, F.Percent() ),
-				Knob( "Width", 0f, 0.01f, 0.0025f, 0.0001f, F.Number( 4 ) ),
-				Switch( "PeakMode", false ),
-				Knob( "TotalCompressionThreshold", 0f, 1f, 0.65f, 0.01f, F.MaxForceScaled( 1f, 1, "TorqueUnits" ) ),
-				Knob( "TotalCompressionRate", 0f, 1f, 0.75f, 0.01f, F.Percent() )
+				Knob( "Threshold", 0f, 1000f, 75f, 5f, F.Number( 0, "DeltaLimitUnits" ) ),
+				Knob( "Knee", 0f, 200f, 30f, 5f, F.Number( 0, "DeltaLimitUnits" ) ),
+				Knob( "Ratio", 1f, 20f, 3f, 0.5f, F.Ratio ),
+				Switch( "PeakMode", false )
 			] ),
 
 			Descriptor( CompressorType, 1, () => new CompressorModule(), settings:
 			[
-				Knob( "Threshold", 0f, 1f, 0.65f, 0.01f, F.Percent() ),
-				Knob( "Rate", 0f, 1f, 0.75f, 0.01f, F.Percent() ),
-				Knob( "Width", 0f, 0.5f, 0.65f, 0.01f, F.Percent() )
+				Knob( "Threshold", 0f, 50f, 30f, 1f, F.Number( 1, "TorqueUnits" ) ),
+				Knob( "Knee", 0f, 20f, 5f, 0.5f, F.Number( 1, "TorqueUnits" ) ),
+				Knob( "Ratio", 1f, 20f, 4f, 0.5f, F.Ratio )
 			] ),
 
-			Descriptor( DetailEnhancerType, 1, () => new DetailEnhancerModule(), settings:
+			Descriptor( TransientEnhancerType, 1, () => new TransientEnhancerModule(), settings:
 			[
-				Knob( "Smoothing", 0f, 1f, 0.11809f, 0.01f, F.Percent() ),
-				Knob( "Gain", -1f, 1f, 0f, 0.05f, F.Percent() )
+				Knob( "Cutoff", 0f, 180f, 7.2f, 1f, F.Number( 1, "HertzUnits" ) ),
+				Knob( "Gain", 0f, 5f, 1f, 0.05f, F.Number( 2 ) )
 			] ),
 
-			Descriptor( SmootherType, 1, () => new SmootherModule(), settings:
+			Descriptor( AdaptiveSmootherType, 1, () => new AdaptiveSmootherModule(), settings:
 			[
-				Knob( "Amount", 0f, 1f, 0f, 0.01f, F.Percent() ),
-				Knob( "Smoothing", 0f, 1f, 0.22223f, 0.01f, F.Percent() )
+				Knob( "Amount", 0f, 1f, 0f, 0.01f, F.SmootherAmount )
 			] ),
 
 			Descriptor( AdaptiveBlendType, 2, () => new AdaptiveBlendModule(), settings:
 			[
-				Knob( "Detail", 0f, 1f, 1f, 0.01f, F.Percent() ),
-				Knob( "Mix", 0f, 1f, 0.3f, 0.01f, F.Percent() ),
-				Knob( "PeakMix", 0f, 1f, 0.1f, 0.01f, F.Percent() ),
-				Knob( "HoldTicks", 0f, 30f, 10f, 1f, F.Number( 0 ) )
+				Knob( "Cutoff", 0f, 180f, 20f, 1f, F.Number( 1, "HertzUnits" ) ),
+				Knob( "PeakCutoff", 0f, 180f, 6f, 1f, F.Number( 1, "HertzUnits" ) ),
+				Knob( "Hold", 0f, 100f, 28f, 1f, F.Number( 0, "MillisecondsUnits" ) )
 			] ),
 
-			// ---- output-stage shapers (were baked into Output; now placeable anywhere) ----
 			Descriptor( CurveType, 1, () => new CurveModule(), settings:
 			[
 				Knob( "Curve", -1f, 1f, 0f, 0.05f, F.Percent(), showCurve: true )
@@ -267,11 +262,6 @@ public static class FFBModuleRegistry
 			Descriptor( ParkedStrengthType, 1, () => new ParkedStrengthModule(), settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.1f, 0.01f, F.Percent() )
-			] ),
-
-			Descriptor( LFEMixType, 1, () => new LFEMixModule(), settings:
-			[
-				Knob( "Strength", 0f, 1f, 0.05f, 0.01f, F.Percent() )
 			] ),
 
 			Descriptor( SoftLockType, 1, () => new SoftLockModule(), settings:

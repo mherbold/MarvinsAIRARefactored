@@ -342,6 +342,9 @@
   <data name="SecondsUnits" xml:space="preserve">
     <value> sec</value>
   </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
   <data name="MPSUnits" xml:space="preserve">
     <value> m/s</value>
   </data>
@@ -1862,5 +1865,194 @@
   </data>
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Start empty graph</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz source</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz source</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE source</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Output</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Low-pass filter</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>High-pass filter</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Blend</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Slew limiter</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Slew compressor</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Compressor</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Transient enhancer</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Adaptive smoother</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Adaptive blend</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Curve</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Soft limiter</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Crash protection</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Curb protection</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Parked strength</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Soft lock</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Friction</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Wheel centering</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Understeer force</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Oversteer force</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Seat-of-pants force</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Understeer vibration</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Oversteer vibration</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Seat-of-pants vibration</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Shift RPM vibration</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Gear change vibration</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS vibration</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Speed gain</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Road texture</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Slip texture</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Torque dither</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Slope</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Cutoff</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Mix</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Limit</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Threshold</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Knee</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Ratio</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Peak mode</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Peak cutoff</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Longitudinal G force</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Lateral G force</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>While racing</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>While parked</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Pattern</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Minimum speed</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Maximum speed</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Gain at min speed</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Gain at max speed</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>One pole</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Two pole</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Input</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Input A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Input B</value>
+  </data>
+
 </root>

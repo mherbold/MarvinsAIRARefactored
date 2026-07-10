@@ -48,8 +48,8 @@ public class FFBModuleData
 }
 
 /// <summary>
-/// A named, ordered chain of modules. Slots 0 and 1 are always the two fixed sources (60 Hz / 360 Hz) and the
-/// last slot is always the fixed Output module; those three are non-removable. Modules may only reference the
+/// A named, ordered chain of modules. The first slots are always the fixed sources (60 Hz / 360 Hz / LFE) and
+/// the last slot is always the fixed Output module; those are non-removable. Modules may only reference the
 /// output of an <em>earlier</em> module (or a source) — the list order is the evaluation order. The editor
 /// allows free acyclic wiring and calls <see cref="FFBGraphTopology.SortTopologically"/> after every structure
 /// edit to restore that invariant.
@@ -58,6 +58,7 @@ public class FFBGraph
 {
 	public const string Source60ModuleId = "Source60";
 	public const string Source360ModuleId = "Source360";
+	public const string SourceLFEModuleId = "SourceLFE";
 	public const string OutputModuleId = "Output";
 
 	public string Name { get; set; } = "";
@@ -65,7 +66,7 @@ public class FFBGraph
 	public List<FFBModuleData> Modules { get; set; } = [];   // slots 0-1 = sources, last = Output
 
 	/// <summary>
-	/// Build an empty graph containing only the two fixed sources and the trailing Output module, wired
+	/// Build an empty graph containing only the fixed sources and the trailing Output module, wired
 	/// Source360 -> Output. New user graphs and every built-in start from this shape.
 	/// </summary>
 	public static FFBGraph CreateEmpty( string name, bool isBuiltIn = false )
@@ -74,6 +75,7 @@ public class FFBGraph
 
 		graph.Modules.Add( new FFBModuleData( Source60ModuleId, FFBModuleRegistry.Source60HzType ) );
 		graph.Modules.Add( new FFBModuleData( Source360ModuleId, FFBModuleRegistry.Source360HzType ) );
+		graph.Modules.Add( new FFBModuleData( SourceLFEModuleId, FFBModuleRegistry.SourceLFEType ) );
 
 		graph.Modules.Add( new FFBModuleData( OutputModuleId, FFBModuleRegistry.OutputType )
 		{

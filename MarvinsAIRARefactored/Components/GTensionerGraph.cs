@@ -24,7 +24,7 @@ public class GTensionerGraph : GraphBase
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	public void Advance( float value )
 	{
-		Update( value, r, g, b );
+		UpdateSolidFill( value, r, g, b );
 		FinishUpdates();
 	}
 }

@@ -152,26 +152,6 @@ public sealed class ParkedStrengthModule : FFBModule
 	}
 }
 
-/// <summary>Wheel LFE mix (old 1413–1416), gated on IsOnTrack. Additive, scaled by MaxForce.</summary>
-public sealed class LFEMixModule : FFBModule
-{
-	private const int Strength = 1;
-
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		var strength = _v[ Strength ];
-
-		if ( ( strength > 0f ) && ctx.IsOnTrack )
-		{
-			return inputA + ctx.LFEMagnitude * strength * ctx.MaxForce;
-		}
-
-		return inputA;
-	}
-}
-
 /// <summary>Soft lock (old 1420–1435). Additive, scaled by MaxForce.</summary>
 public sealed class SoftLockModule : FFBModule
 {

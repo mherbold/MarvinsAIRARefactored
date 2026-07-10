@@ -88,11 +88,24 @@ public static class FFBValueFormats
 			return $"{percent} ({torque})";
 		};
 
-	/// <summary>SlewCompressor.Threshold: Linear mode reproduces the old slew threshold (MaxForce/1000, Nm/ms); Soft mode (the Multi pipeline) shows the raw knee coefficient, whose scale is ~100x smaller.</summary>
-	public static readonly Func<FFBFormatContext, string> SlewThreshold = ctx =>
-		(int) ctx.Sibling( "Mode", Modules.SlewCompressorModule.ModeLinear ) == Modules.SlewCompressorModule.ModeSoft
-			? Fixed( ctx.Value, 4 )
-			: Fixed( ctx.Value * FFBFormatContext.MaxForce / 1000f, 2 ) + FFBFormatContext.Localized( "SlewUnits" );
+	/// <summary>Compressor.Ratio: "4.0:1" — N Nm over the threshold in, 1 Nm out. The stored value is the ratio
+	/// number itself, so the knob's click-to-type edit (first-float parse) round-trips naturally.</summary>
+	public static readonly Func<FFBFormatContext, string> Ratio = ctx => Fixed( ctx.Value, 1 ) + ":1";
+
+	/// <summary>AdaptiveSmoother.Amount: percent plus the derived cutoff floor it maps to ("50% (13.4 Hz)") — the
+	/// knob is logarithmic in the floor, FloorMaxHz^(1−amount). Localized "OFF" at 0 (the module bypasses exactly).</summary>
+	public static readonly Func<FFBFormatContext, string> SmootherAmount = ctx =>
+	{
+		if ( ctx.Value == 0f )
+		{
+			return FFBFormatContext.Localized( "OFF" );
+		}
+
+		var percent = Fixed( ctx.Value * 100f, 0 ) + FFBFormatContext.Localized( "Percent" );
+		var floorHz = Fixed( MathF.Pow( Modules.AdaptiveSmootherModule.FloorMaxHz, 1f - ctx.Value ), 1 ) + FFBFormatContext.Localized( "HertzUnits" );
+
+		return $"{percent} ({floorHz})";
+	};
 
 	private static string Fixed( float value, int decimals ) => value.ToString( "F" + decimals, CultureInfo.CurrentCulture );
 }

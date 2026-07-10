@@ -1820,7 +1820,217 @@
     <value>밸런스</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>차량별 오버레이 위치 및 크기 조정 활성화</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz 소스</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz 소스</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE 소스</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>출력</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>로우패스 필터</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>하이패스 필터</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>게인</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>합산</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>블렌드</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>슬루 리미터</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>슬루 컴프레서</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>컴프레서</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>트랜지언트 인핸서</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>적응형 스무더</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>적응형 블렌드</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>커브</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>소프트 리미터</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>최대</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>최소</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>충돌 보호</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>커브 보호</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>정차 강도</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>소프트 락</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>마찰</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>휠 센터링</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>언더스티어 포스</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>오버스티어 포스</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>체감 포스</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>언더스티어 진동</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>오버스티어 진동</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>체감 진동</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>변속 RPM 진동</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>기어 변속 진동</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS 진동</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>속도 게인</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>노면 텍스처</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>슬립 텍스처</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>토크 디더</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>슬로프</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>컷오프</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>게인</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>믹스</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>리미트</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>임계값</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>니</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>비율</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>피크 모드</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>양</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>피크 컷오프</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>종방향 G</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>횡방향 G</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>레이싱 중</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>정차 중</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>패턴</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>최소 속도</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>최대 속도</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>최소 속도 게인</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>최대 속도 게인</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>1폴</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>2폴</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>입력</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>입력 A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>입력 B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>모듈 추가</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>녹음 선택</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>현재 그래프 복제</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB 그래프</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>그래프 이름</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>새 그래프</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>빈 그래프로 시작</value>
+  </data>
+
 
 
 

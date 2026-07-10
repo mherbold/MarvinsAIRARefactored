@@ -22,16 +22,18 @@ public static partial class FFBDisplayNames
 	{
 		[ FFBModuleRegistry.Source60HzType ] = "60 Hz source",
 		[ FFBModuleRegistry.Source360HzType ] = "360 Hz source",
+		[ FFBModuleRegistry.SourceLFEType ] = "LFE source",
 		[ FFBModuleRegistry.OutputType ] = "Output",
 		[ FFBModuleRegistry.LowPassFilterType ] = "Low-pass filter",
-		[ FFBModuleRegistry.DetailExtractorType ] = "Detail extractor",
+		[ FFBModuleRegistry.HighPassFilterType ] = "High-pass filter",
 		[ FFBModuleRegistry.GainType ] = "Gain",
-		[ FFBModuleRegistry.MixerType ] = "Mixer",
-		[ FFBModuleRegistry.RateLimiterType ] = "Rate limiter",
+		[ FFBModuleRegistry.AddType ] = "Add",
+		[ FFBModuleRegistry.BlendType ] = "Blend",
+		[ FFBModuleRegistry.SlewLimiterType ] = "Slew limiter",
 		[ FFBModuleRegistry.SlewCompressorType ] = "Slew compressor",
 		[ FFBModuleRegistry.CompressorType ] = "Compressor",
-		[ FFBModuleRegistry.DetailEnhancerType ] = "Detail enhancer",
-		[ FFBModuleRegistry.SmootherType ] = "Smoother",
+		[ FFBModuleRegistry.TransientEnhancerType ] = "Transient enhancer",
+		[ FFBModuleRegistry.AdaptiveSmootherType ] = "Adaptive smoother",
 		[ FFBModuleRegistry.AdaptiveBlendType ] = "Adaptive blend",
 		[ FFBModuleRegistry.CurveType ] = "Curve",
 		[ FFBModuleRegistry.SoftLimiterType ] = "Soft limiter",
@@ -40,7 +42,6 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.CrashProtectionType ] = "Crash protection",
 		[ FFBModuleRegistry.CurbProtectionType ] = "Curb protection",
 		[ FFBModuleRegistry.ParkedStrengthType ] = "Parked strength",
-		[ FFBModuleRegistry.LFEMixType ] = "LFE mix",
 		[ FFBModuleRegistry.SoftLockType ] = "Soft lock",
 		[ FFBModuleRegistry.FrictionType ] = "Friction",
 		[ FFBModuleRegistry.WheelCenteringType ] = "Wheel centering",
@@ -85,7 +86,9 @@ public static partial class FFBDisplayNames
 
 		var localized = localization[ localizationKey ];
 
-		return string.IsNullOrEmpty( localized ) ? fallback : localized;
+		// A missing key renders as "!Key!" (see Localization's indexer) — treat that as absent so the
+		// fallback chain (e.g. FFBSetting{Key} -> {Key} -> humanized) can continue past unknown keys.
+		return string.IsNullOrEmpty( localized ) || localized.StartsWith( '!' ) ? fallback : localized;
 	}
 
 	[GeneratedRegex( "(?<=[a-z0-9])(?=[A-Z])" )]
@@ -282,8 +285,8 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 	public int SignalInputCount => _descriptor.SignalInputCount;
 	public bool ShowInputA => _descriptor.SignalInputCount >= 1;
 	public bool ShowInputB => _descriptor.SignalInputCount >= 2;
-	public string InputALabel => _descriptor.SignalInputCount >= 2 ? "Input A" : "Input";
-	public string InputBLabel => "Input B";
+	public string InputALabel => _descriptor.SignalInputCount >= 2 ? FFBDisplayNames.Localize( "InputA", "Input A" ) : FFBDisplayNames.Localize( "Input", "Input" );
+	public string InputBLabel => FFBDisplayNames.Localize( "InputB", "Input B" );
 
 	public ObservableCollection<FFBModuleSettingViewModel> Settings { get; } = [];
 
@@ -795,19 +798,30 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			return;
 		}
 
+		var removedModule = _graph.Modules.FirstOrDefault( module => module.ModuleId == moduleViewModel.ModuleId );
+
 		_graph.Modules.RemoveAll( module => module.ModuleId == moduleViewModel.ModuleId );
 
-		// repoint any inputs that referenced the removed module back to the 360 Hz source
+		// splice the removed module out of the chain: repoint any inputs that referenced it to the removed
+		// module's own input A, so the signal keeps flowing through the same path; fall back to the 360 Hz
+		// source only when the removed module had no usable input A (no inputs, or a dangling reference)
+		var replacementModuleId = removedModule?.InputAModuleId;
+
+		if ( string.IsNullOrEmpty( replacementModuleId ) || !_graph.Modules.Any( module => module.ModuleId == replacementModuleId ) )
+		{
+			replacementModuleId = FFBGraph.Source360ModuleId;
+		}
+
 		foreach ( var module in _graph.Modules )
 		{
 			if ( module.InputAModuleId == moduleViewModel.ModuleId )
 			{
-				module.InputAModuleId = FFBGraph.Source360ModuleId;
+				module.InputAModuleId = replacementModuleId;
 			}
 
 			if ( module.InputBModuleId == moduleViewModel.ModuleId )
 			{
-				module.InputBModuleId = FFBGraph.Source360ModuleId;
+				module.InputBModuleId = replacementModuleId;
 			}
 		}
 

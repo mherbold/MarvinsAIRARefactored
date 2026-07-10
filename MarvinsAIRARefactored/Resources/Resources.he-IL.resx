@@ -1818,7 +1818,217 @@
     <value>(לא ממופה)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>הפעלת מיקום וקנה מידה של שכבת-על לכל רכב</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>מקור 60 Hz</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>מקור 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>מקור LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>פלט</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>מסנן מעביר נמוכים</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>מסנן מעביר גבוהים</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>הגבר</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>חיבור</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>מיזוג</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>מגביל קצב שינוי</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>מדחס קצב שינוי</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>מדחס</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>משפר טרנזיינטים</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>מחליק אדפטיבי</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>מיזוג אדפטיבי</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>עקומה</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>מגביל רך</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>מקסימום</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>מינימום</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>הגנה מפני התנגשות</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>הגנה מפני שפות</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>עוצמה בחניה</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>נעילה רכה</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>חיכוך</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>מרכוז הגה</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>כוח אנדרסטיר</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>כוח אוברסטיר</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>כוח תחושת מושב</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>רטט אנדרסטיר</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>רטט אוברסטיר</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>רטט תחושת מושב</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>רטט סל״ד החלפה</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>רטט החלפת הילוך</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>רטט ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>הגבר מהירות</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>מרקם כביש</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>מרקם סליפ</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>דית'ר מומנט</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>שיפוע</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>תדירות חיתוך</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>הגבר</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>מיקס</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>גבול</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>סף</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>ברך</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>יחס</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>מצב שיא</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>כמות</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>חיתוך בשיא</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>כוח G אורכי</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>כוח G צידי</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>בזמן מירוץ</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>בזמן חניה</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>דפוס</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>מהירות מינימלית</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>מהירות מקסימלית</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>הגבר במהירות מינימלית</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>הגבר במהירות מקסימלית</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>קוטב אחד</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>שני קטבים</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>כניסה</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>כניסה A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>כניסה B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>הוסף מודול</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>בחירת הקלטה</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>שכפל את הגרף הנוכחי</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>גרף FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>שם הגרף</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>גרף חדש</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>התחל גרף ריק</value>
+  </data>
+
 
 
 

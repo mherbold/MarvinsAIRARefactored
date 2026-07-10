@@ -1818,7 +1818,217 @@
     <value>(nincs hozzárendelve)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Autónkénti overlay pozíció és méretezés engedélyezése</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz forrás</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz forrás</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE forrás</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Kimenet</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Aluláteresztő szűrő</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Felüláteresztő szűrő</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Erősítés</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Összegzés</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Keverés</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Változási sebesség korlátozó</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Változási sebesség kompresszor</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Kompresszor</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Tranziens kiemelő</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Adaptív simító</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Adaptív keverés</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Görbe</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Lágy korlátozó</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Maximum</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Baleset védelem</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Rázókő védelem</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Parkoló erő</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Lágy zár</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Súrlódás</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Kormány középre állítás</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Alulkormányzási erő</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Túlkormányzási erő</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Seat-of-pants erő</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Alulkormányzási rezgés</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Túlkormányzási rezgés</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Seat-of-pants rezgés</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Váltási fordulatszám rezgés</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Sebességváltási rezgés</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS rezgés</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Sebességfüggő erősítés</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Út textúra</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Csúszás textúra</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Nyomaték dither</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Meredekség</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Vágási frekvencia</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Erősítés</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Mix</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Korlát</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Küszöb</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Térdpont</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Arány</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Csúcs mód</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Mérték</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Csúcs vágási frekvencia</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Hosszirányú G-erő</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Oldalirányú G-erő</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Versenyzés közben</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Parkolás közben</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Minta</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Minimális sebesség</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Maximális sebesség</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Erősítés min. sebességnél</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Erősítés max. sebességnél</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Egypólusú</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Kétpólusú</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Bemenet</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Bemenet A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Bemenet B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Modul hozzáadása</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Felvétel kiválasztása</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Jelenlegi grafikon klónozása</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB grafikon</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Grafikon neve</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Új grafikon</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Üres grafikon indítása</value>
+  </data>
+
 
 
 

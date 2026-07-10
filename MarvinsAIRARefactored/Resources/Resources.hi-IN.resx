@@ -1820,7 +1820,217 @@
     <value>संतुलन</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>प्रति कार ओवरले स्थिति और स्केलिंग सक्षम करें</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz स्रोत</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz स्रोत</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE स्रोत</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>आउटपुट</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>लो-पास फ़िल्टर</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>हाई-पास फ़िल्टर</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>गेन</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>योग</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>ब्लेंड</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>स्लू लिमिटर</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>स्लू कम्प्रेसर</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>कम्प्रेसर</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>ट्रांज़िएंट एन्हांसर</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>अडैप्टिव स्मूथर</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>अडैप्टिव ब्लेंड</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>कर्व</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>सॉफ्ट लिमिटर</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>अधिकतम</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>न्यूनतम</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>क्रैश सुरक्षा</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>कर्ब सुरक्षा</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>पार्क्ड स्ट्रेंथ</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>सॉफ्ट लॉक</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>फ्रिक्शन</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>व्हील सेंटरिंग</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>अंडरस्टीयर फ़ोर्स</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>ओवरस्टीयर फ़ोर्स</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>सीट-ऑफ-पैंट्स फ़ोर्स</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>अंडरस्टीयर कंपन</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>ओवरस्टीयर कंपन</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>सीट-ऑफ-पैंट्स कंपन</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>शिफ्ट RPM कंपन</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>गियर चेंज कंपन</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS कंपन</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>स्पीड गेन</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>रोड टेक्सचर</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>स्लिप टेक्सचर</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>टॉर्क डिथर</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>स्लोप</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>कटऑफ़</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>गेन</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>मिक्स</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>लिमिट</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>थ्रेशोल्ड</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>नी</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>रेशियो</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>पीक मोड</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>मात्रा</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>पीक कटऑफ़</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>अनुदैर्ध्य G फ़ोर्स</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>पार्श्व G फ़ोर्स</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>रेसिंग के दौरान</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>पार्क होने पर</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>पैटर्न</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>न्यूनतम गति</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>अधिकतम गति</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>न्यूनतम गति पर गेन</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>अधिकतम गति पर गेन</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>एक पोल</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>दो पोल</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>इनपुट</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>इनपुट A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>इनपुट B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>मॉड्यूल जोड़ें</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>रिकॉर्डिंग चुनें</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>मौजूदा ग्राफ़ क्लोन करें</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB ग्राफ़</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>ग्राफ़ का नाम</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>नया ग्राफ़</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>खाली ग्राफ़ से शुरू करें</value>
+  </data>
+
 
 
 

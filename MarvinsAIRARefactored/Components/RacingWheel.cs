@@ -77,7 +77,6 @@ public class RacingWheel
 	private const float FadeInTimeMS = 2000f;
 	private const float FadeOutTimeMS = 750f;
 	private const float TestSignalTimeMS = 2000f;
-	private const float CrashProtectionRecoveryTime = 1000f;
 
 	// Commentary voice slot used for MAIRA system announcements (matches VoiceSlotSettings.CreateDefaults order).
 	private const int CommentarySlotMaira = 5;
@@ -706,44 +705,44 @@ public class RacingWheel
 		}
 	}
 
-		/// <summary>
-		/// Assembles the per-tick auxiliary input for the FFB graph engine from the current torque samples,
-		/// telemetry, wheel hardware state, and the one-shot protection pulses. Built once per 360 Hz tick with no
-		/// allocation (the struct is passed by readonly reference into every module).
-		/// </summary>
-		private FFBTickContext BuildTickContext( App app, float deltaMilliseconds, float torque60Hz, float torque360Hz, float maxForce, float lfeMagnitude, float parkedFactor, bool crashProtectionTriggered, bool curbProtectionTriggered )
-		{
-			var simulator = app.Simulator;
-			var steeringEffects = app.SteeringEffects;
-			var directInput = app.DirectInput;
+	/// <summary>
+	/// Assembles the per-tick auxiliary input for the FFB graph engine from the current torque samples,
+	/// telemetry, wheel hardware state, and the one-shot protection pulses. Built once per 360 Hz tick with no
+	/// allocation (the struct is passed by readonly reference into every module).
+	/// </summary>
+	private FFBTickContext BuildTickContext( App app, float deltaMilliseconds, float torque60Hz, float torque360Hz, float maxForce, float lfeMagnitude, float parkedFactor, bool crashProtectionTriggered, bool curbProtectionTriggered )
+	{
+		var simulator = app.Simulator;
+		var steeringEffects = app.SteeringEffects;
+		var directInput = app.DirectInput;
 
-			return new FFBTickContext(
-				deltaMilliseconds: deltaMilliseconds,
-				torque60Hz: torque60Hz,
-				torque360Hz: torque360Hz,
-				maxForce: maxForce,
-				lfeMagnitude: lfeMagnitude,
-				wheelPosition: directInput.ForceFeedbackWheelPosition,
-				wheelVelocity: directInput.ForceFeedbackWheelVelocity,
-				understeerEffect: steeringEffects.UndersteerEffect,
-				oversteerEffect: steeringEffects.OversteerEffect,
-				seatOfPantsEffect: steeringEffects.SeatOfPantsEffect,
-				skidSlip: steeringEffects.SkidSlip,
-				rpm: simulator.RPM,
-				shiftRPM: simulator.ShiftLightsShiftRPM,
-				gear: simulator.Gear,
-				numForwardGears: simulator.NumForwardGears,
-				absActive: simulator.BrakeABSactive,
-				isOnTrack: simulator.IsOnTrack,
-				usingTorqueData: _usingSteeringWheelTorqueData,
-				velocityMS: simulator.Velocity,
-				velocityY: simulator.VelocityY,
-				parkedFactor: parkedFactor,
-				steeringWheelAngle: simulator.SteeringWheelAngle,
-				steeringWheelAngleMax: simulator.SteeringWheelAngleMax,
-				crashProtectionTriggered: crashProtectionTriggered,
-				curbProtectionTriggered: curbProtectionTriggered );
-		}
+		return new FFBTickContext(
+			deltaMilliseconds: deltaMilliseconds,
+			torque60Hz: torque60Hz,
+			torque360Hz: torque360Hz,
+			maxForce: maxForce,
+			lfeMagnitude: lfeMagnitude,
+			wheelPosition: directInput.ForceFeedbackWheelPosition,
+			wheelVelocity: directInput.ForceFeedbackWheelVelocity,
+			understeerEffect: steeringEffects.UndersteerEffect,
+			oversteerEffect: steeringEffects.OversteerEffect,
+			seatOfPantsEffect: steeringEffects.SeatOfPantsEffect,
+			skidSlip: steeringEffects.SkidSlip,
+			rpm: simulator.RPM,
+			shiftRPM: simulator.ShiftLightsShiftRPM,
+			gear: simulator.Gear,
+			numForwardGears: simulator.NumForwardGears,
+			absActive: simulator.BrakeABSactive,
+			isOnTrack: simulator.IsOnTrack,
+			usingTorqueData: _usingSteeringWheelTorqueData,
+			velocityMS: simulator.Velocity,
+			velocityY: simulator.VelocityY,
+			parkedFactor: parkedFactor,
+			steeringWheelAngle: simulator.SteeringWheelAngle,
+			steeringWheelAngleMax: simulator.SteeringWheelAngleMax,
+			crashProtectionTriggered: crashProtectionTriggered,
+			curbProtectionTriggered: curbProtectionTriggered );
+	}
 
 	public void Tick( App app )
 	{
@@ -791,27 +790,39 @@ public class RacingWheel
 				var selectedIndex = selectedModule != null ? _previewEngine.IndexOf( selectedModule.ModuleId ) : -1;
 				var selectedIsOutput = ( selectedModule == null ) || selectedModule.IsOutput || ( selectedIndex < 0 );
 
-				int redIndex;
-				int greenIndex;
-				int blueIndex;
+				// the ±100% clipping lines only mean something on the normalized final output
+				_algorithmPreviewGraphBase.DrawClippingLines = selectedIsOutput;
+
+				int input1Index = -1;
+				int input2Index = -1;
+				int outputIndex;
 
 				if ( selectedIsOutput )
 				{
-					redIndex = _previewEngine.IndexOf( FFBGraph.Source60ModuleId );
-					greenIndex = _previewEngine.IndexOf( FFBGraph.Source360ModuleId );
-					blueIndex = -1;   // final output is already normalized — read MainOutput directly
+					input1Index = _previewEngine.IndexOf( FFBGraph.Source360ModuleId );
+					input2Index = -1;
+					outputIndex = -1; // final output is already normalized — read MainOutput directly
+				}
+				else if ( selectedModule!.SignalInputCount == 0 )
+				{
+					// a source module has no inputs — show just its own waveform
+					outputIndex = selectedIndex;
 				}
 				else
 				{
-					( redIndex, greenIndex ) = _previewEngine.GetResolvedInputs( selectedIndex );
+					(input1Index, input2Index) = _previewEngine.GetResolvedInputs( selectedIndex );
 
-					if ( selectedModule!.SignalInputCount < 2 )
+					if ( selectedModule.SignalInputCount < 2 )
 					{
-						greenIndex = -1;   // single-input module — no green trace
+						// single-input module — no second input trace
+						input2Index = -1;
 					}
 
-					blueIndex = selectedIndex;
+					outputIndex = selectedIndex;
 				}
+
+				var previousOutputValue = 0f;
+				var isFirstSample = true;
 
 				for ( var x = 0; x < _algorithmPreviewGraphBase.BitmapWidth; x++ )
 				{
@@ -826,25 +837,49 @@ public class RacingWheel
 
 						// the main bus is in Nm until the Output module normalizes it, so tapped signals are
 						// scaled by max force for display; the final output is already normalized
+						// draw the output value first because it fill the space below the line with black
+						var outputValue = outputIndex >= 0 ? _previewEngine.GetSignal( outputIndex ) / maxForce : _previewEngine.MainOutput;
 
-						var blueValue = blueIndex >= 0 ? _previewEngine.GetSignal( blueIndex ) / maxForce : _previewEngine.MainOutput;
-
-						_algorithmPreviewGraphBase.Update( _previewEngine.GetSignal( redIndex ) / maxForce, 1f, 0f, 0f );
-
-						if ( greenIndex >= 0 )
+						if ( isFirstSample )
 						{
-							_algorithmPreviewGraphBase.Update( _previewEngine.GetSignal( greenIndex ) / maxForce, 0f, 1f, 0f );
+							previousOutputValue = outputValue;
+							isFirstSample = false;
 						}
 
-						_algorithmPreviewGraphBase.Update( blueValue, 0f, 1f, 1f );
+						// the output renders as a connected line over the solid-filled inputs
+						_algorithmPreviewGraphBase.UpdateLine( previousOutputValue, outputValue, 1f, 1f, 1f );
 
-						if ( blueValue <= -0.99f )
+						previousOutputValue = outputValue;
+
+						if ( input1Index >= 0 )
 						{
-							_algorithmPreviewGraphBase.SetGutterColors( 0, 0, 0xFFFF0000, 0xFFFF0000 );
+							var inputValue = _previewEngine.GetSignal( input1Index ) / maxForce;
+
+							_algorithmPreviewGraphBase.UpdateSolidFill( inputValue, 0.5f, 0f, 0f );
 						}
-						else if ( blueValue >= 0.99f )
+
+						if ( input2Index >= 0 )
 						{
-							_algorithmPreviewGraphBase.SetGutterColors( 0xFFFF0000, 0xFFFF0000, 0, 0 );
+							var inputValue = _previewEngine.GetSignal( input2Index ) / maxForce;
+
+							_algorithmPreviewGraphBase.UpdateSolidFill( inputValue, 0f, 0.5f, 0f );
+						}
+
+						// show clipping only if the output module is selected
+						if ( selectedIsOutput )
+						{
+							if ( outputValue <= -0.99f )
+							{
+								_algorithmPreviewGraphBase.SetGutterColors( 0, 0, 0xFFFF0000, 0xFFFF0000 );
+							}
+							else if ( outputValue >= 0.99f )
+							{
+								_algorithmPreviewGraphBase.SetGutterColors( 0xFFFF0000, 0xFFFF0000, 0, 0 );
+							}
+							else
+							{
+								_algorithmPreviewGraphBase.SetGutterColors( 0, 0, 0, 0 );
+							}
 						}
 						else
 						{

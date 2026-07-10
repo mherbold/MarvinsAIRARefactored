@@ -1818,7 +1818,217 @@
     <value>(ikke tilordnet)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Aktiver overlegg-posisjon og -skalering per bil</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz-kilde</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz-kilde</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE-kilde</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Utdata</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Lavpassfilter</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Høypassfilter</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Adder</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Blanding</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Slew-begrenser</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Slew-kompressor</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Kompressor</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Transientforsterker</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Adaptiv utjevning</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Adaptiv blanding</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Kurve</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Myk begrenser</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Maksimum</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Minimum</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Krasj-beskyttelse</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Kantstein-beskyttelse</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Parkert styrke</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Myk lås</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Friksjon</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Rattsentrering</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Understyringskraft</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Overstyringskraft</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Seteintuitiv kraft</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Understyringsvibrasjon</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Overstyringsvibrasjon</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Seteintuitiv vibrasjon</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Skifte-RPM-vibrasjon</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Girskiftvibrasjon</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS-vibrasjon</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Hastighets-gain</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Veitekstur</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Sliptekstur</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Dreiemoment-dither</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Bratthet</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Knekkfrekvens</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Mix</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Grense</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Terskel</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Kne</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Ratio</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Toppmodus</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Mengde</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Topp-knekkfrekvens</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Longitudinal G-kraft</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Lateral G-kraft</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Under kjøring</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Når parkert</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Mønster</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Minimumshastighet</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Maksimumshastighet</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Gain ved min. hastighet</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Gain ved maks. hastighet</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Enpolet</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Topolet</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Inngang</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Inngang A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Inngang B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Legg til modul</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Velg opptak</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Klon gjeldende graf</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB-graf</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Grafnavn</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Ny graf</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Start med tom graf</value>
+  </data>
+
 
 
 

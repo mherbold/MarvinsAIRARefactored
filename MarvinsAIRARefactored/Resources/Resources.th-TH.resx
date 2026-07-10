@@ -1818,7 +1818,217 @@
     <value>(ยังไม่ได้แมป)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>เปิดใช้งานตำแหน่งและขนาดของโอเวอร์เลย์แยกตามรถ</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>แหล่งสัญญาณ 60 Hz</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>แหล่งสัญญาณ 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>แหล่งสัญญาณ LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>เอาต์พุต</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>ตัวกรองโลว์พาส</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>ตัวกรองไฮพาส</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>เกน</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>รวมสัญญาณ</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>ผสมสัญญาณ</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>ตัวจำกัดอัตราเปลี่ยนแปลง</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>ตัวบีบอัดอัตราเปลี่ยนแปลง</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>ตัวบีบอัด</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>ตัวเสริมทรานเซียนต์</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>ตัวปรับเรียบแบบปรับตัว</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>ผสมสัญญาณแบบปรับตัว</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>เส้นโค้ง</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>ตัวจำกัดแบบนุ่ม</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>ค่าสูงสุด</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>ค่าต่ำสุด</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>การป้องกันการชน</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>การป้องกันขอบถนน</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>ความแรงขณะจอด</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>ล็อกนุ่ม</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>แรงเสียดทาน</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>การจัดกึ่งกลางพวงมาลัย</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>แรง Understeer</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>แรง Oversteer</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>แรง Seat-of-Pants</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>การสั่น Understeer</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>การสั่น Oversteer</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>การสั่น Seat-of-Pants</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>การสั่นรอบเปลี่ยนเกียร์</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>การสั่นเมื่อเปลี่ยนเกียร์</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>การสั่น ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>เกนตามความเร็ว</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>พื้นผิวถนน</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>พื้นผิวการลื่น</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>ดิเธอร์แรงบิด</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>ความชัน</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>ความถี่ตัด</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>เกน</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>มิกซ์</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>ขีดจำกัด</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>เกณฑ์</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Knee</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>อัตราส่วน</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>โหมดพีค</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>ปริมาณ</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>ความถี่ตัดช่วงพีค</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>แรง G ตามยาว</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>แรง G ด้านข้าง</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>ขณะแข่ง</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>ขณะจอด</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>รูปแบบ</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>ความเร็วต่ำสุด</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>ความเร็วสูงสุด</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>เกนที่ความเร็วต่ำสุด</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>เกนที่ความเร็วสูงสุด</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>หนึ่งโพล</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>สองโพล</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>อินพุต</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>อินพุต A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>อินพุต B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>เพิ่มโมดูล</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>เลือกการบันทึก</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>โคลนกราฟปัจจุบัน</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>กราฟ FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>ชื่อกราฟ</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>กราฟใหม่</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>เริ่มกราฟเปล่า</value>
+  </data>
+
 
 
 

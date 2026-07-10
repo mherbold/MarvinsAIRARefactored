@@ -1818,7 +1818,217 @@
     <value>(չնշանակված)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Միացնել վրադրման դիրքն ու չափը յուրաքանչյուր մեքենայի համար</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>60 Hz աղբյուր</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>360 Hz աղբյուր</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>LFE աղբյուր</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Ելք</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Ցածրանցիկ զտիչ</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Բարձրանցիկ զտիչ</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Ուժեղացում</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Գումարում</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Խառնուրդ</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Փոփոխման արագության սահմանափակիչ</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Փոփոխման արագության սեղմիչ</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Սեղմիչ</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Տրանզիենտների ուժեղարար</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Հարմարվողական հարթեցում</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Հարմարվողական խառնուրդ</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Կոր</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Փափուկ սահմանափակիչ</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Առավելագույն</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Նվազագույն</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Վթարի պաշտպանություն</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Բորդյուրի պաշտպանություն</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Կայանած վիճակում ուժ</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Փափուկ սահմանափակում</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Շփում</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Ղեկի կենտրոնացում</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Անդերստիրի ուժ</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Օվերստիրի ուժ</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Աթոռի զգացողության ուժ</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Անդերստիրի թրթռում</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Օվերստիրի թրթռում</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Աթոռի զգացողության թրթռում</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Փոխանցման RPM թրթռում</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Փոխանցման փոփոխության թրթռում</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>ABS թրթռում</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Արագության ուժեղացում</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Ճանապարհի հյուսվածք</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Սահքի հյուսվածք</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Մոմենտի դիթեր</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Թեքություն</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Կտրման հաճախականություն</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Ուժեղացում</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Միքս</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Սահման</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Շեմ</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Ծունկ</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Հարաբերակցություն</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Պիկ ռեժիմ</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Քանակ</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Պիկի կտրում</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Երկայնական G ուժ</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Կողային G ուժ</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Մրցարշավի ընթացքում</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Կայանած վիճակում</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Նախշ</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Նվազագույն արագություն</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Առավելագույն արագություն</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Ուժեղացում նվազագույն արագությամբ</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Ուժեղացում առավելագույն արագությամբ</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Մեկ բևեռ</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Երկու բևեռ</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Մուտք</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Մուտք A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Մուտք B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Ավելացնել մոդուլ</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Ընտրել ձայնագրություն</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Կլոնավորել ընթացիկ գրաֆը</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>FFB գրաֆ</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Գրաֆի անուն</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Նոր գրաֆ</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Սկսել դատարկ գրաֆ</value>
+  </data>
+
 
 
 

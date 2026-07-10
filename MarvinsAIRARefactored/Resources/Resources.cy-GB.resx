@@ -1818,7 +1818,217 @@
     <value>(heb ei fapio)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Galluogi safle a graddfa haen fesul car</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>Ffynhonnell 60 Hz</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>Ffynhonnell 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>Ffynhonnell LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Allbwn</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Hidlydd pas isel</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Hidlydd pas uchel</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Adio</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Cymysgedd</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Cyfyngydd slew</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Cywasgydd slew</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Cywasgydd</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Gwella transients</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Llyfnhau addasol</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Cymysgedd addasol</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Cromlin</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Cyfyngydd meddal</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Mwyafswm</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Lleiafswm</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Amddiffyniad damwain</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Amddiffyniad cwrbyn</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Cryfder parcio</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Clo meddal</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Ffrithiant</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Canol-osod llyw</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Grym tanllywio</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Grym gorllywio</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Grym teimlad sedd</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Dirgryniad tanllywio</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Dirgryniad gorllywio</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Dirgryniad teimlad sedd</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Dirgryniad RPM newid</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Dirgryniad newid gêr</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>Dirgryniad ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Gain cyflymder</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Gwead ffordd</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Gwead llithro</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Dither trorym</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Llethr</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Torbwynt</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Gain</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Cymysgedd</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Terfyn</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Trothwy</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Knee</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Cymhareb</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Modd brig</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Maint</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Torbwynt brig</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Grym G hydredol</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Grym G ochrol</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>Wrth rasio</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Wrth barcio</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Patrwm</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Cyflymder lleiafswm</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Cyflymder mwyafswm</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Gain ar gyflymder lleiafswm</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Gain ar gyflymder mwyafswm</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Un pôl</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Dau bôl</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Mewnbwn</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Mewnbwn A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Mewnbwn B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Ychwanegu modiwl</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Dewis recordiad</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Clonio'r graff cyfredol</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>Graff FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Enw'r graff</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Graff newydd</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Dechrau graff gwag</value>
+  </data>
+
 
 
 

@@ -1818,7 +1818,217 @@
     <value>(sense assignar)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activa la posició i l'escala de la superposició per cotxe</value>
+  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+    <value>Font de 60 Hz</value>
   </data>
+  <data name="FFBModuleSource360Hz" xml:space="preserve">
+    <value>Font de 360 Hz</value>
+  </data>
+  <data name="FFBModuleSourceLFE" xml:space="preserve">
+    <value>Font LFE</value>
+  </data>
+  <data name="FFBModuleOutput" xml:space="preserve">
+    <value>Sortida</value>
+  </data>
+  <data name="FFBModuleLowPassFilter" xml:space="preserve">
+    <value>Filtre passabaix</value>
+  </data>
+  <data name="FFBModuleHighPassFilter" xml:space="preserve">
+    <value>Filtre passaalt</value>
+  </data>
+  <data name="FFBModuleGain" xml:space="preserve">
+    <value>Guany</value>
+  </data>
+  <data name="FFBModuleAdd" xml:space="preserve">
+    <value>Suma</value>
+  </data>
+  <data name="FFBModuleBlend" xml:space="preserve">
+    <value>Fusió</value>
+  </data>
+  <data name="FFBModuleSlewLimiter" xml:space="preserve">
+    <value>Limitador de variació</value>
+  </data>
+  <data name="FFBModuleSlewCompressor" xml:space="preserve">
+    <value>Compressor de variació</value>
+  </data>
+  <data name="FFBModuleCompressor" xml:space="preserve">
+    <value>Compressor</value>
+  </data>
+  <data name="FFBModuleTransientEnhancer" xml:space="preserve">
+    <value>Realçador de transitoris</value>
+  </data>
+  <data name="FFBModuleAdaptiveSmoother" xml:space="preserve">
+    <value>Suavitzador adaptatiu</value>
+  </data>
+  <data name="FFBModuleAdaptiveBlend" xml:space="preserve">
+    <value>Fusió adaptativa</value>
+  </data>
+  <data name="FFBModuleCurve" xml:space="preserve">
+    <value>Corba</value>
+  </data>
+  <data name="FFBModuleSoftLimiter" xml:space="preserve">
+    <value>Limitador suau</value>
+  </data>
+  <data name="FFBModuleMaximum" xml:space="preserve">
+    <value>Màxim</value>
+  </data>
+  <data name="FFBModuleMinimum" xml:space="preserve">
+    <value>Mínim</value>
+  </data>
+  <data name="FFBModuleCrashProtection" xml:space="preserve">
+    <value>Protecció contra xocs</value>
+  </data>
+  <data name="FFBModuleCurbProtection" xml:space="preserve">
+    <value>Protecció de voreres</value>
+  </data>
+  <data name="FFBModuleParkedStrength" xml:space="preserve">
+    <value>Intensitat aparcat</value>
+  </data>
+  <data name="FFBModuleSoftLock" xml:space="preserve">
+    <value>Bloqueig suau</value>
+  </data>
+  <data name="FFBModuleFriction" xml:space="preserve">
+    <value>Fricció</value>
+  </data>
+  <data name="FFBModuleWheelCentering" xml:space="preserve">
+    <value>Recentratge del volant</value>
+  </data>
+  <data name="FFBModuleUndersteerForce" xml:space="preserve">
+    <value>Força de subviratge</value>
+  </data>
+  <data name="FFBModuleOversteerForce" xml:space="preserve">
+    <value>Força de sobreviratge</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsForce" xml:space="preserve">
+    <value>Força seat-of-pants</value>
+  </data>
+  <data name="FFBModuleUndersteerVibration" xml:space="preserve">
+    <value>Vibració de subviratge</value>
+  </data>
+  <data name="FFBModuleOversteerVibration" xml:space="preserve">
+    <value>Vibració de sobreviratge</value>
+  </data>
+  <data name="FFBModuleSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibració seat-of-pants</value>
+  </data>
+  <data name="FFBModuleShiftRPMVibration" xml:space="preserve">
+    <value>Vibració de RPM de canvi</value>
+  </data>
+  <data name="FFBModuleGearChangeVibration" xml:space="preserve">
+    <value>Vibració de canvi de marxa</value>
+  </data>
+  <data name="FFBModuleABSVibration" xml:space="preserve">
+    <value>Vibració d'ABS</value>
+  </data>
+  <data name="FFBModuleSpeedGain" xml:space="preserve">
+    <value>Guany segons la velocitat</value>
+  </data>
+  <data name="FFBModuleRoadTexture" xml:space="preserve">
+    <value>Textura de carretera</value>
+  </data>
+  <data name="FFBModuleSlipTexture" xml:space="preserve">
+    <value>Textura de lliscament</value>
+  </data>
+  <data name="FFBModuleTorqueDither" xml:space="preserve">
+    <value>Dither de parell</value>
+  </data>
+  <data name="FFBSettingSlope" xml:space="preserve">
+    <value>Pendent</value>
+  </data>
+  <data name="FFBSettingCutoff" xml:space="preserve">
+    <value>Tall</value>
+  </data>
+  <data name="FFBSettingGain" xml:space="preserve">
+    <value>Guany</value>
+  </data>
+  <data name="FFBSettingMix" xml:space="preserve">
+    <value>Mescla</value>
+  </data>
+  <data name="FFBSettingLimit" xml:space="preserve">
+    <value>Límit</value>
+  </data>
+  <data name="FFBSettingThreshold" xml:space="preserve">
+    <value>Llindar</value>
+  </data>
+  <data name="FFBSettingKnee" xml:space="preserve">
+    <value>Knee</value>
+  </data>
+  <data name="FFBSettingRatio" xml:space="preserve">
+    <value>Ràtio</value>
+  </data>
+  <data name="FFBSettingPeakMode" xml:space="preserve">
+    <value>Mode de pic</value>
+  </data>
+  <data name="FFBSettingAmount" xml:space="preserve">
+    <value>Quantitat</value>
+  </data>
+  <data name="FFBSettingPeakCutoff" xml:space="preserve">
+    <value>Tall de pic</value>
+  </data>
+  <data name="FFBSettingLongGForce" xml:space="preserve">
+    <value>Força G longitudinal</value>
+  </data>
+  <data name="FFBSettingLatGForce" xml:space="preserve">
+    <value>Força G lateral</value>
+  </data>
+  <data name="FFBSettingWhileRacing" xml:space="preserve">
+    <value>En cursa</value>
+  </data>
+  <data name="FFBSettingWhileParked" xml:space="preserve">
+    <value>Aparcat</value>
+  </data>
+  <data name="FFBSettingPattern" xml:space="preserve">
+    <value>Patró</value>
+  </data>
+  <data name="FFBSettingMinSpeed" xml:space="preserve">
+    <value>Velocitat mínima</value>
+  </data>
+  <data name="FFBSettingMaxSpeed" xml:space="preserve">
+    <value>Velocitat màxima</value>
+  </data>
+  <data name="FFBSettingGainAtMin" xml:space="preserve">
+    <value>Guany a velocitat mínima</value>
+  </data>
+  <data name="FFBSettingGainAtMax" xml:space="preserve">
+    <value>Guany a velocitat màxima</value>
+  </data>
+  <data name="OnePole" xml:space="preserve">
+    <value>Un pol</value>
+  </data>
+  <data name="TwoPole" xml:space="preserve">
+    <value>Dos pols</value>
+  </data>
+  <data name="Input" xml:space="preserve">
+    <value>Entrada</value>
+  </data>
+  <data name="InputA" xml:space="preserve">
+    <value>Entrada A</value>
+  </data>
+  <data name="InputB" xml:space="preserve">
+    <value>Entrada B</value>
+  </data>
+  <data name="AddModule" xml:space="preserve">
+    <value>Afegeix un mòdul</value>
+  </data>
+  <data name="ChooseRecording" xml:space="preserve">
+    <value>Tria un enregistrament</value>
+  </data>
+  <data name="CloneCurrentGraph" xml:space="preserve">
+    <value>Clona el gràfic actual</value>
+  </data>
+  <data name="FFBGraph" xml:space="preserve">
+    <value>Gràfic FFB</value>
+  </data>
+  <data name="GraphName" xml:space="preserve">
+    <value>Nom del gràfic</value>
+  </data>
+  <data name="NewGraphTitle" xml:space="preserve">
+    <value>Gràfic nou</value>
+  </data>
+  <data name="StartEmptyGraph" xml:space="preserve">
+    <value>Comença amb un gràfic buit</value>
+  </data>
+
 
 
 
