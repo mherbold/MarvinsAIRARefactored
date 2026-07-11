@@ -208,7 +208,7 @@
     <value>Finestra in primo piano</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>Nm</value>
+    <value> Nm</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
     <value>Incrementatore dettagli a 60 Hz</value>
@@ -244,7 +244,7 @@
     <value>Limite delta</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value>Nm/s</value>
+    <value> Nm/s</value>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
     <value>Limitatore delta a 60 Hz</value>
@@ -280,7 +280,7 @@
     <value>Protezione incidenti</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value>g</value>
+    <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
     <value>Forza g</value>
@@ -292,10 +292,10 @@
     <value>Riduzione forza</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>sec</value>
+    <value> sec</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value>m/s</value>
+    <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
     <value>Protezione cordoli</value>
@@ -328,7 +328,7 @@
     <value>Forza</value>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>Hz</value>
+    <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
     <value>Frequenza globale</value>
@@ -418,7 +418,7 @@
     <value>Effetti Lfe ruota</value>
   </data>
   <data name="LFERecordingDevice" xml:space="preserve">
-    <value>Dispositivo di registrazione LFE </value>
+    <value>Dispositivo di registrazione LFE</value>
   </data>
   <data name="InputTorque60Hz" xml:space="preserve">
     <value>Coppia in ingresso (60 Hz)</value>
@@ -571,7 +571,7 @@
     <value>Soglia di compressione totale</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>Nm/ms</value>
+    <value> Nm/ms</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
     <value>Forza volante</value>
@@ -730,7 +730,7 @@
     <value>Qualcosa è andato storto</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>Km/h</value>
+    <value> Km/h</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Queste persone hanno generosamente contribuito, utilizzando il proprio tempo libero, a calibrare gli effetti di sovrasterzo e sottosterzo su alcune delle loro auto preferite e hanno fatto l'upload dei file di calibrazione!</value>
@@ -889,7 +889,7 @@
     <value>Grip-O-Meter</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>MPH</value>
+    <value> MPH</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon vento</value>
@@ -1354,10 +1354,10 @@
     <value>Seleziona il tuo volante con force feedback dall'elenco sottostante.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Non vedi il tuo volante? Assicurati che sia acceso e collegato, quindi l'elenco si aggiornerà automaticamente.</value>
+    <value>Non vedi il tuo volante? Assicurati che sia acceso e collegato, quindi l'elenco si aggiornerà automaticamente.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Utenti Fanatec: i volanti Fanatec di solito appaiono come due dispositivi separati nell'elenco. Se quello selezionato non funziona, prova l'altro!</value>
+    <value>Utenti Fanatec: i volanti Fanatec di solito appaiono come due dispositivi separati nell'elenco. Se quello selezionato non funziona, prova l'altro!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Forza massima del volante</value>
@@ -1366,10 +1366,10 @@
     <value>Inserisci la forza massima che la tua base può produrre, in Newton-metri (Nm). MAIRA usa questo valore per scalare correttamente tutto l'output del force feedback per il tuo hardware.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Abbiamo fatto la nostra migliore stima in base al volante selezionato, ma sentiti libero di regolarla se necessario.</value>
+    <value>Abbiamo fatto la nostra migliore stima in base al volante selezionato, ma sentiti libero di regolarla se necessario.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Importante: se hai già limitato la coppia massima del volante nel software del produttore (es.: Fanatec Wheel Control Panel, Moza Pit House, ecc.), inserisci qui quel valore ridotto anziché il massimo fisico dell'hardware. MAIRA ha bisogno di sapere cosa erogherà effettivamente il tuo volante, non di cosa è capace in teoria.</value>
+    <value>Importante: se hai già limitato la coppia massima del volante nel software del produttore (es.: Fanatec Wheel Control Panel, Moza Pit House, ecc.), inserisci qui quel valore ridotto anziché il massimo fisico dell'hardware. MAIRA ha bisogno di sapere cosa erogherà effettivamente il tuo volante, non di cosa è capace in teoria.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Controlli della forza</value>
@@ -1381,7 +1381,7 @@
     <value>Clicca sui pulsanti - e + qui sotto per assegnare gli ingressi a ciascuno. Questo passaggio è facoltativo; puoi saltarlo e configurare le associazioni più tardi dalla pagina del Volante.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Una volta mappato un ingresso, il bordo del pulsante diventerà arancione per confermare.</value>
+    <value>Una volta mappato un ingresso, il bordo del pulsante diventerà arancione per confermare.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Forza</value>
@@ -1408,7 +1408,7 @@
     <value>Prima, regola il margine target automatico a tuo piacimento, poi mappa i pulsanti Imposta e Cancella.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Il target automatico imposta dove nella gamma di forza del volante deve posizionarsi il picco misurato. Abbassa il target per mantenere più margine sopra il picco; alzalo per usare di più la gamma del volante.</value>
+    <value>Il target automatico imposta dove nella gamma di forza del volante deve posizionarsi il picco misurato. Abbassa il target per mantenere più margine sopra il picco; alzalo per usare di più la gamma del volante.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritmo</value>
@@ -1499,9 +1499,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Fine loop</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Commento</value>
@@ -1651,7 +1648,7 @@
     <value>Inizializzazione del simulatore...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inizializzazione dell'Input diretto...</value>
+    <value>Inizializzazione di DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inizializzazione di Stream Deck...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Profili controller</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Rinomina profilo</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Rinomina profilo controller</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Processi in esecuzione</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtra per nome o percorso...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Ricerca delle app in esecuzione...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Visibilità finestra</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Mostra / nascondi finestra</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Dimensione passo</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Intervallo di controllo aggiornamenti</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Elimina le verniciature alla chiusura di iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Controlla aggiornamenti a intervalli</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Prove</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Qualifiche</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Gara</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Stato</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inattivo</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Attivo</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Soppresso</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Elimina i vecchi programmi di installazione</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Varie</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Apri la cartella documenti</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(non assegnato)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Abilita posizione e scala della sovrapposizione per auto</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Sorgente 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Limitatore morbido</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Massimo</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Minimo</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Protezione incidenti</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Forza da fermi</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Bloccaggio</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Sorgente bloccaggio</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Attrito</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Centratura volante</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Sorgente centratura volante</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Forza sottosterzo</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Due poli</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Ingresso</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Ingresso A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Ingresso B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Aggiungi modulo</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Inizia con un grafico vuoto</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Differenza</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Sorgente velocità volante</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Sorgenti</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP generico</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mixer</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Effetti</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Altri effetti</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

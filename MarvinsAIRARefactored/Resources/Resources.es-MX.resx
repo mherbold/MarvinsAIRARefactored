@@ -139,7 +139,7 @@
     <value>Fricción de carrera</value>
   </data>
   <data name="Graph" xml:space="preserve">
-    <value>Gráfico </value>
+    <value>Gráfico</value>
   </data>
   <data name="HeaderData" xml:space="preserve">
     <value>Datos de encabezado</value>
@@ -217,7 +217,7 @@
     <value>AdminBoxx</value>
   </data>
   <data name="ConnectToAdminBoxx" xml:space="preserve">
-    <value>Conectar a AdminBoxx </value>
+    <value>Conectar a AdminBoxx</value>
   </data>
   <data name="UpdateButtonMappings" xml:space="preserve">
     <value>Actualizar asignación de entradas</value>
@@ -403,8 +403,7 @@
     <value>Activar integración de control de carreras Xtreme Scoring</value>
   </data>
   <data name="Brightness" xml:space="preserve">
-    <value>Brillo
-</value>
+    <value>Brillo</value>
   </data>
   <data name="Volume" xml:space="preserve">
     <value>Volumen</value>
@@ -1355,10 +1354,10 @@
     <value>Selecciona tu volante con retroalimentación de fuerza de la lista a continuación.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> ¿No ves tu volante? Asegúrate de que esté encendido y conectado, y la lista se actualizará automáticamente.</value>
+    <value>¿No ves tu volante? Asegúrate de que esté encendido y conectado, y la lista se actualizará automáticamente.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Usuarios Fanatec: los volantes Fanatec suelen aparecer como dos dispositivos separados en la lista. ¡Si el que seleccionaste no funciona, intenta con el otro!</value>
+    <value>Usuarios Fanatec: los volantes Fanatec suelen aparecer como dos dispositivos separados en la lista. ¡Si el que seleccionaste no funciona, intenta con el otro!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Fuerza máxima del volante</value>
@@ -1367,10 +1366,10 @@
     <value>Ingresa la fuerza máxima que tu base puede producir, en Newton-metros (Nm). MAIRA usa este valor para escalar correctamente toda la salida de retroalimentación de fuerza para tu hardware.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Hemos hecho nuestra mejor estimación basada en el volante seleccionado, pero siéntete libre de ajustarlo si es necesario.</value>
+    <value>Hemos hecho nuestra mejor estimación basada en el volante seleccionado, pero siéntete libre de ajustarlo si es necesario.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Importante: si ya limitaste la salida máxima de par de tu volante en el software del fabricante (ej.: Fanatec Wheel Control Panel, Moza Pit House, etc.), ingresa ese valor reducido aquí en lugar del máximo físico del hardware. MAIRA necesita saber lo que tu volante realmente entregará, no de lo que es capaz en teoría.</value>
+    <value>Importante: si ya limitaste la salida máxima de par de tu volante en el software del fabricante (ej.: Fanatec Wheel Control Panel, Moza Pit House, etc.), ingresa ese valor reducido aquí en lugar del máximo físico del hardware. MAIRA necesita saber lo que tu volante realmente entregará, no de lo que es capaz en teoría.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Controles de fuerza</value>
@@ -1382,7 +1381,7 @@
     <value>Haz clic en los botones - y + a continuación para asignar entradas a cada uno. Este paso es opcional; puedes omitirlo y configurar los atajos más tarde desde la página del Volante.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Una vez que se asigne una entrada, el borde del botón se volverá naranja para confirmar.</value>
+    <value>Una vez que se asigne una entrada, el borde del botón se volverá naranja para confirmar.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Fuerza</value>
@@ -1409,7 +1408,7 @@
     <value>Primero, ajusta el margen objetivo automático a tu gusto y luego asigna tus botones Establecer y Limpiar.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> El objetivo automático establece en qué parte del rango de fuerza de tu volante debe ubicarse el pico medido. Baja el objetivo para mantener más margen sobre el pico; auméntalo para usar más del rango del volante.</value>
+    <value>El objetivo automático establece en qué parte del rango de fuerza de tu volante debe ubicarse el pico medido. Baja el objetivo para mantener más margen sobre el pico; auméntalo para usar más del rango del volante.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritmo</value>
@@ -1500,9 +1499,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Fin de bucle</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Comentario</value>
@@ -1652,7 +1648,7 @@
     <value>Inicializando simulador...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inicializando entrada directa...</value>
+    <value>Inicializando DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inicializando Stream Deck...</value>
@@ -1725,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Perfiles de controlador</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Renombrar perfil</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Renombrar perfil de control</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Procesos en ejecución</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtrar por nombre o ruta...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Buscando aplicaciones en ejecución...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Visibilidad de la ventana</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Mostrar / ocultar ventana</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Tamaño de paso</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Intervalo de comprobación de actualizaciones</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Eliminar pinturas al cerrar iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Buscar actualizaciones por intervalo</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Práctica</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Clasificación</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Carrera</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Estado</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inactivo</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Activo</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Suprimido</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Eliminar instaladores antiguos</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Varios</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Abrir carpeta de documentos</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1817,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(sin asignar)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activar la posición y la escala de superposición por auto</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Fuente de 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1870,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Limitador suave</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Máximo</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Mínimo</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Protección ante choques</value>
   </data>
@@ -1885,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Intensidad estacionado</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Bloqueo suave</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Fuente de bloqueo suave</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Fricción</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Centrado del volante</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Fuente de centrado del volante</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Fuerza de subviraje</value>
@@ -1999,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Dos polos</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Entrada</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Entrada A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Entrada B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Agregar módulo</value>
   </data>
@@ -2029,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Comenzar gráfico vacío</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Resta</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Fuente de velocidad del volante</value>
+  </data>
 
 
 
@@ -2066,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Fuentes</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP genérico</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mezcladores</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Efectos</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Otros efectos</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

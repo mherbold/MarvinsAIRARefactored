@@ -6,6 +6,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 using Cursors = System.Windows.Input.Cursors;
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
@@ -214,6 +215,21 @@ public partial class FFBGraphEditor : UserControl
 		e.Handled = true;
 	}
 
+	private void Node_MouseRightButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		if ( ( sender is not FrameworkElement element ) || ( element.DataContext is not FFBModuleViewModel module ) || ( _viewModel == null ) )
+		{
+			return;
+		}
+
+		// lock the preview graph to this node without moving the selection (and without starting any drag) — the
+		// settings panel keeps showing the selected module while the preview shows this one; left-clicking any
+		// node re-couples the preview to the selection
+		_viewModel.PreviewModule = module;
+
+		e.Handled = true;
+	}
+
 	private void Node_MouseMove( object sender, MouseEventArgs e )
 	{
 		if ( ( _dragElement == null ) || !_dragElement.IsMouseCaptured )
@@ -239,7 +255,17 @@ public partial class FFBGraphEditor : UserControl
 			return;
 		}
 
-		var position = e.GetPosition( Nodes_ItemsControl );
+		UpdateDraggedNodePosition( e.GetPosition( Nodes_ItemsControl ) );
+
+		UpdateAutoScroll( e.GetPosition( Editor_ScrollViewer ) );
+	}
+
+	private void UpdateDraggedNodePosition( Point position )
+	{
+		if ( _dragModule == null )
+		{
+			return;
+		}
 
 		var deltaX = position.X - _dragStartPoint.X;
 		var deltaY = position.Y - _dragStartPoint.Y;
@@ -264,6 +290,65 @@ public partial class FFBGraphEditor : UserControl
 
 		_dragModule.NodeX = nodeX;
 		_dragModule.NodeY = nodeY;
+	}
+
+	// Slow horizontal crawl when a node is dragged past the viewport edge. A timer (rather than relying on
+	// MouseMove) keeps the scroll going while the cursor sits still beyond the edge — each tick moves the
+	// viewport AND re-derives the node position, since the content slides under the stationary cursor.
+	private const double AutoScrollPixelsPerTick = 4.0;   // at ~60 Hz ticks ≈ a slow 240 px/s crawl
+
+	private DispatcherTimer? _autoScrollTimer = null;
+	private double _autoScrollDirection = 0.0;
+
+	private void UpdateAutoScroll( Point viewportPosition )
+	{
+		if ( viewportPosition.X < 0.0 )
+		{
+			_autoScrollDirection = -1.0;
+		}
+		else if ( viewportPosition.X > Editor_ScrollViewer.ViewportWidth )
+		{
+			_autoScrollDirection = 1.0;
+		}
+		else
+		{
+			_autoScrollDirection = 0.0;
+		}
+
+		if ( _autoScrollDirection == 0.0 )
+		{
+			_autoScrollTimer?.Stop();
+		}
+		else
+		{
+			if ( _autoScrollTimer == null )
+			{
+				_autoScrollTimer = new DispatcherTimer( DispatcherPriority.Render ) { Interval = TimeSpan.FromMilliseconds( 16.0 ) };
+
+				_autoScrollTimer.Tick += AutoScrollTimer_Tick;
+			}
+
+			_autoScrollTimer.Start();
+		}
+	}
+
+	private void AutoScrollTimer_Tick( object? sender, EventArgs e )
+	{
+		if ( ( _dragModule == null ) || ( _dragElement == null ) || !_dragElement.IsMouseCaptured || ( _autoScrollDirection == 0.0 ) )
+		{
+			_autoScrollTimer?.Stop();
+
+			return;
+		}
+
+		var offset = Math.Clamp( Editor_ScrollViewer.HorizontalOffset + _autoScrollDirection * AutoScrollPixelsPerTick, 0.0, Editor_ScrollViewer.ScrollableWidth );
+
+		Editor_ScrollViewer.ScrollToHorizontalOffset( offset );
+
+		UpdateDraggedNodePosition( Mouse.GetPosition( Nodes_ItemsControl ) );
+
+		// re-evaluate the edge condition — the cursor may have moved back inside without a MouseMove firing yet
+		UpdateAutoScroll( Mouse.GetPosition( Editor_ScrollViewer ) );
 	}
 
 	private void Node_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
@@ -292,7 +377,26 @@ public partial class FFBGraphEditor : UserControl
 		_wireDragModule = null;
 		_wireDragIsInputB = false;
 
+		_autoScrollTimer?.Stop();
+
 		e.Handled = true;
+	}
+
+	private void AddModule_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( _viewModel == null )
+		{
+			return;
+		}
+
+		var window = new Windows.AddFFBModuleWindow( _viewModel.AddableModuleTypes ) { Owner = App.Instance!.MainWindow };
+
+		window.ShowDialog();
+
+		if ( window.SelectedModuleType != null )
+		{
+			_viewModel.AddModule( window.SelectedModuleType );
+		}
 	}
 
 	private void AutoLayout_MairaButton_Click( object sender, RoutedEventArgs e )
@@ -321,7 +425,7 @@ public partial class FFBGraphEditor : UserControl
 
 	private void UpdateSnapToGridButtonVisual()
 	{
-		SnapToGrid_MairaButton.Opacity = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelFFBGraphSnapToGrid ? 1.0 : 0.4;
+		SnapToGrid_MairaButton.HighlightIcon = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelFFBGraphSnapToGrid;
 	}
 
 	#endregion

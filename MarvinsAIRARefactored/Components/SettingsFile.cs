@@ -55,6 +55,15 @@ public class SettingsFile
 
 	private int _serializationCounter = 0;
 
+	// When the settings file (or its backup) is transiently locked by another process - most often
+	// OneDrive syncing the Documents folder - the save is postponed and retried after this many ticks
+	// instead of surfacing as a fatal worker-thread error.
+	private const int SerializationRetryFrames = 60;
+
+	// True while a save is being retried after a file-in-use failure, so the postpone (and eventual
+	// recovery) is logged once per streak rather than on every retry.
+	private bool _serializationPostponed = false;
+
 	// Log lines for settings that have changed since the last save, keyed so repeated changes to the same
 	// setting (e.g. window position while dragging) collapse to a single latest line instead of flooding
 	// the log every frame. Flushed to the log and cleared when the settings file is actually written in Tick.
@@ -208,27 +217,52 @@ public class SettingsFile
 
 			if ( _serializationCounter == 0 )
 			{
-				if ( File.Exists( SettingsFilePath ) )
+				try
 				{
-					File.Copy( SettingsFilePath, SettingsBackupFilePath, overwrite: true );
+					if ( File.Exists( SettingsFilePath ) )
+					{
+						File.Copy( SettingsFilePath, SettingsBackupFilePath, overwrite: true );
 
-					app.Logger.WriteLine( "[SettingsFile] Settings.xml backup created" );
+						app.Logger.WriteLine( "[SettingsFile] Settings.xml backup created" );
+					}
+
+					// Flush the live working-copy mappings into the active controller profile so the
+					// persisted store stays authoritative no matter where a mapping was edited.
+					DataContext.DataContext.Instance.Settings.SaveCurrentControllerProfile();
+
+					Serializer.Save( SettingsFilePath, DataContext.DataContext.Instance.Settings );
+
+					foreach ( var changedSetting in _changedSettings.Values )
+					{
+						app.Logger.WriteLine( changedSetting );
+					}
+
+					_changedSettings.Clear();
+
+					app.Logger.WriteLine( "[SettingsFile] Settings.xml file updated" );
+
+					if ( _serializationPostponed )
+					{
+						_serializationPostponed = false;
+
+						app.Logger.WriteLine( "[SettingsFile] Settings save recovered after being postponed" );
+					}
 				}
-
-				// Flush the live working-copy mappings into the active controller profile so the
-				// persisted store stays authoritative no matter where a mapping was edited.
-				DataContext.DataContext.Instance.Settings.SaveCurrentControllerProfile();
-
-				foreach ( var changedSetting in _changedSettings.Values )
+				catch ( Exception exception ) when ( exception is IOException or UnauthorizedAccessException )
 				{
-					app.Logger.WriteLine( changedSetting );
+					// The settings file or its backup is transiently locked by another process (most often
+					// OneDrive syncing the Documents folder). Postpone the save and retry shortly instead of
+					// letting it bubble up as a fatal worker-thread error. The pending changes and their log
+					// lines are left intact so nothing is lost across the retry.
+					_serializationCounter = SerializationRetryFrames;
+
+					if ( !_serializationPostponed )
+					{
+						_serializationPostponed = true;
+
+						app.Logger.WriteLine( $"[SettingsFile] Settings save postponed - file in use, will retry ({exception.Message})" );
+					}
 				}
-
-				Serializer.Save( SettingsFilePath, DataContext.DataContext.Instance.Settings );
-
-				app.Logger.WriteLine( "[SettingsFile] Settings.xml file updated" );
-
-				_changedSettings.Clear();
 			}
 		}
 	}

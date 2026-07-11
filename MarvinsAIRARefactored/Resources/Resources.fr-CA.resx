@@ -1354,10 +1354,10 @@
     <value>Sélectionnez votre volant à retour de force dans la liste ci-dessous.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Vous ne voyez pas votre volant ? Assurez-vous qu'il est allumé et connecté, puis la liste se rafraîchira automatiquement.</value>
+    <value>Vous ne voyez pas votre volant ? Assurez-vous qu'il est allumé et connecté, puis la liste se rafraîchira automatiquement.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Utilisateurs Fanatec : les volants Fanatec apparaissent généralement comme deux appareils distincts dans la liste. Si celui que vous avez sélectionné ne fonctionne pas, essayez l'autre !</value>
+    <value>Utilisateurs Fanatec : les volants Fanatec apparaissent généralement comme deux appareils distincts dans la liste. Si celui que vous avez sélectionné ne fonctionne pas, essayez l'autre !</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Force maximale du volant</value>
@@ -1366,10 +1366,10 @@
     <value>Entrez la force maximale que votre base peut produire, en Newton-mètres (Nm). MAIRA utilise cette valeur pour calibrer correctement toutes les sorties de retour de force pour votre matériel.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Nous avons fait de notre mieux en nous basant sur votre volant sélectionné, mais n'hésitez pas à ajuster si nécessaire.</value>
+    <value>Nous avons fait de notre mieux en nous basant sur votre volant sélectionné, mais n'hésitez pas à ajuster si nécessaire.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Important : Si vous avez déjà limité la sortie de couple maximale de votre volant dans le logiciel du fabricant (ex. Fanatec Wheel Control Panel, Moza Pit House, etc.), entrez cette valeur réduite ici plutôt que le maximum physique du matériel. MAIRA a besoin de savoir ce que votre volant délivrera réellement, pas ce dont il est capable en théorie.</value>
+    <value>Important : Si vous avez déjà limité la sortie de couple maximale de votre volant dans le logiciel du fabricant (ex. Fanatec Wheel Control Panel, Moza Pit House, etc.), entrez cette valeur réduite ici plutôt que le maximum physique du matériel. MAIRA a besoin de savoir ce que votre volant délivrera réellement, pas ce dont il est capable en théorie.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Contrôles de la force</value>
@@ -1381,7 +1381,7 @@
     <value>Cliquez sur les boutons - et + ci-dessous pour assigner des entrées à chacun. Cette étape est facultative, vous pouvez la passer et configurer les raccourcis plus tard depuis la page Volant.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Une fois une entrée mappée, la bordure du bouton deviendra orange pour confirmer.</value>
+    <value>Une fois une entrée mappée, la bordure du bouton deviendra orange pour confirmer.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Force</value>
@@ -1408,7 +1408,7 @@
     <value>Ajustez d'abord la marge cible automatique selon vos préférences, puis mappez vos boutons Définir et Effacer.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> La cible automatique définit l'endroit où le pic mesuré doit se situer dans la plage de force de votre volant. Diminuez la cible pour conserver plus de marge au-dessus du pic ; augmentez-la pour utiliser davantage de la plage du volant.</value>
+    <value>La cible automatique définit l'endroit où le pic mesuré doit se situer dans la plage de force de votre volant. Diminuez la cible pour conserver plus de marge au-dessus du pic ; augmentez-la pour utiliser davantage de la plage du volant.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algorithme</value>
@@ -1499,9 +1499,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Fin de boucle</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Commentaire</value>
@@ -1651,7 +1648,7 @@
     <value>Initialisation du simulateur...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Initialisation de l'Entrée directe...</value>
+    <value>Initialisation de DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Initialisation de Stream Deck...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Profils de contrôleur</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Renommer le profil</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Renommer le profil de contrôleur</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Processus en cours</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtrer par nom ou chemin...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Recherche des applications en cours...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Visibilité de la fenêtre</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Afficher / masquer la fenêtre</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Taille du pas</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Intervalle de vérification des mises à jour</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Supprimer les peintures quand iRacing se ferme</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Rechercher les mises à jour par intervalle</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Essais</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Qualifications</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Course</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>État</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inactif</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Actif</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Inhibé</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Supprimer les anciens programmes d'installation</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Divers</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Ouvrir le dossier documents</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(non assigné)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activer la position et l'échelle de superposition par voiture</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Source 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Limiteur doux</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Maximum</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Minimum</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Protection contre les accidents</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Force au stationnement</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Verrouillage progressif</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Source de verrouillage progressif</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Friction</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Recentrage du volant</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Source de recentrage du volant</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Force de sous-virage</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Deux pôles</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Entrée</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Entrée A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Entrée B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Ajouter un module</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Commencer un graphique vide</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Différence</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Source de vitesse du volant</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Sources</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP générique</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mixeurs</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Effets</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Autres effets</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

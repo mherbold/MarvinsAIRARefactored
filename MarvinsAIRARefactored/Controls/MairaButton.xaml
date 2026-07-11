@@ -421,13 +421,15 @@
 
                 <!-- Icon (tinted) -->
 
-                <Rectangle Fill="{DynamicResource Brush.Foreground.Primary}"
-                           RenderOptions.BitmapScalingMode="HighQuality">
+                <Rectangle RenderOptions.BitmapScalingMode="HighQuality">
 
                     <Rectangle.Style>
 
                         <Style TargetType="Rectangle">
 
+                            <!-- Fill lives in the style (not a local attribute) so the HighlightIcon trigger can override it -->
+                            <Setter Property="Fill"
+                                    Value="{DynamicResource Brush.Foreground.Primary}" />
                             <Setter Property="Opacity"
                                     Value="1" />
                             <Setter Property="Width"
@@ -457,6 +459,12 @@
                                              Value="True">
                                     <Setter Property="Visibility"
                                             Value="Collapsed" />
+                                </DataTrigger>
+
+                                <DataTrigger Binding="{Binding HighlightIcon, ElementName=Root}"
+                                             Value="True">
+                                    <Setter Property="Fill"
+                                            Value="{DynamicResource Brush.Accent}" />
                                 </DataTrigger>
 
                             </Style.Triggers>

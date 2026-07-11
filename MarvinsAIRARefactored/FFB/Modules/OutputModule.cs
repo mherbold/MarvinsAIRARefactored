@@ -1,19 +1,50 @@
 
+using MarvinsAIRARefactored.Classes;
+
 namespace MarvinsAIRARefactored.FFB.Modules;
 
 /// <summary>
 /// Fixed final module and the one place the Nm main bus is converted to the normalized (−1..1) signal the wheel
-/// driver expects: <c>inputA / MaxForce</c>. It has no user settings — the output curve, soft limiter, maximum,
-/// and minimum that used to live here are now standalone modules (Curve / SoftLimiter / Maximum / Minimum) placed
-/// ahead of it, so any of them can be applied at any stage of the graph. Placing them in that order immediately
-/// before this module reproduces the old ProcessAlgorithm output tail exactly.
+/// driver expects: <c>inputA / MaxForce</c>. The two shapers that only make sense in that normalized space live
+/// here as settings (moving them out as standalone modules coupled their behavior to the global max force
+/// setting at whatever point of the graph they sat):
+/// <para>• <b>Curve</b> — <c>sign(n)·|n|^power</c> with <c>power = CurveToPower(Curve)</c>; identity at 0.</para>
+/// <para>• <b>Soft limiter</b> — a compressor on the normalized output (same <see cref="MathZ.Compression"/>
+/// shaper family as the Compressor module, so the controls read the same): output below Threshold (a fraction
+/// of full scale) passes bit-exact, excess above it is squeezed at Ratio (N:1) across a sine-eased Knee. It
+/// protects the approach to ±100% instead of hard-clipping at the driver.</para>
+/// The Nm-domain Maximum / Minimum modules remain standalone and belong ahead of this module.
 /// </summary>
 public sealed class OutputModule : FFBModule
 {
+	private const int Curve = 1;
+	private const int SoftLimiter = 2;
+	private const int Threshold = 3;
+	private const int Knee = 4;
+	private const int Ratio = 5;
+
 	public override void Reset() { }
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		return inputA / ctx.MaxForce;
+		var normalized = inputA / ctx.MaxForce;
+
+		var curve = _v[ Curve ];
+
+		if ( curve != 0f )
+		{
+			var power = MathZ.CurveToPower( curve );
+
+			normalized = MathF.Sign( normalized ) * MathF.Pow( MathF.Abs( normalized ), power );
+		}
+
+		if ( _v[ SoftLimiter ] != 0f )
+		{
+			var ratio = MathF.Max( _v[ Ratio ], 1f );
+
+			normalized = MathZ.Compression( normalized, 1f - 1f / ratio, _v[ Threshold ], _v[ Knee ] );
+		}
+
+		return normalized;
 	}
 }

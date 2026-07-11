@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Algorithm" xml:space="preserve">
-    <value>	Алгоритм</value>
+    <value>Алгоритм</value>
   </data>
   <data name="AppSettings" xml:space="preserve">
     <value>Налаштування програми</value>
@@ -190,7 +190,7 @@
     <value>Симулятор</value>
   </data>
   <data name="SimulatorNotRunning" xml:space="preserve">
-    <value>	Симулятор iRacing не працює</value>
+    <value>Симулятор iRacing не працює</value>
   </data>
   <data name="SoftLockStrength" xml:space="preserve">
     <value>Сила м'якого блокування</value>
@@ -208,10 +208,10 @@
     <value>Поверх вікон</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>Nm</value>
+    <value> Nm</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
-    <value>	Підсилювач деталей увімкнено 60 гц</value>
+    <value>Підсилювач деталей увімкнено 60 гц</value>
   </data>
   <data name="AdminBoxx" xml:space="preserve">
     <value>AdminBoxx</value>
@@ -256,7 +256,7 @@
     <value>Пристрій</value>
   </data>
   <data name="OverallStrength" xml:space="preserve">
-    <value>Загальна міцність	</value>
+    <value>Загальна міцність</value>
   </data>
   <data name="AutoTarget" xml:space="preserve">
     <value>Автоціль</value>
@@ -292,10 +292,10 @@
     <value>Зменшення сили</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>секунд</value>
+    <value> секунд</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value>m/s</value>
+    <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
     <value>Захист від бордюру</value>
@@ -328,7 +328,7 @@
     <value>Сила</value>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>Гц</value>
+    <value> Гц</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
     <value>Глобальна частота</value>
@@ -436,10 +436,10 @@
     <value>Вхідний низькочастотний ефект (LFE)</value>
   </data>
   <data name="Disabled" xml:space="preserve">
-    <value>	[Вимкнено]</value>
+    <value>[Вимкнено]</value>
   </data>
   <data name="RememberWindowPositionAndSize" xml:space="preserve">
-    <value>Запам'ятати положення та розмір вікна </value>
+    <value>Запам'ятати положення та розмір вікна</value>
   </data>
   <data name="FadeWithBrake" xml:space="preserve">
     <value>Плавність з гальмом</value>
@@ -460,7 +460,7 @@
     <value>Початкова точка</value>
   </data>
   <data name="EndingPoint" xml:space="preserve">
-    <value>	Кінцева точка</value>
+    <value>Кінцева точка</value>
   </data>
   <data name="GearChangeShiftIntoGear" xml:space="preserve">
     <value>Зміна передачі - перемикання передачі</value>
@@ -493,14 +493,10 @@
     <value>Масштаб інтерфейсу користувача</value>
   </data>
   <data name="CloudService" xml:space="preserve">
-    <value>Хмарний Сервіс
-
-</value>
+    <value>Хмарний Сервіс</value>
   </data>
   <data name="CheckNow" xml:space="preserve">
-    <value>Перевірити зараз
-
-</value>
+    <value>Перевірити зараз</value>
   </data>
   <data name="CheckingForUpdate" xml:space="preserve">
     <value>Перевірка оновлень...</value>
@@ -575,7 +571,7 @@
     <value>Загальний поріг</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>Nm/ms</value>
+    <value> Nm/ms</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
     <value>Сила керма</value>
@@ -587,7 +583,7 @@
     <value>Попередній перегляд</value>
   </data>
   <data name="NoRecordingsFound" xml:space="preserve">
-    <value>[Записів не знайдено]	</value>
+    <value>[Записів не знайдено]</value>
   </data>
   <data name="SimpleMode" xml:space="preserve">
     <value>Увімкнути спрощений режим</value>
@@ -626,7 +622,7 @@
     <value>Надсилайте водієві приватні повідомлення в чаті</value>
   </data>
   <data name="Degrees" xml:space="preserve">
-    <value>	°</value>
+    <value>°</value>
   </data>
   <data name="Master" xml:space="preserve">
     <value>Головний</value>
@@ -701,7 +697,7 @@
     <value>Ефекти паркування</value>
   </data>
   <data name="ForceFeedbackStrength" xml:space="preserve">
-    <value>	Сила зворотнього зв'язку</value>
+    <value>Сила зворотнього зв'язку</value>
   </data>
   <data name="WheelCenteringStrength" xml:space="preserve">
     <value>Міцність центрування колеса</value>
@@ -710,7 +706,7 @@
     <value>Центрування керма під час гонки</value>
   </data>
   <data name="CenterWheelWhileParked" xml:space="preserve">
-    <value>	Центрування керма на парковці</value>
+    <value>Центрування керма на парковці</value>
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Тертя на парковці</value>
@@ -725,7 +721,7 @@
     <value>Щось пішло не так</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>	Деталі</value>
+    <value>Деталі</value>
   </data>
   <data name="ClassicMAIRAIsRunning" xml:space="preserve">
     <value>Класична версія MAIRA зараз працює — будь ласка, вийдіть із класичної версії MAIRA, перш ніж запускати цю!</value>
@@ -734,7 +730,7 @@
     <value>Викинуто виняток</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>Км/год</value>
+    <value> Км/год</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Це люди, які щедро пожертвували трохи свого вільного часу, щоб провести калібрування ефектів керування на деяких своїх улюблених автомобілях та завантажити ці файли калібрування!</value>
@@ -743,7 +739,7 @@
     <value>°/s</value>
   </data>
   <data name="CalibrationFile" xml:space="preserve">
-    <value>	Файл калібрування	</value>
+    <value>Файл калібрування</value>
   </data>
   <data name="Understeer" xml:space="preserve">
     <value>Недостатня поворотність</value>
@@ -809,7 +805,7 @@
     <value>Ефект недостатньої поворотності</value>
   </data>
   <data name="OversteerEffect" xml:space="preserve">
-    <value>	Ефект надмірного обертання</value>
+    <value>Ефект надмірного обертання</value>
   </data>
   <data name="ConfigurationFileIsInvalid" xml:space="preserve">
     <value>Файл конфігурації недійсний!</value>
@@ -893,7 +889,7 @@
     <value>Grip-O-Meter</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>Миль/год</value>
+    <value> Миль/год</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon вітер</value>
@@ -1076,9 +1072,7 @@
     <value>Співвідношення швидкостей (Vy/Vx)</value>
   </data>
   <data name="DefaultPage" xml:space="preserve">
-    <value>Сторінка За Замовчуванням
-
-</value>
+    <value>Сторінка За Замовчуванням</value>
   </data>
   <data name="Effects" xml:space="preserve">
     <value>Ефекти</value>
@@ -1105,7 +1099,7 @@
     <value>Допомога</value>
   </data>
   <data name="Documentation" xml:space="preserve">
-    <value>	Документація</value>
+    <value>Документація</value>
   </data>
   <data name="Discord" xml:space="preserve">
     <value>Discord</value>
@@ -1114,7 +1108,7 @@
     <value>Форуми</value>
   </data>
   <data name="DocumentationWebsite" xml:space="preserve">
-    <value>	Веб-сайт документації</value>
+    <value>Веб-сайт документації</value>
   </data>
   <data name="DiscordServer" xml:space="preserve">
     <value>Сервер Discord</value>
@@ -1506,9 +1500,6 @@
   <data name="LoopEnd" xml:space="preserve">
     <value>Кінець петлі</value>
   </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>мс</value>
-  </data>
   <data name="Commentary" xml:space="preserve">
     <value>Коментар</value>
   </data>
@@ -1657,7 +1648,7 @@
     <value>Ініціалізація симулятора...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Ініціалізація прямого введення...</value>
+    <value>Ініціалізація DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Ініціалізація Stream Deck...</value>
@@ -1730,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Профілі контролера</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Перейменувати профіль</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Перейменувати профіль контролера</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Запущені процеси</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Фільтрувати за назвою або шляхом...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Пошук запущених застосунків...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Видимість вікна</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Показати / сховати вікно</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Розмір кроку</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Інтервал перевірки оновлень</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> год</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Видаляти забарвлення під час закриття iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Перевіряти оновлення з інтервалом</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Практика</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Кваліфікація</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Перегони</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Статус</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Очікування</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Активний</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Придушено</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Видаляти старі інсталятори</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Різне</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Відкрити теку документів</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1822,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(не призначено)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Увімкнути положення та масштаб оверлея для кожного авто</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Джерело 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1875,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>М'який лімітер</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Максимум</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Мінімум</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Захист від аварій</value>
   </data>
@@ -1890,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Сила на парковці</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>М'яке блокування</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Джерело м'якого блокування</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Тертя</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Центрування колеса</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Джерело центрування колеса</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Сила недостатньої поворотності</value>
@@ -2004,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Два полюси</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Вхід</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Вхід A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Вхід B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Додати модуль</value>
   </data>
@@ -2034,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Почати з порожнього графіка</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Різниця</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Джерело швидкості керма</value>
+  </data>
 
 
 
@@ -2071,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Джерела</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Універсальні DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Мікшери</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Ефекти</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Інші ефекти</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> мс</value>
+  </data>
 </root>

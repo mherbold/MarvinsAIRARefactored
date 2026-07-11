@@ -26,6 +26,8 @@
             <controls:MairaKnob Label="{Binding Label}"
                                 Value="{Binding Value, Mode=TwoWay}"
                                 ValueString="{Binding ValueString}"
+                                Minimum="{Binding Minimum}"
+                                Maximum="{Binding Maximum}"
                                 ClickStepSize="{Binding ClickStepSize}"
                                 DragStepSize="{Binding DragStepSize}"
                                 DefaultValue="{Binding DefaultValue}"
@@ -35,6 +37,7 @@
 
         <DataTemplate x:Key="FFBGraphSwitchTemplate">
             <controls:MairaSwitch Label="{Binding Label}"
+                                  LabelPosition="Top"
                                   IsOn="{Binding IsOn, Mode=TwoWay}"
                                   Margin="20,0,20,10" />
         </DataTemplate>
@@ -46,10 +49,15 @@
                                     Margin="20,0,20,10" />
         </DataTemplate>
 
+        <DataTemplate x:Key="FFBGraphSpacerTemplate">
+            <Border />
+        </DataTemplate>
+
         <ffb:FFBSettingTemplateSelector x:Key="FFBGraphSettingTemplateSelector"
                                         KnobTemplate="{StaticResource FFBGraphKnobTemplate}"
                                         SwitchTemplate="{StaticResource FFBGraphSwitchTemplate}"
-                                        ChoiceTemplate="{StaticResource FFBGraphChoiceTemplate}" />
+                                        ChoiceTemplate="{StaticResource FFBGraphChoiceTemplate}"
+                                        SpacerTemplate="{StaticResource FFBGraphSpacerTemplate}" />
 
         <!-- Module card. DataContext = FFBModuleViewModel. -->
 
@@ -64,6 +72,7 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaSwitch Grid.Column="0"
@@ -76,7 +85,18 @@
                                Style="{StaticResource MairaTextBlockStyle}"
                                FontSize="30" />
 
+                    <!-- session-only test toggle (event-driven effects) — always the leftmost icon in this corner;
+                         normal when off, MAIRA orange icon when testing (same convention as the snap-to-grid button) -->
                     <controls:MairaButton Grid.Column="2"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
+                                          IsSmall="True"
+                                          HighlightIcon="{Binding IsTestActive}"
+                                          Tag="{Binding}"
+                                          Margin="10,0,0,0"
+                                          Click="TestModule_MairaButton_Click"
+                                          Visibility="{Binding CanTest, Converter={StaticResource BoolToVisibility}}" />
+
+                    <controls:MairaButton Grid.Column="3"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
                                           IsSmall="True"
                                           Tag="{Binding}"
@@ -86,33 +106,7 @@
 
                 </Grid>
 
-                <Grid Margin="0,0,0,10">
-
-                    <Grid.ColumnDefinitions>
-
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="*" />
-
-                    </Grid.ColumnDefinitions>
-
-                    <controls:MairaComboBox Grid.Column="0"
-                                            Label="{Binding InputALabel}"
-                                            ItemsSource="{Binding EligibleInputs}"
-                                            SelectedValue="{Binding InputASelectedId, Mode=TwoWay}"
-                                            Margin="0,0,0,10"
-                                            Visibility="{Binding ShowInputA, Converter={StaticResource BoolToVisibility}}" />
-
-                    <controls:MairaComboBox Grid.Column="2"
-                                            Label="{Binding InputBLabel}"
-                                            ItemsSource="{Binding EligibleInputs}"
-                                            SelectedValue="{Binding InputBSelectedId, Mode=TwoWay}"
-                                            Margin="0,0,0,10"
-                                            Visibility="{Binding ShowInputB, Converter={StaticResource BoolToVisibility}}" />
-
-                </Grid>
-
-                <ItemsControl ItemsSource="{Binding Settings}"
+                <ItemsControl ItemsSource="{Binding SettingsPresentation}"
                               Margin="-20,0,-20,0"
                               ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}">
                     <ItemsControl.ItemsPanel>
@@ -403,28 +397,7 @@
 
                 </Grid>
 
-                <!-- Add module -->
-                <Grid Margin="0,0,0,40">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <controls:MairaComboBox Grid.Column="0"
-                                            Label="{Binding Localization[AddModule]}"
-                                            ItemsSource="{Binding RacingWheelGraphViewModel.AddableModuleTypes}"
-                                            SelectedValue="{Binding RacingWheelGraphViewModel.SelectedAddableModuleType, Mode=TwoWay}" />
-
-                    <controls:MairaButton Grid.Column="2"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
-                                          IsSmall="True"
-                                          Margin="10,0,0,0"
-                                          Click="AddModule_MairaButton_Click"
-                                          VerticalAlignment="Bottom" />
-                </Grid>
-
-                <!-- Node graph -->
+                <!-- Node graph (its corner tools include the add-module button, which pops the module picker) -->
                 <controls:FFBGraphEditor Margin="0,0,0,20" />
 
                 <!-- Selected module settings (the one card for whichever node is selected on the graph above) -->
@@ -529,28 +502,69 @@
 
             <StackPanel>
 
-                <!-- Vibration / texture generator cards (no wiring — they feed the vibration bus directly) -->
-                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.GeneratorModules}"
-                              ItemTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
+                <!-- Vibration graph selection + management (mirrors the FFB graph row above — the vibration
+                     effects live in their own named graphs, managed independently) -->
+                <Grid Margin="0,0,0,40">
 
-                <!-- Add effect -->
-                <Grid Margin="0,40,0,0">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="10" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <controls:MairaComboBox Grid.Column="0"
-                                            Label="{Binding Localization[AddModule]}"
-                                            ItemsSource="{Binding RacingWheelGraphViewModel.AddableGeneratorModuleTypes}"
-                                            SelectedValue="{Binding RacingWheelGraphViewModel.SelectedAddableGeneratorModuleType, Mode=TwoWay}" />
+                    <controls:MairaComboBox x:Name="VibrationGraph_MairaComboBox"
+                                            Grid.Column="0"
+                                            Label="{Binding Localization[Graph]}"
+                                            ContextSwitches="{Binding Settings.RacingWheelSelectedVibrationGraphNameContextSwitches}"
+                                            SelectionChanged="VibrationGraph_MairaComboBox_SelectionChanged" />
 
-                    <controls:MairaButton Grid.Column="2"
+                    <controls:MairaButton Grid.Column="1"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
                                           IsSmall="True"
-                                          Click="AddGeneratorModule_MairaButton_Click" />
+                                          Margin="10,0,0,0"
+                                          Click="NewVibrationGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="2"
+                                          x:Name="RenameVibrationGraph_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="RenameVibrationGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="3"
+                                          x:Name="DeleteVibrationGraph_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="DeleteVibrationGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="4"
+                                          x:Name="ResetVibrationGraph_MairaButton"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="ResetVibrationGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
                 </Grid>
+
+                <!-- Add module (pops the module picker — there is no node canvas here to host the button) -->
+                <controls:MairaButton LabelOnRight="True"
+                                      IsSmall="True"
+                                      Label="{Binding Localization[AddModule]}"
+                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+                                      HorizontalAlignment="Left"
+                                      Margin="0,0,0,40"
+                                      Click="AddGeneratorModule_MairaButton_Click" />
+
+                <!-- Vibration / texture generator cards (no wiring — they feed the vibration bus directly) -->
+                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.GeneratorModules}"
+                              ItemTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
 
             </StackPanel>
 

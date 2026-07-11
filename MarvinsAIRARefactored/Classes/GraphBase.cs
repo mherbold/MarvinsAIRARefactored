@@ -10,17 +10,18 @@ namespace MarvinsAIRARefactored.Classes;
 
 public class GraphBase
 {
-	private const int GutterSize = 10;
-
 	public int BitmapWidth { get; private set; }
 	public int BitmapHeight { get; private set; }
 
-	/// <summary>When false, the first and last grid lines (the ±100% clipping lines) are not drawn. The FFB graph
-	/// preview turns them off unless the Output module is selected — clipping only means something there.</summary>
-	public bool DrawClippingLines { get; set; } = true;
+	// Per-row background for one column: the grid line color on the grid rows, transparent (0) everywhere else.
+	// FinishUpdates copies it under the plotted pixels so every row is written every frame — no stale pixels
+	// survive from the previous wrap-around. Rebuilt lazily on theme / clipping-line changes.
+	private uint[]? _columnTemplate = null;
+	private bool _columnTemplateDirty = true;
 
 	private int _bitmapStride;
 	private int _bitmapHeightMinusOne;
+	private int _centerY;      // the zero line's pixel row
 
 	private WriteableBitmap? _writeableBitmap = null;
 
@@ -70,13 +71,13 @@ public class GraphBase
 		var source = lightTheme ? _gridLineColorsLight : _gridLineColorsDark;
 
 		Array.Copy( source, _gridLineColorArray, source.Length );
+
+		_columnTemplateDirty = true;
 	}
 
-	private uint _topGutterBackgroundColor = 0;
-	private uint _topGutterForegroundColor = 0;
-
-	private uint _bottomGutterBackgroundColor = 0;
-	private uint _bottomGutterForegroundColor = 0;
+	// Background for pixels not plotted this column (and not on a grid line): fully transparent normally, or a
+	// solid flash color while a protection/clipping condition is active (see SetClearColor).
+	private uint _clearColor = 0;
 
 	public void Initialize( Image image )
 	{
@@ -85,13 +86,31 @@ public class GraphBase
 
 		_bitmapStride = BitmapWidth * 4;
 		_bitmapHeightMinusOne = BitmapHeight - 1;
+		_centerY = _bitmapHeightMinusOne / 2;
 
 		_writeableBitmap = new( BitmapWidth, BitmapHeight, 96f, 96f, PixelFormats.Bgra32, null );
 
 		_colorArray = new uint[ BitmapHeight, BitmapWidth ];
 		_colorMixArray = new float[ BitmapHeight, 4 ];
 
+		_columnTemplate = new uint[ BitmapHeight ];
+		_columnTemplateDirty = true;
+
 		image.Source = _writeableBitmap;
+	}
+
+	private void RebuildColumnTemplate()
+	{
+		Array.Clear( _columnTemplate! );
+
+		// the grid lines span the full bitmap (zero on the center row); the first and last lines (the ±100%
+		// rows) are never drawn — clipping is signaled by the clear-color background flash instead
+		for ( var i = 1; i <= 7; i++ )
+		{
+			_columnTemplate![ (int) ( i * _bitmapHeightMinusOne / 8f + 0.5f ) ] = _gridLineColorArray[ i ];
+		}
+
+		_columnTemplateDirty = false;
 	}
 
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
@@ -100,44 +119,44 @@ public class GraphBase
 		_x = 0;
 	}
 
-	// Map a -1..1 value to its pixel row (top = +1, bottom = -1), inside the gutters.
+	// Map a -1..1 value to its pixel row (+1 = the very top row, -1 = the very bottom row). The +0.5f truncation
+	// rounds half-up — a hair faster than MathF.Round and indistinguishable at pixel scale.
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	private int ValueToY( float value )
 	{
-		// clamp y value to -1..1 range, where -1 is the bottom of the graph, 0 is the middle and 1 is the top
-		var y = Math.Clamp( value, -1f, 1f );
+		// clamp to -1..1, then flip and shift to 0..1 where 0 is the top of the graph and 1 is the bottom
+		var y = Math.Clamp( value, -1f, 1f ) * -0.5f + 0.5f;
 
-		// invert y value and shift it to 0..1 range, where 0 is the top of the graph and 1 is the bottom
-		y = y * -0.5f + 0.5f;
-
-		return (int) Math.Round( y * ( BitmapHeight - GutterSize * 2 ) ) + GutterSize;
+		return (int) ( y * _bitmapHeightMinusOne + 0.5f );
 	}
 
 	/// <summary>Render a value as a solid fill from the zero line to the value.</summary>
-	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void UpdateSolidFill( float value, float r, float g, float b )
+	public unsafe void UpdateSolidFill( float value, float r, float g, float b )
 	{
-		if ( _colorMixArray != null )
+		if ( _colorMixArray == null )
 		{
-			// calculate the y position of the value on the graph
-			var iY1 = _bitmapHeightMinusOne / 2;
-			var iY2 = ValueToY( value );
+			return;
+		}
 
-			var delta = iY2 - iY1;
+		var delta = ValueToY( value ) - _centerY;
 
-			var sign = Math.Sign( delta );
-			var range = Math.Abs( delta );
+		var sign = Math.Sign( delta );
+		var range = Math.Abs( delta );
 
-			var iY = iY1;
+		fixed ( float* mixArray = _colorMixArray )
+		{
+			// walk from the centerline toward the value (one 4-float row per step, no bounds checks)
+			var mix = mixArray + _centerY * 4;
+			var step = sign * 4;
 
 			for ( var i = 1; i <= range; i++ )
 			{
-				_colorMixArray[ iY, 0 ] = 1f;
-				_colorMixArray[ iY, 1 ] += r;
-				_colorMixArray[ iY, 2 ] += g;
-				_colorMixArray[ iY, 3 ] += b;
+				mix[ 0 ] = 1f;
+				mix[ 1 ] += r;
+				mix[ 2 ] += g;
+				mix[ 3 ] += b;
 
-				iY += sign;
+				mix += step;
 			}
 		}
 	}
@@ -146,29 +165,33 @@ public class GraphBase
 	/// to this one, so consecutive calls trace a continuous 1-px-wide waveform instead of a fill from zero. The
 	/// space between the centerline and the value is filled with solid black first, occluding any traces already
 	/// drawn there this column (so the line reads as a silhouette over the solid-fill traces).</summary>
-	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void UpdateLine( float previousValue, float value, float r, float g, float b )
+	public unsafe void UpdateLine( float previousValue, float value, float r, float g, float b )
 	{
-		if ( _colorMixArray != null )
+		if ( _colorMixArray == null )
+		{
+			return;
+		}
+
+		var valueY = ValueToY( value );
+
+		var sign = Math.Sign( valueY - _centerY );
+		var range = Math.Abs( valueY - _centerY );
+
+		fixed ( float* mixArray = _colorMixArray )
 		{
 			// fill from the centerline to the value with solid black (assignment, not additive — this erases
 			// whatever was already mixed into those rows, e.g. the solid-fill traces drawn before this call)
-			var centerY = _bitmapHeightMinusOne / 2;
-			var valueY = ValueToY( value );
-
-			var sign = Math.Sign( valueY - centerY );
-			var range = Math.Abs( valueY - centerY );
-
-			var fillY = centerY;
+			var mix = mixArray + _centerY * 4;
+			var step = sign * 4;
 
 			for ( var i = 1; i <= range; i++ )
 			{
-				_colorMixArray[ fillY, 0 ] = 1f;
-				_colorMixArray[ fillY, 1 ] = 0f;
-				_colorMixArray[ fillY, 2 ] = 0f;
-				_colorMixArray[ fillY, 3 ] = 0f;
+				mix[ 0 ] = 1f;
+				mix[ 1 ] = 0f;
+				mix[ 2 ] = 0f;
+				mix[ 3 ] = 0f;
 
-				fillY += sign;
+				mix += step;
 			}
 
 			// draw the vertical segment connecting the two values, inclusive, so steep slopes stay connected
@@ -177,75 +200,77 @@ public class GraphBase
 			var minY = Math.Min( previousY, valueY );
 			var maxY = Math.Max( previousY, valueY );
 
+			mix = mixArray + minY * 4;
+
 			for ( var iY = minY; iY <= maxY; iY++ )
 			{
-				_colorMixArray[ iY, 0 ] = 1f;
-				_colorMixArray[ iY, 1 ] += r;
-				_colorMixArray[ iY, 2 ] += g;
-				_colorMixArray[ iY, 3 ] += b;
+				mix[ 0 ] = 1f;
+				mix[ 1 ] += r;
+				mix[ 2 ] += g;
+				mix[ 3 ] += b;
+
+				mix += 4;
 			}
 		}
 	}
 
+	/// <summary>Background color for pixels this column that no <see cref="UpdateSolidFill"/>/<see cref="UpdateLine"/>
+	/// call touched (grid lines still draw over it): 0 = fully transparent (normal), or a solid flash color —
+	/// yellow for curb protection, orange for crash protection, red for clipping. The caller resolves the
+	/// priority (clipping trumps crash protection trumps curb protection).</summary>
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void SetGutterColors( uint topForeground, uint topBackground, uint bottomForeground, uint bottomBackground )
+	public void SetClearColor( uint color )
 	{
-		_topGutterForegroundColor = topForeground;
-		_topGutterBackgroundColor = topBackground;
-
-		_bottomGutterForegroundColor = bottomForeground;
-		_bottomGutterBackgroundColor = bottomBackground;
+		_clearColor = color;
 	}
 
-	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void FinishUpdates()
+	// Writes EVERY row of the current column exactly once (plotted pixel wins, then grid template, then the
+	// clear color), so no pixel can carry stale color from the previous wrap-around of the scrolling window.
+	// One pointer walk down the column — no bounds checks, no 2D-index multiplies in the loop.
+	public unsafe void FinishUpdates()
 	{
-		if ( ( _colorArray != null ) && ( _colorMixArray != null ) )
+		if ( ( _colorArray != null ) && ( _colorMixArray != null ) && ( _columnTemplate != null ) )
 		{
-			var oddEven = ( _x % 20 ) < 10;
-
-			var topGutterColor = oddEven ? _topGutterForegroundColor : _topGutterBackgroundColor;
-
-			for ( var y = 1; y < GutterSize - 1; y++ )
+			if ( _columnTemplateDirty )
 			{
-				_colorArray[ y, _x ] = topGutterColor;
+				RebuildColumnTemplate();
 			}
 
-			for ( var y = GutterSize; y < BitmapHeight - GutterSize; y++ )
+			var width = BitmapWidth;
+			var height = BitmapHeight;
+			var clearColor = _clearColor;
+
+			fixed ( uint* colorArray = _colorArray )
+			fixed ( float* mixArray = _colorMixArray )
+			fixed ( uint* template = _columnTemplate )
 			{
-				var a = (uint) ( MathF.Min( 1f, _colorMixArray[ y, 0 ] ) * 255f );
-				var r = (uint) ( MathF.Min( 1f, _colorMixArray[ y, 1 ] ) * 255f );
-				var g = (uint) ( MathF.Min( 1f, _colorMixArray[ y, 2 ] ) * 255f );
-				var b = (uint) ( MathF.Min( 1f, _colorMixArray[ y, 3 ] ) * 255f );
+				var pixel = colorArray + _x;   // top of this column; stepping by width walks down one row
+				var mix = mixArray;
 
-				_colorArray[ y, _x ] = ( a << 24 ) | ( r << 16 ) | ( g << 8 ) | b;
-			}
-
-			var bottomGutterColor = oddEven ? _bottomGutterForegroundColor : _bottomGutterBackgroundColor;
-
-			for ( var y = BitmapHeight - GutterSize + 1; y < BitmapHeight - 1; y++ )
-			{
-				_colorArray[ y, _x ] = bottomGutterColor;
-			}
-
-			var gridSize = ( _bitmapHeightMinusOne - GutterSize * 2 ) / 8;
-
-			for ( var i = 0; i <= 8; i++ )
-			{
-				if ( !DrawClippingLines && ( ( i == 0 ) || ( i == 8 ) ) )
+				for ( var y = 0; y < height; y++ )
 				{
-					continue;
-				}
+					if ( mix[ 0 ] > 0f )
+					{
+						var a = (uint) ( MathF.Min( 1f, mix[ 0 ] ) * 255f );
+						var r = (uint) ( MathF.Min( 1f, mix[ 1 ] ) * 255f );
+						var g = (uint) ( MathF.Min( 1f, mix[ 2 ] ) * 255f );
+						var b = (uint) ( MathF.Min( 1f, mix[ 3 ] ) * 255f );
 
-				var y = gridSize * i + GutterSize;
+						*pixel = ( a << 24 ) | ( r << 16 ) | ( g << 8 ) | b;
+					}
+					else
+					{
+						var templateColor = template[ y ];
 
-				if ( ( _colorArray[ y, _x ] == 0 ) || ( ( i & 3 ) == 0 ) )
-				{
-					_colorArray[ y, _x ] = _gridLineColorArray[ i ];
+						*pixel = templateColor != 0 ? templateColor : clearColor;
+					}
+
+					pixel += width;
+					mix += 4;
 				}
 			}
 
-			_x = ( _x + 1 ) % BitmapWidth;
+			_x = ( _x + 1 ) % width;
 
 			Array.Clear( _colorMixArray );
 		}

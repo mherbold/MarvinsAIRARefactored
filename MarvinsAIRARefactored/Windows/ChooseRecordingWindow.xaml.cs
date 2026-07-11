@@ -1,18 +1,21 @@
 
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 
 namespace MarvinsAIRARefactored.Windows;
 
+/// <summary>
+/// Modal recording picker (matches <see cref="AddFFBModuleWindow"/>): clicking a recording selects it and
+/// closes the window immediately; the title-bar X (or Escape) cancels; Enter commits a keyboard selection.
+/// </summary>
 public partial class ChooseRecordingWindow : Window
 {
 	/// <summary>The currently open instance, if any — lets the recording manager refresh the list live when a
 	/// new recording is saved while this dialog is up.</summary>
 	public static ChooseRecordingWindow? Current { get; private set; } = null;
-
-	public bool Confirmed { get; private set; } = false;
 
 	public ChooseRecordingWindow()
 	{
@@ -49,13 +52,8 @@ public partial class ChooseRecordingWindow : Window
 		}
 	}
 
-	private void ApplySelection()
+	private void ApplySelection( KeyValuePair<string, string> selected )
 	{
-		if ( Recordings_ListBox.SelectedItem is not KeyValuePair<string, string> selected )
-		{
-			return;
-		}
-
 		var app = App.Instance!;
 
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
@@ -65,37 +63,26 @@ public partial class ChooseRecordingWindow : Window
 
 		app.SettingsFile.QueueForSerialization = true;
 
-		Confirmed = true;
-
 		Close();
 	}
 
-	private void Recordings_ListBox_MouseDoubleClick( object sender, MouseButtonEventArgs e )
+	private void RecordingItem_PreviewMouseLeftButtonUp( object sender, MouseButtonEventArgs e )
 	{
-		ApplySelection();
+		if ( ( sender is ListBoxItem listBoxItem ) && ( listBoxItem.DataContext is KeyValuePair<string, string> selected ) )
+		{
+			ApplySelection( selected );
+		}
 	}
 
 	private void Window_KeyDown( object sender, KeyEventArgs e )
 	{
-		if ( e.Key == Key.Enter )
+		if ( ( e.Key == Key.Enter ) && ( Recordings_ListBox.SelectedItem is KeyValuePair<string, string> selected ) )
 		{
-			ApplySelection();
+			ApplySelection( selected );
 		}
 		else if ( e.Key == Key.Escape )
 		{
 			Close();
 		}
-	}
-
-	private void OK_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		ApplySelection();
-	}
-
-	private void Cancel_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		Confirmed = false;
-
-		Close();
 	}
 }

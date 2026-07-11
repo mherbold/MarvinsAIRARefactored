@@ -208,7 +208,7 @@
     <value>חלון עליון</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>ניוטונמטר</value>
+    <value> ניוטונמטר</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
     <value>מגבר פרטים (השהיה נמוכה)</value>
@@ -280,7 +280,7 @@
     <value>הגנה מפני התנגשות</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value>כוחות ג'י</value>
+    <value> כוחות ג'י</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
     <value>כוח G אורכי</value>
@@ -295,10 +295,10 @@
     <value> שנ'</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value>מייל בשנייה</value>
+    <value> מייל בשנייה</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>הגנה מפני שפות</value>
+    <value>הגנה מפני אבני שפה</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>מהירות זעזוע</value>
@@ -328,7 +328,7 @@
     <value>עוצמה</value>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>הרץ</value>
+    <value> הרץ</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
     <value>תדר גלובלי</value>
@@ -631,13 +631,13 @@
     <value>הגנת ההתנגשות הופעלה!</value>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>הגנת השפות הופעלה!</value>
+    <value>הגנת אבני השפה הופעלה!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
     <value>הודעות פרטיות</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value>הפעל הודעות הגנת שפות</value>
+    <value>הפעל הודעות הגנת אבני שפה</value>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
     <value>הפעל הודעות הגנת התנגשות</value>
@@ -730,7 +730,7 @@
     <value>נזרק חריג</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>קמ"ש</value>
+    <value> קמ"ש</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>אלה האנשים שתרמו בנדיבות מזמנם החופשי להפעיל כיולי אפקטי היגוי על חלק ממכוניות האהובות עליהם ולהעלות קבצי כיול אלה!</value>
@@ -889,7 +889,7 @@
     <value>גריפ-אומטר</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>מייל בשעה</value>
+    <value> מייל בשעה</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon רוח</value>
@@ -1500,9 +1500,6 @@
   <data name="LoopEnd" xml:space="preserve">
     <value>סוף לולאה</value>
   </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
-  </data>
   <data name="Commentary" xml:space="preserve">
     <value>פרשנות</value>
   </data>
@@ -1651,7 +1648,7 @@
     <value>אתחול סימולטור...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>אתחול קלט ישיר...</value>
+    <value>אתחול DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>אתחול Stream Deck...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>מול P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>פרופילי בקר</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>שינוי שם פרופיל</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>שינוי שם פרופיל בקר</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>תהליכים פעילים</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>סינון לפי שם או נתיב...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>מחפש יישומים פעילים...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>נראות החלון</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>הצג / הסתר חלון</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>גודל צעד</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>מרווח בדיקת עדכונים</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> שע'</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>מחק צביעות בעת סגירת iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>בדיקת עדכונים במרווחים</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>אימון</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>מקצה דירוג</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>מרוץ</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>סטטוס</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>מנוחה</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>פעיל</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>מדוכא</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>מחק תוכניות התקנה ישנות</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>שונות</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>פתח את תיקיית המסמכים</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(לא ממופה)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>הפעלת מיקום וקנה מידה של שכבת-על לכל רכב</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>מקור 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,29 +1890,23 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>מגביל רך</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>מקסימום</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>מינימום</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>הגנה מפני התנגשות</value>
   </data>
   <data name="FFBModuleCurbProtection" xml:space="preserve">
-    <value>הגנה מפני שפות</value>
+    <value>הגנה מפני אבני שפה</value>
   </data>
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>עוצמה בחניה</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>נעילה רכה</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>מקור נעילה רכה</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>חיכוך</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>מרכוז הגה</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>מקור מרכוז הגה</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>כוח אנדרסטיר</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>שני קטבים</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>כניסה</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>כניסה A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>כניסה B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>הוסף מודול</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>התחל גרף ריק</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>חיסור</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>מקור מהירות ההגה</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>מקורות</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP כללי</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>מערבלים</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>אפקטים</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>אפקטים אחרים</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

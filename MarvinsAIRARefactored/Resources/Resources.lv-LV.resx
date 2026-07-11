@@ -1414,10 +1414,10 @@
     <value>Atlasi savu spēka atgriezeniskās saites stūri no saraksta zemāk.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Neredzi savu stūri? Pārliecinies, ka tā ir ieslēgta un pievienota, un saraksts atjaunināsies automātiski.</value>
+    <value>Neredzi savu stūri? Pārliecinies, ka tā ir ieslēgta un pievienota, un saraksts atjaunināsies automātiski.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec lietotājiem: Fanatec stūres parasti sarakstā parādās kā divas atsevišķas ierīces. Ja izvēlētā nedarbojas, mēģini atlasīt otru!</value>
+    <value>Fanatec lietotājiem: Fanatec stūres parasti sarakstā parādās kā divas atsevišķas ierīces. Ja izvēlētā nedarbojas, mēģini atlasīt otru!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Maksimālais stūres spēks</value>
@@ -1426,10 +1426,10 @@
     <value>Ievadi maksimālo spēku, ko tava stūres pamatne spēj radīt, ņūtonmetros (Nm). MAIRA izmanto šo vērtību, lai pareizi mērogotu visu spēka atgriezeniskās saites izvadi tavai aparatūrai.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Mēs esam izdarījuši savu labāko minējumu, balstoties uz tavu atlasīto stūri — taču vari to pielāgot pēc vajadzības.</value>
+    <value>Mēs esam izdarījuši savu labāko minējumu, balstoties uz tavu atlasīto stūri — taču vari to pielāgot pēc vajadzības.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Svarīgi: Ja esi jau ierobežojis savas stūres maksimālo griezes momenta izvadi sava stūres ražotāja programmatūrā (piemēram, Fanatec Wheel Control Panel, Moza Pit House utt.), ievadi šeit šo samazināto vērtību, nevis aparatūras fizisko maksimumu. MAIRA jāzina, ko tava stūre patiešām nodrošinās, nevis ko tā teorētiski spēj.</value>
+    <value>Svarīgi: Ja esi jau ierobežojis savas stūres maksimālo griezes momenta izvadi sava stūres ražotāja programmatūrā (piemēram, Fanatec Wheel Control Panel, Moza Pit House utt.), ievadi šeit šo samazināto vērtību, nevis aparatūras fizisko maksimumu. MAIRA jāzina, ko tava stūre patiešām nodrošinās, nevis ko tā teorētiski spēj.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Stipruma vadīklas</value>
@@ -1441,7 +1441,7 @@
     <value>Noklikšķini uz - un + pogām zemāk, lai piešķirtu ievades katrai no tām. Šis solis ir neobligāts — vari to izlaist un iestatīt piesaistes vēlāk no Sacīkšu stūres lapas.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Tiklīdz ievade ir kartēta, pogas apmale kļūs oranža, lai to apstiprinātu.</value>
+    <value>Tiklīdz ievade ir kartēta, pogas apmale kļūs oranža, lai to apstiprinātu.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Stiprums</value>
@@ -1468,7 +1468,7 @@
     <value>Vispirms pielāgo Automātiskā mērķa rezervi pēc gaumes, tad kartē savas Iestatīt un Notīrīt pogas.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Automātiskais mērķis nosaka, kurā vietā tavas stūres spēka diapazonā jānokļūst izmērītajam maksimumam. Pazemini mērķi, lai virs maksimuma saglabātu vairāk rezerves; paaugstini to, lai izmantotu vairāk no stūres diapazona.</value>
+    <value>Automātiskais mērķis nosaka, kurā vietā tavas stūres spēka diapazonā jānokļūst izmērītajam maksimumam. Pazemini mērķi, lai virs maksimuma saglabātu vairāk rezerves; paaugstini to, lai izmantotu vairāk no stūres diapazona.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritms</value>
@@ -1559,9 +1559,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Cikla beigas</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Komentāri</value>
@@ -1714,7 +1711,7 @@
     <value>Inicializē simulatoru...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inicializē direct input...</value>
+    <value>Inicializē DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inicializē Stream Deck...</value>
@@ -1772,45 +1769,65 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Inicializē galveno logu...</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Aktīvie procesi</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtrēt pēc nosaukuma vai ceļa...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Notiek aktīvo lietotņu meklēšana...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Loga redzamība</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Rādīt / slēpt logu</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Soļa lielums</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Atjauninājumu pārbaudes intervāls</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> st.</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Dzēst krāsojumus, kad iRacing aizveras</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Pārbaudīt atjauninājumus ar intervālu</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Treniņš</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Kvalifikācija</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Sacīkste</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Statuss</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Dīkstāve</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Aktīvs</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Apspiests</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Dzēst vecos instalētājus</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Dažādi</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Atvērt dokumentu mapi</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1818,9 +1835,11 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Līdzsvars</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Iespējot pārklājuma pozīciju un mērogošanu katrai automašīnai</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz avots</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1871,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Mīkstais ierobežotājs</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Maksimums</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Minimums</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Avāriju aizsardzība</value>
   </data>
@@ -1886,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Stāvēšanas stiprums</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Mīkstā fiksācija</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Mīkstās fiksācijas avots</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Berze</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Stūres centrēšana</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Stūres centrēšanas avots</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Nepietiekamas stūrēšanas spēks</value>
@@ -2000,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Divpolu</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Ievade</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Ievade A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Ievade B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Pievienot moduli</value>
   </data>
@@ -2030,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Sākt ar tukšu grafiku</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Atņemšana</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Stūres ātruma avots</value>
+  </data>
 
 
 
@@ -2052,4 +2062,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Avoti</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Vispārīgie DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mikseri</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Efekti</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Citi efekti</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

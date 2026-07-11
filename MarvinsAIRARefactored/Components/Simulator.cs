@@ -58,6 +58,7 @@ public partial class Simulator
 	public float GpuUsage { get; private set; } = 0f;
 	public float LongitudinalGForce { get; private set; } = 0f;
 	public float LateralGForce { get; private set; } = 0f;
+	public float MaxShockVelocity { get; private set; } = 0f;
 	public bool IsConnected { get => _irsdk.IsConnected; }
 	public bool IsOnTrack { get; private set; } = false;
 	public bool IsReplayPlaying { get; private set; } = false;
@@ -113,6 +114,7 @@ public partial class Simulator
 	public float SteeringRatio { get; private set; } = 10f;
 	public float SteeringWheelAngle { get; private set; } = 0f;
 	public float SteeringWheelAngleMax { get; private set; } = 0f;
+	public float SteeringWheelVelocity { get; private set; } = 0f;   // rad/s, derived from SteeringWheelAngle across telemetry frames (60 Hz)
 	public float[] SteeringWheelTorque_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float Throttle { get; private set; } = 0f;
 	public float TireLF_RumblePitch { get; private set; } = 0f;
@@ -382,6 +384,7 @@ public partial class Simulator
 		Gear = 0;
 		LongitudinalGForce = 0f;
 		LateralGForce = 0f;
+		MaxShockVelocity = 0f;
 		IsOnTrack = false;
 		IsReplayPlaying = false;
 		Lap = 0;
@@ -429,6 +432,7 @@ public partial class Simulator
 		SteeringRatio = 10f;
 		SteeringWheelAngle = 0f;
 		SteeringWheelAngleMax = 0f;
+		SteeringWheelVelocity = 0f;
 		Throttle = 0f;
 		TireLF_RumblePitch = 0f;
 		TireRF_RumblePitch = 0f;
@@ -754,7 +758,7 @@ public partial class Simulator
 
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "CFshockVel_ST", out _cfShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "CRshockVel_ST", out _crShockVel_STDatum );
-			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LRshockVel_ST", out _lfShockVel_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LFshockVel_ST", out _lfShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LRshockVel_ST", out _lrShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RFshockVel_ST", out _rfShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RRshockVel_ST", out _rrShockVel_STDatum );
@@ -885,8 +889,11 @@ public partial class Simulator
 		SessionTimeRemain = _irsdk.Data.GetDouble( _sessionTimeRemainDatum );
 		Speed = _irsdk.Data.GetFloat( _speedDatum );
 		SteeringFFBEnabled = _irsdk.Data.GetBool( _steeringFFBEnabledDatum );
+		var steeringWheelAngleLastFrame = SteeringWheelAngle;
+
 		SteeringWheelAngle = _irsdk.Data.GetFloat( _steeringWheelAngleDatum );
 		SteeringWheelAngleMax = _irsdk.Data.GetFloat( _steeringWheelAngleMaxDatum );
+		SteeringWheelVelocity = ( SteeringWheelAngle - steeringWheelAngleLastFrame ) / deltaSeconds;
 		Throttle = _irsdk.Data.GetFloat( _throttleDatum );
 		TireLF_RumblePitch = _irsdk.Data.GetFloat( _tireLF_RumblePitchDatum );
 		TireRF_RumblePitch = _irsdk.Data.GetFloat( _tireRF_RumblePitchDatum );
@@ -1077,6 +1084,23 @@ public partial class Simulator
 			}
 		}
 
+		// track this frame's peak absolute shock velocity across all six dampers — it drives the curb protection
+		// trigger below and is recorded so the preview replay can re-derive the trigger from the current settings
+
+		var maxShockVelocity = 0f;
+
+		for ( var i = 0; i < SamplesPerFrame360Hz; i++ )
+		{
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CFShockVel_ST[ i ] ) );
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CRShockVel_ST[ i ] ) );
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LFShockVel_ST[ i ] ) );
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LRShockVel_ST[ i ] ) );
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RFShockVel_ST[ i ] ) );
+			maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RRShockVel_ST[ i ] ) );
+		}
+
+		MaxShockVelocity = maxShockVelocity;
+
 		// curb protection processing (shock-velocity threshold now comes from the live FFB graph's curb protection
 		// module; an off/disabled/would-do-nothing module publishes 0, same "disabled" semantics as the old guards)
 
@@ -1084,24 +1108,9 @@ public partial class Simulator
 		{
 			var curbShockVelocityThreshold = app.RacingWheel.CurbProtectionShockVelocityThreshold;
 
-			if ( curbShockVelocityThreshold > 0f )
+			if ( ( curbShockVelocityThreshold > 0f ) && ( MaxShockVelocity >= curbShockVelocityThreshold ) )
 			{
-				var maxShockVelocity = 0f;
-
-				for ( var i = 0; i < SamplesPerFrame360Hz; i++ )
-				{
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CFShockVel_ST[ i ] ) );
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( CRShockVel_ST[ i ] ) );
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LFShockVel_ST[ i ] ) );
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( LRShockVel_ST[ i ] ) );
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RFShockVel_ST[ i ] ) );
-					maxShockVelocity = MathF.Max( maxShockVelocity, MathF.Abs( RRShockVel_ST[ i ] ) );
-				}
-
-				if ( maxShockVelocity >= curbShockVelocityThreshold )
-				{
-					app.RacingWheel.ActivateCurbProtection = true;
-				}
+				app.RacingWheel.ActivateCurbProtection = true;
 			}
 		}
 
@@ -1288,7 +1297,7 @@ public partial class Simulator
 		{
 			_updateCounter = UpdateInterval;
 
-			_racingWheelPage.CurrentForce_TextBlock.Text = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F1} {DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
+			_racingWheelPage.CurrentForce_TextBlock.Text = $"{MathF.Abs( SteeringWheelTorque_ST[ 5 ] ):F1}{DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
 		}
 	}
 

@@ -292,7 +292,7 @@
     <value>力矩回收</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>秒</value>
+    <value> 秒</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
     <value> m/s</value>
@@ -730,7 +730,7 @@
     <value>异常已发出</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>公里每小时</value>
+    <value> 公里每小时</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>这些转向效果校准文件为慷慨的贡献者在他们所偏好的车辆上测试和体验后提供</value>
@@ -1354,10 +1354,10 @@
     <value>从下面的列表中选择你的力反馈方向盘。</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> 没有看到你的方向盘？确保它已开机并已连接，列表将自动刷新。</value>
+    <value>没有看到你的方向盘？确保它已开机并已连接，列表将自动刷新。</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec 用户：Fanatec 方向盘通常在列表中显示为两个独立的设备。如果选择的一个不起作用，请尝试选择另一个！</value>
+    <value>Fanatec 用户：Fanatec 方向盘通常在列表中显示为两个独立的设备。如果选择的一个不起作用，请尝试选择另一个！</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>最大方向盘力</value>
@@ -1366,10 +1366,10 @@
     <value>输入你的方向盘底座能够产生的最大力，单位为牛顿米（Nm）。MAIRA 使用此值来正确缩放所有力反馈输出以适应你的硬件。</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> 我们已根据你选择的方向盘做出了最佳猜测——但你可以根据需要进行调整。</value>
+    <value>我们已根据你选择的方向盘做出了最佳猜测——但你可以根据需要进行调整。</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> 重要提示：如果你已在方向盘制造商的软件中（例如 Fanatec Wheel Control Panel、Moza Pit House 等）限制了方向盘的最大扭矩输出，请在此处输入减小后的值，而不是硬件的物理最大值。MAIRA 需要知道你的方向盘实际能输出多少，而不是理论上的极限。</value>
+    <value>重要提示：如果你已在方向盘制造商的软件中（例如 Fanatec Wheel Control Panel、Moza Pit House 等）限制了方向盘的最大扭矩输出，请在此处输入减小后的值，而不是硬件的物理最大值。MAIRA 需要知道你的方向盘实际能输出多少，而不是理论上的极限。</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>强度控制</value>
@@ -1381,7 +1381,7 @@
     <value>单击下面的 - 和 + 按钮为每个功能分配输入。此步骤是可选的——你可以跳过它，稍后在赛车方向盘页面设置绑定。</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> 一旦映射了输入，按钮边框将变为橙色以确认。</value>
+    <value>一旦映射了输入，按钮边框将变为橙色以确认。</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>强度</value>
@@ -1408,7 +1408,7 @@
     <value>首先，根据喜好调整自动目标余量，然后映射你的设置和清除按钮。</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> 自动目标设置测量峰值在方向盘力范围中的位置。降低目标可在峰值上方保留更多余量；提高目标可使用更多方向盘范围。</value>
+    <value>自动目标设置测量峰值在方向盘力范围中的位置。降低目标可在峰值上方保留更多余量；提高目标可使用更多方向盘范围。</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>算法</value>
@@ -1499,9 +1499,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>循环结束</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>毫秒</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>解说</value>
@@ -1651,7 +1648,7 @@
     <value>初始化模拟器...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>初始化直接输入...</value>
+    <value>正在初始化 DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>初始化Stream Deck...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>控制器配置文件</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>重命名配置文件</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>重命名控制器配置文件</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>正在运行的进程</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>按名称或路径筛选...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>正在搜索正在运行的应用...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>窗口可见性</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>显示 / 隐藏窗口</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>步长</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>更新检查间隔</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> 小时</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing 关闭时删除涂装</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>按间隔检查更新</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>练习</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>排位赛</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>正赛</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>状态</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>空闲</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>活动</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>已抑制</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>删除旧的安装程序</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>杂项</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>打开文档文件夹</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>（未映射）</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>启用每辆车的叠加层位置和缩放</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz 信号源</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>软限制器</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>最大值</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>最小值</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>碰撞保护</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>停车力度</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>软锁</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>软锁信号源</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>摩擦</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>方向盘回中</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>方向盘回中信号源</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>转向不足力</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>二阶</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>输入</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>输入 A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>输入 B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>添加模块</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>从空白图表开始</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>相减</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>方向盘速度信号源</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>信号源</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>通用 DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>混合器</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>效果</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>其他效果</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> 毫秒</value>
+  </data>
 </root>

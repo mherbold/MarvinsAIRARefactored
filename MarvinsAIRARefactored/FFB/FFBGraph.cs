@@ -48,34 +48,52 @@ public class FFBModuleData
 }
 
 /// <summary>
-/// A named, ordered chain of modules. The first slots are always the fixed sources (60 Hz / 360 Hz / LFE) and
-/// the last slot is always the fixed Output module; those are non-removable. Modules may only reference the
-/// output of an <em>earlier</em> module (or a source) — the list order is the evaluation order. The editor
-/// allows free acyclic wiring and calls <see cref="FFBGraphTopology.SortTopologically"/> after every structure
-/// edit to restore that invariant.
+/// A named, ordered chain of modules. The last slot is always the fixed Output module (non-removable). Sources
+/// are ordinary optional modules now — added and removed at will, limited to one instance of each source type
+/// per graph — except that a graph always retains at least one source (removing the last one re-adds the 360 Hz
+/// source, since the Output module always needs an input). Modules may only reference the output of an
+/// <em>earlier</em> module (or a source) — the list order is the evaluation order. The editor allows free
+/// acyclic wiring and calls <see cref="FFBGraphTopology.SortTopologically"/> after every structure edit to
+/// restore that invariant.
 /// </summary>
 public class FFBGraph
 {
 	public const string Source60ModuleId = "Source60";
 	public const string Source360ModuleId = "Source360";
 	public const string SourceLFEModuleId = "SourceLFE";
+	public const string SourceWheelVelocityModuleId = "SourceWheelVelocity";
+	public const string SourceSoftLockModuleId = "SourceSoftLock";
+	public const string SourceWheelCenteringModuleId = "SourceWheelCentering";
 	public const string OutputModuleId = "Output";
 
 	public string Name { get; set; } = "";
 	public bool IsBuiltIn { get; set; } = false;
-	public List<FFBModuleData> Modules { get; set; } = [];   // slots 0-1 = sources, last = Output
+	public List<FFBModuleData> Modules { get; set; } = [];   // dependency order, last = Output
 
 	/// <summary>
-	/// Build an empty graph containing only the fixed sources and the trailing Output module, wired
-	/// Source360 -> Output. New user graphs and every built-in start from this shape.
+	/// Canonical module id for a source type. Sources are one-per-graph, so each source type has a single
+	/// well-known id that survives remove/re-add — all the fallback and preview plumbing keys off these ids.
+	/// </summary>
+	public static string CanonicalSourceId( string sourceTypeKey )
+	{
+		return sourceTypeKey switch
+		{
+			FFBModuleRegistry.Source60HzType => Source60ModuleId,
+			FFBModuleRegistry.Source360HzType => Source360ModuleId,
+			_ => sourceTypeKey   // the newer source type keys are their own canonical ids
+		};
+	}
+
+	/// <summary>
+	/// Build an empty graph containing only the 360 Hz source and the trailing Output module, wired
+	/// Source360 -> Output. New user graphs and every built-in start from this shape; further sources are
+	/// added at will.
 	/// </summary>
 	public static FFBGraph CreateEmpty( string name, bool isBuiltIn = false )
 	{
 		var graph = new FFBGraph { Name = name, IsBuiltIn = isBuiltIn };
 
-		graph.Modules.Add( new FFBModuleData( Source60ModuleId, FFBModuleRegistry.Source60HzType ) );
 		graph.Modules.Add( new FFBModuleData( Source360ModuleId, FFBModuleRegistry.Source360HzType ) );
-		graph.Modules.Add( new FFBModuleData( SourceLFEModuleId, FFBModuleRegistry.SourceLFEType ) );
 
 		graph.Modules.Add( new FFBModuleData( OutputModuleId, FFBModuleRegistry.OutputType )
 		{

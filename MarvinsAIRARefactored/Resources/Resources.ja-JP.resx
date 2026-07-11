@@ -298,7 +298,7 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>カーブ保護</value>
+    <value>縁石保護</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>ショック速度</value>
@@ -633,13 +633,13 @@
     <value>クラッシュ保護が作動しました！</value>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>カーブ保護が作動しました！</value>
+    <value>縁石保護が作動しました！</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
     <value>プライベートメッセージ</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value>カーブ保護メッセージを有効にする</value>
+    <value>縁石保護メッセージを有効にする</value>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
     <value>クラッシュ保護メッセージを有効にする</value>
@@ -1503,9 +1503,6 @@
   <data name="LoopEnd" xml:space="preserve">
     <value>ループ終了</value>
   </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
-  </data>
   <data name="Commentary" xml:space="preserve">
     <value>実況</value>
   </data>
@@ -1654,7 +1651,7 @@
     <value>シミュレーターを初期化中...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>ダイレクト入力を初期化中...</value>
+    <value>DirectInputを初期化中...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Stream Deckを初期化中...</value>
@@ -1727,52 +1724,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>対 P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>コントローラープロファイル</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>プロファイル名を変更</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>コントローラープロファイル名を変更</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>実行中のプロセス</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>名前またはパスで絞り込み...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>実行中のアプリを検索しています...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>ウィンドウの表示</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>ウィンドウの表示 / 非表示</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>ステップサイズ</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>更新チェック間隔</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> 時間</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing 終了時にペイントを削除</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>一定間隔で更新を確認</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>練習</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>予選</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>レース</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>ステータス</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>待機</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>アクティブ</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>抑制</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>古いインストーラーを削除</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>その他</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>ドキュメントフォルダーを開く</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1819,9 +1838,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>（未割り当て）</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>車種ごとのオーバーレイの位置とスケールを有効にする</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz ソース</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1872,29 +1893,23 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>ソフトリミッター</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>最大</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>最小</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>クラッシュ保護</value>
   </data>
   <data name="FFBModuleCurbProtection" xml:space="preserve">
-    <value>カーブ保護</value>
+    <value>縁石保護</value>
   </data>
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>駐車中強度</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>ソフトロック</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>ソフトロックソース</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>フリクション</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>ホイールセンタリング</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>ホイールセンタリングソース</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>アンダーステアフォース</value>
@@ -2001,15 +2016,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>2 ポール</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>入力</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>入力 A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>入力 B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>モジュールを追加</value>
   </data>
@@ -2031,6 +2037,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>空のグラフから開始</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>減算</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>ホイール速度ソース</value>
+  </data>
 
 
 
@@ -2068,4 +2080,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>ソース</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>汎用DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>ミキサー</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>エフェクト</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>その他のエフェクト</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

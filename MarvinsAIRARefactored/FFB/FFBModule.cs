@@ -29,6 +29,11 @@ public abstract class FFBModule
 	/// <summary>Reserved Enabled switch (effective-setting index 0). Read by the engine each tick.</summary>
 	public bool Enabled => _v.Length > 0 && _v[ 0 ] != 0f;
 
+	/// <summary>Session-only "test this effect" override, driven by the editor's vibrate toggle — never
+	/// serialized, and an engine rebuild resets it. Event-driven effect modules treat it as their trigger
+	/// being continuously active, so the user can feel the effect without having to provoke it in the sim.</summary>
+	public bool TestActive;
+
 	/// <summary>
 	/// Resolve descriptor + serialized model into <see cref="_v"/>. Missing keys fall back to the descriptor
 	/// default (the same "missing ⇒ default" behavior as the settings overlay loader).

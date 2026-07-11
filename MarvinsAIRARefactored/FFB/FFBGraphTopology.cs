@@ -59,13 +59,60 @@ public static class FFBGraphTopology
 	}
 
 	/// <summary>
-	/// Stable topological sort of the module list into <c>[Source60, Source360, main-signal modules in dependency
-	/// order (current relative order as the tiebreak), generators, Output]</c>, followed by a repair pass that
-	/// resets any remaining forward or dangling input reference to the 360 Hz source (the engine falls back the
-	/// same way). Call after every structure edit (re-wire, add, remove) and before rebuilding the engines.
+	/// The module every dangling or invalid input reference falls back to: the 360 Hz source when present, then
+	/// the 60 Hz source, then any other source already on the graph — null only when the graph has no source at
+	/// all (see <see cref="EnsureFallbackSource"/>).
+	/// </summary>
+	public static string? FallbackSourceModuleId( FFBGraph graph )
+	{
+		var source = graph.Modules.FirstOrDefault( module => module.ModuleType == FFBModuleRegistry.Source360HzType )
+			?? graph.Modules.FirstOrDefault( module => module.ModuleType == FFBModuleRegistry.Source60HzType )
+			?? graph.Modules.FirstOrDefault( module => FFBModuleRegistry.TryGet( module.ModuleType )?.IsSource == true );
+
+		return source?.ModuleId;
+	}
+
+	/// <summary>
+	/// Sources are optional now, but any module with a signal input (the Output module always has one) needs a
+	/// fallback target — when a graph has no source at all (e.g. the last one was just removed), the 360 Hz
+	/// source is added back automatically, placed below the existing nodes. Returns the fallback source id.
+	/// </summary>
+	public static string EnsureFallbackSource( FFBGraph graph )
+	{
+		var fallbackModuleId = FallbackSourceModuleId( graph );
+
+		if ( fallbackModuleId != null )
+		{
+			return fallbackModuleId;
+		}
+
+		var nodeY = LayoutMargin;
+
+		foreach ( var module in graph.Modules )
+		{
+			nodeY = Math.Max( nodeY, module.NodeY + NodeHeight + VerticalGap );
+		}
+
+		graph.Modules.Insert( 0, new FFBModuleData( FFBGraph.Source360ModuleId, FFBModuleRegistry.Source360HzType )
+		{
+			NodeX = LayoutMargin,
+			NodeY = nodeY
+		} );
+
+		return FFBGraph.Source360ModuleId;
+	}
+
+	/// <summary>
+	/// Stable topological sort of the module list into <c>[sources, main-signal modules in dependency order
+	/// (current relative order as the tiebreak), generators, Output]</c>, followed by a repair pass that resets
+	/// any remaining forward or dangling input reference to the fallback source (the engine falls back the same
+	/// way). A source-less graph gets the 360 Hz source re-added first. Call after every structure edit
+	/// (re-wire, add, remove) and before rebuilding the engines.
 	/// </summary>
 	public static void SortTopologically( FFBGraph graph )
 	{
+		EnsureFallbackSource( graph );
+
 		var sources = new List<FFBModuleData>();
 		var main = new List<FFBModuleData>();
 		var generators = new List<FFBModuleData>();
@@ -136,11 +183,13 @@ public static class FFBGraphTopology
 
 	/// <summary>
 	/// Reset any input reference that points at a missing module or at a module that is not earlier in the list
-	/// back to the 360 Hz source. The engine's <c>ResolveInput</c> falls back identically, so this only makes the
-	/// stored model match what the engine would actually do.
+	/// back to the fallback source (360 Hz → 60 Hz → any other source). The engine's <c>ResolveInput</c> falls
+	/// back identically, so this only makes the stored model match what the engine would actually do.
 	/// </summary>
 	public static void RepairInputReferences( FFBGraph graph )
 	{
+		var fallbackModuleId = FallbackSourceModuleId( graph ) ?? FFBGraph.Source360ModuleId;
+
 		var indexById = new Dictionary<string, int>( StringComparer.Ordinal );
 
 		for ( var i = 0; i < graph.Modules.Count; i++ )
@@ -154,12 +203,12 @@ public static class FFBGraphTopology
 
 			if ( !indexById.TryGetValue( module.InputAModuleId, out var indexA ) || ( indexA >= i ) )
 			{
-				module.InputAModuleId = FFBGraph.Source360ModuleId;
+				module.InputAModuleId = fallbackModuleId;
 			}
 
 			if ( !indexById.TryGetValue( module.InputBModuleId, out var indexB ) || ( indexB >= i ) )
 			{
-				module.InputBModuleId = FFBGraph.Source360ModuleId;
+				module.InputBModuleId = fallbackModuleId;
 			}
 		}
 	}

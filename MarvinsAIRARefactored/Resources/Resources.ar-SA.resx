@@ -1414,10 +1414,10 @@
     <value>حدّد عجلة القيادة ذات ردود فعل القوة من القائمة أدناه.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> لا ترى عجلتك؟ تأكد من أنها قيد التشغيل ومتصلة، ثم ستُحدَّث القائمة تلقائيًا.</value>
+    <value>لا ترى عجلتك؟ تأكد من أنها قيد التشغيل ومتصلة، ثم ستُحدَّث القائمة تلقائيًا.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> مستخدمو Fanatec: تظهر عجلات Fanatec عادةً كجهازين منفصلين في القائمة. إذا لم يعمل الجهاز الذي حددته، جرّب تحديد الآخر!</value>
+    <value>مستخدمو Fanatec: تظهر عجلات Fanatec عادةً كجهازين منفصلين في القائمة. إذا لم يعمل الجهاز الذي حددته، جرّب تحديد الآخر!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>أقصى قوة للعجلة</value>
@@ -1426,10 +1426,10 @@
     <value>أدخل أقصى قوة قادرة قاعدة عجلتك على إنتاجها، بوحدة النيوتن·متر (Nm). يستخدم MAIRA هذه القيمة لقياس كل خرج ردود فعل القوة بشكل صحيح لجهازك.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> لقد وضعنا أفضل تخمين بناءً على العجلة التي حددتها — لكن لا تتردد في تعديلها عند الحاجة.</value>
+    <value>لقد وضعنا أفضل تخمين بناءً على العجلة التي حددتها — لكن لا تتردد في تعديلها عند الحاجة.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> مهم: إذا كنت قد حدّدت بالفعل أقصى عزم لعجلتك داخل برنامج الشركة المصنّعة للعجلة (مثل Fanatec Wheel Control Panel أو Moza Pit House، إلخ)، فأدخل تلك القيمة المخفّضة هنا بدلًا من الحد الأقصى الفيزيائي للجهاز. يحتاج MAIRA إلى معرفة ما ستقدّمه عجلتك فعليًا، وليس ما هي قادرة عليه نظريًا.</value>
+    <value>مهم: إذا كنت قد حدّدت بالفعل أقصى عزم لعجلتك داخل برنامج الشركة المصنّعة للعجلة (مثل Fanatec Wheel Control Panel أو Moza Pit House، إلخ)، فأدخل تلك القيمة المخفّضة هنا بدلًا من الحد الأقصى الفيزيائي للجهاز. يحتاج MAIRA إلى معرفة ما ستقدّمه عجلتك فعليًا، وليس ما هي قادرة عليه نظريًا.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>عناصر التحكم بالقوة</value>
@@ -1441,7 +1441,7 @@
     <value>انقر على زرّي - و + أدناه لتعيين المدخلات لكل منهما. هذه الخطوة اختيارية — يمكنك تخطّيها وإعداد الروابط لاحقًا من صفحة عجلة السباق.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> بمجرد تعيين إدخال، سيتحوّل لون حدود الزر إلى البرتقالي للتأكيد.</value>
+    <value>بمجرد تعيين إدخال، سيتحوّل لون حدود الزر إلى البرتقالي للتأكيد.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>القوة</value>
@@ -1468,7 +1468,7 @@
     <value>أولًا، اضبط هامش الهدف التلقائي حسب رغبتك، ثم عيّن زرّي التعيين والمسح.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> يحدّد الهدف التلقائي أين تقع الذروة المقاسة ضمن مدى قوة عجلتك. اخفض الهدف للاحتفاظ بمزيد من الهامش فوق الذروة؛ ارفعه لاستخدام مزيد من مدى العجلة.</value>
+    <value>يحدّد الهدف التلقائي أين تقع الذروة المقاسة ضمن مدى قوة عجلتك. اخفض الهدف للاحتفاظ بمزيد من الهامش فوق الذروة؛ ارفعه لاستخدام مزيد من مدى العجلة.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>الخوارزمية</value>
@@ -1559,9 +1559,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>نهاية الحلقة</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>التعليق</value>
@@ -1714,7 +1711,7 @@
     <value>جارٍ تهيئة المحاكي...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>جارٍ تهيئة Direct Input...</value>
+    <value>جارٍ تهيئة DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>جارٍ تهيئة Stream Deck...</value>
@@ -1772,45 +1769,65 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>جارٍ تهيئة النافذة الرئيسية...</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>العمليات قيد التشغيل</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>تصفية حسب الاسم أو المسار...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>جارٍ البحث عن التطبيقات قيد التشغيل...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>رؤية النافذة</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>إظهار / إخفاء النافذة</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>حجم الخطوة</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>الفاصل الزمني للتحقق من التحديثات</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> س</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>حذف الطلاءات عند إغلاق iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>التحقق من التحديثات على فترات</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>تدريب</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>تأهيل</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>سباق</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>الحالة</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>خامل</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>نشط</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>مكبوح</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>حذف المثبّتات القديمة</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>متنوع</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>فتح مجلد المستندات</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1818,9 +1835,11 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>التوازن</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>تمكين موضع وحجم التراكب لكل سيارة</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>مصدر 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1871,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>محدد ناعم</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>الحد الأقصى</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>الحد الأدنى</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>الحماية من الاصطدام</value>
   </data>
@@ -1886,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>قوة التوقف</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>القفل الناعم</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>مصدر القفل الناعم</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>الاحتكاك</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>توسيط العجلة</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>مصدر توسيط العجلة</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>قوة نقص التوجيه</value>
@@ -2000,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>قطبان</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>الإدخال</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>الإدخال A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>الإدخال B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>إضافة وحدة</value>
   </data>
@@ -2030,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>البدء برسم بياني فارغ</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>الطرح</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>مصدر سرعة عجلة القيادة</value>
+  </data>
 
 
 
@@ -2052,4 +2062,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>المصادر</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP عام</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>الخلاطات</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>التأثيرات</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>تأثيرات أخرى</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

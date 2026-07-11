@@ -208,7 +208,7 @@
     <value>Finestra principal</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>Nm</value>
+    <value> Nm</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
     <value>Potenciador de detalls (baixa latència)</value>
@@ -244,7 +244,7 @@
     <value>Límit delta</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value>Nm/s</value>
+    <value> Nm/s</value>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
     <value>Limitador delta (baixa latència)</value>
@@ -280,7 +280,7 @@
     <value>Protecció contra xocs</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value>G</value>
+    <value> G</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
     <value>Força g</value>
@@ -292,13 +292,13 @@
     <value>Reducció de força</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>s</value>
+    <value> s</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value>m/s</value>
+    <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>Protecció de voreres</value>
+    <value>Protecció de pianos</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>Velocitat de xoc</value>
@@ -328,7 +328,7 @@
     <value>Intensitat</value>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>Hz</value>
+    <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
     <value>Freqüència global</value>
@@ -571,7 +571,7 @@
     <value>Llindar total</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>Nm/ms</value>
+    <value> Nm/ms</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
     <value>Força del volant</value>
@@ -631,13 +631,13 @@
     <value>S'ha activat la protecció contra xocs!</value>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>La protecció de voreres s'ha activat!</value>
+    <value>La protecció de pianos s'ha activat!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
     <value>Missatges privats</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value>Activa els missatges de protecció de voreres</value>
+    <value>Activa els missatges de protecció de pianos</value>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
     <value>Activa els missatges de protecció contra xocs</value>
@@ -730,7 +730,7 @@
     <value>S'ha generat una excepció</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>km/h</value>
+    <value> km/h</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Aquestes són les persones que han contribuït generosament amb part del seu temps lliure per executar calibratges d'efectes de direcció en alguns dels seus cotxes favorits i per carregar aquests fitxers de calibratge.</value>
@@ -889,7 +889,7 @@
     <value>Grip-o-metre</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>mi/h</value>
+    <value> mi/h</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon vent</value>
@@ -1354,10 +1354,10 @@
     <value>Selecciona el teu volant amb force feedback de la llista de sota.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> No veus el teu volant? Assegura't que estigui encès i connectat i la llista s'actualitzarà automàticament.</value>
+    <value>No veus el teu volant? Assegura't que estigui encès i connectat i la llista s'actualitzarà automàticament.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Usuaris Fanatec: els volants Fanatec normalment apareixen com a dos dispositius separats a la llista. Si el seleccionat no funciona, prova l'altre!</value>
+    <value>Usuaris Fanatec: els volants Fanatec normalment apareixen com a dos dispositius separats a la llista. Si el seleccionat no funciona, prova l'altre!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Força màxima del volant</value>
@@ -1366,10 +1366,10 @@
     <value>Introdueix la força màxima que la teva base pot produir, en Newton-metres (Nm). MAIRA utilitza aquest valor per escalar correctament tota la sortida de force feedback per al teu maquinari.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Hem fet la nostra millor estimació basant-nos en el volant seleccionat, però pots ajustar-la si cal.</value>
+    <value>Hem fet la nostra millor estimació basant-nos en el volant seleccionat, però pots ajustar-la si cal.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Important: si ja has limitat el parell màxim del volant al programari del fabricant (p. ex.: Fanatec Wheel Control Panel, Moza Pit House, etc.), introdueix aquí aquell valor reduït en lloc del màxim físic del maquinari. MAIRA necessita saber el que el teu volant realment produirà, no el que és capaç de fer en teoria.</value>
+    <value>Important: si ja has limitat el parell màxim del volant al programari del fabricant (p. ex.: Fanatec Wheel Control Panel, Moza Pit House, etc.), introdueix aquí aquell valor reduït en lloc del màxim físic del maquinari. MAIRA necessita saber el que el teu volant realment produirà, no el que és capaç de fer en teoria.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Controls de força</value>
@@ -1381,7 +1381,7 @@
     <value>Fes clic als botons - i + de sota per assignar les entrades a cadascun. Aquest pas és opcional; el pots ometre i configurar les assignacions més tard des de la pàgina del Volant.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Un cop assignada una entrada, la vora del botó es tornarà taronja per confirmar-ho.</value>
+    <value>Un cop assignada una entrada, la vora del botó es tornarà taronja per confirmar-ho.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Força</value>
@@ -1408,7 +1408,7 @@
     <value>Primer, ajusta el marge objectiu automàtic al teu gust i després assigna els botons Definir i Esborra.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> L'objectiu automàtic estableix on dins de la gamma de força del volant ha de caure el pic mesurat. Baixa l'objectiu per mantenir més marge per sobre del pic; puja'l per utilitzar més de la gamma del volant.</value>
+    <value>L'objectiu automàtic estableix on dins de la gamma de força del volant ha de caure el pic mesurat. Baixa l'objectiu per mantenir més marge per sobre del pic; puja'l per utilitzar més de la gamma del volant.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algorisme</value>
@@ -1499,9 +1499,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Fi del bucle</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Comentari</value>
@@ -1651,7 +1648,7 @@
     <value>Inicialitzant simulador...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inicialitzant entrada directa...</value>
+    <value>Inicialitzant DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inicialitzant Stream Deck...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Perfils de controlador</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Canvia el nom del perfil</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Canvia el nom del perfil del controlador</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Processos en execució</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtra per nom o camí...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>S'estan cercant aplicacions en execució...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Visibilitat de la finestra</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Mostra / amaga la finestra</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Mida del pas</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Interval de comprovació d'actualitzacions</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Elimina les pintures en tancar iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Comprova actualitzacions a intervals</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Entrenament</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Classificació</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Cursa</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Estat</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inactiu</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Actiu</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Suprimit</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Suprimeix els instal·ladors antics</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Miscel·lània</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Obre la carpeta de documents</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(sense assignar)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activa la posició i l'escala de la superposició per cotxe</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Font de 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,29 +1890,23 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Limitador suau</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Màxim</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Mínim</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Protecció contra xocs</value>
   </data>
   <data name="FFBModuleCurbProtection" xml:space="preserve">
-    <value>Protecció de voreres</value>
+    <value>Protecció de pianos</value>
   </data>
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Intensitat aparcat</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Bloqueig suau</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Font de bloqueig suau</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Fricció</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Recentratge del volant</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Font de recentratge del volant</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Força de subviratge</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Dos pols</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Entrada</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Entrada A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Entrada B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Afegeix un mòdul</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Comença amb un gràfic buit</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Resta</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Font de velocitat del volant</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Fonts</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP genèric</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mescladors</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Efectes</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Altres efectes</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

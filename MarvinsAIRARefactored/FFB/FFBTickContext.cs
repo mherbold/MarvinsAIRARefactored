@@ -9,10 +9,10 @@ namespace MarvinsAIRARefactored.FFB;
 /// </summary>
 /// <remarks>
 /// Torque samples are in Newton-metres (the main signal bus is Nm until the Output module). The vibration
-/// bus is normalized. In the preview / parity path the context is "neutral": real MaxForce and torque
-/// samples, but all telemetry-derived aux values are zero and the protection pulses are false, so every
-/// effect and generator module is inert (exactly as the old preview passed curbProtectionLerpFactor = 0
-/// and only showed the algorithm).
+/// bus is normalized. In the preview path the context is rebuilt per sample from a recording via
+/// <see cref="FromRecording"/>, so effect and generator modules see the telemetry they saw live and render
+/// working effects in the preview; only the crash/curb trigger pulses are re-derived at replay time from the
+/// recorded raw telemetry against the protection modules' current thresholds.
 /// </remarks>
 public readonly struct FFBTickContext
 {
@@ -56,14 +56,19 @@ public readonly struct FFBTickContext
 
 	public readonly float VelocityMS;
 	public readonly float VelocityY;
-	public readonly float ParkedFactor;
 	public readonly float SteeringWheelAngle;
 	public readonly float SteeringWheelAngleMax;
+	public readonly float SteeringWheelVelocity;   // rad/s from 60 Hz telemetry (rotation-range independent); positive = counterclockwise
 
 	// one-tick protection pulses (rising edge drives the protection modules' timers)
 
 	public readonly bool CrashProtectionTriggered;
 	public readonly bool CurbProtectionTriggered;
+
+	/// <summary>True only for the preview replay's neutral context. Modules whose behavior depends on live
+	/// telemetry that is zeroed here (e.g. SpeedGain's velocity) can substitute a representative value so the
+	/// preview shows something meaningful instead of the zero-telemetry edge case.</summary>
+	public readonly bool IsPreview;
 
 	public FFBTickContext(
 		float deltaMilliseconds,
@@ -86,11 +91,12 @@ public readonly struct FFBTickContext
 		bool usingTorqueData,
 		float velocityMS,
 		float velocityY,
-		float parkedFactor,
 		float steeringWheelAngle,
 		float steeringWheelAngleMax,
+		float steeringWheelVelocity,
 		bool crashProtectionTriggered,
-		bool curbProtectionTriggered )
+		bool curbProtectionTriggered,
+		bool isPreview = false )
 	{
 		DeltaMilliseconds = deltaMilliseconds;
 		Torque60Hz = torque60Hz;
@@ -112,45 +118,52 @@ public readonly struct FFBTickContext
 		UsingTorqueData = usingTorqueData;
 		VelocityMS = velocityMS;
 		VelocityY = velocityY;
-		ParkedFactor = parkedFactor;
 		SteeringWheelAngle = steeringWheelAngle;
 		SteeringWheelAngleMax = steeringWheelAngleMax;
+		SteeringWheelVelocity = steeringWheelVelocity;
 		CrashProtectionTriggered = crashProtectionTriggered;
 		CurbProtectionTriggered = curbProtectionTriggered;
+		IsPreview = isPreview;
 	}
 
+	/// <summary>The preview replay's fixed tick length — recordings are captured at 360 Hz.</summary>
+	public const float ReplayDeltaMilliseconds = 1000f / 360f;
+
 	/// <summary>
-	/// A "neutral" context used by the preview / parity path: real MaxForce and torque samples, but all
-	/// aux telemetry zero and no protection pulses, so effect and generator modules produce nothing and
-	/// only the algorithm (DSP) chain contributes — matching the old preview exactly.
+	/// The preview replay context: one recorded 360 Hz sample expanded back into a full tick context, so every
+	/// module — effects, generators, and protections included — behaves as it did when the recording was made.
+	/// Recordings only run while on track with live torque data, so those two flags are hard-wired true. The
+	/// crash/curb trigger pulses are passed in because the caller re-derives them from the recorded raw telemetry
+	/// (G forces, peak shock velocity) against the protection modules' CURRENT thresholds.
 	/// </summary>
-	public static FFBTickContext Neutral( float deltaMilliseconds, float torque60Hz, float torque360Hz, float maxForce )
+	public static FFBTickContext FromRecording( Classes.RecordingData recordingData, float maxForce, bool crashProtectionTriggered, bool curbProtectionTriggered )
 	{
 		return new FFBTickContext(
-			deltaMilliseconds: deltaMilliseconds,
-			torque60Hz: torque60Hz,
-			torque360Hz: torque360Hz,
+			deltaMilliseconds: ReplayDeltaMilliseconds,
+			torque60Hz: recordingData.InputTorque60Hz,
+			torque360Hz: recordingData.InputTorque500Hz,
 			maxForce: maxForce,
-			lfeMagnitude: 0f,
-			wheelPosition: 0f,
-			wheelVelocity: 0f,
-			understeerEffect: 0f,
-			oversteerEffect: 0f,
-			seatOfPantsEffect: 0f,
-			skidSlip: 0f,
-			rpm: 0f,
-			shiftRPM: 0f,
-			gear: 0,
-			numForwardGears: 0,
-			absActive: false,
-			isOnTrack: false,
-			usingTorqueData: false,
-			velocityMS: 0f,
-			velocityY: 0f,
-			parkedFactor: 0f,
-			steeringWheelAngle: 0f,
-			steeringWheelAngleMax: 0f,
-			crashProtectionTriggered: false,
-			curbProtectionTriggered: false );
+			lfeMagnitude: recordingData.LFEMagnitude,
+			wheelPosition: recordingData.WheelPosition,
+			wheelVelocity: recordingData.WheelVelocity,
+			understeerEffect: recordingData.UndersteerEffect,
+			oversteerEffect: recordingData.OversteerEffect,
+			seatOfPantsEffect: recordingData.SeatOfPantsEffect,
+			skidSlip: recordingData.SkidSlip,
+			rpm: recordingData.RPM,
+			shiftRPM: recordingData.ShiftRPM,
+			gear: recordingData.Gear,
+			numForwardGears: recordingData.NumForwardGears,
+			absActive: recordingData.ABSActive,
+			isOnTrack: true,
+			usingTorqueData: true,
+			velocityMS: recordingData.VelocityMS,
+			velocityY: recordingData.VelocityY,
+			steeringWheelAngle: recordingData.SteeringWheelAngle,
+			steeringWheelAngleMax: recordingData.SteeringWheelAngleMax,
+			steeringWheelVelocity: recordingData.SteeringWheelVelocity,
+			crashProtectionTriggered: crashProtectionTriggered,
+			curbProtectionTriggered: curbProtectionTriggered,
+			isPreview: true );
 	}
 }

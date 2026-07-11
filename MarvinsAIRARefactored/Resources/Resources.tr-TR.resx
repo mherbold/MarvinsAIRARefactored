@@ -1354,10 +1354,10 @@
     <value>Kuvvet geri bildirimli direksiyon simidini aşağıdaki listeden seçin.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Direksiyonunuzu görmüyor musunuz? Açık ve bağlı olduğundan emin olun, liste otomatik olarak güncellenecektir.</value>
+    <value>Direksiyonunuzu görmüyor musunuz? Açık ve bağlı olduğundan emin olun, liste otomatik olarak güncellenecektir.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec kullanıcıları: Fanatec direksiyonları genellikle listede iki ayrı cihaz olarak görünür. Seçilen çalışmıyorsa diğerini deneyin!</value>
+    <value>Fanatec kullanıcıları: Fanatec direksiyonları genellikle listede iki ayrı cihaz olarak görünür. Seçilen çalışmıyorsa diğerini deneyin!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Maksimum direksiyon kuvveti</value>
@@ -1366,10 +1366,10 @@
     <value>Tabanınızın üretebileceği maksimum kuvveti Newton-metre (Nm) cinsinden girin. MAIRA, tüm kuvvet geri bildirim çıkışını donanımınız için doğru şekilde ölçeklendirmek amacıyla bu değeri kullanır.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Seçilen direksiyona göre en iyi tahminimizi yaptık, ancak gerekirse ayarlamaktan çekinmeyin.</value>
+    <value>Seçilen direksiyona göre en iyi tahminimizi yaptık, ancak gerekirse ayarlamaktan çekinmeyin.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Önemli: üretici yazılımında (ör.: Fanatec Wheel Control Panel, Moza Pit House vb.) direksiyonun maksimum torkunu zaten sınırladıysanız, donanımın fiziksel maksimumu yerine azaltılmış değeri buraya girin. MAIRA'nın direksiyonunuzun teorik kapasitesini değil, gerçekte ne teslim edeceğini bilmesi gerekir.</value>
+    <value>Önemli: üretici yazılımında (ör.: Fanatec Wheel Control Panel, Moza Pit House vb.) direksiyonun maksimum torkunu zaten sınırladıysanız, donanımın fiziksel maksimumu yerine azaltılmış değeri buraya girin. MAIRA'nın direksiyonunuzun teorik kapasitesini değil, gerçekte ne teslim edeceğini bilmesi gerekir.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Kuvvet kontrolleri</value>
@@ -1381,7 +1381,7 @@
     <value>Her birine girdi atamak için aşağıdaki - ve + düğmelerine tıklayın. Bu adım isteğe bağlıdır; atlayabilir ve atamaları daha sonra Direksiyon sayfasından yapılandırabilirsiniz.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Bir girdi atandıktan sonra, düğmenin kenarı onay olarak turuncu renk alacaktır.</value>
+    <value>Bir girdi atandıktan sonra, düğmenin kenarı onay olarak turuncu renk alacaktır.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Kuvvet</value>
@@ -1408,7 +1408,7 @@
     <value>Önce otomatik hedef marjını istediğiniz gibi ayarlayın, ardından Ayarla ve Temizle düğmelerini atayın.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Otomatik hedef, ölçülen tepe değerinin direksiyonun kuvvet aralığında nereye düşmesi gerektiğini belirler. Tepe değerinin üzerinde daha fazla marj bırakmak için hedefi düşürün; direksiyonun daha fazla aralığını kullanmak için artırın.</value>
+    <value>Otomatik hedef, ölçülen tepe değerinin direksiyonun kuvvet aralığında nereye düşmesi gerektiğini belirler. Tepe değerinin üzerinde daha fazla marj bırakmak için hedefi düşürün; direksiyonun daha fazla aralığını kullanmak için artırın.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritma</value>
@@ -1499,9 +1499,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Döngü sonu</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Yorum</value>
@@ -1651,7 +1648,7 @@
     <value>Simülatör başlatılıyor...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Doğrudan giriş başlatılıyor...</value>
+    <value>DirectInput başlatılıyor...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Stream Deck başlatılıyor...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Kumanda profilleri</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Profili yeniden adlandır</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Denetleyici profilini yeniden adlandır</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Çalışan işlemler</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Ada veya yola göre filtrele...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Çalışan uygulamalar aranıyor...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Pencere görünürlüğü</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Pencereyi göster / gizle</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Adım boyutu</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Güncelleme kontrol aralığı</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> sa</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing kapanınca boyamaları sil</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Güncellemeleri aralıkla kontrol et</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Antrenman</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Sıralama</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Yarış</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Durum</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Boşta</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Etkin</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Bastırıldı</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Eski yükleyicileri sil</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Çeşitli</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Belgeler klasörünü aç</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(atanmamış)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Araç başına katman konumu ve ölçeklendirmesini etkinleştir</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz kaynağı</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Yumuşak sınırlayıcı</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Maksimum</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Minimum</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Kaza koruması</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Park halinde kuvvet</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Yumuşak kilitleme</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Yumuşak kilitleme kaynağı</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Sürtünme</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Merkezleme</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Merkezleme kaynağı</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Önden kayma kuvveti</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Çift kutuplu</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Giriş</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Giriş A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Giriş B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Modül ekle</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Boş grafikle başla</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Çıkarma</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Direksiyon hızı kaynağı</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Kaynaklar</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Genel DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mikserler</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Efektler</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Diğer efektler</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

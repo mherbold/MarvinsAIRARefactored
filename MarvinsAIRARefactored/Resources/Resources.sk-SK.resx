@@ -1414,10 +1414,10 @@
     <value>Vyberte si svoj volant so silovou spätnou väzbou zo zoznamu nižšie.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Nevidíte svoj volant? Uistite sa, že je zapnutý a pripojený, potom sa zoznam automaticky obnoví.</value>
+    <value>Nevidíte svoj volant? Uistite sa, že je zapnutý a pripojený, potom sa zoznam automaticky obnoví.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Používatelia Fanatec: Volanty Fanatec sa v zozname zvyčajne zobrazujú ako dve samostatné zariadenia. Ak ten, ktorý ste vybrali, nefunguje, skúste vybrať ten druhý!</value>
+    <value>Používatelia Fanatec: Volanty Fanatec sa v zozname zvyčajne zobrazujú ako dve samostatné zariadenia. Ak ten, ktorý ste vybrali, nefunguje, skúste vybrať ten druhý!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Maximálna sila volantu</value>
@@ -1426,10 +1426,10 @@
     <value>Zadajte maximálnu silu, ktorú je vaša základňa volantu schopná produkovať, v newtonmetroch (Nm). MAIRA túto hodnotu používa na správne škálovanie celého výstupu silovej spätnej väzby pre váš hardvér.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Urobili sme najlepší odhad na základe vášho vybraného volantu – pokojne ho však upravte, ak je to potrebné.</value>
+    <value>Urobili sme najlepší odhad na základe vášho vybraného volantu – pokojne ho však upravte, ak je to potrebné.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Dôležité: Ak ste už obmedzili maximálny krútiaci moment volantu v softvéri výrobcu volantu (napr. Fanatec Wheel Control Panel, Moza Pit House atď.), zadajte tu túto zníženú hodnotu namiesto fyzického maxima hardvéru. MAIRA potrebuje vedieť, čo váš volant skutočne dodá, nie čoho je teoreticky schopný.</value>
+    <value>Dôležité: Ak ste už obmedzili maximálny krútiaci moment volantu v softvéri výrobcu volantu (napr. Fanatec Wheel Control Panel, Moza Pit House atď.), zadajte tu túto zníženú hodnotu namiesto fyzického maxima hardvéru. MAIRA potrebuje vedieť, čo váš volant skutočne dodá, nie čoho je teoreticky schopný.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Ovládanie sily</value>
@@ -1441,7 +1441,7 @@
     <value>Kliknutím na tlačidlá - a + nižšie priraďte vstupy ku každému z nich. Tento krok je voliteľný – môžete ho preskočiť a priradenia nastaviť neskôr na stránke Pretekársky volant.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Po namapovaní vstupu sa orámovanie tlačidla zmení na oranžové, čo to potvrdí.</value>
+    <value>Po namapovaní vstupu sa orámovanie tlačidla zmení na oranžové, čo to potvrdí.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Sila</value>
@@ -1468,7 +1468,7 @@
     <value>Najprv upravte rezervu automatického cieľa podľa svojich predstáv, potom namapujte tlačidlá Nastaviť a Vymazať.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Automatický cieľ určuje, kam v silovom rozsahu vášho volantu má dopadnúť nameraná špička. Znížte cieľ, aby ste nad špičkou ponechali viac rezervy; zvýšte ho, aby ste využili viac rozsahu volantu.</value>
+    <value>Automatický cieľ určuje, kam v silovom rozsahu vášho volantu má dopadnúť nameraná špička. Znížte cieľ, aby ste nad špičkou ponechali viac rezervy; zvýšte ho, aby ste využili viac rozsahu volantu.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritmus</value>
@@ -1559,9 +1559,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Koniec slučky</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Komentár</value>
@@ -1714,7 +1711,7 @@
     <value>Inicializuje sa simulátor...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inicializuje sa direct input...</value>
+    <value>Inicializuje sa DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inicializuje sa Stream Deck...</value>
@@ -1772,45 +1769,65 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Inicializuje sa hlavné okno...</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Spustené procesy</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtrovať podľa názvu alebo cesty...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Vyhľadávajú sa spustené aplikácie...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Viditeľnosť okna</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Zobraziť / skryť okno</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Veľkosť kroku</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Interval kontroly aktualizácií</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Odstrániť maľby pri zatvorení iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Kontrola aktualizácií v intervale</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Tréning</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Kvalifikácia</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Preteky</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Stav</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Nečinný</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Aktívny</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Potlačené</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Odstrániť staré inštalátory</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Rôzne</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Otvoriť priečinok dokumentov</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1818,9 +1835,11 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Vyváženie</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Povoliť pozíciu a mierku prekrytia pre každé auto</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Zdroj 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1871,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Mäkký obmedzovač</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Maximum</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Minimum</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Ochrana pri nehode</value>
   </data>
@@ -1886,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Sila pri zaparkovaní</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Mäkký doraz</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Zdroj mäkkého dorazu</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Trenie</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Centrovanie volantu</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Zdroj centrovania volantu</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Sila nedotáčavosti</value>
@@ -2000,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Dvojpólový</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Vstup</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Vstup A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Vstup B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Pridať modul</value>
   </data>
@@ -2030,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Začať s prázdnym grafom</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Rozdiel</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Zdroj rýchlosti volantu</value>
+  </data>
 
 
 
@@ -2052,4 +2062,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Zdroje</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Všeobecné DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Zmiešavače</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Efekty</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Ostatné efekty</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

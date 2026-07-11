@@ -121,7 +121,7 @@
     <value>Algoritme</value>
   </data>
   <data name="AppSettings" xml:space="preserve">
-    <value>Program indstillinger </value>
+    <value>Program indstillinger</value>
   </data>
   <data name="AppTitle" xml:space="preserve">
     <value>Marvin's Awesome iRacing App - Dansk By DKBjorn</value>
@@ -208,7 +208,7 @@
     <value>Behold vindue øverst</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>Nm</value>
+    <value> Nm</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
     <value>Detalje forstærker på 60 Hz</value>
@@ -244,7 +244,7 @@
     <value>Delta grænse</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value>Nm/s</value>
+    <value> Nm/s</value>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
     <value>Delta begrænser tændt 60 Hz</value>
@@ -280,7 +280,7 @@
     <value>Crash beskyttelse</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value>Gforce</value>
+    <value> Gforce</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
     <value>G-kraft</value>
@@ -292,10 +292,10 @@
     <value>Kraft reduktion</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>sek</value>
+    <value> sek</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value>m/s</value>
+    <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
     <value>Curb beskyttelse</value>
@@ -328,7 +328,7 @@
     <value>Styrke</value>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>Hz</value>
+    <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
     <value>Global frekvens</value>
@@ -571,7 +571,7 @@
     <value>Total: kompressionstærskel</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>Nm/ms</value>
+    <value> Nm/ms</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
     <value>Base styrke</value>
@@ -646,7 +646,7 @@
     <value>Aktivér opdaterings meddelelser for input tilknyttede indstillinger</value>
   </data>
   <data name="NotOnCentripetalCircuitTrack" xml:space="preserve">
-    <value>Du er ikke på banen "Centripetal Circuit" </value>
+    <value>Du er ikke på banen "Centripetal Circuit"</value>
   </data>
   <data name="RunCalibration" xml:space="preserve">
     <value>Start kalibrering</value>
@@ -730,7 +730,7 @@
     <value>Der er blevet udløst en undtagelse - der er sket en fejl i programmet</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>Km/t</value>
+    <value> Km/t</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Det er de folk, der generøst har bidraget med noget af deres fritid til at lave kalibreringer filer på nogle af deres yndlingsbiler og derefter uploader dem...</value>
@@ -889,7 +889,7 @@
     <value>Grip-O-Meter</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>MPH</value>
+    <value> MPH</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon vind</value>
@@ -1354,10 +1354,10 @@
     <value>Vælg dit force feedback-rat fra listen nedenfor.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Kan du ikke se dit rat? Sørg for at det er tændt og tilsluttet, og listen opdateres automatisk.</value>
+    <value>Kan du ikke se dit rat? Sørg for at det er tændt og tilsluttet, og listen opdateres automatisk.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec-brugere: Fanatec-rat vises normalt som to separate enheder på listen. Hvis det valgte ikke virker, prøv det andet!</value>
+    <value>Fanatec-brugere: Fanatec-rat vises normalt som to separate enheder på listen. Hvis det valgte ikke virker, prøv det andet!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Maksimal ratkraft</value>
@@ -1366,10 +1366,10 @@
     <value>Angiv den maksimale kraft din base kan producere, i Newton-meter (Nm). MAIRA bruger denne værdi til korrekt at skalere al force feedback-output til din hardware.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Vi har lavet vores bedste estimat baseret på dit valgte rat, men juster det gerne hvis det er nødvendigt.</value>
+    <value>Vi har lavet vores bedste estimat baseret på dit valgte rat, men juster det gerne hvis det er nødvendigt.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Vigtigt: hvis du allerede har begrænset det maksimale drejningsmoment for dit rat i producentens software (f.eks. Fanatec Wheel Control Panel, Moza Pit House osv.), skal du indtaste den reducerede værdi her i stedet for hardwarens fysiske maksimum. MAIRA skal vide hvad dit rat faktisk leverer, ikke hvad det teoretisk er i stand til.</value>
+    <value>Vigtigt: hvis du allerede har begrænset det maksimale drejningsmoment for dit rat i producentens software (f.eks. Fanatec Wheel Control Panel, Moza Pit House osv.), skal du indtaste den reducerede værdi her i stedet for hardwarens fysiske maksimum. MAIRA skal vide hvad dit rat faktisk leverer, ikke hvad det teoretisk er i stand til.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Kraftstyring</value>
@@ -1381,7 +1381,7 @@
     <value>Klik på knapperne - og + nedenfor for at tildele input til hver. Dette trin er valgfrit; du kan springe det over og konfigurere tilknytningerne senere fra Rat-siden.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Når et input er tildelt, bliver kanten af knappen orange som bekræftelse.</value>
+    <value>Når et input er tildelt, bliver kanten af knappen orange som bekræftelse.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Styrke</value>
@@ -1408,7 +1408,7 @@
     <value>Juster først den automatiske målmargin efter ønske, og tildel derefter knapperne Indstil og Ryd.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Det automatiske mål indstiller, hvor i ratets kraftrækkevidde det målte toppunkt skal falde. Sænk målet for at beholde mere margin over toppunktet; hæv det for at bruge mere af ratets rækkevidde.</value>
+    <value>Det automatiske mål indstiller, hvor i ratets kraftrækkevidde det målte toppunkt skal falde. Sænk målet for at beholde mere margin over toppunktet; hæv det for at bruge mere af ratets rækkevidde.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritme</value>
@@ -1499,9 +1499,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Loop-slut</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Kommentar</value>
@@ -1651,7 +1648,7 @@
     <value>Initialiserer simulator...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Initialiserer direkte input...</value>
+    <value>Initialiserer DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Initialiserer Stream Deck...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Controllerprofiler</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Omdøb profil</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Omdøb controllerprofil</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Kørende processer</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtrér efter navn eller sti...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Søger efter kørende apps...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Vinduessynlighed</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Vis / skjul vindue</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Trinstørrelse</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Interval for opdateringstjek</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> t</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Slet malinger når iRacing lukker</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Søg efter opdateringer med interval</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Træning</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Kvalifikation</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Løb</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Status</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inaktiv</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Aktiv</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Undertrykt</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Slet gamle installationsprogrammer</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Diverse</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Åbn dokumentmappe</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(ikke tildelt)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Aktivér overlay-position og -skalering pr. bil</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz kilde</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Blød begrænser</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Maksimum</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Minimum</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Crash beskyttelse</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Parkerings styrke</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Blød lås</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Blød lås kilde</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Friktion</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Base centrering</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Base centrering kilde</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Understyrings kraft</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Topolet</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Indgang</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Indgang A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Indgang B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Tilføj modul</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Start tom graf</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Subtrahér</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Rathastighed kilde</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Kilder</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Generisk DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mixere</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Effekter</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Andre effekter</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

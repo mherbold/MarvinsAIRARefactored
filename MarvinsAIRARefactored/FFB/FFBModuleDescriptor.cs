@@ -29,12 +29,30 @@ public sealed class FFBSettingDescriptor
 	public string[]? ChoiceLocalizationKeys;    // Choice type: stored value = index into this array
 	public Func<FFBFormatContext, string>? FormatValue;   // builds the ValueString (unit/percent); null => plain number
 	public bool ShowCurve;                      // MairaKnob curve visualization
+	public bool BreakRow;                       // presentation only: start a new settings-panel row before this setting
 
 	/// <summary>Clamp a raw value to this setting's range (choices/switches clamp to their discrete span).</summary>
 	public float Clamp( float value )
 	{
 		return Math.Clamp( value, Min, Max );
 	}
+}
+
+/// <summary>
+/// The organizational family a module belongs to — drives the grouping of the editor's add-module picker
+/// (and the registry/file layout). Sources and Output derive their category from their flags; the main-chain
+/// modules split into generic DSP, mixers, and effects, and the generators (the vibration section) split into
+/// steering-effect vibrations and other vibrations.
+/// </summary>
+public enum FFBModuleCategory
+{
+	Source,
+	GenericDSP,
+	Mixer,
+	Effect,
+	SteeringVibration,
+	OtherVibration,
+	Output
 }
 
 /// <summary>
@@ -50,9 +68,11 @@ public sealed class FFBModuleDescriptor
 	public int SignalInputCount;                // 0 (generator/source), 1, or 2
 	public string? InputALocalizationKey;
 	public string? InputBLocalizationKey;
+	public FFBModuleCategory Category;          // organizational family (add-dropdown grouping)
 	public bool IsGenerator;                    // contributes to the normalized vibration bus, not the main chain
 	public bool IsSource;                       // fixed source module (emits a ctx torque sample)
 	public bool IsOutput;                       // fixed final module (normalizes + curve/limiter/clamp)
+	public bool CanTest;                        // event-driven effect: editor shows a session-only test toggle that forces the trigger active
 	public required FFBSettingDescriptor[] Settings;   // declared settings (WITHOUT the reserved Enabled)
 	public required Func<FFBModule> CreateRuntime;
 

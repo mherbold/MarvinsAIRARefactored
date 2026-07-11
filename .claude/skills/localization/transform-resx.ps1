@@ -169,7 +169,9 @@ function Add-ResxKey([string] $text, [string] $key, [string] $newVal, [string] $
     $k = [regex]::Escape($key)
     if ([regex]::IsMatch($text, "<data\s+name=""$k""")) { return $text }   # idempotent: already present
     $block = "  <data name=""$key"" xml:space=""preserve"">$nl    <value>$newVal</value>$nl  </data>$nl"
-    return [regex]::Replace($text, "(\s*</root>)", { param($m) $block + $m.Groups[1].Value }, 1)
+    # insert before </root> WITHOUT consuming the preceding newline -- a \s* here swallows it and merges the
+    # last </data> line with the inserted block (this bug shipped some merged lines in older passes)
+    return [regex]::Replace($text, "([ \t]*</root>)", { param($m) $block + $m.Groups[1].Value }, 1)
 }
 
 # ---------------------------------------------------------------------------

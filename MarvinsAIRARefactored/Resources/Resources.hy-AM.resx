@@ -244,7 +244,7 @@
     <value>Դելտայի սահման</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value>Ն·մ/վ</value>
+    <value> Ն·մ/վ</value>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
     <value>Դելտայի սահմանափակիչ (60 հց)</value>
@@ -292,10 +292,10 @@
     <value>Ուժի քչացում</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>վ</value>
+    <value> վ</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value>մ/վ</value>
+    <value> մ/վ</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
     <value>Բորդյուրի պաշտպանություն</value>
@@ -571,7 +571,7 @@
     <value>Ընդամենը․ սեղմման շեմ</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>Ն·մ/մվ</value>
+    <value> Ն·մ/մվ</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
     <value>Ղեկի ուժ</value>
@@ -730,7 +730,7 @@
     <value>Բացառություն է նետվել</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>կմ/ժ</value>
+    <value> կմ/ժ</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Սրանք մարդիկ են, ովքեր մեծահոգաբար տրամադրել են իրենց սիրելի մեքենաների կալիբրացիոն ֆայլերը… Խնդրում ենք նաև կիսվել ձեր սիրելի մեքենաների կալիբրացիաներով և վերբեռնել այդ ֆայլերը։</value>
@@ -1354,10 +1354,10 @@
     <value>Ընտրեք ձեր ուժային հետադարձ կապի ղեկը ստորև բերված ցանկից:</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Չե՞ք տեսնում ձեր ղեկը: Համոզվեք, որ այն միացված և կցված է, ցանկն ավտոմատ կերպով կթարմացվի:</value>
+    <value>Չե՞ք տեսնում ձեր ղեկը: Համոզվեք, որ այն միացված և կցված է, ցանկն ավտոմատ կերպով կթարմացվի:</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec-ի օգտատերեր. Fanatec ղեկները սովորաբար ցանկում երևում են երկու առանձին սարքի տեսքով: Եթե ընտրվածը չի աշխատում, փորձեք մյուսը!</value>
+    <value>Fanatec-ի օգտատերեր. Fanatec ղեկները սովորաբար ցանկում երևում են երկու առանձին սարքի տեսքով: Եթե ընտրվածը չի աշխատում, փորձեք մյուսը!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Ղեկի առավելագույն ուժ</value>
@@ -1366,10 +1366,10 @@
     <value>Մուտքագրեք ձեր հիմքի կողմից կարողանալ արտադրվող առավելագույն ուժը Նյուտոն-մետրով (Նm): MAIRA-ն այս արժեքն օգտագործում է ապարատային սարքի ուժային հետադարձ կապի բոլոր ելքերի ճիշտ մեծացման համար:</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Ընտրված ղեկի հիման վրա ամենալավ կանխատեսումն արել ենք, բայց ազատ եք կարգավորել, եթե անհրաժեշտ է:</value>
+    <value>Ընտրված ղեկի հիման վրա ամենալավ կանխատեսումն արել ենք, բայց ազատ եք կարգավորել, եթե անհրաժեշտ է:</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Կարևոր. Եթե արտադրողի ծրագրաշարում (օր.՝ Fanatec Wheel Control Panel, Moza Pit House) արդեն սահմանափակել եք ղեկի առավելագույն ոլորող ուժը, մուտքագրեք այդ նվազեցված արժեքը, ոչ թե ապարատի ֆիզիկական առավելագույնը: MAIRA-ն պետք է իմանա, թե ձեր ղեկն իրականում ինչ կտա, ոչ թե ինչի ընդունակ է տեսականորեն:</value>
+    <value>Կարևոր. Եթե արտադրողի ծրագրաշարում (օր.՝ Fanatec Wheel Control Panel, Moza Pit House) արդեն սահմանափակել եք ղեկի առավելագույն ոլորող ուժը, մուտքագրեք այդ նվազեցված արժեքը, ոչ թե ապարատի ֆիզիկական առավելագույնը: MAIRA-ն պետք է իմանա, թե ձեր ղեկն իրականում ինչ կտա, ոչ թե ինչի ընդունակ է տեսականորեն:</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Ուժի կառավարում</value>
@@ -1381,7 +1381,7 @@
     <value>Ստորև բերված - և + կոճակներին սեղմեք՝ մուտք հատկացնելու համար: Այս քայլն ըստ ցանկության է. կարող եք բաց թողնել և կարգավորել կախումները ավելի ուշ Ղեկ էջից:</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Հենց մուտք հատկացվի, կոճակի եզրը կդառնա նարնջագույն՝ հաստատելու համար:</value>
+    <value>Հենց մուտք հատկացվի, կոճակի եզրը կդառնա նարնջագույն՝ հաստատելու համար:</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Ուժ</value>
@@ -1408,7 +1408,7 @@
     <value>Նախ կարգավորեք ավտոմատ թիրախ-մարժինը ըստ նախընտրության, ապա հատկացրեք «Սահմանել» և «Մաքրել» կոճակները:</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Ավտոմատ թիրախը սահմանում է, թե ղեկի ուժի շրջանակի որ կետում պետք է ընկնի չափված գագաթը: Թիրախն իջեցրեք՝ գագաթից վերև ավելի շատ մարժին պահելու համար. բարձրացրեք՝ ղեկի ուժի ավելի մեծ մասն օգտագործելու համար:</value>
+    <value>Ավտոմատ թիրախը սահմանում է, թե ղեկի ուժի շրջանակի որ կետում պետք է ընկնի չափված գագաթը: Թիրախն իջեցրեք՝ գագաթից վերև ավելի շատ մարժին պահելու համար. բարձրացրեք՝ ղեկի ուժի ավելի մեծ մասն օգտագործելու համար:</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Ալգորիթմ</value>
@@ -1499,9 +1499,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Հանգույցի վերջ</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Մեկնաբանություն</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Կարգավորիչի պրոֆիլներ</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Վերանվանել պրոֆիլը</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Վերանվանել կարգավորիչի պրոֆիլը</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Աշխատող գործընթացներ</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Զտել ըստ անվան կամ ուղու...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Աշխատող ծրագրերի որոնում...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Պատուհանի տեսանելիություն</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Ցույց տալ / թաքցնել պատուհանը</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Քայլի չափ</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Թարմացումների ստուգման ընդմիջում</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> ժ</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Ջնջել ներկերը iRacing-ը փակվելիս</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Թարմացումների ստուգում ընդմիջումով</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Մարզում</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Որակավորում</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Մրցավազք</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Կարգավիճակ</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Պարապ</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Ակտիվ</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Ճնշված</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Ջնջել հին տեղադրիչները</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Տարբեր</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Բացել փաստաթղթերի թղթապանակը</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(չնշանակված)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Միացնել վրադրման դիրքն ու չափը յուրաքանչյուր մեքենայի համար</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz աղբյուր</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Փափուկ սահմանափակիչ</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Առավելագույն</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Նվազագույն</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Վթարի պաշտպանություն</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Կայանած վիճակում ուժ</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Փափուկ սահմանափակում</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Փափուկ սահմանափակման աղբյուր</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Շփում</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Ղեկի կենտրոնացում</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Ղեկի կենտրոնացման աղբյուր</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Անդերստիրի ուժ</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Երկու բևեռ</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Մուտք</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Մուտք A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Մուտք B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Ավելացնել մոդուլ</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Սկսել դատարկ գրաֆ</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Հանում</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Ղեկի արագության աղբյուր</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Աղբյուրներ</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Ընդհանուր DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Խառնիչներ</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Էֆեկտներ</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Այլ էֆեկտներ</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

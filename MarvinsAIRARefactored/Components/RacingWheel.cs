@@ -199,10 +199,10 @@ public class RacingWheel
 	}
 
 	/// <summary>
-	/// Rebuild the live FFB graph engine from the currently selected graph and swap the volatile reference.
-	/// UI thread only (structure edits / graph selection / per-context reload). Tolerant of a missing selection
-	/// or empty graph dictionary (e.g. during settings load before the built-ins are ensured) — leaves the
-	/// current engine in place. Milestone 2: the engine is kept valid but does not yet drive FFB output.
+	/// Rebuild the live FFB graph engine from the currently selected FFB graph plus the currently selected
+	/// vibration graph (the engine merges both) and swap the volatile reference. UI thread only (structure
+	/// edits / graph selection / per-context reload). Tolerant of a missing selection or empty graph dictionary
+	/// (e.g. during settings load before the built-ins are ensured) — leaves the current engine in place.
 	/// </summary>
 	public void RebuildLiveEngine()
 	{
@@ -210,9 +210,11 @@ public class RacingWheel
 
 		if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) )
 		{
+			settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var vibrationGraph );
+
 			var engine = new FFBGraphEngine();
 
-			engine.Rebuild( graph );
+			engine.Rebuild( graph, vibrationGraph );
 
 			_liveEngine = engine;
 		}
@@ -232,6 +234,12 @@ public class RacingWheel
 	{
 		_liveEngine.SetValue( moduleId, key, value );
 		_previewEngine.SetValue( moduleId, key, value );
+	}
+
+	public void SetEngineTestActive( string moduleId, bool active )
+	{
+		_liveEngine.SetTestActive( moduleId, active );
+		_previewEngine.SetTestActive( moduleId, active );
 	}
 
 	public static void SendChatMessage( string? groupKey, string labelKey, string? value = null )
@@ -581,15 +589,13 @@ public class RacingWheel
 			var curbProtectionTriggered = ActivateCurbProtection;
 			ActivateCurbProtection = false;
 
-			// grab the next LFE magnitude and the parked factor (0-5 MPH), both fed into the tick context
+			// grab the next LFE magnitude, fed into the tick context
 
 			var inputLFEMagnitude = app.LFE.CurrentMagnitude;
 
-			var parkedFactor = MathZ.Saturate( 1f - ( app.Simulator.Velocity / 2.2352f ) );
-
 			// build the per-tick context and evaluate the whole FFB graph (algorithm + effects + vibration generators)
 
-			var tickContext = BuildTickContext( app, deltaMilliseconds, _predictedSteeringWheelTorque60Hz, steeringWheelTorque500Hz, settings.RacingWheelMaxForce, inputLFEMagnitude, parkedFactor, crashProtectionTriggered, curbProtectionTriggered );
+			var tickContext = BuildTickContext( app, deltaMilliseconds, _predictedSteeringWheelTorque60Hz, steeringWheelTorque500Hz, settings.RacingWheelMaxForce, inputLFEMagnitude, crashProtectionTriggered, curbProtectionTriggered );
 
 			engine.Process( in tickContext );
 
@@ -666,36 +672,29 @@ public class RacingWheel
 			app.Graph.UpdateLayer( Graph.LayerIndex.InputLFE, inputLFEMagnitude );
 			app.Graph.UpdateLayer( Graph.LayerIndex.OutputTorque, outputTorque );
 
-			var protectionForegroundColor = 0u;
-			var protectionBackgroundColor = 0u;
+			// background flash color — clipping (red) trumps crash protection (orange) trumps curb protection (yellow)
+			var clearColor = 0u;
+
+			if ( CurbProtectionIsActive )
+			{
+				clearColor = 0xFFFFFF00;
+			}
 
 			if ( CrashProtectionIsActive )
 			{
-				protectionForegroundColor = 0xFFFF5B2E;
-				protectionBackgroundColor = 0xFF000000;
-			}
-			else if ( CurbProtectionIsActive )
-			{
-				protectionForegroundColor = 0xFFFFFF00;
-				protectionBackgroundColor = 0xFF000000;
+				clearColor = 0xFFFF5B2E;
 			}
 
-			if ( outputTorque <= -0.99f )
+			if ( MathF.Abs( outputTorque ) >= 0.99f )
 			{
-				app.Graph.SetGutterColors( protectionForegroundColor, protectionBackgroundColor, 0xFFFF0000, 0xFFFF0000 );
-			}
-			else if ( outputTorque >= 0.99f )
-			{
-				app.Graph.SetGutterColors( 0xFFFF0000, 0xFFFF0000, protectionForegroundColor, protectionBackgroundColor );
-			}
-			else
-			{
-				app.Graph.SetGutterColors( protectionForegroundColor, protectionBackgroundColor, protectionForegroundColor, protectionBackgroundColor );
+				clearColor = 0xFFFF0000;
 			}
 
-			// update recording data
+			app.Graph.SetClearColor( clearColor );
 
-			app.RecordingManager.AddRecordingData( steeringWheelTorque60Hz, steeringWheelTorque500Hz );
+			// update recording data (the raw 60 Hz torque is passed separately — the context carries the predicted sample)
+
+			app.RecordingManager.AddRecordingData( in tickContext, steeringWheelTorque60Hz );
 		}
 		catch ( Exception exception )
 		{
@@ -710,7 +709,7 @@ public class RacingWheel
 	/// telemetry, wheel hardware state, and the one-shot protection pulses. Built once per 360 Hz tick with no
 	/// allocation (the struct is passed by readonly reference into every module).
 	/// </summary>
-	private FFBTickContext BuildTickContext( App app, float deltaMilliseconds, float torque60Hz, float torque360Hz, float maxForce, float lfeMagnitude, float parkedFactor, bool crashProtectionTriggered, bool curbProtectionTriggered )
+	private FFBTickContext BuildTickContext( App app, float deltaMilliseconds, float torque60Hz, float torque360Hz, float maxForce, float lfeMagnitude, bool crashProtectionTriggered, bool curbProtectionTriggered )
 	{
 		var simulator = app.Simulator;
 		var steeringEffects = app.SteeringEffects;
@@ -737,9 +736,9 @@ public class RacingWheel
 			usingTorqueData: _usingSteeringWheelTorqueData,
 			velocityMS: simulator.Velocity,
 			velocityY: simulator.VelocityY,
-			parkedFactor: parkedFactor,
 			steeringWheelAngle: simulator.SteeringWheelAngle,
 			steeringWheelAngleMax: simulator.SteeringWheelAngleMax,
+			steeringWheelVelocity: simulator.SteeringWheelVelocity,
 			crashProtectionTriggered: crashProtectionTriggered,
 			curbProtectionTriggered: curbProtectionTriggered );
 	}
@@ -758,13 +757,16 @@ public class RacingWheel
 
 			// update auto force label
 
-			_racingWheelPage.AutoForce_TextBlock.Text = $"{_autoTorque:F1} {DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
+			_racingWheelPage.AutoForce_TextBlock.Text = $"{_autoTorque:F1}{DataContext.DataContext.Instance.Localization[ "TorqueUnits" ]}";
 
 			// update the FFB graph preview: replay the loaded recording through the preview engine (rebuilt from the
-			// currently selected graph) with a neutral context, so only the algorithm chain contributes. The traces
-			// tap the module selected in the node editor — red = its input A, green = its input B (dual-input
-			// modules only), blue = its output. For the Output module (the default selection) red/green show the
-			// two sources and blue shows the final normalized output, like the old whole-graph preview.
+			// currently selected graph). Each recorded sample is expanded back into a full tick context, so effects
+			// and generators that depend on telemetry (LFE, wheel velocity, steering effects, RPM, ...) work in the
+			// preview, and the crash/curb protection pulses are re-derived from the recorded raw telemetry against
+			// the protection modules' CURRENT thresholds. The traces tap the module selected in the node editor —
+			// red = its input A, green = its input B (dual-input modules only), blue = its output. For the Output
+			// module (the default selection) red/green show the two sources and blue shows the final normalized
+			// output, like the old whole-graph preview.
 
 			if ( UpdateAlgorithmPreview )
 			{
@@ -776,50 +778,66 @@ public class RacingWheel
 
 				if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var previewGraph ) )
 				{
-					_previewEngine.Rebuild( previewGraph );
+					settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var previewVibrationGraph );
+
+					_previewEngine.Rebuild( previewGraph, previewVibrationGraph );
+				}
+
+				// Rebuild recreated the module instances, so re-apply the session-only test toggles from the
+				// editor — a module under test shows its effect in the preview trace too
+				foreach ( var moduleViewModel in DataContext.DataContext.Instance.RacingWheelGraphViewModel.Modules )
+				{
+					if ( moduleViewModel.IsTestActive )
+					{
+						_previewEngine.SetTestActive( moduleViewModel.ModuleId, true );
+					}
 				}
 
 				_previewEngine.ResetState();
 
 				var maxForce = settings.RacingWheelMaxForce;
 
-				// resolve the selected module's taps once, before the replay loop
+				// resolve the previewed module's taps once, before the replay loop — the preview module normally
+				// follows the selection, but a right-click can lock it to a different node
 
-				var selectedModule = DataContext.DataContext.Instance.RacingWheelGraphViewModel.SelectedModule;
+				var previewModule = DataContext.DataContext.Instance.RacingWheelGraphViewModel.PreviewModule;
 
-				var selectedIndex = selectedModule != null ? _previewEngine.IndexOf( selectedModule.ModuleId ) : -1;
-				var selectedIsOutput = ( selectedModule == null ) || selectedModule.IsOutput || ( selectedIndex < 0 );
-
-				// the ±100% clipping lines only mean something on the normalized final output
-				_algorithmPreviewGraphBase.DrawClippingLines = selectedIsOutput;
+				var previewIndex = previewModule != null ? _previewEngine.IndexOf( previewModule.ModuleId ) : -1;
+				var previewIsOutput = ( previewModule == null ) || previewModule.IsOutput || ( previewIndex < 0 );
 
 				int input1Index = -1;
 				int input2Index = -1;
 				int outputIndex;
 
-				if ( selectedIsOutput )
+				if ( previewIsOutput )
 				{
 					input1Index = _previewEngine.IndexOf( FFBGraph.Source360ModuleId );
 					input2Index = -1;
 					outputIndex = -1; // final output is already normalized — read MainOutput directly
 				}
-				else if ( selectedModule!.SignalInputCount == 0 )
+				else if ( previewModule!.SignalInputCount == 0 )
 				{
 					// a source module has no inputs — show just its own waveform
-					outputIndex = selectedIndex;
+					outputIndex = previewIndex;
 				}
 				else
 				{
-					(input1Index, input2Index) = _previewEngine.GetResolvedInputs( selectedIndex );
+					(input1Index, input2Index) = _previewEngine.GetResolvedInputs( previewIndex );
 
-					if ( selectedModule.SignalInputCount < 2 )
+					if ( previewModule.SignalInputCount < 2 )
 					{
 						// single-input module — no second input trace
 						input2Index = -1;
 					}
 
-					outputIndex = selectedIndex;
+					outputIndex = previewIndex;
 				}
+
+				// protection trigger thresholds as published by the preview graph's protection modules on Rebuild —
+				// the replay applies them to the recorded raw telemetry the same way Simulator does live
+				var crashLongGForceThreshold = _previewEngine.CrashLongGForceThreshold;
+				var crashLatGForceThreshold = _previewEngine.CrashLatGForceThreshold;
+				var curbShockVelocityThreshold = _previewEngine.CurbShockVelocityThreshold;
 
 				var previousOutputValue = 0f;
 				var isFirstSample = true;
@@ -828,10 +846,14 @@ public class RacingWheel
 				{
 					if ( ( recording?.Data != null ) && ( x < recording.Data.Count ) )
 					{
-						var inputTorque60Hz = recording.Data[ x ].InputTorque60Hz;
-						var inputTorque500Hz = recording.Data[ x ].InputTorque500Hz;
+						var recordingData = recording.Data[ x ];
 
-						var previewContext = FFBTickContext.Neutral( 0f, inputTorque60Hz, inputTorque500Hz, maxForce );
+						var crashProtectionTriggered = ( ( crashLongGForceThreshold < 20f ) && ( recordingData.LongitudinalGForce >= crashLongGForceThreshold ) )
+							|| ( ( crashLatGForceThreshold < 20f ) && ( recordingData.LateralGForce >= crashLatGForceThreshold ) );
+
+						var curbProtectionTriggered = ( curbShockVelocityThreshold > 0f ) && ( recordingData.MaxShockVelocity >= curbShockVelocityThreshold );
+
+						var previewContext = FFBTickContext.FromRecording( recordingData, maxForce, crashProtectionTriggered, curbProtectionTriggered );
 
 						_previewEngine.Process( in previewContext );
 
@@ -865,26 +887,28 @@ public class RacingWheel
 							_algorithmPreviewGraphBase.UpdateSolidFill( inputValue, 0f, 0.5f, 0f );
 						}
 
-						// show clipping only if the output module is selected
-						if ( selectedIsOutput )
+						// background flash color, mirroring the live graph — clipping (red, only meaningful when
+						// the Output module is previewed) trumps crash protection (orange) trumps curb protection
+						// (yellow); the protection flags come from the preview engine, so they honor the current
+						// module thresholds and durations over the recorded telemetry
+						var clearColor = 0u;
+
+						if ( _previewEngine.CurbProtectionActive )
 						{
-							if ( outputValue <= -0.99f )
-							{
-								_algorithmPreviewGraphBase.SetGutterColors( 0, 0, 0xFFFF0000, 0xFFFF0000 );
-							}
-							else if ( outputValue >= 0.99f )
-							{
-								_algorithmPreviewGraphBase.SetGutterColors( 0xFFFF0000, 0xFFFF0000, 0, 0 );
-							}
-							else
-							{
-								_algorithmPreviewGraphBase.SetGutterColors( 0, 0, 0, 0 );
-							}
+							clearColor = 0xFFFFFF00;
 						}
-						else
+
+						if ( _previewEngine.CrashProtectionActive )
 						{
-							_algorithmPreviewGraphBase.SetGutterColors( 0, 0, 0, 0 );
+							clearColor = 0xFFFF5B2E;
 						}
+
+						if ( previewIsOutput && ( MathF.Abs( outputValue ) >= 0.99f ) )
+						{
+							clearColor = 0xFFFF0000;
+						}
+
+						_algorithmPreviewGraphBase.SetClearColor( clearColor );
 					}
 
 					_algorithmPreviewGraphBase.FinishUpdates();

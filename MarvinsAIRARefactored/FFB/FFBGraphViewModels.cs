@@ -23,11 +23,15 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.Source60HzType ] = "60 Hz source",
 		[ FFBModuleRegistry.Source360HzType ] = "360 Hz source",
 		[ FFBModuleRegistry.SourceLFEType ] = "LFE source",
+		[ FFBModuleRegistry.SourceWheelVelocityType ] = "Wheel velocity source",
+		[ FFBModuleRegistry.SourceSoftLockType ] = "Soft lock source",
+		[ FFBModuleRegistry.SourceWheelCenteringType ] = "Wheel centering source",
 		[ FFBModuleRegistry.OutputType ] = "Output",
 		[ FFBModuleRegistry.LowPassFilterType ] = "Low-pass filter",
 		[ FFBModuleRegistry.HighPassFilterType ] = "High-pass filter",
 		[ FFBModuleRegistry.GainType ] = "Gain",
 		[ FFBModuleRegistry.AddType ] = "Add",
+		[ FFBModuleRegistry.SubtractType ] = "Subtract",
 		[ FFBModuleRegistry.BlendType ] = "Blend",
 		[ FFBModuleRegistry.SlewLimiterType ] = "Slew limiter",
 		[ FFBModuleRegistry.SlewCompressorType ] = "Slew compressor",
@@ -35,16 +39,8 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.TransientEnhancerType ] = "Transient enhancer",
 		[ FFBModuleRegistry.AdaptiveSmootherType ] = "Adaptive smoother",
 		[ FFBModuleRegistry.AdaptiveBlendType ] = "Adaptive blend",
-		[ FFBModuleRegistry.CurveType ] = "Curve",
-		[ FFBModuleRegistry.SoftLimiterType ] = "Soft limiter",
-		[ FFBModuleRegistry.MaximumType ] = "Maximum",
-		[ FFBModuleRegistry.MinimumType ] = "Minimum",
 		[ FFBModuleRegistry.CrashProtectionType ] = "Crash protection",
 		[ FFBModuleRegistry.CurbProtectionType ] = "Curb protection",
-		[ FFBModuleRegistry.ParkedStrengthType ] = "Parked strength",
-		[ FFBModuleRegistry.SoftLockType ] = "Soft lock",
-		[ FFBModuleRegistry.FrictionType ] = "Friction",
-		[ FFBModuleRegistry.WheelCenteringType ] = "Wheel centering",
 		[ FFBModuleRegistry.UndersteerForceType ] = "Understeer force",
 		[ FFBModuleRegistry.OversteerForceType ] = "Oversteer force",
 		[ FFBModuleRegistry.SeatOfPantsForceType ] = "Seat-of-pants force",
@@ -140,9 +136,18 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
+	/// <summary>Raised after a new value has been committed through the <see cref="Value"/> write path, with
+	/// (oldValue, newValue). Lets the owning module VM react to one setting to retune another (e.g. the filter
+	/// slope switch rescaling the cutoff). Not raised by <see cref="Reload"/> — reloads restore stored state.</summary>
+	public event Action<float, float>? ValueCommitted;
+
 	private void OnPropertyChanged( [CallerMemberName] string? propertyName = null ) => PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
 
 	public FFBSettingType SettingType => _descriptor.Type;
+
+	public string Key => _descriptor.Key;
+
+	public bool BreakRow => _descriptor.BreakRow;
 
 	// FFBSetting{Key} (new, precise) -> {Key} (reuse an existing translated key like Strength/Curve/Duration) -> humanized.
 	public string Label => FFBDisplayNames.Localize( _descriptor.LocalizationKey, FFBDisplayNames.Localize( _descriptor.Key, FFBDisplayNames.Humanize( _descriptor.Key ) ) );
@@ -168,6 +173,8 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 				return;
 			}
 
+			var previousValue = _value;
+
 			_value = clamped;
 			_model.SettingValues[ _descriptor.Key ] = clamped;
 
@@ -187,6 +194,8 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 			OnPropertyChanged();
 			OnPropertyChanged( nameof( IsOn ) );
 			OnPropertyChanged( nameof( ChoiceIndex ) );
+
+			ValueCommitted?.Invoke( previousValue, clamped );
 		}
 	}
 
@@ -265,6 +274,49 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 		{
 			Settings.Add( new FFBModuleSettingViewModel( model.ModuleId, model, settingDescriptor ) );
 		}
+
+		// presentation copy of the settings for the card's fixed-column grid: a BreakRow setting is pushed to
+		// the start of the next row by padding the current row with invisible spacers
+		foreach ( var setting in Settings )
+		{
+			if ( setting.BreakRow )
+			{
+				while ( SettingsPresentation.Count % SettingsPanelColumns != 0 )
+				{
+					SettingsPresentation.Add( FFBSettingSpacer.Instance );
+				}
+			}
+
+			SettingsPresentation.Add( setting );
+		}
+
+		if ( ( model.ModuleType == FFBModuleRegistry.LowPassFilterType ) || ( model.ModuleType == FFBModuleRegistry.HighPassFilterType ) )
+		{
+			var slopeSetting = Settings.FirstOrDefault( setting => setting.Key == "Slope" );
+			var cutoffSetting = Settings.FirstOrDefault( setting => setting.Key == "Cutoff" );
+
+			if ( ( slopeSetting != null ) && ( cutoffSetting != null ) )
+			{
+				// Retune the cutoff when the slope changes so the filter keeps doing the same job. A two-pole
+				// Butterworth needs its cutoff √2 higher than a one-pole to match it — that factor equalizes
+				// both the noise bandwidth (π/2·f vs π/(2√2)·f, i.e. the same total smoothing) and the
+				// low-frequency group delay (1/(2πf) vs √2/(2πf), i.e. the same felt lag) — the two-pole then
+				// wins on steeper rolloff above the cutoff. The same factor applies to the high-pass, since it
+				// is the exact complement of the same low-pass core.
+				slopeSetting.ValueCommitted += ( oldValue, newValue ) =>
+				{
+					var wasTwoPole = (int) oldValue == Modules.LowPassCore.SlopeTwoPole;
+					var isTwoPole = (int) newValue == Modules.LowPassCore.SlopeTwoPole;
+
+					if ( wasTwoPole != isTwoPole )
+					{
+						var retunedCutoff = isTwoPole ? cutoffSetting.Value * MathF.Sqrt( 2f ) : cutoffSetting.Value / MathF.Sqrt( 2f );
+
+						cutoffSetting.Value = MathF.Round( retunedCutoff, 1 );
+					}
+				};
+			}
+		}
 	}
 
 	public event PropertyChangedEventHandler? PropertyChanged;
@@ -276,19 +328,56 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 
 	public FFBModuleDescriptor Descriptor => _descriptor;
 
-	public bool IsFixed => _descriptor.IsSource || _descriptor.IsOutput;
+	// only the Output module is fixed now — sources are added and removed at will (one instance of each source
+	// type per graph; removing the last source re-adds the 360 Hz source since Output always needs an input)
+	public bool IsFixed => _descriptor.IsOutput;
 	public bool IsGenerator => _descriptor.IsGenerator;
 	public bool IsOutput => _descriptor.IsOutput;
 	public bool CanToggleEnabled => !IsFixed;
 	public bool CanRemove => !IsFixed;
+	public bool CanTest => _descriptor.CanTest;
+
+	private bool _isTestActive = false;
+
+	/// <summary>Session-only "test this effect" toggle — forces the module's trigger active in both engines so
+	/// the user can feel/see the effect on demand. Deliberately NOT serialized and NOT synced per-context; it
+	/// resets whenever the module VMs are rebuilt (structure edit, graph switch) and on app exit.</summary>
+	public bool IsTestActive
+	{
+		get => _isTestActive;
+
+		set
+		{
+			if ( value != _isTestActive )
+			{
+				_isTestActive = value;
+
+				var app = App.Instance;
+
+				if ( app != null )
+				{
+					app.RacingWheel.SetEngineTestActive( _model.ModuleId, value );
+
+					app.RacingWheel.UpdateAlgorithmPreview = true;
+				}
+
+				OnPropertyChanged();
+			}
+		}
+	}
 
 	public int SignalInputCount => _descriptor.SignalInputCount;
 	public bool ShowInputA => _descriptor.SignalInputCount >= 1;
 	public bool ShowInputB => _descriptor.SignalInputCount >= 2;
-	public string InputALabel => _descriptor.SignalInputCount >= 2 ? FFBDisplayNames.Localize( "InputA", "Input A" ) : FFBDisplayNames.Localize( "Input", "Input" );
-	public string InputBLabel => FFBDisplayNames.Localize( "InputB", "Input B" );
+
+	// must match the settings ItemsControl's UniformGrid Columns in RacingWheelPage.xaml
+	private const int SettingsPanelColumns = 3;
 
 	public ObservableCollection<FFBModuleSettingViewModel> Settings { get; } = [];
+
+	/// <summary>What the settings panel actually renders: <see cref="Settings"/> plus invisible spacers padding
+	/// out the row before each BreakRow setting, so related settings can be grouped onto their own row.</summary>
+	public ObservableCollection<object> SettingsPresentation { get; } = [];
 
 	public string DisplayName
 	{
@@ -318,6 +407,26 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 			if ( value != _isSelected )
 			{
 				_isSelected = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private bool _isPreviewLocked = false;
+
+	/// <summary>Whether the preview graph is locked to this module (drives the node's preview highlight). Follows
+	/// the selection on left-click; a right-click locks it to a different node while the selection — and the
+	/// settings panel — stay put. Session-only — set via <see cref="FFBGraphViewModel.PreviewModule"/>.</summary>
+	public bool IsPreviewLocked
+	{
+		get => _isPreviewLocked;
+
+		set
+		{
+			if ( value != _isPreviewLocked )
+			{
+				_isPreviewLocked = value;
 
 				OnPropertyChanged();
 			}
@@ -460,13 +569,18 @@ public sealed class FFBNodeWireViewModel( string sourceModuleId, string targetMo
 	public bool IsInputB { get; } = isInputB;
 }
 
-/// <summary>The graph editor's root VM: the module cards for the currently selected graph, plus structure edits.</summary>
+/// <summary>The graph editor's root VM: the module cards for the currently selected FFB graph AND the currently
+/// selected vibration graph (the generator cards), plus structure edits on both.</summary>
 public sealed class FFBGraphViewModel : INotifyPropertyChanged
 {
 	private FFBGraph? _graph;
+	private FFBGraph? _vibrationGraph;
 
 	private string? _selectedModuleId = null;
 	private FFBModuleViewModel? _selectedModule = null;
+
+	private string? _previewModuleId = null;
+	private FFBModuleViewModel? _previewModule = null;
 	private bool _rebuildQueued = false;
 
 	public ObservableCollection<FFBModuleViewModel> Modules { get; } = [];
@@ -485,48 +599,15 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	public List<KeyValuePair<string, string>> AddableModuleTypes => BuildAddableModuleTypes( generators: false );
 	public List<KeyValuePair<string, string>> AddableGeneratorModuleTypes => BuildAddableModuleTypes( generators: true );
 
-	private string _selectedAddableModuleType = string.Empty;
-	private string _selectedAddableGeneratorModuleType = string.Empty;
-
 	public event PropertyChangedEventHandler? PropertyChanged;
 
 	private void OnPropertyChanged( [CallerMemberName] string? propertyName = null ) => PropertyChanged?.Invoke( this, new PropertyChangedEventArgs( propertyName ) );
 
-	public string SelectedAddableModuleType
-	{
-		get => _selectedAddableModuleType;
-
-		set
-		{
-			if ( value != _selectedAddableModuleType )
-			{
-				_selectedAddableModuleType = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public string SelectedAddableGeneratorModuleType
-	{
-		get => _selectedAddableGeneratorModuleType;
-
-		set
-		{
-			if ( value != _selectedAddableGeneratorModuleType )
-			{
-				_selectedAddableGeneratorModuleType = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
 	/// <summary>
-	/// The module selected on the node canvas — the settings panel shows its card and the preview taps its
-	/// signals. Session-only (not persisted); falls back to the Output module whenever the stored selection
-	/// disappears (graph switch, context reload, module removal). Selection is presentation state, so setting it
-	/// never rebuilds an engine — it only refreshes the preview.
+	/// The module selected on the node canvas — the settings panel shows its card. Selecting a module also locks
+	/// the preview to it (see <see cref="PreviewModule"/>). Session-only (not persisted); falls back to the Output
+	/// module whenever the stored selection disappears (graph switch, context reload, module removal). Selection is
+	/// presentation state, so setting it never rebuilds an engine — it only refreshes the preview.
 	/// </summary>
 	public FFBModuleViewModel? SelectedModule
 	{
@@ -536,6 +617,9 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		{
 			if ( value == _selectedModule )
 			{
+				// left-clicking the already-selected module still re-locks the preview to it
+				PreviewModule = value;
+
 				return;
 			}
 
@@ -549,6 +633,37 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 			OnPropertyChanged();
 
+			PreviewModule = value;
+		}
+	}
+
+	/// <summary>
+	/// The module whose signals the preview graph taps. Normally follows <see cref="SelectedModule"/> (left-click),
+	/// but right-clicking a node locks the preview to that node alone — so one module's settings can be adjusted
+	/// while watching another module's input/output. Session-only; a structure rebuild restores it by id, falling
+	/// back to the selected module when the previewed module no longer exists.
+	/// </summary>
+	public FFBModuleViewModel? PreviewModule
+	{
+		get => _previewModule;
+
+		set
+		{
+			if ( value == _previewModule )
+			{
+				return;
+			}
+
+			_previewModule = value;
+			_previewModuleId = value?.ModuleId;
+
+			foreach ( var module in Modules )
+			{
+				module.IsPreviewLocked = module == value;
+			}
+
+			OnPropertyChanged();
+
 			var app = App.Instance;
 
 			if ( app != null )
@@ -558,14 +673,31 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		}
 	}
 
-	private static List<KeyValuePair<string, string>> BuildAddableModuleTypes( bool generators )
+	// both add-module pickers (AddFFBModuleWindow) group the module types by category (a header row's Key
+	// starts with an underscore, which the picker's item style renders as a disabled accent-colored header —
+	// an underscore key can never match a real module type)
+	private static readonly ( FFBModuleCategory category, string localizationKey, string fallback )[] AddableCategories =
+	[
+		( FFBModuleCategory.Source, "FFBCategorySources", "Sources" ),
+		( FFBModuleCategory.GenericDSP, "FFBCategoryGenericDSP", "Generic DSP" ),
+		( FFBModuleCategory.Mixer, "FFBCategoryMixers", "Mixers" ),
+		( FFBModuleCategory.Effect, "FFBCategoryEffects", "Effects" )
+	];
+
+	private static readonly ( FFBModuleCategory category, string localizationKey, string fallback )[] AddableGeneratorCategories =
+	[
+		( FFBModuleCategory.SteeringVibration, "SteeringEffects", "Steering effects" ),
+		( FFBModuleCategory.OtherVibration, "OtherEffects", "Other effects" )
+	];
+
+	private List<KeyValuePair<string, string>> BuildAddableModuleTypes( bool generators )
 	{
-		var list = new List<KeyValuePair<string, string>>();
+		var addable = new List<( FFBModuleCategory category, string typeKey, string displayName )>();
 
 		foreach ( var descriptor in FFBModuleRegistry.All )
 		{
-			// sources and output are fixed and cannot be added by the user
-			if ( descriptor.IsSource || descriptor.IsOutput )
+			// only the Output module is fixed and cannot be added by the user
+			if ( descriptor.IsOutput )
 			{
 				continue;
 			}
@@ -575,13 +707,39 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 				continue;
 			}
 
-			list.Add( new KeyValuePair<string, string>( descriptor.TypeKey, FFBDisplayNames.Module( descriptor.TypeKey ) ) );
+			// sources are one-per-graph — a source type already on the graph is not offered again
+			if ( descriptor.IsSource && ( _graph?.Modules.Any( module => module.ModuleType == descriptor.TypeKey ) == true ) )
+			{
+				continue;
+			}
+
+			addable.Add( ( descriptor.Category, descriptor.TypeKey, FFBDisplayNames.Module( descriptor.TypeKey ) ) );
 		}
 
-		return list.OrderBy( pair => pair.Value ).ToList();
+		var list = new List<KeyValuePair<string, string>>();
+
+		foreach ( var (category, localizationKey, fallback) in generators ? AddableGeneratorCategories : AddableCategories )
+		{
+			// within a category the registry's hand-curated declaration order is kept (not alphabetical)
+			var categoryEntries = addable.Where( entry => entry.category == category ).ToList();
+
+			if ( categoryEntries.Count == 0 )
+			{
+				continue;   // e.g. every source type is already on the graph
+			}
+
+			list.Add( new KeyValuePair<string, string>( "_" + localizationKey, FFBDisplayNames.Localize( localizationKey, fallback ) ) );
+
+			foreach ( var entry in categoryEntries )
+			{
+				list.Add( new KeyValuePair<string, string>( entry.typeKey, entry.displayName ) );
+			}
+		}
+
+		return list;
 	}
 
-	/// <summary>Rebuild the whole card tree from the currently selected graph. UI thread only.</summary>
+	/// <summary>Rebuild the whole card tree from the currently selected FFB graph + vibration graph. UI thread only.</summary>
 	public void RebuildFromCurrentSelection()
 	{
 		Modules.Clear();
@@ -591,20 +749,22 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		if ( !settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) )
-		{
-			_graph = null;
+		settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph );
+		settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var vibrationGraph );
 
+		_graph = graph;
+		_vibrationGraph = vibrationGraph;
+
+		if ( ( graph == null ) && ( vibrationGraph == null ) )
+		{
 			SelectedModule = null;
 
 			return;
 		}
 
-		_graph = graph;
-
 		// lay the nodes out automatically the first time this graph is shown in the node editor (legacy data,
 		// freshly migrated built-ins, and reset built-ins all arrive with every position at 0,0)
-		if ( FFBGraphTopology.NeedsAutoLayout( graph ) )
+		if ( ( graph != null ) && FFBGraphTopology.NeedsAutoLayout( graph ) )
 		{
 			FFBGraphTopology.ApplyAutoLayout( graph );
 
@@ -612,22 +772,40 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		}
 
 		var moduleViewModels = new List<FFBModuleViewModel>();
+		var generatorViewModels = new List<FFBModuleViewModel>();
 
-		foreach ( var module in graph.Modules )
+		if ( graph != null )
 		{
-			var descriptor = FFBModuleRegistry.TryGet( module.ModuleType );
-
-			if ( descriptor != null )
+			foreach ( var module in graph.Modules )
 			{
-				moduleViewModels.Add( new FFBModuleViewModel( this, module, descriptor ) );
+				var descriptor = FFBModuleRegistry.TryGet( module.ModuleType );
+
+				if ( descriptor != null )
+				{
+					moduleViewModels.Add( new FFBModuleViewModel( this, module, descriptor ) );
+				}
+			}
+		}
+
+		if ( vibrationGraph != null )
+		{
+			foreach ( var module in vibrationGraph.Modules )
+			{
+				var descriptor = FFBModuleRegistry.TryGet( module.ModuleType );
+
+				if ( descriptor != null )
+				{
+					generatorViewModels.Add( new FFBModuleViewModel( this, module, descriptor ) );
+				}
 			}
 		}
 
 		// display names have no list-index prefix (the evaluation order is derived automatically now); duplicate
-		// module types are disambiguated as "Gain", "Gain (2)", ...
+		// module types are disambiguated as "Gain", "Gain (2)", ... (the two graphs never share a type, so one
+		// counter across both lists is fine)
 		var nameCounts = new Dictionary<string, int>( StringComparer.Ordinal );
 
-		foreach ( var moduleViewModel in moduleViewModels )
+		foreach ( var moduleViewModel in moduleViewModels.Concat( generatorViewModels ) )
 		{
 			var name = FFBDisplayNames.Module( moduleViewModel.ModuleType );
 
@@ -638,7 +816,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			moduleViewModel.DisplayName = count > 1 ? $"{name} ({count})" : name;
 		}
 
-		// eligible inputs: any non-generator, non-Output module that is not downstream of the consumer (no cycles)
+		// eligible inputs: any non-Output module of the FFB graph that is not downstream of the consumer (no cycles)
 		foreach ( var moduleViewModel in moduleViewModels )
 		{
 			if ( moduleViewModel.SignalInputCount < 1 )
@@ -646,13 +824,13 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 				continue;
 			}
 
-			var downstream = FFBGraphTopology.ReachableFrom( graph, moduleViewModel.ModuleId );
+			var downstream = FFBGraphTopology.ReachableFrom( graph!, moduleViewModel.ModuleId );
 
 			var eligible = new List<KeyValuePair<string, string>>();
 
 			foreach ( var candidate in moduleViewModels )
 			{
-				if ( candidate.IsGenerator || candidate.IsOutput || downstream.Contains( candidate.ModuleId ) )
+				if ( candidate.IsOutput || downstream.Contains( candidate.ModuleId ) )
 				{
 					continue;
 				}
@@ -667,20 +845,20 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		{
 			Modules.Add( moduleViewModel );
 
-			if ( moduleViewModel.IsGenerator )
-			{
-				GeneratorModules.Add( moduleViewModel );
-			}
-			else
-			{
-				MainModules.Add( moduleViewModel );
-			}
+			MainModules.Add( moduleViewModel );
+		}
+
+		foreach ( var moduleViewModel in generatorViewModels )
+		{
+			Modules.Add( moduleViewModel );
+
+			GeneratorModules.Add( moduleViewModel );
 		}
 
 		// one display wire per visible input of each canvas node
 		foreach ( var moduleViewModel in MainModules )
 		{
-			var module = graph.Modules.Find( m => m.ModuleId == moduleViewModel.ModuleId );
+			var module = graph?.Modules.Find( m => m.ModuleId == moduleViewModel.ModuleId );
 
 			if ( module == null )
 			{
@@ -702,9 +880,24 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		var restored = moduleViewModels.Find( moduleViewModel => moduleViewModel.ModuleId == _selectedModuleId )
 			?? moduleViewModels.Find( moduleViewModel => moduleViewModel.IsOutput );
 
+		var restoredPreviewId = _previewModuleId;   // captured before the selection restore re-locks the preview
+
 		_selectedModule = null;   // force the setter to fire even when the id did not change
+		_previewModule = null;
 
 		SelectedModule = restored;
+
+		// restore a diverged preview lock by id; when its module is gone the preview stays with the selection
+		var restoredPreview = moduleViewModels.Find( moduleViewModel => moduleViewModel.ModuleId == restoredPreviewId );
+
+		if ( restoredPreview != null )
+		{
+			PreviewModule = restoredPreview;
+		}
+
+		// the addable-types list depends on which source types are present, so it re-queries with the graph
+		OnPropertyChanged( nameof( AddableModuleTypes ) );
+		OnPropertyChanged( nameof( AddableGeneratorModuleTypes ) );
 	}
 
 	/// <summary>Recompute every knob's value string. WheelForce/MaxForce-scaled displays (strengths, output min/max, compression thresholds) depend on live force settings, so this is called when those change. UI thread only.</summary>
@@ -719,29 +912,24 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		}
 	}
 
-	public void AddSelectedModule()
+	/// <summary>Toggle the session-only test override for EVERY module of the clicked module's type — a test
+	/// exercises the effect, and the effect may be split across duplicates (e.g. two crash protection modules
+	/// on different branches), so they test as one. All their buttons highlight together.</summary>
+	public void ToggleTestActive( FFBModuleViewModel moduleViewModel )
 	{
-		if ( !string.IsNullOrEmpty( SelectedAddableModuleType ) )
-		{
-			AddModule( SelectedAddableModuleType );
-		}
-	}
+		var newState = !moduleViewModel.IsTestActive;
 
-	public void AddSelectedGeneratorModule()
-	{
-		if ( !string.IsNullOrEmpty( SelectedAddableGeneratorModuleType ) )
+		foreach ( var module in Modules )
 		{
-			AddModule( SelectedAddableGeneratorModuleType );
+			if ( module.ModuleType == moduleViewModel.ModuleType )
+			{
+				module.IsTestActive = newState;
+			}
 		}
 	}
 
 	public void AddModule( string moduleType )
 	{
-		if ( _graph == null )
-		{
-			return;
-		}
-
 		var descriptor = FFBModuleRegistry.TryGet( moduleType );
 
 		if ( descriptor == null )
@@ -749,18 +937,62 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			return;
 		}
 
-		var module = new FFBModuleData( Guid.NewGuid().ToString( "N" ), moduleType )
+		// generators go into the vibration graph — a flat list with no wiring, node position, or selection
+		if ( descriptor.IsGenerator )
 		{
-			InputAModuleId = FFBGraph.Source360ModuleId,
-			InputBModuleId = FFBGraph.Source360ModuleId
+			if ( _vibrationGraph == null )
+			{
+				return;
+			}
+
+			_vibrationGraph.Modules.Add( new FFBModuleData( Guid.NewGuid().ToString( "N" ), moduleType )
+			{
+				InputAModuleId = string.Empty,
+				InputBModuleId = string.Empty
+			} );
+
+			CommitStructureChange();
+
+			return;
+		}
+
+		if ( _graph == null )
+		{
+			return;
+		}
+
+		// sources are one-per-graph — adding a second instance of a present source type is a no-op (the add
+		// list already hides them; this guards other callers)
+		if ( descriptor.IsSource && _graph.Modules.Any( existingModule => existingModule.ModuleType == moduleType ) )
+		{
+			return;
+		}
+
+		// wire the new module's input A from the currently selected module, so a freshly added module drops
+		// straight into the signal path being worked on; the Output module and generators cannot feed a signal
+		// input (and a brand-new module has no downstream, so no cycle is possible), those fall back to the
+		// 360 Hz source → 60 Hz source → any other source cascade (a source-less graph gets the 360 Hz source
+		// re-added by the topological sort below, which these references then resolve to)
+		var fallbackSourceId = FFBGraphTopology.FallbackSourceModuleId( _graph ) ?? FFBGraph.Source360ModuleId;
+
+		var inputSourceId = fallbackSourceId;
+
+		if ( ( _selectedModule != null ) && !_selectedModule.IsGenerator && !_selectedModule.IsOutput )
+		{
+			inputSourceId = _selectedModule.ModuleId;
+		}
+
+		// a source keeps its canonical well-known id (one-per-graph makes it collision-free), so the fallback
+		// and preview plumbing recognize it across remove/re-add cycles
+		var module = new FFBModuleData( descriptor.IsSource ? FFBGraph.CanonicalSourceId( moduleType ) : Guid.NewGuid().ToString( "N" ), moduleType )
+		{
+			InputAModuleId = inputSourceId,
+			InputBModuleId = fallbackSourceId
 		};
 
-		if ( !descriptor.IsGenerator )
-		{
-			PlaceNewNode( module );
+		PlaceNewNode( module );
 
-			_selectedModuleId = module.ModuleId;   // select the new node once the rebuild recreates the VMs
-		}
+		_selectedModuleId = module.ModuleId;   // select the new node once the rebuild recreates the VMs
 
 		_graph.Modules.Insert( _graph.OutputIndex, module );
 
@@ -793,7 +1025,27 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 	public void RemoveModule( FFBModuleViewModel moduleViewModel )
 	{
-		if ( ( _graph == null ) || !moduleViewModel.CanRemove )
+		if ( !moduleViewModel.CanRemove )
+		{
+			return;
+		}
+
+		// generators live in the vibration graph and are never a signal input — no splicing needed
+		if ( moduleViewModel.IsGenerator )
+		{
+			if ( _vibrationGraph == null )
+			{
+				return;
+			}
+
+			_vibrationGraph.Modules.RemoveAll( module => module.ModuleId == moduleViewModel.ModuleId );
+
+			CommitStructureChange();
+
+			return;
+		}
+
+		if ( _graph == null )
 		{
 			return;
 		}
@@ -803,13 +1055,15 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		_graph.Modules.RemoveAll( module => module.ModuleId == moduleViewModel.ModuleId );
 
 		// splice the removed module out of the chain: repoint any inputs that referenced it to the removed
-		// module's own input A, so the signal keeps flowing through the same path; fall back to the 360 Hz
-		// source only when the removed module had no usable input A (no inputs, or a dangling reference)
-		var replacementModuleId = removedModule?.InputAModuleId;
+		// module's own input A, so the signal keeps flowing through the same path; fall back to the source
+		// cascade when the removed module had no usable input A (a source, or a dangling reference) — and if
+		// this was the last source, the topological sort below re-adds the 360 Hz source, which these
+		// references then resolve to
+		var replacementModuleId = ( removedModule != null ) && ( moduleViewModel.SignalInputCount >= 1 ) ? removedModule.InputAModuleId : null;
 
 		if ( string.IsNullOrEmpty( replacementModuleId ) || !_graph.Modules.Any( module => module.ModuleId == replacementModuleId ) )
 		{
-			replacementModuleId = FFBGraph.Source360ModuleId;
+			replacementModuleId = FFBGraphTopology.FallbackSourceModuleId( _graph ) ?? FFBGraph.Source360ModuleId;
 		}
 
 		foreach ( var module in _graph.Modules )
@@ -927,14 +1181,26 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 }
 
 /// <summary>Picks the knob / switch / choice template for a module setting based on its type.</summary>
+/// <summary>Inert sentinel filling an empty settings-panel grid cell (row padding before a BreakRow setting).</summary>
+public sealed class FFBSettingSpacer
+{
+	public static readonly FFBSettingSpacer Instance = new();
+}
+
 public sealed class FFBSettingTemplateSelector : DataTemplateSelector
 {
 	public DataTemplate? KnobTemplate { get; set; }
 	public DataTemplate? SwitchTemplate { get; set; }
 	public DataTemplate? ChoiceTemplate { get; set; }
+	public DataTemplate? SpacerTemplate { get; set; }
 
 	public override DataTemplate? SelectTemplate( object item, DependencyObject container )
 	{
+		if ( item is FFBSettingSpacer )
+		{
+			return SpacerTemplate;
+		}
+
 		if ( item is FFBModuleSettingViewModel settingViewModel )
 		{
 			return settingViewModel.SettingType switch

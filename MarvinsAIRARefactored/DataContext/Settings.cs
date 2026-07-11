@@ -404,14 +404,15 @@ public class Settings : INotifyPropertyChanged
 		DataContext.Instance.RacingWheelGraphViewModel.RebuildFromCurrentSelection();
 	}
 
-	// Syncs the CURRENT graph's per-module setting values to/from the per-context store, mirroring UpdateSettings
-	// on the graph-selection scope (RacingWheelSelectedFFBGraphNameContextSwitches — one scope covers both which
-	// graph is selected and its module values). Write path: copy the selected graph's
-	// module SettingValues into this context's snapshot. Read path (context changed): copy the snapshot back into
-	// the graph, then rebuild the live engine (subsumes a plain state reset). Composite keys are
-	// "{moduleId}/{settingKey}"; only keys the module actually carries are synced (so DSP modules with no baked
-	// Enabled stay at their always-on default). Called at the end of UpdateSettings; module-edit setters (the
-	// milestone-4 editor VM) also call it directly with true.
+	// Syncs the CURRENT graphs' per-module setting values to/from the per-context store, mirroring UpdateSettings.
+	// The selected FFB graph syncs on the graph-selection scope (RacingWheelSelectedFFBGraphNameContextSwitches)
+	// and the selected vibration graph on its own scope — each scope covers both which graph is selected and its
+	// module values. Write path: copy each selected graph's module SettingValues into that scope's context
+	// snapshot. Read path (context changed): copy the snapshots back into the graphs, then rebuild the live engine
+	// (subsumes a plain state reset). Composite keys are "{moduleId}/{settingKey}" — module-id scoped, so both
+	// graphs share the RacingWheelFFBGraphModuleValues store without collisions; only keys a module actually
+	// carries are synced (so DSP modules with no baked Enabled stay at their always-on default). Called at the end
+	// of UpdateSettings; module-edit setters (the graph editor VM) also call it directly with true.
 	public void SyncFFBGraphModuleValues( bool updateContextSettings )
 	{
 		if ( _updatingFFBGraphModuleValues )
@@ -419,14 +420,37 @@ public class Settings : INotifyPropertyChanged
 			return;
 		}
 
-		if ( !RacingWheelFFBGraphs.TryGetValue( RacingWheelSelectedFFBGraphName, out var graph ) )
-		{
-			return;
-		}
-
 		_updatingFFBGraphModuleValues = true;
 
-		var context = new Context( RacingWheelSelectedFFBGraphNameContextSwitches );
+		var syncedAny = false;
+
+		if ( RacingWheelFFBGraphs.TryGetValue( RacingWheelSelectedFFBGraphName, out var graph ) )
+		{
+			SyncGraphModuleValues( graph, RacingWheelSelectedFFBGraphNameContextSwitches, updateContextSettings );
+
+			syncedAny = true;
+		}
+
+		if ( RacingWheelVibrationGraphs.TryGetValue( RacingWheelSelectedVibrationGraphName, out var vibrationGraph ) )
+		{
+			SyncGraphModuleValues( vibrationGraph, RacingWheelSelectedVibrationGraphNameContextSwitches, updateContextSettings );
+
+			syncedAny = true;
+		}
+
+		_updatingFFBGraphModuleValues = false;
+
+		if ( !updateContextSettings && syncedAny )
+		{
+			App.Instance!.RacingWheel.RebuildLiveEngine();
+
+			RebuildGraphEditorViewModel();
+		}
+	}
+
+	private void SyncGraphModuleValues( FFBGraph graph, ContextSwitches contextSwitches, bool updateContextSettings )
+	{
+		var context = new Context( contextSwitches );
 		var contextSettings = FindContextSettings( context );
 		var contextValues = contextSettings.RacingWheelFFBGraphModuleValues;
 
@@ -445,15 +469,6 @@ public class Settings : INotifyPropertyChanged
 					module.SettingValues[ settingKey ] = contextValue;
 				}
 			}
-		}
-
-		_updatingFFBGraphModuleValues = false;
-
-		if ( !updateContextSettings )
-		{
-			App.Instance!.RacingWheel.RebuildLiveEngine();
-
-			RebuildGraphEditorViewModel();
 		}
 	}
 
@@ -636,6 +651,141 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	// ---- vibration graph management (mirrors the FFB graph management above; the vibration graphs hold the
+	// generator modules and are selected/managed independently) --------------------------------------------
+
+	public void SelectVibrationGraph( string name )
+	{
+		if ( ( name == RacingWheelSelectedVibrationGraphName ) || !RacingWheelVibrationGraphs.ContainsKey( name ) )
+		{
+			return;
+		}
+
+		// Persist the outgoing graph's values into this context while it is still selected.
+		SyncFFBGraphModuleValues( true );
+
+		// Change the selection (same re-entrancy dance as SelectFFBGraph — the guard blocks the paired value
+		// write-back so the incoming graph's saved context values are not clobbered by its baseline).
+		_updatingFFBGraphModuleValues = true;
+		RacingWheelSelectedVibrationGraphName = name;
+		_updatingFFBGraphModuleValues = false;
+
+		// Load the newly selected graph's values for this context and rebuild the engine + editor.
+		SyncFFBGraphModuleValues( false );
+
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+	}
+
+	public void CreateVibrationGraph( string name, bool copyFromCurrent )
+	{
+		SyncFFBGraphModuleValues( true );
+
+		FFBGraph graph;
+
+		if ( copyFromCurrent && RacingWheelVibrationGraphs.TryGetValue( RacingWheelSelectedVibrationGraphName, out var current ) )
+		{
+			graph = current.Clone();
+
+			// fresh module ids so the copy's per-context values do not collide with the source graph's (a
+			// vibration graph has no fixed source/output ids, so every module id is regenerated)
+			RegenerateUserGraphModuleIds( graph );
+		}
+		else
+		{
+			// an empty vibration graph really is empty — no sources, no Output; generators are added at will
+			graph = new FFBGraph();
+		}
+
+		graph.Name = name;
+		graph.IsBuiltIn = false;
+
+		RacingWheelVibrationGraphs[ name ] = graph;
+
+		RacingWheelSelectedVibrationGraphName = name;
+
+		SyncFFBGraphModuleValues( true );
+	}
+
+	public void RenameVibrationGraph( string oldName, string newName )
+	{
+		if ( ( oldName == newName ) || !RacingWheelVibrationGraphs.TryGetValue( oldName, out var graph ) || graph.IsBuiltIn || RacingWheelVibrationGraphs.ContainsKey( newName ) )
+		{
+			return;
+		}
+
+		graph.Name = newName;
+
+		RacingWheelVibrationGraphs.Remove( oldName );
+		RacingWheelVibrationGraphs[ newName ] = graph;
+
+		foreach ( var contextSettings in ContextSettingsDictionary.Values )
+		{
+			if ( contextSettings.RacingWheelSelectedVibrationGraphName == oldName )
+			{
+				contextSettings.RacingWheelSelectedVibrationGraphName = newName;
+			}
+		}
+
+		if ( RacingWheelSelectedVibrationGraphName == oldName )
+		{
+			RacingWheelSelectedVibrationGraphName = newName;
+		}
+	}
+
+	public void DeleteVibrationGraph( string name )
+	{
+		if ( !RacingWheelVibrationGraphs.TryGetValue( name, out var graph ) || graph.IsBuiltIn )
+		{
+			return;
+		}
+
+		// every module id is graph-local (no shared well-known ids), so all of them orphan on delete
+		var orphanedModuleIds = new HashSet<string>( graph.Modules.Select( module => module.ModuleId ), StringComparer.Ordinal );
+
+		RacingWheelVibrationGraphs.Remove( name );
+
+		foreach ( var contextSettings in ContextSettingsDictionary.Values )
+		{
+			var keysToRemove = contextSettings.RacingWheelFFBGraphModuleValues.Keys.Where( key => orphanedModuleIds.Contains( key[ ..Math.Max( 0, key.IndexOf( '/' ) ) ] ) ).ToArray();
+
+			foreach ( var key in keysToRemove )
+			{
+				contextSettings.RacingWheelFFBGraphModuleValues.Remove( key );
+			}
+
+			if ( contextSettings.RacingWheelSelectedVibrationGraphName == name )
+			{
+				contextSettings.RacingWheelSelectedVibrationGraphName = string.Empty;
+			}
+		}
+
+		if ( !RacingWheelVibrationGraphs.ContainsKey( RacingWheelSelectedVibrationGraphName ) )
+		{
+			RacingWheelSelectedVibrationGraphName = RacingWheelVibrationGraphs.ContainsKey( FFBGraphMigration.BuiltInVibrationGraphName ) ? FFBGraphMigration.BuiltInVibrationGraphName : RacingWheelVibrationGraphs.Keys.First();
+		}
+
+		SyncFFBGraphModuleValues( false );
+	}
+
+	public void ResetBuiltInVibrationGraph( string name )
+	{
+		var freshGraph = FFBGraphMigration.CreateBuiltInVibrationGraphs( this ).FirstOrDefault( graph => graph.Name == name );
+
+		if ( freshGraph == null )
+		{
+			return;
+		}
+
+		RacingWheelVibrationGraphs[ name ] = freshGraph;
+
+		if ( RacingWheelSelectedVibrationGraphName == name )
+		{
+			App.Instance!.RacingWheel.RebuildLiveEngine();
+
+			RebuildGraphEditorViewModel();
+		}
+	}
+
 	// Runs every launch (from SettingsFile.Initialize): (re)creates any missing built-in graphs from the live
 	// settings and repairs the selection if it is empty or dangling.
 	public void EnsureBuiltInFFBGraphsInitialized()
@@ -653,6 +803,20 @@ public class Settings : INotifyPropertyChanged
 			var defaultName = FFBGraphMigration.BuiltInGraphNameFor( RacingWheelAlgorithm );
 
 			RacingWheelSelectedFFBGraphName = RacingWheelFFBGraphs.ContainsKey( defaultName ) ? defaultName : RacingWheelFFBGraphs.Keys.First();
+		}
+
+		// same treatment for the vibration graphs (their built-in + selection repair ride this call site too)
+		foreach ( var graph in FFBGraphMigration.CreateBuiltInVibrationGraphs( this ) )
+		{
+			if ( !RacingWheelVibrationGraphs.ContainsKey( graph.Name ) )
+			{
+				RacingWheelVibrationGraphs[ graph.Name ] = graph;
+			}
+		}
+
+		if ( string.IsNullOrEmpty( RacingWheelSelectedVibrationGraphName ) || !RacingWheelVibrationGraphs.ContainsKey( RacingWheelSelectedVibrationGraphName ) )
+		{
+			RacingWheelSelectedVibrationGraphName = RacingWheelVibrationGraphs.ContainsKey( FFBGraphMigration.BuiltInVibrationGraphName ) ? FFBGraphMigration.BuiltInVibrationGraphName : RacingWheelVibrationGraphs.Keys.First();
 		}
 	}
 
@@ -693,6 +857,16 @@ public class Settings : INotifyPropertyChanged
 
 		RacingWheelSelectedFFBGraphName = FFBGraphMigration.BuiltInGraphNameFor( RacingWheelAlgorithm );
 
+		// the vibration graph starts on the built-in default everywhere, sharing the migrated scope (the old
+		// vibration strengths were part of the same wheel-setting scope union)
+		foreach ( var contextSettings in ContextSettingsDictionary.Values )
+		{
+			contextSettings.RacingWheelSelectedVibrationGraphName = FFBGraphMigration.BuiltInVibrationGraphName;
+		}
+
+		RacingWheelSelectedVibrationGraphNameContextSwitches = CloneContextSwitches( RacingWheelSelectedFFBGraphNameContextSwitches );
+		RacingWheelSelectedVibrationGraphName = FFBGraphMigration.BuiltInVibrationGraphName;
+
 		App.Instance!.Logger.WriteLine( $"[Settings] Migrated to FFB graphs: {RacingWheelFFBGraphs.Count} built-in graphs, {ContextSettingsDictionary.Count} contexts, selected '{RacingWheelSelectedFFBGraphName}', scope ({RacingWheelSelectedFFBGraphNameContextSwitches.PerWheelbase}|{RacingWheelSelectedFFBGraphNameContextSwitches.PerCar}|{RacingWheelSelectedFFBGraphNameContextSwitches.PerTrack}|{RacingWheelSelectedFFBGraphNameContextSwitches.PerTrackConfiguration}|{RacingWheelSelectedFFBGraphNameContextSwitches.PerWetDry})" );
 
 		RacingWheelFFBGraphSchemaVersion = CurrentFFBGraphSchemaVersion;
@@ -714,12 +888,73 @@ public class Settings : INotifyPropertyChanged
 			return false;
 		}
 
+		var storedSchemaVersion = RacingWheelFFBGraphSchemaVersion;
+
 		RacingWheelFFBGraphSchemaVersion = CurrentFFBGraphSchemaVersion;
 
 		// rebuild every built-in graph in place with the new module layout (overwrites the stored built-ins)
 		foreach ( var graph in FFBGraphMigration.CreateBuiltInGraphs( this ) )
 		{
 			RacingWheelFFBGraphs[ graph.Name ] = graph;
+		}
+
+		// rebuild the built-in vibration graph(s) the same way (the generators live in their own graphs at v23)
+		foreach ( var graph in FFBGraphMigration.CreateBuiltInVibrationGraphs( this ) )
+		{
+			RacingWheelVibrationGraphs[ graph.Name ] = graph;
+		}
+
+		// repair user-created graphs: splice/convert retired module types (sources are optional per-graph now,
+		// so nothing is injected — a source-less graph heals via the topological sort's fallback), then move any
+		// generator modules into a companion vibration graph named after the source graph (module ids are
+		// preserved so the per-context values keep resolving). Idempotent — a second pass finds no generators.
+		foreach ( var graph in RacingWheelFFBGraphs.Values )
+		{
+			if ( graph.IsBuiltIn )
+			{
+				continue;
+			}
+
+			FFBGraphMigration.RemoveRetiredModuleTypes( graph );
+
+			var generatorModules = FFBGraphMigration.ExtractGeneratorModules( graph );
+
+			if ( generatorModules.Count == 0 )
+			{
+				continue;
+			}
+
+			var vibrationGraphName = graph.Name;
+
+			// don't merge user generators into a built-in that happens to share the name — uniquify instead
+			while ( RacingWheelVibrationGraphs.TryGetValue( vibrationGraphName, out var existing ) && existing.IsBuiltIn )
+			{
+				vibrationGraphName += " (2)";
+			}
+
+			if ( !RacingWheelVibrationGraphs.TryGetValue( vibrationGraphName, out var vibrationGraph ) )
+			{
+				vibrationGraph = new FFBGraph { Name = vibrationGraphName };
+
+				RacingWheelVibrationGraphs[ vibrationGraphName ] = vibrationGraph;
+			}
+
+			vibrationGraph.Modules.AddRange( generatorModules );
+		}
+
+		// first arrival at the split (v23): the vibration selection inherits the FFB graph scope (the generator
+		// values were synced under that scope until now, so identical switches keep resolving the same contexts),
+		// and each selection follows its FFB graph's companion where one was created, else the built-in default
+		if ( storedSchemaVersion < 23 )
+		{
+			RacingWheelSelectedVibrationGraphNameContextSwitches = CloneContextSwitches( RacingWheelSelectedFFBGraphNameContextSwitches );
+
+			RacingWheelSelectedVibrationGraphName = RacingWheelVibrationGraphs.ContainsKey( RacingWheelSelectedFFBGraphName ) ? RacingWheelSelectedFFBGraphName : FFBGraphMigration.BuiltInVibrationGraphName;
+
+			foreach ( var contextSettings in ContextSettingsDictionary.Values )
+			{
+				contextSettings.RacingWheelSelectedVibrationGraphName = RacingWheelVibrationGraphs.ContainsKey( contextSettings.RacingWheelSelectedFFBGraphName ) ? contextSettings.RacingWheelSelectedFFBGraphName : FFBGraphMigration.BuiltInVibrationGraphName;
+			}
 		}
 
 		// re-derive every context's graph values from the (still-present) old settings so the new module ids resolve
@@ -738,7 +973,12 @@ public class Settings : INotifyPropertyChanged
 			RacingWheelSelectedFFBGraphName = RacingWheelFFBGraphs.Keys.First();
 		}
 
-		App.Instance!.Logger.WriteLine( $"[Settings] Regenerated FFB graphs for schema v{CurrentFFBGraphSchemaVersion}: {RacingWheelFFBGraphs.Count} built-in graphs, {ContextSettingsDictionary.Count} contexts re-mapped from old settings" );
+		if ( !RacingWheelVibrationGraphs.ContainsKey( RacingWheelSelectedVibrationGraphName ) )
+		{
+			RacingWheelSelectedVibrationGraphName = RacingWheelVibrationGraphs.ContainsKey( FFBGraphMigration.BuiltInVibrationGraphName ) ? FFBGraphMigration.BuiltInVibrationGraphName : RacingWheelVibrationGraphs.Keys.First();
+		}
+
+		App.Instance!.Logger.WriteLine( $"[Settings] Regenerated FFB graphs for schema v{CurrentFFBGraphSchemaVersion}: {RacingWheelFFBGraphs.Count} built-in graphs, {RacingWheelVibrationGraphs.Count} vibration graphs, {ContextSettingsDictionary.Count} contexts re-mapped from old settings" );
 
 		return true;
 	}
@@ -859,11 +1099,11 @@ public class Settings : INotifyPropertyChanged
 		}
 		else if ( useMph )
 		{
-			TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
+			TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToMPH:F0}{DataContext.Instance.Localization[ "MPHUnits" ]}";
 		}
 		else
 		{
-			TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
+			TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToKPH:F0}{DataContext.Instance.Localization[ "KPHUnits" ]}";
 		}
 
 		TyphoonWindSpeed1String = useMph ? $"{_typhoonWindSpeed1 * MathZ.MPSToMPH:F0}" : $"{_typhoonWindSpeed1 * MathZ.MPSToKPH:F0}";
@@ -1092,7 +1332,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateRacingWheelWheelForceString()
 	{
-		RacingWheelWheelForceString = $"{_racingWheelWheelForce:F1} {DataContext.Instance.Localization[ "TorqueUnits" ]}";
+		RacingWheelWheelForceString = $"{_racingWheelWheelForce:F1}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
 	}
 
 	public ContextSwitches RacingWheelWheelForceContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -1198,7 +1438,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateRacingWheelMaxForceString()
 	{
-		RacingWheelMaxForceString = $"{_racingWheelMaxForce:F1} {DataContext.Instance.Localization[ "TorqueUnits" ]}";
+		RacingWheelMaxForceString = $"{_racingWheelMaxForce:F1}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
 	}
 
 	public ButtonMappings RacingWheelMaxForcePlusButtonMappings { get; set; } = new();
@@ -1283,7 +1523,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateRacingWheelAutoTargetString()
 	{
-		RacingWheelAutoTargetString = $"{_racingWheelAutoTarget:F1} {DataContext.Instance.Localization[ "TorqueUnits" ]}";
+		RacingWheelAutoTargetString = $"{_racingWheelAutoTarget:F1}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
 	}
 
 	public ContextSwitches RacingWheelAutoTargetContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -1399,8 +1639,51 @@ public class Settings : INotifyPropertyChanged
 	// Structural version of the built-in FFB graphs. Bumped when the module layout of a built-in graph changes
 	// (e.g. splitting the Output module's curve/min/max into their own modules); a stored file below the current
 	// version is regenerated from the still-dormant old settings on load. See UpgradeFFBGraphSchemaIfNeeded.
-	public const int CurrentFFBGraphSchemaVersion = 16;
+	public const int CurrentFFBGraphSchemaVersion = 23;
 	public int RacingWheelFFBGraphSchemaVersion { get; set; } = 0;
+
+	#endregion
+
+	#region Racing wheel - Vibration graph
+
+	// The vibration effects (generator modules) live in their own named graphs, managed independently of the FFB
+	// graphs (schema v23). A vibration graph is a flat list of generator modules — no sources, no Output; the
+	// engine merges the selected FFB graph and the selected vibration graph at rebuild time. Per-module values
+	// share the per-context RacingWheelFFBGraphModuleValues snapshot (composite keys are module-id scoped) but
+	// sync on THIS selection's own scope.
+	public SerializableDictionary<string, FFBGraph> RacingWheelVibrationGraphs { get; set; } = [];
+
+	private string _racingWheelSelectedVibrationGraphName = "";
+
+	public string RacingWheelSelectedVibrationGraphName
+	{
+		get => _racingWheelSelectedVibrationGraphName;
+
+		set
+		{
+			if ( value != _racingWheelSelectedVibrationGraphName )
+			{
+				_racingWheelSelectedVibrationGraphName = value;
+
+				OnPropertyChanged();
+			}
+
+			// Swap the live engine to the newly selected vibration graph (same suppression rules as the FFB
+			// graph selection setter above).
+			if ( !SuppressUpdatingOfContextSettings )
+			{
+				var app = App.Instance!;
+
+				app.RacingWheel.RebuildLiveEngine();
+				app.RacingWheel.UpdateAlgorithmPreview = true;
+
+				RebuildGraphEditorViewModel();
+			}
+		}
+	}
+
+	// One scope for the whole vibration graph feature: which vibration graph is selected AND its per-module values.
+	public ContextSwitches RacingWheelSelectedVibrationGraphNameContextSwitches { get; set; } = new( true, true, false, false, false );
 
 	#endregion
 
@@ -1665,7 +1948,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateRacingWheelDeltaLimitString()
 	{
-		RacingWheelDeltaLimitString = $"{_racingWheelDeltaLimit:F0} {DataContext.Instance.Localization[ "DeltaLimitUnits" ]}";
+		RacingWheelDeltaLimitString = $"{_racingWheelDeltaLimit:F0}{DataContext.Instance.Localization[ "DeltaLimitUnits" ]}";
 	}
 
 	public ContextSwitches RacingWheelDeltaLimitContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1773,7 +2056,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateRacingWheelSlewCompressionThresholdString()
 	{
-		RacingWheelSlewCompressionThresholdString = $"{_racingWheelSlewCompressionThreshold * DataContext.Instance.Settings.RacingWheelMaxForce / 1000f:F2} {DataContext.Instance.Localization[ "SlewUnits" ]}";
+		RacingWheelSlewCompressionThresholdString = $"{_racingWheelSlewCompressionThreshold * DataContext.Instance.Settings.RacingWheelMaxForce / 1000f:F2}{DataContext.Instance.Localization[ "SlewUnits" ]}";
 	}
 
 	public ContextSwitches RacingWheelSlewCompressionThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -1881,7 +2164,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateRacingWheelTotalCompressionThresholdString()
 	{
-		RacingWheelTotalCompressionThresholdString = $"{_racingWheelTotalCompressionThreshold * DataContext.Instance.Settings.RacingWheelMaxForce:F1} {DataContext.Instance.Localization[ "TorqueUnits" ]}";
+		RacingWheelTotalCompressionThresholdString = $"{_racingWheelTotalCompressionThreshold * DataContext.Instance.Settings.RacingWheelMaxForce:F1}{DataContext.Instance.Localization[ "TorqueUnits" ]}";
 	}
 
 	public ContextSwitches RacingWheelTotalCompressionThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -2699,7 +2982,7 @@ public class Settings : INotifyPropertyChanged
 		}
 		else
 		{
-			RacingWheelCrashProtectionLongitudalGForceString = $"{_racingWheelCrashProtectionLongitudalGForce:F1} {DataContext.Instance.Localization[ "GForceUnits" ]}";
+			RacingWheelCrashProtectionLongitudalGForceString = $"{_racingWheelCrashProtectionLongitudalGForce:F1}{DataContext.Instance.Localization[ "GForceUnits" ]}";
 		}
 	}
 
@@ -2758,7 +3041,7 @@ public class Settings : INotifyPropertyChanged
 		}
 		else
 		{
-			RacingWheelCrashProtectionLateralGForceString = $"{_racingWheelCrashProtectionLateralGForce:F1} {DataContext.Instance.Localization[ "GForceUnits" ]}";
+			RacingWheelCrashProtectionLateralGForceString = $"{_racingWheelCrashProtectionLateralGForce:F1}{DataContext.Instance.Localization[ "GForceUnits" ]}";
 		}
 	}
 
@@ -2817,7 +3100,7 @@ public class Settings : INotifyPropertyChanged
 		}
 		else
 		{
-			RacingWheelCrashProtectionDurationString = $"{_racingWheelCrashProtectionDuration:F1} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
+			RacingWheelCrashProtectionDurationString = $"{_racingWheelCrashProtectionDuration:F1}{DataContext.Instance.Localization[ "SecondsUnits" ]}";
 		}
 	}
 
@@ -2935,7 +3218,7 @@ public class Settings : INotifyPropertyChanged
 		}
 		else
 		{
-			RacingWheelCurbProtectionShockVelocityString = $"{_racingWheelCurbProtectionShockVelocity:F2} {DataContext.Instance.Localization[ "MPSUnits" ]}";
+			RacingWheelCurbProtectionShockVelocityString = $"{_racingWheelCurbProtectionShockVelocity:F2}{DataContext.Instance.Localization[ "MPSUnits" ]}";
 		}
 	}
 
@@ -2994,7 +3277,7 @@ public class Settings : INotifyPropertyChanged
 		}
 		else
 		{
-			RacingWheelCurbProtectionDurationString = $"{_racingWheelCurbProtectionDuration:F2} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
+			RacingWheelCurbProtectionDurationString = $"{_racingWheelCurbProtectionDuration:F2}{DataContext.Instance.Localization[ "SecondsUnits" ]}";
 		}
 	}
 
@@ -4067,7 +4350,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSteeringEffectsUndersteerWheelVibrationMinimumFrequencyString()
 	{
-		SteeringEffectsUndersteerWheelVibrationMinimumFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+		SteeringEffectsUndersteerWheelVibrationMinimumFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsUndersteerWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -4119,7 +4402,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSteeringEffectsUndersteerWheelVibrationMaximumFrequencyString()
 	{
-		SteeringEffectsUndersteerWheelVibrationMaximumFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+		SteeringEffectsUndersteerWheelVibrationMaximumFrequencyString = $"{_steeringEffectsUndersteerWheelVibrationMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsUndersteerWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -4762,7 +5045,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSteeringEffectsOversteerWheelVibrationMinimumFrequencyString()
 	{
-		SteeringEffectsOversteerWheelVibrationMinimumFrequencyString = $"{_steeringEffectsOversteerWheelVibrationMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+		SteeringEffectsOversteerWheelVibrationMinimumFrequencyString = $"{_steeringEffectsOversteerWheelVibrationMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsOversteerWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -4814,7 +5097,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSteeringEffectsOversteerWheelVibrationMaximumFrequencyString()
 	{
-		SteeringEffectsOversteerWheelVibrationMaximumFrequencyString = $"{_steeringEffectsOversteerWheelVibrationMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+		SteeringEffectsOversteerWheelVibrationMaximumFrequencyString = $"{_steeringEffectsOversteerWheelVibrationMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsOversteerWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -5267,7 +5550,7 @@ public class Settings : INotifyPropertyChanged
 			_ => ""
 		};
 
-		SteeringEffectsSeatOfPantsMinimumThresholdString = $"{_steeringEffectsSeatOfPantsMinimumThreshold:F2} {units}";
+		SteeringEffectsSeatOfPantsMinimumThresholdString = $"{_steeringEffectsSeatOfPantsMinimumThreshold:F2}{units}";
 	}
 
 	public ContextSwitches SteeringEffectsSeatOfPantsMinimumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -5328,7 +5611,7 @@ public class Settings : INotifyPropertyChanged
 			_ => ""
 		};
 
-		SteeringEffectsSeatOfPantsMaximumThresholdString = $"{_steeringEffectsSeatOfPantsMaximumThreshold:F2} {units}";
+		SteeringEffectsSeatOfPantsMaximumThresholdString = $"{_steeringEffectsSeatOfPantsMaximumThreshold:F2}{units}";
 	}
 
 	public ContextSwitches SteeringEffectsSeatOfPantsMaximumThresholdContextSwitches { get; set; } = new( true, true, false, false, false );
@@ -5490,7 +5773,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyString()
 	{
-		SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyString = $"{_steeringEffectsSeatOfPantsWheelVibrationMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+		SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyString = $"{_steeringEffectsSeatOfPantsWheelVibrationMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationMinimumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -5542,7 +5825,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyString()
 	{
-		SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyString = $"{_steeringEffectsSeatOfPantsWheelVibrationMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+		SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyString = $"{_steeringEffectsSeatOfPantsWheelVibrationMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequencyContextSwitches { get; set; } = new( true, false, false, false, false );
@@ -6037,7 +6320,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdatePedalsMinimumFrequencyString()
 	{
-		PedalsMinimumFrequencyString = $"{_pedalsMinimumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+		PedalsMinimumFrequencyString = $"{_pedalsMinimumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches PedalsMinimumFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -6093,7 +6376,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdatePedalsMaximumFrequencyString()
 	{
-		PedalsMaximumFrequencyString = $"{_pedalsMaximumFrequency:F0} {DataContext.Instance.Localization[ "HertzUnits" ]}";
+		PedalsMaximumFrequencyString = $"{_pedalsMaximumFrequency:F0}{DataContext.Instance.Localization[ "HertzUnits" ]}";
 	}
 
 	public ContextSwitches PedalsMaximumFrequencyContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -7206,7 +7489,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdatePedalsShiftIntoGearDurationString()
 	{
-		PedalsShiftIntoGearDurationString = $"{_pedalsShiftIntoGearDuration:F2} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
+		PedalsShiftIntoGearDurationString = $"{_pedalsShiftIntoGearDuration:F2}{DataContext.Instance.Localization[ "SecondsUnits" ]}";
 	}
 
 	public ContextSwitches PedalsShiftIntoGearDurationContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -7364,7 +7647,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdatePedalsShiftIntoNeutralDurationString()
 	{
-		PedalsShiftIntoNeutralDurationString = $"{_pedalsShiftIntoNeutralDuration:F2} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
+		PedalsShiftIntoNeutralDurationString = $"{_pedalsShiftIntoNeutralDuration:F2}{DataContext.Instance.Localization[ "SecondsUnits" ]}";
 	}
 
 	public ContextSwitches PedalsShiftIntoNeutralDurationContextSwitches { get; set; } = new( false, false, false, false, false );
@@ -8341,11 +8624,11 @@ public class Settings : INotifyPropertyChanged
 
 			if ( app.Simulator.DisplayUnits == 0 )
 			{
-				TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToMPH:F0} {DataContext.Instance.Localization[ "MPHUnits" ]}";
+				TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToMPH:F0}{DataContext.Instance.Localization[ "MPHUnits" ]}";
 			}
 			else
 			{
-				TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToKPH:F0} {DataContext.Instance.Localization[ "KPHUnits" ]}";
+				TyphoonWindMinimumSpeedString = $"{_typhoonWindMinimumSpeed * MathZ.MPSToKPH:F0}{DataContext.Instance.Localization[ "KPHUnits" ]}";
 			}
 		}
 	}
@@ -12449,7 +12732,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsABSEngagedLoopStartMsString()
 	{
-		SoundsABSEngagedLoopStartMsString = $"{_soundsABSEngagedLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsABSEngagedLoopStartMsString = $"{_soundsABSEngagedLoopStartMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -12502,7 +12785,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsABSEngagedLoopEndMsString()
 	{
-		SoundsABSEngagedLoopEndMsString = $"{_soundsABSEngagedLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsABSEngagedLoopEndMsString = $"{_soundsABSEngagedLoopEndMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -12700,7 +12983,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsWheelLockLoopStartMsString()
 	{
-		SoundsWheelLockLoopStartMsString = $"{_soundsWheelLockLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsWheelLockLoopStartMsString = $"{_soundsWheelLockLoopStartMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -12753,7 +13036,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsWheelLockLoopEndMsString()
 	{
-		SoundsWheelLockLoopEndMsString = $"{_soundsWheelLockLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsWheelLockLoopEndMsString = $"{_soundsWheelLockLoopEndMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -13002,7 +13285,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsWheelSpinLoopStartMsString()
 	{
-		SoundsWheelSpinLoopStartMsString = $"{_soundsWheelSpinLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsWheelSpinLoopStartMsString = $"{_soundsWheelSpinLoopStartMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -13055,7 +13338,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsWheelSpinLoopEndMsString()
 	{
-		SoundsWheelSpinLoopEndMsString = $"{_soundsWheelSpinLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsWheelSpinLoopEndMsString = $"{_soundsWheelSpinLoopEndMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -13283,7 +13566,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsUndersteerLoopStartMsString()
 	{
-		SoundsUndersteerLoopStartMsString = $"{_soundsUndersteerLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsUndersteerLoopStartMsString = $"{_soundsUndersteerLoopStartMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -13336,7 +13619,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsUndersteerLoopEndMsString()
 	{
-		SoundsUndersteerLoopEndMsString = $"{_soundsUndersteerLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsUndersteerLoopEndMsString = $"{_soundsUndersteerLoopEndMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -13513,7 +13796,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsOversteerLoopStartMsString()
 	{
-		SoundsOversteerLoopStartMsString = $"{_soundsOversteerLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsOversteerLoopStartMsString = $"{_soundsOversteerLoopStartMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -13566,7 +13849,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsOversteerLoopEndMsString()
 	{
-		SoundsOversteerLoopEndMsString = $"{_soundsOversteerLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsOversteerLoopEndMsString = $"{_soundsOversteerLoopEndMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -13743,7 +14026,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsSeatOfPantsLoopStartMsString()
 	{
-		SoundsSeatOfPantsLoopStartMsString = $"{_soundsSeatOfPantsLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsSeatOfPantsLoopStartMsString = $"{_soundsSeatOfPantsLoopStartMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -13796,7 +14079,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsSeatOfPantsLoopEndMsString()
 	{
-		SoundsSeatOfPantsLoopEndMsString = $"{_soundsSeatOfPantsLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsSeatOfPantsLoopEndMsString = $"{_soundsSeatOfPantsLoopEndMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -13973,7 +14256,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsBrakeThrottleWarningLoopStartMsString()
 	{
-		SoundsBrakeThrottleWarningLoopStartMsString = $"{_soundsBrakeThrottleWarningLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsBrakeThrottleWarningLoopStartMsString = $"{_soundsBrakeThrottleWarningLoopStartMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -14026,7 +14309,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsBrakeThrottleWarningLoopEndMsString()
 	{
-		SoundsBrakeThrottleWarningLoopEndMsString = $"{_soundsBrakeThrottleWarningLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsBrakeThrottleWarningLoopEndMsString = $"{_soundsBrakeThrottleWarningLoopEndMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -14203,7 +14486,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsFfbClippingLoopStartMsString()
 	{
-		SoundsFfbClippingLoopStartMsString = $"{_soundsFfbClippingLoopStartMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsFfbClippingLoopStartMsString = $"{_soundsFfbClippingLoopStartMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -14256,7 +14539,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateSoundsFfbClippingLoopEndMsString()
 	{
-		SoundsFfbClippingLoopEndMsString = $"{_soundsFfbClippingLoopEndMs:F0} {DataContext.Instance.Localization[ "Milliseconds" ]}";
+		SoundsFfbClippingLoopEndMsString = $"{_soundsFfbClippingLoopEndMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
 
 	#endregion
@@ -15560,7 +15843,7 @@ public class Settings : INotifyPropertyChanged
 
 	private void UpdateCommentarySpotterCarProximityReminderIntervalString()
 	{
-		CommentarySpotterCarProximityReminderIntervalString = $"{_commentarySpotterCarProximityReminderInterval:F1} {DataContext.Instance.Localization[ "SecondsUnits" ]}";
+		CommentarySpotterCarProximityReminderIntervalString = $"{_commentarySpotterCarProximityReminderInterval:F1}{DataContext.Instance.Localization[ "SecondsUnits" ]}";
 	}
 
 	#endregion

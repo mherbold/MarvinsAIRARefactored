@@ -1354,10 +1354,10 @@
     <value>Selectează volanul tău cu forță de reacție din lista de mai jos.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Nu îți vezi volanul? Asigură-te că este pornit și conectat și lista se va actualiza automat.</value>
+    <value>Nu îți vezi volanul? Asigură-te că este pornit și conectat și lista se va actualiza automat.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Utilizatori Fanatec: volanele Fanatec apar de obicei ca două dispozitive separate în listă. Dacă cel selectat nu funcționează, încearcă celălalt!</value>
+    <value>Utilizatori Fanatec: volanele Fanatec apar de obicei ca două dispozitive separate în listă. Dacă cel selectat nu funcționează, încearcă celălalt!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Forța maximă a volanului</value>
@@ -1366,10 +1366,10 @@
     <value>Introdu forța maximă pe care baza ta o poate produce, în Newton-metri (Nm). MAIRA folosește această valoare pentru a scala corect toată ieșirea de forță de reacție pentru hardware-ul tău.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Am făcut cea mai bună estimare bazată pe volanul selectat, dar ești liber să o ajustezi dacă este necesar.</value>
+    <value>Am făcut cea mai bună estimare bazată pe volanul selectat, dar ești liber să o ajustezi dacă este necesar.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Important: dacă ai limitat deja cuplul maxim al volanului în software-ul producătorului (ex.: Fanatec Wheel Control Panel, Moza Pit House etc.), introdu acea valoare redusă aici în loc de maximul fizic al hardware-ului. MAIRA trebuie să știe ce va livra efectiv volanul tău, nu de ce este capabil teoretic.</value>
+    <value>Important: dacă ai limitat deja cuplul maxim al volanului în software-ul producătorului (ex.: Fanatec Wheel Control Panel, Moza Pit House etc.), introdu acea valoare redusă aici în loc de maximul fizic al hardware-ului. MAIRA trebuie să știe ce va livra efectiv volanul tău, nu de ce este capabil teoretic.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Controale forță</value>
@@ -1381,7 +1381,7 @@
     <value>Fă clic pe butoanele - și + de mai jos pentru a atribui intrări fiecăruia. Acest pas este opțional; poți să-l sari și să configurezi atribuirile mai târziu din pagina Volan.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Odată ce o intrare este atribuită, marginea butonului va deveni portocalie ca confirmare.</value>
+    <value>Odată ce o intrare este atribuită, marginea butonului va deveni portocalie ca confirmare.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Forță</value>
@@ -1408,7 +1408,7 @@
     <value>Mai întâi, ajustează marja țintă automată după preferință, apoi atribuie butoanele Setare și Ștergere.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Ținta automată stabilește unde în gama de forță a volanului ar trebui să cadă vârful măsurat. Scade ținta pentru a păstra mai multă marjă deasupra vârfului; crește-o pentru a utiliza mai mult din gama volanului.</value>
+    <value>Ținta automată stabilește unde în gama de forță a volanului ar trebui să cadă vârful măsurat. Scade ținta pentru a păstra mai multă marjă deasupra vârfului; crește-o pentru a utiliza mai mult din gama volanului.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritm</value>
@@ -1499,9 +1499,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Sfârșit buclă</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Comentariu</value>
@@ -1651,7 +1648,7 @@
     <value>Inițializare simulator...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Inițializare intrare directă...</value>
+    <value>Inițializare DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Inițializare Stream Deck...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Profiluri controler</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Redenumește profilul</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Redenumește profilul controllerului</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Procese în execuție</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtrează după nume sau cale...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Se caută aplicațiile în execuție...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Vizibilitatea ferestrei</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Afișați / ascundeți fereastra</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Dimensiunea pasului</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Interval de verificare a actualizărilor</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Șterge vopselele la închiderea iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Verifică actualizări la interval</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Antrenament</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Calificări</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Cursă</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Stare</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inactiv</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Activ</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Suprimat</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Șterge programele de instalare vechi</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Diverse</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Deschide folderul documente</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(neasociat)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activează poziția și scalarea suprapunerii pentru fiecare mașină</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Sursă 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Limitator moale</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Maxim</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Minim</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Protecție la coliziune</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Putere parcat</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Blocare moale</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Sursă blocare moale</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Fricțiune</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Centrare volan</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Sursă centrare volan</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Forță subviraj</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Doi poli</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Intrare</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Intrare A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Intrare B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Adaugă modul</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Începe cu un grafic gol</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Diferență</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Sursă viteză volan</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Surse</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP generic</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mixere</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Efecte</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Alte efecte</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

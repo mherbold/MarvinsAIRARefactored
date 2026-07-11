@@ -88,6 +88,15 @@ public static class FFBValueFormats
 			return $"{percent} ({torque})";
 		};
 
+	/// <summary>Gain-style multiplier: "1.50x" — the x marks the value as a scale factor, not an absolute amount.</summary>
+	public static Func<FFBFormatContext, string> Multiplier( int decimals )
+		=> ctx => Fixed( ctx.Value, decimals ) + "x";
+
+	/// <summary>Wrap a formatter to render localized "OFF" at the value that makes the stage a pass-through
+	/// (0 for most strengths/curves, a range end for things like Maximum or ParkedStrength).</summary>
+	public static Func<FFBFormatContext, string> WithOff( Func<FFBFormatContext, string> inner, float offValue = 0f )
+		=> ctx => ctx.Value == offValue ? FFBFormatContext.Localized( "OFF" ) : inner( ctx );
+
 	/// <summary>Compressor.Ratio: "4.0:1" — N Nm over the threshold in, 1 Nm out. The stored value is the ratio
 	/// number itself, so the knob's click-to-type edit (first-float parse) round-trips naturally.</summary>
 	public static readonly Func<FFBFormatContext, string> Ratio = ctx => Fixed( ctx.Value, 1 ) + ":1";

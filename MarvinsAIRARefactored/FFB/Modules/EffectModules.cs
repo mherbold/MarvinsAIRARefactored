@@ -4,12 +4,14 @@ using MarvinsAIRARefactored.Components;
 
 namespace MarvinsAIRARefactored.FFB.Modules;
 
-// Effect modules operate on the Nm main bus. Multiplicative effects (crash scale, parked strength, decrease-
-// force) are scale-invariant and apply identically in Nm or normalized space; additive effects (LFE, soft
-// lock, friction, centering, increase-force) scale their contribution by ctx.MaxForce because the old code
-// added a normalized contribution to the normalized bus. Under the neutral preview/parity context every
-// effect is inert (all aux telemetry zero, IsOnTrack false, no protection pulses), so they pass input A
-// through unchanged — matching the old preview which only showed the algorithm.
+// Effect modules operate on the Nm main bus. Multiplicative effects (crash scale, decrease-force) are
+// scale-invariant and apply identically in Nm or normalized space; additive effects (increase-force) scale
+// their contribution by ctx.MaxForce because the old code added a normalized contribution to the normalized
+// bus. (The old purely-additive effects — LFE, friction, soft lock, wheel centering — are source modules in
+// SourceModules.cs now, summed in with Add.) The preview replay rebuilds the context from the
+// recording's telemetry (with the protection pulses re-derived from the recorded raw G forces / shock
+// velocity against the current thresholds), so effects render in the preview just as they behaved live;
+// older two-column recordings replay with zero telemetry, leaving these modules inert like the old preview.
 
 /// <summary>
 /// Crash protection (old 1266–1290 + scale 1398). PrePass advances the timer (re-armed by the one-tick
@@ -43,7 +45,7 @@ public sealed class CrashProtectionModule : FFBModule
 			return;
 		}
 
-		if ( ctx.CrashProtectionTriggered )
+		if ( ctx.CrashProtectionTriggered || TestActive )
 		{
 			_timerMS = _v[ Duration ] * 1000f + RecoveryTimeMS;
 		}
@@ -104,7 +106,7 @@ public sealed class CurbProtectionModule : FFBModule
 			return;
 		}
 
-		if ( ctx.CurbProtectionTriggered )
+		if ( ctx.CurbProtectionTriggered || TestActive )
 		{
 			_timerMS = _v[ Duration ] * 1000f;
 		}
@@ -129,120 +131,6 @@ public sealed class CurbProtectionModule : FFBModule
 		// Disabled or a would-do-nothing configuration (zero duration or zero force reduction) publishes an "off"
 		// threshold (0) so Simulator never triggers it — same effect as the old ShockVelocity/Duration/ForceReduction guards.
 		Owner.CurbShockVelocityThreshold = ( !Enabled || ( _v[ Duration ] <= 0f ) || ( _v[ ForceReduction ] <= 0f ) ) ? 0f : _v[ ShockVelocity ];
-	}
-}
-
-/// <summary>Reduce forces when parked (old 1406–1409): <c>× Lerp(1, Strength, ParkedFactor)</c>.</summary>
-public sealed class ParkedStrengthModule : FFBModule
-{
-	private const int Strength = 1;
-
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		var strength = _v[ Strength ];
-
-		if ( strength < 1f )
-		{
-			return inputA * MathZ.Lerp( 1f, strength, ctx.ParkedFactor );
-		}
-
-		return inputA;
-	}
-}
-
-/// <summary>Soft lock (old 1420–1435). Additive, scaled by MaxForce.</summary>
-public sealed class SoftLockModule : FFBModule
-{
-	private const int Strength = 1;
-
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		var strength = _v[ Strength ];
-
-		if ( strength > 0f )
-		{
-			var deltaToMax = ( ctx.SteeringWheelAngleMax * 0.5f ) - MathF.Abs( ctx.SteeringWheelAngle );
-
-			if ( deltaToMax < 0f )
-			{
-				var sign = MathF.Sign( ctx.SteeringWheelAngle );
-
-				var contribution = sign * deltaToMax * 2f * strength;
-
-				if ( MathF.Sign( ctx.WheelVelocity ) != sign )
-				{
-					contribution += ctx.WheelVelocity * strength;
-				}
-
-				return inputA + contribution * ctx.MaxForce;
-			}
-		}
-
-		return inputA;
-	}
-}
-
-/// <summary>Racing + parked friction (old 1439–1449 merged). Additive, scaled by MaxForce.</summary>
-public sealed class FrictionModule : FFBModule
-{
-	private const int RacingFriction = 1;
-	private const int ParkedFriction = 2;
-
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		var contribution = 0f;
-
-		var racingFriction = _v[ RacingFriction ];
-
-		if ( racingFriction > 0f )
-		{
-			contribution += MathZ.Lerp( ctx.WheelVelocity * racingFriction, 0f, ctx.ParkedFactor );
-		}
-
-		var parkedFriction = _v[ ParkedFriction ];
-
-		if ( parkedFriction > 0f )
-		{
-			contribution += MathZ.Lerp( 0f, ctx.WheelVelocity * parkedFriction, ctx.ParkedFactor );
-		}
-
-		if ( contribution != 0f )
-		{
-			return inputA + contribution * ctx.MaxForce;
-		}
-
-		return inputA;
-	}
-}
-
-/// <summary>Wheel centering while racing / parked (old 1453–1461), gated on IsOnTrack. Additive × MaxForce.</summary>
-public sealed class WheelCenteringModule : FFBModule
-{
-	private const int Strength = 1;
-	private const int WhileRacing = 2;
-	private const int WhileParked = 3;
-
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		if ( ctx.IsOnTrack )
-		{
-			var centeringForce = Math.Clamp( ( Math.Clamp( ctx.WheelPosition, -0.25f, 0.25f ) + ctx.WheelVelocity * 0.1f ) * _v[ Strength ], -1f, 1f );
-
-			var racingCenteringForce = ( _v[ WhileRacing ] != 0f ) ? centeringForce : 0f;
-			var parkedCenteringForce = ( _v[ WhileParked ] != 0f ) ? centeringForce : 0f;
-
-			return inputA + MathZ.Lerp( racingCenteringForce, parkedCenteringForce, ctx.ParkedFactor ) * ctx.MaxForce;
-		}
-
-		return inputA;
 	}
 }
 
@@ -330,6 +218,60 @@ public sealed class SeatOfPantsForceModule : FFBModule
 				case RacingWheel.ConstantForceDirection.IncreaseForce:
 					return inputA - constantForceTorque * ctx.MaxForce;
 			}
+		}
+
+		return inputA;
+	}
+}
+
+/// <summary>
+/// Speed-ramped gain: scales the signal from <c>GainAtMin</c> at/below <c>MinSpeed</c> to <c>GainAtMax</c>
+/// at/above <c>MaxSpeed</c> (both in m/s). Lightens parking or stiffens at speed. Defaults are unity (no effect).
+/// The preview replay uses the recording's real velocity (older two-column recordings replay as zero); the
+/// test toggle pins the preview to min speed so the parked end of the ramp can be inspected regardless of
+/// what was recorded.
+/// </summary>
+public sealed class SpeedGainModule : FFBModule
+{
+	private const int MinSpeed = 1;
+	private const int MaxSpeed = 2;
+	private const int GainAtMin = 3;
+	private const int GainAtMax = 4;
+
+	public override void Reset() { }
+
+	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
+	{
+		var velocityMS = ( ctx.IsPreview && TestActive ) ? _v[ MinSpeed ] : ctx.VelocityMS;
+
+		var t = MathZ.InverseLerp( _v[ MinSpeed ], _v[ MaxSpeed ], velocityMS );
+
+		return inputA * MathZ.Lerp( _v[ GainAtMin ], _v[ GainAtMax ], t );
+	}
+}
+
+/// <summary>
+/// Tiny high-frequency dither added while the signal magnitude is below <c>Threshold</c> — alternates sign each
+/// tick to break static friction on gear-driven wheels near center. Above the threshold it passes through.
+/// (This is also the modern replacement for the old output minimum: instead of forcing small signals up to a
+/// hard floor, the dither keeps the wheel's mechanism live below the floor level.)
+/// </summary>
+public sealed class TorqueDitherModule : FFBModule
+{
+	private const int Strength = 1;
+	private const int Threshold = 2;
+
+	private float _sign = 1f;
+
+	public override void Reset() => _sign = 1f;
+
+	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
+	{
+		if ( MathF.Abs( inputA / ctx.MaxForce ) < _v[ Threshold ] )
+		{
+			_sign = -_sign;
+
+			return inputA + _sign * _v[ Strength ] * ctx.MaxForce;
 		}
 
 		return inputA;

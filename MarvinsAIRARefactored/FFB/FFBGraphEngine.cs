@@ -17,7 +17,7 @@ public sealed class FFBGraphEngine
 	private FFBModule[] _modules = [];
 	private FFBModuleDescriptor[] _descriptors = [];
 	private float[] _signals = [];
-	private int _source360Index;
+	private int _fallbackSourceIndex;
 
 	private readonly Dictionary<string, int> _indexById = new( StringComparer.Ordinal );
 
@@ -41,15 +41,24 @@ public sealed class FFBGraphEngine
 	public FFBGraph? Graph { get; private set; }
 
 	/// <summary>
-	/// Rebuild the engine from a graph model. UI thread only; allocates the module and signal arrays. A module
-	/// may only reference an EARLIER module's output (or a source); forward/dangling references fall back to the
-	/// 360 Hz source, which also covers reorder/remove edges.
+	/// Rebuild the engine from a graph model, plus the optional vibration graph whose generator modules are
+	/// appended after the main chain (generators have no signal inputs and only feed the vibration bus, so
+	/// their position in the evaluation order is irrelevant). UI thread only; allocates the module and signal
+	/// arrays. A module may only reference an EARLIER module's output (or a source); forward/dangling references
+	/// fall back to the 360 Hz source, which also covers reorder/remove edges.
 	/// </summary>
-	public void Rebuild( FFBGraph graph )
+	public void Rebuild( FFBGraph graph, FFBGraph? vibrationGraph = null )
 	{
 		Graph = graph;
 
-		var moduleCount = graph.Modules.Count;
+		var allModules = new List<FFBModuleData>( graph.Modules );
+
+		if ( vibrationGraph != null )
+		{
+			allModules.AddRange( vibrationGraph.Modules );
+		}
+
+		var moduleCount = allModules.Count;
 
 		var modules = new FFBModule[ moduleCount ];
 		var descriptors = new FFBModuleDescriptor[ moduleCount ];
@@ -58,16 +67,33 @@ public sealed class FFBGraphEngine
 
 		for ( var i = 0; i < moduleCount; i++ )
 		{
-			_indexById[ graph.Modules[ i ].ModuleId ] = i;
+			_indexById[ allModules[ i ].ModuleId ] = i;
 		}
 
-		// locate the 360 Hz source (the fallback target for invalid input references)
+		// locate the fallback target for invalid input references: the 360 Hz source, then the 60 Hz source,
+		// then any other source present (the editor guarantees a graph never ends up source-less, so index 0
+		// is a defensive last resort only)
 
-		_source360Index = _indexById.TryGetValue( FFBGraph.Source360ModuleId, out var source360Index ) ? source360Index : 0;
+		if ( !_indexById.TryGetValue( FFBGraph.Source360ModuleId, out var fallbackSourceIndex ) && !_indexById.TryGetValue( FFBGraph.Source60ModuleId, out fallbackSourceIndex ) )
+		{
+			fallbackSourceIndex = 0;
+
+			for ( var i = 0; i < moduleCount; i++ )
+			{
+				if ( FFBModuleRegistry.TryGet( allModules[ i ].ModuleType )?.IsSource == true )
+				{
+					fallbackSourceIndex = i;
+
+					break;
+				}
+			}
+		}
+
+		_fallbackSourceIndex = fallbackSourceIndex;
 
 		for ( var i = 0; i < moduleCount; i++ )
 		{
-			var model = graph.Modules[ i ];
+			var model = allModules[ i ];
 
 			var descriptor = FFBModuleRegistry.TryGet( model.ModuleType ) ?? FFBModuleRegistry.Get( FFBModuleRegistry.Source360HzType );
 
@@ -92,7 +118,7 @@ public sealed class FFBGraphEngine
 		RefreshAggregates();
 	}
 
-	/// <summary>An input reference is valid only if it resolves to an EARLIER module; otherwise fall back to the 360 Hz source.</summary>
+	/// <summary>An input reference is valid only if it resolves to an EARLIER module; otherwise fall back to the fallback source.</summary>
 	private int ResolveInput( string moduleId, int consumerIndex )
 	{
 		if ( _indexById.TryGetValue( moduleId, out var index ) && ( index < consumerIndex ) )
@@ -100,7 +126,7 @@ public sealed class FFBGraphEngine
 			return index;
 		}
 
-		return _source360Index;
+		return _fallbackSourceIndex;
 	}
 
 	/// <summary>Zero every module's internal state (used before a preview replay and on graph/context change).</summary>
@@ -130,6 +156,17 @@ public sealed class FFBGraphEngine
 		for ( var i = 0; i < _modules.Length; i++ )
 		{
 			_modules[ i ].PublishAggregates();
+		}
+	}
+
+	/// <summary>Edit-time write of a module's session-only test override (see <see cref="FFBModule.TestActive"/>).
+	/// Atomic bool write, tolerated by the 360 Hz reader. Lost on Rebuild by design — the editor re-applies it
+	/// to the preview engine on every preview refresh.</summary>
+	public void SetTestActive( string moduleId, bool active )
+	{
+		if ( _indexById.TryGetValue( moduleId, out var index ) )
+		{
+			_modules[ index ].TestActive = active;
 		}
 	}
 
@@ -170,15 +207,15 @@ public sealed class FFBGraphEngine
 		return ( index >= 0 ) && ( index < signals.Length ) ? signals[ index ] : 0f;
 	}
 
-	/// <summary>A module's resolved input indices (already fallback-resolved to the 360 Hz source where the
-	/// stored reference was invalid). Preview taps only; returns sources for an out-of-range index.</summary>
+	/// <summary>A module's resolved input indices (already fallback-resolved to the fallback source where the
+	/// stored reference was invalid). Preview taps only; returns the fallback source for an out-of-range index.</summary>
 	public ( int inputAIndex, int inputBIndex ) GetResolvedInputs( int index )
 	{
 		var modules = _modules;
 
 		if ( ( index < 0 ) || ( index >= modules.Length ) )
 		{
-			return ( _source360Index, _source360Index );
+			return ( _fallbackSourceIndex, _fallbackSourceIndex );
 		}
 
 		return ( modules[ index ].InputAIndex, modules[ index ].InputBIndex );
@@ -193,6 +230,7 @@ public sealed class FFBGraphEngine
 	public void Process( in FFBTickContext ctx )
 	{
 		var modules = _modules;
+		var descriptors = _descriptors;
 		var signals = _signals;
 
 		VibrationOutput = 0f;
@@ -221,13 +259,15 @@ public sealed class FFBGraphEngine
 					VibrationOutput += module.Process( in ctx, inputA, inputB );
 				}
 			}
-			else if ( module.Enabled || module.IsSource )
+			else if ( module.Enabled )
 			{
 				signals[ i ] = module.Process( in ctx, inputA, inputB );
 			}
 			else
 			{
-				signals[ i ] = inputA;   // disabled module passes input A through
+				// disabled module passes input A through; a disabled inputless module (any source) has nothing
+				// to pass — it goes silent (its input indices only hold the fallback source, never a real wiring)
+				signals[ i ] = descriptors[ i ].SignalInputCount == 0 ? 0f : inputA;
 			}
 
 			if ( module.IsOutput )

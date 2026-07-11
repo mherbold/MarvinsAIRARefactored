@@ -1414,10 +1414,10 @@
     <value>Изберете вашия волан със силова обратна връзка от списъка отдолу.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Не виждате волана си? Уверете се, че е включен и свързан, след което списъкът ще се обнови автоматично.</value>
+    <value>Не виждате волана си? Уверете се, че е включен и свързан, след което списъкът ще се обнови автоматично.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Потребители на Fanatec: воланите Fanatec обикновено се показват като две отделни устройства в списъка. Ако избраното не работи, опитайте да изберете другото!</value>
+    <value>Потребители на Fanatec: воланите Fanatec обикновено се показват като две отделни устройства в списъка. Ако избраното не работи, опитайте да изберете другото!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Максимална сила на волана</value>
@@ -1426,10 +1426,10 @@
     <value>Въведете максималната сила, която вашата база на волана е способна да произведе, в нютон-метри (Nm). MAIRA използва тази стойност, за да мащабира правилно цялата силова обратна връзка за вашия хардуер.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Направихме предположение въз основа на избрания волан — но можете да го коригирате при необходимост.</value>
+    <value>Направихме предположение въз основа на избрания волан — но можете да го коригирате при необходимост.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Важно: Ако вече сте ограничили максималния въртящ момент на волана си в софтуера на производителя (напр. Fanatec Wheel Control Panel, Moza Pit House и т.н.), въведете тази намалена стойност тук вместо физическия максимум на хардуера. MAIRA трябва да знае какво вашият волан реално ще достави, а не на какво е способен на теория.</value>
+    <value>Важно: Ако вече сте ограничили максималния въртящ момент на волана си в софтуера на производителя (напр. Fanatec Wheel Control Panel, Moza Pit House и т.н.), въведете тази намалена стойност тук вместо физическия максимум на хардуера. MAIRA трябва да знае какво вашият волан реално ще достави, а не на какво е способен на теория.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Контроли за силата</value>
@@ -1441,7 +1441,7 @@
     <value>Кликнете върху бутоните - и + отдолу, за да зададете входове за всеки от тях. Тази стъпка е по желание — можете да я пропуснете и да настроите обвързванията по-късно от страницата Състезателен волан.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> След като входът е картографиран, рамката на бутона ще стане оранжева, за да потвърди това.</value>
+    <value>След като входът е картографиран, рамката на бутона ще стане оранжева, за да потвърди това.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Сила</value>
@@ -1468,7 +1468,7 @@
     <value>Първо коригирайте резерва на Автоматичната цел по вкус, след което картографирайте бутоните Задаване и Изчистване.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Автоматичната цел задава къде в силовия диапазон на волана трябва да попадне измереният пик. Намалете целта, за да запазите повече резерв над пика; увеличете я, за да използвате повече от диапазона на волана.</value>
+    <value>Автоматичната цел задава къде в силовия диапазон на волана трябва да попадне измереният пик. Намалете целта, за да запазите повече резерв над пика; увеличете я, за да използвате повече от диапазона на волана.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Алгоритъм</value>
@@ -1559,9 +1559,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Край на цикъла</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Коментар</value>
@@ -1714,7 +1711,7 @@
     <value>Инициализиране на симулатора...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Инициализиране на direct input...</value>
+    <value>Инициализиране на DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Инициализиране на Stream Deck...</value>
@@ -1772,45 +1769,65 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Инициализиране на главния прозорец...</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Изпълнявани процеси</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Филтриране по име или път...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Търсене на работещи приложения...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Видимост на прозореца</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Покажи / скрий прозореца</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Размер на стъпката</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Интервал на проверка за актуализации</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> ч</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Изтриване на боите при затваряне на iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Проверка за актуализации на интервал</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Тренировка</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Квалификация</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Състезание</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Състояние</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Бездействие</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Активен</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Потиснат</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Изтриване на старите инсталатори</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Разни</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Отвори папката с документи</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1818,9 +1835,11 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Баланс</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Активиране на позиция и мащаб на наслагването за всяка кола</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Източник 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1871,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Мек лимитер</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Максимум</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Минимум</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Защита при удар</value>
   </data>
@@ -1886,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Сила при паркиране</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Меко заключване</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Източник меко заключване</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Триене</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Центриране на волана</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Източник центриране на волана</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Сила при недозавиване</value>
@@ -2000,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Два полюса</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Вход</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Вход A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Вход B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Добавяне на модул</value>
   </data>
@@ -2030,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Започване с празна графика</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Изваждане</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Източник скорост на волана</value>
+  </data>
 
 
 
@@ -2052,4 +2062,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Източници</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Общи DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Миксери</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Ефекти</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Други ефекти</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

@@ -406,7 +406,7 @@ public static class MappableActionCatalog
 
 			if ( settings.RacingWheelInputMappedSettingUpdateEnabled )
 			{
-				var autoTorqueString = $"{app.RacingWheel.GetCurrentAutoTorque():F1} {Loc[ "TorqueUnits" ]}";
+				var autoTorqueString = $"{app.RacingWheel.GetCurrentAutoTorque():F1}{Loc[ "TorqueUnits" ]}";
 
 				RacingWheel.SendChatMessage( "OverallStrength", "Set", autoTorqueString );
 			}

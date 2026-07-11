@@ -239,6 +239,23 @@ public partial class RacingWheelPage : UserControl
 		DeleteGraph_MairaButton.Disabled = isBuiltIn;
 		ResetGraph_MairaButton.Visibility = isBuiltIn ? Visibility.Visible : Visibility.Collapsed;
 
+		// same treatment for the vibration graph selector
+		var vibrationItems = new List<KeyValuePair<string, string>>();
+
+		foreach ( var graphName in settings.RacingWheelVibrationGraphs.Keys )
+		{
+			vibrationItems.Add( new KeyValuePair<string, string>( graphName, graphName ) );
+		}
+
+		VibrationGraph_MairaComboBox.ItemsSource = vibrationItems;
+		VibrationGraph_MairaComboBox.SelectedValue = settings.RacingWheelSelectedVibrationGraphName;
+
+		var vibrationIsBuiltIn = settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var vibrationGraph ) && vibrationGraph.IsBuiltIn;
+
+		RenameVibrationGraph_MairaButton.Disabled = vibrationIsBuiltIn;
+		DeleteVibrationGraph_MairaButton.Disabled = vibrationIsBuiltIn;
+		ResetVibrationGraph_MairaButton.Visibility = vibrationIsBuiltIn ? Visibility.Visible : Visibility.Collapsed;
+
 		_refreshingGraphSelector = false;
 
 		// Rebuild the module cards so their (localized) module names and setting labels refresh — this runs from
@@ -380,10 +397,139 @@ public partial class RacingWheelPage : UserControl
 		UpdateFFBGraphOptions();
 	}
 
-	private void AddModule_MairaButton_Click( object sender, RoutedEventArgs e )
+	private void VibrationGraph_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
-		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.AddSelectedModule();
+		if ( _refreshingGraphSelector )
+		{
+			return;
+		}
+
+		if ( VibrationGraph_MairaComboBox.SelectedValue is not string graphName )
+		{
+			return;
+		}
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		if ( graphName == settings.RacingWheelSelectedVibrationGraphName )
+		{
+			return;
+		}
+
+		settings.SelectVibrationGraph( graphName );
+
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
 	}
+
+	private void NewVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var window = new NewFFBGraphWindow { Owner = app.MainWindow };
+
+		window.ShowDialog();
+
+		if ( !window.Confirmed )
+		{
+			return;
+		}
+
+		var name = window.GraphName.Trim();
+
+		if ( ( name == string.Empty ) || settings.RacingWheelVibrationGraphs.ContainsKey( name ) )
+		{
+			return;
+		}
+
+		settings.CreateVibrationGraph( name, window.CopyFromCurrent );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
+	}
+
+	private void RenameVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var currentName = settings.RacingWheelSelectedVibrationGraphName;
+
+		if ( settings.RacingWheelVibrationGraphs.TryGetValue( currentName, out var currentGraph ) && currentGraph.IsBuiltIn )
+		{
+			return;
+		}
+
+		var window = new RenameControllerProfileWindow( currentName ) { Owner = app.MainWindow };
+
+		window.ShowDialog();
+
+		if ( !window.Confirmed )
+		{
+			return;
+		}
+
+		var newName = window.ProfileName.Trim();
+
+		if ( ( newName == string.Empty ) || ( newName == currentName ) || settings.RacingWheelVibrationGraphs.ContainsKey( newName ) )
+		{
+			return;
+		}
+
+		settings.RenameVibrationGraph( currentName, newName );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
+	}
+
+	private void DeleteVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		var currentName = settings.RacingWheelSelectedVibrationGraphName;
+
+		if ( settings.RacingWheelVibrationGraphs.TryGetValue( currentName, out var currentGraph ) && currentGraph.IsBuiltIn )
+		{
+			return;
+		}
+
+		var window = new DeleteControllerProfileWindow( currentName ) { Owner = app.MainWindow };
+
+		window.ShowDialog();
+
+		if ( !window.Confirmed )
+		{
+			return;
+		}
+
+		settings.DeleteVibrationGraph( currentName );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
+	}
+
+	private void ResetVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		settings.ResetBuiltInVibrationGraph( settings.RacingWheelSelectedVibrationGraphName );
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
+	}
+
 
 	private void RemoveModule_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
@@ -393,9 +539,26 @@ public partial class RacingWheelPage : UserControl
 		}
 	}
 
+	private void TestModule_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
+		{
+			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.ToggleTestActive( moduleViewModel );
+		}
+	}
+
 	private void AddGeneratorModule_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
-		MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.AddSelectedGeneratorModule();
+		var viewModel = MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel;
+
+		var window = new AddFFBModuleWindow( viewModel.AddableGeneratorModuleTypes ) { Owner = App.Instance!.MainWindow };
+
+		window.ShowDialog();
+
+		if ( window.SelectedModuleType != null )
+		{
+			viewModel.AddModule( window.SelectedModuleType );
+		}
 	}
 
 	private void ChooseRecording_MairaButton_Click( object sender, RoutedEventArgs e )

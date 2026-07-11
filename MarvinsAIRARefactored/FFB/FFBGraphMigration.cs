@@ -22,6 +22,10 @@ public static class FFBGraphMigration
 {
 	// ---- built-in graph display names -------------------------------------------------------------------
 
+	// The single built-in vibration graph (the six old generator effects). Graph names are stored keys, not
+	// localized — same convention as the built-in FFB graph names below.
+	public const string BuiltInVibrationGraphName = "Default";
+
 	public static string BuiltInGraphNameFor( RacingWheel.Algorithm algorithm )
 	{
 		return algorithm switch
@@ -149,6 +153,9 @@ public static class FFBGraphMigration
 			return id;
 		}
 
+		// Sources are optional per-graph now — only the two torque sources are always present (every algorithm
+		// uses them and the prediction settings live on the 60 Hz source); the other sources are added by the
+		// stage that needs them (see AddSource).
 		public void AddSources( SettingsSource src )
 		{
 			var source60 = new FFBModuleData( FFBGraph.Source60ModuleId, FFBModuleRegistry.Source60HzType );
@@ -159,41 +166,64 @@ public static class FFBGraphMigration
 			Graph.Modules.Add( source60 );
 
 			Graph.Modules.Add( new FFBModuleData( FFBGraph.Source360ModuleId, FFBModuleRegistry.Source360HzType ) );
-			Graph.Modules.Add( new FFBModuleData( FFBGraph.SourceLFEModuleId, FFBModuleRegistry.SourceLFEType ) );
+		}
+
+		/// <summary>Add a source module under its canonical id (skipped when already present — one per type).</summary>
+		public string AddSource( string moduleId, string moduleType, params (string key, float value)[] values )
+		{
+			if ( !Graph.Modules.Any( module => module.ModuleId == moduleId ) )
+			{
+				var data = new FFBModuleData( moduleId, moduleType );
+
+				foreach ( var (key, value) in values )
+				{
+					data.SettingValues[ key ] = value;
+				}
+
+				Graph.Modules.Add( data );
+			}
+
+			return moduleId;
 		}
 
 		public void AddOutput( string inputA, SettingsSource src )
 		{
-			// Old settings expressed output minimum/maximum as a fraction of full scale; the new modules take Nm, so
-			// convert with this source's MaxForce (= WheelForce / Strength; MaxForce itself is not a per-context
-			// property, but WheelForce and Strength are, so this yields the right per-context full-scale reference).
-			var wheelForce = src.F( "RacingWheelWheelForce" );
-			var strength = src.F( "RacingWheelStrength" );
-			var maxForce = strength != 0f ? wheelForce / strength : wheelForce;
-
 			var oldMinimum = src.F( "RacingWheelOutputMinimum" );   // fraction of full scale (0..0.5)
 			var oldMaximum = src.F( "RacingWheelOutputMaximum" );   // fraction of full scale (0.2..1)
 
-			// The old Output applied, in order, curve -> soft limiter -> maximum -> minimum on the normalized signal.
-			// Reproduce that with standalone modules ahead of a bare Output. Each stage's Enabled mirrors the old
-			// guard (curve always ran and is an identity at 0; soft clip = its toggle; maximum active iff < full
-			// scale; minimum active iff > 0) so a disabled stage passes the signal through exactly as before.
-			var curve = Add( FFBModuleRegistry.CurveType, inputA, ( "Curve", src.F( "RacingWheelOutputCurve" ) ) );
+			// The old output minimum forced small signals up to a hard floor; its modern replacement is the
+			// torque dither module — instead of a floor, an alternating dither below the old floor level keeps
+			// the wheel's mechanism live (the dither strength is capped at its knob range; the old floor could
+			// legally be far larger than any sane dither).
+			var dither = inputA;
 
-			var softLimiter = Add( FFBModuleRegistry.SoftLimiterType, curve, ( "Enabled", src.B( "RacingWheelEnableSoftLimiter" ) ) );
-
-			var maximum = Add( FFBModuleRegistry.MaximumType, softLimiter,
-				( "Enabled", oldMaximum < 1f ? 1f : 0f ),
-				( "Maximum", oldMaximum * maxForce ) );
-
-			var minimum = Add( FFBModuleRegistry.MinimumType, maximum,
-				( "Enabled", oldMinimum > 0f ? 1f : 0f ),
-				( "Minimum", oldMinimum * maxForce ) );
-
-			Graph.Modules.Add( new FFBModuleData( FFBGraph.OutputModuleId, FFBModuleRegistry.OutputType )
+			if ( oldMinimum > 0f )
 			{
-				InputAModuleId = minimum
-			} );
+				dither = Add( FFBModuleRegistry.TorqueDitherType, inputA,
+					( "Strength", MathF.Min( oldMinimum, 0.05f ) ),
+					( "Threshold", oldMinimum ) );
+			}
+
+			var output = new FFBModuleData( FFBGraph.OutputModuleId, FFBModuleRegistry.OutputType )
+			{
+				InputAModuleId = dither
+			};
+
+			output.SettingValues[ "Curve" ] = src.F( "RacingWheelOutputCurve" );
+
+			// The old hard output maximum becomes the Output's soft limiter — deliberately soft, no attempt to
+			// emulate the hard ceiling: threshold at the old maximum with the default knee/ratio. When no old
+			// maximum was active the soft limiter simply carries the old enable flag (default curve approximation).
+			var oldMaximumActive = oldMaximum < 1f;
+
+			output.SettingValues[ "SoftLimiter" ] = ( oldMaximumActive || ( src.B( "RacingWheelEnableSoftLimiter" ) != 0f ) ) ? 1f : 0f;
+
+			if ( oldMaximumActive )
+			{
+				output.SettingValues[ "Threshold" ] = Math.Clamp( oldMaximum, 0f, 1f );
+			}
+
+			Graph.Modules.Add( output );
 		}
 	}
 
@@ -431,38 +461,103 @@ public static class FFBGraphMigration
 			( "Duration", src.F( "RacingWheelCrashProtectionDuration" ) ),
 			( "ForceReduction", src.F( "RacingWheelCrashProtectionForceReduction" ) ) );
 
-		var parked = builder.Add( FFBModuleRegistry.ParkedStrengthType, crash, ( "Strength", src.F( "RacingWheelParkedStrength" ) ) );
+		// the old parked strength is a SpeedGain configuration: its ramp was Lerp(1, Strength, saturate(1 − v/2.2352)),
+		// which is exactly GainAtMin = Strength at 0 m/s rising to GainAtMax = 1 at 2.2352 m/s (5 mph)
+		var parked = builder.Add( FFBModuleRegistry.SpeedGainType, crash,
+			( "MinSpeed", 0f ),
+			( "MaxSpeed", ParkedRampTopSpeedMS ),
+			( "GainAtMin", src.F( "RacingWheelParkedStrength" ) ),
+			( "GainAtMax", 1f ) );
 
 		// LFE is a source now — the old LFE mix stage becomes LFE source -> Gain (old strength) summed in by
-		// a Mixer; strength 0 meant no effect, so the whole stage is omitted there
+		// a Mixer; strength 0 meant no effect, so the whole stage (source included) is omitted there
 		var lfeStrength = src.F( "RacingWheelLFEStrength" );
 
 		var lfe = parked;
 
 		if ( lfeStrength > 0f )
 		{
-			var lfeGain = builder.Add( FFBModuleRegistry.GainType, FFBGraph.SourceLFEModuleId, ( "Gain", lfeStrength ) );
+			var lfeSource = builder.AddSource( FFBGraph.SourceLFEModuleId, FFBModuleRegistry.SourceLFEType );
+
+			var lfeGain = builder.Add( FFBModuleRegistry.GainType, lfeSource, ( "Gain", lfeStrength ) );
 
 			lfe = builder.Add2( FFBModuleRegistry.AddType, parked, lfeGain );
 		}
 
-		var softLock = builder.Add( FFBModuleRegistry.SoftLockType, lfe, ( "Strength", src.F( "RacingWheelSoftLockStrength" ) ) );
+		// Soft lock emits its force on its own branch now: source (strength knob) summed in by an Add.
+		// Strength 0 meant no effect, so the stage is omitted there.
+		var softLockStrength = src.F( "RacingWheelSoftLockStrength" );
 
-		var friction = builder.Add( FFBModuleRegistry.FrictionType, softLock,
-			( "RacingFriction", src.F( "RacingWheelFriction" ) ),
-			( "ParkedFriction", src.F( "RacingWheelParkedFriction" ) ) );
+		var softLock = lfe;
 
-		return builder.Add( FFBModuleRegistry.WheelCenteringType, friction,
-			( "Strength", src.F( "RacingWheelWheelCenteringStrength" ) ),
-			( "WhileRacing", src.B( "RacingWheelCenterWheelWhileRacing" ) ),
-			( "WhileParked", src.B( "RacingWheelCenterWheelWhileParked" ) ) );
+		if ( softLockStrength > 0f )
+		{
+			var softLockSource = builder.AddSource( FFBGraph.SourceSoftLockModuleId, FFBModuleRegistry.SourceSoftLockType,
+				( "Strength", softLockStrength ) );
+
+			softLock = builder.Add2( FFBModuleRegistry.AddType, lfe, softLockSource );
+		}
+
+		// The old fixed-function friction becomes a composition: wheel-velocity source scaled by a SpeedGain
+		// whose two gains reproduce the racing/parked coefficient crossfade (damping is linear, so blending
+		// the OUTPUTS of two dampers equals blending their coefficients), summed into the chain. Both
+		// strengths 0 (the defaults) meant no effect, so the whole stage is omitted there — matching the LFE
+		// stage's pattern above.
+		var racingFriction = src.F( "RacingWheelFriction" );
+		var parkedFriction = src.F( "RacingWheelParkedFriction" );
+
+		var friction = softLock;
+
+		if ( ( racingFriction > 0f ) || ( parkedFriction > 0f ) )
+		{
+			var wheelVelocitySource = builder.AddSource( FFBGraph.SourceWheelVelocityModuleId, FFBModuleRegistry.SourceWheelVelocityType );
+
+			var frictionGain = builder.Add( FFBModuleRegistry.SpeedGainType, wheelVelocitySource,
+				( "MinSpeed", 0f ),
+				( "MaxSpeed", ParkedRampTopSpeedMS ),
+				( "GainAtMin", parkedFriction * FrictionUnitConversion ),
+				( "GainAtMax", racingFriction * FrictionUnitConversion ) );
+
+			friction = builder.Add2( FFBModuleRegistry.AddType, softLock, frictionGain );
+		}
+
+		// Wheel centering emits its force on its own branch now (the while-racing/while-parked toggles are gone) —
+		// the old toggle gating was Lerp(racing, parked, parkedFactor), which is exactly a SpeedGain over the same
+		// 0–5 mph ramp with the toggles as its two gains (omitted when both toggles agree). Strength 0 or both
+		// toggles off meant no effect, so the whole stage is omitted there — same pattern as the LFE stage above.
+		var centeringStrength = src.F( "RacingWheelWheelCenteringStrength" );
+		var centerWhileRacing = src.B( "RacingWheelCenterWheelWhileRacing" );
+		var centerWhileParked = src.B( "RacingWheelCenterWheelWhileParked" );
+
+		var centering = friction;
+
+		if ( ( centeringStrength > 0f ) && ( ( centerWhileRacing != 0f ) || ( centerWhileParked != 0f ) ) )
+		{
+			var centeringForce = builder.AddSource( FFBGraph.SourceWheelCenteringModuleId, FFBModuleRegistry.SourceWheelCenteringType,
+				( "Strength", centeringStrength ) );
+
+			if ( centerWhileRacing != centerWhileParked )
+			{
+				centeringForce = builder.Add( FFBModuleRegistry.SpeedGainType, centeringForce,
+					( "MinSpeed", 0f ),
+					( "MaxSpeed", ParkedRampTopSpeedMS ),
+					( "GainAtMin", centerWhileParked ),
+					( "GainAtMax", centerWhileRacing ) );
+			}
+
+			centering = builder.Add2( FFBModuleRegistry.AddType, friction, centeringForce );
+		}
+
+		return centering;
 	}
 
+	// Generators have no signal inputs and live in the standalone vibration graphs (schema v23) — no sources
+	// exist there, so their input references are left empty (the engine's fallback resolution tolerates that).
 	private static void AppendVibrationGenerators( Builder builder, SettingsSource src )
 	{
-		var s360 = FFBGraph.Source360ModuleId;
+		var noInput = string.Empty;
 
-		builder.Add( FFBModuleRegistry.UndersteerVibrationType, s360,
+		builder.Add( FFBModuleRegistry.UndersteerVibrationType, noInput,
 			( "Enabled", src.B( "SteeringEffectsUndersteerEnabled" ) ),
 			( "Pattern", src.E( "SteeringEffectsUndersteerWheelVibrationPattern" ) ),
 			( "Strength", src.F( "SteeringEffectsUndersteerWheelVibrationStrength" ) ),
@@ -470,7 +565,7 @@ public static class FFBGraphMigration
 			( "MaximumFrequency", src.F( "SteeringEffectsUndersteerWheelVibrationMaximumFrequency" ) ),
 			( "Curve", src.F( "SteeringEffectsUndersteerWheelVibrationCurve" ) ) );
 
-		builder.Add( FFBModuleRegistry.OversteerVibrationType, s360,
+		builder.Add( FFBModuleRegistry.OversteerVibrationType, noInput,
 			( "Enabled", src.B( "SteeringEffectsOversteerEnabled" ) ),
 			( "Pattern", src.E( "SteeringEffectsOversteerWheelVibrationPattern" ) ),
 			( "Strength", src.F( "SteeringEffectsOversteerWheelVibrationStrength" ) ),
@@ -478,7 +573,7 @@ public static class FFBGraphMigration
 			( "MaximumFrequency", src.F( "SteeringEffectsOversteerWheelVibrationMaximumFrequency" ) ),
 			( "Curve", src.F( "SteeringEffectsOversteerWheelVibrationCurve" ) ) );
 
-		builder.Add( FFBModuleRegistry.SeatOfPantsVibrationType, s360,
+		builder.Add( FFBModuleRegistry.SeatOfPantsVibrationType, noInput,
 			( "Enabled", src.B( "SteeringEffectsSeatOfPantsEnabled" ) ),
 			( "Pattern", src.E( "SteeringEffectsSeatOfPantsWheelVibrationPattern" ) ),
 			( "Strength", src.F( "SteeringEffectsSeatOfPantsWheelVibrationStrength" ) ),
@@ -486,12 +581,12 @@ public static class FFBGraphMigration
 			( "MaximumFrequency", src.F( "SteeringEffectsSeatOfPantsWheelVibrationMaximumFrequency" ) ),
 			( "Curve", src.F( "SteeringEffectsSeatOfPantsWheelVibrationCurve" ) ) );
 
-		builder.Add( FFBModuleRegistry.ShiftRPMVibrationType, s360, ( "Strength", src.F( "RacingWheelShiftRPMVibrateStrength" ) ) );
-		builder.Add( FFBModuleRegistry.GearChangeVibrationType, s360, ( "Strength", src.F( "RacingWheelGearChangeVibrateStrength" ) ) );
-		builder.Add( FFBModuleRegistry.ABSVibrationType, s360, ( "Strength", src.F( "RacingWheelABSVibrateStrength" ) ) );
+		builder.Add( FFBModuleRegistry.ShiftRPMVibrationType, noInput, ( "Strength", src.F( "RacingWheelShiftRPMVibrateStrength" ) ) );
+		builder.Add( FFBModuleRegistry.GearChangeVibrationType, noInput, ( "Strength", src.F( "RacingWheelGearChangeVibrateStrength" ) ) );
+		builder.Add( FFBModuleRegistry.ABSVibrationType, noInput, ( "Strength", src.F( "RacingWheelABSVibrateStrength" ) ) );
 	}
 
-	/// <summary>Build one full built-in graph (sources + curb tap + algorithm + effect tail + generators + Output) with values from <paramref name="src"/>. Deterministic module ids come from the algorithm-based key prefix.</summary>
+	/// <summary>Build one full built-in graph (sources + curb tap + algorithm + effect tail + Output) with values from <paramref name="src"/>. Deterministic module ids come from the algorithm-based key prefix. The vibration generators live in the standalone built-in vibration graph (schema v23) — see <see cref="BuildVibrationGraph"/>.</summary>
 	private static FFBGraph BuildFullGraph( RacingWheel.Algorithm algorithm, RacingWheel.MultiFFBSourceOptions structureMultiSource, SettingsSource src )
 	{
 		var builder = new Builder( BuiltInGraphNameFor( algorithm ), $"BuiltIn.{algorithm}" );
@@ -508,9 +603,17 @@ public static class FFBGraphMigration
 
 		var centering = AppendEffectTail( builder, algoId, src );
 
-		AppendVibrationGenerators( builder, src );
-
 		builder.AddOutput( centering, src );
+
+		return builder.Graph;
+	}
+
+	/// <summary>Build the built-in vibration graph (the six generator modules, no sources or Output) with values from <paramref name="src"/>. Deterministic module ids come from the fixed key prefix.</summary>
+	private static FFBGraph BuildVibrationGraph( SettingsSource src )
+	{
+		var builder = new Builder( BuiltInVibrationGraphName, "BuiltIn.Vibration" );
+
+		AppendVibrationGenerators( builder, src );
 
 		return builder.Graph;
 	}
@@ -539,9 +642,8 @@ public static class FFBGraphMigration
 
 	/// <summary>
 	/// Build the full set of named built-in graphs: one per old algorithm, each with the standard effect tail
-	/// (in old pipeline order) and the six vibration generators. All values are baked from the live
-	/// <paramref name="settings"/>; the Multi graph's source-stage structure uses the (collapsed) live Multi
-	/// source mode.
+	/// (in old pipeline order). All values are baked from the live <paramref name="settings"/>; the Multi graph's
+	/// source-stage structure uses the (collapsed) live Multi source mode.
 	/// </summary>
 	public static List<FFBGraph> CreateBuiltInGraphs( Settings settings )
 	{
@@ -558,21 +660,304 @@ public static class FFBGraphMigration
 		return graphs;
 	}
 
+	/// <summary>Build the set of built-in vibration graphs (currently the single default) with values baked from the live <paramref name="settings"/>.</summary>
+	public static List<FFBGraph> CreateBuiltInVibrationGraphs( Settings settings )
+	{
+		var src = new SettingsSource( settings, settings );
+
+		return [ BuildVibrationGraph( src ) ];
+	}
+
+	/// <summary>
+	/// Remove every generator module from <paramref name="graph"/> and return them (the schema v23 split moves
+	/// them into a standalone vibration graph, ids preserved so per-context values keep resolving). Generators
+	/// can never feed a signal input, so no consumer repointing is needed.
+	/// </summary>
+	public static List<FFBModuleData> ExtractGeneratorModules( FFBGraph graph )
+	{
+		var generatorModules = graph.Modules.Where( module => FFBModuleRegistry.TryGet( module.ModuleType )?.IsGenerator == true ).ToList();
+
+		foreach ( var module in generatorModules )
+		{
+			graph.Modules.Remove( module );
+		}
+
+		return generatorModules;
+	}
+
 	/// <summary>
 	/// Map an old settings source (the live <c>Settings</c> or one <c>ContextSettings</c>) into the per-context
 	/// composite value dictionary for ALL built-in graphs. Structure uses the (collapsed) live Multi source mode
 	/// so the module ids — and therefore the composite keys — match the baseline built-in graphs exactly.
 	/// </summary>
+	// Top of the old parked-strength velocity ramp (5 mph — see RacingWheel's parkedFactor). Used to convert
+	// parked strength into its equivalent SpeedGain configuration.
+	private const float ParkedRampTopSpeedMS = 2.2352f;
+
+	// Old friction measured wheel velocity in full-axis-range fractions/s (DirectInput); the wheel-velocity
+	// source emits revolutions/s. Assuming the common 900° rotation range (2.5 revolutions across the 2-unit
+	// axis), 1 rev/s = 0.8 axis units/s — so an old friction strength converts by this factor.
+	private const float FrictionUnitConversion = 0.8f;
+
+	/// <summary>
+	/// Repair retired module types in a stored (user-created) graph. The curve and soft limiter moved back into
+	/// the Output module as settings (schema v17) — those are spliced out, with consumers repointed to the removed
+	/// module's own input A so the signal path stays intact (falling back to the 360 Hz source on a dangling
+	/// reference). The parked strength module was superseded by SpeedGain (schema v18) — those convert in place,
+	/// keeping their wiring and node position. The friction module was superseded by the wheel-velocity source
+	/// composition (schema v19) — those are spliced out (recompose as source → SpeedGain → Add). Wheel centering
+	/// became an inputless force emitter (schema v20) and then a proper source, alongside soft lock (schema v21) —
+	/// old in-chain instances are re-wired onto their own branch and renamed to the source type keys. The Nm-domain
+	/// output shapers retired at schema v22: Minimum converts in place to TorqueDither and Maximum is spliced out
+	/// in favor of the Output module's soft limiter.
+	/// Built-in graphs are regenerated wholesale by the schema upgrade and never pass through here.
+	/// </summary>
+	public static void RemoveRetiredModuleTypes( FFBGraph graph )
+	{
+		// SoftLock -> SourceSoftLock (schema v21): the module emits ONLY its opposing force now (no signal input).
+		// An old in-chain instance is re-wired as a branch: consumers repoint to a new Add that sums the instance's
+		// old input path with the soft lock force. A disabled instance stays disabled — the engine mutes disabled
+		// sources to 0, so the Add contributes nothing, exactly like the old disabled passthrough. New modules are
+		// inserted directly after the instance so the list stays in dependency order.
+		foreach ( var softLockModule in graph.Modules.Where( module => module.ModuleType == "SoftLock" ).ToList() )
+		{
+			softLockModule.ModuleType = FFBModuleRegistry.SourceSoftLockType;
+
+			var oldInputAModuleId = softLockModule.InputAModuleId;
+
+			if ( string.IsNullOrEmpty( oldInputAModuleId ) || !graph.Modules.Any( module => module.ModuleId == oldInputAModuleId ) )
+			{
+				oldInputAModuleId = FFBGraph.Source360ModuleId;
+			}
+
+			var add = new FFBModuleData( Guid.NewGuid().ToString( "N" ), FFBModuleRegistry.AddType )
+			{
+				InputAModuleId = oldInputAModuleId,
+				InputBModuleId = softLockModule.ModuleId,
+				NodeX = softLockModule.NodeX + FFBGraphTopology.NodeWidth + FFBGraphTopology.HorizontalGap,
+				NodeY = softLockModule.NodeY
+			};
+
+			graph.Modules.Insert( graph.Modules.IndexOf( softLockModule ) + 1, add );
+
+			foreach ( var module in graph.Modules )
+			{
+				if ( module == add )
+				{
+					continue;
+				}
+
+				if ( module.InputAModuleId == softLockModule.ModuleId )
+				{
+					module.InputAModuleId = add.ModuleId;
+				}
+
+				if ( module.InputBModuleId == softLockModule.ModuleId )
+				{
+					module.InputBModuleId = add.ModuleId;
+				}
+			}
+
+			softLockModule.InputAModuleId = string.Empty;
+			softLockModule.InputBModuleId = string.Empty;
+		}
+
+		// WheelCentering -> SourceWheelCentering (schema v20/v21): the module emits ONLY the centering force (no
+		// signal input) and the while-racing/while-parked toggles are gone. An old in-chain instance is re-wired
+		// as a branch: consumers repoint to a new Add that sums the instance's old input path with the centering
+		// force, routed through a SpeedGain when the old toggles gated it by speed (Lerp(racing, parked,
+		// parkedFactor) == SpeedGain over the same 0–5 mph ramp). Both toggles off meant the instance contributed
+		// nothing — it is spliced out. New modules are inserted directly after the instance so the list stays in
+		// dependency order. An instance already converted by the v20 upgrade (no input wiring) only gets the
+		// type rename.
+		foreach ( var centeringModule in graph.Modules.Where( module => module.ModuleType == "WheelCentering" ).ToList() )
+		{
+			centeringModule.ModuleType = FFBModuleRegistry.SourceWheelCenteringType;
+
+			if ( string.IsNullOrEmpty( centeringModule.InputAModuleId ) )
+			{
+				continue;   // already branch-wired by the v20 upgrade
+			}
+
+			// old toggle defaults were racing = off, parked = on (missing key ⇒ descriptor default)
+			var whileRacing = centeringModule.SettingValues.TryGetValue( "WhileRacing", out var whileRacingValue ) && ( whileRacingValue != 0f );
+			var whileParked = !centeringModule.SettingValues.TryGetValue( "WhileParked", out var whileParkedValue ) || ( whileParkedValue != 0f );
+
+			centeringModule.SettingValues.Remove( "WhileRacing" );
+			centeringModule.SettingValues.Remove( "WhileParked" );
+
+			var oldInputAModuleId = centeringModule.InputAModuleId;
+
+			if ( string.IsNullOrEmpty( oldInputAModuleId ) || !graph.Modules.Any( module => module.ModuleId == oldInputAModuleId ) )
+			{
+				oldInputAModuleId = FFBGraph.Source360ModuleId;
+			}
+
+			if ( !whileRacing && !whileParked )
+			{
+				graph.Modules.Remove( centeringModule );
+
+				foreach ( var module in graph.Modules )
+				{
+					if ( module.InputAModuleId == centeringModule.ModuleId )
+					{
+						module.InputAModuleId = oldInputAModuleId;
+					}
+
+					if ( module.InputBModuleId == centeringModule.ModuleId )
+					{
+						module.InputBModuleId = oldInputAModuleId;
+					}
+				}
+
+				continue;
+			}
+
+			var insertIndex = graph.Modules.IndexOf( centeringModule ) + 1;
+
+			var branchTailModuleId = centeringModule.ModuleId;
+
+			if ( whileRacing != whileParked )
+			{
+				var speedGain = new FFBModuleData( Guid.NewGuid().ToString( "N" ), FFBModuleRegistry.SpeedGainType )
+				{
+					InputAModuleId = centeringModule.ModuleId,
+					InputBModuleId = FFBGraph.Source360ModuleId,
+					NodeX = centeringModule.NodeX,
+					NodeY = centeringModule.NodeY + FFBGraphTopology.NodeHeight + FFBGraphTopology.VerticalGap
+				};
+
+				speedGain.SettingValues[ "MinSpeed" ] = 0f;
+				speedGain.SettingValues[ "MaxSpeed" ] = ParkedRampTopSpeedMS;
+				speedGain.SettingValues[ "GainAtMin" ] = whileParked ? 1f : 0f;
+				speedGain.SettingValues[ "GainAtMax" ] = whileRacing ? 1f : 0f;
+
+				graph.Modules.Insert( insertIndex++, speedGain );
+
+				branchTailModuleId = speedGain.ModuleId;
+			}
+
+			var add = new FFBModuleData( Guid.NewGuid().ToString( "N" ), FFBModuleRegistry.AddType )
+			{
+				InputAModuleId = oldInputAModuleId,
+				InputBModuleId = branchTailModuleId,
+				NodeX = centeringModule.NodeX + FFBGraphTopology.NodeWidth + FFBGraphTopology.HorizontalGap,
+				NodeY = centeringModule.NodeY
+			};
+
+			graph.Modules.Insert( insertIndex, add );
+
+			foreach ( var module in graph.Modules )
+			{
+				if ( ( module == add ) || ( module.ModuleId == branchTailModuleId ) )
+				{
+					continue;
+				}
+
+				if ( module.InputAModuleId == centeringModule.ModuleId )
+				{
+					module.InputAModuleId = add.ModuleId;
+				}
+
+				if ( module.InputBModuleId == centeringModule.ModuleId )
+				{
+					module.InputBModuleId = add.ModuleId;
+				}
+			}
+
+			// the emitter keeps no wiring of its own (it has no signal inputs anymore)
+			centeringModule.InputAModuleId = string.Empty;
+			centeringModule.InputBModuleId = string.Empty;
+		}
+
+		// ParkedStrength -> SpeedGain conversion (exact equivalent, see ParkedRampTopSpeedMS)
+		foreach ( var module in graph.Modules )
+		{
+			if ( module.ModuleType == "ParkedStrength" )
+			{
+				var strength = module.SettingValues.TryGetValue( "Strength", out var value ) ? value : 0.1f;
+
+				module.ModuleType = FFBModuleRegistry.SpeedGainType;
+
+				module.SettingValues.Remove( "Strength" );
+
+				module.SettingValues[ "MinSpeed" ] = 0f;
+				module.SettingValues[ "MaxSpeed" ] = ParkedRampTopSpeedMS;
+				module.SettingValues[ "GainAtMin" ] = strength;
+				module.SettingValues[ "GainAtMax" ] = 1f;
+			}
+		}
+
+		// Minimum -> TorqueDither conversion (schema v22): same wiring and position, dither defaults — the old
+		// knob was in Nm and cannot be converted back to a fraction without the recording-time max force.
+		foreach ( var module in graph.Modules )
+		{
+			if ( module.ModuleType == "Minimum" )
+			{
+				module.ModuleType = FFBModuleRegistry.TorqueDitherType;
+
+				module.SettingValues.Remove( "Minimum" );
+			}
+		}
+
+		// Maximum retired (schema v22): its job moves to the Output module's soft limiter (deliberately soft —
+		// no hard-ceiling emulation), so an enabled Maximum turns the soft limiter on before the splice below.
+		if ( graph.Modules.Any( module => ( module.ModuleType == "Maximum" )
+			&& ( !module.SettingValues.TryGetValue( "Enabled", out var enabledValue ) || ( enabledValue != 0f ) ) ) )
+		{
+			var output = graph.Modules.FirstOrDefault( module => module.ModuleType == FFBModuleRegistry.OutputType );
+
+			if ( output != null )
+			{
+				output.SettingValues[ "SoftLimiter" ] = 1f;
+			}
+		}
+
+		string[] retiredModuleTypes = [ "Curve", "SoftLimiter", "Friction", "Maximum" ];
+
+		foreach ( var retiredModule in graph.Modules.Where( module => retiredModuleTypes.Contains( module.ModuleType ) ).ToList() )
+		{
+			var replacementModuleId = retiredModule.InputAModuleId;
+
+			if ( string.IsNullOrEmpty( replacementModuleId ) || !graph.Modules.Any( module => module.ModuleId == replacementModuleId ) )
+			{
+				replacementModuleId = FFBGraph.Source360ModuleId;
+			}
+
+			graph.Modules.Remove( retiredModule );
+
+			foreach ( var module in graph.Modules )
+			{
+				if ( module.InputAModuleId == retiredModule.ModuleId )
+				{
+					module.InputAModuleId = replacementModuleId;
+				}
+
+				if ( module.InputBModuleId == retiredModule.ModuleId )
+				{
+					module.InputBModuleId = replacementModuleId;
+				}
+			}
+		}
+	}
+
 	public static FFBGraphValues MapOldSettingsIntoGraphValues( object source, Settings live, RacingWheel.MultiFFBSourceOptions structureMultiSource )
 	{
 		var src = new SettingsSource( source, live );
 
 		var values = new FFBGraphValues();
 
+		var graphs = new List<FFBGraph>();
+
 		foreach ( var algorithm in Enum.GetValues<RacingWheel.Algorithm>() )
 		{
-			var graph = BuildFullGraph( algorithm, structureMultiSource, src );
+			graphs.Add( BuildFullGraph( algorithm, structureMultiSource, src ) );
+		}
 
+		graphs.Add( BuildVibrationGraph( src ) );
+
+		foreach ( var graph in graphs )
+		{
 			foreach ( var module in graph.Modules )
 			{
 				foreach ( var pair in module.SettingValues )

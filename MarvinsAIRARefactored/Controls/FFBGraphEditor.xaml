@@ -62,6 +62,7 @@
 						      Background="Transparent"
 						      Cursor="Hand"
 						      MouseLeftButtonDown="Node_MouseLeftButtonDown"
+						      MouseRightButtonDown="Node_MouseRightButtonDown"
 						      MouseMove="Node_MouseMove"
 						      MouseLeftButtonUp="Node_MouseLeftButtonUp">
 
@@ -75,6 +76,11 @@
 										<Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Normal}" />
 										<Setter Property="Opacity" Value="1" />
 										<Style.Triggers>
+											<!-- preview lock (right-click) renders below selection: when the same
+											     node is both, the selection accent wins (last matching trigger) -->
+											<DataTrigger Binding="{Binding IsPreviewLocked}" Value="True">
+												<Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Active}" />
+											</DataTrigger>
 											<DataTrigger Binding="{Binding IsSelected}" Value="True">
 												<Setter Property="BorderBrush" Value="{DynamicResource Brush.Accent}" />
 											</DataTrigger>
@@ -150,16 +156,22 @@
 
 			</ScrollViewer>
 
-			<!-- canvas tools (pinned to the corner, outside the scrolling canvas): snap-to-grid toggle + auto layout -->
+			<!-- canvas tools (pinned to the corner, outside the scrolling canvas): add module + snap-to-grid toggle + auto layout -->
 			<StackPanel Orientation="Horizontal"
 			            HorizontalAlignment="Right"
 			            VerticalAlignment="Top"
 			            Margin="0,8,8,0"
 			            Panel.ZIndex="1">
 
+				<local:MairaButton x:Name="AddModule_MairaButton"
+				                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+				                   IsSmall="True"
+				                   Click="AddModule_MairaButton_Click" />
+
 				<local:MairaButton x:Name="SnapToGrid_MairaButton"
 				                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/grid.png"
 				                   IsSmall="True"
+				                   Margin="8,0,0,0"
 				                   Click="SnapToGrid_MairaButton_Click" />
 
 				<local:MairaButton x:Name="AutoLayout_MairaButton"

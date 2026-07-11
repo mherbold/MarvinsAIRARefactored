@@ -208,7 +208,7 @@
     <value>Garder la fenêtre active</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>Nm</value>
+    <value> Nm</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
     <value>Fréquence du niveau de détails à 60 Hz</value>
@@ -223,9 +223,7 @@
     <value>Mettre à jour le mappage des entrées</value>
   </data>
   <data name="PressTheRecordButton" xml:space="preserve">
-    <value>Appuyez sur le bouton d'enregistrement
-
-</value>
+    <value>Appuyez sur le bouton d'enregistrement</value>
   </data>
   <data name="Button" xml:space="preserve">
     <value>Bouton</value>
@@ -279,12 +277,10 @@
     <value>Commutateurs</value>
   </data>
   <data name="CrashProtection" xml:space="preserve">
-    <value>Protection Contre Les Accidents
-
-</value>
+    <value>Protection Contre Les Accidents</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value>G</value>
+    <value> G</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
     <value>Force g</value>
@@ -296,7 +292,7 @@
     <value>Réduction de la force</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>s</value>
+    <value> s</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
     <value> m/s</value>
@@ -332,7 +328,7 @@
     <value>Force</value>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>Hz</value>
+    <value> Hz</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
     <value>Fréquence globale</value>
@@ -395,9 +391,7 @@
     <value>Exécuter le programme d'installation ?</value>
   </data>
   <data name="RunInstallerQuestion" xml:space="preserve">
-    <value>Souhaitez-vous exécuter le programme d'installation maintenant ?
-
-</value>
+    <value>Souhaitez-vous exécuter le programme d'installation maintenant ?</value>
   </data>
   <data name="CheckForUpdates" xml:space="preserve">
     <value>Vérification des mises à jours au démarrage</value>
@@ -478,9 +472,7 @@
     <value>Activer le retour de force même si le retour de force du simulateur iRacing est activé.</value>
   </data>
   <data name="ClutchPedalHaptics" xml:space="preserve">
-    <value>Retour haptique de la pédale d'embrayage
-
-</value>
+    <value>Retour haptique de la pédale d'embrayage</value>
   </data>
   <data name="BrakePedalHaptics" xml:space="preserve">
     <value>Retour haptique de la pédale de frein</value>
@@ -639,9 +631,7 @@
     <value>La protection contre les collisions a été activée !</value>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>La protection des bordures a été activée !
-
-</value>
+    <value>La protection des bordures a été activée !</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
     <value>Messages privés</value>
@@ -650,9 +640,7 @@
     <value>Activer les messages de protection des bordures</value>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
-    <value>Activer les messages de protection contre les plantages
-
-</value>
+    <value>Activer les messages de protection contre les plantages</value>
   </data>
   <data name="InputMappedSettingUpdateEnabled" xml:space="preserve">
     <value>Activer les messages de mise à jour des paramètres mappés d'entrée</value>
@@ -739,10 +727,10 @@
     <value>La version classique de MAIRA est actuellement en cours d'exécution - veuillez quitter la version classique de MAIRA avant d'exécuter cette version de MAIRA !</value>
   </data>
   <data name="ExceptionThrown" xml:space="preserve">
-    <value>Une exception a été détectée </value>
+    <value>Une exception a été détectée</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>KPH</value>
+    <value> KPH</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Ce sont ces personnes qui ont généreusement donné de leur temps libre pour effectuer des étalonnages des effets de direction sur certaines de leurs voitures préférées et pour télécharger ces fichiers d'étalonnage !</value>
@@ -817,9 +805,7 @@
     <value>Effet de sous-virage</value>
   </data>
   <data name="OversteerEffect" xml:space="preserve">
-    <value>Effet de survirage
-
-</value>
+    <value>Effet de survirage</value>
   </data>
   <data name="ConfigurationFileIsInvalid" xml:space="preserve">
     <value>Le fichier de configuration est invalide !</value>
@@ -903,7 +889,7 @@
     <value>Grip-O-Meter</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>MPH</value>
+    <value> MPH</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon vent</value>
@@ -1134,9 +1120,7 @@
     <value>Ce site de documentation est constamment mis à jour, car de nouvelles fonctionnalités sont régulièrement ajoutées à l'application. Je m'efforce de le mettre à jour aussi souvent que possible, mais si vous ne trouvez pas l'information que vous cherchez, vous pouvez essayer de trouver les réponses à vos questions sur le serveur Discord ou sur les forums iRacing.</value>
   </data>
   <data name="DiscordText" xml:space="preserve">
-    <value>Le serveur Discord de MAIRA est le moyen le plus rapide d'obtenir des réponses à vos questions si vous ne les trouvez pas dans la documentation. Des bénévoles y apportent leur aide, et j'essaie également d'y contribuer.
-
-</value>
+    <value>Le serveur Discord de MAIRA est le moyen le plus rapide d'obtenir des réponses à vos questions si vous ne les trouvez pas dans la documentation. Des bénévoles y apportent leur aide, et j'essaie également d'y contribuer.</value>
   </data>
   <data name="ForumsText" xml:space="preserve">
     <value>C'est ici que tout a commencé. Vous pouvez trouver des réponses ici, mais je ne suis plus aussi actif qu'avant. Le meilleur moyen de poser des questions est de rejoindre le serveur Discord.</value>
@@ -1516,9 +1500,6 @@
   <data name="LoopEnd" xml:space="preserve">
     <value>Fin de boucle</value>
   </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
-  </data>
   <data name="Commentary" xml:space="preserve">
     <value>Commentaire</value>
   </data>
@@ -1667,7 +1648,7 @@
     <value>Initialisation du simulateur...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Initialisation de l'Entrée directe...</value>
+    <value>Initialisation de DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Initialisation de Stream Deck...</value>
@@ -1740,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Profils de contrôleur</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Renommer le profil</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Renommer le profil de contrôleur</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Processus en cours</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtrer par nom ou chemin...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Recherche des applications en cours...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Visibilité de la fenêtre</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Afficher / masquer la fenêtre</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Taille du pas</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Intervalle de vérification des mises à jour</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> h</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Supprimer les peintures quand iRacing se ferme</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Recherche des mises à jour par intervalle</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Essais</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Qualifications</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Course</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>État</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inactif</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Actif</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Inhibé</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Supprimer les anciens programmes d'installation</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Divers</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Ouvrir le dossier documents</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1832,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(non assigné)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activer la position et l'échelle des superpositions par voiture</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Source 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1885,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Limiteur doux</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Maximum</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Minimum</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Protection contre les accidents</value>
   </data>
@@ -1900,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Force en stationnement</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Verrouillage souple</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Source de verrouillage souple</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Friction</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Centrage du volant</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Source de centrage du volant</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Force de sous-virage</value>
@@ -2014,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Deux pôles</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Entrée</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Entrée A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Entrée B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Ajouter un module</value>
   </data>
@@ -2044,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Commencer un graphique vide</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Différence</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Source de vitesse du volant</value>
+  </data>
 
 
 
@@ -2081,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Sources</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP générique</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mixeurs</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Effets</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Autres effets</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

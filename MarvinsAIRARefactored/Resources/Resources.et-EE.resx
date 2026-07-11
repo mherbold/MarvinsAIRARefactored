@@ -1414,10 +1414,10 @@
     <value>Vali allolevast loendist oma jõutagasisidega rool.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Ei näe oma rooli? Veendu, et see on sisse lülitatud ja ühendatud, siis loend värskendub automaatselt.</value>
+    <value>Ei näe oma rooli? Veendu, et see on sisse lülitatud ja ühendatud, siis loend värskendub automaatselt.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanateci kasutajad: Fanateci roolid ilmuvad loendis tavaliselt kahe eraldi seadmena. Kui valitud ei tööta, proovi valida teine!</value>
+    <value>Fanateci kasutajad: Fanateci roolid ilmuvad loendis tavaliselt kahe eraldi seadmena. Kui valitud ei tööta, proovi valida teine!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Maksimaalne rooli jõud</value>
@@ -1426,10 +1426,10 @@
     <value>Sisesta maksimaalne jõud, mida su roolialus suudab toota, njuutonmeetrites (Nm). MAIRA kasutab seda väärtust kogu jõutagasiside väljundi õigeks skaleerimiseks su riistvarale.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> Tegime su valitud rooli põhjal parima oletuse — kuid muuda seda vajadusel julgelt.</value>
+    <value>Tegime su valitud rooli põhjal parima oletuse — kuid muuda seda vajadusel julgelt.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Tähtis: Kui oled juba piiranud oma rooli maksimaalset pöördemomendi väljundit oma rooli tootja tarkvaras (nt Fanatec Wheel Control Panel, Moza Pit House jne), sisesta siia see vähendatud väärtus, mitte riistvara füüsiline maksimum. MAIRA peab teadma, mida su rool tegelikult väljastab, mitte mida see teoreetiliselt suudab.</value>
+    <value>Tähtis: Kui oled juba piiranud oma rooli maksimaalset pöördemomendi väljundit oma rooli tootja tarkvaras (nt Fanatec Wheel Control Panel, Moza Pit House jne), sisesta siia see vähendatud väärtus, mitte riistvara füüsiline maksimum. MAIRA peab teadma, mida su rool tegelikult väljastab, mitte mida see teoreetiliselt suudab.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Tugevuse juhtimine</value>
@@ -1441,7 +1441,7 @@
     <value>Klõpsa all olevatel nuppudel - ja + sisendite määramiseks igaühele. See samm on valikuline — võid selle vahele jätta ja vendused hiljem Võidusõidurooli lehel seadistada.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Kui sisend on vendatud, muutub nupu ääris oranžiks selle kinnitamiseks.</value>
+    <value>Kui sisend on vendatud, muutub nupu ääris oranžiks selle kinnitamiseks.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Tugevus</value>
@@ -1468,7 +1468,7 @@
     <value>Esmalt reguleeri automaatse sihi varu oma maitse järgi, seejärel vendage oma määramis- ja tühjendusnupud.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Automaatne siht määrab, kuhu su rooli jõuvahemikus mõõdetud tipp peaks langema. Langeta sihti, et hoida tipu kohal rohkem varu; tõsta seda, et kasutada rohkem rooli ulatust.</value>
+    <value>Automaatne siht määrab, kuhu su rooli jõuvahemikus mõõdetud tipp peaks langema. Langeta sihti, et hoida tipu kohal rohkem varu; tõsta seda, et kasutada rohkem rooli ulatust.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritm</value>
@@ -1559,9 +1559,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Tsükli lõpp</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Kommentaar</value>
@@ -1714,7 +1711,7 @@
     <value>Simulaatori lähtestamine...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Direct input lähtestamine...</value>
+    <value>DirectInputi lähtestamine...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Stream Decki lähtestamine...</value>
@@ -1772,45 +1769,65 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>Peaakna lähtestamine...</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Töötavad protsessid</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filtreeri nime või tee järgi...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Töötavate rakenduste otsimine...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Akna nähtavus</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Näita / peida aken</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Sammu suurus</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Värskenduste kontrolli intervall</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> t</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Kustuta värvingud iRacingu sulgemisel</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Kontrolli uuendusi intervalliga</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Treening</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Kvalifikatsioon</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Võistlus</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Olek</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Jõude</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Aktiivne</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Summutatud</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Kustuta vanad installerid</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Mitmesugust</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Ava dokumentide kaust</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1818,9 +1835,11 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>Tasakaal</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Luba ülekatte asukoht ja mastaap iga auto jaoks</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz allikas</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1871,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Pehme piiraja</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Maksimum</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Miinimum</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Avariikaitse</value>
   </data>
@@ -1886,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Pargitud tugevus</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Pehme lukk</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Pehme luku allikas</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Hõõrdumine</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Rooli keskendamine</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Rooli keskendamise allikas</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Alajuhtivuse jõud</value>
@@ -2000,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Kahepooluseline</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Sisend</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Sisend A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Sisend B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Lisa moodul</value>
   </data>
@@ -2030,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Alusta tühja graafikuga</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Lahutamine</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Rooli kiiruse allikas</value>
+  </data>
 
 
 
@@ -2052,4 +2062,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Allikad</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Üldine DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mikserid</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Efektid</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Muud efektid</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

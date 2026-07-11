@@ -136,14 +136,22 @@ public sealed class RecordingManager : IDisposable
 		Recordings.Clear();
 	}
 
+	/// <summary>
+	/// Captures one 360 Hz sample. Everything the FFB graph modules consume comes from the tick context; the raw
+	/// (unpredicted) 60 Hz torque is passed separately because the context carries the predicted sample, and the
+	/// raw protection telemetry (G forces, peak shock velocity) comes straight from the simulator since the
+	/// context only carries the already-derived trigger pulses.
+	/// </summary>
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void AddRecordingData( float inputTorque60Hz, float inputTorque500Hz )
+	public void AddRecordingData( in FFB.FFBTickContext tickContext, float inputTorque60Hz )
 	{
 		if ( IsRecording )
 		{
 			var app = App.Instance!;
 
-			if ( app.Simulator.IsOnTrack == false )
+			var simulator = app.Simulator;
+
+			if ( simulator.IsOnTrack == false )
 			{
 				IsRecording = false;
 			}
@@ -152,7 +160,33 @@ public sealed class RecordingManager : IDisposable
 				ref var recordingData = ref _recordingData[ _recordingDataIndex++ ];
 
 				recordingData.InputTorque60Hz = inputTorque60Hz;
-				recordingData.InputTorque500Hz = inputTorque500Hz;
+				recordingData.InputTorque500Hz = tickContext.Torque360Hz;
+
+				recordingData.LFEMagnitude = tickContext.LFEMagnitude;
+
+				recordingData.LongitudinalGForce = simulator.LongitudinalGForce;
+				recordingData.LateralGForce = simulator.LateralGForce;
+				recordingData.MaxShockVelocity = simulator.MaxShockVelocity;
+
+				recordingData.WheelPosition = tickContext.WheelPosition;
+				recordingData.WheelVelocity = tickContext.WheelVelocity;
+
+				recordingData.UndersteerEffect = tickContext.UndersteerEffect;
+				recordingData.OversteerEffect = tickContext.OversteerEffect;
+				recordingData.SeatOfPantsEffect = tickContext.SeatOfPantsEffect;
+				recordingData.SkidSlip = tickContext.SkidSlip;
+
+				recordingData.RPM = tickContext.RPM;
+				recordingData.ShiftRPM = tickContext.ShiftRPM;
+				recordingData.Gear = tickContext.Gear;
+				recordingData.NumForwardGears = tickContext.NumForwardGears;
+				recordingData.ABSActive = tickContext.ABSActive;
+
+				recordingData.VelocityMS = tickContext.VelocityMS;
+				recordingData.VelocityY = tickContext.VelocityY;
+				recordingData.SteeringWheelAngle = tickContext.SteeringWheelAngle;
+				recordingData.SteeringWheelAngleMax = tickContext.SteeringWheelAngleMax;
+				recordingData.SteeringWheelVelocity = tickContext.SteeringWheelVelocity;
 
 				if ( _recordingDataIndex == _recordingData.Length / 2 )
 				{

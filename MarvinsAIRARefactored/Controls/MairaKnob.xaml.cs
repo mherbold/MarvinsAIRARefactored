@@ -232,6 +232,24 @@ public partial class MairaKnob : UserControl
 	// The increment applied per +/- button press (mouse click or mapped input). For knobs wired to a
 	// MappableActionCatalog action this is only a fallback - the universal Settings.KnobStepSizes value
 	// is used instead (see EffectiveClickStepSize), so it matters only for knobs with no mapped action.
+	// Value range metadata (the knob does NOT clamp with these — the bound view-model does). Used only to infer
+	// percent-vs-absolute editing when the display carries no number (e.g. a localized "OFF"). NaN when unbound.
+	public static readonly DependencyProperty MinimumProperty = DependencyProperty.Register( nameof( Minimum ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( float.NaN ) );
+
+	public float Minimum
+	{
+		get => (float) GetValue( MinimumProperty );
+		set => SetValue( MinimumProperty, value );
+	}
+
+	public static readonly DependencyProperty MaximumProperty = DependencyProperty.Register( nameof( Maximum ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( float.NaN ) );
+
+	public float Maximum
+	{
+		get => (float) GetValue( MaximumProperty );
+		set => SetValue( MaximumProperty, value );
+	}
+
 	public static readonly DependencyProperty ClickStepSizeProperty = DependencyProperty.Register( nameof( ClickStepSize ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( 0.01f ) );
 
 	public float ClickStepSize
@@ -533,7 +551,21 @@ public partial class MairaKnob : UserControl
 			return false;
 		}
 
-		return ( ValueString ?? string.Empty ).TrimEnd().EndsWith( percentSuffix, StringComparison.CurrentCulture );
+		var valueString = ValueString ?? string.Empty;
+
+		// the edit round-trips the FIRST number in the display, so percent mode is decided by what follows that
+		// first number — not by the end of the string, which composite displays like "50% (13.4 Hz)" would fail
+		var match = Regex.Match( valueString, @"[-+]?\d+(?:[.,]\d+)?" );
+
+		if ( match.Success )
+		{
+			return valueString[ ( match.Index + match.Length ).. ].StartsWith( percentSuffix, StringComparison.CurrentCulture );
+		}
+
+		// no number at all — a localized text display like "OFF"; fall back to the knob range (fraction-based
+		// percent knobs live inside -1..1, every absolute-unit knob has a wider range). NaN (range not bound,
+		// the legacy settings knobs) compares false, keeping their previous not-percent behavior for "OFF".
+		return ( Maximum <= 1f ) && ( Minimum >= -1f );
 	}
 
 	private void Value_TextBox_KeyDown( object sender, KeyEventArgs e )

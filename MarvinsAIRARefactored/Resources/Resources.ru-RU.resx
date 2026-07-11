@@ -304,7 +304,7 @@
     <value>Скорость удара</value>
   </data>
   <data name="PedalsP1000" xml:space="preserve">
-    <value>Педали Simagic P1000 </value>
+    <value>Педали Simagic P1000</value>
   </data>
   <data name="PedalsP2000" xml:space="preserve">
     <value>Педали Simagic P2000</value>
@@ -571,7 +571,7 @@
     <value>Общий: предел для сжатия</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>Нм/мс</value>
+    <value> Нм/мс</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
     <value>Сила руля (wheel force)</value>
@@ -730,7 +730,7 @@
     <value>Возникло исключение</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>К/МЧ</value>
+    <value> К/МЧ</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>Эти люди великодушно уделили своё время для проведения тестов, создания и загрузки файлов калибровки для их любимых машин.</value>
@@ -856,7 +856,7 @@
     <value>Список изменений</value>
   </data>
   <data name="ABSEngaged" xml:space="preserve">
-    <value>Работа АБС </value>
+    <value>Работа АБС</value>
   </data>
   <data name="Amplitude" xml:space="preserve">
     <value>Амплитуда</value>
@@ -889,7 +889,7 @@
     <value>Grip-O-Meter</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>Миля/ч</value>
+    <value> Миля/ч</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon ветер</value>
@@ -1500,9 +1500,6 @@
   <data name="LoopEnd" xml:space="preserve">
     <value>Конец петли</value>
   </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>мс</value>
-  </data>
   <data name="Commentary" xml:space="preserve">
     <value>Комментарий</value>
   </data>
@@ -1651,7 +1648,7 @@
     <value>Инициализация симулятора...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Инициализация прямого ввода...</value>
+    <value>Инициализация DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Инициализация Stream Deck...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Профили контроллера</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Переименовать профиль</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Переименовать профиль контроллера</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Запущенные процессы</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Фильтр по имени или пути...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Поиск запущенных приложений...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Видимость окна</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Показать / скрыть окно</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Размер шага</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Интервал проверки обновлений</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> ч</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Удалять окраски при закрытии iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Проверять обновления по интервалу</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Практика</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Квалификация</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Гонка</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Статус</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Простой</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Активен</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Подавлен</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Удалять старые установщики</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Разное</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Открыть папку документов</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(не назначено)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Включить положение и масштаб оверлея для каждой машины</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Источник 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Мягкий лимитер</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Максимум</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Минимум</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Защита от аварий</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Сила на парковке</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Soft lock</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Источник Soft lock</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Трение</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Центровка руля</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Источник центровки руля</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Сила андерстира</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Два полюса</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Вход</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Вход A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Вход B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Добавить модуль</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Начать с пустого графика</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Разность</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Источник скорости руля</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Источники</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Универсальные DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Микшеры</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Эффекты</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Другие эффекты</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> мс</value>
+  </data>
 </root>

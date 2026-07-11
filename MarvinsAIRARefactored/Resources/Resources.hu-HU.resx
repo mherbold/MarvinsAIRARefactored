@@ -1500,9 +1500,6 @@
   <data name="LoopEnd" xml:space="preserve">
     <value>Hurok vége</value>
   </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
-  </data>
   <data name="Commentary" xml:space="preserve">
     <value>Kommentár</value>
   </data>
@@ -1651,7 +1648,7 @@
     <value>Szimulátor inicializálása...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Közvetlen bemenet inicializálása...</value>
+    <value>DirectInput inicializálása...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Stream Deck inicializálása...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Vezérlőprofilok</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Profil átnevezése</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Vezérlőprofil átnevezése</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Futó folyamatok</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Szűrés név vagy elérési út szerint...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Futó alkalmazások keresése...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Ablak láthatósága</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Ablak megjelenítése / elrejtése</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Lépésköz</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Frissítés-ellenőrzési időköz</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> ó</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Festések törlése az iRacing bezárásakor</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Frissítések keresése időközönként</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Edzés</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Időmérő</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Verseny</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Állapot</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Tétlen</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Aktív</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Elnyomva</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Régi telepítők törlése</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Egyéb</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Dokumentumok mappa megnyitása</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(nincs hozzárendelve)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Autónkénti overlay pozíció és méretezés engedélyezése</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz forrás</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Lágy korlátozó</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Maximum</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Minimum</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Baleset védelem</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Parkoló erő</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Lágy zár</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Lágy zár forrás</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Súrlódás</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Kormány középre állítás</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Kormány középre állítás forrás</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Alulkormányzási erő</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Kétpólusú</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Bemenet</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Bemenet A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Bemenet B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Modul hozzáadása</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Üres grafikon indítása</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Kivonás</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Kormánysebesség forrás</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Források</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Általános DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Keverők</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Effektek</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Egyéb effektek</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

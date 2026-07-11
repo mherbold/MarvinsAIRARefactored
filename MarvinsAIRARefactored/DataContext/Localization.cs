@@ -80,13 +80,16 @@ public partial class Localization : INotifyPropertyChanged
 	{
 		get
 		{
+			// no Trim() here — leading whitespace is significant (the unit-suffix strings like " Nm" and
+			// " Hz" carry a leading space so they can be appended directly to a number); the resx values
+			// are kept pre-trimmed everywhere else
 			if ( _translations.TryGetValue( key, out var value ) && ( value != string.Empty ) )
 			{
-				return value?.Trim() ?? string.Empty;
+				return value;
 			}
 			else if ( _defaults.TryGetValue( key, out value ) && ( value != string.Empty ) )
 			{
-				return value?.Trim() ?? string.Empty;
+				return value;
 			}
 			else
 			{

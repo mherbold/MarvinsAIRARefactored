@@ -1117,13 +1117,13 @@
     <value>iRacing-forums</value>
   </data>
   <data name="DocumentationText" xml:space="preserve">
-    <value>Deze documentatie website is permanent aan verandering onderhevig, omdat er doorlopend nieuwe opties aan de app worden toegevoegd. Ik werk de informatie zoveel mogelijk bij. Mocht je niet kunnen vinden wat je zoekt, kijk dan op de Discord server, of in de iRacing forums. </value>
+    <value>Deze documentatie website is permanent aan verandering onderhevig, omdat er doorlopend nieuwe opties aan de app worden toegevoegd. Ik werk de informatie zoveel mogelijk bij. Mocht je niet kunnen vinden wat je zoekt, kijk dan op de Discord server, of in de iRacing forums.</value>
   </data>
   <data name="DiscordText" xml:space="preserve">
-    <value>De MAIRA Discord server is de snelste manier op antwoorden te krijgen op je vragen, mocht je het antwoord niet in de documentatie kunnen vinden. Er zijn vrijwilligers actief en ikzelf probeer ook te helpen. </value>
+    <value>De MAIRA Discord server is de snelste manier op antwoorden te krijgen op je vragen, mocht je het antwoord niet in de documentatie kunnen vinden. Er zijn vrijwilligers actief en ikzelf probeer ook te helpen.</value>
   </data>
   <data name="ForumsText" xml:space="preserve">
-    <value>Hier is het allemaal begonnen. Je kunt hier antwoorden vinden op je vragen, ik ben hier echter niet meer zo actief als vroeger. De Discord server is de beste plek om vragen te stellen. </value>
+    <value>Hier is het allemaal begonnen. Je kunt hier antwoorden vinden op je vragen, ik ben hier echter niet meer zo actief als vroeger. De Discord server is de beste plek om vragen te stellen.</value>
   </data>
   <data name="PedalsP700" xml:space="preserve">
     <value>Simagic P700-pedalen</value>
@@ -1354,10 +1354,10 @@
     <value>Selecteer je force feedback-stuur uit de onderstaande lijst.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> Stuur niet zichtbaar? Zorg dat het aan en aangesloten is, dan vernieuwt de lijst automatisch.</value>
+    <value>Stuur niet zichtbaar? Zorg dat het aan en aangesloten is, dan vernieuwt de lijst automatisch.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec-gebruikers: Fanatec-sturen verschijnen doorgaans als twee afzonderlijke apparaten in de lijst. Als het geselecteerde stuur niet werkt, probeer dan het andere!</value>
+    <value>Fanatec-gebruikers: Fanatec-sturen verschijnen doorgaans als twee afzonderlijke apparaten in de lijst. Als het geselecteerde stuur niet werkt, probeer dan het andere!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>Maximale stuurkracht</value>
@@ -1366,10 +1366,10 @@
     <value>Voer de maximale kracht in die je basis kan leveren, in Newton-meter (Nm). MAIRA gebruikt deze waarde om alle force feedback-uitvoer correct te schalen voor jouw hardware.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> We hebben een schatting gemaakt op basis van jouw geselecteerde stuur, maar pas het gerust aan als dat nodig is.</value>
+    <value>We hebben een schatting gemaakt op basis van jouw geselecteerde stuur, maar pas het gerust aan als dat nodig is.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> Belangrijk: als je het maximale koppel van je stuur al hebt beperkt in de software van de fabrikant (bijv. Fanatec Wheel Control Panel, Moza Pit House, enz.), voer dan die verlaagde waarde in in plaats van het fysieke maximum van de hardware. MAIRA moet weten wat je stuur daadwerkelijk zal leveren, niet waartoe het theoretisch in staat is.</value>
+    <value>Belangrijk: als je het maximale koppel van je stuur al hebt beperkt in de software van de fabrikant (bijv. Fanatec Wheel Control Panel, Moza Pit House, enz.), voer dan die verlaagde waarde in in plaats van het fysieke maximum van de hardware. MAIRA moet weten wat je stuur daadwerkelijk zal leveren, niet waartoe het theoretisch in staat is.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>Krachtbediening</value>
@@ -1381,7 +1381,7 @@
     <value>Klik op de knoppen - en + hieronder om ingangen toe te wijzen. Deze stap is optioneel; je kunt hem overslaan en de snelkoppelingen later instellen via de Stuur-pagina.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> Zodra een ingang is toegewezen, wordt de rand van de knop oranje ter bevestiging.</value>
+    <value>Zodra een ingang is toegewezen, wordt de rand van de knop oranje ter bevestiging.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>Sterkte</value>
@@ -1408,7 +1408,7 @@
     <value>Pas eerst de automatische doelmarge naar wens aan en wijs daarna de knoppen Instellen en Wissen toe.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> Het automatische doel bepaalt waar in het krachtveld van je stuur de gemeten piek moet vallen. Verlaag het doel voor meer marge boven de piek; verhoog het om meer van het stuurbereik te benutten.</value>
+    <value>Het automatische doel bepaalt waar in het krachtveld van je stuur de gemeten piek moet vallen. Verlaag het doel voor meer marge boven de piek; verhoog het om meer van het stuurbereik te benutten.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>Algoritme</value>
@@ -1499,9 +1499,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>Lus einde</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>Commentaar</value>
@@ -1651,7 +1648,7 @@
     <value>Simulator initialiseren...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Directe invoer initialiseren...</value>
+    <value>DirectInput initialiseren...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Stream Deck initialiseren...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>Controllerprofielen</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>Profiel hernoemen</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>Controllerprofiel hernoemen</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>Actieve processen</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>Filteren op naam of pad...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>Zoeken naar actieve apps...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>Vensterzichtbaarheid</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>Venster tonen / verbergen</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>Stapgrootte</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>Interval voor updatecontrole</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> u</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>Paints verwijderen wanneer iRacing sluit</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>Controleer op updates met interval</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>Training</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>Kwalificatie</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>Race</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>Status</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>Inactief</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>Actief</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>Onderdrukt</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>Oude installatieprogramma's verwijderen</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>Diversen</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>Documentenmap openen</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(niet toegewezen)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Overlaypositie en -schaal per auto inschakelen</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz-bron</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>Soft-limiter</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>Maximum</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>Minimum</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>Bescherming bij crashes</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>Sterkte bij stilstand</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>Eindaanslag</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>Eindaanslag-bron</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>Wrijving</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>Stuurcentrering</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>Stuurcentrering-bron</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>Onderstuurkracht</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>Tweepolig</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>Ingang</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>Ingang A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>Ingang B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>Module toevoegen</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>Lege grafiek starten</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>Aftrekken</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>Stuursnelheid-bron</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>Bronnen</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>Generieke DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>Mixers</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>Effecten</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>Overige effecten</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

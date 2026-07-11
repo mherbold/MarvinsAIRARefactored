@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 
 using CsvHelper;
+using CsvHelper.Configuration;
 
 namespace MarvinsAIRARefactored.Classes;
 
@@ -29,7 +30,14 @@ public class Recording
 
 			app.Logger.WriteLine( $"[Recording] Description is {Description}" );
 
-			using var csv = new CsvReader( reader, CultureInfo.InvariantCulture );
+			// recordings from older versions only have the two torque columns — read the missing fields as zero
+			var configuration = new CsvConfiguration( CultureInfo.InvariantCulture )
+			{
+				HeaderValidated = null,
+				MissingFieldFound = null
+			};
+
+			using var csv = new CsvReader( reader, configuration );
 
 			try
 			{

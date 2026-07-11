@@ -1414,10 +1414,10 @@
     <value>नीचे दी गई सूची से अपना फोर्स-फीडबैक स्टीयरिंग व्हील चुनें।</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> अपना व्हील नहीं दिख रहा? सुनिश्चित करें कि यह चालू और कनेक्ट है, फिर सूची स्वचालित रूप से रीफ्रेश हो जाएगी।</value>
+    <value>अपना व्हील नहीं दिख रहा? सुनिश्चित करें कि यह चालू और कनेक्ट है, फिर सूची स्वचालित रूप से रीफ्रेश हो जाएगी।</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec उपयोगकर्ता: Fanatec व्हील आमतौर पर सूची में दो अलग-अलग डिवाइस के रूप में दिखाई देते हैं। यदि आपने जो चुना वह काम नहीं करता, तो दूसरा चुनने का प्रयास करें!</value>
+    <value>Fanatec उपयोगकर्ता: Fanatec व्हील आमतौर पर सूची में दो अलग-अलग डिवाइस के रूप में दिखाई देते हैं। यदि आपने जो चुना वह काम नहीं करता, तो दूसरा चुनने का प्रयास करें!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>अधिकतम व्हील फोर्स</value>
@@ -1426,10 +1426,10 @@
     <value>अपने व्हीलबेस द्वारा उत्पादित अधिकतम फोर्स को न्यूटन-मीटर (Nm) में दर्ज करें। MAIRA आपके हार्डवेयर के लिए सभी फोर्स फीडबैक आउटपुट को सही ढंग से स्केल करने के लिए इस मान का उपयोग करता है।</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> हमने आपके चयनित व्हील के आधार पर अपना सर्वोत्तम अनुमान लगाया है — लेकिन आवश्यकता होने पर इसे समायोजित करने के लिए स्वतंत्र महसूस करें।</value>
+    <value>हमने आपके चयनित व्हील के आधार पर अपना सर्वोत्तम अनुमान लगाया है — लेकिन आवश्यकता होने पर इसे समायोजित करने के लिए स्वतंत्र महसूस करें।</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> महत्वपूर्ण: यदि आपने अपने व्हील निर्माता के सॉफ़्टवेयर (जैसे, Fanatec Wheel Control Panel, Moza Pit House, आदि) के अंदर पहले से ही अपने व्हील का अधिकतम टॉर्क आउटपुट सीमित कर दिया है, तो यहां हार्डवेयर के भौतिक अधिकतम के बजाय वह कम किया गया मान दर्ज करें। MAIRA को यह जानने की आवश्यकता है कि आपका व्हील वास्तव में क्या देगा, न कि सिद्धांत में यह क्या करने में सक्षम है।</value>
+    <value>महत्वपूर्ण: यदि आपने अपने व्हील निर्माता के सॉफ़्टवेयर (जैसे, Fanatec Wheel Control Panel, Moza Pit House, आदि) के अंदर पहले से ही अपने व्हील का अधिकतम टॉर्क आउटपुट सीमित कर दिया है, तो यहां हार्डवेयर के भौतिक अधिकतम के बजाय वह कम किया गया मान दर्ज करें। MAIRA को यह जानने की आवश्यकता है कि आपका व्हील वास्तव में क्या देगा, न कि सिद्धांत में यह क्या करने में सक्षम है।</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>स्ट्रेंथ नियंत्रण</value>
@@ -1441,7 +1441,7 @@
     <value>प्रत्येक को इनपुट असाइन करने के लिए नीचे - और + बटन पर क्लिक करें। यह चरण वैकल्पिक है — आप इसे छोड़ सकते हैं और बाद में रेसिंग व्हील पेज से बाइंडिंग सेट कर सकते हैं।</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> एक बार इनपुट मैप हो जाने के बाद, इसकी पुष्टि के लिए बटन का बॉर्डर नारंगी हो जाएगा।</value>
+    <value>एक बार इनपुट मैप हो जाने के बाद, इसकी पुष्टि के लिए बटन का बॉर्डर नारंगी हो जाएगा।</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>स्ट्रेंथ</value>
@@ -1468,7 +1468,7 @@
     <value>पहले, ऑटो टारगेट हेडरूम को अपने स्वाद के अनुसार समायोजित करें, फिर अपने सेट और क्लियर बटन मैप करें।</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> ऑटो टारगेट यह निर्धारित करता है कि आपके व्हील की फोर्स रेंज में मापा गया पीक कहां आना चाहिए। पीक के ऊपर अधिक हेडरूम रखने के लिए टारगेट कम करें; व्हील की रेंज का अधिक उपयोग करने के लिए इसे बढ़ाएं।</value>
+    <value>ऑटो टारगेट यह निर्धारित करता है कि आपके व्हील की फोर्स रेंज में मापा गया पीक कहां आना चाहिए। पीक के ऊपर अधिक हेडरूम रखने के लिए टारगेट कम करें; व्हील की रेंज का अधिक उपयोग करने के लिए इसे बढ़ाएं।</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>एल्गोरिथम</value>
@@ -1559,9 +1559,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>लूप समाप्त</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>कमेंट्री</value>
@@ -1714,7 +1711,7 @@
     <value>सिम्युलेटर प्रारंभ हो रहा है...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>डायरेक्ट इनपुट प्रारंभ हो रहा है...</value>
+    <value>DirectInput प्रारंभ हो रहा है...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>स्ट्रीम डेक प्रारंभ हो रहा है...</value>
@@ -1772,45 +1769,65 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>मुख्य विंडो प्रारंभ हो रही है...</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>चालू प्रक्रियाएं</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>नाम या पथ से फ़िल्टर करें...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>चालू ऐप्स खोज रहे हैं...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>विंडो दृश्यता</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>विंडो दिखाएं / छिपाएं</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>स्टेप आकार</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>अपडेट जांच अंतराल</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> घं</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing बंद होने पर पेंट हटाएं</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>अंतराल पर अपडेट जांचें</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>अभ्यास</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>क्वालिफाइंग</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>रेस</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>स्थिति</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>निष्क्रिय</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>सक्रिय</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>दबा हुआ</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>पुराने इंस्टॉलर हटाएँ</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>विविध</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>दस्तावेज़ फ़ोल्डर खोलें</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1818,9 +1835,11 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>संतुलन</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>प्रति कार ओवरले स्थिति और स्केलिंग सक्षम करें</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz स्रोत</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1871,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>सॉफ्ट लिमिटर</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>अधिकतम</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>न्यूनतम</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>क्रैश सुरक्षा</value>
   </data>
@@ -1886,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>पार्क्ड स्ट्रेंथ</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>सॉफ्ट लॉक</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>सॉफ्ट लॉक स्रोत</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>फ्रिक्शन</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>व्हील सेंटरिंग</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>व्हील सेंटरिंग स्रोत</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>अंडरस्टीयर फ़ोर्स</value>
@@ -2000,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>दो पोल</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>इनपुट</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>इनपुट A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>इनपुट B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>मॉड्यूल जोड़ें</value>
   </data>
@@ -2030,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>खाली ग्राफ़ से शुरू करें</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>घटाव</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>स्टीयरिंग व्हील गति स्रोत</value>
+  </data>
 
 
 
@@ -2052,4 +2062,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>स्रोत</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>सामान्य DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>मिक्सर</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>प्रभाव</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>अन्य प्रभाव</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

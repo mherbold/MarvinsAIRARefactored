@@ -208,7 +208,7 @@
     <value>หน้าต่างบนสุด</value>
   </data>
   <data name="TorqueUnits" xml:space="preserve">
-    <value>นิวตันเมตร</value>
+    <value> นิวตันเมตร</value>
   </data>
   <data name="DetailBoosterOn60Hz" xml:space="preserve">
     <value>ตัวเพิ่มรายละเอียด (ความหน่วงต่ำ)</value>
@@ -244,7 +244,7 @@
     <value>ขีดจำกัดเดลต้า</value>
   </data>
   <data name="DeltaLimitUnits" xml:space="preserve">
-    <value>นิวตันเมตร/วินาที</value>
+    <value> นิวตันเมตร/วินาที</value>
   </data>
   <data name="DeltaLimiterOn60Hz" xml:space="preserve">
     <value>ตัวจำกัดเดลต้า (ความหน่วงต่ำ)</value>
@@ -280,7 +280,7 @@
     <value>การป้องกันการชน</value>
   </data>
   <data name="GForceUnits" xml:space="preserve">
-    <value>g</value>
+    <value> g</value>
   </data>
   <data name="LongitudalGForce" xml:space="preserve">
     <value>แรง G แนวยาว</value>
@@ -292,10 +292,10 @@
     <value>การลดแรง</value>
   </data>
   <data name="SecondsUnits" xml:space="preserve">
-    <value>วินาที</value>
+    <value> วินาที</value>
   </data>
   <data name="MPSUnits" xml:space="preserve">
-    <value>เมตร/วินาที</value>
+    <value> เมตร/วินาที</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
     <value>การป้องกันขอบถนน</value>
@@ -328,7 +328,7 @@
     <value>ความแรง</value>
   </data>
   <data name="HertzUnits" xml:space="preserve">
-    <value>เฮิรตซ์</value>
+    <value> เฮิรตซ์</value>
   </data>
   <data name="GlobalFrequency" xml:space="preserve">
     <value>ความถี่รวม</value>
@@ -571,7 +571,7 @@
     <value>เกณฑ์รวม</value>
   </data>
   <data name="SlewUnits" xml:space="preserve">
-    <value>นิวตันเมตร/มิลลิวินาที</value>
+    <value> นิวตันเมตร/มิลลิวินาที</value>
   </data>
   <data name="WheelForce" xml:space="preserve">
     <value>แรงพวงมาลัย</value>
@@ -730,7 +730,7 @@
     <value>เกิดข้อยกเว้น</value>
   </data>
   <data name="KPHUnits" xml:space="preserve">
-    <value>กม./ชม.</value>
+    <value> กม./ชม.</value>
   </data>
   <data name="CalibrationFilesText" xml:space="preserve">
     <value>บุคคลเหล่านี้ได้สละเวลาช่วยคาลิเบรตเอฟเฟกต์พวงมาลัยกับรถที่พวกเขาชื่นชอบ และอัปโหลดไฟล์คาลิเบรต</value>
@@ -889,7 +889,7 @@
     <value>Grip-O-Meter</value>
   </data>
   <data name="MPHUnits" xml:space="preserve">
-    <value>ไมล์/ชม.</value>
+    <value> ไมล์/ชม.</value>
   </data>
   <data name="TyphoonWind" xml:space="preserve">
     <value>Typhoon ลม</value>
@@ -1500,9 +1500,6 @@
   <data name="LoopEnd" xml:space="preserve">
     <value>จุดสิ้นสุดลูป</value>
   </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
-  </data>
   <data name="Commentary" xml:space="preserve">
     <value>บทบรรยาย</value>
   </data>
@@ -1651,7 +1648,7 @@
     <value>กำลังเริ่มต้นเครื่องจำลอง...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>กำลังเริ่มต้น Direct Input...</value>
+    <value>กำลังเริ่มต้น DirectInput...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>กำลังเริ่มต้น Stream Deck...</value>
@@ -1724,52 +1721,74 @@
   </data>
   <data name="DeltaMonitorVsLeader" xml:space="preserve">
     <value>vs. P1</value>
-  </data>  <data name="ControllerProfiles" xml:space="preserve">
+  </data>
+  <data name="ControllerProfiles" xml:space="preserve">
     <value>โปรไฟล์คอนโทรลเลอร์</value>
-  </data>  <data name="RenameProfile" xml:space="preserve">
+  </data>
+  <data name="RenameProfile" xml:space="preserve">
     <value>เปลี่ยนชื่อโปรไฟล์</value>
   </data>
   <data name="RenameControllerProfile" xml:space="preserve">
     <value>เปลี่ยนชื่อโปรไฟล์คอนโทรลเลอร์</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>กระบวนการที่กำลังทำงาน</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>กรองตามชื่อหรือเส้นทาง...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>กำลังค้นหาแอปที่กำลังทำงาน...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>การมองเห็นหน้าต่าง</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>แสดง / ซ่อนหน้าต่าง</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>ขนาดขั้น</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>ช่วงเวลาตรวจสอบการอัปเดต</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> ชม.</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>ลบลายสีเมื่อปิด iRacing</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>ตรวจสอบการอัปเดตตามช่วงเวลา</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>ฝึกซ้อม</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>รอบคัดเลือก</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>แข่งขัน</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>สถานะ</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>ว่าง</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>ทำงาน</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>ถูกระงับ</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>ลบตัวติดตั้งเก่า</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>เบ็ดเตล็ด</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>เปิดโฟลเดอร์เอกสาร</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1816,9 +1835,11 @@
   </data>
   <data name="Unmapped" xml:space="preserve">
     <value>(ยังไม่ได้แมป)</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>เปิดใช้งานตำแหน่งและขนาดของโอเวอร์เลย์แยกตามรถ</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>แหล่งสัญญาณ 60 Hz</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1869,12 +1890,6 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>ตัวจำกัดแบบนุ่ม</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>ค่าสูงสุด</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>ค่าต่ำสุด</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>การป้องกันการชน</value>
   </data>
@@ -1884,14 +1899,14 @@
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>ความแรงขณะจอด</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>ล็อกนุ่ม</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>แหล่งสัญญาณล็อกนุ่ม</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>แรงเสียดทาน</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>การจัดกึ่งกลางพวงมาลัย</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>แหล่งสัญญาณการจัดกึ่งกลางพวงมาลัย</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>แรง Understeer</value>
@@ -1998,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>สองโพล</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>อินพุต</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>อินพุต A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>อินพุต B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>เพิ่มโมดูล</value>
   </data>
@@ -2028,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>เริ่มกราฟเปล่า</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>ลบสัญญาณ</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>แหล่งสัญญาณความเร็วพวงมาลัย</value>
+  </data>
 
 
 
@@ -2065,4 +2077,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>แหล่งสัญญาณ</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>DSP ทั่วไป</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>มิกเซอร์</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>เอฟเฟกต์</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>เอฟเฟกต์อื่น ๆ</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

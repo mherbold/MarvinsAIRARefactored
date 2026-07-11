@@ -346,7 +346,7 @@
     <value> m/s</value>
   </data>
   <data name="CurbProtection" xml:space="preserve">
-    <value>커브 보호</value>
+    <value>연석 보호</value>
   </data>
   <data name="ShockVelocity" xml:space="preserve">
     <value>충격 속도</value>
@@ -679,13 +679,13 @@
     <value>충돌 보호가 활성화되었습니다!</value>
   </data>
   <data name="CurbProtectionActivated" xml:space="preserve">
-    <value>커브 보호가 활성화되었습니다!</value>
+    <value>연석 보호가 활성화되었습니다!</value>
   </data>
   <data name="PrivateMessages" xml:space="preserve">
     <value>비공개 메시지</value>
   </data>
   <data name="CurbProtectionMessagesEnabled" xml:space="preserve">
-    <value>커브 보호 메시지 활성화</value>
+    <value>연석 보호 메시지 활성화</value>
   </data>
   <data name="CrashProtectionMessagesEnabled" xml:space="preserve">
     <value>충돌 보호 메시지 활성화</value>
@@ -1414,10 +1414,10 @@
     <value>아래 목록에서 포스 피드백 스티어링 휠을 선택하세요.</value>
   </data>
   <data name="Wizard_Step2_Hint1" xml:space="preserve">
-    <value> 휠이 보이지 않나요? 전원이 켜져 있고 연결되어 있는지 확인하면 목록이 자동으로 새로 고쳐집니다.</value>
+    <value>휠이 보이지 않나요? 전원이 켜져 있고 연결되어 있는지 확인하면 목록이 자동으로 새로 고쳐집니다.</value>
   </data>
   <data name="Wizard_Step2_Hint2" xml:space="preserve">
-    <value> Fanatec 사용자: Fanatec 휠은 일반적으로 목록에 두 개의 별도 장치로 나타납니다. 선택한 것이 작동하지 않으면 다른 것을 선택해 보세요!</value>
+    <value>Fanatec 사용자: Fanatec 휠은 일반적으로 목록에 두 개의 별도 장치로 나타납니다. 선택한 것이 작동하지 않으면 다른 것을 선택해 보세요!</value>
   </data>
   <data name="Wizard_Step3_Title" xml:space="preserve">
     <value>최대 휠 포스</value>
@@ -1426,10 +1426,10 @@
     <value>휠베이스가 낼 수 있는 최대 포스를 뉴턴미터(Nm) 단위로 입력하세요. MAIRA는 이 값을 사용하여 하드웨어에 맞게 모든 포스 피드백 출력을 올바르게 조정합니다.</value>
   </data>
   <data name="Wizard_Step3_Hint1" xml:space="preserve">
-    <value> 선택한 휠을 기반으로 최선의 추정값을 제시했지만, 필요하면 자유롭게 조정하세요.</value>
+    <value>선택한 휠을 기반으로 최선의 추정값을 제시했지만, 필요하면 자유롭게 조정하세요.</value>
   </data>
   <data name="Wizard_Step3_Hint2" xml:space="preserve">
-    <value> 중요: 휠 제조사 소프트웨어(예: Fanatec Wheel Control Panel, Moza Pit House 등) 내에서 이미 휠의 최대 토크 출력을 제한했다면, 하드웨어의 물리적 최대값 대신 그 감소된 값을 여기에 입력하세요. MAIRA는 휠이 이론적으로 낼 수 있는 값이 아니라 실제로 전달할 값을 알아야 합니다.</value>
+    <value>중요: 휠 제조사 소프트웨어(예: Fanatec Wheel Control Panel, Moza Pit House 등) 내에서 이미 휠의 최대 토크 출력을 제한했다면, 하드웨어의 물리적 최대값 대신 그 감소된 값을 여기에 입력하세요. MAIRA는 휠이 이론적으로 낼 수 있는 값이 아니라 실제로 전달할 값을 알아야 합니다.</value>
   </data>
   <data name="Wizard_Step4_Title" xml:space="preserve">
     <value>강도 컨트롤</value>
@@ -1441,7 +1441,7 @@
     <value>아래의 - 및 + 버튼을 클릭하여 각각에 입력을 할당하세요. 이 단계는 선택 사항입니다. 건너뛰고 나중에 레이싱 휠 페이지에서 바인딩을 설정할 수 있습니다.</value>
   </data>
   <data name="Wizard_Step4_Hint1" xml:space="preserve">
-    <value> 입력이 매핑되면 버튼 테두리가 주황색으로 변해 확인됩니다.</value>
+    <value>입력이 매핑되면 버튼 테두리가 주황색으로 변해 확인됩니다.</value>
   </data>
   <data name="Wizard_Step4_StrengthLabel" xml:space="preserve">
     <value>강도</value>
@@ -1468,7 +1468,7 @@
     <value>먼저 자동 타겟 헤드룸을 취향에 맞게 조정한 다음, 설정 및 초기화 버튼을 매핑하세요.</value>
   </data>
   <data name="Wizard_Step6_Hint1" xml:space="preserve">
-    <value> 자동 타겟은 측정된 최대값이 휠 포스 범위의 어디에 위치해야 하는지를 설정합니다. 타겟을 낮추면 최대값 위로 더 많은 헤드룸을 유지하고, 높이면 휠 범위를 더 많이 사용합니다.</value>
+    <value>자동 타겟은 측정된 최대값이 휠 포스 범위의 어디에 위치해야 하는지를 설정합니다. 타겟을 낮추면 최대값 위로 더 많은 헤드룸을 유지하고, 높이면 휠 범위를 더 많이 사용합니다.</value>
   </data>
   <data name="Wizard_Step7_Title" xml:space="preserve">
     <value>알고리즘</value>
@@ -1559,9 +1559,6 @@
   </data>
   <data name="LoopEnd" xml:space="preserve">
     <value>루프 끝</value>
-  </data>
-  <data name="Milliseconds" xml:space="preserve">
-    <value>ms</value>
   </data>
   <data name="Commentary" xml:space="preserve">
     <value>해설</value>
@@ -1714,7 +1711,7 @@
     <value>시뮬레이터 초기화 중...</value>
   </data>
   <data name="InitializingDirectInput" xml:space="preserve">
-    <value>Direct Input 초기화 중...</value>
+    <value>DirectInput 초기화 중...</value>
   </data>
   <data name="InitializingStreamDeck" xml:space="preserve">
     <value>Stream Deck 초기화 중...</value>
@@ -1772,45 +1769,65 @@
   </data>
   <data name="InitializingMainWindow" xml:space="preserve">
     <value>메인 창 초기화 중...</value>
-  </data>  <data name="RunningProcesses" xml:space="preserve">
+  </data>
+  <data name="RunningProcesses" xml:space="preserve">
     <value>실행 중인 프로세스</value>
-  </data>  <data name="FilterByNameOrPath" xml:space="preserve">
+  </data>
+  <data name="FilterByNameOrPath" xml:space="preserve">
     <value>이름 또는 경로로 필터링...</value>
-  </data>  <data name="SearchingForRunningApps" xml:space="preserve">
+  </data>
+  <data name="SearchingForRunningApps" xml:space="preserve">
     <value>실행 중인 앱 검색 중...</value>
-  </data>  <data name="WindowVisibility" xml:space="preserve">
+  </data>
+  <data name="WindowVisibility" xml:space="preserve">
     <value>창 표시 여부</value>
-  </data>  <data name="ShowHideWindow" xml:space="preserve">
+  </data>
+  <data name="ShowHideWindow" xml:space="preserve">
     <value>창 표시 / 숨기기</value>
-  </data>  <data name="StepSize" xml:space="preserve">
+  </data>
+  <data name="StepSize" xml:space="preserve">
     <value>스텝 크기</value>
-  </data>  <data name="UpdateCheckInterval" xml:space="preserve">
+  </data>
+  <data name="UpdateCheckInterval" xml:space="preserve">
     <value>업데이트 확인 간격</value>
-  </data>  <data name="HoursUnits" xml:space="preserve">
+  </data>
+  <data name="HoursUnits" xml:space="preserve">
     <value> 시간</value>
-  </data>  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
+  </data>
+  <data name="DeletePaintsOnSimulatorExit" xml:space="preserve">
     <value>iRacing 종료 시 페인트 삭제</value>
-  </data>  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
+  </data>
+  <data name="CheckForUpdatesOnInterval" xml:space="preserve">
     <value>주기적으로 업데이트 확인</value>
-  </data>  <data name="Practice" xml:space="preserve">
+  </data>
+  <data name="Practice" xml:space="preserve">
     <value>연습</value>
-  </data>  <data name="Qualifying" xml:space="preserve">
+  </data>
+  <data name="Qualifying" xml:space="preserve">
     <value>예선</value>
-  </data>  <data name="Race" xml:space="preserve">
+  </data>
+  <data name="Race" xml:space="preserve">
     <value>레이스</value>
-  </data>  <data name="Status" xml:space="preserve">
+  </data>
+  <data name="Status" xml:space="preserve">
     <value>상태</value>
-  </data>  <data name="Idle" xml:space="preserve">
+  </data>
+  <data name="Idle" xml:space="preserve">
     <value>대기</value>
-  </data>  <data name="Active" xml:space="preserve">
+  </data>
+  <data name="Active" xml:space="preserve">
     <value>활성</value>
-  </data>  <data name="Suppressed" xml:space="preserve">
+  </data>
+  <data name="Suppressed" xml:space="preserve">
     <value>억제됨</value>
-  </data>  <data name="DeleteOldInstallers" xml:space="preserve">
+  </data>
+  <data name="DeleteOldInstallers" xml:space="preserve">
     <value>오래된 설치 프로그램 삭제</value>
-  </data>  <data name="Miscellaneous" xml:space="preserve">
+  </data>
+  <data name="Miscellaneous" xml:space="preserve">
     <value>기타</value>
-  </data>  <data name="OpenDocumentsFolder" xml:space="preserve">
+  </data>
+  <data name="OpenDocumentsFolder" xml:space="preserve">
     <value>문서 폴더 열기</value>
   </data>
   <data name="AutoTune" xml:space="preserve">
@@ -1818,9 +1835,11 @@
   </data>
   <data name="Balance" xml:space="preserve">
     <value>밸런스</value>
-  </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
+  </data>
+  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>차량별 오버레이 위치 및 크기 조정 활성화</value>
-  </data>  <data name="FFBModuleSource60Hz" xml:space="preserve">
+  </data>
+  <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz 소스</value>
   </data>
   <data name="FFBModuleSource360Hz" xml:space="preserve">
@@ -1871,29 +1890,23 @@
   <data name="FFBModuleSoftLimiter" xml:space="preserve">
     <value>소프트 리미터</value>
   </data>
-  <data name="FFBModuleMaximum" xml:space="preserve">
-    <value>최대</value>
-  </data>
-  <data name="FFBModuleMinimum" xml:space="preserve">
-    <value>최소</value>
-  </data>
   <data name="FFBModuleCrashProtection" xml:space="preserve">
     <value>충돌 보호</value>
   </data>
   <data name="FFBModuleCurbProtection" xml:space="preserve">
-    <value>커브 보호</value>
+    <value>연석 보호</value>
   </data>
   <data name="FFBModuleParkedStrength" xml:space="preserve">
     <value>정차 강도</value>
   </data>
-  <data name="FFBModuleSoftLock" xml:space="preserve">
-    <value>소프트 락</value>
+  <data name="FFBModuleSourceSoftLock" xml:space="preserve">
+    <value>소프트 락 소스</value>
   </data>
   <data name="FFBModuleFriction" xml:space="preserve">
     <value>마찰</value>
   </data>
-  <data name="FFBModuleWheelCentering" xml:space="preserve">
-    <value>휠 센터링</value>
+  <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
+    <value>휠 센터링 소스</value>
   </data>
   <data name="FFBModuleUndersteerForce" xml:space="preserve">
     <value>언더스티어 포스</value>
@@ -2000,15 +2013,6 @@
   <data name="TwoPole" xml:space="preserve">
     <value>2폴</value>
   </data>
-  <data name="Input" xml:space="preserve">
-    <value>입력</value>
-  </data>
-  <data name="InputA" xml:space="preserve">
-    <value>입력 A</value>
-  </data>
-  <data name="InputB" xml:space="preserve">
-    <value>입력 B</value>
-  </data>
   <data name="AddModule" xml:space="preserve">
     <value>모듈 추가</value>
   </data>
@@ -2030,6 +2034,12 @@
   <data name="StartEmptyGraph" xml:space="preserve">
     <value>빈 그래프로 시작</value>
   </data>
+  <data name="FFBModuleSubtract" xml:space="preserve">
+    <value>감산</value>
+  </data>
+  <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
+    <value>휠 속도 소스</value>
+  </data>
 
 
 
@@ -2052,4 +2062,24 @@
 
 
 
+
+
+  <data name="FFBCategorySources" xml:space="preserve">
+    <value>소스</value>
+  </data>
+  <data name="FFBCategoryGenericDSP" xml:space="preserve">
+    <value>범용 DSP</value>
+  </data>
+  <data name="FFBCategoryMixers" xml:space="preserve">
+    <value>믹서</value>
+  </data>
+  <data name="FFBCategoryEffects" xml:space="preserve">
+    <value>효과</value>
+  </data>
+  <data name="OtherEffects" xml:space="preserve">
+    <value>기타 효과</value>
+  </data>
+  <data name="MillisecondsUnits" xml:space="preserve">
+    <value> ms</value>
+  </data>
 </root>

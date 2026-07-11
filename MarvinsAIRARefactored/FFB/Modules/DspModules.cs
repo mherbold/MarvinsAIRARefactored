@@ -21,7 +21,8 @@ namespace MarvinsAIRARefactored.FFB.Modules;
 /// </summary>
 internal sealed class LowPassCore
 {
-	private const int SlopeTwoPole = 1;
+	// index into FilterSlopeChoices; also referenced by the editor's slope-switch cutoff retune
+	internal const int SlopeTwoPole = 1;
 
 	private const float TickRateHz = 360f;
 
@@ -154,30 +155,6 @@ public sealed class GainModule : FFBModule
 	}
 }
 
-/// <summary>Two-input sum: <c>A + B</c>. Scale an input with a Gain module before it if levels need adjusting.</summary>
-public sealed class AddModule : FFBModule
-{
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		return inputA + inputB;
-	}
-}
-
-/// <summary>Two-input crossfade: <c>Lerp(A, B, Mix)</c> — 0% = all A, 100% = all B.</summary>
-public sealed class BlendModule : FFBModule
-{
-	private const int Mix = 1;
-
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		return MathZ.Lerp( inputA, inputB, _v[ Mix ] );
-	}
-}
-
 /// <summary>
 /// True slew limiter: <c>y += clamp(x − y, ±Limit/360)</c> per tick, with Limit in honest Nm/s. Any signal
 /// whose slope stays under the limit passes through bit-exact (no lag, no attenuation); over-limit movement
@@ -208,8 +185,8 @@ public sealed class SlewLimiterModule : FFBModule
 }
 
 /// <summary>
-/// Slew-domain compressor — the speed analog of the Compressor, completing the 2×2 shaper family: Maximum /
-/// Compressor clamp / squeeze amplitude, SlewLimiter / SlewCompressor clamp / squeeze rate of change. Each
+/// Slew-domain compressor — the speed analog of the Compressor: the Compressor squeezes amplitude while
+/// SlewLimiter / SlewCompressor clamp / squeeze the rate of change. Each
 /// tick the delta toward the input is pushed through <see cref="MathZ.Compression"/>: changes slower than
 /// Threshold (Nm/s) pass bit-exact, faster changes are squeezed at Ratio (N:1) across a Knee (Nm/s) soft
 /// corner. Because it compresses the delta against its own output it always converges — excess is delayed,
@@ -366,8 +343,10 @@ public sealed class TransientEnhancerModule : FFBModule
 /// low-pass cutoff adapts to how fast the signal is moving: a near-static signal sinks the cutoff to a floor
 /// set by Amount (strong smoothing of hash and jitter), while a fast transient opens the cutoff in proportion
 /// to the smoothed signal speed so big movements pass with minimal lag. Amount maps the cutoff floor
-/// logarithmically from 180 Hz (0 = pass-through) down to 1 Hz (1 = maximum smoothing). The signal is
-/// normalized by MaxForce so the speed scale is rig-independent. Replaces the old two-knob delta-tracking
+/// logarithmically from 180 Hz (0 = pass-through) down to 1 Hz (1 = maximum smoothing). The speed estimate is
+/// normalized by a FIXED Nm reference — deliberately not MaxForce: the bus carries the sim's steering-shaft
+/// torque, which depends on the car, not the rig, and normalizing by the user's output-mapping setting would
+/// change how much smoothing they get whenever they retune max force. Replaces the old two-knob delta-tracking
 /// output smoother (Multi OutputSmoothing 611–624), whose second "Smoothing" knob was a hardcoded constant
 /// in the old system anyway.
 /// </summary>
@@ -378,6 +357,7 @@ public sealed class AdaptiveSmootherModule : FFBModule
 	private const float TickRateHz = 360f;
 	public const float FloorMaxHz = 180f;         // cutoff floor at Amount 0 (≈ pass-through); public for the value formatter
 	private const float SpeedToCutoffHz = 10f;    // cutoff opening (Hz) per unit of normalized speed (1/s)
+	private const float ReferenceNm = 20f;        // fixed speed-normalization scale (matches the feel of a 20 Nm max force before the decoupling)
 	private const float DerivativeCutoffHz = 5f;  // fixed LPF on the speed estimate (rejects hash, tracks transients)
 
 	private static readonly float _derivativeAlpha = CutoffToAlpha( DerivativeCutoffHz );
@@ -407,7 +387,7 @@ public sealed class AdaptiveSmootherModule : FFBModule
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		var x = inputA / ctx.MaxForce;
+		var x = inputA / ReferenceNm;
 
 		var speed = ( x - _lastInput ) * TickRateHz;
 
@@ -435,196 +415,6 @@ public sealed class AdaptiveSmootherModule : FFBModule
 
 		_y = MathZ.Lerp( _y, x, CutoffToAlpha( cutoffHz ) );
 
-		return _y * ctx.MaxForce;
-	}
-}
-
-/// <summary>
-/// Adaptive blend of two sources (old Multi HybridVariable30 stage 492–505): input A = the detail source
-/// (360 Hz), input B = the anchor (60 Hz). Runs the DetailBooster recursion — the output advances by the
-/// A-deltas while being pulled toward the anchor by a one-pole whose corner is Cutoff (Hz, same mapping as
-/// the filters) — but the corner is DYNAMIC: whenever the output's direction flips (a peak), it drops to
-/// PeakCutoff and relaxes back linearly over Hold (ms), letting transients ride through with less anchor pull
-/// right when they matter. With a fixed corner this would be replicable as LowPassFilter(B) +
-/// HighPassFilter(A) → Add; the direction-triggered corner drop is what earns it a module. Input A enters
-/// only via its delta, so scaling the detail is a Gain module on the A input (the old built-in Detail knob —
-/// removed — was exactly that; it only had to live inside while curb protection dynamically pulled it to 0,
-/// a coupling that was dropped along with the rest).
-/// </summary>
-public sealed class AdaptiveBlendModule : FFBModule
-{
-	private const int Cutoff = 1;
-	private const int PeakCutoff = 2;
-	private const int Hold = 3;
-
-	private const float TickRateHz = 360f;
-
-	private float _lastCutoffHz = float.NaN;
-	private float _lastPeakCutoffHz = float.NaN;
-
-	private float _alpha;
-	private float _peakAlpha;
-
-	private float _hybridLast;
-	private float _lastVelocitySign;
-	private float _lastA;
-	private float _peakCountdown;
-
-	public override void Reset()
-	{
-		_hybridLast = 0f;
-		_lastVelocitySign = 0f;
-		_lastA = 0f;
-		_peakCountdown = 0f;
-	}
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		var cutoffHz = _v[ Cutoff ];
-		var peakCutoffHz = _v[ PeakCutoff ];
-
-		if ( cutoffHz != _lastCutoffHz )
-		{
-			_alpha = 1f - MathF.Exp( -MathF.Tau * cutoffHz / TickRateHz );
-
-			_lastCutoffHz = cutoffHz;
-		}
-
-		if ( peakCutoffHz != _lastPeakCutoffHz )
-		{
-			_peakAlpha = 1f - MathF.Exp( -MathF.Tau * peakCutoffHz / TickRateHz );
-
-			_lastPeakCutoffHz = peakCutoffHz;
-		}
-
-		var holdTicks = _v[ Hold ] * ( TickRateHz / 1000f );
-
-		var peakCountdown = MathF.Max( 0f, _peakCountdown - 1f );
-
-		var hfScaledDelta = inputA - _lastA;
-
-		// the effective corner eases linearly from the peak corner back to the normal one as the hold expires
-		// (guarded — the old code divided by HoldTicks unguarded and produced NaN at 0)
-		var alphaNow = holdTicks > 0f ? _alpha - ( _alpha - _peakAlpha ) * peakCountdown / holdTicks : _alpha;
-
-		var preliminaryHybridTorque = MathZ.Lerp( _hybridLast + hfScaledDelta, inputB, alphaNow );
-
-		float hybridTorque;
-
-		if ( MathF.Sign( preliminaryHybridTorque - _hybridLast ) != _lastVelocitySign )
-		{
-			peakCountdown = holdTicks;
-
-			// with the countdown freshly re-armed the eased corner is exactly the peak corner
-			hybridTorque = MathZ.Lerp( _hybridLast + hfScaledDelta, inputB, _peakAlpha );
-		}
-		else
-		{
-			hybridTorque = preliminaryHybridTorque;
-		}
-
-		_lastVelocitySign = MathF.Sign( hybridTorque - _hybridLast );
-		_hybridLast = hybridTorque;
-		_lastA = inputA;
-		_peakCountdown = peakCountdown;
-
-		return hybridTorque;
-	}
-}
-
-// The four shapers below were split out of the old monolithic Output module so they can be placed at any point
-// in a graph (like Gain). Curve and the soft limiter are unit-interval operations, so they normalize by MaxForce,
-// apply, then denormalize (keeping the Nm main-bus convention). Maximum and Minimum are expressed directly in Nm,
-// so they act on the bus value with no conversion. Placed in the old order (Curve -> SoftLimiter -> Maximum ->
-// Minimum) ahead of a bare Output, they reproduce the old OutputModule tail exactly.
-
-/// <summary>
-/// Output curve applied in normalized space: <c>sign(n)·|n|^power</c> where <c>n = x / MaxForce</c> and
-/// <c>power = CurveToPower(Curve)</c>. Identity at Curve = 0. Denormalizes back to Nm on the way out.
-/// </summary>
-public sealed class CurveModule : FFBModule
-{
-	private const int Curve = 1;
-
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		var curve = _v[ Curve ];
-
-		if ( curve == 0f )
-		{
-			return inputA;
-		}
-
-		var normalized = inputA / ctx.MaxForce;
-
-		var power = MathZ.CurveToPower( curve );
-
-		normalized = MathF.Sign( normalized ) * MathF.Pow( MathF.Abs( normalized ), power );
-
-		return normalized * ctx.MaxForce;
-	}
-}
-
-/// <summary>
-/// Smooth soft clip toward full scale, applied in normalized space: <c>SoftLimiter(x / MaxForce) · MaxForce</c>.
-/// Has no knob settings — only the reserved Enabled switch — so it is a pure on/off stage (disabled ⇒ the engine
-/// passes the signal through, matching the old soft-clipping toggle).
-/// </summary>
-public sealed class SoftLimiterModule : FFBModule
-{
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		return MathZ.SoftLimiter( inputA / ctx.MaxForce ) * ctx.MaxForce;
-	}
-}
-
-/// <summary>
-/// Hard ceiling on the signal magnitude, expressed directly in Nm: <c>clamp(x, -Maximum, Maximum)</c>. Acts on
-/// the Nm bus value with no normalization (the old percent maximum equals this with Maximum = fraction·MaxForce).
-/// </summary>
-public sealed class MaximumModule : FFBModule
-{
-	private const int Maximum = 1;
-
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		var maximum = _v[ Maximum ];
-
-		return Math.Clamp( inputA, -maximum, maximum );
-	}
-}
-
-/// <summary>
-/// Floor on the signal magnitude (overcome a wheel's dead zone), expressed directly in Nm: forces <c>|x|</c> up
-/// to <c>Minimum</c> while preserving sign (a zero input is pushed to +Minimum, matching the old behavior).
-/// Identity at Minimum = 0. Acts on the Nm bus value with no normalization.
-/// </summary>
-public sealed class MinimumModule : FFBModule
-{
-	private const int Minimum = 1;
-
-	public override void Reset() { }
-
-	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
-	{
-		var minimum = _v[ Minimum ];
-
-		if ( minimum <= 0f )
-		{
-			return inputA;
-		}
-
-		if ( inputA >= 0f )
-		{
-			return inputA < minimum ? minimum : inputA;
-		}
-
-		return inputA > -minimum ? -minimum : inputA;
+		return _y * ReferenceNm;
 	}
 }
