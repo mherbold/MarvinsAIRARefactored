@@ -356,6 +356,8 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaComboBox x:Name="Graph_MairaComboBox"
@@ -388,6 +390,20 @@
                                           VerticalAlignment="Bottom" />
 
                     <controls:MairaButton Grid.Column="4"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/export.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="ExportGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="5"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/import.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="ImportGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="6"
                                           x:Name="ResetGraph_MairaButton"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
                                           IsSmall="True"
@@ -512,6 +528,8 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaComboBox x:Name="VibrationGraph_MairaComboBox"
@@ -544,6 +562,20 @@
                                           VerticalAlignment="Bottom" />
 
                     <controls:MairaButton Grid.Column="4"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/export.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="ExportVibrationGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="5"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/import.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          Click="ImportVibrationGraph_MairaButton_Click"
+                                          VerticalAlignment="Bottom" />
+
+                    <controls:MairaButton Grid.Column="6"
                                           x:Name="ResetVibrationGraph_MairaButton"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
                                           IsSmall="True"

@@ -1,4 +1,5 @@
 ﻿
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -71,12 +72,18 @@ public class RacingWheel
 	};
 
 	private const int UpdateInterval = 6;
-	private const int MaxSteeringWheelTorque360HzIndex = Simulator.SamplesPerFrame360Hz + 1;
+	private const int PlayoutWindowLastIndex = Simulator.SamplesPerFrame360Hz + 1;
 
 	private const float UnsuspendTimeMS = 1000f;
 	private const float FadeInTimeMS = 2000f;
 	private const float FadeOutTimeMS = 750f;
 	private const float TestSignalTimeMS = 2000f;
+
+	// was 0.01 at the old ~500 Hz tick rate — scaled ×(500/360) to keep the same peak-torque attack time at 360 Hz
+	private const float PeakTorqueLerpAlpha = 0.0139f;
+
+	// the playout clock nominally spans one 60 Hz frame (~16.7 ms); past this much extra we count an underrun
+	private const float PlayoutUnderrunToleranceMS = 4f;
 
 	// Commentary voice slot used for MAIRA system announcements (matches VoiceSlotSettings.CreateDefaults order).
 	private const int CommentarySlotMaira = 5;
@@ -90,7 +97,6 @@ public class RacingWheel
 	public bool SuspendForceFeedback { get; private set; } = true; // true if we want to suspend FFB (for various reasons)
 	public bool ResetForceFeedback { private get; set; } = false; // set to true manually (via reset button)
 	public bool UseSteeringWheelTorqueData { private get; set; } = false; // false if simulator is disconnected or if driver is not on track
-	public bool UpdateSteeringWheelTorqueBuffer { private get; set; } = false; // true when simulator has new torque data to be copied
 	public bool ActivateCrashProtection { private get; set; } = false; // set to true to activate crash protection
 	public bool ActivateCurbProtection { private get; set; } = false; // set to true to activate curb protection
 	public bool PlayTestSignal { private get; set; } = false; // set to true manually (via test button)
@@ -116,25 +122,63 @@ public class RacingWheel
 	private float _fadeTimerMS = 0f;
 	private float _testSignalTimerMS = 0f;
 
-	private readonly float[] _steeringWheelTorque360Hz = new float[ Simulator.SamplesPerFrame360Hz + 2 ];
-
 	private float _outputTorque = 0f;
 	private float _peakTorque = 0f;
 	private float _autoTorque = 0f;
 
 	private float _lastUnfadedOutputTorque = 0f;
 
-	private float _elapsedMilliseconds = 0f;
-
 	// Rising-edge trackers for the protection chat/voice announcements (side effects stay out of the modules).
 	private bool _lastCrashProtectionActive = false;
 	private bool _lastCurbProtectionActive = false;
 
+	// 60 Hz → 500 Hz handoff. ProcessTelemetryFrame (telemetry thread) runs the FFB graph over the six 360 Hz
+	// samples into the _burst* arrays, then publishes them to the _staged* arrays under the _stagedSeq seqlock
+	// (odd = writing, even = published). UpdatePlayout (multimedia timer thread) copies a published block into
+	// the _consume* scratch, verifies the sequence didn't change, and only then shifts it into its private
+	// playout window — so a torn copy is simply discarded (≤ 2 ms of held torque), never played.
+
+	private readonly float[] _burstOutputTorque = new float[ Simulator.SamplesPerFrame360Hz ];
+	private readonly float[] _burstInputTorque = new float[ Simulator.SamplesPerFrame360Hz ];
+	private readonly float[] _burstLFEMagnitude = new float[ Simulator.SamplesPerFrame360Hz ];
+
+	private readonly float[] _stagedOutputTorque = new float[ Simulator.SamplesPerFrame360Hz ];
+	private readonly float[] _stagedInputTorque = new float[ Simulator.SamplesPerFrame360Hz ];
+	private readonly float[] _stagedLFEMagnitude = new float[ Simulator.SamplesPerFrame360Hz ];
+	private float _stagedInputTorque60Hz = 0f;
+	private int _stagedSeq = 0;
+
+	private readonly float[] _consumeOutputTorque = new float[ Simulator.SamplesPerFrame360Hz ];
+	private readonly float[] _consumeInputTorque = new float[ Simulator.SamplesPerFrame360Hz ];
+	private readonly float[] _consumeLFEMagnitude = new float[ Simulator.SamplesPerFrame360Hz ];
+
+	// playout-thread private state — [0] = previous frame's last sample (Hermite left tangent), [1..6] = the six
+	// processed samples, [7] = duplicate of the newest (same window layout the old input resampler used)
+	private readonly float[] _playoutTorqueWindow = new float[ Simulator.SamplesPerFrame360Hz + 2 ];
+	private readonly float[] _playoutInputTorque = new float[ Simulator.SamplesPerFrame360Hz ];
+	private readonly float[] _playoutLFEMagnitude = new float[ Simulator.SamplesPerFrame360Hz ];
+	private float _playoutInputTorque60Hz = 0f;
+	private int _lastConsumedSeq = 0;
+	private float _playoutElapsedMilliseconds = 0f;
+	private bool _playoutUnderrunLatched = false;
+	private float _underrunLogTimerMS = 0f;
+
+	// cross-thread control flags
+	private volatile bool _ffbActive = false;               // written by UpdatePlayout (owns the device state), read by ProcessTelemetryFrame
+	private volatile bool _predictorResetRequested = false; // set by UpdatePlayout after a device re-init, consumed by ProcessTelemetryFrame
+	private volatile bool _producerFaulted = false;         // set by ProcessTelemetryFrame's catch, converted to a soft-lock restart by UpdatePlayout
+
+	// diagnostics — late telemetry frames (playout ran out of data) and discarded torn handoffs
+	public int PlayoutUnderrunTickCount { get; private set; } = 0;
+	public int PlayoutUnderrunEpisodeCount { get; private set; } = 0;
+	public int PlayoutTornHandoffCount { get; private set; } = 0;
+
 	private readonly GraphBase _algorithmPreviewGraphBase = new();
 
 	// Milestone 3: the modular FFB graph now drives all wheel processing. _liveEngine (volatile) is evaluated by
-	// this 360 Hz worker-thread Update and rebuilt/swapped on the UI thread on graph/context changes (the reader
-	// picks up the new reference next tick, same one-tick tolerance as the old _lastAlgorithm reset).
+	// the telemetry-thread frame burst (ProcessTelemetryFrame, 6 × 360 Hz ticks per frame) and rebuilt/swapped on
+	// the UI thread on graph/context changes (the reader picks up the new reference next frame, same one-tick
+	// tolerance as the old _lastAlgorithm reset).
 	// _previewEngine is driven only by Tick (dispatcher) over a recording for the editor preview.
 	private volatile FFBGraphEngine _liveEngine = new();
 	private readonly FFBGraphEngine _previewEngine = new();
@@ -160,6 +204,82 @@ public class RacingWheel
 	private int _lapNumber = 0;
 	private readonly PredictorSample[] _predictorSampleArray = new PredictorSample[ 65536 ]; // enough for 18+ minutes a lap at 60 Hz
 	private int _predictorSampleCount = 0;
+
+	/// <summary>
+	/// Rolling min/avg/max timing for one hot path, reported to the log once per second. Each instance is owned
+	/// by exactly one thread (burst = telemetry thread, playout = multimedia timer thread) — no synchronization.
+	/// The burst reporter also logs GC collection deltas, the "are we allocation-free" verification signal.
+	/// </summary>
+	private sealed class PerfStats
+	{
+		private readonly string _label;
+		private readonly bool _includeGCCounts;
+
+		private long _minTicks = long.MaxValue;
+		private long _maxTicks = 0;
+		private long _sumTicks = 0;
+		private int _count = 0;
+		private long _reportStartTimestamp = 0;
+
+		private int _lastGen0Count = 0;
+		private int _lastGen1Count = 0;
+		private int _lastGen2Count = 0;
+
+		public PerfStats( string label, bool includeGCCounts )
+		{
+			_label = label;
+			_includeGCCounts = includeGCCounts;
+		}
+
+		public void Update( long elapsedTicks, long timestamp )
+		{
+			_minTicks = Math.Min( _minTicks, elapsedTicks );
+			_maxTicks = Math.Max( _maxTicks, elapsedTicks );
+			_sumTicks += elapsedTicks;
+			_count++;
+
+			if ( _reportStartTimestamp == 0 )
+			{
+				_reportStartTimestamp = timestamp;
+			}
+			else if ( ( timestamp - _reportStartTimestamp ) >= Stopwatch.Frequency )
+			{
+				var app = App.Instance!;
+
+				var microsecondsPerTick = 1_000_000.0 / Stopwatch.Frequency;
+
+				var minMicroseconds = _minTicks * microsecondsPerTick;
+				var avgMicroseconds = _sumTicks * microsecondsPerTick / Math.Max( 1, _count );
+				var maxMicroseconds = _maxTicks * microsecondsPerTick;
+
+				if ( _includeGCCounts )
+				{
+					var gen0Count = GC.CollectionCount( 0 );
+					var gen1Count = GC.CollectionCount( 1 );
+					var gen2Count = GC.CollectionCount( 2 );
+
+					app.Logger.WriteLine( $"[RacingWheel] {_label} µs min/avg/max = {minMicroseconds:F0}/{avgMicroseconds:F0}/{maxMicroseconds:F0} | GC 0/1/2 = {gen0Count - _lastGen0Count}/{gen1Count - _lastGen1Count}/{gen2Count - _lastGen2Count}" );
+
+					_lastGen0Count = gen0Count;
+					_lastGen1Count = gen1Count;
+					_lastGen2Count = gen2Count;
+				}
+				else
+				{
+					app.Logger.WriteLine( $"[RacingWheel] {_label} µs min/avg/max = {minMicroseconds:F0}/{avgMicroseconds:F0}/{maxMicroseconds:F0}" );
+				}
+
+				_minTicks = long.MaxValue;
+				_maxTicks = 0;
+				_sumTicks = 0;
+				_count = 0;
+				_reportStartTimestamp = timestamp;
+			}
+		}
+	}
+
+	private readonly PerfStats _burstPerfStats = new( "Burst", includeGCCounts: true );
+	private readonly PerfStats _playoutPerfStats = new( "Playout", includeGCCounts: false );
 
 #endif
 
@@ -284,8 +404,13 @@ public class RacingWheel
 		}
 	}
 
-	[MethodImpl( MethodImplOptions.AggressiveInlining )]
-	public void Update( float deltaMilliseconds )
+	/// <summary>
+	/// The 60 Hz FFB producer — called from Simulator.OnTelemetryData (telemetry thread) each time a telemetry
+	/// frame with its six 360 Hz torque samples arrives. Runs the whole FFB graph six times at the fixed 360 Hz
+	/// tick on the raw samples (no input interpolation), applies fade per sample, and publishes the processed
+	/// samples to UpdatePlayout through the _stagedSeq seqlock.
+	/// </summary>
+	public void ProcessTelemetryFrame()
 	{
 		var app = App.Instance!;
 
@@ -295,14 +420,18 @@ public class RacingWheel
 
 			var settings = DataContext.DataContext.Instance.Settings;
 
-			// snapshot the volatile live engine once for the whole tick (it may be swapped from the UI thread)
+			// snapshot the volatile live engine once for the whole frame (it may be swapped from the UI thread)
 
 			var engine = _liveEngine;
 
-			// test signal generator (its own vibration contribution; added to the vibration bus after the engine).
-			// Its timer advances every tick as before (even while suspended, then discarded by the early return).
+			// consume the one-shot triggers even while suspended so they don't go stale-active — the crash/curb
+			// pulses are set by Simulator earlier in this same telemetry frame
 
-			var testSignalTorque = 0f;
+			var crashProtectionTriggered = ActivateCrashProtection;
+			ActivateCrashProtection = false;
+
+			var curbProtectionTriggered = ActivateCurbProtection;
+			ActivateCurbProtection = false;
 
 			if ( PlayTestSignal )
 			{
@@ -311,36 +440,6 @@ public class RacingWheel
 				app.Logger.WriteLine( "[RacingWheel] Sending test signal" );
 
 				PlayTestSignal = false;
-			}
-
-			if ( _testSignalTimerMS > 0f )
-			{
-				_testSignalTimerMS -= deltaMilliseconds;
-
-				testSignalTorque += MathF.Cos( _testSignalTimerMS * MathF.Tau / 20f ) * MathF.Sin( _testSignalTimerMS * MathF.Tau / TestSignalTimeMS * 2f ) * 0.2f;
-			}
-
-			// (understeer/oversteer/seat-of-pants/shift-RPM/gear-change/ABS vibrations are now generator modules
-			// evaluated inside the FFB graph engine below)
-
-			// check if we want to suspend or unsuspend force feedback
-
-			if ( SuspendForceFeedback != _isSuspended )
-			{
-				_isSuspended = SuspendForceFeedback;
-
-				if ( _isSuspended )
-				{
-					app.Logger.WriteLine( "[RacingWheel] Requesting suspend of force feedback" );
-
-					_unsuspendTimerMS = UnsuspendTimeMS;
-				}
-				else
-				{
-					app.Logger.WriteLine( "[RacingWheel] Requesting resumption of force feedback" );
-				}
-
-				_racingWheelPage.UpdateSteeringDeviceSection();
 			}
 
 			// check if we want to fade in or out the steering wheel torque data
@@ -364,6 +463,347 @@ public class RacingWheel
 						_fadeTimerMS = FadeOutTimeMS;
 					}
 				}
+			}
+
+			// the playout thread owns the device state — while force feedback is suspended there is nothing to
+			// process or publish
+
+			if ( !_ffbActive )
+			{
+				_predictedSteeringWheelTorque60Hz = 0f;
+
+				return;
+			}
+
+			// reset the predictors if the playout thread re-initialized the force feedback device
+
+			if ( _predictorResetRequested )
+			{
+				_predictorResetRequested = false;
+
+				_ffbPredictorK1.Reset();
+				_ffbPredictorK2.Reset();
+			}
+
+			// check if we want to auto set max force
+
+			if ( AutoSetMaxForce )
+			{
+				AutoSetMaxForce = false;
+				ClearPeakTorque = true;
+
+				settings.RacingWheelMaxForce = _autoTorque;
+
+				app.Logger.WriteLine( $"[RacingWheel] Max force auto set to {_autoTorque}" );
+			}
+
+			// check if we want to clear the peak torque
+
+			if ( ClearPeakTorque )
+			{
+				_peakTorque = 0f;
+
+				ClearPeakTorque = false;
+			}
+
+			// run the 60 Hz predictor on the newest raw sample (mode/blend come from the live engine's Source60 module)
+
+			var steeringWheelTorque_ST = app.Simulator.SteeringWheelTorque_ST;
+
+			var steeringWheelTorque60Hz = 0f;
+
+			if ( _usingSteeringWheelTorqueData )
+			{
+				steeringWheelTorque60Hz = steeringWheelTorque_ST[ 5 ];
+
+				var predictedValue = engine.PredictionMode switch
+				{
+					PredictionMode.PredictK1 => _ffbPredictorK1.Step( steeringWheelTorque60Hz, app.DirectInput.ForceFeedbackWheelVelocity ),
+					PredictionMode.PredictK2 => _ffbPredictorK2.Step( steeringWheelTorque60Hz, app.DirectInput.ForceFeedbackWheelVelocity ),
+					_ => steeringWheelTorque60Hz,
+				};
+
+				var unclampedDelta = predictedValue - steeringWheelTorque60Hz;
+				var clampedDelta = Math.Clamp( unclampedDelta, -0.5f, 0.5f );
+
+				_predictedSteeringWheelTorque60Hz = MathZ.Lerp( steeringWheelTorque60Hz, steeringWheelTorque60Hz + clampedDelta, engine.PredictionBlend );
+
+#if DEBUG
+
+				if ( ( _lastLapDistPct > 0.95f ) && ( app.Simulator.LapDistPct < 0.05f ) )
+				{
+					_lapNumber++;
+
+					var lapNumber = _lapNumber;
+
+					var snapshot = _predictorSampleArray.AsSpan( 0, _predictorSampleCount ).ToArray();
+
+					_predictorSampleCount = 0;
+
+					_ = Task.Run( async () =>
+					{
+						var path = Path.Combine( App.DocumentsFolder, "Predictor Data", $"Lap-{lapNumber}.csv" );
+
+						try
+						{
+							await DumpLapAsync( snapshot, path );
+						}
+						catch ( Exception exception )
+						{
+							app.Logger.WriteLine( $"[RacingWheel] Exception while dumping predictor data: {exception}" );
+						}
+					} );
+				}
+
+				if ( _predictorSampleCount < _predictorSampleArray.Length )
+				{
+					ref var predictorSample = ref _predictorSampleArray[ _predictorSampleCount++ ];
+
+					predictorSample.TickCount = app.Simulator.IRSDK.Data.TickCount;
+					predictorSample.InputFFBSample = steeringWheelTorque_ST[ 5 ];
+					predictorSample.WheelVelocity = app.DirectInput.ForceFeedbackWheelVelocity;
+					predictorSample.PredictionMode = engine.PredictionMode;
+					predictorSample.PredictionBlend = engine.PredictionBlend;
+					predictorSample.PredictedValue = predictedValue;
+					predictorSample.DeltaClamped = clampedDelta != unclampedDelta;
+					predictorSample.OutputFFBSample = _predictedSteeringWheelTorque60Hz;
+				}
+
+				_lastLapDistPct = app.Simulator.LapDistPct;
+
+#endif
+			}
+			else
+			{
+				_predictedSteeringWheelTorque60Hz = 0f;
+			}
+
+			// run the FFB graph engine over the six raw 360 Hz samples at the fixed 360 Hz tick, applying fade per
+			// sample, and capture the results into the burst arrays
+
+			var maxForce = settings.RacingWheelMaxForce;
+
+			var trackPeakTorque = app.Simulator.IsOnTrack && ( app.Simulator.PlayerTrackSurface == IRSDKSharper.IRacingSdkEnum.TrkLoc.OnTrack ) && ( app.Simulator.PlayerTrackSurfaceMaterial >= IRSDKSharper.IRacingSdkEnum.TrkSurf.Asphalt1Material ) && ( app.Simulator.PlayerTrackSurfaceMaterial <= IRSDKSharper.IRacingSdkEnum.TrkSurf.RacingDirt2Material );
+
+			// snapshot the frame-constant context inputs once — only the raw torque sample, the LFE magnitude,
+			// and the sample-0 protection pulses vary inside the burst loop
+
+			var frameContext = new FrameContext( app, _predictedSteeringWheelTorque60Hz, maxForce, _usingSteeringWheelTorqueData );
+
+#if DEBUG
+			var burstStartTimestamp = Stopwatch.GetTimestamp();
+#endif
+
+			for ( var sampleIndex = 0; sampleIndex < Simulator.SamplesPerFrame360Hz; sampleIndex++ )
+			{
+				var steeringWheelTorque360Hz = _usingSteeringWheelTorqueData ? steeringWheelTorque_ST[ sampleIndex ] : 0f;
+
+				// test signal generator (its own vibration contribution; added to the vibration bus after the engine)
+
+				var testSignalTorque = 0f;
+
+				if ( _testSignalTimerMS > 0f )
+				{
+					_testSignalTimerMS -= FFBTickContext.TickDeltaMilliseconds;
+
+					testSignalTorque += MathF.Cos( _testSignalTimerMS * MathF.Tau / 20f ) * MathF.Sin( _testSignalTimerMS * MathF.Tau / TestSignalTimeMS * 2f ) * 0.2f;
+				}
+
+				// update peak torque
+
+				if ( trackPeakTorque )
+				{
+					_peakTorque = MathF.Max( _peakTorque, MathZ.Lerp( _peakTorque, MathF.Abs( steeringWheelTorque360Hz ), PeakTorqueLerpAlpha ) );
+				}
+
+				// grab the next LFE magnitude, fed into the tick context
+
+				var inputLFEMagnitude = app.LFE.GetNextMagnitude( FFBTickContext.TickDeltaMilliseconds );
+
+				// build the per-tick context and evaluate the whole FFB graph (algorithm + effects + vibration
+				// generators) — the one-shot protection pulses fire on the first sample of the frame only
+
+				var tickContext = BuildTickContext( in frameContext, steeringWheelTorque360Hz, inputLFEMagnitude, crashProtectionTriggered && ( sampleIndex == 0 ), curbProtectionTriggered && ( sampleIndex == 0 ) );
+
+				engine.Process( in tickContext );
+
+				// engine outputs: normalized main bus (post output curve/limiter) + normalized vibration bus, plus
+				// the separately-computed test signal contribution
+
+				var outputTorque = engine.MainOutput;
+
+				var vibrationTorque = engine.VibrationOutput + testSignalTorque;
+
+				// apply vibration effects and fade (vibration effects not played while fading out)
+
+				if ( _fadeTimerMS > 0f )
+				{
+					if ( _usingSteeringWheelTorqueData )
+					{
+						outputTorque += vibrationTorque;
+
+						outputTorque *= 1f - ( _fadeTimerMS / FadeInTimeMS );
+					}
+					else
+					{
+						outputTorque = _lastUnfadedOutputTorque * ( _fadeTimerMS / FadeOutTimeMS );
+					}
+
+					_fadeTimerMS -= FFBTickContext.TickDeltaMilliseconds;
+				}
+				else
+				{
+					_lastUnfadedOutputTorque = outputTorque;
+
+					outputTorque += vibrationTorque;
+				}
+
+				_burstOutputTorque[ sampleIndex ] = outputTorque;
+				_burstInputTorque[ sampleIndex ] = steeringWheelTorque360Hz / maxForce;
+				_burstLFEMagnitude[ sampleIndex ] = inputLFEMagnitude;
+
+				// update recording data (the raw 60 Hz torque is passed separately — the context carries the predicted sample)
+
+				app.RecordingManager.AddRecordingData( in tickContext, steeringWheelTorque60Hz );
+			}
+
+#if DEBUG
+			var burstEndTimestamp = Stopwatch.GetTimestamp();
+
+			_burstPerfStats.Update( burstEndTimestamp - burstStartTimestamp, burstEndTimestamp );
+#endif
+
+			// update auto torque
+
+			_autoTorque = _peakTorque * settings.RacingWheelWheelForce / settings.RacingWheelAutoTarget;
+
+			// fire the protection chat/voice announcements on the rising edge of each protection becoming active
+			// (moved out of the modules; the message-enable settings stay global)
+
+			if ( engine.CrashProtectionActive && !_lastCrashProtectionActive )
+			{
+				if ( settings.RacingWheelCrashProtectionMessagesEnabled )
+				{
+					SendChatMessage( null, "CrashProtectionActivated" );
+				}
+
+				SpeakMairaAnnouncement( "MairaCrashProtectionActive" );
+			}
+
+			_lastCrashProtectionActive = engine.CrashProtectionActive;
+
+			if ( engine.CurbProtectionActive && !_lastCurbProtectionActive )
+			{
+				if ( settings.RacingWheelCurbProtectionMessagesEnabled )
+				{
+					SendChatMessage( null, "CurbProtectionActivated" );
+				}
+
+				SpeakMairaAnnouncement( "MairaCurbProtectionActive" );
+			}
+
+			_lastCurbProtectionActive = engine.CurbProtectionActive;
+
+			// publish the processed block to the playout thread (seqlock: odd = writing, even = published)
+
+			var seq = _stagedSeq;
+
+			Volatile.Write( ref _stagedSeq, seq + 1 );
+
+			Interlocked.MemoryBarrier();
+
+			for ( var i = 0; i < Simulator.SamplesPerFrame360Hz; i++ )
+			{
+				_stagedOutputTorque[ i ] = _burstOutputTorque[ i ];
+				_stagedInputTorque[ i ] = _burstInputTorque[ i ];
+				_stagedLFEMagnitude[ i ] = _burstLFEMagnitude[ i ];
+			}
+
+			_stagedInputTorque60Hz = steeringWheelTorque60Hz / maxForce;
+
+			Volatile.Write( ref _stagedSeq, seq + 2 );
+
+			// background flash color — clipping (red) trumps crash protection (orange) trumps curb protection (yellow)
+
+			var clearColor = 0u;
+
+			if ( engine.CurbProtectionActive )
+			{
+				clearColor = 0xFFFFFF00;
+			}
+
+			if ( engine.CrashProtectionActive )
+			{
+				clearColor = 0xFFFF5B2E;
+			}
+
+			for ( var i = 0; i < Simulator.SamplesPerFrame360Hz; i++ )
+			{
+				if ( MathF.Abs( _burstOutputTorque[ i ] ) >= 0.99f )
+				{
+					clearColor = 0xFFFF0000;
+
+					break;
+				}
+			}
+
+			app.Graph.SetClearColor( clearColor );
+		}
+		catch ( Exception exception )
+		{
+			app.Logger.WriteLine( $"[RacingWheel] Exception caught in ProcessTelemetryFrame: {exception.Message.Trim()}" );
+
+			_producerFaulted = true;
+		}
+	}
+
+	/// <summary>
+	/// The 500 Hz playout — called from the multimedia timer worker thread. Owns the force feedback device state
+	/// (suspend/resume/re-init), consumes the processed 360 Hz samples published by ProcessTelemetryFrame, and
+	/// Hermite-interpolates them up to the wheel update rate. If the next telemetry frame is late the playout
+	/// clock clamps at the newest sample (hold-last) and the underrun is counted.
+	/// </summary>
+	public void UpdatePlayout( float deltaMilliseconds )
+	{
+		var app = App.Instance!;
+
+		try
+		{
+#if DEBUG
+			var playoutStartTimestamp = Stopwatch.GetTimestamp();
+#endif
+
+			// easy reference to settings
+
+			var settings = DataContext.DataContext.Instance.Settings;
+
+			// a fault in the telemetry-thread producer restarts force feedback the same way a fault here does
+
+			if ( _producerFaulted )
+			{
+				_producerFaulted = false;
+
+				_unsuspendTimerMS = UnsuspendTimeMS;
+			}
+
+			// check if we want to suspend or unsuspend force feedback
+
+			if ( SuspendForceFeedback != _isSuspended )
+			{
+				_isSuspended = SuspendForceFeedback;
+
+				if ( _isSuspended )
+				{
+					app.Logger.WriteLine( "[RacingWheel] Requesting suspend of force feedback" );
+
+					_unsuspendTimerMS = UnsuspendTimeMS;
+				}
+				else
+				{
+					app.Logger.WriteLine( "[RacingWheel] Requesting resumption of force feedback" );
+				}
+
+				_racingWheelPage.UpdateSteeringDeviceSection();
 			}
 
 			// check if we want to reset the racing wheel device
@@ -396,6 +836,21 @@ public class RacingWheel
 
 					_currentRacingWheelGuid = null;
 				}
+
+				// stop the producer and clear the playout state so nothing stale plays when force feedback resumes
+				// (the producer publishes nothing while _ffbActive is false, so syncing the sequence here skips any
+				// block it may have been mid-publish when we suspended)
+
+				_ffbActive = false;
+
+				Array.Clear( _playoutTorqueWindow );
+				Array.Clear( _playoutInputTorque );
+				Array.Clear( _playoutLFEMagnitude );
+
+				_playoutInputTorque60Hz = 0f;
+				_playoutElapsedMilliseconds = 0f;
+				_playoutUnderrunLatched = false;
+				_lastConsumedSeq = Volatile.Read( ref _stagedSeq );
 
 				_unsuspendTimerMS -= deltaMilliseconds;
 
@@ -430,231 +885,106 @@ public class RacingWheel
 					_racingWheelPage.UpdateSteeringDeviceSection();
 				}
 
-				_ffbPredictorK1.Reset();
-				_ffbPredictorK2.Reset();
+				_predictorResetRequested = true;
 			}
 
-			// check if we want to auto set max force
+			// let the telemetry-thread producer run
 
-			if ( AutoSetMaxForce )
+			_ffbActive = true;
+
+			// update the playout clock
+
+			_playoutElapsedMilliseconds += deltaMilliseconds;
+
+			// consume a newly published block of processed 360 Hz samples (seqlock — see the field comments); a
+			// torn copy is discarded and simply plays as up to 2 ms of held torque
+
+			var stagedSeq = Volatile.Read( ref _stagedSeq );
+
+			if ( ( stagedSeq != _lastConsumedSeq ) && ( ( stagedSeq & 1 ) == 0 ) )
 			{
-				AutoSetMaxForce = false;
-				ClearPeakTorque = true;
-
-				settings.RacingWheelMaxForce = _autoTorque;
-
-				app.Logger.WriteLine( $"[RacingWheel] Max force auto set to {_autoTorque}" );
-			}
-
-			// update elapsed milliseconds
-
-			_elapsedMilliseconds += deltaMilliseconds;
-
-			// update steering wheel torque data
-
-			if ( UpdateSteeringWheelTorqueBuffer )
-			{
-				if ( _usingSteeringWheelTorqueData )
+				for ( var i = 0; i < Simulator.SamplesPerFrame360Hz; i++ )
 				{
-					_steeringWheelTorque360Hz[ 0 ] = _steeringWheelTorque360Hz[ 7 ];
-					_steeringWheelTorque360Hz[ 1 ] = app.Simulator.SteeringWheelTorque_ST[ 0 ];
-					_steeringWheelTorque360Hz[ 2 ] = app.Simulator.SteeringWheelTorque_ST[ 1 ];
-					_steeringWheelTorque360Hz[ 3 ] = app.Simulator.SteeringWheelTorque_ST[ 2 ];
-					_steeringWheelTorque360Hz[ 4 ] = app.Simulator.SteeringWheelTorque_ST[ 3 ];
-					_steeringWheelTorque360Hz[ 5 ] = app.Simulator.SteeringWheelTorque_ST[ 4 ];
-					_steeringWheelTorque360Hz[ 6 ] = app.Simulator.SteeringWheelTorque_ST[ 5 ];
-					_steeringWheelTorque360Hz[ 7 ] = app.Simulator.SteeringWheelTorque_ST[ 5 ];
+					_consumeOutputTorque[ i ] = _stagedOutputTorque[ i ];
+					_consumeInputTorque[ i ] = _stagedInputTorque[ i ];
+					_consumeLFEMagnitude[ i ] = _stagedLFEMagnitude[ i ];
+				}
 
-					// Run 60 Hz predictor (mode/blend now come from the live engine's Source60 module)
+				var inputTorque60Hz = _stagedInputTorque60Hz;
 
-					var predictedValue = engine.PredictionMode switch
+				Interlocked.MemoryBarrier();
+
+				if ( Volatile.Read( ref _stagedSeq ) == stagedSeq )
+				{
+					_playoutTorqueWindow[ 0 ] = _playoutTorqueWindow[ 7 ];
+					_playoutTorqueWindow[ 1 ] = _consumeOutputTorque[ 0 ];
+					_playoutTorqueWindow[ 2 ] = _consumeOutputTorque[ 1 ];
+					_playoutTorqueWindow[ 3 ] = _consumeOutputTorque[ 2 ];
+					_playoutTorqueWindow[ 4 ] = _consumeOutputTorque[ 3 ];
+					_playoutTorqueWindow[ 5 ] = _consumeOutputTorque[ 4 ];
+					_playoutTorqueWindow[ 6 ] = _consumeOutputTorque[ 5 ];
+					_playoutTorqueWindow[ 7 ] = _consumeOutputTorque[ 5 ];
+
+					for ( var i = 0; i < Simulator.SamplesPerFrame360Hz; i++ )
 					{
-						PredictionMode.PredictK1 => _ffbPredictorK1.Step( _steeringWheelTorque360Hz[ 6 ], app.DirectInput.ForceFeedbackWheelVelocity ),
-						PredictionMode.PredictK2 => _ffbPredictorK2.Step( _steeringWheelTorque360Hz[ 6 ], app.DirectInput.ForceFeedbackWheelVelocity ),
-						_ => _steeringWheelTorque360Hz[ 6 ],
-					};
-
-					var unclampedDelta = predictedValue - _steeringWheelTorque360Hz[ 6 ];
-					var clampedDelta = Math.Clamp( unclampedDelta, -0.5f, 0.5f );
-
-					_predictedSteeringWheelTorque60Hz = MathZ.Lerp( _steeringWheelTorque360Hz[ 6 ], _steeringWheelTorque360Hz[ 6 ] + clampedDelta, engine.PredictionBlend );
-
-#if DEBUG
-
-					if ( ( _lastLapDistPct > 0.95f ) && ( app.Simulator.LapDistPct < 0.05f ) )
-					{
-						_lapNumber++;
-
-						var lapNumber = _lapNumber;
-
-						var snapshot = _predictorSampleArray.AsSpan( 0, _predictorSampleCount ).ToArray();
-
-						_predictorSampleCount = 0;
-
-						_ = Task.Run( async () =>
-						{
-							var path = Path.Combine( App.DocumentsFolder, "Predictor Data", $"Lap-{lapNumber}.csv" );
-
-							try
-							{
-								await DumpLapAsync( snapshot, path );
-							}
-							catch ( Exception exception )
-							{
-								app.Logger.WriteLine( $"[RacingWheel] Exception while dumping predictor data: {exception}" );
-							}
-						} );
+						_playoutInputTorque[ i ] = _consumeInputTorque[ i ];
+						_playoutLFEMagnitude[ i ] = _consumeLFEMagnitude[ i ];
 					}
 
-					if ( _predictorSampleCount < _predictorSampleArray.Length )
-					{
-						ref var predictorSample = ref _predictorSampleArray[ _predictorSampleCount++ ];
+					_playoutInputTorque60Hz = inputTorque60Hz;
 
-						predictorSample.TickCount = app.Simulator.IRSDK.Data.TickCount;
-						predictorSample.InputFFBSample = app.Simulator.SteeringWheelTorque_ST[ 5 ];
-						predictorSample.WheelVelocity = app.DirectInput.ForceFeedbackWheelVelocity;
-						predictorSample.PredictionMode = engine.PredictionMode;
-						predictorSample.PredictionBlend = engine.PredictionBlend;
-						predictorSample.PredictedValue = predictedValue;
-						predictorSample.DeltaClamped = clampedDelta != unclampedDelta;
-						predictorSample.OutputFFBSample = _predictedSteeringWheelTorque60Hz;
-					}
+					_playoutElapsedMilliseconds = 0f;
+					_playoutUnderrunLatched = false;
 
-					_lastLapDistPct = app.Simulator.LapDistPct;
-
-#endif
+					_lastConsumedSeq = stagedSeq;
 				}
 				else
 				{
-					_steeringWheelTorque360Hz[ 0 ] = 0f;
-					_steeringWheelTorque360Hz[ 1 ] = 0f;
-					_steeringWheelTorque360Hz[ 2 ] = 0f;
-					_steeringWheelTorque360Hz[ 3 ] = 0f;
-					_steeringWheelTorque360Hz[ 4 ] = 0f;
-					_steeringWheelTorque360Hz[ 5 ] = 0f;
-					_steeringWheelTorque360Hz[ 6 ] = 0f;
-					_steeringWheelTorque360Hz[ 7 ] = 0f;
-
-					_predictedSteeringWheelTorque60Hz = 0f;
+					PlayoutTornHandoffCount++;
 				}
-
-				_elapsedMilliseconds = 0f;
-
-				UpdateSteeringWheelTorqueBuffer = false;
 			}
 
-			// get next 60Hz and 360Hz steering wheel torque samples
+			// get the next output torque sample — Hermite-interpolate the processed 360 Hz samples up to the wheel
+			// update rate; the indices clamp at the end of the window, holding the newest sample if the next
+			// telemetry frame is late
 
-			var steeringWheelTorque360HzIndex = 1f + ( _elapsedMilliseconds * 360f / 1000f );
+			var playoutIndex = 1f + ( _playoutElapsedMilliseconds * 360f / 1000f );
 
-			var i1 = Math.Min( MaxSteeringWheelTorque360HzIndex, (int) MathF.Truncate( steeringWheelTorque360HzIndex ) );
-			var i2 = Math.Min( MaxSteeringWheelTorque360HzIndex, i1 + 1 );
-			var i3 = Math.Min( MaxSteeringWheelTorque360HzIndex, i2 + 1 );
+			var i1 = Math.Min( PlayoutWindowLastIndex, (int) MathF.Truncate( playoutIndex ) );
+			var i2 = Math.Min( PlayoutWindowLastIndex, i1 + 1 );
+			var i3 = Math.Min( PlayoutWindowLastIndex, i2 + 1 );
 			var i0 = Math.Max( 0, i1 - 1 );
 
-			var t = MathF.Min( 1f, steeringWheelTorque360HzIndex - i1 );
+			var t = MathF.Min( 1f, playoutIndex - i1 );
 
-			var m0 = _steeringWheelTorque360Hz[ i0 ];
-			var m1 = _steeringWheelTorque360Hz[ i1 ];
-			var m2 = _steeringWheelTorque360Hz[ i2 ];
-			var m3 = _steeringWheelTorque360Hz[ i3 ];
+			var m0 = _playoutTorqueWindow[ i0 ];
+			var m1 = _playoutTorqueWindow[ i1 ];
+			var m2 = _playoutTorqueWindow[ i2 ];
+			var m3 = _playoutTorqueWindow[ i3 ];
 
-			var steeringWheelTorque60Hz = _steeringWheelTorque360Hz[ 6 ];
-			var steeringWheelTorque500Hz = MathZ.InterpolateHermite( m0, m1, m2, m3, t );
+			var outputTorque = MathZ.InterpolateHermite( m0, m1, m2, m3, t );
 
-			// update peak torque
+			// underrun tracking — count ticks where the playout clock ran meaningfully past the end of the frame
 
-			if ( ClearPeakTorque )
+			_underrunLogTimerMS = MathF.Max( 0f, _underrunLogTimerMS - deltaMilliseconds );
+
+			if ( _playoutElapsedMilliseconds > ( Simulator.SamplesPerFrame360Hz * FFBTickContext.TickDeltaMilliseconds ) + PlayoutUnderrunToleranceMS )
 			{
-				_peakTorque = 0f;
+				PlayoutUnderrunTickCount++;
 
-				ClearPeakTorque = false;
-			}
-
-			if ( app.Simulator.IsOnTrack && ( app.Simulator.PlayerTrackSurface == IRSDKSharper.IRacingSdkEnum.TrkLoc.OnTrack ) && ( app.Simulator.PlayerTrackSurfaceMaterial >= IRSDKSharper.IRacingSdkEnum.TrkSurf.Asphalt1Material ) && ( app.Simulator.PlayerTrackSurfaceMaterial <= IRSDKSharper.IRacingSdkEnum.TrkSurf.RacingDirt2Material ) )
-			{
-				_peakTorque = MathF.Max( _peakTorque, MathZ.Lerp( _peakTorque, MathF.Abs( steeringWheelTorque500Hz ), 0.01f ) );
-			}
-
-			// update auto torque
-
-			_autoTorque = _peakTorque * settings.RacingWheelWheelForce / settings.RacingWheelAutoTarget;
-
-			// convert the one-shot crash/curb protection triggers into per-tick pulses for the engine's protection
-			// modules (the modules own the timers now; the announcement side effects stay here in Update)
-
-			var crashProtectionTriggered = ActivateCrashProtection;
-			ActivateCrashProtection = false;
-
-			var curbProtectionTriggered = ActivateCurbProtection;
-			ActivateCurbProtection = false;
-
-			// grab the next LFE magnitude, fed into the tick context
-
-			var inputLFEMagnitude = app.LFE.CurrentMagnitude;
-
-			// build the per-tick context and evaluate the whole FFB graph (algorithm + effects + vibration generators)
-
-			var tickContext = BuildTickContext( app, deltaMilliseconds, _predictedSteeringWheelTorque60Hz, steeringWheelTorque500Hz, settings.RacingWheelMaxForce, inputLFEMagnitude, crashProtectionTriggered, curbProtectionTriggered );
-
-			engine.Process( in tickContext );
-
-			// fire the protection chat/voice announcements on the rising edge of each protection becoming active
-			// (moved out of the modules; the message-enable settings stay global)
-
-			if ( engine.CrashProtectionActive && !_lastCrashProtectionActive )
-			{
-				if ( settings.RacingWheelCrashProtectionMessagesEnabled )
+				if ( !_playoutUnderrunLatched )
 				{
-					SendChatMessage( null, "CrashProtectionActivated" );
+					_playoutUnderrunLatched = true;
+
+					PlayoutUnderrunEpisodeCount++;
+
+					if ( _underrunLogTimerMS <= 0f )
+					{
+						_underrunLogTimerMS = 1000f;
+
+						app.Logger.WriteLine( $"[RacingWheel] Playout underrun (late telemetry frame) — episode {PlayoutUnderrunEpisodeCount}" );
+					}
 				}
-
-				SpeakMairaAnnouncement( "MairaCrashProtectionActive" );
-			}
-
-			_lastCrashProtectionActive = engine.CrashProtectionActive;
-
-			if ( engine.CurbProtectionActive && !_lastCurbProtectionActive )
-			{
-				if ( settings.RacingWheelCurbProtectionMessagesEnabled )
-				{
-					SendChatMessage( null, "CurbProtectionActivated" );
-				}
-
-				SpeakMairaAnnouncement( "MairaCurbProtectionActive" );
-			}
-
-			_lastCurbProtectionActive = engine.CurbProtectionActive;
-
-			// engine outputs: normalized main bus (post output curve/limiter) + normalized vibration bus, plus the
-			// separately-computed test signal contribution
-
-			var outputTorque = engine.MainOutput;
-
-			var vibrationTorque = engine.VibrationOutput + testSignalTorque;
-
-			// apply vibration effects and fade (vibration effects not played while fading out)
-
-			if ( _fadeTimerMS > 0f )
-			{
-				if ( _usingSteeringWheelTorqueData )
-				{
-					outputTorque += vibrationTorque;
-
-					outputTorque *= 1f - ( _fadeTimerMS / FadeInTimeMS );
-				}
-				else
-				{
-					outputTorque = _lastUnfadedOutputTorque * ( _fadeTimerMS / FadeOutTimeMS );
-				}
-
-				_fadeTimerMS -= deltaMilliseconds;
-			}
-			else
-			{
-				_lastUnfadedOutputTorque = outputTorque;
-
-				outputTorque += vibrationTorque;
 			}
 
 			// update output torque for telemetry
@@ -665,36 +995,21 @@ public class RacingWheel
 
 			app.DirectInput.UpdateForceFeedbackEffect( outputTorque );
 
-			// update graph
+			// update graph (input traces show the staged raw samples nearest the current playout position, so the
+			// scrolling display keeps its full 500 Hz density)
 
-			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque60Hz, steeringWheelTorque60Hz / settings.RacingWheelMaxForce );
-			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque, steeringWheelTorque500Hz / settings.RacingWheelMaxForce );
-			app.Graph.UpdateLayer( Graph.LayerIndex.InputLFE, inputLFEMagnitude );
+			var displaySampleIndex = Math.Min( Simulator.SamplesPerFrame360Hz - 1, (int) ( _playoutElapsedMilliseconds * 360f / 1000f ) );
+
+			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque60Hz, _playoutInputTorque60Hz );
+			app.Graph.UpdateLayer( Graph.LayerIndex.InputTorque, _playoutInputTorque[ displaySampleIndex ] );
+			app.Graph.UpdateLayer( Graph.LayerIndex.InputLFE, _playoutLFEMagnitude[ displaySampleIndex ] );
 			app.Graph.UpdateLayer( Graph.LayerIndex.OutputTorque, outputTorque );
 
-			// background flash color — clipping (red) trumps crash protection (orange) trumps curb protection (yellow)
-			var clearColor = 0u;
+#if DEBUG
+			var playoutEndTimestamp = Stopwatch.GetTimestamp();
 
-			if ( CurbProtectionIsActive )
-			{
-				clearColor = 0xFFFFFF00;
-			}
-
-			if ( CrashProtectionIsActive )
-			{
-				clearColor = 0xFFFF5B2E;
-			}
-
-			if ( MathF.Abs( outputTorque ) >= 0.99f )
-			{
-				clearColor = 0xFFFF0000;
-			}
-
-			app.Graph.SetClearColor( clearColor );
-
-			// update recording data (the raw 60 Hz torque is passed separately — the context carries the predicted sample)
-
-			app.RecordingManager.AddRecordingData( in tickContext, steeringWheelTorque60Hz );
+			_playoutPerfStats.Update( playoutEndTimestamp - playoutStartTimestamp, playoutEndTimestamp );
+#endif
 		}
 		catch ( Exception exception )
 		{
@@ -705,40 +1020,94 @@ public class RacingWheel
 	}
 
 	/// <summary>
-	/// Assembles the per-tick auxiliary input for the FFB graph engine from the current torque samples,
-	/// telemetry, wheel hardware state, and the one-shot protection pulses. Built once per 360 Hz tick with no
+	/// Frame-constant inputs for the 6-sample burst, snapshotted once per telemetry frame. Everything here is
+	/// 60 Hz data that cannot change between the six samples of one frame (DirectInput wheel position/velocity
+	/// are refreshed once per PollDevices call earlier on this same thread), so re-reading it per sample was
+	/// redundant work.
+	/// </summary>
+	private readonly struct FrameContext
+	{
+		public readonly float Torque60Hz;
+		public readonly float MaxForce;
+		public readonly float WheelPosition;
+		public readonly float WheelVelocity;
+		public readonly float UndersteerEffect;
+		public readonly float OversteerEffect;
+		public readonly float SeatOfPantsEffect;
+		public readonly float SkidSlip;
+		public readonly float RPM;
+		public readonly float ShiftRPM;
+		public readonly int Gear;
+		public readonly int NumForwardGears;
+		public readonly bool ABSActive;
+		public readonly bool IsOnTrack;
+		public readonly bool UsingTorqueData;
+		public readonly float VelocityMS;
+		public readonly float VelocityY;
+		public readonly float SteeringWheelAngle;
+		public readonly float SteeringWheelAngleMax;
+		public readonly float SteeringWheelVelocity;
+
+		public FrameContext( App app, float torque60Hz, float maxForce, bool usingTorqueData )
+		{
+			var simulator = app.Simulator;
+			var steeringEffects = app.SteeringEffects;
+			var directInput = app.DirectInput;
+
+			Torque60Hz = torque60Hz;
+			MaxForce = maxForce;
+			WheelPosition = directInput.ForceFeedbackWheelPosition;
+			WheelVelocity = directInput.ForceFeedbackWheelVelocity;
+			UndersteerEffect = steeringEffects.UndersteerEffect;
+			OversteerEffect = steeringEffects.OversteerEffect;
+			SeatOfPantsEffect = steeringEffects.SeatOfPantsEffect;
+			SkidSlip = steeringEffects.SkidSlip;
+			RPM = simulator.RPM;
+			ShiftRPM = simulator.ShiftLightsShiftRPM;
+			Gear = simulator.Gear;
+			NumForwardGears = simulator.NumForwardGears;
+			ABSActive = simulator.BrakeABSactive;
+			IsOnTrack = simulator.IsOnTrack;
+			UsingTorqueData = usingTorqueData;
+			VelocityMS = simulator.Velocity;
+			VelocityY = simulator.VelocityY;
+			SteeringWheelAngle = simulator.SteeringWheelAngle;
+			SteeringWheelAngleMax = simulator.SteeringWheelAngleMax;
+			SteeringWheelVelocity = simulator.SteeringWheelVelocity;
+		}
+	}
+
+	/// <summary>
+	/// Assembles the per-tick auxiliary input for the FFB graph engine from the frame-constant snapshot plus
+	/// the values that vary per 360 Hz sample (raw torque, LFE magnitude, sample-0 protection pulses). No
 	/// allocation (the struct is passed by readonly reference into every module).
 	/// </summary>
-	private FFBTickContext BuildTickContext( App app, float deltaMilliseconds, float torque60Hz, float torque360Hz, float maxForce, float lfeMagnitude, bool crashProtectionTriggered, bool curbProtectionTriggered )
+	private static FFBTickContext BuildTickContext( in FrameContext frameContext, float torque360Hz, float lfeMagnitude, bool crashProtectionTriggered, bool curbProtectionTriggered )
 	{
-		var simulator = app.Simulator;
-		var steeringEffects = app.SteeringEffects;
-		var directInput = app.DirectInput;
-
 		return new FFBTickContext(
-			deltaMilliseconds: deltaMilliseconds,
-			torque60Hz: torque60Hz,
+			deltaMilliseconds: FFBTickContext.TickDeltaMilliseconds,
+			torque60Hz: frameContext.Torque60Hz,
 			torque360Hz: torque360Hz,
-			maxForce: maxForce,
+			maxForce: frameContext.MaxForce,
 			lfeMagnitude: lfeMagnitude,
-			wheelPosition: directInput.ForceFeedbackWheelPosition,
-			wheelVelocity: directInput.ForceFeedbackWheelVelocity,
-			understeerEffect: steeringEffects.UndersteerEffect,
-			oversteerEffect: steeringEffects.OversteerEffect,
-			seatOfPantsEffect: steeringEffects.SeatOfPantsEffect,
-			skidSlip: steeringEffects.SkidSlip,
-			rpm: simulator.RPM,
-			shiftRPM: simulator.ShiftLightsShiftRPM,
-			gear: simulator.Gear,
-			numForwardGears: simulator.NumForwardGears,
-			absActive: simulator.BrakeABSactive,
-			isOnTrack: simulator.IsOnTrack,
-			usingTorqueData: _usingSteeringWheelTorqueData,
-			velocityMS: simulator.Velocity,
-			velocityY: simulator.VelocityY,
-			steeringWheelAngle: simulator.SteeringWheelAngle,
-			steeringWheelAngleMax: simulator.SteeringWheelAngleMax,
-			steeringWheelVelocity: simulator.SteeringWheelVelocity,
+			wheelPosition: frameContext.WheelPosition,
+			wheelVelocity: frameContext.WheelVelocity,
+			understeerEffect: frameContext.UndersteerEffect,
+			oversteerEffect: frameContext.OversteerEffect,
+			seatOfPantsEffect: frameContext.SeatOfPantsEffect,
+			skidSlip: frameContext.SkidSlip,
+			rpm: frameContext.RPM,
+			shiftRPM: frameContext.ShiftRPM,
+			gear: frameContext.Gear,
+			numForwardGears: frameContext.NumForwardGears,
+			absActive: frameContext.ABSActive,
+			isOnTrack: frameContext.IsOnTrack,
+			usingTorqueData: frameContext.UsingTorqueData,
+			velocityMS: frameContext.VelocityMS,
+			velocityY: frameContext.VelocityY,
+			steeringWheelAngle: frameContext.SteeringWheelAngle,
+			steeringWheelAngleMax: frameContext.SteeringWheelAngleMax,
+			steeringWheelVelocity: frameContext.SteeringWheelVelocity,
 			crashProtectionTriggered: crashProtectionTriggered,
 			curbProtectionTriggered: curbProtectionTriggered );
 	}

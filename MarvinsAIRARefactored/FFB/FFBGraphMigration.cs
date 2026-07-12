@@ -593,7 +593,7 @@ public static class FFBGraphMigration
 
 		builder.AddSources( src );
 
-		// curb protection sits early (pass-through) so its PrePass publishes the curb factor before the chain
+		// curb protection sits early so its force reduction scales the raw torque ahead of the whole chain
 		builder.Add( FFBModuleRegistry.CurbProtectionType, FFBGraph.Source360ModuleId,
 			( "ShockVelocity", src.F( "RacingWheelCurbProtectionShockVelocity" ) ),
 			( "Duration", src.F( "RacingWheelCurbProtectionDuration" ) ),

@@ -58,6 +58,9 @@ public class Pedals
 
 	private readonly EffectStatus[,] _effectStatus = new EffectStatus[ 3, 3 ];
 
+	// effect configuration per pedal / slot — preallocated, refilled from settings on every Update
+	private readonly (Effect, float)[,] _effectConfiguration = new (Effect, float)[ 3, 3 ];
+
 	public EffectStatus GetEffectStatus( int pedalIndex, int effectIndex ) => _effectStatus[ pedalIndex, effectIndex ];
 
 	public float ClutchFrequency { get => _frequency[ (int) HPR.Channel.Clutch ]; }
@@ -148,26 +151,17 @@ public class Pedals
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		// effect configuration per pedal / slot
+		// refresh the effect configuration per pedal / slot (live settings values, preallocated array)
 
-		(Effect, float)[,] effectConfiguration =
-		{
-			{
-				( settings.PedalsClutchEffect1, settings.PedalsClutchStrength1 ),
-				( settings.PedalsClutchEffect2, settings.PedalsClutchStrength2 ),
-				( settings.PedalsClutchEffect3, settings.PedalsClutchStrength3 )
-			},
-			{
-				( settings.PedalsBrakeEffect1, settings.PedalsBrakeStrength1 ),
-				( settings.PedalsBrakeEffect2, settings.PedalsBrakeStrength2 ),
-				( settings.PedalsBrakeEffect3, settings.PedalsBrakeStrength3 )
-			},
-			{
-				( settings.PedalsThrottleEffect1, settings.PedalsThrottleStrength1 ),
-				( settings.PedalsThrottleEffect2, settings.PedalsThrottleStrength2 ),
-				( settings.PedalsThrottleEffect3, settings.PedalsThrottleStrength3 )
-			}
-		};
+		_effectConfiguration[ 0, 0 ] = ( settings.PedalsClutchEffect1, settings.PedalsClutchStrength1 );
+		_effectConfiguration[ 0, 1 ] = ( settings.PedalsClutchEffect2, settings.PedalsClutchStrength2 );
+		_effectConfiguration[ 0, 2 ] = ( settings.PedalsClutchEffect3, settings.PedalsClutchStrength3 );
+		_effectConfiguration[ 1, 0 ] = ( settings.PedalsBrakeEffect1, settings.PedalsBrakeStrength1 );
+		_effectConfiguration[ 1, 1 ] = ( settings.PedalsBrakeEffect2, settings.PedalsBrakeStrength2 );
+		_effectConfiguration[ 1, 2 ] = ( settings.PedalsBrakeEffect3, settings.PedalsBrakeStrength3 );
+		_effectConfiguration[ 2, 0 ] = ( settings.PedalsThrottleEffect1, settings.PedalsThrottleStrength1 );
+		_effectConfiguration[ 2, 1 ] = ( settings.PedalsThrottleEffect2, settings.PedalsThrottleStrength2 );
+		_effectConfiguration[ 2, 2 ] = ( settings.PedalsThrottleEffect3, settings.PedalsThrottleStrength3 );
 
 		// if we aren't on track then just shut off all HPRs (unless we are testing)
 
@@ -185,7 +179,7 @@ public class Pedals
 					_amplitude[ pedalIndex ] = 0f;
 					_cycles[ pedalIndex ] = 0f;
 
-					SetPedalIdleStatus( effectConfiguration, pedalIndex );
+					SetPedalIdleStatus( pedalIndex );
 				}
 
 				return;
@@ -216,7 +210,7 @@ public class Pedals
 		{
 			if ( _testing && ( _testPedalIndex != pedalIndex ) )
 			{
-				SetPedalIdleStatus( effectConfiguration, pedalIndex );
+				SetPedalIdleStatus( pedalIndex );
 
 				continue;
 			}
@@ -229,7 +223,7 @@ public class Pedals
 
 			for ( var effectIndex = 0; effectIndex < 3; effectIndex++ )
 			{
-				var effect = effectConfiguration[ pedalIndex, effectIndex ].Item1;
+				var effect = _effectConfiguration[ pedalIndex, effectIndex ].Item1;
 
 				if ( effect == Effect.None )
 				{
@@ -245,7 +239,7 @@ public class Pedals
 					continue;
 				}
 
-				var (thisEffectActive, thisFrequency, thisAmplitude) = DoEffect( app, effect, effectConfiguration[ pedalIndex, effectIndex ].Item2 );
+				var (thisEffectActive, thisFrequency, thisAmplitude) = DoEffect( app, effect, _effectConfiguration[ pedalIndex, effectIndex ].Item2 );
 
 				if ( !thisEffectActive )
 				{
@@ -290,11 +284,11 @@ public class Pedals
 		_testJustStarted = false;
 	}
 
-	private void SetPedalIdleStatus( (Effect, float)[,] effectConfiguration, int pedalIndex )
+	private void SetPedalIdleStatus( int pedalIndex )
 	{
 		for ( var effectIndex = 0; effectIndex < 3; effectIndex++ )
 		{
-			_effectStatus[ pedalIndex, effectIndex ] = ( effectConfiguration[ pedalIndex, effectIndex ].Item1 == Effect.None ) ? EffectStatus.None : EffectStatus.Idle;
+			_effectStatus[ pedalIndex, effectIndex ] = ( _effectConfiguration[ pedalIndex, effectIndex ].Item1 == Effect.None ) ? EffectStatus.None : EffectStatus.Idle;
 		}
 	}
 

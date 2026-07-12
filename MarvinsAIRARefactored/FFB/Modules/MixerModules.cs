@@ -63,11 +63,9 @@ public sealed class AdaptiveBlendModule : FFBModule
 
 	private const float TickRateHz = 360f;
 
-	private float _lastCutoffHz = float.NaN;
-	private float _lastPeakCutoffHz = float.NaN;
-
 	private float _alpha;
 	private float _peakAlpha;
+	private float _holdTicks;
 
 	private float _hybridLast;
 	private float _lastVelocitySign;
@@ -82,26 +80,16 @@ public sealed class AdaptiveBlendModule : FFBModule
 		_peakCountdown = 0f;
 	}
 
+	protected override void OnValuesChanged()
+	{
+		_alpha = 1f - MathF.Exp( -MathF.Tau * _v[ Cutoff ] / TickRateHz );
+		_peakAlpha = 1f - MathF.Exp( -MathF.Tau * _v[ PeakCutoff ] / TickRateHz );
+		_holdTicks = _v[ Hold ] * ( TickRateHz / 1000f );
+	}
+
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		var cutoffHz = _v[ Cutoff ];
-		var peakCutoffHz = _v[ PeakCutoff ];
-
-		if ( cutoffHz != _lastCutoffHz )
-		{
-			_alpha = 1f - MathF.Exp( -MathF.Tau * cutoffHz / TickRateHz );
-
-			_lastCutoffHz = cutoffHz;
-		}
-
-		if ( peakCutoffHz != _lastPeakCutoffHz )
-		{
-			_peakAlpha = 1f - MathF.Exp( -MathF.Tau * peakCutoffHz / TickRateHz );
-
-			_lastPeakCutoffHz = peakCutoffHz;
-		}
-
-		var holdTicks = _v[ Hold ] * ( TickRateHz / 1000f );
+		var holdTicks = _holdTicks;
 
 		var peakCountdown = MathF.Max( 0f, _peakCountdown - 1f );
 

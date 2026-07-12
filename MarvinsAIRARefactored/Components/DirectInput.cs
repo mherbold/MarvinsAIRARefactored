@@ -1,4 +1,5 @@
 ﻿
+using System.Diagnostics;
 using System.Runtime.CompilerServices;
 
 using SharpDX.DirectInput;
@@ -55,6 +56,15 @@ public class DirectInput
 	private Guid _forceFeedbackDeviceInstanceGuid = Guid.Empty;
 	private EffectParameters? _forceFeedbackEffectParameters = null;
 	private Effect? _forceFeedbackEffect = null;
+
+	// last magnitude actually written to the device (int.MinValue = force the next write through) plus a
+	// periodic-refresh clock — see UpdateForceFeedbackEffect
+	private int _lastForceFeedbackMagnitude = int.MinValue;
+	private long _lastForceFeedbackWriteTimestamp = 0;
+
+	// unchanged magnitudes are still rewritten this often as insurance against wheelbase drivers with
+	// inactivity watchdogs (the started infinite-duration effect holds by spec, but 4 writes/second is free)
+	private static readonly long _forceFeedbackRefreshTimestampTicks = Stopwatch.Frequency / 4;
 
 	private bool _joystickInfoListNeedsToBeUpdated = false;
 
@@ -114,6 +124,8 @@ public class DirectInput
 		try
 		{
 			app.Logger.WriteLine( "[DirectInput] Creating the force feedback joystick" );
+
+			_lastForceFeedbackMagnitude = int.MinValue;
 
 			_forceFeedbackDeviceInstanceGuid = deviceGuid;
 
@@ -197,6 +209,8 @@ public class DirectInput
 			ForceFeedbackWheelVelocity = 0f;
 
 			_forceFeedbackEffectParameters = null;
+
+			_lastForceFeedbackMagnitude = int.MinValue;
 
 			if ( _forceFeedbackEffect != null )
 			{
@@ -480,9 +494,24 @@ public class DirectInput
 	{
 		if ( _forceFeedbackEffectParameters != null )
 		{
-			( (ConstantForce) _forceFeedbackEffectParameters.Parameters ).Magnitude = (int) Math.Clamp( magnitude * DI_FFNOMINALMAX, -DI_FFNOMINALMAX, DI_FFNOMINALMAX );
+			var clampedMagnitude = (int) Math.Clamp( magnitude * DI_FFNOMINALMAX, -DI_FFNOMINALMAX, DI_FFNOMINALMAX );
+
+			// skip the native SetParameters marshal when the quantized magnitude hasn't changed — the started
+			// infinite-duration constant force keeps applying; a periodic refresh still goes through (see fields)
+
+			var timestamp = Stopwatch.GetTimestamp();
+
+			if ( ( clampedMagnitude == _lastForceFeedbackMagnitude ) && ( ( timestamp - _lastForceFeedbackWriteTimestamp ) < _forceFeedbackRefreshTimestampTicks ) )
+			{
+				return;
+			}
+
+			( (ConstantForce) _forceFeedbackEffectParameters.Parameters ).Magnitude = clampedMagnitude;
 
 			_forceFeedbackEffect?.SetParameters( _forceFeedbackEffectParameters, EffectParameterFlags.TypeSpecificParameters );
+
+			_lastForceFeedbackMagnitude = clampedMagnitude;
+			_lastForceFeedbackWriteTimestamp = timestamp;
 		}
 	}
 

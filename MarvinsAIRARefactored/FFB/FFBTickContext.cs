@@ -2,10 +2,11 @@
 namespace MarvinsAIRARefactored.FFB;
 
 /// <summary>
-/// Per-tick auxiliary input for the FFB graph engine. Built once per 360 Hz tick (no allocation) and
-/// passed by readonly reference into every module's PrePass/Process. Everything a module might need from
-/// the outside world (torque samples, telemetry, wheel state, protection pulses) lives here so the modules
-/// themselves stay free of App/Simulator references and remain testable in isolation.
+/// Per-tick auxiliary input for the FFB graph engine. Built once per 360 Hz tick (no allocation) by the
+/// telemetry-thread frame burst and passed by readonly reference into every module's PrePass/Process.
+/// Everything a module might need from the outside world (torque samples, telemetry, wheel state,
+/// protection pulses) lives here so the modules themselves stay free of App/Simulator references and
+/// remain testable in isolation.
 /// </summary>
 /// <remarks>
 /// Torque samples are in Newton-metres (the main signal bus is Nm until the Output module). The vibration
@@ -23,7 +24,7 @@ public readonly struct FFBTickContext
 	// torque sources (Nm)
 
 	public readonly float Torque60Hz;   // predicted 60 Hz sample (RacingWheel runs the RLS predictors)
-	public readonly float Torque360Hz;  // Hermite-interpolated "500 Hz" sample
+	public readonly float Torque360Hz;  // raw 360 Hz ST sample
 	public readonly float MaxForce;      // RacingWheelMaxForce (Nm) — normalization divisor
 
 	// audio / LFE
@@ -126,8 +127,9 @@ public readonly struct FFBTickContext
 		IsPreview = isPreview;
 	}
 
-	/// <summary>The preview replay's fixed tick length — recordings are captured at 360 Hz.</summary>
-	public const float ReplayDeltaMilliseconds = 1000f / 360f;
+	/// <summary>The fixed 360 Hz tick length — used by both the live frame burst and the preview replay
+	/// (recordings are captured at 360 Hz).</summary>
+	public const float TickDeltaMilliseconds = 1000f / 360f;
 
 	/// <summary>
 	/// The preview replay context: one recorded 360 Hz sample expanded back into a full tick context, so every
@@ -139,9 +141,9 @@ public readonly struct FFBTickContext
 	public static FFBTickContext FromRecording( Classes.RecordingData recordingData, float maxForce, bool crashProtectionTriggered, bool curbProtectionTriggered )
 	{
 		return new FFBTickContext(
-			deltaMilliseconds: ReplayDeltaMilliseconds,
+			deltaMilliseconds: TickDeltaMilliseconds,
 			torque60Hz: recordingData.InputTorque60Hz,
-			torque360Hz: recordingData.InputTorque500Hz,
+			torque360Hz: recordingData.InputTorque360Hz,
 			maxForce: maxForce,
 			lfeMagnitude: recordingData.LFEMagnitude,
 			wheelPosition: recordingData.WheelPosition,

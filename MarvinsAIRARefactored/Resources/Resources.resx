@@ -2082,4 +2082,34 @@
   <data name="OtherEffects" xml:space="preserve">
     <value>Other effects</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Export graph</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Import graph</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA graph files</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Imported graph</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>This graph could not be exported.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>This graph file could not be imported.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>This file is not a MAIRA graph file.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>This file contains a vibration effects graph - import it under vibration effects instead.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>This file contains an FFB graph - import it under the FFB graph instead.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>This graph file was created by a newer version of MAIRA. Please update MAIRA and try again.</value>
+  </data>
 </root>

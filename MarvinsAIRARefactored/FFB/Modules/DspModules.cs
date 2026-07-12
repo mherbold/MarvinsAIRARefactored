@@ -29,6 +29,7 @@ internal sealed class LowPassCore
 	private float _lastCutoffHz = float.NaN;
 	private float _lastSlope = float.NaN;
 
+	private bool _isTwoPole;
 	private float _alpha;
 	private float _b0, _b1, _b2, _a1, _a2;
 
@@ -56,7 +57,9 @@ internal sealed class LowPassCore
 
 		if ( ( cutoffHz != _lastCutoffHz ) || ( slope != _lastSlope ) )
 		{
-			if ( (int) slope == SlopeTwoPole )
+			_isTwoPole = (int) slope == SlopeTwoPole;
+
+			if ( _isTwoPole )
 			{
 				// prewarped bilinear transform; cutoff kept below Nyquist where tan blows up at 90°
 				var k = MathF.Tan( MathF.PI * MathF.Min( cutoffHz, 179.9f ) / TickRateHz );
@@ -78,7 +81,7 @@ internal sealed class LowPassCore
 			_lastSlope = slope;
 		}
 
-		if ( (int) slope == SlopeTwoPole )
+		if ( _isTwoPole )
 		{
 			var y = _b0 * x + _b1 * _x1 + _b2 * _x2 - _a1 * _y1 - _a2 * _y2;
 
@@ -124,7 +127,7 @@ public sealed class LowPassFilterModule : FFBModule
 /// 180 Hz = Nyquist at the 360 Hz tick rate). Slope picks the internal body reference: one pole (6 dB/oct)
 /// or two poles (12 dB/oct Butterworth) — steeper means cleaner separation between body and detail. Pair
 /// with a Gain module to boost the extracted detail (the old built-in gain and its curb-protection pullback
-/// moved out — curb protection is planned to become an explicit set of graph modules). To reconstruct the
+/// moved out — the CurbProtection module now reduces force directly). To reconstruct the
 /// exact DetailBooster recursion, use one pole with Cutoff at the Hz equivalent of the old bias coefficient.
 /// </summary>
 public sealed class HighPassFilterModule : FFBModule
@@ -162,7 +165,7 @@ public sealed class GainModule : FFBModule
 /// old delta clamp (old line 374), which integrated clamped input-to-input deltas and could carry a permanent
 /// DC offset — harmless inside the old DeltaLimiter algorithm where a high-pass always followed, but a footgun
 /// as a free-standing module. The curb coupling (limit driven to 0, freezing the output mid-event) was dropped
-/// (curb protection is planned to become an explicit set of graph modules).
+/// (the CurbProtection module now reduces force directly).
 /// </summary>
 public sealed class SlewLimiterModule : FFBModule
 {
@@ -170,15 +173,20 @@ public sealed class SlewLimiterModule : FFBModule
 
 	private const float TickRateHz = 360f;
 
+	private float _perTickLimit;
+
 	private float _y;
 
 	public override void Reset() => _y = 0f;
 
+	protected override void OnValuesChanged()
+	{
+		_perTickLimit = _v[ Limit ] / TickRateHz;
+	}
+
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		var perTickLimit = _v[ Limit ] / TickRateHz;
-
-		_y += Math.Clamp( inputA - _y, -perTickLimit, perTickLimit );
+		_y += Math.Clamp( inputA - _y, -_perTickLimit, _perTickLimit );
 
 		return _y;
 	}
@@ -195,8 +203,8 @@ public sealed class SlewLimiterModule : FFBModule
 /// ride-down. Replaces the old dual-mode module: Linear = old SlewAndTotalCompression 414–448 (its embedded
 /// total compression is now a separate downstream Compressor in migration — the old feedback coupling is
 /// gone), Soft = old Multi SlewRateReduction 529–572. Dropped: the linear mode's direction asymmetry, the
-/// soft mode's 0.8 falling-rate multiplier, and the curb coupling (curb protection will become explicit
-/// graph modules).
+/// soft mode's 0.8 falling-rate multiplier, and the curb coupling (the CurbProtection module now reduces
+/// force directly).
 /// </summary>
 public sealed class SlewCompressorModule : FFBModule
 {
@@ -207,6 +215,10 @@ public sealed class SlewCompressorModule : FFBModule
 
 	private const float TickRateHz = 360f;
 
+	private float _rate;
+	private float _perTickThreshold;
+	private float _perTickKnee;
+
 	private float _lastInput;
 	private float _y;
 
@@ -214,6 +226,13 @@ public sealed class SlewCompressorModule : FFBModule
 	{
 		_lastInput = 0f;
 		_y = 0f;
+	}
+
+	protected override void OnValuesChanged()
+	{
+		_rate = 1f - 1f / MathF.Max( _v[ Ratio ], 1f );
+		_perTickThreshold = _v[ Threshold ] / TickRateHz;
+		_perTickKnee = _v[ Knee ] / TickRateHz;
 	}
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
@@ -229,10 +248,7 @@ public sealed class SlewCompressorModule : FFBModule
 		}
 		else
 		{
-			var ratio = MathF.Max( _v[ Ratio ], 1f );
-			var rate = 1f - 1f / ratio;
-
-			_y += MathZ.Compression( inputA - _y, rate, _v[ Threshold ] / TickRateHz, _v[ Knee ] / TickRateHz );
+			_y += MathZ.Compression( inputA - _y, _rate, _perTickThreshold, _perTickKnee );
 		}
 
 		_lastInput = inputA;
@@ -254,15 +270,18 @@ public sealed class CompressorModule : FFBModule
 	private const int Knee = 2;
 	private const int Ratio = 3;
 
+	private float _rate;
+
 	public override void Reset() { }
+
+	protected override void OnValuesChanged()
+	{
+		_rate = 1f - 1f / MathF.Max( _v[ Ratio ], 1f );
+	}
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		var ratio = MathF.Max( _v[ Ratio ], 1f );
-
-		var rate = 1f - 1f / ratio;
-
-		return MathZ.Compression( inputA, rate, _v[ Threshold ], _v[ Knee ] );
+		return MathZ.Compression( inputA, _rate, _v[ Threshold ], _v[ Knee ] );
 	}
 }
 
@@ -274,7 +293,7 @@ public sealed class CompressorModule : FFBModule
 /// crosses to the other side of the body reference. At Gain = 1 it degenerates to a plain one-pole high-pass.
 /// The old DetailEnhancer (Multi DetailGain 574–609) also passed the body through — that part is replicable,
 /// so it moved out: recompose it as LowPassFilter + this, summed by a Mixer (see FFBGraphMigration). The old
-/// curb-protection gain pullback was dropped (curb protection will become explicit graph modules).
+/// curb-protection gain pullback was dropped (the CurbProtection module now reduces force directly).
 /// </summary>
 public sealed class TransientEnhancerModule : FFBModule
 {
@@ -284,7 +303,6 @@ public sealed class TransientEnhancerModule : FFBModule
 	private const float TickRateHz = 360f;
 	private const float EpsilonGuard = 1e-6f;
 
-	private float _lastCutoffHz = float.NaN;
 	private float _alpha;
 
 	private float _lastInput;
@@ -298,17 +316,13 @@ public sealed class TransientEnhancerModule : FFBModule
 		_lastOutput = 0f;
 	}
 
+	protected override void OnValuesChanged()
+	{
+		_alpha = 1f - MathF.Exp( -MathF.Tau * _v[ Cutoff ] / TickRateHz );
+	}
+
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		var cutoffHz = _v[ Cutoff ];
-
-		if ( cutoffHz != _lastCutoffHz )
-		{
-			_alpha = 1f - MathF.Exp( -MathF.Tau * cutoffHz / TickRateHz );
-
-			_lastCutoffHz = cutoffHz;
-		}
-
 		var lpf = MathZ.Lerp( _lastLpf, inputA, _alpha );
 
 		var currentDeviation = inputA - lpf;
@@ -362,7 +376,6 @@ public sealed class AdaptiveSmootherModule : FFBModule
 
 	private static readonly float _derivativeAlpha = CutoffToAlpha( DerivativeCutoffHz );
 
-	private float _lastAmount = float.NaN;
 	private float _floorHz;
 
 	private float _lastInput;
@@ -385,6 +398,11 @@ public sealed class AdaptiveSmootherModule : FFBModule
 		return r / ( r + 1f );
 	}
 
+	protected override void OnValuesChanged()
+	{
+		_floorHz = MathF.Pow( FloorMaxHz, 1f - _v[ Amount ] );
+	}
+
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
 		var x = inputA / ReferenceNm;
@@ -395,20 +413,11 @@ public sealed class AdaptiveSmootherModule : FFBModule
 
 		_lastInput = x;
 
-		var amount = _v[ Amount ];
-
-		if ( amount <= 0f )
+		if ( _v[ Amount ] <= 0f )
 		{
 			_y = x;
 
 			return inputA;
-		}
-
-		if ( amount != _lastAmount )
-		{
-			_floorHz = MathF.Pow( FloorMaxHz, 1f - amount );
-
-			_lastAmount = amount;
 		}
 
 		var cutoffHz = MathF.Min( _floorHz + SpeedToCutoffHz * MathF.Abs( _speedLpf ), FloorMaxHz );

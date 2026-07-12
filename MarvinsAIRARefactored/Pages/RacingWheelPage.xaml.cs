@@ -1,10 +1,13 @@
 ﻿
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 
 using MouseEventArgs = System.Windows.Input.MouseEventArgs;
+using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
+using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Point = System.Windows.Point;
 using UserControl = System.Windows.Controls.UserControl;
 
@@ -397,6 +400,106 @@ public partial class RacingWheelPage : UserControl
 		UpdateFFBGraphOptions();
 	}
 
+	private void ExportGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) )
+		{
+			ExportGraph( graph, FFBGraphExportFile.FFBGraphType );
+		}
+	}
+
+	private void ImportGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		ImportGraph( FFBGraphExportFile.FFBGraphType );
+	}
+
+	// Shared by the FFB and vibration export buttons: pick a file, write the graph. The suggested file name is
+	// the graph name with any filesystem-invalid characters stripped.
+	private static void ExportGraph( FFBGraph graph, string graphType )
+	{
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		var fileName = string.Concat( graph.Name.Split( Path.GetInvalidFileNameChars() ) ).Trim();
+
+		var dialog = new SaveFileDialog
+		{
+			Title = localization[ "ExportGraph" ],
+			FileName = fileName,
+			DefaultExt = FFBGraphPort.FileExtension,
+			AddExtension = true,
+			Filter = $"{localization[ "MairaGraphFiles" ]} (*{FFBGraphPort.FileExtension})|*{FFBGraphPort.FileExtension}"
+		};
+
+		if ( dialog.ShowDialog() != true )
+		{
+			return;
+		}
+
+		try
+		{
+			FFBGraphPort.Export( graph, graphType, dialog.FileName );
+		}
+		catch ( Exception exception )
+		{
+			ErrorWindow.ShowModal( localization[ "ExportGraphFailed" ], exception );
+		}
+	}
+
+	// Shared by the FFB and vibration import buttons: pick a file, validate + load it, add it as a user graph
+	// (unique name, fresh module ids) and select it. Validation failures show their own localized message;
+	// anything unexpected (unreadable file, malformed XML) shows the generic one with the exception details.
+	private void ImportGraph( string graphType )
+	{
+		var app = App.Instance!;
+
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		var dialog = new OpenFileDialog
+		{
+			Title = localization[ "ImportGraph" ],
+			Filter = $"{localization[ "MairaGraphFiles" ]} (*{FFBGraphPort.FileExtension})|*{FFBGraphPort.FileExtension}",
+			CheckFileExists = true
+		};
+
+		if ( dialog.ShowDialog() != true )
+		{
+			return;
+		}
+
+		try
+		{
+			var graph = FFBGraphPort.Import( dialog.FileName, graphType );
+
+			if ( graphType == FFBGraphExportFile.FFBGraphType )
+			{
+				settings.ImportFFBGraph( graph );
+			}
+			else
+			{
+				settings.ImportVibrationGraph( graph );
+			}
+		}
+		catch ( FFBGraphPort.ImportException importException )
+		{
+			ErrorWindow.ShowModal( importException.Message );
+
+			return;
+		}
+		catch ( Exception exception )
+		{
+			ErrorWindow.ShowModal( localization[ "ImportGraphFailed" ], exception );
+
+			return;
+		}
+
+		app.SettingsFile.QueueForSerialization = true;
+
+		UpdateFFBGraphOptions();
+	}
+
 	private void VibrationGraph_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
 	{
 		if ( _refreshingGraphSelector )
@@ -528,6 +631,21 @@ public partial class RacingWheelPage : UserControl
 		app.SettingsFile.QueueForSerialization = true;
 
 		UpdateFFBGraphOptions();
+	}
+
+	private void ExportVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		if ( settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var graph ) )
+		{
+			ExportGraph( graph, FFBGraphExportFile.VibrationGraphType );
+		}
+	}
+
+	private void ImportVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		ImportGraph( FFBGraphExportFile.VibrationGraphType );
 	}
 
 

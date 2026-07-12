@@ -40,6 +40,10 @@ public sealed class RecordingManager : IDisposable
 	private int _recordingDataIndex = 0;
 	private int _trackPosition = 0;
 
+	// true while the background CSV write is running — StartRecording is blocked so the buffer can't be
+	// overwritten mid-save
+	private volatile bool _saveInProgress = false;
+
 	public void Initialize()
 	{
 		var app = App.Instance!;
@@ -75,7 +79,8 @@ public sealed class RecordingManager : IDisposable
 
 		if ( ( settings.RacingWheelSelectedRecording == string.Empty ) || !Recordings.ContainsKey( settings.RacingWheelSelectedRecording ) )
 		{
-			settings.RacingWheelSelectedRecording = Recordings.FirstOrDefault().Key;
+			// all recordings may have been rejected (e.g. old pre-version-line format) — never store a null key
+			settings.RacingWheelSelectedRecording = Recordings.FirstOrDefault().Key ?? string.Empty;
 		}
 
 		for ( var i = 0; i < _recordingData.Length; i++ )
@@ -160,7 +165,7 @@ public sealed class RecordingManager : IDisposable
 				ref var recordingData = ref _recordingData[ _recordingDataIndex++ ];
 
 				recordingData.InputTorque60Hz = inputTorque60Hz;
-				recordingData.InputTorque500Hz = tickContext.Torque360Hz;
+				recordingData.InputTorque360Hz = tickContext.Torque360Hz;
 
 				recordingData.LFEMagnitude = tickContext.LFEMagnitude;
 
@@ -207,7 +212,7 @@ public sealed class RecordingManager : IDisposable
 	{
 		var app = App.Instance!;
 
-		if ( app.Simulator.IsOnTrack )
+		if ( app.Simulator.IsOnTrack && !_saveInProgress )
 		{
 			app.Logger.WriteLine( "[RecordingManager] StartRecording >>>" );
 
@@ -226,28 +231,48 @@ public sealed class RecordingManager : IDisposable
 
 		app.Logger.WriteLine( "[RecordingManager] SaveRecording >>>" );
 
+		_saveInProgress = true;
+
 		var fileName = $"{app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {app.Simulator.TrackConfigName} ({_trackPosition}%)";
 
 		var filePath = Path.Combine( _recordingsDirectory, $"{fileName}.csv" );
 
-		using var writer = new StreamWriter( filePath );
+		// the CSV write is offloaded so the telemetry thread (which calls this when the recording buffer fills)
+		// doesn't stall the FFB frame
 
-		writer.WriteLine( fileName );
+		_ = Task.Run( () =>
+		{
+			try
+			{
+				using var writer = new StreamWriter( filePath );
 
-		using var csv = new CsvWriter( writer, CultureInfo.InvariantCulture );
+				writer.WriteLine( Recording.FormatLine );
+				writer.WriteLine( fileName );
 
-		csv.WriteRecords( _recordingData );
+				using var csv = new CsvWriter( writer, CultureInfo.InvariantCulture );
 
-		writer.Close();
+				csv.WriteRecords( _recordingData );
 
-		LoadRecording( filePath );
+				writer.Close();
 
-		MainWindow._racingWheelPage.UpdatePreviewRecordingsOptions();
+				LoadRecording( filePath );
 
-		var settings = DataContext.DataContext.Instance.Settings;
+				MainWindow._racingWheelPage.UpdatePreviewRecordingsOptions();
 
-		settings.RacingWheelSelectedRecording = filePath;
+				var settings = DataContext.DataContext.Instance.Settings;
 
-		app.Logger.WriteLine( "[RecordingManager] <<< SaveRecording" );
+				settings.RacingWheelSelectedRecording = filePath;
+			}
+			catch ( Exception exception )
+			{
+				app.Logger.WriteLine( $"[RecordingManager] Failed to save recording: {exception.Message}" );
+			}
+			finally
+			{
+				_saveInProgress = false;
+			}
+
+			app.Logger.WriteLine( "[RecordingManager] <<< SaveRecording" );
+		} );
 	}
 }

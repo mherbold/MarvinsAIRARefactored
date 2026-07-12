@@ -4,7 +4,7 @@ using MarvinsAIRARefactored.Components;
 
 namespace MarvinsAIRARefactored.FFB.Modules;
 
-// Effect modules operate on the Nm main bus. Multiplicative effects (crash scale, decrease-force) are
+// Effect modules operate on the Nm main bus. Multiplicative effects (crash/curb scale, decrease-force) are
 // scale-invariant and apply identically in Nm or normalized space; additive effects (increase-force) scale
 // their contribution by ctx.MaxForce because the old code added a normalized contribution to the normalized
 // bus. (The old purely-additive effects — LFE, friction, soft lock, wheel centering — are source modules in
@@ -15,17 +15,19 @@ namespace MarvinsAIRARefactored.FFB.Modules;
 
 /// <summary>
 /// Crash protection (old 1266–1290 + scale 1398). PrePass advances the timer (re-armed by the one-tick
-/// <c>ctx.CrashProtectionTriggered</c> pulse) and Process multiplies by the recovery-ramped scale. Publishes
+/// <c>ctx.CrashProtectionTriggered</c> pulse) and Process multiplies by the scale, which ramps back to
+/// unity over the user-set recovery time (0 = instant snap-back) after the hold duration expires. Publishes
 /// the active flag and the long/lat g-force thresholds read by Simulator.
 /// </summary>
 public sealed class CrashProtectionModule : FFBModule
 {
-	private const float RecoveryTimeMS = 1000f;
-
 	private const int LongGForce = 1;
 	private const int LatGForce = 2;
 	private const int Duration = 3;
 	private const int ForceReduction = 4;
+	private const int RecoveryTime = 5;
+
+	private float _recoveryTimeMS;
 
 	private float _timerMS;
 	private float _scale = 1f;
@@ -35,6 +37,13 @@ public sealed class CrashProtectionModule : FFBModule
 		_timerMS = 0f;
 		_scale = 1f;
 	}
+
+	protected override void OnValuesChanged()
+	{
+		_recoveryTimeMS = _v[ RecoveryTime ] * 1000f;
+	}
+
+	public override bool HasPrePass => true;
 
 	public override void PrePass( in FFBTickContext ctx )
 	{
@@ -47,14 +56,16 @@ public sealed class CrashProtectionModule : FFBModule
 
 		if ( ctx.CrashProtectionTriggered || TestActive )
 		{
-			_timerMS = _v[ Duration ] * 1000f + RecoveryTimeMS;
+			_timerMS = _v[ Duration ] * 1000f + _recoveryTimeMS;
 		}
 
 		_scale = 1f;
 
 		if ( _timerMS > 0f )
 		{
-			_scale = 1f - _v[ ForceReduction ] * ( ( _timerMS <= RecoveryTimeMS ) ? ( _timerMS / RecoveryTimeMS ) : 1f );
+			// full reduction for the hold duration, then the remaining recovery window ramps linearly back to
+			// unity; a zero recovery time never enters the ramp branch (no division by zero)
+			_scale = 1f - _v[ ForceReduction ] * ( ( _timerMS <= _recoveryTimeMS ) ? ( _timerMS / _recoveryTimeMS ) : 1f );
 
 			_timerMS -= ctx.DeltaMilliseconds;
 		}
@@ -85,35 +96,59 @@ public sealed class CrashProtectionModule : FFBModule
 }
 
 /// <summary>
-/// Curb protection (old 1294–1318). PrePass advances the timer (re-armed by <c>ctx.CurbProtectionTriggered</c>)
-/// and publishes <see cref="FFBGraphEngine.CurbProtectionFactor"/> BEFORE the signal loop, so downstream
-/// curb-consuming DSP modules see it exactly where the old algorithm did. The signal is passed through.
+/// Curb protection (old 1294–1318, rebuilt as a direct force reduction). PrePass advances the timer
+/// (re-armed by <c>ctx.CurbProtectionTriggered</c>, so continuous curb strikes hold it at full) and Process
+/// multiplies by the scale, which ramps back to unity over the user-set recovery time (0 = instant
+/// snap-back) after the hold duration expires — same shape as <see cref="CrashProtectionModule"/>. (The old
+/// algorithm instead pulled back each DSP stage's detail parameters; those couplings were dropped in the
+/// graph redesign, so this module now owns the reduction itself.)
 /// </summary>
 public sealed class CurbProtectionModule : FFBModule
 {
 	private const int ShockVelocity = 1;
 	private const int Duration = 2;
 	private const int ForceReduction = 3;
+	private const int RecoveryTime = 4;
+
+	private float _recoveryTimeMS;
 
 	private float _timerMS;
+	private float _scale = 1f;
 
-	public override void Reset() => _timerMS = 0f;
+	public override void Reset()
+	{
+		_timerMS = 0f;
+		_scale = 1f;
+	}
+
+	protected override void OnValuesChanged()
+	{
+		_recoveryTimeMS = _v[ RecoveryTime ] * 1000f;
+	}
+
+	public override bool HasPrePass => true;
 
 	public override void PrePass( in FFBTickContext ctx )
 	{
 		if ( !Enabled )
 		{
+			_scale = 1f;
+
 			return;
 		}
 
 		if ( ctx.CurbProtectionTriggered || TestActive )
 		{
-			_timerMS = _v[ Duration ] * 1000f;
+			_timerMS = _v[ Duration ] * 1000f + _recoveryTimeMS;
 		}
+
+		_scale = 1f;
 
 		if ( _timerMS > 0f )
 		{
-			Owner.CurbProtectionFactor = _v[ ForceReduction ];
+			// full reduction for the hold duration, then the remaining recovery window ramps linearly back to
+			// unity; a zero recovery time never enters the ramp branch (no division by zero)
+			_scale = 1f - _v[ ForceReduction ] * ( ( _timerMS <= _recoveryTimeMS ) ? ( _timerMS / _recoveryTimeMS ) : 1f );
 
 			_timerMS -= ctx.DeltaMilliseconds;
 		}
@@ -123,7 +158,7 @@ public sealed class CurbProtectionModule : FFBModule
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		return inputA;
+		return inputA * _scale;
 	}
 
 	public override void PublishAggregates()
@@ -144,13 +179,20 @@ public sealed class UndersteerForceModule : FFBModule
 	private const int Strength = 2;
 	private const int Curve = 3;
 
+	private float _curvePower;
+
 	public override void Reset() { }
+
+	protected override void OnValuesChanged()
+	{
+		_curvePower = MathZ.CurveToPower( _v[ Curve ] );
+	}
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
 		if ( ctx.UndersteerEffect > 0f )
 		{
-			var constantForceTorque = _v[ Strength ] * MathF.Pow( ctx.UndersteerEffect, MathZ.CurveToPower( _v[ Curve ] ) );
+			var constantForceTorque = _v[ Strength ] * MathF.Pow( ctx.UndersteerEffect, _curvePower );
 
 			switch ( (RacingWheel.ConstantForceDirection) (int) _v[ Direction ] )
 			{
@@ -173,13 +215,20 @@ public sealed class OversteerForceModule : FFBModule
 	private const int Strength = 2;
 	private const int Curve = 3;
 
+	private float _curvePower;
+
 	public override void Reset() { }
+
+	protected override void OnValuesChanged()
+	{
+		_curvePower = MathZ.CurveToPower( _v[ Curve ] );
+	}
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
 		if ( ctx.OversteerEffect > 0f )
 		{
-			var constantForceTorque = _v[ Strength ] * MathF.Pow( ctx.OversteerEffect, MathZ.CurveToPower( _v[ Curve ] ) );
+			var constantForceTorque = _v[ Strength ] * MathF.Pow( ctx.OversteerEffect, _curvePower );
 
 			switch ( (RacingWheel.ConstantForceDirection) (int) _v[ Direction ] )
 			{
@@ -202,13 +251,20 @@ public sealed class SeatOfPantsForceModule : FFBModule
 	private const int Strength = 2;
 	private const int Curve = 3;
 
+	private float _curvePower;
+
 	public override void Reset() { }
+
+	protected override void OnValuesChanged()
+	{
+		_curvePower = MathZ.CurveToPower( _v[ Curve ] );
+	}
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
 		if ( ctx.SeatOfPantsEffect != 0f )
 		{
-			var constantForceTorque = _v[ Strength ] * MathF.CopySign( MathF.Pow( MathF.Abs( ctx.SeatOfPantsEffect ), MathZ.CurveToPower( _v[ Curve ] ) ), ctx.SeatOfPantsEffect );
+			var constantForceTorque = _v[ Strength ] * MathF.CopySign( MathF.Pow( MathF.Abs( ctx.SeatOfPantsEffect ), _curvePower ), ctx.SeatOfPantsEffect );
 
 			switch ( (RacingWheel.ConstantForceDirection) (int) _v[ Direction ] )
 			{

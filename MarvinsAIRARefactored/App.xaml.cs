@@ -1,5 +1,6 @@
 
 using System.IO;
+using System.Runtime;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
@@ -474,6 +475,13 @@ public partial class App : Application
 				Simulator.Start();
 
 				GC.Collect();
+
+				// from here on the app is a soft-realtime device — prefer deferring blocking gen2 collections
+				// (the startup GC.Collect calls above still ran in the default mode, fully compacting the
+				// startup garbage first); the FFB hot paths are allocation-free in steady state, so collections
+				// should be rare and UI-driven either way
+
+				GCSettings.LatencyMode = GCLatencyMode.SustainedLowLatency;
 			}
 		}
 

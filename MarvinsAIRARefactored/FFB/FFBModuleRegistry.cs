@@ -282,14 +282,16 @@ public static class FFBModuleRegistry
 				Knob( "LongGForce", 2f, 20f, 8f, 0.5f, F.Number( 1, "GForceUnits" ) ),
 				Knob( "LatGForce", 2f, 20f, 6f, 0.5f, F.Number( 1, "GForceUnits" ) ),
 				Knob( "Duration", 0f, 10f, 1f, 0.5f, F.WithOff( F.Number( 1, "SecondsUnits" ) ), breakRow: true ),
-				Knob( "ForceReduction", 0f, 1f, 0.95f, 0.01f, F.WithOff( F.Percent() ) )
+				Knob( "ForceReduction", 0f, 1f, 0.95f, 0.01f, F.WithOff( F.Percent() ) ),
+				Knob( "RecoveryTime", 0f, 5f, 1f, 0.25f, F.WithOff( F.Number( 2, "SecondsUnits" ) ) )
 			] ),
 
 			Descriptor( CurbProtectionType, 1, () => new CurbProtectionModule(), category: FFBModuleCategory.Effect, canTest: true, settings:
 			[
 				Knob( "ShockVelocity", 0f, 2f, 0.5f, 0.05f, F.Number( 2, "MPSUnits" ) ),
 				Knob( "Duration", 0f, 2f, 0.1f, 0.05f, F.WithOff( F.Number( 2, "SecondsUnits" ) ) ),
-				Knob( "ForceReduction", 0f, 1f, 0.75f, 0.01f, F.WithOff( F.Percent() ) )
+				Knob( "ForceReduction", 0f, 1f, 0.75f, 0.01f, F.WithOff( F.Percent() ), breakRow: true ),
+				Knob( "RecoveryTime", 0f, 2f, 0.1f, 0.05f, F.WithOff( F.Number( 2, "SecondsUnits" ) ) )
 			] ),
 
 			Descriptor( UndersteerForceType, 1, () => new UndersteerForceModule(), category: FFBModuleCategory.Effect, settings:

@@ -23,26 +23,30 @@ public sealed class OutputModule : FFBModule
 	private const int Knee = 4;
 	private const int Ratio = 5;
 
+	// settings-derived values cached on knob change — this module runs every tick unconditionally
+	private float _curvePower;
+	private float _softLimiterRate;
+
 	public override void Reset() { }
+
+	protected override void OnValuesChanged()
+	{
+		_curvePower = MathZ.CurveToPower( _v[ Curve ] );
+		_softLimiterRate = 1f - 1f / MathF.Max( _v[ Ratio ], 1f );
+	}
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
 		var normalized = inputA / ctx.MaxForce;
 
-		var curve = _v[ Curve ];
-
-		if ( curve != 0f )
+		if ( _v[ Curve ] != 0f )
 		{
-			var power = MathZ.CurveToPower( curve );
-
-			normalized = MathF.Sign( normalized ) * MathF.Pow( MathF.Abs( normalized ), power );
+			normalized = MathF.Sign( normalized ) * MathF.Pow( MathF.Abs( normalized ), _curvePower );
 		}
 
 		if ( _v[ SoftLimiter ] != 0f )
 		{
-			var ratio = MathF.Max( _v[ Ratio ], 1f );
-
-			normalized = MathZ.Compression( normalized, 1f - 1f / ratio, _v[ Threshold ], _v[ Knee ] );
+			normalized = MathZ.Compression( normalized, _softLimiterRate, _v[ Threshold ], _v[ Knee ] );
 		}
 
 		return normalized;

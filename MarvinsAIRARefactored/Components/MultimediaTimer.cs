@@ -159,9 +159,10 @@ public partial class MultimediaTimer
 					{
 						multimediaTimer._lastTotalMilliseconds = totalMilliseconds;
 
-						// update racing wheel force feedback
+						// update racing wheel force feedback playout (the FFB graph itself runs in
+						// RacingWheel.ProcessTelemetryFrame on the telemetry thread)
 
-						app.RacingWheel.Update( deltaMilliseconds );
+						app.RacingWheel.UpdatePlayout( deltaMilliseconds );
 
 						// update pedals graph
 

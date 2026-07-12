@@ -4,19 +4,21 @@ using MarvinsAIRARefactored.Components;
 namespace MarvinsAIRARefactored.FFB;
 
 /// <summary>
-/// Evaluates one <see cref="FFBGraph"/>. Two instances exist at runtime: a live engine (driven by the 360 Hz
-/// worker thread) and a preview engine (driven by the dispatcher over a recording). Both are built from the
-/// same graph model but keep independent state.
+/// Evaluates one <see cref="FFBGraph"/>. Two instances exist at runtime: a live engine (driven by the telemetry
+/// thread in six-sample 360 Hz bursts, one per telemetry frame) and a preview engine (driven by the dispatcher
+/// over a recording). Both are built from the same graph model but keep independent state.
 /// <para>Threading: structure edits build a brand-new engine on the UI thread and the caller swaps a volatile
-/// reference so the 360 Hz reader picks it up on its next tick. Knob edits arrive via <see cref="SetValue"/> as
-/// atomic single-float writes the reader tolerates. The arrays (<c>_modules</c>, <c>_signals</c>) are never
-/// mutated in place after Rebuild — always rebuild-and-swap.</para>
+/// reference so the 360 Hz reader picks it up on its next frame. Knob edits arrive via <see cref="SetValue"/> as
+/// atomic single-float writes the reader tolerates. The arrays (<c>_modules</c>, <c>_signals</c>,
+/// <c>_prePassModules</c>) are never mutated in place after Rebuild — always rebuild-and-swap.</para>
 /// </summary>
 public sealed class FFBGraphEngine
 {
 	private FFBModule[] _modules = [];
 	private FFBModuleDescriptor[] _descriptors = [];
 	private float[] _signals = [];
+	private FFBModule[] _prePassModules = [];   // the (few) modules that advertise HasPrePass — see Process
+	private int _outputModuleIndex = -1;        // last IsOutput module, or -1 when the graph has none
 	private int _fallbackSourceIndex;
 
 	private readonly Dictionary<string, int> _indexById = new( StringComparer.Ordinal );
@@ -26,7 +28,6 @@ public sealed class FFBGraphEngine
 	public float VibrationOutput;         // sum of generator modules (normalized)
 
 	// published per-tick / edit-time aggregates
-	public float CurbProtectionFactor;    // set by the CurbProtection module's PrePass (0 when absent/inactive)
 	public bool CrashProtectionActive;
 	public bool CurbProtectionActive;
 
@@ -91,6 +92,9 @@ public sealed class FFBGraphEngine
 
 		_fallbackSourceIndex = fallbackSourceIndex;
 
+		var prePassModules = new List<FFBModule>();
+		var outputModuleIndex = -1;
+
 		for ( var i = 0; i < moduleCount; i++ )
 		{
 			var model = allModules[ i ];
@@ -109,11 +113,23 @@ public sealed class FFBGraphEngine
 
 			modules[ i ] = module;
 			descriptors[ i ] = descriptor;
+
+			if ( module.HasPrePass )
+			{
+				prePassModules.Add( module );
+			}
+
+			if ( module.IsOutput )
+			{
+				outputModuleIndex = i;
+			}
 		}
 
 		_modules = modules;
 		_descriptors = descriptors;
 		_signals = new float[ moduleCount ];
+		_prePassModules = [ .. prePassModules ];
+		_outputModuleIndex = outputModuleIndex;
 
 		RefreshAggregates();
 	}
@@ -139,7 +155,6 @@ public sealed class FFBGraphEngine
 
 		MainOutput = 0f;
 		VibrationOutput = 0f;
-		CurbProtectionFactor = 0f;
 		CrashProtectionActive = false;
 		CurbProtectionActive = false;
 	}
@@ -222,25 +237,25 @@ public sealed class FFBGraphEngine
 	}
 
 	/// <summary>
-	/// Hot path. PrePass all modules (so protection timers / the curb factor exist before the signal loop —
-	/// reproducing the old ordering where curb/crash advanced before the algorithm ran), then evaluate every
-	/// module in list order. Generators feed the normalized vibration bus; the Output module publishes
-	/// <see cref="MainOutput"/>.
+	/// Hot path. PrePass the modules that have one (so protection timers/scales advance before the signal
+	/// loop — reproducing the old ordering where curb/crash advanced before the algorithm ran), then
+	/// evaluate every module in list order. Generators feed the normalized vibration bus; the Output module
+	/// publishes <see cref="MainOutput"/> (a graph without one leaves MainOutput at its previous value).
 	/// </summary>
 	public void Process( in FFBTickContext ctx )
 	{
 		var modules = _modules;
 		var descriptors = _descriptors;
 		var signals = _signals;
+		var prePassModules = _prePassModules;
 
 		VibrationOutput = 0f;
-		CurbProtectionFactor = 0f;
 		CrashProtectionActive = false;
 		CurbProtectionActive = false;
 
-		for ( var i = 0; i < modules.Length; i++ )
+		for ( var i = 0; i < prePassModules.Length; i++ )
 		{
-			modules[ i ].PrePass( in ctx );
+			prePassModules[ i ].PrePass( in ctx );
 		}
 
 		for ( var i = 0; i < modules.Length; i++ )
@@ -269,11 +284,11 @@ public sealed class FFBGraphEngine
 				// to pass — it goes silent (its input indices only hold the fallback source, never a real wiring)
 				signals[ i ] = descriptors[ i ].SignalInputCount == 0 ? 0f : inputA;
 			}
+		}
 
-			if ( module.IsOutput )
-			{
-				MainOutput = signals[ i ];
-			}
+		if ( _outputModuleIndex >= 0 )
+		{
+			MainOutput = signals[ _outputModuleIndex ];
 		}
 	}
 }

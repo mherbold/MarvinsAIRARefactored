@@ -167,6 +167,8 @@ public partial class Simulator
 	private IRacingSdkDatum? _carIdxOnPitRoadDatum = null;
 	private IRacingSdkDatum? _carIdxSessionFlagsDatum = null;
 	private IRacingSdkDatum? _carIdxTireCompoundDatum = null;
+
+	private int[] _carIdxTireCompounds = [];
 	private IRacingSdkDatum? _carDistAheadDatum = null;
 	private IRacingSdkDatum? _carDistBehindDatum = null;
 	private IRacingSdkDatum? _carLeftRightDatum = null;
@@ -749,6 +751,8 @@ public partial class Simulator
 			CarIdxOnPitRoad = new bool[ _carIdxOnPitRoadDatum.Count ];
 			CarIdxSessionFlags = new uint[ _carIdxSessionFlagsDatum.Count ];
 
+			_carIdxTireCompounds = new int[ _carIdxTireCompoundDatum.Count ];
+
 			_cfShockVel_STDatum = null;
 			_crShockVel_STDatum = null;
 			_lfShockVel_STDatum = null;
@@ -812,15 +816,14 @@ public partial class Simulator
 			return;
 		}
 
-		// poll directinput devices right before we process the algorithm (setting app.RacingWheel.UpdateSteeringWheelTorqueBuffer = true updates the prediction on the multimedia timer thread)
+		// poll directinput devices right before we process the FFB frame (RacingWheel.ProcessTelemetryFrame reads
+		// the wheel position/velocity at the end of this method)
 
 		app.DirectInput.PollDevices( deltaSeconds );
 
 		// get next 360 Hz steering wheel torque samples
 
 		_irsdk.Data.GetFloatArray( _steeringWheelTorque_STDatum, SteeringWheelTorque_ST, 0, SteeringWheelTorque_ST.Length );
-
-		app.RacingWheel.UpdateSteeringWheelTorqueBuffer = true;
 
 		// save last frame values
 
@@ -1033,11 +1036,9 @@ public partial class Simulator
 
 		if ( ( PlayerCarIdx >= 0 ) && ( PlayerCarIdx < _carIdxTireCompoundDatum!.Count ) )
 		{
-			int[] carIdxTireCompounds = new int[ _carIdxTireCompoundDatum!.Count ];
+			_irsdk.Data.GetIntArray( _carIdxTireCompoundDatum, _carIdxTireCompounds, 0, _carIdxTireCompoundDatum.Count );
 
-			_irsdk.Data.GetIntArray( _carIdxTireCompoundDatum, carIdxTireCompounds, 0, _carIdxTireCompoundDatum.Count );
-
-			CurrentTireIndex = carIdxTireCompounds[ PlayerCarIdx ]; // iracing's "carIdxTireCompound" data name is wrong - it should probably have been "carIdxTireIdx"
+			CurrentTireIndex = _carIdxTireCompounds[ PlayerCarIdx ]; // iracing's "carIdxTireCompound" data name is wrong - it should probably have been "carIdxTireIdx"
 
 			if ( _currentTireIndexLastFrame != null )
 			{
@@ -1169,6 +1170,11 @@ public partial class Simulator
 		// update steering effects
 
 		app.SteeringEffects.Update( app, deltaSeconds );
+
+		// run the FFB graph over this frame's six 360 Hz torque samples — after the crash/curb protection triggers
+		// and steering effects above, so the whole frame's context is fresh
+
+		app.RacingWheel.ProcessTelemetryFrame();
 
 		// trigger the app worker thread
 

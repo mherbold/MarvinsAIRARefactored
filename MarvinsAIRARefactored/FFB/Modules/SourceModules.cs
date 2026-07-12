@@ -26,7 +26,7 @@ public sealed class Source60HzModule : FFBModule
 	}
 }
 
-/// <summary>360 Hz source. Emits the Hermite-interpolated "500 Hz" torque sample (Nm).</summary>
+/// <summary>360 Hz source. Emits the raw 360 Hz torque sample (Nm).</summary>
 public sealed class Source360HzModule : FFBModule
 {
 	public override void Reset() { }

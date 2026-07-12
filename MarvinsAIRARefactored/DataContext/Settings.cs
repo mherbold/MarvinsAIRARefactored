@@ -398,9 +398,20 @@ public class Settings : INotifyPropertyChanged
 		return new ContextSwitches( source.PerWheelbase, source.PerCar, source.PerTrack, source.PerTrackConfiguration, source.PerWetDry );
 	}
 
-	// Rebuilds the RacingWheelPage graph editor card tree from the currently selected graph. UI thread only.
+	// Rebuilds the RacingWheelPage graph editor card tree from the currently selected graph. The card tree is an
+	// ObservableCollection bound to the UI, so this marshals itself to the dispatcher when called from another
+	// thread (e.g. UpdateSettings running on a simulator thread).
 	public static void RebuildGraphEditorViewModel()
 	{
+		var app = App.Instance!;
+
+		if ( !app.Dispatcher.CheckAccess() )
+		{
+			app.Dispatcher.InvokeAsync( RebuildGraphEditorViewModel );
+
+			return;
+		}
+
 		DataContext.Instance.RacingWheelGraphViewModel.RebuildFromCurrentSelection();
 	}
 
@@ -442,9 +453,27 @@ public class Settings : INotifyPropertyChanged
 
 		if ( !updateContextSettings && syncedAny )
 		{
-			App.Instance!.RacingWheel.RebuildLiveEngine();
+			var app = App.Instance!;
 
-			RebuildGraphEditorViewModel();
+			// both of these are UI-thread work (the engine rebuild reads the same graph models the editor edits,
+			// and the editor view model is an ObservableCollection bound to the UI) — marshal when we got here
+			// from a simulator thread (session info / tire compound changes call UpdateSettings there)
+
+			if ( app.Dispatcher.CheckAccess() )
+			{
+				app.RacingWheel.RebuildLiveEngine();
+
+				RebuildGraphEditorViewModel();
+			}
+			else
+			{
+				app.Dispatcher.InvokeAsync( () =>
+				{
+					app.RacingWheel.RebuildLiveEngine();
+
+					RebuildGraphEditorViewModel();
+				} );
+			}
 		}
 	}
 
@@ -525,6 +554,52 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelSelectedFFBGraphName = name;
 
 		SyncFFBGraphModuleValues( true );
+	}
+
+	// Adds an already-validated imported graph (FFBGraphPort.Import) as a user graph under a collision-free
+	// name, regenerates its module ids so its per-context values cannot collide with any existing graph's
+	// (the exporting machine's ids may live here too — e.g. an export of a copy), and selects it.
+	public void ImportFFBGraph( FFBGraph graph )
+	{
+		SyncFFBGraphModuleValues( true );
+
+		graph.IsBuiltIn = false;
+		graph.Name = UniqueGraphName( RacingWheelFFBGraphs, graph.Name );
+
+		RegenerateUserGraphModuleIds( graph );
+
+		RacingWheelFFBGraphs[ graph.Name ] = graph;
+
+		RacingWheelSelectedFFBGraphName = graph.Name;
+
+		SyncFFBGraphModuleValues( true );
+	}
+
+	// Collision-free graph name for an import: the name as-is when free, otherwise "name (2)", "name (3)", …
+	// An empty name (hand-edited file) falls back to a localized default.
+	private static string UniqueGraphName( SerializableDictionary<string, FFBGraph> graphs, string name )
+	{
+		name = name.Trim();
+
+		if ( name == string.Empty )
+		{
+			name = DataContext.Instance.Localization[ "ImportedGraph" ];
+		}
+
+		if ( !graphs.ContainsKey( name ) )
+		{
+			return name;
+		}
+
+		for ( var suffix = 2; ; suffix++ )
+		{
+			var candidate = $"{name} ({suffix})";
+
+			if ( !graphs.ContainsKey( candidate ) )
+			{
+				return candidate;
+			}
+		}
 	}
 
 	// Rewrites the ContextSettings.RacingWheelSelectedFFBGraphName occurrences and the live selection. Built-ins
@@ -702,6 +777,23 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelVibrationGraphs[ name ] = graph;
 
 		RacingWheelSelectedVibrationGraphName = name;
+
+		SyncFFBGraphModuleValues( true );
+	}
+
+	// Import counterpart for vibration graphs (see ImportFFBGraph — same unique-name + fresh-ids treatment).
+	public void ImportVibrationGraph( FFBGraph graph )
+	{
+		SyncFFBGraphModuleValues( true );
+
+		graph.IsBuiltIn = false;
+		graph.Name = UniqueGraphName( RacingWheelVibrationGraphs, graph.Name );
+
+		RegenerateUserGraphModuleIds( graph );
+
+		RacingWheelVibrationGraphs[ graph.Name ] = graph;
+
+		RacingWheelSelectedVibrationGraphName = graph.Name;
 
 		SyncFFBGraphModuleValues( true );
 	}

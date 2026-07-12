@@ -146,9 +146,11 @@
     <Resource Include="Artwork\Buttons\combo-box-ring.png" />
     <Resource Include="Artwork\Buttons\copy.png" />
     <Resource Include="Artwork\Buttons\drag.png" />
+    <Resource Include="Artwork\Buttons\export.png" />
     <Resource Include="Artwork\Buttons\eye.png" />
     <Resource Include="Artwork\Buttons\fan-orange.png" />
     <Resource Include="Artwork\Buttons\fan.png" />
+    <Resource Include="Artwork\Buttons\import.png" />
     <Resource Include="Artwork\Buttons\key.png" />
     <Resource Include="Artwork\Buttons\knob-middle-default.png" />
     <Resource Include="Artwork\Buttons\knob-middle-pressed.png" />

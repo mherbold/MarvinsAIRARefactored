@@ -7,14 +7,14 @@ namespace MarvinsAIRARefactored.Classes;
 /// generators, and protections included — not just the algorithm chain. The crash/curb protection triggers are
 /// deliberately NOT recorded as booleans; instead the raw telemetry behind them (G forces, shock velocity) is
 /// recorded so the preview re-derives the triggers from the user's CURRENT protection module settings.
-/// Recordings made by older versions only have the two torque columns — the missing fields read back as zero.
+/// Recordings from unversioned/older formats are rejected at load (see Recording.FormatVersion).
 /// </summary>
 public class RecordingData
 {
 	// torque samples (Nm)
 
 	public float InputTorque60Hz { get; set; }
-	public float InputTorque500Hz { get; set; }
+	public float InputTorque360Hz { get; set; }
 
 	// audio / LFE
 
