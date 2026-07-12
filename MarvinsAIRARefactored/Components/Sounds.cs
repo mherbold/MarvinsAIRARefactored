@@ -15,7 +15,9 @@ public class Sounds
 		Oversteer,
 		SeatOfPants,
 		BrakeThrottleWarning,
-		FfbClipping
+		FfbClipping,
+		RecordingStarted,
+		RecordingStopped
 	}
 
 	public class SoundEffect( string SoundKey, Func<float> volumeProvider, Func<float> frequencyRatioProvider, bool loopSound, Func<float>? loopStartMsProvider = null, Func<float>? loopEndMsProvider = null )
@@ -42,6 +44,8 @@ public class Sounds
 		{ SoundEffectType.SeatOfPants,          new SoundEffect( "seat_of_pants",           () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsVolume,           () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsFrequencyRatio,           true,  () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsLoopStartMs,           () => DataContext.DataContext.Instance.Settings.SoundsSeatOfPantsLoopEndMs ) },
 		{ SoundEffectType.BrakeThrottleWarning, new SoundEffect( "brake_throttle_warning",  () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningVolume,  () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningFrequencyRatio,  true,  () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningLoopStartMs,  () => DataContext.DataContext.Instance.Settings.SoundsBrakeThrottleWarningLoopEndMs ) },
 		{ SoundEffectType.FfbClipping,          new SoundEffect( "ffb_clipping",            () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingVolume,           () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingFrequencyRatio,           true,  () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingLoopStartMs,           () => DataContext.DataContext.Instance.Settings.SoundsFfbClippingLoopEndMs ) },
+		{ SoundEffectType.RecordingStarted,     new SoundEffect( "recording_started",       () => DataContext.DataContext.Instance.Settings.SoundsRecordingStartedVolume,      () => DataContext.DataContext.Instance.Settings.SoundsRecordingStartedFrequencyRatio,      false ) },
+		{ SoundEffectType.RecordingStopped,     new SoundEffect( "recording_stopped",       () => DataContext.DataContext.Instance.Settings.SoundsRecordingStoppedVolume,      () => DataContext.DataContext.Instance.Settings.SoundsRecordingStoppedFrequencyRatio,      false ) },
 	};
 
 	private SoundEffectType? _testSoundEffectType = null;

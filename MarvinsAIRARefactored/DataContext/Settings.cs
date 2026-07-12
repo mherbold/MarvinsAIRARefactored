@@ -666,6 +666,8 @@ public class Settings : INotifyPropertyChanged
 			}
 		}
 
+		RemoveFFBModuleButtonMappings( orphanedModuleIds );
+
 		if ( !RacingWheelFFBGraphs.ContainsKey( RacingWheelSelectedFFBGraphName ) )
 		{
 			RacingWheelSelectedFFBGraphName = RacingWheelFFBGraphs.Keys.First();
@@ -850,6 +852,8 @@ public class Settings : INotifyPropertyChanged
 				contextSettings.RacingWheelSelectedVibrationGraphName = string.Empty;
 			}
 		}
+
+		RemoveFFBModuleButtonMappings( orphanedModuleIds );
 
 		if ( !RacingWheelVibrationGraphs.ContainsKey( RacingWheelSelectedVibrationGraphName ) )
 		{
@@ -1776,6 +1780,53 @@ public class Settings : INotifyPropertyChanged
 
 	// One scope for the whole vibration graph feature: which vibration graph is selected AND its per-module values.
 	public ContextSwitches RacingWheelSelectedVibrationGraphNameContextSwitches { get; set; } = new( true, true, false, false, false );
+
+	#endregion
+
+	#region Racing wheel - FFB module knob button mappings
+
+	// Input (button) mappings for FFB graph module knob settings, keyed "{ModuleId}/{SettingKey}/Plus" and
+	// "{ModuleId}/{SettingKey}/Minus". Deliberately stored OUTSIDE the graph models so graph export/import never
+	// carries them (module ids regenerate on import anyway), and deliberately global — controller profiles do
+	// not snapshot these. Entries are created lazily when a module card's knobs are first shown, and pruned when
+	// their module is removed or its graph is deleted.
+	public SerializableDictionary<string, ButtonMappings> RacingWheelFFBModuleButtonMappings { get; set; } = [];
+
+	public ButtonMappings GetFFBModuleButtonMappings( string mappingKey )
+	{
+		if ( !RacingWheelFFBModuleButtonMappings.TryGetValue( mappingKey, out var buttonMappings ) )
+		{
+			buttonMappings = new ButtonMappings();
+
+			RacingWheelFFBModuleButtonMappings[ mappingKey ] = buttonMappings;
+		}
+
+		return buttonMappings;
+	}
+
+	// Removes all knob button mappings belonging to the given modules (keys are "{ModuleId}/..."), then rebuilds
+	// the app's button mapping index if anything was removed.
+	public void RemoveFFBModuleButtonMappings( IReadOnlyCollection<string> moduleIds )
+	{
+		if ( moduleIds.Count == 0 )
+		{
+			return;
+		}
+
+		var keysToRemove = RacingWheelFFBModuleButtonMappings.Keys.Where( key => moduleIds.Contains( key[ ..Math.Max( 0, key.IndexOf( '/' ) ) ] ) ).ToArray();
+
+		if ( keysToRemove.Length == 0 )
+		{
+			return;
+		}
+
+		foreach ( var key in keysToRemove )
+		{
+			RacingWheelFFBModuleButtonMappings.Remove( key );
+		}
+
+		App.Instance!.RebuildButtonMappingIndex();
+	}
 
 	#endregion
 
@@ -14633,6 +14684,254 @@ public class Settings : INotifyPropertyChanged
 	{
 		SoundsFfbClippingLoopEndMsString = $"{_soundsFfbClippingLoopEndMs:F0}{DataContext.Instance.Localization[ "MillisecondsUnits" ]}";
 	}
+
+	#endregion
+
+	#region Sounds - Recording started enabled
+
+	private bool _soundsRecordingStartedEnabled = true;
+
+	public bool SoundsRecordingStartedEnabled
+	{
+		get => _soundsRecordingStartedEnabled;
+
+		set
+		{
+			if ( value != _soundsRecordingStartedEnabled )
+			{
+				_soundsRecordingStartedEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Recording started volume
+
+	private float _soundsRecordingStartedVolume = 0.75f;
+
+	public float SoundsRecordingStartedVolume
+	{
+		get => _soundsRecordingStartedVolume;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _soundsRecordingStartedVolume )
+			{
+				_soundsRecordingStartedVolume = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsRecordingStartedVolumeString();
+		}
+	}
+
+	private string _soundsRecordingStartedVolumeString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsRecordingStartedVolumeString
+	{
+		get => _soundsRecordingStartedVolumeString;
+
+		set
+		{
+			if ( value != _soundsRecordingStartedVolumeString )
+			{
+				_soundsRecordingStartedVolumeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private void UpdateSoundsRecordingStartedVolumeString()
+	{
+		SoundsRecordingStartedVolumeString = $"{_soundsRecordingStartedVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	public ButtonMappings SoundsRecordingStartedVolumePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsRecordingStartedVolumeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Recording started frequency ratio
+
+	private float _soundsRecordingStartedFrequencyRatio = 1f;
+
+	public float SoundsRecordingStartedFrequencyRatio
+	{
+		get => _soundsRecordingStartedFrequencyRatio;
+
+		set
+		{
+			value = Math.Clamp( value, 0.25f, 2f );
+
+			if ( value != _soundsRecordingStartedFrequencyRatio )
+			{
+				_soundsRecordingStartedFrequencyRatio = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsRecordingStartedFrequencyRatioString();
+		}
+	}
+
+	private string _soundsRecordingStartedFrequencyRatioString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsRecordingStartedFrequencyRatioString
+	{
+		get => _soundsRecordingStartedFrequencyRatioString;
+
+		set
+		{
+			if ( value != _soundsRecordingStartedFrequencyRatioString )
+			{
+				_soundsRecordingStartedFrequencyRatioString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private void UpdateSoundsRecordingStartedFrequencyRatioString()
+	{
+		var pitchShift = _soundsRecordingStartedFrequencyRatio * 100f - 100f;
+		SoundsRecordingStartedFrequencyRatioString = pitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( pitchShift >= 0f ? "+" : "" )}{pitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	public ButtonMappings SoundsRecordingStartedFrequencyRatioPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsRecordingStartedFrequencyRatioMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Recording stopped enabled
+
+	private bool _soundsRecordingStoppedEnabled = true;
+
+	public bool SoundsRecordingStoppedEnabled
+	{
+		get => _soundsRecordingStoppedEnabled;
+
+		set
+		{
+			if ( value != _soundsRecordingStoppedEnabled )
+			{
+				_soundsRecordingStoppedEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Sounds - Recording stopped volume
+
+	private float _soundsRecordingStoppedVolume = 0.75f;
+
+	public float SoundsRecordingStoppedVolume
+	{
+		get => _soundsRecordingStoppedVolume;
+
+		set
+		{
+			value = MathZ.Saturate( value );
+
+			if ( value != _soundsRecordingStoppedVolume )
+			{
+				_soundsRecordingStoppedVolume = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsRecordingStoppedVolumeString();
+		}
+	}
+
+	private string _soundsRecordingStoppedVolumeString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsRecordingStoppedVolumeString
+	{
+		get => _soundsRecordingStoppedVolumeString;
+
+		set
+		{
+			if ( value != _soundsRecordingStoppedVolumeString )
+			{
+				_soundsRecordingStoppedVolumeString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private void UpdateSoundsRecordingStoppedVolumeString()
+	{
+		SoundsRecordingStoppedVolumeString = $"{_soundsRecordingStoppedVolume * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	public ButtonMappings SoundsRecordingStoppedVolumePlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsRecordingStoppedVolumeMinusButtonMappings { get; set; } = new();
+
+	#endregion
+
+	#region Sounds - Recording stopped frequency ratio
+
+	private float _soundsRecordingStoppedFrequencyRatio = 1f;
+
+	public float SoundsRecordingStoppedFrequencyRatio
+	{
+		get => _soundsRecordingStoppedFrequencyRatio;
+
+		set
+		{
+			value = Math.Clamp( value, 0.25f, 2f );
+
+			if ( value != _soundsRecordingStoppedFrequencyRatio )
+			{
+				_soundsRecordingStoppedFrequencyRatio = value;
+
+				OnPropertyChanged();
+			}
+
+			UpdateSoundsRecordingStoppedFrequencyRatioString();
+		}
+	}
+
+	private string _soundsRecordingStoppedFrequencyRatioString = string.Empty;
+
+	[XmlIgnore]
+	public string SoundsRecordingStoppedFrequencyRatioString
+	{
+		get => _soundsRecordingStoppedFrequencyRatioString;
+
+		set
+		{
+			if ( value != _soundsRecordingStoppedFrequencyRatioString )
+			{
+				_soundsRecordingStoppedFrequencyRatioString = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	private void UpdateSoundsRecordingStoppedFrequencyRatioString()
+	{
+		var pitchShift = _soundsRecordingStoppedFrequencyRatio * 100f - 100f;
+		SoundsRecordingStoppedFrequencyRatioString = pitchShift == 0f ? DataContext.Instance.Localization[ "OFF" ] : $"{( pitchShift >= 0f ? "+" : "" )}{pitchShift:F0}{DataContext.Instance.Localization[ "Percent" ]}";
+	}
+
+	public ButtonMappings SoundsRecordingStoppedFrequencyRatioPlusButtonMappings { get; set; } = new();
+	public ButtonMappings SoundsRecordingStoppedFrequencyRatioMinusButtonMappings { get; set; } = new();
 
 	#endregion
 

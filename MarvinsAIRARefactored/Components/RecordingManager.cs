@@ -1,4 +1,4 @@
-﻿
+
 using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
@@ -12,6 +12,15 @@ namespace MarvinsAIRARefactored.Components;
 
 public sealed class RecordingManager : IDisposable
 {
+	// 360 Hz capture; the record button toggles recording on/off and the recorder auto-stops (and saves) when
+	// the five-minute buffer fills, so recordings can be anywhere from a moment to five minutes long
+	private const int SamplesPerSecond = 360;
+	private const int MaxRecordingSeconds = 300;
+
+	// automatic stop on lap completion — once the car has left this zone around the recording's starting track
+	// position, coming back within it means a complete lap was captured
+	private const float LapCompletionRadius = 50f;
+
 	private readonly string _recordingsDirectory = Path.Combine( App.DocumentsFolder, "Recordings" );
 
 	public Dictionary<string, Recording> Recordings { get; private set; } = [];
@@ -35,10 +44,14 @@ public sealed class RecordingManager : IDisposable
 
 	private FileSystemWatcher? _fileSystemWatcher = null;
 
-	private readonly RecordingData[] _recordingData = new RecordingData[ 3840 ];
+	private readonly RecordingData[] _recordingData = new RecordingData[ SamplesPerSecond * MaxRecordingSeconds ];
 
 	private int _recordingDataIndex = 0;
-	private int _trackPosition = 0;
+	private int _trackPositionPct = 0;
+
+	// lap-completion auto-stop state (see LapCompletionRadius)
+	private float _startLapDist = 0f;
+	private bool _lapCompletionArmed = false;
 
 	// true while the background CSV write is running — StartRecording is blocked so the buffer can't be
 	// overwritten mid-save
@@ -69,6 +82,9 @@ public sealed class RecordingManager : IDisposable
 		_fileSystemWatcher.Renamed += OnRecordingFilesChanged;
 
 		var files = Directory.GetFiles( _recordingsDirectory, "*.csv" );
+
+		// only the metadata (format line + description) is read here — the sample data is loaded on demand when
+		// the preview actually replays a recording (see RequestRecordingData)
 
 		foreach ( var file in files )
 		{
@@ -105,6 +121,11 @@ public sealed class RecordingManager : IDisposable
 
 				MainWindow._racingWheelPage.UpdatePreviewRecordingsOptions();
 
+				// LoadRecording replaced the Recording instance with a fresh metadata-only one — if it's the
+				// selected recording, the preview must reload so its sample data gets lazily loaded again
+				// (otherwise the hover data card and track map go dark until the next preview update)
+				app.RacingWheel.UpdateAlgorithmPreview = true;
+
 				app.Logger.WriteLine( $"[RecordingManager] Hot-reloaded recording: {e.FullPath}" );
 			}
 			catch ( Exception exception )
@@ -134,6 +155,37 @@ public sealed class RecordingManager : IDisposable
 		}
 	}
 
+	/// <summary>
+	/// Kicks off a background load of the given recording's sample data, unloading every other recording so only
+	/// the one the preview is using stays in memory. The preview redraws itself when the load completes.
+	/// </summary>
+	public void RequestRecordingData( Recording recording )
+	{
+		if ( recording.IsLoadPending || recording.IsDataLoaded || recording.LoadFailed )
+		{
+			return;
+		}
+
+		recording.IsLoadPending = true;
+
+		foreach ( var otherRecording in Recordings.Values )
+		{
+			if ( otherRecording != recording )
+			{
+				otherRecording.UnloadData();
+			}
+		}
+
+		_ = Task.Run( () =>
+		{
+			recording.LoadData();
+
+			recording.IsLoadPending = false;
+
+			App.Instance!.RacingWheel.UpdateAlgorithmPreview = true;
+		} );
+	}
+
 	public void Dispose()
 	{
 		_fileSystemWatcher?.Dispose();
@@ -158,7 +210,8 @@ public sealed class RecordingManager : IDisposable
 
 			if ( simulator.IsOnTrack == false )
 			{
-				IsRecording = false;
+				// going off track ends the recording — whatever was captured so far is kept
+				StopRecording();
 			}
 			else
 			{
@@ -193,18 +246,57 @@ public sealed class RecordingManager : IDisposable
 				recordingData.SteeringWheelAngleMax = tickContext.SteeringWheelAngleMax;
 				recordingData.SteeringWheelVelocity = tickContext.SteeringWheelVelocity;
 
-				if ( _recordingDataIndex == _recordingData.Length / 2 )
+				recordingData.TrackPosition = simulator.LapDist;
+
+				recordingData.YawNorth = simulator.YawNorth;
+				recordingData.VelocityX = simulator.VelocityX;
+				recordingData.Speed = simulator.Speed;
+
+				// automatic stop on lap completion — arm once the car leaves the start zone, stop when it comes
+				// back. The s/f wrap is handled explicitly: the circular distance is the shorter way around the
+				// lap, so the stop fires at the true radius even when the start zone straddles the s/f line
+				// (TrackLength is km from session info; 0 until parsed, which degrades to the plain delta)
+				var lapDistDelta = MathF.Abs( simulator.LapDist - _startLapDist );
+
+				var trackLengthMeters = simulator.TrackLength * 1000f;
+
+				if ( ( trackLengthMeters > 0f ) && ( lapDistDelta > trackLengthMeters / 2f ) )
 				{
-					_trackPosition = (int) MathF.Round( app.Simulator.LapDistPct * 100f );
+					lapDistDelta = trackLengthMeters - lapDistDelta;
+				}
+
+				if ( _lapCompletionArmed )
+				{
+					if ( lapDistDelta < LapCompletionRadius )
+					{
+						StopRecording();
+					}
+				}
+				else if ( lapDistDelta > LapCompletionRadius )
+				{
+					_lapCompletionArmed = true;
 				}
 
 				if ( _recordingDataIndex == _recordingData.Length )
 				{
-					IsRecording = false;
-
-					SaveRecording();
+					StopRecording();
 				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// The record button toggles the recorder — press once to start, press again to stop and save.
+	/// </summary>
+	public void ToggleRecording()
+	{
+		if ( IsRecording )
+		{
+			StopRecording();
+		}
+		else
+		{
+			StartRecording();
 		}
 	}
 
@@ -212,16 +304,63 @@ public sealed class RecordingManager : IDisposable
 	{
 		var app = App.Instance!;
 
-		if ( app.Simulator.IsOnTrack && !_saveInProgress )
+		if ( app.Simulator.IsOnTrack && !_saveInProgress && !IsRecording )
 		{
 			app.Logger.WriteLine( "[RecordingManager] StartRecording >>>" );
 
-			IsRecording = true;
+			// the file name marks where on track the recording started
+			_trackPositionPct = (int) MathF.Round( app.Simulator.LapDistPct * 100f );
 
-			_trackPosition = 0;
 			_recordingDataIndex = 0;
 
+			_startLapDist = app.Simulator.LapDist;
+			_lapCompletionArmed = false;
+
+			IsRecording = true;
+
+			PlayRecordingBeep( Sounds.SoundEffectType.RecordingStarted );
+
 			app.Logger.WriteLine( "[RecordingManager] <<< StartRecording" );
+		}
+	}
+
+	/// <summary>
+	/// Stops the recorder and saves whatever was captured (manual stop, buffer full, or going off track). Called
+	/// from the UI thread (button/mapping) or the telemetry thread (auto-stop) — the save itself is offloaded
+	/// either way.
+	/// </summary>
+	public void StopRecording()
+	{
+		if ( IsRecording )
+		{
+			var app = App.Instance!;
+
+			app.Logger.WriteLine( "[RecordingManager] StopRecording >>>" );
+
+			IsRecording = false;
+
+			PlayRecordingBeep( Sounds.SoundEffectType.RecordingStopped );
+
+			if ( _recordingDataIndex > 0 )
+			{
+				SaveRecording();
+			}
+
+			app.Logger.WriteLine( "[RecordingManager] <<< StopRecording" );
+		}
+	}
+
+	private static void PlayRecordingBeep( Sounds.SoundEffectType soundEffectType )
+	{
+		var app = App.Instance!;
+
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		var beepEnabled = ( soundEffectType == Sounds.SoundEffectType.RecordingStarted ) ? settings.SoundsRecordingStartedEnabled : settings.SoundsRecordingStoppedEnabled;
+
+		if ( settings.SoundsMasterEnabled && beepEnabled )
+		{
+			app.Sounds.Play( soundEffectType );
 		}
 	}
 
@@ -233,7 +372,11 @@ public sealed class RecordingManager : IDisposable
 
 		_saveInProgress = true;
 
-		var fileName = $"{app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {app.Simulator.TrackConfigName} ({_trackPosition}%)";
+		var recordedSampleCount = _recordingDataIndex;
+
+		var durationSeconds = (int) MathF.Round( (float) recordedSampleCount / SamplesPerSecond );
+
+		var fileName = $"{app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {app.Simulator.TrackConfigName} ({_trackPositionPct}%, {durationSeconds}s)";
 
 		var filePath = Path.Combine( _recordingsDirectory, $"{fileName}.csv" );
 
@@ -251,7 +394,7 @@ public sealed class RecordingManager : IDisposable
 
 				using var csv = new CsvWriter( writer, CultureInfo.InvariantCulture );
 
-				csv.WriteRecords( _recordingData );
+				csv.WriteRecords( _recordingData.Take( recordedSampleCount ) );
 
 				writer.Close();
 

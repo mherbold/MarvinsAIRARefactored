@@ -426,7 +426,7 @@ public static class MappableActionCatalog
 
 		Trigger( list, "RacingWheelStartRecordingMappings", "RacingWheel", "Preview", "Record", app =>
 		{
-			app.RecordingManager.StartRecording();
+			app.RecordingManager.ToggleRecording();
 		} );
 
 		// ----- Racing wheel - knobs -----
@@ -542,6 +542,10 @@ public static class MappableActionCatalog
 		PlainKnob( list, "Sounds", "BrakeThrottleWarning", "FrequencyRatio", "SoundsBrakeThrottleWarningFrequencyRatio", 0.01f );
 		PlainKnob( list, "Sounds", "FfbClipping", "Volume", "SoundsFfbClippingVolume", 0.01f );
 		PlainKnob( list, "Sounds", "FfbClipping", "FrequencyRatio", "SoundsFfbClippingFrequencyRatio", 0.01f );
+		PlainKnob( list, "Sounds", "RecordingStarted", "Volume", "SoundsRecordingStartedVolume", 0.01f );
+		PlainKnob( list, "Sounds", "RecordingStarted", "FrequencyRatio", "SoundsRecordingStartedFrequencyRatio", 0.01f );
+		PlainKnob( list, "Sounds", "RecordingStopped", "Volume", "SoundsRecordingStoppedVolume", 0.01f );
+		PlainKnob( list, "Sounds", "RecordingStopped", "FrequencyRatio", "SoundsRecordingStoppedFrequencyRatio", 0.01f );
 
 		// ----- AdminBoxx -----
 

@@ -53,4 +53,16 @@ public class RecordingData
 	public float SteeringWheelAngle { get; set; }
 	public float SteeringWheelAngleMax { get; set; }
 	public float SteeringWheelVelocity { get; set; }
+
+	// track position (meters past the start/finish line)
+
+	public float TrackPosition { get; set; }
+
+	// track map generation — the car-relative velocity vector (VelocityX forward, VelocityY above) is rotated by
+	// YawNorth into the world frame and integrated to build the recorded segment's polyline; LapDist
+	// (TrackPosition) anchors the segment along the lap and corrects integration drift
+
+	public float YawNorth { get; set; }    // car heading relative to true north (radians)
+	public float VelocityX { get; set; }   // car-relative forward velocity (m/s)
+	public float Speed { get; set; }       // GPS vehicle speed (m/s)
 }

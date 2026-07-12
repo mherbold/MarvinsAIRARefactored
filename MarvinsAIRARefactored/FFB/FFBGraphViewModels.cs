@@ -160,6 +160,12 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 
 	public List<KeyValuePair<int, string>> ChoiceOptions { get; } = [];
 
+	// Knob-only (only the knob template binds these): the +/- input mappings for this module setting, stored on
+	// Settings keyed "{ModuleId}/{SettingKey}/Plus|Minus" so they survive VM rebuilds but never ride graph
+	// export/import. Created lazily the first time a module card's knob binds them.
+	public Classes.ButtonMappings PlusButtonMappings => DataContext.DataContext.Instance.Settings.GetFFBModuleButtonMappings( $"{_moduleId}/{_descriptor.Key}/Plus" );
+	public Classes.ButtonMappings MinusButtonMappings => DataContext.DataContext.Instance.Settings.GetFFBModuleButtonMappings( $"{_moduleId}/{_descriptor.Key}/Minus" );
+
 	public float Value
 	{
 		get => _value;
@@ -977,9 +983,11 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 		var inputSourceId = fallbackSourceId;
 
-		if ( ( _selectedModule != null ) && !_selectedModule.IsGenerator && !_selectedModule.IsOutput )
+		var wiredFromSelectedModule = ( _selectedModule != null ) && !_selectedModule.IsGenerator && !_selectedModule.IsOutput;
+
+		if ( wiredFromSelectedModule )
 		{
-			inputSourceId = _selectedModule.ModuleId;
+			inputSourceId = _selectedModule!.ModuleId;
 		}
 
 		// a source keeps its canonical well-known id (one-per-graph makes it collision-free), so the fallback
@@ -989,6 +997,27 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			InputAModuleId = inputSourceId,
 			InputBModuleId = fallbackSourceId
 		};
+
+		// splice the new module INTO the selected module's output wire rather than just hanging off it: every
+		// input (A or B, on any downstream module) that was consuming the selected module's output now consumes
+		// the new module's output instead. Only applies when the new module actually took the selected module as
+		// its input A — a new source is not connected to the selection, so nothing gets rewired. The new module
+		// isn't in the list yet, so its own input A (the selected module) is untouched and no cycle can form.
+		if ( wiredFromSelectedModule && ( descriptor.SignalInputCount >= 1 ) )
+		{
+			foreach ( var existingModule in _graph.Modules )
+			{
+				if ( existingModule.InputAModuleId == inputSourceId )
+				{
+					existingModule.InputAModuleId = module.ModuleId;
+				}
+
+				if ( existingModule.InputBModuleId == inputSourceId )
+				{
+					existingModule.InputBModuleId = module.ModuleId;
+				}
+			}
+		}
 
 		PlaceNewNode( module );
 
@@ -1040,6 +1069,8 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 			_vibrationGraph.Modules.RemoveAll( module => module.ModuleId == moduleViewModel.ModuleId );
 
+			DataContext.DataContext.Instance.Settings.RemoveFFBModuleButtonMappings( [ moduleViewModel.ModuleId ] );
+
 			CommitStructureChange();
 
 			return;
@@ -1079,7 +1110,36 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			}
 		}
 
+		DataContext.DataContext.Instance.Settings.RemoveFFBModuleButtonMappings( [ moduleViewModel.ModuleId ] );
+
 		CommitStructureChange();
+	}
+
+	/// <summary>Nudges a module knob setting by its click step in the given direction (+1/-1) — the fire body
+	/// for mapped module-knob inputs (see App.RebuildButtonMappingIndex). No-op when the module isn't part of
+	/// the currently selected graphs: module ids are graph-local, so a mapping only drives the graph its module
+	/// lives in.</summary>
+	public void AdjustModuleKnob( string moduleId, string settingKey, float direction )
+	{
+		foreach ( var moduleViewModel in Modules )
+		{
+			if ( moduleViewModel.ModuleId != moduleId )
+			{
+				continue;
+			}
+
+			foreach ( var settingViewModel in moduleViewModel.Settings )
+			{
+				if ( ( settingViewModel.Key == settingKey ) && ( settingViewModel.SettingType == FFBSettingType.Knob ) )
+				{
+					settingViewModel.Value += direction * settingViewModel.ClickStepSize;
+
+					return;
+				}
+			}
+
+			return;
+		}
 	}
 
 	/// <summary>Re-run the automatic layered layout over the current graph's nodes (the auto-layout button on the

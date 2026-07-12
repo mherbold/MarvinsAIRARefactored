@@ -101,5 +101,19 @@ public partial class SoundsPage : UserControl
 		app.Sounds.Test( Sounds.SoundEffectType.FfbClipping );
 	}
 
+	private void RecordingStarted_Test_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Sounds.Test( Sounds.SoundEffectType.RecordingStarted );
+	}
+
+	private void RecordingStopped_Test_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		app.Sounds.Test( Sounds.SoundEffectType.RecordingStopped );
+	}
+
 	#endregion
 }

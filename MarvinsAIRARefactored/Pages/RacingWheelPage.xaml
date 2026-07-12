@@ -32,6 +32,8 @@
                                 DragStepSize="{Binding DragStepSize}"
                                 DefaultValue="{Binding DefaultValue}"
                                 ShowCurve="{Binding ShowCurve}"
+                                PlusButtonMappings="{Binding PlusButtonMappings}"
+                                MinusButtonMappings="{Binding MinusButtonMappings}"
                                 Margin="20,0,20,10" />
         </DataTemplate>
 
@@ -478,31 +480,195 @@
                            PopupAnimation="Fade"
                            StaysOpen="True">
 
-                        <Border Width="256"
-                                Height="256"
-                                CornerRadius="16"
-                                Background="{DynamicResource Brush.Background.Popup}"
-                                BorderBrush="#FFF"
-                                BorderThickness="1"
-                                SnapsToDevicePixels="True"
-                                ClipToBounds="True">
+                        <StackPanel Orientation="Horizontal">
 
-                            <Border CornerRadius="16"
-                                    RenderOptions.BitmapScalingMode="NearestNeighbor">
+                            <Border Width="256"
+                                    Height="256"
+                                    CornerRadius="16"
+                                    Background="{DynamicResource Brush.Background.Popup}"
+                                    BorderBrush="#FFF"
+                                    BorderThickness="1"
+                                    SnapsToDevicePixels="True"
+                                    ClipToBounds="True">
 
-                                <Border.Background>
+                                <Border CornerRadius="16"
+                                        RenderOptions.BitmapScalingMode="NearestNeighbor">
 
-                                    <ImageBrush x:Name="PreviewZoom_Brush"
-                                                ImageSource="{Binding ElementName=AlgorithmPreview_Image, Path=Source}"
-                                                ViewboxUnits="RelativeToBoundingBox"
-                                                Viewbox="0,0,1,1"
-                                                Stretch="Fill" />
+                                    <Border.Background>
 
-                                </Border.Background>
+                                        <ImageBrush x:Name="PreviewZoom_Brush"
+                                                    ImageSource="{Binding ElementName=AlgorithmPreview_Image, Path=Source}"
+                                                    ViewboxUnits="RelativeToBoundingBox"
+                                                    Viewbox="0,0,1,1"
+                                                    Stretch="Fill" />
+
+                                    </Border.Background>
+
+                                </Border>
 
                             </Border>
 
-                        </Border>
+                            <!-- the recorded telemetry at the sample under the cursor (one preview pixel = one
+                                 recorded sample); left column = FFB signal + wheel, right column = car + track -->
+                            <Border x:Name="PreviewData_Border"
+                                    Height="256"
+                                    Margin="8,0,0,0"
+                                    CornerRadius="16"
+                                    Background="{DynamicResource Brush.Background.Popup}"
+                                    BorderBrush="#FFF"
+                                    BorderThickness="1"
+                                    SnapsToDevicePixels="True"
+                                    Padding="16,8">
+
+                                <Grid VerticalAlignment="Center">
+
+                                    <Grid.Resources>
+                                        <Style x:Key="PreviewDataLabelStyle" TargetType="TextBlock" BasedOn="{StaticResource MairaTextBlockStyle}">
+                                            <Setter Property="FontSize" Value="14" />
+                                            <Setter Property="Margin" Value="0,1,10,1" />
+                                            <Setter Property="Foreground" Value="{DynamicResource Brush.Foreground.Muted}" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                        <Style x:Key="PreviewDataValueStyle" TargetType="TextBlock" BasedOn="{StaticResource MairaTextBlockStyle}">
+                                            <Setter Property="FontSize" Value="14" />
+                                            <Setter Property="Margin" Value="0,1,0,1" />
+                                            <Setter Property="MinWidth" Value="70" />
+                                            <Setter Property="TextAlignment" Value="Right" />
+                                            <Setter Property="VerticalAlignment" Value="Center" />
+                                        </Style>
+                                    </Grid.Resources>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="28" />
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="Auto" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                        <RowDefinition Height="Auto" />
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Grid.Row="0" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Time]}" />
+                                    <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataTime_TextBlock" />
+                                    <TextBlock Grid.Row="0" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[TrackPosition]}" />
+                                    <TextBlock Grid.Row="0" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataTrackPosition_TextBlock" />
+
+                                    <TextBlock Grid.Row="1" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Torque60Hz]}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataTorque60Hz_TextBlock" />
+                                    <TextBlock Grid.Row="1" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Speed]}" />
+                                    <TextBlock Grid.Row="1" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataSpeed_TextBlock" />
+
+                                    <TextBlock Grid.Row="2" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Torque360Hz]}" />
+                                    <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataTorque360Hz_TextBlock" />
+                                    <TextBlock Grid.Row="2" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[RPM]}" />
+                                    <TextBlock Grid.Row="2" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataRPM_TextBlock" />
+
+                                    <TextBlock Grid.Row="3" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[LFE]}" />
+                                    <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataLFE_TextBlock" />
+                                    <TextBlock Grid.Row="3" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Gear]}" />
+                                    <TextBlock Grid.Row="3" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataGear_TextBlock" />
+
+                                    <TextBlock Grid.Row="4" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[SteeringAngle]}" />
+                                    <TextBlock Grid.Row="4" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataSteeringAngle_TextBlock" />
+                                    <TextBlock Grid.Row="4" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[ABS]}" />
+                                    <TextBlock Grid.Row="4" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataABS_TextBlock" />
+
+                                    <TextBlock Grid.Row="5" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[SteeringVelocity]}" />
+                                    <TextBlock Grid.Row="5" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataSteeringVelocity_TextBlock" />
+                                    <TextBlock Grid.Row="5" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[LateralGForce]}" />
+                                    <TextBlock Grid.Row="5" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataLateralGForce_TextBlock" />
+
+                                    <TextBlock Grid.Row="6" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[WheelPosition]}" />
+                                    <TextBlock Grid.Row="6" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataWheelPosition_TextBlock" />
+                                    <TextBlock Grid.Row="6" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[LongitudinalGForce]}" />
+                                    <TextBlock Grid.Row="6" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataLongitudinalGForce_TextBlock" />
+
+                                    <TextBlock Grid.Row="7" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[WheelVelocity]}" />
+                                    <TextBlock Grid.Row="7" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataWheelVelocity_TextBlock" />
+                                    <TextBlock Grid.Row="7" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[ShockVelocity]}" />
+                                    <TextBlock Grid.Row="7" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataShockVelocity_TextBlock" />
+
+                                    <TextBlock Grid.Row="8" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Understeer]}" />
+                                    <TextBlock Grid.Row="8" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataUndersteer_TextBlock" />
+                                    <TextBlock Grid.Row="8" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[Oversteer]}" />
+                                    <TextBlock Grid.Row="8" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataOversteer_TextBlock" />
+
+                                    <TextBlock Grid.Row="9" Grid.Column="0" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[SeatOfPants]}" />
+                                    <TextBlock Grid.Row="9" Grid.Column="1" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataSeatOfPants_TextBlock" />
+                                    <TextBlock Grid.Row="9" Grid.Column="3" Style="{StaticResource PreviewDataLabelStyle}" Text="{Binding Localization[SkidSlip]}" />
+                                    <TextBlock Grid.Row="9" Grid.Column="4" Style="{StaticResource PreviewDataValueStyle}" x:Name="PreviewDataSkidSlip_TextBlock" />
+
+                                </Grid>
+
+                            </Border>
+
+                            <!-- track map of the recorded segment (integrated from the recorded velocities), north
+                                 up, ~100 m across; the orange dot at the center is the car at the sample under
+                                 the cursor — the map slides underneath it as the cursor scrubs the preview -->
+                            <Border x:Name="TrackMap_Border"
+                                    Width="256"
+                                    Height="256"
+                                    Margin="8,0,0,0"
+                                    CornerRadius="16"
+                                    Background="{DynamicResource Brush.Background.Popup}"
+                                    BorderBrush="#FFF"
+                                    BorderThickness="1"
+                                    SnapsToDevicePixels="True"
+                                    ClipToBounds="True">
+
+                                <!-- everything sits on a Canvas so the Path's element origin stays pinned to the
+                                     panel's top-left corner: a Grid would size/align the Path from its geometry
+                                     bounds (which follow the recorded lap's world extents), silently shifting the
+                                     rendered line out of the clipped panel once a recording grew past the panel -->
+                                <Canvas>
+
+                                    <Path x:Name="TrackMap_Path"
+                                          Stroke="{DynamicResource Brush.Foreground.Muted}"
+                                          StrokeThickness="12"
+                                          StrokeLineJoin="Round"
+                                          StrokeStartLineCap="Round"
+                                          StrokeEndLineCap="Round">
+
+                                        <Path.RenderTransform>
+                                            <MatrixTransform x:Name="TrackMap_MatrixTransform" />
+                                        </Path.RenderTransform>
+
+                                    </Path>
+
+                                    <!-- recording start (green) / end (red) markers — positioned in code, they
+                                         ride the map as it slides under the fixed centered car dot -->
+                                    <Ellipse x:Name="TrackMapStart_Ellipse"
+                                             Width="16"
+                                             Height="16"
+                                             Fill="#FF30C030" />
+
+                                    <Ellipse x:Name="TrackMapEnd_Ellipse"
+                                             Width="16"
+                                             Height="16"
+                                             Fill="#FFE03030" />
+
+                                    <Ellipse Canvas.Left="120"
+                                             Canvas.Top="120"
+                                             Width="16"
+                                             Height="16"
+                                             Fill="{DynamicResource Brush.Accent}" />
+
+                                </Canvas>
+
+                            </Border>
+
+                        </StackPanel>
 
                     </Popup>
 

@@ -597,10 +597,8 @@ public partial class App : Application
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
-		foreach ( var action in MappableActionCatalog.Actions )
+		void AddToIndex( MappableAction action, ButtonMappings buttonMappings )
 		{
-			var buttonMappings = action.GetButtonMappings( settings );
-
 			foreach ( var mappedButton in buttonMappings.MappedButtons )
 			{
 				var clickButton = mappedButton.ClickButton;
@@ -621,6 +619,48 @@ public partial class App : Application
 
 				candidates.Add( ( action, mappedButton ) );
 			}
+		}
+
+		foreach ( var action in MappableActionCatalog.Actions )
+		{
+			AddToIndex( action, action.GetButtonMappings( settings ) );
+		}
+
+		// FFB graph module knob mappings are dynamic (modules come and go with the user's graphs), so they are
+		// indexed straight from their settings store rather than the static catalog. The fire body resolves the
+		// module view-model at fire time, so switching graphs never needs an index rebuild — only mapping edits
+		// and module/graph removal do, and both already land here.
+		foreach ( var ( mappingKey, buttonMappings ) in settings.RacingWheelFFBModuleButtonMappings )
+		{
+			if ( buttonMappings.MappedButtons.Count == 0 )
+			{
+				continue;
+			}
+
+			// mappingKey = "{ModuleId}/{SettingKey}/Plus|Minus" (see Settings.GetFFBModuleButtonMappings)
+			var firstSlashIndex = mappingKey.IndexOf( '/' );
+			var lastSlashIndex = mappingKey.LastIndexOf( '/' );
+
+			if ( ( firstSlashIndex <= 0 ) || ( lastSlashIndex <= firstSlashIndex ) )
+			{
+				continue;
+			}
+
+			var moduleId = mappingKey[ ..firstSlashIndex ];
+			var settingKey = mappingKey[ ( firstSlashIndex + 1 )..lastSlashIndex ];
+			var direction = mappingKey[ ( lastSlashIndex + 1 ).. ] == "Plus" ? 1f : -1f;
+
+			var action = new MappableAction
+			{
+				SettingsPropertyName = mappingKey,   // identifier only — never resolved against Settings
+				CategoryKey = "RacingWheel",
+				GroupLabelKey = "FFBGraph",
+				LabelKey = settingKey,
+				Direction = ( direction > 0f ) ? MappableActionDirection.Increase : MappableActionDirection.Decrease,
+				OnFire = _ => DataContext.DataContext.Instance.RacingWheelGraphViewModel.AdjustModuleKnob( moduleId, settingKey, direction )
+			};
+
+			AddToIndex( action, buttonMappings );
 		}
 	}
 

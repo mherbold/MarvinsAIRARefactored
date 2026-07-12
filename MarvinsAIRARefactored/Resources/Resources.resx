@@ -2112,4 +2112,52 @@
   <data name="ImportGraphNewerVersion" xml:space="preserve">
     <value>This graph file was created by a newer version of MAIRA. Please update MAIRA and try again.</value>
   </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Recording started</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Recording stopped</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Track position</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz torque</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz torque</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Steering angle</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Steering velocity</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Wheel position</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Wheel velocity</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Gear</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Longitudinal G-Force</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Skid/slip</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
 </root>

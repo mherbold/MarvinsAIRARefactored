@@ -11,7 +11,7 @@ using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Point = System.Windows.Point;
 using UserControl = System.Windows.Controls.UserControl;
 
-using MarvinsAIRARefactored.Components;
+using MarvinsAIRARefactored.Classes;
 using MarvinsAIRARefactored.Controls;
 using MarvinsAIRARefactored.FFB;
 using MarvinsAIRARefactored.Windows;
@@ -23,6 +23,14 @@ public partial class RacingWheelPage : UserControl
 	private const double PreviewZoomSize = 256.0;
 	private const double PreviewZoomFactor = 6.0;
 	private const double PreviewZoomPopupOffset = 32.0;
+
+	// the track map panel shows roughly this many meters of track across its (PreviewZoomSize-wide) window
+	private const double TrackMapMetersAcross = 500.0;
+
+	// track map cache — rebuilt when the loaded recording data changes (reference comparison; the path and
+	// geometry are derived purely from that list)
+	private List<RecordingData>? _trackMapDataList = null;
+	private Point[]? _trackMapPath = null;
 
 	public RacingWheelPage()
 	{
@@ -81,10 +89,21 @@ public partial class RacingWheelPage : UserControl
 
 	private void Preview_ScrollViewer_Loaded( object sender, RoutedEventArgs e )
 	{
-		var scrollViewer = (ScrollViewer) sender;
-		var half = scrollViewer.ScrollableWidth / 2;
+		CenterPreviewScrollViewer();
+	}
 
-		scrollViewer.ScrollToHorizontalOffset( half );
+	/// <summary>
+	/// Scrolls the preview graph to its horizontal middle — called when the scroll viewer first loads and
+	/// whenever the preview image is resized to a newly loaded recording (recordings are dynamic-length, so the
+	/// image width changes per recording). The scroll is deferred until after the pending layout pass so
+	/// ScrollableWidth reflects the new image width.
+	/// </summary>
+	public void CenterPreviewScrollViewer()
+	{
+		Dispatcher.BeginInvoke( System.Windows.Threading.DispatcherPriority.Loaded, () =>
+		{
+			Preview_ScrollViewer.ScrollToHorizontalOffset( Preview_ScrollViewer.ScrollableWidth / 2d );
+		} );
 	}
 
 	private void AlgorithmPreview_Image_MouseEnter( object sender, MouseEventArgs e )
@@ -97,6 +116,7 @@ public partial class RacingWheelPage : UserControl
 		var cursorPosition = e.GetPosition( AlgorithmPreview_Image );
 
 		UpdatePreviewZoom( cursorPosition );
+		UpdatePreviewSampleData( cursorPosition );
 		UpdatePreviewPopupPosition( cursorPosition );
 
 		PreviewZoom_Popup.IsOpen = true;
@@ -117,6 +137,7 @@ public partial class RacingWheelPage : UserControl
 		var cursorPosition = e.GetPosition( AlgorithmPreview_Image );
 
 		UpdatePreviewZoom( cursorPosition );
+		UpdatePreviewSampleData( cursorPosition );
 		UpdatePreviewPopupPosition( cursorPosition );
 	}
 
@@ -173,11 +194,137 @@ public partial class RacingWheelPage : UserControl
 		PreviewZoom_Popup.VerticalOffset = cursorPosition.Y + PreviewZoomPopupOffset;
 	}
 
+	/// <summary>
+	/// Fills the data card next to the zoom square with the recorded telemetry at the sample under the cursor —
+	/// the preview bitmap is one pixel per recorded sample, so the cursor X position is the sample index. The
+	/// card hides itself when there's no recorded sample under the cursor (no recording loaded, or the cursor is
+	/// past the end of a short recording).
+	/// </summary>
+	private void UpdatePreviewSampleData( Point cursorPosition )
+	{
+		var app = App.Instance!;
+
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		var recordingDataList = app.RecordingManager.Recording?.Data;
+
+		// drop the cached track map as soon as the loaded data changes so the old samples can be collected
+		// (RecordingManager unloads the other recordings when a new one loads — don't keep them alive here)
+		if ( ( _trackMapDataList != null ) && !ReferenceEquals( recordingDataList, _trackMapDataList ) )
+		{
+			_trackMapDataList = null;
+			_trackMapPath = null;
+
+			TrackMap_Path.Data = null;
+		}
+
+		var sampleIndex = (int) cursorPosition.X;
+
+		if ( ( recordingDataList == null ) || ( sampleIndex < 0 ) || ( sampleIndex >= recordingDataList.Count ) )
+		{
+			PreviewData_Border.Visibility = Visibility.Collapsed;
+			TrackMap_Border.Visibility = Visibility.Collapsed;
+
+			return;
+		}
+
+		PreviewData_Border.Visibility = Visibility.Visible;
+		TrackMap_Border.Visibility = Visibility.Visible;
+
+		UpdateTrackMap( recordingDataList, sampleIndex );
+
+		var recordingData = recordingDataList[ sampleIndex ];
+
+		const float radiansToDegrees = 180f / MathF.PI;
+
+		PreviewDataTime_TextBlock.Text = $"{sampleIndex / 360f:F2}{localization[ "SecondsUnits" ]}";
+		PreviewDataTrackPosition_TextBlock.Text = $"{recordingData.TrackPosition:F0}{localization[ "MetersUnits" ]}";
+
+		PreviewDataTorque60Hz_TextBlock.Text = $"{recordingData.InputTorque60Hz:F2}{localization[ "TorqueUnits" ]}";
+		PreviewDataTorque360Hz_TextBlock.Text = $"{recordingData.InputTorque360Hz:F2}{localization[ "TorqueUnits" ]}";
+		PreviewDataLFE_TextBlock.Text = $"{recordingData.LFEMagnitude:F2}";
+
+		PreviewDataSteeringAngle_TextBlock.Text = $"{recordingData.SteeringWheelAngle * radiansToDegrees:F1}{localization[ "Degrees" ]}";
+		PreviewDataSteeringVelocity_TextBlock.Text = $"{recordingData.SteeringWheelVelocity * radiansToDegrees:F0}{localization[ "DegreesPerSecond" ]}";
+		PreviewDataWheelPosition_TextBlock.Text = $"{recordingData.WheelPosition:F2}";
+		PreviewDataWheelVelocity_TextBlock.Text = $"{recordingData.WheelVelocity:F2}";
+
+		PreviewDataSpeed_TextBlock.Text = $"{recordingData.VelocityMS:F1}{localization[ "MPSUnits" ]}";
+		PreviewDataRPM_TextBlock.Text = $"{recordingData.RPM:F0}";
+		PreviewDataGear_TextBlock.Text = recordingData.Gear switch
+		{
+			< 0 => "R",
+			0 => "N",
+			_ => recordingData.Gear.ToString()
+		};
+		PreviewDataABS_TextBlock.Text = recordingData.ABSActive ? localization[ "ON" ] : localization[ "OFF" ];
+
+		PreviewDataLateralGForce_TextBlock.Text = $"{recordingData.LateralGForce:F2}{localization[ "GForceUnits" ]}";
+		PreviewDataLongitudinalGForce_TextBlock.Text = $"{recordingData.LongitudinalGForce:F2}{localization[ "GForceUnits" ]}";
+		PreviewDataShockVelocity_TextBlock.Text = $"{recordingData.MaxShockVelocity:F2}{localization[ "MPSUnits" ]}";
+
+		PreviewDataUndersteer_TextBlock.Text = $"{recordingData.UndersteerEffect * 100f:F0}{localization[ "Percent" ]}";
+		PreviewDataOversteer_TextBlock.Text = $"{recordingData.OversteerEffect * 100f:F0}{localization[ "Percent" ]}";
+		PreviewDataSeatOfPants_TextBlock.Text = $"{recordingData.SeatOfPantsEffect * 100f:F0}{localization[ "Percent" ]}";
+		PreviewDataSkidSlip_TextBlock.Text = $"{recordingData.SkidSlip * 100f:F0}{localization[ "Percent" ]}";
+	}
+
+	/// <summary>
+	/// Keeps the track map panel in sync with the cursor: the recorded segment's polyline (integrated once per
+	/// loaded recording, see <see cref="TrackMap"/>) is drawn north-up at a fixed scale, and the panel's
+	/// transform slides the map so the sample under the cursor sits at the center — under the orange car dot.
+	/// </summary>
+	private void UpdateTrackMap( List<RecordingData> recordingDataList, int sampleIndex )
+	{
+		if ( !ReferenceEquals( recordingDataList, _trackMapDataList ) )
+		{
+			_trackMapDataList = recordingDataList;
+			_trackMapPath = TrackMap.BuildPath( recordingDataList );
+
+			var geometry = new StreamGeometry();
+
+			using ( var context = geometry.Open() )
+			{
+				context.BeginFigure( _trackMapPath[ 0 ], false, false );
+
+				// one point per 60 Hz telemetry frame is plenty for the polyline (values repeat 6× at 360 Hz)
+				for ( var i = 6; i < _trackMapPath.Length; i += 6 )
+				{
+					context.LineTo( _trackMapPath[ i ], true, true );
+				}
+
+				context.LineTo( _trackMapPath[ ^1 ], true, true );
+			}
+
+			geometry.Freeze();
+
+			TrackMap_Path.Data = geometry;
+		}
+
+		var carPoint = _trackMapPath![ sampleIndex ];
+
+		var scale = PreviewZoomSize / TrackMapMetersAcross;
+
+		var matrix = new Matrix( scale, 0d, 0d, scale, PreviewZoomSize / 2d - scale * carPoint.X, PreviewZoomSize / 2d - scale * carPoint.Y );
+
+		TrackMap_MatrixTransform.Matrix = matrix;
+
+		// the start/end markers ride the map — same transform, applied to their canvas positions
+		var startPoint = matrix.Transform( _trackMapPath[ 0 ] );
+		var endPoint = matrix.Transform( _trackMapPath[ ^1 ] );
+
+		Canvas.SetLeft( TrackMapStart_Ellipse, startPoint.X - TrackMapStart_Ellipse.Width / 2d );
+		Canvas.SetTop( TrackMapStart_Ellipse, startPoint.Y - TrackMapStart_Ellipse.Height / 2d );
+
+		Canvas.SetLeft( TrackMapEnd_Ellipse, endPoint.X - TrackMapEnd_Ellipse.Width / 2d );
+		Canvas.SetTop( TrackMapEnd_Ellipse, endPoint.Y - TrackMapEnd_Ellipse.Height / 2d );
+	}
+
 	private void StartRecording_MairaMappableButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
-		app.RecordingManager.StartRecording();
+		app.RecordingManager.ToggleRecording();
 	}
 
 	#endregion

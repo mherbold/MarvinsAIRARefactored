@@ -173,6 +173,9 @@ public class RacingWheel
 	public int PlayoutUnderrunEpisodeCount { get; private set; } = 0;
 	public int PlayoutTornHandoffCount { get; private set; } = 0;
 
+	// preview bitmap width when no recording is loaded — with a recording it's one pixel per recorded sample
+	private const int DefaultAlgorithmPreviewWidth = 3840;
+
 	private readonly GraphBase _algorithmPreviewGraphBase = new();
 
 	// Milestone 3: the modular FFB graph now drives all wheel processing. _liveEngine (volatile) is evaluated by
@@ -1141,9 +1144,31 @@ public class RacingWheel
 			{
 				UpdateAlgorithmPreview = false;
 
-				_algorithmPreviewGraphBase.Reset();
-
 				var recording = app.RecordingManager.Recording;
+
+				// recordings are loaded lazily — kick off the background load and redraw when it lands; the
+				// preview renders without the recording in the meantime
+				if ( ( recording != null ) && !recording.IsDataLoaded )
+				{
+					app.RecordingManager.RequestRecordingData( recording );
+				}
+
+				// the preview bitmap is one pixel per recorded sample — resize it when the recording length
+				// changes (recordings are dynamic-length now); the default width covers the no-recording case
+				var recordingSampleCount = recording?.Data?.Count ?? 0;
+
+				var desiredPreviewWidth = ( recordingSampleCount > 0 ) ? recordingSampleCount : DefaultAlgorithmPreviewWidth;
+
+				if ( desiredPreviewWidth != _algorithmPreviewGraphBase.BitmapWidth )
+				{
+					_racingWheelPage.AlgorithmPreview_Image.Width = desiredPreviewWidth;
+
+					_algorithmPreviewGraphBase.Initialize( _racingWheelPage.AlgorithmPreview_Image );
+
+					_racingWheelPage.CenterPreviewScrollViewer();
+				}
+
+				_algorithmPreviewGraphBase.Reset();
 
 				if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var previewGraph ) )
 				{
