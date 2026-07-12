@@ -131,12 +131,6 @@ public class SettingsFile
 			// the wheel force) and mark the migration done so it never runs over these defaults.
 			DataContext.DataContext.Instance.Settings.RacingWheelAutoTarget = 10f;
 			DataContext.DataContext.Instance.Settings.RacingWheelAutoTargetMigrated = true;
-
-			// Brand-new install: no old per-algorithm FFB settings to migrate. Mark it done so the graphs are
-			// built fresh from defaults (via EnsureBuiltInFFBGraphsInitialized below) without running the mapping.
-			// Stamp the current graph schema too so the regenerate-on-upgrade path never runs over fresh defaults.
-			DataContext.DataContext.Instance.Settings.RacingWheelFFBGraphsMigrated = true;
-			DataContext.DataContext.Instance.Settings.RacingWheelFFBGraphSchemaVersion = Settings.CurrentFFBGraphSchemaVersion;
 		}
 
 			// Migrate the old percentage-based auto margin to the new Nm-based auto target (value, scope,
@@ -152,18 +146,13 @@ public class SettingsFile
 			// so users upgrading from a version without per-car overlays keep their current layout.
 			DataContext.DataContext.Instance.Settings.MigrateOverlayLayoutToNonCarBaseline();
 
-			// Every launch: (re)create any missing built-in FFB graphs and repair the selection. Then one-time:
-			// migrate the old per-algorithm settings + per-context values into the modular graph model (no-op once
-			// RacingWheelFFBGraphsMigrated is set, incl. fresh installs which pre-set it above).
-			DataContext.DataContext.Instance.Settings.EnsureBuiltInFFBGraphsInitialized();
-			DataContext.DataContext.Instance.Settings.MigrateToFFBGraphs();
+			// Every launch: sync the stored built-in graphs against the graph files shipped inside the app
+			// (create missing ones, refresh any whose shipped file changed, purge retired ones) and repair the
+			// selections. If anything changed, remember to persist below (the recorded file hashes must reach
+			// disk or the sync would re-run on every launch).
+			var builtInGraphsChanged = DataContext.DataContext.Instance.Settings.EnsureBuiltInFFBGraphsInitialized();
 
-			// Regenerate the built-in graphs from the dormant old settings if the stored file predates a change to
-			// the built-in graph layout (e.g. the Output curve/min/max split into their own modules). If it did,
-			// remember to persist below (the bumped schema version must reach disk so this runs only once).
-			var regeneratedFFBGraphs = DataContext.DataContext.Instance.Settings.UpgradeFFBGraphSchemaIfNeeded();
-
-			// Build the live FFB graph engine from the (now migrated) selected graph so it is ready to drive FFB
+			// Build the live FFB graph engine from the selected graph so it is ready to drive FFB
 			// immediately; the first per-context reload will rebuild it with this car/track's values.
 			app.RacingWheel.RebuildLiveEngine();
 
@@ -174,9 +163,9 @@ public class SettingsFile
 
 			PauseSerialization = false;
 
-			// Persist a one-time FFB graph schema regeneration now that serialization is un-paused (the setter
-			// ignores a queue request while paused), so the bumped schema version reaches disk and it runs once.
-			if ( regeneratedFFBGraphs )
+			// Persist a launch-time built-in graph sync now that serialization is un-paused (the setter ignores
+			// a queue request while paused), so the recorded graph file hashes reach disk and the sync runs once.
+			if ( builtInGraphsChanged )
 			{
 				QueueForSerialization = true;
 			}

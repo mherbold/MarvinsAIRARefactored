@@ -94,6 +94,7 @@ public partial class FFBGraphEditor : UserControl
 		RedrawWires();
 		UpdateCanvasSize();
 		UpdateSnapToGridButtonVisual();
+		UpdateStructureLockVisuals();
 	}
 
 	private void FFBGraphEditor_Unloaded( object sender, RoutedEventArgs e )
@@ -119,6 +120,18 @@ public partial class FFBGraphEditor : UserControl
 		ResubscribeModules();
 		RedrawWires();
 		UpdateCanvasSize();
+		UpdateStructureLockVisuals();
+	}
+
+	// Built-in graphs are structurally locked — adding modules and re-laying-out are disabled (node/wire drags
+	// are blocked in the mouse handlers). The VM tree is rebuilt on every graph switch, so the collection-changed
+	// event is a reliable refresh point.
+	private void UpdateStructureLockVisuals()
+	{
+		var isBuiltIn = _viewModel?.IsFFBGraphBuiltIn == true;
+
+		AddModule_MairaButton.Disabled = isBuiltIn;
+		AutoLayout_MairaButton.Disabled = isBuiltIn;
 	}
 
 	private void Wires_CollectionChanged( object? sender, NotifyCollectionChangedEventArgs e )
@@ -186,6 +199,14 @@ public partial class FFBGraphEditor : UserControl
 		// the canvas under the still-pressed cursor
 		_viewModel.SelectedModule = module;
 
+		// a built-in graph's structure is locked — selection works, but no node or wire drags
+		if ( _viewModel.IsFFBGraphBuiltIn )
+		{
+			e.Handled = true;
+
+			return;
+		}
+
 		// a press on (or near) a connector dot starts a wire drag instead of a node drag
 		var connector = HitTestConnector( module, e.GetPosition( element ), ConnectorGrabRadius );
 
@@ -235,9 +256,12 @@ public partial class FFBGraphEditor : UserControl
 		if ( ( _dragElement == null ) || !_dragElement.IsMouseCaptured )
 		{
 			// not dragging — show a crosshair when hovering a connector dot so the wire-drag affordance is visible
+			// (not on a built-in graph, where wires cannot be dragged)
 			if ( ( sender is FrameworkElement hoverElement ) && ( hoverElement.DataContext is FFBModuleViewModel hoverModule ) )
 			{
-				hoverElement.Cursor = HitTestConnector( hoverModule, e.GetPosition( hoverElement ), ConnectorGrabRadius ) != ConnectorKind.None ? Cursors.Cross : Cursors.Hand;
+				var canDragWires = _viewModel?.IsFFBGraphBuiltIn != true;
+
+				hoverElement.Cursor = canDragWires && ( HitTestConnector( hoverModule, e.GetPosition( hoverElement ), ConnectorGrabRadius ) != ConnectorKind.None ) ? Cursors.Cross : Cursors.Hand;
 			}
 
 			return;

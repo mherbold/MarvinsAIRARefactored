@@ -358,44 +358,28 @@ public partial class WizardWindow : Window
 	}
 
 	/// <summary>
-	/// Applies algorithm, detail, and prediction settings for the chosen Algorithm position (-3 to +3).
+	/// Applies the chosen FFB style position (-3 to +3): selects the built-in "Marvin's awesome graph" and sets
+	/// its first Gain module (the detail gain) to 25/50/75/100/125/150/200% across the seven slider positions.
 	/// </summary>
 	private static void ApplyFfbStylePreset( int position )
 	{
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
-		// Common settings for all positions.
-		settings.RacingWheelEnableSoftLimiter = true;
-		settings.RacingWheelDetailBoostBias = 0.10f;
-		settings.RacingWheelDeltaLimiterBias = 0.20f;
-		settings.RacingWheelPredictionMode = Components.RacingWheel.PredictionMode.PredictK1;
-		settings.RacingWheelPredictionBlend = 0.30f;
-
-		if ( position <= -1 )
+		var detailGain = position switch
 		{
-			// Detail Limiter (low latency) branch.
-			settings.RacingWheelAlgorithm = Components.RacingWheel.Algorithm.DeltaLimiterOn60Hz;
+			-3 => 0.25f,
+			-2 => 0.50f,
+			-1 => 0.75f,
+			1 => 1.25f,
+			2 => 1.50f,
+			3 => 2.00f,
+			_ => 1.00f   // 0
+		};
 
-			settings.RacingWheelDeltaLimit = position switch
-			{
-				-3 => 250f,
-				-2 => 500f,
-				_ => 1000f   // -1
-			};
-		}
-		else
-		{
-			// Detail Booster (low latency) branch.
-			settings.RacingWheelAlgorithm = Components.RacingWheel.Algorithm.DetailBoosterOn60Hz;
+		settings.SelectFFBGraph( FFB.FFBBuiltInGraphs.MarvinsAwesomeGraphName );
+		settings.ApplyBuiltInFFBGraphGain( FFB.FFBBuiltInGraphs.MarvinsAwesomeGraphName, detailGain );
 
-			settings.RacingWheelDetailBoost = position switch
-			{
-				1 => 0.50f,
-				2 => 1.00f,
-				3 => 1.50f,
-				_ => 0.00f    // 0
-			};
-		}
+		App.Instance!.SettingsFile.QueueForSerialization = true;
 	}
 
 	private void DocumentationLink_Click( object sender, RoutedEventArgs e )

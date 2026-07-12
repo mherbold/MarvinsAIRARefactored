@@ -4,8 +4,8 @@ using MarvinsAIRARefactored.Classes;
 namespace MarvinsAIRARefactored.FFB.Modules;
 
 // Generic DSP primitives operating in the Nm main-bus domain. The old monolithic algorithms
-// (RacingWheel.ProcessAlgorithm) are recreated by COMPOSING these primitives in the built-in graphs; see
-// FFBGraphMigration for the exact wiring. Decomposition identities (verified algebraically):
+// (RacingWheel.ProcessAlgorithm) can be recreated by COMPOSING these primitives in a graph.
+// Decomposition identities (verified algebraically):
 //   out = Lerp(out_prev + g·Δin, anchor, b)  ==  LPF_b(anchor) + g·HPF_b(in)
 // where LPF_b(x): y = Lerp(y_prev, x, b), and HPF_b(x) = x − LPF_b(x). DetailBooster uses g=1+Boost,
 // anchor=in; DeltaLimiter uses g=1, in=rate-limited copy; Hybrid10 uses b=0.1, anchor=60 Hz, g=Detail.
@@ -292,7 +292,7 @@ public sealed class CompressorModule : FFBModule
 /// (decays) carry the previous output down proportionally instead of being re-amplified, and the output never
 /// crosses to the other side of the body reference. At Gain = 1 it degenerates to a plain one-pole high-pass.
 /// The old DetailEnhancer (Multi DetailGain 574–609) also passed the body through — that part is replicable,
-/// so it moved out: recompose it as LowPassFilter + this, summed by a Mixer (see FFBGraphMigration). The old
+/// so it moved out: recompose it as LowPassFilter + this, summed by a Mixer. The old
 /// curb-protection gain pullback was dropped (the CurbProtection module now reduces force directly).
 /// </summary>
 public sealed class TransientEnhancerModule : FFBModule

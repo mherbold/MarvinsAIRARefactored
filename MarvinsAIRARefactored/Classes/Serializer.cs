@@ -67,6 +67,22 @@ public static class Serializer
 		return instance;
 	}
 
+	/// <summary>Same tolerant overlay load as the file-path overload, reading from an already-open stream
+	/// (used for graph files embedded in the assembly — see FFBBuiltInGraphs).</summary>
+	public static T Load<T>( Stream stream ) where T : notnull, new()
+	{
+		var instance = new T();
+
+		var doc = XDocument.Load( stream, LoadOptions.PreserveWhitespace | LoadOptions.SetLineInfo );
+
+		if ( doc.Root is not null )
+		{
+			ApplyOverlay( doc.Root, instance, parentPath: typeof( T ).Name );
+		}
+
+		return instance;
+	}
+
 	private static void ApplyOverlay( XElement element, object target, string parentPath )
 	{
 		var targetType = target.GetType();

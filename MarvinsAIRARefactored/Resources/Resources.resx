@@ -1477,7 +1477,7 @@
     <value>Algorithm</value>
   </data>
   <data name="Wizard_Step7_Line1" xml:space="preserve">
-    <value>How do you like your force feedback to feel? Move the slider below to tell MAIRA your preference and it will configure the algorithm, detail and smoothing settings to match.</value>
+    <value>How do you like your force feedback to feel? Move the slider below to tell MAIRA your preference and it will adjust the detail gain of the built-in FFB graph to match.</value>
   </data>
   <data name="Wizard_Step7_Line2" xml:space="preserve">
     <value>Don't worry — you can always fine-tune everything manually on the Racing Wheel page later.</value>
@@ -1495,43 +1495,43 @@
     <value>Silky smooth</value>
   </data>
   <data name="Wizard_Step7_Preset_MaxSmooth_Desc" xml:space="preserve">
-    <value>Heavy delta limiting at 250 Nm/s. Very calm, rounded feedback.</value>
+    <value>Detail gain at 25%. Very calm, rounded feedback.</value>
   </data>
   <data name="Wizard_Step7_Preset_Smooth_Name" xml:space="preserve">
     <value>Smooth</value>
   </data>
   <data name="Wizard_Step7_Preset_Smooth_Desc" xml:space="preserve">
-    <value>Delta limiting at 500 Nm/s. Softer edges and reduced sharpness.</value>
+    <value>Detail gain at 50%. Softer edges and reduced sharpness.</value>
   </data>
   <data name="Wizard_Step7_Preset_SlightlySmooth_Name" xml:space="preserve">
     <value>Slightly smooth</value>
   </data>
   <data name="Wizard_Step7_Preset_SlightlySmooth_Desc" xml:space="preserve">
-    <value>Light delta limiting at 1000 Nm/s. Minor transient softening.</value>
+    <value>Detail gain at 75%. Slightly softened detail.</value>
   </data>
   <data name="Wizard_Step7_Preset_Normal_Name" xml:space="preserve">
     <value>Normal</value>
   </data>
   <data name="Wizard_Step7_Preset_Normal_Desc" xml:space="preserve">
-    <value>Balanced detail and smoothness.</value>
+    <value>Detail gain at 100%. Balanced detail and smoothness.</value>
   </data>
   <data name="Wizard_Step7_Preset_SlightlyBoosted_Name" xml:space="preserve">
     <value>Slightly boosted</value>
   </data>
   <data name="Wizard_Step7_Preset_SlightlyBoosted_Desc" xml:space="preserve">
-    <value>Subtle detail enhancement at 50% boost.</value>
+    <value>Detail gain at 125%. Subtle detail enhancement.</value>
   </data>
   <data name="Wizard_Step7_Preset_Boosted_Name" xml:space="preserve">
     <value>Boosted</value>
   </data>
   <data name="Wizard_Step7_Preset_Boosted_Desc" xml:space="preserve">
-    <value>Clear detail enhancement at 100% boost.</value>
+    <value>Detail gain at 150%. Clear detail enhancement.</value>
   </data>
   <data name="Wizard_Step7_Preset_MaxBoosted_Name" xml:space="preserve">
     <value>A lot of boost</value>
   </data>
   <data name="Wizard_Step7_Preset_MaxBoosted_Desc" xml:space="preserve">
-    <value>Aggressive detail enhancement at 150% boost.</value>
+    <value>Detail gain at 200%. Aggressive detail enhancement.</value>
   </data>
   <data name="Wizard_Final_Title" xml:space="preserve">
     <value>You're all set!</value>
@@ -2159,5 +2159,11 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Built-in</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Custom</value>
   </data>
 </root>

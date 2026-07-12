@@ -751,8 +751,10 @@
 
                 </Grid>
 
-                <!-- Add module (pops the module picker — there is no node canvas here to host the button) -->
-                <controls:MairaButton LabelOnRight="True"
+                <!-- Add module (pops the module picker — there is no node canvas here to host the button).
+                     Disabled while a built-in vibration graph is selected (structure is locked). -->
+                <controls:MairaButton x:Name="AddGeneratorModule_MairaButton"
+                                      LabelOnRight="True"
                                       IsSmall="True"
                                       Label="{Binding Localization[AddModule]}"
                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"

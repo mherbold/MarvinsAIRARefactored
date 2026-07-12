@@ -95,6 +95,7 @@
 
   <ItemGroup>
     <EmbeddedResource Include="AdminBoxx\code.py" />
+    <EmbeddedResource Include="BuiltInGraphs\*.mairagraph" />
     <EmbeddedResource Include="TTS\ar-SA.json" />
     <EmbeddedResource Include="TTS\bg-BG.json" />
     <EmbeddedResource Include="TTS\ca-ES.json" />

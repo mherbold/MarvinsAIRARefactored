@@ -366,38 +366,59 @@ public partial class RacingWheelPage : UserControl
 
 	private bool _refreshingGraphSelector = false;
 
+	// The graph selectors group their options into "Built-in" and "Custom" categories using the underscore-key
+	// header convention MairaComboBox renders as non-selectable accent rows (an underscore key never collides
+	// with a real graph name selection). Categories with no graphs are omitted.
+	private static List<KeyValuePair<string, string>> BuildGraphSelectorItems( SerializableDictionary<string, FFBGraph> graphs )
+	{
+		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
+
+		var items = new List<KeyValuePair<string, string>>();
+
+		var builtInNames = graphs.Where( pair => pair.Value.IsBuiltIn ).Select( pair => pair.Key ).OrderBy( name => name, StringComparer.OrdinalIgnoreCase ).ToList();
+		var customNames = graphs.Where( pair => !pair.Value.IsBuiltIn ).Select( pair => pair.Key ).OrderBy( name => name, StringComparer.OrdinalIgnoreCase ).ToList();
+
+		if ( builtInNames.Count > 0 )
+		{
+			items.Add( new KeyValuePair<string, string>( "_builtIn", localization[ "BuiltInGraphs" ] ) );
+
+			foreach ( var graphName in builtInNames )
+			{
+				items.Add( new KeyValuePair<string, string>( graphName, graphName ) );
+			}
+		}
+
+		if ( customNames.Count > 0 )
+		{
+			items.Add( new KeyValuePair<string, string>( "_custom", localization[ "CustomGraphs" ] ) );
+
+			foreach ( var graphName in customNames )
+			{
+				items.Add( new KeyValuePair<string, string>( graphName, graphName ) );
+			}
+		}
+
+		return items;
+	}
+
 	public void UpdateFFBGraphOptions()
 	{
 		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
 
 		_refreshingGraphSelector = true;
 
-		var items = new List<KeyValuePair<string, string>>();
-
-		foreach ( var graphName in settings.RacingWheelFFBGraphs.Keys )
-		{
-			items.Add( new KeyValuePair<string, string>( graphName, graphName ) );
-		}
-
-		Graph_MairaComboBox.ItemsSource = items;
+		Graph_MairaComboBox.ItemsSource = BuildGraphSelectorItems( settings.RacingWheelFFBGraphs );
 		Graph_MairaComboBox.SelectedValue = settings.RacingWheelSelectedFFBGraphName;
 
 		var isBuiltIn = settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) && graph.IsBuiltIn;
 
-		// Built-in graphs cannot be renamed or deleted, but can be reset to their defaults.
+		// Built-in graphs cannot be renamed or deleted, but can be reset to their shipped defaults.
 		RenameGraph_MairaButton.Disabled = isBuiltIn;
 		DeleteGraph_MairaButton.Disabled = isBuiltIn;
 		ResetGraph_MairaButton.Visibility = isBuiltIn ? Visibility.Visible : Visibility.Collapsed;
 
 		// same treatment for the vibration graph selector
-		var vibrationItems = new List<KeyValuePair<string, string>>();
-
-		foreach ( var graphName in settings.RacingWheelVibrationGraphs.Keys )
-		{
-			vibrationItems.Add( new KeyValuePair<string, string>( graphName, graphName ) );
-		}
-
-		VibrationGraph_MairaComboBox.ItemsSource = vibrationItems;
+		VibrationGraph_MairaComboBox.ItemsSource = BuildGraphSelectorItems( settings.RacingWheelVibrationGraphs );
 		VibrationGraph_MairaComboBox.SelectedValue = settings.RacingWheelSelectedVibrationGraphName;
 
 		var vibrationIsBuiltIn = settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var vibrationGraph ) && vibrationGraph.IsBuiltIn;
@@ -405,6 +426,9 @@ public partial class RacingWheelPage : UserControl
 		RenameVibrationGraph_MairaButton.Disabled = vibrationIsBuiltIn;
 		DeleteVibrationGraph_MairaButton.Disabled = vibrationIsBuiltIn;
 		ResetVibrationGraph_MairaButton.Visibility = vibrationIsBuiltIn ? Visibility.Visible : Visibility.Collapsed;
+
+		// a built-in vibration graph's structure is locked — no adding generator modules
+		AddGeneratorModule_MairaButton.Disabled = vibrationIsBuiltIn;
 
 		_refreshingGraphSelector = false;
 

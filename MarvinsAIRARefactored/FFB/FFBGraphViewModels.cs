@@ -335,12 +335,14 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 	public FFBModuleDescriptor Descriptor => _descriptor;
 
 	// only the Output module is fixed now — sources are added and removed at will (one instance of each source
-	// type per graph; removing the last source re-adds the 360 Hz source since Output always needs an input)
+	// type per graph; removing the last source re-adds the 360 Hz source since Output always needs an input).
+	// Modules of a built-in graph cannot be removed (structure is locked; settings stay editable) — the VM tree
+	// is rebuilt wholesale on every graph switch, so no change notification is needed for that.
 	public bool IsFixed => _descriptor.IsOutput;
 	public bool IsGenerator => _descriptor.IsGenerator;
 	public bool IsOutput => _descriptor.IsOutput;
 	public bool CanToggleEnabled => !IsFixed;
-	public bool CanRemove => !IsFixed;
+	public bool CanRemove => !IsFixed && !( IsGenerator ? _owner.IsVibrationGraphBuiltIn : _owner.IsFFBGraphBuiltIn );
 	public bool CanTest => _descriptor.CanTest;
 
 	private bool _isTestActive = false;
@@ -534,6 +536,13 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 
 	private void SetInput( bool isInputB, string value )
 	{
+		// built-in graphs are structurally locked — wiring cannot change (the editor blocks wire drags too;
+		// this guard covers any other caller)
+		if ( _owner.IsFFBGraphBuiltIn )
+		{
+			return;
+		}
+
 		if ( string.IsNullOrEmpty( value ) )
 		{
 			return;
@@ -604,6 +613,11 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	// before Localization exists, and so its module names re-localize on a language switch.
 	public List<KeyValuePair<string, string>> AddableModuleTypes => BuildAddableModuleTypes( generators: false );
 	public List<KeyValuePair<string, string>> AddableGeneratorModuleTypes => BuildAddableModuleTypes( generators: true );
+
+	// Built-in graphs are structurally locked: no adding/removing modules, no rewiring, no moving nodes — only
+	// their module settings may be changed. Users clone a built-in into a custom graph to alter its structure.
+	public bool IsFFBGraphBuiltIn => _graph?.IsBuiltIn == true;
+	public bool IsVibrationGraphBuiltIn => _vibrationGraph?.IsBuiltIn == true;
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -904,6 +918,10 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		// the addable-types list depends on which source types are present, so it re-queries with the graph
 		OnPropertyChanged( nameof( AddableModuleTypes ) );
 		OnPropertyChanged( nameof( AddableGeneratorModuleTypes ) );
+
+		// the structure locks follow whichever graphs are now selected
+		OnPropertyChanged( nameof( IsFFBGraphBuiltIn ) );
+		OnPropertyChanged( nameof( IsVibrationGraphBuiltIn ) );
 	}
 
 	/// <summary>Recompute every knob's value string. WheelForce/MaxForce-scaled displays (strengths, output min/max, compression thresholds) depend on live force settings, so this is called when those change. UI thread only.</summary>
@@ -946,7 +964,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		// generators go into the vibration graph — a flat list with no wiring, node position, or selection
 		if ( descriptor.IsGenerator )
 		{
-			if ( _vibrationGraph == null )
+			if ( ( _vibrationGraph == null ) || _vibrationGraph.IsBuiltIn )
 			{
 				return;
 			}
@@ -962,7 +980,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			return;
 		}
 
-		if ( _graph == null )
+		if ( ( _graph == null ) || _graph.IsBuiltIn )
 		{
 			return;
 		}
@@ -1146,7 +1164,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	/// node editor). Positions are display-only, so no engine rebuild — just persist and refresh the canvas.</summary>
 	public void AutoLayout()
 	{
-		if ( _graph == null )
+		if ( ( _graph == null ) || _graph.IsBuiltIn )
 		{
 			return;
 		}
@@ -1163,10 +1181,11 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		RebuildFromCurrentSelection();
 	}
 
-	/// <summary>Snap every canvas node to the grid (the snap-to-grid toggle was just switched on).</summary>
+	/// <summary>Snap every canvas node to the grid (the snap-to-grid toggle was just switched on). Built-in
+	/// graphs keep their shipped layout — their node positions are locked.</summary>
 	public void SnapAllToGrid()
 	{
-		if ( _graph == null )
+		if ( ( _graph == null ) || _graph.IsBuiltIn )
 		{
 			return;
 		}
