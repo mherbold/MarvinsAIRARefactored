@@ -14,6 +14,12 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdT
 	private const bool _verboseLogging = false;
 	private const int _probeTimeoutMilliseconds = 1500;
 
+	// USB-serial bridge chips found on Arduino Nano boards and clones - handshake probes are only sent to ports whose
+	// device name or PNPDeviceID matches one of these, so we never write probe text at unrelated serial devices.
+	// CH340/CH341/CH9102 (WCH, VID 1A86), FT232R (FTDI, VID 0403), CP210x (Silicon Labs, VID 10C4),
+	// PL2303 (Prolific, VID 067B), and genuine Arduino USB interfaces (VID 2341 / 2A03).
+	private static readonly string[] _knownUsbSerialBridgeTokens = [ "CH340", "CH341", "CH9102", "VID_1A86", "FTDI", "VID_0403", "CP210", "VID_10C4", "Prolific", "VID_067B", "Arduino", "VID_2341", "VID_2A03" ];
+
 	public bool DeviceFound { get => _portName != string.Empty; }
 	public string LastErrorMessage { get; private set; } = string.Empty;
 
@@ -100,11 +106,15 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdT
 
 				if ( _handshake != string.Empty )
 				{
-					if ( !name.Contains( "CH340", StringComparison.OrdinalIgnoreCase ) )
+					var matchedBridgeToken = _knownUsbSerialBridgeTokens.FirstOrDefault( token => name.Contains( token, StringComparison.OrdinalIgnoreCase ) || deviceId.Contains( token, StringComparison.OrdinalIgnoreCase ) );
+
+					if ( matchedBridgeToken == null )
 					{
-						app.Logger.WriteLine( $"[UsbSerialPortHelper] Skipping handshake probe on '{portName}' because device name '{name}' does not contain 'CH340'" );
+						app.Logger.WriteLine( $"[UsbSerialPortHelper] Skipping handshake probe on '{portName}' because neither device name '{name}' nor PNPDeviceID '{deviceId}' matches a known USB-serial bridge chip" );
 						continue;
 					}
+
+					app.Logger.WriteLine( $"[UsbSerialPortHelper] Port '{portName}' matched USB-serial bridge token '{matchedBridgeToken}'" );
 
 					app.Logger.WriteLine( $"[UsbSerialPortHelper] Testing handshake mode on '{portName}'" );
 
