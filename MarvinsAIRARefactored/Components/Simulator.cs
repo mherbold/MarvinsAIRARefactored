@@ -137,6 +137,16 @@ public partial class Simulator
 	public float YawRate { get; private set; } = 0f;
 	public float[] YawRate_ST { get; private set; } = new float[ SamplesPerFrame360Hz ]; // true 360 Hz yaw rate; falls back to the 60 Hz YawRate when the sim doesn't expose it
 
+	// prediction-audit 360 Hz channels (recorded for the PredictionLab telemetry audit; nothing else consumes
+	// them) — zeros when the sim doesn't expose the ST arrays, except VelocityY_ST which falls back to the
+	// 60 Hz VelocityY
+	public float[] VelocityY_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] LatAccel_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] RollRate_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] PitchRate_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] LFShockDefl_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+	public float[] RFShockDefl_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
+
 	private bool _telemetryDataInitialized = false;
 	private bool _waitingForFirstSessionInfo = false;
 
@@ -237,6 +247,12 @@ public partial class Simulator
 	private IRacingSdkDatum? _yawNorthDatum = null;
 	private IRacingSdkDatum? _yawRateDatum = null;
 	private IRacingSdkDatum? _yawRate_STDatum = null;
+	private IRacingSdkDatum? _velocityY_STDatum = null;
+	private IRacingSdkDatum? _latAccel_STDatum = null;
+	private IRacingSdkDatum? _rollRate_STDatum = null;
+	private IRacingSdkDatum? _pitchRate_STDatum = null;
+	private IRacingSdkDatum? _lfShockDefl_STDatum = null;
+	private IRacingSdkDatum? _rfShockDefl_STDatum = null;
 
 	private readonly float[] _rpmSpeedRatioAccumulator = new float[ MaxNumGears ];
 	private readonly int[] _rpmSpeedRatioSampleCount = new int[ MaxNumGears ];
@@ -457,6 +473,12 @@ public partial class Simulator
 		YawRate = 0f;
 
 		Array.Clear( YawRate_ST );
+		Array.Clear( VelocityY_ST );
+		Array.Clear( LatAccel_ST );
+		Array.Clear( RollRate_ST );
+		Array.Clear( PitchRate_ST );
+		Array.Clear( LFShockDefl_ST );
+		Array.Clear( RFShockDefl_ST );
 		Array.Clear( CFShockVel_ST );
 		Array.Clear( CRShockVel_ST );
 		Array.Clear( LFShockVel_ST );
@@ -771,6 +793,12 @@ public partial class Simulator
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RRshockVel_ST", out _rrShockVel_STDatum );
 
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "YawRate_ST", out _yawRate_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "VelocityY_ST", out _velocityY_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LatAccel_ST", out _latAccel_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RollRate_ST", out _rollRate_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "PitchRate_ST", out _pitchRate_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "LFshockDefl_ST", out _lfShockDefl_STDatum );
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RFshockDefl_ST", out _rfShockDefl_STDatum );
 
 			// log array datum counts so we can detect if any exceed our destination array sizes
 			var logger = app.Logger;
@@ -793,6 +821,12 @@ public partial class Simulator
 			logger.WriteLine( $"[Simulator]   RFShockVel_ST.Count       = {_rfShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 			logger.WriteLine( $"[Simulator]   RRShockVel_ST.Count       = {_rrShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 			logger.WriteLine( $"[Simulator]   YawRate_ST.Count          = {_yawRate_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   VelocityY_ST.Count        = {_velocityY_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   LatAccel_ST.Count         = {_latAccel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   RollRate_ST.Count         = {_rollRate_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   PitchRate_ST.Count        = {_pitchRate_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   LFShockDefl_ST.Count      = {_lfShockDefl_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   RFShockDefl_ST.Count      = {_rfShockDefl_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 
 			app.TimingMarkers.Initialize( _carIdxLapDistPctDatum.Count );
 
@@ -976,6 +1010,42 @@ public partial class Simulator
 		else
 		{
 			Array.Fill( YawRate_ST, YawRate );
+		}
+
+		// get next prediction-audit 360 Hz samples (zeros when not exposed, except VelocityY's 60 Hz fallback)
+
+		if ( _velocityY_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _velocityY_STDatum, VelocityY_ST, 0, VelocityY_ST.Length );
+		}
+		else
+		{
+			Array.Fill( VelocityY_ST, VelocityY );
+		}
+
+		if ( _latAccel_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _latAccel_STDatum, LatAccel_ST, 0, LatAccel_ST.Length );
+		}
+
+		if ( _rollRate_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _rollRate_STDatum, RollRate_ST, 0, RollRate_ST.Length );
+		}
+
+		if ( _pitchRate_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _pitchRate_STDatum, PitchRate_ST, 0, PitchRate_ST.Length );
+		}
+
+		if ( _lfShockDefl_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _lfShockDefl_STDatum, LFShockDefl_ST, 0, LFShockDefl_ST.Length );
+		}
+
+		if ( _rfShockDefl_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _rfShockDefl_STDatum, RFShockDefl_ST, 0, RFShockDefl_ST.Length );
 		}
 
 		// update racing wheel

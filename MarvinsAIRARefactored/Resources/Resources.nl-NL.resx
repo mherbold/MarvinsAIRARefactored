@@ -1966,7 +1966,7 @@
     <value>Drempel</value>
   </data>
   <data name="FFBSettingKnee" xml:space="preserve">
-    <value>Knee</value>
+    <value>Knikpunt</value>
   </data>
   <data name="FFBSettingRatio" xml:space="preserve">
     <value>Ratio</value>
@@ -2204,5 +2204,14 @@
   </data>
   <data name="FFBSettingCorrectionLimit" xml:space="preserve">
     <value>Correctielimiet</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
   </data>
 </root>

@@ -474,18 +474,21 @@ public sealed class InterpolatorModule : FFBModule
 /// inside the known frame (horizons below K6) are exact recorded data, not prediction. The extrapolation is a
 /// bank of per-depth NLMS adaptive FIR filters (one update per depth per frame) that learn each car's torque
 /// dynamics within a few seconds and track them continuously. Each filter sees 24 torque lags, 6 frame-spaced
-/// steering-angle taps, and an adaptive bias: the angle (with the torque history) approximates front slip
-/// angle — which drives the car's NEXT self-aligning torque — and the bias absorbs the slowly-varying torque
-/// offset; both measurably improve accuracy AND shift (telemetry channel audit in the PredictionLab project).
+/// taps of four auxiliary telemetry channels — steering angle, steering wheel velocity, lateral velocity, and
+/// pitch acceleration (longitudinal weight-transfer rate) — and an adaptive bias that absorbs the
+/// slowly-varying torque offset. The aux set is the result of greedy feature selection across six cars in the
+/// PredictionLab project: each channel earned its slot by improving accuracy beyond the previous set.
 /// Because a least-squares predictor is amplitude-shy (it shrinks toward the mean to minimize error),
 /// Strength re-expands the learned correction — 100% applies it as learned, 200% doubles it for a
 /// near-full-frame shift at the cost of more high-frequency boost. The correction is clamped to ±Correction
 /// limit (Nm) and added onto input A, so place this module directly on the raw 360 Hz source and smooth
 /// AFTER it if needed.</para>
-/// <para>Measured on a real 360 Hz recording (vs. the ideal shifted waveform, at the default 5 Nm limit):
-/// K6 at 150% ≈ 11 ms of true shift with markedly LESS error than doing nothing (rmse 0.71); K6 at 200%
-/// ≈ 13 ms (raising the limit buys more on big transients); K12 at 200% ≈ 12 ms. Even K2 is a nearly-free
-/// 5 ms — most of its targets are known data. The old single-sample RLS model measured under 1 ms at K6.</para>
+/// <para>Measured across six cars/tracks on real 360 Hz recordings (vs. the ideal shifted waveform): the
+/// default K6 / 150% / 5 Nm delivers ≈ 11.5 ms of true shift on average (worst car 8.6 ms) with LESS error
+/// than doing nothing on every car — a grid sweep confirmed these defaults as the best all-car compromise.
+/// 200% buys ≈ 14 ms at slightly higher noise; a higher Correction limit buys more shift on high-torque cars
+/// (which saturate 5 Nm) but can overshoot on light ones. Even K2 is a nearly-free 5 ms — most of its
+/// targets are known data. The old single-sample RLS model measured under 1 ms at K6.</para>
 /// </summary>
 public sealed class PredictionModule : FFBModule
 {
@@ -494,16 +497,19 @@ public sealed class PredictionModule : FFBModule
 	private const int Strength = 3;
 
 	private const int TapCount = 24;        // torque lags per depth filter over the raw 360 Hz history
-	private const int AngleTapCount = 6;    // frame-spaced steering-angle taps (the angle is a 60 Hz channel)
-	private const int FeatureCount = TapCount + AngleTapCount + 1;  // + 1 adaptive bias feature
+	private const int AuxCount = 4;         // steering angle, steering wheel velocity, lateral velocity, pitch acceleration
+	private const int AuxTapCount = 6;      // frame-spaced taps per aux channel (they are 60 Hz-grade channels)
+	private const int FeatureCount = TapCount + ( AuxCount * AuxTapCount ) + 1;  // + 1 adaptive bias feature
 	private const float StepSize = 0.25f;   // NLMS mu — one update per depth per frame; misadjustment-safe
 	private const float Epsilon = 1e-3f;    // NLMS normalization guard (also idles adaptation on a dead bus)
-	private const int HistorySize = 64;     // ring capacity (power of two) — max lookback = horizon + (AngleTapCount-1)*6 = 42
+	private const int HistorySize = 64;     // ring capacity (power of two) — max lookback = horizon + (AuxTapCount-1)*6 = 42
 	private const int HistoryMask = HistorySize - 1;
 
-	private readonly float[] _history = new float[ HistorySize ];       // raw torque (Nm), one entry per tick
-	private readonly float[] _angleHistory = new float[ HistorySize ];  // steering angle scaled to torque range, frame-constant
+	private readonly float[] _history = new float[ HistorySize ];   // raw torque (Nm), one entry per tick
+	private readonly float[][] _auxHistory;                         // aux channels scaled to torque range, frame-constant
 	private long _sampleCount;              // samples ingested so far; newest sample sits at _sampleCount - 1
+
+	private float _previousFramePitchRate;  // for the pitch-acceleration frame difference
 
 	// one adaptive filter per extrapolation depth (at most 6 depths are exercised per frame: i + k - 5 for i = 0..5)
 	private readonly float[][] _weights;
@@ -515,6 +521,13 @@ public sealed class PredictionModule : FFBModule
 
 	public PredictionModule()
 	{
+		_auxHistory = new float[ AuxCount ][];
+
+		for ( var i = 0; i < AuxCount; i++ )
+		{
+			_auxHistory[ i ] = new float[ HistorySize ];
+		}
+
 		_weights = new float[ FFBTickContext.SamplesPerFrame ][];
 
 		for ( var i = 0; i < _weights.Length; i++ )
@@ -544,9 +557,14 @@ public sealed class PredictionModule : FFBModule
 	public override void Reset()
 	{
 		Array.Clear( _history );
-		Array.Clear( _angleHistory );
+
+		foreach ( var auxHistory in _auxHistory )
+		{
+			Array.Clear( auxHistory );
+		}
 
 		_sampleCount = 0;
+		_previousFramePitchRate = 0f;
 
 		ResetFilters();
 	}
@@ -608,30 +626,47 @@ public sealed class PredictionModule : FFBModule
 	}
 
 	/// <summary>
-	/// Once per frame (sub-tick 0): ingest the frame's six raw samples (plus the frame's steering angle),
+	/// Once per frame (sub-tick 0): ingest the frame's six raw samples (plus the frame's aux channel values),
 	/// give each depth filter its one NLMS update (the prediction made from anchor newest−d has just had its
 	/// truth arrive — the newest sample), then precompute each depth's prediction from the newest anchor for
 	/// the frame's six sub-ticks to read.
 	/// </summary>
 	private void IngestFrameAndPredict( in FFBTickContext ctx, int horizonTicks )
 	{
-		// the steering angle (normalized to the car's half-lock) scaled into the torque's range so the shared
-		// NLMS normalization treats its taps comparably to the torque taps; it is a 60 Hz frame-constant
-		// channel, so every tick slot of this frame gets the same value
-		var angleTorqueScaled = ctx.WheelPosition * ctx.MaxForce;
+		var maxForce = ctx.MaxForce;
+
+		// pitch acceleration = frame difference of the pitch rate (rad/s²) — longitudinal weight-transfer rate
+		var pitchAcceleration = ( ctx.PitchRate - _previousFramePitchRate ) * 60f;
+
+		_previousFramePitchRate = ctx.PitchRate;
+
+		// the aux channels are order-1 physical quantities scaled into the torque's range (× MaxForce) so the
+		// shared NLMS normalization treats their taps comparably to the torque taps; all are 60 Hz
+		// frame-constant, so every tick slot of this frame gets the same value
+		Span<float> auxValues =
+		[
+			ctx.WheelPosition * maxForce,     // steering angle, normalized to the car's half-lock
+			ctx.WheelVelocity * maxForce,     // steering wheel velocity, in half-locks per second
+			ctx.VelocityY * maxForce,         // lateral velocity (m/s)
+			pitchAcceleration * maxForce
+		];
 
 		for ( var i = 0; i < FFBTickContext.SamplesPerFrame; i++ )
 		{
 			var slot = (int) ( _sampleCount & HistoryMask );
 
 			_history[ slot ] = ctx.TorqueFrame[ i ];
-			_angleHistory[ slot ] = angleTorqueScaled;
+
+			for ( var aux = 0; aux < AuxCount; aux++ )
+			{
+				_auxHistory[ aux ][ slot ] = auxValues[ aux ];
+			}
 
 			_sampleCount++;
 		}
 
 		// adaptation and prediction need the full feature lookback behind the training anchor (newest - depth)
-		if ( _sampleCount < horizonTicks + TapCount + ( AngleTapCount * FFBTickContext.SamplesPerFrame ) )
+		if ( _sampleCount < horizonTicks + TapCount + ( AuxTapCount * FFBTickContext.SamplesPerFrame ) )
 		{
 			return;
 		}
@@ -687,7 +722,7 @@ public sealed class PredictionModule : FFBModule
 	}
 
 	/// <summary>The feature vector anchored at a history position: 24 torque lags, 6 frame-spaced (60 Hz)
-	/// steering-angle taps, and the bias — into the <see cref="_features"/> scratch.</summary>
+	/// taps per aux channel, and the bias — into the <see cref="_features"/> scratch.</summary>
 	private void BuildFeatures( long anchor, float bias )
 	{
 		for ( var j = 0; j < TapCount; j++ )
@@ -695,11 +730,18 @@ public sealed class PredictionModule : FFBModule
 			_features[ j ] = _history[ (int) ( ( anchor - j ) & HistoryMask ) ];
 		}
 
-		for ( var j = 0; j < AngleTapCount; j++ )
+		var index = TapCount;
+
+		for ( var aux = 0; aux < AuxCount; aux++ )
 		{
-			_features[ TapCount + j ] = _angleHistory[ (int) ( ( anchor - ( j * FFBTickContext.SamplesPerFrame ) ) & HistoryMask ) ];
+			var auxHistory = _auxHistory[ aux ];
+
+			for ( var j = 0; j < AuxTapCount; j++ )
+			{
+				_features[ index++ ] = auxHistory[ (int) ( ( anchor - ( j * FFBTickContext.SamplesPerFrame ) ) & HistoryMask ) ];
+			}
 		}
 
-		_features[ TapCount + AngleTapCount ] = bias;
+		_features[ index ] = bias;
 	}
 }

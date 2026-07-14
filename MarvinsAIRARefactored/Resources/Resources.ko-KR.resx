@@ -1966,7 +1966,7 @@
     <value>임계값</value>
   </data>
   <data name="FFBSettingKnee" xml:space="preserve">
-    <value>니</value>
+    <value>전환점</value>
   </data>
   <data name="FFBSettingRatio" xml:space="preserve">
     <value>비율</value>
@@ -2189,5 +2189,14 @@
   </data>
   <data name="FFBSettingCorrectionLimit" xml:space="preserve">
     <value>보정 한계</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
   </data>
 </root>

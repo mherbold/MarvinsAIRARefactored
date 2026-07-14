@@ -1966,7 +1966,7 @@
     <value>العتبة</value>
   </data>
   <data name="FFBSettingKnee" xml:space="preserve">
-    <value>الركبة</value>
+    <value>نقطة الانحناء</value>
   </data>
   <data name="FFBSettingRatio" xml:space="preserve">
     <value>النسبة</value>
@@ -2189,5 +2189,14 @@
   </data>
   <data name="FFBSettingCorrectionLimit" xml:space="preserve">
     <value>حد التصحيح</value>
+  </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
   </data>
 </root>

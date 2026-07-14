@@ -49,7 +49,9 @@ public readonly struct FFBTickContext
 
 	public readonly float LFEMagnitude;
 
-	// wheel hardware state (from DirectInput)
+	// wheel state derived from the sim's steering telemetry, normalized to the car's half-lock (see
+	// RacingWheel.FrameContext — 0 when off-car); the preview replay re-derives them from the recorded
+	// SteeringWheelAngle/AngleMax/Velocity the same way
 
 	public readonly float WheelPosition;
 	public readonly float WheelVelocity;
@@ -78,6 +80,7 @@ public readonly struct FFBTickContext
 	public readonly float SteeringWheelAngle;
 	public readonly float SteeringWheelAngleMax;
 	public readonly float SteeringWheelVelocity;   // rad/s from 60 Hz telemetry (rotation-range independent); positive = counterclockwise
+	public readonly float PitchRate;               // rad/s — the frame's NEWEST 360 Hz sample (PitchRate_ST); Prediction module aux input
 
 	// one-tick protection pulses (rising edge drives the protection modules' timers)
 
@@ -115,6 +118,7 @@ public readonly struct FFBTickContext
 		float steeringWheelAngle,
 		float steeringWheelAngleMax,
 		float steeringWheelVelocity,
+		float pitchRate,
 		bool crashProtectionTriggered,
 		bool curbProtectionTriggered,
 		bool isPreview = false )
@@ -144,6 +148,7 @@ public readonly struct FFBTickContext
 		SteeringWheelAngle = steeringWheelAngle;
 		SteeringWheelAngleMax = steeringWheelAngleMax;
 		SteeringWheelVelocity = steeringWheelVelocity;
+		PitchRate = pitchRate;
 		CrashProtectionTriggered = crashProtectionTriggered;
 		CurbProtectionTriggered = curbProtectionTriggered;
 		IsPreview = isPreview;
@@ -162,11 +167,18 @@ public readonly struct FFBTickContext
 	/// module — effects, generators, and protections included — behaves as it did when the recording was made.
 	/// Recordings only run while on track with live torque data, so those two flags are hard-wired true. The
 	/// crash/curb trigger pulses are passed in because the caller re-derives them from the recorded raw telemetry
-	/// (G forces, peak shock velocity) against the protection modules' CURRENT thresholds. The torque frame is
-	/// passed in because the caller reassembles it from the recording's six samples around this one.
+	/// (G forces, peak shock velocity) against the protection modules' CURRENT thresholds. The torque frame and
+	/// the frame's newest pitch-rate sample are passed in because the caller reassembles them from the
+	/// recording's six samples around this one (matching what the live FrameContext carries).
 	/// </summary>
-	public static FFBTickContext FromRecording( Classes.RecordingData recordingData, in FFBTorqueFrame torqueFrame, float maxForce, bool crashProtectionTriggered, bool curbProtectionTriggered, int sampleIndex )
+	public static FFBTickContext FromRecording( Classes.RecordingData recordingData, in FFBTorqueFrame torqueFrame, float framePitchRate, float maxForce, bool crashProtectionTriggered, bool curbProtectionTriggered, int sampleIndex )
 	{
+		// half-lock-normalized wheel state, derived exactly like the live FrameContext derives it
+		var halfLock = recordingData.SteeringWheelAngleMax * 0.5f;
+
+		var wheelPosition = ( halfLock > 0f ) ? recordingData.SteeringWheelAngle / halfLock : 0f;
+		var wheelVelocity = ( halfLock > 0f ) ? recordingData.SteeringWheelVelocity / halfLock : 0f;
+
 		return new FFBTickContext(
 			deltaMilliseconds: TickDeltaMilliseconds,
 			sampleIndex: sampleIndex,
@@ -175,8 +187,8 @@ public readonly struct FFBTickContext
 			torqueFrame: in torqueFrame,
 			maxForce: maxForce,
 			lfeMagnitude: recordingData.LFEMagnitude,
-			wheelPosition: recordingData.WheelPosition,
-			wheelVelocity: recordingData.WheelVelocity,
+			wheelPosition: wheelPosition,
+			wheelVelocity: wheelVelocity,
 			understeerEffect: recordingData.UndersteerEffect,
 			oversteerEffect: recordingData.OversteerEffect,
 			seatOfPantsEffect: recordingData.SeatOfPantsEffect,
@@ -193,6 +205,7 @@ public readonly struct FFBTickContext
 			steeringWheelAngle: recordingData.SteeringWheelAngle,
 			steeringWheelAngleMax: recordingData.SteeringWheelAngleMax,
 			steeringWheelVelocity: recordingData.SteeringWheelVelocity,
+			pitchRate: framePitchRate,
 			crashProtectionTriggered: crashProtectionTriggered,
 			curbProtectionTriggered: curbProtectionTriggered,
 			isPreview: true );

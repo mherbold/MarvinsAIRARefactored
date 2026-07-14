@@ -415,22 +415,28 @@
 
                 </Grid>
 
-                <!-- Node graph (its corner tools include the add-module button, which pops the module picker) -->
-                <controls:FFBGraphEditor Margin="0,0,0,20" />
-
-                <!-- Selected module settings (the one card for whichever node is selected on the graph above) -->
-                <ContentControl Content="{Binding RacingWheelGraphViewModel.SelectedModule}"
-                                ContentTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
+                <!-- Node graph (its corner tools include the add-module button, which pops the module picker).
+                     The preview graph below shares its frame: the two boxes touch on a square-cornered seam
+                     (the preview's top border is the divider) so they read as one view. -->
+                <controls:FFBGraphEditor />
 
                 <!-- Preview: the selected module's signals replayed over the loaded recording (red = input A,
-                     green = input B, blue = output; for the Output module red/green are the two sources). The
-                     record + choose-recording buttons float over the graph's top-right corner. -->
+                     green = input B, blue = output; for the Output module red/green are the two sources), with
+                     the track map of the recorded segment in a 301x301 panel on the right — the data currently
+                     visible in the preview viewport is highlighted in orange on the map. The record +
+                     choose-recording buttons float over the row's top-right corner. -->
                 <Grid Tag="Complex">
 
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- corners: only the lower LEFT is rounded — the track map panel owns the lower right -->
                     <Border BorderThickness="2"
                             BorderBrush="{DynamicResource Brush.Border.Normal}"
                             Background="{DynamicResource Brush.Background.Popup}"
-                            CornerRadius="5"
+                            CornerRadius="0,0,0,5"
                             Padding="0,0,0,6">
 
                         <ScrollViewer x:Name="Preview_ScrollViewer"
@@ -438,6 +444,7 @@
                                       VerticalScrollBarVisibility="Disabled"
                                       MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
                                       PreviewMouseWheel="Preview_ScrollViewer_PreviewMouseWheel"
+                                      ScrollChanged="Preview_ScrollViewer_ScrollChanged"
                                       Loaded="Preview_ScrollViewer_Loaded">
 
                             <Image x:Name="AlgorithmPreview_Image"
@@ -452,7 +459,60 @@
 
                     </Border>
 
+                    <!-- track map panel: shares the preview's frame (no left border — the preview's right border
+                         is the divider), square corners except the lower right. The canvas is a fixed 301x301
+                         square aligned to the top; the border stretches to the preview's full height (scrollbar
+                         + padding included) so the bottom edges line up. -->
+                    <Border Grid.Column="1"
+                            x:Name="TrackMap_Border"
+                            BorderThickness="0,2,2,2"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
+                            CornerRadius="0,0,5,0">
+
+                        <!-- everything sits on a Canvas so the Path's element origin stays pinned to the
+                             panel's top-left corner: a Grid would size/align the Path from its geometry
+                             bounds, shifting the rendered line around as recordings change -->
+                        <Canvas Width="301"
+                                Height="301"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Top"
+                                ClipToBounds="True">
+
+                            <!-- whole recorded segment, fitted to the panel, north up -->
+                            <Path x:Name="TrackMap_Path"
+                                  Stroke="{DynamicResource Brush.Foreground.Muted}"
+                                  StrokeThickness="3"
+                                  Opacity="0.8"
+                                  StrokeLineJoin="Round"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round" />
+
+                            <!-- the slice of the recording currently visible in the preview viewport -->
+                            <Path x:Name="TrackMapSegment_Path"
+                                  Stroke="{DynamicResource Brush.Accent}"
+                                  StrokeThickness="4"
+                                  StrokeLineJoin="Round"
+                                  StrokeStartLineCap="Round"
+                                  StrokeEndLineCap="Round" />
+
+                            <!-- recording start (green) / end (red) markers — positioned in code -->
+                            <Ellipse x:Name="TrackMapStart_Ellipse"
+                                     Width="10"
+                                     Height="10"
+                                     Fill="#FF30C030" />
+
+                            <Ellipse x:Name="TrackMapEnd_Ellipse"
+                                     Width="10"
+                                     Height="10"
+                                     Fill="#FFE03030" />
+
+                        </Canvas>
+
+                    </Border>
+
                     <StackPanel Orientation="Horizontal"
+                                Grid.ColumnSpan="2"
                                 HorizontalAlignment="Right"
                                 VerticalAlignment="Top"
                                 Margin="0,8,8,0"
@@ -613,66 +673,15 @@
 
                             </Border>
 
-                            <!-- track map of the recorded segment (integrated from the recorded velocities), north
-                                 up, ~100 m across; the orange dot at the center is the car at the sample under
-                                 the cursor — the map slides underneath it as the cursor scrubs the preview -->
-                            <Border x:Name="TrackMap_Border"
-                                    Width="256"
-                                    Height="256"
-                                    Margin="8,0,0,0"
-                                    CornerRadius="16"
-                                    Background="{DynamicResource Brush.Background.Popup}"
-                                    BorderBrush="#FFF"
-                                    BorderThickness="1"
-                                    SnapsToDevicePixels="True"
-                                    ClipToBounds="True">
-
-                                <!-- everything sits on a Canvas so the Path's element origin stays pinned to the
-                                     panel's top-left corner: a Grid would size/align the Path from its geometry
-                                     bounds (which follow the recorded lap's world extents), silently shifting the
-                                     rendered line out of the clipped panel once a recording grew past the panel -->
-                                <Canvas>
-
-                                    <Path x:Name="TrackMap_Path"
-                                          Stroke="{DynamicResource Brush.Foreground.Muted}"
-                                          StrokeThickness="12"
-                                          StrokeLineJoin="Round"
-                                          StrokeStartLineCap="Round"
-                                          StrokeEndLineCap="Round">
-
-                                        <Path.RenderTransform>
-                                            <MatrixTransform x:Name="TrackMap_MatrixTransform" />
-                                        </Path.RenderTransform>
-
-                                    </Path>
-
-                                    <!-- recording start (green) / end (red) markers — positioned in code, they
-                                         ride the map as it slides under the fixed centered car dot -->
-                                    <Ellipse x:Name="TrackMapStart_Ellipse"
-                                             Width="16"
-                                             Height="16"
-                                             Fill="#FF30C030" />
-
-                                    <Ellipse x:Name="TrackMapEnd_Ellipse"
-                                             Width="16"
-                                             Height="16"
-                                             Fill="#FFE03030" />
-
-                                    <Ellipse Canvas.Left="120"
-                                             Canvas.Top="120"
-                                             Width="16"
-                                             Height="16"
-                                             Fill="{DynamicResource Brush.Accent}" />
-
-                                </Canvas>
-
-                            </Border>
-
                         </StackPanel>
 
                     </Popup>
 
                 </Grid>
+
+                <!-- Selected module settings (the one card for whichever node is selected on the graph above) -->
+                <ContentControl Content="{Binding RacingWheelGraphViewModel.SelectedModule}"
+                                ContentTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
 
             </StackPanel>
 

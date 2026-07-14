@@ -233,9 +233,6 @@ public sealed class RecordingManager : IDisposable
 				recordingData.LateralGForce = simulator.LateralGForce;
 				recordingData.MaxShockVelocity = simulator.MaxShockVelocity;
 
-				recordingData.WheelPosition = tickContext.WheelPosition;
-				recordingData.WheelVelocity = tickContext.WheelVelocity;
-
 				recordingData.UndersteerEffect = tickContext.UndersteerEffect;
 				recordingData.OversteerEffect = tickContext.OversteerEffect;
 				recordingData.SeatOfPantsEffect = tickContext.SeatOfPantsEffect;
@@ -259,6 +256,21 @@ public sealed class RecordingManager : IDisposable
 				recordingData.YawNorth = simulator.YawNorth;
 				recordingData.VelocityX = simulator.VelocityX;
 				recordingData.Speed = simulator.Speed;
+
+				// prediction-audit extras — per-tick 360 Hz ST samples plus the 60 Hz driver inputs
+
+				var sampleIndex = tickContext.SampleIndex;
+
+				recordingData.VelocityY360Hz = simulator.VelocityY_ST[ sampleIndex ];
+				recordingData.LatAccel = simulator.LatAccel_ST[ sampleIndex ];
+				recordingData.RollRate = simulator.RollRate_ST[ sampleIndex ];
+				recordingData.PitchRate = simulator.PitchRate_ST[ sampleIndex ];
+				recordingData.LFShockVelocity = simulator.LFShockVel_ST[ sampleIndex ];
+				recordingData.RFShockVelocity = simulator.RFShockVel_ST[ sampleIndex ];
+				recordingData.LFShockDeflection = simulator.LFShockDefl_ST[ sampleIndex ];
+				recordingData.RFShockDeflection = simulator.RFShockDefl_ST[ sampleIndex ];
+				recordingData.Throttle = simulator.Throttle;
+				recordingData.Brake = simulator.Brake;
 
 				// automatic stop on lap completion — arm once the car leaves the start zone, stop when it comes
 				// back. The s/f wrap is handled explicitly: the circular distance is the shorter way around the

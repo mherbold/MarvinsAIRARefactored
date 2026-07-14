@@ -97,6 +97,13 @@ public class RacingWheel
 	public bool AutoSetMaxForce { private get; set; } = false; // set to auto-set the max force setting
 	public bool UpdateAlgorithmPreview { private get; set; } = true; // set to update the algorithm preview
 
+	// preview horizontal zoom-out (Ctrl+wheel on the preview graph): draw every Nth recorded sample — 1 = 100%
+	// (every sample), 2 = 50%, ... 20 = 5%. Drawing only; the replay still processes every sample so module
+	// state stays sample-accurate. In-memory view state, never serialized.
+	public const int MaxAlgorithmPreviewSkip = 20;
+
+	public int AlgorithmPreviewSkip { private get; set; } = 1;
+
 	public float AutoTorque { get => _autoTorque; }
 	public float OutputTorque { get => _outputTorque; }
 	public bool IsFFBClipping { get => !_isSuspended && MathF.Abs( _outputTorque ) >= 0.99f; }
@@ -903,8 +910,7 @@ public class RacingWheel
 
 	/// <summary>
 	/// Frame-constant inputs for the 6-sample burst, snapshotted once per telemetry frame. Everything here is
-	/// 60 Hz data that cannot change between the six samples of one frame (DirectInput wheel position/velocity
-	/// are refreshed once per PollDevices call earlier on this same thread), so re-reading it per sample was
+	/// 60 Hz data that cannot change between the six samples of one frame, so re-reading it per sample was
 	/// redundant work.
 	/// </summary>
 	private readonly struct FrameContext
@@ -930,6 +936,7 @@ public class RacingWheel
 		public readonly float SteeringWheelAngle;
 		public readonly float SteeringWheelAngleMax;
 		public readonly float SteeringWheelVelocity;
+		public readonly float PitchRate;
 
 		public FrameContext( App app, float torque60Hz, float maxForce, bool usingTorqueData )
 		{
@@ -974,6 +981,7 @@ public class RacingWheel
 			SteeringWheelAngle = simulator.SteeringWheelAngle;
 			SteeringWheelAngleMax = simulator.SteeringWheelAngleMax;
 			SteeringWheelVelocity = simulator.SteeringWheelVelocity;
+			PitchRate = simulator.PitchRate_ST[ Simulator.SamplesPerFrame360Hz - 1 ]; // the frame's newest sample
 		}
 	}
 
@@ -1010,6 +1018,7 @@ public class RacingWheel
 			steeringWheelAngle: frameContext.SteeringWheelAngle,
 			steeringWheelAngleMax: frameContext.SteeringWheelAngleMax,
 			steeringWheelVelocity: frameContext.SteeringWheelVelocity,
+			pitchRate: frameContext.PitchRate,
 			crashProtectionTriggered: crashProtectionTriggered,
 			curbProtectionTriggered: curbProtectionTriggered );
 	}
@@ -1052,11 +1061,14 @@ public class RacingWheel
 					app.RecordingManager.RequestRecordingData( recording );
 				}
 
-				// the preview bitmap is one pixel per recorded sample — resize it when the recording length
-				// changes (recordings are dynamic-length now); the default width covers the no-recording case
+				// the preview bitmap is one pixel per DRAWN sample — every previewSkip'th recorded sample — so it
+				// shrinks as the preview zooms out; resize it when the recording length or the zoom changes
+				// (recordings are dynamic-length now); the default width covers the no-recording case
+				var previewSkip = Math.Clamp( AlgorithmPreviewSkip, 1, MaxAlgorithmPreviewSkip );
+
 				var recordingSampleCount = recording?.Data?.Count ?? 0;
 
-				var desiredPreviewWidth = ( recordingSampleCount > 0 ) ? recordingSampleCount : DefaultAlgorithmPreviewWidth;
+				var desiredPreviewWidth = ( recordingSampleCount > 0 ) ? ( recordingSampleCount + previewSkip - 1 ) / previewSkip : DefaultAlgorithmPreviewWidth;
 
 				if ( desiredPreviewWidth != _algorithmPreviewGraphBase.BitmapWidth )
 				{
@@ -1064,7 +1076,7 @@ public class RacingWheel
 
 					_algorithmPreviewGraphBase.Initialize( _racingWheelPage.AlgorithmPreview_Image );
 
-					_racingWheelPage.CenterPreviewScrollViewer();
+					_racingWheelPage.OnPreviewImageResized();
 				}
 
 				_algorithmPreviewGraphBase.Reset();
@@ -1136,16 +1148,18 @@ public class RacingWheel
 				var isFirstSample = true;
 
 				var previewTorqueFrame = new FFBTorqueFrame();
+				var previewFramePitchRate = 0f;
 
-				for ( var x = 0; x < _algorithmPreviewGraphBase.BitmapWidth; x++ )
+				if ( ( recording?.Data != null ) && ( recording.Data.Count > 0 ) )
 				{
-					if ( ( recording?.Data != null ) && ( x < recording.Data.Count ) )
+					for ( var x = 0; x < recording.Data.Count; x++ )
 					{
 						var recordingData = recording.Data[ x ];
 
 						var sampleIndex = x % FFBTickContext.SamplesPerFrame;
 
-						// reassemble the frame's six raw 360 Hz samples (what the live burst sees in one go)
+						// reassemble the frame's six raw 360 Hz samples (what the live burst sees in one go) and
+						// the frame's newest pitch-rate sample (what the live FrameContext carries)
 						if ( ( sampleIndex == 0 ) || isFirstSample )
 						{
 							var frameStart = x - sampleIndex;
@@ -1156,6 +1170,8 @@ public class RacingWheel
 
 								previewTorqueFrame[ i ] = recording.Data[ index ].InputTorque360Hz;
 							}
+
+							previewFramePitchRate = recording.Data[ Math.Min( frameStart + FFBTickContext.SamplesPerFrame - 1, recording.Data.Count - 1 ) ].PitchRate;
 						}
 
 						var crashProtectionTriggered = ( ( crashLongGForceThreshold < 20f ) && ( recordingData.LongitudinalGForce >= crashLongGForceThreshold ) )
@@ -1163,9 +1179,17 @@ public class RacingWheel
 
 						var curbProtectionTriggered = ( curbShockVelocityThreshold > 0f ) && ( recordingData.MaxShockVelocity >= curbShockVelocityThreshold );
 
-						var previewContext = FFBTickContext.FromRecording( recordingData, in previewTorqueFrame, maxForce, crashProtectionTriggered, curbProtectionTriggered, sampleIndex );
+						var previewContext = FFBTickContext.FromRecording( recordingData, in previewTorqueFrame, previewFramePitchRate, maxForce, crashProtectionTriggered, curbProtectionTriggered, sampleIndex );
 
 						_previewEngine.Process( in previewContext );
+
+						// zoomed out, only every previewSkip'th sample lands a bitmap column — the engine still
+						// ran for the skipped ones, so module state (filters, prediction, protection timers)
+						// stays sample-accurate at every zoom level
+						if ( ( x % previewSkip ) != 0 )
+						{
+							continue;
+						}
 
 						// the main bus is in Nm until the Output module normalizes it, so tapped signals are
 						// scaled by max force for display; the final output is already normalized
@@ -1219,9 +1243,17 @@ public class RacingWheel
 						}
 
 						_algorithmPreviewGraphBase.SetClearColor( clearColor );
-					}
 
-					_algorithmPreviewGraphBase.FinishUpdates();
+						_algorithmPreviewGraphBase.FinishUpdates();
+					}
+				}
+				else
+				{
+					// no recording — just paint the empty grid across the default-width bitmap
+					for ( var x = 0; x < _algorithmPreviewGraphBase.BitmapWidth; x++ )
+					{
+						_algorithmPreviewGraphBase.FinishUpdates();
+					}
 				}
 
 				_algorithmPreviewGraphBase.WritePixels();

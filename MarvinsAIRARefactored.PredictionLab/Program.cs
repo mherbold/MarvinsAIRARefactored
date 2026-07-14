@@ -10,8 +10,14 @@ using System.Globalization;
 // prediction idea against the same yardstick before touching the app.
 //
 // Usage:
-//   dotnet run -c Release                          (newest v3 recording in Documents\MarvinsAIRA Refactored\Recordings)
-//   dotnet run -c Release -- "path\to\recording.csv"
+//   dotnet run -c Release                            (EVERY recording in Documents\MarvinsAIRA Refactored\Recordings:
+//                                                     compact suite per recording + cross-recording summary)
+//   dotnet run -c Release -- "path\to\recording.csv" (full deep-dive suite on one recording)
+//   dotnet run -c Release -- "a.csv" "b.csv" ...     (compact suite + summary over specific recordings)
+//   dotnet run -c Release -- --select                (greedy feature selection vs the SHIPPED feature set,
+//                                                     across all — or the given — recordings)
+//   dotnet run -c Release -- --tune                  (grid-sweep the shipped module's knobs across all — or
+//                                                     the given — recordings, to pick global defaults)
 //
 // Ground truth: a predictor with horizon k should output, at tick t, an estimate of y[t+k]. Metrics per run:
 //   rmse    - RMSE(out[t], y[t+k]) / RMSE(y[t], y[t+k])  — error vs the ideal shifted waveform, relative to
@@ -47,88 +53,333 @@ using System.Globalization;
 //   * The bias + steering-angle features shipped in the module on 2026-07-13 (section K reflects them):
 //     every configuration improved on every metric at once — K6@150% rmse 0.82 -> 0.71 / shift 9.9 -> 10.6 ms
 //     / hfGain 1.44 -> 1.29, and K12 went from pointless (5.4 ms) to viable (9.5 ms @150%, 12 ms @200%).
+//   * Cross-recording run over 6 cars/tracks (2026-07-14, v4 recordings): the shipped module generalizes —
+//     K6@150% rmse 0.80 [0.69..0.93], shift 10.4 ms [6.8..13.8] on every car. K12@200% is NOT robust (the
+//     Formula Vee's shift metric collapsed to a spurious negative peak); recommend K6. The default 5 Nm
+//     Correction limit saturates on high-torque cars (ARCA oval, |d|p95 pinned at 5.00) and caps their shift.
+//     Channel audit across cars (vs torque+bias, WITHOUT the angle): the consistent generalizers are the
+//     chassis/road-input channels — d/dt PitchRate (-0.051, 6/6), RollRate (-0.051, 5/6), LF shock
+//     deflection-derivative/velocity (-0.050, 6/6), then SteeringWheelAngle (-0.046, 5/6, already shipped).
+//     The slip-angle hypothesis channels (YawRate -0.013, VelocityY360Hz -0.016) turned out WEAK across cars
+//     — suspension/weight-transfer motion beats yaw kinematics. Note the audit baseline excludes the angle,
+//     so any module-upgrade decision needs a follow-up test against a torque+bias+angle baseline.
+//   * Greedy feature selection vs the SHIPPED set (--select, 2026-07-14, 6 cars): most audit winners deflate
+//     once the angle is in the baseline (they partially duplicate it — e.g. shock channels drop to 4/6
+//     consistency). The greedy picks, in order: d/dt PitchRate (-0.028, 5/6), then SteeringWheelVelocity
+//     (-0.018, 5/6 — only valuable AFTER pitch rate; interaction effect), then VelocityY (-0.010, 4/6,
+//     borderline). Full selected set vs shipped at g=1.5: rmse 0.870 -> 0.814, shift 13.7 -> 14.0 ms —
+//     real but modest (~6%). YawRate never earns a slot at any round.
+//   * The selected channels shipped in the module on 2026-07-14 (4 aux channels: angle, wheel velocity,
+//     lateral velocity, pitch acceleration — 49 features). Aux scale probe: scaling the aux channels down
+//     toward torque-std magnitude trades shift for rmse smoothly (no pathology); full MaxForce scale keeps
+//     the most shift and stays the shipped choice. Defaults grid (--tune, 45 configs x 6 cars): K6 /
+//     strength 150% / limit 5 Nm is the Pareto winner for "max shift with EVERY car better than doing
+//     nothing" (11.5 ms avg [8.6 worst], rmse 0.816 [0.978 worst], hfGain 1.24 [1.45]) — the shipped
+//     defaults were confirmed, not changed. Cleaner alternates for docs: K6/125%/5 and K4/125%/10.
 // ============================================================================================================
 
 const int TickRate = 360;
 const float Dt = 1f / TickRate;
 const int Warmup = 3600; // 10 s — lets adaptive algorithms settle before scoring
 
-// ---------------------------------------------------------------- recording discovery + load
+// ---------------------------------------------------------------- recording discovery + main flow
 
-var path = args.Length > 0 ? args[ 0 ] : FindNewestRecording();
+// No arguments: analyze EVERY valid recording in the app's Recordings folder — the compact suite (shipped
+// module + channel audit) per recording, then a cross-recording summary showing what generalizes across
+// cars/tracks. Exactly one file argument: the full deep-dive suite (every section) on that recording.
+// Several file arguments: compact suite + summary over those files. --select (plus optional files) runs the
+// greedy feature selection instead (see RunFeatureSelection).
+var selectMode = args.Contains( "--select" );
+var tuneMode = args.Contains( "--tune" );
 
-if ( ( path == null ) || !File.Exists( path ) )
+List<string> recordingPaths = [ .. args.Where( arg => ( arg != "--select" ) && ( arg != "--tune" ) ) ];
+
+if ( recordingPaths.Count == 0 )
 {
-	Console.WriteLine( "No recording found — pass a path to a MAIRA Recording v3 .csv, or record one in the app first." );
+	recordingPaths = FindAllRecordings();
+}
+
+if ( recordingPaths.Count == 0 )
+{
+	Console.WriteLine( "No recordings found — pass paths to MAIRA Recording v3/v4 .csv files, or record some in the app first." );
 
 	return 1;
 }
 
-Console.WriteLine( $"Recording: {path}" );
+var deepDive = recordingPaths.Count == 1;
 
-// load EVERY column of the recording (bools become 0/1) so the telemetry channel audit (section L) can test
-// any channel MAIRA records without loader changes
+// per-recording state, reloaded by LoadRecording; the analysis helpers below capture these locals
 var columnNames = Array.Empty<string>();
-var columnData = Array.Empty<List<float>>();
+var columns = new Dictionary<string, float[]>( StringComparer.Ordinal );
+var Y = Array.Empty<float>();     // the signal being predicted: InputTorque360Hz (Nm)
+var VSIM = Array.Empty<float>();  // SteeringWheelVelocity (rad/s) — the old module's wheel-velocity input
+var n = 0;
 
-using ( var reader = new StreamReader( path ) )
+var evalRows = new List<string>();
+
+// cross-recording aggregation (multi-recording mode)
+( int K, float Strength )[] compactConfigs = [ ( 6, 1f ), ( 6, 1.5f ), ( 6, 2f ), ( 12, 1.5f ), ( 12, 2f ) ];
+
+var shippedScores = new Dictionary<string, List<( double Rmse, double Shift, double HfGain )>>( StringComparer.Ordinal );
+var auditDeltas = new Dictionary<string, List<( double RmseDelta, double ShiftDelta )>>( StringComparer.Ordinal );
+var analyzedCount = 0;
+
+if ( selectMode || tuneMode )
 {
-	// the loader is header-driven, so any version with the columns we key on works: v3 recordings simply
-	// lack the YawRate column (added in v4) and it silently drops out of the audit's candidate list
-	var formatLine = reader.ReadLine();
-
-	if ( ( formatLine != "MAIRA Recording v3" ) && ( formatLine != "MAIRA Recording v4" ) )
+	if ( selectMode )
 	{
-		Console.WriteLine( $"Unsupported recording format (expected 'MAIRA Recording v3' or 'v4', got '{formatLine}')." );
-
-		return 1;
+		RunFeatureSelection( recordingPaths );
 	}
 
-	reader.ReadLine(); // description
-
-	columnNames = ( reader.ReadLine() ?? string.Empty ).Split( ',' );
-	columnData = [ .. columnNames.Select( _ => new List<float>() ) ];
-
-	string? line;
-
-	while ( ( line = reader.ReadLine() ) != null )
+	if ( tuneMode )
 	{
-		var parts = line.Split( ',' );
+		RunDefaultsTuning( recordingPaths );
+	}
 
-		if ( parts.Length != columnNames.Length )
+	Console.WriteLine();
+
+	foreach ( var row in evalRows )
+	{
+		Console.WriteLine( row );
+	}
+
+	return 0;
+}
+
+foreach ( var recordingPath in recordingPaths )
+{
+	if ( !LoadRecording( recordingPath ) )
+	{
+		continue;
+	}
+
+	analyzedCount++;
+
+	Banner( $"RECORDING: {Path.GetFileNameWithoutExtension( recordingPath )} ({n / (float) TickRate:F0} s)" );
+
+	if ( deepDive )
+	{
+		RunFullSuite();
+	}
+	else
+	{
+		RunCompactSuite();
+	}
+}
+
+if ( analyzedCount == 0 )
+{
+	Console.WriteLine( "None of the recordings could be loaded." );
+
+	return 1;
+}
+
+// ---------------------------------------------------------------- cross-recording summary
+
+if ( !deepDive )
+{
+	Banner( $"CROSS-RECORDING SUMMARY — shipped module over {analyzedCount} recordings, mean [min..max]" );
+
+	foreach ( var (k, strength) in compactConfigs )
+	{
+		var key = $"SHIPPED k={k} strength={strength}";
+
+		if ( !shippedScores.TryGetValue( key, out var scores ) )
 		{
 			continue;
 		}
 
-		for ( var i = 0; i < parts.Length; i++ )
-		{
-			columnData[ i ].Add( ParseCell( parts[ i ] ) );
-		}
+		var rmse = scores.Select( s => s.Rmse ).ToArray();
+		var shiftMs = scores.Select( s => s.Shift * 1000.0 / TickRate ).ToArray();
+		var hfGain = scores.Select( s => s.HfGain ).ToArray();
+
+		evalRows.Add( $"{key,-30} | rmse {rmse.Average(),5:F3} [{rmse.Min():F3}..{rmse.Max():F3}] | shift {shiftMs.Average(),5:F1} ms [{shiftMs.Min(),5:F1}..{shiftMs.Max(),5:F1}] | hfGain {hfGain.Average(),4:F2} [{hfGain.Min():F2}..{hfGain.Max():F2}]" );
+	}
+
+	Banner( "CROSS-RECORDING SUMMARY — channel audit, avg delta vs the torque+bias baseline (negative rmse = helps)" );
+
+	foreach ( var (name, deltas) in auditDeltas.OrderBy( pair => pair.Value.Average( d => d.RmseDelta ) ) )
+	{
+		var helped = deltas.Count( d => d.RmseDelta < -0.005 );
+
+		evalRows.Add( $"{name,-28} | avg rmse delta {deltas.Average( d => d.RmseDelta ),7:F3} | helped in {helped}/{deltas.Count} | avg shift delta {deltas.Average( d => d.ShiftDelta ),5:F1} ticks" );
 	}
 }
 
-var columns = new Dictionary<string, float[]>( StringComparer.Ordinal );
+// ---------------------------------------------------------------- results
 
-for ( var i = 0; i < columnNames.Length; i++ )
+Console.WriteLine();
+
+foreach ( var row in evalRows )
 {
-	columns[ columnNames[ i ] ] = [ .. columnData[ i ] ];
+	Console.WriteLine( row );
 }
 
-var Y = columns[ "InputTorque360Hz" ];     // the signal being predicted (Nm)
-var VDI = columns[ "WheelVelocity" ];      // DirectInput wheel velocity (local hardware)
-var VSIM = columns[ "SteeringWheelVelocity" ]; // sim steering wheel velocity (rad/s)
-var n = Y.Length;
+return 0;
 
-if ( n < Warmup * 2 )
+// ---------------------------------------------------------------- per-recording loading + suites
+
+// loads EVERY column of a recording (bools become 0/1) into the shared per-recording locals, so the channel
+// audit can test any channel MAIRA records without loader changes. The loader is header-driven, so any
+// version with the columns we key on works: v3 recordings simply lack the v4 columns, which then drop out
+// of the audit's candidate list.
+bool LoadRecording( string path )
 {
-	Console.WriteLine( $"Recording too short ({n / (float) TickRate:F1} s) — need at least {Warmup * 2 / TickRate} s." );
+	if ( !File.Exists( path ) )
+	{
+		Console.WriteLine( $"Skipping (not found): {path}" );
 
-	return 1;
+		return false;
+	}
+
+	var names = Array.Empty<string>();
+	var columnData = Array.Empty<List<float>>();
+
+	using ( var reader = new StreamReader( path ) )
+	{
+		var formatLine = reader.ReadLine();
+
+		if ( ( formatLine != "MAIRA Recording v3" ) && ( formatLine != "MAIRA Recording v4" ) )
+		{
+			Console.WriteLine( $"Skipping (unsupported format '{formatLine}'): {path}" );
+
+			return false;
+		}
+
+		reader.ReadLine(); // description
+
+		names = ( reader.ReadLine() ?? string.Empty ).Split( ',' );
+		columnData = [ .. names.Select( _ => new List<float>() ) ];
+
+		string? line;
+
+		while ( ( line = reader.ReadLine() ) != null )
+		{
+			var parts = line.Split( ',' );
+
+			if ( parts.Length != names.Length )
+			{
+				continue;
+			}
+
+			for ( var i = 0; i < parts.Length; i++ )
+			{
+				columnData[ i ].Add( ParseCell( parts[ i ] ) );
+			}
+		}
+	}
+
+	columnNames = names;
+	columns = new Dictionary<string, float[]>( StringComparer.Ordinal );
+
+	for ( var i = 0; i < columnNames.Length; i++ )
+	{
+		columns[ columnNames[ i ] ] = [ .. columnData[ i ] ];
+	}
+
+	Y = columns[ "InputTorque360Hz" ];
+	VSIM = columns[ "SteeringWheelVelocity" ];
+	n = Y.Length;
+
+	if ( n < Warmup * 2 )
+	{
+		Console.WriteLine( $"Skipping (too short: {n / (float) TickRate:F1} s, need {Warmup * 2 / TickRate} s): {path}" );
+
+		return false;
+	}
+
+	Console.WriteLine( $"Loaded {Path.GetFileName( path )} — {n} ticks ({n / (float) TickRate:F1} s), torque range [{Y.Min():F2}, {Y.Max():F2}] Nm" );
+
+	return true;
 }
 
-Console.WriteLine( $"Loaded {n} ticks ({n / (float) TickRate:F1} s), torque range [{Y.Min():F2}, {Y.Max():F2}] Nm" );
+// the multi-recording suite: the shipped module at the interesting configurations plus the channel audit,
+// both feeding the cross-recording aggregation
+void RunCompactSuite()
+{
+	foreach ( var (k, strength) in compactConfigs )
+	{
+		var key = $"SHIPPED k={k} strength={strength}";
 
-var evalRows = new List<string>();
+		var score = EvaluateRange( key, k, RunShipped( k, strength ), n / 2, n - k - 30 );
+
+		if ( !shippedScores.TryGetValue( key, out var scores ) )
+		{
+			scores = [];
+
+			shippedScores[ key ] = scores;
+		}
+
+		scores.Add( ( score.Rmse, score.Shift, score.HfGain ) );
+	}
+
+	foreach ( var (name, rmseDelta, shiftDelta) in RunChannelAudit() )
+	{
+		if ( !auditDeltas.TryGetValue( name, out var deltas ) )
+		{
+			deltas = [];
+
+			auditDeltas[ name ] = deltas;
+		}
+
+		deltas.Add( ( rmseDelta, shiftDelta ) );
+	}
+}
+
+// runs the shipped PredictionModule port over the loaded recording and returns its output signal
+float[] RunShipped( int k, float strength, float correctionLimit = 5f, float auxScale = 1f )
+{
+	// the module scales the aux channels by the live MaxForce setting; the recording doesn't store it, so use
+	// a representative 20 Nm — it only sets the aux features' scale, which NLMS fine-tunes anyway
+	const float maxForce = 20f;
+
+	// half-lock-normalized wheel position/velocity, derived from the steering telemetry exactly like the live
+	// FrameContext (recordings stopped storing the redundant WheelPosition/WheelVelocity columns in v4)
+	var steeringWheelAngle = columns[ "SteeringWheelAngle" ];
+	var steeringWheelAngleMax = columns[ "SteeringWheelAngleMax" ];
+
+	// aux channels missing from pre-v4 recordings degrade to zero features (the filters learn zero weight)
+	columns.TryGetValue( "VelocityY", out var velocityY );
+	columns.TryGetValue( "PitchRate", out var pitchRate );
+
+	var module = new ShippedPredictionModule( k, strength, correctionLimit, auxScale );
+
+	var output = new float[ n ];
+
+	var frame = new float[ 6 ];
+
+	var framePitchRate = 0f;
+
+	for ( var t = 0; t < n; t++ )
+	{
+		var i = t % 6;
+
+		if ( i == 0 )
+		{
+			for ( var j = 0; j < 6; j++ )
+			{
+				frame[ j ] = Y[ Math.Min( n - 1, t + j ) ];
+			}
+
+			// the frame's newest pitch-rate sample — what the live FrameContext carries
+			framePitchRate = pitchRate?[ Math.Min( t + 5, n - 1 ) ] ?? 0f;
+		}
+
+		var halfLock = steeringWheelAngleMax[ t ] * 0.5f;
+
+		var wheelPosition = ( halfLock > 0f ) ? steeringWheelAngle[ t ] / halfLock : 0f;
+		var wheelVelocity = ( halfLock > 0f ) ? VSIM[ t ] / halfLock : 0f;
+
+		output[ t ] = module.Process( frame, i, Y[ t ], wheelPosition, wheelVelocity, velocityY?[ t ] ?? 0f, framePitchRate, maxForce );
+	}
+
+	return output;
+}
+
+// the single-recording deep dive: the full catalog of sections, including the historical baselines and the
+// dead ends (see the header comment for the section-by-section verdicts)
+void RunFullSuite()
+{
 
 // ============================================================================================================
 // A. baselines — persistence (score floor) and a perfect oracle (validates the shift metric: must read k)
@@ -162,8 +413,7 @@ Banner( "B. old module (RLS on [1, y, v])" );
 
 foreach ( var k in new[] { 6, 12 } )
 {
-	Evaluate( "old RLS [1,y,vSim]", k, RunOldRls( k, VSIM ) );
-	Evaluate( "old RLS [1,y,vDI]", k, RunOldRls( k, VDI ) );
+	Evaluate( "old RLS [1,y,v]", k, RunOldRls( k, VSIM ) );
 }
 
 float[] RunOldRls( int k, float[] vel )
@@ -473,78 +723,7 @@ foreach ( var k in new[] { 6, 12 } )
 	}
 }
 
-float[] RunNlmsBank( int k, int tapCount, float mu, float g )
-{
-	const float eps = 1e-3f;
-
-	var dMin = Math.Max( 1, k - 5 );
-
-	var w = new float[ k + 1 ][];
-
-	for ( var d = dMin; d <= k; d++ )
-	{
-		w[ d ] = new float[ tapCount ];
-		w[ d ][ 0 ] = 1f;
-	}
-
-	var output = new float[ n ];
-
-	for ( var t = 0; t < n; t++ )
-	{
-		var e = Math.Min( n - 1, FrameNewest( t ) );
-
-		var d = t + k - e;
-
-		if ( e < tapCount + 40 )
-		{
-			output[ t ] = Y[ t ];
-
-			continue;
-		}
-
-		if ( d < 1 )
-		{
-			output[ t ] = Y[ t + k ]; // target inside the already-known frame: exact
-
-			continue;
-		}
-
-		var wd = w[ d ];
-
-		// one NLMS update per depth per frame: the prediction made from anchor (e - d) just met its truth
-		{
-			var anchor = e - d;
-
-			float dot = 0f, norm = eps;
-
-			for ( var j = 0; j < tapCount; j++ )
-			{
-				var x = Y[ anchor - j ];
-
-				dot += wd[ j ] * x;
-				norm += x * x;
-			}
-
-			var scale = mu * ( Y[ anchor + d ] - dot ) / norm;
-
-			for ( var j = 0; j < tapCount; j++ )
-			{
-				wd[ j ] += scale * Y[ anchor - j ];
-			}
-		}
-
-		var pred = 0f;
-
-		for ( var j = 0; j < tapCount; j++ )
-		{
-			pred += wd[ j ] * Y[ e - j ];
-		}
-
-		output[ t ] = Y[ t ] + g * ( pred - Y[ t ] );
-	}
-
-	return output;
-}
+// (RunNlmsBank lives with the shared helpers below — the channel audit uses it too)
 
 // ============================================================================================================
 // I. DEAD END: NLMS trained on all six anchors per frame. Verdict: consecutive anchors are highly correlated,
@@ -730,61 +909,37 @@ foreach ( var k in new[] { 6 } )
 
 Banner( "K. shipped PredictionModule (keep in sync with the app!)" );
 
+foreach ( var k in new[] { 2, 6, 12 } )
 {
-	// the module scales the angle by the live MaxForce setting; the recording doesn't store it, so use a
-	// representative 20 Nm — it only sets the angle feature's scale, which NLMS fine-tunes anyway
-	const float maxForce = 20f;
-
-	var wheelPosition = columns[ "WheelPosition" ];
-
-	foreach ( var k in new[] { 2, 6, 12 } )
+	foreach ( var strength in new[] { 1f, 1.5f, 2f } )
 	{
-		foreach ( var strength in new[] { 1f, 1.5f, 2f } )
-		{
-			var module = new ShippedPredictionModule( k, strength, correctionLimit: 5f );
-
-			var output = new float[ n ];
-
-			var frame = new float[ 6 ];
-
-			for ( var t = 0; t < n; t++ )
-			{
-				var i = t % 6;
-
-				if ( i == 0 )
-				{
-					for ( var j = 0; j < 6; j++ )
-					{
-						frame[ j ] = Y[ Math.Min( n - 1, t + j ) ];
-					}
-				}
-
-				output[ t ] = module.Process( frame, i, Y[ t ], wheelPosition[ t ], maxForce );
-			}
-
-			EvaluateRange( $"SHIPPED k={k} strength={strength}", k, output, n / 2, n - k - 30 );
-		}
+		EvaluateRange( $"SHIPPED k={k} strength={strength}", k, RunShipped( k, strength ), n / 2, n - k - 30 );
 	}
 }
 
+	RunChannelAudit();
+}
+
 // ============================================================================================================
-// L. telemetry channel audit — could ANY recorded channel (or its derivative) help predict torque beyond
-//    what torque history already provides? Three tests per channel, from cheap intuition to hard proof:
-//      leadCorr  - peak |corr| between the channel and the FUTURE 15 Hz torque change (raw predictive hint)
-//      residCorr - peak |corr| between the channel and the torque-only NLMS predictor's RESIDUAL — the only
-//                  variance a new input could still explain; residCorr^2 is the ceiling on its contribution
-//      aug rmse/shift - the end-to-end proof: the channel added to the NLMS bank as 6 frame-spaced taps,
-//                  scored against an identical bank fed a zero channel (same tap count = fair comparison)
-//    Channels are 60 Hz frame-constant in the recording, so lags are scanned in whole frames (0/6/12/18).
-//    Both the baseline and every candidate include an adaptive BIAS feature: without it, any slowly-varying
-//    channel (speed, gear position, ...) "improves" the score by ~0.11 rmse purely by smuggling in an
-//    intercept for the slowly-varying torque offset — with zero actual predictive correlation. The bias
-//    baseline absorbs that effect so the deltas below measure genuine information only.
+// telemetry channel audit (section L of the deep dive; also the second half of the compact suite) — could ANY
+// recorded channel (or its derivative) help predict torque beyond what torque history already provides?
+// Three tests per channel, from cheap intuition to hard proof:
+//   leadCorr  - peak |corr| between the channel and the FUTURE 15 Hz torque change (raw predictive hint)
+//   residCorr - peak |corr| between the channel and the torque-only NLMS predictor's RESIDUAL — the only
+//               variance a new input could still explain; residCorr^2 is the ceiling on its contribution
+//   aug rmse/shift - the end-to-end proof: the channel added to the NLMS bank as 6 frame-spaced taps,
+//               scored against an identical bank fed a zero channel (same tap count = fair comparison)
+// Channels are 60 Hz frame-constant in the recording, so lags are scanned in whole frames (0/6/12/18).
+// Both the baseline and every candidate include an adaptive BIAS feature: without it, any slowly-varying
+// channel (speed, gear position, ...) "improves" the score by ~0.11 rmse purely by smuggling in an
+// intercept for the slowly-varying torque offset — with zero actual predictive correlation. The bias
+// baseline absorbs that effect so the deltas below measure genuine information only.
 // ============================================================================================================
 
-Banner( "L. telemetry channel audit (k=6, strength 150%)" );
-
+List<( string Name, double RmseDelta, double ShiftDelta )> RunChannelAudit()
 {
+	Banner( "channel audit (k=6, strength 150%)" );
+
 	const int auditK = 6;
 	const float auditMu = 0.25f;
 	const float auditG = 1.5f;
@@ -812,8 +967,58 @@ Banner( "L. telemetry channel audit (k=6, strength 150%)" );
 		futureChange[ t ] = yLf15[ t + auditK ] - yLf15[ t ];
 	}
 
-	// candidates: every recorded channel except the torque columns and constants/monotonics, plus each
-	// channel's 60 Hz frame-difference (e.g. d/dt YawNorth = yaw rate, d/dt SteeringWheelAngle = wheel speed)
+	var candidates = BuildCandidates();
+
+	// baselines: torque-only, then torque + adaptive bias. The bias alone captures the slowly-varying torque
+	// offset — every channel is scored against the WITH-bias baseline so a slow channel can't take credit
+	// for merely smuggling in an intercept.
+	var zeroChannel = new float[ n ];
+
+	var torqueOnlyScore = Measure( auditK, RunAugmentedNlmsBank( auditK, 24, auditMu, auditG, includeBias: false, zeroChannel ), from, to );
+	var baseline = Measure( auditK, RunAugmentedNlmsBank( auditK, 24, auditMu, auditG, includeBias: true, zeroChannel ), from, to );
+
+	evalRows.Add( $"{"baseline: torque only",-28} | leadCorr   -- | residCorr   -- | aug rmse {torqueOnlyScore.Rmse,6:F3} ({Signed( torqueOnlyScore.Rmse - baseline.Rmse, 3 )}) | aug shift {torqueOnlyScore.Shift,4:F1} ticks ({Signed( torqueOnlyScore.Shift - baseline.Shift, 1 )})" );
+	evalRows.Add( $"{"baseline: torque + bias",-28} | leadCorr   -- | residCorr   -- | aug rmse {baseline.Rmse,6:F3} (+0.000) | aug shift {baseline.Shift,4:F1} ticks (+0.0)" );
+
+	var auditResults = new List<( string Name, double LeadCorr, double ResidCorr, double RmseDelta, double ShiftDelta, string Row )>();
+
+	foreach ( var (name, series) in candidates )
+	{
+		var leadCorr = MaxAbsLaggedCorr( series, futureChange, from, to );
+		var residCorr = MaxAbsLaggedCorr( series, residual, from, to );
+
+		var augmented = Measure( auditK, RunAugmentedNlmsBank( auditK, 24, auditMu, auditG, includeBias: true, series ), from, to );
+
+		var rmseDelta = augmented.Rmse - baseline.Rmse;
+		var shiftDelta = augmented.Shift - baseline.Shift;
+
+		var row = $"{name,-28} | leadCorr {leadCorr,4:F2} | residCorr {residCorr,4:F2} | aug rmse {augmented.Rmse,6:F3} ({Signed( rmseDelta, 3 )}) | aug shift {augmented.Shift,4:F1} ticks ({Signed( shiftDelta, 1 )})";
+
+		auditResults.Add( ( name, leadCorr, residCorr, rmseDelta, shiftDelta, row ) );
+	}
+
+	// most helpful first: biggest rmse improvement (most negative delta)
+	foreach ( var result in auditResults.OrderBy( r => r.RmseDelta ) )
+	{
+		evalRows.Add( result.Row );
+	}
+
+	// kitchen sink: the three best channels together (does anything stack?)
+	var topThree = auditResults.OrderBy( r => r.RmseDelta ).Take( 3 ).ToArray();
+
+	var combined = Measure( auditK, RunAugmentedNlmsBank( auditK, 24, auditMu, auditG, includeBias: true, topThree.Select( r => candidates.First( c => c.Name == r.Name ).Series ).ToArray() ), from, to );
+
+	evalRows.Add( $"top-3 combined ({string.Join( " + ", topThree.Select( r => r.Name ) )}) | aug rmse {combined.Rmse,6:F3} ({Signed( combined.Rmse - baseline.Rmse, 3 )}) | aug shift {combined.Shift,4:F1} ticks ({Signed( combined.Shift - baseline.Shift, 1 )})" );
+
+	return [ .. auditResults.Select( r => ( r.Name, r.RmseDelta, r.ShiftDelta ) ) ];
+}
+
+// candidate channels for the audit and the feature selection: every recorded channel except the torque
+// columns and constants/monotonics, plus each channel's 60 Hz frame-difference (e.g. d/dt YawNorth = yaw
+// rate), plus direction-neutral front-axle combos (per-corner shocks flip LF/RF with track direction; the
+// sum ~ road input / heave and the difference ~ road roll are the direction-independent versions)
+List<( string Name, float[] Series )> BuildCandidates()
+{
 	var skip = new HashSet<string>( StringComparer.Ordinal )
 	{
 		"InputTorque60Hz", "InputTorque360Hz",           // that IS the signal
@@ -857,73 +1062,286 @@ Banner( "L. telemetry channel audit (k=6, strength 150%)" );
 		candidates.Add( ( $"d/dt {name}", derivative ) );
 	}
 
-	// baselines: torque-only, then torque + adaptive bias. The bias alone captures the slowly-varying torque
-	// offset — every channel is scored against the WITH-bias baseline so a slow channel can't take credit
-	// for merely smuggling in an intercept.
-	var zeroChannel = new float[ n ];
+	// direction-neutral front-axle combos (v4 recordings only — the per-corner columns must exist)
+	AddFrontAxleCombo( candidates, "LFShockVelocity", "RFShockVelocity", "FrontShockVel" );
+	AddFrontAxleCombo( candidates, "LFShockDeflection", "RFShockDeflection", "FrontShockDefl" );
 
-	var torqueOnlyScore = Measure( auditK, RunAugmentedNlmsBank( auditK, 24, auditMu, auditG, includeBias: false, zeroChannel ), from, to );
-	var baseline = Measure( auditK, RunAugmentedNlmsBank( auditK, 24, auditMu, auditG, includeBias: true, zeroChannel ), from, to );
-
-	evalRows.Add( $"{"baseline: torque only",-28} | leadCorr   -- | residCorr   -- | aug rmse {torqueOnlyScore.Rmse,6:F3} ({Signed( torqueOnlyScore.Rmse - baseline.Rmse, 3 )}) | aug shift {torqueOnlyScore.Shift,4:F1} ticks ({Signed( torqueOnlyScore.Shift - baseline.Shift, 1 )})" );
-	evalRows.Add( $"{"baseline: torque + bias",-28} | leadCorr   -- | residCorr   -- | aug rmse {baseline.Rmse,6:F3} (+0.000) | aug shift {baseline.Shift,4:F1} ticks (+0.0)" );
-
-	var auditResults = new List<( string Name, double LeadCorr, double ResidCorr, double RmseDelta, double ShiftDelta, string Row )>();
-
-	foreach ( var (name, series) in candidates )
-	{
-		var leadCorr = MaxAbsLaggedCorr( series, futureChange, from, to );
-		var residCorr = MaxAbsLaggedCorr( series, residual, from, to );
-
-		var augmented = Measure( auditK, RunAugmentedNlmsBank( auditK, 24, auditMu, auditG, includeBias: true, series ), from, to );
-
-		var rmseDelta = augmented.Rmse - baseline.Rmse;
-		var shiftDelta = augmented.Shift - baseline.Shift;
-
-		var row = $"{name,-28} | leadCorr {leadCorr,4:F2} | residCorr {residCorr,4:F2} | aug rmse {augmented.Rmse,6:F3} ({Signed( rmseDelta, 3 )}) | aug shift {augmented.Shift,4:F1} ticks ({Signed( shiftDelta, 1 )})";
-
-		auditResults.Add( ( name, leadCorr, residCorr, rmseDelta, shiftDelta, row ) );
-	}
-
-	// most helpful first: biggest rmse improvement (most negative delta)
-	foreach ( var result in auditResults.OrderBy( r => r.RmseDelta ) )
-	{
-		evalRows.Add( result.Row );
-	}
-
-	// kitchen sink: the three best channels together (does anything stack?)
-	var topThree = auditResults.OrderBy( r => r.RmseDelta ).Take( 3 ).ToArray();
-
-	var combined = Measure( auditK, RunAugmentedNlmsBank( auditK, 24, auditMu, auditG, includeBias: true, topThree.Select( r => candidates.First( c => c.Name == r.Name ).Series ).ToArray() ), from, to );
-
-	evalRows.Add( $"top-3 combined ({string.Join( " + ", topThree.Select( r => r.Name ) )}) | aug rmse {combined.Rmse,6:F3} ({Signed( combined.Rmse - baseline.Rmse, 3 )}) | aug shift {combined.Shift,4:F1} ticks ({Signed( combined.Shift - baseline.Shift, 1 )})" );
+	return candidates;
 }
 
-// ---------------------------------------------------------------- results
-
-Console.WriteLine();
-
-foreach ( var row in evalRows )
+void AddFrontAxleCombo( List<( string Name, float[] Series )> candidates, string leftName, string rightName, string comboName )
 {
-	Console.WriteLine( row );
+	if ( !columns.TryGetValue( leftName, out var left ) || !columns.TryGetValue( rightName, out var right ) )
+	{
+		return;
+	}
+
+	var sum = new float[ n ];
+	var difference = new float[ n ];
+
+	for ( var t = 0; t < n; t++ )
+	{
+		sum[ t ] = left[ t ] + right[ t ];
+		difference[ t ] = left[ t ] - right[ t ];
+	}
+
+	candidates.Add( ( $"{comboName} LF+RF", sum ) );
+	candidates.Add( ( $"{comboName} LF-RF", difference ) );
 }
 
-return 0;
+// ============================================================================================================
+// feature selection (--select): greedy forward search for the TRUE best module features. The channel audit
+// scores each channel against torque + bias only, so a channel that merely duplicates the steering angle's
+// (already shipped) contribution still looks good there. This mode evaluates every candidate against the
+// SHIPPED feature set (torque taps + bias + SteeringWheelAngle) across every recording, adds the best one,
+// and repeats — answering "what should the module gain NEXT", with car-to-car consistency visible.
+// ============================================================================================================
+
+void RunFeatureSelection( List<string> paths )
+{
+	const int selectionK = 6;
+	const float selectionMu = 0.25f;
+	const float selectionG = 1.5f;
+	const double addThreshold = -0.01; // a candidate must buy at least this much avg rmse to earn a slot
+
+	// cache all loadable recordings so each greedy round swaps them in without re-reading disk
+	var cache = new List<( string Name, string[] Names, Dictionary<string, float[]> Columns )>();
+
+	foreach ( var path in paths )
+	{
+		if ( LoadRecording( path ) )
+		{
+			cache.Add( ( Path.GetFileNameWithoutExtension( path ), columnNames, columns ) );
+		}
+	}
+
+	if ( cache.Count == 0 )
+	{
+		Console.WriteLine( "None of the recordings could be loaded." );
+
+		return;
+	}
+
+	void Activate( int index )
+	{
+		columnNames = cache[ index ].Names;
+		columns = cache[ index ].Columns;
+		Y = columns[ "InputTorque360Hz" ];
+		VSIM = columns[ "SteeringWheelVelocity" ];
+		n = Y.Length;
+	}
+
+	// the shipped angle feature is the fixed starting point — selection finds what helps BEYOND it
+	var selectedNames = new List<string> { "SteeringWheelAngle" };
+
+	Banner( $"FEATURE SELECTION over {cache.Count} recordings — starting set: torque + bias + SteeringWheelAngle (as shipped)" );
+
+	for ( var round = 1; round <= 3; round++ )
+	{
+		var deltasByName = new Dictionary<string, List<( double Rmse, double Shift )>>( StringComparer.Ordinal );
+
+		for ( var index = 0; index < cache.Count; index++ )
+		{
+			Activate( index );
+
+			var candidates = BuildCandidates();
+
+			var seriesByName = new Dictionary<string, float[]>( StringComparer.Ordinal );
+
+			foreach ( var (name, series) in candidates )
+			{
+				seriesByName[ name ] = series;
+			}
+
+			float[][] selectedSeries = [ .. selectedNames.Where( seriesByName.ContainsKey ).Select( name => seriesByName[ name ] ) ];
+
+			var from = n / 2;
+			var to = n - selectionK - 30;
+
+			var baseline = Measure( selectionK, RunAugmentedNlmsBank( selectionK, 24, selectionMu, selectionG, includeBias: true, selectedSeries ), from, to );
+
+			foreach ( var (name, series) in candidates )
+			{
+				if ( selectedNames.Contains( name ) )
+				{
+					continue;
+				}
+
+				var augmented = Measure( selectionK, RunAugmentedNlmsBank( selectionK, 24, selectionMu, selectionG, includeBias: true, [ .. selectedSeries, series ] ), from, to );
+
+				if ( !deltasByName.TryGetValue( name, out var deltas ) )
+				{
+					deltas = [];
+
+					deltasByName[ name ] = deltas;
+				}
+
+				deltas.Add( ( augmented.Rmse - baseline.Rmse, augmented.Shift - baseline.Shift ) );
+			}
+		}
+
+		// only candidates present in every recording can be module features
+		var ranked = deltasByName.Where( pair => pair.Value.Count == cache.Count ).OrderBy( pair => pair.Value.Average( d => d.Rmse ) ).ToList();
+
+		Banner( $"selection round {round} — candidate deltas vs current set (torque + bias + {string.Join( " + ", selectedNames )})" );
+
+		foreach ( var (name, deltas) in ranked.Take( 10 ) )
+		{
+			var helped = deltas.Count( d => d.Rmse < -0.005 );
+
+			evalRows.Add( $"{name,-28} | avg rmse delta {deltas.Average( d => d.Rmse ),7:F3} | helped in {helped}/{deltas.Count} | avg shift delta {deltas.Average( d => d.Shift ),5:F1} ticks" );
+		}
+
+		if ( ( ranked.Count == 0 ) || ( ranked[ 0 ].Value.Average( d => d.Rmse ) > addThreshold ) )
+		{
+			evalRows.Add( $">> STOP: no candidate clears the {addThreshold:F3} avg rmse bar — the set is complete" );
+
+			break;
+		}
+
+		selectedNames.Add( ranked[ 0 ].Key );
+
+		evalRows.Add( $">> SELECTED: {ranked[ 0 ].Key} (avg rmse delta {ranked[ 0 ].Value.Average( d => d.Rmse ):F3}) — set is now torque + bias + {string.Join( " + ", selectedNames )}" );
+	}
+
+	// final scorecard: the shipped set vs the selected set, per strength, averaged across recordings
+	Banner( "final scorecard — shipped set vs selected set (avg across recordings)" );
+
+	foreach ( var g in new[] { 1.5f, 2f } )
+	{
+		var shippedScoreList = new List<( double Rmse, double Shift, double HfGain )>();
+		var selectedScoreList = new List<( double Rmse, double Shift, double HfGain )>();
+
+		for ( var index = 0; index < cache.Count; index++ )
+		{
+			Activate( index );
+
+			var candidates = BuildCandidates();
+
+			var seriesByName = new Dictionary<string, float[]>( StringComparer.Ordinal );
+
+			foreach ( var (name, series) in candidates )
+			{
+				seriesByName[ name ] = series;
+			}
+
+			var from = n / 2;
+			var to = n - selectionK - 30;
+
+			var shippedScore = Measure( selectionK, RunAugmentedNlmsBank( selectionK, 24, selectionMu, g, includeBias: true, seriesByName[ "SteeringWheelAngle" ] ), from, to );
+			var selectedScore = Measure( selectionK, RunAugmentedNlmsBank( selectionK, 24, selectionMu, g, includeBias: true, [ .. selectedNames.Where( seriesByName.ContainsKey ).Select( name => seriesByName[ name ] ) ] ), from, to );
+
+			shippedScoreList.Add( ( shippedScore.Rmse, shippedScore.Shift, shippedScore.HfGain ) );
+			selectedScoreList.Add( ( selectedScore.Rmse, selectedScore.Shift, selectedScore.HfGain ) );
+		}
+
+		evalRows.Add( $"g={g}  shipped  (torque+bias+angle){"",-8} | rmse {shippedScoreList.Average( s => s.Rmse ),5:F3} | shift {shippedScoreList.Average( s => s.Shift ) * 1000.0 / TickRate,5:F1} ms | hfGain {shippedScoreList.Average( s => s.HfGain ),4:F2}" );
+		evalRows.Add( $"g={g}  selected ({string.Join( " + ", selectedNames )}) | rmse {selectedScoreList.Average( s => s.Rmse ),5:F3} | shift {selectedScoreList.Average( s => s.Shift ) * 1000.0 / TickRate,5:F1} ms | hfGain {selectedScoreList.Average( s => s.HfGain ),4:F2}" );
+	}
+}
+
+// ============================================================================================================
+// defaults tuning (--tune): grid-sweep the shipped module's three knobs across every recording to find the
+// default that works well for ALL cars — judged on the average AND the worst car (a default must not make
+// any car worse than doing nothing). The Correction limit interacts with car torque range: high-torque cars
+// (ARCA ~34 Nm) saturate a small limit and lose shift, while a big limit lets noisy corrections through on
+// light cars — hence limit is part of the grid.
+// ============================================================================================================
+
+void RunDefaultsTuning( List<string> paths )
+{
+	var cache = new List<( string Name, string[] Names, Dictionary<string, float[]> Columns )>();
+
+	foreach ( var path in paths )
+	{
+		if ( LoadRecording( path ) )
+		{
+			cache.Add( ( Path.GetFileNameWithoutExtension( path ), columnNames, columns ) );
+		}
+	}
+
+	if ( cache.Count == 0 )
+	{
+		Console.WriteLine( "None of the recordings could be loaded." );
+
+		return;
+	}
+
+	void Activate( int index )
+	{
+		columnNames = cache[ index ].Names;
+		columns = cache[ index ].Columns;
+		Y = columns[ "InputTorque360Hz" ];
+		VSIM = columns[ "SteeringWheelVelocity" ];
+		n = Y.Length;
+	}
+
+	Banner( $"DEFAULTS TUNING over {cache.Count} recordings — avg [worst car] per config" );
+
+	// aux scale probe: the aux channels are order-1 quantities × (MaxForce × auxScale); torque's std is only
+	// ~0.2-0.3 × MaxForce, so auxScale ~0.25 puts the aux taps at torque-comparable magnitude in the shared
+	// NLMS norm (matching the lab framework's standardization) while 1.0 runs them hot
+	foreach ( var auxScale in new[] { 0.125f, 0.25f, 0.5f, 1f } )
+	{
+		var scores = new List<( double Rmse, double Shift, double HfGain )>();
+
+		for ( var index = 0; index < cache.Count; index++ )
+		{
+			Activate( index );
+
+			var score = Measure( 6, RunShipped( 6, 1.5f, 5f, auxScale ), n / 2, n - 6 - 30 );
+
+			scores.Add( ( score.Rmse, score.Shift, score.HfGain ) );
+		}
+
+		var shiftMs = scores.Select( s => s.Shift * 1000.0 / TickRate ).ToArray();
+
+		evalRows.Add( $"AUXSCALE {auxScale,5} (K6 s=1.5 l=5) | rmse {scores.Average( s => s.Rmse ),5:F3} [{scores.Max( s => s.Rmse ),5:F3}] | shift {shiftMs.Average(),5:F1} ms [{shiftMs.Min(),5:F1}] | hfGain {scores.Average( s => s.HfGain ),4:F2} [{scores.Max( s => s.HfGain ),4:F2}]" );
+	}
+
+	evalRows.Add( string.Empty );
+
+	foreach ( var k in new[] { 4, 6, 8 } )
+	{
+		foreach ( var strength in new[] { 1f, 1.25f, 1.5f, 1.75f, 2f } )
+		{
+			foreach ( var limit in new[] { 2.5f, 5f, 10f } )
+			{
+				var scores = new List<( double Rmse, double Shift, double HfGain )>();
+
+				for ( var index = 0; index < cache.Count; index++ )
+				{
+					Activate( index );
+
+					var score = Measure( k, RunShipped( k, strength, limit ), n / 2, n - k - 30 );
+
+					scores.Add( ( score.Rmse, score.Shift, score.HfGain ) );
+				}
+
+				var shiftMs = scores.Select( s => s.Shift * 1000.0 / TickRate ).ToArray();
+
+				evalRows.Add( $"K{k} strength={strength,-4} limit={limit,4}Nm | rmse {scores.Average( s => s.Rmse ),5:F3} [{scores.Max( s => s.Rmse ),5:F3}] | shift {shiftMs.Average(),5:F1} ms [{shiftMs.Min(),5:F1}] | hfGain {scores.Average( s => s.HfGain ),4:F2} [{scores.Max( s => s.HfGain ),4:F2}]" );
+			}
+		}
+
+		evalRows.Add( string.Empty );
+	}
+}
 
 // ============================================================================================================
 // helpers
 // ============================================================================================================
 
-static string? FindNewestRecording()
+static List<string> FindAllRecordings()
 {
 	var folder = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), "MarvinsAIRA Refactored", "Recordings" );
 
 	if ( !Directory.Exists( folder ) )
 	{
-		return null;
+		return [];
 	}
 
-	return Directory.EnumerateFiles( folder, "*.csv" ).OrderByDescending( File.GetLastWriteTimeUtc ).FirstOrDefault();
+	return [ .. Directory.EnumerateFiles( folder, "*.csv" ).OrderBy( file => file, StringComparer.OrdinalIgnoreCase ) ];
 }
 
 static string Signed( double value, int decimals ) => ( value >= 0 ? "+" : "" ) + value.ToString( "F" + decimals, CultureInfo.CurrentCulture );
@@ -984,6 +1402,81 @@ static double Pearson( float[] a, float[] b, int from, int to, int aLag )
 	}
 
 	return num / Math.Sqrt( varA * varB + 1e-30 );
+}
+
+// the plain torque-only NLMS bank (the winning family's core): one L-tap filter per depth, anchored at the
+// frame's newest sample, one update per depth per frame, correction re-expanded by g
+float[] RunNlmsBank( int k, int tapCount, float mu, float g )
+{
+	const float eps = 1e-3f;
+
+	var dMin = Math.Max( 1, k - 5 );
+
+	var w = new float[ k + 1 ][];
+
+	for ( var d = dMin; d <= k; d++ )
+	{
+		w[ d ] = new float[ tapCount ];
+		w[ d ][ 0 ] = 1f;
+	}
+
+	var output = new float[ n ];
+
+	for ( var t = 0; t < n; t++ )
+	{
+		var e = Math.Min( n - 1, FrameNewest( t ) );
+
+		var d = t + k - e;
+
+		if ( e < tapCount + 40 )
+		{
+			output[ t ] = Y[ t ];
+
+			continue;
+		}
+
+		if ( d < 1 )
+		{
+			output[ t ] = Y[ t + k ]; // target inside the already-known frame: exact
+
+			continue;
+		}
+
+		var wd = w[ d ];
+
+		// one NLMS update per depth per frame: the prediction made from anchor (e - d) just met its truth
+		{
+			var anchor = e - d;
+
+			float dot = 0f, norm = eps;
+
+			for ( var j = 0; j < tapCount; j++ )
+			{
+				var x = Y[ anchor - j ];
+
+				dot += wd[ j ] * x;
+				norm += x * x;
+			}
+
+			var scale = mu * ( Y[ anchor + d ] - dot ) / norm;
+
+			for ( var j = 0; j < tapCount; j++ )
+			{
+				wd[ j ] += scale * Y[ anchor - j ];
+			}
+		}
+
+		var pred = 0f;
+
+		for ( var j = 0; j < tapCount; j++ )
+		{
+			pred += wd[ j ] * Y[ e - j ];
+		}
+
+		output[ t ] = Y[ t ] + g * ( pred - Y[ t ] );
+	}
+
+	return output;
 }
 
 // the NLMS bank with auxiliary telemetry channels appended to the feature vector: 24 torque lags plus 6
@@ -1414,11 +1907,13 @@ void Banner( string title )
 
 void Evaluate( string name, int k, float[] output ) => EvaluateRange( name, k, output, Warmup, n - k - 30 );
 
-void EvaluateRange( string name, int k, float[] output, int from, int to )
+( double Rmse, double RmseLf, double Shift, double HfGain, float P95 ) EvaluateRange( string name, int k, float[] output, int from, int to )
 {
 	var score = Measure( k, output, from, to );
 
 	evalRows.Add( $"{name,-46} k={k,2} | rmse {score.Rmse,6:F3} | rmseLF {score.RmseLf,6:F3} | shift {score.Shift,5:F1} ticks ({score.Shift * 1000f / TickRate,5:F1} ms) | hfGain {score.HfGain,6:F2} | |d|p95 {score.P95,6:F2} Nm" );
+
+	return score;
 }
 
 // the raw metrics behind EvaluateRange, for sections that need to compare scores numerically
@@ -1509,8 +2004,9 @@ void EvaluateRange( string name, int k, float[] output, int from, int to )
 sealed class ShippedPredictionModule
 {
 	private const int TapCount = 24;
-	private const int AngleTapCount = 6;
-	private const int FeatureCount = TapCount + AngleTapCount + 1; // + 1 adaptive bias feature
+	private const int AuxCount = 4;   // steering angle, steering wheel velocity, lateral velocity, pitch acceleration
+	private const int AuxTapCount = 6;
+	private const int FeatureCount = TapCount + ( AuxCount * AuxTapCount ) + 1; // + 1 adaptive bias feature
 	private const float StepSize = 0.25f;
 	private const float Epsilon = 1e-3f;
 	private const int HistorySize = 64;
@@ -1518,8 +2014,10 @@ sealed class ShippedPredictionModule
 	private const int SamplesPerFrame = 6;
 
 	private readonly float[] _history = new float[ HistorySize ];
-	private readonly float[] _angleHistory = new float[ HistorySize ];
+	private readonly float[][] _auxHistory;
 	private long _sampleCount;
+
+	private float _previousFramePitchRate;
 
 	private readonly float[][] _weights;
 	private readonly float[] _features = new float[ FeatureCount ];
@@ -1530,11 +2028,21 @@ sealed class ShippedPredictionModule
 	private readonly float _strength;
 	private readonly float _correctionLimit;
 
-	public ShippedPredictionModule( int horizonTicks, float strength, float correctionLimit )
+	private readonly float _auxScale;
+
+	public ShippedPredictionModule( int horizonTicks, float strength, float correctionLimit, float auxScale = 1f )
 	{
 		_horizonTicks = horizonTicks;
 		_strength = strength;
 		_correctionLimit = correctionLimit;
+		_auxScale = auxScale;
+
+		_auxHistory = new float[ AuxCount ][];
+
+		for ( var i = 0; i < AuxCount; i++ )
+		{
+			_auxHistory[ i ] = new float[ HistorySize ];
+		}
 
 		_weights = new float[ SamplesPerFrame ][];
 
@@ -1546,7 +2054,7 @@ sealed class ShippedPredictionModule
 		}
 	}
 
-	public float Process( float[] torqueFrame, int sampleIndex, float inputA, float wheelPosition, float maxForce )
+	public float Process( float[] torqueFrame, int sampleIndex, float inputA, float wheelPosition, float wheelVelocity, float velocityY, float framePitchRate, float maxForce )
 	{
 		var horizonTicks = _horizonTicks;
 
@@ -1557,7 +2065,7 @@ sealed class ShippedPredictionModule
 
 		if ( sampleIndex == 0 )
 		{
-			IngestFrameAndPredict( torqueFrame, horizonTicks, wheelPosition, maxForce );
+			IngestFrameAndPredict( torqueFrame, horizonTicks, wheelPosition, wheelVelocity, velocityY, framePitchRate, maxForce );
 		}
 
 		var currentTorque = torqueFrame[ sampleIndex ];
@@ -1586,21 +2094,37 @@ sealed class ShippedPredictionModule
 		return inputA + Math.Clamp( delta, -_correctionLimit, _correctionLimit );
 	}
 
-	private void IngestFrameAndPredict( float[] torqueFrame, int horizonTicks, float wheelPosition, float maxForce )
+	private void IngestFrameAndPredict( float[] torqueFrame, int horizonTicks, float wheelPosition, float wheelVelocity, float velocityY, float framePitchRate, float maxForce )
 	{
-		var angleTorqueScaled = wheelPosition * maxForce;
+		var pitchAcceleration = ( framePitchRate - _previousFramePitchRate ) * 60f;
+
+		_previousFramePitchRate = framePitchRate;
+
+		var auxToTorque = maxForce * _auxScale;
+
+		Span<float> auxValues =
+		[
+			wheelPosition * auxToTorque,
+			wheelVelocity * auxToTorque,
+			velocityY * auxToTorque,
+			pitchAcceleration * auxToTorque
+		];
 
 		for ( var i = 0; i < SamplesPerFrame; i++ )
 		{
 			var slot = (int) ( _sampleCount & HistoryMask );
 
 			_history[ slot ] = torqueFrame[ i ];
-			_angleHistory[ slot ] = angleTorqueScaled;
+
+			for ( var aux = 0; aux < AuxCount; aux++ )
+			{
+				_auxHistory[ aux ][ slot ] = auxValues[ aux ];
+			}
 
 			_sampleCount++;
 		}
 
-		if ( _sampleCount < horizonTicks + TapCount + ( AngleTapCount * SamplesPerFrame ) )
+		if ( _sampleCount < horizonTicks + TapCount + ( AuxTapCount * SamplesPerFrame ) )
 		{
 			return;
 		}
@@ -1659,12 +2183,19 @@ sealed class ShippedPredictionModule
 			_features[ j ] = _history[ (int) ( ( anchor - j ) & HistoryMask ) ];
 		}
 
-		for ( var j = 0; j < AngleTapCount; j++ )
+		var index = TapCount;
+
+		for ( var aux = 0; aux < AuxCount; aux++ )
 		{
-			_features[ TapCount + j ] = _angleHistory[ (int) ( ( anchor - ( j * SamplesPerFrame ) ) & HistoryMask ) ];
+			var auxHistory = _auxHistory[ aux ];
+
+			for ( var j = 0; j < AuxTapCount; j++ )
+			{
+				_features[ index++ ] = auxHistory[ (int) ( ( anchor - ( j * SamplesPerFrame ) ) & HistoryMask ) ];
+			}
 		}
 
-		_features[ TapCount + AngleTapCount ] = bias;
+		_features[ index ] = bias;
 	}
 }
 

@@ -26,6 +26,11 @@ namespace MarvinsAIRARefactored.Controls;
 /// instead: a dashed pending wire follows the mouse and dropping it on a compatible connector commits through the
 /// same input-selection setters as the settings-panel combos (eligibility/cycle rules, topological re-sort, engine
 /// rebuild, and the deferred card rebuild are all shared with that path).
+/// <para>The viewport is a fixed-height clipped canvas (the same height as the preview graph) with no scroll bar.
+/// Ctrl+wheel zooms about the cursor and right-dragging empty space pans, both of them driven by a RenderTransform
+/// on the content rather than by scrolling — a scroll viewer could not pan far enough, since its range stops at the
+/// content extent. <see cref="ClampPan"/> bounds that transform so at least one whole node always stays on screen.
+/// Zoom and pan are in-memory view state: they are never serialized.</para>
 /// </summary>
 public partial class FFBGraphEditor : UserControl
 {
@@ -40,6 +45,12 @@ public partial class FFBGraphEditor : UserControl
 	private const double MaxNodeX = 8000.0;
 	private const double MaxNodeY = 3000.0;
 	private const double DragThreshold = 3.0;
+
+	// Ctrl+wheel zooms about the cursor. Per design, wheel UP zooms OUT and wheel DOWN zooms IN (the inverse of
+	// the usual Windows convention) — the wheel is being pushed away from the viewer, pushing the graph away too.
+	private const double MinZoom = 0.25;
+	private const double MaxZoom = 2.0;
+	private const double ZoomStep = 1.1;
 
 	// the connector dots are only 10px, so grabbing and dropping use forgiving radii (nearest connector wins)
 	private const double ConnectorGrabRadius = 14.0;
@@ -62,6 +73,11 @@ public partial class FFBGraphEditor : UserControl
 	private FFBModuleViewModel? _wireDragModule = null;
 	private bool _wireDragIsInputB = false;
 	private Path? _pendingWirePath = null;
+
+	private bool _isPanning = false;
+	private Point _panStartPoint;
+	private double _panStartPanX = 0.0;
+	private double _panStartPanY = 0.0;
 
 	public FFBGraphEditor()
 	{
@@ -281,7 +297,7 @@ public partial class FFBGraphEditor : UserControl
 
 		UpdateDraggedNodePosition( e.GetPosition( Nodes_ItemsControl ) );
 
-		UpdateAutoScroll( e.GetPosition( Editor_ScrollViewer ) );
+		UpdateAutoPan( e.GetPosition( Viewport_Canvas ) );
 	}
 
 	private void UpdateDraggedNodePosition( Point position )
@@ -316,63 +332,67 @@ public partial class FFBGraphEditor : UserControl
 		_dragModule.NodeY = nodeY;
 	}
 
-	// Slow horizontal crawl when a node is dragged past the viewport edge. A timer (rather than relying on
-	// MouseMove) keeps the scroll going while the cursor sits still beyond the edge — each tick moves the
-	// viewport AND re-derives the node position, since the content slides under the stationary cursor.
-	private const double AutoScrollPixelsPerTick = 4.0;   // at ~60 Hz ticks ≈ a slow 240 px/s crawl
+	// Slow crawl when a node is dragged past a viewport edge. A timer (rather than relying on MouseMove) keeps the
+	// pan going while the cursor sits still beyond the edge — each tick pans the view AND re-derives the node
+	// position, since the content slides under the stationary cursor. Both axes now, as the view is height-limited.
+	private const double AutoPanPixelsPerTick = 4.0;   // at ~60 Hz ticks ≈ a slow 240 px/s crawl
 
-	private DispatcherTimer? _autoScrollTimer = null;
-	private double _autoScrollDirection = 0.0;
+	private DispatcherTimer? _autoPanTimer = null;
+	private double _autoPanDirectionX = 0.0;
+	private double _autoPanDirectionY = 0.0;
 
-	private void UpdateAutoScroll( Point viewportPosition )
+	// panning the content is the opposite sign to chasing the cursor: the cursor beyond the RIGHT edge has to
+	// reveal content further right, which slides the content LEFT (a decreasing translate)
+	private static double AutoPanDirection( double position, double viewportExtent )
 	{
-		if ( viewportPosition.X < 0.0 )
+		if ( position < 0.0 )
 		{
-			_autoScrollDirection = -1.0;
-		}
-		else if ( viewportPosition.X > Editor_ScrollViewer.ViewportWidth )
-		{
-			_autoScrollDirection = 1.0;
-		}
-		else
-		{
-			_autoScrollDirection = 0.0;
+			return 1.0;
 		}
 
-		if ( _autoScrollDirection == 0.0 )
+		return ( position > viewportExtent ) ? -1.0 : 0.0;
+	}
+
+	private void UpdateAutoPan( Point viewportPosition )
+	{
+		_autoPanDirectionX = AutoPanDirection( viewportPosition.X, Viewport_Canvas.ActualWidth );
+		_autoPanDirectionY = AutoPanDirection( viewportPosition.Y, Viewport_Canvas.ActualHeight );
+
+		if ( ( _autoPanDirectionX == 0.0 ) && ( _autoPanDirectionY == 0.0 ) )
 		{
-			_autoScrollTimer?.Stop();
+			_autoPanTimer?.Stop();
 		}
 		else
 		{
-			if ( _autoScrollTimer == null )
+			if ( _autoPanTimer == null )
 			{
-				_autoScrollTimer = new DispatcherTimer( DispatcherPriority.Render ) { Interval = TimeSpan.FromMilliseconds( 16.0 ) };
+				_autoPanTimer = new DispatcherTimer( DispatcherPriority.Render ) { Interval = TimeSpan.FromMilliseconds( 16.0 ) };
 
-				_autoScrollTimer.Tick += AutoScrollTimer_Tick;
+				_autoPanTimer.Tick += AutoPanTimer_Tick;
 			}
 
-			_autoScrollTimer.Start();
+			_autoPanTimer.Start();
 		}
 	}
 
-	private void AutoScrollTimer_Tick( object? sender, EventArgs e )
+	private void AutoPanTimer_Tick( object? sender, EventArgs e )
 	{
-		if ( ( _dragModule == null ) || ( _dragElement == null ) || !_dragElement.IsMouseCaptured || ( _autoScrollDirection == 0.0 ) )
+		if ( ( _dragModule == null ) || ( _dragElement == null ) || !_dragElement.IsMouseCaptured || ( ( _autoPanDirectionX == 0.0 ) && ( _autoPanDirectionY == 0.0 ) ) )
 		{
-			_autoScrollTimer?.Stop();
+			_autoPanTimer?.Stop();
 
 			return;
 		}
 
-		var offset = Math.Clamp( Editor_ScrollViewer.HorizontalOffset + _autoScrollDirection * AutoScrollPixelsPerTick, 0.0, Editor_ScrollViewer.ScrollableWidth );
+		Pan_TranslateTransform.X += _autoPanDirectionX * AutoPanPixelsPerTick;
+		Pan_TranslateTransform.Y += _autoPanDirectionY * AutoPanPixelsPerTick;
 
-		Editor_ScrollViewer.ScrollToHorizontalOffset( offset );
+		ClampPan();
 
 		UpdateDraggedNodePosition( Mouse.GetPosition( Nodes_ItemsControl ) );
 
 		// re-evaluate the edge condition — the cursor may have moved back inside without a MouseMove firing yet
-		UpdateAutoScroll( Mouse.GetPosition( Editor_ScrollViewer ) );
+		UpdateAutoPan( Mouse.GetPosition( Viewport_Canvas ) );
 	}
 
 	private void Node_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
@@ -401,7 +421,10 @@ public partial class FFBGraphEditor : UserControl
 		_wireDragModule = null;
 		_wireDragIsInputB = false;
 
-		_autoScrollTimer?.Stop();
+		_autoPanTimer?.Stop();
+
+		// the node set moved, so the pan limits moved with it (clamping is suppressed mid-drag to avoid fighting it)
+		ClampPan();
 
 		e.Handled = true;
 	}
@@ -427,7 +450,11 @@ public partial class FFBGraphEditor : UserControl
 	{
 		_viewModel?.AutoLayout();
 
-		Editor_ScrollViewer.ScrollToHorizontalOffset( 0.0 );
+		// the fresh layout starts at the origin, so bring the view back there too (zoom is left alone)
+		Pan_TranslateTransform.X = 0.0;
+		Pan_TranslateTransform.Y = 0.0;
+
+		ClampPan();
 	}
 
 	private void SnapToGrid_MairaButton_Click( object sender, RoutedEventArgs e )
@@ -835,15 +862,38 @@ public partial class FFBGraphEditor : UserControl
 			}
 		}
 
-		// grow the canvas to the node extents so the scroll viewer can reach every node
+		// grow the canvas to the node extents so every node has room to render and hit-test
 		LayoutRoot_Grid.MinWidth = maxNodeX + NodeWidth + FFBGraphTopology.LayoutMargin;
 		LayoutRoot_Grid.MinHeight = Math.Max( MinCanvasHeight, maxNodeY + NodeHeight + FFBGraphTopology.LayoutMargin );
+
+		// a moving node moves the pan limits with it — but not mid-drag, where re-clamping would shove the content
+		// out from under the cursor and fight the drag (the drag's own auto-pan clamps instead, and so does drag end)
+		if ( _dragModule == null )
+		{
+			ClampPan();
+		}
 	}
 
-	// Vertical wheel input would otherwise be swallowed by the horizontal-only scroll viewer; hand it back to
-	// the page so the whole racing wheel page keeps scrolling when the cursor is over the node canvas.
-	private void Editor_ScrollViewer_PreviewMouseWheel( object sender, MouseWheelEventArgs e )
+	#endregion
+
+	#region Zoom & pan
+
+	/// <summary>
+	/// Ctrl+wheel zooms about the cursor; a plain wheel is handed back to the page so the racing wheel page keeps
+	/// scrolling when the cursor is over the node canvas (the canvas itself no longer scrolls at all).
+	/// </summary>
+	private void Viewport_Canvas_PreviewMouseWheel( object sender, MouseWheelEventArgs e )
 	{
+		if ( Keyboard.Modifiers.HasFlag( ModifierKeys.Control ) )
+		{
+			// wheel up (positive delta) zooms OUT, wheel down zooms IN
+			ZoomAt( e.GetPosition( Viewport_Canvas ), ( e.Delta > 0 ) ? ( 1.0 / ZoomStep ) : ZoomStep );
+
+			e.Handled = true;
+
+			return;
+		}
+
 		e.Handled = true;
 
 		var eventArgs = new MouseWheelEventArgs( e.MouseDevice, e.Timestamp, e.Delta )
@@ -852,9 +902,136 @@ public partial class FFBGraphEditor : UserControl
 			Source = sender
 		};
 
-		var parent = ( (ScrollViewer) sender ).Parent as UIElement;
+		var parent = ( (FrameworkElement) sender ).Parent as UIElement;
 
 		parent?.RaiseEvent( eventArgs );
+	}
+
+	/// <summary>Scale about a viewport point, so the content sitting under the cursor stays under the cursor.</summary>
+	private void ZoomAt( Point viewportPosition, double factor )
+	{
+		var oldScale = Zoom_ScaleTransform.ScaleX;
+		var newScale = Math.Clamp( oldScale * factor, MinZoom, MaxZoom );
+
+		if ( newScale == oldScale )
+		{
+			return;
+		}
+
+		var contentX = ( viewportPosition.X - Pan_TranslateTransform.X ) / oldScale;
+		var contentY = ( viewportPosition.Y - Pan_TranslateTransform.Y ) / oldScale;
+
+		Zoom_ScaleTransform.ScaleX = newScale;
+		Zoom_ScaleTransform.ScaleY = newScale;
+
+		Pan_TranslateTransform.X = viewportPosition.X - contentX * newScale;
+		Pan_TranslateTransform.Y = viewportPosition.Y - contentY * newScale;
+
+		ClampPan();
+	}
+
+	/// <summary>
+	/// Right-dragging empty canvas pans the graph. A right-press ON a node never reaches here — Node_MouseRightButtonDown
+	/// takes it (preview lock) and marks it handled — so arriving here already means the cursor was over empty space.
+	/// </summary>
+	private void Viewport_Canvas_MouseRightButtonDown( object sender, MouseButtonEventArgs e )
+	{
+		_isPanning = true;
+		_panStartPoint = e.GetPosition( Viewport_Canvas );
+		_panStartPanX = Pan_TranslateTransform.X;
+		_panStartPanY = Pan_TranslateTransform.Y;
+
+		Viewport_Canvas.CaptureMouse();
+		Viewport_Canvas.Cursor = Cursors.SizeAll;
+
+		e.Handled = true;
+	}
+
+	private void Viewport_Canvas_MouseMove( object sender, MouseEventArgs e )
+	{
+		if ( !_isPanning )
+		{
+			return;
+		}
+
+		var position = e.GetPosition( Viewport_Canvas );
+
+		Pan_TranslateTransform.X = _panStartPanX + ( position.X - _panStartPoint.X );
+		Pan_TranslateTransform.Y = _panStartPanY + ( position.Y - _panStartPoint.Y );
+
+		ClampPan();
+	}
+
+	private void Viewport_Canvas_MouseRightButtonUp( object sender, MouseButtonEventArgs e )
+	{
+		if ( !_isPanning )
+		{
+			return;
+		}
+
+		Viewport_Canvas.ReleaseMouseCapture();   // raises LostMouseCapture, which ends the pan
+
+		e.Handled = true;
+	}
+
+	// covers the ordinary release above AND any capture stolen out from under the pan (alt-tab, a modal, ...)
+	private void Viewport_Canvas_LostMouseCapture( object sender, MouseEventArgs e )
+	{
+		_isPanning = false;
+
+		Viewport_Canvas.Cursor = Cursors.Arrow;
+	}
+
+	private void Viewport_Canvas_SizeChanged( object sender, SizeChangedEventArgs e )
+	{
+		ClampPan();
+	}
+
+	/// <summary>
+	/// Keep the graph on screen. The outermost node on each side may travel no further than the opposite view
+	/// boundary, so at every pan limit at least one whole node stays visible: pan right until the LEFT-most node's
+	/// right edge reaches the right boundary, pan left until the RIGHT-most node's left edge reaches the left
+	/// boundary, and the same on the Y axis. Re-run on zoom, pan, resize, and whenever the node set changes.
+	/// </summary>
+	private void ClampPan()
+	{
+		if ( ( _viewModel == null ) || ( _viewModel.MainModules.Count == 0 ) )
+		{
+			return;
+		}
+
+		var viewportWidth = Viewport_Canvas.ActualWidth;
+		var viewportHeight = Viewport_Canvas.ActualHeight;
+
+		if ( ( viewportWidth <= 0.0 ) || ( viewportHeight <= 0.0 ) )
+		{
+			return;   // not laid out yet — SizeChanged will clamp once it is
+		}
+
+		var minNodeX = double.MaxValue;
+		var maxNodeX = double.MinValue;
+		var minNodeY = double.MaxValue;
+		var maxNodeY = double.MinValue;
+
+		foreach ( var module in _viewModel.MainModules )
+		{
+			minNodeX = Math.Min( minNodeX, module.NodeX );
+			maxNodeX = Math.Max( maxNodeX, module.NodeX );
+			minNodeY = Math.Min( minNodeY, module.NodeY );
+			maxNodeY = Math.Max( maxNodeY, module.NodeY );
+		}
+
+		var scale = Zoom_ScaleTransform.ScaleX;
+
+		Pan_TranslateTransform.X = ClampPanAxis( Pan_TranslateTransform.X, -maxNodeX * scale, viewportWidth - ( minNodeX + NodeWidth ) * scale );
+		Pan_TranslateTransform.Y = ClampPanAxis( Pan_TranslateTransform.Y, -maxNodeY * scale, viewportHeight - ( minNodeY + NodeHeight ) * scale );
+	}
+
+	// One node zoomed bigger than the viewport inverts the bounds (min > max). Panning across that node's overflow
+	// is still the right behavior, so swap the bounds rather than collapsing to a single locked position.
+	private static double ClampPanAxis( double pan, double minPan, double maxPan )
+	{
+		return ( minPan <= maxPan ) ? Math.Clamp( pan, minPan, maxPan ) : Math.Clamp( pan, maxPan, minPan );
 	}
 
 	#endregion

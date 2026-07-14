@@ -19,22 +19,39 @@
 		<converters:InverseBooleanToVisibilityCollapsedConverter x:Key="InverseBoolToVisibilityCollapsed" />
 	</UserControl.Resources>
 
-	<Border BorderThickness="2"
+	<!-- Rounded on top only and no bottom border: the preview graph sits flush underneath (its top border is
+	     the 2px divider between them), so the two boxes read as one view. -->
+	<Border BorderThickness="2,2,2,0"
 	        BorderBrush="{DynamicResource Brush.Border.Normal}"
 	        Background="{DynamicResource Brush.Background.Popup}"
-	        CornerRadius="5"
-	        ClipToBounds="True"
-	        Padding="0,0,0,6">
+	        CornerRadius="5,5,0,0"
+	        ClipToBounds="True">
 
 		<Grid>
 
-			<ScrollViewer x:Name="Editor_ScrollViewer"
-			              HorizontalScrollBarVisibility="Auto"
-			              VerticalScrollBarVisibility="Disabled"
-			              MaxWidth="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType=Border}}"
-			              PreviewMouseWheel="Editor_ScrollViewer_PreviewMouseWheel">
+			<!-- Fixed-height viewport, sized to match the preview graph's 301px image. It is a Canvas rather than a
+			     Grid so the (much larger) node canvas inside cannot drive the layout width. Pan and zoom are a
+			     RenderTransform on the content, so there is no scroll viewer and no scroll bar. The transparent
+			     background is what lets empty space hit-test for the right-drag pan. -->
+			<Canvas x:Name="Viewport_Canvas"
+			        Height="301"
+			        Background="Transparent"
+			        ClipToBounds="True"
+			        PreviewMouseWheel="Viewport_Canvas_PreviewMouseWheel"
+			        MouseRightButtonDown="Viewport_Canvas_MouseRightButtonDown"
+			        MouseMove="Viewport_Canvas_MouseMove"
+			        MouseRightButtonUp="Viewport_Canvas_MouseRightButtonUp"
+			        LostMouseCapture="Viewport_Canvas_LostMouseCapture"
+			        SizeChanged="Viewport_Canvas_SizeChanged">
 
 			<Grid x:Name="LayoutRoot_Grid">
+
+				<Grid.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform x:Name="Zoom_ScaleTransform" />
+						<TranslateTransform x:Name="Pan_TranslateTransform" />
+					</TransformGroup>
+				</Grid.RenderTransform>
 
 				<Canvas x:Name="Wires_Canvas"
 				        IsHitTestVisible="False" />
@@ -91,14 +108,35 @@
 									</Style>
 								</Border.Style>
 
-								<TextBlock Text="{Binding DisplayName}"
-								           Style="{StaticResource MairaTextBlockStyle}"
-								           FontSize="16"
-								           TextTrimming="CharacterEllipsis"
-								           TextAlignment="Center"
-								           HorizontalAlignment="Center"
-								           VerticalAlignment="Center"
-								           Margin="10,0" />
+								<StackPanel VerticalAlignment="Center"
+								            Margin="10,0">
+
+									<TextBlock Text="{Binding DisplayName}"
+									           Style="{StaticResource MairaTextBlockStyle}"
+									           FontSize="16"
+									           TextTrimming="CharacterEllipsis"
+									           TextAlignment="Center" />
+
+									<!-- live settings digest ("1.50x" / "one pole, 12.5 Hz") — collapsed when the
+									     module has no settings, so the name re-centers vertically -->
+									<TextBlock Text="{Binding SettingsSummary}"
+									           FontSize="11"
+									           Opacity="0.6"
+									           TextTrimming="CharacterEllipsis"
+									           TextAlignment="Center">
+										<TextBlock.Style>
+											<Style TargetType="TextBlock"
+											       BasedOn="{StaticResource MairaTextBlockStyle}">
+												<Style.Triggers>
+													<DataTrigger Binding="{Binding SettingsSummary}" Value="">
+														<Setter Property="Visibility" Value="Collapsed" />
+													</DataTrigger>
+												</Style.Triggers>
+											</Style>
+										</TextBlock.Style>
+									</TextBlock>
+
+								</StackPanel>
 
 							</Border>
 
@@ -154,9 +192,9 @@
 
 			</Grid>
 
-			</ScrollViewer>
+			</Canvas>
 
-			<!-- canvas tools (pinned to the corner, outside the scrolling canvas): add module + snap-to-grid toggle + auto layout -->
+			<!-- canvas tools (pinned to the corner, outside the panned canvas): add module + snap-to-grid toggle + auto layout -->
 			<StackPanel Orientation="Horizontal"
 			            HorizontalAlignment="Right"
 			            VerticalAlignment="Top"

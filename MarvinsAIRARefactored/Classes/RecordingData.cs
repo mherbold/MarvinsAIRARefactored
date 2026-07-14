@@ -26,11 +26,6 @@ public class RecordingData
 	public float LateralGForce { get; set; }
 	public float MaxShockVelocity { get; set; }
 
-	// wheel hardware state (from DirectInput)
-
-	public float WheelPosition { get; set; }
-	public float WheelVelocity { get; set; }
-
 	// steering-effects values
 
 	public float UndersteerEffect { get; set; }
@@ -66,4 +61,18 @@ public class RecordingData
 	public float YawNorth { get; set; }    // car heading relative to true north (radians)
 	public float VelocityX { get; set; }   // car-relative forward velocity (m/s)
 	public float Speed { get; set; }       // GPS vehicle speed (m/s)
+
+	// prediction-audit extras (v4, see MarvinsAIRARefactored.PredictionLab) — true 360 Hz chassis/road
+	// channels plus the 60 Hz driver inputs; no FFB module or replay context consumes these yet
+
+	public float VelocityY360Hz { get; set; }     // m/s (VelocityY_ST) — the VelocityY column above stays 60 Hz for replay fidelity
+	public float LatAccel { get; set; }           // m/s^2 including gravity (LatAccel_ST)
+	public float RollRate { get; set; }           // rad/s (RollRate_ST)
+	public float PitchRate { get; set; }          // rad/s (PitchRate_ST)
+	public float LFShockVelocity { get; set; }    // m/s (LFshockVel_ST)
+	public float RFShockVelocity { get; set; }    // m/s (RFshockVel_ST)
+	public float LFShockDeflection { get; set; }  // m (LFshockDefl_ST)
+	public float RFShockDeflection { get; set; }  // m (RFshockDefl_ST)
+	public float Throttle { get; set; }           // 0..1 (60 Hz driver input)
+	public float Brake { get; set; }              // 0..1 (60 Hz driver input)
 }

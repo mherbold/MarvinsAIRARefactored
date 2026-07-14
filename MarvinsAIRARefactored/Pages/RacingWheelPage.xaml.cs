@@ -24,13 +24,24 @@ public partial class RacingWheelPage : UserControl
 	private const double PreviewZoomFactor = 6.0;
 	private const double PreviewZoomPopupOffset = 32.0;
 
-	// the track map panel shows roughly this many meters of track across its (PreviewZoomSize-wide) window
-	private const double TrackMapMetersAcross = 500.0;
+	// the track map panel is a fixed square right of the preview graph; the whole recorded segment is fitted
+	// into it (uniform scale, centered, north up) inside this margin
+	private const double TrackMapPanelSize = 301.0;
+	private const double TrackMapPanelMargin = 14.0;
 
-	// track map cache — rebuilt when the loaded recording data changes (reference comparison; the path and
-	// geometry are derived purely from that list)
+	// track map cache — rebuilt when the loaded recording data changes (reference comparison; the path,
+	// fit matrix, and geometry are derived purely from that list)
 	private List<RecordingData>? _trackMapDataList = null;
 	private Point[]? _trackMapPath = null;
+	private Matrix _trackMapFitMatrix = Matrix.Identity;
+
+	// preview horizontal zoom (Ctrl+wheel): the skip factor mirrored into RacingWheel.AlgorithmPreviewSkip —
+	// 1 = 100% (every sample drawn), 2 = 50%, ... 20 = 5%. The anchor keeps the recorded sample under the
+	// cursor stationary across the deferred redraw/resize. In-memory view state, never serialized.
+	private int _previewSkip = 1;
+	private bool _previewZoomAnchorPending = false;
+	private double _previewZoomAnchorSample = 0.0;
+	private double _previewZoomAnchorViewportX = 0.0;
 
 	public RacingWheelPage()
 	{
@@ -72,9 +83,18 @@ public partial class RacingWheelPage : UserControl
 		app.RacingWheel.ClearPeakTorque = true;
 	}
 
+	// Ctrl+wheel zooms the preview horizontally; a plain wheel is handed back to the page so it keeps scrolling
+	// when the cursor is over the preview graph.
 	private void Preview_ScrollViewer_PreviewMouseWheel( object sender, MouseWheelEventArgs e )
 	{
 		e.Handled = true;
+
+		if ( Keyboard.Modifiers.HasFlag( ModifierKeys.Control ) )
+		{
+			ZoomPreview( e );
+
+			return;
+		}
 
 		var eventArg = new MouseWheelEventArgs( e.MouseDevice, e.Timestamp, e.Delta )
 		{
@@ -85,6 +105,67 @@ public partial class RacingWheelPage : UserControl
 		var parent = ( (ScrollViewer) sender ).Parent as UIElement;
 
 		parent?.RaiseEvent( eventArg );
+	}
+
+	/// <summary>
+	/// Step the preview's horizontal zoom: wheel up zooms OUT (skip more recorded samples per drawn pixel — 100%,
+	/// 50%, 33%, ... 5%), wheel down zooms back in. Zoom only thins out the DRAWN data points; there is no
+	/// vertical zoom. The redraw happens on the wheel's next preview update, so the scroll anchor (keeping the
+	/// sample under the cursor put) is stashed here and applied by <see cref="OnPreviewImageResized"/>.
+	/// </summary>
+	private void ZoomPreview( MouseWheelEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var recording = app.RecordingManager.Recording;
+
+		// with no recording there is nothing to zoom (and no resize would come to consume a stale anchor)
+		if ( !( recording?.Data?.Count > 0 ) )
+		{
+			return;
+		}
+
+		var newSkip = Math.Clamp( _previewSkip + ( ( e.Delta > 0 ) ? 1 : -1 ), 1, Components.RacingWheel.MaxAlgorithmPreviewSkip );
+
+		if ( newSkip == _previewSkip )
+		{
+			return;
+		}
+
+		var anchorViewportX = e.GetPosition( Preview_ScrollViewer ).X;
+
+		_previewZoomAnchorSample = ( Preview_ScrollViewer.HorizontalOffset + anchorViewportX ) * _previewSkip;
+		_previewZoomAnchorViewportX = anchorViewportX;
+		_previewZoomAnchorPending = true;
+
+		_previewSkip = newSkip;
+
+		app.RacingWheel.AlgorithmPreviewSkip = newSkip;
+		app.RacingWheel.UpdateAlgorithmPreview = true;
+	}
+
+	/// <summary>
+	/// Called by the preview renderer right after it resized the preview image (recording change or zoom step).
+	/// A zoom step re-anchors the scroll so the sample under the cursor stays put; any other resize (a newly
+	/// loaded recording) centers the view as before. Deferred so ScrollableWidth reflects the new image width.
+	/// </summary>
+	public void OnPreviewImageResized()
+	{
+		if ( _previewZoomAnchorPending )
+		{
+			_previewZoomAnchorPending = false;
+
+			var offset = _previewZoomAnchorSample / _previewSkip - _previewZoomAnchorViewportX;
+
+			Dispatcher.BeginInvoke( System.Windows.Threading.DispatcherPriority.Loaded, () =>
+			{
+				Preview_ScrollViewer.ScrollToHorizontalOffset( Math.Clamp( offset, 0.0, Preview_ScrollViewer.ScrollableWidth ) );
+			} );
+		}
+		else
+		{
+			CenterPreviewScrollViewer();
+		}
 	}
 
 	private void Preview_ScrollViewer_Loaded( object sender, RoutedEventArgs e )
@@ -196,9 +277,9 @@ public partial class RacingWheelPage : UserControl
 
 	/// <summary>
 	/// Fills the data card next to the zoom square with the recorded telemetry at the sample under the cursor —
-	/// the preview bitmap is one pixel per recorded sample, so the cursor X position is the sample index. The
-	/// card hides itself when there's no recorded sample under the cursor (no recording loaded, or the cursor is
-	/// past the end of a short recording).
+	/// the preview bitmap is one pixel per DRAWN sample (every _previewSkip'th recorded sample), so the cursor X
+	/// position times the skip is the sample index. The card hides itself when there's no recorded sample under
+	/// the cursor (no recording loaded, or the cursor is past the end of a short recording).
 	/// </summary>
 	private void UpdatePreviewSampleData( Point cursorPosition )
 	{
@@ -208,30 +289,16 @@ public partial class RacingWheelPage : UserControl
 
 		var recordingDataList = app.RecordingManager.Recording?.Data;
 
-		// drop the cached track map as soon as the loaded data changes so the old samples can be collected
-		// (RecordingManager unloads the other recordings when a new one loads — don't keep them alive here)
-		if ( ( _trackMapDataList != null ) && !ReferenceEquals( recordingDataList, _trackMapDataList ) )
-		{
-			_trackMapDataList = null;
-			_trackMapPath = null;
-
-			TrackMap_Path.Data = null;
-		}
-
-		var sampleIndex = (int) cursorPosition.X;
+		var sampleIndex = (int) cursorPosition.X * _previewSkip;
 
 		if ( ( recordingDataList == null ) || ( sampleIndex < 0 ) || ( sampleIndex >= recordingDataList.Count ) )
 		{
 			PreviewData_Border.Visibility = Visibility.Collapsed;
-			TrackMap_Border.Visibility = Visibility.Collapsed;
 
 			return;
 		}
 
 		PreviewData_Border.Visibility = Visibility.Visible;
-		TrackMap_Border.Visibility = Visibility.Visible;
-
-		UpdateTrackMap( recordingDataList, sampleIndex );
 
 		var recordingData = recordingDataList[ sampleIndex ];
 
@@ -246,8 +313,12 @@ public partial class RacingWheelPage : UserControl
 
 		PreviewDataSteeringAngle_TextBlock.Text = $"{recordingData.SteeringWheelAngle * radiansToDegrees:F1}{localization[ "Degrees" ]}";
 		PreviewDataSteeringVelocity_TextBlock.Text = $"{recordingData.SteeringWheelVelocity * radiansToDegrees:F0}{localization[ "DegreesPerSecond" ]}";
-		PreviewDataWheelPosition_TextBlock.Text = $"{recordingData.WheelPosition:F2}";
-		PreviewDataWheelVelocity_TextBlock.Text = $"{recordingData.WheelVelocity:F2}";
+
+		// half-lock-normalized wheel state — derived from the steering telemetry, same as the replay context
+		var halfLock = recordingData.SteeringWheelAngleMax * 0.5f;
+
+		PreviewDataWheelPosition_TextBlock.Text = $"{( halfLock > 0f ? recordingData.SteeringWheelAngle / halfLock : 0f ):F2}";
+		PreviewDataWheelVelocity_TextBlock.Text = $"{( halfLock > 0f ? recordingData.SteeringWheelVelocity / halfLock : 0f ):F2}";
 
 		PreviewDataSpeed_TextBlock.Text = $"{recordingData.VelocityMS:F1}{localization[ "MPSUnits" ]}";
 		PreviewDataRPM_TextBlock.Text = $"{recordingData.RPM:F0}";
@@ -269,55 +340,112 @@ public partial class RacingWheelPage : UserControl
 		PreviewDataSkidSlip_TextBlock.Text = $"{recordingData.SkidSlip * 100f:F0}{localization[ "Percent" ]}";
 	}
 
-	/// <summary>
-	/// Keeps the track map panel in sync with the cursor: the recorded segment's polyline (integrated once per
-	/// loaded recording, see <see cref="TrackMap"/>) is drawn north-up at a fixed scale, and the panel's
-	/// transform slides the map so the sample under the cursor sits at the center — under the orange car dot.
-	/// </summary>
-	private void UpdateTrackMap( List<RecordingData> recordingDataList, int sampleIndex )
+	// every scroll, zoom, resize, or recording change moves the visible range — re-highlight the map segment
+	private void Preview_ScrollViewer_ScrollChanged( object sender, ScrollChangedEventArgs e )
 	{
+		UpdateTrackMapPanel();
+	}
+
+	/// <summary>
+	/// Keeps the track map panel (right of the preview graph) in sync: the recorded segment's polyline
+	/// (integrated once per loaded recording, see <see cref="TrackMap"/>) is fitted whole into the panel,
+	/// north up, and the slice of the recording currently visible in the preview viewport is drawn over it
+	/// in orange. Driven by the preview's ScrollChanged, which fires on scrolls, zoom steps, resizes, and
+	/// recording swaps (the image extent changes).
+	/// </summary>
+	private void UpdateTrackMapPanel()
+	{
+		var recordingDataList = App.Instance?.RecordingManager.Recording?.Data;
+
+		if ( ( recordingDataList == null ) || ( recordingDataList.Count == 0 ) )
+		{
+			// no recording — blank panel; drop the cached map so the old samples can be collected
+			// (RecordingManager unloads the other recordings when a new one loads — don't keep them alive here)
+			_trackMapDataList = null;
+			_trackMapPath = null;
+
+			TrackMap_Path.Data = null;
+			TrackMapSegment_Path.Data = null;
+
+			TrackMapStart_Ellipse.Visibility = Visibility.Collapsed;
+			TrackMapEnd_Ellipse.Visibility = Visibility.Collapsed;
+
+			return;
+		}
+
 		if ( !ReferenceEquals( recordingDataList, _trackMapDataList ) )
 		{
 			_trackMapDataList = recordingDataList;
 			_trackMapPath = TrackMap.BuildPath( recordingDataList );
 
-			var geometry = new StreamGeometry();
+			// uniform scale fitting the whole segment into the panel, centered both ways (extent floors guard
+			// a degenerate straight-line/parked recording)
+			double minX = double.MaxValue, maxX = double.MinValue, minY = double.MaxValue, maxY = double.MinValue;
 
-			using ( var context = geometry.Open() )
+			foreach ( var point in _trackMapPath )
 			{
-				context.BeginFigure( _trackMapPath[ 0 ], false, false );
-
-				// one point per 60 Hz telemetry frame is plenty for the polyline (values repeat 6× at 360 Hz)
-				for ( var i = 6; i < _trackMapPath.Length; i += 6 )
-				{
-					context.LineTo( _trackMapPath[ i ], true, true );
-				}
-
-				context.LineTo( _trackMapPath[ ^1 ], true, true );
+				minX = Math.Min( minX, point.X );
+				maxX = Math.Max( maxX, point.X );
+				minY = Math.Min( minY, point.Y );
+				maxY = Math.Max( maxY, point.Y );
 			}
 
-			geometry.Freeze();
+			var extentX = Math.Max( maxX - minX, 1.0 );
+			var extentY = Math.Max( maxY - minY, 1.0 );
 
-			TrackMap_Path.Data = geometry;
+			var fitSize = TrackMapPanelSize - TrackMapPanelMargin * 2.0;
+
+			var scale = Math.Min( fitSize / extentX, fitSize / extentY );
+
+			_trackMapFitMatrix = new Matrix( scale, 0d, 0d, scale, ( TrackMapPanelSize - scale * ( minX + maxX ) ) / 2.0, ( TrackMapPanelSize - scale * ( minY + maxY ) ) / 2.0 );
+
+			TrackMap_Path.Data = BuildTrackMapGeometry( 0, _trackMapPath.Length - 1 );
+
+			// start (green) / end (red) markers sit at the fitted endpoints
+			var startPoint = _trackMapFitMatrix.Transform( _trackMapPath[ 0 ] );
+			var endPoint = _trackMapFitMatrix.Transform( _trackMapPath[ ^1 ] );
+
+			Canvas.SetLeft( TrackMapStart_Ellipse, startPoint.X - TrackMapStart_Ellipse.Width / 2d );
+			Canvas.SetTop( TrackMapStart_Ellipse, startPoint.Y - TrackMapStart_Ellipse.Height / 2d );
+
+			Canvas.SetLeft( TrackMapEnd_Ellipse, endPoint.X - TrackMapEnd_Ellipse.Width / 2d );
+			Canvas.SetTop( TrackMapEnd_Ellipse, endPoint.Y - TrackMapEnd_Ellipse.Height / 2d );
+
+			TrackMapStart_Ellipse.Visibility = Visibility.Visible;
+			TrackMapEnd_Ellipse.Visibility = Visibility.Visible;
 		}
 
-		var carPoint = _trackMapPath![ sampleIndex ];
+		// the orange highlight = the recorded samples currently visible in the preview viewport (the preview
+		// bitmap is one pixel per DRAWN sample, so image x times the zoom skip is the sample index)
+		var lastIndex = _trackMapPath!.Length - 1;
 
-		var scale = PreviewZoomSize / TrackMapMetersAcross;
+		var firstVisibleSample = Math.Clamp( (int) ( Preview_ScrollViewer.HorizontalOffset * _previewSkip ), 0, lastIndex );
+		var lastVisibleSample = Math.Clamp( (int) ( ( Preview_ScrollViewer.HorizontalOffset + Preview_ScrollViewer.ViewportWidth ) * _previewSkip ), 0, lastIndex );
 
-		var matrix = new Matrix( scale, 0d, 0d, scale, PreviewZoomSize / 2d - scale * carPoint.X, PreviewZoomSize / 2d - scale * carPoint.Y );
+		TrackMapSegment_Path.Data = BuildTrackMapGeometry( firstVisibleSample, lastVisibleSample );
+	}
 
-		TrackMap_MatrixTransform.Matrix = matrix;
+	/// <summary>A polyline over the fitted track path from one sample to another (both clamped by the caller).</summary>
+	private StreamGeometry BuildTrackMapGeometry( int firstSample, int lastSample )
+	{
+		var geometry = new StreamGeometry();
 
-		// the start/end markers ride the map — same transform, applied to their canvas positions
-		var startPoint = matrix.Transform( _trackMapPath[ 0 ] );
-		var endPoint = matrix.Transform( _trackMapPath[ ^1 ] );
+		using ( var context = geometry.Open() )
+		{
+			context.BeginFigure( _trackMapFitMatrix.Transform( _trackMapPath![ firstSample ] ), false, false );
 
-		Canvas.SetLeft( TrackMapStart_Ellipse, startPoint.X - TrackMapStart_Ellipse.Width / 2d );
-		Canvas.SetTop( TrackMapStart_Ellipse, startPoint.Y - TrackMapStart_Ellipse.Height / 2d );
+			// one point per 60 Hz telemetry frame is plenty for the polyline (values repeat 6× at 360 Hz)
+			for ( var i = firstSample + 6; i < lastSample; i += 6 )
+			{
+				context.LineTo( _trackMapFitMatrix.Transform( _trackMapPath[ i ] ), true, true );
+			}
 
-		Canvas.SetLeft( TrackMapEnd_Ellipse, endPoint.X - TrackMapEnd_Ellipse.Width / 2d );
-		Canvas.SetTop( TrackMapEnd_Ellipse, endPoint.Y - TrackMapEnd_Ellipse.Height / 2d );
+			context.LineTo( _trackMapFitMatrix.Transform( _trackMapPath[ lastSample ] ), true, true );
+		}
+
+		geometry.Freeze();
+
+		return geometry;
 	}
 
 	private void StartRecording_MairaMappableButton_Click( object sender, RoutedEventArgs e )

@@ -296,6 +296,9 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 			}
 
 			SettingsPresentation.Add( setting );
+
+			// the node's second line mirrors the settings live — any setting edit refreshes the digest
+			setting.PropertyChanged += ( sender, e ) => OnPropertyChanged( nameof( SettingsSummary ) );
 		}
 
 		if ( ( model.ModuleType == FFBModuleRegistry.LowPassFilterType ) || ( model.ModuleType == FFBModuleRegistry.HighPassFilterType ) )
@@ -401,6 +404,45 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 
 				OnPropertyChanged();
 			}
+		}
+	}
+
+	/// <summary>One-line settings digest for the node's second line — every setting's display value in declaration
+	/// order, comma-separated ("1.50x" / "one pole, 12.5 Hz"). Knobs reuse the same formatted string the settings
+	/// card shows, choices show the selected option's label, and switches contribute their label only while ON.
+	/// Empty for settings-less modules (the node template collapses the line).</summary>
+	public string SettingsSummary
+	{
+		get
+		{
+			var parts = new List<string>();
+
+			foreach ( var setting in Settings )
+			{
+				switch ( setting.SettingType )
+				{
+					case FFBSettingType.Knob:
+						// the *Units localization keys carry one leading space (" Hz") for appending — trim it here
+						parts.Add( setting.ValueString.Trim() );
+						break;
+
+					case FFBSettingType.Choice:
+						if ( ( setting.ChoiceIndex >= 0 ) && ( setting.ChoiceIndex < setting.ChoiceOptions.Count ) )
+						{
+							parts.Add( setting.ChoiceOptions[ setting.ChoiceIndex ].Value );
+						}
+						break;
+
+					case FFBSettingType.Switch:
+						if ( setting.IsOn )
+						{
+							parts.Add( setting.Label );
+						}
+						break;
+				}
+			}
+
+			return string.Join( ", ", parts );
 		}
 	}
 

@@ -2205,4 +2205,13 @@
   <data name="FFBSettingCorrectionLimit" xml:space="preserve">
     <value>Предел коррекции</value>
   </data>
+  <data name="ABS" xml:space="preserve">
+    <value>ABS</value>
+  </data>
+  <data name="LFE" xml:space="preserve">
+    <value>LFE</value>
+  </data>
+  <data name="MetersUnits" xml:space="preserve">
+    <value> m</value>
+  </data>
 </root>
