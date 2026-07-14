@@ -1,0 +1,76 @@
+<Window x:Class="MarvinsAIRARefactored.Windows.ImportGraphSettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+        xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+        mc:Ignorable="d"
+        Title="{Binding Localization[ImportGraphSettingsTitle]}"
+        Icon="/Artwork/AppIcon/maira-universal.ico"
+        MinWidth="480"
+        MaxWidth="640"
+        SizeToContent="Height"
+        ResizeMode="NoResize"
+        ShowInTaskbar="False"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterOwner">
+
+    <Window.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </Window.DataContext>
+
+    <StackPanel Margin="20">
+
+        <TextBlock x:Name="Message_TextBlock"
+                   Style="{StaticResource MairaTextBlockStyle}"
+                   TextWrapping="Wrap"
+                   Margin="0,0,0,20"
+                   d:Text="You already have this graph. What would you like to do?" />
+
+        <StackPanel>
+
+            <controls:MairaButton x:Name="UpdateCurrentContext_MairaButton"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,0,12"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Click="UpdateCurrentContext_MairaButton_Click" />
+
+            <controls:MairaButton x:Name="UpdateBaseline_MairaButton"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,0,12"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Click="UpdateBaseline_MairaButton_Click" />
+
+            <controls:MairaButton x:Name="UpdateBoth_MairaButton"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,0,12"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Click="UpdateBoth_MairaButton_Click" />
+
+            <controls:MairaButton x:Name="NewCopy_MairaButton"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,0,12"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/copy.png"
+                                  Click="NewCopy_MairaButton_Click" />
+
+            <controls:MairaButton x:Name="Cancel_MairaButton"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  HorizontalAlignment="Left"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/clear.png"
+                                  Click="Cancel_MairaButton_Click" />
+
+        </StackPanel>
+
+    </StackPanel>
+
+</Window>

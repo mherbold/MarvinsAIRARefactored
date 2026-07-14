@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Exportă graficul</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Importă graficul</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>Fișiere grafic MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Grafic importat</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Acest grafic nu a putut fi exportat.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Acest fișier grafic nu a putut fi importat.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Acest fișier nu este un fișier grafic MAIRA.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Acest fișier conține un grafic cu efecte de vibrație — importă-l în secțiunea de efecte de vibrație.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Acest fișier conține un grafic FFB — importă-l în graficul FFB.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Acest fișier grafic a fost creat de o versiune mai nouă de MAIRA. Actualizează MAIRA și încearcă din nou.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Înregistrare pornită</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Înregistrare oprită</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Timp</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Poziție pe circuit</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>Cuplu 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>Cuplu 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Unghi de direcție</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Viteză de direcție</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Poziția volanului</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Viteza volanului</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Treaptă de viteză</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Forță G longitudinală</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Derapaj/alunecare</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Încorporate</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Personalizate</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Importă setările graficului</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Ai deja graficul „{0}”. Ce dorești să faci cu setările din acest fișier?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Actualizează setările {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Actualizează setările de bază (implicite)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Actualizează setările {0} și cele de bază</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importă ca o copie nouă</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>Interpolator 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Predicție</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Orizont</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Amestec</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Limită de corecție</value>
+  </data>
 </root>

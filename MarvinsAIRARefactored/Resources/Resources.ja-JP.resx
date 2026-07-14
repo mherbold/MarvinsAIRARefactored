@@ -2100,4 +2100,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>グラフをエクスポート</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>グラフをインポート</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA グラフファイル</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>インポートしたグラフ</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>このグラフをエクスポートできませんでした。</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>このグラフファイルをインポートできませんでした。</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>このファイルは MAIRA グラフファイルではありません。</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>このファイルには振動エフェクトのグラフが含まれています。代わりに振動エフェクトからインポートしてください。</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>このファイルには FFB グラフが含まれています。代わりに FFB グラフからインポートしてください。</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>このグラフファイルは新しいバージョンの MAIRA で作成されました。MAIRA を更新してからもう一度お試しください。</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>記録を開始しました</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>記録を停止しました</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>トラック位置</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz トルク</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz トルク</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>ステアリング角度</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>ステアリング速度</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>ホイール位置</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>ホイール速度</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>ギア</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>縦方向Gフォース</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>スキッド/スリップ</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>組み込み</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>カスタム</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>グラフ設定のインポート</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>グラフ「{0}」はすでに存在します。このファイルの設定をどうしますか？</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>{0} の設定を更新</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>ベースライン（デフォルト）設定を更新</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>{0} とベースラインの設定を更新</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>新しいコピーとしてインポート</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz 補間器</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>予測</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>先読み時間</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>ブレンド</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>補正リミット</value>
+  </data>
 </root>

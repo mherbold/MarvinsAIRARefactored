@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Eksportuj wykres</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Importuj wykres</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>Pliki wykresów MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Zaimportowany wykres</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Nie można wyeksportować tego wykresu.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Nie można zaimportować tego pliku wykresu.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Ten plik nie jest plikiem wykresu MAIRA.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Ten plik zawiera wykres efektów wibracji — zaimportuj go w sekcji efektów wibracji.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Ten plik zawiera wykres FFB — zaimportuj go w sekcji wykresu FFB.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Ten plik wykresu został utworzony przez nowszą wersję MAIRA. Zaktualizuj MAIRA i spróbuj ponownie.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Nagrywanie rozpoczęte</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Nagrywanie zatrzymane</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Czas</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Pozycja na torze</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>Moment obrotowy 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>Moment obrotowy 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Kąt skrętu</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Prędkość skrętu</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Pozycja kierownicy</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Prędkość kierownicy</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Bieg</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Wzdłużna siła G</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Poślizg/ślizg</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Wbudowane</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Niestandardowe</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Importuj ustawienia wykresu</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Masz już wykres „{0}”. Co chcesz zrobić z ustawieniami w tym pliku?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Zaktualizuj ustawienia {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Zaktualizuj ustawienia bazowe (domyślne)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Zaktualizuj ustawienia {0} i bazowe</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importuj jako nową kopię</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>Interpolator 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Predykcja</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horyzont</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Mieszanie</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Limit korekcji</value>
+  </data>
 </root>

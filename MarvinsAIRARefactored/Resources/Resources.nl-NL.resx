@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Grafiek exporteren</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Grafiek importeren</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA-grafiekbestanden</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Geïmporteerde grafiek</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Deze grafiek kon niet worden geëxporteerd.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Dit grafiekbestand kon niet worden geïmporteerd.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Dit bestand is geen MAIRA-grafiekbestand.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Dit bestand bevat een grafiek voor trillingseffecten – importeer het in plaats daarvan onder trillingseffecten.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Dit bestand bevat een FFB-grafiek – importeer het in plaats daarvan onder de FFB-grafiek.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Dit grafiekbestand is gemaakt met een nieuwere versie van MAIRA. Werk MAIRA bij en probeer het opnieuw.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Opname gestart</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Opname gestopt</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Tijd</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Baanpositie</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz koppel</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz koppel</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Stuurhoek</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Stuursnelheid</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Stuurwielpositie</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Stuurwielsnelheid</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Versnelling</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Longitudinale G-kracht</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Slippen/glijden</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Ingebouwd</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Aangepast</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Grafiekinstellingen importeren</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Je hebt de grafiek „{0}“ al. Wat wil je doen met de instellingen in dit bestand?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>{0}-instellingen bijwerken</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Basisinstellingen (standaard) bijwerken</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>{0}- en basisinstellingen bijwerken</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importeren als nieuwe kopie</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz-interpolator</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Voorspelling</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horizon</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Menging</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Correctielimiet</value>
+  </data>
 </root>

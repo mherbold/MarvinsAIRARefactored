@@ -2,6 +2,18 @@
 namespace MarvinsAIRARefactored.FFB;
 
 /// <summary>
+/// The six raw 360 Hz torque samples (Nm) of the current 60 Hz telemetry frame, as one inline value (no
+/// allocation, copied into every tick context). iRacing delivers the whole frame at once, so at any sub-tick
+/// the frame's LATER samples are already known — the prediction module exploits this to anchor its
+/// extrapolation at the newest sample instead of the current one, cutting the depth it has to guess.
+/// </summary>
+[System.Runtime.CompilerServices.InlineArray( FFBTickContext.SamplesPerFrame )]
+public struct FFBTorqueFrame
+{
+	private float _element0;
+}
+
+/// <summary>
 /// Per-tick auxiliary input for the FFB graph engine. Built once per 360 Hz tick (no allocation) by the
 /// telemetry-thread frame burst and passed by readonly reference into every module's PrePass/Process.
 /// Everything a module might need from the outside world (torque samples, telemetry, wheel state,
@@ -21,10 +33,16 @@ public readonly struct FFBTickContext
 
 	public readonly float DeltaMilliseconds;
 
+	// 0-based index of this tick within its 60 Hz telemetry frame (0..SamplesPerFrame-1). Lets a module that
+	// resamples a 60 Hz-carried signal (the 60 Hz interpolator) know where it sits in the frame so it can ramp
+	// across the six sub-ticks.
+	public readonly int SampleIndex;
+
 	// torque sources (Nm)
 
-	public readonly float Torque60Hz;   // predicted 60 Hz sample (RacingWheel runs the RLS predictors)
-	public readonly float Torque360Hz;  // raw 360 Hz ST sample
+	public readonly float Torque60Hz;   // raw 60 Hz sample (the frame's newest ST sample)
+	public readonly float Torque360Hz;  // raw 360 Hz ST sample for this tick
+	public readonly FFBTorqueFrame TorqueFrame; // all six raw 360 Hz ST samples of this frame (see FFBTorqueFrame)
 	public readonly float MaxForce;      // RacingWheelMaxForce (Nm) — normalization divisor
 
 	// audio / LFE
@@ -73,8 +91,10 @@ public readonly struct FFBTickContext
 
 	public FFBTickContext(
 		float deltaMilliseconds,
+		int sampleIndex,
 		float torque60Hz,
 		float torque360Hz,
+		in FFBTorqueFrame torqueFrame,
 		float maxForce,
 		float lfeMagnitude,
 		float wheelPosition,
@@ -100,8 +120,10 @@ public readonly struct FFBTickContext
 		bool isPreview = false )
 	{
 		DeltaMilliseconds = deltaMilliseconds;
+		SampleIndex = sampleIndex;
 		Torque60Hz = torque60Hz;
 		Torque360Hz = torque360Hz;
+		TorqueFrame = torqueFrame;
 		MaxForce = maxForce;
 		LFEMagnitude = lfeMagnitude;
 		WheelPosition = wheelPosition;
@@ -131,19 +153,26 @@ public readonly struct FFBTickContext
 	/// (recordings are captured at 360 Hz).</summary>
 	public const float TickDeltaMilliseconds = 1000f / 360f;
 
+	/// <summary>360 Hz ticks per 60 Hz telemetry frame (the burst length, and the 60→360 expansion ratio the
+	/// interpolator ramps across). Mirrors <see cref="Components.Simulator.SamplesPerFrame360Hz"/>.</summary>
+	public const int SamplesPerFrame = 6;
+
 	/// <summary>
 	/// The preview replay context: one recorded 360 Hz sample expanded back into a full tick context, so every
 	/// module — effects, generators, and protections included — behaves as it did when the recording was made.
 	/// Recordings only run while on track with live torque data, so those two flags are hard-wired true. The
 	/// crash/curb trigger pulses are passed in because the caller re-derives them from the recorded raw telemetry
-	/// (G forces, peak shock velocity) against the protection modules' CURRENT thresholds.
+	/// (G forces, peak shock velocity) against the protection modules' CURRENT thresholds. The torque frame is
+	/// passed in because the caller reassembles it from the recording's six samples around this one.
 	/// </summary>
-	public static FFBTickContext FromRecording( Classes.RecordingData recordingData, float maxForce, bool crashProtectionTriggered, bool curbProtectionTriggered )
+	public static FFBTickContext FromRecording( Classes.RecordingData recordingData, in FFBTorqueFrame torqueFrame, float maxForce, bool crashProtectionTriggered, bool curbProtectionTriggered, int sampleIndex )
 	{
 		return new FFBTickContext(
 			deltaMilliseconds: TickDeltaMilliseconds,
+			sampleIndex: sampleIndex,
 			torque60Hz: recordingData.InputTorque60Hz,
 			torque360Hz: recordingData.InputTorque360Hz,
+			torqueFrame: in torqueFrame,
 			maxForce: maxForce,
 			lfeMagnitude: recordingData.LFEMagnitude,
 			wheelPosition: recordingData.WheelPosition,

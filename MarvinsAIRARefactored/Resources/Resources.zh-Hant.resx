@@ -2082,4 +2082,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>匯出圖表</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>匯入圖表</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA 圖表檔案</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>已匯入的圖表</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>無法匯出此圖表。</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>無法匯入此圖表檔案。</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>此檔案不是 MAIRA 圖表檔案。</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>此檔案包含振動效果圖表，請改在振動效果下匯入。</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>此檔案包含 FFB 圖表，請改在 FFB 圖表下匯入。</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>此圖表檔案由較新版本的 MAIRA 建立。請更新 MAIRA 後再試一次。</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>已開始錄製</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>已停止錄製</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>時間</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>賽道位置</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz 扭力</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz 扭力</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>轉向角度</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>轉向速度</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>方向盤位置</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>方向盤速度</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>檔位</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>縱向 G 力</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>打滑/滑移</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>內建</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>自訂</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>匯入圖表設定</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>您已有圖表「{0}」。要如何處理此檔案中的設定？</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>更新 {0} 設定</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>更新基準（預設）設定</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>更新 {0} 與基準設定</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>以新副本匯入</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz 內插器</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>預測</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>前瞻時間</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>混合</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>校正上限</value>
+  </data>
 </root>

@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Grafiği dışa aktar</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Grafiği içe aktar</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA grafik dosyaları</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>İçe aktarılan grafik</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Bu grafik dışa aktarılamadı.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Bu grafik dosyası içe aktarılamadı.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Bu dosya bir MAIRA grafik dosyası değil.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Bu dosya bir titreşim efektleri grafiği içeriyor — bunun yerine titreşim efektleri altında içe aktarın.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Bu dosya bir FFB grafiği içeriyor — bunun yerine FFB grafiği altında içe aktarın.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Bu grafik dosyası MAIRA'nın daha yeni bir sürümü tarafından oluşturuldu. Lütfen MAIRA'yı güncelleyip tekrar deneyin.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Kayıt başlatıldı</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Kayıt durduruldu</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Zaman</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Pist konumu</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz tork</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz tork</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Direksiyon açısı</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Direksiyon açısal hızı</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Direksiyon konumu</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Direksiyon dönüş hızı</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Vites</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Boyuna G-kuvveti</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Kayma/patinaj</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Yerleşik</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Özel</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Grafik ayarlarını içe aktar</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Zaten “{0}” grafiğine sahipsiniz. Bu dosyadaki ayarlarla ne yapmak istersiniz?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>{0} ayarlarını güncelle</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Temel (varsayılan) ayarları güncelle</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>{0} ve temel ayarları güncelle</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Yeni bir kopya olarak içe aktar</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz enterpolatör</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Tahmin</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Ufuk</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Karışım</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Düzeltme sınırı</value>
+  </data>
 </root>

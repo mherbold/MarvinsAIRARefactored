@@ -2082,4 +2082,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Eksportēt grafiku</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Importēt grafiku</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA grafiku faili</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Importēts grafiks</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Šo grafiku nevarēja eksportēt.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Šo grafika failu nevarēja importēt.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Šis fails nav MAIRA grafika fails.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Šis fails satur vibrācijas efektu grafiku — importējiet to vibrācijas efektu sadaļā.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Šis fails satur FFB grafiku — importējiet to FFB grafika sadaļā.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Šis grafika fails tika izveidots ar jaunāku MAIRA versiju. Lūdzu, atjauniniet MAIRA un mēģiniet vēlreiz.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Ierakstīšana sākta</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Ierakstīšana apturēta</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Laiks</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Pozīcija trasē</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz griezes moments</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz griezes moments</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Stūrēšanas leņķis</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Stūrēšanas ātrums</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Stūres pozīcija</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Stūres ātrums</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Pārnesums</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Garenvirziena G-spēks</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Slīdēšana/slīde</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Iebūvēti</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Pielāgoti</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Importēt grafika iestatījumus</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Jums jau ir grafiks „{0}”. Ko vēlaties darīt ar šī faila iestatījumiem?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Atjaunināt {0} iestatījumus</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Atjaunināt bāzes (noklusējuma) iestatījumus</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Atjaunināt {0} un bāzes iestatījumus</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importēt kā jaunu kopiju</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz interpolators</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Prognozēšana</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horizonts</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Sajaukums</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Korekcijas ierobežojums</value>
+  </data>
 </root>

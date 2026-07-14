@@ -33,6 +33,8 @@ public static class FFBModuleRegistry
 	public const string CompressorType = "Compressor";
 	public const string TransientEnhancerType = "TransientEnhancer";
 	public const string AdaptiveSmootherType = "AdaptiveSmoother";
+	public const string InterpolatorType = "Interpolator";
+	public const string PredictionType = "Prediction";
 	public const string AdaptiveBlendType = "AdaptiveBlend";
 
 	public const string CrashProtectionType = "CrashProtection";
@@ -57,7 +59,6 @@ public static class FFBModuleRegistry
 	// _descriptors initializer calls BuildDescriptors(), which reads these arrays.
 	// Choice option localization keys. Reuse the existing (already-translated) keys where they exist so choices
 	// are localized for free; new option sets use short words that read fine via the humanized fallback.
-	private static readonly string[] PredictionModeChoices = [ "Disabled", "PredictK1", "PredictK2" ];
 	private static readonly string[] FilterSlopeChoices = [ "OnePole", "TwoPole" ];
 	private static readonly string[] ConstantForceDirectionChoices = [ "None", "DecreaseForce", "IncreaseForce" ];
 	private static readonly string[] VibrationPatternChoices = [ "None", "SineWave", "SquareWave", "TriangleWave", "SawtoothWaveIn", "SawtoothWaveOut" ];
@@ -174,29 +175,31 @@ public static class FFBModuleRegistry
 		return
 		[
 			// ---- sources (6) ----
-			Descriptor( Source60HzType, 0, () => new Source60HzModule(), isSource: true, settings:
-			[
-				Choice( "PredictionMode", 1f, PredictionModeChoices ),
-				Knob( "PredictionBlend", 0f, 1f, 0.3f, 0.05f, F.Percent() )
-			] ),
+			Descriptor( Source60HzType, 0, () => new Source60HzModule(), isSource: true, settings: [] ),
 
 			Descriptor( Source360HzType, 0, () => new Source360HzModule(), isSource: true, settings: [] ),
 
-			Descriptor( SourceLFEType, 0, () => new SourceLFEModule(), isSource: true, settings: [] ),
+			Descriptor( SourceLFEType, 0, () => new SourceLFEModule(), isSource: true, settings:
+			[
+				Knob( "Strength", 0f, 1f, 0.25f, 0.01f, F.WithOff( F.Percent() ) )
+			] ),
 
 			Descriptor( SourceSoftLockType, 0, () => new SourceSoftLockModule(), isSource: true, settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.25f, 0.01f, F.WithOff( F.Percent() ) )
 			] ),
 
-			Descriptor( SourceWheelVelocityType, 0, () => new SourceWheelVelocityModule(), isSource: true, settings: [] ),
+			Descriptor( SourceWheelVelocityType, 0, () => new SourceWheelVelocityModule(), isSource: true, settings:
+			[
+				Knob( "Strength", 0f, 1f, 1f, 0.01f, F.WithOff( F.Percent() ) )
+			] ),
 
 			Descriptor( SourceWheelCenteringType, 0, () => new SourceWheelCenteringModule(), isSource: true, settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.75f, 0.01f, F.WithOff( F.Percent() ) )
 			] ),
 
-			// ---- generic DSP (8) ----
+			// ---- generic DSP (9) ----
 			Descriptor( GainType, 1, () => new GainModule(), settings:
 			[
 				Knob( "Gain", -5f, 5f, 1f, 0.05f, F.Multiplier( 2 ) )
@@ -243,6 +246,15 @@ public static class FFBModuleRegistry
 			[
 				Knob( "Cutoff", 0f, 180f, 7.2f, 1f, F.Number( 1, "HertzUnits" ) ),
 				Knob( "Gain", 0f, 5f, 1f, 0.05f, F.Multiplier( 2 ) )
+			] ),
+
+			Descriptor( InterpolatorType, 1, () => new InterpolatorModule(), settings: [] ),
+
+			Descriptor( PredictionType, 1, () => new PredictionModule(), settings:
+			[
+				Knob( "Horizon", 0f, 12f, 6f, 1f, F.PredictionHorizon ),
+				Knob( "CorrectionLimit", 0.25f, 10f, 5f, 0.25f, F.Number( 2, "TorqueUnits" ) ),
+				Knob( "Strength", 0f, 2f, 1.5f, 0.05f, F.WithOff( F.Percent() ) )
 			] ),
 
 			// ---- mixers (4) ----

@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>ส่งออกกราฟ</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>นำเข้ากราฟ</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>ไฟล์กราฟ MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>กราฟที่นำเข้า</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>ไม่สามารถส่งออกกราฟนี้ได้</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>ไม่สามารถนำเข้าไฟล์กราฟนี้ได้</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>ไฟล์นี้ไม่ใช่ไฟล์กราฟ MAIRA</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>ไฟล์นี้มีกราฟเอฟเฟกต์การสั่น กรุณานำเข้าภายใต้เอฟเฟกต์การสั่นแทน</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>ไฟล์นี้มีกราฟ FFB กรุณานำเข้าภายใต้กราฟ FFB แทน</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>ไฟล์กราฟนี้ถูกสร้างโดย MAIRA เวอร์ชันใหม่กว่า กรุณาอัปเดต MAIRA แล้วลองอีกครั้ง</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>เริ่มการบันทึกแล้ว</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>หยุดการบันทึกแล้ว</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>เวลา</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>ตำแหน่งบนสนาม</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>แรงบิด 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>แรงบิด 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>มุมบังคับเลี้ยว</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>ความเร็วการบังคับเลี้ยว</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>ตำแหน่งพวงมาลัย</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>ความเร็วพวงมาลัย</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>เกียร์</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>แรง G ตามยาว</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>ลื่น/ไถล</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>ในตัว</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>กำหนดเอง</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>นำเข้าการตั้งค่ากราฟ</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>คุณมีกราฟ “{0}” อยู่แล้ว คุณต้องการทำอย่างไรกับการตั้งค่าในไฟล์นี้?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>อัปเดตการตั้งค่า {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>อัปเดตการตั้งค่าพื้นฐาน (ค่าเริ่มต้น)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>อัปเดตการตั้งค่า {0} และพื้นฐาน</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>นำเข้าเป็นสำเนาใหม่</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>ตัวแทรกค่า 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>การคาดการณ์</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>ระยะมองล่วงหน้า</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>การผสม</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>ขีดจำกัดการแก้ไข</value>
+  </data>
 </root>

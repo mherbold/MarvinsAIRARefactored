@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Grafikon exportálása</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Grafikon importálása</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA grafikonfájlok</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Importált grafikon</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Ezt a grafikont nem sikerült exportálni.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Ezt a grafikonfájlt nem sikerült importálni.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Ez a fájl nem MAIRA grafikonfájl.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Ez a fájl rezgéseffekt-grafikont tartalmaz — importálja inkább a rezgéseffektek alatt.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Ez a fájl FFB grafikont tartalmaz — importálja inkább az FFB grafikon alatt.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Ezt a grafikonfájlt a MAIRA újabb verziója hozta létre. Frissítse a MAIRA-t, és próbálja újra.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Felvétel elindítva</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Felvétel leállítva</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Idő</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Pályapozíció</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz nyomaték</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz nyomaték</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Kormányszög</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Kormányzási sebesség</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Kormánykerék pozíciója</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Kormánykerék sebessége</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Sebességfokozat</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Hosszirányú G-erő</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Csúszás/megcsúszás</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Beépített</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Egyéni</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Grafikonbeállítások importálása</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Már van „{0}” nevű grafikonja. Mit szeretne tenni a fájlban lévő beállításokkal?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>{0} beállításainak frissítése</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Alap (alapértelmezett) beállítások frissítése</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>{0} és az alapbeállítások frissítése</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importálás új másolatként</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz interpolátor</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Előrejelzés</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horizont</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Keverés</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Korrekciós határ</value>
+  </data>
 </root>

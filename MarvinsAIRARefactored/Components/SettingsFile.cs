@@ -152,6 +152,10 @@ public class SettingsFile
 			// disk or the sync would re-run on every launch).
 			var builtInGraphsChanged = DataContext.DataContext.Instance.Settings.EnsureBuiltInFFBGraphsInitialized();
 
+			// Backfill stable graph identities for any legacy graph that predates them (built-ins already carry
+			// their fixed id from the shipped file). Persisted below so the ids never change across launches.
+			var graphIdentitiesChanged = DataContext.DataContext.Instance.Settings.EnsureGraphIdentitiesAssigned();
+
 			// Build the live FFB graph engine from the selected graph so it is ready to drive FFB
 			// immediately; the first per-context reload will rebuild it with this car/track's values.
 			app.RacingWheel.RebuildLiveEngine();
@@ -165,7 +169,7 @@ public class SettingsFile
 
 			// Persist a launch-time built-in graph sync now that serialization is un-paused (the setter ignores
 			// a queue request while paused), so the recorded graph file hashes reach disk and the sync runs once.
-			if ( builtInGraphsChanged )
+			if ( builtInGraphsChanged || graphIdentitiesChanged )
 			{
 				QueueForSerialization = true;
 			}

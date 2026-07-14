@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Eksporter graf</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Importer graf</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA-graffiler</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Importeret graf</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Denne graf kunne ikke eksporteres.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Denne graffil kunne ikke importeres.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Denne fil er ikke en MAIRA-graffil.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Denne fil indeholder en graf med vibrationseffekter – importer den under vibrationseffekter i stedet.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Denne fil indeholder en FFB-graf – importer den under FFB-grafen i stedet.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Denne graffil blev oprettet af en nyere version af MAIRA. Opdater MAIRA, og prøv igen.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Optagelse startet</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Optagelse stoppet</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Tid</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Baneposition</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz-moment</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz-moment</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Styrevinkel</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Styrehastighed</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Ratposition</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Rathastighed</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Gear</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Langsgående G-kraft</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Udskridning/slip</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Indbygget</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Tilpasset</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Importer grafindstillinger</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Du har allerede grafen »{0}«. Hvad vil du gøre med indstillingerne i denne fil?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Opdater indstillinger for {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Opdater basisindstillinger (standard)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Opdater indstillinger for {0} og basisindstillinger</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importer som en ny kopi</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz-interpolator</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Forudsigelse</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horisont</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Blanding</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Korrektionsgrænse</value>
+  </data>
 </root>

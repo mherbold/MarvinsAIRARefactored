@@ -135,6 +135,7 @@ public partial class Simulator
 	public float Yaw { get; private set; } = 0f;
 	public float YawNorth { get; private set; } = 0f;
 	public float YawRate { get; private set; } = 0f;
+	public float[] YawRate_ST { get; private set; } = new float[ SamplesPerFrame360Hz ]; // true 360 Hz yaw rate; falls back to the 60 Hz YawRate when the sim doesn't expose it
 
 	private bool _telemetryDataInitialized = false;
 	private bool _waitingForFirstSessionInfo = false;
@@ -235,6 +236,7 @@ public partial class Simulator
 	private IRacingSdkDatum? _yawDatum = null;
 	private IRacingSdkDatum? _yawNorthDatum = null;
 	private IRacingSdkDatum? _yawRateDatum = null;
+	private IRacingSdkDatum? _yawRate_STDatum = null;
 
 	private readonly float[] _rpmSpeedRatioAccumulator = new float[ MaxNumGears ];
 	private readonly int[] _rpmSpeedRatioSampleCount = new int[ MaxNumGears ];
@@ -454,6 +456,7 @@ public partial class Simulator
 		YawNorth = 0f;
 		YawRate = 0f;
 
+		Array.Clear( YawRate_ST );
 		Array.Clear( CFShockVel_ST );
 		Array.Clear( CRShockVel_ST );
 		Array.Clear( LFShockVel_ST );
@@ -767,6 +770,8 @@ public partial class Simulator
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RFshockVel_ST", out _rfShockVel_STDatum );
 			_irsdk.Data.TelemetryDataProperties.TryGetValue( "RRshockVel_ST", out _rrShockVel_STDatum );
 
+			_irsdk.Data.TelemetryDataProperties.TryGetValue( "YawRate_ST", out _yawRate_STDatum );
+
 			// log array datum counts so we can detect if any exceed our destination array sizes
 			var logger = app.Logger;
 
@@ -787,6 +792,7 @@ public partial class Simulator
 			logger.WriteLine( $"[Simulator]   LRShockVel_ST.Count       = {_lrShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 			logger.WriteLine( $"[Simulator]   RFShockVel_ST.Count       = {_rfShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 			logger.WriteLine( $"[Simulator]   RRShockVel_ST.Count       = {_rrShockVel_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
+			logger.WriteLine( $"[Simulator]   YawRate_ST.Count          = {_yawRate_STDatum?.Count.ToString() ?? "n/a (not present)"}" );
 
 			app.TimingMarkers.Initialize( _carIdxLapDistPctDatum.Count );
 
@@ -816,10 +822,10 @@ public partial class Simulator
 			return;
 		}
 
-		// poll directinput devices right before we process the FFB frame (RacingWheel.ProcessTelemetryFrame reads
-		// the wheel position/velocity at the end of this method)
+		// poll directinput devices (button/POV input) right before we process the FFB frame; wheel position and
+		// velocity now come from iRacing's steering telemetry (read above), not our own DirectInput axis sampling
 
-		app.DirectInput.PollDevices( deltaSeconds );
+		app.DirectInput.PollDevices();
 
 		// get next 360 Hz steering wheel torque samples
 
@@ -959,6 +965,17 @@ public partial class Simulator
 		if ( _rrShockVel_STDatum != null )
 		{
 			_irsdk.Data.GetFloatArray( _rrShockVel_STDatum, RRShockVel_ST, 0, RRShockVel_ST.Length );
+		}
+
+		// get next 360 Hz yaw rate samples — fall back to the frame's 60 Hz value when the sim doesn't expose the ST array
+
+		if ( _yawRate_STDatum != null )
+		{
+			_irsdk.Data.GetFloatArray( _yawRate_STDatum, YawRate_ST, 0, YawRate_ST.Length );
+		}
+		else
+		{
+			Array.Fill( YawRate_ST, YawRate );
 		}
 
 		// update racing wheel

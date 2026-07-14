@@ -2082,4 +2082,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>ग्राफ़ निर्यात करें</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>ग्राफ़ आयात करें</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA ग्राफ़ फ़ाइलें</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>आयातित ग्राफ़</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>यह ग्राफ़ निर्यात नहीं किया जा सका।</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>यह ग्राफ़ फ़ाइल आयात नहीं की जा सकी।</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>यह फ़ाइल MAIRA ग्राफ़ फ़ाइल नहीं है।</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>इस फ़ाइल में कंपन प्रभाव ग्राफ़ है - इसके बजाय इसे कंपन प्रभाव के अंतर्गत आयात करें।</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>इस फ़ाइल में FFB ग्राफ़ है - इसके बजाय इसे FFB ग्राफ़ के अंतर्गत आयात करें।</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>यह ग्राफ़ फ़ाइल MAIRA के नए संस्करण द्वारा बनाई गई थी। कृपया MAIRA अपडेट करें और पुनः प्रयास करें।</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>रिकॉर्डिंग शुरू हुई</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>रिकॉर्डिंग रुकी</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>समय</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>ट्रैक स्थिति</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz टॉर्क</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz टॉर्क</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>स्टीयरिंग कोण</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>स्टीयरिंग वेग</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>व्हील स्थिति</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>व्हील वेग</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>गियर</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>अनुदैर्ध्य G-Force</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>स्किड/स्लिप</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>अंतर्निहित</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>कस्टम</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>ग्राफ़ सेटिंग्स आयात करें</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>आपके पास पहले से ही ग्राफ़ “{0}” है। इस फ़ाइल की सेटिंग्स के साथ आप क्या करना चाहेंगे?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>{0} सेटिंग्स अपडेट करें</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>आधारभूत (डिफ़ॉल्ट) सेटिंग्स अपडेट करें</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>{0} और आधारभूत सेटिंग्स अपडेट करें</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>नई प्रति के रूप में आयात करें</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz इंटरपोलेटर</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>पूर्वानुमान</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>क्षितिज</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>मिश्रण</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>सुधार सीमा</value>
+  </data>
 </root>

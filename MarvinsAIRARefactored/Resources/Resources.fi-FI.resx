@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Vie graafi</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Tuo graafi</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA-graafitiedostot</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Tuotu graafi</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Tätä graafia ei voitu viedä.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Tätä graafitiedostoa ei voitu tuoda.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Tämä tiedosto ei ole MAIRA-graafitiedosto.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Tämä tiedosto sisältää tärinäefektigraafin – tuo se sen sijaan tärinäefektien alta.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Tämä tiedosto sisältää FFB-graafin – tuo se sen sijaan FFB-graafin alta.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Tämä graafitiedosto on luotu uudemmalla MAIRA-versiolla. Päivitä MAIRA ja yritä uudelleen.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Tallennus aloitettu</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Tallennus pysäytetty</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Aika</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Sijainti radalla</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz -vääntömomentti</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz -vääntömomentti</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Ohjauskulma</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Ohjausnopeus</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Ratin asento</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Ratin nopeus</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Vaihde</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Pituussuuntainen G-voima</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Luisto/liuku</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Sisäänrakennettu</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Mukautettu</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Tuo graafin asetukset</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Sinulla on jo graafi ”{0}”. Mitä haluat tehdä tämän tiedoston asetuksille?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Päivitä {0}-asetukset</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Päivitä perusasetukset (oletus)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Päivitä {0}-asetukset ja perusasetukset</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Tuo uutena kopiona</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz -interpolaattori</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Ennuste</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horisontti</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Sekoitus</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Korjausraja</value>
+  </data>
 </root>

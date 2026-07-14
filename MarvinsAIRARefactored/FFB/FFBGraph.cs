@@ -66,6 +66,11 @@ public class FFBGraph
 	public const string SourceWheelCenteringModuleId = "SourceWheelCentering";
 	public const string OutputModuleId = "Output";
 
+	// Stable identity that survives export/import (and renames). Written into exported files so a re-import of the
+	// same graph is recognized as an update to the live module settings rather than a brand-new copy. User graphs
+	// get a random id at creation; built-ins carry a fixed id baked into their shipped file so a graph derived from
+	// the same built-in matches across installs. Empty on legacy graphs/files - assigned lazily on load/import.
+	public string GraphId { get; set; } = "";
 	public string Name { get; set; } = "";
 	public bool IsBuiltIn { get; set; } = false;
 	public List<FFBModuleData> Modules { get; set; } = [];   // dependency order, last = Output
@@ -91,7 +96,7 @@ public class FFBGraph
 	/// </summary>
 	public static FFBGraph CreateEmpty( string name, bool isBuiltIn = false )
 	{
-		var graph = new FFBGraph { Name = name, IsBuiltIn = isBuiltIn };
+		var graph = new FFBGraph { GraphId = Guid.NewGuid().ToString( "N" ), Name = name, IsBuiltIn = isBuiltIn };
 
 		graph.Modules.Add( new FFBModuleData( Source360ModuleId, FFBModuleRegistry.Source360HzType ) );
 
@@ -106,7 +111,7 @@ public class FFBGraph
 	/// <summary>Deep copy of the whole graph (used to seed a new graph from an existing one).</summary>
 	public FFBGraph Clone()
 	{
-		var clone = new FFBGraph { Name = Name, IsBuiltIn = IsBuiltIn };
+		var clone = new FFBGraph { GraphId = GraphId, Name = Name, IsBuiltIn = IsBuiltIn };
 
 		foreach ( var module in Modules )
 		{

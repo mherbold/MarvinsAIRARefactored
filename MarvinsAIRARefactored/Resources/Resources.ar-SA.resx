@@ -2082,4 +2082,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>تصدير الرسم البياني</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>استيراد الرسم البياني</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>ملفات الرسوم البيانية لـ MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>رسم بياني مستورد</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>تعذّر تصدير هذا الرسم البياني.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>تعذّر استيراد ملف الرسم البياني هذا.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>هذا الملف ليس ملف رسم بياني لـ MAIRA.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>يحتوي هذا الملف على رسم بياني لتأثيرات الاهتزاز - استورده ضمن تأثيرات الاهتزاز بدلاً من ذلك.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>يحتوي هذا الملف على رسم بياني FFB - استورده ضمن رسم FFB البياني بدلاً من ذلك.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>تم إنشاء ملف الرسم البياني هذا بإصدار أحدث من MAIRA. يرجى تحديث MAIRA والمحاولة مرة أخرى.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>بدأ التسجيل</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>توقّف التسجيل</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>الوقت</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>الموضع على المضمار</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>عزم الدوران 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>عزم الدوران 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>زاوية التوجيه</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>سرعة التوجيه</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>موضع المقود</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>سرعة المقود</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>الترس</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>قوة G الطولية</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>تزحلق/انزلاق</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>مدمج</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>مخصص</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>استيراد إعدادات الرسم البياني</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>لديك بالفعل الرسم البياني «{0}». ماذا تريد أن تفعل بالإعدادات الموجودة في هذا الملف؟</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>تحديث إعدادات {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>تحديث الإعدادات الأساسية (الافتراضية)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>تحديث إعدادات {0} والإعدادات الأساسية</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>استيراد كنسخة جديدة</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>أداة استيفاء 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>التنبؤ</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>الأفق</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>المزج</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>حد التصحيح</value>
+  </data>
 </root>

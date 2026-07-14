@@ -19,8 +19,8 @@ public class Recording
 	// first line doesn't match the current format line are rejected at load, so stale files can never replay with
 	// silently-zeroed or misinterpreted columns. v2 = true 360 Hz capture with the InputTorque360Hz column.
 	// v3 = dynamic recording length plus the TrackPosition column and the track-map columns
-	// (YawNorth, VelocityX, Speed).
-	public const int FormatVersion = 3;
+	// (YawNorth, VelocityX, Speed). v4 = the YawRate column (for the PredictionLab telemetry audit).
+	public const int FormatVersion = 4;
 
 	private const string FormatLinePrefix = "MAIRA Recording v";
 

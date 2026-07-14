@@ -47,13 +47,6 @@ public class RacingWheel
 		_Dummy2_
 	};
 
-	public enum PredictionMode
-	{
-		Disabled,
-		PredictK1,
-		PredictK2
-	}
-
 	public enum VibrationPattern
 	{
 		None,
@@ -165,7 +158,6 @@ public class RacingWheel
 
 	// cross-thread control flags
 	private volatile bool _ffbActive = false;               // written by UpdatePlayout (owns the device state), read by ProcessTelemetryFrame
-	private volatile bool _predictorResetRequested = false; // set by UpdatePlayout after a device re-init, consumed by ProcessTelemetryFrame
 	private volatile bool _producerFaulted = false;         // set by ProcessTelemetryFrame's catch, converted to a soft-lock restart by UpdatePlayout
 
 	// diagnostics — late telemetry frames (playout ran out of data) and discarded torn handoffs
@@ -189,24 +181,6 @@ public class RacingWheel
 	private int _updateCounter = UpdateInterval + 4;
 
 #if DEBUG
-
-	private struct PredictorSample
-	{
-		public int TickCount { get; set; }
-
-		public float InputFFBSample { get; set; }
-		public float WheelVelocity { get; set; }
-		public PredictionMode PredictionMode { get; set; }
-		public float PredictionBlend { get; set; }
-		public float PredictedValue { get; set; }
-		public bool DeltaClamped { get; set; }
-		public float OutputFFBSample { get; set; }
-	}
-
-	private float _lastLapDistPct = 0f;
-	private int _lapNumber = 0;
-	private readonly PredictorSample[] _predictorSampleArray = new PredictorSample[ 65536 ]; // enough for 18+ minutes a lap at 60 Hz
-	private int _predictorSampleCount = 0;
 
 	/// <summary>
 	/// Rolling min/avg/max timing for one hot path, reported to the log once per second. Each instance is owned
@@ -286,11 +260,6 @@ public class RacingWheel
 
 #endif
 
-	private readonly RlsWheelVelocityPredictor _ffbPredictorK1 = new( horizon: 1 );
-	private readonly RlsWheelVelocityPredictor _ffbPredictorK2 = new( horizon: 2 );
-
-	private float _predictedSteeringWheelTorque60Hz = 0f;
-
 	public void Initialize()
 	{
 		var app = App.Instance!;
@@ -303,15 +272,6 @@ public class RacingWheel
 		app.Graph.SetLayerColors( Graph.LayerIndex.OutputTorque, 0f, 1f, 1f );
 
 		_algorithmPreviewGraphBase.Initialize( MainWindow._racingWheelPage.AlgorithmPreview_Image );
-
-#if DEBUG
-
-		for ( var i = 0; i < _predictorSampleArray.Length; i++ )
-		{
-			_predictorSampleArray[ i ] = new PredictorSample();
-		}
-
-#endif
 
 		app.Logger.WriteLine( "[RacingWheel] <<< Initialize" );
 	}
@@ -473,19 +433,7 @@ public class RacingWheel
 
 			if ( !_ffbActive )
 			{
-				_predictedSteeringWheelTorque60Hz = 0f;
-
 				return;
-			}
-
-			// reset the predictors if the playout thread re-initialized the force feedback device
-
-			if ( _predictorResetRequested )
-			{
-				_predictorResetRequested = false;
-
-				_ffbPredictorK1.Reset();
-				_ffbPredictorK2.Reset();
 			}
 
 			// check if we want to auto set max force
@@ -509,77 +457,9 @@ public class RacingWheel
 				ClearPeakTorque = false;
 			}
 
-			// run the 60 Hz predictor on the newest raw sample (mode/blend come from the live engine's Source60 module)
-
 			var steeringWheelTorque_ST = app.Simulator.SteeringWheelTorque_ST;
 
-			var steeringWheelTorque60Hz = 0f;
-
-			if ( _usingSteeringWheelTorqueData )
-			{
-				steeringWheelTorque60Hz = steeringWheelTorque_ST[ 5 ];
-
-				var predictedValue = engine.PredictionMode switch
-				{
-					PredictionMode.PredictK1 => _ffbPredictorK1.Step( steeringWheelTorque60Hz, app.DirectInput.ForceFeedbackWheelVelocity ),
-					PredictionMode.PredictK2 => _ffbPredictorK2.Step( steeringWheelTorque60Hz, app.DirectInput.ForceFeedbackWheelVelocity ),
-					_ => steeringWheelTorque60Hz,
-				};
-
-				var unclampedDelta = predictedValue - steeringWheelTorque60Hz;
-				var clampedDelta = Math.Clamp( unclampedDelta, -0.5f, 0.5f );
-
-				_predictedSteeringWheelTorque60Hz = MathZ.Lerp( steeringWheelTorque60Hz, steeringWheelTorque60Hz + clampedDelta, engine.PredictionBlend );
-
-#if DEBUG
-
-				if ( ( _lastLapDistPct > 0.95f ) && ( app.Simulator.LapDistPct < 0.05f ) )
-				{
-					_lapNumber++;
-
-					var lapNumber = _lapNumber;
-
-					var snapshot = _predictorSampleArray.AsSpan( 0, _predictorSampleCount ).ToArray();
-
-					_predictorSampleCount = 0;
-
-					_ = Task.Run( async () =>
-					{
-						var path = Path.Combine( App.DocumentsFolder, "Predictor Data", $"Lap-{lapNumber}.csv" );
-
-						try
-						{
-							await DumpLapAsync( snapshot, path );
-						}
-						catch ( Exception exception )
-						{
-							app.Logger.WriteLine( $"[RacingWheel] Exception while dumping predictor data: {exception}" );
-						}
-					} );
-				}
-
-				if ( _predictorSampleCount < _predictorSampleArray.Length )
-				{
-					ref var predictorSample = ref _predictorSampleArray[ _predictorSampleCount++ ];
-
-					predictorSample.TickCount = app.Simulator.IRSDK.Data.TickCount;
-					predictorSample.InputFFBSample = steeringWheelTorque_ST[ 5 ];
-					predictorSample.WheelVelocity = app.DirectInput.ForceFeedbackWheelVelocity;
-					predictorSample.PredictionMode = engine.PredictionMode;
-					predictorSample.PredictionBlend = engine.PredictionBlend;
-					predictorSample.PredictedValue = predictedValue;
-					predictorSample.DeltaClamped = clampedDelta != unclampedDelta;
-					predictorSample.OutputFFBSample = _predictedSteeringWheelTorque60Hz;
-				}
-
-				_lastLapDistPct = app.Simulator.LapDistPct;
-
-#endif
-			}
-			else
-			{
-				_predictedSteeringWheelTorque60Hz = 0f;
-			}
+			var steeringWheelTorque60Hz = _usingSteeringWheelTorqueData ? steeringWheelTorque_ST[ 5 ] : 0f;
 
 			// run the FFB graph engine over the six raw 360 Hz samples at the fixed 360 Hz tick, applying fade per
 			// sample, and capture the results into the burst arrays
@@ -591,7 +471,7 @@ public class RacingWheel
 			// snapshot the frame-constant context inputs once — only the raw torque sample, the LFE magnitude,
 			// and the sample-0 protection pulses vary inside the burst loop
 
-			var frameContext = new FrameContext( app, _predictedSteeringWheelTorque60Hz, maxForce, _usingSteeringWheelTorqueData );
+			var frameContext = new FrameContext( app, steeringWheelTorque60Hz, maxForce, _usingSteeringWheelTorqueData );
 
 #if DEBUG
 			var burstStartTimestamp = Stopwatch.GetTimestamp();
@@ -626,7 +506,7 @@ public class RacingWheel
 				// build the per-tick context and evaluate the whole FFB graph (algorithm + effects + vibration
 				// generators) — the one-shot protection pulses fire on the first sample of the frame only
 
-				var tickContext = BuildTickContext( in frameContext, steeringWheelTorque360Hz, inputLFEMagnitude, crashProtectionTriggered && ( sampleIndex == 0 ), curbProtectionTriggered && ( sampleIndex == 0 ) );
+				var tickContext = BuildTickContext( in frameContext, steeringWheelTorque360Hz, inputLFEMagnitude, crashProtectionTriggered && ( sampleIndex == 0 ), curbProtectionTriggered && ( sampleIndex == 0 ), sampleIndex );
 
 				engine.Process( in tickContext );
 
@@ -665,7 +545,7 @@ public class RacingWheel
 				_burstInputTorque[ sampleIndex ] = steeringWheelTorque360Hz / maxForce;
 				_burstLFEMagnitude[ sampleIndex ] = inputLFEMagnitude;
 
-				// update recording data (the raw 60 Hz torque is passed separately — the context carries the predicted sample)
+				// update recording data
 
 				app.RecordingManager.AddRecordingData( in tickContext, steeringWheelTorque60Hz );
 			}
@@ -888,7 +768,6 @@ public class RacingWheel
 					_racingWheelPage.UpdateSteeringDeviceSection();
 				}
 
-				_predictorResetRequested = true;
 			}
 
 			// let the telemetry-thread producer run
@@ -1031,6 +910,7 @@ public class RacingWheel
 	private readonly struct FrameContext
 	{
 		public readonly float Torque60Hz;
+		public readonly FFBTorqueFrame TorqueFrame;
 		public readonly float MaxForce;
 		public readonly float WheelPosition;
 		public readonly float WheelVelocity;
@@ -1055,12 +935,29 @@ public class RacingWheel
 		{
 			var simulator = app.Simulator;
 			var steeringEffects = app.SteeringEffects;
-			var directInput = app.DirectInput;
 
 			Torque60Hz = torque60Hz;
 			MaxForce = maxForce;
-			WheelPosition = directInput.ForceFeedbackWheelPosition;
-			WheelVelocity = directInput.ForceFeedbackWheelVelocity;
+
+			// the whole raw 360 Hz ST frame (zeros when torque data isn't live — matches the per-tick samples)
+			if ( usingTorqueData )
+			{
+				var steeringWheelTorque_ST = simulator.SteeringWheelTorque_ST;
+
+				for ( var i = 0; i < Simulator.SamplesPerFrame360Hz; i++ )
+				{
+					TorqueFrame[ i ] = steeringWheelTorque_ST[ i ];
+				}
+			}
+
+			// Wheel position/velocity normalized to the car's steering lock, derived from iRacing's SteeringWheelAngle/
+			// Velocity telemetry (proper radians / rad-per-second). This replaced our own DirectInput axis sampling;
+			// normalizing by the car's half-lock also makes these relative to the real steering lock rather than the
+			// wheel's fixed rotation range (halfLock is 0 off-car, so the values sit at 0 until in a session).
+			var halfLock = simulator.SteeringWheelAngleMax * 0.5f;
+			WheelPosition = ( halfLock > 0f ) ? simulator.SteeringWheelAngle / halfLock : 0f;
+			WheelVelocity = ( halfLock > 0f ) ? simulator.SteeringWheelVelocity / halfLock : 0f;
+
 			UndersteerEffect = steeringEffects.UndersteerEffect;
 			OversteerEffect = steeringEffects.OversteerEffect;
 			SeatOfPantsEffect = steeringEffects.SeatOfPantsEffect;
@@ -1085,12 +982,14 @@ public class RacingWheel
 	/// the values that vary per 360 Hz sample (raw torque, LFE magnitude, sample-0 protection pulses). No
 	/// allocation (the struct is passed by readonly reference into every module).
 	/// </summary>
-	private static FFBTickContext BuildTickContext( in FrameContext frameContext, float torque360Hz, float lfeMagnitude, bool crashProtectionTriggered, bool curbProtectionTriggered )
+	private static FFBTickContext BuildTickContext( in FrameContext frameContext, float torque360Hz, float lfeMagnitude, bool crashProtectionTriggered, bool curbProtectionTriggered, int sampleIndex )
 	{
 		return new FFBTickContext(
 			deltaMilliseconds: FFBTickContext.TickDeltaMilliseconds,
+			sampleIndex: sampleIndex,
 			torque60Hz: frameContext.Torque60Hz,
 			torque360Hz: torque360Hz,
+			torqueFrame: in frameContext.TorqueFrame,
 			maxForce: frameContext.MaxForce,
 			lfeMagnitude: lfeMagnitude,
 			wheelPosition: frameContext.WheelPosition,
@@ -1236,18 +1135,35 @@ public class RacingWheel
 				var previousOutputValue = 0f;
 				var isFirstSample = true;
 
+				var previewTorqueFrame = new FFBTorqueFrame();
+
 				for ( var x = 0; x < _algorithmPreviewGraphBase.BitmapWidth; x++ )
 				{
 					if ( ( recording?.Data != null ) && ( x < recording.Data.Count ) )
 					{
 						var recordingData = recording.Data[ x ];
 
+						var sampleIndex = x % FFBTickContext.SamplesPerFrame;
+
+						// reassemble the frame's six raw 360 Hz samples (what the live burst sees in one go)
+						if ( ( sampleIndex == 0 ) || isFirstSample )
+						{
+							var frameStart = x - sampleIndex;
+
+							for ( var i = 0; i < FFBTickContext.SamplesPerFrame; i++ )
+							{
+								var index = Math.Min( frameStart + i, recording.Data.Count - 1 );
+
+								previewTorqueFrame[ i ] = recording.Data[ index ].InputTorque360Hz;
+							}
+						}
+
 						var crashProtectionTriggered = ( ( crashLongGForceThreshold < 20f ) && ( recordingData.LongitudinalGForce >= crashLongGForceThreshold ) )
 							|| ( ( crashLatGForceThreshold < 20f ) && ( recordingData.LateralGForce >= crashLatGForceThreshold ) );
 
 						var curbProtectionTriggered = ( curbShockVelocityThreshold > 0f ) && ( recordingData.MaxShockVelocity >= curbShockVelocityThreshold );
 
-						var previewContext = FFBTickContext.FromRecording( recordingData, maxForce, crashProtectionTriggered, curbProtectionTriggered );
+						var previewContext = FFBTickContext.FromRecording( recordingData, in previewTorqueFrame, maxForce, crashProtectionTriggered, curbProtectionTriggered, sampleIndex );
 
 						_previewEngine.Process( in previewContext );
 
@@ -1328,23 +1244,4 @@ public class RacingWheel
 		}
 	}
 
-#if DEBUG
-
-	private static async Task DumpLapAsync( PredictorSample[] samples, string path )
-	{
-		var directoryPath = Path.GetDirectoryName( path );
-
-		if ( !string.IsNullOrEmpty( directoryPath ) )
-		{
-			Directory.CreateDirectory( directoryPath );
-		}
-
-		await using var stream = new FileStream( path, FileMode.Create, FileAccess.Write, FileShare.Read, 64 * 1024, useAsync: true );
-		await using var writer = new StreamWriter( stream );
-		await using var csv = new CsvWriter( writer, CultureInfo.InvariantCulture );
-
-		await csv.WriteRecordsAsync( samples );
-	}
-
-#endif
 }

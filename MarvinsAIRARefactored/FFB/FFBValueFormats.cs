@@ -116,5 +116,14 @@ public static class FFBValueFormats
 		return $"{percent} ({floorHz})";
 	};
 
+	/// <summary>Prediction horizon in 360 Hz sub-ticks: localized "OFF" at 0, otherwise "K{n}" (K6 = one iRacing
+	/// 60 Hz tick ahead, K12 = two). The stored value is the sub-tick count; the module rounds it to an integer.</summary>
+	public static readonly Func<FFBFormatContext, string> PredictionHorizon = ctx =>
+	{
+		var k = (int) MathF.Round( ctx.Value );
+
+		return ( k <= 0 ) ? FFBFormatContext.Localized( "OFF" ) : $"K{k}";
+	};
+
 	private static string Fixed( float value, int decimals ) => value.ToString( "F" + decimals, CultureInfo.CurrentCulture );
 }

@@ -53,6 +53,7 @@ public class RecordingData
 	public float SteeringWheelAngle { get; set; }
 	public float SteeringWheelAngleMax { get; set; }
 	public float SteeringWheelVelocity { get; set; }
+	public float YawRate { get; set; }     // rad/s, true 360 Hz (YawRate_ST) — recorded (v4) for the PredictionLab telemetry audit; no FFB module consumes it yet
 
 	// track position (meters past the start/finish line)
 

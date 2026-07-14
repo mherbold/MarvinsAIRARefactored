@@ -716,7 +716,7 @@ public partial class App : Application
 		{
 			if ( !app.Simulator.IsConnected )
 			{
-				app.DirectInput.PollDevices( 1f );
+				app.DirectInput.PollDevices();
 
 				TriggerWorkerThread();
 			}

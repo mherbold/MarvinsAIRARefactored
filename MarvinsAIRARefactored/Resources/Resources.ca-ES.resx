@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Exporta el gràfic</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Importa el gràfic</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>Fitxers de gràfic de MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Gràfic importat</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>No s'ha pogut exportar aquest gràfic.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>No s'ha pogut importar aquest fitxer de gràfic.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Aquest fitxer no és un fitxer de gràfic de MAIRA.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Aquest fitxer conté un gràfic d'efectes de vibració; importa'l als efectes de vibració.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Aquest fitxer conté un gràfic de FFB; importa'l al gràfic de FFB.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Aquest fitxer de gràfic s'ha creat amb una versió més recent de MAIRA. Actualitza MAIRA i torna-ho a provar.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Gravació iniciada</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Gravació aturada</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Temps</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Posició al circuit</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>Parell a 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>Parell a 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Angle de direcció</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Velocitat de direcció</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Posició del volant</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Velocitat del volant</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Marxa</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Força G longitudinal</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Derrapatge/lliscament</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Integrats</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Personalitzats</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Importa la configuració del gràfic</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Ja tens el gràfic «{0}». Què vols fer amb la configuració d'aquest fitxer?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Actualitza la configuració de {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Actualitza la configuració de base (per defecte)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Actualitza la configuració de {0} i la de base</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importa com a còpia nova</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>Interpolador de 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Predicció</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horitzó</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Barreja</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Límit de correcció</value>
+  </data>
 </root>

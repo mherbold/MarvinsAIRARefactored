@@ -118,6 +118,10 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
 > All application source files (Components, DataContext, Windows, Pages, etc.) live under
 > `[repo root]/MarvinsAIRARefactored/` — **not** directly under `[repo root]/`.
 
+### Other solution projects
+- **`MarvinsAIRARefactored.Win32/`** — Win32 interop helper library.
+- **`MarvinsAIRARefactored.PredictionLab/`** — offline test bench for the Prediction FFB module. Replays a MAIRA 360 Hz recording through candidate prediction algorithms and scores the achieved waveform shift / error / noise amplification (its header comment documents the metrics and findings, including the dead ends). Score any new prediction idea here before touching the app module, and keep its `ShippedPredictionModule` port in sync with `FFB/Modules/DspModules.cs`. Plain console app (no COM references), so `dotnet run -c Release` works from its folder.
+
 ---
 
 ## Architecture & Key Patterns

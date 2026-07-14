@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> мс</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Экспортировать граф</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Импортировать граф</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>Файлы графов MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Импортированный граф</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Не удалось экспортировать этот граф.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Не удалось импортировать этот файл графа.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Этот файл не является файлом графа MAIRA.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Этот файл содержит граф эффектов вибрации — импортируйте его в разделе эффектов вибрации.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Этот файл содержит граф FFB — импортируйте его в граф FFB.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Этот файл графа создан более новой версией MAIRA. Обновите MAIRA и повторите попытку.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Запись начата</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Запись остановлена</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Время</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Позиция на трассе</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>Крутящий момент 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>Крутящий момент 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Угол рулевого управления</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Скорость рулевого управления</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Положение руля</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Скорость руля</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Передача</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Продольная G-сила</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Занос/проскальзывание</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Встроенные</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Пользовательские</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Импорт настроек графа</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>У вас уже есть граф «{0}». Что вы хотите сделать с настройками в этом файле?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Обновить настройки {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Обновить базовые настройки (по умолчанию)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Обновить настройки {0} и базовые</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Импортировать как новую копию</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>Интерполятор 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Прогнозирование</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Горизонт</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Смешивание</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Предел коррекции</value>
+  </data>
 </root>

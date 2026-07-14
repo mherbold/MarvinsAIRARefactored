@@ -303,13 +303,13 @@ public partial class FFBGraphEditor : UserControl
 
 		// the canvas scrolls horizontally and grows to fit, so nodes may be dragged past the viewport edge; the
 		// lower bound keeps a small margin so nodes never sit flush on the canvas's top/left edges
-		var nodeX = Math.Clamp( _dragStartNodeX + deltaX, FFBGraphTopology.GridOrigin, MaxNodeX );
-		var nodeY = Math.Clamp( _dragStartNodeY + deltaY, FFBGraphTopology.GridOrigin, MaxNodeY );
+		var nodeX = Math.Clamp( _dragStartNodeX + deltaX, FFBGraphTopology.GridOriginX, MaxNodeX );
+		var nodeY = Math.Clamp( _dragStartNodeY + deltaY, FFBGraphTopology.GridOriginY, MaxNodeY );
 
 		if ( MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelFFBGraphSnapToGrid )
 		{
-			nodeX = FFBGraphTopology.Snap( nodeX );
-			nodeY = FFBGraphTopology.Snap( nodeY );
+			nodeX = FFBGraphTopology.Snap( nodeX, FFBGraphTopology.GridOriginX );
+			nodeY = FFBGraphTopology.Snap( nodeY, FFBGraphTopology.GridOriginY );
 		}
 
 		_dragModule.NodeX = nodeX;

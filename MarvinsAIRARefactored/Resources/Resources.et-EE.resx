@@ -2082,4 +2082,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Ekspordi graafik</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Impordi graafik</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA graafikufailid</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Imporditud graafik</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Seda graafikut ei õnnestunud eksportida.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Seda graafikufaili ei õnnestunud importida.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>See fail ei ole MAIRA graafikufail.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>See fail sisaldab vibratsiooniefektide graafikut – impordi see hoopis vibratsiooniefektide alt.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>See fail sisaldab FFB graafikut – impordi see hoopis FFB graafiku alt.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>See graafikufail on loodud MAIRA uuema versiooniga. Palun uuenda MAIRA-t ja proovi uuesti.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Salvestamine alustatud</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Salvestamine peatatud</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Aeg</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Asukoht rajal</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz pöördemoment</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz pöördemoment</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Roolinurk</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Roolimiskiirus</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Rooli asend</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Rooli kiirus</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Käik</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Pikisuunaline G-jõud</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Libisemine/slippimine</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Sisseehitatud</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Kohandatud</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Impordi graafiku sätted</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Sul on juba graafik „{0}“. Mida soovid teha selle faili sätetega?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Uuenda {0} sätteid</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Uuenda algsätteid (vaikimisi)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Uuenda {0} ja algsätteid</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Impordi uue koopiana</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz interpolaator</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Ennustus</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horisont</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Segu</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Korrektsiooni piir</value>
+  </data>
 </root>

@@ -1,4 +1,4 @@
-
+﻿
 using System.ComponentModel;
 using System.IO;
 using System.Reflection;
@@ -553,12 +553,20 @@ public class Settings : INotifyPropertyChanged
 
 	// Adds an already-validated imported graph (FFBGraphPort.Import) as a user graph under a collision-free
 	// name, regenerates its module ids so its per-context values cannot collide with any existing graph's
-	// (the exporting machine's ids may live here too — e.g. an export of a copy), and selects it.
-	public void ImportFFBGraph( FFBGraph graph )
+	// (the exporting machine's ids may live here too — e.g. an export of a copy), and selects it. The file's
+	// GraphId is kept so a later re-import of the same graph is recognized as an update (see ApplyImportedGraphValues);
+	// asNewCopy mints a fresh GraphId instead, for the deliberate "import a second, independent copy" choice.
+	public void ImportFFBGraph( FFBGraph graph, bool asNewCopy = false )
 	{
 		SyncFFBGraphModuleValues( true );
 
 		graph.IsBuiltIn = false;
+
+		if ( asNewCopy || string.IsNullOrEmpty( graph.GraphId ) )
+		{
+			graph.GraphId = Guid.NewGuid().ToString( "N" );
+		}
+
 		graph.Name = UniqueGraphName( RacingWheelFFBGraphs, graph.Name );
 
 		RegenerateUserGraphModuleIds( graph );
@@ -568,6 +576,226 @@ public class Settings : INotifyPropertyChanged
 		RacingWheelSelectedFFBGraphName = graph.Name;
 
 		SyncFFBGraphModuleValues( true );
+	}
+
+	// Returns the name of an existing graph (of the matching kind) that shares the imported graph's stable GraphId,
+	// or null when there is no match (including legacy files with no GraphId). A match means "the user already has
+	// this graph", so the import becomes an update to the live module settings rather than a new copy.
+	public string? FindMatchingGraphName( FFBGraph imported, bool isVibration )
+	{
+		if ( string.IsNullOrEmpty( imported.GraphId ) )
+		{
+			return null;
+		}
+
+		var graphs = isVibration ? RacingWheelVibrationGraphs : RacingWheelFFBGraphs;
+
+		foreach ( var pair in graphs )
+		{
+			if ( pair.Value.GraphId == imported.GraphId )
+			{
+				return pair.Key;
+			}
+		}
+
+		return null;
+	}
+
+	// Describes the context the import would land on if applied to "the current car/track" - used by the import
+	// dialog to label and enable that option. available is false when the live context collapses onto the baseline
+	// (the sim isn't running / hasn't sent session info, or none of the scope's dimensions resolve), in which case
+	// updating the current context and updating the baseline would be the same thing.
+	public (bool available, string label) GetGraphImportContextInfo( bool isVibration )
+	{
+		var scope = isVibration ? RacingWheelSelectedVibrationGraphNameContextSwitches : RacingWheelSelectedFFBGraphNameContextSwitches;
+
+		var currentContext = new Context( scope );
+		var baselineContext = BuildBaselineContext( scope );
+
+		var available = currentContext.CompareTo( baselineContext ) != 0;
+
+		return ( available, DescribeContext( currentContext, scope ) );
+	}
+
+	// Applies an imported graph's per-module setting values onto an existing graph the user already has (matched by
+	// GraphId), writing into the current-context and/or baseline per-context stores. The imported nodes are mapped
+	// onto the existing graph's nodes by module id first (built-in-derived graphs share deterministic ids) and then
+	// by module type + position (user graphs get fresh ids on every import, so a shared graph's nodes line up by
+	// position). Nodes with no counterpart are skipped - structural divergence degrades gracefully.
+	public void ApplyImportedGraphValues( string existingGraphName, FFBGraph imported, bool isVibration, bool toCurrentContext, bool toBaseline )
+	{
+		var graphs = isVibration ? RacingWheelVibrationGraphs : RacingWheelFFBGraphs;
+
+		if ( !graphs.TryGetValue( existingGraphName, out var localGraph ) )
+		{
+			return;
+		}
+
+		var scope = isVibration ? RacingWheelSelectedVibrationGraphNameContextSwitches : RacingWheelSelectedFFBGraphNameContextSwitches;
+
+		// persist any in-flight edits into the current context before we start mutating buckets
+		SyncFFBGraphModuleValues( true );
+
+		var moduleIdMap = BuildImportModuleIdMap( imported, localGraph );
+
+		var currentContext = new Context( scope );
+		var baselineContext = BuildBaselineContext( scope );
+		var currentIsBaseline = currentContext.CompareTo( baselineContext ) == 0;
+
+		if ( toCurrentContext )
+		{
+			WriteImportedModuleValues( imported, moduleIdMap, FindContextSettings( currentContext ).RacingWheelFFBGraphModuleValues );
+		}
+
+		if ( toBaseline )
+		{
+			WriteImportedModuleValues( imported, moduleIdMap, FindContextSettings( baselineContext ).RacingWheelFFBGraphModuleValues );
+		}
+
+		// Reflect the change live only when it lands on the context we are currently driving. Selecting the matched
+		// graph (when it isn't already selected) loads this context's values and rebuilds the engine + editor; if it
+		// is already selected, reload this context's values directly. A baseline-only write while a different context
+		// is active changes nothing live (it just seeds the default for untuned contexts), so we only persist.
+		var affectsCurrentContext = toCurrentContext || ( toBaseline && currentIsBaseline );
+
+		if ( affectsCurrentContext )
+		{
+			var selectedName = isVibration ? RacingWheelSelectedVibrationGraphName : RacingWheelSelectedFFBGraphName;
+
+			if ( selectedName != existingGraphName )
+			{
+				if ( isVibration )
+				{
+					SelectVibrationGraph( existingGraphName );
+				}
+				else
+				{
+					SelectFFBGraph( existingGraphName );
+				}
+			}
+			else
+			{
+				SyncFFBGraphModuleValues( false );
+			}
+		}
+
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+	}
+
+	// The baseline (default) context bucket: the sim-derived dimensions forced to their defaults, so it is the bucket
+	// that is active whenever the sim isn't running. The wheelbase dimension is kept (it is the connected device, not
+	// sim data) so per-wheelbase scopes still address the right baseline.
+	private Context BuildBaselineContext( ContextSwitches scope )
+	{
+		var context = new Context();
+
+		if ( scope.PerWheelbase )
+		{
+			context.WheelbaseGuid = RacingWheelSteeringDeviceGuid;
+		}
+
+		return context;
+	}
+
+	// Human-readable label for the live context, built from the scope dimensions that resolve to a non-default value
+	// (e.g. just the car name under the default per-car scope). Only shown when the context is distinct from baseline.
+	private static string DescribeContext( Context context, ContextSwitches scope )
+	{
+		var parts = new List<string>();
+
+		if ( scope.PerCar && ( context.CarName != Context.DefaultContextName ) )
+		{
+			parts.Add( context.CarName );
+		}
+
+		if ( scope.PerTrack && ( context.TrackName != Context.DefaultContextName ) )
+		{
+			parts.Add( context.TrackName );
+		}
+
+		if ( scope.PerTrackConfiguration && ( context.TrackConfigurationName != Context.DefaultContextName ) )
+		{
+			parts.Add( context.TrackConfigurationName );
+		}
+
+		if ( scope.PerWetDry )
+		{
+			parts.Add( context.WetDryName );
+		}
+
+		return ( parts.Count > 0 ) ? string.Join( " - ", parts ) : Context.DefaultContextName;
+	}
+
+	// Maps each imported module onto a module in the existing graph: exact module-id match first (built-in-derived
+	// graphs keep their deterministic ids), then module type + order among the still-unclaimed local modules of that
+	// type (user graphs are re-id'd on every import, so a shared graph's nodes line up by position rather than id).
+	private static Dictionary<string, string> BuildImportModuleIdMap( FFBGraph imported, FFBGraph local )
+	{
+		var map = new Dictionary<string, string>( StringComparer.Ordinal );
+
+		var localIds = new HashSet<string>( local.Modules.Select( module => module.ModuleId ), StringComparer.Ordinal );
+		var claimedLocalIds = new HashSet<string>( StringComparer.Ordinal );
+
+		foreach ( var module in imported.Modules )
+		{
+			if ( localIds.Contains( module.ModuleId ) )
+			{
+				map[ module.ModuleId ] = module.ModuleId;
+
+				claimedLocalIds.Add( module.ModuleId );
+			}
+		}
+
+		var unclaimedByType = new Dictionary<string, Queue<string>>( StringComparer.Ordinal );
+
+		foreach ( var module in local.Modules )
+		{
+			if ( claimedLocalIds.Contains( module.ModuleId ) )
+			{
+				continue;
+			}
+
+			if ( !unclaimedByType.TryGetValue( module.ModuleType, out var queue ) )
+			{
+				queue = new Queue<string>();
+
+				unclaimedByType[ module.ModuleType ] = queue;
+			}
+
+			queue.Enqueue( module.ModuleId );
+		}
+
+		foreach ( var module in imported.Modules )
+		{
+			if ( map.ContainsKey( module.ModuleId ) )
+			{
+				continue;
+			}
+
+			if ( unclaimedByType.TryGetValue( module.ModuleType, out var queue ) && ( queue.Count > 0 ) )
+			{
+				map[ module.ModuleId ] = queue.Dequeue();
+			}
+		}
+
+		return map;
+	}
+
+	// Writes the imported modules' setting values into a per-context store, keyed by the mapped local module id.
+	private static void WriteImportedModuleValues( FFBGraph imported, Dictionary<string, string> moduleIdMap, FFBGraphValues target )
+	{
+		foreach ( var module in imported.Modules )
+		{
+			if ( !moduleIdMap.TryGetValue( module.ModuleId, out var localModuleId ) )
+			{
+				continue;
+			}
+
+			foreach ( var pair in module.SettingValues )
+			{
+				target[ FFBGraphValues.ComposeKey( localModuleId, pair.Key ) ] = pair.Value;
+			}
+		}
 	}
 
 	// Collision-free graph name for an import: the name as-is when free, otherwise "name (2)", "name (3)", …
@@ -834,12 +1062,18 @@ public class Settings : INotifyPropertyChanged
 		SyncFFBGraphModuleValues( true );
 	}
 
-	// Import counterpart for vibration graphs (see ImportFFBGraph — same unique-name + fresh-ids treatment).
-	public void ImportVibrationGraph( FFBGraph graph )
+	// Import counterpart for vibration graphs (see ImportFFBGraph — same unique-name + fresh-ids + GraphId treatment).
+	public void ImportVibrationGraph( FFBGraph graph, bool asNewCopy = false )
 	{
 		SyncFFBGraphModuleValues( true );
 
 		graph.IsBuiltIn = false;
+
+		if ( asNewCopy || string.IsNullOrEmpty( graph.GraphId ) )
+		{
+			graph.GraphId = Guid.NewGuid().ToString( "N" );
+		}
+
 		graph.Name = UniqueGraphName( RacingWheelVibrationGraphs, graph.Name );
 
 		RegenerateUserGraphModuleIds( graph );
@@ -1068,6 +1302,28 @@ public class Settings : INotifyPropertyChanged
 		}
 
 		return changed;
+	}
+
+	// Assigns a stable GraphId to any graph that lacks one - legacy graphs created or imported before graph
+	// identities existed. Built-ins already carry their fixed id from the shipped file (refreshed by
+	// EnsureBuiltInFFBGraphsInitialized), so in practice this only ever touches user graphs. Returns true if any
+	// id was assigned; the caller must persist so the ids stay stable across launches (otherwise a shared graph
+	// could never be recognized on re-import).
+	public bool EnsureGraphIdentitiesAssigned()
+	{
+		var assignedAny = false;
+
+		foreach ( var graph in RacingWheelFFBGraphs.Values.Concat( RacingWheelVibrationGraphs.Values ) )
+		{
+			if ( string.IsNullOrEmpty( graph.GraphId ) )
+			{
+				graph.GraphId = Guid.NewGuid().ToString( "N" );
+
+				assignedAny = true;
+			}
+		}
+
+		return assignedAny;
 	}
 
 	// First-run wizard support: sets the first Gain module of a built-in FFB graph (the wizard's FFB style step
@@ -1711,7 +1967,7 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	// One scope for the whole FFB graph feature: which graph is selected AND its per-module values.
-	public ContextSwitches RacingWheelSelectedFFBGraphNameContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelSelectedFFBGraphNameContextSwitches { get; set; } = new( false, true, false, false, false );
 
 	// Snap-to-grid toggle on the node editor (global — not per-context).
 	private bool _racingWheelFFBGraphSnapToGrid = false;
@@ -1777,7 +2033,7 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	// One scope for the whole vibration graph feature: which vibration graph is selected AND its per-module values.
-	public ContextSwitches RacingWheelSelectedVibrationGraphNameContextSwitches { get; set; } = new( true, true, false, false, false );
+	public ContextSwitches RacingWheelSelectedVibrationGraphNameContextSwitches { get; set; } = new( false, true, false, false, false );
 
 	#endregion
 
@@ -1852,81 +2108,6 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	public ContextSwitches RacingWheelEnableSoftLimiterContextSwitches { get; set; } = new( true, true, false, false, false );
-
-	#endregion
-
-	#region Racing wheel - Prediction mode
-
-	private RacingWheel.PredictionMode _racingWheelPredictionMode = RacingWheel.PredictionMode.PredictK1;
-
-	public RacingWheel.PredictionMode RacingWheelPredictionMode
-	{
-		get => _racingWheelPredictionMode;
-
-		set
-		{
-			if ( value != _racingWheelPredictionMode )
-			{
-				_racingWheelPredictionMode = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	public ContextSwitches RacingWheelPredictionModeContextSwitches { get; set; } = new( false, false, false, false, false );
-
-	#endregion
-
-	#region Racing wheel - Prediction blend
-
-	private float _racingWheelPredictionBlend = 0.35f;
-
-	public float RacingWheelPredictionBlend
-	{
-		get => _racingWheelPredictionBlend;
-
-		set
-		{
-			value = Math.Clamp( value, 0f, 1f );
-
-			if ( value != _racingWheelPredictionBlend )
-			{
-				_racingWheelPredictionBlend = value;
-
-				OnPropertyChanged();
-			}
-
-			UpdateRacingWheelPredictionBlendString();
-		}
-	}
-
-	private string _racingWheelPredictionBlendString = string.Empty;
-
-	[XmlIgnore]
-	public string RacingWheelPredictionBlendString
-	{
-		get => _racingWheelPredictionBlendString;
-
-		set
-		{
-			if ( value != _racingWheelPredictionBlendString )
-			{
-				_racingWheelPredictionBlendString = value;
-
-				OnPropertyChanged();
-			}
-		}
-	}
-
-	private void UpdateRacingWheelPredictionBlendString()
-	{
-		RacingWheelPredictionBlendString = $"{_racingWheelPredictionBlend * 100f:F0}{DataContext.Instance.Localization[ "Percent" ]}";
-	}
-
-	public ContextSwitches RacingWheelPredictionBlendContextSwitches { get; set; } = new( false, false, false, false, false );
-	public ButtonMappings RacingWheelPredictionBlendPlusButtonMappings { get; set; } = new();
-	public ButtonMappings RacingWheelPredictionBlendMinusButtonMappings { get; set; } = new();
 
 	#endregion
 

@@ -38,6 +38,8 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.CompressorType ] = "Compressor",
 		[ FFBModuleRegistry.TransientEnhancerType ] = "Transient enhancer",
 		[ FFBModuleRegistry.AdaptiveSmootherType ] = "Adaptive smoother",
+		[ FFBModuleRegistry.InterpolatorType ] = "60 Hz interpolator",
+		[ FFBModuleRegistry.PredictionType ] = "Prediction",
 		[ FFBModuleRegistry.AdaptiveBlendType ] = "Adaptive blend",
 		[ FFBModuleRegistry.CrashProtectionType ] = "Crash protection",
 		[ FFBModuleRegistry.CurbProtectionType ] = "Curb protection",

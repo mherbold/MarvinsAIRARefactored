@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Exportar gráfica</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Importar gráfica</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>Archivos de gráfica de MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Gráfica importada</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>No se pudo exportar esta gráfica.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>No se pudo importar este archivo de gráfica.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Este archivo no es un archivo de gráfica de MAIRA.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Este archivo contiene una gráfica de efectos de vibración; impórtalo en los efectos de vibración.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Este archivo contiene una gráfica de FFB; impórtalo en la gráfica de FFB.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Este archivo de gráfica se creó con una versión más reciente de MAIRA. Actualiza MAIRA e inténtalo de nuevo.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Grabación iniciada</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Grabación detenida</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Tiempo</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Posición en la pista</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>Torque a 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>Torque a 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Ángulo de dirección</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Velocidad de dirección</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Posición del volante</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Velocidad del volante</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Marcha</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Fuerza G longitudinal</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Derrape/deslizamiento</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Integradas</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Personalizadas</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Importar configuración de la gráfica</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Ya tienes la gráfica “{0}”. ¿Qué quieres hacer con la configuración de este archivo?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Actualizar la configuración de {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Actualizar la configuración de referencia (predeterminada)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Actualizar la configuración de {0} y de referencia</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importar como copia nueva</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>Interpolador de 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Predicción</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horizonte</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Mezcla</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Límite de corrección</value>
+  </data>
 </root>

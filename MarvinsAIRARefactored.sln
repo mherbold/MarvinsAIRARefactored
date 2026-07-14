@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvinsAIRARefactored", "Ma
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvinsAIRARefactored.Win32", "MarvinsAIRARefactored.Win32\MarvinsAIRARefactored.Win32.csproj", "{79333233-A7C6-4967-9719-99BADF904110}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvinsAIRARefactored.PredictionLab", "MarvinsAIRARefactored.PredictionLab\MarvinsAIRARefactored.PredictionLab.csproj", "{1E64F035-D180-42C8-B39A-FEB6CD215C15}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,14 @@ Global
 		{79333233-A7C6-4967-9719-99BADF904110}.Release|Any CPU.Build.0 = Release|Any CPU
 		{79333233-A7C6-4967-9719-99BADF904110}.Release|x64.ActiveCfg = Release|Any CPU
 		{79333233-A7C6-4967-9719-99BADF904110}.Release|x64.Build.0 = Release|Any CPU
+		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Debug|x64.Build.0 = Debug|Any CPU
+		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Release|x64.ActiveCfg = Release|Any CPU
+		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Release|x64.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

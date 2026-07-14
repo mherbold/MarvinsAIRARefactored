@@ -13,7 +13,7 @@ public abstract class FFBModule
 	public FFBModuleData Model = null!;
 
 	/// <summary>The engine that owns this module (set on Rebuild). Modules publish engine-level aggregates
-	/// through it (protection active flags, Simulator trigger thresholds, prediction mode/blend).</summary>
+	/// through it (protection active flags, Simulator trigger thresholds).</summary>
 	public FFBGraphEngine Owner = null!;
 
 	protected float[] _v = [];                 // resolved setting values, effective-descriptor order (0 = Enabled)
@@ -91,9 +91,8 @@ public abstract class FFBModule
 	public abstract float Process( in FFBTickContext ctx, float inputA, float inputB );
 
 	/// <summary>
-	/// Publish any engine-level aggregates this module owns (e.g. protection thresholds read by Simulator, or
-	/// the Source60 prediction mode/blend read by RacingWheel). Called on Rebuild and after every edit-time
-	/// SetValue, never on the hot path.
+	/// Publish any engine-level aggregates this module owns (e.g. protection thresholds read by Simulator).
+	/// Called on Rebuild and after every edit-time SetValue, never on the hot path.
 	/// </summary>
 	public virtual void PublishAggregates() { }
 

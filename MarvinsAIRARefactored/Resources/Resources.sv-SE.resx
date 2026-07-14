@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Exportera graf</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Importera graf</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA-graffiler</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Importerad graf</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Den här grafen kunde inte exporteras.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Den här graffilen kunde inte importeras.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Den här filen är inte en MAIRA-graffil.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Den här filen innehåller en graf med vibrationseffekter – importera den under vibrationseffekter i stället.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Den här filen innehåller en FFB-graf – importera den under FFB-grafen i stället.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Den här graffilen skapades av en nyare version av MAIRA. Uppdatera MAIRA och försök igen.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Inspelning startad</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Inspelning stoppad</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Tid</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Banposition</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz-vridmoment</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz-vridmoment</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Styrvinkel</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Styrhastighet</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Rattposition</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Ratthastighet</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Växel</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Longitudinell G-kraft</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Sladd/slirning</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Inbyggd</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Anpassad</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Importera grafinställningar</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Du har redan grafen ”{0}”. Vad vill du göra med inställningarna i den här filen?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Uppdatera inställningar för {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Uppdatera basinställningar (standard)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Uppdatera inställningar för {0} och basinställningar</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Importera som en ny kopia</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz-interpolator</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Prediktion</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horisont</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Blandning</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Korrigeringsgräns</value>
+  </data>
 </root>

@@ -2166,4 +2166,37 @@
   <data name="CustomGraphs" xml:space="preserve">
     <value>Custom</value>
   </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Import graph settings</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>You already have the graph “{0}”. What would you like to do with the settings in this file?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Update {0} settings</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Update baseline (default) settings</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Update {0} and baseline settings</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Import as a new copy</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz interpolator</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Prediction</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Horizon</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Blend</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Correction limit</value>
+  </data>
 </root>

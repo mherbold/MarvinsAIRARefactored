@@ -427,3 +427,279 @@ public sealed class AdaptiveSmootherModule : FFBModule
 		return _y * ReferenceNm;
 	}
 }
+
+/// <summary>
+/// 60 Hz interpolator. Many upstream signals are 60 Hz values carried on the 360 Hz bus, so they hold for six
+/// ticks and then jump — a staircase that downstream smoothers (e.g. the adaptive smoother) react badly to. This
+/// module removes the steps: it remembers the previous 60 Hz frame's value and linearly ramps toward the current
+/// frame's value across the frame's six sub-ticks. It is pure interpolation between two known samples (no
+/// prediction), so it adds one 60 Hz frame (~16.7 ms) of latency. Place it on 60 Hz-derived branches; on a genuine
+/// 360 Hz signal it would discard the intra-frame detail, since it only samples its input once per frame.
+/// </summary>
+public sealed class InterpolatorModule : FFBModule
+{
+	private float _previousFrameValue;
+	private float _currentFrameValue;
+
+	public override void Reset()
+	{
+		_previousFrameValue = 0f;
+		_currentFrameValue = 0f;
+	}
+
+	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
+	{
+		// at the start of each 60 Hz frame the input carries that frame's (frame-constant) value: shift it in as
+		// the new ramp target, and the old target becomes the ramp's starting point
+		if ( ctx.SampleIndex == 0 )
+		{
+			_previousFrameValue = _currentFrameValue;
+			_currentFrameValue = inputA;
+		}
+
+		// ramp previous -> current across the frame, reaching current on the frame's final sub-tick
+		var fraction = ( ctx.SampleIndex + 1f ) / FFBTickContext.SamplesPerFrame;
+
+		return MathZ.Lerp( _previousFrameValue, _currentFrameValue, fraction );
+	}
+}
+
+/// <summary>
+/// Prediction. Shifts the FFB waveform left in time (reduces latency) by predicting the raw 360 Hz torque
+/// Horizon sub-ticks ahead and adding the predicted change onto its input. K6 targets one iRacing 60 Hz frame
+/// (~16.7 ms), K12 two.
+/// <para>How it works: iRacing delivers each 60 Hz frame's six 360 Hz samples at once, so at sub-tick i the
+/// frame's later samples are already known — the module anchors at the frame's NEWEST sample and only has to
+/// truly extrapolate the depth left beyond it (1..6 ticks at K6 instead of a constant 6). Targets that land
+/// inside the known frame (horizons below K6) are exact recorded data, not prediction. The extrapolation is a
+/// bank of per-depth NLMS adaptive FIR filters (one update per depth per frame) that learn each car's torque
+/// dynamics within a few seconds and track them continuously. Each filter sees 24 torque lags, 6 frame-spaced
+/// steering-angle taps, and an adaptive bias: the angle (with the torque history) approximates front slip
+/// angle — which drives the car's NEXT self-aligning torque — and the bias absorbs the slowly-varying torque
+/// offset; both measurably improve accuracy AND shift (telemetry channel audit in the PredictionLab project).
+/// Because a least-squares predictor is amplitude-shy (it shrinks toward the mean to minimize error),
+/// Strength re-expands the learned correction — 100% applies it as learned, 200% doubles it for a
+/// near-full-frame shift at the cost of more high-frequency boost. The correction is clamped to ±Correction
+/// limit (Nm) and added onto input A, so place this module directly on the raw 360 Hz source and smooth
+/// AFTER it if needed.</para>
+/// <para>Measured on a real 360 Hz recording (vs. the ideal shifted waveform, at the default 5 Nm limit):
+/// K6 at 150% ≈ 11 ms of true shift with markedly LESS error than doing nothing (rmse 0.71); K6 at 200%
+/// ≈ 13 ms (raising the limit buys more on big transients); K12 at 200% ≈ 12 ms. Even K2 is a nearly-free
+/// 5 ms — most of its targets are known data. The old single-sample RLS model measured under 1 ms at K6.</para>
+/// </summary>
+public sealed class PredictionModule : FFBModule
+{
+	private const int Horizon = 1;          // effective-setting indices (0 = Enabled)
+	private const int CorrectionLimit = 2;
+	private const int Strength = 3;
+
+	private const int TapCount = 24;        // torque lags per depth filter over the raw 360 Hz history
+	private const int AngleTapCount = 6;    // frame-spaced steering-angle taps (the angle is a 60 Hz channel)
+	private const int FeatureCount = TapCount + AngleTapCount + 1;  // + 1 adaptive bias feature
+	private const float StepSize = 0.25f;   // NLMS mu — one update per depth per frame; misadjustment-safe
+	private const float Epsilon = 1e-3f;    // NLMS normalization guard (also idles adaptation on a dead bus)
+	private const int HistorySize = 64;     // ring capacity (power of two) — max lookback = horizon + (AngleTapCount-1)*6 = 42
+	private const int HistoryMask = HistorySize - 1;
+
+	private readonly float[] _history = new float[ HistorySize ];       // raw torque (Nm), one entry per tick
+	private readonly float[] _angleHistory = new float[ HistorySize ];  // steering angle scaled to torque range, frame-constant
+	private long _sampleCount;              // samples ingested so far; newest sample sits at _sampleCount - 1
+
+	// one adaptive filter per extrapolation depth (at most 6 depths are exercised per frame: i + k - 5 for i = 0..5)
+	private readonly float[][] _weights;
+	private readonly float[] _features = new float[ FeatureCount ];     // scratch — engine thread only
+	private readonly float[] _predicted = new float[ FFBTickContext.SamplesPerFrame ];
+	private bool _predictionsValid;
+
+	private int _horizonTicks;
+
+	public PredictionModule()
+	{
+		_weights = new float[ FFBTickContext.SamplesPerFrame ][];
+
+		for ( var i = 0; i < _weights.Length; i++ )
+		{
+			_weights[ i ] = new float[ FeatureCount ];
+		}
+
+		ResetFilters();
+	}
+
+	private void ResetFilters()
+	{
+		// invalidate first — an edit-time reset (UI thread) can race the 360 Hz reader, which checks this
+		// flag before touching the predictions (same tolerance class as raw _v reads)
+		_predictionsValid = false;
+
+		foreach ( var weights in _weights )
+		{
+			Array.Clear( weights );
+
+			weights[ 0 ] = 1f; // start at persistence (predict "no change") and learn from there
+		}
+
+		Array.Clear( _predicted );
+	}
+
+	public override void Reset()
+	{
+		Array.Clear( _history );
+		Array.Clear( _angleHistory );
+
+		_sampleCount = 0;
+
+		ResetFilters();
+	}
+
+	protected override void OnValuesChanged()
+	{
+		var horizon = (int) MathF.Round( _v[ Horizon ] );
+
+		if ( horizon != _horizonTicks )
+		{
+			_horizonTicks = horizon;
+
+			ResetFilters(); // each depth's filter learns a fixed depth — a new horizon means new depths
+		}
+	}
+
+	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
+	{
+		var horizonTicks = _horizonTicks;
+
+		if ( horizonTicks <= 0 )   // Horizon Off — pass through
+		{
+			return inputA;
+		}
+
+		if ( ctx.SampleIndex == 0 )
+		{
+			IngestFrameAndPredict( in ctx, horizonTicks );
+		}
+
+		var currentTorque = ctx.TorqueFrame[ ctx.SampleIndex ];
+
+		var strength = _v[ Strength ];
+
+		var targetIndex = ctx.SampleIndex + horizonTicks;
+
+		float delta;
+
+		if ( targetIndex < FFBTickContext.SamplesPerFrame )
+		{
+			// the target sample is inside the already-known frame — exact data, so Strength only fades it in
+			// (re-expanding beyond 100% would overshoot truth)
+			delta = ( ctx.TorqueFrame[ targetIndex ] - currentTorque ) * MathF.Min( strength, 1f );
+		}
+		else if ( _predictionsValid )
+		{
+			var depthIndex = targetIndex - FFBTickContext.SamplesPerFrame - Math.Max( 0, horizonTicks - FFBTickContext.SamplesPerFrame );
+
+			delta = ( _predicted[ depthIndex ] - currentTorque ) * strength;
+		}
+		else
+		{
+			delta = 0f; // still filling the history ring after a reset
+		}
+
+		var limit = _v[ CorrectionLimit ];
+
+		return inputA + Math.Clamp( delta, -limit, limit );
+	}
+
+	/// <summary>
+	/// Once per frame (sub-tick 0): ingest the frame's six raw samples (plus the frame's steering angle),
+	/// give each depth filter its one NLMS update (the prediction made from anchor newest−d has just had its
+	/// truth arrive — the newest sample), then precompute each depth's prediction from the newest anchor for
+	/// the frame's six sub-ticks to read.
+	/// </summary>
+	private void IngestFrameAndPredict( in FFBTickContext ctx, int horizonTicks )
+	{
+		// the steering angle (normalized to the car's half-lock) scaled into the torque's range so the shared
+		// NLMS normalization treats its taps comparably to the torque taps; it is a 60 Hz frame-constant
+		// channel, so every tick slot of this frame gets the same value
+		var angleTorqueScaled = ctx.WheelPosition * ctx.MaxForce;
+
+		for ( var i = 0; i < FFBTickContext.SamplesPerFrame; i++ )
+		{
+			var slot = (int) ( _sampleCount & HistoryMask );
+
+			_history[ slot ] = ctx.TorqueFrame[ i ];
+			_angleHistory[ slot ] = angleTorqueScaled;
+
+			_sampleCount++;
+		}
+
+		// adaptation and prediction need the full feature lookback behind the training anchor (newest - depth)
+		if ( _sampleCount < horizonTicks + TapCount + ( AngleTapCount * FFBTickContext.SamplesPerFrame ) )
+		{
+			return;
+		}
+
+		var newest = _sampleCount - 1;
+
+		var newestTorque = _history[ (int) ( newest & HistoryMask ) ];
+
+		var bias = ctx.MaxForce; // constant feature at torque scale — its weight becomes an adaptive offset
+
+		var minDepth = Math.Max( 1, horizonTicks - ( FFBTickContext.SamplesPerFrame - 1 ) );
+
+		for ( var depth = minDepth; depth <= horizonTicks; depth++ )
+		{
+			var weights = _weights[ depth - minDepth ];
+
+			// NLMS update: score the prediction the filter would have made from anchor (newest - depth)
+			// against the truth that just arrived (the newest sample), then step the weights toward it
+			BuildFeatures( newest - depth, bias );
+
+			var dot = 0f;
+			var norm = Epsilon;
+
+			for ( var j = 0; j < FeatureCount; j++ )
+			{
+				var feature = _features[ j ];
+
+				dot += weights[ j ] * feature;
+				norm += feature * feature;
+			}
+
+			var scale = StepSize * ( newestTorque - dot ) / norm;
+
+			for ( var j = 0; j < FeatureCount; j++ )
+			{
+				weights[ j ] += scale * _features[ j ];
+			}
+
+			// this depth's prediction for the frame, anchored at the newest known sample
+			BuildFeatures( newest, bias );
+
+			var prediction = 0f;
+
+			for ( var j = 0; j < FeatureCount; j++ )
+			{
+				prediction += weights[ j ] * _features[ j ];
+			}
+
+			_predicted[ depth - minDepth ] = prediction;
+		}
+
+		_predictionsValid = true;
+	}
+
+	/// <summary>The feature vector anchored at a history position: 24 torque lags, 6 frame-spaced (60 Hz)
+	/// steering-angle taps, and the bias — into the <see cref="_features"/> scratch.</summary>
+	private void BuildFeatures( long anchor, float bias )
+	{
+		for ( var j = 0; j < TapCount; j++ )
+		{
+			_features[ j ] = _history[ (int) ( ( anchor - j ) & HistoryMask ) ];
+		}
+
+		for ( var j = 0; j < AngleTapCount; j++ )
+		{
+			_features[ TapCount + j ] = _angleHistory[ (int) ( ( anchor - ( j * FFBTickContext.SamplesPerFrame ) ) & HistoryMask ) ];
+		}
+
+		_features[ TapCount + AngleTapCount ] = bias;
+	}
+}

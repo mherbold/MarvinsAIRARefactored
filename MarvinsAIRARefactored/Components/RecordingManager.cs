@@ -195,9 +195,8 @@ public sealed class RecordingManager : IDisposable
 
 	/// <summary>
 	/// Captures one 360 Hz sample. Everything the FFB graph modules consume comes from the tick context; the raw
-	/// (unpredicted) 60 Hz torque is passed separately because the context carries the predicted sample, and the
-	/// raw protection telemetry (G forces, peak shock velocity) comes straight from the simulator since the
-	/// context only carries the already-derived trigger pulses.
+	/// protection telemetry (G forces, peak shock velocity) comes straight from the simulator since the context
+	/// only carries the already-derived trigger pulses.
 	/// </summary>
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	public void AddRecordingData( in FFB.FFBTickContext tickContext, float inputTorque60Hz )
@@ -215,6 +214,15 @@ public sealed class RecordingManager : IDisposable
 			}
 			else
 			{
+				// Don't begin capturing until a 60 Hz frame boundary. The record toggle flips IsRecording from a
+				// non-telemetry thread, so it can land mid-burst; deferring the first sample to sub-tick 0
+				// guarantees sample N in the file is always sub-tick N % SamplesPerFrame of a burst — the phase the
+				// 60 Hz interpolator relies on when the preview replays a recording. Costs at most a few sub-ticks.
+				if ( ( _recordingDataIndex == 0 ) && ( tickContext.SampleIndex != 0 ) )
+				{
+					return;
+				}
+
 				ref var recordingData = ref _recordingData[ _recordingDataIndex++ ];
 
 				recordingData.InputTorque60Hz = inputTorque60Hz;
@@ -245,6 +253,7 @@ public sealed class RecordingManager : IDisposable
 				recordingData.SteeringWheelAngle = tickContext.SteeringWheelAngle;
 				recordingData.SteeringWheelAngleMax = tickContext.SteeringWheelAngleMax;
 				recordingData.SteeringWheelVelocity = tickContext.SteeringWheelVelocity;
+				recordingData.YawRate = simulator.YawRate_ST[ tickContext.SampleIndex ];
 
 				recordingData.TrackPosition = simulator.LapDist;
 

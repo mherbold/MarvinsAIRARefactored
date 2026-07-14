@@ -176,25 +176,23 @@ public static class Serializer
 
 			var entryPath = $"{parentPath}[{KeyToString( keyObj )}]";
 
-			var valueObj = dict.Contains( keyObj! ) ? dict[ keyObj! ] : CreateDefault( valueType );
-
-			if ( valueObj is null ) continue;
-
 			if ( IsSimple( valueType ) )
 			{
+				// Simple value types are parsed straight from the payload - never pre-create an instance.
+				// Activator.CreateInstance( typeof( string ) ) throws ("Uninitialized Strings cannot be
+				// created"), so a string-valued dictionary would otherwise fail the entire settings load.
+				// If a value can't be parsed we skip the entry (tolerant load) rather than adding garbage.
 				if ( TryParseSimple( valuePayload, valueType, out var parsedVal ) )
 				{
-					valueObj = parsedVal;
+					dict[ keyObj! ] = parsedVal!;
 				}
-				else
-				{
-					valueObj = GetDefaultValue( entryPath );
-				}
-
-				dict[ keyObj! ] = valueObj!;
 			}
 			else
 			{
+				var valueObj = dict.Contains( keyObj! ) ? dict[ keyObj! ] : CreateDefault( valueType );
+
+				if ( valueObj is null ) continue;
+
 				ApplyOverlay( valuePayload, valueObj, entryPath );
 
 				dict[ keyObj! ] = valueObj;

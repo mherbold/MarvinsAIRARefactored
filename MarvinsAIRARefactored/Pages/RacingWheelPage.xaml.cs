@@ -618,9 +618,11 @@ public partial class RacingWheelPage : UserControl
 		}
 	}
 
-	// Shared by the FFB and vibration import buttons: pick a file, validate + load it, add it as a user graph
-	// (unique name, fresh module ids) and select it. Validation failures show their own localized message;
-	// anything unexpected (unreadable file, malformed XML) shows the generic one with the exception details.
+	// Shared by the FFB and vibration import buttons: pick a file and validate + load it. A graph the user does not
+	// already have is added as a new user graph (unique name, fresh module ids, the file's GraphId kept so a later
+	// re-import is recognized). A graph they already have (same GraphId) opens the import-settings dialog, letting
+	// them apply the file's module settings onto the existing graph (current context / baseline / both) or import a
+	// separate copy. Validation failures show their own localized message; anything unexpected shows the generic one.
 	private void ImportGraph( string graphType )
 	{
 		var app = App.Instance!;
@@ -640,24 +642,77 @@ public partial class RacingWheelPage : UserControl
 			return;
 		}
 
+		var isVibration = graphType == FFBGraphExportFile.VibrationGraphType;
+
+		FFBGraph graph;
+
 		try
 		{
-			var graph = FFBGraphPort.Import( dialog.FileName, graphType );
-
-			if ( graphType == FFBGraphExportFile.FFBGraphType )
-			{
-				settings.ImportFFBGraph( graph );
-			}
-			else
-			{
-				settings.ImportVibrationGraph( graph );
-			}
+			graph = FFBGraphPort.Import( dialog.FileName, graphType );
 		}
 		catch ( FFBGraphPort.ImportException importException )
 		{
 			ErrorWindow.ShowModal( importException.Message );
 
 			return;
+		}
+		catch ( Exception exception )
+		{
+			ErrorWindow.ShowModal( localization[ "ImportGraphFailed" ], exception );
+
+			return;
+		}
+
+		try
+		{
+			var matchingGraphName = settings.FindMatchingGraphName( graph, isVibration );
+
+			if ( matchingGraphName == null )
+			{
+				if ( isVibration )
+				{
+					settings.ImportVibrationGraph( graph );
+				}
+				else
+				{
+					settings.ImportFFBGraph( graph );
+				}
+			}
+			else
+			{
+				var ( contextAvailable, contextLabel ) = settings.GetGraphImportContextInfo( isVibration );
+
+				var choice = ImportGraphSettingsWindow.ShowModal( matchingGraphName, contextLabel, contextAvailable );
+
+				switch ( choice )
+				{
+					case ImportGraphSettingsWindow.Choice.UpdateCurrentContext:
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, isVibration, toCurrentContext: true, toBaseline: false );
+						break;
+
+					case ImportGraphSettingsWindow.Choice.UpdateBaseline:
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, isVibration, toCurrentContext: false, toBaseline: true );
+						break;
+
+					case ImportGraphSettingsWindow.Choice.UpdateBoth:
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, isVibration, toCurrentContext: true, toBaseline: true );
+						break;
+
+					case ImportGraphSettingsWindow.Choice.NewCopy:
+						if ( isVibration )
+						{
+							settings.ImportVibrationGraph( graph, asNewCopy: true );
+						}
+						else
+						{
+							settings.ImportFFBGraph( graph, asNewCopy: true );
+						}
+						break;
+
+					case ImportGraphSettingsWindow.Choice.Cancel:
+						return;
+				}
+			}
 		}
 		catch ( Exception exception )
 		{

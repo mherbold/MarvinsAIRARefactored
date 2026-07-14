@@ -19,8 +19,10 @@ public static class FFBGraphTopology
 	// snap-to-grid cell size — half of the node box height plus 10 px of padding
 	public const float GridSize = ( NodeHeight + 10f ) / 2f;
 
-	// the grid is offset from the canvas origin so snapped nodes never sit flush on the top/left edges
-	public const float GridOrigin = 10f;
+	// the grid is offset from the canvas origin so snapped nodes never sit flush on the top/left edges. The
+	// vertical home sits a few px lower than the horizontal so snapped nodes line up on the intended row baseline.
+	public const float GridOriginX = 10f;
+	public const float GridOriginY = 16f;
 
 	/// <summary>
 	/// The set of modules that consume <paramref name="moduleId"/>'s output, directly or transitively, following
@@ -213,10 +215,11 @@ public static class FFBGraphTopology
 		}
 	}
 
-	/// <summary>Snap a single coordinate to the nearest grid point (used live while dragging with snap enabled).</summary>
-	public static double Snap( double value )
+	/// <summary>Snap a single coordinate to the nearest grid point about the given axis origin (used live while
+	/// dragging with snap enabled). Pass <see cref="GridOriginX"/> for X and <see cref="GridOriginY"/> for Y.</summary>
+	public static double Snap( double value, double origin )
 	{
-		return Math.Max( GridOrigin, Math.Round( ( value - GridOrigin ) / GridSize ) * GridSize + GridOrigin );
+		return Math.Max( origin, Math.Round( ( value - origin ) / GridSize ) * GridSize + origin );
 	}
 
 	/// <summary>Snap every canvas node's upper-left corner to the nearest grid point (the snap-to-grid toggle
@@ -230,8 +233,8 @@ public static class FFBGraphTopology
 				continue;
 			}
 
-			module.NodeX = (float) Snap( module.NodeX );
-			module.NodeY = (float) Snap( module.NodeY );
+			module.NodeX = (float) Snap( module.NodeX, GridOriginX );
+			module.NodeY = (float) Snap( module.NodeY, GridOriginY );
 		}
 	}
 

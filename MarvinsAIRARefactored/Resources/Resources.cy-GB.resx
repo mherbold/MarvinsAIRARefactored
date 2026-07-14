@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Allforio graff</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Mewnforio graff</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>Ffeiliau graff MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Graff a fewnforiwyd</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Ni ellid allforio'r graff hwn.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Ni ellid mewnforio'r ffeil graff hon.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Nid ffeil graff MAIRA yw'r ffeil hon.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Mae'r ffeil hon yn cynnwys graff effeithiau dirgryniad - mewnforiwch ef o dan effeithiau dirgryniad yn lle hynny.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Mae'r ffeil hon yn cynnwys graff FFB - mewnforiwch ef o dan y graff FFB yn lle hynny.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Crëwyd y ffeil graff hon gan fersiwn mwy newydd o MAIRA. Diweddarwch MAIRA a rhowch gynnig arall arni.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Dechreuwyd recordio</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Stopiwyd recordio</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Amser</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Safle ar y trac</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>Trorym 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>Trorym 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Ongl lywio</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Cyflymder llywio</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Safle'r olwyn</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Cyflymder yr olwyn</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Gêr</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Grym-G hydredol</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Sglefrio/llithro</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Adeiledig</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Addasedig</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Mewnforio gosodiadau graff</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Mae gennych y graff ‘{0}’ eisoes. Beth hoffech chi ei wneud gyda'r gosodiadau yn y ffeil hon?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Diweddaru gosodiadau {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Diweddaru gosodiadau sylfaenol (rhagosodedig)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Diweddaru gosodiadau {0} a rhai sylfaenol</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Mewnforio fel copi newydd</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>Rhyngosodydd 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Rhagfynegiad</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Gorwel</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Cymysgu</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Terfyn cywiro</value>
+  </data>
 </root>

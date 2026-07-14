@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>ייצוא גרף</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>ייבוא גרף</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>קובצי גרף של MAIRA</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>גרף מיובא</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>לא ניתן היה לייצא גרף זה.</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>לא ניתן היה לייבא קובץ גרף זה.</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>קובץ זה אינו קובץ גרף של MAIRA.</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>קובץ זה מכיל גרף אפקטי רטט - ייבא אותו תחת אפקטי רטט במקום זאת.</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>קובץ זה מכיל גרף FFB - ייבא אותו תחת גרף ה-FFB במקום זאת.</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>קובץ גרף זה נוצר על ידי גרסה חדשה יותר של MAIRA. אנא עדכן את MAIRA ונסה שוב.</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>ההקלטה החלה</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>ההקלטה הופסקה</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>זמן</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>מיקום במסלול</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>מומנט 60 Hz</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>מומנט 360 Hz</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>זווית היגוי</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>מהירות היגוי</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>מיקום ההגה</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>מהירות ההגה</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>הילוך</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>כוח G אורכי</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>החלקה/גלישה</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>מובנה</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>מותאם אישית</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>ייבוא הגדרות גרף</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>כבר יש לך את הגרף „{0}”. מה תרצה לעשות עם ההגדרות שבקובץ זה?</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>עדכן הגדרות {0}</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>עדכן הגדרות בסיס (ברירת מחדל)</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>עדכן הגדרות {0} והגדרות בסיס</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>ייבא כעותק חדש</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>אינטרפולטור 60 Hz</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>חיזוי</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>אופק</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>מיזוג</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>מגבלת תיקון</value>
+  </data>
 </root>

@@ -2097,4 +2097,112 @@
   <data name="MillisecondsUnits" xml:space="preserve">
     <value> ms</value>
   </data>
+  <data name="ExportGraph" xml:space="preserve">
+    <value>Արտահանել գրաֆիկը</value>
+  </data>
+  <data name="ImportGraph" xml:space="preserve">
+    <value>Ներմուծել գրաֆիկը</value>
+  </data>
+  <data name="MairaGraphFiles" xml:space="preserve">
+    <value>MAIRA գրաֆիկի ֆայլեր</value>
+  </data>
+  <data name="ImportedGraph" xml:space="preserve">
+    <value>Ներմուծված գրաֆիկ</value>
+  </data>
+  <data name="ExportGraphFailed" xml:space="preserve">
+    <value>Այս գրաֆիկը հնարավոր չեղավ արտահանել։</value>
+  </data>
+  <data name="ImportGraphFailed" xml:space="preserve">
+    <value>Այս գրաֆիկի ֆայլը հնարավոր չեղավ ներմուծել։</value>
+  </data>
+  <data name="ImportGraphInvalidFile" xml:space="preserve">
+    <value>Այս ֆայլը MAIRA գրաֆիկի ֆայլ չէ։</value>
+  </data>
+  <data name="ImportGraphWrongTypeFFB" xml:space="preserve">
+    <value>Այս ֆայլը պարունակում է թրթռման էֆեկտների գրաֆիկ․ փոխարենը ներմուծեք այն թրթռման էֆեկտների բաժնում։</value>
+  </data>
+  <data name="ImportGraphWrongTypeVibration" xml:space="preserve">
+    <value>Այս ֆայլը պարունակում է FFB գրաֆիկ․ փոխարենը ներմուծեք այն FFB գրաֆիկի բաժնում։</value>
+  </data>
+  <data name="ImportGraphNewerVersion" xml:space="preserve">
+    <value>Այս գրաֆիկի ֆայլը ստեղծվել է MAIRA-ի ավելի նոր տարբերակով։ Խնդրում ենք թարմացնել MAIRA-ն և կրկին փորձել։</value>
+  </data>
+  <data name="RecordingStarted" xml:space="preserve">
+    <value>Ձայնագրումը սկսվեց</value>
+  </data>
+  <data name="RecordingStopped" xml:space="preserve">
+    <value>Ձայնագրումը դադարեցվեց</value>
+  </data>
+  <data name="Time" xml:space="preserve">
+    <value>Ժամանակ</value>
+  </data>
+  <data name="TrackPosition" xml:space="preserve">
+    <value>Ուղեգծի դիրք</value>
+  </data>
+  <data name="Torque60Hz" xml:space="preserve">
+    <value>60 Hz ոլորող ուժ</value>
+  </data>
+  <data name="Torque360Hz" xml:space="preserve">
+    <value>360 Hz ոլորող ուժ</value>
+  </data>
+  <data name="SteeringAngle" xml:space="preserve">
+    <value>Ուղղորդման անկյուն</value>
+  </data>
+  <data name="SteeringVelocity" xml:space="preserve">
+    <value>Ուղղորդման արագություն</value>
+  </data>
+  <data name="WheelPosition" xml:space="preserve">
+    <value>Ղեկի դիրք</value>
+  </data>
+  <data name="WheelVelocity" xml:space="preserve">
+    <value>Ղեկի արագություն</value>
+  </data>
+  <data name="Gear" xml:space="preserve">
+    <value>Փոխանցում</value>
+  </data>
+  <data name="LongitudinalGForce" xml:space="preserve">
+    <value>Երկայնական G-ուժ</value>
+  </data>
+  <data name="SkidSlip" xml:space="preserve">
+    <value>Սահք/սահում</value>
+  </data>
+  <data name="BuiltInGraphs" xml:space="preserve">
+    <value>Ներկառուցված</value>
+  </data>
+  <data name="CustomGraphs" xml:space="preserve">
+    <value>Հատուկ</value>
+  </data>
+  <data name="ImportGraphSettingsTitle" xml:space="preserve">
+    <value>Ներմուծել գրաֆիկի կարգավորումները</value>
+  </data>
+  <data name="ImportGraphSettingsMessage" xml:space="preserve">
+    <value>Դուք արդեն ունեք «{0}» գրաֆիկը։ Ի՞նչ եք ցանկանում անել այս ֆայլի կարգավորումների հետ։</value>
+  </data>
+  <data name="ImportGraphUpdateCurrentContext" xml:space="preserve">
+    <value>Թարմացնել {0} կարգավորումները</value>
+  </data>
+  <data name="ImportGraphUpdateBaseline" xml:space="preserve">
+    <value>Թարմացնել բազային (կանխադրված) կարգավորումները</value>
+  </data>
+  <data name="ImportGraphUpdateBoth" xml:space="preserve">
+    <value>Թարմացնել {0} և բազային կարգավորումները</value>
+  </data>
+  <data name="ImportGraphNewCopy" xml:space="preserve">
+    <value>Ներմուծել որպես նոր պատճեն</value>
+  </data>
+  <data name="FFBModuleInterpolator" xml:space="preserve">
+    <value>60 Hz ինտերպոլյատոր</value>
+  </data>
+  <data name="FFBModulePrediction" xml:space="preserve">
+    <value>Կանխատեսում</value>
+  </data>
+  <data name="FFBSettingHorizon" xml:space="preserve">
+    <value>Հորիզոն</value>
+  </data>
+  <data name="FFBSettingBlend" xml:space="preserve">
+    <value>Խառնուրդ</value>
+  </data>
+  <data name="FFBSettingCorrectionLimit" xml:space="preserve">
+    <value>Ուղղման սահման</value>
+  </data>
 </root>

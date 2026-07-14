@@ -31,12 +31,10 @@ public sealed class FFBGraphEngine
 	public bool CrashProtectionActive;
 	public bool CurbProtectionActive;
 
-	// aggregates refreshed on Rebuild/SetValue, read by Simulator triggers (thresholds) and RacingWheel (prediction)
+	// aggregates refreshed on Rebuild/SetValue, read by Simulator triggers (thresholds)
 	public float CrashLongGForceThreshold = 20f;
 	public float CrashLatGForceThreshold = 20f;
 	public float CurbShockVelocityThreshold = 0f;
-	public RacingWheel.PredictionMode PredictionMode = RacingWheel.PredictionMode.Disabled;
-	public float PredictionBlend = 0f;
 
 	/// <summary>The graph model this engine was last built from (for the preview replay / editor).</summary>
 	public FFBGraph? Graph { get; private set; }
@@ -159,14 +157,12 @@ public sealed class FFBGraphEngine
 		CurbProtectionActive = false;
 	}
 
-	/// <summary>Recompute the edit-time aggregates (thresholds, prediction mode/blend) by asking each module to publish.</summary>
+	/// <summary>Recompute the edit-time aggregates (the protection thresholds) by asking each module to publish.</summary>
 	public void RefreshAggregates()
 	{
 		CrashLongGForceThreshold = 20f;
 		CrashLatGForceThreshold = 20f;
 		CurbShockVelocityThreshold = 0f;
-		PredictionMode = RacingWheel.PredictionMode.Disabled;
-		PredictionBlend = 0f;
 
 		for ( var i = 0; i < _modules.Length; i++ )
 		{

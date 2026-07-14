@@ -16,7 +16,6 @@ public class DirectInput
 		public required Guid _instanceGuid;
 		public required string _productName;
 
-		public ObjectProperties? _xAxisProperties = null;
 		public JoystickState _joystickState = new();
 		public JoystickUpdate[]? _joystickUpdates = null;
 		public bool[] _povButtons = new bool[ PovVirtualButtonCount ];
@@ -36,8 +35,6 @@ public class DirectInput
 	public string ForceFeedbackErrorMessage { get; private set; } = string.Empty;
 	public bool ForceFeedbackInitialized { get => _forceFeedbackInitialized; }
 	public Joystick? ForceFeedbackJoystick { get; private set; } = null;
-	public float ForceFeedbackWheelPosition { get; private set; } = 0f;
-	public float ForceFeedbackWheelVelocity { get; private set; } = 0f;
 
 	public event Action<string, Guid, int, bool>? OnInput = null;
 
@@ -205,9 +202,6 @@ public class DirectInput
 
 			_forceFeedbackInitialized = false;
 
-			ForceFeedbackWheelPosition = 0f;
-			ForceFeedbackWheelVelocity = 0f;
-
 			_forceFeedbackEffectParameters = null;
 
 			_lastForceFeedbackMagnitude = int.MinValue;
@@ -250,7 +244,7 @@ public class DirectInput
 		}
 	}
 
-	public void PollDevices( float deltaSeconds )
+	public void PollDevices()
 	{
 		if ( Interlocked.Exchange( ref _pollMutex, 1 ) != 0 )
 		{
@@ -297,17 +291,6 @@ public class DirectInput
 					joystickInfo._joystick.GetCurrentState( ref joystickInfo._joystickState );
 
 					joystickInfo._joystickUpdates = joystickInfo._joystick.GetBufferedData();
-
-					if ( joystickInfo._instanceGuid == _forceFeedbackDeviceInstanceGuid )
-					{
-						if ( joystickInfo._xAxisProperties != null )
-						{
-							var lastForceFeedbackWheelPosition = ForceFeedbackWheelPosition;
-
-							ForceFeedbackWheelPosition = (float) 2f * ( joystickInfo._joystickState.X - joystickInfo._xAxisProperties.Range.Minimum ) / ( joystickInfo._xAxisProperties.Range.Maximum - joystickInfo._xAxisProperties.Range.Minimum ) - 1f;
-							ForceFeedbackWheelVelocity = ( ForceFeedbackWheelPosition - lastForceFeedbackWheelPosition ) / deltaSeconds;
-						}
-					}
 				}
 			}
 			catch ( Exception )
@@ -606,26 +589,11 @@ public class DirectInput
 
 					joystick.Acquire();
 
-					app.Logger.WriteLine( "[DirectInput] Getting the X-Axis properties" );
-
-					var objectList = joystick.GetObjects( DeviceObjectTypeFlags.AbsoluteAxis );
-
-					ObjectProperties? xAxisProperties = null;
-
-					foreach ( var obj in objectList )
-					{
-						if ( ( obj.UsagePage == 0x01 ) && ( obj.Usage == 0x30 ) )
-						{
-							xAxisProperties = joystick.GetObjectPropertiesById( obj.ObjectId );
-						}
-					}
-
 					var joystickInfo = new JoystickInfo()
 					{
 						_joystick = joystick,
 						_productName = joystick.Information.ProductName,
-						_instanceGuid = deviceInstance.InstanceGuid,
-						_xAxisProperties = xAxisProperties
+						_instanceGuid = deviceInstance.InstanceGuid
 					};
 
 					_joystickInfoDictionary.Add( deviceInstance.InstanceGuid, joystickInfo );
