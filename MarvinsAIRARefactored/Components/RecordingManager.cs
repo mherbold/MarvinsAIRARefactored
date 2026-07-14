@@ -47,7 +47,6 @@ public sealed class RecordingManager : IDisposable
 	private readonly RecordingData[] _recordingData = new RecordingData[ SamplesPerSecond * MaxRecordingSeconds ];
 
 	private int _recordingDataIndex = 0;
-	private int _trackPositionPct = 0;
 
 	// lap-completion auto-stop state (see LapCompletionRadius)
 	private float _startLapDist = 0f;
@@ -317,9 +316,6 @@ public sealed class RecordingManager : IDisposable
 		{
 			app.Logger.WriteLine( "[RecordingManager] StartRecording >>>" );
 
-			// the file name marks where on track the recording started
-			_trackPositionPct = (int) MathF.Round( app.Simulator.LapDistPct * 100f );
-
 			_recordingDataIndex = 0;
 
 			_startLapDist = app.Simulator.LapDist;
@@ -385,7 +381,7 @@ public sealed class RecordingManager : IDisposable
 
 		var durationSeconds = (int) MathF.Round( (float) recordedSampleCount / SamplesPerSecond );
 
-		var fileName = $"{app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {app.Simulator.TrackConfigName} ({_trackPositionPct}%, {durationSeconds}s)";
+		var fileName = $"{app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {app.Simulator.TrackConfigName} ({durationSeconds}s)";
 
 		var filePath = Path.Combine( _recordingsDirectory, $"{fileName}.csv" );
 
