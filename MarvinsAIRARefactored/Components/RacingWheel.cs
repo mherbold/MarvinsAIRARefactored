@@ -109,6 +109,7 @@ public class RacingWheel
 	private float _fadeTimerMS = 0f;
 	private float _testSignalTimerMS = 0f;
 	private float _crashProtectionTimerMS = 0f;
+	private bool _crashProtectionWasLogged = false;
 	private float _curbProtectionTimerMS = 0f;
 	private float _understeerEffectTimerMS = 0f;
 	private float _oversteerEffectTimerMS = 0f;
@@ -1273,6 +1274,13 @@ public class RacingWheel
 					}
 
 					SpeakMairaAnnouncement( "MairaCrashProtectionActive" );
+
+					if ( ( settings.RacingWheelCrashProtectionDuration > 0f ) && ( settings.RacingWheelCrashProtectionForceReduction > 0f ) )
+					{
+						app.Logger.WriteLine( $"[RacingWheel] Crash protection activated (force reduction {settings.RacingWheelCrashProtectionForceReduction * 100f:F0}%, duration {settings.RacingWheelCrashProtectionDuration:F1} s)" );
+
+						_crashProtectionWasLogged = true;
+					}
 				}
 
 				_crashProtectionTimerMS = settings.RacingWheelCrashProtectionDuration * 1000f + CrashProtectionRecoveryTime;
@@ -1287,6 +1295,13 @@ public class RacingWheel
 				crashProtectionScale = 1f - settings.RacingWheelCrashProtectionForceReduction * ( ( _crashProtectionTimerMS <= CrashProtectionRecoveryTime ) ? ( _crashProtectionTimerMS / CrashProtectionRecoveryTime ) : 1f );
 
 				_crashProtectionTimerMS -= deltaMilliseconds;
+
+				if ( ( _crashProtectionTimerMS <= 0f ) && _crashProtectionWasLogged )
+				{
+					app.Logger.WriteLine( "[RacingWheel] Crash protection deactivated" );
+
+					_crashProtectionWasLogged = false;
+				}
 			}
 
 			// update curb protection
