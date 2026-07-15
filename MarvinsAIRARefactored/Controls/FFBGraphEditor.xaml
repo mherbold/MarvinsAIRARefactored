@@ -32,15 +32,15 @@
 			<!-- Fixed-height viewport, sized to match the preview graph's 301px image. It is a Canvas rather than a
 			     Grid so the (much larger) node canvas inside cannot drive the layout width. Pan and zoom are a
 			     RenderTransform on the content, so there is no scroll viewer and no scroll bar. The transparent
-			     background is what lets empty space hit-test for the right-drag pan. -->
+			     background is what lets empty space hit-test for the left-drag pan. -->
 			<Canvas x:Name="Viewport_Canvas"
 			        Height="301"
 			        Background="Transparent"
 			        ClipToBounds="True"
 			        PreviewMouseWheel="Viewport_Canvas_PreviewMouseWheel"
-			        MouseRightButtonDown="Viewport_Canvas_MouseRightButtonDown"
+			        MouseLeftButtonDown="Viewport_Canvas_MouseLeftButtonDown"
 			        MouseMove="Viewport_Canvas_MouseMove"
-			        MouseRightButtonUp="Viewport_Canvas_MouseRightButtonUp"
+			        MouseLeftButtonUp="Viewport_Canvas_MouseLeftButtonUp"
 			        LostMouseCapture="Viewport_Canvas_LostMouseCapture"
 			        SizeChanged="Viewport_Canvas_SizeChanged">
 

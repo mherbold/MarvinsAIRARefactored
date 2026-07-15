@@ -27,7 +27,7 @@ namespace MarvinsAIRARefactored.Controls;
 /// same input-selection setters as the settings-panel combos (eligibility/cycle rules, topological re-sort, engine
 /// rebuild, and the deferred card rebuild are all shared with that path).
 /// <para>The viewport is a fixed-height clipped canvas (the same height as the preview graph) with no scroll bar.
-/// Ctrl+wheel zooms about the cursor and right-dragging empty space pans, both of them driven by a RenderTransform
+/// Ctrl+wheel zooms about the cursor and left-dragging empty space pans, both of them driven by a RenderTransform
 /// on the content rather than by scrolling — a scroll viewer could not pan far enough, since its range stops at the
 /// content extent. <see cref="ClampPan"/> bounds that transform so at least one whole node always stays on screen.
 /// Zoom and pan are in-memory view state: they are never serialized.</para>
@@ -931,10 +931,11 @@ public partial class FFBGraphEditor : UserControl
 	}
 
 	/// <summary>
-	/// Right-dragging empty canvas pans the graph. A right-press ON a node never reaches here — Node_MouseRightButtonDown
-	/// takes it (preview lock) and marks it handled — so arriving here already means the cursor was over empty space.
+	/// Left-dragging empty canvas pans the graph. A left-press ON a node never reaches here — Node_MouseLeftButtonDown
+	/// takes it (selection / node or wire drag) and marks it handled — so arriving here already means the cursor was
+	/// over empty space.
 	/// </summary>
-	private void Viewport_Canvas_MouseRightButtonDown( object sender, MouseButtonEventArgs e )
+	private void Viewport_Canvas_MouseLeftButtonDown( object sender, MouseButtonEventArgs e )
 	{
 		_isPanning = true;
 		_panStartPoint = e.GetPosition( Viewport_Canvas );
@@ -962,7 +963,7 @@ public partial class FFBGraphEditor : UserControl
 		ClampPan();
 	}
 
-	private void Viewport_Canvas_MouseRightButtonUp( object sender, MouseButtonEventArgs e )
+	private void Viewport_Canvas_MouseLeftButtonUp( object sender, MouseButtonEventArgs e )
 	{
 		if ( !_isPanning )
 		{
