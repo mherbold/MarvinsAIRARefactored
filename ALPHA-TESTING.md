@@ -1,6 +1,6 @@
 # MAIRA FFB Graph Alpha — Tester Guide
 
-**Build:** [Version 2.0.466.1058 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.466.1058)
+**Build:** [Version 2.0.469.23 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.469.23) — the second alpha; see [New in this build](#new-in-this-build) for what changed since the first one.
 
 This alpha replaces MAIRA's entire force feedback system. The fixed set of FFB algorithms (Detail booster, Delta limiter, Slew and total compression, Multi adjustment toolkit, …) is gone; in its place is a **modular FFB graph** — an audio-DSP-style node editor where the force feedback signal chain is built out of small modules that you wire together yourself.
 
@@ -12,8 +12,23 @@ This document explains what changed versus the released (main branch) version, a
 
 - **This build is invisible to the update checker.** The app will not offer it, and it is not the "Latest" release on GitHub. Download and run the installer manually from the release page above. The installer is code-signed like normal releases.
 - **Your force feedback settings will NOT carry over.** There is no migration from the old algorithm settings to the graph system — everyone starts on the built-in graph. All of your *other* settings (pedals, sounds, overlays, commentary, G Tensioner, controller profiles, wheel force / max force, etc.) are preserved.
-- **Old FFB recordings are incompatible.** The recording file format changed (v3, 360 Hz with many more channels). A fresh sample recording is installed for the preview graph, and you can record your own (see [Recordings](#recordings-and-the-preview-graph)).
+- **Old FFB recordings are incompatible — including recordings made with the first alpha.** The recording file format changed again (v4, 360 Hz, 35 channels). Six fresh sample recordings covering different cars and tracks are installed for the preview graph, and you can record your own (see [Recordings](#recordings-and-the-preview-graph)).
 - **Rolling back is safe.** Install the previous version over this one at any time. Note the graph data this alpha writes into `Settings.xml` will simply be ignored by the old version, and your old (dormant) algorithm settings are still in the file, so the old version picks up right where you left it.
+
+---
+
+## New in this build
+
+Changes since the first alpha (2.0.466.1058), for testers who already ran it:
+
+- **New Prediction module** — an adaptive predictor that shifts the FFB waveform up to 12 ticks (33 ms) earlier to counteract latency. See the [module reference](#generic-dsp) for the knobs and [Inside the Prediction module](#inside-the-prediction-module-the-math) for how it works.
+- **New Interpolator module** — replaces a 60 Hz signal's staircase steps with a smooth ramp across each frame. The 60 Hz source's old Prediction mode / Prediction blend settings are gone; these two modules replace them.
+- **Marvin's awesome graph was rebuilt** around the new modules (prediction on the low-pass body branch, interpolation on the wheel centering branch). Your built-in copy updates automatically on install; your knob adjustments for unchanged modules carry over.
+- **Node editor zoom and pan** — Ctrl+mouse wheel zooms around the cursor, dragging empty space pans, and the view auto-crawls when you drag a node past the edge.
+- **Graph import knows what it's importing.** Graphs now carry an identity, so importing a graph you already have opens a dialog: apply the file's module settings to the current car/track context, to the baseline, to both — or import it as a separate copy.
+- The **LFE** and **wheel velocity** sources gained Strength knobs.
+- **Recording format v4** (35 channels — adds yaw/pitch/roll rates, lateral acceleration and velocity, front shock motion, and throttle/brake). Recordings from the first alpha will not load; six fresh sample recordings are installed.
+- Recording file names no longer include the track position.
 
 ---
 
@@ -28,7 +43,8 @@ This document explains what changed versus the released (main branch) version, a
 | Steering Effects page | Wheel force + vibration groups | Wheel groups moved into the graphs (thresholds/calibration remain) |
 | FFB defaults | Per-algorithm defaults | **Built-in graphs** shipped with the app ("Marvin's awesome graph") |
 | Sharing setups | Not possible | **Export / import** graphs as `.mairagraph` files |
-| Recordings | Fixed 60-second, 2 channels | Toggle record up to 5 min, 22 channels, auto-stop on lap completion |
+| Latency compensation | — | **Prediction module** — adaptive lookahead up to 33 ms |
+| Recordings | Fixed 60-second, 2 channels | Toggle record up to 5 min, 35 channels, auto-stop on lap completion |
 | Preview | Fixed-width graph | 1 pixel per sample, hover zoom + **data readout + track map** |
 | First-run wizard | Picks an algorithm + preset knobs | Tunes the built-in graph's **detail gain** (25%–200%) |
 | Crash/curb protection | Crash reduces force; curb partial | Both reduce force, both have **recovery time**; new defaults |
@@ -58,7 +74,9 @@ On the Racing Wheel page, the FFB graph section shows the graph as draggable nod
 - **Drag** a node to move it. A snap-to-grid toggle (dot-grid icon) and an auto-layout wand live in the corner of the canvas.
 - **Drag a wire**: press on a connector dot (crosshair cursor) and drag to another module's connector — works from output→input or input→output. Invalid targets (cycles, the Output module's own output, etc.) simply won't connect.
 - **Add a module** with the + button; the new module is spliced into the selected node's output wire. **Remove** a module with the − button on its settings card; its consumers are re-wired to its input so the signal keeps flowing.
-- The canvas scrolls horizontally and grows as you drag nodes outward.
+- **Zoom** with Ctrl+mouse wheel — the view scales around the cursor.
+- **Pan** by clicking and dragging empty canvas. Dragging a node past the viewport edge auto-crawls the view along with it.
+- The canvas grows as you drag nodes outward.
 
 The **preview graph** below shows the selected module's signals replayed through a recording: red = input A, green = input B (dual-input modules), blue = output.
 
@@ -70,11 +88,11 @@ All values below are the defaults. Knob values can be click-stepped, dragged, or
 
 | Module | What it emits | Settings |
 |---|---|---|
-| **60 Hz source** | iRacing's 60 Hz steering torque, optionally predicted forward | Prediction mode (Disabled / Predict K1 / Predict K2, default K1), Prediction blend (30%) |
+| **60 Hz source** | iRacing's 60 Hz steering torque (pair with the Interpolator to smooth its staircase) | — |
 | **360 Hz source** | iRacing's raw 360 Hz steering torque | — |
-| **LFE source** | Torque from the low-frequency-effects audio capture | — |
+| **LFE source** | Torque from the low-frequency-effects audio capture | Strength (25%) |
 | **Soft lock source** | Opposing force past the car's steering lock | Strength (25%) |
-| **Wheel velocity source** | Torque proportional to how fast the wheel is turning — the building block for friction/damping (pair with Speed gain) | — |
+| **Wheel velocity source** | Torque proportional to how fast the wheel is turning — the building block for friction/damping (pair with Speed gain) | Strength (100%) |
 | **Wheel centering source** | Spring force pulling the wheel to center | Strength (75%) |
 
 #### Generic DSP
@@ -89,6 +107,8 @@ All values below are the defaults. Knob values can be click-stepped, dragged, or
 | **Slew limiter** | Hard-limits how fast torque can change | Limit (360 Nm/s) |
 | **Adaptive smoother** | One Euro filter — smooths hard when the signal is calm, opens up during fast changes | Amount (0–100%) |
 | **Transient enhancer** | Outputs amplified attack transients only (nonlinear detail extractor) | Cutoff (7.2 Hz), Gain (1.00×) |
+| **Interpolator** | Replaces a 60 Hz signal's staircase steps with a linear ramp across each frame — pure interpolation between known samples, adds one frame (~16.7 ms) of latency. Use on 60 Hz-derived branches only | — |
+| **Prediction** | Shifts the signal into the future to counteract latency — an adaptive filter bank that learns each car as you drive (see [Inside the Prediction module](#inside-the-prediction-module-the-math)) | Horizon (K6), Correction limit (5.00 Nm), Strength (150%) |
 
 #### Mixers (two inputs)
 
@@ -146,7 +166,7 @@ The graph dropdowns are split into two categories:
   - are **updated automatically** when a new app version ships an updated copy — so alpha fixes to the built-in graph reach you on the next install without touching your custom graphs.
 - **Custom** — yours. To modify a built-in's structure, press **New graph** and choose **Clone current graph**; the clone is fully editable.
 
-**Marvin's awesome graph** (the shipped starting point) splits the 360 Hz torque into a low-pass body plus a high-pass detail branch with its own **detail gain** (this is the gain the first-run wizard tunes), recombines them, ramps force down when parked, adds smoothed wheel centering at low speed, mixes in LFE, and finishes with the Output soft limiter.
+**Marvin's awesome graph** (the shipped starting point) splits the 360 Hz torque into two branches: the slow body of the force goes through the **Prediction module** and a low-pass filter (prediction on the body only — the detail branch stays raw so no noise is amplified), while a high-pass detail branch gets its own **detail gain** (this is the gain the first-run wizard tunes) and curb protection. The branches recombine, pass through crash protection, ramp down when parked, pick up an interpolated low-speed wheel centering branch and LFE, and finish with the Output soft limiter.
 
 ---
 
@@ -164,6 +184,7 @@ The export/import buttons sit next to the graph management buttons:
 
 - **Export** writes the current graph to a `.mairagraph` file (a built-in exports as an ordinary editable graph).
 - **Import** validates and adds the file as a new custom graph (auto-renamed if the name is taken). FFB and vibration graph files are type-tagged, so you can't import one into the other's slot. Files from a newer app version are rejected with a clear message instead of silently mangling.
+- **Graphs carry an identity.** Importing a file whose graph you already have (an updated version of a shared setup, say) opens a dialog instead of blindly duplicating: apply the file's module settings to the current car/track context, to the baseline, to both — or import it as a separate copy after all.
 
 Only the graph travels — your per-car knob adjustments and button bindings stay local.
 
@@ -187,7 +208,7 @@ The preview graph replays a recorded lap segment through the live graph, so ever
   - you complete a lap (return within 100 m of where you started — start/finish line wrap handled correctly),
   - you go off track (the partial take is saved),
   - the 5-minute cap fills.
-- Recordings capture the full 360 Hz tick context: torques, LFE, G forces, shock velocity, wheel position/velocity, steering angle/velocity, speed, RPM, gear, ABS, steering-effect signals, track position, and heading/velocity for the track map.
+- Recordings capture the full 360 Hz tick context (35 channels): torques, LFE, G forces, steering angle/velocity, yaw/pitch/roll rates, lateral acceleration and velocity, front shock velocity and deflection, throttle/brake, speed, RPM, gear, ABS, steering-effect signals, track position, and heading/velocity for the track map.
 - The **choose recording** button picks which recording the preview uses. Recordings load on demand now (only one in memory), so having many costs nothing.
 - The **beeps** are configurable on the Sounds page (enable, volume, frequency) like every other sound.
 
@@ -201,9 +222,77 @@ The preview graph replays a recorded lap segment through the live graph, so ever
 
 ## Engine internals (what you should feel)
 
-- The whole processing chain now runs at a true **360 Hz** in a single burst per telemetry frame, handed to a dedicated high-rate output thread that streams torque to the wheelbase. Torque prediction (on the 60 Hz source) smooths the 60 Hz signal's staircase.
+- The whole processing chain now runs at a true **360 Hz** in a single burst per telemetry frame, handed to a dedicated high-rate output thread that streams torque to the wheelbase. The Interpolator module smooths 60 Hz staircases; the Prediction module shifts the signal earlier to counteract latency.
 - A performance pass eliminated steady-state memory allocations in the hot path, so there are no garbage-collection hitches — force delivery should be glassy even during long sessions.
 - Wheel output writes are skipped when the value hasn't changed, cutting driver overhead while parked.
+
+---
+
+## Inside the Prediction module (the math)
+
+*For the mathematically inclined — nothing here is needed to use the module.*
+
+### The problem
+
+Let $y_t$ be iRacing's steering torque sampled at 360 Hz. Every physical path from tire to hand adds delay — telemetry transport, FFB processing, wheelbase drivetrain — so the torque you feel lags the physics. The module's goal is to output an estimate of $y_{t+k}$ at time $t$, shifting the whole waveform $k$ ticks ($k \times 2.78$ ms) earlier. The Horizon knob is $k$, from K1 to K12 (2.8–33 ms).
+
+Two structural facts shape the design:
+
+1. **Torque arrives in frames.** iRacing delivers telemetry at 60 Hz, and each frame carries the six most recent 360 Hz samples at once. MAIRA processes the whole frame in a single burst the moment it arrives — so when the engine computes the output for sub-tick $i \in \{0,\dots,5\}$ of a frame, the frame's *later* samples are already known.
+2. **Torque is only partially predictable.** Measured on real recordings, only roughly 40–55% of the torque *change* over a 6–12 tick horizon is linearly predictable from the past. Any estimator must make peace with that ceiling.
+
+### Frame anchoring
+
+Naive prediction extrapolates $k$ ticks ahead from every tick. Frame anchoring exploits fact 1: with the newest known sample at in-frame index 5 (the *anchor* $a$), the target index $i + k$ is either
+
+- **inside the frame** ($i + k \le 5$): the "future" sample is already in hand, and the module outputs it exactly — zero estimation error; or
+- **beyond the frame**: the true extrapolation depth is only $d = i + k - 5$.
+
+At K6 the depth $d$ ranges over $\{1,\dots,6\}$ with mean 3.5 — the module delivers a 6-tick lead while only ever guessing 1–6 ticks ahead. Since prediction error grows steeply with depth, halving the average depth buys more than any cleverer estimator at full depth. Each horizon needs exactly six depths (one per sub-tick), so the module maintains a bank of six independent predictors.
+
+### The predictor bank
+
+Each depth $d$ gets its own linear predictor $\hat y_{a+d} = \mathbf{w}_d^\top \mathbf{x}_a$ over a 49-dimensional feature vector built at the anchor:
+
+- **24 torque lags** $y_a, y_{a-1}, \dots, y_{a-23}$ (one 60 Hz frame's worth of 360 Hz history ×4),
+- **4 auxiliary telemetry channels × 6 frame-spaced lags** (indices $a, a-6, \dots, a-30$): steering wheel angle, steering wheel velocity, chassis lateral velocity, and pitch *acceleration* (the frame difference of pitch rate), each scaled to torque-commensurate variance,
+- **1 constant bias** term.
+
+The aux channels were chosen empirically, by greedy forward selection on six car/track recordings against a torque-plus-bias baseline: steering angle enters first (front slip angle → future self-aligning torque), then pitch acceleration (road inputs hit the chassis before they appear in measured torque), then steering velocity (only valuable *after* pitch rate is in — an interaction effect), with lateral velocity marginal. Channels you might expect to help — yaw rate, per-corner shock travel — never survive once the steering angle is in the regression.
+
+### Learning — normalized LMS
+
+The weights adapt online. Once per frame per depth, the truth for the prediction made $d$ ticks ago has just arrived, so with $\mathbf{x}$ the feature vector at anchor $a - d$:
+
+$$e = y_a - \mathbf{w}_d^\top \mathbf{x}, \qquad \mathbf{w}_d \leftarrow \mathbf{w}_d + \mu \, \frac{e \, \mathbf{x}}{\varepsilon + \lVert \mathbf{x} \rVert^2}, \qquad \mu = 0.25 .$$
+
+Three deliberate choices:
+
+- **NLMS, not RLS.** Recursive least squares with exponential forgetting is the textbook "better" adaptive filter, but on these strongly autocorrelated (and, mid-corner, nearly constant) regressors its covariance matrix winds up and the weights explode — it diverged in offline testing. NLMS is unconditionally stable for $0 < \mu < 2$ and converges within a few corners of driving.
+- **One update per frame, not six.** Consecutive anchors are highly correlated; updating on all six sub-ticks increases gradient-noise misadjustment and measured *worse* offline.
+- **Weights initialize to persistence** ($\hat y = y_a$), so a cold filter passes the signal through unchanged instead of outputting garbage while it learns.
+
+### The amplitude problem — why the Strength knob exists
+
+A least-squares predictor approximates $\mathbb{E}[\,y_{a+d} \mid \mathbf{x}_a\,]$, and conditional expectations *shrink*: as linear predictability decays with depth, the optimizer pulls its estimate toward the recent mean. The result minimizes RMS error yet feels — and looks, in the preview — almost identical to no prediction at all, because the waveform's excursions barely move. This shrinkage, not estimator quality, is why naive prediction approaches show "no visible difference."
+
+The fix is to re-expand the learned correction. The module outputs
+
+$$\text{out}_t = \text{in}_t + \gamma \cdot \operatorname{clamp}_{\pm L}\!\left( \hat y_{t+k} - y_t \right)$$
+
+where $\gamma$ is the Strength knob (default 150%) and $L$ the Correction limit (default 5 Nm). With $\gamma > 1$ the correction is deliberately over-driven past its MMSE amplitude, trading a little RMS error for the full-amplitude lead you can actually feel. When the target sample is *known* (the inside-the-frame case) $\gamma$ is capped at 100% — there is nothing to re-expand about exact data. The clamp $L$ bounds the worst a mis-adapted filter can inject during transients or relearning.
+
+### Measured behavior
+
+An offline test bench in the repo (`MarvinsAIRARefactored.PredictionLab`) replays real 360 Hz recordings through the exact shipped algorithm and scores three things: RMS error against the true future (normalized so 1.0 = the do-nothing persistence baseline), the *achieved* waveform shift (argmin of the cross-correlation lag — the honest number, immune to amplitude tricks), and high-frequency (>30 Hz) noise gain. Across six cars/tracks at the default K6 / 150% / 5 Nm:
+
+- ≈ 11.5 ms average true shift (worst car 8.6 ms) — versus < 1 ms for the naive predictor this module replaced;
+- RMS ratio ≈ 0.82, and **below 1.0 on every car** — the shifted signal tracks the true future better than doing nothing does;
+- HF gain ≈ 1.24 — mild, and the built-in graph applies prediction to the low-pass body branch only, so no high-frequency noise is amplified at all.
+
+K12 (33 ms) is *not* cleanly achievable — the predictability ceiling bites, and on some cars the shift metric collapses — which is why the default is K6 rather than the maximum.
+
+One caveat you will notice: every preview refresh resets the engine, so the filters relearn across the visible window — the left edge of the preview always shows a weaker effect than the steady state you feel on track.
 
 ---
 
@@ -213,7 +302,7 @@ The wizard's FFB style step no longer picks an algorithm. Its 7-position slider 
 
 ---
 
-## Other changes in this build
+## Other changes vs. the released version
 
 - Crash protection defaults changed: lateral trigger 8 g (was 6), duration 0.2 s, recovery 0.2 s.
 - Curb protection now genuinely reduces force (it previously only announced); both protections ramp smoothly back via the new recovery time.
@@ -230,6 +319,8 @@ The wizard's FFB style step no longer picks an algorithm. Its 7-position slider 
 ## What to test / feedback
 
 - Fresh-feel check: does the built-in graph feel right on your wheelbase and usual cars? Try the wizard slider extremes.
+- Prediction module: does the wheel feel more connected — less "rubber band" between what the car does and what your hands feel? Try Strength at OFF vs. 150% back to back on the same car. Report any oscillation or buzzing at high Strength/Horizon settings (and which car).
+- Give the prediction a few corners after loading into a car before judging it — it learns as you drive.
 - Build a custom graph: clone the built-in, add/remove/rewire modules, confirm nothing crashes and the preview matches what you feel.
 - Per-car tuning: tweak knobs on two different cars and confirm each car's values come back when you switch.
 - Record laps at different tracks — verify the auto-stop on lap completion and the track map's shape.
