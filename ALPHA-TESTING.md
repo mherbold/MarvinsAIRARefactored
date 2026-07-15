@@ -278,7 +278,7 @@ A least-squares predictor approximates $\mathbb{E}[\,y_{a+d} \mid \mathbf{x}_a\,
 
 The fix is to re-expand the learned correction. The module outputs
 
-$$\text{out}_t = \text{in}_t + \gamma \cdot \operatorname{clamp}_{\pm L}\!\left( \hat y_{t+k} - y_t \right)$$
+$$\text{out}_t = \text{in}_t + \gamma \cdot \mathrm{clamp}_{\pm L}\!\left( \hat y_{t+k} - y_t \right)$$
 
 where $\gamma$ is the Strength knob (default 150%) and $L$ the Correction limit (default 5 Nm). With $\gamma > 1$ the correction is deliberately over-driven past its MMSE amplitude, trading a little RMS error for the full-amplitude lead you can actually feel. When the target sample is *known* (the inside-the-frame case) $\gamma$ is capped at 100% — there is nothing to re-expand about exact data. The clamp $L$ bounds the worst a mis-adapted filter can inject during transients or relearning.
 
