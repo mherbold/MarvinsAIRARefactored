@@ -31,6 +31,12 @@ public sealed class AudioManager : IDisposable
 
 	public const string DefaultDeviceName = "[Default Windows Sound Device]";
 
+	// Last device name passed to SetOutputDevice. ApplyOutputDeviceSetting prefers this over the global
+	// settings object because during settings file deserialization the SoundsOutputDevice setter fires on a
+	// new Settings instance before it is assigned to DataContext.Instance — reading the global there would
+	// return the stale default value.
+	private string? _outputDeviceName = null;
+
 	public AudioManager()
 	{
 		var app = App.Instance!;
@@ -184,6 +190,8 @@ public sealed class AudioManager : IDisposable
 
 		app.Logger.WriteLine( $"[AudioManager] SetOutputDevice: {deviceName}" );
 
+		_outputDeviceName = deviceName;
+
 		// Snapshot which sound file paths were loaded so we can reload them after reopen
 		List<string> loadedPaths;
 
@@ -238,7 +246,7 @@ public sealed class AudioManager : IDisposable
 			return;
 		}
 
-		var desiredName = DataContext.DataContext.Instance.Settings.SoundsOutputDevice;
+		var desiredName = _outputDeviceName ?? DataContext.DataContext.Instance.Settings.SoundsOutputDevice;
 
 		if ( string.IsNullOrEmpty( desiredName ) || desiredName == DefaultDeviceName )
 		{
