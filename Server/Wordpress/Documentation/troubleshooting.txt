@@ -31,6 +31,14 @@
 <p>You can report crashes (and anything else) on the <a href="https://discord.gg/Y7JN3BAz72" target="_blank" rel="noreferrer noopener">Discord Server</a> or on the <a href="https://forums.iracing.com/discussion/72467/marvins-awesome-iracing-app" target="_blank" rel="noreferrer noopener">iRacing Forum</a>. Including the log file with your report makes it much easier to diagnose and fix the issue.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="controlled-folder-access">Controlled Folder Access</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If you have turned on Windows’ <strong>controlled folder access</strong> feature (part of ransomware protection in Windows Security), Windows can block the installer from creating the <strong>Documents\MarvinsAIRA Refactored</strong> folder, and block MAIRA from saving your settings and writing its log files. If MAIRA seems to forget your settings between runs, if there are no log files, or if the <strong>MarvinsAIRA Refactored</strong> folder never shows up in your Documents folder, this is the most likely cause. See the <a href="https://mairapp.com/home/documentation/basic/downloading-and-installing/#controlled-folder-access" data-type="page" data-id="148">Downloading and Installing</a> page for how to let MAIRA through.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:spacer -->
 <div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
 <!-- /wp:spacer -->
