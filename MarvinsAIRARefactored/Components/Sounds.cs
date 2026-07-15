@@ -198,7 +198,7 @@ public class Sounds
 
 			if ( settings.SoundsBrakeThrottleWarningEnabled && !isReplayActive )
 			{
-				if ( app.Simulator.Brake > 0f && app.Simulator.Throttle > 0f && !app.Simulator.OnPitRoad && app.Simulator.Speed >= 10f )
+				if ( app.Simulator.BrakeRaw > 0f && app.Simulator.ThrottleRaw > 0f && !app.Simulator.OnPitRoad && app.Simulator.Speed >= 10f )
 				{
 					_soundEffects[ SoundEffectType.BrakeThrottleWarning ].ShouldBePlaying = true;
 					_soundEffects[ SoundEffectType.BrakeThrottleWarning ].Volume = 1f;
