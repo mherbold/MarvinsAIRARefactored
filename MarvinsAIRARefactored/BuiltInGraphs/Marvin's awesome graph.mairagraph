@@ -3,7 +3,7 @@
   <FormatVersion>1</FormatVersion>
   <GraphType>FFB</GraphType>
   <Graph>
-    <GraphId>f0e1d2c3b4a5968778695a4b3c2d1e0f</GraphId>
+    <GraphId>7abb77eaa72a4846a9c78cc76250b19c</GraphId>
     <Name>Marvin's awesome graph</Name>
     <IsBuiltIn>false</IsBuiltIn>
     <Modules>
@@ -22,11 +22,11 @@
             </value>
           </item>
         </SettingValues>
-        <NodeX>22</NodeX>
-        <NodeY>87</NodeY>
+        <NodeX>10</NodeX>
+        <NodeY>48</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>SourceWheelCentering</ModuleId>
+        <ModuleId>e7f63c59d7c44dbfa0e377dda8ede87f</ModuleId>
         <ModuleType>SourceWheelCentering</ModuleType>
         <InputAModuleId>Source360</InputAModuleId>
         <InputBModuleId>Source360</InputBModuleId>
@@ -36,15 +36,15 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.9998264</float>
+              <float>1</float>
             </value>
           </item>
         </SettingValues>
-        <NodeX>265</NodeX>
-        <NodeY>251</NodeY>
+        <NodeX>10</NodeX>
+        <NodeY>176</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>SourceLFE</ModuleId>
+        <ModuleId>78e462fe147448c4922843d9ec69e5eb</ModuleId>
         <ModuleType>SourceLFE</ModuleType>
         <InputAModuleId>Source360</InputAModuleId>
         <InputBModuleId>Source360</InputBModuleId>
@@ -58,146 +58,15 @@
             </value>
           </item>
         </SettingValues>
-        <NodeX>863</NodeX>
-        <NodeY>24</NodeY>
+        <NodeX>10</NodeX>
+        <NodeY>304</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>646e9b16041b4b86ac894fe1870c9620</ModuleId>
-        <ModuleType>HighPassFilter</ModuleType>
-        <InputAModuleId>Source360</InputAModuleId>
+        <ModuleId>6d4f11a9d6b24bd294e85400325f92e4</ModuleId>
+        <ModuleType>Interpolator</ModuleType>
+        <InputAModuleId>e7f63c59d7c44dbfa0e377dda8ede87f</InputAModuleId>
         <InputBModuleId>Source360</InputBModuleId>
         <SettingValues>
-          <item>
-            <key>
-              <string>Cutoff</string>
-            </key>
-            <value>
-              <float>12.5</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>Slope</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>260</NodeX>
-        <NodeY>126</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>a9a2932592e3418f86fcc8fc1176d8d3</ModuleId>
-        <ModuleType>LowPassFilter</ModuleType>
-        <InputAModuleId>Source360</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Cutoff</string>
-            </key>
-            <value>
-              <float>12.5</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>Slope</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>260</NodeX>
-        <NodeY>36</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>40bb51efae714cf9a8fdaeca77a437b9</ModuleId>
-        <ModuleType>Gain</ModuleType>
-        <InputAModuleId>646e9b16041b4b86ac894fe1870c9620</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Gain</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>486</NodeX>
-        <NodeY>160</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>622b9f8374f5496783bab4e5e7a0bd75</ModuleId>
-        <ModuleType>Add</ModuleType>
-        <InputAModuleId>a9a2932592e3418f86fcc8fc1176d8d3</InputAModuleId>
-        <InputBModuleId>40bb51efae714cf9a8fdaeca77a437b9</InputBModuleId>
-        <SettingValues />
-        <NodeX>650</NodeX>
-        <NodeY>59</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>c136b31c903d4e07b4bd7f20b78b82e4</ModuleId>
-        <ModuleType>SpeedGain</ModuleType>
-        <InputAModuleId>622b9f8374f5496783bab4e5e7a0bd75</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>GainAtMin</string>
-            </key>
-            <value>
-              <float>0.00034722223</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>MaxSpeed</string>
-            </key>
-            <value>
-              <float>2.5</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>790</NodeX>
-        <NodeY>153</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>9cb7fe0be8c04a51bddaed2b611e6e29</ModuleId>
-        <ModuleType>Gain</ModuleType>
-        <InputAModuleId>SourceLFE</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Gain</string>
-            </key>
-            <value>
-              <float>0.25173262</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>1089</NodeX>
-        <NodeY>65</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>52b2fab5fb1e4da99a46c71af0d11fac</ModuleId>
-        <ModuleType>AdaptiveSmoother</ModuleType>
-        <InputAModuleId>SourceWheelCentering</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Amount</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
           <item>
             <key>
               <string>Enabled</string>
@@ -207,13 +76,13 @@
             </value>
           </item>
         </SettingValues>
-        <NodeX>494</NodeX>
-        <NodeY>289</NodeY>
+        <NodeX>234</NodeX>
+        <NodeY>176</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>c2ae7c7e887a4c5c8478db9884915033</ModuleId>
+        <ModuleId>f8ec2a9233a042b89647502f12ea74fa</ModuleId>
         <ModuleType>SpeedGain</ModuleType>
-        <InputAModuleId>52b2fab5fb1e4da99a46c71af0d11fac</InputAModuleId>
+        <InputAModuleId>6d4f11a9d6b24bd294e85400325f92e4</InputAModuleId>
         <InputBModuleId>Source360</InputBModuleId>
         <SettingValues>
           <item>
@@ -241,32 +110,246 @@
             </value>
           </item>
         </SettingValues>
-        <NodeX>726</NodeX>
-        <NodeY>238</NodeY>
+        <NodeX>458</NodeX>
+        <NodeY>176</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>bd07c2605c184514b7c127ba15184a12</ModuleId>
-        <ModuleType>Add</ModuleType>
-        <InputAModuleId>c136b31c903d4e07b4bd7f20b78b82e4</InputAModuleId>
-        <InputBModuleId>c2ae7c7e887a4c5c8478db9884915033</InputBModuleId>
-        <SettingValues />
-        <NodeX>1009</NodeX>
-        <NodeY>208</NodeY>
+        <ModuleId>e5180473af7342ec8db3dcf58eabf22b</ModuleId>
+        <ModuleType>Prediction</ModuleType>
+        <InputAModuleId>Source360</InputAModuleId>
+        <InputBModuleId>Source360</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>CorrectionLimit</string>
+            </key>
+            <value>
+              <float>5</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Enabled</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Horizon</string>
+            </key>
+            <value>
+              <float>6</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Strength</string>
+            </key>
+            <value>
+              <float>1.5</float>
+            </value>
+          </item>
+        </SettingValues>
+        <NodeX>234</NodeX>
+        <NodeY>16</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>ea6165d6363f499ba1134cbbd1648f41</ModuleId>
+        <ModuleId>8f17d963184440ad9cb77cce324db46c</ModuleId>
+        <ModuleType>HighPassFilter</ModuleType>
+        <InputAModuleId>Source360</InputAModuleId>
+        <InputBModuleId>e5180473af7342ec8db3dcf58eabf22b</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>Cutoff</string>
+            </key>
+            <value>
+              <float>12.5</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Slope</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+        </SettingValues>
+        <NodeX>234</NodeX>
+        <NodeY>80</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>75c5d4e1a8e54791b0d8be9a2c13aa11</ModuleId>
+        <ModuleType>LowPassFilter</ModuleType>
+        <InputAModuleId>e5180473af7342ec8db3dcf58eabf22b</InputAModuleId>
+        <InputBModuleId>e5180473af7342ec8db3dcf58eabf22b</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>Cutoff</string>
+            </key>
+            <value>
+              <float>12.5</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Enabled</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Slope</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+        </SettingValues>
+        <NodeX>458</NodeX>
+        <NodeY>16</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>0cac2e74b8f14496b960ffb73abbcadb</ModuleId>
+        <ModuleType>Gain</ModuleType>
+        <InputAModuleId>8f17d963184440ad9cb77cce324db46c</InputAModuleId>
+        <InputBModuleId>e5180473af7342ec8db3dcf58eabf22b</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>Gain</string>
+            </key>
+            <value>
+              <float>0.75</float>
+            </value>
+          </item>
+        </SettingValues>
+        <NodeX>458</NodeX>
+        <NodeY>80</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>ae3cd7ebea5248c9b609b817cd27b1e6</ModuleId>
+        <ModuleType>CurbProtection</ModuleType>
+        <InputAModuleId>0cac2e74b8f14496b960ffb73abbcadb</InputAModuleId>
+        <InputBModuleId>Source360</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>Duration</string>
+            </key>
+            <value>
+              <float>0.1</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Enabled</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>ForceReduction</string>
+            </key>
+            <value>
+              <float>0.7</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>RecoveryTime</string>
+            </key>
+            <value>
+              <float>0.1</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>ShockVelocity</string>
+            </key>
+            <value>
+              <float>0.5</float>
+            </value>
+          </item>
+        </SettingValues>
+        <NodeX>682</NodeX>
+        <NodeY>80</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>3e59892cedc040c0b5b80a9a2638363f</ModuleId>
         <ModuleType>Add</ModuleType>
-        <InputAModuleId>9cb7fe0be8c04a51bddaed2b611e6e29</InputAModuleId>
-        <InputBModuleId>bd07c2605c184514b7c127ba15184a12</InputBModuleId>
+        <InputAModuleId>75c5d4e1a8e54791b0d8be9a2c13aa11</InputAModuleId>
+        <InputBModuleId>ae3cd7ebea5248c9b609b817cd27b1e6</InputBModuleId>
         <SettingValues />
-        <NodeX>1326</NodeX>
-        <NodeY>121</NodeY>
+        <NodeX>906</NodeX>
+        <NodeY>16</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>70832d20b46e499e858a1b8c86a1f78c</ModuleId>
+        <ModuleType>CrashProtection</ModuleType>
+        <InputAModuleId>3e59892cedc040c0b5b80a9a2638363f</InputAModuleId>
+        <InputBModuleId>Source360</InputBModuleId>
+        <SettingValues />
+        <NodeX>1130</NodeX>
+        <NodeY>16</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>6b24c311bbc842c89e95027f6a8fb41e</ModuleId>
+        <ModuleType>SpeedGain</ModuleType>
+        <InputAModuleId>70832d20b46e499e858a1b8c86a1f78c</InputAModuleId>
+        <InputBModuleId>e5180473af7342ec8db3dcf58eabf22b</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>GainAtMin</string>
+            </key>
+            <value>
+              <float>0.00034722223</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>MaxSpeed</string>
+            </key>
+            <value>
+              <float>2.5</float>
+            </value>
+          </item>
+        </SettingValues>
+        <NodeX>1258</NodeX>
+        <NodeY>144</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>3e068095bb4d4910b52d4fbb725f624b</ModuleId>
+        <ModuleType>Add</ModuleType>
+        <InputAModuleId>6b24c311bbc842c89e95027f6a8fb41e</InputAModuleId>
+        <InputBModuleId>f8ec2a9233a042b89647502f12ea74fa</InputBModuleId>
+        <SettingValues />
+        <NodeX>1386</NodeX>
+        <NodeY>272</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>3c4f59dffbfc4ce98cbf8ac8298e6528</ModuleId>
+        <ModuleType>Add</ModuleType>
+        <InputAModuleId>3e068095bb4d4910b52d4fbb725f624b</InputAModuleId>
+        <InputBModuleId>78e462fe147448c4922843d9ec69e5eb</InputBModuleId>
+        <SettingValues />
+        <NodeX>1514</NodeX>
+        <NodeY>400</NodeY>
       </FFBModuleData>
       <FFBModuleData>
         <ModuleId>Output</ModuleId>
         <ModuleType>Output</ModuleType>
-        <InputAModuleId>ea6165d6363f499ba1134cbbd1648f41</InputAModuleId>
-        <InputBModuleId>Source360</InputBModuleId>
+        <InputAModuleId>3c4f59dffbfc4ce98cbf8ac8298e6528</InputAModuleId>
+        <InputBModuleId>e5180473af7342ec8db3dcf58eabf22b</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -309,8 +392,8 @@
             </value>
           </item>
         </SettingValues>
-        <NodeX>1572</NodeX>
-        <NodeY>188</NodeY>
+        <NodeX>1738</NodeX>
+        <NodeY>400</NodeY>
       </FFBModuleData>
     </Modules>
   </Graph>
