@@ -738,9 +738,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>進度：</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[未選擇校準檔案]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>停車效果</value>
   </data>
@@ -758,9 +755,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>停車摩擦力</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>目前車輛設定：</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>轉向不足踏板震動效果</value>
@@ -1223,9 +1217,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>您必須選擇校準檔案，此效果才能運作。</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>預測模式</value>
@@ -1820,7 +1811,10 @@
     <value>平衡</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>啟用每輛車的疊加層位置與縮放</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>此車輛的校準檔案尚未提供。</value>
   </data>
+
 
 
 

@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>התקדמות:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[קובץ כיול לא נבחר]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>אפקטי חניה</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>חיכוך בחניה</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>הגדרת רכב נוכחית:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>אפקט רטט דוושה אנדרסטיר</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>עליך לבחור קובץ כיול כדי שאפקט זה יפעל.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>מצב חיזוי</value>
@@ -1818,7 +1809,10 @@
     <value>(לא ממופה)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>הפעלת מיקום וקנה מידה של שכבת-על לכל רכב</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>קובץ הכיול עדיין אינו זמין עבור מכונית זו.</value>
   </data>
+
 
 
 

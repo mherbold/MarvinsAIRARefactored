@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Progres:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Fișier calibrare neselectat]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Efecte parcat</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Fricțiune parcat</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Configurația curentă a mașinii:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Efect vibrație pedală subviraj</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Trebuie să selectați un fișier de calibrare pentru ca acest efect să funcționeze.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Mod predicție</value>
@@ -1818,7 +1809,10 @@
     <value>(neasociat)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activează poziția și scalarea suprapunerii pentru fiecare mașină</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Fișierul de calibrare nu este încă disponibil pentru această mașină.</value>
   </data>
+
 
 
 

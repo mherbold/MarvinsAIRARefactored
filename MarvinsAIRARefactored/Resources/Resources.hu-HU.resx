@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Haladás:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Kalibrálási fájl nincs kiválasztva]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Parkolt hatások</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Parkoló súrlódás</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Jelenlegi autó beállítás:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Alulkormányzási pedál vibrációs hatás</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Ehhez az effekthez ki kell választania egy kalibrálási fájlt.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Előrejelzési mód</value>
@@ -1818,7 +1809,10 @@
     <value>(nincs hozzárendelve)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Autónkénti overlay pozíció és méretezés engedélyezése</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>A kalibrálási fájl még nem érhető el ehhez az autóhoz.</value>
   </data>
+
 
 
 

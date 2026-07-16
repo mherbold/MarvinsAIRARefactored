@@ -702,9 +702,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Progrès:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Effets de direction désactivés]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Effets en stationnement</value>
   </data>
@@ -722,9 +719,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Friction en stationnement</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Configuration actuelle de la voiture :</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Effet de vibration de la pédale (sous-virage)</value>
@@ -1191,9 +1185,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Vous devez sélectionner un fichier de calibration pour que cet effet fonctionne.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Mode de prédiction</value>
@@ -1834,7 +1825,10 @@
     <value>(non assigné)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activer la position et l'échelle des superpositions par voiture</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Le fichier de calibration n'est pas encore disponible pour cette voiture.</value>
   </data>
+
 
 
 

@@ -3310,43 +3310,6 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Steering effects - Calibration file name
-
-	private string _steeringEffectsCalibrationFileName = string.Empty;
-
-	public string SteeringEffectsCalibrationFileName
-	{
-		get => _steeringEffectsCalibrationFileName;
-
-		set
-		{
-			var app = App.Instance!;
-
-			if ( !app.SettingsFile.PauseSerialization )
-			{
-				if ( value == null )
-				{
-					value = string.Empty;
-				}
-
-				if ( value != _steeringEffectsCalibrationFileName )
-				{
-					_steeringEffectsCalibrationFileName = value;
-
-					OnPropertyChanged();
-
-					app.SteeringEffects.LoadCalibration();
-
-					MainWindow._steeringEffectsPage.CalibrationFileNameChanged( _steeringEffectsCalibrationFileName != string.Empty );
-				}
-			}
-		}
-	}
-
-	public ContextSwitches SteeringEffectsCalibrationFileNameContextSwitches { get; set; } = new( false, true, false, false, false );
-
-	#endregion
-
 	#region Steering effects - Understeer enabled
 
 	private bool _steeringEffectsUndersteerEnabled = false;

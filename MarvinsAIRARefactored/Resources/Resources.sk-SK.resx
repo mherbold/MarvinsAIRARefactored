@@ -738,9 +738,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Priebeh:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Nie je vybraný kalibračný súbor]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Efekty pri zaparkovaní</value>
   </data>
@@ -758,9 +755,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Trenie pri zaparkovaní</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Aktuálne nastavenie auta:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Efekt vibrácie pedálu pri nedotáčavosti</value>
@@ -1223,9 +1217,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Aby tento efekt fungoval, musíte vybrať kalibračný súbor.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Režim predikcie</value>
@@ -1820,7 +1811,10 @@
     <value>Vyváženie</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Povoliť pozíciu a mierku prekrytia pre každé auto</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Kalibračný súbor pre toto auto zatiaľ nie je k dispozícii.</value>
   </data>
+
 
 
 

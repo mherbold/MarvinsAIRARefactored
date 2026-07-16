@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Postęp:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Efekty układu kierowniczego wyłączone]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Efekty parkowania</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Opór kierownicy podczas parkowania</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Aktualna konfiguracja samochodu</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Efekt wibracji pedału (podsterowność) </value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Należy wybrać plik kalibracyjny aby ten efekt zadziałał.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Tryb predykcji</value>
@@ -1818,7 +1809,10 @@
     <value>(nieprzypisane)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Włącz pozycję i skalowanie nakładki dla każdego samochodu</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Plik kalibracji dla tego samochodu nie jest jeszcze dostępny.</value>
   </data>
+
 
 
 

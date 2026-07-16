@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Voortgang:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Kalibratiebestand niet geselecteerd]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Stilstand effect</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Stilstand wrijving</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Huidige wagen setup:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Onderstuur pedaal effect</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>U moet een kalibratiebestand selecteren om dit effect te laten werken.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Voorspellingsmodus</value>
@@ -1818,7 +1809,10 @@
     <value>(niet toegewezen)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Overlaypositie en -schaal per auto inschakelen</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Het kalibratiebestand is nog niet beschikbaar voor deze auto.</value>
   </data>
+
 
 
 

@@ -738,9 +738,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Progress:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Calibration file not selected]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Parked effects</value>
   </data>
@@ -758,9 +755,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Parked friction</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Current car setup:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Understeer pedal vibration effect</value>
@@ -1223,9 +1217,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>You must select a calibration file for this effect to work.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Prediction mode</value>
@@ -1820,7 +1811,10 @@
     <value>Balance</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Enable per-car overlay position and scaling</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Calibration file is not yet available for this car.</value>
   </data>
+
 
 
 

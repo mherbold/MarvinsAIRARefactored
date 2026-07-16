@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Progrés:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Fitxer de calibració no seleccionat]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Efectes aparcat</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Fricció aparcat</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Configuració actual del cotxe:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Efecte de vibració del pedal en subviratge</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Cal seleccionar un fitxer de calibratge perquè aquest efecte funcioni.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Mode de predicció</value>
@@ -1818,7 +1809,10 @@
     <value>(sense assignar)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activa la posició i l'escala de la superposició per cotxe</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>El fitxer de calibració encara no està disponible per a aquest cotxe.</value>
   </data>
+
 
 
 

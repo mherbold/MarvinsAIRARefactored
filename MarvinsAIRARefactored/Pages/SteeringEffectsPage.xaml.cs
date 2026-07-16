@@ -1,5 +1,4 @@
 ﻿
-using System.IO;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -116,52 +115,6 @@ public partial class SteeringEffectsPage : UserControl
 
 	#region Logic
 
-	public void UpdateCalibrationFileNameOptions()
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[SteeringEffectsPage] UpdateCalibrationFileNameOptions >>>" );
-
-		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
-		var dictionary = new Dictionary<string, string>()
-		{
-			{ string.Empty, localization[ "CalibrationFileNotSelected" ] }
-		};
-
-		var autoSelectedValue = string.Empty;
-
-		if ( app.Simulator.CarScreenName != string.Empty )
-		{
-			foreach ( var filePath in Directory.GetFiles( SteeringEffects.CalibrationDirectory, $"{app.Simulator.CarScreenName} - *.csv" ) )
-			{
-				var option = Path.GetFileNameWithoutExtension( filePath );
-
-				dictionary.Add( option, option );
-
-				if ( settings.SteeringEffectsCalibrationFileName == string.Empty )
-				{
-					autoSelectedValue = option;
-				}
-			}
-		}
-
-		app.Dispatcher.Invoke( () =>
-		{
-			CalibrationFileName_MairaComboBox.ItemsSource = dictionary.ToList();
-
-			if ( autoSelectedValue != string.Empty )
-			{
-				settings.SteeringEffectsCalibrationFileName = autoSelectedValue;
-			}
-
-			CalibrationFileName_MairaComboBox.OffValue = string.Empty;
-		} );
-
-		app.Logger.WriteLine( "[SteeringEffectsPage] <<< UpdateCalibrationFileNameOptions" );
-	}
-
 	public void UpdateVibrationPatternOptions()
 	{
 		var app = App.Instance!;
@@ -233,14 +186,14 @@ public partial class SteeringEffectsPage : UserControl
 		app.Logger.WriteLine( "[SteeringEffectsPage] <<< UpdateSeatOfPantsAlgorithmOptions" );
 	}
 
-	public void CalibrationFileNameChanged( bool isSelected )
+	public void UpdateCalibrationFileWarnings( bool showWarnings )
 	{
 		var app = App.Instance!;
 
 		app.Dispatcher.InvokeAsync( () =>
 		{
-			Understeer_CalibrationFileWarning.Visibility = isSelected ? Visibility.Collapsed : Visibility.Visible;
-			Oversteer_CalibrationFileWarning.Visibility = isSelected ? Visibility.Collapsed : Visibility.Visible;
+			Understeer_CalibrationFileWarning.Visibility = showWarnings ? Visibility.Visible : Visibility.Collapsed;
+			Oversteer_CalibrationFileWarning.Visibility = showWarnings ? Visibility.Visible : Visibility.Collapsed;
 		} );
 	}
 

@@ -694,9 +694,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Прогрес:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Файл калібрування не вибрано]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Ефекти паркування</value>
   </data>
@@ -714,9 +711,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Тертя на парковці</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Поточна конфігурація автомобіля:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Ефект вібрації педалі недостатньої поворотності</value>
@@ -1181,9 +1175,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>Точка зору</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Щоб цей ефект працював, потрібно вибрати файл калібрування.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Режим прогнозування</value>
@@ -1824,7 +1815,10 @@
     <value>(не призначено)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Увімкнути положення та масштаб оверлея для кожного авто</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Файл калібрування для цього автомобіля ще недоступний.</value>
   </data>
+
 
 
 

@@ -738,9 +738,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>التقدّم:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[لم يتم تحديد ملف معايرة]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>تأثيرات التوقف</value>
   </data>
@@ -758,9 +755,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>احتكاك التوقف</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>إعداد السيارة الحالي:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>تأثير اهتزاز الدواسة عند نقص التوجيه</value>
@@ -1223,9 +1217,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>يجب تحديد ملف معايرة حتى يعمل هذا التأثير.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>وضع التنبؤ</value>
@@ -1820,7 +1811,10 @@
     <value>التوازن</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>تمكين موضع وحجم التراكب لكل سيارة</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>ملف المعايرة غير متوفر بعد لهذه السيارة.</value>
   </data>
+
 
 
 

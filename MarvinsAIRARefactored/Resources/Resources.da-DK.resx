@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Fremskridt:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Konfigurations fil -ikke valgt]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Parkerings effekt</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Parkerings modstand</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Nuværende setup:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Understyrings pedal vibrations effekt</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Du skal vælge en kalibreringsfil for at denne effekt virker.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Forudsigelsestilstand</value>
@@ -1818,7 +1809,10 @@
     <value>(ikke tildelt)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Aktivér overlay-position og -skalering pr. bil</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Kalibreringsfilen er endnu ikke tilgængelig for denne bil.</value>
   </data>
+
 
 
 

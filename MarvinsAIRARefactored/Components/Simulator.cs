@@ -621,7 +621,7 @@ public partial class Simulator
 
 #if !ADMINBOXX
 
-			MainWindow._steeringEffectsPage.UpdateCalibrationFileNameOptions();
+			app.SteeringEffects.LoadCalibration();
 
 #endif
 

@@ -738,9 +738,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>진행률:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[보정 파일이 선택되지 않음]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>정차 효과</value>
   </data>
@@ -758,9 +755,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>정차 마찰</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>현재 차량 셋업:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>언더스티어 페달 진동 효과</value>
@@ -1223,9 +1217,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>이 효과가 작동하려면 보정 파일을 선택해야 합니다.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>예측 모드</value>
@@ -1820,7 +1811,10 @@
     <value>밸런스</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>차량별 오버레이 위치 및 크기 조정 활성화</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>이 차량에 대한 보정 파일이 아직 없습니다.</value>
   </data>
+
 
 
 

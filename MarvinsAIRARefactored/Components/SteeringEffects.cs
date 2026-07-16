@@ -39,6 +39,8 @@ public class SteeringEffects
 	public bool IsCalibrating => _calibrationPhase != CalibrationPhase.NotCalibrating;
 	public bool RedrawCalibrationGraph { private get; set; } = false;
 
+	public string CalibrationFileName { get; private set; } = string.Empty;
+
 	private enum CalibrationPhase
 	{
 		NotCalibrating,
@@ -132,11 +134,11 @@ public class SteeringEffects
 
 	public void SimulatorDisconnected()
 	{
-		DataContext.DataContext.Instance.Settings.SteeringEffectsCalibrationFileName = string.Empty;
-
 		ClearCalibration();
 
-		MainWindow._steeringEffectsPage.UpdateCalibrationFileNameOptions();
+		// the car is gone, so this hides the calibration file banners
+
+		LoadCalibration();
 	}
 
 	public static void SendChatMessage( string groupKey, string labelKey, string? value = null )
@@ -971,16 +973,6 @@ public class SteeringEffects
 
 		writer.Close();
 
-		// update the combo box options
-
-		MainWindow._steeringEffectsPage.UpdateCalibrationFileNameOptions();
-
-		// update setting to use this calibration file
-
-		var settings = DataContext.DataContext.Instance.Settings;
-
-		settings.SteeringEffectsCalibrationFileName = Path.GetFileNameWithoutExtension( filePath );
-
 		//
 
 		app.Logger.WriteLine( "[SteeringEffects] <<< SaveCalibration" );
@@ -1019,42 +1011,39 @@ public class SteeringEffects
 		}
 		else
 		{
-			// figure out which calibration file we need to load
+			// clear the current calibration
 
-			var settings = DataContext.DataContext.Instance.Settings;
+			ClearCalibration();
 
-			if ( settings.SteeringEffectsCalibrationFileName == null )
+			CalibrationFileName = string.Empty;
+
+			// keep track of whether a calibration file for the current car is missing, and whether the file load was good or not
+
+			var calibrationFileIsMissing = false;
+			var calibrationDataSeemsGood = false;
+
+			if ( app.Simulator.CarScreenName == string.Empty )
 			{
-				app.Logger.WriteLine( $"[SteeringEffects] Calibration file name property value is null (shouldn't be possible!)" );
-
-				ClearCalibration();
-			}
-			else if ( settings.SteeringEffectsCalibrationFileName == string.Empty )
-			{
-				app.Logger.WriteLine( $"[SteeringEffects] No calibration file selected" );
-
-				ClearCalibration();
+				app.Logger.WriteLine( "[SteeringEffects] The simulator is not running or the car is not known yet" );
 			}
 			else
 			{
-				// clear the current calibration
+				// automatically select the first calibration file found for the current car
 
-				ClearCalibration();
+				var filePath = Directory.Exists( CalibrationDirectory ) ? Directory.GetFiles( CalibrationDirectory, $"{app.Simulator.CarScreenName} - *.csv" ).Order().FirstOrDefault() : null;
 
-				// keep track of whether the file load was good or not
-
-				var calibrationDataSeemsGood = false;
-
-				// open file
-
-				var filePath = Path.Combine( CalibrationDirectory, $"{settings.SteeringEffectsCalibrationFileName}.csv" );
-
-				if ( !File.Exists( filePath ) )
+				if ( filePath == null )
 				{
-					app.Logger.WriteLine( $"[SteeringEffects] Calibration file not found: {filePath}" );
+					app.Logger.WriteLine( $"[SteeringEffects] No calibration file found for this car: {app.Simulator.CarScreenName}" );
+
+					calibrationFileIsMissing = true;
 				}
 				else
 				{
+					CalibrationFileName = Path.GetFileNameWithoutExtension( filePath );
+
+					app.Logger.WriteLine( $"[SteeringEffects] Loading calibration file: {filePath}" );
+
 					using var reader = new StreamReader( filePath );
 
 					// skip the first two lines
@@ -1266,8 +1255,13 @@ public class SteeringEffects
 
 			app.Dispatcher.Invoke( () =>
 			{
-				MainWindow._steeringEffectsPage.InvalidConfigurationFile_Border.Visibility = ( ( settings.SteeringEffectsCalibrationFileName == string.Empty ) || _calibrationIsValid ) ? Visibility.Hidden : Visibility.Visible;
+				MainWindow._steeringEffectsPage.CalibrationFileNotAvailable_Border.Visibility = calibrationFileIsMissing ? Visibility.Visible : Visibility.Hidden;
+				MainWindow._steeringEffectsPage.InvalidConfigurationFile_Border.Visibility = ( ( CalibrationFileName == string.Empty ) || _calibrationIsValid ) ? Visibility.Hidden : Visibility.Visible;
 			} );
+
+			// show the warnings in the understeer and oversteer sections only when a car is active but we don't have a valid calibration
+
+			MainWindow._steeringEffectsPage.UpdateCalibrationFileWarnings( ( app.Simulator.CarScreenName != string.Empty ) && !_calibrationIsValid );
 		}
 
 		//
@@ -1287,16 +1281,6 @@ public class SteeringEffects
 			{
 				var localization = DataContext.DataContext.Instance.Localization;
 
-				if ( app.Simulator.CarSetupName == string.Empty )
-				{
-					MainWindow._steeringEffectsPage.CarSetupName_TextBlock.Visibility = Visibility.Collapsed;
-				}
-				else
-				{
-					MainWindow._steeringEffectsPage.CarSetupName_TextBlock.Text = $"{localization[ "CurrentCarSetup" ]} {app.Simulator.CarSetupName.ToUpper()}";
-					MainWindow._steeringEffectsPage.CarSetupName_TextBlock.Visibility = Visibility.Visible;
-				}
-
 				if ( _calibrationPhase == CalibrationPhase.NotCalibrating )
 				{
 					MainWindow._steeringEffectsPage.CalibrationProgress_Border.Visibility = Visibility.Collapsed;
@@ -1304,6 +1288,7 @@ public class SteeringEffects
 				}
 				else
 				{
+					MainWindow._steeringEffectsPage.CalibrationFileNotAvailable_Border.Visibility = Visibility.Hidden;
 					MainWindow._steeringEffectsPage.InvalidConfigurationFile_Border.Visibility = Visibility.Hidden;
 					MainWindow._steeringEffectsPage.CalibrationProgress_TextBlock.Text = $"{localization[ "Progress:" ]} {_calibrationProgress * 100f:F0}{localization[ "Percent" ]}";
 					MainWindow._steeringEffectsPage.CalibrationProgress_Border.Visibility = Visibility.Visible;

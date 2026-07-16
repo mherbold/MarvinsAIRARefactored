@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Progreso:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Archivo de calibración no seleccionado]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Efectos cuando el coche está parado</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Fricción estando aparcado</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Configuración actual del coche:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Efecto de vibración en pedal por subviraje</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Debes seleccionar un archivo de calibración para que este efecto funcione.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Modo de predicción</value>
@@ -1818,7 +1809,10 @@
     <value>(sin asignar)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Activar la posición y la escala de superposición por coche</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>El archivo de calibración aún no está disponible para este coche.</value>
   </data>
+
 
 
 

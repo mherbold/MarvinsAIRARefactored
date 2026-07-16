@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Edistyminen:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Kalibrointitiedostoa ei valittu]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Pysäköitynä-tehosteet</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Pysäköitynä-kitka</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Nykyinen auton asetus:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Aliohjauksen polkimenvärähtelytehoste</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Sinun täytyy valita kalibrointitiedosto, jotta tämä tehoste toimii.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Ennustetila</value>
@@ -1818,7 +1809,10 @@
     <value>(ei määritetty)</value>
   </data>  <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Ota käyttöön autokohtainen peitteen sijainti ja skaalaus</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Kalibrointitiedostoa ei ole vielä saatavilla tälle autolle.</value>
   </data>
+
 
 
 
