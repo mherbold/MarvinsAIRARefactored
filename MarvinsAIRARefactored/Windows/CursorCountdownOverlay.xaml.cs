@@ -32,6 +32,9 @@ public partial class CursorCountdownOverlay : Window
 		_instance.UpdateArc();
 		_instance.Show();
 
+		// before Show the window has no presentation source, so GetDpi can report the wrong monitor's DPI on mixed-DPI setups — reposition now that the true DPI is known
+		_instance.UpdateCursorPosition( null, EventArgs.Empty );
+
 		_positionTimer.Start();
 	}
 
@@ -102,7 +105,10 @@ public partial class CursorCountdownOverlay : Window
 	{
 		System.Drawing.Point cursor = Control.MousePosition;
 
-		Left = cursor.X - Width / 2;
-		Top = cursor.Y - Height / 2;
+		// MousePosition is in physical screen pixels; Left/Top are in device-independent units
+		var dpiScale = VisualTreeHelper.GetDpi( this );
+
+		Left = cursor.X / dpiScale.DpiScaleX - Width / 2;
+		Top = cursor.Y / dpiScale.DpiScaleY - Height / 2;
 	}
 }

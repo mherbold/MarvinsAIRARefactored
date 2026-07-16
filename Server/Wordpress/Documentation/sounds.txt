@@ -231,7 +231,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Plays a looping warning sound whenever the brake and throttle are pressed at the same time. To avoid false warnings, it only triggers when you are off pit road and moving (above a low speed threshold), so it won’t nag you while sitting in the pits.</p>
+<p>Plays a looping warning sound whenever the brake and throttle are pressed at the same time. This is measured from the raw pedal inputs — what your feet are actually doing — so throttle or brake applied by the simulator’s driving aids won’t set it off. To avoid false warnings, it also only triggers when you are off pit road and moving (above a low speed threshold), so it won’t nag you while sitting in the pits.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->

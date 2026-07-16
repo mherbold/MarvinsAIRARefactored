@@ -64,6 +64,44 @@
 <p>After you install my app, run it via either the desktop icon, or by finding it by pressing the Windows key and then typing “Marvin” in the search box.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="controlled-folder-access">Controlled Folder Access</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>MAIRA keeps all of its data — settings, sounds, calibration files, recordings, and logs — in a <strong>MarvinsAIRA Refactored</strong> folder inside your <strong>Documents</strong> folder. The installer creates this folder and copies the default files into it, and the app reads and writes files there every time it runs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Windows has an optional ransomware protection feature called <strong>controlled folder access</strong>. It is off by default, but if you have turned it on, Windows will block apps it does not recognize from writing to protected folders — and your Documents folder is protected by default. This can stop the installer from creating the <strong>MarvinsAIRA Refactored</strong> folder, and can also stop MAIRA itself from saving your settings and writing its log files. Windows usually only shows a small “Unauthorized changes blocked” notification when this happens, so it is easy to miss.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If you use controlled folder access, here is how to let MAIRA through:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol class="wp-block-list"><!-- wp:list-item -->
+<li>Press the Windows key, type “ransomware protection”, and open it. You can also get there by opening <strong>Windows Security</strong>, clicking on <strong>Virus &amp; threat protection</strong>, and then clicking on <strong>Manage ransomware protection</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Click on <strong>Allow an app through Controlled folder access</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Click on <strong>Add an allowed app</strong>. If Windows recently blocked the installer or MAIRA, you can pick it straight from <strong>Recently blocked apps</strong> — otherwise choose <strong>Browse all apps</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Select <strong>MarvinsAIRARefactored.exe</strong>. If you installed the app just for yourself (the default), it is in <strong>C:\Users\[your name]\AppData\Local\Programs\Marvins Awesome iRacing App - Refactored</strong>. If you installed it for all users, it is in <strong>C:\Program Files\Marvins Awesome iRacing App - Refactored</strong>.</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Allowing <strong>MarvinsAIRARefactored.exe</strong> is a one-time thing — it stays allowed through app updates because updates keep the app in the same location. The installer is different — its file name changes with every version, so Windows treats each new installer as a brand-new app. The easiest approach for installing is to temporarily turn off controlled folder access, run the installer, and then turn it back on afterward.</p>
+<!-- /wp:paragraph -->
+
 <!-- wp:group {"layout":{"type":"constrained"}} -->
 <div class="wp-block-group"><!-- wp:spacer -->
 <div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>

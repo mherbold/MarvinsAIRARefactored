@@ -30,7 +30,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Selects which calibration file to use for the current car.  The iRacing simulator must be running for there to be a list of files to choose from.</p>
+<p>MAIRA automatically loads the calibration file for the car you are driving - there is nothing to select or configure. When the iRacing simulator loads, MAIRA finds the first calibration file matching the current car and loads it. When a calibration file is loaded, its data is drawn on the calibration graph.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -38,7 +38,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>If no file is selected and at least one file matching the current car exists, MAIRA will auto-select the first one.</p>
+<p>If there is no calibration file for the current car, a "Calibration file is not yet available for this car" message is displayed at the top of the calibration graph.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

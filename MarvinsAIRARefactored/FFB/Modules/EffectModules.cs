@@ -86,11 +86,15 @@ public sealed class CrashProtectionModule : FFBModule
 		{
 			Owner.CrashLongGForceThreshold = 20f;
 			Owner.CrashLatGForceThreshold = 20f;
+			Owner.CrashProtectionForceReduction = 0f;
+			Owner.CrashProtectionDuration = 0f;
 		}
 		else
 		{
 			Owner.CrashLongGForceThreshold = _v[ LongGForce ];
 			Owner.CrashLatGForceThreshold = _v[ LatGForce ];
+			Owner.CrashProtectionForceReduction = _v[ ForceReduction ];
+			Owner.CrashProtectionDuration = _v[ Duration ];
 		}
 	}
 }

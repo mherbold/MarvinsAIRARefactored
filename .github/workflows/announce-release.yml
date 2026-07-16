@@ -1,0 +1,24 @@
+name: Announce release on Discord
+
+on:
+  release:
+    types: [released]  # full releases only — pre-releases fire "prereleased" and are ignored
+  workflow_dispatch:   # allows a manual test run from the Actions tab
+
+jobs:
+  announce:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Post release announcement to Discord
+        env:
+          WEBHOOK_URL: ${{ secrets.DISCORD_RELEASE_WEBHOOK }}
+          RELEASE_NAME: ${{ github.event.release.name || 'Test announcement — the release workflow is working' }}
+          RELEASE_URL: ${{ github.event.release.html_url || 'https://github.com/mherbold/MarvinsAIRARefactored/releases' }}
+          RELEASE_BODY: ${{ github.event.release.body || 'This was a manual test run of the release announcement workflow. Real announcements will show the release notes here.' }}
+        run: |
+          jq -n \
+            --arg title "$RELEASE_NAME" \
+            --arg url "$RELEASE_URL" \
+            --arg body "$RELEASE_BODY" \
+            '{ embeds: [ { title: $title, url: $url, description: ($body | .[0:4000]), color: 5763719 } ] }' \
+          | curl -sf -H "Content-Type: application/json" -d @- "$WEBHOOK_URL"

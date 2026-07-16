@@ -66,12 +66,6 @@ public class ContextSettings
 
 	#endregion
 
-	#region Steering effects - General
-
-	public string SteeringEffectsCalibrationFileName { get; set; } = string.Empty;
-
-	#endregion
-
 	#region Steering effects - Understeer
 
 	public bool SteeringEffectsUndersteerEnabled { get; set; } = false;

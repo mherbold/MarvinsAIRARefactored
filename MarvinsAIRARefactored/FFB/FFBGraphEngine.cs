@@ -31,10 +31,12 @@ public sealed class FFBGraphEngine
 	public bool CrashProtectionActive;
 	public bool CurbProtectionActive;
 
-	// aggregates refreshed on Rebuild/SetValue, read by Simulator triggers (thresholds)
+	// aggregates refreshed on Rebuild/SetValue, read by Simulator triggers (thresholds) and the activation log
 	public float CrashLongGForceThreshold = 20f;
 	public float CrashLatGForceThreshold = 20f;
 	public float CurbShockVelocityThreshold = 0f;
+	public float CrashProtectionForceReduction = 0f;
+	public float CrashProtectionDuration = 0f;
 
 	/// <summary>The graph model this engine was last built from (for the preview replay / editor).</summary>
 	public FFBGraph? Graph { get; private set; }
@@ -163,6 +165,8 @@ public sealed class FFBGraphEngine
 		CrashLongGForceThreshold = 20f;
 		CrashLatGForceThreshold = 20f;
 		CurbShockVelocityThreshold = 0f;
+		CrashProtectionForceReduction = 0f;
+		CrashProtectionDuration = 0f;
 
 		for ( var i = 0; i < _modules.Length; i++ )
 		{

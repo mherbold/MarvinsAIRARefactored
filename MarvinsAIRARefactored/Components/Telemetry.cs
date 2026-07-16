@@ -480,7 +480,7 @@ public class Telemetry
 
 			// steering effects settings telemetry
 
-			dataBuffer.SetSteeringEffectsCalibrationFileName( settings.SteeringEffectsCalibrationFileName.ToString() );
+			dataBuffer.SetSteeringEffectsCalibrationFileName( app.SteeringEffects.CalibrationFileName );
 
 			dataBuffer.steeringEffectsUndersteerMinThreshold = settings.SteeringEffectsUndersteerMinimumThreshold;
 			dataBuffer.steeringEffectsUndersteerMaxThreshold = settings.SteeringEffectsUndersteerMaximumThreshold;

@@ -738,9 +738,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>प्रगति:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[कैलिब्रेशन फ़ाइल चयनित नहीं]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>पार्क्ड इफेक्ट्स</value>
   </data>
@@ -758,9 +755,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>पार्क्ड फ्रिक्शन</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>वर्तमान कार सेटअप:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>अंडरस्टीयर पैडल कंपन इफेक्ट</value>
@@ -1223,9 +1217,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>इस इफेक्ट को काम करने के लिए आपको एक कैलिब्रेशन फ़ाइल चुननी होगी।</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>प्रेडिक्शन मोड</value>
@@ -1838,6 +1829,8 @@
   </data>
   <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>प्रति कार ओवरले स्थिति और स्केलिंग सक्षम करें</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>इस कार के लिए कैलिब्रेशन फ़ाइल अभी उपलब्ध नहीं है।</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz स्रोत</value>

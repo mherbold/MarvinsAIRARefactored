@@ -578,6 +578,12 @@ public class RacingWheel
 				}
 
 				SpeakMairaAnnouncement( "MairaCrashProtectionActive" );
+
+				app.Logger.WriteLine( $"[RacingWheel] Crash protection activated (force reduction {engine.CrashProtectionForceReduction * 100f:F0}%, duration {engine.CrashProtectionDuration:F1} s)" );
+			}
+			else if ( !engine.CrashProtectionActive && _lastCrashProtectionActive )
+			{
+				app.Logger.WriteLine( "[RacingWheel] Crash protection deactivated" );
 			}
 
 			_lastCrashProtectionActive = engine.CrashProtectionActive;

@@ -32,6 +32,7 @@ public partial class Simulator
 	public List<IRacingSdkSessionInfo.DriverInfoModel.DriverTireModel>? AvailableTires = null;
 	public bool BrakeABSactive { get; private set; } = false;
 	public float Brake { get; private set; } = 0f;
+	public float BrakeRaw { get; private set; } = 0f;
 	public int[] CarIdxLap { get; private set; } = [];
 	public float[] CarIdxLapDistPct { get; private set; } = [];
 	public float[] CarIdxBestLapTime { get; private set; } = [];
@@ -117,6 +118,7 @@ public partial class Simulator
 	public float SteeringWheelVelocity { get; private set; } = 0f;   // rad/s, derived from SteeringWheelAngle across telemetry frames (60 Hz)
 	public float[] SteeringWheelTorque_ST { get; private set; } = new float[ SamplesPerFrame360Hz ];
 	public float Throttle { get; private set; } = 0f;
+	public float ThrottleRaw { get; private set; } = 0f;
 	public float TireLF_RumblePitch { get; private set; } = 0f;
 	public float TireRF_RumblePitch { get; private set; } = 0f;
 	public float TireLR_RumblePitch { get; private set; } = 0f;
@@ -168,6 +170,7 @@ public partial class Simulator
 
 	private IRacingSdkDatum? _brakeABSactiveDatum = null;
 	private IRacingSdkDatum? _brakeDatum = null;
+	private IRacingSdkDatum? _brakeRawDatum = null;
 	private IRacingSdkDatum? _carIdxBestLapTimeDatum = null;
 	private IRacingSdkDatum? _carIdxEstTimeDatum = null;
 	private IRacingSdkDatum? _carIdxF2TimeDatum = null;
@@ -235,6 +238,7 @@ public partial class Simulator
 	private IRacingSdkDatum? _steeringWheelAngleMaxDatum = null;
 	private IRacingSdkDatum? _steeringWheelTorque_STDatum = null;
 	private IRacingSdkDatum? _throttleDatum = null;
+	private IRacingSdkDatum? _throttleRawDatum = null;
 	private IRacingSdkDatum? _tireLF_RumblePitchDatum = null;
 	private IRacingSdkDatum? _tireRF_RumblePitchDatum = null;
 	private IRacingSdkDatum? _tireLR_RumblePitchDatum = null;
@@ -391,6 +395,7 @@ public partial class Simulator
 		AvailableTires = null;
 		BrakeABSactive = false;
 		Brake = 0f;
+		BrakeRaw = 0f;
 		CarDistAhead = 0f;
 		CarDistBehind = 0f;
 		CarLeftRight = IRacingSdkEnum.CarLeftRight.Off;
@@ -454,6 +459,7 @@ public partial class Simulator
 		SteeringWheelAngleMax = 0f;
 		SteeringWheelVelocity = 0f;
 		Throttle = 0f;
+		ThrottleRaw = 0f;
 		TireLF_RumblePitch = 0f;
 		TireRF_RumblePitch = 0f;
 		TireLR_RumblePitch = 0f;
@@ -646,7 +652,7 @@ public partial class Simulator
 
 #if !ADMINBOXX
 
-			MainWindow._steeringEffectsPage.UpdateCalibrationFileNameOptions();
+			app.SteeringEffects.LoadCalibration();
 
 #endif
 
@@ -695,6 +701,7 @@ public partial class Simulator
 		{
 			_brakeABSactiveDatum = _irsdk.Data.TelemetryDataProperties[ "BrakeABSactive" ];
 			_brakeDatum = _irsdk.Data.TelemetryDataProperties[ "Brake" ];
+			_brakeRawDatum = _irsdk.Data.TelemetryDataProperties[ "BrakeRaw" ];
 			_carIdxBestLapTimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxBestLapTime" ];
 			_carIdxEstTimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxEstTime" ];
 			_carIdxF2TimeDatum = _irsdk.Data.TelemetryDataProperties[ "CarIdxF2Time" ];
@@ -754,6 +761,7 @@ public partial class Simulator
 			_steeringWheelAngleMaxDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringWheelAngleMax" ];
 			_steeringWheelTorque_STDatum = _irsdk.Data.TelemetryDataProperties[ "SteeringWheelTorque_ST" ];
 			_throttleDatum = _irsdk.Data.TelemetryDataProperties[ "Throttle" ];
+			_throttleRawDatum = _irsdk.Data.TelemetryDataProperties[ "ThrottleRaw" ];
 			_tireLF_RumblePitchDatum = _irsdk.Data.TelemetryDataProperties[ "TireLF_RumblePitch" ];
 			_tireRF_RumblePitchDatum = _irsdk.Data.TelemetryDataProperties[ "TireRF_RumblePitch" ];
 			_tireLR_RumblePitchDatum = _irsdk.Data.TelemetryDataProperties[ "TireLR_RumblePitch" ];
@@ -883,6 +891,7 @@ public partial class Simulator
 
 		BrakeABSactive = _irsdk.Data.GetBool( _brakeABSactiveDatum );
 		Brake = _irsdk.Data.GetFloat( _brakeDatum );
+		BrakeRaw = _irsdk.Data.GetFloat( _brakeRawDatum );
 		Clutch = _irsdk.Data.GetFloat( _clutchDatum );
 		CarDistAhead = _irsdk.Data.GetFloat( _carDistAheadDatum );
 		CarDistBehind = _irsdk.Data.GetFloat( _carDistBehindDatum );
@@ -938,6 +947,7 @@ public partial class Simulator
 		SteeringWheelAngleMax = _irsdk.Data.GetFloat( _steeringWheelAngleMaxDatum );
 		SteeringWheelVelocity = ( SteeringWheelAngle - steeringWheelAngleLastFrame ) / deltaSeconds;
 		Throttle = _irsdk.Data.GetFloat( _throttleDatum );
+		ThrottleRaw = _irsdk.Data.GetFloat( _throttleRawDatum );
 		TireLF_RumblePitch = _irsdk.Data.GetFloat( _tireLF_RumblePitchDatum );
 		TireRF_RumblePitch = _irsdk.Data.GetFloat( _tireRF_RumblePitchDatum );
 		TireLR_RumblePitch = _irsdk.Data.GetFloat( _tireLR_RumblePitchDatum );

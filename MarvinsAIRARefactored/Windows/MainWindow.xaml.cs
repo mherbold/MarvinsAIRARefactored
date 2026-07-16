@@ -176,7 +176,6 @@ public partial class MainWindow : Window
 			_racingWheelPage.UpdatePreviewRecordingsOptions();
 			_racingWheelPage.UpdateLFERecordingDeviceOptions();
 
-			_steeringEffectsPage.UpdateCalibrationFileNameOptions();
 			_steeringEffectsPage.UpdateSeatOfPantsAlgorithmOptions();
 
 			_pedalsPage.UpdateEffectOptions();

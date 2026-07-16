@@ -23,39 +23,6 @@
 
                 <Grid>
 
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="40" />
-                        <ColumnDefinition Width="*" />
-                    </Grid.ColumnDefinitions>
-
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="5" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <controls:MairaComboBox x:Name="CalibrationFileName_MairaComboBox"
-                                            Grid.Row="0"
-                                            Grid.Column="0"
-                                            Grid.ColumnSpan="3"
-                                            Label=""
-                                            SelectedValue="{Binding Settings.SteeringEffectsCalibrationFileName, Mode=TwoWay}" />
-
-                    <TextBlock x:Name="CarSetupName_TextBlock"
-                               Grid.Row="2"
-                               Grid.Column="0"
-                               Grid.ColumnSpan="3"
-                               FontSize="20"
-                               d:Text="Just a test to see what this line looks like."
-                               Foreground="#ff5b2e" />
-
-                </Grid>
-
-                <Grid Margin="0,20,0,0">
-
                     <Border BorderThickness="2"
                             BorderBrush="{DynamicResource Brush.Border.Normal}"
                             Background="{DynamicResource Brush.Background.Popup}"
@@ -87,6 +54,22 @@
                             </Border>
 
                         </Grid>
+
+                    </Border>
+
+                    <Border x:Name="CalibrationFileNotAvailable_Border"
+                            HorizontalAlignment="Center"
+                            VerticalAlignment="Top"
+                            Padding="10,1"
+                            Background="{DynamicResource Brush.Background.Popup}"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            BorderThickness="2"
+                            CornerRadius="8"
+                            Margin="0,82,0,0"
+                            Visibility="Hidden">
+
+                        <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                                   Text="{Binding Localization[SteeringEffectsCalibrationFileNotAvailable]}" />
 
                     </Border>
 
@@ -209,8 +192,9 @@
                                    Grid.Column="0"
                                    Grid.ColumnSpan="5"
                                    FontSize="20"
-                                   Text="{Binding Localization[SteeringEffectsCalibrationFileNotSelected]}"
+                                   Text="{Binding Localization[SteeringEffectsCalibrationFileNotAvailable]}"
                                    Foreground="#ff5b2e"
+                                   Visibility="Collapsed"
                                    Margin="0,0,0,20" />
 
                         <controls:MairaSwitch Grid.Column="0"
@@ -369,8 +353,9 @@
                                    Grid.Column="0"
                                    Grid.ColumnSpan="5"
                                    FontSize="20"
-                                   Text="{Binding Localization[SteeringEffectsCalibrationFileNotSelected]}"
+                                   Text="{Binding Localization[SteeringEffectsCalibrationFileNotAvailable]}"
                                    Foreground="#ff5b2e"
+                                   Visibility="Collapsed"
                                    Margin="0,0,0,20" />
 
                         <controls:MairaSwitch Grid.Column="0"

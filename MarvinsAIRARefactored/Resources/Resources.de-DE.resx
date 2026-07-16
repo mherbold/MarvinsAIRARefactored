@@ -693,9 +693,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="Progress:" xml:space="preserve">
     <value>Fortschritt:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Kalibrierungsdatei nicht ausgewählt]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Effekte bei Stehendem Fahrzeug</value>
   </data>
@@ -713,9 +710,6 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Lenkwiderstand</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Aktuelles Setup:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Untersteuern – Pedalvibrations-Effekt</value>
@@ -1178,9 +1172,6 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Sie müssen eine Kalibrierungsdatei auswählen, damit dieser Effekt funktioniert.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Vorhersagemodus</value>
@@ -1841,6 +1832,8 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Overlay-Position und -Skalierung pro Auto aktivieren</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Die Kalibrierungsdatei ist für dieses Auto noch nicht verfügbar.</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60-Hz-Quelle</value>

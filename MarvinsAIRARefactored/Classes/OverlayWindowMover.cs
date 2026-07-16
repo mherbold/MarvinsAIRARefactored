@@ -1,5 +1,6 @@
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 using WinFormsCursor = System.Windows.Forms.Cursor;
 
@@ -59,8 +60,11 @@ public sealed class OverlayWindowMover
 			return;
 		}
 
-		_window.Left += deltaX;
-		_window.Top += deltaY;
+		// cursor deltas are in physical screen pixels; Left/Top are in device-independent units
+		var dpiScale = VisualTreeHelper.GetDpi( _window );
+
+		_window.Left += deltaX / dpiScale.DpiScaleX;
+		_window.Top += deltaY / dpiScale.DpiScaleY;
 
 		// recenter the hidden cursor so the user can keep moving in the same direction indefinitely
 		WinFormsCursor.Position = _anchor;

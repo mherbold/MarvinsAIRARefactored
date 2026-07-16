@@ -738,9 +738,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Progress:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Kalibrācijas fails nav atlasīts]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Stāvēšanas efekti</value>
   </data>
@@ -758,9 +755,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Stāvēšanas berze</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Pašreizējais auto iestatījums:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Nepietiekamas stūrēšanas pedāļu vibrācijas efekts</value>
@@ -1223,9 +1217,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Lai šis efekts darbotos, jāatlasa kalibrācijas fails.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Prognozēšanas režīms</value>
@@ -1838,6 +1829,8 @@
   </data>
   <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Iespējot pārklājuma pozīciju un mērogošanu katrai automašīnai</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Kalibrācijas fails šai automašīnai vēl nav pieejams.</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz avots</value>

@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>postup:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[kalibrační soubor není vybraný]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Efekty u stojícího vozidla</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Frikce při stojícím vozidle</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Aktuální setup vozu</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Vibrace pedálu při nedotáčivosti</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Pro fungování tohoto efektu musíte vybrat kalibrační soubor.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Režim predikce</value>
@@ -1838,6 +1829,8 @@
   </data>
   <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Povolit pozici a měřítko překryvu pro každé auto</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Kalibrační soubor pro toto auto zatím není k dispozici.</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Zdroj 60 Hz</value>

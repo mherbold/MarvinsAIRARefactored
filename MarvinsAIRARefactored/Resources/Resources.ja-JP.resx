@@ -692,9 +692,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>進行状況:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[キャリブレーション ファイル 未選択]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>駐車中エフェクト</value>
   </data>
@@ -712,9 +709,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>駐車中フリクション</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>現在のカーセットアップ：</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>ペダル振動効果（アンダーステア）</value>
@@ -1178,9 +1172,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>このエフェクトを機能させるにはキャリブレーションファイルを選択してください。</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>予測モード</value>
@@ -1841,6 +1832,8 @@
   </data>
   <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>車種ごとのオーバーレイの位置とスケールを有効にする</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>この車のキャリブレーションファイルはまだ利用できません。</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz ソース</value>

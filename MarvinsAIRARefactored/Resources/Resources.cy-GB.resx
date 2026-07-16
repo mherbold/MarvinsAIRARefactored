@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Cynnydd:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[Ffeil calibradu heb ei dewis]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Effeithiau parcio</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Ffrithiant parcio</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Gosodiad car cyfredol:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Effaith dirgryniad pedal tanllywio</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>Mae angen dewis ffeil galibradu i'r effaith hon weithio.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Modd rhagfynegi</value>
@@ -1838,6 +1829,8 @@
   </data>
   <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Galluogi safle a graddfa haen fesul car</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Nid yw'r ffeil galibradu ar gael eto ar gyfer y car hwn.</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Ffynhonnell 60 Hz</value>

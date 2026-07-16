@@ -690,9 +690,6 @@
   <data name="Progress:" xml:space="preserve">
     <value>Avanzamento:</value>
   </data>
-  <data name="CalibrationFileNotSelected" xml:space="preserve">
-    <value>[File di calibrazione non selezionato]</value>
-  </data>
   <data name="ParkedEffects" xml:space="preserve">
     <value>Effetti auto parcheggiata</value>
   </data>
@@ -710,9 +707,6 @@
   </data>
   <data name="ParkedFriction" xml:space="preserve">
     <value>Attrito da fermi</value>
-  </data>
-  <data name="CurrentCarSetup" xml:space="preserve">
-    <value>Setup auto attuale:</value>
   </data>
   <data name="UndersteerPedalVibrationEffect" xml:space="preserve">
     <value>Effetto vibrazione pedale (sottosterzo)</value>
@@ -1175,9 +1169,6 @@
   </data>
   <data name="POV" xml:space="preserve">
     <value>POV</value>
-  </data>
-  <data name="SteeringEffectsCalibrationFileNotSelected" xml:space="preserve">
-    <value>È necessario selezionare un file di calibrazione per far funzionare questo effetto.</value>
   </data>
   <data name="PredictionMode" xml:space="preserve">
     <value>Modalità predizione</value>
@@ -1838,6 +1829,8 @@
   </data>
   <data name="EnablePerCarOverlayPositionAndScaling" xml:space="preserve">
     <value>Abilita posizione e scala della sovrapposizione per auto</value>
+  </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
+    <value>Il file di calibrazione non è ancora disponibile per questa auto.</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Sorgente 60 Hz</value>

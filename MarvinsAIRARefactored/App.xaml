@@ -169,8 +169,6 @@
 
                                 <Trigger Property="IsChecked"
                                          Value="True">
-                                    <Setter Property="BorderBrush"
-                                            Value="Transparent" />
                                     <Setter TargetName="GlyphRing"
                                             Property="Fill"
                                             Value="{DynamicResource Brush.Border.Active}" />
