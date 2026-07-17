@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>แหล่งสัญญาณล็อกนุ่ม</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>แรงเสียดทาน</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>แหล่งสัญญาณแรงเสียดทาน</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>แหล่งสัญญาณการจัดกึ่งกลางพวงมาลัย</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>ช่วงยึดเกาะ</value>
   </data>
 </root>

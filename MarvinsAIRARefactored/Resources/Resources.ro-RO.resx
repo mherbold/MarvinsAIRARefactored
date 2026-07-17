@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Sursă blocare moale</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Fricțiune</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Sursă fricțiune</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Sursă centrare volan</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Zonă de aderență</value>
   </data>
 </root>

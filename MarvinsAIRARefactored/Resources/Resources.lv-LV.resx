@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Mīkstās fiksācijas avots</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Berze</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Berzes avots</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Stūres centrēšanas avots</value>
@@ -2191,5 +2191,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Saķeres zona</value>
   </data>
 </root>

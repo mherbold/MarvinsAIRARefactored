@@ -26,7 +26,8 @@ namespace MarvinsAIRARefactored.Controls;
 /// instead: a dashed pending wire follows the mouse and dropping it on a compatible connector commits through the
 /// same input-selection setters as the settings-panel combos (eligibility/cycle rules, topological re-sort, engine
 /// rebuild, and the deferred card rebuild are all shared with that path).
-/// <para>The viewport is a fixed-height clipped canvas (the same height as the preview graph) with no scroll bar.
+/// <para>The viewport is a height-limited clipped canvas with no scroll bar; its height is user-resizable via the
+/// grab handle on the editor/preview seam (Settings.RacingWheelFFBGraphEditorHeight, bound in XAML).
 /// Ctrl+wheel zooms about the cursor and left-dragging empty space pans, both of them driven by a RenderTransform
 /// on the content rather than by scrolling — a scroll viewer could not pan far enough, since its range stops at the
 /// content extent. <see cref="ClampPan"/> bounds that transform so at least one whole node always stays on screen.

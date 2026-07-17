@@ -18,6 +18,7 @@ public static class FFBModuleRegistry
 	public const string Source360HzType = "Source360Hz";
 	public const string SourceLFEType = "SourceLFE";
 	public const string SourceWheelVelocityType = "SourceWheelVelocity";
+	public const string SourceFrictionType = "SourceFriction";
 	public const string SourceSoftLockType = "SourceSoftLock";
 	public const string SourceWheelCenteringType = "SourceWheelCentering";
 	public const string OutputType = "Output";
@@ -174,7 +175,7 @@ public static class FFBModuleRegistry
 	{
 		return
 		[
-			// ---- sources (6) ----
+			// ---- sources (7) ----
 			Descriptor( Source60HzType, 0, () => new Source60HzModule(), isSource: true, settings: [] ),
 
 			Descriptor( Source360HzType, 0, () => new Source360HzModule(), isSource: true, settings: [] ),
@@ -192,6 +193,12 @@ public static class FFBModuleRegistry
 			Descriptor( SourceWheelVelocityType, 0, () => new SourceWheelVelocityModule(), isSource: true, settings:
 			[
 				Knob( "Strength", 0f, 1f, 1f, 0.01f, F.WithOff( F.Percent() ) )
+			] ),
+
+			Descriptor( SourceFrictionType, 0, () => new SourceFrictionModule(), isSource: true, settings:
+			[
+				Knob( "Strength", 0f, 1f, 0.1f, 0.01f, F.WithOff( F.Percent() ) ),
+				Knob( "StickRegion", 1f, 90f, 15f, 1f, F.Number( 0, "DegreesPerSecond" ) )
 			] ),
 
 			Descriptor( SourceWheelCenteringType, 0, () => new SourceWheelCenteringModule(), isSource: true, settings:

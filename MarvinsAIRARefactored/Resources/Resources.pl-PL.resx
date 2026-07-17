@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Źródło blokady krańcowej</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Opór kierownicy</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Źródło oporu kierownicy</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Źródło centrowania kierownicy</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Strefa przywierania</value>
   </data>
 </root>

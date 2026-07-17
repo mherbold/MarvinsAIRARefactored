@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Font de bloqueig suau</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Fricció</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Font de fricció</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Font de recentratge del volant</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Zona d'adherència</value>
   </data>
 </root>

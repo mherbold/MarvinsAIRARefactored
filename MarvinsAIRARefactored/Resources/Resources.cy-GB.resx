@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Ffynhonnell clo meddal</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Ffrithiant</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Ffynhonnell ffrithiant</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Ffynhonnell canol-osod llyw</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Rhanbarth glynu</value>
   </data>
 </root>

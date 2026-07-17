@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>软锁信号源</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>摩擦</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>摩擦信号源</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>方向盘回中信号源</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>粘着区域</value>
   </data>
 </root>

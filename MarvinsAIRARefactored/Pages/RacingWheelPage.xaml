@@ -511,6 +511,67 @@
 
                     </Border>
 
+                    <!-- grab handle for resizing the node graph: a grip pill centered on the seam between the node
+                         graph above and this preview row (the negative margin makes it straddle the divider line).
+                         Dragging changes only the node graph's height — the preview never resizes — and the height
+                         persists in settings. -->
+                    <Thumb x:Name="GraphEditorHeight_Thumb"
+                           Grid.ColumnSpan="2"
+                           Width="56"
+                           Height="14"
+                           HorizontalAlignment="Center"
+                           VerticalAlignment="Top"
+                           Margin="0,-6,0,0"
+                           Panel.ZIndex="2"
+                           Cursor="SizeNS"
+                           DragDelta="GraphEditorHeight_Thumb_DragDelta"
+                           DragCompleted="GraphEditorHeight_Thumb_DragCompleted">
+
+                        <Thumb.Template>
+                            <ControlTemplate TargetType="Thumb">
+
+                                <Border x:Name="Handle_Border"
+                                        Background="{DynamicResource Brush.Background.Default}"
+                                        BorderBrush="{DynamicResource Brush.Border.Normal}"
+                                        BorderThickness="2"
+                                        CornerRadius="7">
+
+                                    <StackPanel Orientation="Horizontal"
+                                                HorizontalAlignment="Center"
+                                                VerticalAlignment="Center">
+
+                                        <Ellipse Width="3"
+                                                 Height="3"
+                                                 Fill="{DynamicResource Brush.Foreground.Muted}" />
+
+                                        <Ellipse Width="3"
+                                                 Height="3"
+                                                 Fill="{DynamicResource Brush.Foreground.Muted}"
+                                                 Margin="5,0,0,0" />
+
+                                        <Ellipse Width="3"
+                                                 Height="3"
+                                                 Fill="{DynamicResource Brush.Foreground.Muted}"
+                                                 Margin="5,0,0,0" />
+
+                                    </StackPanel>
+
+                                </Border>
+
+                                <ControlTemplate.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter TargetName="Handle_Border" Property="BorderBrush" Value="{DynamicResource Brush.Border.Active}" />
+                                    </Trigger>
+                                    <Trigger Property="IsDragging" Value="True">
+                                        <Setter TargetName="Handle_Border" Property="BorderBrush" Value="{DynamicResource Brush.Accent}" />
+                                    </Trigger>
+                                </ControlTemplate.Triggers>
+
+                            </ControlTemplate>
+                        </Thumb.Template>
+
+                    </Thumb>
+
                     <StackPanel Orientation="Horizontal"
                                 Grid.ColumnSpan="2"
                                 HorizontalAlignment="Right"

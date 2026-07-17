@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Lágy zár forrás</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Súrlódás</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Súrlódás forrás</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Kormány középre állítás forrás</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Tapadási tartomány</value>
   </data>
 </root>

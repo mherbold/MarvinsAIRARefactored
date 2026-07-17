@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>مصدر القفل الناعم</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>الاحتكاك</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>مصدر الاحتكاك</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>مصدر توسيط العجلة</value>
@@ -2191,5 +2191,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>منطقة الالتصاق</value>
   </data>
 </root>

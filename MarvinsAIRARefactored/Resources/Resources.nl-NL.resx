@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Eindaanslag-bron</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Wrijving</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Wrijvingsbron</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Stuurcentrering-bron</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Hechtbereik</value>
   </data>
 </root>

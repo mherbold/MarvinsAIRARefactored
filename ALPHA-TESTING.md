@@ -1,6 +1,6 @@
 # MAIRA FFB Graph Alpha — Tester Guide
 
-**Build:** [Version 2.0.469.23 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.469.23) — the second alpha; see [New in this build](#new-in-this-build) for what changed since the first one.
+**Build:** [Version 2.0.470.1396 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.470.1396) — the third alpha; see [New in this build](#new-in-this-build) for what changed since the second one.
 
 This alpha replaces MAIRA's entire force feedback system. The fixed set of FFB algorithms (Detail booster, Delta limiter, Slew and total compression, Multi adjustment toolkit, …) is gone; in its place is a **modular FFB graph** — an audio-DSP-style node editor where the force feedback signal chain is built out of small modules that you wire together yourself.
 
@@ -12,23 +12,22 @@ This document explains what changed versus the released (main branch) version, a
 
 - **This build is invisible to the update checker.** The app will not offer it, and it is not the "Latest" release on GitHub. Download and run the installer manually from the release page above. The installer is code-signed like normal releases.
 - **Your force feedback settings will NOT carry over.** There is no migration from the old algorithm settings to the graph system — everyone starts on the built-in graph. All of your *other* settings (pedals, sounds, overlays, commentary, G Tensioner, controller profiles, wheel force / max force, etc.) are preserved.
-- **Old FFB recordings are incompatible — including recordings made with the first alpha.** The recording file format changed again (v4, 360 Hz, 35 channels). Six fresh sample recordings covering different cars and tracks are installed for the preview graph, and you can record your own (see [Recordings](#recordings-and-the-preview-graph)).
+- **FFB recordings from the released version or the first alpha are incompatible.** The recording file format changed in the second alpha (v4, 360 Hz, 35 channels); recordings made with the second alpha still load. Six fresh sample recordings covering different cars and tracks are installed for the preview graph, and you can record your own (see [Recordings](#recordings-and-the-preview-graph)).
 - **Rolling back is safe.** Install the previous version over this one at any time. Note the graph data this alpha writes into `Settings.xml` will simply be ignored by the old version, and your old (dormant) algorithm settings are still in the file, so the old version picks up right where you left it.
 
 ---
 
 ## New in this build
 
-Changes since the first alpha (2.0.466.1058), for testers who already ran it:
+Changes since the second alpha (2.0.469.23), for testers who already ran it:
 
-- **New Prediction module** — an adaptive predictor that shifts the FFB waveform up to 12 ticks (33 ms) earlier to counteract latency. See the [module reference](#generic-dsp) for the knobs and [Inside the Prediction module](#inside-the-prediction-module-the-math) for how it works.
-- **New Interpolator module** — replaces a 60 Hz signal's staircase steps with a smooth ramp across each frame. The 60 Hz source's old Prediction mode / Prediction blend settings are gone; these two modules replace them.
-- **Marvin's awesome graph was rebuilt** around the new modules (prediction on the low-pass body branch, interpolation on the wheel centering branch). Your built-in copy updates automatically on install; your knob adjustments for unchanged modules carry over.
-- **Node editor zoom and pan** — Ctrl+mouse wheel zooms around the cursor, dragging empty space pans, and the view auto-crawls when you drag a node past the edge.
-- **Graph import knows what it's importing.** Graphs now carry an identity, so importing a graph you already have opens a dialog: apply the file's module settings to the current car/track context, to the baseline, to both — or import it as a separate copy.
-- The **LFE** and **wheel velocity** sources gained Strength knobs.
-- **Recording format v4** (35 channels — adds yaw/pitch/roll rates, lateral acceleration and velocity, front shock motion, and throttle/brake). Recordings from the first alpha will not load; six fresh sample recordings are installed.
-- Recording file names no longer include the track position.
+- **New Friction source module** — true dry friction: a constant-magnitude drag opposing the wheel's rotation, unlike the velocity-proportional damping of the wheel velocity source. A Stick region knob sets the wheel speed where the friction reaches full force (lower = crisper, higher = softer around center). Pair it with a Speed gain for parked steering weight. See the [module reference](#sources-emit-a-signal-no-inputs--one-of-each-type-per-graph).
+- **FFB graph section redesign** — the node graph and the preview graph are joined into one view (node graph on top, preview below, module settings underneath), and the node graph is **resizable**: drag the grab handle on the seam between the two graphs (the height is remembered).
+- **Nodes show their settings** — each node displays a live one-line summary of its knob values ("1.50x", "one pole, 12.5 Hz") under its name.
+- **Preview graph horizontal zoom** — Ctrl+mouse wheel over the preview zooms out (draws every 2nd, 3rd, … up to every 20th data point) so you can see more of the recording at once; every sample is still processed, so filters and prediction stay accurate at any zoom.
+- **Track map panel** — the track map moved out of the hover popup into a permanent panel beside the preview graph. It shows the whole recorded segment, with the range currently visible in the preview highlighted in orange (it follows scrolling and zooming); green/red dots mark the recording start/end.
+- **All alpha UI strings are now translated** in every supported language (the known gap from the previous builds is closed), including corrected "Knee" terminology across languages.
+- **Marvin's awesome graph was updated again** — it now includes the new Friction source. Your built-in copy updates automatically on install; your knob adjustments for unchanged modules carry over.
 
 ---
 
@@ -45,7 +44,7 @@ Changes since the first alpha (2.0.466.1058), for testers who already ran it:
 | Sharing setups | Not possible | **Export / import** graphs as `.mairagraph` files |
 | Latency compensation | — | **Prediction module** — adaptive lookahead up to 33 ms |
 | Recordings | Fixed 60-second, 2 channels | Toggle record up to 5 min, 35 channels, auto-stop on lap completion |
-| Preview | Fixed-width graph | 1 pixel per sample, hover zoom + **data readout + track map** |
+| Preview | Fixed-width graph | 1 pixel per sample, horizontal zoom, hover zoom + **data readout**, **track map panel** |
 | First-run wizard | Picks an algorithm + preset knobs | Tunes the built-in graph's **detail gain** (25%–200%) |
 | Crash/curb protection | Crash reduces force; curb partial | Both reduce force, both have **recovery time**; new defaults |
 | Button mappings | Fixed set of mappable knobs | Any **module knob** can be bound to controller buttons |
@@ -78,7 +77,10 @@ On the Racing Wheel page, the FFB graph section shows the graph as draggable nod
 - **Pan** by clicking and dragging empty canvas. Dragging a node past the viewport edge auto-crawls the view along with it.
 - The canvas grows as you drag nodes outward.
 
-The **preview graph** below shows the selected module's signals replayed through a recording: red = input A, green = input B (dual-input modules), blue = output.
+- **Resize** the node graph by dragging the grab handle on the seam between the node graph and the preview graph — the height is remembered across sessions.
+- Each node shows a live one-line **summary of its settings** under its name, so you can read the whole graph's tuning at a glance.
+
+The **preview graph** below shows the selected module's signals replayed through a recording: red = input A, green = input B (dual-input modules), blue = output. Ctrl+mouse wheel over the preview zooms out horizontally (down to every 20th data point) to see more of the recording; the **track map panel** to its right shows the whole recorded segment with the currently visible range highlighted in orange.
 
 ### Module reference
 
@@ -92,7 +94,8 @@ All values below are the defaults. Knob values can be click-stepped, dragged, or
 | **360 Hz source** | iRacing's raw 360 Hz steering torque | — |
 | **LFE source** | Torque from the low-frequency-effects audio capture | Strength (25%) |
 | **Soft lock source** | Opposing force past the car's steering lock | Strength (25%) |
-| **Wheel velocity source** | Torque proportional to how fast the wheel is turning — the building block for friction/damping (pair with Speed gain) | Strength (100%) |
+| **Wheel velocity source** | Torque proportional to how fast the wheel is turning — a damper (for dry friction use the Friction source) | Strength (100%) |
+| **Friction source** | Constant-magnitude drag opposing the wheel's rotation (dry friction) — pair with Speed gain for parked steering weight | Strength (10%), Stick region (15°/s) |
 | **Wheel centering source** | Spring force pulling the wheel to center | Strength (75%) |
 
 #### Generic DSP
@@ -212,11 +215,12 @@ The preview graph replays a recorded lap segment through the live graph, so ever
 - The **choose recording** button picks which recording the preview uses. Recordings load on demand now (only one in memory), so having many costs nothing.
 - The **beeps** are configurable on the Sounds page (enable, volume, frequency) like every other sound.
 
-**Hover the preview** to get a three-panel popup:
+**Hover the preview** to get a two-panel popup:
 
 1. **Zoom** — magnified view of the traces around the cursor.
 2. **Data card** — every recorded value at that exact sample (time, track position, torques, steering, speed, gear, ABS, G forces, shock velocity, effect signals).
-3. **Track map** — the recorded segment drawn as a track outline (~500 m across), with the car's position at the cursor (orange dot), recording start (green) and end (red).
+
+The **track map** is now a permanent panel beside the preview graph: the whole recorded segment drawn as a track outline (north up), recording start in green and end in red, with the range currently visible in the preview highlighted in orange — it tracks scrolling and zooming.
 
 ---
 
@@ -313,7 +317,6 @@ The wizard's FFB style step no longer picks an algorithm. Its 7-position slider 
 ## Known gaps in this alpha
 
 - **Online documentation still describes the old UI.** The racing wheel page docs will be rewritten before general release; until then, this document is the reference.
-- **New UI strings are English-only** in translated languages — translations arrive with the general release.
 - The old algorithm settings are still stored (dormant) in `Settings.xml` for rollback safety; they'll be removed in a later release.
 
 ## What to test / feedback

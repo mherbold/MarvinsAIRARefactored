@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Փափուկ սահմանափակման աղբյուր</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Շփում</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Շփման աղբյուր</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Ղեկի կենտրոնացման աղբյուր</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Կպչման տիրույթ</value>
   </data>
 </root>

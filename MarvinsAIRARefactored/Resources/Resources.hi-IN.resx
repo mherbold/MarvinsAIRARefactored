@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>सॉफ्ट लॉक स्रोत</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>फ्रिक्शन</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>फ्रिक्शन स्रोत</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>व्हील सेंटरिंग स्रोत</value>
@@ -2191,5 +2191,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>चिपकन क्षेत्र</value>
   </data>
 </root>

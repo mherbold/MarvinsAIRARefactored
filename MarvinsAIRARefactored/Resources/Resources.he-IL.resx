@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>מקור נעילה רכה</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>חיכוך</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>מקור חיכוך</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>מקור מרכוז הגה</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>אזור הידבקות</value>
   </data>
 </root>

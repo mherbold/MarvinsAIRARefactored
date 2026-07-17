@@ -2,6 +2,7 @@
 using System.IO;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 
@@ -171,6 +172,21 @@ public partial class RacingWheelPage : UserControl
 	private void Preview_ScrollViewer_Loaded( object sender, RoutedEventArgs e )
 	{
 		CenterPreviewScrollViewer();
+	}
+
+	// Grab handle on the node graph / preview graph seam — dragging resizes the node graph viewport only (the
+	// setting's setter clamps, so overshooting a limit just parks there; the thumb reports deltas relative to
+	// its own grab point, so the handle never jumps when the drag comes back inside the limits).
+	private void GraphEditorHeight_Thumb_DragDelta( object sender, DragDeltaEventArgs e )
+	{
+		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+		settings.RacingWheelFFBGraphEditorHeight += e.VerticalChange;
+	}
+
+	private void GraphEditorHeight_Thumb_DragCompleted( object sender, DragCompletedEventArgs e )
+	{
+		App.Instance!.SettingsFile.QueueForSerialization = true;
 	}
 
 	/// <summary>

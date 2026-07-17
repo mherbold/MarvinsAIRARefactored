@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Pehmeän lukon lähde</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Kitka</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Kitka-lähde</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Ratin keskityksen lähde</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Tartunta-alue</value>
   </data>
 </root>

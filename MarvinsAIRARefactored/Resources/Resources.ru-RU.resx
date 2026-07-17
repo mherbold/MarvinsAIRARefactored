@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Источник Soft lock</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Трение</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Источник трения</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Источник центровки руля</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Зона залипания</value>
   </data>
 </root>

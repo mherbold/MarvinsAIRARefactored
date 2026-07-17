@@ -1898,8 +1898,8 @@ Hier ist der Link zum Spenden:</value>
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Virtueller-Anschlag-Quelle</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Lenkwiderstand</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Lenkwiderstands-Quelle</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Lenkrad-Zentrierungs-Quelle</value>
@@ -2209,5 +2209,8 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Haftbereich</value>
   </data>
 </root>

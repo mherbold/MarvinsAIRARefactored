@@ -1940,8 +1940,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Soft lock source</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Friction</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Friction source</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Wheel centering source</value>
@@ -2191,5 +2191,8 @@
   </data>
   <data name="FFBSettingCorrectionLimit" xml:space="preserve">
     <value>Correction limit</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Stick region</value>
   </data>
 </root>

@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Fonte de batente virtual</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Fricção</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Fonte de fricção</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Fonte de centralização do volante</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Zona de aderência</value>
   </data>
 </root>

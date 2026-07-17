@@ -1987,6 +1987,31 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	// Node editor viewport height in pixels (global — resized by dragging the grab handle on the node graph /
+	// preview graph seam; the preview graph's height never changes). Clamped here so a hand-edited settings
+	// file cannot collapse or blow up the layout.
+	public const double MinFFBGraphEditorHeight = 150.0;
+	public const double MaxFFBGraphEditorHeight = 900.0;
+
+	private double _racingWheelFFBGraphEditorHeight = 301.0;
+
+	public double RacingWheelFFBGraphEditorHeight
+	{
+		get => _racingWheelFFBGraphEditorHeight;
+
+		set
+		{
+			value = Math.Clamp( value, MinFFBGraphEditorHeight, MaxFFBGraphEditorHeight );
+
+			if ( value != _racingWheelFFBGraphEditorHeight )
+			{
+				_racingWheelFFBGraphEditorHeight = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
 	// Content hashes of the built-in graph files last synced into this settings file, keyed "{GraphType}/{Name}".
 	// When a shipped file's hash differs, the stored built-in graph is refreshed at launch (see
 	// EnsureBuiltInFFBGraphsInitialized) — so built-in graphs updated during development reach users automatically.

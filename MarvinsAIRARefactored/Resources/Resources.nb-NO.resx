@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Myk lås-kilde</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Friksjon</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Friksjonskilde</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Rattsentrering-kilde</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Heftområde</value>
   </data>
 </root>

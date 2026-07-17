@@ -49,6 +49,11 @@ public partial class MairaKnob : UserControl
 
 		_curveGridLinesPen = new Pen( _curveGridLinesBrush, 1.5 );
 
+		// shared across every knob's drawing — must stay frozen so WPF never tracks inheritance contexts on them
+		_curveBackgroundBrush.Freeze();
+		_curveGridLinesBrush.Freeze();
+		_curveGridLinesPen.Freeze();
+
 		foreach ( var instance in _instances )
 		{
 			instance.Key.UpdateKnobVisual();
@@ -66,6 +71,9 @@ public partial class MairaKnob : UserControl
 
 	static MairaKnob()
 	{
+		_curveBackgroundBrush.Freeze();
+		_curveGridLinesBrush.Freeze();
+		_curveGridLinesPen.Freeze();
 		_curveForegroundBrush.Freeze();
 		_curveForegroundPen.Freeze();
 	}
@@ -476,6 +484,10 @@ public partial class MairaKnob : UserControl
 			var renderTargetBitmap = new RenderTargetBitmap( renderTargetWidth, renderTargetHeight, 96.0, 96.0, PixelFormats.Pbgra32 );
 
 			renderTargetBitmap.Render( dv );
+
+			// freeze so the Image never registers itself as the bitmap's inheritance context —
+			// unfrozen sources crash with ArgumentException in Freezable.RemoveContextInformation on theme swaps
+			renderTargetBitmap.Freeze();
 
 			Curve_Image.Source = renderTargetBitmap;
 			Curve_Grid.Visibility = Visibility.Visible;

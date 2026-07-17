@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>소프트 락 소스</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>마찰</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>마찰 소스</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>휠 센터링 소스</value>
@@ -2191,5 +2191,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>고착 영역</value>
   </data>
 </root>

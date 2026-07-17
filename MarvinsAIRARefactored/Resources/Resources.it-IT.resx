@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Sorgente bloccaggio</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Attrito</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Sorgente attrito</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Sorgente centratura volante</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Zona di aderenza</value>
   </data>
 </root>

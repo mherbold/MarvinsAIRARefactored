@@ -67,6 +67,55 @@ public sealed class SourceWheelVelocityModule : FFBModule
 }
 
 /// <summary>
+/// Friction source: Karnopp-style dry friction — a torque of constant magnitude opposing the wheel's rotation,
+/// −clamp(ω/ω₀, ±1) × Strength × MaxForce (Nm), gated on being on track. Below the stick-region velocity ω₀ it
+/// behaves like a stiff damper that holds the wheel planted (this is what keeps a plain sign(ω) from buzzing at
+/// rest); beyond it the torque saturates at the constant Strength level. Contrast with
+/// <see cref="SourceWheelVelocityModule"/>, whose output stays proportional to velocity (a damper). The 60 Hz
+/// staircase in the telemetry velocity is smoothed by a built-in one-pole so it doesn't chatter through the
+/// saturation. Sum it into the main signal with an Add; route it through a SpeedGain to fade it with car speed
+/// (parked steering weight = full at rest, fading out by ~10 m/s).
+/// </summary>
+public sealed class SourceFrictionModule : FFBModule
+{
+	private const int Strength = 1;
+	private const int StickRegion = 2;
+
+	// one-pole low-pass on the 60 Hz-carried telemetry velocity: 1 − e^(−2π·20Hz/360Hz)
+	private const float SmoothingAlpha = 0.2947f;
+
+	private float _invStickRegion = 1f;
+	private float _smoothedVelocity = 0f;
+
+	public override void Reset()
+	{
+		_smoothedVelocity = 0f;
+	}
+
+	protected override void OnValuesChanged()
+	{
+		// the knob is in °/s of wheel rotation; the telemetry velocity is rad/s
+		_invStickRegion = 1f / ( MathF.Max( _v[ StickRegion ], 1f ) * ( MathF.PI / 180f ) );
+	}
+
+	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
+	{
+		if ( !ctx.IsOnTrack )
+		{
+			_smoothedVelocity = 0f;
+
+			return 0f;
+		}
+
+		_smoothedVelocity += SmoothingAlpha * ( ctx.SteeringWheelVelocity - _smoothedVelocity );
+
+		// negated like SourceWheelVelocityModule: iRacing's angle is positive counterclockwise, and the output
+		// convention needs the opposite sign to RESIST wheel motion
+		return -Math.Clamp( _smoothedVelocity * _invStickRegion, -1f, 1f ) * _v[ Strength ] * ctx.MaxForce;
+	}
+}
+
+/// <summary>
 /// Soft lock source (old 1420–1435): emits an opposing force once the steering wheel is turned past the car's
 /// maximum steering angle, scaled by strength and MaxForce (Nm). Sum it into the main signal with an Add.
 /// </summary>

@@ -1898,8 +1898,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>ソフトロックソース</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>フリクション</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>フリクションソース</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>ホイールセンタリングソース</value>
@@ -2209,5 +2209,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>固着領域</value>
   </data>
 </root>

@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Zdroj mäkkého dorazu</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Trenie</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Zdroj trenia</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Zdroj centrovania volantu</value>
@@ -2191,5 +2191,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Oblasť priľnutia</value>
   </data>
 </root>

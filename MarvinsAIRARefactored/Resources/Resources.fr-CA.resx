@@ -1895,8 +1895,8 @@
   <data name="FFBModuleSourceSoftLock" xml:space="preserve">
     <value>Source de verrouillage progressif</value>
   </data>
-  <data name="FFBModuleFriction" xml:space="preserve">
-    <value>Friction</value>
+  <data name="FFBModuleSourceFriction" xml:space="preserve">
+    <value>Source de friction</value>
   </data>
   <data name="FFBModuleSourceWheelCentering" xml:space="preserve">
     <value>Source de recentrage du volant</value>
@@ -2206,5 +2206,8 @@
   </data>
   <data name="MetersUnits" xml:space="preserve">
     <value> m</value>
+  </data>
+  <data name="FFBSettingStickRegion" xml:space="preserve">
+    <value>Zone d'adhérence</value>
   </data>
 </root>
