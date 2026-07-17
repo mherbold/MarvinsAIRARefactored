@@ -9,220 +9,292 @@
              d:DesignWidth="800"
              d:DesignHeight="400">
 
-	<!-- Node-graph editor for the FFB graph: one draggable box per main-signal module, with bezier wires
-	     connecting module outputs to inputs. Clicking a node selects it (the settings panel and preview follow);
+    <!-- Node-graph editor for the FFB graph: one draggable box per module, with bezier wires connecting module
+	     outputs to inputs. Vibration generator modules appear as standalone nodes with no connectors at all —
+	     they only feed the vibration bus. Clicking a node selects it (the settings panel and preview follow);
 	     re-wiring happens by dragging from a connector dot to a compatible dot on another node, or via the input
 	     combos on the selected module's settings panel. -->
 
-	<UserControl.Resources>
-		<converters:BooleanToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsed" />
-		<converters:InverseBooleanToVisibilityCollapsedConverter x:Key="InverseBoolToVisibilityCollapsed" />
-	</UserControl.Resources>
+    <UserControl.Resources>
+        <converters:BooleanToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsed" />
+    </UserControl.Resources>
 
-	<!-- Rounded on top only and no bottom border: the preview graph sits flush underneath (its top border is
+    <!-- Rounded on top only and no bottom border: the preview graph sits flush underneath (its top border is
 	     the 2px divider between them), so the two boxes read as one view. -->
-	<Border BorderThickness="2,2,2,0"
-	        BorderBrush="{DynamicResource Brush.Border.Normal}"
-	        Background="{DynamicResource Brush.Background.Popup}"
-	        CornerRadius="5,5,0,0"
-	        ClipToBounds="True">
+    <Border BorderThickness="2,2,2,0"
+            BorderBrush="{DynamicResource Brush.Border.Normal}"
+            Background="{DynamicResource Brush.Background.Popup}"
+            CornerRadius="5,5,0,0"
+            ClipToBounds="True">
 
-		<Grid>
+        <Grid>
 
-			<!-- Height-limited viewport (user-resizable via the grab handle on the seam below; the height persists
+            <!-- Height-limited viewport (user-resizable via the grab handle on the seam below; the height persists
 			     in settings). It is a Canvas rather than a Grid so the (much larger) node canvas inside cannot
 			     drive the layout width. Pan and zoom are a RenderTransform on the content, so there is no scroll
 			     viewer and no scroll bar. The transparent background is what lets empty space hit-test for the
 			     left-drag pan. -->
-			<Canvas x:Name="Viewport_Canvas"
-			        Height="{Binding Settings.RacingWheelFFBGraphEditorHeight}"
-			        Background="Transparent"
-			        ClipToBounds="True"
-			        PreviewMouseWheel="Viewport_Canvas_PreviewMouseWheel"
-			        MouseLeftButtonDown="Viewport_Canvas_MouseLeftButtonDown"
-			        MouseMove="Viewport_Canvas_MouseMove"
-			        MouseLeftButtonUp="Viewport_Canvas_MouseLeftButtonUp"
-			        LostMouseCapture="Viewport_Canvas_LostMouseCapture"
-			        SizeChanged="Viewport_Canvas_SizeChanged">
+            <Canvas x:Name="Viewport_Canvas"
+                    Height="{Binding Settings.RacingWheelFFBGraphEditorHeight}"
+                    Background="Transparent"
+                    ClipToBounds="True"
+                    PreviewMouseWheel="Viewport_Canvas_PreviewMouseWheel"
+                    MouseLeftButtonDown="Viewport_Canvas_MouseLeftButtonDown"
+                    MouseMove="Viewport_Canvas_MouseMove"
+                    MouseLeftButtonUp="Viewport_Canvas_MouseLeftButtonUp"
+                    LostMouseCapture="Viewport_Canvas_LostMouseCapture"
+                    SizeChanged="Viewport_Canvas_SizeChanged">
 
-			<Grid x:Name="LayoutRoot_Grid">
+                <Grid x:Name="LayoutRoot_Grid">
 
-				<Grid.RenderTransform>
-					<TransformGroup>
-						<ScaleTransform x:Name="Zoom_ScaleTransform" />
-						<TranslateTransform x:Name="Pan_TranslateTransform" />
-					</TransformGroup>
-				</Grid.RenderTransform>
+                    <Grid.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform x:Name="Zoom_ScaleTransform" />
+                            <TranslateTransform x:Name="Pan_TranslateTransform" />
+                        </TransformGroup>
+                    </Grid.RenderTransform>
 
-				<Canvas x:Name="Wires_Canvas"
-				        IsHitTestVisible="False" />
+                    <!-- faint dots marking the snap grid points, shown only while snap-to-grid is on. Lives in
+				     content space (behind the wires and nodes) so it pans and zooms with the graph. The tile
+				     geometry (viewbox, viewport, dot center) is set in the constructor from the
+				     FFBGraphTopology GridSize constant — the values here are placeholders. -->
+                    <Rectangle IsHitTestVisible="False"
+                               Opacity="0.3"
+                               Visibility="{Binding Settings.RacingWheelFFBGraphSnapToGrid, Converter={StaticResource BoolToVisibilityCollapsed}}">
+                        <Rectangle.Fill>
+                            <DrawingBrush x:Name="GridDots_Brush"
+                                          TileMode="Tile"
+                                          ViewportUnits="Absolute"
+                                          ViewboxUnits="Absolute">
+                                <DrawingBrush.Drawing>
+                                    <GeometryDrawing Brush="{DynamicResource Brush.Foreground.Muted}">
+                                        <GeometryDrawing.Geometry>
+                                            <EllipseGeometry x:Name="GridDot_EllipseGeometry"
+                                                             RadiusX="1.5"
+                                                             RadiusY="1.5" />
+                                        </GeometryDrawing.Geometry>
+                                    </GeometryDrawing>
+                                </DrawingBrush.Drawing>
+                            </DrawingBrush>
+                        </Rectangle.Fill>
+                    </Rectangle>
 
-			<ItemsControl x:Name="Nodes_ItemsControl">
+                    <Canvas x:Name="Wires_Canvas"
+                            IsHitTestVisible="False" />
 
-				<ItemsControl.ItemsPanel>
-					<ItemsPanelTemplate>
-						<Canvas />
-					</ItemsPanelTemplate>
-				</ItemsControl.ItemsPanel>
+                    <ItemsControl x:Name="Nodes_ItemsControl">
 
-				<ItemsControl.ItemContainerStyle>
-					<Style TargetType="ContentPresenter">
-						<Setter Property="Canvas.Left" Value="{Binding NodeX}" />
-						<Setter Property="Canvas.Top" Value="{Binding NodeY}" />
-					</Style>
-				</ItemsControl.ItemContainerStyle>
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <Canvas />
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
 
-				<ItemsControl.ItemTemplate>
-					<DataTemplate>
+                        <ItemsControl.ItemContainerStyle>
+                            <Style TargetType="ContentPresenter">
+                                <Setter Property="Canvas.Left"
+                                        Value="{Binding NodeX}" />
+                                <Setter Property="Canvas.Top"
+                                        Value="{Binding NodeY}" />
+                            </Style>
+                        </ItemsControl.ItemContainerStyle>
 
-						<Grid Width="170"
-						      Height="54"
-						      Background="Transparent"
-						      Cursor="Hand"
-						      MouseLeftButtonDown="Node_MouseLeftButtonDown"
-						      MouseRightButtonDown="Node_MouseRightButtonDown"
-						      MouseMove="Node_MouseMove"
-						      MouseLeftButtonUp="Node_MouseLeftButtonUp">
+                        <ItemsControl.ItemTemplate>
 
-							<Border CornerRadius="6"
-							        Margin="5,0"
-							        Background="{DynamicResource Brush.Background.Default}"
-							        BorderThickness="2">
+                            <DataTemplate>
 
-								<Border.Style>
-									<Style TargetType="Border">
-										<Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Normal}" />
-										<Setter Property="Opacity" Value="1" />
-										<Style.Triggers>
-											<!-- preview lock (right-click) renders below selection: when the same
+                                <!-- node box size and connector metrics come from the FFBGraphEditor constants
+							     (via x:Static), which the wire drawing and connector hit-testing share -->
+                                <Grid Width="{x:Static local:FFBGraphEditor.NodeWidth}"
+                                      Height="{x:Static local:FFBGraphEditor.NodeHeight}"
+                                      Background="Transparent"
+                                      Cursor="Hand"
+                                      MouseLeftButtonDown="Node_MouseLeftButtonDown"
+                                      MouseRightButtonDown="Node_MouseRightButtonDown"
+                                      MouseMove="Node_MouseMove"
+                                      MouseLeftButtonUp="Node_MouseLeftButtonUp">
+
+                                    <!-- the border fills the whole layout box so a snapped node sits flush on the
+							     grid; the connector dots straddle its edges via their negative margins -->
+                                    <Border CornerRadius="6"
+                                            Background="{DynamicResource Brush.Background.Default}"
+                                            BorderThickness="2">
+
+                                        <Border.Style>
+                                            <Style TargetType="Border">
+                                                <Setter Property="BorderBrush"
+                                                        Value="{DynamicResource Brush.Border.Normal}" />
+                                                <Setter Property="Opacity"
+                                                        Value="1" />
+                                                <Style.Triggers>
+                                                    <!-- vibration generator nodes get a blue default border (the steering
+											     effects page's slider blue) so they read apart from the wired
+											     chain; declared first, so preview-lock/selection still win -->
+                                                    <DataTrigger Binding="{Binding IsGenerator}"
+                                                                 Value="True">
+                                                        <Setter Property="BorderBrush"
+                                                                Value="{DynamicResource Brush.Accent.BlueDark}" />
+                                                    </DataTrigger>
+                                                    <!-- preview lock (right-click) renders below selection: when the same
 											     node is both, the selection accent wins (last matching trigger) -->
-											<DataTrigger Binding="{Binding IsPreviewLocked}" Value="True">
-												<Setter Property="BorderBrush" Value="{DynamicResource Brush.Border.Active}" />
-											</DataTrigger>
-											<DataTrigger Binding="{Binding IsSelected}" Value="True">
-												<Setter Property="BorderBrush" Value="{DynamicResource Brush.Accent}" />
-											</DataTrigger>
-											<DataTrigger Binding="{Binding Enabled}" Value="False">
-												<Setter Property="Opacity" Value="0.45" />
-											</DataTrigger>
-										</Style.Triggers>
-									</Style>
-								</Border.Style>
+                                                    <DataTrigger Binding="{Binding IsPreviewLocked}"
+                                                                 Value="True">
+                                                        <Setter Property="BorderBrush"
+                                                                Value="{DynamicResource Brush.Border.Active}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsSelected}"
+                                                                 Value="True">
+                                                        <Setter Property="BorderBrush"
+                                                                Value="{DynamicResource Brush.Accent}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding Enabled}"
+                                                                 Value="False">
+                                                        <Setter Property="Opacity"
+                                                                Value="0.45" />
+                                                    </DataTrigger>
+                                                    <!-- an understeer/oversteer/seat-of-pants module whose effect is
+											     switched off on the steering effects page dims like a disabled
+											     module, even while the module itself is enabled -->
+                                                    <DataTrigger Binding="{Binding SteeringEffectDisabled}"
+                                                                 Value="True">
+                                                        <Setter Property="Opacity"
+                                                                Value="0.45" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Border.Style>
 
-								<StackPanel VerticalAlignment="Center"
-								            Margin="10,0">
+                                        <StackPanel VerticalAlignment="Center"
+                                                    Margin="10,0">
 
-									<TextBlock Text="{Binding DisplayName}"
-									           Style="{StaticResource MairaTextBlockStyle}"
-									           FontSize="16"
-									           TextTrimming="CharacterEllipsis"
-									           TextAlignment="Center" />
+                                            <TextBlock Text="{Binding DisplayName}"
+                                                       Style="{StaticResource MairaTextBlockStyle}"
+                                                       FontSize="16"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       TextAlignment="Center" />
 
-									<!-- live settings digest ("1.50x" / "one pole, 12.5 Hz") — collapsed when the
+                                            <!-- live settings digest ("1.50x" / "one pole, 12.5 Hz") — collapsed when the
 									     module has no settings, so the name re-centers vertically -->
-									<TextBlock Text="{Binding SettingsSummary}"
-									           FontSize="11"
-									           Opacity="0.6"
-									           TextTrimming="CharacterEllipsis"
-									           TextAlignment="Center">
-										<TextBlock.Style>
-											<Style TargetType="TextBlock"
-											       BasedOn="{StaticResource MairaTextBlockStyle}">
-												<Style.Triggers>
-													<DataTrigger Binding="{Binding SettingsSummary}" Value="">
-														<Setter Property="Visibility" Value="Collapsed" />
-													</DataTrigger>
-												</Style.Triggers>
-											</Style>
-										</TextBlock.Style>
-									</TextBlock>
+                                            <TextBlock Text="{Binding SettingsSummary}"
+                                                       FontSize="11"
+                                                       Opacity="0.6"
+                                                       TextTrimming="CharacterEllipsis"
+                                                       TextAlignment="Center">
+                                                <TextBlock.Style>
+                                                    <Style TargetType="TextBlock"
+                                                           BasedOn="{StaticResource MairaTextBlockStyle}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding SettingsSummary}"
+                                                                         Value="">
+                                                                <Setter Property="Visibility"
+                                                                        Value="Collapsed" />
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </TextBlock.Style>
+                                            </TextBlock>
 
-								</StackPanel>
+                                        </StackPanel>
 
-							</Border>
+                                    </Border>
 
-							<!-- input connector A (upper-left on dual-input modules, centered otherwise) -->
-							<Ellipse Width="10"
-							         Height="10"
-							         Fill="{DynamicResource Brush.Border.Active}"
-							         Stroke="{DynamicResource Brush.Background.Popup}"
-							         StrokeThickness="1"
-							         HorizontalAlignment="Left"
-							         Visibility="{Binding ShowInputA, Converter={StaticResource BoolToVisibilityCollapsed}}">
-								<Ellipse.Style>
-									<Style TargetType="Ellipse">
-										<Setter Property="VerticalAlignment" Value="Center" />
-										<Setter Property="Margin" Value="0" />
-										<Style.Triggers>
-											<DataTrigger Binding="{Binding ShowInputB}" Value="True">
-												<Setter Property="VerticalAlignment" Value="Top" />
-												<Setter Property="Margin" Value="0,13,0,0" />
-											</DataTrigger>
-										</Style.Triggers>
-									</Style>
-								</Ellipse.Style>
-							</Ellipse>
+                                    <!-- input connector A (upper-left on dual-input modules, centered otherwise) -->
+                                    <Ellipse Width="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
+                                             Height="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
+                                             Fill="{DynamicResource Brush.Border.Active}"
+                                             Stroke="{DynamicResource Brush.Background.Popup}"
+                                             StrokeThickness="1"
+                                             HorizontalAlignment="Left"
+                                             Visibility="{Binding ShowInputA, Converter={StaticResource BoolToVisibilityCollapsed}}">
+                                        <Ellipse.Style>
+                                            <Style TargetType="Ellipse">
+                                                <Setter Property="VerticalAlignment"
+                                                        Value="Center" />
+                                                <Setter Property="Margin"
+                                                        Value="{x:Static local:FFBGraphEditor.SingleInputConnectorMargin}" />
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding ShowInputB}"
+                                                                 Value="True">
+                                                        <Setter Property="VerticalAlignment"
+                                                                Value="Top" />
+                                                        <Setter Property="Margin"
+                                                                Value="{x:Static local:FFBGraphEditor.DualInputAConnectorMargin}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Ellipse.Style>
+                                    </Ellipse>
 
-							<!-- input connector B (lower-left, dual-input modules only) -->
-							<Ellipse Width="10"
-							         Height="10"
-							         Fill="{DynamicResource Brush.Border.Active}"
-							         Stroke="{DynamicResource Brush.Background.Popup}"
-							         StrokeThickness="1"
-							         HorizontalAlignment="Left"
-							         VerticalAlignment="Bottom"
-							         Margin="0,0,0,13"
-							         Visibility="{Binding ShowInputB, Converter={StaticResource BoolToVisibilityCollapsed}}" />
+                                    <!-- input connector B (lower-left, dual-input modules only) -->
+                                    <Ellipse Width="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
+                                             Height="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
+                                             Fill="{DynamicResource Brush.Border.Active}"
+                                             Stroke="{DynamicResource Brush.Background.Popup}"
+                                             StrokeThickness="1"
+                                             HorizontalAlignment="Left"
+                                             VerticalAlignment="Bottom"
+                                             Margin="{x:Static local:FFBGraphEditor.DualInputBConnectorMargin}"
+                                             Visibility="{Binding ShowInputB, Converter={StaticResource BoolToVisibilityCollapsed}}" />
 
-							<!-- output connector (right, hidden on the Output module) -->
-							<Ellipse Width="10"
-							         Height="10"
-							         Fill="{DynamicResource Brush.Border.Active}"
-							         Stroke="{DynamicResource Brush.Background.Popup}"
-							         StrokeThickness="1"
-							         HorizontalAlignment="Right"
-							         VerticalAlignment="Center"
-							         Visibility="{Binding IsOutput, Converter={StaticResource InverseBoolToVisibilityCollapsed}}" />
+                                    <!-- output connector (right, hidden on the Output module and on the standalone
+							     vibration generator nodes) -->
+                                    <Ellipse Width="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
+                                             Height="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
+                                             Fill="{DynamicResource Brush.Border.Active}"
+                                             Stroke="{DynamicResource Brush.Background.Popup}"
+                                             StrokeThickness="1"
+                                             HorizontalAlignment="Right"
+                                             VerticalAlignment="Center"
+                                             Margin="{x:Static local:FFBGraphEditor.OutputConnectorMargin}"
+                                             Visibility="{Binding HasOutputConnector, Converter={StaticResource BoolToVisibilityCollapsed}}" />
 
-						</Grid>
+                                </Grid>
 
-					</DataTemplate>
-				</ItemsControl.ItemTemplate>
+                            </DataTemplate>
 
-			</ItemsControl>
+                        </ItemsControl.ItemTemplate>
 
-			</Grid>
+                    </ItemsControl>
 
-			</Canvas>
+                </Grid>
 
-			<!-- canvas tools (pinned to the corner, outside the panned canvas): add module + snap-to-grid toggle + auto layout -->
-			<StackPanel Orientation="Horizontal"
-			            HorizontalAlignment="Right"
-			            VerticalAlignment="Top"
-			            Margin="0,8,8,0"
-			            Panel.ZIndex="1">
+            </Canvas>
 
-				<local:MairaButton x:Name="AddModule_MairaButton"
-				                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
-				                   IsSmall="True"
-				                   Click="AddModule_MairaButton_Click" />
+            <!-- canvas tools (pinned to the corner, outside the panned canvas): add module + remove selected module
+			     + snap-to-grid toggle + auto layout -->
+            <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="0,8,8,0"
+                        Panel.ZIndex="1">
 
-				<local:MairaButton x:Name="SnapToGrid_MairaButton"
-				                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/grid.png"
-				                   IsSmall="True"
-				                   Margin="8,0,0,0"
-				                   Click="SnapToGrid_MairaButton_Click" />
+                <local:MairaButton x:Name="AddModule_MairaButton"
+                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+                                   IsSmall="True"
+                                   Click="AddModule_MairaButton_Click" />
 
-				<local:MairaButton x:Name="AutoLayout_MairaButton"
-				                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/wand.png"
-				                   IsSmall="True"
-				                   Margin="8,0,0,0"
-				                   Click="AutoLayout_MairaButton_Click" />
+                <local:MairaButton x:Name="RemoveModule_MairaButton"
+                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
+                                   IsSmall="True"
+                                   Margin="8,0,0,0"
+                                   Click="RemoveModule_MairaButton_Click" />
 
-			</StackPanel>
+                <local:MairaButton x:Name="SnapToGrid_MairaButton"
+                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/grid.png"
+                                   IsSmall="True"
+                                   Margin="8,0,0,0"
+                                   Click="SnapToGrid_MairaButton_Click" />
 
-		</Grid>
+                <local:MairaButton x:Name="AutoLayout_MairaButton"
+                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/wand.png"
+                                   IsSmall="True"
+                                   Margin="8,0,0,0"
+                                   Click="AutoLayout_MairaButton_Click" />
 
-	</Border>
+            </StackPanel>
+
+        </Grid>
+
+    </Border>
 
 </UserControl>

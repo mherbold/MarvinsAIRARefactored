@@ -179,6 +179,10 @@ public readonly struct FFBTickContext
 		var wheelPosition = ( halfLock > 0f ) ? recordingData.SteeringWheelAngle / halfLock : 0f;
 		var wheelVelocity = ( halfLock > 0f ) ? recordingData.SteeringWheelVelocity / halfLock : 0f;
 
+		// the steering effects page's per-effect enable switches gate the recorded effect values the same way
+		// the live FrameContext gates them, so the preview reflects the toggles too
+		var settings = DataContext.DataContext.Instance.Settings;
+
 		return new FFBTickContext(
 			deltaMilliseconds: TickDeltaMilliseconds,
 			sampleIndex: sampleIndex,
@@ -189,9 +193,9 @@ public readonly struct FFBTickContext
 			lfeMagnitude: recordingData.LFEMagnitude,
 			wheelPosition: wheelPosition,
 			wheelVelocity: wheelVelocity,
-			understeerEffect: recordingData.UndersteerEffect,
-			oversteerEffect: recordingData.OversteerEffect,
-			seatOfPantsEffect: recordingData.SeatOfPantsEffect,
+			understeerEffect: settings.SteeringEffectsUndersteerEnabled ? recordingData.UndersteerEffect : 0f,
+			oversteerEffect: settings.SteeringEffectsOversteerEnabled ? recordingData.OversteerEffect : 0f,
+			seatOfPantsEffect: settings.SteeringEffectsSeatOfPantsEnabled ? recordingData.SeatOfPantsEffect : 0f,
 			skidSlip: recordingData.SkidSlip,
 			rpm: recordingData.RPM,
 			shiftRPM: recordingData.ShiftRPM,

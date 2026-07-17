@@ -9,9 +9,8 @@ namespace MarvinsAIRARefactored.FFB;
 
 /// <summary>
 /// The built-in graphs shipped inside the app. Each one is a regular .mairagraph export file maintained in the
-/// project's BuiltInGraphs folder and embedded into the assembly (the file's GraphType tag decides whether it is
-/// an FFB or a vibration graph, so both kinds live in the same folder). At every launch
-/// <c>Settings.EnsureBuiltInFFBGraphsInitialized</c> syncs the stored graph dictionaries against these files via
+/// project's BuiltInGraphs folder and embedded into the assembly. At every launch
+/// <c>Settings.EnsureBuiltInFFBGraphsInitialized</c> syncs the stored graph dictionary against these files via
 /// each file's content hash — so updating a file in the folder updates every user's settings on their next launch,
 /// while their per-context knob values (keyed by the stable module ids inside the file) carry over. Built-in
 /// graphs cannot be renamed, deleted, or structurally edited in the app; users clone them into a custom graph
@@ -77,9 +76,9 @@ public static class FFBBuiltInGraphs
 
 				var exportFile = Serializer.Load<FFBGraphExportFile>( memoryStream );
 
-				if ( exportFile.GraphType is not ( FFBGraphExportFile.FFBGraphType or FFBGraphExportFile.VibrationGraphType ) )
+				if ( exportFile.GraphType != FFBGraphExportFile.FFBGraphType )
 				{
-					app.Logger.WriteLine( $"[FFBBuiltInGraphs] Skipping {resourceName} - unknown graph type '{exportFile.GraphType}'" );
+					app.Logger.WriteLine( $"[FFBBuiltInGraphs] Skipping {resourceName} - unsupported graph type '{exportFile.GraphType}'" );
 
 					continue;
 				}

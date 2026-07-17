@@ -2213,4 +2213,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>固着領域</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>このエフェクトはステアリングエフェクトページで無効になっています</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>パルス持続時間</value>
+  </data>
 </root>

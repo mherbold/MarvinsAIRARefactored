@@ -347,8 +347,45 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 	public bool IsGenerator => _descriptor.IsGenerator;
 	public bool IsOutput => _descriptor.IsOutput;
 	public bool CanToggleEnabled => !IsFixed;
-	public bool CanRemove => !IsFixed && !( IsGenerator ? _owner.IsVibrationGraphBuiltIn : _owner.IsFFBGraphBuiltIn );
+	public bool CanRemove => !IsFixed && !_owner.IsFFBGraphBuiltIn;
 	public bool CanTest => _descriptor.CanTest;
+
+	// Vibration generators render as standalone nodes: no inputs (SignalInputCount is 0) and no output connector
+	// either — they only feed the vibration bus, never another module's signal input.
+	public bool HasOutputConnector => !IsOutput && !IsGenerator;
+
+	/// <summary>
+	/// True for an understeer / oversteer / seat-of-pants module whose effect is switched off on the steering
+	/// effects page. The engine feeds those modules a zero effect value while the switch is off (force modules
+	/// pass through, vibration generators go silent), the node renders dimmed like a disabled module, and the
+	/// settings card shows a notice. Re-raised via <see cref="NotifySteeringEffectDisabledChanged"/> when one
+	/// of the switches flips.
+	/// </summary>
+	public bool SteeringEffectDisabled
+	{
+		get
+		{
+			var settings = DataContext.DataContext.Instance?.Settings;
+
+			if ( settings == null )
+			{
+				return false;
+			}
+
+			return ModuleType switch
+			{
+				FFBModuleRegistry.UndersteerForceType or FFBModuleRegistry.UndersteerVibrationType => !settings.SteeringEffectsUndersteerEnabled,
+				FFBModuleRegistry.OversteerForceType or FFBModuleRegistry.OversteerVibrationType => !settings.SteeringEffectsOversteerEnabled,
+				FFBModuleRegistry.SeatOfPantsForceType or FFBModuleRegistry.SeatOfPantsVibrationType => !settings.SteeringEffectsSeatOfPantsEnabled,
+				_ => false
+			};
+		}
+	}
+
+	/// <summary>The settings-card notice shown next to the module name while <see cref="SteeringEffectDisabled"/>.</summary>
+	public string SteeringEffectDisabledNotice => FFBDisplayNames.Localize( "SteeringEffectDisabledNotice", "This effect is disabled on the steering effects page" );
+
+	public void NotifySteeringEffectDisabledChanged() => OnPropertyChanged( nameof( SteeringEffectDisabled ) );
 
 	private bool _isTestActive = false;
 
@@ -383,8 +420,9 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 	public bool ShowInputA => _descriptor.SignalInputCount >= 1;
 	public bool ShowInputB => _descriptor.SignalInputCount >= 2;
 
-	// must match the settings ItemsControl's UniformGrid Columns in RacingWheelPage.xaml
-	private const int SettingsPanelColumns = 3;
+	// the settings card's UniformGrid in RacingWheelPage.xaml consumes this via x:Static, so the BreakRow
+	// spacer math here and the rendered column count always agree
+	public const int SettingsPanelColumns = 3;
 
 	public ObservableCollection<FFBModuleSettingViewModel> Settings { get; } = [];
 
@@ -628,12 +666,13 @@ public sealed class FFBNodeWireViewModel( string sourceModuleId, string targetMo
 	public bool IsInputB { get; } = isInputB;
 }
 
-/// <summary>The graph editor's root VM: the module cards for the currently selected FFB graph AND the currently
-/// selected vibration graph (the generator cards), plus structure edits on both.</summary>
+/// <summary>The graph editor's root VM: the module cards for the currently selected FFB graph (the vibration
+/// generator modules included — they render as standalone nodes), plus structure edits.</summary>
 public sealed class FFBGraphViewModel : INotifyPropertyChanged
 {
 	private FFBGraph? _graph;
-	private FFBGraph? _vibrationGraph;
+
+	private DataContext.Settings? _subscribedSettings = null;
 
 	private string? _selectedModuleId = null;
 	private FFBModuleViewModel? _selectedModule = null;
@@ -642,26 +681,19 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	private FFBModuleViewModel? _previewModule = null;
 	private bool _rebuildQueued = false;
 
+	/// <summary>Every module of the selected graph — the nodes shown on the graph canvas.</summary>
 	public ObservableCollection<FFBModuleViewModel> Modules { get; } = [];
-
-	/// <summary>The non-generator modules (sources, DSP/effects, Output) — the nodes shown on the graph canvas.</summary>
-	public ObservableCollection<FFBModuleViewModel> MainModules { get; } = [];
-
-	/// <summary>The generator modules — the cards shown in the vibration effects section.</summary>
-	public ObservableCollection<FFBModuleViewModel> GeneratorModules { get; } = [];
 
 	/// <summary>Display-only wires between the graph canvas nodes.</summary>
 	public ObservableCollection<FFBNodeWireViewModel> Wires { get; } = [];
 
 	// Built on access (not in the constructor) so it is not evaluated during DataContext static construction,
 	// before Localization exists, and so its module names re-localize on a language switch.
-	public List<KeyValuePair<string, string>> AddableModuleTypes => BuildAddableModuleTypes( generators: false );
-	public List<KeyValuePair<string, string>> AddableGeneratorModuleTypes => BuildAddableModuleTypes( generators: true );
+	public List<KeyValuePair<string, string>> AddableModuleTypes => BuildAddableModuleTypes();
 
 	// Built-in graphs are structurally locked: no adding/removing modules, no rewiring, no moving nodes — only
 	// their module settings may be changed. Users clone a built-in into a custom graph to alter its structure.
 	public bool IsFFBGraphBuiltIn => _graph?.IsBuiltIn == true;
-	public bool IsVibrationGraphBuiltIn => _vibrationGraph?.IsBuiltIn == true;
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -737,24 +769,20 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		}
 	}
 
-	// both add-module pickers (AddFFBModuleWindow) group the module types by category (a header row's Key
+	// the add-module picker (AddFFBModuleWindow) groups the module types by category (a header row's Key
 	// starts with an underscore, which the picker's item style renders as a disabled accent-colored header —
-	// an underscore key can never match a real module type)
-	private static readonly ( FFBModuleCategory category, string localizationKey, string fallback )[] AddableCategories =
+	// an underscore key can never match a real module type). The vibration generators (both the steering and
+	// the other kind) share one "Vibration effects" group at the end of the list.
+	private static readonly ( FFBModuleCategory[] categories, string localizationKey, string fallback )[] AddableCategories =
 	[
-		( FFBModuleCategory.Source, "FFBCategorySources", "Sources" ),
-		( FFBModuleCategory.GenericDSP, "FFBCategoryGenericDSP", "Generic DSP" ),
-		( FFBModuleCategory.Mixer, "FFBCategoryMixers", "Mixers" ),
-		( FFBModuleCategory.Effect, "FFBCategoryEffects", "Effects" )
+		( [ FFBModuleCategory.Source ], "FFBCategorySources", "Sources" ),
+		( [ FFBModuleCategory.GenericDSP ], "FFBCategoryGenericDSP", "Generic DSP" ),
+		( [ FFBModuleCategory.Mixer ], "FFBCategoryMixers", "Mixers" ),
+		( [ FFBModuleCategory.Effect ], "FFBCategoryEffects", "Effects" ),
+		( [ FFBModuleCategory.SteeringVibration, FFBModuleCategory.OtherVibration ], "VibrationEffects", "Vibration effects" )
 	];
 
-	private static readonly ( FFBModuleCategory category, string localizationKey, string fallback )[] AddableGeneratorCategories =
-	[
-		( FFBModuleCategory.SteeringVibration, "SteeringEffects", "Steering effects" ),
-		( FFBModuleCategory.OtherVibration, "OtherEffects", "Other effects" )
-	];
-
-	private List<KeyValuePair<string, string>> BuildAddableModuleTypes( bool generators )
+	private List<KeyValuePair<string, string>> BuildAddableModuleTypes()
 	{
 		var addable = new List<( FFBModuleCategory category, string typeKey, string displayName )>();
 
@@ -762,11 +790,6 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		{
 			// only the Output module is fixed and cannot be added by the user
 			if ( descriptor.IsOutput )
-			{
-				continue;
-			}
-
-			if ( descriptor.IsGenerator != generators )
 			{
 				continue;
 			}
@@ -782,10 +805,10 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 		var list = new List<KeyValuePair<string, string>>();
 
-		foreach ( var (category, localizationKey, fallback) in generators ? AddableGeneratorCategories : AddableCategories )
+		foreach ( var (categories, localizationKey, fallback) in AddableCategories )
 		{
 			// within a category the registry's hand-curated declaration order is kept (not alphabetical)
-			var categoryEntries = addable.Where( entry => entry.category == category ).ToList();
+			var categoryEntries = addable.Where( entry => categories.Contains( entry.category ) ).ToList();
 
 			if ( categoryEntries.Count == 0 )
 			{
@@ -803,23 +826,21 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		return list;
 	}
 
-	/// <summary>Rebuild the whole card tree from the currently selected FFB graph + vibration graph. UI thread only.</summary>
+	/// <summary>Rebuild the whole card tree from the currently selected FFB graph. UI thread only.</summary>
 	public void RebuildFromCurrentSelection()
 	{
 		Modules.Clear();
-		MainModules.Clear();
-		GeneratorModules.Clear();
 		Wires.Clear();
 
 		var settings = DataContext.DataContext.Instance.Settings;
 
+		EnsureSettingsSubscription( settings );
+
 		settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph );
-		settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var vibrationGraph );
 
 		_graph = graph;
-		_vibrationGraph = vibrationGraph;
 
-		if ( ( graph == null ) && ( vibrationGraph == null ) )
+		if ( graph == null )
 		{
 			SelectedModule = null;
 
@@ -828,7 +849,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 		// lay the nodes out automatically the first time this graph is shown in the node editor (legacy data,
 		// freshly migrated built-ins, and reset built-ins all arrive with every position at 0,0)
-		if ( ( graph != null ) && FFBGraphTopology.NeedsAutoLayout( graph ) )
+		if ( FFBGraphTopology.NeedsAutoLayout( graph ) )
 		{
 			FFBGraphTopology.ApplyAutoLayout( graph );
 
@@ -836,40 +857,22 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		}
 
 		var moduleViewModels = new List<FFBModuleViewModel>();
-		var generatorViewModels = new List<FFBModuleViewModel>();
 
-		if ( graph != null )
+		foreach ( var module in graph.Modules )
 		{
-			foreach ( var module in graph.Modules )
+			var descriptor = FFBModuleRegistry.TryGet( module.ModuleType );
+
+			if ( descriptor != null )
 			{
-				var descriptor = FFBModuleRegistry.TryGet( module.ModuleType );
-
-				if ( descriptor != null )
-				{
-					moduleViewModels.Add( new FFBModuleViewModel( this, module, descriptor ) );
-				}
-			}
-		}
-
-		if ( vibrationGraph != null )
-		{
-			foreach ( var module in vibrationGraph.Modules )
-			{
-				var descriptor = FFBModuleRegistry.TryGet( module.ModuleType );
-
-				if ( descriptor != null )
-				{
-					generatorViewModels.Add( new FFBModuleViewModel( this, module, descriptor ) );
-				}
+				moduleViewModels.Add( new FFBModuleViewModel( this, module, descriptor ) );
 			}
 		}
 
 		// display names have no list-index prefix (the evaluation order is derived automatically now); duplicate
-		// module types are disambiguated as "Gain", "Gain (2)", ... (the two graphs never share a type, so one
-		// counter across both lists is fine)
+		// module types are disambiguated as "Gain", "Gain (2)", ...
 		var nameCounts = new Dictionary<string, int>( StringComparer.Ordinal );
 
-		foreach ( var moduleViewModel in moduleViewModels.Concat( generatorViewModels ) )
+		foreach ( var moduleViewModel in moduleViewModels )
 		{
 			var name = FFBDisplayNames.Module( moduleViewModel.ModuleType );
 
@@ -880,7 +883,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			moduleViewModel.DisplayName = count > 1 ? $"{name} ({count})" : name;
 		}
 
-		// eligible inputs: any non-Output module of the FFB graph that is not downstream of the consumer (no cycles)
+		// eligible inputs: any non-Output, non-generator module that is not downstream of the consumer (no cycles)
 		foreach ( var moduleViewModel in moduleViewModels )
 		{
 			if ( moduleViewModel.SignalInputCount < 1 )
@@ -888,13 +891,13 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 				continue;
 			}
 
-			var downstream = FFBGraphTopology.ReachableFrom( graph!, moduleViewModel.ModuleId );
+			var downstream = FFBGraphTopology.ReachableFrom( graph, moduleViewModel.ModuleId );
 
 			var eligible = new List<KeyValuePair<string, string>>();
 
 			foreach ( var candidate in moduleViewModels )
 			{
-				if ( candidate.IsOutput || downstream.Contains( candidate.ModuleId ) )
+				if ( candidate.IsOutput || candidate.IsGenerator || downstream.Contains( candidate.ModuleId ) )
 				{
 					continue;
 				}
@@ -908,21 +911,12 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		foreach ( var moduleViewModel in moduleViewModels )
 		{
 			Modules.Add( moduleViewModel );
-
-			MainModules.Add( moduleViewModel );
 		}
 
-		foreach ( var moduleViewModel in generatorViewModels )
+		// one display wire per visible input of each canvas node (generators have none)
+		foreach ( var moduleViewModel in Modules )
 		{
-			Modules.Add( moduleViewModel );
-
-			GeneratorModules.Add( moduleViewModel );
-		}
-
-		// one display wire per visible input of each canvas node
-		foreach ( var moduleViewModel in MainModules )
-		{
-			var module = graph?.Modules.Find( m => m.ModuleId == moduleViewModel.ModuleId );
+			var module = graph.Modules.Find( m => m.ModuleId == moduleViewModel.ModuleId );
 
 			if ( module == null )
 			{
@@ -961,11 +955,64 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 		// the addable-types list depends on which source types are present, so it re-queries with the graph
 		OnPropertyChanged( nameof( AddableModuleTypes ) );
-		OnPropertyChanged( nameof( AddableGeneratorModuleTypes ) );
 
-		// the structure locks follow whichever graphs are now selected
+		// the structure lock follows whichever graph is now selected
 		OnPropertyChanged( nameof( IsFFBGraphBuiltIn ) );
-		OnPropertyChanged( nameof( IsVibrationGraphBuiltIn ) );
+	}
+
+	// The steering effects page's per-effect enable switches gate the understeer/oversteer/seat-of-pants
+	// modules, so their node dimming + settings-card notice must follow the switches live. Subscribed lazily
+	// from RebuildFromCurrentSelection (NOT the constructor — this VM is built during DataContext's static
+	// construction, before DataContext.Instance exists) and re-attached if the Settings instance is swapped
+	// by a settings-file load.
+	private void EnsureSettingsSubscription( DataContext.Settings settings )
+	{
+		if ( ReferenceEquals( _subscribedSettings, settings ) )
+		{
+			return;
+		}
+
+		if ( _subscribedSettings != null )
+		{
+			_subscribedSettings.PropertyChanged -= Settings_PropertyChanged;
+		}
+
+		settings.PropertyChanged += Settings_PropertyChanged;
+
+		_subscribedSettings = settings;
+	}
+
+	private void Settings_PropertyChanged( object? sender, PropertyChangedEventArgs e )
+	{
+		if ( e.PropertyName is not ( nameof( DataContext.Settings.SteeringEffectsUndersteerEnabled )
+			or nameof( DataContext.Settings.SteeringEffectsOversteerEnabled )
+			or nameof( DataContext.Settings.SteeringEffectsSeatOfPantsEnabled ) ) )
+		{
+			return;
+		}
+
+		// per-context reloads can flip these switches from a simulator thread — the module VMs are UI-bound
+		var dispatcher = System.Windows.Application.Current?.Dispatcher;
+
+		if ( ( dispatcher != null ) && !dispatcher.CheckAccess() )
+		{
+			dispatcher.InvokeAsync( () => Settings_PropertyChanged( sender, e ) );
+
+			return;
+		}
+
+		foreach ( var module in Modules )
+		{
+			module.NotifySteeringEffectDisabledChanged();
+		}
+
+		// the gate also silences the modules in the preview replay
+		var app = App.Instance;
+
+		if ( app != null )
+		{
+			app.RacingWheel.UpdateAlgorithmPreview = true;
+		}
 	}
 
 	/// <summary>Recompute every knob's value string. WheelForce/MaxForce-scaled displays (strengths, output min/max, compression thresholds) depend on live force settings, so this is called when those change. UI thread only.</summary>
@@ -1005,27 +1052,28 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			return;
 		}
 
-		// generators go into the vibration graph — a flat list with no wiring, node position, or selection
-		if ( descriptor.IsGenerator )
+		if ( ( _graph == null ) || _graph.IsBuiltIn )
 		{
-			if ( ( _vibrationGraph == null ) || _vibrationGraph.IsBuiltIn )
-			{
-				return;
-			}
-
-			_vibrationGraph.Modules.Add( new FFBModuleData( Guid.NewGuid().ToString( "N" ), moduleType )
-			{
-				InputAModuleId = string.Empty,
-				InputBModuleId = string.Empty
-			} );
-
-			CommitStructureChange();
-
 			return;
 		}
 
-		if ( ( _graph == null ) || _graph.IsBuiltIn )
+		// generators are standalone nodes — no wiring or splicing, parked below the existing nodes
+		if ( descriptor.IsGenerator )
 		{
+			var generatorModule = new FFBModuleData( Guid.NewGuid().ToString( "N" ), moduleType )
+			{
+				InputAModuleId = string.Empty,
+				InputBModuleId = string.Empty
+			};
+
+			FFBGraphTopology.PlaceGeneratorNode( _graph, generatorModule );
+
+			_selectedModuleId = generatorModule.ModuleId;   // select the new node once the rebuild recreates the VMs
+
+			_graph.Modules.Insert( _graph.OutputIndex, generatorModule );
+
+			CommitStructureChange();
+
 			return;
 		}
 
@@ -1060,6 +1108,11 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			InputBModuleId = fallbackSourceId
 		};
 
+		// the node is placed relative to the module it splices in after and the first module that was consuming
+		// that output (its new downstream neighbor) — captured here, before the splice repoints those inputs
+		var splicedAfterModule = ( wiredFromSelectedModule && ( descriptor.SignalInputCount >= 1 ) ) ? _graph.Modules.Find( existingModule => existingModule.ModuleId == inputSourceId ) : null;
+		var downstreamModule = ( splicedAfterModule != null ) ? _graph.Modules.Find( existingModule => ( existingModule.InputAModuleId == inputSourceId ) || ( existingModule.InputBModuleId == inputSourceId ) ) : null;
+
 		// splice the new module INTO the selected module's output wire rather than just hanging off it: every
 		// input (A or B, on any downstream module) that was consuming the selected module's output now consumes
 		// the new module's output instead. Only applies when the new module actually took the selected module as
@@ -1081,7 +1134,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			}
 		}
 
-		PlaceNewNode( module );
+		PlaceNewNode( module, splicedAfterModule, downstreamModule );
 
 		_selectedModuleId = module.ModuleId;   // select the new node once the rebuild recreates the VMs
 
@@ -1090,13 +1143,31 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		CommitStructureChange();
 	}
 
-	// Drop a new node just left of the Output node, stepping down until the spot is free so consecutive adds
-	// don't stack on top of each other. An explicit position also keeps NeedsAutoLayout from re-laying-out the
-	// whole graph on the next rebuild.
-	private void PlaceNewNode( FFBModuleData module )
+	// Place a new node relative to the module it was spliced in after: exactly halfway to the downstream
+	// neighbor when there is one, otherwise one column to the right. When the add wasn't spliced (no usable
+	// selection, or a new source), fall back to just left of the Output node, stepping down until the spot is
+	// free so consecutive adds don't stack on top of each other. An explicit position also keeps
+	// NeedsAutoLayout from re-laying-out the whole graph on the next rebuild.
+	private void PlaceNewNode( FFBModuleData module, FFBModuleData? splicedAfterModule, FFBModuleData? downstreamModule )
 	{
 		if ( _graph == null )
 		{
+			return;
+		}
+
+		if ( splicedAfterModule != null )
+		{
+			if ( downstreamModule != null )
+			{
+				module.NodeX = ( splicedAfterModule.NodeX + downstreamModule.NodeX ) / 2f;
+				module.NodeY = ( splicedAfterModule.NodeY + downstreamModule.NodeY ) / 2f;
+			}
+			else
+			{
+				module.NodeX = splicedAfterModule.NodeX + FFBGraphTopology.NodeWidth + FFBGraphTopology.HorizontalGap;
+				module.NodeY = splicedAfterModule.NodeY;
+			}
+
 			return;
 		}
 
@@ -1116,29 +1187,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 	public void RemoveModule( FFBModuleViewModel moduleViewModel )
 	{
-		if ( !moduleViewModel.CanRemove )
-		{
-			return;
-		}
-
-		// generators live in the vibration graph and are never a signal input — no splicing needed
-		if ( moduleViewModel.IsGenerator )
-		{
-			if ( _vibrationGraph == null )
-			{
-				return;
-			}
-
-			_vibrationGraph.Modules.RemoveAll( module => module.ModuleId == moduleViewModel.ModuleId );
-
-			DataContext.DataContext.Instance.Settings.RemoveFFBModuleButtonMappings( [ moduleViewModel.ModuleId ] );
-
-			CommitStructureChange();
-
-			return;
-		}
-
-		if ( _graph == null )
+		if ( !moduleViewModel.CanRemove || ( _graph == null ) )
 		{
 			return;
 		}

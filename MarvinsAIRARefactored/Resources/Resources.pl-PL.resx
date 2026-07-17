@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Strefa przywierania</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Ten efekt jest wyłączony na stronie efektów układu kierowniczego</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Czas trwania impulsu</value>
+  </data>
 </root>

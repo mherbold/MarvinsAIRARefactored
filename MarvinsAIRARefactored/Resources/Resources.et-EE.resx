@@ -2195,4 +2195,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Nakkeala</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>See efekt on keelatud roolimisefektide lehel</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Impulsi kestus</value>
+  </data>
 </root>

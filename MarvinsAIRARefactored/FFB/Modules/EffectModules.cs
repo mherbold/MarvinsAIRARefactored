@@ -185,7 +185,9 @@ public sealed class UndersteerForceModule : FFBModule
 
 	private float _curvePower;
 
-	public override void Reset() { }
+	private EffectInterpolator _effectInterpolator;
+
+	public override void Reset() => _effectInterpolator.Reset();
 
 	protected override void OnValuesChanged()
 	{
@@ -194,9 +196,12 @@ public sealed class UndersteerForceModule : FFBModule
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		if ( ctx.UndersteerEffect > 0f )
+		// the 60 Hz-held effect value is interpolated across the frame's sub-ticks so the force doesn't stairstep
+		var understeerEffect = _effectInterpolator.Interpolate( ctx.UndersteerEffect, ctx.SampleIndex );
+
+		if ( understeerEffect > 0f )
 		{
-			var constantForceTorque = _v[ Strength ] * MathF.Pow( ctx.UndersteerEffect, _curvePower );
+			var constantForceTorque = _v[ Strength ] * MathF.Pow( understeerEffect, _curvePower );
 
 			switch ( (RacingWheel.ConstantForceDirection) (int) _v[ Direction ] )
 			{
@@ -221,7 +226,9 @@ public sealed class OversteerForceModule : FFBModule
 
 	private float _curvePower;
 
-	public override void Reset() { }
+	private EffectInterpolator _effectInterpolator;
+
+	public override void Reset() => _effectInterpolator.Reset();
 
 	protected override void OnValuesChanged()
 	{
@@ -230,9 +237,12 @@ public sealed class OversteerForceModule : FFBModule
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		if ( ctx.OversteerEffect > 0f )
+		// the 60 Hz-held effect value is interpolated across the frame's sub-ticks so the force doesn't stairstep
+		var oversteerEffect = _effectInterpolator.Interpolate( ctx.OversteerEffect, ctx.SampleIndex );
+
+		if ( oversteerEffect > 0f )
 		{
-			var constantForceTorque = _v[ Strength ] * MathF.Pow( ctx.OversteerEffect, _curvePower );
+			var constantForceTorque = _v[ Strength ] * MathF.Pow( oversteerEffect, _curvePower );
 
 			switch ( (RacingWheel.ConstantForceDirection) (int) _v[ Direction ] )
 			{
@@ -257,7 +267,9 @@ public sealed class SeatOfPantsForceModule : FFBModule
 
 	private float _curvePower;
 
-	public override void Reset() { }
+	private EffectInterpolator _effectInterpolator;
+
+	public override void Reset() => _effectInterpolator.Reset();
 
 	protected override void OnValuesChanged()
 	{
@@ -266,9 +278,13 @@ public sealed class SeatOfPantsForceModule : FFBModule
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		if ( ctx.SeatOfPantsEffect != 0f )
+		// the 60 Hz-held signed effect value is interpolated across the frame's sub-ticks so the force doesn't
+		// stairstep; interpolating before CopySign lets sign flips sweep through zero
+		var seatOfPantsEffect = _effectInterpolator.Interpolate( ctx.SeatOfPantsEffect, ctx.SampleIndex );
+
+		if ( seatOfPantsEffect != 0f )
 		{
-			var constantForceTorque = _v[ Strength ] * MathF.CopySign( MathF.Pow( MathF.Abs( ctx.SeatOfPantsEffect ), _curvePower ), ctx.SeatOfPantsEffect );
+			var constantForceTorque = _v[ Strength ] * MathF.CopySign( MathF.Pow( MathF.Abs( seatOfPantsEffect ), _curvePower ), seatOfPantsEffect );
 
 			switch ( (RacingWheel.ConstantForceDirection) (int) _v[ Direction ] )
 			{

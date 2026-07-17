@@ -342,17 +342,22 @@ public static class FFBModuleRegistry
 			// ---- vibration generators: other effects (5) ----
 			Descriptor( ABSVibrationType, 0, () => new ABSVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
-				Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() )
+				Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() ),
+				Knob( "Frequency", 5f, 120f, 50f, 1f, F.Number( 0, "HertzUnits" ) ),
+				Knob( "PulseDuration", 10f, 500f, 50f, 5f, F.Number( 0, "MillisecondsUnits" ) )
 			] ),
 
 			Descriptor( GearChangeVibrationType, 0, () => new GearChangeVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
-				Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() )
+				Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() ),
+				Knob( "Frequency", 5f, 120f, 40f, 1f, F.Number( 0, "HertzUnits" ) )
 			] ),
 
 			Descriptor( ShiftRPMVibrationType, 0, () => new ShiftRPMVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
-				Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() )
+				Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() ),
+				Knob( "Frequency", 5f, 120f, 40f, 1f, F.Number( 0, "HertzUnits" ) ),
+				Knob( "PulseDuration", 10f, 500f, 85f, 5f, F.Number( 0, "MillisecondsUnits" ) )
 			] ),
 
 			Descriptor( RoadTextureType, 0, () => new RoadTextureModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
@@ -386,8 +391,7 @@ public static class FFBModuleRegistry
 		[
 			Choice( "Pattern", 1f, VibrationPatternChoices ),
 			Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() ),
-			Knob( "MinimumFrequency", 1f, 100f, 5f, 1f, F.Number( 0, "HertzUnits" ) ),
-			Knob( "MaximumFrequency", 1f, 100f, 20f, 1f, F.Number( 0, "HertzUnits" ) ),
+			Knob( "Frequency", 1f, 100f, 20f, 1f, F.Number( 0, "HertzUnits" ) ),
 			Knob( "Curve", -1f, 1f, 0f, 0.05f, F.WithOff( F.Percent() ) )
 		];
 	}

@@ -561,19 +561,6 @@ public partial class RacingWheelPage : UserControl
 		DeleteGraph_MairaButton.Disabled = isBuiltIn;
 		ResetGraph_MairaButton.Visibility = isBuiltIn ? Visibility.Visible : Visibility.Collapsed;
 
-		// same treatment for the vibration graph selector
-		VibrationGraph_MairaComboBox.ItemsSource = BuildGraphSelectorItems( settings.RacingWheelVibrationGraphs );
-		VibrationGraph_MairaComboBox.SelectedValue = settings.RacingWheelSelectedVibrationGraphName;
-
-		var vibrationIsBuiltIn = settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var vibrationGraph ) && vibrationGraph.IsBuiltIn;
-
-		RenameVibrationGraph_MairaButton.Disabled = vibrationIsBuiltIn;
-		DeleteVibrationGraph_MairaButton.Disabled = vibrationIsBuiltIn;
-		ResetVibrationGraph_MairaButton.Visibility = vibrationIsBuiltIn ? Visibility.Visible : Visibility.Collapsed;
-
-		// a built-in vibration graph's structure is locked — no adding generator modules
-		AddGeneratorModule_MairaButton.Disabled = vibrationIsBuiltIn;
-
 		_refreshingGraphSelector = false;
 
 		// Rebuild the module cards so their (localized) module names and setting labels refresh — this runs from
@@ -721,18 +708,13 @@ public partial class RacingWheelPage : UserControl
 
 		if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) )
 		{
-			ExportGraph( graph, FFBGraphExportFile.FFBGraphType );
+			ExportGraph( graph );
 		}
 	}
 
-	private void ImportGraph_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		ImportGraph( FFBGraphExportFile.FFBGraphType );
-	}
-
-	// Shared by the FFB and vibration export buttons: pick a file, write the graph. The suggested file name is
-	// the graph name with any filesystem-invalid characters stripped.
-	private static void ExportGraph( FFBGraph graph, string graphType )
+	// Pick a file, write the graph. The suggested file name is the graph name with any filesystem-invalid
+	// characters stripped.
+	private static void ExportGraph( FFBGraph graph )
 	{
 		var localization = MarvinsAIRARefactored.DataContext.DataContext.Instance.Localization;
 
@@ -754,7 +736,7 @@ public partial class RacingWheelPage : UserControl
 
 		try
 		{
-			FFBGraphPort.Export( graph, graphType, dialog.FileName );
+			FFBGraphPort.Export( graph, dialog.FileName );
 		}
 		catch ( Exception exception )
 		{
@@ -762,12 +744,12 @@ public partial class RacingWheelPage : UserControl
 		}
 	}
 
-	// Shared by the FFB and vibration import buttons: pick a file and validate + load it. A graph the user does not
-	// already have is added as a new user graph (unique name, fresh module ids, the file's GraphId kept so a later
-	// re-import is recognized). A graph they already have (same GraphId) opens the import-settings dialog, letting
-	// them apply the file's module settings onto the existing graph (current context / baseline / both) or import a
-	// separate copy. Validation failures show their own localized message; anything unexpected shows the generic one.
-	private void ImportGraph( string graphType )
+	// Pick a file and validate + load it. A graph the user does not already have is added as a new user graph
+	// (unique name, fresh module ids, the file's GraphId kept so a later re-import is recognized). A graph they
+	// already have (same GraphId) opens the import-settings dialog, letting them apply the file's module settings
+	// onto the existing graph (current context / baseline / both) or import a separate copy. Validation failures
+	// show their own localized message; anything unexpected shows the generic one.
+	private void ImportGraph_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;
 
@@ -786,13 +768,11 @@ public partial class RacingWheelPage : UserControl
 			return;
 		}
 
-		var isVibration = graphType == FFBGraphExportFile.VibrationGraphType;
-
 		FFBGraph graph;
 
 		try
 		{
-			graph = FFBGraphPort.Import( dialog.FileName, graphType );
+			graph = FFBGraphPort.Import( dialog.FileName );
 		}
 		catch ( FFBGraphPort.ImportException importException )
 		{
@@ -809,48 +789,34 @@ public partial class RacingWheelPage : UserControl
 
 		try
 		{
-			var matchingGraphName = settings.FindMatchingGraphName( graph, isVibration );
+			var matchingGraphName = settings.FindMatchingGraphName( graph );
 
 			if ( matchingGraphName == null )
 			{
-				if ( isVibration )
-				{
-					settings.ImportVibrationGraph( graph );
-				}
-				else
-				{
-					settings.ImportFFBGraph( graph );
-				}
+				settings.ImportFFBGraph( graph );
 			}
 			else
 			{
-				var ( contextAvailable, contextLabel ) = settings.GetGraphImportContextInfo( isVibration );
+				var ( contextAvailable, contextLabel ) = settings.GetGraphImportContextInfo();
 
 				var choice = ImportGraphSettingsWindow.ShowModal( matchingGraphName, contextLabel, contextAvailable );
 
 				switch ( choice )
 				{
 					case ImportGraphSettingsWindow.Choice.UpdateCurrentContext:
-						settings.ApplyImportedGraphValues( matchingGraphName, graph, isVibration, toCurrentContext: true, toBaseline: false );
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, toCurrentContext: true, toBaseline: false );
 						break;
 
 					case ImportGraphSettingsWindow.Choice.UpdateBaseline:
-						settings.ApplyImportedGraphValues( matchingGraphName, graph, isVibration, toCurrentContext: false, toBaseline: true );
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, toCurrentContext: false, toBaseline: true );
 						break;
 
 					case ImportGraphSettingsWindow.Choice.UpdateBoth:
-						settings.ApplyImportedGraphValues( matchingGraphName, graph, isVibration, toCurrentContext: true, toBaseline: true );
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, toCurrentContext: true, toBaseline: true );
 						break;
 
 					case ImportGraphSettingsWindow.Choice.NewCopy:
-						if ( isVibration )
-						{
-							settings.ImportVibrationGraph( graph, asNewCopy: true );
-						}
-						else
-						{
-							settings.ImportFFBGraph( graph, asNewCopy: true );
-						}
+						settings.ImportFFBGraph( graph, asNewCopy: true );
 						break;
 
 					case ImportGraphSettingsWindow.Choice.Cancel:
@@ -870,182 +836,11 @@ public partial class RacingWheelPage : UserControl
 		UpdateFFBGraphOptions();
 	}
 
-	private void VibrationGraph_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )
-	{
-		if ( _refreshingGraphSelector )
-		{
-			return;
-		}
-
-		if ( VibrationGraph_MairaComboBox.SelectedValue is not string graphName )
-		{
-			return;
-		}
-
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
-		if ( graphName == settings.RacingWheelSelectedVibrationGraphName )
-		{
-			return;
-		}
-
-		settings.SelectVibrationGraph( graphName );
-
-		App.Instance!.SettingsFile.QueueForSerialization = true;
-
-		UpdateFFBGraphOptions();
-	}
-
-	private void NewVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance!;
-
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
-		var window = new NewFFBGraphWindow { Owner = app.MainWindow };
-
-		window.ShowDialog();
-
-		if ( !window.Confirmed )
-		{
-			return;
-		}
-
-		var name = window.GraphName.Trim();
-
-		if ( ( name == string.Empty ) || settings.RacingWheelVibrationGraphs.ContainsKey( name ) )
-		{
-			return;
-		}
-
-		settings.CreateVibrationGraph( name, window.CopyFromCurrent );
-
-		app.SettingsFile.QueueForSerialization = true;
-
-		UpdateFFBGraphOptions();
-	}
-
-	private void RenameVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance!;
-
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
-		var currentName = settings.RacingWheelSelectedVibrationGraphName;
-
-		if ( settings.RacingWheelVibrationGraphs.TryGetValue( currentName, out var currentGraph ) && currentGraph.IsBuiltIn )
-		{
-			return;
-		}
-
-		var window = new RenameControllerProfileWindow( currentName ) { Owner = app.MainWindow };
-
-		window.ShowDialog();
-
-		if ( !window.Confirmed )
-		{
-			return;
-		}
-
-		var newName = window.ProfileName.Trim();
-
-		if ( ( newName == string.Empty ) || ( newName == currentName ) || settings.RacingWheelVibrationGraphs.ContainsKey( newName ) )
-		{
-			return;
-		}
-
-		settings.RenameVibrationGraph( currentName, newName );
-
-		app.SettingsFile.QueueForSerialization = true;
-
-		UpdateFFBGraphOptions();
-	}
-
-	private void DeleteVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance!;
-
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
-		var currentName = settings.RacingWheelSelectedVibrationGraphName;
-
-		if ( settings.RacingWheelVibrationGraphs.TryGetValue( currentName, out var currentGraph ) && currentGraph.IsBuiltIn )
-		{
-			return;
-		}
-
-		var window = new DeleteControllerProfileWindow( currentName ) { Owner = app.MainWindow };
-
-		window.ShowDialog();
-
-		if ( !window.Confirmed )
-		{
-			return;
-		}
-
-		settings.DeleteVibrationGraph( currentName );
-
-		app.SettingsFile.QueueForSerialization = true;
-
-		UpdateFFBGraphOptions();
-	}
-
-	private void ResetVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var app = App.Instance!;
-
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
-		settings.ResetBuiltInVibrationGraph( settings.RacingWheelSelectedVibrationGraphName );
-
-		app.SettingsFile.QueueForSerialization = true;
-
-		UpdateFFBGraphOptions();
-	}
-
-	private void ExportVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
-		if ( settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var graph ) )
-		{
-			ExportGraph( graph, FFBGraphExportFile.VibrationGraphType );
-		}
-	}
-
-	private void ImportVibrationGraph_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		ImportGraph( FFBGraphExportFile.VibrationGraphType );
-	}
-
-
-	private void RemoveModule_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
-		{
-			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.RemoveModule( moduleViewModel );
-		}
-	}
-
 	private void TestModule_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) )
 		{
 			MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel.ToggleTestActive( moduleViewModel );
-		}
-	}
-
-	private void AddGeneratorModule_MairaButton_Click( object sender, RoutedEventArgs e )
-	{
-		var viewModel = MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel;
-
-		var window = new AddFFBModuleWindow( viewModel.AddableGeneratorModuleTypes ) { Owner = App.Instance!.MainWindow };
-
-		window.ShowDialog();
-
-		if ( window.SelectedModuleType != null )
-		{
-			viewModel.AddModule( window.SelectedModuleType );
 		}
 	}
 

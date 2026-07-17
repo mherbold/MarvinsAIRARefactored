@@ -8,7 +8,7 @@ using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 namespace MarvinsAIRARefactored.Windows;
 
 /// <summary>
-/// Modal module-type picker for the FFB graph and vibration effects sections. Clicking a type adds it right
+/// Modal module-type picker for the FFB graph editor's add-module button. Clicking a type adds it right
 /// away (the caller reads <see cref="SelectedModuleType"/> after ShowDialog); closing the window any other way
 /// (title-bar X, Escape) adds nothing. The item list is the same keyed list the old add-module dropdowns bound
 /// to — rows whose Key starts with an underscore are non-selectable category headers.

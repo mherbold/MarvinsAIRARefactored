@@ -2195,4 +2195,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Saķeres zona</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Šis efekts ir atspējots stūres efektu lapā</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Impulsa ilgums</value>
+  </data>
 </root>

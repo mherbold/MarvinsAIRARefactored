@@ -2195,4 +2195,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>고착 영역</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>이 효과는 스티어링 효과 페이지에서 비활성화되어 있습니다</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>펄스 지속 시간</value>
+  </data>
 </root>

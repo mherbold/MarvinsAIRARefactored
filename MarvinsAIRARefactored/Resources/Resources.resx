@@ -2195,4 +2195,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Stick region</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>This effect is disabled on the steering effects page</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Pulse duration</value>
+  </data>
 </root>

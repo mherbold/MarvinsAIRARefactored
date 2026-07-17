@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Зона залипания</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Этот эффект отключен на странице «Эффекты руля»</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Длительность импульса</value>
+  </data>
 </root>

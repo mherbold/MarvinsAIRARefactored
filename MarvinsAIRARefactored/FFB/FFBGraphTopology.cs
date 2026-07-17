@@ -10,19 +10,14 @@ namespace MarvinsAIRARefactored.FFB;
 public static class FFBGraphTopology
 {
 	// node box metrics shared between the auto-layout and the FFBGraphEditor control
-	public const float NodeWidth = 170f;
-	public const float NodeHeight = 54f;
-	public const float HorizontalGap = 70f;
-	public const float VerticalGap = 30f;
-	public const float LayoutMargin = 20f;
+	public const float NodeWidth = 192f;
+	public const float NodeHeight = 64f;
+	public const float HorizontalGap = 32f;
+	public const float VerticalGap = 32f;
+	public const float LayoutMargin = 32f;
 
-	// snap-to-grid cell size — half of the node box height plus 10 px of padding
-	public const float GridSize = ( NodeHeight + 10f ) / 2f;
-
-	// the grid is offset from the canvas origin so snapped nodes never sit flush on the top/left edges. The
-	// vertical home sits a few px lower than the horizontal so snapped nodes line up on the intended row baseline.
-	public const float GridOriginX = 10f;
-	public const float GridOriginY = 16f;
+	// snap-to-grid cell size — the grid is anchored at the canvas origin (0,0)
+	public const float GridSize = 16f;
 
 	/// <summary>
 	/// The set of modules that consume <paramref name="moduleId"/>'s output, directly or transitively, following
@@ -215,31 +210,27 @@ public static class FFBGraphTopology
 		}
 	}
 
-	/// <summary>Snap a single coordinate to the nearest grid point about the given axis origin (used live while
-	/// dragging with snap enabled). Pass <see cref="GridOriginX"/> for X and <see cref="GridOriginY"/> for Y.</summary>
-	public static double Snap( double value, double origin )
+	/// <summary>Snap a single coordinate to the nearest grid point (used live while dragging with snap
+	/// enabled). The grid is anchored at 0, which is also the canvas's position floor.</summary>
+	public static double Snap( double value )
 	{
-		return Math.Max( origin, Math.Round( ( value - origin ) / GridSize ) * GridSize + origin );
+		return Math.Max( 0.0, Math.Round( value / GridSize ) * GridSize );
 	}
 
 	/// <summary>Snap every canvas node's upper-left corner to the nearest grid point (the snap-to-grid toggle
-	/// was just switched on). Generators are skipped — they never appear on the node canvas.</summary>
+	/// was just switched on).</summary>
 	public static void SnapAllToGrid( FFBGraph graph )
 	{
 		foreach ( var module in graph.Modules )
 		{
-			if ( FFBModuleRegistry.TryGet( module.ModuleType )?.IsGenerator == true )
-			{
-				continue;
-			}
-
-			module.NodeX = (float) Snap( module.NodeX, GridOriginX );
-			module.NodeY = (float) Snap( module.NodeY, GridOriginY );
+			module.NodeX = (float) Snap( module.NodeX );
+			module.NodeY = (float) Snap( module.NodeY );
 		}
 	}
 
 	/// <summary>True when every non-generator module still sits at 0,0 — i.e. the graph has never been laid out
-	/// in the node editor (legacy data, a freshly migrated built-in, or a reset built-in).</summary>
+	/// in the node editor (legacy data, a freshly migrated built-in, or a reset built-in). The wired modules
+	/// alone decide; <see cref="ApplyAutoLayout"/> then places the generators too.</summary>
 	public static bool NeedsAutoLayout( FFBGraph graph )
 	{
 		foreach ( var module in graph.Modules )
@@ -258,18 +249,65 @@ public static class FFBGraphTopology
 		return true;
 	}
 
+	// standalone vibration generator nodes are parked in their own band below the wired layout, this many per row
+	private const int GeneratorColumns = 4;
+
+	/// <summary>The Y where the standalone generator band starts: one double gap below the lowest positioned
+	/// wired node (positions of other generators do not move the band — they live inside it).</summary>
+	private static float GeneratorBandY( FFBGraph graph )
+	{
+		var bandY = LayoutMargin;
+
+		foreach ( var module in graph.Modules )
+		{
+			if ( FFBModuleRegistry.TryGet( module.ModuleType )?.IsGenerator == true )
+			{
+				continue;
+			}
+
+			if ( ( module.NodeX == 0f ) && ( module.NodeY == 0f ) )
+			{
+				continue;
+			}
+
+			bandY = Math.Max( bandY, module.NodeY + NodeHeight + 2f * VerticalGap );
+		}
+
+		return bandY;
+	}
+
+	/// <summary>Park a newly added generator node on the first free slot of the standalone band below the wired
+	/// nodes (each band row holds <see cref="GeneratorColumns"/> nodes before the next row starts).</summary>
+	public static void PlaceGeneratorNode( FFBGraph graph, FFBModuleData generatorModule )
+	{
+		var bandY = GeneratorBandY( graph );
+
+		for ( var slot = 0; ; slot++ )
+		{
+			var x = LayoutMargin + ( slot % GeneratorColumns ) * ( NodeWidth + HorizontalGap );
+			var y = bandY + ( slot / GeneratorColumns ) * ( NodeHeight + VerticalGap );
+
+			if ( !graph.Modules.Exists( m => ( m != generatorModule ) && ( Math.Abs( m.NodeX - x ) < 10f ) && ( Math.Abs( m.NodeY - y ) < 10f ) ) )
+			{
+				generatorModule.NodeX = x;
+				generatorModule.NodeY = y;
+
+				return;
+			}
+		}
+	}
+
 	/// <summary>
 	/// Layered left-to-right auto-layout: each non-generator module's column is its longest path from the sources
-	/// (sources leftmost, Output forced rightmost), and modules sharing a column are stacked vertically, centered
-	/// against the tallest column. Generators are skipped — they never appear on the node canvas.
+	/// (sources leftmost, the Output one column right of its own parent — a deeper parallel branch may extend past
+	/// it), and modules sharing a column are stacked vertically, centered against the tallest column. The vibration
+	/// generators are standalone nodes — they line up on their own band below the wired layout.
 	/// </summary>
 	public static void ApplyAutoLayout( FFBGraph graph )
 	{
 		// depth per module — modules appear after their inputs in list order (SortTopologically guarantees it),
 		// so a single forward pass resolves every longest path
 		var depthById = new Dictionary<string, int>( StringComparer.Ordinal );
-
-		var maxDepth = 0;
 
 		foreach ( var module in graph.Modules )
 		{
@@ -300,17 +338,6 @@ public static class FFBGraphTopology
 			}
 
 			depthById[ module.ModuleId ] = depth;
-
-			maxDepth = Math.Max( maxDepth, depth );
-		}
-
-		// the Output module always gets its own rightmost column, even when a parallel branch runs deeper
-		foreach ( var module in graph.Modules )
-		{
-			if ( FFBModuleRegistry.TryGet( module.ModuleType )?.IsOutput == true )
-			{
-				depthById[ module.ModuleId ] = maxDepth + 1;
-			}
 		}
 
 		// stack each column top-down, centering shorter columns against the tallest one
@@ -339,6 +366,23 @@ public static class FFBGraphTopology
 
 			module.NodeX = LayoutMargin + depth * ( NodeWidth + HorizontalGap );
 			module.NodeY = LayoutMargin + columnOffset + row * ( NodeHeight + VerticalGap );
+		}
+
+		// the generators line up on the standalone band below the freshly laid-out wired nodes
+		var bandY = GeneratorBandY( graph );
+		var generatorSlot = 0;
+
+		foreach ( var module in graph.Modules )
+		{
+			if ( FFBModuleRegistry.TryGet( module.ModuleType )?.IsGenerator != true )
+			{
+				continue;
+			}
+
+			module.NodeX = LayoutMargin + ( generatorSlot % GeneratorColumns ) * ( NodeWidth + HorizontalGap );
+			module.NodeY = bandY + ( generatorSlot / GeneratorColumns ) * ( NodeHeight + VerticalGap );
+
+			generatorSlot++;
 		}
 	}
 }

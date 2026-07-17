@@ -18,8 +18,9 @@ using MarvinsAIRARefactored.FFB;
 namespace MarvinsAIRARefactored.Controls;
 
 /// <summary>
-/// Node-graph editor for the FFB graph. Nodes are the non-generator module view-models (positions live in the
-/// model via <see cref="FFBModuleViewModel.NodeX"/>/<see cref="FFBModuleViewModel.NodeY"/>); wires are bezier
+/// Node-graph editor for the FFB graph. Nodes are the module view-models — the vibration generator modules
+/// included, rendered as standalone nodes with no connectors (positions live in the model via
+/// <see cref="FFBModuleViewModel.NodeX"/>/<see cref="FFBModuleViewModel.NodeY"/>); wires are bezier
 /// paths recomputed from those positions, so no visual-tree measuring is needed. Dragging a node writes positions
 /// through the view-model and queues one settings serialization when the drag ends — node positions are
 /// presentation state and never rebuild an engine. Pressing on (or near) a connector dot starts a wire drag
@@ -35,14 +36,30 @@ namespace MarvinsAIRARefactored.Controls;
 /// </summary>
 public partial class FFBGraphEditor : UserControl
 {
-	// geometry — must match the node DataTemplate in FFBGraphEditor.xaml
-	private const double NodeWidth = FFBGraphTopology.NodeWidth;
-	private const double NodeHeight = FFBGraphTopology.NodeHeight;
-	private const double ConnectorInset = 5.0;
-	private const double DualInputAOffsetY = 18.0;
-	private const double DualInputBOffsetY = 36.0;
+	// Geometry shared with the node DataTemplate: the template consumes these via x:Static (node box size,
+	// connector dot size, connector margins), so the XAML visuals and the wire/hit-test math here derive
+	// from one set of numbers and can never drift apart. NodeWidth/NodeHeight come from FFBGraphTopology
+	// (the layout/snap source of truth); the connector metrics are editor-local.
+	public const double NodeWidth = FFBGraphTopology.NodeWidth;
+	public const double NodeHeight = FFBGraphTopology.NodeHeight;
 
-	private const double MinCanvasHeight = 320.0;
+	// The visible border fills the whole layout box (so a snapped node sits flush on the grid), and the
+	// connector dot centers sit exactly ON the box edges — each dot hangs half outside via a negative
+	// half-diameter margin.
+	public const double ConnectorDiameter = 10.0;
+	private const double ConnectorRadius = ConnectorDiameter / 2.0;
+
+	// connector center Y positions for the dual-input layout (input A upper-left, input B lower-left),
+	// derived from the node height so they stay at the thirds when it changes
+	private const double DualInputAOffsetY = NodeHeight / 3.0;
+	private const double DualInputBOffsetY = NodeHeight * 2.0 / 3.0;
+
+	// the template margins that realize those center positions for the edge-aligned 10px dots
+	public static readonly Thickness SingleInputConnectorMargin = new( -ConnectorRadius, 0.0, 0.0, 0.0 );
+	public static readonly Thickness DualInputAConnectorMargin = new( -ConnectorRadius, DualInputAOffsetY - ConnectorRadius, 0.0, 0.0 );
+	public static readonly Thickness DualInputBConnectorMargin = new( -ConnectorRadius, 0.0, 0.0, NodeHeight - DualInputBOffsetY - ConnectorRadius );
+	public static readonly Thickness OutputConnectorMargin = new( 0.0, 0.0, -ConnectorRadius, 0.0 );
+
 	private const double MaxNodeX = 8000.0;
 	private const double MaxNodeY = 3000.0;
 	private const double DragThreshold = 3.0;
@@ -80,9 +97,22 @@ public partial class FFBGraphEditor : UserControl
 	private double _panStartPanX = 0.0;
 	private double _panStartPanY = 0.0;
 
+	private bool _canvasRefreshQueued = false;
+
 	public FFBGraphEditor()
 	{
 		InitializeComponent();
+
+		// the snap-grid dot tile derives from the topology constants, so changing GridSize moves the dots and
+		// the snapping together: one tile per grid cell, dot at the tile's center, and the viewport shifted by
+		// half a cell so the dot centers land exactly on the origin-anchored snap points
+		var gridSize = (double) FFBGraphTopology.GridSize;
+		var halfGridSize = gridSize / 2.0;
+
+		GridDots_Brush.Viewbox = new Rect( 0.0, 0.0, gridSize, gridSize );
+		GridDots_Brush.Viewport = new Rect( -halfGridSize, -halfGridSize, gridSize, gridSize );
+
+		GridDot_EllipseGeometry.Center = new Point( halfGridSize, halfGridSize );
 
 		Loaded += FFBGraphEditor_Loaded;
 		Unloaded += FFBGraphEditor_Unloaded;
@@ -101,9 +131,9 @@ public partial class FFBGraphEditor : UserControl
 
 		_viewModel = MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel;
 
-		Nodes_ItemsControl.ItemsSource = _viewModel.MainModules;
+		Nodes_ItemsControl.ItemsSource = _viewModel.Modules;
 
-		_viewModel.MainModules.CollectionChanged += MainModules_CollectionChanged;
+		_viewModel.Modules.CollectionChanged += Modules_CollectionChanged;
 		_viewModel.Wires.CollectionChanged += Wires_CollectionChanged;
 		_viewModel.PropertyChanged += ViewModel_PropertyChanged;
 
@@ -121,7 +151,7 @@ public partial class FFBGraphEditor : UserControl
 			return;
 		}
 
-		_viewModel.MainModules.CollectionChanged -= MainModules_CollectionChanged;
+		_viewModel.Modules.CollectionChanged -= Modules_CollectionChanged;
 		_viewModel.Wires.CollectionChanged -= Wires_CollectionChanged;
 		_viewModel.PropertyChanged -= ViewModel_PropertyChanged;
 
@@ -132,23 +162,46 @@ public partial class FFBGraphEditor : UserControl
 		_viewModel = null;
 	}
 
-	private void MainModules_CollectionChanged( object? sender, NotifyCollectionChangedEventArgs e )
+	private void Modules_CollectionChanged( object? sender, NotifyCollectionChangedEventArgs e )
 	{
 		ResubscribeModules();
 		RedrawWires();
-		UpdateCanvasSize();
 		UpdateStructureLockVisuals();
+
+		// the VM rebuilds the collection item-by-item on every structure edit (Clear + one Add per node);
+		// re-clamping the pan against those partial node sets yanks the view toward whichever nodes happen to
+		// exist mid-rebuild, so defer one size/clamp pass until the rebuild has finished and the set is complete
+		if ( !_canvasRefreshQueued )
+		{
+			_canvasRefreshQueued = true;
+
+			Dispatcher.BeginInvoke( () =>
+			{
+				_canvasRefreshQueued = false;
+
+				UpdateCanvasSize();
+			}, DispatcherPriority.Background );
+		}
 	}
 
-	// Built-in graphs are structurally locked — adding modules and re-laying-out are disabled (node/wire drags
-	// are blocked in the mouse handlers). The VM tree is rebuilt on every graph switch, so the collection-changed
-	// event is a reliable refresh point.
+	// Built-in graphs are structurally locked — adding/removing modules and re-laying-out are disabled (node/wire
+	// drags are blocked in the mouse handlers). The VM tree is rebuilt on every graph switch, so the
+	// collection-changed event is a reliable refresh point.
 	private void UpdateStructureLockVisuals()
 	{
 		var isBuiltIn = _viewModel?.IsFFBGraphBuiltIn == true;
 
 		AddModule_MairaButton.Disabled = isBuiltIn;
 		AutoLayout_MairaButton.Disabled = isBuiltIn;
+
+		UpdateRemoveModuleButtonState();
+	}
+
+	// The remove button follows the selection: disabled when nothing is selected, when the Output module is
+	// selected (it is fixed), or when the graph is a built-in (CanRemove folds all three together).
+	private void UpdateRemoveModuleButtonState()
+	{
+		RemoveModule_MairaButton.Disabled = _viewModel?.SelectedModule?.CanRemove != true;
 	}
 
 	private void Wires_CollectionChanged( object? sender, NotifyCollectionChangedEventArgs e )
@@ -161,6 +214,8 @@ public partial class FFBGraphEditor : UserControl
 		if ( e.PropertyName == nameof( FFBGraphViewModel.SelectedModule ) )
 		{
 			RedrawWires();   // restroke — wires touching the selected node are highlighted
+
+			UpdateRemoveModuleButtonState();
 		}
 	}
 
@@ -174,7 +229,7 @@ public partial class FFBGraphEditor : UserControl
 			return;
 		}
 
-		foreach ( var module in _viewModel.MainModules )
+		foreach ( var module in _viewModel.Modules )
 		{
 			module.PropertyChanged += Module_PropertyChanged;
 
@@ -319,14 +374,14 @@ public partial class FFBGraphEditor : UserControl
 		_dragMoved = true;
 
 		// the canvas scrolls horizontally and grows to fit, so nodes may be dragged past the viewport edge; the
-		// lower bound keeps a small margin so nodes never sit flush on the canvas's top/left edges
-		var nodeX = Math.Clamp( _dragStartNodeX + deltaX, FFBGraphTopology.GridOriginX, MaxNodeX );
-		var nodeY = Math.Clamp( _dragStartNodeY + deltaY, FFBGraphTopology.GridOriginY, MaxNodeY );
+		// canvas origin is the position floor
+		var nodeX = Math.Clamp( _dragStartNodeX + deltaX, 0.0, MaxNodeX );
+		var nodeY = Math.Clamp( _dragStartNodeY + deltaY, 0.0, MaxNodeY );
 
 		if ( MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings.RacingWheelFFBGraphSnapToGrid )
 		{
-			nodeX = FFBGraphTopology.Snap( nodeX, FFBGraphTopology.GridOriginX );
-			nodeY = FFBGraphTopology.Snap( nodeY, FFBGraphTopology.GridOriginY );
+			nodeX = FFBGraphTopology.Snap( nodeX );
+			nodeY = FFBGraphTopology.Snap( nodeY );
 		}
 
 		_dragModule.NodeX = nodeX;
@@ -447,6 +502,14 @@ public partial class FFBGraphEditor : UserControl
 		}
 	}
 
+	private void RemoveModule_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( _viewModel?.SelectedModule is { } selectedModule )
+		{
+			_viewModel.RemoveModule( selectedModule );
+		}
+	}
+
 	private void AutoLayout_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		_viewModel?.AutoLayout();
@@ -504,19 +567,19 @@ public partial class FFBGraphEditor : UserControl
 			}
 		}
 
-		if ( !module.IsOutput )
+		if ( module.HasOutputConnector )
 		{
-			Consider( ConnectorKind.Output, NodeWidth - ConnectorInset, NodeHeight / 2.0 );
+			Consider( ConnectorKind.Output, NodeWidth, NodeHeight / 2.0 );
 		}
 
 		if ( module.ShowInputA )
 		{
-			Consider( ConnectorKind.InputA, ConnectorInset, module.ShowInputB ? DualInputAOffsetY : NodeHeight / 2.0 );
+			Consider( ConnectorKind.InputA, 0.0, module.ShowInputB ? DualInputAOffsetY : NodeHeight / 2.0 );
 		}
 
 		if ( module.ShowInputB )
 		{
-			Consider( ConnectorKind.InputB, ConnectorInset, DualInputBOffsetY );
+			Consider( ConnectorKind.InputB, 0.0, DualInputBOffsetY );
 		}
 
 		return best;
@@ -524,14 +587,14 @@ public partial class FFBGraphEditor : UserControl
 
 	private static Point OutputConnectorPoint( FFBModuleViewModel module )
 	{
-		return new Point( module.NodeX + NodeWidth - ConnectorInset, module.NodeY + NodeHeight / 2.0 );
+		return new Point( module.NodeX + NodeWidth, module.NodeY + NodeHeight / 2.0 );
 	}
 
 	private static Point InputConnectorPoint( FFBModuleViewModel module, bool isInputB )
 	{
 		var inputOffsetY = module.ShowInputB ? ( isInputB ? DualInputBOffsetY : DualInputAOffsetY ) : NodeHeight / 2.0;
 
-		return new Point( module.NodeX + ConnectorInset, module.NodeY + inputOffsetY );
+		return new Point( module.NodeX, module.NodeY + inputOffsetY );
 	}
 
 	// the wire-drop eligibility rule is the target's EligibleInputs list — the exact same set the settings-panel
@@ -560,7 +623,7 @@ public partial class FFBGraphEditor : UserControl
 			return best;
 		}
 
-		foreach ( var module in _viewModel.MainModules )
+		foreach ( var module in _viewModel.Modules )
 		{
 			if ( !IsEligibleInput( module, sourceModule.ModuleId ) )
 			{
@@ -600,9 +663,10 @@ public partial class FFBGraphEditor : UserControl
 			return best;
 		}
 
-		foreach ( var module in _viewModel.MainModules )
+		foreach ( var module in _viewModel.Modules )
 		{
-			if ( module.IsOutput || !IsEligibleInput( targetModule, module.ModuleId ) )
+			// the eligible-input list already excludes the Output module and the generators
+			if ( !IsEligibleInput( targetModule, module.ModuleId ) )
 			{
 				continue;
 			}
@@ -764,39 +828,43 @@ public partial class FFBGraphEditor : UserControl
 
 			var pathFigure = new PathFigure { StartPoint = start };
 
-			if ( end.X - start.X < 20.0 )
+			if ( end.X <= start.X )
 			{
-				// backward wire (the consumer sits left of its source): a plain bezier would cross over both node
-				// boxes, so route it through an invisible waypoint halfway between the modules — through the
-				// vertical gap between them when there is one, or wrapped underneath both when they share a row
-				var sourceTop = source.NodeY;
-				var sourceBottom = source.NodeY + NodeHeight;
-				var targetTop = target.NodeY;
-				var targetBottom = target.NodeY + NodeHeight;
+				// backward wire (the consumer's left edge is flush with or left of its source's right edge): a
+				// plain bezier would cross over both node boxes, so route it through two invisible waypoints, one
+				// vertically in line with each connector dot, at the vertical halfway point between the two dots —
+				// but never more than GridSize + NodeHeight / 2 from its own dot (one grid cell past the node edge)
+				var midY = ( start.Y + end.Y ) / 2.0;
+				var maxWaypointOffset = FFBGraphTopology.GridSize + NodeHeight / 2.0;
 
-				double channelY;
-
-				if ( targetTop > sourceBottom + 10.0 )
-				{
-					channelY = ( sourceBottom + targetTop ) / 2.0;
-				}
-				else if ( sourceTop > targetBottom + 10.0 )
-				{
-					channelY = ( targetBottom + sourceTop ) / 2.0;
-				}
-				else
-				{
-					channelY = Math.Max( sourceBottom, targetBottom ) + 25.0;
-				}
-
-				var waypoint = new Point( ( start.X + end.X ) / 2.0, channelY );
+				var outputWaypoint = new Point( start.X, Math.Clamp( midY, start.Y - maxWaypointOffset, start.Y + maxWaypointOffset ) );
+				var inputWaypoint = new Point( end.X, Math.Clamp( midY, end.Y - maxWaypointOffset, end.Y + maxWaypointOffset ) );
 
 				const double stub = 60.0;
 
-				// two cubics with matching tangents at the waypoint: out of the source heading right, sweep into
-				// the channel heading left, then hook back into the target input from the left
-				pathFigure.Segments.Add( new BezierSegment( new Point( start.X + stub, start.Y ), new Point( waypoint.X + stub, channelY ), waypoint, isStroked: true ) );
-				pathFigure.Segments.Add( new BezierSegment( new Point( waypoint.X - stub, channelY ), new Point( end.X - stub, end.Y ), end, isStroked: true ) );
+				if ( Point.Subtract( inputWaypoint, outputWaypoint ).Length < 1.0 )
+				{
+					// flush nodes close enough that both waypoints land on the same spot — collapse to one so the
+					// degenerate middle segment doesn't draw a wiggle
+					pathFigure.Segments.Add( new BezierSegment( new Point( start.X + stub, start.Y ), new Point( outputWaypoint.X + stub, outputWaypoint.Y ), outputWaypoint, isStroked: true ) );
+					pathFigure.Segments.Add( new BezierSegment( new Point( outputWaypoint.X - stub, outputWaypoint.Y ), new Point( end.X - stub, end.Y ), end, isStroked: true ) );
+				}
+				else
+				{
+					// three cubics with matching tangents at each waypoint: out of the source heading right, turn
+					// through the output-side waypoint aiming at the input-side waypoint, run straight across, then
+					// hook back into the target input from the left — the tangent at each waypoint points along the
+					// line between the two waypoints, so the middle segment is straight and the turns are smooth
+					var waypointDirection = inputWaypoint - outputWaypoint;
+
+					waypointDirection.Normalize();
+
+					var waypointStub = waypointDirection * stub;
+
+					pathFigure.Segments.Add( new BezierSegment( new Point( start.X + stub, start.Y ), outputWaypoint - waypointStub, outputWaypoint, isStroked: true ) );
+					pathFigure.Segments.Add( new BezierSegment( outputWaypoint + waypointStub, inputWaypoint - waypointStub, inputWaypoint, isStroked: true ) );
+					pathFigure.Segments.Add( new BezierSegment( inputWaypoint + waypointStub, new Point( end.X - stub, end.Y ), end, isStroked: true ) );
+				}
 			}
 			else
 			{
@@ -838,7 +906,7 @@ public partial class FFBGraphEditor : UserControl
 			return null;
 		}
 
-		foreach ( var module in _viewModel.MainModules )
+		foreach ( var module in _viewModel.Modules )
 		{
 			if ( module.ModuleId == moduleId )
 			{
@@ -856,16 +924,17 @@ public partial class FFBGraphEditor : UserControl
 
 		if ( _viewModel != null )
 		{
-			foreach ( var module in _viewModel.MainModules )
+			foreach ( var module in _viewModel.Modules )
 			{
 				maxNodeX = Math.Max( maxNodeX, module.NodeX );
 				maxNodeY = Math.Max( maxNodeY, module.NodeY );
 			}
 		}
 
-		// grow the canvas to the node extents so every node has room to render and hit-test
+		// size the canvas to the node extents plus one grid cell of margin, so the grid-dot field always ends
+		// LayoutMargin past the outermost nodes instead of stretching to the (usually larger) viewport
 		LayoutRoot_Grid.MinWidth = maxNodeX + NodeWidth + FFBGraphTopology.LayoutMargin;
-		LayoutRoot_Grid.MinHeight = Math.Max( MinCanvasHeight, maxNodeY + NodeHeight + FFBGraphTopology.LayoutMargin );
+		LayoutRoot_Grid.MinHeight = maxNodeY + NodeHeight + FFBGraphTopology.LayoutMargin;
 
 		// a moving node moves the pan limits with it — but not mid-drag, where re-clamping would shove the content
 		// out from under the cursor and fight the drag (the drag's own auto-pan clamps instead, and so does drag end)
@@ -986,6 +1055,8 @@ public partial class FFBGraphEditor : UserControl
 
 	private void Viewport_Canvas_SizeChanged( object sender, SizeChangedEventArgs e )
 	{
+		// the pan limits depend on the viewport size — re-clamp so the graph stays on screen after a resize
+		UpdateCanvasSize();
 		ClampPan();
 	}
 
@@ -997,7 +1068,7 @@ public partial class FFBGraphEditor : UserControl
 	/// </summary>
 	private void ClampPan()
 	{
-		if ( ( _viewModel == null ) || ( _viewModel.MainModules.Count == 0 ) )
+		if ( ( _viewModel == null ) || ( _viewModel.Modules.Count == 0 ) )
 		{
 			return;
 		}
@@ -1015,7 +1086,7 @@ public partial class FFBGraphEditor : UserControl
 		var minNodeY = double.MaxValue;
 		var maxNodeY = double.MinValue;
 
-		foreach ( var module in _viewModel.MainModules )
+		foreach ( var module in _viewModel.Modules )
 		{
 			minNodeX = Math.Min( minNodeX, module.NodeX );
 			maxNodeX = Math.Max( maxNodeX, module.NodeX );

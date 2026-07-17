@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Tartunta-alue</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Tämä tehoste on poistettu käytöstä Ohjaustehosteet-sivulla</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Pulssin kesto</value>
+  </data>
 </root>

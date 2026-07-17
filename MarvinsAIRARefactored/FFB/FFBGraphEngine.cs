@@ -42,22 +42,17 @@ public sealed class FFBGraphEngine
 	public FFBGraph? Graph { get; private set; }
 
 	/// <summary>
-	/// Rebuild the engine from a graph model, plus the optional vibration graph whose generator modules are
-	/// appended after the main chain (generators have no signal inputs and only feed the vibration bus, so
-	/// their position in the evaluation order is irrelevant). UI thread only; allocates the module and signal
-	/// arrays. A module may only reference an EARLIER module's output (or a source); forward/dangling references
-	/// fall back to the 360 Hz source, which also covers reorder/remove edges.
+	/// Rebuild the engine from a graph model (generator modules live in the same graph now — they have no signal
+	/// inputs and only feed the vibration bus, so their position in the evaluation order is irrelevant). UI
+	/// thread only; allocates the module and signal arrays. A module may only reference an EARLIER module's
+	/// output (or a source); forward/dangling references fall back to the 360 Hz source, which also covers
+	/// reorder/remove edges.
 	/// </summary>
-	public void Rebuild( FFBGraph graph, FFBGraph? vibrationGraph = null )
+	public void Rebuild( FFBGraph graph )
 	{
 		Graph = graph;
 
-		var allModules = new List<FFBModuleData>( graph.Modules );
-
-		if ( vibrationGraph != null )
-		{
-			allModules.AddRange( vibrationGraph.Modules );
-		}
+		var allModules = graph.Modules;
 
 		var moduleCount = allModules.Count;
 
@@ -267,12 +262,11 @@ public sealed class FFBGraphEngine
 
 			if ( module.IsGenerator )
 			{
-				signals[ i ] = 0f;
+				// the generator's output lands in its signal slot too, so the preview can tap a selected
+				// generator node — but it never feeds another module's input, only the vibration bus
+				signals[ i ] = module.Enabled ? module.Process( in ctx, inputA, inputB ) : 0f;
 
-				if ( module.Enabled )
-				{
-					VibrationOutput += module.Process( in ctx, inputA, inputB );
-				}
+				VibrationOutput += signals[ i ];
 			}
 			else if ( module.Enabled )
 			{

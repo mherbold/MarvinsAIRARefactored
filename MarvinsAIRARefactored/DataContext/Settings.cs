@@ -410,13 +410,12 @@ public class Settings : INotifyPropertyChanged
 		DataContext.Instance.RacingWheelGraphViewModel.RebuildFromCurrentSelection();
 	}
 
-	// Syncs the CURRENT graphs' per-module setting values to/from the per-context store, mirroring UpdateSettings.
-	// The selected FFB graph syncs on the graph-selection scope (RacingWheelSelectedFFBGraphNameContextSwitches)
-	// and the selected vibration graph on its own scope — each scope covers both which graph is selected and its
-	// module values. Write path: copy each selected graph's module SettingValues into that scope's context
-	// snapshot. Read path (context changed): copy the snapshots back into the graphs, then rebuild the live engine
-	// (subsumes a plain state reset). Composite keys are "{moduleId}/{settingKey}" — module-id scoped, so both
-	// graphs share the RacingWheelFFBGraphModuleValues store without collisions; only keys a module actually
+	// Syncs the CURRENT graph's per-module setting values to/from the per-context store, mirroring UpdateSettings.
+	// The selected FFB graph (which carries the vibration generator modules too) syncs on the graph-selection
+	// scope (RacingWheelSelectedFFBGraphNameContextSwitches) — that one scope covers both which graph is selected
+	// and its module values. Write path: copy the selected graph's module SettingValues into that scope's context
+	// snapshot. Read path (context changed): copy the snapshot back into the graph, then rebuild the live engine
+	// (subsumes a plain state reset). Composite keys are "{moduleId}/{settingKey}"; only keys a module actually
 	// carries are synced (so DSP modules with no baked Enabled stay at their always-on default). Called at the end
 	// of UpdateSettings; module-edit setters (the graph editor VM) also call it directly with true.
 	public void SyncFFBGraphModuleValues( bool updateContextSettings )
@@ -433,13 +432,6 @@ public class Settings : INotifyPropertyChanged
 		if ( RacingWheelFFBGraphs.TryGetValue( RacingWheelSelectedFFBGraphName, out var graph ) )
 		{
 			SyncGraphModuleValues( graph, RacingWheelSelectedFFBGraphNameContextSwitches, updateContextSettings );
-
-			syncedAny = true;
-		}
-
-		if ( RacingWheelVibrationGraphs.TryGetValue( RacingWheelSelectedVibrationGraphName, out var vibrationGraph ) )
-		{
-			SyncGraphModuleValues( vibrationGraph, RacingWheelSelectedVibrationGraphNameContextSwitches, updateContextSettings );
 
 			syncedAny = true;
 		}
@@ -578,19 +570,17 @@ public class Settings : INotifyPropertyChanged
 		SyncFFBGraphModuleValues( true );
 	}
 
-	// Returns the name of an existing graph (of the matching kind) that shares the imported graph's stable GraphId,
-	// or null when there is no match (including legacy files with no GraphId). A match means "the user already has
-	// this graph", so the import becomes an update to the live module settings rather than a new copy.
-	public string? FindMatchingGraphName( FFBGraph imported, bool isVibration )
+	// Returns the name of an existing graph that shares the imported graph's stable GraphId, or null when there is
+	// no match (including legacy files with no GraphId). A match means "the user already has this graph", so the
+	// import becomes an update to the live module settings rather than a new copy.
+	public string? FindMatchingGraphName( FFBGraph imported )
 	{
 		if ( string.IsNullOrEmpty( imported.GraphId ) )
 		{
 			return null;
 		}
 
-		var graphs = isVibration ? RacingWheelVibrationGraphs : RacingWheelFFBGraphs;
-
-		foreach ( var pair in graphs )
+		foreach ( var pair in RacingWheelFFBGraphs )
 		{
 			if ( pair.Value.GraphId == imported.GraphId )
 			{
@@ -605,9 +595,9 @@ public class Settings : INotifyPropertyChanged
 	// dialog to label and enable that option. available is false when the live context collapses onto the baseline
 	// (the sim isn't running / hasn't sent session info, or none of the scope's dimensions resolve), in which case
 	// updating the current context and updating the baseline would be the same thing.
-	public (bool available, string label) GetGraphImportContextInfo( bool isVibration )
+	public (bool available, string label) GetGraphImportContextInfo()
 	{
-		var scope = isVibration ? RacingWheelSelectedVibrationGraphNameContextSwitches : RacingWheelSelectedFFBGraphNameContextSwitches;
+		var scope = RacingWheelSelectedFFBGraphNameContextSwitches;
 
 		var currentContext = new Context( scope );
 		var baselineContext = BuildBaselineContext( scope );
@@ -622,16 +612,14 @@ public class Settings : INotifyPropertyChanged
 	// onto the existing graph's nodes by module id first (built-in-derived graphs share deterministic ids) and then
 	// by module type + position (user graphs get fresh ids on every import, so a shared graph's nodes line up by
 	// position). Nodes with no counterpart are skipped - structural divergence degrades gracefully.
-	public void ApplyImportedGraphValues( string existingGraphName, FFBGraph imported, bool isVibration, bool toCurrentContext, bool toBaseline )
+	public void ApplyImportedGraphValues( string existingGraphName, FFBGraph imported, bool toCurrentContext, bool toBaseline )
 	{
-		var graphs = isVibration ? RacingWheelVibrationGraphs : RacingWheelFFBGraphs;
-
-		if ( !graphs.TryGetValue( existingGraphName, out var localGraph ) )
+		if ( !RacingWheelFFBGraphs.TryGetValue( existingGraphName, out var localGraph ) )
 		{
 			return;
 		}
 
-		var scope = isVibration ? RacingWheelSelectedVibrationGraphNameContextSwitches : RacingWheelSelectedFFBGraphNameContextSwitches;
+		var scope = RacingWheelSelectedFFBGraphNameContextSwitches;
 
 		// persist any in-flight edits into the current context before we start mutating buckets
 		SyncFFBGraphModuleValues( true );
@@ -660,18 +648,9 @@ public class Settings : INotifyPropertyChanged
 
 		if ( affectsCurrentContext )
 		{
-			var selectedName = isVibration ? RacingWheelSelectedVibrationGraphName : RacingWheelSelectedFFBGraphName;
-
-			if ( selectedName != existingGraphName )
+			if ( RacingWheelSelectedFFBGraphName != existingGraphName )
 			{
-				if ( isVibration )
-				{
-					SelectVibrationGraph( existingGraphName );
-				}
-				else
-				{
-					SelectFFBGraph( existingGraphName );
-				}
+				SelectFFBGraph( existingGraphName );
 			}
 			else
 			{
@@ -862,7 +841,7 @@ public class Settings : INotifyPropertyChanged
 			return;
 		}
 
-		RemoveGraphAndPruneValues( RacingWheelFFBGraphs, name, isVibrationGraph: false );
+		RemoveGraphAndPruneValues( name );
 
 		if ( !RacingWheelFFBGraphs.ContainsKey( RacingWheelSelectedFFBGraphName ) )
 		{
@@ -916,11 +895,11 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	// Shared by delete and the launch-time built-in purge: removes the graph, prunes its now-orphaned
-	// per-context value keys and knob button mappings, and blanks any per-context selection of it. FFB graphs
-	// keep the shared well-known ids (sources 60/360, Output) since every FFB graph's values ride those.
-	private void RemoveGraphAndPruneValues( SerializableDictionary<string, FFBGraph> graphs, string name, bool isVibrationGraph )
+	// per-context value keys and knob button mappings, and blanks any per-context selection of it. The shared
+	// well-known ids (sources 60/360, Output) are kept since every graph's values ride those.
+	private void RemoveGraphAndPruneValues( string name )
 	{
-		if ( !graphs.TryGetValue( name, out var graph ) )
+		if ( !RacingWheelFFBGraphs.TryGetValue( name, out var graph ) )
 		{
 			return;
 		}
@@ -929,26 +908,19 @@ public class Settings : INotifyPropertyChanged
 
 		foreach ( var module in graph.Modules )
 		{
-			if ( isVibrationGraph || module.ModuleId is not ( FFBGraph.Source60ModuleId or FFBGraph.Source360ModuleId or FFBGraph.OutputModuleId ) )
+			if ( module.ModuleId is not ( FFBGraph.Source60ModuleId or FFBGraph.Source360ModuleId or FFBGraph.OutputModuleId ) )
 			{
 				orphanedModuleIds.Add( module.ModuleId );
 			}
 		}
 
-		graphs.Remove( name );
+		RacingWheelFFBGraphs.Remove( name );
 
 		PruneContextModuleValues( orphanedModuleIds );
 
 		foreach ( var contextSettings in ContextSettingsDictionary.Values )
 		{
-			if ( isVibrationGraph )
-			{
-				if ( contextSettings.RacingWheelSelectedVibrationGraphName == name )
-				{
-					contextSettings.RacingWheelSelectedVibrationGraphName = string.Empty;
-				}
-			}
-			else if ( contextSettings.RacingWheelSelectedFFBGraphName == name )
+			if ( contextSettings.RacingWheelSelectedFFBGraphName == name )
 			{
 				contextSettings.RacingWheelSelectedFFBGraphName = string.Empty;
 			}
@@ -1007,152 +979,6 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	// ---- vibration graph management (mirrors the FFB graph management above; the vibration graphs hold the
-	// generator modules and are selected/managed independently) --------------------------------------------
-
-	public void SelectVibrationGraph( string name )
-	{
-		if ( ( name == RacingWheelSelectedVibrationGraphName ) || !RacingWheelVibrationGraphs.ContainsKey( name ) )
-		{
-			return;
-		}
-
-		// Persist the outgoing graph's values into this context while it is still selected.
-		SyncFFBGraphModuleValues( true );
-
-		// Change the selection (same re-entrancy dance as SelectFFBGraph — the guard blocks the paired value
-		// write-back so the incoming graph's saved context values are not clobbered by its baseline).
-		_updatingFFBGraphModuleValues = true;
-		RacingWheelSelectedVibrationGraphName = name;
-		_updatingFFBGraphModuleValues = false;
-
-		// Load the newly selected graph's values for this context and rebuild the engine + editor.
-		SyncFFBGraphModuleValues( false );
-
-		App.Instance!.SettingsFile.QueueForSerialization = true;
-	}
-
-	public void CreateVibrationGraph( string name, bool copyFromCurrent )
-	{
-		SyncFFBGraphModuleValues( true );
-
-		FFBGraph graph;
-
-		if ( copyFromCurrent && RacingWheelVibrationGraphs.TryGetValue( RacingWheelSelectedVibrationGraphName, out var current ) )
-		{
-			graph = current.Clone();
-
-			// fresh module ids so the copy's per-context values do not collide with the source graph's (a
-			// vibration graph has no fixed source/output ids, so every module id is regenerated)
-			RegenerateUserGraphModuleIds( graph );
-		}
-		else
-		{
-			// an empty vibration graph really is empty — no sources, no Output; generators are added at will
-			graph = new FFBGraph();
-		}
-
-		graph.Name = name;
-		graph.IsBuiltIn = false;
-
-		RacingWheelVibrationGraphs[ name ] = graph;
-
-		RacingWheelSelectedVibrationGraphName = name;
-
-		SyncFFBGraphModuleValues( true );
-	}
-
-	// Import counterpart for vibration graphs (see ImportFFBGraph — same unique-name + fresh-ids + GraphId treatment).
-	public void ImportVibrationGraph( FFBGraph graph, bool asNewCopy = false )
-	{
-		SyncFFBGraphModuleValues( true );
-
-		graph.IsBuiltIn = false;
-
-		if ( asNewCopy || string.IsNullOrEmpty( graph.GraphId ) )
-		{
-			graph.GraphId = Guid.NewGuid().ToString( "N" );
-		}
-
-		graph.Name = UniqueGraphName( RacingWheelVibrationGraphs, graph.Name );
-
-		RegenerateUserGraphModuleIds( graph );
-
-		RacingWheelVibrationGraphs[ graph.Name ] = graph;
-
-		RacingWheelSelectedVibrationGraphName = graph.Name;
-
-		SyncFFBGraphModuleValues( true );
-	}
-
-	public void RenameVibrationGraph( string oldName, string newName )
-	{
-		if ( ( oldName == newName ) || !RacingWheelVibrationGraphs.TryGetValue( oldName, out var graph ) || graph.IsBuiltIn || RacingWheelVibrationGraphs.ContainsKey( newName ) )
-		{
-			return;
-		}
-
-		graph.Name = newName;
-
-		RacingWheelVibrationGraphs.Remove( oldName );
-		RacingWheelVibrationGraphs[ newName ] = graph;
-
-		foreach ( var contextSettings in ContextSettingsDictionary.Values )
-		{
-			if ( contextSettings.RacingWheelSelectedVibrationGraphName == oldName )
-			{
-				contextSettings.RacingWheelSelectedVibrationGraphName = newName;
-			}
-		}
-
-		if ( RacingWheelSelectedVibrationGraphName == oldName )
-		{
-			RacingWheelSelectedVibrationGraphName = newName;
-		}
-	}
-
-	public void DeleteVibrationGraph( string name )
-	{
-		if ( !RacingWheelVibrationGraphs.TryGetValue( name, out var graph ) || graph.IsBuiltIn )
-		{
-			return;
-		}
-
-		// every module id is graph-local (no shared well-known ids), so all of them orphan on delete
-		RemoveGraphAndPruneValues( RacingWheelVibrationGraphs, name, isVibrationGraph: true );
-
-		if ( !RacingWheelVibrationGraphs.ContainsKey( RacingWheelSelectedVibrationGraphName ) )
-		{
-			RacingWheelSelectedVibrationGraphName = FallbackGraphName( RacingWheelVibrationGraphs );
-		}
-
-		SyncFFBGraphModuleValues( false );
-	}
-
-	// Vibration counterpart of ResetBuiltInFFBGraph — vibration module ids are graph-local, so every one of the
-	// graph's per-context overrides is cleared.
-	public void ResetBuiltInVibrationGraph( string name )
-	{
-		var freshGraph = FFBBuiltInGraphs.CreateGraph( FFBGraphExportFile.VibrationGraphType, name );
-
-		if ( freshGraph == null )
-		{
-			return;
-		}
-
-		PruneContextModuleValues( new HashSet<string>( freshGraph.Modules.Select( module => module.ModuleId ), StringComparer.Ordinal ) );
-
-		RacingWheelVibrationGraphs[ name ] = freshGraph;
-
-		if ( RacingWheelSelectedVibrationGraphName == name )
-		{
-			App.Instance!.RacingWheel.RebuildLiveEngine();
-			App.Instance!.RacingWheel.UpdateAlgorithmPreview = true;
-
-			RebuildGraphEditorViewModel();
-		}
-	}
-
 	// Runs every launch (from SettingsFile.Initialize): syncs the stored built-in graphs against the .mairagraph
 	// files shipped inside the app (see FFBBuiltInGraphs) and repairs the selections. A stored built-in is
 	// (re)created whenever its shipped file's content hash differs from the recorded one — so built-in graphs
@@ -1167,15 +993,13 @@ public class Settings : INotifyPropertyChanged
 		var changed = false;
 
 		var shippedFFBGraphNames = new HashSet<string>( StringComparer.Ordinal );
-		var shippedVibrationGraphNames = new HashSet<string>( StringComparer.Ordinal );
 
 		foreach ( var builtInGraph in FFBBuiltInGraphs.All )
 		{
-			var isVibrationGraph = builtInGraph.GraphType == FFBGraphExportFile.VibrationGraphType;
-			var graphs = isVibrationGraph ? RacingWheelVibrationGraphs : RacingWheelFFBGraphs;
+			var graphs = RacingWheelFFBGraphs;
 			var name = builtInGraph.Graph.Name;
 
-			( isVibrationGraph ? shippedVibrationGraphNames : shippedFFBGraphNames ).Add( name );
+			shippedFFBGraphNames.Add( name );
 
 			// a user graph occupying a shipped built-in's name is renamed out of the way rather than clobbered
 			if ( graphs.TryGetValue( name, out var occupant ) && !occupant.IsBuiltIn )
@@ -1189,27 +1013,15 @@ public class Settings : INotifyPropertyChanged
 
 				foreach ( var contextSettings in ContextSettingsDictionary.Values )
 				{
-					if ( isVibrationGraph )
-					{
-						if ( contextSettings.RacingWheelSelectedVibrationGraphName == name )
-						{
-							contextSettings.RacingWheelSelectedVibrationGraphName = newName;
-						}
-					}
-					else if ( contextSettings.RacingWheelSelectedFFBGraphName == name )
+					if ( contextSettings.RacingWheelSelectedFFBGraphName == name )
 					{
 						contextSettings.RacingWheelSelectedFFBGraphName = newName;
 					}
 				}
 
-				if ( !isVibrationGraph && ( RacingWheelSelectedFFBGraphName == name ) )
+				if ( RacingWheelSelectedFFBGraphName == name )
 				{
 					RacingWheelSelectedFFBGraphName = newName;
-				}
-
-				if ( isVibrationGraph && ( RacingWheelSelectedVibrationGraphName == name ) )
-				{
-					RacingWheelSelectedVibrationGraphName = newName;
 				}
 
 				app.Logger.WriteLine( $"[Settings] Renamed user graph '{name}' to '{newName}' (its name now belongs to a built-in graph)" );
@@ -1255,30 +1067,22 @@ public class Settings : INotifyPropertyChanged
 		// purge stored built-ins whose shipped file is gone (retired between releases)
 		foreach ( var name in RacingWheelFFBGraphs.Where( pair => pair.Value.IsBuiltIn && !shippedFFBGraphNames.Contains( pair.Key ) ).Select( pair => pair.Key ).ToList() )
 		{
-			RemoveGraphAndPruneValues( RacingWheelFFBGraphs, name, isVibrationGraph: false );
+			RemoveGraphAndPruneValues( name );
 
 			app.Logger.WriteLine( $"[Settings] Purged retired built-in FFB graph '{name}'" );
 
 			changed = true;
 		}
 
-		foreach ( var name in RacingWheelVibrationGraphs.Where( pair => pair.Value.IsBuiltIn && !shippedVibrationGraphNames.Contains( pair.Key ) ).Select( pair => pair.Key ).ToList() )
-		{
-			RemoveGraphAndPruneValues( RacingWheelVibrationGraphs, name, isVibrationGraph: true );
-
-			app.Logger.WriteLine( $"[Settings] Purged retired built-in vibration graph '{name}'" );
-
-			changed = true;
-		}
-
-		// drop hash records for graphs no longer shipped
+		// drop hash records for graphs no longer shipped (this also retires the old separate vibration graphs'
+		// "Vibration/..." records — the vibration modules live inside the FFB graphs now)
 		foreach ( var hashKey in RacingWheelBuiltInGraphHashes.Keys.Where( key =>
 		{
 			var separatorIndex = key.IndexOf( '/' );
 			var graphType = separatorIndex >= 0 ? key[ ..separatorIndex ] : string.Empty;
 			var graphName = separatorIndex >= 0 ? key[ ( separatorIndex + 1 ).. ] : key;
 
-			return ( graphType == FFBGraphExportFile.VibrationGraphType ) ? !shippedVibrationGraphNames.Contains( graphName ) : !shippedFFBGraphNames.Contains( graphName );
+			return ( graphType != FFBGraphExportFile.FFBGraphType ) || !shippedFFBGraphNames.Contains( graphName );
 		} ).ToList() )
 		{
 			RacingWheelBuiltInGraphHashes.Remove( hashKey );
@@ -1286,17 +1090,10 @@ public class Settings : INotifyPropertyChanged
 			changed = true;
 		}
 
-		// repair the selections if empty or dangling (fresh installs, purged graphs)
+		// repair the selection if empty or dangling (fresh installs, purged graphs)
 		if ( string.IsNullOrEmpty( RacingWheelSelectedFFBGraphName ) || !RacingWheelFFBGraphs.ContainsKey( RacingWheelSelectedFFBGraphName ) )
 		{
 			RacingWheelSelectedFFBGraphName = FallbackGraphName( RacingWheelFFBGraphs );
-
-			changed = true;
-		}
-
-		if ( string.IsNullOrEmpty( RacingWheelSelectedVibrationGraphName ) || !RacingWheelVibrationGraphs.ContainsKey( RacingWheelSelectedVibrationGraphName ) )
-		{
-			RacingWheelSelectedVibrationGraphName = FallbackGraphName( RacingWheelVibrationGraphs );
 
 			changed = true;
 		}
@@ -1313,7 +1110,7 @@ public class Settings : INotifyPropertyChanged
 	{
 		var assignedAny = false;
 
-		foreach ( var graph in RacingWheelFFBGraphs.Values.Concat( RacingWheelVibrationGraphs.Values ) )
+		foreach ( var graph in RacingWheelFFBGraphs.Values )
 		{
 			if ( string.IsNullOrEmpty( graph.GraphId ) )
 			{
@@ -2016,49 +1813,6 @@ public class Settings : INotifyPropertyChanged
 	// When a shipped file's hash differs, the stored built-in graph is refreshed at launch (see
 	// EnsureBuiltInFFBGraphsInitialized) — so built-in graphs updated during development reach users automatically.
 	public SerializableDictionary<string, string> RacingWheelBuiltInGraphHashes { get; set; } = [];
-
-	#endregion
-
-	#region Racing wheel - Vibration graph
-
-	// The vibration effects (generator modules) live in their own named graphs, managed independently of the FFB
-	// graphs (schema v23). A vibration graph is a flat list of generator modules — no sources, no Output; the
-	// engine merges the selected FFB graph and the selected vibration graph at rebuild time. Per-module values
-	// share the per-context RacingWheelFFBGraphModuleValues snapshot (composite keys are module-id scoped) but
-	// sync on THIS selection's own scope.
-	public SerializableDictionary<string, FFBGraph> RacingWheelVibrationGraphs { get; set; } = [];
-
-	private string _racingWheelSelectedVibrationGraphName = "";
-
-	public string RacingWheelSelectedVibrationGraphName
-	{
-		get => _racingWheelSelectedVibrationGraphName;
-
-		set
-		{
-			if ( value != _racingWheelSelectedVibrationGraphName )
-			{
-				_racingWheelSelectedVibrationGraphName = value;
-
-				OnPropertyChanged();
-			}
-
-			// Swap the live engine to the newly selected vibration graph (same suppression rules as the FFB
-			// graph selection setter above).
-			if ( !SuppressUpdatingOfContextSettings )
-			{
-				var app = App.Instance!;
-
-				app.RacingWheel.RebuildLiveEngine();
-				app.RacingWheel.UpdateAlgorithmPreview = true;
-
-				RebuildGraphEditorViewModel();
-			}
-		}
-	}
-
-	// One scope for the whole vibration graph feature: which vibration graph is selected AND its per-module values.
-	public ContextSwitches RacingWheelSelectedVibrationGraphNameContextSwitches { get; set; } = new( false, true, false, false, false );
 
 	#endregion
 

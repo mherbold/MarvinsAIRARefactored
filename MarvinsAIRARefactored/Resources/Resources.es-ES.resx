@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Zona de adherencia</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Este efecto está desactivado en la página de efectos de dirección</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Duración del pulso</value>
+  </data>
 </root>

@@ -59,11 +59,6 @@ public class ContextSettings
 	public string RacingWheelSelectedFFBGraphName { get; set; } = "";
 	public FFBGraphValues RacingWheelFFBGraphModuleValues { get; set; } = [];
 
-	// The vibration graph (the generator modules) is selected independently of the FFB graph, on its own scope.
-	// Its module values share RacingWheelFFBGraphModuleValues above (composite keys are module-id scoped, so the
-	// two graphs' values never collide).
-	public string RacingWheelSelectedVibrationGraphName { get; set; } = "";
-
 	#endregion
 
 	#region Steering effects - Understeer

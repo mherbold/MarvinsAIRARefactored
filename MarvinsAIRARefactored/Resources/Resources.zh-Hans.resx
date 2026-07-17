@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>粘着区域</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>此效果已在转向效果页面中禁用</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>脉冲持续时间</value>
+  </data>
 </root>

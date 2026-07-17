@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Yapışma bölgesi</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Bu efekt direksiyon efektleri sayfasında devre dışı bırakılmıştır</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Darbe süresi</value>
+  </data>
 </root>

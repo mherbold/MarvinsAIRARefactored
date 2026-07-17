@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Klæbeområde</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Denne effekt er deaktiveret på siden med styrings effekter</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Pulsvarighed</value>
+  </data>
 </root>

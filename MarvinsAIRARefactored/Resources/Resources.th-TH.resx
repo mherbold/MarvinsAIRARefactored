@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>ช่วงยึดเกาะ</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>เอฟเฟกต์นี้ถูกปิดใช้งานในหน้าเอฟเฟกต์พวงมาลัย</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>ระยะเวลาพัลส์</value>
+  </data>
 </root>

@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Hechtbereik</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Dit effect is uitgeschakeld op de pagina met stuureffecten</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Pulsduur</value>
+  </data>
 </root>

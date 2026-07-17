@@ -2195,4 +2195,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Зона на залепване</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Този ефект е деактивиран на страницата с ефекти на управлението</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Продължителност на импулса</value>
+  </data>
 </root>

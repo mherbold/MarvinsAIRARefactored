@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>אזור הידבקות</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>אפקט זה מושבת בדף אפקטי ההיגוי</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>משך הפולס</value>
+  </data>
 </root>

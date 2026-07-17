@@ -74,7 +74,6 @@
                         <ColumnDefinition Width="Auto" />
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <controls:MairaSwitch Grid.Column="0"
@@ -82,13 +81,28 @@
                                           VerticalAlignment="Center"
                                           Visibility="{Binding CanToggleEnabled, Converter={StaticResource BoolToVisibility}}" />
 
-                    <TextBlock Grid.Column="1"
-                               Text="{Binding DisplayName}"
-                               Style="{StaticResource MairaTextBlockStyle}"
-                               FontSize="30" />
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
 
-                    <!-- session-only test toggle (event-driven effects) — always the leftmost icon in this corner;
-                         normal when off, MAIRA orange icon when testing (same convention as the snap-to-grid button) -->
+                        <TextBlock Text="{Binding DisplayName}"
+                                   Style="{StaticResource MairaTextBlockStyle}"
+                                   FontSize="30" />
+
+                        <!-- shown while this module's effect is switched off on the steering effects page (the
+                             module is inert until it is re-enabled there) -->
+                        <TextBlock Text="{Binding SteeringEffectDisabledNotice}"
+                                   Style="{StaticResource MairaTextBlockStyle}"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource Brush.Accent}"
+                                   VerticalAlignment="Center"
+                                   Margin="20,0,0,0"
+                                   Visibility="{Binding SteeringEffectDisabled, Converter={StaticResource BoolToVisibility}}" />
+
+                    </StackPanel>
+
+                    <!-- session-only test toggle (event-driven effects) — normal when off, MAIRA orange icon
+                         when testing (same convention as the snap-to-grid button). Removing a module happens
+                         via the minus button on the node graph's corner toolbar. -->
                     <controls:MairaButton Grid.Column="2"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                           IsSmall="True"
@@ -98,14 +112,6 @@
                                           Click="TestModule_MairaButton_Click"
                                           Visibility="{Binding CanTest, Converter={StaticResource BoolToVisibility}}" />
 
-                    <controls:MairaButton Grid.Column="3"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
-                                          IsSmall="True"
-                                          Tag="{Binding}"
-                                          Margin="10,0,0,0"
-                                          Click="RemoveModule_MairaButton_Click"
-                                          Visibility="{Binding CanRemove, Converter={StaticResource BoolToVisibility}}" />
-
                 </Grid>
 
                 <ItemsControl ItemsSource="{Binding SettingsPresentation}"
@@ -113,7 +119,8 @@
                               ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <UniformGrid Columns="3" />
+                            <!-- column count comes from the view-model constant so the BreakRow spacer math always matches -->
+                            <UniformGrid Columns="{x:Static ffb:FFBModuleViewModel.SettingsPanelColumns}" />
                         </ItemsPanelTemplate>
                     </ItemsControl.ItemsPanel>
                 </ItemsControl>
@@ -743,98 +750,6 @@
                 <!-- Selected module settings (the one card for whichever node is selected on the graph above) -->
                 <ContentControl Content="{Binding RacingWheelGraphViewModel.SelectedModule}"
                                 ContentTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
-
-            </StackPanel>
-
-        </controls:MairaGroupBox>
-
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[VibrationEffects]}"
-                                HelpTopic="advanced/racing-wheel/#vibration-effects"
-                                Tag="Complex">
-
-            <StackPanel>
-
-                <!-- Vibration graph selection + management (mirrors the FFB graph row above — the vibration
-                     effects live in their own named graphs, managed independently) -->
-                <Grid Margin="0,0,0,40">
-
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="Auto" />
-                    </Grid.ColumnDefinitions>
-
-                    <controls:MairaComboBox x:Name="VibrationGraph_MairaComboBox"
-                                            Grid.Column="0"
-                                            Label="{Binding Localization[Graph]}"
-                                            ContextSwitches="{Binding Settings.RacingWheelSelectedVibrationGraphNameContextSwitches}"
-                                            SelectionChanged="VibrationGraph_MairaComboBox_SelectionChanged" />
-
-                    <controls:MairaButton Grid.Column="1"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
-                                          IsSmall="True"
-                                          Margin="10,0,0,0"
-                                          Click="NewVibrationGraph_MairaButton_Click"
-                                          VerticalAlignment="Bottom" />
-
-                    <controls:MairaButton Grid.Column="2"
-                                          x:Name="RenameVibrationGraph_MairaButton"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
-                                          IsSmall="True"
-                                          Margin="10,0,0,0"
-                                          Click="RenameVibrationGraph_MairaButton_Click"
-                                          VerticalAlignment="Bottom" />
-
-                    <controls:MairaButton Grid.Column="3"
-                                          x:Name="DeleteVibrationGraph_MairaButton"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
-                                          IsSmall="True"
-                                          Margin="10,0,0,0"
-                                          Click="DeleteVibrationGraph_MairaButton_Click"
-                                          VerticalAlignment="Bottom" />
-
-                    <controls:MairaButton Grid.Column="4"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/export.png"
-                                          IsSmall="True"
-                                          Margin="10,0,0,0"
-                                          Click="ExportVibrationGraph_MairaButton_Click"
-                                          VerticalAlignment="Bottom" />
-
-                    <controls:MairaButton Grid.Column="5"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/import.png"
-                                          IsSmall="True"
-                                          Margin="10,0,0,0"
-                                          Click="ImportVibrationGraph_MairaButton_Click"
-                                          VerticalAlignment="Bottom" />
-
-                    <controls:MairaButton Grid.Column="6"
-                                          x:Name="ResetVibrationGraph_MairaButton"
-                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/reset.png"
-                                          IsSmall="True"
-                                          Margin="10,0,0,0"
-                                          Click="ResetVibrationGraph_MairaButton_Click"
-                                          VerticalAlignment="Bottom" />
-
-                </Grid>
-
-                <!-- Add module (pops the module picker — there is no node canvas here to host the button).
-                     Disabled while a built-in vibration graph is selected (structure is locked). -->
-                <controls:MairaButton x:Name="AddGeneratorModule_MairaButton"
-                                      LabelOnRight="True"
-                                      IsSmall="True"
-                                      Label="{Binding Localization[AddModule]}"
-                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
-                                      HorizontalAlignment="Left"
-                                      Margin="0,0,0,40"
-                                      Click="AddGeneratorModule_MairaButton_Click" />
-
-                <!-- Vibration / texture generator cards (no wiring — they feed the vibration bus directly) -->
-                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.GeneratorModules}"
-                              ItemTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
 
             </StackPanel>
 

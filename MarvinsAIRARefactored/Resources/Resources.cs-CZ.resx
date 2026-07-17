@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Oblast přilnutí</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Tento efekt je vypnut na stránce Efekty FFB</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Délka pulzu</value>
+  </data>
 </root>

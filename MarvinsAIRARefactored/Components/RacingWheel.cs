@@ -289,10 +289,10 @@ public class RacingWheel
 	}
 
 	/// <summary>
-	/// Rebuild the live FFB graph engine from the currently selected FFB graph plus the currently selected
-	/// vibration graph (the engine merges both) and swap the volatile reference. UI thread only (structure
-	/// edits / graph selection / per-context reload). Tolerant of a missing selection or empty graph dictionary
-	/// (e.g. during settings load before the built-ins are ensured) — leaves the current engine in place.
+	/// Rebuild the live FFB graph engine from the currently selected FFB graph (which carries the vibration
+	/// generator modules too) and swap the volatile reference. UI thread only (structure edits / graph
+	/// selection / per-context reload). Tolerant of a missing selection or empty graph dictionary (e.g. during
+	/// settings load before the built-ins are ensured) — leaves the current engine in place.
 	/// </summary>
 	public void RebuildLiveEngine()
 	{
@@ -300,11 +300,9 @@ public class RacingWheel
 
 		if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var graph ) )
 		{
-			settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var vibrationGraph );
-
 			var engine = new FFBGraphEngine();
 
-			engine.Rebuild( graph, vibrationGraph );
+			engine.Rebuild( graph );
 
 			_liveEngine = engine;
 		}
@@ -971,9 +969,13 @@ public class RacingWheel
 			WheelPosition = ( halfLock > 0f ) ? simulator.SteeringWheelAngle / halfLock : 0f;
 			WheelVelocity = ( halfLock > 0f ) ? simulator.SteeringWheelVelocity / halfLock : 0f;
 
-			UndersteerEffect = steeringEffects.UndersteerEffect;
-			OversteerEffect = steeringEffects.OversteerEffect;
-			SeatOfPantsEffect = steeringEffects.SeatOfPantsEffect;
+			// the per-effect enable switches on the steering effects page gate the corresponding FFB modules: a
+			// disabled effect feeds 0, so its force modules pass through and its vibration generators stay silent
+			var settings = DataContext.DataContext.Instance.Settings;
+
+			UndersteerEffect = settings.SteeringEffectsUndersteerEnabled ? steeringEffects.UndersteerEffect : 0f;
+			OversteerEffect = settings.SteeringEffectsOversteerEnabled ? steeringEffects.OversteerEffect : 0f;
+			SeatOfPantsEffect = settings.SteeringEffectsSeatOfPantsEnabled ? steeringEffects.SeatOfPantsEffect : 0f;
 			SkidSlip = steeringEffects.SkidSlip;
 			RPM = simulator.RPM;
 			ShiftRPM = simulator.ShiftLightsShiftRPM;
@@ -1089,9 +1091,7 @@ public class RacingWheel
 
 				if ( settings.RacingWheelFFBGraphs.TryGetValue( settings.RacingWheelSelectedFFBGraphName, out var previewGraph ) )
 				{
-					settings.RacingWheelVibrationGraphs.TryGetValue( settings.RacingWheelSelectedVibrationGraphName, out var previewVibrationGraph );
-
-					_previewEngine.Rebuild( previewGraph, previewVibrationGraph );
+					_previewEngine.Rebuild( previewGraph );
 				}
 
 				// Rebuild recreated the module instances, so re-apply the session-only test toggles from the
@@ -1124,11 +1124,11 @@ public class RacingWheel
 				{
 					input1Index = _previewEngine.IndexOf( FFBGraph.Source360ModuleId );
 					input2Index = -1;
-					outputIndex = -1; // final output is already normalized — read MainOutput directly
+					outputIndex = -1; // final output is already normalized — read the engine's output buses directly
 				}
 				else if ( previewModule!.SignalInputCount == 0 )
 				{
-					// a source module has no inputs — show just its own waveform
+					// a source or vibration generator module has no inputs — show just its own waveform
 					outputIndex = previewIndex;
 				}
 				else
@@ -1143,6 +1143,10 @@ public class RacingWheel
 
 					outputIndex = previewIndex;
 				}
+
+				// the main bus is in Nm until the Output module normalizes it, so tapped signals are scaled by max
+				// force for display — except vibration generators, whose output is already normalized
+				var previewSignalScale = ( ( previewModule != null ) && previewModule.IsGenerator ) ? 1f : maxForce;
 
 				// protection trigger thresholds as published by the preview graph's protection modules on Rebuild —
 				// the replay applies them to the recorded raw telemetry the same way Simulator does live
@@ -1197,10 +1201,9 @@ public class RacingWheel
 							continue;
 						}
 
-						// the main bus is in Nm until the Output module normalizes it, so tapped signals are
-						// scaled by max force for display; the final output is already normalized
 						// draw the output value first because it fill the space below the line with black
-						var outputValue = outputIndex >= 0 ? _previewEngine.GetSignal( outputIndex ) / maxForce : _previewEngine.MainOutput;
+						// (the Output node trace matches what the wheel actually plays: main bus + vibration bus)
+						var outputValue = outputIndex >= 0 ? _previewEngine.GetSignal( outputIndex ) / previewSignalScale : ( _previewEngine.MainOutput + _previewEngine.VibrationOutput );
 
 						if ( isFirstSample )
 						{

@@ -2210,4 +2210,10 @@
   <data name="FFBSettingStickRegion" xml:space="preserve">
     <value>Կպչման տիրույթ</value>
   </data>
+  <data name="SteeringEffectDisabledNotice" xml:space="preserve">
+    <value>Այս էֆեկտն անջատված է ղեկի էֆեկտների էջում</value>
+  </data>
+  <data name="PulseDuration" xml:space="preserve">
+    <value>Իմպուլսի տևողություն</value>
+  </data>
 </root>
