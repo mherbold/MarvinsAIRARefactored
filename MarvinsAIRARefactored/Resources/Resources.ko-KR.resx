@@ -2201,4 +2201,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>펄스 지속 시간</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>고착 영역</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>엔진 RPM 진동</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>레드라인 RPM에서의 주파수</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>거칠기</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>언더스티어와 오버스티어가 스티어링 효과 페이지에서 비활성화되어 있습니다</value>
+  </data>
 </root>

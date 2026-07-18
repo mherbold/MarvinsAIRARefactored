@@ -475,7 +475,13 @@ public class DirectInput
 	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	public void UpdateForceFeedbackEffect( float magnitude )
 	{
-		if ( _forceFeedbackEffectParameters != null )
+		// local snapshots — ShutdownForceFeedback (app exit, suspend, device switch) nulls these fields from
+		// another thread, so the null check below must test the same references we then dereference; testing
+		// the fields directly is a race the 500 Hz playout thread eventually loses
+		var forceFeedbackEffectParameters = _forceFeedbackEffectParameters;
+		var forceFeedbackEffect = _forceFeedbackEffect;
+
+		if ( forceFeedbackEffectParameters != null )
 		{
 			var clampedMagnitude = (int) Math.Clamp( magnitude * DI_FFNOMINALMAX, -DI_FFNOMINALMAX, DI_FFNOMINALMAX );
 
@@ -489,9 +495,18 @@ public class DirectInput
 				return;
 			}
 
-			( (ConstantForce) _forceFeedbackEffectParameters.Parameters ).Magnitude = clampedMagnitude;
+			( (ConstantForce) forceFeedbackEffectParameters.Parameters ).Magnitude = clampedMagnitude;
 
-			_forceFeedbackEffect?.SetParameters( _forceFeedbackEffectParameters, EffectParameterFlags.TypeSpecificParameters );
+			try
+			{
+				forceFeedbackEffect?.SetParameters( forceFeedbackEffectParameters, EffectParameterFlags.TypeSpecificParameters );
+			}
+			catch ( Exception )
+			{
+				// a concurrent shutdown can stop/dispose the effect between the snapshot and this call — the
+				// device is going away, so a failed final write is harmless
+				return;
+			}
 
 			_lastForceFeedbackMagnitude = clampedMagnitude;
 			_lastForceFeedbackWriteTimestamp = timestamp;

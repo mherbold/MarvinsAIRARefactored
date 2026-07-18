@@ -2216,4 +2216,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>ระยะเวลาพัลส์</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>โซนยึดเกาะ</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>การสั่นตามรอบเครื่องยนต์</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>ความถี่ที่รอบเรดไลน์</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>ความหยาบ</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>อันเดอร์สเตียร์และโอเวอร์สเตียร์ถูกปิดใช้งานในหน้าเอฟเฟกต์พวงมาลัย</value>
+  </data>
 </root>

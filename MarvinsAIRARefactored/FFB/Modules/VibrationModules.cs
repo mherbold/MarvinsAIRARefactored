@@ -327,7 +327,10 @@ public sealed class ShiftRPMVibrationModule : FFBModule
 }
 
 /// <summary>Gear-change vibration (old 960–982): a 100 ms square burst at <c>Frequency</c> on any non-neutral
-/// gear change.</summary>
+/// gear change. The trigger is edge-detected against the last OBSERVED gear, so every path where the module
+/// isn't watching (module disabled — Process never runs — or no torque data / zero strength) either keeps the
+/// tracker current or forgets it; re-activating the effect never replays a gear change that happened while it
+/// was silenced.</summary>
 public sealed class GearChangeVibrationModule : FFBModule
 {
 	private const int Strength = 1;
@@ -335,20 +338,33 @@ public sealed class GearChangeVibrationModule : FFBModule
 
 	private const float BurstDurationMS = 100f;
 
+	// "haven't seen a gear yet" — the first gear observed after (re)starting is latched without firing
+	private const int UnknownGear = int.MinValue;
+
 	private float _frequency;
 
 	private float _timerMS = BurstDurationMS;
-	private int _lastGear;
+	private int _lastGear = UnknownGear;
+	private bool _wasEnabled;
 
 	public override void Reset()
 	{
 		_timerMS = BurstDurationMS;
-		_lastGear = 0;
+		_lastGear = UnknownGear;
 	}
 
 	protected override void OnValuesChanged()
 	{
 		_frequency = MathF.Max( 1f, _v[ Frequency ] );
+
+		// while the module is disabled Process never runs and gear changes go unobserved — forget the stale
+		// gear when the user re-enables it instead of firing a burst for a change we never saw
+		if ( Enabled && !_wasEnabled )
+		{
+			Reset();
+		}
+
+		_wasEnabled = Enabled;
 	}
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
@@ -357,12 +373,17 @@ public sealed class GearChangeVibrationModule : FFBModule
 
 		if ( !ctx.UsingTorqueData || ( strength <= 0f ) )
 		{
+			// keep tracking the gear (and cancel any running burst) so raising the strength or torque data
+			// coming back can't fire the effect for a change that happened while it was silenced
+			_lastGear = ctx.Gear;
+			_timerMS = BurstDurationMS;
+
 			return 0f;
 		}
 
 		if ( ctx.Gear != _lastGear )
 		{
-			if ( ctx.Gear != 0 )
+			if ( ( ctx.Gear != 0 ) && ( _lastGear != UnknownGear ) )
 			{
 				_timerMS = 0f;   // restart the burst — counting up from zero starts the square at 0 phase
 			}
@@ -447,17 +468,132 @@ public sealed class ABSVibrationModule : FFBModule
 }
 
 /// <summary>
+/// Engine RPM vibration, voiced like a V8 rather than a pure tone. The fundamental frequency tracks the
+/// engine — ramping linearly from <c>MinimumFrequency</c> just above 0 RPM up to
+/// <c>FrequencyAtRedlineRPM</c> at the car's redline (and proportionally beyond it when over-revving);
+/// silent/off while the engine is stalled (the telemetry EngineRunning flag). Each waveform cycle is treated as one firing event, and three things
+/// roughen it into an engine: harmonic content on top of the fundamental (a firing is a thump, not a
+/// tone — the 2nd/3rd harmonics are dropped near the 360 Hz Nyquist so high settings don't alias),
+/// per-firing random amplitude and rate jitter (no two combustion events are identical), and a fixed
+/// unevenness pattern repeating every 8 firings (the crossplane-V8-style lope). The Roughness knob scales
+/// all three ingredients: 0% is the original pure sine, 100% is the full V8 voice. At full roughness
+/// typical peaks land at Strength and the hardest firings overshoot it by up to ~50%. Restarts at 0 phase
+/// and a deterministic jitter seed whenever the effect (re)starts, so the preview replays identically.
+/// </summary>
+public sealed class EngineRPMVibrationModule : FFBModule
+{
+	private const int Strength = 1;
+	private const int FrequencyAtRedlineRPM = 2;
+	private const int Roughness = 3;
+
+	// the vibration floor as soon as the engine is turning at all (the knob's 10 Hz minimum keeps the ramp
+	// from ever sloping downward)
+	private const float MinimumFrequency = 10f;
+
+
+	// harmonics above this alias against the 360 Hz tick rate, so they fade out of the mix near it
+	private const float MaximumHarmonicFrequency = 170f;
+
+	// firing-to-firing unevenness, repeating every 8 firings — the V8 lope
+	private static readonly float[] LopePattern = [ 0.30f, -0.10f, 0.12f, -0.28f, 0.22f, -0.18f, 0.05f, -0.13f ];
+
+	private const uint InitialSeed = 0x2468ACEu;
+
+	private uint _rng = InitialSeed;
+	private float _wavePhase;
+	private int _fireIndex;
+	private float _fireAmplitude = 1f;
+	private float _fireRate = 1f;
+
+	public override void Reset()
+	{
+		_rng = InitialSeed;
+		_wavePhase = 0f;
+		_fireIndex = 0;
+		_fireAmplitude = 1f;
+		_fireRate = 1f;
+	}
+
+	// xorshift32, mapped to 0..1 (same generator family as the texture modules)
+	private float NextRandom()
+	{
+		_rng ^= _rng << 13;
+		_rng ^= _rng >> 17;
+		_rng ^= _rng << 5;
+
+		return ( _rng & 0xFFFFFF ) / 16777216f;
+	}
+
+	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
+	{
+		var strength = _v[ Strength ];
+
+		// EngineRunning (the telemetry stalled flag) is the engine-off test — the raw RPM is useless for it
+		// because iRacing floors the reported RPM at ~300 even with the engine dead
+		if ( !ctx.UsingTorqueData || !ctx.EngineRunning || ( strength <= 0f ) || ( ctx.RedlineRPM <= 0f ) || ( ctx.RPM <= 0f ) )
+		{
+			Reset();   // the effect restarts at 0 phase the next time it fires
+
+			return 0f;
+		}
+
+		var roughness = _v[ Roughness ];
+
+		var frequency = ( MinimumFrequency + ( _v[ FrequencyAtRedlineRPM ] - MinimumFrequency ) * ctx.RPM / ctx.RedlineRPM ) * _fireRate;
+
+		// one cycle = one firing: fundamental plus 2nd/3rd harmonics turn the sine into a thump; harmonics
+		// that would land past the Nyquist guard are left out (their peak-normalization terms drop with them)
+		var phaseRadians = _wavePhase * MathF.Tau;
+
+		var waveform = MathF.Sin( phaseRadians );
+		var peakNormalizer = 1f;
+
+		if ( frequency * 2f < MaximumHarmonicFrequency )
+		{
+			waveform += 0.35f * roughness * MathF.Sin( 2f * phaseRadians );
+			peakNormalizer += 0.35f * roughness;
+		}
+
+		if ( frequency * 3f < MaximumHarmonicFrequency )
+		{
+			waveform += 0.2f * roughness * MathF.Sin( 3f * phaseRadians );
+			peakNormalizer += 0.2f * roughness;
+		}
+
+		var result = waveform / peakNormalizer * _fireAmplitude * strength;
+
+		_wavePhase += frequency * ctx.DeltaMilliseconds * 0.001f;
+
+		if ( _wavePhase >= 1f )
+		{
+			_wavePhase -= MathF.Floor( _wavePhase );
+
+			// a new firing begins: apply the lope pattern plus random combustion variation to its amplitude,
+			// and jitter its rate a little so the rumble never locks into a perfect tone — all scaled by
+			// Roughness (0 = every firing identical, i.e. a pure tone)
+			_fireIndex = ( _fireIndex + 1 ) & 7;
+			_fireAmplitude = ( 1f + roughness * LopePattern[ _fireIndex ] ) * ( 1f + roughness * ( 0.3f * NextRandom() - 0.15f ) );
+			_fireRate = 1f + roughness * ( 0.1f * NextRandom() - 0.05f );
+		}
+
+		return result;
+	}
+}
+
+/// <summary>
 /// Speed-scaled pseudo-random rumble (a generator on the normalized vibration bus). Holds a band-limited noise
-/// value updated at a speed-scaled rate (bumps arrive faster the faster you drive, reaching the full
-/// <c>Frequency</c> setting at 180 MPH) and scales it by strength and a speed factor; silent when parked or
-/// off-track.
+/// value updated at a speed-scaled rate (bumps arrive faster the faster you drive, rising steeply off the
+/// line and reaching the full <c>Frequency</c> setting at 180 MPH) and scales it by strength and a speed
+/// factor; silent when parked or off-track.
 /// </summary>
 public sealed class RoadTextureModule : FFBModule
 {
 	private const int Strength = 1;
 	private const int Frequency = 2;
 
-	// the noise update rate ramps linearly with speed, hitting the full Frequency setting at 180 MPH
+	// the speed at which the noise update rate reaches the full Frequency setting; the ramp is a cube-root
+	// curve, not linear — most of the frequency arrives quickly (~55% by 30 MPH, ~70% by 60 MPH) and the
+	// rest builds gradually to the top
 	private const float FullFrequencySpeedMS = 180f * 0.44704f;
 
 	private const uint InitialSeed = 0x1234567u;
@@ -491,8 +627,9 @@ public sealed class RoadTextureModule : FFBModule
 		}
 
 		// advancing the noise clock at a speed-scaled rate modulates the effective update frequency —
-		// slow chunky bumps at low speed, the full Frequency setting once the ramp tops out
-		var frequencyFactor = MathZ.Saturate( ctx.VelocityMS / FullFrequencySpeedMS );
+		// slow chunky bumps at low speed, the full Frequency setting once the ramp tops out; the cube root
+		// bends the ramp so the frequency rises steeply at low speed instead of linearly
+		var frequencyFactor = MathF.Cbrt( MathZ.Saturate( ctx.VelocityMS / FullFrequencySpeedMS ) );
 
 		AdvanceNoise( ctx.DeltaMilliseconds * frequencyFactor );
 
@@ -521,7 +658,10 @@ public sealed class RoadTextureModule : FFBModule
 
 /// <summary>
 /// Slip-scaled pseudo-random rumble (a generator on the normalized vibration bus). Same band-limited noise as
-/// <see cref="RoadTextureModule"/> but scaled by <c>ctx.SkidSlip</c> instead of speed; silent off-track.
+/// <see cref="RoadTextureModule"/> but its amplitude is driven by the sum of the understeer and oversteer
+/// effect values (saturated at 1), so the wheel rumbles whenever either end of the car is sliding; silent
+/// off-track. The per-effect enable switches on the steering effects page gate the summed values upstream,
+/// and the 60 Hz-held values are interpolated across the sub-ticks like the other steering-effect modules.
 /// </summary>
 public sealed class SlipTextureModule : FFBModule
 {
@@ -534,12 +674,14 @@ public sealed class SlipTextureModule : FFBModule
 	private float _periodMs;
 	private float _phaseMs;
 	private float _current;
+	private EffectInterpolator _effectInterpolator;
 
 	public override void Reset()
 	{
 		_rng = InitialSeed;
 		_phaseMs = 0f;
 		_current = 0f;
+		_effectInterpolator.Reset();
 	}
 
 	protected override void OnValuesChanged()
@@ -549,7 +691,18 @@ public sealed class SlipTextureModule : FFBModule
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		if ( !ctx.IsOnTrack || ( ctx.SkidSlip <= 0f ) )
+		if ( !ctx.IsOnTrack )
+		{
+			Reset();
+
+			return 0f;
+		}
+
+		// the 60 Hz-held effect values are interpolated across the frame's sub-ticks so the amplitude
+		// envelope doesn't stairstep at 360 Hz; the interpolator runs every tick so ramps stay smooth
+		var slipEffect = _effectInterpolator.Interpolate( ctx.UndersteerEffect + ctx.OversteerEffect, ctx.SampleIndex );
+
+		if ( slipEffect <= 0f )
 		{
 			// the noise clock restarts at 0 phase (and silence) the next time the effect fires
 			_phaseMs = 0f;
@@ -571,6 +724,6 @@ public sealed class SlipTextureModule : FFBModule
 			_current = ( _rng / (float) uint.MaxValue ) * 2f - 1f;
 		}
 
-		return _current * _v[ Strength ] * MathZ.Saturate( ctx.SkidSlip );
+		return _current * _v[ Strength ] * MathZ.Saturate( slipEffect );
 	}
 }

@@ -2216,4 +2216,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>Duração do impulso</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Zona de aderência</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Vibração de RPM do motor</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Frequência no RPM máximo</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Aspereza</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>O subesterço e o sobresterço estão desativados na página de efeitos de direção</value>
+  </data>
 </root>

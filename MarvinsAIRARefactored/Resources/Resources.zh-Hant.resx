@@ -2201,4 +2201,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>脈衝持續時間</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>黏著區域</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>引擎轉速震動</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>紅線轉速時的頻率</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>粗糙度</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>轉向不足和轉向過度已在轉向效果頁面中停用</value>
+  </data>
 </root>

@@ -126,6 +126,12 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
 
 ## Architecture & Key Patterns
 
+### Steering / FFB sign conventions (get these right!)
+- **iRacing steering telemetry is counterclockwise-positive:** `SteeringWheelAngle` (and `SteeringWheelVelocity`) are **positive when the wheel is turned LEFT**, negative when turned right. The derived `FFBTickContext.WheelPosition` / `WheelVelocity` (angle/velocity normalized to the car's half-lock) inherit this same convention.
+- **FFB graph output torque is also counterclockwise-positive:** a positive module output pushes the wheel LEFT.
+- **Consequence:** any resisting/restoring force built from these values (friction, damping, centering, soft lock) must **negate** the telemetry-derived term — e.g. the wheel-centering source returns `-position`, and the friction/velocity sources return `-velocity`. Getting this wrong flips a stable centering spring into a runaway force toward the locks (this bug actually shipped once).
+- **The old DirectInput axis convention was the opposite** (positive = turned right), so any formula ported from pre-graph fixed-function code that used `DirectInput.ForceFeedbackWheelPosition/Velocity` needs its sign flipped when fed the sim-telemetry-derived values.
+
 ### Global Singleton (`App`)
 `App` (in `App.xaml.cs`) is the central singleton accessed via `App.Instance!`. It owns and initializes every component. All components call `App.Instance!` to access sibling services. This is the primary way components communicate.
 

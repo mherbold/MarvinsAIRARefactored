@@ -2201,4 +2201,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>مدة النبضة</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>منطقة الالتصاق</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>اهتزاز دورات المحرك</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>التردد عند الدورات القصوى</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>خشونة</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>تم تعطيل نقص التوجيه وزيادة التوجيه في صفحة تأثيرات التوجيه</value>
+  </data>
 </root>

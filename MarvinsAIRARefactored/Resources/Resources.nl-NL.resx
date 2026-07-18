@@ -2216,4 +2216,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>Pulsduur</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Hechtzone</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Motortoerental-vibratie</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Frequentie bij maximaal toerental</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Ruwheid</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>Onderstuur en overstuur zijn uitgeschakeld op de pagina met stuureffecten</value>
+  </data>
 </root>

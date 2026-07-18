@@ -930,6 +930,8 @@ public class RacingWheel
 		public readonly float SkidSlip;
 		public readonly float RPM;
 		public readonly float ShiftRPM;
+		public readonly float RedlineRPM;
+		public readonly bool EngineRunning;
 		public readonly int Gear;
 		public readonly int NumForwardGears;
 		public readonly bool ABSActive;
@@ -979,6 +981,8 @@ public class RacingWheel
 			SkidSlip = steeringEffects.SkidSlip;
 			RPM = simulator.RPM;
 			ShiftRPM = simulator.ShiftLightsShiftRPM;
+			RedlineRPM = simulator.RedlineRPM;
+			EngineRunning = simulator.EngineRunning;
 			Gear = simulator.Gear;
 			NumForwardGears = simulator.NumForwardGears;
 			ABSActive = simulator.BrakeABSactive;
@@ -1016,6 +1020,8 @@ public class RacingWheel
 			skidSlip: frameContext.SkidSlip,
 			rpm: frameContext.RPM,
 			shiftRPM: frameContext.ShiftRPM,
+			redlineRPM: frameContext.RedlineRPM,
+			engineRunning: frameContext.EngineRunning,
 			gear: frameContext.Gear,
 			numForwardGears: frameContext.NumForwardGears,
 			absActive: frameContext.ABSActive,

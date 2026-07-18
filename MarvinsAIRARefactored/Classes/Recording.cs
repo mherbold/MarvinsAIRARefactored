@@ -23,8 +23,8 @@ public class Recording
 	// audit): 360 Hz YawRate, VelocityY360Hz, LatAccel, RollRate, PitchRate, front shock velocity and
 	// deflection, plus the Throttle and Brake driver inputs; also DROPS the redundant WheelPosition and
 	// WheelVelocity columns (pure derivations of SteeringWheelAngle/AngleMax/Velocity — the replay
-	// re-derives them).
-	public const int FormatVersion = 4;
+	// re-derives them). v5 = the RedlineRPM column (consumed by the engine RPM vibration module's replay).
+	public const int FormatVersion = 5;
 
 	private const string FormatLinePrefix = "MAIRA Recording v";
 

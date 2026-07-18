@@ -2201,4 +2201,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>पल्स अवधि</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>आसंजन क्षेत्र</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>इंजन RPM कंपन</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>रेडलाइन RPM पर आवृत्ति</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>खुरदरापन</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>अंडरस्टीयर और ओवरस्टीयर स्टीयरिंग इफेक्ट्स पेज पर अक्षम हैं</value>
+  </data>
 </root>

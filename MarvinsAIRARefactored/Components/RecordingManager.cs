@@ -240,6 +240,7 @@ public sealed class RecordingManager : IDisposable
 
 				recordingData.RPM = tickContext.RPM;
 				recordingData.ShiftRPM = tickContext.ShiftRPM;
+				recordingData.RedlineRPM = tickContext.RedlineRPM;
 				recordingData.Gear = tickContext.Gear;
 				recordingData.NumForwardGears = tickContext.NumForwardGears;
 				recordingData.ABSActive = tickContext.ABSActive;

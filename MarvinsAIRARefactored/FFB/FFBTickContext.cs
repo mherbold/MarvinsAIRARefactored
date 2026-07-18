@@ -67,6 +67,8 @@ public readonly struct FFBTickContext
 
 	public readonly float RPM;
 	public readonly float ShiftRPM;
+	public readonly float RedlineRPM;
+	public readonly bool EngineRunning;   // from the EngineWarnings telemetry (stalled flag clear) — the raw RPM floors at ~300 with the engine off, so it can't be used as an engine-off test
 	public readonly int Gear;
 	public readonly int NumForwardGears;
 	public readonly bool ABSActive;
@@ -108,6 +110,8 @@ public readonly struct FFBTickContext
 		float skidSlip,
 		float rpm,
 		float shiftRPM,
+		float redlineRPM,
+		bool engineRunning,
 		int gear,
 		int numForwardGears,
 		bool absActive,
@@ -138,6 +142,8 @@ public readonly struct FFBTickContext
 		SkidSlip = skidSlip;
 		RPM = rpm;
 		ShiftRPM = shiftRPM;
+		RedlineRPM = redlineRPM;
+		EngineRunning = engineRunning;
 		Gear = gear;
 		NumForwardGears = numForwardGears;
 		ABSActive = absActive;
@@ -199,6 +205,8 @@ public readonly struct FFBTickContext
 			skidSlip: recordingData.SkidSlip,
 			rpm: recordingData.RPM,
 			shiftRPM: recordingData.ShiftRPM,
+			redlineRPM: recordingData.RedlineRPM,
+			engineRunning: true,   // recordings don't carry the stalled flag; they're captured while driving, so hard-wire running (like isOnTrack)
 			gear: recordingData.Gear,
 			numForwardGears: recordingData.NumForwardGears,
 			absActive: recordingData.ABSActive,

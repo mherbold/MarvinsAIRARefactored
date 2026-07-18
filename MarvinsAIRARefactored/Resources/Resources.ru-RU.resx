@@ -2216,4 +2216,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>Длительность импульса</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Зона прилипания</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Вибрация оборотов двигателя</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Частота при максимальных оборотах</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Шероховатость</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>Недостаточная и избыточная поворачиваемость отключены на странице «Эффекты руля»</value>
+  </data>
 </root>

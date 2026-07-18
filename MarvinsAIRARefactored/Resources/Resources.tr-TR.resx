@@ -2216,4 +2216,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>Darbe süresi</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Yapışma bölgesi</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Motor devri titreşimi</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Maksimum devirde frekans</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Pürüzlülük</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>Az dönme ve aşırı dönme direksiyon efektleri sayfasında devre dışı bırakılmıştır</value>
+  </data>
 </root>

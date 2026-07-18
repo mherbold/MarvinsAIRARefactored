@@ -52,6 +52,7 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.ShiftRPMVibrationType ] = "Shift RPM vibration",
 		[ FFBModuleRegistry.GearChangeVibrationType ] = "Gear change vibration",
 		[ FFBModuleRegistry.ABSVibrationType ] = "ABS vibration",
+		[ FFBModuleRegistry.EngineRPMVibrationType ] = "Engine RPM vibration",
 		[ FFBModuleRegistry.SpeedGainType ] = "Speed gain",
 		[ FFBModuleRegistry.RoadTextureType ] = "Road texture",
 		[ FFBModuleRegistry.SlipTextureType ] = "Slip texture",
@@ -356,10 +357,11 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 
 	/// <summary>
 	/// True for an understeer / oversteer / seat-of-pants module whose effect is switched off on the steering
-	/// effects page. The engine feeds those modules a zero effect value while the switch is off (force modules
-	/// pass through, vibration generators go silent), the node renders dimmed like a disabled module, and the
-	/// settings card shows a notice. Re-raised via <see cref="NotifySteeringEffectDisabledChanged"/> when one
-	/// of the switches flips.
+	/// effects page — and for the slip texture module when BOTH understeer and oversteer are off (its amplitude
+	/// is their sum, so it is silent with both gone). The engine feeds those modules a zero effect value while
+	/// the switch is off (force modules pass through, vibration generators go silent), the node renders dimmed
+	/// like a disabled module, and the settings card shows a notice. Re-raised via
+	/// <see cref="NotifySteeringEffectDisabledChanged"/> when one of the switches flips.
 	/// </summary>
 	public bool SteeringEffectDisabled
 	{
@@ -377,13 +379,18 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 				FFBModuleRegistry.UndersteerForceType or FFBModuleRegistry.UndersteerVibrationType => !settings.SteeringEffectsUndersteerEnabled,
 				FFBModuleRegistry.OversteerForceType or FFBModuleRegistry.OversteerVibrationType => !settings.SteeringEffectsOversteerEnabled,
 				FFBModuleRegistry.SeatOfPantsForceType or FFBModuleRegistry.SeatOfPantsVibrationType => !settings.SteeringEffectsSeatOfPantsEnabled,
+				FFBModuleRegistry.SlipTextureType => !settings.SteeringEffectsUndersteerEnabled && !settings.SteeringEffectsOversteerEnabled,
 				_ => false
 			};
 		}
 	}
 
-	/// <summary>The settings-card notice shown next to the module name while <see cref="SteeringEffectDisabled"/>.</summary>
-	public string SteeringEffectDisabledNotice => FFBDisplayNames.Localize( "SteeringEffectDisabledNotice", "This effect is disabled on the steering effects page" );
+	/// <summary>The settings-card notice shown next to the module name while <see cref="SteeringEffectDisabled"/>.
+	/// The slip texture module gets its own wording since it isn't a single effect's module — it goes silent
+	/// because both of the effects feeding it are disabled.</summary>
+	public string SteeringEffectDisabledNotice => ModuleType == FFBModuleRegistry.SlipTextureType
+		? FFBDisplayNames.Localize( "UndersteerOversteerDisabledNotice", "Understeer and oversteer are disabled on the steering effects page" )
+		: FFBDisplayNames.Localize( "SteeringEffectDisabledNotice", "This effect is disabled on the steering effects page" );
 
 	public void NotifySteeringEffectDisabledChanged() => OnPropertyChanged( nameof( SteeringEffectDisabled ) );
 

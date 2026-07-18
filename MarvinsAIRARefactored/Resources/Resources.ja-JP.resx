@@ -2219,4 +2219,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>パルス持続時間</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>固着領域</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>エンジン回転数振動</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>レッドライン回転数での周波数</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>粗さ</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>アンダーステアとオーバーステアはステアリングエフェクトページで無効になっています</value>
+  </data>
 </root>

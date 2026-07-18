@@ -101,7 +101,7 @@ if ( recordingPaths.Count == 0 )
 
 if ( recordingPaths.Count == 0 )
 {
-	Console.WriteLine( "No recordings found — pass paths to MAIRA Recording v3/v4 .csv files, or record some in the app first." );
+	Console.WriteLine( "No recordings found — pass paths to MAIRA Recording v3/v4/v5 .csv files, or record some in the app first." );
 
 	return 1;
 }
@@ -239,7 +239,7 @@ bool LoadRecording( string path )
 	{
 		var formatLine = reader.ReadLine();
 
-		if ( ( formatLine != "MAIRA Recording v3" ) && ( formatLine != "MAIRA Recording v4" ) )
+		if ( ( formatLine != "MAIRA Recording v3" ) && ( formatLine != "MAIRA Recording v4" ) && ( formatLine != "MAIRA Recording v5" ) )
 		{
 			Console.WriteLine( $"Skipping (unsupported format '{formatLine}'): {path}" );
 

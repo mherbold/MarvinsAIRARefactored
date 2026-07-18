@@ -37,6 +37,7 @@ public class RecordingData
 
 	public float RPM { get; set; }
 	public float ShiftRPM { get; set; }
+	public float RedlineRPM { get; set; }
 	public int Gear { get; set; }
 	public int NumForwardGears { get; set; }
 	public bool ABSActive { get; set; }

@@ -54,6 +54,7 @@ public partial class Simulator
 	public int CurrentTireIndex { get; private set; } = -1;
 	public string CurrentTireCompoundType { get; private set; } = string.Empty;
 	public int DisplayUnits { get; private set; } = 0;
+	public bool EngineRunning { get; private set; } = false;
 	public float FrameRate { get; private set; } = 0;
 	public int Gear { get; private set; } = 0;
 	public float GpuUsage { get; private set; } = 0f;
@@ -106,6 +107,7 @@ public partial class Simulator
 	public IRacingSdkEnum.SessionState SessionState { get; private set; } = IRacingSdkEnum.SessionState.Invalid;
 	public double SessionTime { get; private set; } = 0f;
 	public double SessionTimeRemain { get; private set; } = 0;
+	public float RedlineRPM { get; private set; } = 0f;
 	public float ShiftLightsFirstRPM { get; private set; } = 0f;
 	public float ShiftLightsShiftRPM { get; private set; } = 0f;
 	public string SimMode { get; private set; } = string.Empty;
@@ -190,6 +192,7 @@ public partial class Simulator
 	private IRacingSdkDatum? _clutchDatum = null;
 	private IRacingSdkDatum? _crShockVel_STDatum = null;
 	private IRacingSdkDatum? _displayUnitsDatum = null;
+	private IRacingSdkDatum? _engineWarningsDatum = null;
 	private IRacingSdkDatum? _frameRateDatum = null;
 	private IRacingSdkDatum? _gearDatum = null;
 	private IRacingSdkDatum? _gpuUsageDatum = null;
@@ -406,6 +409,7 @@ public partial class Simulator
 		CurrentTireIndex = -1;
 		CurrentTireCompoundType = string.Empty;
 		DisplayUnits = 0;
+		EngineRunning = false;
 		Gear = 0;
 		LongitudinalGForce = 0f;
 		LateralGForce = 0f;
@@ -449,6 +453,7 @@ public partial class Simulator
 		SessionTime = 0;
 		SessionTimeRemain = 0;
 		Speed = 0f;
+		RedlineRPM = 0f;
 		ShiftLightsFirstRPM = 0f;
 		ShiftLightsShiftRPM = 0f;
 		SimMode = string.Empty;
@@ -551,6 +556,8 @@ public partial class Simulator
 		CarSetupName = Path.GetFileNameWithoutExtension( sessionInfo.DriverInfo.DriverSetupName ).ToLower();
 
 		NumForwardGears = sessionInfo.DriverInfo.DriverCarGearNumForward;
+
+		RedlineRPM = sessionInfo.DriverInfo.DriverCarRedLine;
 
 		ShiftLightsFirstRPM = sessionInfo.DriverInfo.DriverCarSLFirstRPM;
 		ShiftLightsShiftRPM = sessionInfo.DriverInfo.DriverCarSLShiftRPM;
@@ -717,6 +724,7 @@ public partial class Simulator
 			_carLeftRightDatum = _irsdk.Data.TelemetryDataProperties[ "CarLeftRight" ];
 			_clutchDatum = _irsdk.Data.TelemetryDataProperties[ "Clutch" ];
 			_displayUnitsDatum = _irsdk.Data.TelemetryDataProperties[ "DisplayUnits" ];
+			_engineWarningsDatum = _irsdk.Data.TelemetryDataProperties[ "EngineWarnings" ];
 			_frameRateDatum = _irsdk.Data.TelemetryDataProperties[ "FrameRate" ];
 			_gearDatum = _irsdk.Data.TelemetryDataProperties[ "Gear" ];
 			_gpuUsageDatum = _irsdk.Data.TelemetryDataProperties[ "GpuUsage" ];
@@ -897,6 +905,7 @@ public partial class Simulator
 		CarDistBehind = _irsdk.Data.GetFloat( _carDistBehindDatum );
 		CarLeftRight = (IRacingSdkEnum.CarLeftRight) _irsdk.Data.GetInt( _carLeftRightDatum );
 		DisplayUnits = _irsdk.Data.GetInt( _displayUnitsDatum );
+		EngineRunning = ( (IRacingSdkEnum.EngineWarnings) _irsdk.Data.GetBitField( _engineWarningsDatum ) & IRacingSdkEnum.EngineWarnings.EngineStalled ) == 0;
 		FrameRate = _irsdk.Data.GetFloat( _frameRateDatum );
 		Gear = _irsdk.Data.GetInt( _gearDatum );
 		GpuUsage = _irsdk.Data.GetFloat( _gpuUsageDatum );

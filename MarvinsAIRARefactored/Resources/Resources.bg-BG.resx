@@ -2201,4 +2201,19 @@
   <data name="PulseDuration" xml:space="preserve">
     <value>Продължителност на импулса</value>
   </data>
+  <data name="StickRegion" xml:space="preserve">
+    <value>Зона на прилепване</value>
+  </data>
+  <data name="FFBModuleEngineRPMVibration" xml:space="preserve">
+    <value>Вибрация от оборотите на двигателя</value>
+  </data>
+  <data name="FrequencyAtRedlineRPM" xml:space="preserve">
+    <value>Честота при максимални обороти</value>
+  </data>
+  <data name="Roughness" xml:space="preserve">
+    <value>Грапавост</value>
+  </data>
+  <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
+    <value>Недозавиването и презавиването са деактивирани на страницата с ефекти на управлението</value>
+  </data>
 </root>

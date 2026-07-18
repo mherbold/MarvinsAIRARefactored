@@ -50,6 +50,7 @@ public static class FFBModuleRegistry
 	public const string ShiftRPMVibrationType = "ShiftRPMVibration";
 	public const string GearChangeVibrationType = "GearChangeVibration";
 	public const string ABSVibrationType = "ABSVibration";
+	public const string EngineRPMVibrationType = "EngineRPMVibration";
 
 	public const string SpeedGainType = "SpeedGain";
 	public const string RoadTextureType = "RoadTexture";
@@ -182,7 +183,7 @@ public static class FFBModuleRegistry
 
 			Descriptor( SourceLFEType, 0, () => new SourceLFEModule(), isSource: true, settings:
 			[
-				Knob( "Strength", 0f, 1f, 0.25f, 0.01f, F.WithOff( F.Percent() ) )
+				Knob( "Strength", 0f, 1f, 0.35f, 0.01f, F.WithOff( F.Percent() ) )
 			] ),
 
 			Descriptor( SourceSoftLockType, 0, () => new SourceSoftLockModule(), isSource: true, settings:
@@ -198,18 +199,18 @@ public static class FFBModuleRegistry
 			Descriptor( SourceFrictionType, 0, () => new SourceFrictionModule(), isSource: true, settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.1f, 0.01f, F.WithOff( F.Percent() ) ),
-				Knob( "StickRegion", 1f, 90f, 15f, 1f, F.Number( 0, "DegreesPerSecond" ) )
+				Knob( "StickRegion", 0.5f, 60f, 25f, 0.5f, F.Number( 1, "Degrees" ) )
 			] ),
 
 			Descriptor( SourceWheelCenteringType, 0, () => new SourceWheelCenteringModule(), isSource: true, settings:
 			[
-				Knob( "Strength", 0f, 1f, 0.75f, 0.01f, F.WithOff( F.Percent() ) )
+				Knob( "Strength", 0f, 1f, 0.85f, 0.01f, F.WithOff( F.Percent() ) )
 			] ),
 
 			// ---- generic DSP (9) ----
 			Descriptor( GainType, 1, () => new GainModule(), settings:
 			[
-				Knob( "Gain", -5f, 5f, 1f, 0.05f, F.Multiplier( 2 ) )
+				Knob( "Gain", -5f, 5f, 1.25f, 0.05f, F.Multiplier( 2 ) )
 			] ),
 
 			Descriptor( CompressorType, 1, () => new CompressorModule(), settings:
@@ -221,14 +222,14 @@ public static class FFBModuleRegistry
 
 			Descriptor( HighPassFilterType, 1, () => new HighPassFilterModule(), settings:
 			[
-				Choice( "Slope", 0f, FilterSlopeChoices ),
-				Knob( "Cutoff", 0f, 180f, 0f, 1f, F.WithOff( F.Number( 1, "HertzUnits" ) ) )
+				Choice( "Slope", 1f, FilterSlopeChoices ),
+				Knob( "Cutoff", 0f, 180f, 8f, 1f, F.WithOff( F.Number( 1, "HertzUnits" ) ) )
 			] ),
 
 			Descriptor( LowPassFilterType, 1, () => new LowPassFilterModule(), settings:
 			[
-				Choice( "Slope", 0f, FilterSlopeChoices ),
-				Knob( "Cutoff", 0f, 180f, 0f, 1f, F.Number( 1, "HertzUnits" ) )
+				Choice( "Slope", 1f, FilterSlopeChoices ),
+				Knob( "Cutoff", 0f, 180f, 8f, 1f, F.Number( 1, "HertzUnits" ) )
 			] ),
 
 			Descriptor( SlewCompressorType, 1, () => new SlewCompressorModule(), settings:
@@ -315,7 +316,7 @@ public static class FFBModuleRegistry
 
 			Descriptor( UndersteerForceType, 1, () => new UndersteerForceModule(), category: FFBModuleCategory.Effect, settings:
 			[
-				Choice( "Direction", 0f, ConstantForceDirectionChoices ),
+				Choice( "Direction", 1f, ConstantForceDirectionChoices ),
 				Knob( "Strength", 0f, 1f, 0.1f, 0.01f, F.StrengthWithTorque() ),
 				Knob( "Curve", -1f, 1f, 0f, 0.05f, F.WithOff( F.Percent() ) )
 			] ),
@@ -329,47 +330,55 @@ public static class FFBModuleRegistry
 
 			Descriptor( SeatOfPantsForceType, 1, () => new SeatOfPantsForceModule(), category: FFBModuleCategory.Effect, settings:
 			[
-				Choice( "Direction", 0f, ConstantForceDirectionChoices ),
+				Choice( "Direction", 2f, ConstantForceDirectionChoices ),
 				Knob( "Strength", 0f, 1f, 0.1f, 0.01f, F.StrengthWithTorque() ),
 				Knob( "Curve", -1f, 1f, 0f, 0.05f, F.WithOff( F.Percent() ) )
 			] ),
 
-			// ---- vibration generators: steering effects (3) ----
-			Descriptor( UndersteerVibrationType, 0, () => new UndersteerVibrationModule(), isGenerator: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings() ),
-			Descriptor( OversteerVibrationType, 0, () => new OversteerVibrationModule(), isGenerator: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings() ),
-			Descriptor( SeatOfPantsVibrationType, 0, () => new SeatOfPantsVibrationModule(), isGenerator: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings() ),
+			// ---- vibration generators: steering effects (3) — per-module defaults (pattern indexes into
+			// VibrationPatternChoices: 3 = triangle, 4 = sawtooth in, 5 = sawtooth out) ----
+			Descriptor( UndersteerVibrationType, 0, () => new UndersteerVibrationModule(), isGenerator: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings( defaultPattern: 4f, defaultStrength: 0.05f, defaultFrequency: 15f ) ),
+			Descriptor( OversteerVibrationType, 0, () => new OversteerVibrationModule(), isGenerator: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings( defaultPattern: 5f, defaultStrength: 0.05f, defaultFrequency: 10f ) ),
+			Descriptor( SeatOfPantsVibrationType, 0, () => new SeatOfPantsVibrationModule(), isGenerator: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings( defaultPattern: 3f, defaultStrength: 0.05f, defaultFrequency: 12.5f ) ),
 
-			// ---- vibration generators: other effects (5) ----
+			// ---- vibration generators: other effects (6) ----
 			Descriptor( ABSVibrationType, 0, () => new ABSVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
-				Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() ),
-				Knob( "Frequency", 5f, 120f, 50f, 1f, F.Number( 0, "HertzUnits" ) ),
-				Knob( "PulseDuration", 10f, 500f, 50f, 5f, F.Number( 0, "MillisecondsUnits" ) )
+				Knob( "Strength", 0f, 1f, 0.1f, 0.01f, F.StrengthWithTorque() ),
+				Knob( "Frequency", 5f, 120f, 25f, 1f, F.Number( 0, "HertzUnits" ) ),
+				Knob( "PulseDuration", 10f, 500f, 40f, 5f, F.Number( 0, "MillisecondsUnits" ) )
 			] ),
 
 			Descriptor( GearChangeVibrationType, 0, () => new GearChangeVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
-				Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() ),
-				Knob( "Frequency", 5f, 120f, 40f, 1f, F.Number( 0, "HertzUnits" ) )
+				Knob( "Strength", 0f, 1f, 0.05f, 0.01f, F.StrengthWithTorque() ),
+				Knob( "Frequency", 5f, 120f, 31f, 1f, F.Number( 0, "HertzUnits" ) )
 			] ),
 
 			Descriptor( ShiftRPMVibrationType, 0, () => new ShiftRPMVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
-				Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() ),
-				Knob( "Frequency", 5f, 120f, 40f, 1f, F.Number( 0, "HertzUnits" ) ),
-				Knob( "PulseDuration", 10f, 500f, 85f, 5f, F.Number( 0, "MillisecondsUnits" ) )
+				Knob( "Strength", 0f, 1f, 0.03f, 0.01f, F.StrengthWithTorque() ),
+				Knob( "Frequency", 5f, 120f, 50f, 1f, F.Number( 0, "HertzUnits" ) ),
+				Knob( "PulseDuration", 10f, 500f, 60f, 5f, F.Number( 0, "MillisecondsUnits" ) )
+			] ),
+
+			Descriptor( EngineRPMVibrationType, 0, () => new EngineRPMVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
+			[
+				Knob( "Strength", 0f, 1f, 0.01f, 0.01f, F.StrengthWithTorque() ),
+				Knob( "FrequencyAtRedlineRPM", 10f, 120f, 50f, 1f, F.Number( 0, "HertzUnits" ) ),
+				Knob( "Roughness", 0f, 1f, 1f, 0.01f, F.WithOff( F.Percent() ) )
 			] ),
 
 			Descriptor( RoadTextureType, 0, () => new RoadTextureModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
-				Knob( "Strength", 0f, 1f, 0.05f, 0.01f, F.WithOff( F.Percent() ) ),
-				Knob( "Frequency", 5f, 120f, 35f, 1f, F.Number( 0, "HertzUnits" ) )
+				Knob( "Strength", 0f, 1f, 0.01f, 0.01f, F.WithOff( F.Percent() ) ),
+				Knob( "Frequency", 5f, 120f, 120f, 1f, F.Number( 0, "HertzUnits" ) )
 			] ),
 
 			Descriptor( SlipTextureType, 0, () => new SlipTextureModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.05f, 0.01f, F.WithOff( F.Percent() ) ),
-				Knob( "Frequency", 5f, 120f, 35f, 1f, F.Number( 0, "HertzUnits" ) )
+				Knob( "Frequency", 5f, 120f, 80f, 1f, F.Number( 0, "HertzUnits" ) )
 			] ),
 
 			// ---- output (1) (normalizer: Nm -> normalized, plus the two shapers that only make sense in
@@ -378,20 +387,20 @@ public static class FFBModuleRegistry
 			[
 				Knob( "Curve", -1f, 1f, 0f, 0.05f, F.WithOff( F.Percent() ), showCurve: true ),
 				Switch( "SoftLimiter", true, "FFBModuleSoftLimiter" ),
-				Knob( "Threshold", 0f, 1f, 0.9f, 0.01f, F.Percent() ),
+				Knob( "Threshold", 0f, 1f, 0.85f, 0.01f, F.Percent() ),
 				Knob( "Knee", 0f, 1f, 0.3f, 0.01f, F.Percent() ),
 				Knob( "Ratio", 1f, 20f, 6f, 0.5f, F.Ratio )
 			] )
 		];
 	}
 
-	private static FFBSettingDescriptor[] VibrationSettings()
+	private static FFBSettingDescriptor[] VibrationSettings( float defaultPattern, float defaultStrength, float defaultFrequency )
 	{
 		return
 		[
-			Choice( "Pattern", 1f, VibrationPatternChoices ),
-			Knob( "Strength", 0f, 1f, 0f, 0.01f, F.StrengthWithTorque() ),
-			Knob( "Frequency", 1f, 100f, 20f, 1f, F.Number( 0, "HertzUnits" ) ),
+			Choice( "Pattern", defaultPattern, VibrationPatternChoices ),
+			Knob( "Strength", 0f, 1f, defaultStrength, 0.01f, F.StrengthWithTorque() ),
+			Knob( "Frequency", 1f, 100f, defaultFrequency, 1f, F.Number( 0, "HertzUnits" ) ),
 			Knob( "Curve", -1f, 1f, 0f, 0.05f, F.WithOff( F.Percent() ) )
 		];
 	}

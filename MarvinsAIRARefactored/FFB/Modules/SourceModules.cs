@@ -67,51 +67,84 @@ public sealed class SourceWheelVelocityModule : FFBModule
 }
 
 /// <summary>
-/// Friction source: Karnopp-style dry friction — a torque of constant magnitude opposing the wheel's rotation,
-/// −clamp(ω/ω₀, ±1) × Strength × MaxForce (Nm), gated on being on track. Below the stick-region velocity ω₀ it
-/// behaves like a stiff damper that holds the wheel planted (this is what keeps a plain sign(ω) from buzzing at
-/// rest); beyond it the torque saturates at the constant Strength level. Contrast with
-/// <see cref="SourceWheelVelocityModule"/>, whose output stays proportional to velocity (a damper). The 60 Hz
-/// staircase in the telemetry velocity is smoothed by a built-in one-pole so it doesn't chatter through the
-/// saturation. Sum it into the main signal with an Add; route it through a SpeedGain to fade it with car speed
-/// (parked steering weight = full at rest, fading out by ~10 m/s).
+/// Friction source: dry friction via a dragged stick point — the same model wheel firmwares use for their
+/// hardware friction effect. The module latches the wheel angle it is "stuck" at and pulls back toward it
+/// like a spring, saturating at Strength × MaxForce (Nm); when the wheel is turned more than StickRegion
+/// degrees from the stick point, the point is dragged along at that distance. Turning steadily therefore
+/// feels like constant sliding friction, and at rest the wheel is held planted at the stick point. Because
+/// the model is driven by the wheel's POSITION (no differentiation, no velocity noise) and its torque is
+/// bounded by the breakaway level, it does not need a velocity signal the way the old velocity-based
+/// friction did. A larger StickRegion feels softer/springier before breakaway; a smaller one feels crisper.
+/// Sum it into the main signal with an Add; route it through a SpeedGain to fade it with car speed (parked
+/// steering weight = full at rest, fading out by ~10 m/s).
+/// <para>The spring acts on a LEAD-COMPENSATED angle: the telemetry angle is ~2 frames stale, and a stiff
+/// spring on a stale angle behaves as negative damping — it pumps the wheel into a permanent oscillation
+/// whose amplitude tracks the stick region (the drag boundary is the only place energy dissipates, so the
+/// limit cycle parks right at it). Extrapolating the angle forward by the loop delay with the telemetry
+/// velocity cancels that phase lag, which is what the wheel firmware gets for free by running the same model
+/// at the servo rate with no delay. The centering source never needed this because its spring is 10-25×
+/// softer (full force over a quarter of the steering range), putting its resonance where the delay phase is
+/// negligible.</para>
 /// </summary>
 public sealed class SourceFrictionModule : FFBModule
 {
 	private const int Strength = 1;
 	private const int StickRegion = 2;
 
-	// one-pole low-pass on the 60 Hz-carried telemetry velocity: 1 − e^(−2π·20Hz/360Hz)
-	private const float SmoothingAlpha = 0.2947f;
+	// how far ahead the spring's angle is extrapolated — sized to the telemetry-to-wheel loop delay (~30 ms)
+	// plus a little extra, so the slight overcompensation contributes positive damping instead of none
+	private const float LeadSeconds = 0.05f;
 
-	private float _invStickRegion = 1f;
-	private float _smoothedVelocity = 0f;
+	private float _stickRegionRad = 1f;
+	private float _stickPoint = 0f;
+	private bool _stickPointValid = false;
 
 	public override void Reset()
 	{
-		_smoothedVelocity = 0f;
+		_stickPointValid = false;
 	}
 
 	protected override void OnValuesChanged()
 	{
-		// the knob is in °/s of wheel rotation; the telemetry velocity is rad/s
-		_invStickRegion = 1f / ( MathF.Max( _v[ StickRegion ], 1f ) * ( MathF.PI / 180f ) );
+		// the knob is in degrees of wheel rotation; the telemetry angle is radians
+		_stickRegionRad = MathF.Max( _v[ StickRegion ], 0.5f ) * ( MathF.PI / 180f );
 	}
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
 		if ( !ctx.IsOnTrack )
 		{
-			_smoothedVelocity = 0f;
+			_stickPointValid = false;
 
 			return 0f;
 		}
 
-		_smoothedVelocity += SmoothingAlpha * ( ctx.SteeringWheelVelocity - _smoothedVelocity );
+		if ( !_stickPointValid )
+		{
+			_stickPoint = ctx.SteeringWheelAngle;
+			_stickPointValid = true;
+		}
 
-		// negated like SourceWheelVelocityModule: iRacing's angle is positive counterclockwise, and the output
-		// convention needs the opposite sign to RESIST wheel motion
-		return -Math.Clamp( _smoothedVelocity * _invStickRegion, -1f, 1f ) * _v[ Strength ] * ctx.MaxForce;
+		// the stick point is dragged along using the MEASURED angle, so it stays anchored to real positions;
+		// past the breakaway distance it trails the wheel, pinning the torque at the sliding-friction level
+		var displacement = ctx.SteeringWheelAngle - _stickPoint;
+
+		if ( displacement > _stickRegionRad )
+		{
+			_stickPoint = ctx.SteeringWheelAngle - _stickRegionRad;
+		}
+		else if ( displacement < -_stickRegionRad )
+		{
+			_stickPoint = ctx.SteeringWheelAngle + _stickRegionRad;
+		}
+
+		// the spring acts on the lead-compensated angle (see the class comment — this is what keeps the stick
+		// phase from pumping a permanent oscillation)
+		var leadDisplacement = ctx.SteeringWheelAngle + ctx.SteeringWheelVelocity * LeadSeconds - _stickPoint;
+
+		// negated: the angle is positive counterclockwise (like the output convention), and the spring must
+		// pull the wheel BACK toward the stick point
+		return -Math.Clamp( leadDisplacement / _stickRegionRad, -1f, 1f ) * _v[ Strength ] * ctx.MaxForce;
 	}
 }
 
@@ -139,9 +172,11 @@ public sealed class SourceSoftLockModule : FFBModule
 
 				var contribution = sign * deltaToMax * 2f * strength;
 
-				if ( MathF.Sign( ctx.WheelVelocity ) != sign )
+				// -WheelVelocity: the old code damped with the DirectInput axis velocity, whose sign convention is
+				// the opposite of the sim-telemetry-derived WheelVelocity (iRacing counterclockwise-positive)
+				if ( MathF.Sign( -ctx.WheelVelocity ) != sign )
 				{
-					contribution += ctx.WheelVelocity * strength;
+					contribution += -ctx.WheelVelocity * strength;
 				}
 
 				return contribution * ctx.MaxForce;
@@ -168,7 +203,9 @@ public sealed class SourceWheelCenteringModule : FFBModule
 	{
 		if ( ctx.IsOnTrack )
 		{
-			return Math.Clamp( ( Math.Clamp( ctx.WheelPosition, -0.25f, 0.25f ) + ctx.WheelVelocity * 0.1f ) * _v[ Strength ], -1f, 1f ) * ctx.MaxForce;
+			// negated: WheelPosition/Velocity follow iRacing's counterclockwise-positive convention (the old code
+			// used the DirectInput axis, which is the opposite), while the centering torque must oppose the position
+			return -Math.Clamp( ( Math.Clamp( ctx.WheelPosition, -0.25f, 0.25f ) + ctx.WheelVelocity * 0.1f ) * _v[ Strength ], -1f, 1f ) * ctx.MaxForce;
 		}
 
 		return 0f;
