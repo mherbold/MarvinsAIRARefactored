@@ -1,6 +1,6 @@
 # MAIRA FFB Graph Alpha — Tester Guide
 
-**Build:** [Version 2.0.470.1396 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.470.1396) — the third alpha; see [New in this build](#new-in-this-build) for what changed since the second one.
+**Build:** [Version 2.0.472.1142 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.472.1142) — the fourth alpha; see [New in this build](#new-in-this-build) for what changed since the third one.
 
 This alpha replaces MAIRA's entire force feedback system. The fixed set of FFB algorithms (Detail booster, Delta limiter, Slew and total compression, Multi adjustment toolkit, …) is gone; in its place is a **modular FFB graph** — an audio-DSP-style node editor where the force feedback signal chain is built out of small modules that you wire together yourself.
 
@@ -12,22 +12,26 @@ This document explains what changed versus the released (main branch) version, a
 
 - **This build is invisible to the update checker.** The app will not offer it, and it is not the "Latest" release on GitHub. Download and run the installer manually from the release page above. The installer is code-signed like normal releases.
 - **Your force feedback settings will NOT carry over.** There is no migration from the old algorithm settings to the graph system — everyone starts on the built-in graph. All of your *other* settings (pedals, sounds, overlays, commentary, G Tensioner, controller profiles, wheel force / max force, etc.) are preserved.
-- **FFB recordings from the released version or the first alpha are incompatible.** The recording file format changed in the second alpha (v4, 360 Hz, 35 channels); recordings made with the second alpha still load. Six fresh sample recordings covering different cars and tracks are installed for the preview graph, and you can record your own (see [Recordings](#recordings-and-the-preview-graph)).
+- **FFB recordings from earlier builds are incompatible.** The recording file format changed again in this alpha (v5 — it now captures the car's redline RPM for the new engine RPM vibration); recordings made with any earlier build no longer load. Six fresh sample recordings covering different cars and tracks are installed for the preview graph, and you can record your own (see [Recordings](#recordings-and-the-preview-graph)).
 - **Rolling back is safe.** Install the previous version over this one at any time. Note the graph data this alpha writes into `Settings.xml` will simply be ignored by the old version, and your old (dormant) algorithm settings are still in the file, so the old version picks up right where you left it.
 
 ---
 
 ## New in this build
 
-Changes since the second alpha (2.0.469.23), for testers who already ran it:
+Changes since the third alpha (2.0.470.1396), for testers who already ran it:
 
-- **New Friction source module** — true dry friction: a constant-magnitude drag opposing the wheel's rotation, unlike the velocity-proportional damping of the wheel velocity source. A Stick region knob sets the wheel speed where the friction reaches full force (lower = crisper, higher = softer around center). Pair it with a Speed gain for parked steering weight. See the [module reference](#sources-emit-a-signal-no-inputs--one-of-each-type-per-graph).
-- **FFB graph section redesign** — the node graph and the preview graph are joined into one view (node graph on top, preview below, module settings underneath), and the node graph is **resizable**: drag the grab handle on the seam between the two graphs (the height is remembered).
-- **Nodes show their settings** — each node displays a live one-line summary of its knob values ("1.50x", "one pole, 12.5 Hz") under its name.
-- **Preview graph horizontal zoom** — Ctrl+mouse wheel over the preview zooms out (draws every 2nd, 3rd, … up to every 20th data point) so you can see more of the recording at once; every sample is still processed, so filters and prediction stay accurate at any zoom.
-- **Track map panel** — the track map moved out of the hover popup into a permanent panel beside the preview graph. It shows the whole recorded segment, with the range currently visible in the preview highlighted in orange (it follows scrolling and zooming); green/red dots mark the recording start/end.
-- **All alpha UI strings are now translated** in every supported language (the known gap from the previous builds is closed), including corrected "Knee" terminology across languages.
-- **Marvin's awesome graph was updated again** — it now includes the new Friction source. Your built-in copy updates automatically on install; your knob adjustments for unchanged modules carry over.
+- **Vibration effects moved into the FFB graph.** The separate vibration graphs are gone — the vibration effects are now **generator nodes** inside the same FFB graph, shown as standalone nodes (no wires; they feed the vibration bus directly). Selecting the Output node previews the combined result including vibrations. See [Vibration effects](#vibration-effects-generator-nodes).
+- **New Engine RPM vibration module** — a rumble whose frequency tracks the engine, from 5 Hz just off idle up to a tunable frequency at the car's redline. It is voiced like a V8 (firing-pulse harmonics, per-firing variation, an eight-firing lope) with a Roughness knob — at 0% it's a pure sine, at 100% the full V8 burble. Silent whenever the engine is actually off (it reads the sim's engine-stalled flag, not the RPM, which iRacing floors at ~300).
+- **Friction source completely reworked.** It now uses the same stick-point model wheel firmwares use for hardware friction: the wheel "sticks" where you leave it and dry sliding friction resists turning past the stick region (now in degrees of rotation). The old velocity-based model could buzz or oscillate at rest; the new one is position-based and stable, with lead compensation for the telemetry delay.
+- **Vibration effect updates.**
+    - The understeer / oversteer / seat-of-pants vibrations use a single Frequency knob (the min/max frequency pair is gone), and their amplitude envelopes are now interpolated at 360 Hz — no more stairstepping.
+    - Gear change gained a Frequency knob; shift RPM and ABS gained Frequency and Pulse duration knobs; every vibration starts (and every pulse restarts) at zero phase.
+    - Road texture's bump rate now rises steeply with car speed (most of the frequency arrives by 30–60 MPH, topping out at 180 MPH) instead of ramping linearly.
+    - Slip texture's amplitude is now driven by the summed understeer + oversteer effects — the editor shows a notice on the node if both are disabled on the steering effects page.
+- **Node editor improvements** — the remove-module button moved to the editor toolbar; new modules are placed at the splice point (halfway to the downstream node); the view no longer shifts when adding or removing nodes; auto layout keeps the Output next to its parent; wires that have to run backwards are routed cleanly around the nodes; the snap grid dots hug the graph.
+- **New defaults across the modules** — the module defaults (filters, gain, vibration strengths/frequencies/patterns, output threshold, and more) were retuned from scratch.
+- **Fixes** — the wheel centering source pushed the wheel *away* from center (reversed sign; soft lock's damping had the same bug); gear change vibration no longer replays a stale shift when you re-enable it; fixed a rare crash on app exit.
 
 ---
 
@@ -36,9 +40,9 @@ Changes since the second alpha (2.0.469.23), for testers who already ran it:
 | Area | Main (released) | This alpha (ffb-stack) |
 |---|---|---|
 | FFB processing | 8 fixed algorithms with flat knobs | User-built **FFB graphs** (node editor, ~30 module types) |
-| Wheel vibration effects | Fixed steering-effect + vibrate knobs | Separate **vibration graphs** built from generator modules |
+| Wheel vibration effects | Fixed steering-effect + vibrate knobs | **Generator nodes** inside the same FFB graph (incl. new engine RPM, road texture, and slip texture) |
 | Processing rate | 60 Hz update with per-algorithm upsampling | Entire chain at **360 Hz**, dedicated high-rate output thread |
-| Racing Wheel page | Algorithm / Output / Effects / Parked sections | FFB graph section + vibration effects section |
+| Racing Wheel page | Algorithm / Output / Effects / Parked sections | One FFB graph section (vibrations included) |
 | Steering Effects page | Wheel force + vibration groups | Wheel groups moved into the graphs (thresholds/calibration remain) |
 | FFB defaults | Per-algorithm defaults | **Built-in graphs** shipped with the app ("Marvin's awesome graph") |
 | Sharing setups | Not possible | **Export / import** graphs as `.mairagraph` files |
@@ -72,7 +76,7 @@ On the Racing Wheel page, the FFB graph section shows the graph as draggable nod
 - **Right-click** a node to lock the *preview* to it while keeping a different node selected — so you can turn one module's knobs while watching another module's output.
 - **Drag** a node to move it. A snap-to-grid toggle (dot-grid icon) and an auto-layout wand live in the corner of the canvas.
 - **Drag a wire**: press on a connector dot (crosshair cursor) and drag to another module's connector — works from output→input or input→output. Invalid targets (cycles, the Output module's own output, etc.) simply won't connect.
-- **Add a module** with the + button; the new module is spliced into the selected node's output wire. **Remove** a module with the − button on its settings card; its consumers are re-wired to its input so the signal keeps flowing.
+- **Add a module** with the + button; the new module is spliced into the selected node's output wire and placed at the splice point. **Remove** the selected module with the − button on the editor toolbar; its consumers are re-wired to its input so the signal keeps flowing.
 - **Zoom** with Ctrl+mouse wheel — the view scales around the cursor.
 - **Pan** by clicking and dragging empty canvas. Dragging a node past the viewport edge auto-crawls the view along with it.
 - The canvas grows as you drag nodes outward.
@@ -92,20 +96,20 @@ All values below are the defaults. Knob values can be click-stepped, dragged, or
 |---|---|---|
 | **60 Hz source** | iRacing's 60 Hz steering torque (pair with the Interpolator to smooth its staircase) | — |
 | **360 Hz source** | iRacing's raw 360 Hz steering torque | — |
-| **LFE source** | Torque from the low-frequency-effects audio capture | Strength (25%) |
+| **LFE source** | Torque from the low-frequency-effects audio capture | Strength (35%) |
 | **Soft lock source** | Opposing force past the car's steering lock | Strength (25%) |
 | **Wheel velocity source** | Torque proportional to how fast the wheel is turning — a damper (for dry friction use the Friction source) | Strength (100%) |
-| **Friction source** | Constant-magnitude drag opposing the wheel's rotation (dry friction) — pair with Speed gain for parked steering weight | Strength (10%), Stick region (15°/s) |
-| **Wheel centering source** | Spring force pulling the wheel to center | Strength (75%) |
+| **Friction source** | Dry friction via a dragged stick point (the same model wheel firmwares use): the wheel holds where you leave it, and turning past the stick region gives constant sliding drag — pair with Speed gain for parked steering weight | Strength (10%), Stick region (25°) |
+| **Wheel centering source** | Spring force pulling the wheel to center | Strength (85%) |
 
 #### Generic DSP
 
 | Module | What it does | Settings |
 |---|---|---|
-| **Gain** | Multiplies the signal | Gain (1.00×, range −5…+5) |
+| **Gain** | Multiplies the signal | Gain (1.25×, range −5…+5) |
 | **Compressor** | Squeezes torque above a threshold (audio-style) | Threshold (30 Nm), Knee (5 Nm), Ratio (4:1) |
-| **High-pass filter** | Passes only the fast detail | Slope (One pole / Two pole), Cutoff (Hz) |
-| **Low-pass filter** | Passes only the slow body of the force | Slope, Cutoff (Hz) |
+| **High-pass filter** | Passes only the fast detail | Slope (Two pole), Cutoff (8 Hz) |
+| **Low-pass filter** | Passes only the slow body of the force | Slope (Two pole), Cutoff (8 Hz) |
 | **Slew compressor** | Squeezes the *speed* of torque changes above a threshold | Threshold (75 Nm/s), Knee (30 Nm/s), Ratio (3:1), Peak mode |
 | **Slew limiter** | Hard-limits how fast torque can change | Limit (360 Nm/s) |
 | **Adaptive smoother** | One Euro filter — smooths hard when the signal is calm, opens up during fast changes | Amount (0–100%) |
@@ -130,7 +134,7 @@ All values below are the defaults. Knob values can be click-stepped, dragged, or
 | **Torque dither** | Tiny alternating torque below a threshold to keep the wheel mechanism live | Strength (1%), Threshold (10%) |
 | **Crash protection** | Cuts force during a crash | Long/Lat G force (8 g / 8 g), Duration (0.2 s), Force reduction (95%), Recovery time (0.2 s) |
 | **Curb protection** | Cuts force over violent curb strikes — now actually reduces force like crash protection | Shock velocity (0.5 m/s), Duration (0.1 s), Force reduction (75%), Recovery time (0.1 s) |
-| **Understeer / Oversteer / Seat-of-pants force** | Increase or decrease force with the steering-effect signal | Direction (None / Decrease / Increase), Strength (10%), Curve |
+| **Understeer / Oversteer / Seat-of-pants force** | Increase or decrease force with the steering-effect signal | Direction (understeer: Decrease, oversteer: None, seat-of-pants: Increase), Strength (10%), Curve |
 
 Crash protection, curb protection, and speed gain have a **test button** (vibrate icon) on their settings card so you can trigger the effect on demand.
 
@@ -139,21 +143,29 @@ Crash protection, curb protection, and speed gain have a **test button** (vibrat
 Converts the final Nm signal to the normalized wheel output, then applies two shapers that only make sense in normalized space:
 
 - **Curve** — response curve bending (OFF at 0)
-- **Soft limiter** — a compressor near full output instead of hard clipping: Threshold (90%), Knee (30%), Ratio (6:1), on by default
+- **Soft limiter** — a compressor near full output instead of hard clipping: Threshold (85%), Knee (30%), Ratio (6:1), on by default
+
+Selecting the Output node in the editor previews the **complete** wheel signal — the processed main chain plus the vibration bus.
 
 ---
 
-## Vibration graphs
+## Vibration effects (generator nodes)
 
-The wheel vibration effects live in their own graphs, selected independently of the FFB graph (VIBRATION EFFECTS section). A vibration graph is a flat list of **generator** modules — no wiring, they all feed the vibration bus directly:
+The wheel vibration effects are **generator** modules inside the same FFB graph. They render as standalone nodes — no input or output connectors — because they don't process the signal chain: each one feeds the shared vibration bus, which is added to the wheel output *after* the Output module's curve and limiter (vibrations never get compressed away by the limiter). The add-module picker lists them under two vibration categories.
 
-- **Understeer / Oversteer / Seat-of-pants vibration** — Pattern (sine, square, triangle, sawtooth in/out), Strength, Min/Max frequency, Curve
-- **Shift RPM vibration** — pulses when it's time to shift up
-- **Gear change vibration** — pulses on every gear change
-- **ABS vibration** — vibrates while ABS is active
-- **Road texture / Slip texture** — band-limited noise scaled by speed / tire slip (new!)
+| Module | When it vibrates | Settings |
+|---|---|---|
+| **Understeer vibration** | While the understeer effect is active — amplitude follows the effect strength (smoothly interpolated) | Pattern (sawtooth in), Strength (5%), Frequency (15 Hz), Curve |
+| **Oversteer vibration** | While the oversteer effect is active | Pattern (sawtooth out), Strength (5%), Frequency (10 Hz), Curve |
+| **Seat-of-pants vibration** | With the seat-of-pants (vertical G) effect | Pattern (triangle), Strength (5%), Frequency (12.5 Hz), Curve |
+| **Shift RPM vibration** | Pulses when it's time to shift up | Strength (3%), Frequency (50 Hz), Pulse duration (60 ms) |
+| **Gear change vibration** | A 100 ms buzz on every gear change | Strength (5%), Frequency (31 Hz) |
+| **ABS vibration** | Pulses while ABS is active | Strength (10%), Frequency (25 Hz), Pulse duration (40 ms) |
+| **Engine RPM vibration** | Whenever the engine is running — frequency tracks the RPM up to the redline, voiced like a V8; Roughness at 0% gives a pure sine | Strength (1%), Frequency at redline RPM (50 Hz), Roughness (100%) |
+| **Road texture** | Rumble that speeds up with the car — most of the frequency arrives by 30–60 MPH, topping out at 180 MPH | Strength (1%), Frequency (120 Hz) |
+| **Slip texture** | Rumble driven by the summed understeer + oversteer effects — either end of the car sliding | Strength (5%), Frequency (80 Hz) |
 
-The built-in vibration graph is named **Default**.
+Every vibration starts at zero phase when it triggers, and the pulsed ones restart their waveform with each pulse, so each event feels identical. The understeer / oversteer / seat-of-pants nodes (and slip texture) dim with a notice when the corresponding effect is disabled on the steering effects page.
 
 ---
 
@@ -161,7 +173,7 @@ The built-in vibration graph is named **Default**.
 
 The graph dropdowns are split into two categories:
 
-- **Built-in** — shipped inside the app. Currently **Marvin's awesome graph** (FFB) and **Default** (vibration). Built-ins:
+- **Built-in** — shipped inside the app. Currently **Marvin's awesome graph**. Built-ins:
   - cannot be renamed or deleted,
   - cannot be structurally changed — no adding/removing modules, no re-wiring, no moving nodes,
   - **can** have every knob/switch adjusted (and those adjustments are per-context like everything else),
@@ -169,15 +181,13 @@ The graph dropdowns are split into two categories:
   - are **updated automatically** when a new app version ships an updated copy — so alpha fixes to the built-in graph reach you on the next install without touching your custom graphs.
 - **Custom** — yours. To modify a built-in's structure, press **New graph** and choose **Clone current graph**; the clone is fully editable.
 
-**Marvin's awesome graph** (the shipped starting point) splits the 360 Hz torque into two branches: the slow body of the force goes through the **Prediction module** and a low-pass filter (prediction on the body only — the detail branch stays raw so no noise is amplified), while a high-pass detail branch gets its own **detail gain** (this is the gain the first-run wizard tunes) and curb protection. The branches recombine, pass through crash protection, ramp down when parked, pick up an interpolated low-speed wheel centering branch and LFE, and finish with the Output soft limiter.
+**Marvin's awesome graph** (the shipped starting point) splits the 360 Hz torque into two branches: the slow body of the force goes through the **Prediction module** and a low-pass filter (prediction on the body only — the detail branch stays raw so no noise is amplified), while a high-pass detail branch gets its own **detail gain** (this is the gain the first-run wizard tunes) and curb protection. The branches recombine, pass through crash protection, ramp down when parked, pick up an interpolated low-speed wheel centering branch, friction, and LFE, and finish with the Output soft limiter — with the full set of vibration generator nodes alongside.
 
 ---
 
 ## Per-context values and scopes
 
 Which graph is selected *and* all of its module values follow one context scope — right-click the graph selector's label to set it (default: per wheelbase + per car). Switch cars and your knob tweaks for that car come back; the graph structure itself is shared.
-
-The vibration graph selection has its own independent scope.
 
 ---
 
@@ -211,7 +221,7 @@ The preview graph replays a recorded lap segment through the live graph, so ever
   - you complete a lap (return within 100 m of where you started — start/finish line wrap handled correctly),
   - you go off track (the partial take is saved),
   - the 5-minute cap fills.
-- Recordings capture the full 360 Hz tick context (35 channels): torques, LFE, G forces, steering angle/velocity, yaw/pitch/roll rates, lateral acceleration and velocity, front shock velocity and deflection, throttle/brake, speed, RPM, gear, ABS, steering-effect signals, track position, and heading/velocity for the track map.
+- Recordings capture the full 360 Hz tick context (36 channels): torques, LFE, G forces, steering angle/velocity, yaw/pitch/roll rates, lateral acceleration and velocity, front shock velocity and deflection, throttle/brake, speed, RPM (with shift and redline RPM), gear, ABS, steering-effect signals, track position, and heading/velocity for the track map.
 - The **choose recording** button picks which recording the preview uses. Recordings load on demand now (only one in memory), so having many costs nothing.
 - The **beeps** are configurable on the Sounds page (enable, volume, frequency) like every other sound.
 
@@ -324,6 +334,9 @@ The wizard's FFB style step no longer picks an algorithm. Its 7-position slider 
 - Fresh-feel check: does the built-in graph feel right on your wheelbase and usual cars? Try the wizard slider extremes.
 - Prediction module: does the wheel feel more connected — less "rubber band" between what the car does and what your hands feel? Try Strength at OFF vs. 150% back to back on the same car. Report any oscillation or buzzing at high Strength/Horizon settings (and which car).
 - Give the prediction a few corners after loading into a car before judging it — it learns as you drive.
+- Friction feel: bump the wheel at a standstill — it should thunk and hold with zero buzz or oscillation. Try different Stick region values (small = crisp, large = softer before breakaway).
+- Engine RPM vibration: turn its Strength up, play with Roughness (0% pure tone ↔ 100% V8 burble), and confirm it goes silent the moment the engine dies.
+- Vibration effects in the graph: confirm each vibration node previews on its own and shows up in the Output node's preview, and that disabling understeer/oversteer on the steering effects page dims the right nodes.
 - Build a custom graph: clone the built-in, add/remove/rewire modules, confirm nothing crashes and the preview matches what you feel.
 - Per-car tuning: tweak knobs on two different cars and confirm each car's values come back when you switch.
 - Record laps at different tracks — verify the auto-stop on lap completion and the track map's shape.
