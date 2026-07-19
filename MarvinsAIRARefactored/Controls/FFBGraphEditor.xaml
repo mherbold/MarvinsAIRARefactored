@@ -19,12 +19,13 @@
         <converters:BooleanToVisibilityCollapsedConverter x:Key="BoolToVisibilityCollapsed" />
     </UserControl.Resources>
 
-    <!-- Rounded on top only and no bottom border: the preview graph sits flush underneath (its top border is
+    <!-- Rounded on the upper left only, no bottom border: the module settings column sits flush on the right
+		     (this box's right border is that divider) and the preview graph sits flush underneath (its top border is
 	     the 2px divider between them), so the two boxes read as one view. -->
     <Border BorderThickness="2,2,2,0"
             BorderBrush="{DynamicResource Brush.Border.Normal}"
             Background="{DynamicResource Brush.Background.Popup}"
-            CornerRadius="5,5,0,0"
+            CornerRadius="5,0,0,0"
             ClipToBounds="True">
 
         <Grid>
@@ -262,36 +263,44 @@
 
             <!-- canvas tools (pinned to the corner, outside the panned canvas): add module + remove selected module
 			     + snap-to-grid toggle + auto layout -->
-            <StackPanel Orientation="Horizontal"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Top"
-                        Margin="0,8,8,0"
-                        Panel.ZIndex="1">
+            <Border HorizontalAlignment="Right"
+                    VerticalAlignment="Top"
+                    Margin="0,8,8,0"
+                    Panel.ZIndex="1"
+                    Background="{DynamicResource Brush.Background.Default}"
+                    CornerRadius="20"
+                    Padding="6">
 
-                <local:MairaButton x:Name="AddModule_MairaButton"
-                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
-                                   IsSmall="True"
-                                   Click="AddModule_MairaButton_Click" />
+                <!-- the rounded plate above is opaque (page background color) so the buttons stay readable
+					     over whatever nodes are underneath -->
+                <StackPanel Orientation="Horizontal">
 
-                <local:MairaButton x:Name="RemoveModule_MairaButton"
-                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
-                                   IsSmall="True"
-                                   Margin="8,0,0,0"
-                                   Click="RemoveModule_MairaButton_Click" />
+                    <local:MairaButton x:Name="AddModule_MairaButton"
+                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/plus.png"
+                                       IsSmall="True"
+                                       Click="AddModule_MairaButton_Click" />
 
-                <local:MairaButton x:Name="SnapToGrid_MairaButton"
-                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/grid.png"
-                                   IsSmall="True"
-                                   Margin="8,0,0,0"
-                                   Click="SnapToGrid_MairaButton_Click" />
+                    <local:MairaButton x:Name="RemoveModule_MairaButton"
+                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/minus.png"
+                                       IsSmall="True"
+                                       Margin="8,0,0,0"
+                                       Click="RemoveModule_MairaButton_Click" />
 
-                <local:MairaButton x:Name="AutoLayout_MairaButton"
-                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/wand.png"
-                                   IsSmall="True"
-                                   Margin="8,0,0,0"
-                                   Click="AutoLayout_MairaButton_Click" />
+                    <local:MairaButton x:Name="SnapToGrid_MairaButton"
+                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/grid.png"
+                                       IsSmall="True"
+                                       Margin="8,0,0,0"
+                                       Click="SnapToGrid_MairaButton_Click" />
 
-            </StackPanel>
+                    <local:MairaButton x:Name="AutoLayout_MairaButton"
+                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/wand.png"
+                                       IsSmall="True"
+                                       Margin="8,0,0,0"
+                                       Click="AutoLayout_MairaButton_Click" />
+
+                </StackPanel>
+
+            </Border>
 
         </Grid>
 

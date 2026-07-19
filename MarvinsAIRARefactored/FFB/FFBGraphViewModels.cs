@@ -427,14 +427,16 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 	public bool ShowInputA => _descriptor.SignalInputCount >= 1;
 	public bool ShowInputB => _descriptor.SignalInputCount >= 2;
 
-	// the settings card's UniformGrid in RacingWheelPage.xaml consumes this via x:Static, so the BreakRow
-	// spacer math here and the rendered column count always agree
+	// column count for the multi-column settings-card presentation (the BreakRow spacer math below pads to
+	// this). RacingWheelPage.xaml currently stacks the settings vertically and binds Settings directly, so
+	// SettingsPresentation is unused there — kept in case the layout returns to a grid.
 	public const int SettingsPanelColumns = 3;
 
 	public ObservableCollection<FFBModuleSettingViewModel> Settings { get; } = [];
 
-	/// <summary>What the settings panel actually renders: <see cref="Settings"/> plus invisible spacers padding
-	/// out the row before each BreakRow setting, so related settings can be grouped onto their own row.</summary>
+	/// <summary>The multi-column presentation of the settings: <see cref="Settings"/> plus invisible spacers
+	/// padding out the row before each BreakRow setting, so related settings can be grouped onto their own
+	/// row. Unused while the settings panel stacks vertically.</summary>
 	public ObservableCollection<object> SettingsPresentation { get; } = [];
 
 	public string DisplayName

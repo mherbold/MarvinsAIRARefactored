@@ -10,6 +10,7 @@ using MouseEventArgs = System.Windows.Input.MouseEventArgs;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
 using SaveFileDialog = Microsoft.Win32.SaveFileDialog;
 using Point = System.Windows.Point;
+using Size = System.Windows.Size;
 using UserControl = System.Windows.Controls.UserControl;
 
 using MarvinsAIRARefactored.Classes;
@@ -25,16 +26,16 @@ public partial class RacingWheelPage : UserControl
 	private const double PreviewZoomFactor = 6.0;
 	private const double PreviewZoomPopupOffset = 32.0;
 
-	// the track map panel is a fixed square right of the preview graph; the whole recorded segment is fitted
-	// into it (uniform scale, centered, north up) inside this margin
-	private const double TrackMapPanelSize = 301.0;
+	// the whole recorded segment is fitted into the track map panel's actual rectangle (uniform scale,
+	// centered, north up) inside this margin, so the track never touches the panel edges
 	private const double TrackMapPanelMargin = 14.0;
 
-	// track map cache — rebuilt when the loaded recording data changes (reference comparison; the path,
-	// fit matrix, and geometry are derived purely from that list)
+	// track map cache — the path is rebuilt when the loaded recording data changes (reference comparison),
+	// and the fit matrix + geometry are recomputed when either the data or the panel size changes
 	private List<RecordingData>? _trackMapDataList = null;
 	private Point[]? _trackMapPath = null;
 	private Matrix _trackMapFitMatrix = Matrix.Identity;
+	private Size _trackMapFitPanelSize = Size.Empty;
 
 	// preview horizontal zoom (Ctrl+wheel): the skip factor mirrored into RacingWheel.AlgorithmPreviewSkip —
 	// 1 = 100% (every sample drawn), 2 = 50%, ... 20 = 5%. The anchor keeps the recorded sample under the
@@ -106,6 +107,31 @@ public partial class RacingWheelPage : UserControl
 		var parent = ( (ScrollViewer) sender ).Parent as UIElement;
 
 		parent?.RaiseEvent( eventArg );
+	}
+
+	// Module settings column — let the inner scroll viewer consume the wheel only while it can actually
+	// scroll in that direction; otherwise hand the event to the page so the wheel never feels trapped.
+	private void ModuleSettings_ScrollViewer_PreviewMouseWheel( object sender, MouseWheelEventArgs e )
+	{
+		var scrollViewer = (ScrollViewer) sender;
+
+		var scrollingUpAtTop = ( e.Delta > 0 ) && ( scrollViewer.VerticalOffset <= 0 );
+		var scrollingDownAtBottom = ( e.Delta < 0 ) && ( scrollViewer.VerticalOffset >= scrollViewer.ScrollableHeight );
+
+		if ( ( scrollViewer.ScrollableHeight <= 0 ) || scrollingUpAtTop || scrollingDownAtBottom )
+		{
+			e.Handled = true;
+
+			var eventArg = new MouseWheelEventArgs( e.MouseDevice, e.Timestamp, e.Delta )
+			{
+				RoutedEvent = MouseWheelEvent,
+				Source = sender
+			};
+
+			var parent = scrollViewer.Parent as UIElement;
+
+			parent?.RaiseEvent( eventArg );
+		}
 	}
 
 	/// <summary>
@@ -362,12 +388,19 @@ public partial class RacingWheelPage : UserControl
 		UpdateTrackMapPanel();
 	}
 
+	// the panel resizes with the window (it sits in a star-sized column) — refit the map to the new rectangle
+	private void TrackMap_Canvas_SizeChanged( object sender, SizeChangedEventArgs e )
+	{
+		UpdateTrackMapPanel();
+	}
+
 	/// <summary>
 	/// Keeps the track map panel (right of the preview graph) in sync: the recorded segment's polyline
-	/// (integrated once per loaded recording, see <see cref="TrackMap"/>) is fitted whole into the panel,
-	/// north up, and the slice of the recording currently visible in the preview viewport is drawn over it
-	/// in orange. Driven by the preview's ScrollChanged, which fires on scrolls, zoom steps, resizes, and
-	/// recording swaps (the image extent changes).
+	/// (integrated once per loaded recording, see <see cref="TrackMap"/>) is fitted whole into the panel's
+	/// actual rectangle, north up, and the slice of the recording currently visible in the preview viewport
+	/// is drawn over it in orange. Driven by the preview's ScrollChanged, which fires on scrolls, zoom steps,
+	/// resizes, and recording swaps (the image extent changes), plus the map canvas's own SizeChanged so the
+	/// track refits when the panel resizes.
 	/// </summary>
 	private void UpdateTrackMapPanel()
 	{
@@ -389,16 +422,30 @@ public partial class RacingWheelPage : UserControl
 			return;
 		}
 
-		if ( !ReferenceEquals( recordingDataList, _trackMapDataList ) )
-		{
-			_trackMapDataList = recordingDataList;
-			_trackMapPath = TrackMap.BuildPath( recordingDataList );
+		var panelSize = new Size( TrackMap_Canvas.ActualWidth, TrackMap_Canvas.ActualHeight );
 
-			// uniform scale fitting the whole segment into the panel, centered both ways (extent floors guard
-			// a degenerate straight-line/parked recording)
+		if ( ( panelSize.Width <= 0d ) || ( panelSize.Height <= 0d ) )
+		{
+			// not laid out yet — the canvas's SizeChanged calls back in once it has a real size
+			return;
+		}
+
+		if ( !ReferenceEquals( recordingDataList, _trackMapDataList ) || ( panelSize != _trackMapFitPanelSize ) )
+		{
+			if ( !ReferenceEquals( recordingDataList, _trackMapDataList ) )
+			{
+				_trackMapDataList = recordingDataList;
+				_trackMapPath = TrackMap.BuildPath( recordingDataList );
+			}
+
+			_trackMapFitPanelSize = panelSize;
+
+			// uniform scale fitting the whole segment into the panel rectangle, centered both ways inside the
+			// margin so the track never touches the edges (extent floors guard a degenerate
+			// straight-line/parked recording)
 			double minX = double.MaxValue, maxX = double.MinValue, minY = double.MaxValue, maxY = double.MinValue;
 
-			foreach ( var point in _trackMapPath )
+			foreach ( var point in _trackMapPath! )
 			{
 				minX = Math.Min( minX, point.X );
 				maxX = Math.Max( maxX, point.X );
@@ -409,11 +456,12 @@ public partial class RacingWheelPage : UserControl
 			var extentX = Math.Max( maxX - minX, 1.0 );
 			var extentY = Math.Max( maxY - minY, 1.0 );
 
-			var fitSize = TrackMapPanelSize - TrackMapPanelMargin * 2.0;
+			var fitWidth = Math.Max( panelSize.Width - TrackMapPanelMargin * 2.0, 1.0 );
+			var fitHeight = Math.Max( panelSize.Height - TrackMapPanelMargin * 2.0, 1.0 );
 
-			var scale = Math.Min( fitSize / extentX, fitSize / extentY );
+			var scale = Math.Min( fitWidth / extentX, fitHeight / extentY );
 
-			_trackMapFitMatrix = new Matrix( scale, 0d, 0d, scale, ( TrackMapPanelSize - scale * ( minX + maxX ) ) / 2.0, ( TrackMapPanelSize - scale * ( minY + maxY ) ) / 2.0 );
+			_trackMapFitMatrix = new Matrix( scale, 0d, 0d, scale, ( panelSize.Width - scale * ( minX + maxX ) ) / 2.0, ( panelSize.Height - scale * ( minY + maxY ) ) / 2.0 );
 
 			TrackMap_Path.Data = BuildTrackMapGeometry( 0, _trackMapPath.Length - 1 );
 

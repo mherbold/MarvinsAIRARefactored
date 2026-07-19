@@ -34,21 +34,21 @@
                                 ShowCurve="{Binding ShowCurve}"
                                 PlusButtonMappings="{Binding PlusButtonMappings}"
                                 MinusButtonMappings="{Binding MinusButtonMappings}"
-                                Margin="20,0,20,10" />
+                                Margin="20,0,20,20" />
         </DataTemplate>
 
         <DataTemplate x:Key="FFBGraphSwitchTemplate">
             <controls:MairaSwitch Label="{Binding Label}"
                                   LabelPosition="Top"
                                   IsOn="{Binding IsOn, Mode=TwoWay}"
-                                  Margin="20,0,20,10" />
+                                  Margin="20,0,20,20" />
         </DataTemplate>
 
         <DataTemplate x:Key="FFBGraphChoiceTemplate">
             <controls:MairaComboBox Label="{Binding Label}"
                                     ItemsSource="{Binding ChoiceOptions}"
                                     SelectedValue="{Binding ChoiceIndex, Mode=TwoWay}"
-                                    Margin="20,0,20,10" />
+                                    Margin="20,0,20,20" />
         </DataTemplate>
 
         <DataTemplate x:Key="FFBGraphSpacerTemplate">
@@ -61,14 +61,15 @@
                                         ChoiceTemplate="{StaticResource FFBGraphChoiceTemplate}"
                                         SpacerTemplate="{StaticResource FFBGraphSpacerTemplate}" />
 
-        <!-- Module card. DataContext = FFBModuleViewModel. -->
+        <!-- Module card. DataContext = FFBModuleViewModel. Lives in the settings column beside the node
+             graph, so the settings stack vertically (bound to Settings, not SettingsPresentation — the
+             row-break spacers only matter for the old multi-column grid). -->
 
         <DataTemplate x:Key="FFBGraphModuleCardTemplate">
 
-            <StackPanel Grid.Column="1"
-                        Margin="0,10">
+            <StackPanel Margin="0,10">
 
-                <Grid Margin="0,0,0,10">
+                <Grid Margin="20,0,20,10">
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
@@ -76,29 +77,35 @@
                         <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <controls:MairaSwitch Grid.Column="0"
+                    <!-- the notice gets its own row so its appearance never moves the switch/name/test row -->
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <controls:MairaSwitch Grid.Row="0"
+                                          Grid.Column="0"
                                           IsOn="{Binding Enabled, Mode=TwoWay}"
                                           VerticalAlignment="Center"
                                           Visibility="{Binding CanToggleEnabled, Converter={StaticResource BoolToVisibility}}" />
 
-                    <StackPanel Grid.Column="1"
-                                Orientation="Horizontal">
+                    <TextBlock Grid.Row="0"
+                               Grid.Column="1"
+                               Text="{Binding DisplayName}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               FontSize="30" />
 
-                        <TextBlock Text="{Binding DisplayName}"
-                                   Style="{StaticResource MairaTextBlockStyle}"
-                                   FontSize="30" />
-
-                        <!-- shown while this module's effect is switched off on the steering effects page (the
-                             module is inert until it is re-enabled there) -->
-                        <TextBlock Text="{Binding SteeringEffectDisabledNotice}"
-                                   Style="{StaticResource MairaTextBlockStyle}"
-                                   FontSize="16"
-                                   Foreground="{DynamicResource Brush.Accent}"
-                                   VerticalAlignment="Center"
-                                   Margin="20,0,0,0"
-                                   Visibility="{Binding SteeringEffectDisabled, Converter={StaticResource BoolToVisibility}}" />
-
-                    </StackPanel>
+                    <!-- shown while this module's effect is switched off on the steering effects page (the
+                         module is inert until it is re-enabled there) — below the name, since the narrow
+                         settings column has no room beside it -->
+                    <TextBlock Grid.Row="1"
+                               Grid.Column="1"
+                               Text="{Binding SteeringEffectDisabledNotice}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               FontSize="16"
+                               Foreground="{DynamicResource Brush.Accent}"
+                               TextWrapping="Wrap"
+                               Visibility="{Binding SteeringEffectDisabled, Converter={StaticResource BoolToVisibility}}" />
 
                     <!-- session-only test toggle (event-driven effects) — normal when off, MAIRA orange icon
                          when testing (same convention as the snap-to-grid button). Removing a module happens
@@ -114,16 +121,8 @@
 
                 </Grid>
 
-                <ItemsControl ItemsSource="{Binding SettingsPresentation}"
-                              Margin="-20,0,-20,0"
-                              ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <!-- column count comes from the view-model constant so the BreakRow spacer math always matches -->
-                            <UniformGrid Columns="{x:Static ffb:FFBModuleViewModel.SettingsPanelColumns}" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                </ItemsControl>
+                <ItemsControl ItemsSource="{Binding Settings}"
+                              ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}" />
 
             </StackPanel>
 
@@ -422,25 +421,62 @@
 
                 </Grid>
 
-                <!-- Node graph (its corner tools include the add-module button, which pops the module picker).
-                     The preview graph below shares its frame: the two boxes touch on a square-cornered seam
-                     (the preview's top border is the divider) so they read as one view. -->
-                <controls:FFBGraphEditor />
-
-                <!-- Preview: the selected module's signals replayed over the loaded recording (red = input A,
-                     green = input B, blue = output; for the Output module red/green are the two sources), with
-                     the track map of the recorded segment in a 301x301 panel on the right — the data currently
-                     visible in the preview viewport is highlighted in orange on the map. The record +
-                     choose-recording buttons float over the row's top-right corner. -->
-                <Grid Tag="Complex">
+                <!-- The editor block is a 2x2 grid sharing one frame: the node graph (left 2/3) with the
+                     selected module's settings column beside it (right 1/3), and the preview graph below the
+                     node graph with the track map panel below the settings. The boxes touch on square-cornered
+                     seams (each box to the right/below drops the border its neighbor already draws) so the
+                     whole block reads as one view. -->
+                <Grid>
 
                     <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*" />
                         <ColumnDefinition Width="*" />
-                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
-                    <!-- corners: only the lower LEFT is rounded — the track map panel owns the lower right -->
-                    <Border BorderThickness="2"
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <!-- Node graph (its corner tools include the add-module button, which pops the module picker). -->
+                    <controls:FFBGraphEditor Grid.Row="0"
+                                             Grid.Column="0" />
+
+                    <!-- Selected module settings: the controls for whichever node is selected on the graph,
+                         stacked vertically. No left border — the node graph's right border is the divider. The
+                         scroll viewer's height tracks the same setting as the node graph's viewport (both boxes
+                         then add the same 2px top border), so dragging the seam handle resizes the two together
+                         — binding to the graph's ActualHeight instead would deadlock the row against shrinking.
+                         The scrollbar appears when the controls don't all fit. -->
+                    <Border Grid.Row="0"
+                            Grid.Column="1"
+                            BorderThickness="0,2,2,0"
+                            BorderBrush="{DynamicResource Brush.Border.Normal}"
+                            Background="{DynamicResource Brush.Background.Popup}"
+                            CornerRadius="0,5,0,0">
+
+                        <ScrollViewer Height="{Binding Settings.RacingWheelFFBGraphEditorHeight}"
+                                      VerticalScrollBarVisibility="Auto"
+                                      HorizontalScrollBarVisibility="Disabled"
+                                      PreviewMouseWheel="ModuleSettings_ScrollViewer_PreviewMouseWheel">
+
+                            <ContentControl Content="{Binding RacingWheelGraphViewModel.SelectedModule}"
+                                            ContentTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
+
+                        </ScrollViewer>
+
+                    </Border>
+
+                    <!-- Preview: the selected module's signals replayed over the loaded recording (red = input A,
+                         green = input B, blue = output; for the Output module red/green are the two sources) —
+                         the data currently visible in the viewport is highlighted in orange on the track map.
+                         The record + choose-recording buttons float over the row's top-right corner. Its top
+                         border is the divider against the node graph; corners: only the lower LEFT is rounded —
+                         the track map panel owns the lower right. -->
+                    <Border Grid.Row="1"
+                            Grid.Column="0"
+                            Tag="Complex"
+                            BorderThickness="2"
                             BorderBrush="{DynamicResource Brush.Border.Normal}"
                             Background="{DynamicResource Brush.Background.Popup}"
                             CornerRadius="0,0,0,5"
@@ -466,12 +502,16 @@
 
                     </Border>
 
-                    <!-- track map panel: shares the preview's frame (no left border — the preview's right border
-                         is the divider), square corners except the lower right. The canvas is a fixed 301x301
-                         square aligned to the top; the border stretches to the preview's full height (scrollbar
-                         + padding included) so the bottom edges line up. -->
-                    <Border Grid.Column="1"
+                    <!-- track map panel: the whole recorded segment is fitted into the panel's actual rectangle
+                         (uniform scale, centered, margin all around — refit in code whenever the panel resizes).
+                         Shares the block's frame — no left border (the preview's right border is the vertical
+                         divider) and its top border is the divider against the settings column above; square
+                         corners except the lower right. The border stretches to the preview's full height
+                         (scrollbar + padding included) so the bottom edges line up. -->
+                    <Border Grid.Row="1"
+                            Grid.Column="1"
                             x:Name="TrackMap_Border"
+                            Tag="Complex"
                             BorderThickness="0,2,2,2"
                             BorderBrush="{DynamicResource Brush.Border.Normal}"
                             Background="{DynamicResource Brush.Background.Popup}"
@@ -479,10 +519,11 @@
 
                         <!-- everything sits on a Canvas so the Path's element origin stays pinned to the
                              panel's top-left corner: a Grid would size/align the Path from its geometry
-                             bounds, shifting the rendered line around as recordings change -->
-                        <Canvas Width="301"
-                                Height="301"
-                                ClipToBounds="True">
+                             bounds, shifting the rendered line around as recordings change. The canvas fills
+                             the panel; SizeChanged refits the track to the new rectangle. -->
+                        <Canvas x:Name="TrackMap_Canvas"
+                                ClipToBounds="True"
+                                SizeChanged="TrackMap_Canvas_SizeChanged">
 
                             <!-- whole recorded segment, fitted to the panel, north up -->
                             <Path x:Name="TrackMap_Path"
@@ -521,7 +562,9 @@
                          Dragging changes only the node graph's height — the preview never resizes — and the height
                          persists in settings. -->
                     <Thumb x:Name="GraphEditorHeight_Thumb"
-                           Grid.ColumnSpan="2"
+                           Grid.Row="1"
+                           Grid.Column="0"
+                           Tag="Complex"
                            Width="56"
                            Height="14"
                            HorizontalAlignment="Center"
@@ -577,27 +620,37 @@
 
                     </Thumb>
 
-                    <StackPanel Orientation="Horizontal"
-                                Grid.ColumnSpan="2"
-                                HorizontalAlignment="Right"
-                                VerticalAlignment="Top"
-                                Margin="0,8,8,0"
-                                Panel.ZIndex="1">
+                    <Border Grid.Row="1"
+                            Grid.Column="0"
+                            Tag="Complex"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            Margin="0,8,8,0"
+                            Panel.ZIndex="1"
+                            Background="{DynamicResource Brush.Background.Default}"
+                            CornerRadius="20"
+                            Padding="6">
 
-                        <controls:MairaButton x:Name="ChooseRecording_MairaButton"
-                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/browse.png"
-                                              IsSmall="True"
-                                              Click="ChooseRecording_MairaButton_Click" />
+                        <!-- the rounded plate above is opaque (page background color) so the buttons stay
+                             readable over the preview traces underneath -->
+                        <StackPanel Orientation="Horizontal">
 
-                        <controls:MairaMappableButton x:Name="Record_MairaMappableButton"
-                                                      ButtonMappings="{Binding Settings.RacingWheelStartRecordingMappings}"
-                                                      Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-white.png"
-                                                      BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-orange.png"
-                                                      Click="StartRecording_MairaMappableButton_Click"
-                                                      IsSmall="True"
-                                                      Margin="8,0,0,0" />
+                            <controls:MairaButton x:Name="ChooseRecording_MairaButton"
+                                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/browse.png"
+                                                  IsSmall="True"
+                                                  Click="ChooseRecording_MairaButton_Click" />
 
-                    </StackPanel>
+                            <controls:MairaMappableButton x:Name="Record_MairaMappableButton"
+                                                          ButtonMappings="{Binding Settings.RacingWheelStartRecordingMappings}"
+                                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-white.png"
+                                                          BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/record-orange.png"
+                                                          Click="StartRecording_MairaMappableButton_Click"
+                                                          IsSmall="True"
+                                                          Margin="8,0,0,0" />
+
+                        </StackPanel>
+
+                    </Border>
 
                     <Popup x:Name="PreviewZoom_Popup"
                            Placement="Relative"
@@ -744,10 +797,6 @@
                     </Popup>
 
                 </Grid>
-
-                <!-- Selected module settings (the one card for whichever node is selected on the graph above) -->
-                <ContentControl Content="{Binding RacingWheelGraphViewModel.SelectedModule}"
-                                ContentTemplate="{StaticResource FFBGraphModuleCardTemplate}" />
 
             </StackPanel>
 
