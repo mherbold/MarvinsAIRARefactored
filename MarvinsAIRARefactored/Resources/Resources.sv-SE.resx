@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Inga inspelningar hittades]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Aktivera enkelt läge</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Känslighet</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Understyrning och överstyrning är inaktiverade på sidan med styrningseffekter</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Som Alan Les hybrid, men 60/360 Hz-blandningen anpassar sig automatiskt till körförhållandena för extra stabilitet under belastning.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Blandar den mjuka 60 Hz-signalen med den detaljerade 360 Hz-signalen och komprimerar och formar den sedan till en stark men kontrollerad känsla.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Tämjer den råa 360 Hz-signalen med slew- och totalkompression — en fast, detaljerad känsla utan hårda toppar.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Den rekommenderade grafen för de flesta förare — den fulla 360 Hz-signalen med prediktion och en enda detaljratt för att skruva upp eller ner den fina vägkänslan.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Den klassiska mjuka känslan — iRacings nativa 60 Hz-signal, mjukt interpolerad, med de vanliga effekterna och skydden ovanpå.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Lägg till en beskrivning av den här grafen</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Fäst den här inställningen som en av grafens huvudkontroller</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Visa nodgraf</value>
   </data>
 </root>

@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[לא נמצאו הקלטות]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>הפעל מצב פשוט</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>רגישות</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>היגוי חסר והיגוי יתר מושבתים בדף אפקטי ההיגוי</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>כמו ההיברידי של Alan Le, אבל תערובת ה-60/360 Hz מסתגלת אוטומטית לתנאי הנהיגה ליציבות נוספת תחת עומס.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>ממזג את אות ה-60 Hz החלק עם אות ה-360 Hz המפורט, ואז דוחס ומעצב אותו לתחושה חזקה אך מבוקרת.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>מאלף את אות ה-360 Hz הגולמי בעזרת דחיסת slew ודחיסה כוללת — תחושה יציבה ומפורטת ללא פסגות קשות.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>הגרף המומלץ לרוב הנהגים — אות ה-360 Hz המלא עם חיזוי, וכפתור פירוט יחיד להגברה או להנמכה של תחושת הכביש העדינה.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>התחושה החלקה הקלאסית — אות ה-60 Hz המקורי של iRacing, באינטרפולציה רכה, עם האפקטים וההגנות הרגילים.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>הוסיפו תיאור לגרף הזה</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>הצמד הגדרה זו כאחד מפקדי הבקרה הראשיים של הגרף הזה</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>הצג את גרף הצמתים</value>
   </data>
 </root>

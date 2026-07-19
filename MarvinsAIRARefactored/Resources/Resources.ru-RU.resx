@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Записей не найдено]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Включить простой режим настройки</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Чувствительность</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Недостаточная и избыточная поворачиваемость отключены на странице «Эффекты руля»</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Как гибрид Alan Le, но смесь 60/360 Hz автоматически подстраивается под условия езды, добавляя стабильности под нагрузкой.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Смешивает плавный сигнал 60 Hz с детализированным сигналом 360 Hz, затем сжимает и формирует его для сильного, но контролируемого ощущения.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Укрощает сырой сигнал 360 Hz компрессией slew и общей компрессией — плотное, детальное ощущение без жёстких пиков.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Рекомендуемый граф для большинства гонщиков — полный сигнал 360 Hz с предсказанием и единственная ручка детализации, усиливающая или приглушающая тонкое чувство дороги.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Классическое плавное ощущение — родной сигнал iRacing 60 Hz с мягкой интерполяцией и привычными эффектами и защитами.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Добавьте описание этого графа</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Закрепить эту настройку как один из основных органов управления этого графа</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Показать граф узлов</value>
   </data>
 </root>

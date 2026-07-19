@@ -633,9 +633,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[कोई रिकॉर्डिंग नहीं मिली]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>सरल मोड सक्षम करें</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>संवेदनशीलता</value>
   </data>
@@ -2217,5 +2214,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>अंडरस्टीयर और ओवरस्टीयर स्टीयरिंग इफेक्ट्स पेज पर अक्षम हैं</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Alan Le के हाइब्रिड जैसा, लेकिन 60/360 Hz मिश्रण ड्राइविंग परिस्थितियों के अनुसार अपने आप ढल जाता है, जिससे लोड में अतिरिक्त स्थिरता मिलती है।</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>स्मूद 60 Hz सिग्नल को विस्तृत 360 Hz सिग्नल के साथ मिलाता है, फिर उसे मज़बूत लेकिन नियंत्रित अनुभूति के लिए संपीड़ित और आकार देता है।</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>कच्चे 360 Hz सिग्नल को स्लू और कुल संपीड़न से साधता है — कठोर चोटियों के बिना ठोस, विस्तृत अनुभूति।</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>अधिकांश ड्राइवरों के लिए अनुशंसित ग्राफ़ — प्रेडिक्शन के साथ पूरा 360 Hz सिग्नल, और सड़क की बारीक अनुभूति को बढ़ाने या घटाने के लिए एक ही डिटेल गेन।</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>क्लासिक स्मूद अनुभूति — iRacing का मूल 60 Hz सिग्नल, हल्के इंटरपोलेशन के साथ, ऊपर से सामान्य प्रभाव और सुरक्षा के साथ।</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>इस ग्राफ़ के लिए विवरण जोड़ें</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>इस सेटिंग को इस ग्राफ़ के मुख्य नियंत्रणों में से एक के रूप में पिन करें</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>नोड ग्राफ़ दिखाएँ</value>
   </data>
 </root>

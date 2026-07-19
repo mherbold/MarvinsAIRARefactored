@@ -337,45 +337,45 @@ public static class FFBModuleRegistry
 
 			// ---- vibration generators: steering effects (3) — per-module defaults (pattern indexes into
 			// VibrationPatternChoices: 3 = triangle, 4 = sawtooth in, 5 = sawtooth out) ----
-			Descriptor( UndersteerVibrationType, 0, () => new UndersteerVibrationModule(), isGenerator: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings( defaultPattern: 4f, defaultStrength: 0.05f, defaultFrequency: 15f ) ),
-			Descriptor( OversteerVibrationType, 0, () => new OversteerVibrationModule(), isGenerator: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings( defaultPattern: 5f, defaultStrength: 0.05f, defaultFrequency: 10f ) ),
-			Descriptor( SeatOfPantsVibrationType, 0, () => new SeatOfPantsVibrationModule(), isGenerator: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings( defaultPattern: 3f, defaultStrength: 0.05f, defaultFrequency: 12.5f ) ),
+			Descriptor( UndersteerVibrationType, 0, () => new UndersteerVibrationModule(), isGenerator: true, canTest: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings( defaultPattern: 4f, defaultStrength: 0.05f, defaultFrequency: 15f ) ),
+			Descriptor( OversteerVibrationType, 0, () => new OversteerVibrationModule(), isGenerator: true, canTest: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings( defaultPattern: 5f, defaultStrength: 0.05f, defaultFrequency: 10f ) ),
+			Descriptor( SeatOfPantsVibrationType, 0, () => new SeatOfPantsVibrationModule(), isGenerator: true, canTest: true, category: FFBModuleCategory.SteeringVibration, settings: VibrationSettings( defaultPattern: 3f, defaultStrength: 0.05f, defaultFrequency: 12.5f ) ),
 
 			// ---- vibration generators: other effects (6) ----
-			Descriptor( ABSVibrationType, 0, () => new ABSVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
+			Descriptor( ABSVibrationType, 0, () => new ABSVibrationModule(), isGenerator: true, canTest: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.1f, 0.01f, F.StrengthWithTorque() ),
 				Knob( "Frequency", 5f, 120f, 25f, 1f, F.Number( 0, "HertzUnits" ) ),
 				Knob( "PulseDuration", 10f, 500f, 40f, 5f, F.Number( 0, "MillisecondsUnits" ) )
 			] ),
 
-			Descriptor( GearChangeVibrationType, 0, () => new GearChangeVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
+			Descriptor( GearChangeVibrationType, 0, () => new GearChangeVibrationModule(), isGenerator: true, canTest: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.05f, 0.01f, F.StrengthWithTorque() ),
 				Knob( "Frequency", 5f, 120f, 31f, 1f, F.Number( 0, "HertzUnits" ) )
 			] ),
 
-			Descriptor( ShiftRPMVibrationType, 0, () => new ShiftRPMVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
+			Descriptor( ShiftRPMVibrationType, 0, () => new ShiftRPMVibrationModule(), isGenerator: true, canTest: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.03f, 0.01f, F.StrengthWithTorque() ),
 				Knob( "Frequency", 5f, 120f, 50f, 1f, F.Number( 0, "HertzUnits" ) ),
 				Knob( "PulseDuration", 10f, 500f, 60f, 5f, F.Number( 0, "MillisecondsUnits" ) )
 			] ),
 
-			Descriptor( EngineRPMVibrationType, 0, () => new EngineRPMVibrationModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
+			Descriptor( EngineRPMVibrationType, 0, () => new EngineRPMVibrationModule(), isGenerator: true, canTest: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.01f, 0.01f, F.StrengthWithTorque() ),
 				Knob( "FrequencyAtRedlineRPM", 10f, 120f, 50f, 1f, F.Number( 0, "HertzUnits" ) ),
 				Knob( "Roughness", 0f, 1f, 1f, 0.01f, F.WithOff( F.Percent() ) )
 			] ),
 
-			Descriptor( RoadTextureType, 0, () => new RoadTextureModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
+			Descriptor( RoadTextureType, 0, () => new RoadTextureModule(), isGenerator: true, canTest: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.01f, 0.01f, F.WithOff( F.Percent() ) ),
 				Knob( "Frequency", 5f, 120f, 120f, 1f, F.Number( 0, "HertzUnits" ) )
 			] ),
 
-			Descriptor( SlipTextureType, 0, () => new SlipTextureModule(), isGenerator: true, category: FFBModuleCategory.OtherVibration, settings:
+			Descriptor( SlipTextureType, 0, () => new SlipTextureModule(), isGenerator: true, canTest: true, category: FFBModuleCategory.OtherVibration, settings:
 			[
 				Knob( "Strength", 0f, 1f, 0.05f, 0.01f, F.WithOff( F.Percent() ) ),
 				Knob( "Frequency", 5f, 120f, 80f, 1f, F.Number( 0, "HertzUnits" ) )

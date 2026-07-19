@@ -16,6 +16,7 @@ public class FFBModuleData
 	public string InputAModuleId { get; set; } = FFBGraph.Source360ModuleId;
 	public string InputBModuleId { get; set; } = FFBGraph.Source360ModuleId;
 	public SerializableDictionary<string, float> SettingValues { get; set; } = [];  // bools 0/1, choices as index
+	public List<string> PinnedSettings { get; set; } = [];              // setting keys surfaced as the graph's quick controls above the editor
 	public float NodeX { get; set; } = 0f;                              // node editor canvas position; 0,0 everywhere = needs auto-layout
 	public float NodeY { get; set; } = 0f;
 
@@ -42,6 +43,8 @@ public class FFBModuleData
 		{
 			clone.SettingValues[ pair.Key ] = pair.Value;
 		}
+
+		clone.PinnedSettings.AddRange( PinnedSettings );
 
 		return clone;
 	}
@@ -74,6 +77,12 @@ public class FFBGraph
 	// out of another's. Empty on legacy graphs/files - assigned lazily on load/import.
 	public string GraphId { get; set; } = "";
 	public string Name { get; set; } = "";
+
+	// Free-text description shown below the graph selector (rides export/import). For BUILT-IN graphs the UI
+	// resolves a localization key derived from the graph name first (so shipped descriptions arrive translated)
+	// and only falls back to this stored text — see FFBGraphViewModel.GraphDescription.
+	public string Description { get; set; } = "";
+
 	public bool IsBuiltIn { get; set; } = false;
 	public List<FFBModuleData> Modules { get; set; } = [];   // dependency order, last = Output
 
@@ -136,7 +145,7 @@ public class FFBGraph
 	/// <summary>Deep copy of the whole graph (used to seed a new graph from an existing one).</summary>
 	public FFBGraph Clone()
 	{
-		var clone = new FFBGraph { GraphId = GraphId, Name = Name, IsBuiltIn = IsBuiltIn };
+		var clone = new FFBGraph { GraphId = GraphId, Name = Name, Description = Description, IsBuiltIn = IsBuiltIn };
 
 		foreach ( var module in Modules )
 		{

@@ -633,9 +633,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Salvestusi ei leitud]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Luba lihtne režiim</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Tundlikkus</value>
   </data>
@@ -2217,5 +2214,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Alajuhitavus ja ülejuhitavus on keelatud roolimisefektide lehel</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Nagu Alan Le hübriid, kuid 60/360 Hz segu kohandub automaatselt sõiduoludega, andes koormuse all lisastabiilsust.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Segab sujuva 60 Hz signaali detailse 360 Hz signaaliga ning seejärel surub ja vormib selle tugevaks, kuid kontrollitud tunnetuseks.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Taltsutab toore 360 Hz signaali slew- ja kogukompressiooniga — kindel ja detailne tunnetus ilma karmide tippudeta.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Enamikule sõitjatele soovitatav graaf — täielik 360 Hz signaal koos ennustusega ja üksainus detailinupp, millega peent teetunnetust võimendada või vaigistada.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Klassikaline sujuv tunnetus — iRacingu algne 60 Hz signaal, pehmelt interpoleeritud, koos tavapäraste efektide ja kaitsmetega.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Lisa sellele graafile kirjeldus</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Kinnita see säte selle graafi ühe peamise juhtelemendina</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Kuva sõlmegraaf</value>
   </data>
 </root>

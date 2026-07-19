@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Heb ddod o hyd i recordiadau]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Galluogi modd syml</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensitifrwydd</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Mae tanlywio a gorlywio wedi'u hanalluogi ar y dudalen effeithiau llywio</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Fel hybrid Alan Le, ond mae'r cymysgedd 60/360 Hz yn addasu'n awtomatig i amodau gyrru am fwy o sefydlogrwydd dan lwyth.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Yn cymysgu'r signal llyfn 60 Hz gyda'r signal manwl 360 Hz, yna'n ei gywasgu a'i siapio am deimlad cryf ond rheoledig.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Yn dofi'r signal 360 Hz amrwd gyda chywasgu slew a chyfanswm — teimlad cadarn, manwl heb bigau garw.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Y graff a argymhellir i'r rhan fwyaf o yrwyr — y signal 360 Hz llawn gyda rhagfynegi, ac un rheolydd manylder i godi neu ostwng teimlad mân y ffordd.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Y teimlad llyfn clasurol — signal brodorol 60 Hz iRacing, wedi'i ryngosod yn dyner, gyda'r effeithiau a'r amddiffyniadau arferol ar ei ben.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Ychwanegwch ddisgrifiad ar gyfer y graff hwn</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Pinio'r gosodiad hwn fel un o brif reolyddion y graff hwn</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Dangos y graff nodau</value>
   </data>
 </root>

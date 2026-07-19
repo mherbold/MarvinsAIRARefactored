@@ -633,9 +633,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Nav atrasti ieraksti]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Iespējot vienkāršo režīmu</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Jutīgums</value>
   </data>
@@ -2217,5 +2214,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Nepietiekamā un pārmērīgā pagriežamība ir atspējotas stūres efektu lapā</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Kā Alan Le hibrīds, bet 60/360 Hz maisījums automātiski pielāgojas braukšanas apstākļiem, dodot papildu stabilitāti slodzē.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Sajauc gludo 60 Hz signālu ar detalizēto 360 Hz signālu, tad to saspiež un veido spēcīgai, bet kontrolētai sajūtai.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Savalda neapstrādāto 360 Hz signālu ar slew un kopējo kompresiju — stingra, detalizēta sajūta bez asām virsotnēm.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Ieteicamais grafs lielākajai daļai braucēju — pilns 360 Hz signāls ar prognozēšanu un viens detaļu regulators, ar ko pastiprināt vai mazināt smalko ceļa sajūtu.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Klasiskā gludā sajūta — iRacing dzimtais 60 Hz signāls, maigi interpolēts, ar ierastajiem efektiem un aizsardzībām.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Pievienojiet šī grafa aprakstu</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Piespraust šo iestatījumu kā vienu no šī grafa galvenajām vadīklām</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Rādīt mezglu grafu</value>
   </data>
 </root>

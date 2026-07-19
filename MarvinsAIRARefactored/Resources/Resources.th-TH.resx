@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[ไม่พบการบันทึก]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>เปิดใช้งานโหมดง่าย</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>ความไว</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>อันเดอร์สเตียร์และโอเวอร์สเตียร์ถูกปิดใช้งานในหน้าเอฟเฟกต์พวงมาลัย</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>เหมือนไฮบริดของ Alan Le แต่ส่วนผสม 60/360 Hz จะปรับตัวเข้ากับสภาพการขับโดยอัตโนมัติ เพื่อความมั่นคงเพิ่มขึ้นเมื่อรับแรง</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>ผสมสัญญาณ 60 Hz ที่นุ่มนวลเข้ากับสัญญาณ 360 Hz ที่ละเอียด จากนั้นบีบอัดและปรับแต่งให้ได้ความรู้สึกที่หนักแน่นแต่ควบคุมได้</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>ปราบสัญญาณ 360 Hz ดิบด้วยการบีบอัดแบบสลูว์และแบบรวม — ความรู้สึกแน่นและละเอียดโดยไม่มียอดแหลมกระด้าง</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>กราฟที่แนะนำสำหรับผู้ขับส่วนใหญ่ — สัญญาณ 360 Hz เต็มรูปแบบพร้อมการคาดการณ์ และปุ่มปรับรายละเอียดเพียงปุ่มเดียวเพื่อเพิ่มหรือลดความรู้สึกละเอียดของพื้นถนน</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>ความรู้สึกนุ่มนวลแบบคลาสสิก — สัญญาณ 60 Hz ดั้งเดิมของ iRacing ที่ถูกอินเทอร์โพเลตอย่างนุ่มนวล พร้อมเอฟเฟกต์และการป้องกันตามปกติ</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>เพิ่มคำอธิบายสำหรับกราฟนี้</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>ปักหมุดการตั้งค่านี้เป็นหนึ่งในตัวควบคุมหลักของกราฟนี้</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>แสดงกราฟโหนด</value>
   </data>
 </root>

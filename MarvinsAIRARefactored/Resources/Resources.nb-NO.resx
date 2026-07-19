@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Ingen opptak funnet]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Aktiver enkel modus</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensitivitet</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Understyring og overstyring er deaktivert på siden for styringseffekter</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Som Alan Les hybrid, men 60/360 Hz-blandingen tilpasser seg kjøreforholdene automatisk for ekstra stabilitet under belastning.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Blander det myke 60 Hz-signalet med det detaljerte 360 Hz-signalet, og komprimerer og former det deretter til en sterk, men kontrollert følelse.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Temmer det rå 360 Hz-signalet med slew- og totalkompresjon — en fast, detaljert følelse uten harde topper.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Den anbefalte grafen for de fleste førere — det fulle 360 Hz-signalet med prediksjon og én detaljknapp for å skru den fine veifølelsen opp eller ned.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Den klassiske myke følelsen — iRacings native 60 Hz-signal, mykt interpolert, med de vanlige effektene og beskyttelsene på toppen.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Legg til en beskrivelse av denne grafen</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Fest denne innstillingen som en av grafens hovedkontroller</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Vis nodegraf</value>
   </data>
 </root>

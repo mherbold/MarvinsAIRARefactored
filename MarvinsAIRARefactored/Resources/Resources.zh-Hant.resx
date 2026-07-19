@@ -633,9 +633,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[找不到錄製檔]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>啟用簡易模式</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>靈敏度</value>
   </data>
@@ -2217,5 +2214,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>轉向不足和轉向過度已在轉向效果頁面中停用</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>與 Alan Le 的混合圖類似，但 60/360 Hz 的混合比例會隨駕駛狀況自動調整，在負載下更穩定。</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>將順滑的 60 Hz 訊號與細膩的 360 Hz 訊號混合，再經壓縮與塑形，帶來強勁而可控的手感。</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>用轉換速率壓縮與總量壓縮馴服原始 360 Hz 訊號 — 手感紮實細膩，沒有生硬的尖峰。</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>推薦給大多數車手的圖 — 帶預測的完整 360 Hz 訊號，加上單一細節增益旋鈕，可增強或減弱細膩的路感。</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>經典的順滑手感 — iRacing 原生 60 Hz 訊號經柔和插值，並疊加常用的效果與保護。</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>為該圖新增描述</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>將此設定釘選為該圖的主要控制項之一</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>顯示節點圖</value>
   </data>
 </root>

@@ -136,6 +136,19 @@
                                                         <Setter Property="BorderBrush"
                                                                 Value="{DynamicResource Brush.Accent.BlueDark}" />
                                                     </DataTrigger>
+                                                    <!-- telemetry source nodes green, the output node purple — same tone
+												     family as the generator blue, so no role shouts over the others;
+												     ordinary chain modules keep the gray default -->
+                                                    <DataTrigger Binding="{Binding IsSource}"
+                                                                 Value="True">
+                                                        <Setter Property="BorderBrush"
+                                                                Value="{DynamicResource Brush.Accent.GreenDark}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding IsOutput}"
+                                                                 Value="True">
+                                                        <Setter Property="BorderBrush"
+                                                                Value="{DynamicResource Brush.Accent.PurpleDark}" />
+                                                    </DataTrigger>
                                                     <!-- preview lock (right-click) renders below selection: when the same
 											     node is both, the selection accent wins (last matching trigger) -->
                                                     <DataTrigger Binding="{Binding IsPreviewLocked}"

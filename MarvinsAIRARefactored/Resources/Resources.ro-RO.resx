@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Nu s-au găsit înregistrări]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Activare mod simplu</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensibilitate</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Subvirarea și supravirarea sunt dezactivate pe pagina Efecte volan</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Ca hibridul lui Alan Le, dar amestecul 60/360 Hz se adaptează automat condițiilor de pilotaj pentru stabilitate suplimentară sub sarcină.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Amestecă semnalul lin de 60 Hz cu semnalul detaliat de 360 Hz, apoi îl comprimă și îl modelează pentru o senzație puternică, dar controlată.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Îmblânzește semnalul brut de 360 Hz cu compresie slew și totală — o senzație fermă și detaliată, fără vârfuri dure.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Graful recomandat pentru majoritatea piloților — semnalul complet de 360 Hz cu predicție și un singur reglaj de detaliu pentru a amplifica sau atenua senzația fină a drumului.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Senzația lină clasică — semnalul nativ de 60 Hz din iRacing, interpolat delicat, cu efectele și protecțiile obișnuite.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Adaugă o descriere pentru acest graf</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Fixează această setare ca unul dintre controalele principale ale acestui graf</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Afișează graful de noduri</value>
   </data>
 </root>

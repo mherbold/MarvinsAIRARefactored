@@ -633,9 +633,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Не са намерени записи]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Активиране на опростен режим</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Чувствителност</value>
   </data>
@@ -2217,5 +2214,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Недозавиването и презавиването са деактивирани на страницата с ефекти на управлението</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Като хибрида на Alan Le, но смесването 60/360 Hz се адаптира автоматично към условията на карането за допълнителна стабилност под натоварване.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Смесва гладкия 60 Hz сигнал с детайлния 360 Hz сигнал, след което го компресира и оформя за силно, но контролирано усещане.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Укротява суровия 360 Hz сигнал със slew и обща компресия — стегнато, детайлно усещане без резки върхове.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Препоръчаният граф за повечето пилоти — пълният сигнал от 360 Hz с предсказване и един регулатор на детайла, който усилва или намалява финото усещане за пътя.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Класическото гладко усещане — родният 60 Hz сигнал на iRacing, меко интерполиран, с обичайните ефекти и защити отгоре.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Добавете описание за този граф</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Закачи тази настройка като едно от основните управления на този граф</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Показване на графа с възли</value>
   </data>
 </root>

@@ -643,6 +643,24 @@ public class Settings : INotifyPropertyChanged
 			WriteImportedModuleValues( imported, localGraph.GraphId, moduleIdMap, FindContextSettings( baselineContext ).RacingWheelFFBGraphModuleValues );
 		}
 
+		// The description and pinned quick controls are part of the author's intent for the graph, so an update
+		// adopts them too (pins are remapped onto the local nodes the same way the values were).
+		localGraph.Description = imported.Description;
+
+		foreach ( var importedModule in imported.Modules )
+		{
+			if ( moduleIdMap.TryGetValue( importedModule.ModuleId, out var localModuleId ) )
+			{
+				var localModule = localGraph.Modules.Find( module => module.ModuleId == localModuleId );
+
+				if ( localModule != null )
+				{
+					localModule.PinnedSettings.Clear();
+					localModule.PinnedSettings.AddRange( importedModule.PinnedSettings );
+				}
+			}
+		}
+
 		// Reflect the change live only when it lands on the context we are currently driving. Selecting the matched
 		// graph (when it isn't already selected) loads this context's values and rebuilds the engine + editor; if it
 		// is already selected, reload this context's values directly. A baseline-only write while a different context
@@ -659,6 +677,12 @@ public class Settings : INotifyPropertyChanged
 			{
 				SyncFFBGraphModuleValues( false );
 			}
+		}
+
+		// the adopted description/pins reach the editor VM when this graph is (or becomes) the selected one
+		if ( RacingWheelSelectedFFBGraphName == existingGraphName )
+		{
+			RebuildGraphEditorViewModel();
 		}
 
 		App.Instance!.SettingsFile.QueueForSerialization = true;
@@ -1824,6 +1848,26 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
+	// Shows/hides the top row of the editor block (the node graph and the module settings column). Off by
+	// default: basic users see just the description, the pinned quick controls, and the preview row — advanced
+	// users flip this on for full control of the node graph. Global (not per graph).
+	private bool _racingWheelShowNodeGraph = false;
+
+	public bool RacingWheelShowNodeGraph
+	{
+		get => _racingWheelShowNodeGraph;
+
+		set
+		{
+			if ( value != _racingWheelShowNodeGraph )
+			{
+				_racingWheelShowNodeGraph = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
 	// Node editor viewport height in pixels (global — resized by dragging the grab handle on the node graph /
 	// preview graph seam; the preview graph's height never changes). Clamped here so a hand-edited settings
 	// file cannot collapse or blow up the layout.
@@ -1843,6 +1887,32 @@ public class Settings : INotifyPropertyChanged
 			if ( value != _racingWheelFFBGraphEditorHeight )
 			{
 				_racingWheelFFBGraphEditorHeight = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	// Fraction of the FFB graph block's width given to the left (node graph / preview) column, the rest going to
+	// the module settings / track map column — resized by dragging the grab handle on the vertical seam. Stored
+	// as a fraction rather than pixels so the split survives window resizes. Clamped here so a hand-edited
+	// settings file cannot collapse either column.
+	public const double MinFFBGraphEditorSplit = 0.4;
+	public const double MaxFFBGraphEditorSplit = 0.85;
+
+	private double _racingWheelFFBGraphEditorSplit = 2.0 / 3.0;
+
+	public double RacingWheelFFBGraphEditorSplit
+	{
+		get => _racingWheelFFBGraphEditorSplit;
+
+		set
+		{
+			value = Math.Clamp( value, MinFFBGraphEditorSplit, MaxFFBGraphEditorSplit );
+
+			if ( value != _racingWheelFFBGraphEditorSplit )
+			{
+				_racingWheelFFBGraphEditorSplit = value;
 
 				OnPropertyChanged();
 			}
@@ -4160,31 +4230,6 @@ public class Settings : INotifyPropertyChanged
 			}
 
 			_racingWheelPage.UpdateSteeringDeviceSection();
-		}
-	}
-
-	#endregion
-
-	#region Racing wheel - Simple mode
-
-	private bool _racingWheelSimpleModeEnabled = false;
-
-	public bool RacingWheelSimpleModeEnabled
-	{
-		get => _racingWheelSimpleModeEnabled;
-
-		set
-		{
-			if ( value != _racingWheelSimpleModeEnabled )
-			{
-				_racingWheelSimpleModeEnabled = value;
-
-				OnPropertyChanged();
-			}
-
-			var app = App.Instance!;
-
-			app.MainWindow.UpdateRacingWheelSimpleMode();
 		}
 	}
 

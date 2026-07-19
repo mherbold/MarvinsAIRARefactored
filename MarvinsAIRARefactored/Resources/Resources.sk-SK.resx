@@ -633,9 +633,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Nenašli sa žiadne nahrávky]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Povoliť jednoduchý režim</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Citlivosť</value>
   </data>
@@ -2217,5 +2214,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Nedotáčavosť a pretáčavosť sú vypnuté na stránke efektov volantu</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Ako hybrid Alana Le, ale zmes 60/360 Hz sa automaticky prispôsobuje jazdným podmienkam pre väčšiu stabilitu pri záťaži.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Mieša hladký signál 60 Hz s detailným signálom 360 Hz a potom ho komprimuje a tvaruje pre silný, ale kontrolovaný pocit.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Krotí surový signál 360 Hz kompresiou slew a celkovou kompresiou — pevný, detailný pocit bez ostrých špičiek.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Odporúčaný graf pre väčšinu jazdcov — plný signál 360 Hz s predikciou a jediným ovládačom detailov, ktorým zosilníte alebo stlmíte jemný pocit z vozovky.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Klasický hladký pocit — natívny signál iRacingu 60 Hz, jemne interpolovaný, s obvyklými efektmi a ochranami navrchu.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Pridajte popis tohto grafu</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Pripnúť toto nastavenie ako jeden z hlavných ovládacích prvkov tohto grafu</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Zobraziť graf uzlov</value>
   </data>
 </root>

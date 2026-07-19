@@ -588,9 +588,6 @@ Hier ist der Link zum Spenden:</value>
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Keine Aufzeichnung gefunden]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Einfacher Modus</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Empfindlichkeit</value>
   </data>
@@ -2235,5 +2232,29 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Untersteuern und Übersteuern sind auf der Seite „Lenkeffekte“ deaktiviert</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Wie Alan Les Hybrid, aber die 60/360-Hz-Mischung passt sich automatisch den Fahrbedingungen an — für zusätzliche Stabilität unter Last.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Mischt das weiche 60-Hz-Signal mit dem detaillierten 360-Hz-Signal und komprimiert und formt es anschließend für ein kräftiges, aber kontrolliertes Gefühl.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Zähmt das rohe 360-Hz-Signal mit Slew- und Gesamtkompression — ein festes, detailliertes Gefühl ohne harte Spitzen.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Der empfohlene Graph für die meisten Fahrer — das volle 360-Hz-Signal mit Prädiktion und einem einzigen Detail-Regler, um das feine Fahrbahngefühl zu verstärken oder abzuschwächen.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Das klassische weiche Gefühl — iRacings natives 60-Hz-Signal, sanft interpoliert, mit den üblichen Effekten und Schutzfunktionen obendrauf.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Beschreibung für diesen Graphen hinzufügen</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Diese Einstellung als eines der Hauptbedienelemente dieses Graphen anheften</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Knotengraph anzeigen</value>
   </data>
 </root>

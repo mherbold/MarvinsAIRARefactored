@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Kayıt bulunamadı]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Basit modu etkinleştir</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Hassasiyet</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Az dönme ve aşırı dönme direksiyon efektleri sayfasında devre dışı bırakılmıştır</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Alan Le'nin hibriti gibi, ancak 60/360 Hz karışımı sürüş koşullarına otomatik uyum sağlayarak yük altında ekstra kararlılık verir.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Pürüzsüz 60 Hz sinyalini ayrıntılı 360 Hz sinyaliyle harmanlar, ardından güçlü ama kontrollü bir his için sıkıştırıp şekillendirir.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Ham 360 Hz sinyalini slew ve toplam sıkıştırmayla ehlileştirir — sert tepeler olmadan sıkı, ayrıntılı bir his.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Çoğu sürücü için önerilen grafik — tahminli tam 360 Hz sinyali ve ince yol hissini artırmak ya da azaltmak için tek bir detay kazancı.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Klasik pürüzsüz his — iRacing'in yerel 60 Hz sinyali, yumuşakça interpole edilmiş, üzerine alışılmış efektler ve korumalar eklenmiş.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Bu grafik için bir açıklama ekleyin</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Bu ayarı bu grafiğin ana kontrollerinden biri olarak sabitle</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Düğüm grafiğini göster</value>
   </data>
 </root>

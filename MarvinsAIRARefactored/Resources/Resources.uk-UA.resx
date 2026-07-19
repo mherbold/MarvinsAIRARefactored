@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Записів не знайдено]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Увімкнути спрощений режим</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Чутливість</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Недостатню та надлишкову поворотність вимкнено на сторінці «Ефекти керування»</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Як гібрид Alan Le, але суміш 60/360 Hz автоматично підлаштовується під умови їзди, додаючи стабільності під навантаженням.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Змішує плавний сигнал 60 Hz із деталізованим сигналом 360 Hz, а потім стискає та формує його для сильного, але контрольованого відчуття.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Приборкує сирий сигнал 360 Hz компресією slew і загальною компресією — щільне, деталізоване відчуття без жорстких піків.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Рекомендований граф для більшості гонщиків — повний сигнал 360 Hz із передбаченням і єдиний регулятор деталізації, що підсилює або приглушує тонке відчуття дороги.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Класичне плавне відчуття — рідний сигнал iRacing 60 Hz із м'якою інтерполяцією та звичними ефектами й захистами.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Додайте опис цього графа</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Закріпити це налаштування як один з основних органів керування цього графа</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Показати граф вузлів</value>
   </data>
 </root>

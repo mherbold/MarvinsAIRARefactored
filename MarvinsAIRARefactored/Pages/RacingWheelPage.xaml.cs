@@ -215,6 +215,26 @@ public partial class RacingWheelPage : UserControl
 		App.Instance!.SettingsFile.QueueForSerialization = true;
 	}
 
+	// Grab handle on the vertical seam between the two columns — the pixel delta is converted to a fraction of
+	// the block's width because the split is stored as a ratio (the setting's setter clamps, and the thumb
+	// reports deltas relative to its own grab point, so overshooting a limit just parks there).
+	private void GraphEditorSplit_Thumb_DragDelta( object sender, DragDeltaEventArgs e )
+	{
+		var blockWidth = GraphEditorBlock_Grid.ActualWidth;
+
+		if ( blockWidth > 0.0 )
+		{
+			var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
+
+			settings.RacingWheelFFBGraphEditorSplit += e.HorizontalChange / blockWidth;
+		}
+	}
+
+	private void GraphEditorSplit_Thumb_DragCompleted( object sender, DragCompletedEventArgs e )
+	{
+		App.Instance!.SettingsFile.QueueForSerialization = true;
+	}
+
 	/// <summary>
 	/// Scrolls the preview graph to its horizontal middle — called when the scroll viewer first loads and
 	/// whenever the preview image is resized to a newly loaded recording (recordings are dynamic-length, so the

@@ -623,19 +623,19 @@ public class RacingWheel
 
 			if ( engine.CurbProtectionActive )
 			{
-				clearColor = 0xFFFFFF00;
+				clearColor = 0xFF606000;
 			}
 
 			if ( engine.CrashProtectionActive )
 			{
-				clearColor = 0xFFFF5B2E;
+				clearColor = 0xFF40260C;
 			}
 
 			for ( var i = 0; i < Simulator.SamplesPerFrame360Hz; i++ )
 			{
 				if ( MathF.Abs( _burstOutputTorque[ i ] ) >= 0.99f )
 				{
-					clearColor = 0xFFFF0000;
+					clearColor = 0xFF600000;
 
 					break;
 				}
@@ -1244,17 +1244,17 @@ public class RacingWheel
 
 						if ( _previewEngine.CurbProtectionActive )
 						{
-							clearColor = 0xFFFFFF00;
+							clearColor = 0xFF606000;
 						}
 
 						if ( _previewEngine.CrashProtectionActive )
 						{
-							clearColor = 0xFFFF5B2E;
+							clearColor = 0xFF40260C;
 						}
 
 						if ( previewIsOutput && ( MathF.Abs( outputValue ) >= 0.99f ) )
 						{
-							clearColor = 0xFFFF0000;
+							clearColor = 0xFF600000;
 						}
 
 						_algorithmPreviewGraphBase.SetClearColor( clearColor );
@@ -1278,6 +1278,11 @@ public class RacingWheel
 
 			_racingWheelPage.Record_MairaMappableButton.Disabled = !app.Simulator.IsOnTrack;
 			_racingWheelPage.Record_MairaMappableButton.Blink = app.RecordingManager.IsRecording;
+
+			// generator (vibration) tests shake the physical wheel, which needs live FFB — gate their test
+			// buttons on the same on-track state as the record button
+
+			DataContext.DataContext.Instance.RacingWheelGraphViewModel.NotifyIsOnTrackChanged( app.Simulator.IsOnTrack );
 
 			// suspend racing wheel force feedback if iracing ffb is enabled or we are calibrating
 

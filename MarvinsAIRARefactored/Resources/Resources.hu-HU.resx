@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Felvétel nem található]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Egyszerű mód engedélyezése</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Érzékenység</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Az alulkormányzottság és a túlkormányzottság le van tiltva a kormányzási effektek oldalon</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Mint Alan Le hibridje, de a 60/360 Hz-es keverék automatikusan alkalmazkodik a vezetési körülményekhez, extra stabilitást adva terhelés alatt.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>A sima 60 Hz-es jelet keveri a részletes 360 Hz-es jellel, majd összenyomja és formálja, hogy erős, mégis kontrollált érzetet adjon.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>A nyers 360 Hz-es jelet slew- és teljes kompresszióval szelídíti meg — feszes, részletes érzet durva csúcsok nélkül.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>A legtöbb versenyzőnek ajánlott gráf — a teljes 360 Hz-es jel predikcióval, és egyetlen részletesség-szabályzó, amellyel a finom útérzet erősíthető vagy halkítható.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>A klasszikus, sima érzet — az iRacing natív 60 Hz-es jele lágyan interpolálva, a megszokott effektekkel és védelmekkel kiegészítve.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Adjon leírást ehhez a gráfhoz</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Rögzítse ezt a beállítást a gráf egyik fő kezelőszerveként</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Csomópontgráf megjelenítése</value>
   </data>
 </root>

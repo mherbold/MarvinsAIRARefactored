@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[No se han encontrado grabaciones]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Activar modo simple</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensibilidad</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>El subviraje y el sobreviraje están desactivados en la página de efectos de dirección</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Como el híbrido de Alan Le, pero la mezcla 60/360 Hz se adapta automáticamente a las condiciones de conducción para mayor estabilidad bajo carga.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Mezcla la señal suave de 60 Hz con la señal detallada de 360 Hz, y después la comprime y moldea para una sensación fuerte pero controlada.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Doma la señal cruda de 360 Hz con compresión de slew y total — una sensación firme y detallada sin picos bruscos.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>El grafo recomendado para la mayoría de los pilotos — la señal completa de 360 Hz con predicción, y una sola ganancia de detalle para subir o bajar la sensación fina de la carretera.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>La sensación suave clásica — la señal nativa de 60 Hz de iRacing, interpolada suavemente, con los efectos y protecciones habituales.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Añade una descripción para este grafo</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Fijar este ajuste como uno de los controles principales de este grafo</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Mostrar el grafo de nodos</value>
   </data>
 </root>

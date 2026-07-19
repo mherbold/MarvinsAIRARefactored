@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[No s'han trobat enregistraments]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Activa el mode simple</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensibilitat</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>El subviratge i el sobreviratge estan desactivats a la pàgina d'efectes de direcció</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Com l'híbrid d'Alan Le, però la barreja 60/360 Hz s'adapta automàticament a les condicions de conducció per a més estabilitat sota càrrega.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Barreja el senyal suau de 60 Hz amb el senyal detallat de 360 Hz, i després el comprimeix i el modela per a una sensació forta però controlada.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Doma el senyal cru de 360 Hz amb compressió de slew i total — una sensació ferma i detallada sense pics bruscos.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>El graf recomanat per a la majoria de pilots — el senyal complet de 360 Hz amb predicció, i un sol guany de detall per apujar o abaixar la sensació fina de la carretera.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>La sensació suau clàssica — el senyal natiu de 60 Hz d'iRacing, interpolat suaument, amb els efectes i proteccions habituals.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Afegeix una descripció per a aquest graf</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Fixa aquest ajust com un dels controls principals d'aquest graf</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Mostra el graf de nodes</value>
   </data>
 </root>

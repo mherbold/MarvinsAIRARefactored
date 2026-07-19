@@ -636,9 +636,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[No recordings found]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Enable simple mode</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensitivity</value>
   </data>
@@ -2217,5 +2214,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Understeer and oversteer are disabled on the steering effects page</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Like Alan Le's hybrid, but the 60/360 Hz blend adapts automatically to driving conditions for extra stability under load.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Blends the smooth 60 Hz signal with the detailed 360 Hz signal, then compresses and shapes it for a strong yet controlled feel.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Tames the raw 360 Hz signal with slew and total compression — a firm, detailed feel without harsh spikes.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>The recommended graph for most drivers — the full 360 Hz signal with prediction, and a single detail gain to dial the fine road feel up or down.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>The classic smooth feel — iRacing's native 60 Hz signal, softly interpolated, with the usual effects and protections on top.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Add a description for this graph</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Pin this setting as one of this graph's main controls</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Show node graph</value>
   </data>
 </root>

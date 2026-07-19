@@ -633,9 +633,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[لم يتم العثور على تسجيلات]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>تفعيل الوضع البسيط</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>الحساسية</value>
   </data>
@@ -2217,5 +2214,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>تم تعطيل نقص التوجيه وزيادة التوجيه في صفحة تأثيرات التوجيه</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>مثل مخطط Alan Le الهجين، لكن مزيج 60/360 Hz يتكيف تلقائيًا مع ظروف القيادة لثبات إضافي تحت الحمل.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>يمزج إشارة 60 Hz السلسة مع إشارة 360 Hz المفصلة، ثم يضغطها ويشكلها لإحساس قوي ومنضبط في آن واحد.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>يروض إشارة 360 Hz الخام بضغط الانحدار والضغط الكلي — إحساس متين ومفصل بلا ذروات قاسية.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>المخطط الموصى به لمعظم السائقين — إشارة 360 Hz الكاملة مع التنبؤ، ومقبض تفاصيل واحد لرفع إحساس الطريق الدقيق أو خفضه.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>الإحساس السلس الكلاسيكي — إشارة iRacing الأصلية بتردد 60 Hz مع استيفاء ناعم، ومعها التأثيرات والحمايات المعتادة.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>أضف وصفًا لهذا المخطط</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>تثبيت هذا الإعداد كأحد عناصر التحكم الرئيسية لهذا المخطط</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>إظهار مخطط العقد</value>
   </data>
 </root>

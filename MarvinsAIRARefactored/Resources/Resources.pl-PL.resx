@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Nie znaleziono nagrań]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Włącz tryb prosty</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Czułość</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Podsterowność i nadsterowność są wyłączone na stronie efektów układu kierowniczego</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Jak hybryda Alana Le, ale mieszanka 60/360 Hz automatycznie dostosowuje się do warunków jazdy, zapewniając dodatkową stabilność pod obciążeniem.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Miesza gładki sygnał 60 Hz ze szczegółowym sygnałem 360 Hz, a następnie kompresuje go i kształtuje, dając mocne, lecz kontrolowane czucie.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Ujarzmia surowy sygnał 360 Hz kompresją slew i całkowitą — jędrne, szczegółowe czucie bez ostrych szczytów.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Graf zalecany dla większości kierowców — pełny sygnał 360 Hz z predykcją i jedno pokrętło detali, którym można wzmocnić lub przyciszyć subtelne czucie drogi.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Klasyczne, gładkie czucie — natywny sygnał 60 Hz z iRacing, delikatnie interpolowany, z typowymi efektami i zabezpieczeniami.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Dodaj opis tego grafu</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Przypnij to ustawienie jako jeden z głównych elementów sterowania tego grafu</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Pokaż graf węzłów</value>
   </data>
 </root>

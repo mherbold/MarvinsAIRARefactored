@@ -277,16 +277,6 @@ public partial class MainWindow : Window
 	}
 
 
-	public void UpdateRacingWheelSimpleMode()
-	{
-		Dispatcher.Invoke( () =>
-		{
-			var settings = MarvinsAIRARefactored.DataContext.DataContext.Instance.Settings;
-
-			Misc.ApplyToTaggedElements( Root, "Complex", element => element.Visibility = settings.RacingWheelSimpleModeEnabled ? Visibility.Collapsed : Visibility.Visible );
-		} );
-	}
-
 	public void UpdatePedalsDevice()
 	{
 		var app = App.Instance!;
@@ -583,11 +573,6 @@ public partial class MainWindow : Window
 		_installerFilePath = installerFilePath;
 
 		Close();
-	}
-
-	private void Window_ContentRendered( object sender, EventArgs e )
-	{
-		UpdateRacingWheelSimpleMode();
 	}
 
 	private void Window_LocationChanged( object sender, EventArgs e )

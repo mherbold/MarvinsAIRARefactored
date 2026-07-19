@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[未找到录制文件]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>启用简易模式</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>灵敏度</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>转向不足和转向过度已在转向效果页面中禁用</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>与 Alan Le 的混合图类似，但 60/360 Hz 的混合比例会随驾驶状况自动调整，在负载下更稳定。</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>将顺滑的 60 Hz 信号与细腻的 360 Hz 信号混合，再经压缩与塑形，带来强劲而可控的手感。</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>用转换速率压缩与总量压缩驯服原始 360 Hz 信号 — 手感扎实细腻，没有生硬的尖峰。</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>推荐给大多数车手的图 — 带预测的完整 360 Hz 信号，加上一个细节增益旋钮，可增强或减弱细腻的路感。</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>经典的顺滑手感 — iRacing 原生 60 Hz 信号经柔和插值，并叠加常用的效果与保护。</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>为该图添加描述</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>将此设置固定为该图的主要控制项之一</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>显示节点图</value>
   </data>
 </root>

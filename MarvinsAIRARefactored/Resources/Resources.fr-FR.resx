@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Aucun enregistrement trouvé]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Activer le mode simple</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensibilité</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Le sous-virage et le survirage sont désactivés sur la page des effets de direction</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Comme l'hybride d'Alan Le, mais le mélange 60/360 Hz s'adapte automatiquement aux conditions de conduite pour plus de stabilité sous charge.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Mélange le signal doux à 60 Hz avec le signal détaillé à 360 Hz, puis le compresse et le façonne pour une sensation forte mais contrôlée.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Dompte le signal brut à 360 Hz avec la compression de slew et totale — une sensation ferme et détaillée sans pics brutaux.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Le graphe recommandé pour la plupart des pilotes — le signal complet à 360 Hz avec prédiction, et un seul gain de détail pour augmenter ou réduire la sensation fine de la route.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>La sensation douce classique — le signal natif à 60 Hz d'iRacing, doucement interpolé, avec les effets et protections habituels.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Ajoutez une description pour ce graphe</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Épingler ce réglage comme l'une des commandes principales de ce graphe</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Afficher le graphe de nœuds</value>
   </data>
 </root>

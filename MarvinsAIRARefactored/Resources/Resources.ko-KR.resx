@@ -633,9 +633,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[녹음을 찾을 수 없음]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>간단 모드 활성화</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>감도</value>
   </data>
@@ -2217,5 +2214,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>언더스티어와 오버스티어가 스티어링 효과 페이지에서 비활성화되어 있습니다</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Alan Le의 하이브리드와 같지만 60/360 Hz 혼합이 주행 조건에 자동으로 적응하여 부하 상황에서 안정성이 더 높습니다.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>부드러운 60 Hz 신호와 섬세한 360 Hz 신호를 혼합한 뒤 압축하고 다듬어 강하면서도 절제된 감각을 만듭니다.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>슬루 압축과 전체 압축으로 원시 360 Hz 신호를 길들입니다 — 거친 스파이크 없이 단단하고 섬세한 감각.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>대부분의 드라이버에게 권장되는 그래프 — 예측이 포함된 전체 360 Hz 신호와, 섬세한 노면 감각을 키우거나 줄일 수 있는 단일 디테일 게인.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>클래식한 부드러운 감각 — iRacing 기본 60 Hz 신호를 부드럽게 보간하고, 익숙한 효과와 보호 기능을 더했습니다.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>이 그래프에 대한 설명 추가</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>이 설정을 이 그래프의 주요 컨트롤 중 하나로 고정</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>노드 그래프 표시</value>
   </data>
 </root>

@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Geen opnames gevonden]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Zet simpele modus aan</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Gevoeligheid</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Onderstuur en overstuur zijn uitgeschakeld op de pagina met stuureffecten</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Zoals Alan Le's hybride, maar de 60/360 Hz-menging past zich automatisch aan de rijomstandigheden aan voor extra stabiliteit onder belasting.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Mengt het soepele 60 Hz-signaal met het gedetailleerde 360 Hz-signaal en comprimeert en vormt het daarna tot een krachtig maar beheerst gevoel.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Temt het rauwe 360 Hz-signaal met slew- en totale compressie — een stevig, gedetailleerd gevoel zonder harde pieken.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>De aanbevolen graaf voor de meeste coureurs — het volledige 360 Hz-signaal met predictie, en één detailregelaar om het fijne weggevoel te versterken of te dempen.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Het klassieke soepele gevoel — het native 60 Hz-signaal van iRacing, zacht geïnterpoleerd, met de gebruikelijke effecten en beschermingen erbovenop.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Voeg een beschrijving toe voor deze graaf</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Deze instelling vastpinnen als een van de hoofdbedieningen van deze graaf</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Nodegraaf tonen</value>
   </data>
 </root>

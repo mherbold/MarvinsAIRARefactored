@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Nahrávky nenalezeny]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Povolit jednoduchý režim</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Citlivost</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Nedotáčivost a přetáčivost jsou vypnuty na stránce Efekty FFB</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Jako hybrid Alana Le, ale směs 60/360 Hz se automaticky přizpůsobuje jízdním podmínkám pro větší stabilitu při zátěži.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Míchá hladký signál 60 Hz s detailním signálem 360 Hz a poté jej komprimuje a tvaruje pro silný, ale kontrolovaný pocit.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Krotí surový signál 360 Hz kompresí slew a celkovou kompresí — pevný, detailní pocit bez ostrých špiček.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Doporučený graf pro většinu jezdců — plný signál 360 Hz s predikcí a jediným ovladačem detailu, který zesílí nebo ztlumí jemný pocit z vozovky.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Klasický hladký pocit — nativní signál iRacingu 60 Hz, jemně interpolovaný, s obvyklými efekty a ochranami navrch.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Přidejte popis tohoto grafu</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Připnout toto nastavení jako jeden z hlavních ovládacích prvků tohoto grafu</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Zobrazit graf uzlů</value>
   </data>
 </root>

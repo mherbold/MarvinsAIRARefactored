@@ -53,6 +53,14 @@
     <Color x:Key="Color.Accent.BlueDark">#2a5fa8</Color>
     <SolidColorBrush x:Key="Brush.Accent.BlueDark" Color="{StaticResource Color.Accent.BlueDark}" />
 
+    <!-- Green accent dark (FFB graph source nodes) - same tone family as the blue dark accent -->
+    <Color x:Key="Color.Accent.GreenDark">#2aa85f</Color>
+    <SolidColorBrush x:Key="Brush.Accent.GreenDark" Color="{StaticResource Color.Accent.GreenDark}" />
+
+    <!-- Purple accent dark (FFB graph output node) - same tone family as the blue dark accent -->
+    <Color x:Key="Color.Accent.PurpleDark">#732aa8</Color>
+    <SolidColorBrush x:Key="Brush.Accent.PurpleDark" Color="{StaticResource Color.Accent.PurpleDark}" />
+
     <!-- Border - normal / idle -->
     <Color x:Key="Color.Border.Normal">#aaaaaa</Color>
     <SolidColorBrush x:Key="Brush.Border.Normal" Color="{StaticResource Color.Border.Normal}" />

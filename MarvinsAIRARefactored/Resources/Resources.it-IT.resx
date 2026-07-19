@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Nessuna registrazione trovata]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Abilita modalità semplice</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Sensibilità</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Il sottosterzo e il sovrasterzo sono disattivati nella pagina degli effetti di sterzata</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Come l'ibrido di Alan Le, ma la miscela 60/360 Hz si adatta automaticamente alle condizioni di guida per una maggiore stabilità sotto carico.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Miscela il segnale morbido a 60 Hz con quello dettagliato a 360 Hz, poi lo comprime e lo modella per una sensazione forte ma controllata.</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Doma il segnale grezzo a 360 Hz con compressione slew e totale — una sensazione solida e dettagliata senza picchi bruschi.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Il grafo consigliato per la maggior parte dei piloti — il segnale completo a 360 Hz con predizione, e un solo guadagno di dettaglio per aumentare o ridurre la sensazione fine della strada.</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>La classica sensazione morbida — il segnale nativo a 60 Hz di iRacing, dolcemente interpolato, con i soliti effetti e le solite protezioni.</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Aggiungi una descrizione per questo grafo</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Fissa questa impostazione come uno dei controlli principali di questo grafo</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Mostra il grafo dei nodi</value>
   </data>
 </root>

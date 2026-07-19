@@ -585,9 +585,6 @@
   <data name="NoRecordingsFound" xml:space="preserve">
     <value>[Ձայնագրություններ չեն գտնվել]</value>
   </data>
-  <data name="SimpleMode" xml:space="preserve">
-    <value>Միացնել պարզ ռեժիմը</value>
-  </data>
   <data name="Sensitivity" xml:space="preserve">
     <value>Զգայունություն</value>
   </data>
@@ -2232,5 +2229,29 @@
   </data>
   <data name="UndersteerOversteerDisabledNotice" xml:space="preserve">
     <value>Թերշրջելիությունը և գերշրջելիությունը անջատված են ղեկի էֆեկտների էջում</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesadaptivehybrid" xml:space="preserve">
+    <value>Ինչպես Alan Le-ի հիբրիդը, բայց 60/360 Hz խառնուրդն ինքնաբերաբար հարմարվում է վարելու պայմաններին՝ լրացուցիչ կայունություն տալով ծանրաբեռնվածության տակ։</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLeshybrid" xml:space="preserve">
+    <value>Խառնում է սահուն 60 Hz ազդանշանը մանրամասն 360 Hz ազդանշանի հետ, ապա սեղմում և ձևավորում է այն ուժեղ, բայց վերահսկվող զգացողության համար։</value>
+  </data>
+  <data name="FFBGraphDescriptionAlanLesslewandtotalcompression" xml:space="preserve">
+    <value>Սանձում է հում 360 Hz ազդանշանը slew և ընդհանուր սեղմումով — ամուր, մանրամասն զգացողություն առանց կոշտ գագաթների։</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinseasydetailadjustment" xml:space="preserve">
+    <value>Խորհուրդ տրվող գրաֆը վարորդների մեծ մասի համար — ամբողջական 360 Hz ազդանշանը կանխատեսմամբ և մեկ մանրամասնության կոճակ՝ ճանապարհի նուրբ զգացողությունը ուժեղացնելու կամ մեղմելու համար։</value>
+  </data>
+  <data name="FFBGraphDescriptionMarvinsnative60Hz" xml:space="preserve">
+    <value>Դասական սահուն զգացողությունը — iRacing-ի բնիկ 60 Hz ազդանշանը՝ մեղմ ինտերպոլացված, սովորական էֆեկտներով և պաշտպանություններով։</value>
+  </data>
+  <data name="GraphDescriptionPlaceholder" xml:space="preserve">
+    <value>Ավելացրեք նկարագրություն այս գրաֆի համար</value>
+  </data>
+  <data name="PinSetting" xml:space="preserve">
+    <value>Ամրացնել այս կարգավորումը որպես այս գրաֆի հիմնական կառավարման տարրերից մեկը</value>
+  </data>
+  <data name="ShowNodeGraph" xml:space="preserve">
+    <value>Ցուցադրել հանգույցների գրաֆը</value>
   </data>
 </root>

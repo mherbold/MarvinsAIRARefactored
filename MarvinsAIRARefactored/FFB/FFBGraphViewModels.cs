@@ -112,6 +112,7 @@ public static partial class FFBDisplayNames
 /// record + queue serialization, and refresh the preview.</summary>
 public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 {
+	private readonly FFBModuleViewModel _ownerModule;
 	private readonly string _moduleId;
 	private readonly FFBModuleData _model;
 	private readonly FFBSettingDescriptor _descriptor;
@@ -119,9 +120,10 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 	private float _value;
 	private string _valueString = string.Empty;
 
-	public FFBModuleSettingViewModel( string moduleId, FFBModuleData model, FFBSettingDescriptor descriptor )
+	public FFBModuleSettingViewModel( FFBModuleViewModel ownerModule, FFBModuleData model, FFBSettingDescriptor descriptor )
 	{
-		_moduleId = moduleId;
+		_ownerModule = ownerModule;
+		_moduleId = model.ModuleId;
 		_model = model;
 		_descriptor = descriptor;
 
@@ -162,6 +164,42 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 	public bool ShowCurve => _descriptor.ShowCurve;
 
 	public List<KeyValuePair<int, string>> ChoiceOptions { get; } = [];
+
+	/// <summary>Pinned = surfaced in the quick-controls row above the editor block — the handful of settings the
+	/// graph's author intends the typical user to play with. Stored in the graph itself (it rides export/import,
+	/// and built-ins ship with a curated set). The same setting VM instance backs both the settings column and
+	/// the quick-controls row, so the two stay in sync automatically.</summary>
+	public bool IsPinned
+	{
+		get => _model.PinnedSettings.Contains( _descriptor.Key );
+
+		set
+		{
+			if ( value == IsPinned )
+			{
+				return;
+			}
+
+			if ( value )
+			{
+				_model.PinnedSettings.Add( _descriptor.Key );
+			}
+			else
+			{
+				_model.PinnedSettings.Remove( _descriptor.Key );
+			}
+
+			App.Instance!.SettingsFile.QueueForSerialization = true;
+
+			OnPropertyChanged();
+
+			_ownerModule.Owner.RefreshPinnedSettings();
+		}
+	}
+
+	/// <summary>The pin switches only show on custom graphs — built-in graphs ship with a curated pinned set
+	/// (like their locked structure). Evaluated at bind time; the VM tree is rebuilt on every graph switch.</summary>
+	public bool ShowPinSwitch => !_ownerModule.Owner.IsFFBGraphBuiltIn;
 
 	// Knob-only (only the knob template binds these): the +/- input mappings for this module setting, stored on
 	// Settings keyed "{ModuleId}/{SettingKey}/Plus|Minus" so they survive VM rebuilds but never ride graph
@@ -281,7 +319,7 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 
 		foreach ( var settingDescriptor in descriptor.Settings )
 		{
-			Settings.Add( new FFBModuleSettingViewModel( model.ModuleId, model, settingDescriptor ) );
+			Settings.Add( new FFBModuleSettingViewModel( this, model, settingDescriptor ) );
 		}
 
 		// presentation copy of the settings for the card's fixed-column grid: a BreakRow setting is pushed to
@@ -338,6 +376,8 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 	public string ModuleId => _model.ModuleId;
 	public string ModuleType => _model.ModuleType;
 
+	public FFBGraphViewModel Owner => _owner;
+
 	public FFBModuleDescriptor Descriptor => _descriptor;
 
 	// only the Output module is fixed now — sources are added and removed at will (one instance of each source
@@ -347,6 +387,7 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 	public bool IsFixed => _descriptor.IsOutput;
 	public bool IsGenerator => _descriptor.IsGenerator;
 	public bool IsOutput => _descriptor.IsOutput;
+	public bool IsSource => _descriptor.IsSource;
 	public bool CanToggleEnabled => !IsFixed;
 	public bool CanRemove => !IsFixed && !_owner.IsFFBGraphBuiltIn;
 	public bool CanTest => _descriptor.CanTest;
@@ -422,6 +463,14 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 			}
 		}
 	}
+
+	/// <summary>Generator (vibration) tests shake the physical wheel, and the wheel's FFB fades out while off
+	/// track — so their test buttons are disabled until the player is on track (pushed from RacingWheel's UI
+	/// update via <see cref="FFBGraphViewModel.NotifyIsOnTrackChanged"/>). Event-driven effect tests (speed
+	/// gain / crash / curb protection) render through the preview and stay enabled everywhere.</summary>
+	public bool TestDisabled => IsGenerator && !_owner.IsOnTrack;
+
+	public void NotifyTestDisabledChanged() => OnPropertyChanged( nameof( TestDisabled ) );
 
 	public int SignalInputCount => _descriptor.SignalInputCount;
 	public bool ShowInputA => _descriptor.SignalInputCount >= 1;
@@ -696,6 +745,31 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	/// <summary>Display-only wires between the graph canvas nodes.</summary>
 	public ObservableCollection<FFBNodeWireViewModel> Wires { get; } = [];
 
+	/// <summary>The selected graph's pinned settings — its quick controls, rendered above the editor block in
+	/// module order. Each entry pairs the SHARED setting VM with its owning module VM (for the caption — labels
+	/// like "Strength" repeat across modules). Rebuilt on graph switch and on every pin toggle.</summary>
+	public ObservableCollection<FFBPinnedSettingViewModel> PinnedSettings { get; } = [];
+
+	public bool HasPinnedSettings => PinnedSettings.Count > 0;
+
+	public void RefreshPinnedSettings()
+	{
+		PinnedSettings.Clear();
+
+		foreach ( var module in Modules )
+		{
+			foreach ( var setting in module.Settings )
+			{
+				if ( setting.IsPinned )
+				{
+					PinnedSettings.Add( new FFBPinnedSettingViewModel( module, setting ) );
+				}
+			}
+		}
+
+		OnPropertyChanged( nameof( HasPinnedSettings ) );
+	}
+
 	// Built on access (not in the constructor) so it is not evaluated during DataContext static construction,
 	// before Localization exists, and so its module names re-localize on a language switch.
 	public List<KeyValuePair<string, string>> AddableModuleTypes => BuildAddableModuleTypes();
@@ -703,6 +777,49 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	// Built-in graphs are structurally locked: no adding/removing modules, no rewiring, no moving nodes — only
 	// their module settings may be changed. Users clone a built-in into a custom graph to alter its structure.
 	public bool IsFFBGraphBuiltIn => _graph?.IsBuiltIn == true;
+
+	// The description text box is only editable on custom graphs (built-ins show localized read-only text).
+	public bool IsFFBGraphCustom => ( _graph != null ) && !_graph.IsBuiltIn;
+
+	/// <summary>
+	/// The selected graph's description, shown below the graph selector. Custom graphs edit it freely (stored in
+	/// the graph, rides export/import; the text box commits on focus loss). Built-in graphs resolve a
+	/// localization key derived from the graph name first — so shipped descriptions arrive translated — and fall
+	/// back to the text stored in the shipped file.
+	/// </summary>
+	public string GraphDescription
+	{
+		get
+		{
+			if ( _graph == null )
+			{
+				return string.Empty;
+			}
+
+			return _graph.IsBuiltIn ? FFBDisplayNames.Localize( DescriptionLocalizationKey( _graph.Name ), _graph.Description ) : _graph.Description;
+		}
+
+		set
+		{
+			if ( ( _graph == null ) || _graph.IsBuiltIn || ( value == _graph.Description ) )
+			{
+				return;
+			}
+
+			_graph.Description = value;
+
+			App.Instance!.SettingsFile.QueueForSerialization = true;
+
+			OnPropertyChanged();
+		}
+	}
+
+	/// <summary>"Marvin's easy detail adjustment" -> "FFBGraphDescriptionMarvinseasydetailadjustment" — the
+	/// non-alphanumerics are dropped, casing kept, so each built-in graph maps to a stable resource key.</summary>
+	public static string DescriptionLocalizationKey( string graphName )
+	{
+		return "FFBGraphDescription" + string.Concat( graphName.Where( char.IsLetterOrDigit ) );
+	}
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -853,6 +970,11 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		{
 			SelectedModule = null;
 
+			RefreshPinnedSettings();
+
+			OnPropertyChanged( nameof( GraphDescription ) );
+			OnPropertyChanged( nameof( IsFFBGraphCustom ) );
+
 			return;
 		}
 
@@ -967,6 +1089,12 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 
 		// the structure lock follows whichever graph is now selected
 		OnPropertyChanged( nameof( IsFFBGraphBuiltIn ) );
+
+		// the quick-controls row and description follow the graph too
+		RefreshPinnedSettings();
+
+		OnPropertyChanged( nameof( GraphDescription ) );
+		OnPropertyChanged( nameof( IsFFBGraphCustom ) );
 	}
 
 	// The steering effects page's per-effect enable switches gate the understeer/oversteer/seat-of-pants
@@ -1036,6 +1164,42 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		}
 	}
 
+	private bool _isOnTrack;
+
+	/// <summary>Last on-track state pushed by RacingWheel's UI update — gates the generator test buttons (see
+	/// <see cref="FFBModuleViewModel.TestDisabled"/>).</summary>
+	public bool IsOnTrack => _isOnTrack;
+
+	/// <summary>Called from RacingWheel's UI update whenever it refreshes the page. On an on-track transition
+	/// the generator test buttons flip enabled/disabled, and leaving the track releases any running generator
+	/// test — the faded wheel goes silent anyway, and the vibration must not come back unannounced the next
+	/// time the player gets in the car. UI thread only.</summary>
+	public void NotifyIsOnTrackChanged( bool isOnTrack )
+	{
+		if ( isOnTrack == _isOnTrack )
+		{
+			return;
+		}
+
+		_isOnTrack = isOnTrack;
+
+		foreach ( var module in Modules )
+		{
+			if ( module.IsGenerator )
+			{
+				if ( !isOnTrack )
+				{
+					module.IsTestActive = false;
+				}
+
+				module.NotifyTestDisabledChanged();
+			}
+		}
+	}
+
+	// gear-change test auto-release (see ToggleTestActive) — created lazily, lives for the app's lifetime
+	private System.Windows.Threading.DispatcherTimer? _gearChangeTestReleaseTimer;
+
 	/// <summary>Toggle the session-only test override for EVERY module of the clicked module's type — a test
 	/// exercises the effect, and the effect may be split across duplicates (e.g. two crash protection modules
 	/// on different branches), so they test as one. All their buttons highlight together.</summary>
@@ -1049,6 +1213,35 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			{
 				module.IsTestActive = newState;
 			}
+		}
+
+		// the gear-change test is a one-shot: the engine plays its burst on the toggle's rising edge and the
+		// toggle releases itself right after (a started burst always finishes on its own, so releasing the
+		// override never cuts it short — the release just re-arms the button)
+		if ( newState && ( moduleViewModel.ModuleType == FFBModuleRegistry.GearChangeVibrationType ) )
+		{
+			if ( _gearChangeTestReleaseTimer == null )
+			{
+				var timer = new System.Windows.Threading.DispatcherTimer { Interval = TimeSpan.FromMilliseconds( 400.0 ) };
+
+				timer.Tick += ( _, _ ) =>
+				{
+					timer.Stop();
+
+					foreach ( var module in Modules )
+					{
+						if ( module.ModuleType == FFBModuleRegistry.GearChangeVibrationType )
+						{
+							module.IsTestActive = false;
+						}
+					}
+				};
+
+				_gearChangeTestReleaseTimer = timer;
+			}
+
+			_gearChangeTestReleaseTimer.Stop();
+			_gearChangeTestReleaseTimer.Start();
 		}
 	}
 
@@ -1366,6 +1559,15 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 public sealed class FFBSettingSpacer
 {
 	public static readonly FFBSettingSpacer Instance = new();
+}
+
+/// <summary>One entry of the quick-controls row above the editor block: the SHARED setting VM (the same
+/// instance the settings column binds, so the two stay in sync) plus the owning module VM for the caption —
+/// labels like "Strength" repeat across modules, so each control is captioned with its module's name.</summary>
+public sealed class FFBPinnedSettingViewModel( FFBModuleViewModel module, FFBModuleSettingViewModel setting )
+{
+	public FFBModuleViewModel Module { get; } = module;
+	public FFBModuleSettingViewModel Setting { get; } = setting;
 }
 
 public sealed class FFBSettingTemplateSelector : DataTemplateSelector
