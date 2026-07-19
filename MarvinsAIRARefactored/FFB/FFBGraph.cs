@@ -67,9 +67,11 @@ public class FFBGraph
 	public const string OutputModuleId = "Output";
 
 	// Stable identity that survives export/import (and renames). Written into exported files so a re-import of the
-	// same graph is recognized as an update to the live module settings rather than a brand-new copy. User graphs
-	// get a random id at creation; built-ins carry a fixed id baked into their shipped file so a graph derived from
-	// the same built-in matches across installs. Empty on legacy graphs/files - assigned lazily on load/import.
+	// same graph is recognized as an update to the live module settings rather than a brand-new copy. Unique
+	// app-wide: user graphs get a random id at creation, copies of an existing graph mint a fresh id, and built-ins
+	// carry a fixed id baked into their shipped file so the same built-in matches across installs. The per-context
+	// module value overlay is keyed by this id (see FFBGraphValues), so uniqueness is what keeps one graph's values
+	// out of another's. Empty on legacy graphs/files - assigned lazily on load/import.
 	public string GraphId { get; set; } = "";
 	public string Name { get; set; } = "";
 	public bool IsBuiltIn { get; set; } = false;
@@ -87,6 +89,29 @@ public class FFBGraph
 			FFBModuleRegistry.Source360HzType => Source360ModuleId,
 			_ => sourceTypeKey   // the newer source type keys are their own canonical ids
 		};
+	}
+
+	/// <summary>
+	/// True for the well-known module ids every graph shares — the canonical one-per-graph source ids and the
+	/// fixed Output id — as opposed to a user module's per-graph GUID. Anything keyed by module id alone (the
+	/// knob button mappings) must not treat a shared id as owned by a single graph.
+	/// </summary>
+	public static bool IsSharedModuleId( string moduleId )
+	{
+		if ( moduleId == OutputModuleId )
+		{
+			return true;
+		}
+
+		foreach ( var descriptor in FFBModuleRegistry.All )
+		{
+			if ( descriptor.IsSource && ( CanonicalSourceId( descriptor.TypeKey ) == moduleId ) )
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 
 	/// <summary>

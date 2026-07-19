@@ -18,8 +18,8 @@ namespace MarvinsAIRARefactored.FFB;
 /// </summary>
 public static class FFBBuiltInGraphs
 {
-	/// <summary>The flagship built-in FFB graph — the first-run wizard tunes its first Gain module.</summary>
-	public const string MarvinsAwesomeGraphName = "Marvin's awesome graph";
+	/// <summary>The flagship built-in FFB graph — the first-run wizard selects it and tunes its first Gain module.</summary>
+	public const string FlagshipGraphName = "Marvin's easy detail adjustment";
 
 	public sealed record BuiltInGraph( string GraphType, FFBGraph Graph, string Hash );
 

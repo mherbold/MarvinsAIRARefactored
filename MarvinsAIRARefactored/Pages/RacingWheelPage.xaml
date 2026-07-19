@@ -482,8 +482,6 @@
                              bounds, shifting the rendered line around as recordings change -->
                         <Canvas Width="301"
                                 Height="301"
-                                HorizontalAlignment="Left"
-                                VerticalAlignment="Top"
                                 ClipToBounds="True">
 
                             <!-- whole recorded segment, fitted to the panel, north up -->

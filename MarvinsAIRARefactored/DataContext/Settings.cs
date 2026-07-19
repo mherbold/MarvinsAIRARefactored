@@ -474,7 +474,7 @@ public class Settings : INotifyPropertyChanged
 		{
 			foreach ( var settingKey in module.SettingValues.Keys.ToArray() )
 			{
-				var compositeKey = FFBGraphValues.ComposeKey( module.ModuleId, settingKey );
+				var compositeKey = FFBGraphValues.ComposeKey( graph.GraphId, module.ModuleId, settingKey );
 
 				if ( updateContextSettings )
 				{
@@ -524,8 +524,11 @@ public class Settings : INotifyPropertyChanged
 		{
 			graph = current.Clone();
 
-			// A copied graph needs fresh module ids for its non-fixed modules so its per-context values do not
-			// collide with the source graph's (the shared source/output ids stay).
+			// A copy is an independent graph: it needs its own GraphId (the per-context value overlay is keyed
+			// by it) and fresh module ids for its non-shared modules (module ids must stay unique app-wide for
+			// the knob button mappings; the canonical source/output ids stay).
+			graph.GraphId = Guid.NewGuid().ToString( "N" );
+
 			RegenerateUserGraphModuleIds( graph );
 		}
 		else
@@ -632,12 +635,12 @@ public class Settings : INotifyPropertyChanged
 
 		if ( toCurrentContext )
 		{
-			WriteImportedModuleValues( imported, moduleIdMap, FindContextSettings( currentContext ).RacingWheelFFBGraphModuleValues );
+			WriteImportedModuleValues( imported, localGraph.GraphId, moduleIdMap, FindContextSettings( currentContext ).RacingWheelFFBGraphModuleValues );
 		}
 
 		if ( toBaseline )
 		{
-			WriteImportedModuleValues( imported, moduleIdMap, FindContextSettings( baselineContext ).RacingWheelFFBGraphModuleValues );
+			WriteImportedModuleValues( imported, localGraph.GraphId, moduleIdMap, FindContextSettings( baselineContext ).RacingWheelFFBGraphModuleValues );
 		}
 
 		// Reflect the change live only when it lands on the context we are currently driving. Selecting the matched
@@ -760,8 +763,9 @@ public class Settings : INotifyPropertyChanged
 		return map;
 	}
 
-	// Writes the imported modules' setting values into a per-context store, keyed by the mapped local module id.
-	private static void WriteImportedModuleValues( FFBGraph imported, Dictionary<string, string> moduleIdMap, FFBGraphValues target )
+	// Writes the imported modules' setting values into a per-context store, keyed by the local graph's id and the
+	// mapped local module id.
+	private static void WriteImportedModuleValues( FFBGraph imported, string localGraphId, Dictionary<string, string> moduleIdMap, FFBGraphValues target )
 	{
 		foreach ( var module in imported.Modules )
 		{
@@ -772,7 +776,7 @@ public class Settings : INotifyPropertyChanged
 
 			foreach ( var pair in module.SettingValues )
 			{
-				target[ FFBGraphValues.ComposeKey( localModuleId, pair.Key ) ] = pair.Value;
+				target[ FFBGraphValues.ComposeKey( localGraphId, localModuleId, pair.Key ) ] = pair.Value;
 			}
 		}
 	}
@@ -851,9 +855,9 @@ public class Settings : INotifyPropertyChanged
 		SyncFFBGraphModuleValues( false );
 	}
 
-	// Restores a built-in graph to its shipped state: re-clones the embedded graph file and clears the
-	// per-context value overrides for its module ids, so every knob returns to the shipped default. The shared
-	// well-known ids (sources 60/360, Output) are left alone — other graphs' per-context values ride them too.
+	// Restores a built-in graph to its shipped state: re-clones the embedded graph file and clears every
+	// per-context value override of the graph (the overlay is graph-scoped, so this includes the source and
+	// Output modules), so every setting returns to the shipped default.
 	public void ResetBuiltInFFBGraph( string name )
 	{
 		var freshGraph = FFBBuiltInGraphs.CreateGraph( FFBGraphExportFile.FFBGraphType, name );
@@ -863,17 +867,7 @@ public class Settings : INotifyPropertyChanged
 			return;
 		}
 
-		var moduleIds = new HashSet<string>( StringComparer.Ordinal );
-
-		foreach ( var module in freshGraph.Modules )
-		{
-			if ( module.ModuleId is not ( FFBGraph.Source60ModuleId or FFBGraph.Source360ModuleId or FFBGraph.OutputModuleId ) )
-			{
-				moduleIds.Add( module.ModuleId );
-			}
-		}
-
-		PruneContextModuleValues( moduleIds );
+		PruneContextModuleValues( freshGraph.GraphId );
 
 		RacingWheelFFBGraphs[ name ] = freshGraph;
 
@@ -894,9 +888,10 @@ public class Settings : INotifyPropertyChanged
 		return builtInName ?? graphs.Keys.FirstOrDefault() ?? string.Empty;
 	}
 
-	// Shared by delete and the launch-time built-in purge: removes the graph, prunes its now-orphaned
-	// per-context value keys and knob button mappings, and blanks any per-context selection of it. The shared
-	// well-known ids (sources 60/360, Output) are kept since every graph's values ride those.
+	// Shared by delete and the launch-time built-in purge: removes the graph, prunes its per-context value keys
+	// and its knob button mappings, and blanks any per-context selection of it. The value overlay is graph-scoped
+	// so all of the graph's keys go; the button mappings are keyed by module id alone, so the shared well-known
+	// ids (canonical sources, Output) are kept there — other graphs' mappings ride those ids too.
 	private void RemoveGraphAndPruneValues( string name )
 	{
 		if ( !RacingWheelFFBGraphs.TryGetValue( name, out var graph ) )
@@ -908,7 +903,7 @@ public class Settings : INotifyPropertyChanged
 
 		foreach ( var module in graph.Modules )
 		{
-			if ( module.ModuleId is not ( FFBGraph.Source60ModuleId or FFBGraph.Source360ModuleId or FFBGraph.OutputModuleId ) )
+			if ( !FFBGraph.IsSharedModuleId( module.ModuleId ) )
 			{
 				orphanedModuleIds.Add( module.ModuleId );
 			}
@@ -916,7 +911,7 @@ public class Settings : INotifyPropertyChanged
 
 		RacingWheelFFBGraphs.Remove( name );
 
-		PruneContextModuleValues( orphanedModuleIds );
+		PruneContextModuleValues( graph.GraphId );
 
 		foreach ( var contextSettings in ContextSettingsDictionary.Values )
 		{
@@ -929,17 +924,35 @@ public class Settings : INotifyPropertyChanged
 		RemoveFFBModuleButtonMappings( orphanedModuleIds );
 	}
 
-	// Removes every context's per-module value overrides for the given module ids ("{moduleId}/{settingKey}").
-	private void PruneContextModuleValues( HashSet<string> orphanedModuleIds )
+	// Removes every context's per-module value overrides ("{graphId}/{moduleId}/{settingKey}") belonging to the
+	// given graph — all of them, or only those of the given module ids.
+	private void PruneContextModuleValues( string graphId, HashSet<string>? moduleIds = null )
 	{
-		if ( orphanedModuleIds.Count == 0 )
+		if ( string.IsNullOrEmpty( graphId ) || ( moduleIds is { Count: 0 } ) )
 		{
 			return;
 		}
 
+		var graphPrefix = graphId + "/";
+
 		foreach ( var contextSettings in ContextSettingsDictionary.Values )
 		{
-			var keysToRemove = contextSettings.RacingWheelFFBGraphModuleValues.Keys.Where( key => orphanedModuleIds.Contains( key[ ..Math.Max( 0, key.IndexOf( '/' ) ) ] ) ).ToArray();
+			var keysToRemove = contextSettings.RacingWheelFFBGraphModuleValues.Keys.Where( key =>
+			{
+				if ( !key.StartsWith( graphPrefix, StringComparison.Ordinal ) )
+				{
+					return false;
+				}
+
+				if ( moduleIds == null )
+				{
+					return true;
+				}
+
+				var moduleIdEnd = key.IndexOf( '/', graphPrefix.Length );
+
+				return ( moduleIdEnd > graphPrefix.Length ) && moduleIds.Contains( key[ graphPrefix.Length..moduleIdEnd ] );
+			} ).ToArray();
 
 			foreach ( var key in keysToRemove )
 			{
@@ -954,7 +967,7 @@ public class Settings : INotifyPropertyChanged
 
 		foreach ( var module in graph.Modules )
 		{
-			if ( module.ModuleId is not ( FFBGraph.Source60ModuleId or FFBGraph.Source360ModuleId or FFBGraph.OutputModuleId ) )
+			if ( !FFBGraph.IsSharedModuleId( module.ModuleId ) )
 			{
 				idMap[ module.ModuleId ] = Guid.NewGuid().ToString( "N" );
 			}
@@ -1035,7 +1048,9 @@ public class Settings : INotifyPropertyChanged
 				|| !RacingWheelBuiltInGraphHashes.TryGetValue( hashKey, out var storedHash )
 				|| ( storedHash != builtInGraph.Hash ) )
 			{
-				// an updated file may have dropped modules — prune their now-orphaned per-context values
+				// an updated file may have dropped modules — prune their now-orphaned per-context values (the
+				// overlay is graph-scoped, so dropped sources are pruned too) and knob button mappings (those
+				// are keyed by module id alone, so the shared well-known ids stay — other graphs ride them)
 				if ( storedGraph != null )
 				{
 					var newModuleIds = new HashSet<string>( builtInGraph.Graph.Modules.Select( module => module.ModuleId ), StringComparer.Ordinal );
@@ -1044,15 +1059,14 @@ public class Settings : INotifyPropertyChanged
 
 					foreach ( var module in storedGraph.Modules )
 					{
-						if ( !newModuleIds.Contains( module.ModuleId )
-							&& module.ModuleId is not ( FFBGraph.Source60ModuleId or FFBGraph.Source360ModuleId or FFBGraph.OutputModuleId ) )
+						if ( !newModuleIds.Contains( module.ModuleId ) )
 						{
 							orphanedModuleIds.Add( module.ModuleId );
 						}
 					}
 
-					PruneContextModuleValues( orphanedModuleIds );
-					RemoveFFBModuleButtonMappings( orphanedModuleIds );
+					PruneContextModuleValues( storedGraph.GraphId, orphanedModuleIds );
+					RemoveFFBModuleButtonMappings( orphanedModuleIds.Where( moduleId => !FFBGraph.IsSharedModuleId( moduleId ) ).ToArray() );
 				}
 
 				graphs[ name ] = builtInGraph.Graph.Clone();
@@ -1090,6 +1104,20 @@ public class Settings : INotifyPropertyChanged
 			changed = true;
 		}
 
+		// purge per-context module values still in the old un-scoped "{moduleId}/{settingKey}" format — the
+		// overlay is keyed "{graphId}/{moduleId}/{settingKey}" now, so old keys can never match and would sit
+		// in the settings file forever (these are also the values that leaked between graphs through the
+		// shared source/output module ids)
+		foreach ( var contextSettings in ContextSettingsDictionary.Values )
+		{
+			foreach ( var key in contextSettings.RacingWheelFFBGraphModuleValues.Keys.Where( key => key.Count( character => character == '/' ) != 2 ).ToList() )
+			{
+				contextSettings.RacingWheelFFBGraphModuleValues.Remove( key );
+
+				changed = true;
+			}
+		}
+
 		// repair the selection if empty or dangling (fresh installs, purged graphs)
 		if ( string.IsNullOrEmpty( RacingWheelSelectedFFBGraphName ) || !RacingWheelFFBGraphs.ContainsKey( RacingWheelSelectedFFBGraphName ) )
 		{
@@ -1102,19 +1130,25 @@ public class Settings : INotifyPropertyChanged
 	}
 
 	// Assigns a stable GraphId to any graph that lacks one - legacy graphs created or imported before graph
-	// identities existed. Built-ins already carry their fixed id from the shipped file (refreshed by
-	// EnsureBuiltInFFBGraphsInitialized), so in practice this only ever touches user graphs. Returns true if any
-	// id was assigned; the caller must persist so the ids stay stable across launches (otherwise a shared graph
-	// could never be recognized on re-import).
+	// identities existed - and re-mints duplicates (copies made before CreateFFBGraph minted fresh ids for
+	// copies). Ids must be unique app-wide because the per-context module value overlay is keyed by them.
+	// Built-ins carry their fixed id from the shipped file (refreshed by EnsureBuiltInFFBGraphsInitialized) and
+	// are visited first, so a user copy still sharing a built-in's id is the one that gets re-minted. Returns
+	// true if any id changed; the caller must persist so the ids stay stable across launches (otherwise a
+	// shared graph could never be recognized on re-import).
 	public bool EnsureGraphIdentitiesAssigned()
 	{
 		var assignedAny = false;
 
-		foreach ( var graph in RacingWheelFFBGraphs.Values )
+		var seenGraphIds = new HashSet<string>( StringComparer.Ordinal );
+
+		foreach ( var graph in RacingWheelFFBGraphs.Values.OrderByDescending( graph => graph.IsBuiltIn ) )
 		{
-			if ( string.IsNullOrEmpty( graph.GraphId ) )
+			if ( string.IsNullOrEmpty( graph.GraphId ) || !seenGraphIds.Add( graph.GraphId ) )
 			{
 				graph.GraphId = Guid.NewGuid().ToString( "N" );
+
+				seenGraphIds.Add( graph.GraphId );
 
 				assignedAny = true;
 			}
@@ -1145,7 +1179,7 @@ public class Settings : INotifyPropertyChanged
 
 		var contextSettings = FindContextSettings( new Context( RacingWheelSelectedFFBGraphNameContextSwitches ) );
 
-		contextSettings.RacingWheelFFBGraphModuleValues[ FFBGraphValues.ComposeKey( gainModule.ModuleId, "Gain" ) ] = gain;
+		contextSettings.RacingWheelFFBGraphModuleValues[ FFBGraphValues.ComposeKey( graph.GraphId, gainModule.ModuleId, "Gain" ) ] = gain;
 
 		if ( RacingWheelSelectedFFBGraphName == graphName )
 		{

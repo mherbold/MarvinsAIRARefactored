@@ -358,8 +358,8 @@ public partial class WizardWindow : Window
 	}
 
 	/// <summary>
-	/// Applies the chosen FFB style position (-3 to +3): selects the built-in "Marvin's awesome graph" and sets
-	/// its first Gain module (the detail gain) to 25/50/75/100/125/150/200% across the seven slider positions.
+	/// Applies the chosen FFB style position (-3 to +3): selects the flagship built-in graph and sets its first
+	/// Gain module (the detail gain) to 25/50/75/100/125/150/200% across the seven slider positions.
 	/// </summary>
 	private static void ApplyFfbStylePreset( int position )
 	{
@@ -376,8 +376,8 @@ public partial class WizardWindow : Window
 			_ => 1.00f   // 0
 		};
 
-		settings.SelectFFBGraph( FFB.FFBBuiltInGraphs.MarvinsAwesomeGraphName );
-		settings.ApplyBuiltInFFBGraphGain( FFB.FFBBuiltInGraphs.MarvinsAwesomeGraphName, detailGain );
+		settings.SelectFFBGraph( FFB.FFBBuiltInGraphs.FlagshipGraphName );
+		settings.ApplyBuiltInFFBGraphGain( FFB.FFBBuiltInGraphs.FlagshipGraphName, detailGain );
 
 		App.Instance!.SettingsFile.QueueForSerialization = true;
 	}
