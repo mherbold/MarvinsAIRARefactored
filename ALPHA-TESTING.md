@@ -1,6 +1,6 @@
 # MAIRA FFB Graph Alpha — Tester Guide
 
-**Build:** [Version 2.0.473.68 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.473.68) — the fifth alpha; see [New in this build](#new-in-this-build) for what changed since the fourth one.
+**Build:** [Version 2.0.473.1208 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.473.1208) — the sixth alpha; see [New in this build](#new-in-this-build) for what changed since the fifth one.
 
 This alpha replaces MAIRA's entire force feedback system. The fixed set of FFB algorithms (Detail booster, Delta limiter, Slew and total compression, Multi adjustment toolkit, …) is gone; in its place is a **modular FFB graph** — an audio-DSP-style node editor where the force feedback signal chain is built out of small modules that you wire together yourself.
 
@@ -19,17 +19,15 @@ This document explains what changed versus the released (main branch) version, a
 
 ## New in this build
 
-Changes since the fourth alpha (2.0.472.1142), for testers who already ran it:
+Changes since the fifth alpha (2.0.473.68), for testers who already ran it:
 
-- **A whole new built-in graph lineup.** "Marvin's awesome graph" is retired; **five built-in graphs** now ship, each replacing one of the main branch's fixed algorithms (see [Built-in vs. custom graphs](#built-in-vs-custom-graphs) for what's inside each):
-    - **Marvin's easy detail adjustment** — the flagship (replaces Native 360 Hz, Detail booster, and Delta limiter). The first-run wizard tunes this one, and it's the default on fresh installs.
-    - **Marvin's native 60 Hz** — replaces the Native 60 Hz algorithm.
-    - **Alan Le's slew and total compression** — replaces the Slew and total compression algorithm.
-    - **Alan Le's hybrid** and **Alan Le's adaptive hybrid** — replace the Multi adjustment toolkit's two hybrid 60+360 Hz modes, with the toolkit's whole adjustment chain on board.
-- **Fixed: module settings leaked between graphs.** Disabling (or tuning) a source or Output module in one graph silently applied to every other graph — the per-car/track value store didn't know which graph a source belonged to. Values are now scoped per graph. One consequence: **your per-context module tweaks from earlier alphas are reset** to each graph's defaults (the old stored values were exactly the ones leaking, so they could not be carried over).
-- **Resetting a built-in graph now truly resets everything** — source and Output module adjustments included (they were previously left alone).
-- **Cloned and copied graphs get their own identity**, so a copy's per-context tuning can never collide with the original's.
-- **Fourteen fresh sample recordings** ship with the installer (replacing the previous six), covering a much wider spread of cars and tracks.
+- **The node graph is now hidden by default.** A new **"Show node graph"** switch above the editor block reveals the node graph and the module settings column; with it off, you see just the graph selector, the description, the pinned quick controls, and the preview + track map. This replaces the old "Simple mode" switch (which is gone) — flip it on to get full editing back. **Please test both ways**: does the collapsed view feel right as the everyday face of the app, and does anything break when toggling?
+- **Pinned quick controls.** Every module setting now has a tiny pin switch at its top-right (custom graphs only — built-ins ship with a curated set, currently empty). Pinned settings surface in a **quick-controls row above the editor block**, captioned with their module's name — the handful of knobs a graph's author intends the typical user to drive. Pins are stored in the graph itself, so they ride export/import and shared graphs arrive with their author's picks.
+- **Graph descriptions.** Each graph can carry a description shown under the graph selector — type directly into the text box on custom graphs; built-in graphs show a translated description.
+- **Test buttons on every vibration node.** Each vibration generator's settings card has a test toggle that actually shakes the wheel: understeer/oversteer/seat-of-pants/slip texture play at full effect, shift RPM and ABS force their triggers, road texture plays as if at 100 MPH, engine RPM sweeps 1000 RPM → redline → back on a 10-second loop, and gear change fires its one-shot burst. Because FFB fades out off-track, the buttons only light up while you are in the car.
+- **The editor block is reorganized.** The selected module's settings moved from below the graphs into a **column beside the node graph** (scrolls when they don't fit), the track map fills the panel below it, and a second grab handle on the vertical seam adjusts the column split (remembered, like the height).
+- **Node colors by role.** Telemetry sources are green, vibration generators blue, and the Output node purple — ordinary chain modules stay gray, and the orange selection highlight is unchanged.
+- **Fixed: the main window recovers when it ends up off-screen** (e.g. after a monitor change).
 
 ---
 
@@ -66,11 +64,16 @@ A **graph** is a chain of **modules** connected by **wires**. Signals flow left 
 - You can have **many graphs** and switch between them with the graph selector — per car/track if you want (see [Per-context values](#per-context-values-and-scopes)).
 - The graph structure (which modules, how wired) is global; the **knob values** are per-context, so the same graph can be tuned differently per car.
 
+### Quick controls, description, and the node graph switch
+
+The FFB graph section is built for two audiences. Below the graph selector sit the graph's **description** and its **pinned quick controls** — the settings the graph's author marked as the main knobs (pin them with the tiny switch on each setting in the module settings column; custom graphs only). Under those, the **"Show node graph"** switch reveals the full node editor; it is **off by default**, so a basic user only ever sees the quick controls and the preview. Everything below assumes the switch is on.
+
 ### The node editor
 
 On the Racing Wheel page, the FFB graph section shows the graph as draggable node boxes:
 
-- **Click** a node to select it — its settings appear in the panel below, and the preview graph taps its signals.
+- **Click** a node to select it — its settings appear in the column beside the graph, and the preview graph taps its signals.
+- Nodes are **color-coded by role**: telemetry sources green, vibration generators blue, the Output node purple, ordinary chain modules gray; the selected node highlights orange.
 - **Right-click** a node to lock the *preview* to it while keeping a different node selected — so you can turn one module's knobs while watching another module's output.
 - **Drag** a node to move it. A snap-to-grid toggle (dot-grid icon) and an auto-layout wand live in the corner of the canvas.
 - **Drag a wire**: press on a connector dot (crosshair cursor) and drag to another module's connector — works from output→input or input→output. Invalid targets (cycles, the Output module's own output, etc.) simply won't connect.
@@ -79,7 +82,7 @@ On the Racing Wheel page, the FFB graph section shows the graph as draggable nod
 - **Pan** by clicking and dragging empty canvas. Dragging a node past the viewport edge auto-crawls the view along with it.
 - The canvas grows as you drag nodes outward.
 
-- **Resize** the node graph by dragging the grab handle on the seam between the node graph and the preview graph — the height is remembered across sessions.
+- **Resize** the editor block with the two grab handles: the one on the horizontal seam sets the node graph's height, the one on the vertical seam sets the split between the node graph and the module settings column — both are remembered across sessions.
 - Each node shows a live one-line **summary of its settings** under its name, so you can read the whole graph's tuning at a glance.
 
 The **preview graph** below shows the selected module's signals replayed through a recording: red = input A, green = input B (dual-input modules), blue = output. Ctrl+mouse wheel over the preview zooms out horizontally (down to every 20th data point) to see more of the recording; the **track map panel** to its right shows the whole recorded segment with the currently visible range highlighted in orange.
@@ -336,6 +339,9 @@ The wizard's FFB style step no longer picks an algorithm. Its 7-position slider 
 ## What to test / feedback
 
 - Fresh-feel check: does the flagship graph feel right on your wheelbase and usual cars? Try the wizard slider extremes.
+- **Live with the node graph hidden for a session** (the new default): drive using only the pinned quick controls and the preview. Does anything feel missing? Then flip "Show node graph" on and off a few times mid-session and report any layout oddities.
+- **Pin a few settings** on a custom graph (the tiny switch on each setting in the module settings column), confirm they appear above the editor with the right module captions, stay in sync with the settings column, and survive an export/import round trip.
+- **Vibration test buttons:** with the car on track, walk through every vibration node's test button — each should shake the wheel on its own, the gear change one should fire once and re-arm, and all of them should gray out the moment you leave the car.
 - **Try all five built-in graphs** back to back on the same car — especially the one matching the algorithm you used on the released version. Does its graph replacement feel like the algorithm it replaces?
 - **Graph isolation:** disable a module (say the 360 Hz source) in one graph, switch to another graph, and confirm it is NOT disabled there — then switch back and confirm your change stuck. Same for knob values on sources and the Output module.
 - Prediction module: does the wheel feel more connected — less "rubber band" between what the car does and what your hands feel? Try Strength at OFF vs. 150% back to back on the same car. Report any oscillation or buzzing at high Strength/Horizon settings (and which car).
