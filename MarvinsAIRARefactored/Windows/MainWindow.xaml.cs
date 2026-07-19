@@ -4,6 +4,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Interop;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 using System.Windows.Threading;
@@ -77,6 +78,7 @@ public partial class MainWindow : Window
 	private NotifyIcon? _notifyIcon = null;
 	private bool _exitRequested = false;
 	private int _updateCounter = UpdateInterval + 6;
+	private DispatcherTimer? _displaySettingsChangedTimer = null;
 
 	public MainWindow()
 	{
@@ -122,8 +124,18 @@ public partial class MainWindow : Window
 		if ( settings.AppRememberWindowPositionAndSize )
 		{
 			var rectangle = settings.AppWindowPositionAndSize;
+			var dpiScale = settings.AppWindowDpiScale;
 
-			if ( Misc.IsWindowBoundsVisible( rectangle ) )
+			// The saved rectangle is in WPF DIPs but the screen working areas are in physical pixels,
+			// so convert using the DPI scale saved alongside the rectangle. Without this the check can
+			// falsely pass on mixed-DPI multi-monitor setups and restore the window off-screen.
+			var boundsInPixels = new Rectangle(
+				(int) Math.Round( rectangle.X * dpiScale ),
+				(int) Math.Round( rectangle.Y * dpiScale ),
+				(int) Math.Round( rectangle.Width * dpiScale ),
+				(int) Math.Round( rectangle.Height * dpiScale ) );
+
+			if ( Misc.IsWindowTitleBarVisible( boundsInPixels, dpiScale ) )
 			{
 				Left = rectangle.Location.X;
 				Top = rectangle.Location.Y;
@@ -133,6 +145,8 @@ public partial class MainWindow : Window
 				WindowStartupLocation = WindowStartupLocation.Manual;
 			}
 		}
+
+		Microsoft.Win32.SystemEvents.DisplaySettingsChanged += OnDisplaySettingsChanged;
 
 		_initialized = true;
 
@@ -458,6 +472,7 @@ public partial class MainWindow : Window
 #endif
 
 				_notifyIcon.ContextMenuStrip.Items.Add( localization[ "ShowWindow" ], null, ( s, e ) => MakeWindowVisible() );
+				_notifyIcon.ContextMenuStrip.Items.Add( localization[ "ResetWindowPosition" ], null, ( s, e ) => ResetWindowPosition() );
 				_notifyIcon.ContextMenuStrip.Items.Add( localization[ "ExitApp" ], null, ( s, e ) => ExitApp() );
 
 				_notifyIcon.MouseClick += ( s, e ) =>
@@ -518,6 +533,119 @@ public partial class MainWindow : Window
 		Activate();
 
 		Focus();
+
+		// The display configuration may have changed while the window was hidden in the system tray,
+		// leaving it stranded in dead space - recover it now that it is visible again.
+		EnsureWindowIsOnAScreen();
+	}
+
+	// Windows fires DisplaySettingsChanged several times while a display configuration change settles
+	// (once per monitor / DPI transition), so debounce with a short timer and run one check at the end.
+	// SystemEvents handlers can fire on a broadcast thread, so hop to the dispatcher first.
+	private void OnDisplaySettingsChanged( object? sender, EventArgs e )
+	{
+		Dispatcher.BeginInvoke( () =>
+		{
+			if ( _displaySettingsChangedTimer == null )
+			{
+				_displaySettingsChangedTimer = new DispatcherTimer
+				{
+					Interval = TimeSpan.FromSeconds( 1 )
+				};
+
+				_displaySettingsChangedTimer.Tick += ( s, args ) =>
+				{
+					_displaySettingsChangedTimer.Stop();
+
+					EnsureWindowIsOnAScreen();
+				};
+			}
+
+			_displaySettingsChangedTimer.Stop();
+			_displaySettingsChangedTimer.Start();
+		} );
+	}
+
+	// Recenters the main window on the primary screen if the user can no longer grab its title bar -
+	// e.g. after a monitor layout change stranded it in a dead zone of the virtual desktop.
+	public void EnsureWindowIsOnAScreen()
+	{
+		var app = App.Instance!;
+
+		if ( !IsVisible || ( WindowState != WindowState.Normal ) || ( ActualWidth <= 0 ) || ( ActualHeight <= 0 ) )
+		{
+			return;
+		}
+
+		var dpiScale = VisualTreeHelper.GetDpi( this ).DpiScaleX;
+
+		var boundsInPixels = new Rectangle(
+			(int) Math.Round( Left * dpiScale ),
+			(int) Math.Round( Top * dpiScale ),
+			(int) Math.Round( ActualWidth * dpiScale ),
+			(int) Math.Round( ActualHeight * dpiScale ) );
+
+		if ( !Misc.IsWindowTitleBarVisible( boundsInPixels, dpiScale ) )
+		{
+			app.Logger.WriteLine( "[MainWindow] Main window is off-screen - recentering it on the primary screen" );
+
+			CenterWindowOnPrimaryScreen();
+		}
+	}
+
+	public void CenterWindowOnPrimaryScreen()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[MainWindow] CenterWindowOnPrimaryScreen >>>" );
+
+		var primaryScreen = Screen.PrimaryScreen;
+
+		if ( primaryScreen == null )
+		{
+			app.Logger.WriteLine( "[MainWindow] <<< CenterWindowOnPrimaryScreen (no primary screen)" );
+
+			return;
+		}
+
+		WindowState = WindowState.Normal;
+
+		var workingArea = primaryScreen.WorkingArea;
+
+		var dpi = VisualTreeHelper.GetDpi( this );
+
+		var windowWidthInPixels = ActualWidth * dpi.DpiScaleX;
+		var windowHeightInPixels = ActualHeight * dpi.DpiScaleY;
+
+		// Center in physical pixels, then convert back to DIPs with the window's *current* DPI scale -
+		// WPF uses that same scale to convert Left/Top back to physical, so the window lands where we
+		// computed even when it is currently on (or stranded near) a monitor with a different DPI.
+		// Math.Max keeps the title bar on-screen when the window is larger than the working area.
+		var leftInPixels = workingArea.X + Math.Max( 0.0, ( workingArea.Width - windowWidthInPixels ) / 2.0 );
+		var topInPixels = workingArea.Y + Math.Max( 0.0, ( workingArea.Height - windowHeightInPixels ) / 2.0 );
+
+		Left = leftInPixels / dpi.DpiScaleX;
+		Top = topInPixels / dpi.DpiScaleY;
+
+		app.Logger.WriteLine( "[MainWindow] <<< CenterWindowOnPrimaryScreen" );
+	}
+
+	// For the system tray context menu - an escape hatch that always brings the window back to the
+	// primary screen, no matter where it ended up.
+	public void ResetWindowPosition()
+	{
+		Dispatcher.Invoke( () =>
+		{
+			var app = App.Instance!;
+
+			app.Logger.WriteLine( "[MainWindow] ResetWindowPosition >>>" );
+
+			MakeWindowVisible();
+
+			CenterWindowOnPrimaryScreen();
+
+			app.Logger.WriteLine( "[MainWindow] <<< ResetWindowPosition" );
+		} );
 	}
 
 	// Forces the main window to the foreground, working around Windows' foreground lock.
@@ -601,6 +729,7 @@ public partial class MainWindow : Window
 				rectangle.Location = new System.Drawing.Point( (int) RestoreBounds.Left, (int) RestoreBounds.Top );
 
 				settings.AppWindowPositionAndSize = rectangle;
+				settings.AppWindowDpiScale = VisualTreeHelper.GetDpi( this ).DpiScaleX;
 			}
 		}
 	}
@@ -620,6 +749,7 @@ public partial class MainWindow : Window
 				rectangle.Size = new System.Drawing.Size( (int) RestoreBounds.Width, (int) RestoreBounds.Height );
 
 				settings.AppWindowPositionAndSize = rectangle;
+				settings.AppWindowDpiScale = VisualTreeHelper.GetDpi( this ).DpiScaleX;
 			}
 		}
 	}
@@ -659,6 +789,8 @@ public partial class MainWindow : Window
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[MainWindow] Window closed" );
+
+		Microsoft.Win32.SystemEvents.DisplaySettingsChanged -= OnDisplaySettingsChanged;
 
 		if ( _installerFilePath != null )
 		{

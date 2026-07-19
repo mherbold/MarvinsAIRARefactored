@@ -1811,7 +1811,10 @@
     <value>Araç başına katman konumu ve ölçeklendirmesini etkinleştir</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Bu araç için kalibrasyon dosyası henüz mevcut değil.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Pencere konumunu sıfırla</value>
   </data>
+
 
 
 

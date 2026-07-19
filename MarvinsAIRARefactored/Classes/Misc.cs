@@ -213,26 +213,37 @@ public class Misc
 		return dictionary;
 	}
 
-	public static bool IsWindowBoundsVisible( Rectangle bounds )
-	{
-		var totalWindowArea = bounds.Width * bounds.Height;
+	private const double WindowTitleBarHeightInDIPs = 32.0;
 
-		if ( totalWindowArea <= 0 )
+	// Tests whether enough of the window's title bar is on a screen for the user to grab it with the
+	// mouse. Both the bounds and the screen working areas are in physical pixels - convert WPF DIPs
+	// using the window's DPI scale before calling (they diverge whenever any monitor is not at 100%
+	// scaling). Screens are tested individually rather than against the virtual desktop bounding box,
+	// so the dead zones of non-rectangular multi-monitor layouts correctly count as off-screen.
+	public static bool IsWindowTitleBarVisible( Rectangle boundsInPixels, double dpiScale )
+	{
+		if ( ( boundsInPixels.Width <= 0 ) || ( boundsInPixels.Height <= 0 ) )
 		{
 			return false;
 		}
+
+		var titleBarHeightInPixels = Math.Max( 1, (int) Math.Round( WindowTitleBarHeightInDIPs * dpiScale ) );
+
+		var titleBarBounds = new Rectangle( boundsInPixels.X, boundsInPixels.Y, boundsInPixels.Width, titleBarHeightInPixels );
+
+		var totalTitleBarArea = titleBarBounds.Width * titleBarBounds.Height;
 
 		var totalVisibleArea = 0;
 
 		foreach ( var screen in Screen.AllScreens )
 		{
-			var intersection = Rectangle.Intersect( screen.WorkingArea, bounds );
+			var intersection = Rectangle.Intersect( screen.WorkingArea, titleBarBounds );
 
 			totalVisibleArea += intersection.Width * intersection.Height;
 		}
 
-		// Require at least 10% of the window to be visible on screen
-		return totalVisibleArea >= totalWindowArea * 0.10;
+		// Require at least 25% of the title bar to be visible so there is enough of it to grab
+		return totalVisibleArea >= totalTitleBarArea * 0.25;
 	}
 
 	public static void BringExistingInstanceToFront()

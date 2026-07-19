@@ -1813,7 +1813,10 @@
     <value>Enable per-car overlay position and scaling</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Calibration file is not yet available for this car.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Reset window position</value>
   </data>
+
 
 
 

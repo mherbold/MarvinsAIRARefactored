@@ -1813,7 +1813,10 @@
     <value>Iespējot pārklājuma pozīciju un mērogošanu katrai automašīnai</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Kalibrācijas fails šai automašīnai vēl nav pieejams.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Atiestatīt loga pozīciju</value>
   </data>
+
 
 
 

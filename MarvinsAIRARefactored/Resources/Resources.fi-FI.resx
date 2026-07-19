@@ -1811,7 +1811,10 @@
     <value>Ota käyttöön autokohtainen peitteen sijainti ja skaalaus</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Kalibrointitiedostoa ei ole vielä saatavilla tälle autolle.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Palauta ikkunan sijainti</value>
   </data>
+
 
 
 

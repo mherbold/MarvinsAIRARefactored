@@ -1811,7 +1811,10 @@
     <value>启用每辆车的叠加层位置和缩放</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>此车的校准文件尚不可用。</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>重置窗口位置</value>
   </data>
+
 
 
 

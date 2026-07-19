@@ -1827,7 +1827,10 @@
     <value>Activer la position et l'échelle des superpositions par voiture</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Le fichier de calibration n'est pas encore disponible pour cette voiture.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Réinitialiser la position de la fenêtre</value>
   </data>
+
 
 
 

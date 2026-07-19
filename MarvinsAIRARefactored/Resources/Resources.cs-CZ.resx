@@ -1811,7 +1811,10 @@
     <value>Povolit pozici a měřítko překryvu pro každé auto</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Kalibrační soubor pro toto auto zatím není k dispozici.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Obnovit pozici okna</value>
   </data>
+
 
 
 

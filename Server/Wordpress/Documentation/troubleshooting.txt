@@ -32,6 +32,14 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="main-window-off-screen">Main Window Off-Screen</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If the MAIRA window ever ends up off-screen — usually after changing your monitor layout or display scaling — MAIRA recovers it automatically: at startup, and whenever Windows reports a display configuration change, it checks that the window's title bar is still reachable and recenters the window on your primary display if it is not. If you ever need to force it, enable <strong>Minimize to system tray</strong> in the app settings, then right-click the MAIRA tray icon and choose <strong>Reset window position</strong>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="controlled-folder-access">Controlled Folder Access</p>
 <!-- /wp:paragraph -->
 

@@ -1814,7 +1814,10 @@
     <value>車種ごとのオーバーレイの位置とスケールを有効にする</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>この車のキャリブレーションファイルはまだ利用できません。</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>ウィンドウの位置をリセット</value>
   </data>
+
 
 
 

@@ -1817,7 +1817,10 @@
     <value>Увімкнути положення та масштаб оверлея для кожного авто</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Файл калібрування для цього автомобіля ще недоступний.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Скинути положення вікна</value>
   </data>
+
 
 
 

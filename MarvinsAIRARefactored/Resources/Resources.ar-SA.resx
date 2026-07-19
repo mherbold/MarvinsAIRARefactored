@@ -1813,7 +1813,10 @@
     <value>تمكين موضع وحجم التراكب لكل سيارة</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>ملف المعايرة غير متوفر بعد لهذه السيارة.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>إعادة تعيين موضع النافذة</value>
   </data>
+
 
 
 

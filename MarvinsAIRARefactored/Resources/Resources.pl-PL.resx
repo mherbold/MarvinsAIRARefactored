@@ -1811,7 +1811,10 @@
     <value>Włącz pozycję i skalowanie nakładki dla każdego samochodu</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Plik kalibracji dla tego samochodu nie jest jeszcze dostępny.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Zresetuj pozycję okna</value>
   </data>
+
 
 
 

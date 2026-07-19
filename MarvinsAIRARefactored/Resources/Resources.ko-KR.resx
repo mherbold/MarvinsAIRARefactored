@@ -1813,7 +1813,10 @@
     <value>차량별 오버레이 위치 및 크기 조정 활성화</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>이 차량에 대한 보정 파일이 아직 없습니다.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>창 위치 재설정</value>
   </data>
+
 
 
 

@@ -1813,7 +1813,10 @@
     <value>Активиране на позиция и мащаб на наслагването за всяка кола</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Файлът за калибриране все още не е наличен за тази кола.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Нулиране на позицията на прозореца</value>
   </data>
+
 
 
 

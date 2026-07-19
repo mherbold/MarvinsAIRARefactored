@@ -1811,7 +1811,10 @@
     <value>Activa la posició i l'escala de la superposició per cotxe</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>El fitxer de calibració encara no està disponible per a aquest cotxe.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Restableix la posició de la finestra</value>
   </data>
+
 
 
 

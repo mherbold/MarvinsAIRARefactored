@@ -1811,7 +1811,10 @@
     <value>Միացնել վրադրման դիրքն ու չափը յուրաքանչյուր մեքենայի համար</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Այս մեքենայի համար չափաբերման ֆայլը դեռ հասանելի չէ:</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Վերականգնել պատուհանի դիրքը</value>
   </data>
+
 
 
 

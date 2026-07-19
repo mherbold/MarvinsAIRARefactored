@@ -1811,7 +1811,10 @@
     <value>Aktiver overlegg-posisjon og -skalering per bil</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Kalibreringsfilen er ennå ikke tilgjengelig for denne bilen.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Tilbakestill vindusposisjon</value>
   </data>
+
 
 
 

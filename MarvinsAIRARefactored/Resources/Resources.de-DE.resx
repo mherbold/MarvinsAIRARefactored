@@ -1816,7 +1816,10 @@ Hier ist der Link zum Spenden:</value>
     <value>Overlay-Position und -Skalierung pro Auto aktivieren</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Die Kalibrierungsdatei ist für dieses Auto noch nicht verfügbar.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Fensterposition zurücksetzen</value>
   </data>
+
 
 
 
