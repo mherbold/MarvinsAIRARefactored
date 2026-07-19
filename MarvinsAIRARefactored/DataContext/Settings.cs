@@ -880,9 +880,15 @@ public class Settings : INotifyPropertyChanged
 		}
 	}
 
-	// Prefer a built-in when repairing a dangling selection (there is always at least one built-in shipped).
+	// Repairing a dangling selection (fresh installs, purged graphs): the flagship built-in graph is the
+	// default, then any built-in (alphabetically), then anything at all.
 	private static string FallbackGraphName( SerializableDictionary<string, FFBGraph> graphs )
 	{
+		if ( graphs.TryGetValue( FFBBuiltInGraphs.FlagshipGraphName, out var flagshipGraph ) && flagshipGraph.IsBuiltIn )
+		{
+			return FFBBuiltInGraphs.FlagshipGraphName;
+		}
+
 		var builtInName = graphs.Where( pair => pair.Value.IsBuiltIn ).Select( pair => pair.Key ).OrderBy( graphName => graphName, StringComparer.OrdinalIgnoreCase ).FirstOrDefault();
 
 		return builtInName ?? graphs.Keys.FirstOrDefault() ?? string.Empty;
