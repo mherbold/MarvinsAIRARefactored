@@ -63,7 +63,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>If enabled, MAIRA restores the last window size and screen position from the previous run.</p>
+<p>If enabled, MAIRA restores the last window size and screen position from the previous run. If the saved position is no longer on a screen — for example after you disconnect a monitor or rearrange your display layout — MAIRA recenters the window on your primary display instead, so it never comes back off-screen.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->
@@ -99,7 +99,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>When enabled, minimizing MAIRA hides it to the system tray instead of leaving it on the taskbar.</p>
+<p>When enabled, minimizing MAIRA hides it to the system tray instead of leaving it on the taskbar. Right-clicking the tray icon opens a menu with <strong>Show window</strong>, <strong>Reset window position</strong> (brings the main window back to the center of your primary display, in case it ever ends up somewhere you can't reach), and <strong>Exit app</strong>.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->

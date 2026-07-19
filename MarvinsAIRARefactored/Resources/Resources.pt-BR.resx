@@ -1831,6 +1831,8 @@
     <value>Ativar posição e escala da sobreposição por carro</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>O arquivo de calibração ainda não está disponível para este carro.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Redefinir posição da janela</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Fonte de 60 Hz</value>

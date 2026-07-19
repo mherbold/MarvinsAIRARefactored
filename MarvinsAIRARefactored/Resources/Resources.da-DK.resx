@@ -1831,6 +1831,8 @@
     <value>Aktivér overlay-position og -skalering pr. bil</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Kalibreringsfilen er endnu ikke tilgængelig for denne bil.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Nulstil vinduets position</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz kilde</value>

@@ -1831,6 +1831,8 @@
     <value>Activează poziția și scalarea suprapunerii pentru fiecare mașină</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Fișierul de calibrare nu este încă disponibil pentru această mașină.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Resetează poziția ferestrei</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Sursă 60 Hz</value>

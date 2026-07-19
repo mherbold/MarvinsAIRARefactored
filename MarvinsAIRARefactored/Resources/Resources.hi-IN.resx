@@ -1831,6 +1831,8 @@
     <value>प्रति कार ओवरले स्थिति और स्केलिंग सक्षम करें</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>इस कार के लिए कैलिब्रेशन फ़ाइल अभी उपलब्ध नहीं है।</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>विंडो स्थिति रीसेट करें</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz स्रोत</value>

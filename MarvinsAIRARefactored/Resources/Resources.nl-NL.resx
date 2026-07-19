@@ -1831,6 +1831,8 @@
     <value>Overlaypositie en -schaal per auto inschakelen</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Het kalibratiebestand is nog niet beschikbaar voor deze auto.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Vensterpositie opnieuw instellen</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz-bron</value>

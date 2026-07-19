@@ -1831,6 +1831,8 @@
     <value>Galluogi safle a graddfa haen fesul car</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Nid yw'r ffeil galibradu ar gael eto ar gyfer y car hwn.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Ailosod safle ffenestr</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Ffynhonnell 60 Hz</value>

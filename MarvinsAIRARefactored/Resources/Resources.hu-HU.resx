@@ -1831,6 +1831,8 @@
     <value>Autónkénti overlay pozíció és méretezés engedélyezése</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>A kalibrálási fájl még nem érhető el ehhez az autóhoz.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Ablak pozíciójának visszaállítása</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz forrás</value>

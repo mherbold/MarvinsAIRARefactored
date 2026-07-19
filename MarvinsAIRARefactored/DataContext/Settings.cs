@@ -15484,6 +15484,30 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region App - Window DPI scale
+
+	// The DPI scale of the monitor the main window was on when AppWindowPositionAndSize was saved.
+	// AppWindowPositionAndSize is stored in WPF DIPs; this scale converts it back to physical pixels
+	// so the saved bounds can be tested against the physical screen working areas at startup.
+	private double _appWindowDpiScale = 1.0;
+
+	public double AppWindowDpiScale
+	{
+		get => _appWindowDpiScale;
+
+		set
+		{
+			if ( value != _appWindowDpiScale )
+			{
+				_appWindowDpiScale = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region App - Start with Windows
 
 	private bool _appStartWithWindows = false;

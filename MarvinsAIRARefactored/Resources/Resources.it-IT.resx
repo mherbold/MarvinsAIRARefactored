@@ -1831,6 +1831,8 @@
     <value>Abilita posizione e scala della sovrapposizione per auto</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Il file di calibrazione non è ancora disponibile per questa auto.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Reimposta posizione finestra</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Sorgente 60 Hz</value>

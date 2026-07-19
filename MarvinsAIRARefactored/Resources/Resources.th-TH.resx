@@ -1831,6 +1831,8 @@
     <value>เปิดใช้งานตำแหน่งและขนาดของโอเวอร์เลย์แยกตามรถ</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>ยังไม่มีไฟล์สอบเทียบสำหรับรถคันนี้</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>รีเซ็ตตำแหน่งหน้าต่าง</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>แหล่งสัญญาณ 60 Hz</value>

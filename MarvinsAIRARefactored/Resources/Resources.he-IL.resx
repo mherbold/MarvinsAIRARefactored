@@ -1831,6 +1831,8 @@
     <value>הפעלת מיקום וקנה מידה של שכבת-על לכל רכב</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>קובץ הכיול עדיין אינו זמין עבור מכונית זו.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>אפס מיקום חלון</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>מקור 60 Hz</value>

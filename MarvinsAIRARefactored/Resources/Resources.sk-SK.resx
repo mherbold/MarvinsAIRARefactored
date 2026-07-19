@@ -1831,6 +1831,8 @@
     <value>Povoliť pozíciu a mierku prekrytia pre každé auto</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Kalibračný súbor pre toto auto zatiaľ nie je k dispozícii.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Obnoviť pozíciu okna</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Zdroj 60 Hz</value>

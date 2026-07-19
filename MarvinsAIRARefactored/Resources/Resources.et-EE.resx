@@ -1831,6 +1831,8 @@
     <value>Luba ülekatte asukoht ja mastaap iga auto jaoks</value>
   </data>  <data name="SteeringEffectsCalibrationFileNotAvailable" xml:space="preserve">
     <value>Kalibreerimisfail pole selle auto jaoks veel saadaval.</value>
+  </data>  <data name="ResetWindowPosition" xml:space="preserve">
+    <value>Lähtesta akna asukoht</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz allikas</value>
