@@ -31,6 +31,17 @@ public sealed class AudioManager : IDisposable
 
 	public const string DefaultDeviceName = "[Default Windows Sound Device]";
 
+	// Delay between closing and reopening the output device in ResetDeviceForSimulatorConnect. iRacing's sim
+	// process configures the shared Windows audio endpoint when it initializes audio; if MAIRA opened that
+	// endpoint first, the Windows audio engine (audiodg) gets stuck in a heavy mode that starves iRacing's
+	// audio (its C and A performance meters peg to 100%). Briefly releasing the endpoint on connect lets
+	// iRacing re-establish the light config, after which our reopened stream conforms to it. Must be long
+	// enough for iRacing to actually re-sync while the endpoint is free.
+	private const int SimulatorConnectResetDelayMilliseconds = 2000;
+
+	// guards ResetDeviceForSimulatorConnect against overlapping resets (0 = idle, 1 = running)
+	private int _simulatorConnectResetInProgress = 0;
+
 	// Last device name passed to SetOutputDevice. ApplyOutputDeviceSetting prefers this over the global
 	// settings object because during settings file deserialization the SoundsOutputDevice setter fires on a
 	// new Settings instance before it is assigned to DataContext.Instance — reading the global there would
@@ -137,6 +148,63 @@ public sealed class AudioManager : IDisposable
 
 			app.Logger.WriteLine( "[AudioManager] <<< CloseDevice" );
 		}
+	}
+
+	// Called when the simulator connects. If we are holding the shared output device open, close it, wait,
+	// then reopen it so our audio stream is re-established AFTER iRacing has configured the shared endpoint.
+	// This avoids the case where MAIRA (opened first) left the Windows audio engine in a heavy mode that
+	// starves iRacing's audio. See SimulatorConnectResetDelayMilliseconds. Runs off-thread so the connect
+	// handler is not blocked for the delay.
+	public void ResetDeviceForSimulatorConnect()
+	{
+		var app = App.Instance!;
+
+		if ( _fmodSystem == null )
+		{
+			// device is not open (e.g. sounds are disabled) — nothing to reset
+			return;
+		}
+
+		if ( Interlocked.Exchange( ref _simulatorConnectResetInProgress, 1 ) == 1 )
+		{
+			return;
+		}
+
+		app.Logger.WriteLine( "[AudioManager] ResetDeviceForSimulatorConnect >>>" );
+
+		_ = Task.Run( async () =>
+		{
+			try
+			{
+				// CloseDevice/OpenDevice acquire _lock and touch UI-bound state (RefreshOutputDevices does a
+				// synchronous Dispatcher.Invoke while the lock is held), so they must run on the UI thread as
+				// they always have. Doing them on a background thread deadlocks: this thread would hold _lock
+				// and block on the dispatcher while the UI thread blocks on _lock. Only the delay is off-thread,
+				// so the UI is not frozen during the 2 second wait.
+				app.Dispatcher.Invoke( () => CloseDevice() );
+
+				await Task.Delay( SimulatorConnectResetDelayMilliseconds );
+
+				app.Dispatcher.Invoke( () =>
+				{
+					// re-check the master switch in case the user disabled sounds during the delay
+					if ( DataContext.DataContext.Instance.Settings.SoundsMasterEnabled )
+					{
+						OpenDevice();
+					}
+				} );
+			}
+			catch ( Exception exception )
+			{
+				app.Logger.WriteLine( $"[AudioManager] ResetDeviceForSimulatorConnect exception: {exception.Message}" );
+			}
+			finally
+			{
+				_simulatorConnectResetInProgress = 0;
+
+				app.Logger.WriteLine( "[AudioManager] <<< ResetDeviceForSimulatorConnect" );
+			}
+		} );
 	}
 
 	public void Initialize()
