@@ -13,6 +13,8 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdT
 {
 	private const bool _verboseLogging = false;
 	private const int _probeTimeoutMilliseconds = 1500;
+	private const int _handshakeTimeoutMilliseconds = 3000;
+	private const int _handshakeRetryIntervalMilliseconds = 500;
 
 	// USB-serial bridge chips found on Arduino Nano boards and clones - handshake probes are only sent to ports whose
 	// device name or PNPDeviceID matches one of these, so we never write probe text at unrelated serial devices.
@@ -126,21 +128,41 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdT
 							Encoding = Encoding.ASCII,
 							ReadTimeout = 500,
 							WriteTimeout = 500,
-							NewLine = "\n"
+							NewLine = "\n",
+							DtrEnable = true,
+							RtsEnable = true
 						};
 
 						testPort.Open();
 						testPort.DiscardInBuffer();
 						testPort.DiscardOutBuffer();
-						testPort.WriteLine( "WHAT ARE YOU?" );
 
-						Thread.Sleep( 200 );
+						// Native USB CDC devices discard all output until the host asserts DTR, and UART-bridge Arduinos
+						// auto-reset when DTR is first asserted (~2s in the bootloader) - so DTR must be enabled and the
+						// handshake retried for a few seconds rather than sent once.
+						var responseBuffer = new StringBuilder();
+						var handshakeSucceeded = false;
+						var handshakeStopwatch = System.Diagnostics.Stopwatch.StartNew();
 
-						var response = testPort.ReadExisting()?.Trim();
+						while ( !handshakeSucceeded && ( handshakeStopwatch.ElapsedMilliseconds < _handshakeTimeoutMilliseconds ) )
+						{
+							testPort.WriteLine( "WHAT ARE YOU?" );
 
-						app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake response on '{portName}': '{response}'" );
+							var attemptStopwatch = System.Diagnostics.Stopwatch.StartNew();
 
-						if ( !string.IsNullOrEmpty( response ) && response.Contains( _handshake, StringComparison.OrdinalIgnoreCase ) )
+							while ( !handshakeSucceeded && ( attemptStopwatch.ElapsedMilliseconds < _handshakeRetryIntervalMilliseconds ) )
+							{
+								Thread.Sleep( 50 );
+
+								responseBuffer.Append( testPort.ReadExisting() );
+
+								handshakeSucceeded = responseBuffer.ToString().Contains( _handshake, StringComparison.OrdinalIgnoreCase );
+							}
+						}
+
+						app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake response on '{portName}': '{responseBuffer.ToString().Trim()}'" );
+
+						if ( handshakeSucceeded )
 						{
 							app.Logger.WriteLine( $"[UsbSerialPortHelper] Handshake successful on '{portName}'" );
 
@@ -256,7 +278,9 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdT
 				Encoding = Encoding.ASCII,
 				ReadTimeout = 500,
 				WriteTimeout = 500,
-				NewLine = "\n"
+				NewLine = "\n",
+				DtrEnable = true,
+				RtsEnable = true
 			};
 
 			testPort.Open();
@@ -316,7 +340,9 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdT
 						Encoding = Encoding.ASCII,
 						ReadTimeout = 3000,
 						WriteTimeout = 3000,
-						NewLine = "\n"
+						NewLine = "\n",
+						DtrEnable = true,
+						RtsEnable = true
 					};
 
 					_serialPort.DataReceived += OnDataReceived;
