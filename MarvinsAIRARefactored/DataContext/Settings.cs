@@ -14139,6 +14139,132 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Game bridge - Le Mans Ultimate enabled
+
+	private bool _gameBridgeLeMansUltimateEnabled = false;
+
+	public bool GameBridgeLeMansUltimateEnabled
+	{
+		get => _gameBridgeLeMansUltimateEnabled;
+
+		set
+		{
+			if ( value != _gameBridgeLeMansUltimateEnabled )
+			{
+				_gameBridgeLeMansUltimateEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Game bridge - Assetto Corsa enabled
+
+	private bool _gameBridgeAssettoCorsaEnabled = false;
+
+	public bool GameBridgeAssettoCorsaEnabled
+	{
+		get => _gameBridgeAssettoCorsaEnabled;
+
+		set
+		{
+			if ( value != _gameBridgeAssettoCorsaEnabled )
+			{
+				_gameBridgeAssettoCorsaEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Game bridge - Assetto Corsa Competizione enabled
+
+	private bool _gameBridgeAssettoCorsaCompetizioneEnabled = false;
+
+	public bool GameBridgeAssettoCorsaCompetizioneEnabled
+	{
+		get => _gameBridgeAssettoCorsaCompetizioneEnabled;
+
+		set
+		{
+			if ( value != _gameBridgeAssettoCorsaCompetizioneEnabled )
+			{
+				_gameBridgeAssettoCorsaCompetizioneEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Game bridge - Assetto Corsa EVO enabled
+
+	private bool _gameBridgeAssettoCorsaEvoEnabled = false;
+
+	public bool GameBridgeAssettoCorsaEvoEnabled
+	{
+		get => _gameBridgeAssettoCorsaEvoEnabled;
+
+		set
+		{
+			if ( value != _gameBridgeAssettoCorsaEvoEnabled )
+			{
+				_gameBridgeAssettoCorsaEvoEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Game bridge - rFactor 2 enabled
+
+	private bool _gameBridgeRFactor2Enabled = false;
+
+	public bool GameBridgeRFactor2Enabled
+	{
+		get => _gameBridgeRFactor2Enabled;
+
+		set
+		{
+			if ( value != _gameBridgeRFactor2Enabled )
+			{
+				_gameBridgeRFactor2Enabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Game bridge - Automobilista 2 enabled
+
+	private bool _gameBridgeAutomobilista2Enabled = false;
+
+	public bool GameBridgeAutomobilista2Enabled
+	{
+		get => _gameBridgeAutomobilista2Enabled;
+
+		set
+		{
+			if ( value != _gameBridgeAutomobilista2Enabled )
+			{
+				_gameBridgeAutomobilista2Enabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region App Manager - Enabled
 
 	private bool _appManagerEnabled = true;

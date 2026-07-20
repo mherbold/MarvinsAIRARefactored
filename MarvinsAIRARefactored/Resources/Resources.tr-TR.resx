@@ -1813,7 +1813,40 @@
     <value>Bu araç için kalibrasyon dosyası henüz mevcut değil.</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>Pencere konumunu sıfırla</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>Oyun köprüsü</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>Oyunlar</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Çok yakında</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Oyun köprüsü başlatılıyor...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Diğer yarış oyunlarından gelen telemetriyi iRacing formatına çevirir, böylece MAIRA bu oyunlarla çalışabilir. Köprülemek istediğiniz oyunları etkinleştirin - etkinleştirilmiş bir oyun çalıştığında köprü otomatik olarak devreye girer.</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

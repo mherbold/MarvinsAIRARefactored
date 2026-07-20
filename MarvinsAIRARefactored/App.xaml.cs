@@ -74,6 +74,7 @@ public partial class App : Application
 	public HidHotPlugMonitor HidHotPlugMonitor { get; private set; } = null!;
 	public TradingPaints TradingPaints { get; private set; } = null!;
 	public AppManager AppManager { get; private set; } = null!;
+	public GameBridge GameBridge { get; private set; } = null!;
 
 	public GripOMeterWindow? GripOMeterWindow { get; set; }
 	public GapMonitorWindow? GapMonitorWindow { get; set; }
@@ -147,6 +148,7 @@ public partial class App : Application
 		HidHotPlugMonitor = new();
 		TradingPaints = new();
 		AppManager = new();
+		GameBridge = new();
 
 		_timer.Elapsed += OnTimer;
 	}
@@ -230,7 +232,7 @@ public partial class App : Application
 	startupWindow?.Show();
 
 	var startupStepIndex = 0;
-	const int startupStepCount = 24;
+	const int startupStepCount = 25;
 
 	void RunStartupStep( string statusKey, Action initializeAction )
 	{
@@ -317,6 +319,7 @@ public partial class App : Application
 				RunStartupStep( "InitializingGTensioner", GTensioner.Initialize );
 				RunStartupStep( "InitializingHidHotPlugMonitor", HidHotPlugMonitor.Initialize );
 				RunStartupStep( "InitializingTradingPaints", TradingPaints.Initialize );
+				RunStartupStep( "InitializingGameBridge", GameBridge.Initialize );
 				RunStartupStep( "InitializingSettingsFile", SettingsFile.Initialize );
 
 #else
@@ -552,6 +555,7 @@ public partial class App : Application
 		Telemetry.Shutdown();
 		TradingPaints.Shutdown();
 		AppManager.Shutdown();
+		GameBridge.Shutdown();
 
 #endif
 
@@ -713,6 +717,7 @@ public partial class App : Application
 						app.TyphoonWind.Tick( app );
 						app.GTensioner.Tick( app );
 						app.CloudService.Tick( app );
+						app.GameBridge.Tick( app );
 
 						app.GripOMeterWindow?.Tick( app );
 						app.GapMonitorWindow?.Tick( app );

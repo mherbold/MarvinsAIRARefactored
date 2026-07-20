@@ -1813,7 +1813,40 @@
     <value>A kalibrálási fájl még nem érhető el ehhez az autóhoz.</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>Ablak pozíciójának visszaállítása</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>Játékhíd</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>Játékok</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Hamarosan</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Játékhíd inicializálása...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Más versenyjátékok telemetriáját iRacing formátumra fordítja, hogy a MAIRA működhessen velük. Kapcsold be a játékokat, amelyeket át szeretnél hidalni - a híd automatikusan aktiválódik, amikor egy bekapcsolt játék fut.</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

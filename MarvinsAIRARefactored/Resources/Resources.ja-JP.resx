@@ -1816,7 +1816,40 @@
     <value>この車のキャリブレーションファイルはまだ利用できません。</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>ウィンドウの位置をリセット</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>ゲームブリッジ</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>ゲーム</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>近日公開</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>ゲームブリッジを初期化しています...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>他のレースゲームのテレメトリーをiRacing形式に変換し、MAIRAで利用できるようにします。ブリッジしたいゲームを有効にすると、そのゲームの起動時にブリッジが自動的に有効になります。</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

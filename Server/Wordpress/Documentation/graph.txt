@@ -182,7 +182,7 @@
 <!-- /wp:separator -->
 
 <!-- wp:paragraph -->
-<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/simulator/" data-type="page" data-id="180">Simulator</a></p>
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/game-bridge/" data-type="page" data-id="1094">Game Bridge</a></p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

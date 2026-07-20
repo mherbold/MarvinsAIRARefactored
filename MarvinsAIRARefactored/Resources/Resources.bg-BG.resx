@@ -1815,7 +1815,40 @@
     <value>Файлът за калибриране все още не е наличен за тази кола.</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>Нулиране на позицията на прозореца</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>Мост за игри</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>Игри</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Очаквайте скоро</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Инициализиране на моста за игри...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Превежда телеметрията от други състезателни игри във формат iRacing, за да може MAIRA да работи с тях. Включете игрите, които искате да свържете - мостът се активира автоматично, когато включена игра работи.</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

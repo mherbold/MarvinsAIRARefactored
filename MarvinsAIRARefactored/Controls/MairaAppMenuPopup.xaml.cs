@@ -264,6 +264,9 @@ namespace MarvinsAIRARefactored.Controls
 				case AppPage.Simulator:
 					return "advanced/simulator/";
 
+				case AppPage.GameBridge:
+					return "advanced/game-bridge/";
+
 				case AppPage.AppManager:
 					return "advanced/app-manager/";
 
@@ -410,6 +413,7 @@ namespace MarvinsAIRARefactored.Controls
 			Add( AppMenuItemsColumn2, AppPage.AppSettings, _appSettingsPage );
 			Add( AppMenuItemsColumn2, AppPage.ControllerProfiles, _controllerProfilesPage );
 			Add( AppMenuItemsColumn2, AppPage.Simulator, _simulatorPage );
+			Add( AppMenuItemsColumn2, AppPage.GameBridge, _gameBridgePage );
 			Add( AppMenuItemsColumn2, AppPage.Graph, _graphPage );
 
 #endif
@@ -525,6 +529,10 @@ namespace MarvinsAIRARefactored.Controls
 						menuItem.DisplayName = localization[ "Simulator" ];
 						break;
 
+					case AppPage.GameBridge:
+						menuItem.DisplayName = localization[ "GameBridge" ];
+						break;
+
 					case AppPage.AppManager:
 						menuItem.DisplayName = localization[ "AppManager" ];
 						break;
@@ -633,6 +641,10 @@ namespace MarvinsAIRARefactored.Controls
 
 				case AppPage.Simulator:
 					SelectedAppPageText = localization.Upper[ "Simulator" ];
+					break;
+
+				case AppPage.GameBridge:
+					SelectedAppPageText = localization.Upper[ "GameBridge" ];
 					break;
 
 				case AppPage.AppManager:

@@ -281,6 +281,44 @@ public partial class Simulator
 		_irsdk.Start();
 	}
 
+	public void SetDataSource( IRacingSdkDataSource? dataSource )
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[Simulator] SetDataSource >>>" );
+
+		var wasStarted = _irsdk.IsStarted;
+		var wasConnected = _irsdk.IsConnected;
+
+		if ( wasStarted )
+		{
+			app.Logger.WriteLine( "[Simulator] Stopping IRSDKSharper" );
+
+			_irsdk.Stop();
+
+			while ( _irsdk.IsStarted )
+			{
+				Thread.Sleep( 50 );
+			}
+		}
+
+		if ( wasConnected )
+		{
+			OnDisconnected();
+		}
+
+		_irsdk.SetDataSource( dataSource );
+
+		if ( wasStarted )
+		{
+			app.Logger.WriteLine( "[Simulator] Restarting IRSDKSharper" );
+
+			_irsdk.Start();
+		}
+
+		app.Logger.WriteLine( "[Simulator] <<< SetDataSource" );
+	}
+
 	public IRacingSdkSessionInfo.DriverInfoModel.DriverModel? GetDriver( int carIdx )
 	{
 		var sessionInfo = _irsdk.Data.SessionInfo;

@@ -1,0 +1,124 @@
+<UserControl x:Class="MarvinsAIRARefactored.Pages.GameBridgePage"
+             x:Name="Root"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:MarvinsAIRARefactored.Pages"
+             xmlns:controls="clr-namespace:MarvinsAIRARefactored.Controls"
+             xmlns:datacontext="clr-namespace:MarvinsAIRARefactored.DataContext"
+             mc:Ignorable="d"
+             d:DesignWidth="800">
+
+    <UserControl.DataContext>
+        <Binding Source="{x:Static datacontext:DataContext.Instance}" />
+    </UserControl.DataContext>
+
+    <StackPanel>
+
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Games]}"
+                                HelpTopic="advanced/game-bridge/">
+
+            <StackPanel>
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           Text="{Binding Localization[GameBridgeDescription]}"
+                           TextWrapping="Wrap" />
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,20,0,0">
+
+                    <controls:MairaSwitch x:Name="LeMansUltimate_MairaSwitch"
+                                          Label="{Binding Localization[LeMansUltimate]}"
+                                          IsOn="{Binding Settings.GameBridgeLeMansUltimateEnabled, Mode=TwoWay}" />
+
+                    <TextBlock x:Name="LeMansUltimateStatus_TextBlock"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#979797"
+                               Margin="20,0,0,0"
+                               VerticalAlignment="Center" />
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,0">
+
+                    <controls:MairaSwitch x:Name="AssettoCorsa_MairaSwitch"
+                                          Label="{Binding Localization[AssettoCorsa]}"
+                                          IsOn="{Binding Settings.GameBridgeAssettoCorsaEnabled, Mode=TwoWay}" />
+
+                    <TextBlock x:Name="AssettoCorsaStatus_TextBlock"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#979797"
+                               Margin="20,0,0,0"
+                               VerticalAlignment="Center" />
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,0">
+
+                    <controls:MairaSwitch x:Name="AssettoCorsaCompetizione_MairaSwitch"
+                                          Label="{Binding Localization[AssettoCorsaCompetizione]}"
+                                          IsOn="{Binding Settings.GameBridgeAssettoCorsaCompetizioneEnabled, Mode=TwoWay}" />
+
+                    <TextBlock x:Name="AssettoCorsaCompetizioneStatus_TextBlock"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#979797"
+                               Margin="20,0,0,0"
+                               VerticalAlignment="Center" />
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,0">
+
+                    <controls:MairaSwitch x:Name="AssettoCorsaEvo_MairaSwitch"
+                                          Label="{Binding Localization[AssettoCorsaEvo]}"
+                                          IsOn="{Binding Settings.GameBridgeAssettoCorsaEvoEnabled, Mode=TwoWay}" />
+
+                    <TextBlock x:Name="AssettoCorsaEvoStatus_TextBlock"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#979797"
+                               Margin="20,0,0,0"
+                               VerticalAlignment="Center" />
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,0">
+
+                    <controls:MairaSwitch x:Name="RFactor2_MairaSwitch"
+                                          Label="{Binding Localization[RFactor2]}"
+                                          IsOn="{Binding Settings.GameBridgeRFactor2Enabled, Mode=TwoWay}" />
+
+                    <TextBlock x:Name="RFactor2Status_TextBlock"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#979797"
+                               Margin="20,0,0,0"
+                               VerticalAlignment="Center" />
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,0">
+
+                    <controls:MairaSwitch x:Name="Automobilista2_MairaSwitch"
+                                          Label="{Binding Localization[Automobilista2]}"
+                                          IsOn="{Binding Settings.GameBridgeAutomobilista2Enabled, Mode=TwoWay}" />
+
+                    <TextBlock x:Name="Automobilista2Status_TextBlock"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#979797"
+                               Margin="20,0,0,0"
+                               VerticalAlignment="Center" />
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </controls:MairaGroupBox>
+
+    </StackPanel>
+
+</UserControl>

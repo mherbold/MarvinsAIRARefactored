@@ -1829,7 +1829,40 @@
     <value>Le fichier de calibration n'est pas encore disponible pour cette voiture.</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>Réinitialiser la position de la fenêtre</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>Pont de jeux</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>Jeux</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Bientôt disponible</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Initialisation du pont de jeux...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Traduit la télémétrie d'autres jeux de course au format iRacing pour que MAIRA puisse fonctionner avec eux. Activez les jeux à relier - le pont s'active automatiquement lorsqu'un jeu activé est en cours d'exécution.</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
