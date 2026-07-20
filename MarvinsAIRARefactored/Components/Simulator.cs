@@ -364,6 +364,11 @@ public partial class Simulator
 
 		_waitingForFirstSessionInfo = true;
 
+		// iRacing has just configured the shared Windows audio endpoint; reset our output device (close, wait,
+		// reopen) so our stream re-establishes after iRacing's. Otherwise, when MAIRA was started before the
+		// sim, the Windows audio engine stays in a heavy mode that starves iRacing's audio (its C/A meters peg).
+		app.AudioManager.ResetDeviceForSimulatorConnect();
+
 		app.RacingWheel.ResetForceFeedback = true;
 
 		app.AdminBoxx.SimulatorConnected();
