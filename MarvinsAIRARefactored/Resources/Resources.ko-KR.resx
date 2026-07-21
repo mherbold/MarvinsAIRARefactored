@@ -1830,6 +1830,28 @@
     <value>이 차량에 대한 보정 파일이 아직 없습니다.</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>창 위치 재설정</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>게임 브리지</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>게임</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>곧 제공 예정</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>게임 브리지 초기화 중...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>다른 레이싱 게임의 텔레메트리를 iRacing 형식으로 변환하여 MAIRA가 함께 작동할 수 있도록 합니다. 브리지할 게임을 켜면 켜진 게임이 실행될 때 브리지가 자동으로 활성화됩니다.</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz 소스</value>
@@ -2239,4 +2261,14 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>노드 그래프 표시</value>
   </data>
+
+
+
+
+
+
+
+
+
+
 </root>

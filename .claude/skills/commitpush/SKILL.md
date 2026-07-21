@@ -85,6 +85,7 @@ changed (pure refactor, build tweak, server PHP, etc.), skip to Step 2.
 | AppManagerPage / AppManager | `app-manager.txt` |
 | ControllerProfilesPage / ControllerProfile, ButtonMappings | `controller-profiles.txt` |
 | SimulatorPage / Simulator, Telemetry | `simulator.txt` |
+| GameBridgePage / GameBridge, GameBridges\ | `game-bridge.txt` |
 | GraphPage / Graph | `graph.txt` |
 | Controls\Maira* (shared controls) | `common-controls.txt` |
 | A brand-new feature area / capability | `overview-feature-list.txt` **and** a new per-feature doc |
@@ -178,6 +179,7 @@ Category is the URL segment: `https://mairapp.com/home/documentation/<category>/
 | app-settings | 182 | advanced |
 | controller-profiles | 1034 | advanced |
 | simulator | 180 | advanced |
+| game-bridge | 1094 | advanced |
 | graph | 178 | advanced |
 | troubleshooting | 152 | other-stuff |
 | wheel-force-settings | 451 | other-stuff |

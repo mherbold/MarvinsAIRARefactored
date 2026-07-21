@@ -1830,6 +1830,28 @@
     <value>Kalibrācijas fails šai automašīnai vēl nav pieejams.</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>Atiestatīt loga pozīciju</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>Spēļu tilts</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>Spēles</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Drīzumā</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Notiek spēļu tilta inicializēšana...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Pārvērš citu sacīkšu spēļu telemetriju iRacing formātā, lai MAIRA varētu ar tām strādāt. Ieslēdziet spēles, kuras vēlaties savienot - tilts aktivizējas automātiski, kad ieslēgtā spēle darbojas.</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz avots</value>
@@ -2239,4 +2261,15 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Rādīt mezglu grafu</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 </root>

@@ -1,0 +1,75 @@
+<!-- wp:paragraph -->
+<p>The Game bridge lets MAIRA work with racing games other than iRacing. It reads telemetry from the other game and translates it into iRacing format on the fly, so MAIRA's force feedback engine, effects, and other features work as if iRacing were running. This feature is experimental and support for more games is being added over time.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="games">Games</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Each supported game has its own switch. Games marked "Coming soon" are planned but not working yet, and their switches are disabled.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Le Mans Ultimate</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables the Le Mans Ultimate bridge. MAIRA reads the game's built-in shared memory directly - you do not need to install any plugins or change any game files. While the bridge is active the game's actual car model (for example "Aston Martin Valkyrie LMH") and track name are used for MAIRA's per-car and per-track settings, just like with iRacing.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, rFactor 2, and Automobilista 2 are coming soon.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="how-it-works">How it works</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Switch on the games you want to bridge and leave them on. The bridge activates automatically when an enabled game is running - within a second or two of loading into a session, MAIRA connects just like it does when iRacing starts, and everything works normally from there. When you exit the game, MAIRA automatically switches back to waiting for iRacing.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Force feedback quality depends on what each game provides. iRacing publishes special high resolution (360 Hz) steering torque data that other games do not, so for bridged games MAIRA upscales the game's native physics data using the same prediction and smoothing engine it uses for iRacing. Some MAIRA features that depend on iRacing-only data (for example Trading Paints and the incident count) remain inactive while a bridge is active.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="setting-up-le-mans-ultimate">Setting up Le Mans Ultimate</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Turn OFF force feedback inside Le Mans Ultimate (set its FFB strength to zero for your wheel) so the game does not fight MAIRA for control of your wheelbase.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Let the game synchronize your wheel rotation, or make sure your wheelbase rotation matches the game's per-car rotation, so the steering angle and soft lock line up with your physical wheel.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>As with iRacing, start with a conservative max force setting and use the auto max force feature to find the right value for each car.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:group {"layout":{"type":"constrained"}} -->
+<div class="wp-block-group"><!-- wp:spacer -->
+<div style="height:100px" aria-hidden="true" class="wp-block-spacer"></div>
+<!-- /wp:spacer -->
+
+<!-- wp:separator -->
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+<!-- /wp:separator -->
+
+<!-- wp:paragraph -->
+<p>Previous page: <a href="https://mairapp.com/home/documentation/advanced/simulator/" data-type="page" data-id="180">Simulator</a></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Next page: <a href="https://mairapp.com/home/documentation/advanced/graph/" data-type="page" data-id="178">Graph</a></p>
+<!-- /wp:paragraph --></div>
+<!-- /wp:group -->

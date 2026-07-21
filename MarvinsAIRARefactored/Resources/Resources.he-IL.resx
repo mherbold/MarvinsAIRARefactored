@@ -1830,6 +1830,28 @@
     <value>קובץ הכיול עדיין אינו זמין עבור מכונית זו.</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>אפס מיקום חלון</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>גשר משחקים</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>משחקים</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>בקרוב</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>מאתחל את גשר המשחקים...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>מתרגם טלמטריה ממשחקי מרוצים אחרים לפורמט iRacing כדי ש-MAIRA תוכל לעבוד איתם. הפעילו את המשחקים שברצונכם לגשר - הגשר מופעל אוטומטית כאשר משחק מופעל רץ.</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>מקור 60 Hz</value>
@@ -2254,4 +2276,15 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>הצג את גרף הצמתים</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 </root>

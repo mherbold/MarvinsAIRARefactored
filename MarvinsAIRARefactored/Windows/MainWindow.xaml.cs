@@ -43,6 +43,7 @@ public partial class MainWindow : Window
 		TradingPaints,
 		Graph,
 		Simulator,
+		GameBridge,
 		AppManager,
 		AppSettings,
 		Contribute,
@@ -66,6 +67,7 @@ public partial class MainWindow : Window
 	public static readonly TradingPaintsPage _tradingPaintsPage = new();
 	public static readonly GraphPage _graphPage = new();
 	public static readonly SimulatorPage _simulatorPage = new();
+	public static readonly GameBridgePage _gameBridgePage = new();
 	public static readonly AdminBoxxPage _adminBoxxPage = new();
 	public static readonly AppManagerPage _appManagerPage = new();
 	public static readonly AppSettingsPage _appSettingsPage = new();
@@ -206,6 +208,8 @@ public partial class MainWindow : Window
 			_appManagerPage.UpdateComboBoxOptions();
 
 			_appSettingsPage.UpdateDefaultPageOptions();
+
+			_gameBridgePage.Update();
 
 #endif
 

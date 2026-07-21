@@ -377,6 +377,24 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section">Game bridge</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul class="wp-block-list"><!-- wp:list-item -->
+<li>Use MAIRA with racing games other than iRacing (experimental)</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Le Mans Ultimate supported - no plugins or game file changes needed</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, rFactor 2, and Automobilista 2 coming soon</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section">App settings</p>
 <!-- /wp:paragraph -->
 

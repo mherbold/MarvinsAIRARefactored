@@ -1830,6 +1830,28 @@
     <value>Kalibreringsfilen är ännu inte tillgänglig för den här bilen.</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>Återställ fönsterposition</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>Spelbrygga</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>Spel</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Kommer snart</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Initierar spelbryggan...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Översätter telemetri från andra racingspel till iRacing-format så att MAIRA kan arbeta med dem. Aktivera de spel du vill brygga - bryggan aktiveras automatiskt när ett aktiverat spel körs.</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz-källa</value>
@@ -2254,4 +2276,15 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Visa nodgraf</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 </root>

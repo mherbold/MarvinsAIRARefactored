@@ -1830,6 +1830,28 @@
     <value>इस कार के लिए कैलिब्रेशन फ़ाइल अभी उपलब्ध नहीं है।</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>विंडो स्थिति रीसेट करें</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>गेम ब्रिज</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>गेम</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>जल्द आ रहा है</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>गेम ब्रिज प्रारंभ हो रहा है...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>अन्य रेसिंग गेम्स की टेलीमेट्री को iRacing प्रारूप में बदलता है ताकि MAIRA उनके साथ काम कर सके। जिन गेम्स को आप ब्रिज करना चाहते हैं उन्हें चालू करें - चालू किया गया गेम चलने पर ब्रिज अपने आप सक्रिय हो जाता है।</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz स्रोत</value>
@@ -2239,4 +2261,15 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>नोड ग्राफ़ दिखाएँ</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 </root>

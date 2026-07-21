@@ -1833,6 +1833,28 @@
     <value>Calibration file is not yet available for this car.</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>Reset window position</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>Game bridge</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>Games</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Translate telemetry from other racing games into iRacing format so MAIRA can work with them. Enable the games you want to bridge - the bridge activates automatically when an enabled game is running.</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Coming soon</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Initializing game bridge...</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
   </data>
 
 
@@ -2239,4 +2261,15 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Show node graph</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 </root>

@@ -1830,6 +1830,28 @@
     <value>Այս մեքենայի համար չափաբերման ֆայլը դեռ հասանելի չէ:</value>
   </data>  <data name="ResetWindowPosition" xml:space="preserve">
     <value>Վերականգնել պատուհանի դիրքը</value>
+  </data>  <data name="LeMansUltimate" xml:space="preserve">
+    <value>Le Mans Ultimate</value>
+  </data>  <data name="AssettoCorsa" xml:space="preserve">
+    <value>Assetto Corsa</value>
+  </data>  <data name="AssettoCorsaCompetizione" xml:space="preserve">
+    <value>Assetto Corsa Competizione</value>
+  </data>  <data name="AssettoCorsaEvo" xml:space="preserve">
+    <value>Assetto Corsa EVO</value>
+  </data>  <data name="RFactor2" xml:space="preserve">
+    <value>rFactor 2</value>
+  </data>  <data name="Automobilista2" xml:space="preserve">
+    <value>Automobilista 2</value>
+  </data>  <data name="GameBridge" xml:space="preserve">
+    <value>Խաղերի կամուրջ</value>
+  </data>  <data name="Games" xml:space="preserve">
+    <value>Խաղեր</value>
+  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Շուտով</value>
+  </data>  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Խաղերի կամրջի նախապատրաստում...</value>
+  </data>  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Թարգմանում է այլ մրցարշավային խաղերի հեռաչափությունը iRacing ձևաչափի, որպեսզի MAIRA-ն կարողանա աշխատել դրանց հետ։ Միացրեք այն խաղերը, որոնք ցանկանում եք կամրջել - կամուրջն ավտոմատ ակտիվանում է, երբ միացված խաղն աշխատում է։</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz աղբյուր</value>
@@ -2254,4 +2276,15 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Ցուցադրել հանգույցների գրաֆը</value>
   </data>
+
+
+
+
+
+
+
+
+
+
+
 </root>
