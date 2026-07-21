@@ -63,6 +63,7 @@
                                     Maximum="{Binding Maximum}"
                                     ClickStepSize="{Binding ClickStepSize}"
                                     DragStepSize="{Binding DragStepSize}"
+                                    EditUnitScale="{Binding EditUnitScale}"
                                     DefaultValue="{Binding DefaultValue}"
                                     ShowCurve="{Binding ShowCurve}"
                                     PlusButtonMappings="{Binding PlusButtonMappings}"

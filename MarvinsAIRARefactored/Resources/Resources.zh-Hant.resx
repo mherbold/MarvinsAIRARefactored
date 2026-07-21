@@ -2193,7 +2193,7 @@
     <value>60 Hz 內插器</value>
   </data>
   <data name="FFBModulePrediction" xml:space="preserve">
-    <value>預測</value>
+    <value>預測 (360 Hz)</value>
   </data>
   <data name="FFBSettingHorizon" xml:space="preserve">
     <value>前瞻時間</value>
@@ -2272,4 +2272,7 @@
 
 
 
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>預測 (60 Hz)</value>
+  </data>
 </root>

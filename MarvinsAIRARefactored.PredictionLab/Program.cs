@@ -18,6 +18,9 @@ using System.Globalization;
 //                                                     across all — or the given — recordings)
 //   dotnet run -c Release -- --tune                  (grid-sweep the shipped module's knobs across all — or
 //                                                     the given — recordings, to pick global defaults)
+//   dotnet run -c Release -- --sixty                 (the 60 Hz PREDICTION investigation: baselines, the NLMS
+//                                                     family, a channel audit, and a defaults grid, all on the
+//                                                     60 Hz torque series — for the 60 Hz prediction module)
 //
 // Ground truth: a predictor with horizon k should output, at tick t, an estimate of y[t+k]. Metrics per run:
 //   rmse    - RMSE(out[t], y[t+k]) / RMSE(y[t], y[t+k])  — error vs the ideal shifted waveform, relative to
@@ -76,6 +79,28 @@ using System.Globalization;
 //     strength 150% / limit 5 Nm is the Pareto winner for "max shift with EVERY car better than doing
 //     nothing" (11.5 ms avg [8.6 worst], rmse 0.816 [0.978 worst], hfGain 1.24 [1.45]) — the shipped
 //     defaults were confirmed, not changed. Cleaner alternates for docs: K6/125%/5 and K4/125%/10.
+//
+// 60 Hz PREDICTION findings (--sixty, 2026-07-21, 11 v5 recordings) — for the separate 60 Hz Prediction module:
+//   * Structurally the HARD case: the 60 Hz source is one value per frame, so there is NO frame anchoring
+//     (the 360 Hz module's big win). The predictor runs once per frame, extrapolates the ENTIRE horizon, and
+//     holds its output across the frame's six sub-ticks — a single-depth NLMS filter, not a per-depth bank.
+//   * Torque history ALONE is worthless-to-harmful here: every torque-only NLMS config scores rmse >= 1.0
+//     (H1 g1.5 = 1.07 [1.22 worst]) — least-squares collapses to persistence and Strength just adds noise.
+//     This is the exact mirror image of the 360 Hz result, where torque history did most of the work.
+//   * The aux telemetry carries ESSENTIALLY ALL the predictive power. Greedy selection from torque+bias picks
+//     SteeringWheelAngle (-0.113), then d/dt LateralGForce (-0.048), VelocityY (-0.011), SteeringWheelVelocity
+//     (-0.018), then stops. RollRate / raw PitchRate / front-shock velocity are strong individually but
+//     duplicate the steering+lateral set once it is in.
+//   * The one non-plumbed winner (d/dt LateralGForce = lateral-G rate) is NOT worth a new telemetry channel:
+//     scorecard at H2/s1/l5 — selected {angle,dLatG,latVel,whlVel} rmse 0.886, vs the plumbing-free
+//     {angle,whlVel,latVel} 0.901 and the 360-style {+pitchAcc} 0.905. Pitch acceleration does NOT earn a slot
+//     at 60 Hz. So the module uses the three channels ALREADY in FFBTickContext: steering angle, wheel
+//     velocity, lateral velocity — no new telemetry plumbing.
+//   * Defaults (max shift with EVERY car still better than doing nothing): Horizon 2 frames (33 ms),
+//     Strength 100%, Correction limit 5 Nm -> rmse 0.90 [0.97 worst], shift60 ~8 ms, felt ~13 ms. Two knob
+//     lessons flip vs the 360 Hz module: H=2 frames BEATS H=1 (the aux lead extends further out), and Strength
+//     100% beats 150% (the aux already carries the lead, so there is little MMSE shrinkage to re-expand — 150%
+//     pushes the worst car's rmse back over 1.0). Horizon is in whole 60 Hz FRAMES, not 360 Hz sub-ticks.
 // ============================================================================================================
 
 const int TickRate = 360;
@@ -91,8 +116,9 @@ const int Warmup = 3600; // 10 s — lets adaptive algorithms settle before scor
 // greedy feature selection instead (see RunFeatureSelection).
 var selectMode = args.Contains( "--select" );
 var tuneMode = args.Contains( "--tune" );
+var sixtyMode = args.Contains( "--sixty" );
 
-List<string> recordingPaths = [ .. args.Where( arg => ( arg != "--select" ) && ( arg != "--tune" ) ) ];
+List<string> recordingPaths = [ .. args.Where( arg => ( arg != "--select" ) && ( arg != "--tune" ) && ( arg != "--sixty" ) ) ];
 
 if ( recordingPaths.Count == 0 )
 {
@@ -124,7 +150,7 @@ var shippedScores = new Dictionary<string, List<( double Rmse, double Shift, dou
 var auditDeltas = new Dictionary<string, List<( double RmseDelta, double ShiftDelta )>>( StringComparer.Ordinal );
 var analyzedCount = 0;
 
-if ( selectMode || tuneMode )
+if ( selectMode || tuneMode || sixtyMode )
 {
 	if ( selectMode )
 	{
@@ -134,6 +160,11 @@ if ( selectMode || tuneMode )
 	if ( tuneMode )
 	{
 		RunDefaultsTuning( recordingPaths );
+	}
+
+	if ( sixtyMode )
+	{
+		RunSixtyHzLab( recordingPaths );
 	}
 
 	Console.WriteLine();
@@ -1326,6 +1357,636 @@ void RunDefaultsTuning( List<string> paths )
 
 		evalRows.Add( string.Empty );
 	}
+}
+
+// ============================================================================================================
+// 60 Hz prediction investigation (--sixty) — the sibling of the 360 Hz work above, for the 60 Hz Prediction
+// module. Structurally this is the HARD case: the 60 Hz source is one value per telemetry frame, so there is
+// NO frame-anchoring free lunch (the 360 Hz module's big win) — the predictor must extrapolate the ENTIRE
+// horizon from 60 Hz history and hold its output across the frame's six 360 Hz sub-ticks. It is therefore a
+// single-depth NLMS filter (not a per-depth bank): once per frame, predict H frames ahead, re-expand by
+// Strength, clamp, add onto the input. Horizon is measured in whole 60 Hz FRAMES (1 frame = 16.7 ms).
+//
+// Two scoring lenses, because a 60 Hz signal inherently lacks the 360 Hz texture:
+//   60 Hz lens  - output vs the 60 Hz truth y60[f+H]; isolates PREDICTION quality (persistence = 1.0, a 60 Hz
+//                 oracle reads exactly H frames of shift). This is the yardstick for "best 60 Hz algorithm".
+//   felt lens   - the held output expanded back to 360 Hz, scored against the 360 Hz truth Y[t+6H]; the
+//                 "as actually felt" number, which necessarily includes the 60→360 texture gap (even a perfect
+//                 60 Hz oracle cannot drive this rmse to 0 — the held signal has no intra-frame detail).
+// ============================================================================================================
+
+void RunSixtyHzLab( List<string> paths )
+{
+	var cache = new List<( string Name, string[] Names, Dictionary<string, float[]> Columns )>();
+
+	foreach ( var path in paths )
+	{
+		if ( LoadRecording( path ) )
+		{
+			cache.Add( ( Path.GetFileNameWithoutExtension( path ), columnNames, columns ) );
+		}
+	}
+
+	if ( cache.Count == 0 )
+	{
+		Console.WriteLine( "None of the recordings could be loaded." );
+
+		return;
+	}
+
+	void Activate( int index )
+	{
+		columnNames = cache[ index ].Names;
+		columns = cache[ index ].Columns;
+		Y = columns[ "InputTorque360Hz" ];
+		VSIM = columns[ "SteeringWheelVelocity" ];
+		n = Y.Length;
+	}
+
+	const int warmF = Warmup / 6;   // 600 frames (10 s) — matches the 360 Hz warmup
+
+	// the 60 Hz torque series (one value per frame) and a frame-sampler for the 60 Hz-constant aux channels
+	float[] BuildY60()
+	{
+		var src = columns[ "InputTorque60Hz" ];
+		var frames = n / 6;
+		var output = new float[ frames ];
+
+		for ( var f = 0; f < frames; f++ )
+		{
+			output[ f ] = src[ f * 6 ];
+		}
+
+		return output;
+	}
+
+	float[] FrameSample( float[] tickSeries )
+	{
+		var frames = n / 6;
+		var output = new float[ frames ];
+
+		for ( var f = 0; f < frames; f++ )
+		{
+			output[ f ] = tickSeries[ f * 6 ];
+		}
+
+		return output;
+	}
+
+	// single-depth 60 Hz NLMS predictor: one update per frame from the anchor (f-H) whose truth just arrived,
+	// then predict H frames ahead from f; correction re-expanded by g and clamped. Aux channels are standardized
+	// to the torque scale (fair comparison across channels — the app module scales by MaxForce, which NLMS adapts
+	// to anyway, mirroring the 360 Hz aux-scale finding).
+	float[] RunSixtyNlms( float[] y60, int horizonFrames, int tapCount, int auxTapCount, float mu, float g, float limit, params float[][] aux )
+	{
+		const float eps = 1e-3f;
+
+		var frames = y60.Length;
+
+		var yStd = StdDev( y60, warmF, frames / 2 );
+
+		var scaled = new float[ aux.Length ][];
+
+		for ( var c = 0; c < aux.Length; c++ )
+		{
+			var (mean, std) = MeanStd( aux[ c ], warmF, frames / 2 );
+
+			var s = new float[ frames ];
+
+			if ( std > 1e-9 )
+			{
+				var factor = (float) ( yStd / std );
+
+				for ( var f = 0; f < frames; f++ )
+				{
+					s[ f ] = ( aux[ c ][ f ] - (float) mean ) * factor;
+				}
+			}
+
+			scaled[ c ] = s;
+		}
+
+		var featureCount = tapCount + ( aux.Length * auxTapCount ) + 1;   // + adaptive bias
+
+		var w = new float[ featureCount ];
+		w[ 0 ] = 1f;
+
+		var x = new float[ featureCount ];
+
+		var bias = (float) yStd;
+
+		void BuildFeatures( int f )
+		{
+			for ( var j = 0; j < tapCount; j++ )
+			{
+				x[ j ] = y60[ f - j ];
+			}
+
+			var index = tapCount;
+
+			for ( var c = 0; c < scaled.Length; c++ )
+			{
+				for ( var j = 0; j < auxTapCount; j++ )
+				{
+					x[ index++ ] = scaled[ c ][ f - j ];
+				}
+			}
+
+			x[ index ] = bias;
+		}
+
+		var need = Math.Max( tapCount, auxTapCount ) + horizonFrames + 2;
+
+		var output = new float[ frames ];
+
+		for ( var f = 0; f < frames; f++ )
+		{
+			if ( f < need )
+			{
+				output[ f ] = y60[ f ];
+
+				continue;
+			}
+
+			BuildFeatures( f - horizonFrames );
+
+			var dot = 0f;
+			var norm = eps;
+
+			for ( var j = 0; j < featureCount; j++ )
+			{
+				dot += w[ j ] * x[ j ];
+				norm += x[ j ] * x[ j ];
+			}
+
+			var scale = mu * ( y60[ f ] - dot ) / norm;
+
+			for ( var j = 0; j < featureCount; j++ )
+			{
+				w[ j ] += scale * x[ j ];
+			}
+
+			BuildFeatures( f );
+
+			var prediction = 0f;
+
+			for ( var j = 0; j < featureCount; j++ )
+			{
+				prediction += w[ j ] * x[ j ];
+			}
+
+			output[ f ] = y60[ f ] + Math.Clamp( g * ( prediction - y60[ f ] ), -limit, limit );
+		}
+
+		return output;
+	}
+
+	// expand a held 60 Hz frame output back to the 360 Hz tick grid (each frame value repeated six times), for
+	// the felt lens against the 360 Hz truth Y
+	float[] ExpandHeld( float[] frameOutput )
+	{
+		var output = new float[ n ];
+
+		for ( var t = 0; t < n; t++ )
+		{
+			output[ t ] = frameOutput[ Math.Min( t / 6, frameOutput.Length - 1 ) ];
+		}
+
+		return output;
+	}
+
+	// accumulators across recordings
+	var sixtyScores = new Dictionary<string, List<( double Rmse, double Shift, double Felt )>>( StringComparer.Ordinal );
+	var sixtyAudit = new Dictionary<string, List<( double RmseDelta, double ShiftDelta )>>( StringComparer.Ordinal );
+	var tuneScores = new Dictionary<string, List<( double Rmse, double Shift, double Felt )>>( StringComparer.Ordinal );
+
+	void Accumulate( Dictionary<string, List<( double Rmse, double Shift, double Felt )>> into, string key, double rmse, double shift, double felt )
+	{
+		if ( !into.TryGetValue( key, out var list ) )
+		{
+			list = [];
+
+			into[ key ] = list;
+		}
+
+		list.Add( ( rmse, shift, felt ) );
+	}
+
+	// the torque-only NLMS family sweep (60 Hz lens) + a couple of headline configs' felt numbers, plus the
+	// baselines that bracket them (persistence floor, 60 Hz oracle ceiling)
+	( int H, int Tap, float Mu, float G )[] familyConfigs =
+	[
+		( 1, 12, 0.25f, 1.5f ), ( 1, 12, 0.25f, 2f ),
+		( 2, 12, 0.25f, 1.5f ), ( 2, 12, 0.25f, 2f ), ( 2, 16, 0.25f, 1.5f ), ( 2, 12, 0.5f, 1.5f ),
+		( 3, 16, 0.25f, 1.5f ), ( 3, 16, 0.25f, 2f )
+	];
+
+	// the 360 Hz module's selected aux channels, sampled at 60 Hz (angle, wheel velocity, lateral velocity,
+	// pitch acceleration) — the audit re-decides whether they earn a slot at 60 Hz
+	float[][] AuxSet360Style()
+	{
+		var angle = FrameSample( columns[ "SteeringWheelAngle" ] );
+		var wheelVelocity = FrameSample( VSIM );
+		var lateral = FrameSample( columns.TryGetValue( "VelocityY", out var vy ) ? vy : new float[ n ] );
+
+		var pitch = FrameSample( columns.TryGetValue( "PitchRate", out var pr ) ? pr : new float[ n ] );
+		var pitchAcceleration = new float[ pitch.Length ];
+
+		for ( var f = 1; f < pitch.Length; f++ )
+		{
+			pitchAcceleration[ f ] = ( pitch[ f ] - pitch[ f - 1 ] ) * 60f;
+		}
+
+		return [ angle, wheelVelocity, lateral, pitchAcceleration ];
+	}
+
+	for ( var index = 0; index < cache.Count; index++ )
+	{
+		Activate( index );
+
+		var y60 = BuildY60();
+
+		var frames = y60.Length;
+		var from = frames / 2;
+
+		// baselines
+		{
+			var to = frames - 1 - 1;
+
+			var persistence = Measure60( y60, y60, 1, from, to );
+
+			Accumulate( sixtyScores, "persistence (do nothing)", persistence.Rmse, persistence.ShiftFrames, 0.0 );
+
+			foreach ( var h in new[] { 1, 2 } )
+			{
+				var oracle = new float[ frames ];
+
+				for ( var f = 0; f < frames; f++ )
+				{
+					oracle[ f ] = y60[ Math.Min( frames - 1, f + h ) ];
+				}
+
+				var score = Measure60( y60, oracle, h, from, frames - h - 1 );
+				var felt = Measure( 6 * h, ExpandHeld( oracle ), ( frames / 2 ) * 6, n - ( 6 * h ) - 30 );
+
+				Accumulate( sixtyScores, $"ORACLE H={h}", score.Rmse, score.ShiftFrames, felt.Shift );
+			}
+		}
+
+		// torque-only NLMS family
+		foreach ( var (h, tap, mu, gg) in familyConfigs )
+		{
+			var to = frames - h - 1;
+
+			var output = RunSixtyNlms( y60, h, tap, 6, mu, gg, 5f );
+
+			var score = Measure60( y60, output, h, from, to );
+			var felt = Measure( 6 * h, ExpandHeld( output ), from * 6, n - ( 6 * h ) - 30 );
+
+			Accumulate( sixtyScores, $"NLMS H={h} tap={tap} mu={mu} g={gg}", score.Rmse, score.ShiftFrames, felt.Shift );
+		}
+
+		// channel audit at H=2 (33 ms — enough horizon for a channel to show value): does any recorded channel
+		// help a 60 Hz predictor beyond torque history + adaptive bias?
+		{
+			const int auditH = 2;
+			const int auditTap = 12;
+			const float auditMu = 0.25f;
+			const float auditG = 1.5f;
+
+			var to = frames - auditH - 1;
+
+			var baseline = Measure60( y60, RunSixtyNlms( y60, auditH, auditTap, 6, auditMu, auditG, 5f ), auditH, from, to );
+
+			foreach ( var (name, series) in BuildCandidates() )
+			{
+				var channel = FrameSample( series );
+
+				var augmented = Measure60( y60, RunSixtyNlms( y60, auditH, auditTap, 6, auditMu, auditG, 5f, channel ), auditH, from, to );
+
+				if ( !sixtyAudit.TryGetValue( name, out var deltas ) )
+				{
+					deltas = [];
+
+					sixtyAudit[ name ] = deltas;
+				}
+
+				deltas.Add( ( augmented.Rmse - baseline.Rmse, augmented.ShiftFrames - baseline.ShiftFrames ) );
+			}
+		}
+
+		// defaults grid — torque + bias only (the simplest honest module), plus the 360-style aux set at the
+		// same knobs so the aux value is visible; swept over horizon, strength, and correction limit
+		var aux360 = AuxSet360Style();
+
+		foreach ( var h in new[] { 1, 2, 3 } )
+		{
+			var to = frames - h - 1;
+
+			foreach ( var strength in new[] { 1f, 1.5f, 2f } )
+			{
+				foreach ( var limit in new[] { 2.5f, 5f, 10f } )
+				{
+					var plain = RunSixtyNlms( y60, h, 12, 6, 0.25f, strength, limit );
+					var plainScore = Measure60( y60, plain, h, from, to );
+					var plainFelt = Measure( 6 * h, ExpandHeld( plain ), from * 6, n - ( 6 * h ) - 30 );
+
+					Accumulate( tuneScores, $"H{h} s={strength,-4} l={limit,4}Nm  torque+bias", plainScore.Rmse, plainScore.ShiftFrames, plainFelt.Shift );
+
+					var withAux = RunSixtyNlms( y60, h, 12, 6, 0.25f, strength, limit, aux360 );
+					var auxScore = Measure60( y60, withAux, h, from, to );
+					var auxFelt = Measure( 6 * h, ExpandHeld( withAux ), from * 6, n - ( 6 * h ) - 30 );
+
+					Accumulate( tuneScores, $"H{h} s={strength,-4} l={limit,4}Nm  +360aux", auxScore.Rmse, auxScore.ShiftFrames, auxFelt.Shift );
+				}
+			}
+		}
+	}
+
+	// greedy forward feature selection (60 Hz) — starting from torque + bias only (torque history alone is
+	// worthless here, so unlike the 360 Hz side there is no shipped channel to start from), add the candidate
+	// that most improves avg rmse across recordings, repeat. Answers "what aux channels should the 60 Hz module
+	// carry", with car-to-car consistency visible.
+	{
+		const int selH = 2;
+		const int selTap = 12;
+		const float selMu = 0.25f;
+		const float selG = 1.5f;
+		const double addThreshold = -0.01;
+
+		var selected = new List<string>();
+
+		Banner( "60 Hz — greedy feature selection (H=2), candidate deltas vs current set, avg across recordings" );
+
+		for ( var round = 1; round <= 5; round++ )
+		{
+			var deltasByName = new Dictionary<string, List<double>>( StringComparer.Ordinal );
+
+			for ( var index = 0; index < cache.Count; index++ )
+			{
+				Activate( index );
+
+				var y60 = BuildY60();
+				var frames = y60.Length;
+				var from = frames / 2;
+				var to = frames - selH - 1;
+
+				var seriesByName = new Dictionary<string, float[]>( StringComparer.Ordinal );
+
+				foreach ( var (name, series) in BuildCandidates() )
+				{
+					seriesByName[ name ] = FrameSample( series );
+				}
+
+				float[][] selectedSeries = [ .. selected.Where( seriesByName.ContainsKey ).Select( name => seriesByName[ name ] ) ];
+
+				var baseline = Measure60( y60, RunSixtyNlms( y60, selH, selTap, 6, selMu, selG, 5f, selectedSeries ), selH, from, to ).Rmse;
+
+				foreach ( var (name, channel) in seriesByName )
+				{
+					if ( selected.Contains( name ) )
+					{
+						continue;
+					}
+
+					var augmented = Measure60( y60, RunSixtyNlms( y60, selH, selTap, 6, selMu, selG, 5f, [ .. selectedSeries, channel ] ), selH, from, to ).Rmse;
+
+					if ( !deltasByName.TryGetValue( name, out var deltas ) )
+					{
+						deltas = [];
+
+						deltasByName[ name ] = deltas;
+					}
+
+					deltas.Add( augmented - baseline );
+				}
+			}
+
+			var ranked = deltasByName.Where( pair => pair.Value.Count == cache.Count ).OrderBy( pair => pair.Value.Average() ).ToList();
+
+			Banner( $"selection round {round} — vs torque + bias{( selected.Count > 0 ? " + " + string.Join( " + ", selected ) : "" )}" );
+
+			foreach ( var (name, deltas) in ranked.Take( 8 ) )
+			{
+				var helped = deltas.Count( d => d < -0.005 );
+
+				evalRows.Add( $"{name,-28} | avg rmse delta {deltas.Average(),7:F3} | helped in {helped}/{deltas.Count}" );
+			}
+
+			if ( ( ranked.Count == 0 ) || ( ranked[ 0 ].Value.Average() > addThreshold ) )
+			{
+				evalRows.Add( $">> STOP: no candidate clears the {addThreshold:F3} avg rmse bar — the set is complete" );
+
+				break;
+			}
+
+			selected.Add( ranked[ 0 ].Key );
+
+			evalRows.Add( $">> SELECTED: {ranked[ 0 ].Key} — set is now torque + bias + {string.Join( " + ", selected )}" );
+		}
+	}
+
+	// aux-set scorecard: the greedy-selected set (needs a new lateral-G-rate telemetry channel) vs two
+	// plumbing-free sets built only from channels already in FFBTickContext, so the module can decide whether
+	// the extra channel earns its plumbing
+	{
+		var sets = new (string Label, string[] Names)[]
+		{
+			( "selected (angle,dLatG,latVel,whlVel)", [ "SteeringWheelAngle", "d/dt LateralGForce", "VelocityY", "SteeringWheelVelocity" ] ),
+			( "in-context 360-style (+pitchAcc)", [ "SteeringWheelAngle", "SteeringWheelVelocity", "VelocityY", "d/dt PitchRate" ] ),
+			( "in-context lite (angle,whlVel,latVel)", [ "SteeringWheelAngle", "SteeringWheelVelocity", "VelocityY" ] )
+		};
+
+		var scorecard = new Dictionary<string, List<( double Rmse, double Shift, double Felt )>>( StringComparer.Ordinal );
+
+		( int H, float S, float L )[] points = [ ( 1, 1.5f, 5f ), ( 2, 1f, 5f ), ( 2, 1.5f, 5f ) ];
+
+		for ( var index = 0; index < cache.Count; index++ )
+		{
+			Activate( index );
+
+			var y60 = BuildY60();
+			var frames = y60.Length;
+			var from = frames / 2;
+
+			var seriesByName = new Dictionary<string, float[]>( StringComparer.Ordinal );
+
+			foreach ( var (name, series) in BuildCandidates() )
+			{
+				seriesByName[ name ] = FrameSample( series );
+			}
+
+			foreach ( var (label, names) in sets )
+			{
+				float[][] aux = [ .. names.Where( seriesByName.ContainsKey ).Select( name => seriesByName[ name ] ) ];
+
+				foreach ( var (h, s, l) in points )
+				{
+					var to = frames - h - 1;
+
+					var output = RunSixtyNlms( y60, h, 12, 6, 0.25f, s, l, aux );
+
+					var score = Measure60( y60, output, h, from, to );
+					var felt = Measure( 6 * h, ExpandHeld( output ), from * 6, n - ( 6 * h ) - 30 );
+
+					var key = $"H{h} s={s} l={l}Nm  {label}";
+
+					if ( !scorecard.TryGetValue( key, out var list ) )
+					{
+						list = [];
+
+						scorecard[ key ] = list;
+					}
+
+					list.Add( ( score.Rmse, score.ShiftFrames, felt.Shift ) );
+				}
+			}
+		}
+
+		Banner( "60 Hz — aux-set scorecard (selected vs plumbing-free), avg [worst car]" );
+
+		foreach ( var (key, scores) in scorecard )
+		{
+			var rmse = scores.Select( s => s.Rmse ).ToArray();
+			var shiftMs = scores.Select( s => s.Shift * 1000.0 / 60.0 ).ToArray();
+			var feltMs = scores.Select( s => s.Felt * 1000.0 / TickRate ).ToArray();
+
+			evalRows.Add( $"{key,-48} | rmse {rmse.Average(),5:F3} [{rmse.Max(),5:F3}] | shift60 {shiftMs.Average(),5:F1} ms [{shiftMs.Min(),5:F1}] | felt {feltMs.Average(),5:F1} ms" );
+		}
+	}
+
+	// ---- report ----
+	Banner( $"60 Hz — NLMS family + baselines over {cache.Count} recordings (60 Hz lens), mean [min..max]" );
+
+	foreach ( var (key, scores) in sixtyScores )
+	{
+		var rmse = scores.Select( s => s.Rmse ).ToArray();
+		var shiftMs = scores.Select( s => s.Shift * 1000.0 / 60.0 ).ToArray();
+		var feltMs = scores.Select( s => s.Felt * 1000.0 / TickRate ).ToArray();
+
+		evalRows.Add( $"{key,-34} | rmse {rmse.Average(),5:F3} [{rmse.Min():F3}..{rmse.Max():F3}] | shift60 {shiftMs.Average(),5:F1} ms [{shiftMs.Min(),5:F1}..{shiftMs.Max(),5:F1}] | felt {feltMs.Average(),5:F1} ms" );
+	}
+
+	Banner( "60 Hz — channel audit at H=2, avg delta vs torque+bias baseline (negative rmse = helps), worst-of ranking" );
+
+	foreach ( var (name, deltas) in sixtyAudit.OrderBy( pair => pair.Value.Average( d => d.RmseDelta ) ) )
+	{
+		var helped = deltas.Count( d => d.RmseDelta < -0.005 );
+
+		evalRows.Add( $"{name,-28} | avg rmse delta {deltas.Average( d => d.RmseDelta ),7:F3} | helped in {helped}/{deltas.Count} | avg shift delta {deltas.Average( d => d.ShiftDelta ),5:F2} frames" );
+	}
+
+	Banner( "60 Hz — defaults grid, avg [worst car] (60 Hz lens rmse/shift, plus felt-ms)" );
+
+	foreach ( var (key, scores) in tuneScores )
+	{
+		var rmse = scores.Select( s => s.Rmse ).ToArray();
+		var shiftMs = scores.Select( s => s.Shift * 1000.0 / 60.0 ).ToArray();
+		var feltMs = scores.Select( s => s.Felt * 1000.0 / TickRate ).ToArray();
+
+		evalRows.Add( $"{key,-34} | rmse {rmse.Average(),5:F3} [{rmse.Max(),5:F3}] | shift60 {shiftMs.Average(),5:F1} ms [{shiftMs.Min(),5:F1}] | felt {feltMs.Average(),5:F1} ms" );
+	}
+}
+
+// the frame-domain scoring helpers for the 60 Hz lab (siblings of Rmse/OnePoleLpf/Measure, but at 60 Hz)
+static double Rmse60( float[] a, float[] b, int from, int to, int bShift )
+{
+	var sum = 0.0;
+	var count = 0;
+
+	for ( var t = from; t < to; t++ )
+	{
+		var d = a[ t ] - b[ t + bShift ];
+
+		sum += d * (double) d;
+
+		count++;
+	}
+
+	return Math.Sqrt( sum / count );
+}
+
+static float[] Lpf60( float[] x, float cutoffHz, int passes = 2 )
+{
+	var a = 1f - MathF.Exp( -MathF.Tau * cutoffHz / 60f );
+
+	var output = (float[]) x.Clone();
+
+	for ( var p = 0; p < passes; p++ )
+	{
+		var s = output[ 0 ];
+
+		for ( var i = 0; i < output.Length; i++ )
+		{
+			s += a * ( output[ i ] - s );
+
+			output[ i ] = s;
+		}
+	}
+
+	return output;
+}
+
+// 60 Hz-lens metrics: rmse (vs 60 Hz persistence), rmseLF (body, <8 Hz), achieved shift in FRAMES (empirical,
+// parabolic-refined), and the correction p95
+static ( double Rmse, double RmseLf, double ShiftFrames, float P95 ) Measure60( float[] y60, float[] output, int horizonFrames, int from, int to )
+{
+	// the shift scan reaches +8 frames past `to`, and the rmse reaches +horizonFrames — keep both in bounds
+	to = Math.Min( to, y60.Length - 9 );
+
+	var rmse = Rmse60( output, y60, from, to, horizonFrames ) / Rmse60( y60, y60, from, to, horizonFrames );
+
+	var yLf = Lpf60( y60, 8f );
+	var outputLf = Lpf60( output, 8f );
+
+	var rmseLf = Rmse60( outputLf, yLf, from, to, horizonFrames ) / Rmse60( yLf, yLf, from, to, horizonFrames );
+
+	var bestShift = 0;
+	var bestError = double.MaxValue;
+
+	var errorByShift = new double[ 17 ];
+
+	for ( var s = -8; s <= 8; s++ )
+	{
+		var e = Rmse60( outputLf, yLf, from, to, s );
+
+		errorByShift[ s + 8 ] = e;
+
+		if ( e < bestError )
+		{
+			bestError = e;
+			bestShift = s;
+		}
+	}
+
+	var shift = (double) bestShift;
+
+	if ( ( bestShift > -8 ) && ( bestShift < 8 ) )
+	{
+		var e0 = errorByShift[ bestShift + 7 ];
+		var e1 = errorByShift[ bestShift + 8 ];
+		var e2 = errorByShift[ bestShift + 9 ];
+
+		var denom = e0 - 2 * e1 + e2;
+
+		if ( Math.Abs( denom ) > 1e-12 )
+		{
+			shift = bestShift + 0.5 * ( e0 - e2 ) / denom;
+		}
+	}
+
+	var deltas = new List<float>( to - from );
+
+	for ( var t = from; t < to; t++ )
+	{
+		deltas.Add( MathF.Abs( output[ t ] - y60[ t ] ) );
+	}
+
+	deltas.Sort();
+
+	var p95 = deltas[ (int) ( deltas.Count * 0.95 ) ];
+
+	return ( rmse, rmseLf, shift, p95 );
 }
 
 // ============================================================================================================

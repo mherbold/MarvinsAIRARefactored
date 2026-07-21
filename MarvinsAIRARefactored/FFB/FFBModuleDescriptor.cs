@@ -31,6 +31,12 @@ public sealed class FFBSettingDescriptor
 	public bool ShowCurve;                      // MairaKnob curve visualization
 	public bool BreakRow;                       // presentation only: start a new settings-panel row before this setting
 
+	/// <summary>Displayed units per stored unit, for knobs whose display unit differs from their stored unit
+	/// (e.g. the prediction horizons store frames / 360 Hz sub-ticks but display milliseconds). NaN (the default)
+	/// means "edit in the stored unit"; a value means the direct-edit box works in the displayed unit and the
+	/// typed number is converted back (÷ this scale) and snapped to <see cref="ClickStepSize"/> on commit.</summary>
+	public float EditUnitScale = float.NaN;
+
 	/// <summary>Clamp a raw value to this setting's range (choices/switches clamp to their discrete span).</summary>
 	public float Clamp( float value )
 	{

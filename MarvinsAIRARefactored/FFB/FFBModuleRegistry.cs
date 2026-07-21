@@ -36,6 +36,7 @@ public static class FFBModuleRegistry
 	public const string AdaptiveSmootherType = "AdaptiveSmoother";
 	public const string InterpolatorType = "Interpolator";
 	public const string PredictionType = "Prediction";
+	public const string Prediction60HzType = "Prediction60Hz";
 	public const string AdaptiveBlendType = "AdaptiveBlend";
 
 	public const string CrashProtectionType = "CrashProtection";
@@ -86,7 +87,7 @@ public static class FFBModuleRegistry
 
 	// ---- descriptor construction helpers ----------------------------------------------------------------
 
-	private static FFBSettingDescriptor Knob( string key, float min, float max, float defaultValue, float clickStepSize, Func<FFBFormatContext, string>? format = null, string? localizationKey = null, bool showCurve = false, bool breakRow = false )
+	private static FFBSettingDescriptor Knob( string key, float min, float max, float defaultValue, float clickStepSize, Func<FFBFormatContext, string>? format = null, string? localizationKey = null, bool showCurve = false, bool breakRow = false, float editUnitScale = float.NaN )
 	{
 		return new FFBSettingDescriptor
 		{
@@ -100,7 +101,8 @@ public static class FFBModuleRegistry
 			DragStepSize = ( max - min ) / 5760f,
 			FormatValue = format,
 			ShowCurve = showCurve,
-			BreakRow = breakRow
+			BreakRow = breakRow,
+			EditUnitScale = editUnitScale
 		};
 	}
 
@@ -260,9 +262,16 @@ public static class FFBModuleRegistry
 
 			Descriptor( PredictionType, 1, () => new PredictionModule(), settings:
 			[
-				Knob( "Horizon", 0f, 12f, 6f, 1f, F.PredictionHorizon ),
+				Knob( "Horizon", 0f, 12f, 6f, 1f, F.PredictionHorizon, editUnitScale: 1000f / 360f ),   // stores 360 Hz sub-ticks, edits in ms
 				Knob( "CorrectionLimit", 0.25f, 10f, 5f, 0.25f, F.Number( 2, "TorqueUnits" ) ),
 				Knob( "Strength", 0f, 2f, 1.5f, 0.05f, F.WithOff( F.Percent() ) )
+			] ),
+
+			Descriptor( Prediction60HzType, 1, () => new Prediction60HzModule(), settings:
+			[
+				Knob( "Horizon", 0f, 4f, 2f, 1f, F.PredictionHorizonFrames, editUnitScale: 1000f / 60f ),   // stores 60 Hz frames, edits in ms
+				Knob( "CorrectionLimit", 0.25f, 10f, 5f, 0.25f, F.Number( 2, "TorqueUnits" ) ),
+				Knob( "Strength", 0f, 2f, 1f, 0.05f, F.WithOff( F.Percent() ) )
 			] ),
 
 			// ---- mixers (4) ----

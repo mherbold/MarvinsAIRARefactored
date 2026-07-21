@@ -745,3 +745,219 @@ public sealed class PredictionModule : FFBModule
 		_features[ index ] = bias;
 	}
 }
+
+/// <summary>
+/// 60 Hz prediction. The 60 Hz sibling of the <see cref="PredictionModule"/>, for graphs built on the 60 Hz
+/// source. It shifts the 60 Hz torque waveform left in time by predicting the 60 Hz sample Horizon FRAMES ahead
+/// and adding the predicted change onto its input — computed ONCE per 60 Hz frame and held across the frame's
+/// six 360 Hz sub-ticks (so its output is a clean 60 Hz staircase, like everything on a 60 Hz graph). Place it
+/// directly on the 60 Hz source and smooth AFTER it if needed. Horizon 6 (K6) on the 360 Hz module and Horizon
+/// 1 here both target one 60 Hz frame (~16.7 ms); this module's default is 2 frames (~33 ms).
+/// <para>Unlike the 360 Hz module there is NO frame-anchoring shortcut — the 60 Hz stream is one value per
+/// frame, so the module has to extrapolate the whole horizon rather than reuse already-delivered intra-frame
+/// samples. The PredictionLab (--sixty) showed torque history ALONE cannot do this at 60 Hz — least-squares
+/// collapses to persistence and Strength only adds noise. The lead instead comes from the telemetry: the module
+/// learns a single NLMS filter over 12 frames of 60 Hz torque plus 6 frame-taps each of three auxiliary channels
+/// — steering angle, steering wheel velocity, and lateral velocity (the greedy-selected set; a fourth
+/// lateral-G-rate channel was not worth new telemetry, and the 360 Hz module's pitch acceleration does not help
+/// at 60 Hz) — with an adaptive bias. Strength re-expands the amplitude-shy least-squares correction and the
+/// result is clamped to ±Correction limit (Nm).</para>
+/// <para>Measured across eleven cars/tracks (vs the ideal shifted 60 Hz waveform): the default 2 frames / 100% /
+/// 5 Nm delivers ≈ 8 ms of true shift with LESS error than doing nothing on every car. Two knob lessons flip vs
+/// the 360 Hz module: 2 frames beats 1 (the telemetry lead extends further out), and 100% beats higher
+/// strengths (the aux channels already carry the lead, so there is little shrinkage to re-expand — 150% pushes
+/// the worst car back to worse-than-nothing).</para>
+/// </summary>
+public sealed class Prediction60HzModule : FFBModule
+{
+	private const int Horizon = 1;          // effective-setting indices (0 = Enabled)
+	private const int CorrectionLimit = 2;
+	private const int Strength = 3;
+
+	private const int TapCount = 12;        // 60 Hz torque frame lags
+	private const int AuxCount = 3;         // steering angle, steering wheel velocity, lateral velocity
+	private const int AuxTapCount = 6;      // frame lags per aux channel
+	private const int FeatureCount = TapCount + ( AuxCount * AuxTapCount ) + 1;  // + 1 adaptive bias feature
+	private const float StepSize = 0.25f;   // NLMS mu — one update per frame; misadjustment-safe
+	private const float Epsilon = 1e-3f;    // NLMS normalization guard (also idles adaptation on a dead bus)
+	private const int HistorySize = 32;     // ring capacity (power of two) — max lookback = horizon + TapCount
+	private const int HistoryMask = HistorySize - 1;
+
+	private readonly float[] _history = new float[ HistorySize ];   // 60 Hz torque (Nm), one entry per frame
+	private readonly float[][] _auxHistory;                         // aux channels scaled to torque range
+	private long _frameCount;               // frames ingested so far; newest frame sits at _frameCount - 1
+
+	private readonly float[] _weights = new float[ FeatureCount ];  // single filter (one fixed depth = horizon)
+	private readonly float[] _features = new float[ FeatureCount ]; // scratch — engine thread only
+
+	private float _heldCorrection;          // computed at sub-tick 0, held across the frame's six sub-ticks
+	private int _horizonFrames;
+
+	public Prediction60HzModule()
+	{
+		_auxHistory = new float[ AuxCount ][];
+
+		for ( var i = 0; i < AuxCount; i++ )
+		{
+			_auxHistory[ i ] = new float[ HistorySize ];
+		}
+
+		ResetFilter();
+	}
+
+	private void ResetFilter()
+	{
+		Array.Clear( _weights );
+
+		_weights[ 0 ] = 1f; // start at persistence (predict "no change") and learn from there
+
+		_heldCorrection = 0f;
+	}
+
+	public override void Reset()
+	{
+		Array.Clear( _history );
+
+		foreach ( var auxHistory in _auxHistory )
+		{
+			Array.Clear( auxHistory );
+		}
+
+		_frameCount = 0;
+
+		ResetFilter();
+	}
+
+	protected override void OnValuesChanged()
+	{
+		var horizon = (int) MathF.Round( _v[ Horizon ] );
+
+		if ( horizon != _horizonFrames )
+		{
+			_horizonFrames = horizon;
+
+			ResetFilter(); // the filter learns a fixed depth — a new horizon means a new depth
+		}
+	}
+
+	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
+	{
+		var horizonFrames = _horizonFrames;
+
+		if ( horizonFrames <= 0 )   // Horizon Off — pass through
+		{
+			return inputA;
+		}
+
+		if ( ctx.SampleIndex == 0 )
+		{
+			IngestFrameAndPredict( in ctx, horizonFrames );
+		}
+
+		return inputA + _heldCorrection;
+	}
+
+	/// <summary>
+	/// Once per frame (sub-tick 0): ingest the frame's 60 Hz torque and aux values, give the filter its one NLMS
+	/// update (the prediction it made from anchor newest−horizon has just had its truth arrive — the newest
+	/// sample), then predict horizon frames ahead from the newest anchor and hold that correction for the frame.
+	/// </summary>
+	private void IngestFrameAndPredict( in FFBTickContext ctx, int horizonFrames )
+	{
+		var maxForce = ctx.MaxForce;
+
+		// the aux channels are order-1 physical quantities scaled into the torque's range (× MaxForce) so the
+		// shared NLMS normalization treats their taps comparably to the torque taps
+		Span<float> auxValues =
+		[
+			ctx.WheelPosition * maxForce,     // steering angle, normalized to the car's half-lock
+			ctx.WheelVelocity * maxForce,     // steering wheel velocity, in half-locks per second
+			ctx.VelocityY * maxForce          // lateral velocity (m/s)
+		];
+
+		var slot = (int) ( _frameCount & HistoryMask );
+
+		_history[ slot ] = ctx.Torque60Hz;
+
+		for ( var aux = 0; aux < AuxCount; aux++ )
+		{
+			_auxHistory[ aux ][ slot ] = auxValues[ aux ];
+		}
+
+		_frameCount++;
+
+		// adaptation and prediction need the full feature lookback behind the training anchor (newest - horizon)
+		if ( _frameCount < horizonFrames + TapCount + AuxTapCount )
+		{
+			_heldCorrection = 0f;
+
+			return;
+		}
+
+		var newest = _frameCount - 1;
+
+		var newestTorque = _history[ (int) ( newest & HistoryMask ) ];
+
+		var bias = maxForce; // constant feature at torque scale — its weight becomes an adaptive offset
+
+		// NLMS update: score the prediction the filter would have made from anchor (newest - horizon) against
+		// the truth that just arrived (the newest sample), then step the weights toward it
+		BuildFeatures( newest - horizonFrames, bias );
+
+		var dot = 0f;
+		var norm = Epsilon;
+
+		for ( var j = 0; j < FeatureCount; j++ )
+		{
+			var feature = _features[ j ];
+
+			dot += _weights[ j ] * feature;
+			norm += feature * feature;
+		}
+
+		var scale = StepSize * ( newestTorque - dot ) / norm;
+
+		for ( var j = 0; j < FeatureCount; j++ )
+		{
+			_weights[ j ] += scale * _features[ j ];
+		}
+
+		// predict the sample horizon frames ahead, anchored at the newest known sample
+		BuildFeatures( newest, bias );
+
+		var prediction = 0f;
+
+		for ( var j = 0; j < FeatureCount; j++ )
+		{
+			prediction += _weights[ j ] * _features[ j ];
+		}
+
+		var limit = _v[ CorrectionLimit ];
+
+		_heldCorrection = Math.Clamp( ( prediction - newestTorque ) * _v[ Strength ], -limit, limit );
+	}
+
+	/// <summary>The feature vector anchored at a frame position: 12 60 Hz torque lags, 6 frame-taps per aux
+	/// channel, and the bias — into the <see cref="_features"/> scratch.</summary>
+	private void BuildFeatures( long anchor, float bias )
+	{
+		for ( var j = 0; j < TapCount; j++ )
+		{
+			_features[ j ] = _history[ (int) ( ( anchor - j ) & HistoryMask ) ];
+		}
+
+		var index = TapCount;
+
+		for ( var aux = 0; aux < AuxCount; aux++ )
+		{
+			var auxHistory = _auxHistory[ aux ];
+
+			for ( var j = 0; j < AuxTapCount; j++ )
+			{
+				_features[ index++ ] = auxHistory[ (int) ( ( anchor - j ) & HistoryMask ) ];
+			}
+		}
+
+		_features[ index ] = bias;
+	}
+}

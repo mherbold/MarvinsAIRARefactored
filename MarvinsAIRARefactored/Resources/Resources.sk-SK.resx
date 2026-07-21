@@ -2193,7 +2193,7 @@
     <value>Interpolátor 60 Hz</value>
   </data>
   <data name="FFBModulePrediction" xml:space="preserve">
-    <value>Predikcia</value>
+    <value>Predikcia (360 Hz)</value>
   </data>
   <data name="FFBSettingHorizon" xml:space="preserve">
     <value>Horizont</value>
@@ -2272,4 +2272,7 @@
 
 
 
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>Predikcia (60 Hz)</value>
+  </data>
 </root>

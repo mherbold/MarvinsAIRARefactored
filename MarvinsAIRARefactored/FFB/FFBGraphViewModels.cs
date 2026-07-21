@@ -160,6 +160,7 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 	public float Maximum => _descriptor.Max;
 	public float ClickStepSize => _descriptor.ClickStepSize;
 	public float DragStepSize => _descriptor.DragStepSize;
+	public float EditUnitScale => _descriptor.EditUnitScale;
 	public float? DefaultValue => _descriptor.DefaultValue;
 	public bool ShowCurve => _descriptor.ShowCurve;
 

@@ -2193,7 +2193,7 @@
     <value>أداة استيفاء 60 Hz</value>
   </data>
   <data name="FFBModulePrediction" xml:space="preserve">
-    <value>التنبؤ</value>
+    <value>التنبؤ (360 Hz)</value>
   </data>
   <data name="FFBSettingHorizon" xml:space="preserve">
     <value>الأفق</value>
@@ -2272,4 +2272,7 @@
 
 
 
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>التنبؤ (60 Hz)</value>
+  </data>
 </root>

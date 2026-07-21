@@ -2208,7 +2208,7 @@
     <value>60 Hz-interpolator</value>
   </data>
   <data name="FFBModulePrediction" xml:space="preserve">
-    <value>Voorspelling</value>
+    <value>Voorspelling (360 Hz)</value>
   </data>
   <data name="FFBSettingHorizon" xml:space="preserve">
     <value>Horizon</value>
@@ -2287,4 +2287,7 @@
 
 
 
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>Voorspelling (60 Hz)</value>
+  </data>
 </root>

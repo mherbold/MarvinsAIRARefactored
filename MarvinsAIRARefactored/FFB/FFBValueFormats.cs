@@ -116,13 +116,24 @@ public static class FFBValueFormats
 		return $"{percent} ({floorHz})";
 	};
 
-	/// <summary>Prediction horizon in 360 Hz sub-ticks: localized "OFF" at 0, otherwise "K{n}" (K6 = one iRacing
-	/// 60 Hz tick ahead, K12 = two). The stored value is the sub-tick count; the module rounds it to an integer.</summary>
+	/// <summary>Prediction horizon: the stored value is a count of 360 Hz sub-ticks (K6 = one iRacing 60 Hz tick
+	/// ahead, K12 = two), displayed as the resulting look-ahead in milliseconds — each sub-tick is 1000/360 ≈
+	/// 2.8 ms — or localized "OFF" at 0. The module rounds the stored value to an integer.</summary>
 	public static readonly Func<FFBFormatContext, string> PredictionHorizon = ctx =>
 	{
-		var k = (int) MathF.Round( ctx.Value );
+		var subTicks = (int) MathF.Round( ctx.Value );
 
-		return ( k <= 0 ) ? FFBFormatContext.Localized( "OFF" ) : $"K{k}";
+		return ( subTicks <= 0 ) ? FFBFormatContext.Localized( "OFF" ) : Fixed( subTicks * 1000f / 360f, 0 ) + FFBFormatContext.Localized( "MillisecondsUnits" );
+	};
+
+	/// <summary>60 Hz prediction horizon in whole 60 Hz frames: localized "OFF" at 0, otherwise the resulting
+	/// look-ahead in milliseconds — each frame is 1000/60 ≈ 16.7 ms, so the value steps 17, 33, 50 ms, and the
+	/// jumps keep the frame quantization visible. The stored value is the frame count; the module rounds it.</summary>
+	public static readonly Func<FFBFormatContext, string> PredictionHorizonFrames = ctx =>
+	{
+		var frames = (int) MathF.Round( ctx.Value );
+
+		return ( frames <= 0 ) ? FFBFormatContext.Localized( "OFF" ) : Fixed( frames * 1000f / 60f, 0 ) + FFBFormatContext.Localized( "MillisecondsUnits" );
 	};
 
 	private static string Fixed( float value, int decimals ) => value.ToString( "F" + decimals, CultureInfo.CurrentCulture );

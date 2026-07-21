@@ -67,6 +67,7 @@ public partial class MairaKnob : UserControl
 	private bool _isResetting;
 	private bool _isEditingValue;
 	private bool _isEditingPercent;
+	private bool _isEditingScaled;
 	private float _valueBeforeEdit;
 
 	static MairaKnob()
@@ -274,6 +275,18 @@ public partial class MairaKnob : UserControl
 	{
 		get => (float) GetValue( DragStepSizeProperty );
 		set => SetValue( DragStepSizeProperty, value );
+	}
+
+	// Displayed-units per stored-unit for knobs whose direct-edit unit differs from what they store (e.g. the
+	// prediction horizons store frames / 360 Hz sub-ticks but the value shows milliseconds). NaN (the default)
+	// keeps editing in the stored unit; when set, BeginValueEdit shows the number from the display string and
+	// CommitValueEdit converts the typed value back (÷ scale) and snaps it to ClickStepSize.
+	public static readonly DependencyProperty EditUnitScaleProperty = DependencyProperty.Register( nameof( EditUnitScale ), typeof( float ), typeof( MairaKnob ), new PropertyMetadata( float.NaN ) );
+
+	public float EditUnitScale
+	{
+		get => (float) GetValue( EditUnitScaleProperty );
+		set => SetValue( EditUnitScaleProperty, value );
 	}
 
 	public static readonly DependencyProperty ValueChangedCallbackProperty = DependencyProperty.Register( nameof( ValueChangedCallback ), typeof( Action<float> ), typeof( MairaKnob ) );
@@ -540,12 +553,26 @@ public partial class MairaKnob : UserControl
 		}
 
 		_isEditingValue = true;
-		_isEditingPercent = IsPercentValueString();
+		_isEditingScaled = !float.IsNaN( EditUnitScale ) && ( EditUnitScale > 0f );
+		_isEditingPercent = !_isEditingScaled && IsPercentValueString();
 		_valueBeforeEdit = Value;
 
-		var editValue = _isEditingPercent ? ( Value * 100f ) : Value;
+		string editText;
 
-		Value_TextBox.Text = editValue.ToString( "0.###", CultureInfo.CurrentCulture );
+		if ( _isEditingScaled )
+		{
+			// edit in the DISPLAYED unit (e.g. ms): show exactly the number the user is looking at (the first
+			// number in the display string), so clicking "33 ms" opens "33" — never the raw stored frame count
+			editText = FirstDisplayNumber();
+		}
+		else
+		{
+			var editValue = _isEditingPercent ? ( Value * 100f ) : Value;
+
+			editText = editValue.ToString( "0.###", CultureInfo.CurrentCulture );
+		}
+
+		Value_TextBox.Text = editText;
 
 		Value_TextBlock.Visibility = Visibility.Collapsed;
 		Value_TextBox.Visibility = Visibility.Visible;
@@ -626,6 +653,16 @@ public partial class MairaKnob : UserControl
 			{
 				newValue /= 100f;
 			}
+			else if ( _isEditingScaled )
+			{
+				// convert the typed display unit (e.g. ms) back to the stored unit, then snap to a whole step so
+				// the horizon lands on an exact frame / sub-tick (this also cleans up any fractional drag value)
+				newValue /= EditUnitScale;
+
+				var step = ( ClickStepSize > 0f ) ? ClickStepSize : 1f;
+
+				newValue = MathF.Round( newValue / step ) * step;
+			}
 
 			Value = newValue;
 
@@ -655,11 +692,22 @@ public partial class MairaKnob : UserControl
 	{
 		_isEditingValue = false;
 		_isEditingPercent = false;
+		_isEditingScaled = false;
 
 		Value_TextBox.Visibility = Visibility.Collapsed;
 		Value_TextBlock.Visibility = Visibility.Visible;
 
 		Keyboard.ClearFocus();
+	}
+
+	// The first number in the current display string (e.g. "33" from "33 ms"), or "0" when the display carries no
+	// number (a localized text value like "OFF"). Used by scaled editing so the edit box opens on exactly what
+	// the user sees.
+	private string FirstDisplayNumber()
+	{
+		var match = Regex.Match( ValueString ?? string.Empty, @"[-+]?\d+(?:[.,]\d+)?" );
+
+		return match.Success ? match.Value : "0";
 	}
 
 	private static bool TryParseFirstFloat( string text, out float value )

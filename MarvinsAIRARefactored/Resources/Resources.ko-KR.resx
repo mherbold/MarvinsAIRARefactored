@@ -2193,7 +2193,7 @@
     <value>60 Hz 보간기</value>
   </data>
   <data name="FFBModulePrediction" xml:space="preserve">
-    <value>예측</value>
+    <value>예측 (360 Hz)</value>
   </data>
   <data name="FFBSettingHorizon" xml:space="preserve">
     <value>예측 시간</value>
@@ -2271,4 +2271,7 @@
 
 
 
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>예측 (60 Hz)</value>
+  </data>
 </root>

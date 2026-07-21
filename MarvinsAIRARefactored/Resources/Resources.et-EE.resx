@@ -2193,7 +2193,7 @@
     <value>60 Hz interpolaator</value>
   </data>
   <data name="FFBModulePrediction" xml:space="preserve">
-    <value>Ennustus</value>
+    <value>Ennustus (360 Hz)</value>
   </data>
   <data name="FFBSettingHorizon" xml:space="preserve">
     <value>Horisont</value>
@@ -2272,4 +2272,7 @@
 
 
 
+  <data name="FFBModulePrediction60Hz" xml:space="preserve">
+    <value>Ennustus (60 Hz)</value>
+  </data>
 </root>
