@@ -1,6 +1,6 @@
 # MAIRA FFB Graph Alpha — Tester Guide
 
-**Build:** [Version 2.0.473.1208 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.473.1208) — the sixth alpha; see [New in this build](#new-in-this-build) for what changed since the fifth one.
+**Build:** [Version 2.0.475.54 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.475.54) — the seventh alpha; see [New in this build](#new-in-this-build) for what changed since the sixth one.
 
 This alpha replaces MAIRA's entire force feedback system. The fixed set of FFB algorithms (Detail booster, Delta limiter, Slew and total compression, Multi adjustment toolkit, …) is gone; in its place is a **modular FFB graph** — an audio-DSP-style node editor where the force feedback signal chain is built out of small modules that you wire together yourself.
 
@@ -19,15 +19,12 @@ This document explains what changed versus the released (main branch) version, a
 
 ## New in this build
 
-Changes since the fifth alpha (2.0.473.68), for testers who already ran it:
+Changes since the sixth alpha (2.0.473.1208), for testers who already ran it:
 
-- **The node graph is now hidden by default.** A new **"Show node graph"** switch above the editor block reveals the node graph and the module settings column; with it off, you see just the graph selector, the description, the pinned quick controls, and the preview + track map. This replaces the old "Simple mode" switch (which is gone) — flip it on to get full editing back. **Please test both ways**: does the collapsed view feel right as the everyday face of the app, and does anything break when toggling?
-- **Pinned quick controls.** Every module setting now has a tiny pin switch at its top-right (custom graphs only — built-ins ship with a curated set, currently empty). Pinned settings surface in a **quick-controls row above the editor block**, captioned with their module's name — the handful of knobs a graph's author intends the typical user to drive. Pins are stored in the graph itself, so they ride export/import and shared graphs arrive with their author's picks.
-- **Graph descriptions.** Each graph can carry a description shown under the graph selector — type directly into the text box on custom graphs; built-in graphs show a translated description.
-- **Test buttons on every vibration node.** Each vibration generator's settings card has a test toggle that actually shakes the wheel: understeer/oversteer/seat-of-pants/slip texture play at full effect, shift RPM and ABS force their triggers, road texture plays as if at 100 MPH, engine RPM sweeps 1000 RPM → redline → back on a 10-second loop, and gear change fires its one-shot burst. Because FFB fades out off-track, the buttons only light up while you are in the car.
-- **The editor block is reorganized.** The selected module's settings moved from below the graphs into a **column beside the node graph** (scrolls when they don't fit), the track map fills the panel below it, and a second grab handle on the vertical seam adjusts the column split (remembered, like the height).
-- **Node colors by role.** Telemetry sources are green, vibration generators blue, and the Output node purple — ordinary chain modules stay gray, and the orange selection highlight is unchanged.
-- **Fixed: the main window recovers when it ends up off-screen** (e.g. after a monitor change).
+- **Everything from released version 2.0.475.10 is now included.** The alpha branch has been synced with the released version — most notably the new **game bridge with Le Mans Ultimate support**, plus the USB CDC serial device detection fix, the audio fix when the iRacing simulator starts, and the off-screen main window recovery.
+- **The game bridge is wired into the FFB graph engine.** Two integration pieces make the two new systems work together:
+    - The bridge reconstructs your physical wheel angle from the steering axis (LMU clamps its reported steering value at full lock), so the graph's soft lock, wheel centering, and prediction inputs behave correctly.
+    - The engine RPM vibration reads the car's redline and engine-running state from the game, so it sweeps to the right frequency and goes silent when the engine is off under LMU.
 
 ---
 
@@ -49,7 +46,7 @@ Changes since the fifth alpha (2.0.473.68), for testers who already ran it:
 | Crash/curb protection | Crash reduces force; curb partial | Both reduce force, both have **recovery time**; new defaults |
 | Button mappings | Fixed set of mappable knobs | Any **module knob** can be bound to controller buttons |
 
-Everything else (pedals, G Tensioner, Typhoon Wind, commentary, overlays, Trading Paints, AdminBoxx, …) is unchanged.
+Everything else (pedals, G Tensioner, Typhoon Wind, commentary, overlays, Trading Paints, AdminBoxx, the Le Mans Ultimate game bridge, …) is unchanged from the released version.
 
 ---
 
@@ -343,6 +340,7 @@ The wizard's FFB style step no longer picks an algorithm. Its 7-position slider 
 - **Pin a few settings** on a custom graph (the tiny switch on each setting in the module settings column), confirm they appear above the editor with the right module captions, stay in sync with the settings column, and survive an export/import round trip.
 - **Vibration test buttons:** with the car on track, walk through every vibration node's test button — each should shake the wheel on its own, the gear change one should fire once and re-arm, and all of them should gray out the moment you leave the car.
 - **Try all five built-in graphs** back to back on the same car — especially the one matching the algorithm you used on the released version. Does its graph replacement feel like the algorithm it replaces?
+- **Le Mans Ultimate (if you own it):** the game bridge is newly wired into the FFB graph engine and this combination has had the least real-world time of anything in the alpha. Drive LMU with a few built-in graphs and confirm the forces, soft lock, and the engine RPM vibration all behave like they do in iRacing.
 - **Graph isolation:** disable a module (say the 360 Hz source) in one graph, switch to another graph, and confirm it is NOT disabled there — then switch back and confirm your change stuck. Same for knob values on sources and the Output module.
 - Prediction module: does the wheel feel more connected — less "rubber band" between what the car does and what your hands feel? Try Strength at OFF vs. 150% back to back on the same car. Report any oscillation or buzzing at high Strength/Horizon settings (and which car).
 - Give the prediction a few corners after loading into a car before judging it — it learns as you drive.
