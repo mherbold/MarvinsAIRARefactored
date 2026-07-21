@@ -241,6 +241,7 @@
     <PackageReference Include="Accord.Neuro" Version="3.8.0" />
     <PackageReference Include="Accord.Statistics" Version="3.8.0" />
     <PackageReference Include="CsvHelper" Version="33.1.0" />
+    <PackageReference Include="IRSDKSharper" Version="1.2.0" />
     <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.4078.44" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
     <PackageReference Include="OpenMacroBoard.SDK" Version="6.1.0" />
@@ -255,8 +256,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MarvinsAIRARefactored.Win32\MarvinsAIRARefactored.Win32.csproj" />
-    <!-- IRSDKSharper is referenced as a sibling project (instead of the NuGet package) while the game bridge data source seam is under active development -->
-    <ProjectReference Include="..\..\IRSDKSharper\IRSDKSharper.csproj" SetTargetFramework="TargetFramework=net9.0-windows" />
   </ItemGroup>
 
   <ItemGroup>
