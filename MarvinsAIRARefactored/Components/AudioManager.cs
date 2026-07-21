@@ -17,6 +17,12 @@ public sealed class AudioManager : IDisposable
 	private readonly Dictionary<string, FmodSound> _soundCache = [];
 	private readonly Dictionary<string, FmodChannel> _channelCache = [];
 
+	// Absolute paths of every sound file that has been requested for loading. This is the durable source of
+	// truth for what the live cache should contain; it is kept separate from _soundCache (which CloseDevice
+	// empties on every close) so the cache can be fully rebuilt whenever the FMOD system is reopened — after a
+	// device switch or the simulator-connect reset. Guarded by _lock; never cleared by CloseDevice.
+	private readonly HashSet<string> _knownSoundPaths = new( StringComparer.OrdinalIgnoreCase );
+
 	private FileSystemWatcher? _fileSystemWatcher = null;
 
 	private FMOD.System? _fmodSystem;
@@ -89,9 +95,11 @@ public sealed class AudioManager : IDisposable
 				// Populate the device list after FMOD is up
 				RefreshOutputDevices();
 
-				// Reload all cached sounds on the new device
-				var paths = _soundCache.Values.Select( s => s.FilePath ).ToList();
-
+				// Rebuild the live cache from the durable set of known sound paths. CloseDevice empties the live
+				// caches on every close, but _knownSoundPaths survives, so a device switch or the simulator-connect
+				// reset reloads every sound that was ever requested. LoadSoundFromPathLocked (not LoadSoundFromPath)
+				// is used because we already hold _lock here. A failed reload is logged and skipped so one bad file
+				// cannot abort the rest or tear down the freshly opened device.
 				foreach ( var fmodSound in _soundCache.Values )
 				{
 					fmodSound.Dispose();
@@ -100,9 +108,16 @@ public sealed class AudioManager : IDisposable
 				_soundCache.Clear();
 				_channelCache.Clear();
 
-				foreach ( var path in paths )
+				foreach ( var path in _knownSoundPaths.ToArray() )
 				{
-					LoadSoundFromPath( path );
+					try
+					{
+						LoadSoundFromPathLocked( path );
+					}
+					catch ( Exception exception )
+					{
+						app.Logger.WriteLine( $"[AudioManager] Failed to reload sound '{path}': {exception.Message}" );
+					}
 				}
 
 				app.Logger.WriteLine( "[AudioManager] Audio device opened successfully" );
@@ -260,22 +275,10 @@ public sealed class AudioManager : IDisposable
 
 		_outputDeviceName = deviceName;
 
-		// Snapshot which sound file paths were loaded so we can reload them after reopen
-		List<string> loadedPaths;
-
-		using ( _lock.EnterScope() )
-		{
-			loadedPaths = _soundCache.Values.Select( s => s.FilePath ).ToList();
-		}
-
+		// Close and reopen on the new driver. OpenDevice rebuilds the sound cache from _knownSoundPaths, so no
+		// manual snapshot/reload is needed here.
 		CloseDevice();
 		OpenDevice();
-
-		// Re-load the sounds that were in the cache before the device change
-		foreach ( var path in loadedPaths )
-		{
-			LoadSoundFromPath( path );
-		}
 	}
 
 	// -------------------------------------------------------------------------
@@ -415,11 +418,18 @@ public sealed class AudioManager : IDisposable
 
 	private void LoadSoundFromPath( string path )
 	{
-		if ( !File.Exists( path ) )
+		using ( _lock.EnterScope() )
 		{
-			return;
+			LoadSoundFromPathLocked( path );
 		}
+	}
 
+	// Records `path` as a known sound and, if the device is open and the file exists, (re)loads it into the
+	// live cache. The caller MUST already hold _lock. The path is remembered in _knownSoundPaths even when the
+	// device is closed or the file does not exist yet (e.g. a _custom variant the user may add later), so it
+	// will be picked up on the next OpenDevice rebuild or file-change reload.
+	private void LoadSoundFromPathLocked( string path )
+	{
 		var key = Path.GetFileNameWithoutExtension( path )?.ToLowerInvariant();
 
 		if ( key == null )
@@ -427,26 +437,25 @@ public sealed class AudioManager : IDisposable
 			return;
 		}
 
-		using ( _lock.EnterScope() )
+		_knownSoundPaths.Add( path );
+
+		if ( _fmodSystem == null || !File.Exists( path ) )
 		{
-			if ( _fmodSystem == null )
-			{
-				return;
-			}
-
-			// Release the old sound if present
-			if ( _soundCache.TryGetValue( key, out var existing ) )
-			{
-				_channelCache.Remove( key );
-				existing.Dispose();
-			}
-
-			var fmodSound = new FmodSound( path, _fmodSystem.Value );
-			var fmodChannel = new FmodChannel( fmodSound, _fmodSystem.Value );
-
-			_soundCache[ key ] = fmodSound;
-			_channelCache[ key ] = fmodChannel;
+			return;
 		}
+
+		// Release the old sound if present
+		if ( _soundCache.TryGetValue( key, out var existing ) )
+		{
+			_channelCache.Remove( key );
+			existing.Dispose();
+		}
+
+		var fmodSound = new FmodSound( path, _fmodSystem.Value );
+		var fmodChannel = new FmodChannel( fmodSound, _fmodSystem.Value );
+
+		_soundCache[ key ] = fmodSound;
+		_channelCache[ key ] = fmodChannel;
 	}
 
 	// -------------------------------------------------------------------------
