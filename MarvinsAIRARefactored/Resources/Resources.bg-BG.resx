@@ -1825,18 +1825,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Мост за игри</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Игри</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Очаквайте скоро</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Инициализиране на моста за игри...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Превежда телеметрията от други състезателни игри във формат iRacing, за да може MAIRA да работи с тях. Включете игрите, които искате да свържете - мостът се активира автоматично, когато включена игра работи.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1872,4 +1862,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Мост към игри</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Очаквайте скоро</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Превежда телеметрията от други състезателни игри във формат iRacing, така че MAIRA да може да работи с тях. Активирайте игрите, които искате да свържете - мостът се активира автоматично, когато работи активирана игра.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Игри</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Инициализиране на моста към игри...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

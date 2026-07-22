@@ -654,7 +654,17 @@ public sealed partial class TextToSpeech : IDisposable
 	{
 		_cts.Cancel();
 		_queue.Writer.TryComplete();
-		_consumerTask?.GetAwaiter().GetResult();
+
+		// Bounded wait - this runs during app exit, so a consumer stuck in an await that ignores the
+		// cancellation token must not be able to hang the shutdown forever.
+		try
+		{
+			_consumerTask?.Wait( 2000 );
+		}
+		catch
+		{
+		}
+
 		_cts.Dispose();
 	}
 

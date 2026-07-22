@@ -1825,18 +1825,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>게임 브리지</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>게임</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>곧 제공 예정</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>게임 브리지 초기화 중...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>다른 레이싱 게임의 텔레메트리를 iRacing 형식으로 변환하여 MAIRA가 함께 작동할 수 있도록 합니다. 브리지할 게임을 켜면 켜진 게임이 실행될 때 브리지가 자동으로 활성화됩니다.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1872,4 +1862,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>게임 브리지</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>곧 지원 예정</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>다른 레이싱 게임의 텔레메트리를 iRacing 형식으로 변환하여 MAIRA가 함께 작동할 수 있도록 합니다. 브리지할 게임을 활성화하세요 - 활성화된 게임이 실행되면 브리지가 자동으로 작동합니다.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>게임</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>게임 브리지 초기화 중...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

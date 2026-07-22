@@ -808,7 +808,7 @@
     <value>Ենթագրեր</value>
   </data>
   <data name="OverlayWindow" xml:space="preserve">
-    <value>Overlay window</value>
+    <value>Ծածկույթի պատուհան</value>
   </data>
   <data name="ManageOverlayWindow" xml:space="preserve">
     <value>Կառավարել վերադրման պատուհանը</value>
@@ -1823,18 +1823,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Խաղերի կամուրջ</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Խաղեր</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Շուտով</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Խաղերի կամրջի նախապատրաստում...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Թարգմանում է այլ մրցարշավային խաղերի հեռաչափությունը iRacing ձևաչափի, որպեսզի MAIRA-ն կարողանա աշխատել դրանց հետ։ Միացրեք այն խաղերը, որոնք ցանկանում եք կամրջել - կամուրջն ավտոմատ ակտիվանում է, երբ միացված խաղն աշխատում է։</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1885,4 +1875,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Խաղերի կամուրջ</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Շուտով</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Թարգմանում է այլ մրցարշավային խաղերի հեռաչափական տվյալները iRacing ձևաչափի, որպեսզի MAIRA-ն կարողանա աշխատել դրանց հետ։ Միացրեք այն խաղերը, որոնք ցանկանում եք կամրջել - կամուրջն ինքնաբերաբար ակտիվանում է, երբ միացված խաղն աշխատում է։</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Խաղեր</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Խաղերի կամուրջի նախապատրաստում...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

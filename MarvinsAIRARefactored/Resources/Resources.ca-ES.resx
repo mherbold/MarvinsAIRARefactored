@@ -1823,18 +1823,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Pont de jocs</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Jocs</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Properament</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>S'està inicialitzant el pont de jocs...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Tradueix la telemetria d'altres jocs de curses al format d'iRacing perquè MAIRA hi pugui treballar. Activeu els jocs que vulgueu connectar - el pont s'activa automàticament quan un joc activat està en marxa.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1885,4 +1875,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Pont de jocs</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Properament</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Tradueix la telemetria d'altres jocs de curses al format d'iRacing perquè MAIRA hi pugui treballar. Activa els jocs que vulguis enllaçar - el pont s'activa automàticament quan s'executa un joc activat.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Jocs</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>S'està inicialitzant el pont de jocs...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

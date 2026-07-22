@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net9.0-windows</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <AssemblyName>R3eCaptureAnalyzer</AssemblyName>
+    <RootNamespace>R3eCaptureAnalyzer</RootNamespace>
+    <Platforms>AnyCPU</Platforms>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\..\MarvinsAIRARefactored\GameBridges\InlineArrays.cs" Link="InlineArrays.cs" />
+    <Compile Include="..\..\MarvinsAIRARefactored\GameBridges\R3e\R3eData.cs" Link="R3eData.cs" />
+  </ItemGroup>
+
+</Project>

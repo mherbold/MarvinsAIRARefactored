@@ -1,5 +1,4 @@
 
-using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Text;
 
@@ -15,7 +14,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 	public override string GameName => "Le Mans Ultimate";
 	public override string LocalizationKey => "LeMansUltimate";
 	public override string[] ProcessNames => [ "Le Mans Ultimate" ];
-	public override GameBridgeCapabilities Capabilities => GameBridgeCapabilities.ShockVelocities;
+	public override GameBridgeCapabilities Capabilities => GameBridgeCapabilities.SteeringWheelTorque360Hz | GameBridgeCapabilities.ShockVelocities;
 
 	public override bool IsImplemented => true;
 
@@ -30,8 +29,11 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 
 	private const double Gravity = 9.80665;
 
-	private const int PumpFrequency = 60;
+	// the native LMU_Data map genuinely updates at 100 Hz (measured via mElapsedTime), so the pump samples at
+	// 360 Hz and fills the six 360 Hz sub-samples per 60 Hz frame with REAL torque readings (sample-and-hold
+	// across the ~3.6x oversampling) instead of interpolating a 60 Hz signal that also aliased the 100 Hz map
 	private const int SamplesPerFrame = GameBridgeVarTable.SamplesPerFrame360Hz;
+	private const int SubSampleFrequency = 360;
 
 	private const int ScoringParseInterval = 20;
 
@@ -51,6 +53,10 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 	private const int NativeVehicleSize = 1888;
 	private const int NativeMaxVehicles = 104;
 
+	// mElapsedTime within rF2VehicleTelemetry - read directly (cheap) each sub-sample to detect a new map
+	// update before doing the full struct marshal, so marshaling only happens at the real ~100 Hz update rate
+	private const int NativeVehicleElapsedTimeOffset = 12;
+
 	private const int NativeVehicleVisualSteeringRangeOffset = 660;
 	private const int NativeVehiclePhysicalSteeringRangeOffset = 692;
 	private const int NativeVehicleAbsActiveOffset = 746;
@@ -64,8 +70,12 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 	private GameBridgeVarTable? _varTable = null;
 	private LmuDataProvider? _provider = null;
 
-	private Thread? _pumpThread = null;
-	private volatile bool _running = false;
+	// the bridge is pumped from the multimedia timer worker thread (see Pump); this lock keeps a Stop from
+	// a background task from closing the provider while a pump is mid-read
+	private readonly object _pumpLock = new();
+	private bool _providerOpen = false;
+	private double _lastOpenAttemptSeconds = double.MinValue;
+	private double _nextSubSampleSeconds = 0.0;
 
 	private byte[] _nativeBuffer = [];
 
@@ -83,12 +93,18 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 	private byte _playerFrontWheelSurfaceType = 0;
 	private float _playerSteeringRangeDegrees = 0f;
 	private string _playerVehicleModel = string.Empty;
+	private readonly byte[] _playerVehicleModelBytes = new byte[ NativeVehicleModelLength ];
 	private double _previousTelemetryElapsedTime = 0.0;
-	private double _previousSteeringShaftTorque = 0.0;
 	private double _previousFuel = 0.0;
 	private readonly double[] _previousSuspensionDeflection = new double[ 4 ];
 	private readonly float[] _shockVelocities = new float[ 4 ];
 	private float _fuelUsePerHour = 0f;
+
+	// per-frame accumulators for the six real 360 Hz sub-samples (torque + per-wheel shock velocity); the
+	// current values are held between the 100 Hz map updates by UpdateTelemetry's mElapsedTime gate
+	private int _subSampleIndex = 0;
+	private readonly float[] _torqueSamples = new float[ SamplesPerFrame ];
+	private readonly float[,] _shockSamples = new float[ 4, SamplesPerFrame ];
 
 	private readonly Dictionary<int, int> _carIdxByVehicleId = [];
 
@@ -117,12 +133,6 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 
 		ResetState();
 
-		_running = true;
-
-		_pumpThread = new Thread( Pump ) { IsBackground = true, Priority = ThreadPriority.AboveNormal, Name = "MAIRA LMU Bridge" };
-
-		_pumpThread.Start();
-
 		app.Logger.WriteLine( "[LeMansUltimateBridge] <<< Start" );
 	}
 
@@ -132,14 +142,13 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 
 		app.Logger.WriteLine( "[LeMansUltimateBridge] Stop >>>" );
 
-		_running = false;
+		lock ( _pumpLock )
+		{
+			_provider?.Close();
+			_provider = null;
 
-		_pumpThread?.Join( 2000 );
-
-		_pumpThread = null;
-
-		_provider?.Close();
-		_provider = null;
+			_providerOpen = false;
+		}
 
 		app.Logger.WriteLine( "[LeMansUltimateBridge] <<< Stop" );
 	}
@@ -151,6 +160,10 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 
 	private void ResetState()
 	{
+		_providerOpen = false;
+		_lastOpenAttemptSeconds = double.MinValue;
+		_nextSubSampleSeconds = 0.0;
+
 		_frameCounter = 0;
 
 		_hasScoring = false;
@@ -163,13 +176,17 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		_playerFrontWheelSurfaceType = 0;
 		_playerSteeringRangeDegrees = 0f;
 		_playerVehicleModel = string.Empty;
+		Array.Clear( _playerVehicleModelBytes );
 
 		_previousTelemetryElapsedTime = 0.0;
-		_previousSteeringShaftTorque = 0.0;
 		_previousFuel = 0.0;
 
 		Array.Clear( _previousSuspensionDeflection );
 		Array.Clear( _shockVelocities );
+
+		_subSampleIndex = 0;
+		Array.Clear( _torqueSamples );
+		Array.Clear( _shockSamples );
 
 		_fuelUsePerHour = 0f;
 
@@ -182,81 +199,95 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		_lastSessionInfoUpdateTime = double.MinValue;
 	}
 
-	#region pump thread
+	#region pump
 
-	private void Pump()
+	// Called from the multimedia timer worker thread (~500 Hz, kernel-scheduled) immediately before the
+	// racing wheel update. The 360 Hz sub-sample schedule is kept internally; zero, one, or occasionally two
+	// sub-samples are taken per timer tick, each stamped with its scheduled time.
+	public override void Pump( double totalSeconds )
 	{
-		var app = App.Instance!;
-
-		try
+		lock ( _pumpLock )
 		{
-			while ( _running && !( _provider?.TryOpen() ?? false ) )
-			{
-				Thread.Sleep( 500 );
-			}
-
-			if ( !_running )
+			if ( _provider == null )
 			{
 				return;
 			}
 
-			app.Logger.WriteLine( "[LeMansUltimateBridge] Native shared memory opened - pumping" );
-
-			var stopwatch = Stopwatch.StartNew();
-
-			var frame = 0L;
-
-			while ( _running )
+			if ( !_providerOpen )
 			{
-				var targetSeconds = ( frame + 1 ) / (double) PumpFrequency;
-
-				while ( _running && ( stopwatch.Elapsed.TotalSeconds < targetSeconds ) )
+				if ( totalSeconds - _lastOpenAttemptSeconds < 1.0 )
 				{
-					Thread.Sleep( 1 );
+					return;
 				}
 
-				if ( !_running )
+				_lastOpenAttemptSeconds = totalSeconds;
+
+				if ( !_provider.TryOpen() )
 				{
-					break;
+					return;
 				}
 
-				frame++;
+				_providerOpen = true;
 
-				ProcessFrame( stopwatch.Elapsed.TotalSeconds );
+				_nextSubSampleSeconds = totalSeconds;
+
+				App.Instance!.Logger.WriteLine( "[LeMansUltimateBridge] Native shared memory opened - pumping" );
 			}
-		}
-		catch ( Exception exception )
-		{
-			app.Logger.WriteLine( $"[LeMansUltimateBridge] Exception caught inside the pump thread: {exception.Message.Trim()}" );
+
+			// if the timer stalled for a while, resynchronize instead of bursting a backlog of sub-samples
+			if ( totalSeconds - _nextSubSampleSeconds > 0.25 )
+			{
+				_nextSubSampleSeconds = totalSeconds;
+			}
+
+			while ( _nextSubSampleSeconds <= totalSeconds )
+			{
+				ProcessSubSample( _nextSubSampleSeconds );
+
+				_nextSubSampleSeconds += 1.0 / SubSampleFrequency;
+			}
 		}
 	}
 
-	private void ProcessFrame( double pumpSeconds )
+	// Runs at 360 Hz. Every tick refreshes the player telemetry (UpdateTelemetry re-parses only when the 100 Hz
+	// map advanced, holding its values otherwise) and captures the current torque / shock into the 360 Hz slot;
+	// once six slots are filled (60 Hz) the scoring is refreshed and a full frame is committed.
+	private void ProcessSubSample( double pumpSeconds )
 	{
 		if ( !( _provider?.TryReadBuffer( LmuBufferType.NativeData, _nativeBuffer ) ?? false ) )
 		{
 			return;
 		}
 
-		_frameCounter++;
-
-		if ( ( _frameCounter % ScoringParseInterval == 1 ) || !_hasScoring )
-		{
-			UpdateScoring();
-		}
-
 		UpdateTelemetry();
 
-		if ( !_hasScoring || !_hasTelemetry )
+		_torqueSamples[ _subSampleIndex ] = SteeringTorqueSign * (float) _playerTelemetry.mSteeringShaftTorque;
+
+		for ( var wheelIndex = 0; wheelIndex < 4; wheelIndex++ )
 		{
-			return;
+			_shockSamples[ wheelIndex, _subSampleIndex ] = _shockVelocities[ wheelIndex ];
 		}
 
-		UpdateSessionInfo( pumpSeconds );
+		if ( _subSampleIndex == SamplesPerFrame - 1 )
+		{
+			_frameCounter++;
 
-		WriteTelemetryFrame();
+			if ( ( _frameCounter % ScoringParseInterval == 1 ) || !_hasScoring )
+			{
+				UpdateScoring();
+			}
 
-		_varTable!.DataSource.CommitFrame();
+			if ( _hasScoring && _hasTelemetry )
+			{
+				UpdateSessionInfo( pumpSeconds );
+
+				WriteTelemetryFrame();
+
+				_varTable!.DataSource.CommitFrame();
+			}
+		}
+
+		_subSampleIndex = ( _subSampleIndex + 1 ) % SamplesPerFrame;
 	}
 
 	#endregion
@@ -311,16 +342,30 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 
 		var vehicleOffset = NativeVehicleArrayOffset + playerVehicleIndex * NativeVehicleSize;
 
-		var playerTelemetry = ReadStruct<rF2VehicleTelemetry>( _nativeBuffer, vehicleOffset );
+		// cheap direct read to skip unchanged frames before the (allocating) full struct marshal - at the 360 Hz
+		// pump rate the 100 Hz map is unchanged on most sub-samples, so this holds the marshal to ~100 Hz
+		var elapsedTime = BitConverter.ToDouble( _nativeBuffer, vehicleOffset + NativeVehicleElapsedTimeOffset );
 
-		if ( playerTelemetry.mElapsedTime == _previousTelemetryElapsedTime )
+		if ( elapsedTime == _previousTelemetryElapsedTime )
 		{
 			return;
 		}
 
+		var playerTelemetry = ReadStruct<rF2VehicleTelemetry>( _nativeBuffer, vehicleOffset );
+
 		_playerAbsActive = _nativeBuffer[ vehicleOffset + NativeVehicleAbsActiveOffset ] != 0;
 		_playerFrontWheelSurfaceType = _nativeBuffer[ vehicleOffset + NativeWheelArrayOffset + NativeWheelSurfaceTypeOffset ];
-		_playerVehicleModel = ReadFixedString( _nativeBuffer, vehicleOffset + NativeVehicleModelOffset, NativeVehicleModelLength );
+
+		// only decode the vehicle model string when its bytes actually changed (it is effectively constant
+		// during a session) - decoding it every map update would allocate a string at ~100 Hz
+		var vehicleModelSpan = _nativeBuffer.AsSpan( vehicleOffset + NativeVehicleModelOffset, NativeVehicleModelLength );
+
+		if ( !vehicleModelSpan.SequenceEqual( _playerVehicleModelBytes ) )
+		{
+			vehicleModelSpan.CopyTo( _playerVehicleModelBytes );
+
+			_playerVehicleModel = ReadFixedString( _nativeBuffer, vehicleOffset + NativeVehicleModelOffset, NativeVehicleModelLength );
+		}
 
 		var physicalRange = BitConverter.ToSingle( _nativeBuffer, vehicleOffset + NativeVehiclePhysicalSteeringRangeOffset );
 		var visualRange = BitConverter.ToSingle( _nativeBuffer, vehicleOffset + NativeVehicleVisualSteeringRangeOffset );
@@ -344,7 +389,6 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 			}
 		}
 
-		_previousSteeringShaftTorque = _hasTelemetry ? _playerTelemetry.mSteeringShaftTorque : playerTelemetry.mSteeringShaftTorque;
 		_previousTelemetryElapsedTime = playerTelemetry.mElapsedTime;
 		_previousFuel = playerTelemetry.mFuel;
 
@@ -375,18 +419,11 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		return string.Empty;
 	}
 
+	// the structs are blittable (see Rf2Data.cs), so this is a straight allocation-free memory read - the old
+	// Marshal.PtrToStructure path boxed the struct and allocated an array per array field on every call
 	private static T ReadStruct<T>( byte[] buffer, int offset ) where T : struct
 	{
-		var handle = GCHandle.Alloc( buffer, GCHandleType.Pinned );
-
-		try
-		{
-			return Marshal.PtrToStructure<T>( handle.AddrOfPinnedObject() + offset )!;
-		}
-		finally
-		{
-			handle.Free();
-		}
+		return MemoryMarshal.Read<T>( buffer.AsSpan( offset ) );
 	}
 
 	private static string ReadFixedString( byte[] buffer, int offset, int maxLength )
@@ -401,16 +438,16 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		return Encoding.UTF8.GetString( buffer, offset, length );
 	}
 
-	private static string ReadString( byte[] bytes )
+	private static string ReadString( ReadOnlySpan<byte> bytes )
 	{
-		var length = Array.IndexOf( bytes, (byte) 0 );
+		var length = bytes.IndexOf( (byte) 0 );
 
 		if ( length == -1 )
 		{
 			length = bytes.Length;
 		}
 
-		return Encoding.UTF8.GetString( bytes, 0, length );
+		return Encoding.UTF8.GetString( bytes[ ..length ] );
 	}
 
 	#endregion
@@ -461,18 +498,14 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		var varTable = _varTable!;
 		var dataSource = varTable.DataSource;
 
-		// the native map updates at ~65 Hz with no higher-rate torque channel available, so the six 360 Hz
-		// sub-samples are interpolated - MAIRA's prediction engine handles the upsampling from there
+		// the six sub-samples are real shaft-torque readings the pump captured at 360 Hz across this frame
+		// (sample-and-hold over the ~100 Hz native map), so no interpolation is needed
 		for ( var i = 0; i < SamplesPerFrame; i++ )
 		{
-			var t = ( i + 1 ) / (double) SamplesPerFrame;
-
-			var interpolatedTorque = _previousSteeringShaftTorque + ( _playerTelemetry.mSteeringShaftTorque - _previousSteeringShaftTorque ) * t;
-
-			dataSource.SetFloat( varTable.SteeringWheelTorque_ST, SteeringTorqueSign * (float) interpolatedTorque, i );
+			dataSource.SetFloat( varTable.SteeringWheelTorque_ST, _torqueSamples[ i ], i );
 		}
 
-		dataSource.SetFloat( varTable.SteeringWheelTorque, SteeringTorqueSign * (float) _playerTelemetry.mSteeringShaftTorque );
+		dataSource.SetFloat( varTable.SteeringWheelTorque, _torqueSamples[ SamplesPerFrame - 1 ] );
 	}
 
 	#endregion
@@ -529,14 +562,14 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 
 		WriteSteeringWheelTorque();
 
-		// suspension
+		// suspension - the six 360 Hz sub-samples were collected in real time by the pump
 
 		for ( var i = 0; i < SamplesPerFrame; i++ )
 		{
-			dataSource.SetFloat( varTable.LFshockVel_ST, _shockVelocities[ 0 ], i );
-			dataSource.SetFloat( varTable.RFshockVel_ST, _shockVelocities[ 1 ], i );
-			dataSource.SetFloat( varTable.LRshockVel_ST, _shockVelocities[ 2 ], i );
-			dataSource.SetFloat( varTable.RRshockVel_ST, _shockVelocities[ 3 ], i );
+			dataSource.SetFloat( varTable.LFshockVel_ST, _shockSamples[ 0, i ], i );
+			dataSource.SetFloat( varTable.RFshockVel_ST, _shockSamples[ 1, i ], i );
+			dataSource.SetFloat( varTable.LRshockVel_ST, _shockSamples[ 2, i ], i );
+			dataSource.SetFloat( varTable.RRshockVel_ST, _shockSamples[ 3, i ], i );
 		}
 
 		// fuel
@@ -767,13 +800,13 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 	{
 		var playerVehicle = _scoringVehicles[ playerScoringIndex ];
 
-		var playerClass = ReadString( playerVehicle.mVehicleClass );
-
 		var classPosition = 1;
 
+		// the class names are compared as raw byte spans - this runs every frame, so decoding them into
+		// strings here would be steady-state garbage on the multimedia timer worker thread
 		foreach ( var vehicle in _scoringVehicles )
 		{
-			if ( ( vehicle.mID != playerVehicle.mID ) && ( vehicle.mPlace < playerVehicle.mPlace ) && ( ReadString( vehicle.mVehicleClass ) == playerClass ) )
+			if ( ( vehicle.mID != playerVehicle.mID ) && ( vehicle.mPlace < playerVehicle.mPlace ) && ( (ReadOnlySpan<byte>) vehicle.mVehicleClass ).SequenceEqual( playerVehicle.mVehicleClass ) )
 			{
 				classPosition++;
 			}
@@ -861,17 +894,25 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 
 	private void UpdateSessionInfo( double pumpSeconds )
 	{
+		// throttle first - the signature strings below allocate, so they are only built at 1 Hz instead of
+		// every frame (the multimedia timer worker thread must stay free of steady-state garbage)
+		if ( pumpSeconds - _lastSessionInfoUpdateTime < 1.0 )
+		{
+			return;
+		}
+
+		_lastSessionInfoUpdateTime = pumpSeconds;
+
 		var trackName = ReadString( _scoringInfo.mTrackName );
 
 		var signature = $"{trackName}|{_scoringInfo.mSession}|{_playerVehicleId}|{_carIdxByVehicleId.Count}|{(int) _playerTelemetry.mEngineMaxRPM}|{_playerVehicleModel}";
 
-		if ( ( signature == _lastSessionInfoSignature ) || ( pumpSeconds - _lastSessionInfoUpdateTime < 1.0 ) )
+		if ( signature == _lastSessionInfoSignature )
 		{
 			return;
 		}
 
 		_lastSessionInfoSignature = signature;
-		_lastSessionInfoUpdateTime = pumpSeconds;
 
 		var builder = new GameBridgeSessionInfoBuilder
 		{

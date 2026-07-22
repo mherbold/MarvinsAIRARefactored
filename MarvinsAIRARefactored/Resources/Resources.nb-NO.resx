@@ -1823,18 +1823,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Spillbro</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Spill</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Kommer snart</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Initialiserer spillbroen...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Oversetter telemetri fra andre racingspill til iRacing-format slik at MAIRA kan fungere med dem. Aktiver spillene du vil koble til - broen aktiveres automatisk når et aktivert spill kjører.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1885,4 +1875,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Spillbro</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Kommer snart</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Oversetter telemetri fra andre racingspill til iRacing-format slik at MAIRA kan jobbe med dem. Aktiver spillene du vil bygge bro til - broen aktiveres automatisk når et aktivert spill kjører.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Spill</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Initialiserer spillbro...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

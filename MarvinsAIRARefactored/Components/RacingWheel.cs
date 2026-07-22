@@ -695,7 +695,6 @@ public class RacingWheel
 		return outputTorque;
 	}
 
-	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	public void Update( float deltaMilliseconds )
 	{
 		var app = App.Instance!;

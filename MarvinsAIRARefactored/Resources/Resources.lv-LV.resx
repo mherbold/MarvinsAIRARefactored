@@ -1825,18 +1825,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Spēļu tilts</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Spēles</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Drīzumā</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Notiek spēļu tilta inicializēšana...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Pārvērš citu sacīkšu spēļu telemetriju iRacing formātā, lai MAIRA varētu ar tām strādāt. Ieslēdziet spēles, kuras vēlaties savienot - tilts aktivizējas automātiski, kad ieslēgtā spēle darbojas.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1872,4 +1862,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Spēļu tilts</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Drīzumā</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Pārtulko telemetriju no citām sacīkšu spēlēm iRacing formātā, lai MAIRA varētu ar tām strādāt. Iespējo spēles, kuras vēlies savienot - tilts aktivizējas automātiski, kad darbojas iespējota spēle.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Spēles</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Notiek spēļu tilta inicializēšana...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

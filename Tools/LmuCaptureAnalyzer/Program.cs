@@ -190,8 +190,12 @@ internal static class Program
 		{
 			var scoring = scoringSamples[ ^1 ];
 
+			// the inline array field must be read through a local variable (spans cannot be taken from an
+			// rvalue property copy)
+			var scoringInfo = scoring.Info;
+
 			Console.WriteLine( "=== Scoring ===" );
-			Console.WriteLine( $"Track: '{ReadString( scoring.Info.mTrackName )}'  lapDist: {scoring.Info.mLapDist:F0} m  session: {scoring.Info.mSession}  gamePhase: {scoring.Info.mGamePhase}  maxLaps: {scoring.Info.mMaxLaps}" );
+			Console.WriteLine( $"Track: '{ReadString( scoringInfo.mTrackName )}'  lapDist: {scoring.Info.mLapDist:F0} m  session: {scoring.Info.mSession}  gamePhase: {scoring.Info.mGamePhase}  maxLaps: {scoring.Info.mMaxLaps}" );
 			Console.WriteLine( $"currentET: {scoring.Info.mCurrentET:F1}  endET: {scoring.Info.mEndET:F1}  numVehicles: {scoring.Info.mNumVehicles}  inRealtime: {scoring.Info.mInRealtime}" );
 			Console.WriteLine( $"ambient: {scoring.Info.mAmbientTemp:F1}C  track: {scoring.Info.mTrackTemp:F1}C  raining: {scoring.Info.mRaining:F2}" );
 
@@ -506,29 +510,21 @@ internal static class Program
 		return ( denominator > 1e-9 ) ? covariance / denominator : 0.0;
 	}
 
+	// the structs are blittable (inline arrays, see Rf2Data.cs), so this is a straight memory read
 	private static T ReadStruct<T>( byte[] buffer, int offset ) where T : struct
 	{
-		var handle = GCHandle.Alloc( buffer, GCHandleType.Pinned );
-
-		try
-		{
-			return Marshal.PtrToStructure<T>( handle.AddrOfPinnedObject() + offset )!;
-		}
-		finally
-		{
-			handle.Free();
-		}
+		return MemoryMarshal.Read<T>( buffer.AsSpan( offset ) );
 	}
 
-	private static string ReadString( byte[] bytes )
+	private static string ReadString( ReadOnlySpan<byte> bytes )
 	{
-		var length = Array.IndexOf( bytes, (byte) 0 );
+		var length = bytes.IndexOf( (byte) 0 );
 
 		if ( length == -1 )
 		{
 			length = bytes.Length;
 		}
 
-		return Encoding.UTF8.GetString( bytes, 0, length );
+		return Encoding.UTF8.GetString( bytes[ ..length ] );
 	}
 }

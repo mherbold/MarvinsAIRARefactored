@@ -384,14 +384,24 @@ public sealed class UsbSerialPortHelper( string handshake = "", string deviceIdT
 
 	public void Close()
 	{
-		if ( _serialPort != null )
+		using ( _lock.EnterScope() )
 		{
-			var app = App.Instance!;
-
-			app.Logger.WriteLine( "[UsbSerialPortHelper] Closing serial port" );
-
-			using ( _lock.EnterScope() )
+			// Stop the MonitorPort task first - a deliberate close must not leave it running (it would fire a
+			// spurious PortClosed about a second later), and cancelling here also keeps reopen cycles from
+			// leaking a token source and a lingering task per Open() call.
+			if ( _cancellationTokenSource != null )
 			{
+				_cancellationTokenSource.Cancel();
+				_cancellationTokenSource.Dispose();
+				_cancellationTokenSource = null;
+			}
+
+			if ( _serialPort != null )
+			{
+				var app = App.Instance!;
+
+				app.Logger.WriteLine( "[UsbSerialPortHelper] Closing serial port" );
+
 				_serialPort.DataReceived -= OnDataReceived;
 
 				if ( _serialPort.IsOpen )

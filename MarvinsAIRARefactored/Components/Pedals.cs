@@ -1,7 +1,7 @@
 ﻿
-using Simagic;
-
 using MarvinsAIRARefactored.Classes;
+using Simagic;
+using System.Runtime.CompilerServices;
 
 namespace MarvinsAIRARefactored.Components;
 
@@ -102,6 +102,7 @@ public class Pedals
 		_testing = true;
 	}
 
+	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	public void UpdateGraph()
 	{
 		var app = App.Instance!;

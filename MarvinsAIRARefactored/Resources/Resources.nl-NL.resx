@@ -355,7 +355,7 @@
     <value>Geen</value>
   </data>
   <data name="PerWheelbase" xml:space="preserve">
-    <value>Per wheelbase</value>
+    <value>Per stuurbasis</value>
   </data>
   <data name="PerCar" xml:space="preserve">
     <value>Per auto</value>
@@ -1823,18 +1823,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Gamebrug</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Games</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Binnenkort beschikbaar</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Gamebrug initialiseren...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Vertaalt telemetrie van andere racegames naar het iRacing-formaat zodat MAIRA ermee kan werken. Schakel de games in die je wilt overbruggen - de brug wordt automatisch actief wanneer een ingeschakelde game draait.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1885,4 +1875,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Gamebrug</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Binnenkort beschikbaar</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Vertaalt telemetrie van andere racegames naar het iRacing-formaat zodat MAIRA ermee kan werken. Schakel de games in die je wilt overbruggen - de brug wordt automatisch geactiveerd wanneer een ingeschakelde game draait.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Games</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Gamebrug initialiseren...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

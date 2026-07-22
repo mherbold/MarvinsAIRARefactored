@@ -255,6 +255,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\IRSDKSharper\IRSDKSharper.csproj" />
     <ProjectReference Include="..\MarvinsAIRARefactored.Win32\MarvinsAIRARefactored.Win32.csproj" />
   </ItemGroup>
 

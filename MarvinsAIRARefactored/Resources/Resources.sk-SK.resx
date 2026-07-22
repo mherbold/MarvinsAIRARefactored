@@ -1825,18 +1825,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Herný most</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Hry</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Už čoskoro</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Inicializuje sa herný most...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Prekladá telemetriu z iných pretekárskych hier do formátu iRacing, aby s nimi MAIRA mohla pracovať. Zapnite hry, ktoré chcete premostiť - most sa aktivuje automaticky, keď zapnutá hra beží.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1872,4 +1862,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Herný most</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Už čoskoro</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Prekladá telemetriu z iných pretekárskych hier do formátu iRacing, aby s nimi MAIRA mohla pracovať. Povoľte hry, ktoré chcete premostiť - most sa aktivuje automaticky, keď beží povolená hra.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Hry</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Inicializácia herného mosta...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

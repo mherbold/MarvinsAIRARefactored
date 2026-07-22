@@ -97,7 +97,7 @@ public partial class App : Application
 
 	private readonly Thread _workerThread = new( WorkerThread ) { IsBackground = true, Priority = ThreadPriority.Normal, Name = "MAIRA App Worker Thread" };
 
-	private bool _running = true;
+	private volatile bool _running = true;
 
 	private readonly Timer _timer = new( TimerPeriodInMilliseconds );
 

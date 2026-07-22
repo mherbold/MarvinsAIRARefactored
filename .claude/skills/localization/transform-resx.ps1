@@ -169,7 +169,9 @@ function Add-ResxKey([string] $text, [string] $key, [string] $newVal, [string] $
     $k = [regex]::Escape($key)
     if ([regex]::IsMatch($text, "<data\s+name=""$k""")) { return $text }   # idempotent: already present
     $block = "  <data name=""$key"" xml:space=""preserve"">$nl    <value>$newVal</value>$nl  </data>$nl"
-    return [regex]::Replace($text, "(\s*</root>)", { param($m) $block + $m.Groups[1].Value }, 1)
+    # anchor at the start of the </root> line so the preceding newline is not consumed --
+    # the old "\s*</root>" pattern glued the new block onto the last </data> line
+    return [regex]::Replace($text, "(?m)^([ \t]*</root>)", { param($m) $block + $m.Groups[1].Value }, 1)
 }
 
 # ---------------------------------------------------------------------------

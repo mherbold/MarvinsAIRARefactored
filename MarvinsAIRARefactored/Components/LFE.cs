@@ -46,7 +46,7 @@ public class LFE
 
 	private readonly Thread _workerThread = new( WorkerThread ) { IsBackground = true, Priority = ThreadPriority.Highest, Name = "MAIRA LFE Worker Thread" };
 
-	private bool _running = true;
+	private volatile bool _running = true;
 
 	private int _lfeBusy = 0;
 	private int _pingPongIndex = 0;
@@ -422,7 +422,7 @@ public class LFE
 		}
 		catch ( Exception exception )
 		{
-			app.Logger.WriteLine( $"[App] Exception caught: {exception.Message}" );
+			app.Logger.WriteLine( $"[LFE] Exception caught: {exception.Message}" );
 
 			app.ShowFatalError( "An exception was thrown inside the LFE worker thread.", exception );
 		}

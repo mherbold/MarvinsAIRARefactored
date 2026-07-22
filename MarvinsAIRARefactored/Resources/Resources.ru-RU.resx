@@ -430,7 +430,7 @@
     <value>Torque выход</value>
   </data>
   <data name="TimerJitter" xml:space="preserve">
-    <value>Timer jitter</value>
+    <value>Джиттер таймера</value>
   </data>
   <data name="InputLFE" xml:space="preserve">
     <value>LFE вход</value>
@@ -1045,7 +1045,7 @@
     <value>Seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Эффект вибрации от seat-Of_Pants на руле</value>
+    <value>Эффект вибрации от seat-of-pants на руле</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
     <value>Эффект постоянного усилия от seat-of-pants на руле</value>
@@ -1823,18 +1823,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Игровой мост</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Игры</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Скоро</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Инициализация игрового моста...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Переводит телеметрию из других гоночных игр в формат iRacing, чтобы MAIRA могла с ними работать. Включите игры, которые хотите подключить - мост активируется автоматически, когда включённая игра запущена.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1885,4 +1875,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Игровой мост</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Скоро</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Переводит телеметрию из других гоночных игр в формат iRacing, чтобы MAIRA могла с ними работать. Включите игры, которые хотите подключить - мост активируется автоматически, когда запущена включённая игра.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Игры</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Инициализация игрового моста...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

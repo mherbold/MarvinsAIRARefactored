@@ -1049,16 +1049,16 @@
     <value>Seat-of-pants</value>
   </data>
   <data name="SeatOfPantsWheelVibrationEffect" xml:space="preserve">
-    <value>Seat-of-pants wheel vibration effect</value>
+    <value>Ефект вібрації seat-of-pants на кермі</value>
   </data>
   <data name="SeatOfPantsWheelConstantForceEffect" xml:space="preserve">
-    <value>Seat-of-pants wheel constant force effect</value>
+    <value>Ефект постійної сили seat-of-pants на кермі</value>
   </data>
   <data name="SeatOfPantsPedalVibrationEffect" xml:space="preserve">
-    <value>Seat-of-pants pedal vibration effect</value>
+    <value>Ефект вібрації seat-of-pants на педалях</value>
   </data>
   <data name="SeatOfPantsEffect" xml:space="preserve">
-    <value>Seat-of-pants effect</value>
+    <value>Ефект seat-of-pants</value>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
     <value>Бічне прискорення</value>
@@ -1829,18 +1829,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Ігровий міст</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Ігри</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Незабаром</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Ініціалізація ігрового моста...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Перекладає телеметрію з інших гоночних ігор у формат iRacing, щоб MAIRA могла з ними працювати. Увімкніть ігри, які хочете з'єднати - міст активується автоматично, коли увімкнена гра запущена.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1891,4 +1881,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Ігровий міст</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Незабаром</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Перекладає телеметрію з інших гоночних ігор у формат iRacing, щоб MAIRA могла з ними працювати. Увімкніть ігри, які хочете під'єднати - міст активується автоматично, коли запущено ввімкнену гру.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Ігри</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Ініціалізація ігрового моста...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

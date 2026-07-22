@@ -1826,18 +1826,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>ゲームブリッジ</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>ゲーム</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>近日公開</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>ゲームブリッジを初期化しています...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>他のレースゲームのテレメトリーをiRacing形式に変換し、MAIRAで利用できるようにします。ブリッジしたいゲームを有効にすると、そのゲームの起動時にブリッジが自動的に有効になります。</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1888,4 +1878,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>ゲームブリッジ</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>近日対応予定</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>他のレーシングゲームのテレメトリーをiRacing形式に変換し、MAIRAで利用できるようにします。ブリッジしたいゲームを有効にしてください - 有効なゲームが起動すると、ブリッジは自動的にアクティブになります。</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>ゲーム</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>ゲームブリッジを初期化しています...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

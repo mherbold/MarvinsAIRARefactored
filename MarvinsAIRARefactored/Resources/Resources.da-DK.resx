@@ -409,7 +409,7 @@
     <value>Lyd styrke</value>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Delta limiter bias</value>
+    <value>Delta-begrænser-bias</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Udgang</value>
@@ -1126,7 +1126,7 @@
     <value>Fan-status</value>
   </data>
   <data name="Multi360HzDetail" xml:space="preserve">
-    <value>360 Hz detail</value>
+    <value>360 Hz-detaljer</value>
   </data>
   <data name="SlewPeakMode" xml:space="preserve">
     <value>Peak-aware slew-begrænsning</value>
@@ -1823,18 +1823,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Spilbro</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Spil</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Kommer snart</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Initialiserer spilbroen...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Oversætter telemetri fra andre racerspil til iRacing-format, så MAIRA kan arbejde med dem. Aktivér de spil, du vil bygge bro til - broen aktiveres automatisk, når et aktiveret spil kører.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1885,4 +1875,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Spilbro</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Kommer snart</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Oversætter telemetri fra andre racerspil til iRacing-format, så MAIRA kan arbejde med dem. Aktivér de spil, du vil bygge bro til - broen aktiveres automatisk, når et aktiveret spil kører.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Spil</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Initialiserer spilbro...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>

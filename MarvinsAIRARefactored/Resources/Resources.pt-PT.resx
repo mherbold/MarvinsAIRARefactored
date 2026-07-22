@@ -412,7 +412,7 @@
     <value>Viés do limitador do delta</value>
   </data>
   <data name="Output" xml:space="preserve">
-    <value>Output</value>
+    <value>Saída</value>
   </data>
   <data name="WheelLFE" xml:space="preserve">
     <value>Efeito Lfe</value>
@@ -878,7 +878,7 @@
     <value>Bloqueio dos pneus</value>
   </data>
   <data name="WheelSpin" xml:space="preserve">
-    <value>Wheel spin</value>
+    <value>Patinagem das rodas</value>
   </data>
   <data name="GripOMeter" xml:space="preserve">
     <value>Nível de aderência</value>
@@ -1824,18 +1824,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Ponte de jogos</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Jogos</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Brevemente</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>A inicializar a ponte de jogos...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Traduz a telemetria de outros jogos de corridas para o formato do iRacing para que o MAIRA possa funcionar com eles. Ative os jogos que pretende ligar - a ponte ativa-se automaticamente quando um jogo ativado está em execução.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
 
 
@@ -1886,4 +1876,23 @@
 
 
 
+
+  <data name="GameBridge" xml:space="preserve">
+    <value>Ponte de jogos</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Brevemente</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Traduz a telemetria de outros jogos de corridas para o formato do iRacing para que o MAIRA possa trabalhar com eles. Ative os jogos que pretende ligar - a ponte ativa-se automaticamente quando um jogo ativado está em execução.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Jogos</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>A inicializar a ponte de jogos...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
 </root>
