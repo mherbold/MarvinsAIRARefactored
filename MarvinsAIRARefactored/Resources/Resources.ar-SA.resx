@@ -1881,4 +1881,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>هذه الميزة تجريبية إلى حد كبير وقيد التطوير - لم تُتَح لي الفرصة بعد للتحقق شخصيًا من كل جسر. يُرجى خفض القوة الإجمالية إلى مستوى منخفض قبل تفعيل أي جسر، حتى لا يقتلع المقود ذراعيك إذا كان هناك شيء غير مضبوط بشكل صحيح. استمتع!</value>
+  </data>
 </root>

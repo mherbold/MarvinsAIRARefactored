@@ -1894,4 +1894,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Эта функция всё ещё очень экспериментальная и находится в разработке - у меня ещё не было возможности лично проверить каждый мост. Пожалуйста, снизьте общую силу до низкого уровня перед активацией моста, чтобы руль не вырвал вам руки, если что-то настроено неправильно. Приятной игры!</value>
+  </data>
 </root>

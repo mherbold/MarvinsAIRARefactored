@@ -1894,4 +1894,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Ez a funkció még nagyon kísérleti és folyamatban lévő munka - még nem volt alkalmam minden hidat személyesen ellenőrizni. Kérlek, csökkentsd az összerőt alacsony szintre, mielőtt aktiválsz egy hidat, hogy a kormány ne tépje le a karjaidat, ha valami nincs jól beállítva. Jó szórakozást!</value>
+  </data>
 </root>

@@ -1894,4 +1894,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>ฟีเจอร์นี้ยังอยู่ในขั้นทดลองและกำลังพัฒนาอยู่ - ผมยังไม่มีโอกาสตรวจสอบบริดจ์แต่ละตัวด้วยตัวเอง กรุณาลดความแรงโดยรวมลงให้อยู่ในระดับต่ำก่อนเปิดใช้งานบริดจ์ เพื่อไม่ให้พวงมาลัยกระชากแขนของคุณหากมีบางอย่างตั้งค่าไม่ถูกต้อง ขอให้สนุก!</value>
+  </data>
 </root>

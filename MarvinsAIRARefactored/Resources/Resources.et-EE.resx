@@ -1881,4 +1881,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>See funktsioon on väga eksperimentaalne ja alles arendamisel - mul pole veel olnud võimalust iga silda isiklikult kontrollida. Palun vähenda enne silla aktiveerimist üldine tugevus madalale tasemele, et rool ei rebiks sul käsi otsast, kui midagi pole õigesti seadistatud. Head lõbutsemist!</value>
+  </data>
 </root>

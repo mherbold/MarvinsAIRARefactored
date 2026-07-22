@@ -1881,4 +1881,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>此功能仍屬高度實驗性質，且仍在開發中 - 我還沒有機會親自驗證每一個橋接。請在啟用橋接之前將整體強度調低，以免在設定不正確時方向盤扯傷您的手臂。玩得開心！</value>
+  </data>
 </root>

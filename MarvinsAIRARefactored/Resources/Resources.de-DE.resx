@@ -1899,4 +1899,7 @@ Hier ist der Link zum Spenden:</value>
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Diese Funktion ist noch sehr experimentell und in Arbeit - ich hatte noch keine Gelegenheit, jede Brücke persönlich zu validieren. Bitte reduziere die Gesamtstärke auf ein niedriges Niveau, bevor du eine Brücke aktivierst, damit dir das Lenkrad nicht die Arme abreißt, falls etwas nicht richtig eingerichtet ist. Viel Spaß!</value>
+  </data>
 </root>

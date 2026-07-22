@@ -1881,4 +1881,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>이 기능은 아직 매우 실험적이며 개발 중입니다 - 모든 브리지를 직접 검증할 기회가 아직 없었습니다. 설정이 잘못된 경우 휠이 팔을 낚아채지 않도록, 브리지를 활성화하기 전에 전체 강도를 낮은 수준으로 줄여 주세요. 즐겁게 즐기세요!</value>
+  </data>
 </root>

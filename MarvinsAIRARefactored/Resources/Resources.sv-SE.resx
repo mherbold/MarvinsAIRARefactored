@@ -1894,4 +1894,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Den här funktionen är i högsta grad experimentell och fortfarande under arbete - jag har ännu inte hunnit validera varje brygga personligen. Sänk den totala styrkan till en låg nivå innan du aktiverar en brygga, så att ratten inte sliter av dig armarna om något inte är rätt inställt. Ha så kul!</value>
+  </data>
 </root>

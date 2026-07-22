@@ -1895,4 +1895,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Esta funcionalidade é muito experimental e ainda está em desenvolvimento - ainda não tive oportunidade de validar pessoalmente cada ponte. Reduza a força geral para um nível baixo antes de ativar uma ponte, para que o volante não lhe arranque os braços se algo não estiver bem configurado. Divirta-se!</value>
+  </data>
 </root>

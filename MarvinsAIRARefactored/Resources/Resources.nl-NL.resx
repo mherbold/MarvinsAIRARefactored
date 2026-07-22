@@ -1894,4 +1894,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Deze functie is nog zeer experimenteel en volop in ontwikkeling - ik heb nog niet de kans gehad om elke brug persoonlijk te valideren. Zet de totale sterkte op een laag niveau voordat je een brug activeert, zodat het stuur je armen er niet afrukt als iets niet goed is ingesteld. Veel plezier!</value>
+  </data>
 </root>

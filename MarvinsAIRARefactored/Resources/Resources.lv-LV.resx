@@ -1881,4 +1881,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Šī funkcija ir ļoti eksperimentāla un vēl tiek izstrādāta - man vēl nav bijusi iespēja personīgi pārbaudīt katru tiltu. Lūdzu, pirms tilta aktivizēšanas samazini kopējo spēku līdz zemam līmenim, lai stūre nenorauj tev rokas, ja kaut kas nav pareizi iestatīts. Izklaidējies!</value>
+  </data>
 </root>

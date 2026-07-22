@@ -1894,4 +1894,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Această funcție este foarte experimentală și încă în lucru - nu am avut încă ocazia să validez personal fiecare punte. Te rog redu forța generală la un nivel scăzut înainte de a activa o punte, ca volanul să nu-ți smulgă brațele dacă ceva nu este configurat corect. Distracție plăcută!</value>
+  </data>
 </root>

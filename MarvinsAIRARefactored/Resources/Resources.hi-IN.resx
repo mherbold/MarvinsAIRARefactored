@@ -1881,4 +1881,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>यह सुविधा अभी बहुत प्रयोगात्मक है और इस पर काम चल रहा है - मुझे अभी हर ब्रिज को व्यक्तिगत रूप से जाँचने का अवसर नहीं मिला है। कृपया ब्रिज सक्रिय करने से पहले कुल शक्ति को कम स्तर पर ले आएँ, ताकि कुछ सही सेट न होने पर स्टीयरिंग व्हील आपकी बाँहें न झटक दे। मज़े करें!</value>
+  </data>
 </root>

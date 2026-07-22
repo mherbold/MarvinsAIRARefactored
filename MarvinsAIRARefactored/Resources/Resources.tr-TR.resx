@@ -1894,4 +1894,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Bu özellik henüz oldukça deneyseldir ve üzerinde çalışılmaktadır - her köprüyü kişisel olarak doğrulama fırsatım henüz olmadı. Bir köprüyü etkinleştirmeden önce lütfen genel gücü düşük bir seviyeye indirin; böylece bir şey doğru ayarlanmamışsa direksiyon kollarınızı koparmaz. İyi eğlenceler!</value>
+  </data>
 </root>

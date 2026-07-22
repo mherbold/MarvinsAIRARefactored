@@ -1894,4 +1894,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Mae'r nodwedd hon yn arbrofol iawn ac yn waith ar y gweill - nid wyf wedi cael cyfle eto i ddilysu pob pont yn bersonol. Gostyngwch y cryfder cyffredinol i lefel isel cyn actifadu pont, fel na all y llyw rwygo eich breichiau i ffwrdd os nad yw rhywbeth wedi'i osod yn gywir. Mwynhewch!</value>
+  </data>
 </root>

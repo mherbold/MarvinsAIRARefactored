@@ -1897,4 +1897,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>この機能はまだ実験段階で、開発途中です - すべてのブリッジを個人的に検証できたわけではありません。何かが正しく設定されていない場合にステアリングホイールに腕を持っていかれないよう、ブリッジを有効にする前に全体の強さを低いレベルまで下げてください。楽しんでください！</value>
+  </data>
 </root>

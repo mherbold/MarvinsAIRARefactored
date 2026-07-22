@@ -2,6 +2,10 @@
 <p>The Game bridge lets MAIRA work with racing games other than iRacing. It reads telemetry from the other game and translates it into iRacing format on the fly, so MAIRA's force feedback engine, effects, and other features work as if iRacing were running. This feature is experimental and support for more games is being added over time.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p><strong>This feature is very much experimental and a work in progress - not every bridge has been personally validated yet. Please reduce the overall strength to a low level before activating a bridge, so the wheel can't rip your arms off if something is not set up correctly. Have fun!</strong></p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="games">Games</p>
 <!-- /wp:paragraph -->

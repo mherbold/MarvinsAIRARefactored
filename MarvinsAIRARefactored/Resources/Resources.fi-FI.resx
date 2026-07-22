@@ -1894,4 +1894,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Tämä ominaisuus on hyvin kokeellinen ja edelleen työn alla - en ole vielä ehtinyt henkilökohtaisesti varmistaa jokaista siltaa. Laske kokonaisvoimakkuus matalalle tasolle ennen sillan aktivointia, ettei ratti revi käsiäsi irti, jos jokin ei ole oikein määritetty. Pidä hauskaa!</value>
+  </data>
 </root>

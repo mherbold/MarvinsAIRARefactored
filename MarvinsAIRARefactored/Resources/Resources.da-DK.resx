@@ -1894,4 +1894,7 @@
   <data name="AssettoCorsaRally" xml:space="preserve">
     <value>Assetto Corsa Rally</value>
   </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Denne funktion er i høj grad eksperimentel og stadig under udvikling - jeg har endnu ikke haft mulighed for personligt at validere hver bro. Skru venligst den samlede styrke ned til et lavt niveau, før du aktiverer en bro, så rattet ikke river armene af dig, hvis noget ikke er sat rigtigt op. God fornøjelse!</value>
+  </data>
 </root>
