@@ -2,12 +2,22 @@
 using System.Diagnostics;
 using System.IO.Compression;
 using System.IO.MemoryMappedFiles;
+using System.Runtime.InteropServices;
 
 namespace LmuCaptureTool;
 
 internal static class Program
 {
 	private const string FileMagic = "LMUCAP01";
+
+	// Without raising the system timer resolution, Thread.Sleep(1) waits for the next ~15.6 ms Windows tick, so
+	// the poll loop runs at only ~64 Hz and cannot measure (or capture) anything updating faster than that.
+	// timeBeginPeriod(1) drops the tick to 1 ms so the loop polls at ~1 kHz.
+	[DllImport( "winmm.dll", EntryPoint = "timeBeginPeriod" )]
+	private static extern uint TimeBeginPeriod( uint milliseconds );
+
+	[DllImport( "winmm.dll", EntryPoint = "timeEndPeriod" )]
+	private static extern uint TimeEndPeriod( uint milliseconds );
 
 	// each buffer is captured whenever the version counter in its first four bytes changes
 	private static readonly string[] BufferNames =
@@ -96,6 +106,8 @@ internal static class Program
 		var lastProbeSteering = double.NaN;
 		var lastProbeTorque = double.NaN;
 		var lastProbeGenericFfb = float.NaN;
+
+		TimeBeginPeriod( 1 );
 
 		while ( !stopRequested )
 		{
@@ -234,6 +246,8 @@ internal static class Program
 
 			Thread.Sleep( 1 );
 		}
+
+		TimeEndPeriod( 1 );
 
 		writer.Write( -1 );
 

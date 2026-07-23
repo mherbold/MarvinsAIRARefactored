@@ -11,6 +11,13 @@ Transcribed verbatim (subset) for MarvinsAIRA Refactored from:
 https://github.com/TheIronWolfModding/rF2SharedMemoryMapPlugin
 Monitor/rF2SMMonitor/rF2SMMonitor/rF2Data.cs
 Do NOT reorder, rename, or resize any fields — byte layout fidelity with the plugin is required.
+
+The structs the bridges actually parse (rF2Wheel, rF2VehicleTelemetry, rF2ScoringInfo, rF2VehicleScoring)
+represent their arrays as [InlineArray] value types (see InlineArrays.cs) instead of [MarshalAs] fields -
+byte layout is identical, but the structs stay blittable so they can be read from the shared memory bytes
+with MemoryMarshal.Read with ZERO heap allocations (Marshal.PtrToStructure allocated a new array per array
+field on every read, which was constant GC pressure on the multimedia timer worker thread). The remaining
+structs are unused reference documentation and keep the original MarshalAs transcription.
 */
 
 using System.Runtime.InteropServices;
@@ -213,6 +220,18 @@ public struct rF2Vec3
 	public double x, y, z;
 }
 
+[System.Runtime.CompilerServices.InlineArray( 3 )]
+public struct Rf2Vec3Array3
+{
+	private rF2Vec3 _element0;
+}
+
+[System.Runtime.CompilerServices.InlineArray( 4 )]
+public struct Rf2WheelArray4
+{
+	private rF2Wheel _element0;
+}
+
 
 [StructLayout( LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4 )]
 public struct rF2Wheel
@@ -235,11 +254,9 @@ public struct rF2Wheel
 
 	public double mGripFract;             // an approximation of what fraction of the contact patch is sliding
 	public double mPressure;              // kPa (tire pressure)
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 3 )]
-	public double[] mTemperature;         // Kelvin (subtract 273.15 to get Celsius), left/center/right (not to be confused with inside/center/outside!)
+	public DoubleArray3 mTemperature;     // Kelvin (subtract 273.15 to get Celsius), left/center/right (not to be confused with inside/center/outside!)
 	public double mWear;                  // wear (0.0-1.0, fraction of maximum) ... this is not necessarily proportional with grip loss
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 16 )]
-	public byte[] mTerrainName;           // the material prefixes from the TDF file
+	public ByteArray16 mTerrainName;      // the material prefixes from the TDF file
 	public byte mSurfaceType;             // 0=dry, 1=wet, 2=grass, 3=dirt, 4=gravel, 5=rumblestrip, 6=special
 	public byte mFlat;                    // whether tire is flat
 	public byte mDetached;                // whether wheel is detached
@@ -250,11 +267,9 @@ public struct rF2Wheel
 	public double mToe;                   // current toe angle w.r.t. the vehicle
 
 	public double mTireCarcassTemperature;       // rough average of temperature samples from carcass (Kelvin)
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 3 )]
-	public double[] mTireInnerLayerTemperature;  // rough average of temperature samples from innermost layer of rubber (before carcass) (Kelvin)
+	public DoubleArray3 mTireInnerLayerTemperature;  // rough average of temperature samples from innermost layer of rubber (before carcass) (Kelvin)
 
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 24 )]
-	public byte[] mExpansion;             // for future use
+	public ByteArray24 mExpansion;        // for future use
 }
 
 
@@ -267,10 +282,8 @@ public struct rF2VehicleTelemetry
 	public double mElapsedTime;           // game session time
 	public int mLapNumber;               // current lap number
 	public double mLapStartET;            // time this lap was started
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 64 )]
-	public byte[] mVehicleName;         // current vehicle name
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 64 )]
-	public byte[] mTrackName;           // current track name
+	public ByteArray64 mVehicleName;      // current vehicle name
+	public ByteArray64 mTrackName;        // current track name
 
 	// Position and derivatives
 	public rF2Vec3 mPos;                  // world position in meters
@@ -278,8 +291,7 @@ public struct rF2VehicleTelemetry
 	public rF2Vec3 mLocalAccel;           // acceleration (meters/sec^2) in local vehicle coordinates
 
 	// Orientation and derivatives
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 3 )]
-	public rF2Vec3[] mOri;               // rows of orientation matrix (use TelemQuat conversions if desired), also converts local
+	public Rf2Vec3Array3 mOri;           // rows of orientation matrix (use TelemQuat conversions if desired), also converts local
 										 // vehicle vectors into world X, Y, or Z using dot product of rows 0, 1, or 2 respectively
 	public rF2Vec3 mLocalRot;             // rotation (radians/sec) in local vehicle coordinates
 	public rF2Vec3 mLocalRotAccel;        // rotational acceleration (radians/sec^2) in local vehicle coordinates
@@ -323,8 +335,7 @@ public struct rF2VehicleTelemetry
 	public byte mOverheating;            // whether overheating icon is shown
 	public byte mDetached;               // whether any parts (besides wheels) have been detached
 	public byte mHeadlights;             // whether headlights are on
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 8 )]
-	public byte[] mDentSeverity;// dent severity at 8 locations around the car (0=none, 1=some, 2=more)
+	public ByteArray8 mDentSeverity;     // dent severity at 8 locations around the car (0=none, 1=some, 2=more)
 	public double mLastImpactET;          // time of last impact
 	public double mLastImpactMagnitude;   // magnitude of last impact
 	public rF2Vec3 mLastImpactPos;        // location of last impact
@@ -342,21 +353,17 @@ public struct rF2VehicleTelemetry
 	public byte mRearFlapLegalStatus;      // 0=disallowed, 1=criteria detected but not allowed quite yet, 2=allowed
 	public byte mIgnitionStarter;          // 0=off 1=ignition 2=ignition+starter
 
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 18 )]
-	public byte[] mFrontTireCompoundName;         // name of front tire compound
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 18 )]
-	public byte[] mRearTireCompoundName;          // name of rear tire compound
+	public ByteArray18 mFrontTireCompoundName;    // name of front tire compound
+	public ByteArray18 mRearTireCompoundName;     // name of rear tire compound
 
 	public byte mSpeedLimiterAvailable;    // whether speed limiter is available
 	public byte mAntiStallActivated;       // whether (hard) anti-stall is activated
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 2 )]
-	public byte[] mUnused;                //
+	public ByteArray2 mUnused;            //
 	public float mVisualSteeringWheelRange;         // the *visual* steering wheel range
 
 	public double mRearBrakeBias;                   // fraction of brakes on rear
 	public double mTurboBoostPressure;              // current turbo boost pressure if available
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 3 )]
-	public float[] mPhysicsToGraphicsOffset;       // offset from static CG to graphical center
+	public FloatArray3 mPhysicsToGraphicsOffset;   // offset from static CG to graphical center
 	public float mPhysicalSteeringWheelRange;       // the *physical* steering wheel range
 
 
@@ -370,20 +377,17 @@ public struct rF2VehicleTelemetry
 	public byte mElectricBoostMotorState;                        // 0=unavailable 1=inactive, 2=propulsion, 3=regeneration
 
 	// Future use
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 111 )]
-	public byte[] mExpansion;           // for future use (note that the slot ID has been moved to mID above)
+	public ByteArray111 mExpansion;     // for future use (note that the slot ID has been moved to mID above)
 
 	// keeping this at the end of the structure to make it easier to replace in future versions
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 4 )]
-	public rF2Wheel[] mWheels;                      // wheel info (front left, front right, rear left, rear right)
+	public Rf2WheelArray4 mWheels;                  // wheel info (front left, front right, rear left, rear right)
 }
 
 
 [StructLayout( LayoutKind.Sequential, CharSet = CharSet.Ansi, Pack = 4 )]
 public struct rF2ScoringInfo
 {
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 64 )]
-	public byte[] mTrackName;           // current track name
+	public ByteArray64 mTrackName;      // current track name
 	public int mSession;                 // current session (0=testday 1-4=practice 5-8=qual 9=warmup 10-13=race)
 	public double mCurrentET;             // current time
 	public double mEndET;                 // ending time
@@ -392,8 +396,7 @@ public struct rF2ScoringInfo
 	// MM_NOT_USED
 	//char *mResultsStream;          // results stream additions since last update (newline-delimited and NULL-terminated)
 	// MM_NEW
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 8 )]
-	public byte[] pointer1;
+	public ByteArray8 pointer1;
 
 	public int mNumVehicles;             // current number of vehicles
 
@@ -422,15 +425,12 @@ public struct rF2ScoringInfo
 	//  7 Race halt (not currently used)
 	public sbyte mYellowFlagState;
 
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 3 )]
-	public sbyte[] mSectorFlag;      // whether there are any local yellows at the moment in each sector (not sure if sector 0 is first or last, so test)
+	public SByteArray3 mSectorFlag;  // whether there are any local yellows at the moment in each sector (not sure if sector 0 is first or last, so test)
 	public byte mStartLight;       // start light frame (number depends on track)
 	public byte mNumRedLights;     // number of red lights in start sequence
 	public byte mInRealtime;                // in realtime as opposed to at the monitor
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 32 )]
-	public byte[] mPlayerName;            // player name (including possible multiplayer override)
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 64 )]
-	public byte[] mPlrFileName;           // may be encoded to be a legal filename
+	public ByteArray32 mPlayerName;       // player name (including possible multiplayer override)
+	public ByteArray64 mPlrFileName;      // may be encoded to be a legal filename
 
 	// weather
 	public double mDarkCloud;               // cloud darkness? 0.0-1.0
@@ -447,22 +447,19 @@ public struct rF2ScoringInfo
 	public ushort mServerPort;              // the port of the server (if on a server)
 	public uint mServerPublicIP;            // the public IP address of the server (if on a server)
 	public int mMaxPlayers;                 // maximum number of vehicles that can be in the session
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 32 )]
-	public byte[] mServerName;            // name of the server
+	public ByteArray32 mServerName;       // name of the server
 	public float mStartET;                  // start time (seconds since midnight) of the event
 
 	public double mAvgPathWetness;          // average wetness on main path 0.0-1.0
 
 	// Future use
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 200 )]
-	public byte[] mExpansion;
+	public ByteArray200 mExpansion;
 
 	// MM_NOT_USED
 	// keeping this at the end of the structure to make it easier to replace in future versions
 	// VehicleScoringInfoV01 *mVehicle; // array of vehicle scoring info's
 	// MM_NEW
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 8 )]
-	public byte[] pointer2;
+	public ByteArray8 pointer2;
 }
 
 
@@ -470,10 +467,8 @@ public struct rF2ScoringInfo
 public struct rF2VehicleScoring
 {
 	public int mID;                      // slot ID (note that it can be re-used in multiplayer after someone leaves)
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 32 )]
-	public byte[] mDriverName;          // driver name
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 64 )]
-	public byte[] mVehicleName;         // vehicle name
+	public ByteArray32 mDriverName;      // driver name
+	public ByteArray64 mVehicleName;     // vehicle name
 	public short mTotalLaps;              // laps completed
 	public sbyte mSector;           // 0=sector3, 1=sector1, 2=sector2 (don't ask why)
 	public sbyte mFinishStatus;     // 0=none, 1=finished, 2=dnf, 3=dq
@@ -498,8 +493,7 @@ public struct rF2VehicleScoring
 	public sbyte mControl;          // who's in control: -1=nobody (shouldn't get this), 0=local player, 1=local AI, 2=remote, 3=replay (shouldn't get this)
 	public byte mInPits;                  // between pit entrance and pit exit (not always accurate for remote vehicles)
 	public byte mPlace;          // 1-based position
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 32 )]
-	public byte[] mVehicleClass;        // vehicle class
+	public ByteArray32 mVehicleClass;   // vehicle class
 
 	// Dash Indicators
 	public double mTimeBehindNext;        // time behind vehicle in next higher place
@@ -514,8 +508,7 @@ public struct rF2VehicleScoring
 	public rF2Vec3 mLocalAccel;           // acceleration (meters/sec^2) in local vehicle coordinates
 
 	// Orientation and derivatives
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 3 )]
-	public rF2Vec3[] mOri;               // rows of orientation matrix (use TelemQuat conversions if desired), also converts local
+	public Rf2Vec3Array3 mOri;           // rows of orientation matrix (use TelemQuat conversions if desired), also converts local
 										 // vehicle vectors into world X, Y, or Z using dot product of rows 0, 1, or 2 respectively
 	public rF2Vec3 mLocalRot;             // rotation (radians/sec) in local vehicle coordinates
 	public rF2Vec3 mLocalRotAccel;        // rotational acceleration (radians/sec^2) in local vehicle coordinates
@@ -531,15 +524,13 @@ public struct rF2VehicleScoring
 	public double mTimeIntoLap;           // estimated time into lap
 	public double mEstimatedLapTime;      // estimated laptime used for 'time behind' and 'time into lap' (note: this may changed based on vehicle and setup!?)
 
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 24 )]
-	public byte[] mPitGroup;            // pit group (same as team name unless pit is shared)
+	public ByteArray24 mPitGroup;       // pit group (same as team name unless pit is shared)
 	public byte mFlag;           // primary flag being shown to vehicle (currently only 0=green or 6=blue)
 	public byte mUnderYellow;             // whether this car has taken a full-course caution flag at the start/finish line
 	public byte mCountLapFlag;   // 0 = do not count lap or time, 1 = count lap but not time, 2 = count lap and time
 	public byte mInGarageStall;           // appears to be within the correct garage stall
 
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 16 )]
-	public byte[] mUpgradePack;  // Coded upgrades
+	public ByteArray16 mUpgradePack;  // Coded upgrades
 
 	public float mPitLapDist;             // location of pit in terms of lap distance
 
@@ -548,8 +539,7 @@ public struct rF2VehicleScoring
 
 	// Future use
 	// tag.2012.04.06 - SEE ABOVE!
-	[MarshalAsAttribute( UnmanagedType.ByValArray, SizeConst = 48 )]
-	public byte[] mExpansion;  // for future use
+	public ByteArray48 mExpansion;  // for future use
 }
 
 

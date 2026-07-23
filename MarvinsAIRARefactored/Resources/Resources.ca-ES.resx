@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Pont de jocs</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Jocs</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Properament</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>S'està inicialitzant el pont de jocs...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Tradueix la telemetria d'altres jocs de curses al format d'iRacing perquè MAIRA hi pugui treballar. Activeu els jocs que vulgueu connectar - el pont s'activa automàticament quan un joc activat està en marxa.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Font de 60 Hz</value>
@@ -2054,45 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>Font de velocitat del volant</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>Fonts</value>
   </data>
@@ -2276,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Mostra el graf de nodes</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>Predicció (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>Pont de jocs</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Properament</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Tradueix la telemetria d'altres jocs de curses al format d'iRacing perquè MAIRA hi pugui treballar. Activa els jocs que vulguis enllaçar - el pont s'activa automàticament quan s'executa un joc activat.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Jocs</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>S'està inicialitzant el pont de jocs...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Aquesta funció és molt experimental i encara està en desenvolupament - encara no he tingut l'oportunitat de validar personalment cada pont. Redueix la força general a un nivell baix abans d'activar un pont, perquè el volant no t'arrenqui els braços si alguna cosa no està ben configurada. Diverteix-te!</value>
   </data>
 </root>

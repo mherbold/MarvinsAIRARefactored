@@ -2,12 +2,16 @@
 <p>The Game bridge lets MAIRA work with racing games other than iRacing. It reads telemetry from the other game and translates it into iRacing format on the fly, so MAIRA's force feedback engine, effects, and other features work as if iRacing were running. This feature is experimental and support for more games is being added over time.</p>
 <!-- /wp:paragraph -->
 
+<!-- wp:paragraph -->
+<p><strong>This feature is very much experimental and a work in progress - not every bridge has been personally validated yet. Please reduce the overall strength to a low level before activating a bridge, so the wheel can't rip your arms off if something is not set up correctly. Have fun!</strong></p>
+<!-- /wp:paragraph -->
+
 <!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="games">Games</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Each supported game has its own switch. Games marked "Coming soon" are planned but not working yet, and their switches are disabled.</p>
+<p>Each supported game has its own switch, and all of the switches default to OFF. Games marked "Coming soon" are planned but not working yet, and their switches are disabled.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->
@@ -18,12 +22,52 @@
 <p>Enables the Le Mans Ultimate bridge. MAIRA reads the game's built-in shared memory directly - you do not need to install any plugins or change any game files. While the bridge is active the game's actual car model (for example "Aston Martin Valkyrie LMH") and track name are used for MAIRA's per-car and per-track settings, just like with iRacing.</p>
 <!-- /wp:paragraph -->
 
-<!-- wp:paragraph {"className":"default"} -->
-<p class="default">Default: OFF</p>
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Assetto Corsa</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, rFactor 2, and Automobilista 2 are coming soon.</p>
+<p>Enables the Assetto Corsa bridge. MAIRA reads the game's built-in shared memory directly, including its high rate (about 330 Hz) force feedback signal, and uses the game's car and track names for per-car and per-track settings.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Assetto Corsa Competizione</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables the Assetto Corsa Competizione bridge. Works exactly like the Assetto Corsa bridge - no plugins or game file changes needed.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Assetto Corsa EVO</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables the Assetto Corsa EVO bridge. MAIRA reads EVO's built-in shared memory directly - no plugins or game file changes needed, and nothing needs to be turned on inside the game.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Assetto Corsa Rally</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables the Assetto Corsa Rally bridge. Force feedback works fully, but this early access game does not yet publish its car and stage names, so per-car and per-track settings are shared across the whole game for now.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">rFactor 2</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables the rFactor 2 bridge. rFactor 2 has no built-in shared memory, so this bridge requires the free community "rFactor 2 Shared Memory Map Plugin" (by The Iron Wolf) to be installed in the game - if you already use SimHub or Crew Chief with rFactor 2, you almost certainly have it already.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">RaceRoom Racing Experience</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Enables the RaceRoom bridge. MAIRA reads the game's built-in shared memory directly. RaceRoom updates its data at a full 400 Hz - the highest rate of any bridged game. If MAIRA does not connect, make sure the shared memory option is enabled in RaceRoom's settings.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
@@ -35,16 +79,16 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Force feedback quality depends on what each game provides. iRacing publishes special high resolution (360 Hz) steering torque data that other games do not, so for bridged games MAIRA upscales the game's native physics data using the same prediction and smoothing engine it uses for iRacing. Some MAIRA features that depend on iRacing-only data (for example Trading Paints and the incident count) remain inactive while a bridge is active.</p>
+<p>Force feedback quality depends on the rate each game publishes its steering torque at: RaceRoom updates at 400 Hz, the Assetto Corsa family at about 330 Hz, Le Mans Ultimate at 100 Hz, and rFactor 2 at 50 Hz (iRacing's native signal is 360 Hz). MAIRA samples every bridged game at the full 360 Hz and runs the same prediction and smoothing engine it uses for iRacing, so lower rate games still feel smooth. Some MAIRA features that depend on iRacing-only data (for example Trading Paints and the incident count) remain inactive while a bridge is active.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
-<p class="section" id="setting-up-le-mans-ultimate">Setting up Le Mans Ultimate</p>
+<p class="section" id="setting-up-a-game">Setting up a game</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:list -->
 <ul class="wp-block-list"><!-- wp:list-item -->
-<li>Turn OFF force feedback inside Le Mans Ultimate (set its FFB strength to zero for your wheel) so the game does not fight MAIRA for control of your wheelbase.</li>
+<li>Turn OFF force feedback inside the game (set its FFB strength to zero for your wheel) so the game does not fight MAIRA for control of your wheelbase.</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->

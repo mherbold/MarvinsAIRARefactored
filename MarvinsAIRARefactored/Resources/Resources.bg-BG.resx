@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Мост за игри</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Игри</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Очаквайте скоро</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Инициализиране на моста за игри...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Превежда телеметрията от други състезателни игри във формат iRacing, за да може MAIRA да работи с тях. Включете игрите, които искате да свържете - мостът се активира автоматично, когато включена игра работи.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Източник 60 Hz</value>
@@ -2054,30 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>Източник скорост на волана</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>Източници</value>
   </data>
@@ -2261,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Показване на графа с възли</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>Прогнозиране (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>Мост към игри</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Очаквайте скоро</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Превежда телеметрията от други състезателни игри във формат iRacing, така че MAIRA да може да работи с тях. Активирайте игрите, които искате да свържете - мостът се активира автоматично, когато работи активирана игра.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Игри</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Инициализиране на моста към игри...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Тази функция е силно експериментална и все още в процес на разработка - още не съм имал възможност лично да валидирам всеки мост. Моля, намалете общата сила до ниско ниво, преди да активирате мост, за да не ви изтръгне воланът ръцете, ако нещо не е настроено правилно. Приятно каране!</value>
   </data>
 </root>

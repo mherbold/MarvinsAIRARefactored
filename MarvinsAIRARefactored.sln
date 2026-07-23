@@ -8,6 +8,7 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvinsAIRARefactored.Win32", "MarvinsAIRARefactored.Win32\MarvinsAIRARefactored.Win32.csproj", "{79333233-A7C6-4967-9719-99BADF904110}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MarvinsAIRARefactored.PredictionLab", "MarvinsAIRARefactored.PredictionLab\MarvinsAIRARefactored.PredictionLab.csproj", "{1E64F035-D180-42C8-B39A-FEB6CD215C15}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IRSDKSharper", "..\IRSDKSharper\IRSDKSharper.csproj", "{A390E578-1750-F1B6-74F0-BC080A0C9AAB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,6 +42,14 @@ Global
 		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Release|x64.ActiveCfg = Release|Any CPU
 		{1E64F035-D180-42C8-B39A-FEB6CD215C15}.Release|x64.Build.0 = Release|Any CPU
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Debug|x64.ActiveCfg = Debug|x64
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Debug|x64.Build.0 = Debug|x64
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|x64.ActiveCfg = Release|x64
+		{A390E578-1750-F1B6-74F0-BC080A0C9AAB}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

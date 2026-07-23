@@ -1,4 +1,4 @@
-﻿
+
 using System.Diagnostics;
 using System.Runtime.InteropServices;
 
@@ -8,6 +8,14 @@ namespace MarvinsAIRARefactored.Components;
 
 public partial class MultimediaTimer
 {
+	// the multimedia timer period - the worker thread runs at ~500 Hz
+	private const uint TimerPeriodMilliseconds = 2;
+
+	// suspend/resume state is touched from several threads (the Simulator's connect/disconnect events, the
+	// game bridge activation task, the main tick loop, and shutdown), so all timer start/stop transitions
+	// are serialized by this lock - the worker thread itself never takes it, keeping the hot path lock-free
+	private readonly object _timerLock = new();
+
 	private bool _suspend = true;
 	private int _suspendCounter = 0;
 
@@ -17,24 +25,27 @@ public partial class MultimediaTimer
 
 		set
 		{
-			if ( value != _suspend )
+			lock ( _timerLock )
 			{
-				var app = App.Instance!;
-
-				if ( value )
+				if ( value != _suspend )
 				{
-					app.Logger.WriteLine( "[MultimediaTimer] Requesting suspend of timer" );
+					var app = App.Instance!;
 
-					_suspendCounter = App.TimerTicksPerSecond * 4;
+					if ( value )
+					{
+						app.Logger.WriteLine( "[MultimediaTimer] Requesting suspend of timer" );
+
+						_suspendCounter = App.TimerTicksPerSecond * 4;
+					}
+					else
+					{
+						app.Logger.WriteLine( "[MultimediaTimer] Requesting resumption of timer" );
+
+						ResumeTimerNow();
+					}
+
+					_suspend = value;
 				}
-				else
-				{
-					app.Logger.WriteLine( "[MultimediaTimer] Requesting resumption of timer" );
-
-					ResumeTimerNow();
-				}
-
-				_suspend = value;
 			}
 		}
 	}
@@ -49,7 +60,7 @@ public partial class MultimediaTimer
 
 	private readonly Thread _workerThread = new( WorkerThread ) { IsBackground = true, Priority = ThreadPriority.Highest, Name = "MAIRA Multimedia Timer Worker Thread" };
 
-	private bool _running = true;
+	private volatile bool _running = true;
 
 	public void Initialize()
 	{
@@ -81,9 +92,17 @@ public partial class MultimediaTimer
 			_workerThread.Join( 5000 );
 		}
 
+		// kill the native timer and rebalance timeEndPeriod - without this the timeBeginPeriod call from the
+		// last resume was left outstanding for the rest of the process lifetime
+		lock ( _timerLock )
+		{
+			SuspendTimerNow();
+		}
+
 		app.Logger.WriteLine( "[MultimediaTimer] <<< Shutdown" );
 	}
 
+	// must be called while holding _timerLock
 	private void ResumeTimerNow()
 	{
 		if ( _multimediaTimerId == 0 )
@@ -91,6 +110,11 @@ public partial class MultimediaTimer
 			var app = App.Instance!;
 
 			app.Logger.WriteLine( "[MultimediaTimer] ResumeTimerNow >>>" );
+
+			// the stopwatch keeps running while the timer is suspended, so the baseline is cleared here to
+			// make the worker re-baseline on its first tick - otherwise that tick would compute a delta
+			// spanning the entire suspension and feed it to the racing wheel update as one giant step
+			_lastTotalMilliseconds = 0;
 
 			app.Logger.WriteLine( "[MultimediaTimer] Calling PInvoke.timeBeginPeriod" );
 
@@ -103,12 +127,22 @@ public partial class MultimediaTimer
 			const uint timePeriodic = 0x0001;
 			const uint timeCallbackEventSet = 0x0010;
 
-			_multimediaTimerId = TimeSetEvent( 2, 0, eventHandle, UIntPtr.Zero, timePeriodic | timeCallbackEventSet );
+			_multimediaTimerId = TimeSetEvent( TimerPeriodMilliseconds, 0, eventHandle, UIntPtr.Zero, timePeriodic | timeCallbackEventSet );
+
+			if ( _multimediaTimerId == 0 )
+			{
+				// the timer could not be started - rebalance timeEndPeriod and make some noise, because
+				// without this timer there is no force feedback processing at all
+				_ = PInvoke.timeEndPeriod( 1 );
+
+				app.Logger.WriteLine( "[MultimediaTimer] TimeSetEvent failed - the multimedia timer could not be started!" );
+			}
 
 			app.Logger.WriteLine( "[MultimediaTimer] <<< ResumeTimerNow" );
 		}
 	}
 
+	// must be called while holding _timerLock
 	private void SuspendTimerNow()
 	{
 		if ( _multimediaTimerId != 0 )
@@ -155,9 +189,15 @@ public partial class MultimediaTimer
 				{
 					var deltaMilliseconds = (float) ( totalMilliseconds - multimediaTimer._lastTotalMilliseconds );
 
-					if ( deltaMilliseconds > 1f )
+					if ( deltaMilliseconds > TimerPeriodMilliseconds * 0.5f )
 					{
 						multimediaTimer._lastTotalMilliseconds = totalMilliseconds;
+
+						// pump the active game bridge (if any) right before the racing wheel update, so bridge
+						// sub-samples are taken on this precise kernel timer and the freshest torque reading
+						// is in place with near zero added latency
+
+						app.GameBridge.Pump( totalMilliseconds / 1000.0 );
 
 						// update racing wheel force feedback playout (the FFB graph itself runs in
 						// RacingWheel.ProcessTelemetryFrame on the telemetry thread)
@@ -170,9 +210,9 @@ public partial class MultimediaTimer
 
 						// update jitter statistics and graph
 
-						var jitterMilliseconds = deltaMilliseconds - 2f;
+						var jitterMilliseconds = deltaMilliseconds - TimerPeriodMilliseconds;
 
-						var y = Math.Clamp( jitterMilliseconds / 2f, -1f, 1f );
+						var y = Math.Clamp( jitterMilliseconds / TimerPeriodMilliseconds, -1f, 1f );
 
 						app.Graph.UpdateLayer( Graph.LayerIndex.TimerJitter, y );
 
@@ -195,9 +235,9 @@ public partial class MultimediaTimer
 
 	public void Tick( App app )
 	{
-		if ( Suspend )
+		lock ( _timerLock )
 		{
-			if ( _multimediaTimerId != 0 )
+			if ( _suspend && ( _multimediaTimerId != 0 ) )
 			{
 				_suspendCounter--;
 

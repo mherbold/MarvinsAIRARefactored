@@ -62,6 +62,7 @@ public class Graph : GraphBase
 		}
 	}
 
+	[MethodImpl( MethodImplOptions.AggressiveInlining )]
 	public void Update()
 	{
 		if ( MairaAppMenuPopup.CurrentAppPage == MainWindow.AppPage.Graph )

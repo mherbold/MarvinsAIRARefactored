@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Punte de jocuri</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Jocuri</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>În curând</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Se inițializează puntea de jocuri...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Traduce telemetria din alte jocuri de curse în formatul iRacing, astfel încât MAIRA să poată funcționa cu ele. Activați jocurile pe care doriți să le conectați - puntea se activează automat când un joc activat rulează.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Sursă 60 Hz</value>
@@ -2054,45 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>Sursă viteză volan</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>Surse</value>
   </data>
@@ -2276,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Afișează graful de noduri</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>Predicție (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>Punte de jocuri</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>În curând</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Traduce telemetria din alte jocuri de curse în formatul iRacing, astfel încât MAIRA să poată lucra cu ele. Activează jocurile pe care vrei să le conectezi - puntea se activează automat când rulează un joc activat.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Jocuri</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Se inițializează puntea de jocuri...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Această funcție este foarte experimentală și încă în lucru - nu am avut încă ocazia să validez personal fiecare punte. Te rog redu forța generală la un nivel scăzut înainte de a activa o punte, ca volanul să nu-ți smulgă brațele dacă ceva nu este configurat corect. Distracție plăcută!</value>
   </data>
 </root>

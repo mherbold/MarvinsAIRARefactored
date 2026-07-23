@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>גשר משחקים</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>משחקים</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>בקרוב</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>מאתחל את גשר המשחקים...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>מתרגם טלמטריה ממשחקי מרוצים אחרים לפורמט iRacing כדי ש-MAIRA תוכל לעבוד איתם. הפעילו את המשחקים שברצונכם לגשר - הגשר מופעל אוטומטית כאשר משחק מופעל רץ.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>מקור 60 Hz</value>
@@ -2054,45 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>מקור מהירות ההגה</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>מקורות</value>
   </data>
@@ -2276,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>הצג את גרף הצמתים</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>חיזוי (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>גשר משחקים</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>בקרוב</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>מתרגם טלמטריה ממשחקי מירוץ אחרים לפורמט iRacing כדי ש-MAIRA תוכל לעבוד איתם. הפעל את המשחקים שברצונך לגשר - הגשר מופעל אוטומטית כאשר משחק שהופעל פועל.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>משחקים</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>מאתחל את גשר המשחקים...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>תכונה זו ניסיונית מאוד ועדיין בפיתוח - טרם הייתה לי הזדמנות לאמת אישית כל גשר. אנא הפחת את העוצמה הכוללת לרמה נמוכה לפני הפעלת גשר, כדי שההגה לא יתלוש לך את הידיים אם משהו לא מוגדר כראוי. תיהנה!</value>
   </data>
 </root>

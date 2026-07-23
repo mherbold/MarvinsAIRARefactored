@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Include="..\..\MarvinsAIRARefactored\GameBridges\InlineArrays.cs" Link="InlineArrays.cs" />
     <Compile Include="..\..\MarvinsAIRARefactored\GameBridges\Rf2\Rf2Data.cs" Link="Rf2Data.cs" />
   </ItemGroup>
 

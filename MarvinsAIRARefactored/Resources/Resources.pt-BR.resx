@@ -142,7 +142,7 @@
     <value>Gráfico</value>
   </data>
   <data name="HeaderData" xml:space="preserve">
-    <value>Header data</value>
+    <value>Dados do cabeçalho</value>
   </data>
   <data name="Language" xml:space="preserve">
     <value>Idioma</value>
@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Ponte de jogos</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Jogos</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Em breve</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Inicializando a ponte de jogos...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Traduz a telemetria de outros jogos de corrida para o formato do iRacing para que o MAIRA possa funcionar com eles. Ative os jogos que deseja conectar - a ponte é ativada automaticamente quando um jogo ativado está em execução.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Fonte de 60 Hz</value>
@@ -2054,45 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>Fonte de velocidade do volante</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>Fontes</value>
   </data>
@@ -2276,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Mostrar o grafo de nós</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>Predição (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>Ponte de jogos</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Em breve</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Traduz a telemetria de outros jogos de corrida para o formato do iRacing para que o MAIRA possa trabalhar com eles. Ative os jogos que você deseja conectar - a ponte é ativada automaticamente quando um jogo ativado está em execução.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Jogos</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Inicializando a ponte de jogos...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Este recurso é muito experimental e ainda está em desenvolvimento - ainda não tive a oportunidade de validar pessoalmente cada ponte. Reduza a força geral para um nível baixo antes de ativar uma ponte, para que o volante não arranque seus braços se algo não estiver configurado corretamente. Divirta-se!</value>
   </data>
 </root>

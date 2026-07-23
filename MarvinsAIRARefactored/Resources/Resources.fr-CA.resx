@@ -409,7 +409,7 @@
     <value>Volume</value>
   </data>
   <data name="DeltaLimiterBias" xml:space="preserve">
-    <value>Delta limiter bias</value>
+    <value>Polarisation du limiteur delta</value>
   </data>
   <data name="Output" xml:space="preserve">
     <value>Sortie</value>
@@ -766,10 +766,10 @@
     <value>Onde triangulaire</value>
   </data>
   <data name="SawtoothWaveIn" xml:space="preserve">
-    <value>Sawtooth wave (in)</value>
+    <value>Onde en dents de scie (entrée)</value>
   </data>
   <data name="SawtoothWaveOut" xml:space="preserve">
-    <value>Sawtooth wave (out)</value>
+    <value>Onde en dents de scie (sortie)</value>
   </data>
   <data name="DecreaseForce" xml:space="preserve">
     <value>Diminuer la force</value>
@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Pont de jeux</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Jeux</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Bientôt disponible</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Initialisation du pont de jeux...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Traduit la télémétrie d'autres jeux de course au format iRacing pour que MAIRA puisse fonctionner avec eux. Activez les jeux à relier - le pont s'active automatiquement lorsqu'un jeu activé est en cours d'exécution.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Source 60 Hz</value>
@@ -2054,45 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>Source de vitesse du volant</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>Sources</value>
   </data>
@@ -2276,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Afficher le graphe de nœuds</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>Prédiction (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>Pont de jeux</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Bientôt disponible</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Traduit la télémétrie d'autres jeux de course au format iRacing afin que MAIRA puisse fonctionner avec eux. Activez les jeux que vous souhaitez relier - le pont s'active automatiquement lorsqu'un jeu activé est en cours d'exécution.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Jeux</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Initialisation du pont de jeux...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Cette fonctionnalité est très expérimentale et toujours en développement - je n'ai pas encore eu l'occasion de valider personnellement chaque pont. Veuillez réduire la force globale à un niveau faible avant d'activer un pont, afin que le volant ne vous arrache pas les bras si quelque chose n'est pas bien configuré. Amusez-vous bien !</value>
   </data>
 </root>

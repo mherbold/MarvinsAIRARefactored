@@ -386,11 +386,11 @@
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Le Mans Ultimate supported - no plugins or game file changes needed</li>
+<li>Supports Le Mans Ultimate, Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, Assetto Corsa Rally, rFactor 2, and RaceRoom Racing Experience</li>
 <!-- /wp:list-item -->
 
 <!-- wp:list-item -->
-<li>Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, rFactor 2, and Automobilista 2 coming soon</li>
+<li>Reads each game's shared memory directly - only rFactor 2 needs a (free, community) plugin</li>
 <!-- /wp:list-item --></ul>
 <!-- /wp:list -->
 

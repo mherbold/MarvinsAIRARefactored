@@ -13,8 +13,9 @@ public partial class GameBridge
 	public AssettoCorsaBridge AssettoCorsa { get; } = new();
 	public AssettoCorsaCompetizioneBridge AssettoCorsaCompetizione { get; } = new();
 	public AssettoCorsaEvoBridge AssettoCorsaEvo { get; } = new();
+	public AssettoCorsaRallyBridge AssettoCorsaRally { get; } = new();
 	public RFactor2Bridge RFactor2 { get; } = new();
-	public Automobilista2Bridge Automobilista2 { get; } = new();
+	public RaceRoomBridge RaceRoom { get; } = new();
 
 	public IReadOnlyList<GameBridgeAdapter> Adapters { get; }
 
@@ -29,7 +30,7 @@ public partial class GameBridge
 
 	public GameBridge()
 	{
-		Adapters = [ LeMansUltimate, AssettoCorsa, AssettoCorsaCompetizione, AssettoCorsaEvo, RFactor2, Automobilista2 ];
+		Adapters = [ LeMansUltimate, AssettoCorsa, AssettoCorsaCompetizione, AssettoCorsaEvo, AssettoCorsaRally, RFactor2, RaceRoom ];
 	}
 
 	public void Initialize()
@@ -78,16 +79,47 @@ public partial class GameBridge
 		{
 			return settings.GameBridgeAssettoCorsaEvoEnabled;
 		}
+		else if ( adapter == AssettoCorsaRally )
+		{
+			return settings.GameBridgeAssettoCorsaRallyEnabled;
+		}
 		else if ( adapter == RFactor2 )
 		{
 			return settings.GameBridgeRFactor2Enabled;
 		}
-		else if ( adapter == Automobilista2 )
+		else if ( adapter == RaceRoom )
 		{
-			return settings.GameBridgeAutomobilista2Enabled;
+			return settings.GameBridgeRaceRoomRacingExperienceEnabled;
 		}
 
 		return false;
+	}
+
+	// called from the multimedia timer worker thread at ~500 Hz, immediately before the racing wheel update,
+	// so bridge sub-samples are taken on the precise kernel timer and the freshest torque reading is in the
+	// frame with near zero added latency. Exceptions must never propagate into the worker thread (it treats
+	// them as fatal), so a failing bridge is logged and deactivated instead.
+	public void Pump( double totalSeconds )
+	{
+		var adapter = ActiveAdapter;
+
+		if ( adapter == null )
+		{
+			return;
+		}
+
+		try
+		{
+			adapter.Pump( totalSeconds );
+		}
+		catch ( Exception exception )
+		{
+			var app = App.Instance!;
+
+			app.Logger.WriteLine( $"[GameBridge] Exception caught while pumping the {adapter.GameName} bridge: {exception.Message.Trim()}" );
+
+			Deactivate( app );
+		}
 	}
 
 	public void Tick( App app )
@@ -144,12 +176,22 @@ public partial class GameBridge
 				app.Simulator.SetDataSource( adapter.DataSource );
 
 				ActiveAdapter = adapter;
+
+				// the bridges are pumped from the multimedia timer worker thread, but that timer only runs
+				// while the simulator is connected - and the simulator cannot connect until the bridge has
+				// pumped its first frames, so the timer is resumed here to break the circle
+				app.MultimediaTimer.Suspend = false;
 			}
 			catch ( Exception exception )
 			{
 				app.Logger.WriteLine( $"[GameBridge] Exception caught while activating the {adapter.GameName} bridge: {exception.Message.Trim()}" );
 
 				adapter.Stop();
+
+				if ( !app.Simulator.IsConnected )
+				{
+					app.MultimediaTimer.Suspend = true;
+				}
 			}
 			finally
 			{

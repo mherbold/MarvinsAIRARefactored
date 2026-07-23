@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>جسر الألعاب</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>الألعاب</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>قريبًا</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>جارٍ تهيئة جسر الألعاب...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>ترجمة بيانات القياس عن بُعد من ألعاب سباقات أخرى إلى صيغة iRacing حتى يتمكن MAIRA من العمل معها. فعّل الألعاب التي تريد جسرها - يتم تفعيل الجسر تلقائيًا عند تشغيل لعبة مفعّلة.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>مصدر 60 Hz</value>
@@ -2054,30 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>مصدر سرعة عجلة القيادة</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>المصادر</value>
   </data>
@@ -2261,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>إظهار مخطط العقد</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>التنبؤ (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>جسر الألعاب</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>قريبًا</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>يترجم بيانات القياس عن بُعد من ألعاب سباقات أخرى إلى تنسيق iRacing حتى يتمكن MAIRA من العمل معها. فعّل الألعاب التي تريد ربطها - يتم تفعيل الجسر تلقائيًا عند تشغيل لعبة مفعّلة.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>الألعاب</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>جارٍ تهيئة جسر الألعاب...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>هذه الميزة تجريبية إلى حد كبير وقيد التطوير - لم تُتَح لي الفرصة بعد للتحقق شخصيًا من كل جسر. يُرجى خفض القوة الإجمالية إلى مستوى منخفض قبل تفعيل أي جسر، حتى لا يقتلع المقود ذراعيك إذا كان هناك شيء غير مضبوط بشكل صحيح. استمتع!</value>
   </data>
 </root>

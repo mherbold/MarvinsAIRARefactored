@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Pont gemau</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Gemau</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Yn dod yn fuan</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Wrthi'n cychwyn y bont gemau...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Yn cyfieithu telemetreg o gemau rasio eraill i fformat iRacing fel y gall MAIRA weithio gyda nhw. Galluogwch y gemau rydych am eu pontio - mae'r bont yn actifadu'n awtomatig pan fydd gêm sydd wedi'i galluogi'n rhedeg.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>Ffynhonnell 60 Hz</value>
@@ -2054,45 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>Ffynhonnell cyflymder yr olwyn</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>Ffynonellau</value>
   </data>
@@ -2276,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Dangos y graff nodau</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>Rhagfynegiad (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>Pont gemau</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Yn dod yn fuan</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Yn trosi telemetreg o gemau rasio eraill i fformat iRacing fel y gall MAIRA weithio gyda nhw. Galluogwch y gemau rydych am eu pontio - mae'r bont yn cael ei actifadu'n awtomatig pan fydd gêm wedi'i galluogi yn rhedeg.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Gemau</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Wrthi'n cychwyn y bont gemau...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Mae'r nodwedd hon yn arbrofol iawn ac yn waith ar y gweill - nid wyf wedi cael cyfle eto i ddilysu pob pont yn bersonol. Gostyngwch y cryfder cyffredinol i lefel isel cyn actifadu pont, fel na all y llyw rwygo eich breichiau i ffwrdd os nad yw rhywbeth wedi'i osod yn gywir. Mwynhewch!</value>
   </data>
 </root>

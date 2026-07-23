@@ -25,6 +25,12 @@
                            Text="{Binding Localization[GameBridgeDescription]}"
                            TextWrapping="Wrap" />
 
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           Text="{Binding Localization[GameBridgeWarning]}"
+                           Foreground="{DynamicResource Brush.Accent}"
+                           TextWrapping="Wrap"
+                           Margin="0,10,0,0" />
+
                 <StackPanel Orientation="Horizontal"
                             Margin="0,20,0,0">
 
@@ -88,6 +94,21 @@
                 <StackPanel Orientation="Horizontal"
                             Margin="0,10,0,0">
 
+                    <controls:MairaSwitch x:Name="AssettoCorsaRally_MairaSwitch"
+                                          Label="{Binding Localization[AssettoCorsaRally]}"
+                                          IsOn="{Binding Settings.GameBridgeAssettoCorsaRallyEnabled, Mode=TwoWay}" />
+
+                    <TextBlock x:Name="AssettoCorsaRallyStatus_TextBlock"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="#979797"
+                               Margin="20,0,0,0"
+                               VerticalAlignment="Center" />
+
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,0">
+
                     <controls:MairaSwitch x:Name="RFactor2_MairaSwitch"
                                           Label="{Binding Localization[RFactor2]}"
                                           IsOn="{Binding Settings.GameBridgeRFactor2Enabled, Mode=TwoWay}" />
@@ -103,11 +124,11 @@
                 <StackPanel Orientation="Horizontal"
                             Margin="0,10,0,0">
 
-                    <controls:MairaSwitch x:Name="Automobilista2_MairaSwitch"
-                                          Label="{Binding Localization[Automobilista2]}"
-                                          IsOn="{Binding Settings.GameBridgeAutomobilista2Enabled, Mode=TwoWay}" />
+                    <controls:MairaSwitch x:Name="RaceRoom_MairaSwitch"
+                                          Label="{Binding Localization[RaceRoomRacingExperience]}"
+                                          IsOn="{Binding Settings.GameBridgeRaceRoomRacingExperienceEnabled, Mode=TwoWay}" />
 
-                    <TextBlock x:Name="Automobilista2Status_TextBlock"
+                    <TextBlock x:Name="RaceRoomStatus_TextBlock"
                                Style="{StaticResource MairaTextBlockStyle}"
                                Foreground="#979797"
                                Margin="20,0,0,0"

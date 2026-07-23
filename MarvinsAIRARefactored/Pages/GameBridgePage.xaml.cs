@@ -27,8 +27,9 @@ public partial class GameBridgePage : UserControl
 		UpdateAdapterRow( app.GameBridge.AssettoCorsa, AssettoCorsa_MairaSwitch, AssettoCorsaStatus_TextBlock );
 		UpdateAdapterRow( app.GameBridge.AssettoCorsaCompetizione, AssettoCorsaCompetizione_MairaSwitch, AssettoCorsaCompetizioneStatus_TextBlock );
 		UpdateAdapterRow( app.GameBridge.AssettoCorsaEvo, AssettoCorsaEvo_MairaSwitch, AssettoCorsaEvoStatus_TextBlock );
+		UpdateAdapterRow( app.GameBridge.AssettoCorsaRally, AssettoCorsaRally_MairaSwitch, AssettoCorsaRallyStatus_TextBlock );
 		UpdateAdapterRow( app.GameBridge.RFactor2, RFactor2_MairaSwitch, RFactor2Status_TextBlock );
-		UpdateAdapterRow( app.GameBridge.Automobilista2, Automobilista2_MairaSwitch, Automobilista2Status_TextBlock );
+		UpdateAdapterRow( app.GameBridge.RaceRoom, RaceRoom_MairaSwitch, RaceRoomStatus_TextBlock );
 	}
 
 	private static void UpdateAdapterRow( GameBridgeAdapter adapter, MairaSwitch mairaSwitch, TextBlock statusTextBlock )

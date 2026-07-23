@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Oyun köprüsü</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Oyunlar</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Çok yakında</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Oyun köprüsü başlatılıyor...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Diğer yarış oyunlarından gelen telemetriyi iRacing formatına çevirir, böylece MAIRA bu oyunlarla çalışabilir. Köprülemek istediğiniz oyunları etkinleştirin - etkinleştirilmiş bir oyun çalıştığında köprü otomatik olarak devreye girer.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz kaynağı</value>
@@ -2054,45 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>Direksiyon hızı kaynağı</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>Kaynaklar</value>
   </data>
@@ -2276,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Düğüm grafiğini göster</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>Tahmin (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>Oyun köprüsü</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Çok yakında</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Diğer yarış oyunlarından gelen telemetriyi iRacing formatına çevirir, böylece MAIRA bu oyunlarla çalışabilir. Köprülemek istediğiniz oyunları etkinleştirin - etkinleştirilmiş bir oyun çalıştığında köprü otomatik olarak devreye girer.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Oyunlar</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Oyun köprüsü başlatılıyor...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Bu özellik henüz oldukça deneyseldir ve üzerinde çalışılmaktadır - her köprüyü kişisel olarak doğrulama fırsatım henüz olmadı. Bir köprüyü etkinleştirmeden önce lütfen genel gücü düşük bir seviyeye indirin; böylece bir şey doğru ayarlanmamışsa direksiyon kollarınızı koparmaz. İyi eğlenceler!</value>
   </data>
 </root>

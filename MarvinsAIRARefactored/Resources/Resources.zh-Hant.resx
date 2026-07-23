@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>遊戲橋接</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>遊戲</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>即將推出</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>正在初始化遊戲橋接...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>將其他競速遊戲的遙測資料轉換為 iRacing 格式，讓 MAIRA 能與這些遊戲搭配運作。啟用想要橋接的遊戲 - 當已啟用的遊戲執行時，橋接會自動啟用。</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz 訊號源</value>
@@ -2054,30 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>方向盤速度訊號源</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>訊號源</value>
   </data>
@@ -2261,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>顯示節點圖</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>預測 (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>遊戲橋接</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>即將推出</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>將其他賽車遊戲的遙測資料轉換為 iRacing 格式，讓 MAIRA 能夠與其搭配運作。啟用您想要橋接的遊戲 - 當已啟用的遊戲執行時，橋接會自動啟用。</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>遊戲</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>正在初始化遊戲橋接...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>此功能仍屬高度實驗性質，且仍在開發中 - 我還沒有機會親自驗證每一個橋接。請在啟用橋接之前將整體強度調低，以免在設定不正確時方向盤扯傷您的手臂。玩得開心！</value>
   </data>
 </root>

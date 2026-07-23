@@ -15396,6 +15396,27 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Game bridge - Assetto Corsa Rally enabled
+
+	private bool _gameBridgeAssettoCorsaRallyEnabled = false;
+
+	public bool GameBridgeAssettoCorsaRallyEnabled
+	{
+		get => _gameBridgeAssettoCorsaRallyEnabled;
+
+		set
+		{
+			if ( value != _gameBridgeAssettoCorsaRallyEnabled )
+			{
+				_gameBridgeAssettoCorsaRallyEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region Game bridge - rFactor 2 enabled
 
 	private bool _gameBridgeRFactor2Enabled = false;
@@ -15417,19 +15438,19 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
-	#region Game bridge - Automobilista 2 enabled
+	#region Game bridge - RaceRoom Racing Experience enabled
 
-	private bool _gameBridgeAutomobilista2Enabled = false;
+	private bool _gameBridgeRaceRoomRacingExperienceEnabled = false;
 
-	public bool GameBridgeAutomobilista2Enabled
+	public bool GameBridgeRaceRoomRacingExperienceEnabled
 	{
-		get => _gameBridgeAutomobilista2Enabled;
+		get => _gameBridgeRaceRoomRacingExperienceEnabled;
 
 		set
 		{
-			if ( value != _gameBridgeAutomobilista2Enabled )
+			if ( value != _gameBridgeRaceRoomRacingExperienceEnabled )
 			{
-				_gameBridgeAutomobilista2Enabled = value;
+				_gameBridgeRaceRoomRacingExperienceEnabled = value;
 
 				OnPropertyChanged();
 			}

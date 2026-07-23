@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>गेम ब्रिज</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>गेम</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>जल्द आ रहा है</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>गेम ब्रिज प्रारंभ हो रहा है...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>अन्य रेसिंग गेम्स की टेलीमेट्री को iRacing प्रारूप में बदलता है ताकि MAIRA उनके साथ काम कर सके। जिन गेम्स को आप ब्रिज करना चाहते हैं उन्हें चालू करें - चालू किया गया गेम चलने पर ब्रिज अपने आप सक्रिय हो जाता है।</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz स्रोत</value>
@@ -2054,30 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>स्टीयरिंग व्हील गति स्रोत</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>स्रोत</value>
   </data>
@@ -2261,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>नोड ग्राफ़ दिखाएँ</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>पूर्वानुमान (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>गेम ब्रिज</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>जल्द आ रहा है</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>अन्य रेसिंग गेम्स की टेलीमेट्री को iRacing प्रारूप में अनुवादित करता है ताकि MAIRA उनके साथ काम कर सके। जिन गेम्स को आप ब्रिज करना चाहते हैं उन्हें सक्षम करें - सक्षम गेम चलने पर ब्रिज स्वचालित रूप से सक्रिय हो जाता है।</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>गेम्स</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>गेम ब्रिज प्रारंभ हो रहा है...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>यह सुविधा अभी बहुत प्रयोगात्मक है और इस पर काम चल रहा है - मुझे अभी हर ब्रिज को व्यक्तिगत रूप से जाँचने का अवसर नहीं मिला है। कृपया ब्रिज सक्रिय करने से पहले कुल शक्ति को कम स्तर पर ले आएँ, ताकि कुछ सही सेट न होने पर स्टीयरिंग व्हील आपकी बाँहें न झटक दे। मज़े करें!</value>
   </data>
 </root>

@@ -946,13 +946,13 @@
     <value>Rummelremsa</value>
   </data>
   <data name="Surge" xml:space="preserve">
-    <value>Surge</value>
+    <value>Längsgående acceleration</value>
   </data>
   <data name="Sway" xml:space="preserve">
-    <value>Sway</value>
+    <value>Sidoacceleration</value>
   </data>
   <data name="Heave" xml:space="preserve">
-    <value>Heave</value>
+    <value>Vertikal acceleration</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
     <value>Motorutdata</value>
@@ -1054,7 +1054,7 @@
     <value>Säteskänslaeffekt</value>
   </data>
   <data name="LateralAcceleration" xml:space="preserve">
-    <value>Lateral acceleration (Ay)</value>
+    <value>Sidoacceleration (Ay)</value>
   </data>
   <data name="LateralVelocity" xml:space="preserve">
     <value>Lateral hastighet (Vy)</value>
@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Spelbrygga</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Spel</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Kommer snart</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Initierar spelbryggan...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Översätter telemetri från andra racingspel till iRacing-format så att MAIRA kan arbeta med dem. Aktivera de spel du vill brygga - bryggan aktiveras automatiskt när ett aktiverat spel körs.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz-källa</value>
@@ -2054,45 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>Ratthastighets-källa</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>Källor</value>
   </data>
@@ -2276,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Visa nodgraf</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>Prediktion (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>Spelbrygga</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Kommer snart</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Översätter telemetri från andra racingspel till iRacing-format så att MAIRA kan arbeta med dem. Aktivera de spel du vill brygga - bryggan aktiveras automatiskt när ett aktiverat spel körs.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Spel</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Initierar spelbrygga...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Den här funktionen är i högsta grad experimentell och fortfarande under arbete - jag har ännu inte hunnit validera varje brygga personligen. Sänk den totala styrkan till en låg nivå innan du aktiverar en brygga, så att ratten inte sliter av dig armarna om något inte är rätt inställt. Ha så kul!</value>
   </data>
 </root>

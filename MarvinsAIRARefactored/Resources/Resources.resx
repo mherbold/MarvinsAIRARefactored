@@ -1853,30 +1853,9 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBGraph" xml:space="preserve">
     <value>FFB graph</value>
   </data>
@@ -2078,9 +2057,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>Wheel velocity source</value>
   </data>
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>Sources</value>
   </data>
@@ -2261,18 +2237,13 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Show node graph</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>60 Hz prediction</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>This feature is very much experimental and a work in progress - I have not had the chance to personally validate every bridge yet. Please reduce the overall strength to a low level before activating a bridge, so the wheel can't rip your arms off if something is not set up correctly. Have fun!</value>
   </data>
 </root>

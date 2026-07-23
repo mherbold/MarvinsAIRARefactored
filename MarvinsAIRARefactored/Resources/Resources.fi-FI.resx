@@ -946,13 +946,13 @@
     <value>Tärinäkaista</value>
   </data>
   <data name="Surge" xml:space="preserve">
-    <value>Surge</value>
+    <value>Pituuskiihtyvyys</value>
   </data>
   <data name="Sway" xml:space="preserve">
-    <value>Sway</value>
+    <value>Sivuttaiskiihtyvyys</value>
   </data>
   <data name="Heave" xml:space="preserve">
-    <value>Heave</value>
+    <value>Pystykiihtyvyys</value>
   </data>
   <data name="MotorOutput" xml:space="preserve">
     <value>Moottorilähtö</value>
@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>Pelisilta</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>Pelit</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>Tulossa pian</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>Alustetaan pelisiltaa...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>Kääntää muiden ajopelien telemetrian iRacing-muotoon, jotta MAIRA voi toimia niiden kanssa. Ota käyttöön pelit, jotka haluat sillata - silta aktivoituu automaattisesti, kun käyttöön otettu peli on käynnissä.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz -lähde</value>
@@ -2054,45 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>Rattinopeus-lähde</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>Lähteet</value>
   </data>
@@ -2276,18 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>Näytä solmugraafi</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>Ennuste (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>Pelisilta</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>Tulossa pian</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>Kääntää muiden ajopelien telemetrian iRacing-muotoon, jotta MAIRA voi toimia niiden kanssa. Ota käyttöön pelit, jotka haluat sillata - silta aktivoituu automaattisesti, kun käyttöön otettu peli on käynnissä.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>Pelit</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>Alustetaan pelisiltaa...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>Tämä ominaisuus on hyvin kokeellinen ja edelleen työn alla - en ole vielä ehtinyt henkilökohtaisesti varmistaa jokaista siltaa. Laske kokonaisvoimakkuus matalalle tasolle ennen sillan aktivointia, ettei ratti revi käsiäsi irti, jos jokin ei ole oikein määritetty. Pidä hauskaa!</value>
   </data>
 </root>

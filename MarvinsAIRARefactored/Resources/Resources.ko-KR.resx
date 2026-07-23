@@ -1840,18 +1840,8 @@
     <value>Assetto Corsa EVO</value>
   </data>  <data name="RFactor2" xml:space="preserve">
     <value>rFactor 2</value>
-  </data>  <data name="Automobilista2" xml:space="preserve">
-    <value>Automobilista 2</value>
-  </data>  <data name="GameBridge" xml:space="preserve">
-    <value>게임 브리지</value>
-  </data>  <data name="Games" xml:space="preserve">
-    <value>게임</value>
-  </data>  <data name="GameBridgeComingSoon" xml:space="preserve">
-    <value>곧 제공 예정</value>
-  </data>  <data name="InitializingGameBridge" xml:space="preserve">
-    <value>게임 브리지 초기화 중...</value>
-  </data>  <data name="GameBridgeDescription" xml:space="preserve">
-    <value>다른 레이싱 게임의 텔레메트리를 iRacing 형식으로 변환하여 MAIRA가 함께 작동할 수 있도록 합니다. 브리지할 게임을 켜면 켜진 게임이 실행될 때 브리지가 자동으로 활성화됩니다.</value>
+  </data>  <data name="RaceRoomRacingExperience" xml:space="preserve">
+    <value>RaceRoom Racing Experience</value>
   </data>
   <data name="FFBModuleSource60Hz" xml:space="preserve">
     <value>60 Hz 소스</value>
@@ -2054,30 +2044,6 @@
   <data name="FFBModuleSourceWheelVelocity" xml:space="preserve">
     <value>휠 속도 소스</value>
   </data>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <data name="FFBCategorySources" xml:space="preserve">
     <value>소스</value>
   </data>
@@ -2261,17 +2227,28 @@
   <data name="ShowNodeGraph" xml:space="preserve">
     <value>노드 그래프 표시</value>
   </data>
-
-
-
-
-
-
-
-
-
-
   <data name="FFBModulePrediction60Hz" xml:space="preserve">
     <value>예측 (60 Hz)</value>
+  </data>
+  <data name="GameBridge" xml:space="preserve">
+    <value>게임 브리지</value>
+  </data>
+  <data name="GameBridgeComingSoon" xml:space="preserve">
+    <value>곧 지원 예정</value>
+  </data>
+  <data name="GameBridgeDescription" xml:space="preserve">
+    <value>다른 레이싱 게임의 텔레메트리를 iRacing 형식으로 변환하여 MAIRA가 함께 작동할 수 있도록 합니다. 브리지할 게임을 활성화하세요 - 활성화된 게임이 실행되면 브리지가 자동으로 작동합니다.</value>
+  </data>
+  <data name="Games" xml:space="preserve">
+    <value>게임</value>
+  </data>
+  <data name="InitializingGameBridge" xml:space="preserve">
+    <value>게임 브리지 초기화 중...</value>
+  </data>
+  <data name="AssettoCorsaRally" xml:space="preserve">
+    <value>Assetto Corsa Rally</value>
+  </data>
+  <data name="GameBridgeWarning" xml:space="preserve">
+    <value>이 기능은 아직 매우 실험적이며 개발 중입니다 - 모든 브리지를 직접 검증할 기회가 아직 없었습니다. 설정이 잘못된 경우 휠이 팔을 낚아채지 않도록, 브리지를 활성화하기 전에 전체 강도를 낮은 수준으로 줄여 주세요. 즐겁게 즐기세요!</value>
   </data>
 </root>
