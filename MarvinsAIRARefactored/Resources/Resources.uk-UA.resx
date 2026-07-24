@@ -1903,4 +1903,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Ця функція все ще дуже експериментальна й перебуває в розробці - я ще не мав змоги особисто перевірити кожен міст. Будь ласка, зменшіть загальну силу до низького рівня перед активацією моста, щоб кермо не вирвало вам руки, якщо щось налаштовано неправильно. Гарної гри!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Передавати кермо на пристрій vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Деякі ігри (наприклад, Assetto Corsa) не дають змоги вимкнути їхній вбудований зворотний зв'язок. Увімкніть цю опцію, щоб вісь керма вашої бази передавалася на віртуальний джойстик vJoy, і налаштуйте гру використовувати вісь X пристрою vJoy як ввід керма - гра надсилатиме свій зворотний зв'язок на пристрій vJoy замість вашого справжнього керма, і MAIRA збереже повний контроль.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy недоступний - встановіть драйвер vJoy і перезапустіть MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Тест керма</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Поки цю опцію ввімкнено, кнопки нижче керують віссю керма vJoy, а ваша база не передається. Використовуйте це під час призначення керма у грі, щоб рухалася лише вісь vJoy і гра помилково не вибрала ваше справжнє кермо.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Кермо 90° праворуч</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Похитування керма</value>
+  </data>
 </root>

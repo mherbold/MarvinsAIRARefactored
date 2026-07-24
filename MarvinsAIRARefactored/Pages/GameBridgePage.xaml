@@ -140,6 +140,92 @@
 
         </controls:MairaGroupBox>
 
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[VJoy]}"
+                                HelpTopic="advanced/game-bridge/#vjoy">
+
+            <StackPanel>
+
+                <StackPanel Orientation="Horizontal">
+
+                    <controls:MairaSwitch Label="{Binding Localization[SendSteeringToVJoy]}"
+                                          IsOn="{Binding Settings.GameBridgeSendSteeringToVJoy, Mode=TwoWay}" />
+
+                    <TextBlock x:Name="VJoyStatus_TextBlock"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               Foreground="{DynamicResource Brush.Accent}"
+                               Margin="20,0,0,0"
+                               VerticalAlignment="Center" />
+
+                </StackPanel>
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           Text="{Binding Localization[SendSteeringToVJoyDescription]}"
+                           Foreground="#979797"
+                           TextWrapping="Wrap"
+                           Margin="0,10,0,0" />
+
+                <controls:MairaSwitch Label="{Binding Localization[SteeringTest]}"
+                                      IsOn="{Binding Settings.GameBridgeSteeringTestEnabled, Mode=TwoWay}"
+                                      IsEnabled="{Binding Settings.GameBridgeSendSteeringToVJoy}"
+                                      Margin="0,20,0,0" />
+
+                <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                           Text="{Binding Localization[SteeringTestDescription]}"
+                           Foreground="#979797"
+                           TextWrapping="Wrap"
+                           Margin="0,10,0,0" />
+
+                <StackPanel>
+
+                    <StackPanel.Resources>
+                        <Style TargetType="controls:MairaButton">
+                            <Setter Property="Margin"
+                                    Value="0,20,0,0" />
+                            <Setter Property="Disabled"
+                                    Value="{Binding Settings.GameBridgeSteeringTestEnabled, Converter={StaticResource BoolNegationConverter}}" />
+                        </Style>
+                    </StackPanel.Resources>
+
+                    <UniformGrid Columns="3">
+
+                        <controls:MairaButton Label="{Binding Localization[SteeringWheelLeft]}"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/steering-wheel-left.png"
+                                              Click="SteeringWheelLeft_MairaButton_Click" />
+
+                        <controls:MairaButton Label="{Binding Localization[SteeringWheelCenter]}"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/steering-wheel-center.png"
+                                              Click="SteeringWheelCenter_MairaButton_Click" />
+
+                        <controls:MairaButton Label="{Binding Localization[SteeringWheelRight]}"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/steering-wheel-right.png"
+                                              Click="SteeringWheelRight_MairaButton_Click" />
+
+                    </UniformGrid>
+
+                    <UniformGrid Columns="2">
+
+                        <controls:MairaButton Label="{Binding Localization[SteeringWheel90Left]}"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/steering-wheel-90-left.png"
+                                              Click="SteeringWheel90Left_MairaButton_Click" />
+
+                        <controls:MairaButton Label="{Binding Localization[SteeringWheel90Right]}"
+                                              Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/steering-wheel-90-right.png"
+                                              Click="SteeringWheel90Right_MairaButton_Click" />
+
+                    </UniformGrid>
+
+                    <controls:MairaButton x:Name="SteeringWheelSweep_MairaButton"
+                                          Label="{Binding Localization[SteeringWheelSweep]}"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/steering-wheel-sweep.png"
+                                          BlinkIcon="/MarvinsAIRARefactored;component/Artwork/Buttons/steering-wheel-sweep-orange.png"
+                                          Click="SteeringWheelSweep_MairaButton_Click" />
+
+                </StackPanel>
+
+            </StackPanel>
+
+        </controls:MairaGroupBox>
+
     </StackPanel>
 
 </UserControl>

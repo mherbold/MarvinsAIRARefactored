@@ -1897,4 +1897,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Denne funksjonen er i høyeste grad eksperimentell og fortsatt under arbeid - jeg har ennå ikke hatt mulighet til å validere hver bro personlig. Skru den samlede styrken ned til et lavt nivå før du aktiverer en bro, slik at rattet ikke river av deg armene hvis noe ikke er riktig satt opp. Ha det gøy!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Send styring til vJoy-enheten</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Noen spill (for eksempel Assetto Corsa) gir deg ingen mulighet til å slå av deres innebygde force feedback. Slå på dette for å sende styreaksen fra wheelbasen din videre til den virtuelle joysticken vJoy, og still inn spillet til å bruke vJoys X-akse som styreinput - spillet sender da sin force feedback til vJoy-enheten i stedet for til det ekte rattet ditt, og MAIRA beholder full kontroll.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy er ikke tilgjengelig - installer vJoy-driveren og start MAIRA på nytt!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Styringstest</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Mens dette er på, styrer knappene nedenfor vJoy-styreaksen, og wheelbasen din sendes ikke videre. Bruk dette når du binder styreinput i spillet, slik at bare vJoy-aksen beveger seg og spillet ikke ved en feil velger det ekte rattet ditt.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Ratt 90° høyre</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Ratt frem og tilbake</value>
+  </data>
 </root>

@@ -1897,4 +1897,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Эта функция всё ещё очень экспериментальная и находится в разработке - у меня ещё не было возможности лично проверить каждый мост. Пожалуйста, снизьте общую силу до низкого уровня перед активацией моста, чтобы руль не вырвал вам руки, если что-то настроено неправильно. Приятной игры!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Передавать руль на устройство vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Некоторые игры (например, Assetto Corsa) не дают возможности отключить их встроенную обратную связь. Включите эту опцию, чтобы ось руля вашей базы передавалась на виртуальный джойстик vJoy, и настройте игру так, чтобы она использовала ось X устройства vJoy как ввод руля - игра будет отправлять свою обратную связь на устройство vJoy вместо вашего настоящего руля, и MAIRA сохранит полный контроль.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy недоступен - установите драйвер vJoy и перезапустите MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Тест руля</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Пока эта опция включена, кнопки ниже управляют осью руля vJoy, а ваша база не передаётся. Используйте её при назначении руля в игре, чтобы двигалась только ось vJoy и игра по ошибке не выбрала ваш настоящий руль.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Руль на 90° вправо</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Покачивание руля</value>
+  </data>
 </root>

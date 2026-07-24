@@ -1884,4 +1884,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>هذه الميزة تجريبية إلى حد كبير وقيد التطوير - لم تُتَح لي الفرصة بعد للتحقق شخصيًا من كل جسر. يُرجى خفض القوة الإجمالية إلى مستوى منخفض قبل تفعيل أي جسر، حتى لا يقتلع المقود ذراعيك إذا كان هناك شيء غير مضبوط بشكل صحيح. استمتع!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>إرسال التوجيه إلى جهاز vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>بعض الألعاب (مثل Assetto Corsa) لا توفر طريقة لإيقاف ردود الفعل القسرية المدمجة فيها. فعّل هذا الخيار لتمرير محور التوجيه من قاعدة عجلتك إلى عصا التحكم الافتراضية vJoy، ثم اضبط اللعبة لاستخدام محور X الخاص بـ vJoy كمدخل التوجيه - سترسل اللعبة ردود الفعل القسرية إلى جهاز vJoy بدلاً من عجلتك الحقيقية، ويبقى MAIRA متحكمًا بالكامل.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy غير متوفر - ثبّت برنامج تشغيل vJoy ثم أعد تشغيل MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>اختبار التوجيه</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>أثناء تفعيل هذا الخيار، تتحكم الأزرار أدناه في محور التوجيه الخاص بـ vJoy ولا يتم تمرير قاعدة عجلتك. استخدمه عند ربط مدخل التوجيه في اللعبة، بحيث يتحرك محور vJoy فقط ولا تختار اللعبة عجلتك الحقيقية عن طريق الخطأ.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>عجلة القيادة 90° لليمين</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>تأرجح عجلة القيادة</value>
+  </data>
 </root>

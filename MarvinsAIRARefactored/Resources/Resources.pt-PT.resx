@@ -1898,4 +1898,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Esta funcionalidade é muito experimental e ainda está em desenvolvimento - ainda não tive oportunidade de validar pessoalmente cada ponte. Reduza a força geral para um nível baixo antes de ativar uma ponte, para que o volante não lhe arranque os braços se algo não estiver bem configurado. Divirta-se!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Enviar a direção para o dispositivo vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Alguns jogos (Assetto Corsa, por exemplo) não oferecem forma de desligar o seu retorno de força integrado. Ative esta opção para passar o eixo de direção da sua base para o joystick virtual vJoy, e configure o jogo para usar o eixo X do vJoy como entrada de direção - o jogo enviará o seu retorno de força para o dispositivo vJoy em vez do seu volante real, e o MAIRA manterá o controlo total.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>O vJoy não está disponível - instale o controlador do vJoy e reinicie o MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Teste de direção</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Enquanto isto estiver ativo, os botões abaixo controlam o eixo de direção do vJoy e a sua base não é transmitida. Use isto ao atribuir a entrada de direção no jogo, para que apenas o eixo do vJoy se mova e o jogo não escolha o seu volante real por engano.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Volante 90° para a direita</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Varrimento do volante</value>
+  </data>
 </root>

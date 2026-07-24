@@ -71,6 +71,42 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="vjoy">vJoy</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Some games (Assetto Corsa, for example) give you no way to turn off their built-in force feedback, so they fight MAIRA for control of your wheelbase. This section solves that using the free vJoy virtual joystick driver: MAIRA passes your wheelbase's steering axis through to the vJoy device, you bind the game's steering input to the vJoy X axis, and the game then sends its force feedback to the vJoy device (which ignores it) instead of to your real wheel - leaving MAIRA in full control.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Send steering to the vJoy device</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Passes your wheelbase's steering axis through to the vJoy virtual joystick. This requires the vJoy driver to be installed - if vJoy is not available, a warning appears next to this switch (install the vJoy driver and restart MAIRA).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"setting"} -->
+<p class="setting">Steering test</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>While this is on, the steering wheel buttons below control the vJoy steering axis and your wheelbase is not passed through. Use this when binding the steering input in the game, so only the vJoy axis moves and the game cannot pick your real wheel by mistake.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"default"} -->
+<p class="default">Default: OFF</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The steering wheel position buttons hold the vJoy axis at a fixed position (full left, 90° left, center, 90° right, or full right). The steering wheel sweep button continuously rocks the axis from side to side - some games (Assetto Corsa included) ignore controller input while their window is in the background, so start the sweep, click over to the game, and bind the steering there while the axis is still moving. The sweep button blinks while the sweep is running; press it again to stop.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="how-it-works">How it works</p>
 <!-- /wp:paragraph -->
 

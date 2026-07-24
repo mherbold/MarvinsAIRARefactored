@@ -1897,4 +1897,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Tämä ominaisuus on hyvin kokeellinen ja edelleen työn alla - en ole vielä ehtinyt henkilökohtaisesti varmistaa jokaista siltaa. Laske kokonaisvoimakkuus matalalle tasolle ennen sillan aktivointia, ettei ratti revi käsiäsi irti, jos jokin ei ole oikein määritetty. Pidä hauskaa!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Lähetä ohjaus vJoy-laitteelle</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Jotkin pelit (esimerkiksi Assetto Corsa) eivät anna mitään keinoa kytkeä niiden sisäänrakennettua voimapalautetta pois. Kytke tämä päälle, jolloin rattipohjan ohjausakseli välitetään virtuaaliselle vJoy-ohjaimelle, ja aseta peli käyttämään vJoyn X-akselia ohjaussyötteenä - peli lähettää voimapalautteensa vJoy-laitteelle oikean rattisi sijaan, ja MAIRA säilyttää täyden hallinnan.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy ei ole käytettävissä - asenna vJoy-ajuri ja käynnistä MAIRA uudelleen!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Ohjaustesti</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Kun tämä on päällä, alla olevat painikkeet ohjaavat vJoyn ohjausakselia eikä rattipohjaasi välitetä. Käytä tätä, kun sidot ohjaussyötteen pelissä, jotta vain vJoyn akseli liikkuu eikä peli valitse vahingossa oikeaa rattiasi.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Ratti 90° oikealle</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Ratti edestakaisin</value>
+  </data>
 </root>

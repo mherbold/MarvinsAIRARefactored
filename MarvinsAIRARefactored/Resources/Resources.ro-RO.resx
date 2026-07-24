@@ -1897,4 +1897,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Această funcție este foarte experimentală și încă în lucru - nu am avut încă ocazia să validez personal fiecare punte. Te rog redu forța generală la un nivel scăzut înainte de a activa o punte, ca volanul să nu-ți smulgă brațele dacă ceva nu este configurat corect. Distracție plăcută!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Trimite direcția către dispozitivul vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Unele jocuri (de exemplu Assetto Corsa) nu oferă nicio modalitate de a opri force feedback-ul lor integrat. Activează această opțiune pentru a transmite axa de direcție a bazei tale către joystick-ul virtual vJoy, apoi setează jocul să folosească axa X a vJoy ca intrare de direcție - jocul își va trimite force feedback-ul către dispozitivul vJoy în loc de volanul tău real, iar MAIRA păstrează controlul complet.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy nu este disponibil - instalează driverul vJoy și repornește MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Test de direcție</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Cât timp aceasta este pornită, butoanele de mai jos controlează axa de direcție vJoy, iar baza ta nu este transmisă. Folosește-o când asociezi direcția în joc, astfel încât să se miște doar axa vJoy și jocul să nu aleagă din greșeală volanul tău real.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Volan 90° dreapta</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Balansarea volanului</value>
+  </data>
 </root>

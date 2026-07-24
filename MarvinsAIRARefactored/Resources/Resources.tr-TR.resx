@@ -1897,4 +1897,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Bu özellik henüz oldukça deneyseldir ve üzerinde çalışılmaktadır - her köprüyü kişisel olarak doğrulama fırsatım henüz olmadı. Bir köprüyü etkinleştirmeden önce lütfen genel gücü düşük bir seviyeye indirin; böylece bir şey doğru ayarlanmamışsa direksiyon kollarınızı koparmaz. İyi eğlenceler!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Direksiyonu vJoy cihazına gönder</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Bazı oyunlar (örneğin Assetto Corsa) yerleşik kuvvet geri bildirimlerini kapatmanın hiçbir yolunu sunmaz. Bunu açarak wheelbase'inizin direksiyon eksenini sanal joystick vJoy'a aktarın, ardından oyunu direksiyon girişi olarak vJoy'un X eksenini kullanacak şekilde ayarlayın - oyun kuvvet geri bildirimini gerçek direksiyonunuz yerine vJoy cihazına gönderir ve tam kontrol MAIRA'da kalır.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy kullanılamıyor - vJoy sürücüsünü yükleyin ve MAIRA'yı yeniden başlatın!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Direksiyon testi</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Bu açıkken aşağıdaki düğmeler vJoy direksiyon eksenini kontrol eder ve wheelbase'iniz aktarılmaz. Oyunda direksiyon girişini atarken bunu kullanın; böylece yalnızca vJoy ekseni hareket eder ve oyun yanlışlıkla gerçek direksiyonunuzu seçmez.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Direksiyon simidi 90° sağ</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Direksiyon simidi tarama</value>
+  </data>
 </root>

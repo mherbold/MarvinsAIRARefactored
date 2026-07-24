@@ -1884,4 +1884,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>यह सुविधा अभी बहुत प्रयोगात्मक है और इस पर काम चल रहा है - मुझे अभी हर ब्रिज को व्यक्तिगत रूप से जाँचने का अवसर नहीं मिला है। कृपया ब्रिज सक्रिय करने से पहले कुल शक्ति को कम स्तर पर ले आएँ, ताकि कुछ सही सेट न होने पर स्टीयरिंग व्हील आपकी बाँहें न झटक दे। मज़े करें!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>स्टीयरिंग को vJoy डिवाइस पर भेजें</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>कुछ गेम्स (जैसे Assetto Corsa) अपने बिल्ट-इन फोर्स फीडबैक को बंद करने का कोई तरीका नहीं देते। इसे चालू करें ताकि आपकी व्हीलबेस की स्टीयरिंग धुरी vJoy वर्चुअल जॉयस्टिक तक पहुँचे, फिर गेम को स्टीयरिंग इनपुट के रूप में vJoy की X धुरी उपयोग करने के लिए सेट करें - गेम अपना फोर्स फीडबैक आपके असली व्हील के बजाय vJoy डिवाइस को भेजेगा, और नियंत्रण पूरी तरह MAIRA के पास रहेगा।</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy उपलब्ध नहीं है - vJoy ड्राइवर इंस्टॉल करें और MAIRA को फिर से शुरू करें!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>स्टीयरिंग परीक्षण</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>जब यह चालू है, नीचे दिए बटन vJoy की स्टीयरिंग धुरी को नियंत्रित करते हैं और आपकी व्हीलबेस पास नहीं होती। गेम में स्टीयरिंग इनपुट असाइन करते समय इसका उपयोग करें, ताकि केवल vJoy की धुरी हिले और गेम गलती से आपका असली व्हील न चुन ले।</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>स्टीयरिंग व्हील 90° दाएं</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>स्टीयरिंग व्हील स्वीप</value>
+  </data>
 </root>

@@ -1897,4 +1897,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Այս գործառույթը դեռ խիստ փորձնական է և մշակման փուլում է - ես դեռ հնարավորություն չեմ ունեցել անձամբ ստուգելու յուրաքանչյուր կամուրջ։ Խնդրում ենք կամուրջն ակտիվացնելուց առաջ իջեցնել ընդհանուր ուժը ցածր մակարդակի, որպեսզի ղեկը չպոկի ձեր ձեռքերը, եթե ինչ-որ բան ճիշտ կարգավորված չէ։ Հաճելի խաղ!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Ուղարկել ղեկը vJoy սարքին</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Որոշ խաղեր (օրինակ՝ Assetto Corsa) հնարավորություն չեն տալիս անջատել իրենց ներկառուցված ուժային հետադարձ կապը։ Միացրեք սա, որպեսզի ձեր ղեկի բազայի ղեկային առանցքը փոխանցվի vJoy վիրտուալ խաղաձողին, ապա կարգավորեք խաղը, որ որպես ղեկի մուտք օգտագործի vJoy-ի X առանցքը - խաղն իր ուժային հետադարձ կապը կուղարկի vJoy սարքին ձեր իրական ղեկի փոխարեն, և MAIRA-ն կպահպանի լիարժեք վերահսկողությունը։</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy-ը հասանելի չէ - տեղադրեք vJoy դրայվերը և վերագործարկեք MAIRA-ն!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Ղեկի փորձարկում</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Քանի դեռ սա միացված է, ներքևի կոճակները կառավարում են vJoy-ի ղեկային առանցքը, և ձեր ղեկի բազան չի փոխանցվում։ Օգտագործեք սա խաղում ղեկի մուտքը կապելիս, որպեսզի շարժվի միայն vJoy-ի առանցքը, և խաղը սխալմամբ չընտրի ձեր իրական ղեկը։</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Ղեկ՝ 90° աջ</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Ղեկի ճոճում</value>
+  </data>
 </root>

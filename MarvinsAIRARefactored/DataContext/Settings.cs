@@ -14286,6 +14286,55 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region Game bridge - send steering to vJoy
+
+	private bool _gameBridgeSendSteeringToVJoy = false;
+
+	public bool GameBridgeSendSteeringToVJoy
+	{
+		get => _gameBridgeSendSteeringToVJoy;
+
+		set
+		{
+			if ( value != _gameBridgeSendSteeringToVJoy )
+			{
+				_gameBridgeSendSteeringToVJoy = value;
+
+				// the steering test mode rides on top of the vJoy passthrough, so switching the passthrough
+				// off also switches the test mode off (its switch is disabled in the UI while this is off)
+				if ( !value )
+				{
+					GameBridgeSteeringTestEnabled = false;
+				}
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
+	#region Game bridge - steering test enabled
+
+	private bool _gameBridgeSteeringTestEnabled = false;
+
+	public bool GameBridgeSteeringTestEnabled
+	{
+		get => _gameBridgeSteeringTestEnabled;
+
+		set
+		{
+			if ( value != _gameBridgeSteeringTestEnabled )
+			{
+				_gameBridgeSteeringTestEnabled = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region App Manager - Enabled
 
 	private bool _appManagerEnabled = true;

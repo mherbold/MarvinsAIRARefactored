@@ -32,6 +32,8 @@ public class VirtualJoystick
 	private bool _initialized = false;
 	private bool _faulted = false;
 
+	private int _consecutiveUpdateFailures = 0;
+
 	public bool Initialized { get => _initialized; }
 	public bool Faulted { get => _faulted; }
 
@@ -84,6 +86,10 @@ public class VirtualJoystick
 				{
 					_vJoy.ResetVJD( JoystickId );
 
+					var xAxisExists = _vJoy.GetVJDAxisExist( JoystickId, HID_USAGES.HID_USAGE_X );
+					var yAxisExists = _vJoy.GetVJDAxisExist( JoystickId, HID_USAGES.HID_USAGE_Y );
+					var zAxisExists = _vJoy.GetVJDAxisExist( JoystickId, HID_USAGES.HID_USAGE_Z );
+
 					_vJoy.GetVJDAxisMin( JoystickId, HID_USAGES.HID_USAGE_X, ref _minimumX );
 					_vJoy.GetVJDAxisMax( JoystickId, HID_USAGES.HID_USAGE_X, ref _maximumX );
 
@@ -93,7 +99,22 @@ public class VirtualJoystick
 					_vJoy.GetVJDAxisMin( JoystickId, HID_USAGES.HID_USAGE_Z, ref _minimumZ );
 					_vJoy.GetVJDAxisMax( JoystickId, HID_USAGES.HID_USAGE_Z, ref _maximumZ );
 
-					_initialized = true;
+					app.Logger.WriteLine( $"[VirtualJoystick] Axes - X: {xAxisExists} ({_minimumX}..{_maximumX}), Y: {yAxisExists} ({_minimumY}..{_maximumY}), Z: {zAxisExists} ({_minimumZ}..{_maximumZ})" );
+
+					// without an X axis the steering can never move - flag it as a fault instead of silently
+					// writing a constant zero forever (the same goes for a degenerate axis range)
+					if ( !xAxisExists || ( _minimumX == _maximumX ) )
+					{
+						app.Logger.WriteLine( $"[VirtualJoystick] Joystick {JoystickId} has no usable X axis - reconfigure the vJoy device with an X axis!" );
+
+						_vJoy.RelinquishVJD( JoystickId );
+
+						_faulted = true;
+					}
+					else
+					{
+						_initialized = true;
+					}
 				}
 			}
 		}
@@ -141,12 +162,25 @@ public class VirtualJoystick
 
 			if ( !_vJoy.UpdateVJD( JoystickId, ref _joystickState ) )
 			{
+				// log the first failure and then once every ~5 seconds - if the re-acquire below keeps
+				// succeeding this would otherwise loop forever in silence with the axes frozen
+				_consecutiveUpdateFailures++;
+
+				if ( ( _consecutiveUpdateFailures == 1 ) || ( _consecutiveUpdateFailures % 300 == 0 ) )
+				{
+					app.Logger.WriteLine( $"[VirtualJoystick] UpdateVJD failed on joystick {JoystickId} ({_consecutiveUpdateFailures}x)" );
+				}
+
 				if ( !_vJoy.AcquireVJD( JoystickId ) )
 				{
 					app.Logger.WriteLine( $"[VirtualJoystick] Joystick {JoystickId} could not be re-acquired" );
 
 					_initialized = false;
 				}
+			}
+			else
+			{
+				_consecutiveUpdateFailures = 0;
 			}
 		}
 	}

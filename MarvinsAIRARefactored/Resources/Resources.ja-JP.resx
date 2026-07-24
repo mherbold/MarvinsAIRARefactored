@@ -1900,4 +1900,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>この機能はまだ実験段階で、開発途中です - すべてのブリッジを個人的に検証できたわけではありません。何かが正しく設定されていない場合にステアリングホイールに腕を持っていかれないよう、ブリッジを有効にする前に全体の強さを低いレベルまで下げてください。楽しんでください！</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>ステアリングをvJoyデバイスに送信</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>一部のゲーム（Assetto Corsaなど）では、内蔵のフォースフィードバックをオフにする方法がありません。これをオンにするとホイールベースのステアリング軸が仮想ジョイスティックvJoyに渡されるので、ゲーム側でvJoyのX軸をステアリング入力として設定してください - ゲームはフォースフィードバックを実際のホイールではなくvJoyデバイスに送るようになり、MAIRAが完全な制御を保ちます。</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoyが利用できません - vJoyドライバーをインストールしてMAIRAを再起動してください！</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>ステアリングテスト</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>これがオンの間、下のボタンがvJoyのステアリング軸を操作し、ホイールベースの入力は渡されません。ゲームでステアリング入力を割り当てるときに使うと、vJoyの軸だけが動くため、ゲームが誤って実際のホイールを選ぶことがなくなります。</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>ステアリング 90° 右</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>ステアリング スイープ</value>
+  </data>
 </root>
