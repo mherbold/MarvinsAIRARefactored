@@ -22,4 +22,4 @@ jobs:
         uses: microsoft/setup-msbuild@v2
 
       - name: Restore and build
-        run: msbuild MarvinsAIRARefactored.csproj /restore /p:Configuration=Release /p:Platform=x64
+        run: msbuild MarvinsAIRARefactored\MarvinsAIRARefactored.csproj /restore /p:Configuration=Release /p:Platform=x64
