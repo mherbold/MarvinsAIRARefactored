@@ -1,6 +1,6 @@
 # MAIRA FFB Graph Alpha — Tester Guide
 
-**Build:** [Version 2.0.475.54 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.475.54) — the seventh alpha; see [New in this build](#new-in-this-build) for what changed since the sixth one.
+**Build:** [Version 2.0.478.83 (pre-release)](https://github.com/mherbold/MarvinsAIRARefactored/releases/tag/2.0.478.83) — the eighth alpha; see [New in this build](#new-in-this-build) for what changed since the seventh one.
 
 This alpha replaces MAIRA's entire force feedback system. The fixed set of FFB algorithms (Detail booster, Delta limiter, Slew and total compression, Multi adjustment toolkit, …) is gone; in its place is a **modular FFB graph** — an audio-DSP-style node editor where the force feedback signal chain is built out of small modules that you wire together yourself.
 
@@ -19,12 +19,12 @@ This document explains what changed versus the released (main branch) version, a
 
 ## New in this build
 
-Changes since the sixth alpha (2.0.473.1208), for testers who already ran it:
+Changes since the seventh alpha (2.0.475.54), for testers who already ran it:
 
-- **Everything from released version 2.0.475.10 is now included.** The alpha branch has been synced with the released version — most notably the new **game bridge with Le Mans Ultimate support**, plus the USB CDC serial device detection fix, the audio fix when the iRacing simulator starts, and the off-screen main window recovery.
-- **The game bridge is wired into the FFB graph engine.** Two integration pieces make the two new systems work together:
-    - The bridge reconstructs your physical wheel angle from the steering axis (LMU clamps its reported steering value at full lock), so the graph's soft lock, wheel centering, and prediction inputs behave correctly.
-    - The engine RPM vibration reads the car's redline and engine-running state from the game, so it sweeps to the right frequency and goes silent when the engine is off under LMU.
+- **Everything from released version 2.0.478.66 is now included.** Most notably the **six new game bridges** (Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, Assetto Corsa Rally, rFactor 2, and RaceRoom Racing Experience), the **vJoy steering passthrough** for games that give you no way to turn off their built-in force feedback, the game bridge safety warning, and the fix for sounds not playing after the audio output device reopens. The new bridges get the same FFB graph engine wiring Le Mans Ultimate already had — reconstructed physical wheel angle for the soft lock / wheel centering / prediction inputs, and the car's redline and engine state for the engine RPM vibration.
+- **New 60 Hz prediction module.** The prediction lineup is now two modules: the existing one is renamed **360 Hz prediction**, and the new **60 Hz prediction** is built for the 60 Hz source. At 60 Hz the torque history alone carries almost no predictive power, so this module learns from your steering and the car's chassis motion instead, runs once per telemetry frame, and holds its correction across the frame. Defaults: 33 ms horizon, 100% strength, 5 Nm limit. See [the math](#inside-the-prediction-modules-the-math).
+- **Prediction horizons are now in milliseconds.** Both prediction modules show and directly edit their Horizon in ms (previously the 360 Hz module counted K1–K12 ticks).
+- **Marvin's built-in graphs now include prediction out of the box** — Marvin's easy detail adjustment carries the 360 Hz prediction module, and Marvin's native 60 Hz carries the new 60 Hz one.
 
 ---
 
@@ -39,7 +39,7 @@ Changes since the sixth alpha (2.0.473.1208), for testers who already ran it:
 | Steering Effects page | Wheel force + vibration groups | Wheel groups moved into the graphs (thresholds/calibration remain) |
 | FFB defaults | Per-algorithm defaults | **Five built-in graphs** shipped with the app, one per old algorithm family |
 | Sharing setups | Not possible | **Export / import** graphs as `.mairagraph` files |
-| Latency compensation | — | **Prediction module** — adaptive lookahead up to 33 ms |
+| Latency compensation | — | **360 Hz and 60 Hz prediction modules** — adaptive lookahead up to 33 ms |
 | Recordings | Fixed 60-second, 2 channels | Toggle record up to 5 min, 36 channels, auto-stop on lap completion |
 | Preview | Fixed-width graph | 1 pixel per sample, horizontal zoom, hover zoom + **data readout**, **track map panel** |
 | First-run wizard | Picks an algorithm + preset knobs | Tunes the flagship built-in graph's **detail gain** (25%–200%) |
@@ -113,7 +113,8 @@ All values below are the defaults. Knob values can be click-stepped, dragged, or
 | **Adaptive smoother** | One Euro filter — smooths hard when the signal is calm, opens up during fast changes | Amount (0–100%) |
 | **Transient enhancer** | Outputs amplified attack transients only (nonlinear detail extractor) | Cutoff (7.2 Hz), Gain (1.00×) |
 | **Interpolator** | Replaces a 60 Hz signal's staircase steps with a linear ramp across each frame — pure interpolation between known samples, adds one frame (~16.7 ms) of latency. Use on 60 Hz-derived branches only | — |
-| **Prediction** | Shifts the signal into the future to counteract latency — an adaptive filter bank that learns each car as you drive (see [Inside the Prediction module](#inside-the-prediction-module-the-math)) | Horizon (K6), Correction limit (5.00 Nm), Strength (150%) |
+| **360 Hz prediction** | Shifts a 360 Hz signal into the future to counteract latency — an adaptive filter bank that learns each car as you drive (see [Inside the prediction modules](#inside-the-prediction-modules-the-math)) | Horizon (17 ms), Correction limit (5.00 Nm), Strength (150%) |
+| **60 Hz prediction** | The same idea for the 60 Hz source — learns from your steering and the car's chassis motion (torque history alone predicts nothing at 60 Hz), runs once per frame, and holds the correction across the frame | Horizon (33 ms), Correction limit (5.00 Nm), Strength (100%) |
 
 #### Mixers (two inputs)
 
@@ -181,8 +182,8 @@ The graph dropdowns are split into two categories:
 
 Five built-in graphs ship, each one the replacement for one of the old fixed algorithms. All five share the same back half — the steering-effect forces, crash protection, parked ramp-down, interpolated low-speed wheel centering and friction branches, LFE, soft lock, the Output soft limiter, and the full set of vibration generator nodes — and differ in how the torque signal is produced and conditioned up front:
 
-- **Marvin's easy detail adjustment** *(the flagship — the wizard tunes it, and fresh installs start on it; replaces Native 360 Hz, Detail booster, and Delta limiter)* — splits the 360 Hz torque into two branches: the slow body goes through the **Prediction module** and a low-pass filter (prediction on the body only, so no noise is amplified), while the high-pass detail branch gets its own **detail gain** (the gain the first-run wizard tunes) and curb protection.
-- **Marvin's native 60 Hz** *(replaces Native 60 Hz)* — the plain 60 Hz torque with curb protection, as simple as it gets.
+- **Marvin's easy detail adjustment** *(the flagship — the wizard tunes it, and fresh installs start on it; replaces Native 360 Hz, Detail booster, and Delta limiter)* — splits the 360 Hz torque into two branches: the slow body goes through the **360 Hz prediction module** and a low-pass filter (prediction on the body only, so no noise is amplified), while the high-pass detail branch gets its own **detail gain** (the gain the first-run wizard tunes) and curb protection.
+- **Marvin's native 60 Hz** *(replaces Native 60 Hz)* — the 60 Hz torque through the new **60 Hz prediction module** and an interpolator, with curb protection.
 - **Alan Le's slew and total compression** *(replaces Slew and total compression)* — the 360 Hz torque through a **slew compressor** (75 Nm/s, 3:1 — squeezes how *fast* torque can change) and a **compressor** (30 Nm, 4:1 — squeezes total torque), then curb protection.
 - **Alan Le's hybrid** *(replaces the Multi adjustment toolkit's fixed hybrid mode)* — an **adaptive blend** rides the 60 Hz torque as the anchor while letting the 360 Hz detail through (8 Hz fixed corner), followed by the toolkit's whole adjustment chain: compressor and peak-mode slew compressor (both off by default), the detail stage (7.2 Hz low-pass + transient enhancer at a neutral 1.00×), and an adaptive smoother (0%).
 - **Alan Le's adaptive hybrid** *(replaces the toolkit's variable hybrid mode)* — the same chain, but the blend's corner drops from 20 Hz to 6 Hz whenever the force direction flips and eases back over 28 ms, letting transients punch through with less anchor pull; ships with gentle peak-mode slew compression (180 Nm/s, 1.5:1) and 10% adaptive smoothing switched on.
@@ -240,19 +241,19 @@ The **track map** is now a permanent panel beside the preview graph: the whole r
 
 ## Engine internals (what you should feel)
 
-- The whole processing chain now runs at a true **360 Hz** in a single burst per telemetry frame, handed to a dedicated high-rate output thread that streams torque to the wheelbase. The Interpolator module smooths 60 Hz staircases; the Prediction module shifts the signal earlier to counteract latency.
+- The whole processing chain now runs at a true **360 Hz** in a single burst per telemetry frame, handed to a dedicated high-rate output thread that streams torque to the wheelbase. The Interpolator module smooths 60 Hz staircases; the prediction modules shift the signal earlier to counteract latency.
 - A performance pass eliminated steady-state memory allocations in the hot path, so there are no garbage-collection hitches — force delivery should be glassy even during long sessions.
 - Wheel output writes are skipped when the value hasn't changed, cutting driver overhead while parked.
 
 ---
 
-## Inside the Prediction module (the math)
+## Inside the prediction modules (the math)
 
-*For the mathematically inclined — nothing here is needed to use the module.*
+*For the mathematically inclined — nothing here is needed to use the modules. Everything up to [the 60 Hz module](#the-60-hz-prediction-module) describes the 360 Hz prediction module.*
 
 ### The problem
 
-Let $y_t$ be iRacing's steering torque sampled at 360 Hz. Every physical path from tire to hand adds delay — telemetry transport, FFB processing, wheelbase drivetrain — so the torque you feel lags the physics. The module's goal is to output an estimate of $y_{t+k}$ at time $t$, shifting the whole waveform $k$ ticks ($k \times 2.78$ ms) earlier. The Horizon knob is $k$, from K1 to K12 (2.8–33 ms).
+Let $y_t$ be iRacing's steering torque sampled at 360 Hz. Every physical path from tire to hand adds delay — telemetry transport, FFB processing, wheelbase drivetrain — so the torque you feel lags the physics. The module's goal is to output an estimate of $y_{t+k}$ at time $t$, shifting the whole waveform $k$ ticks ($k \times 2.78$ ms) earlier. The Horizon knob sets $k$ in milliseconds, from 2.8 to 33 ms in 360 Hz tick steps.
 
 Two structural facts shape the design:
 
@@ -266,7 +267,7 @@ Naive prediction extrapolates $k$ ticks ahead from every tick. Frame anchoring e
 - **inside the frame** ($i + k \le 5$): the "future" sample is already in hand, and the module outputs it exactly — zero estimation error; or
 - **beyond the frame**: the true extrapolation depth is only $d = i + k - 5$.
 
-At K6 the depth $d$ ranges over $\{1,\dots,6\}$ with mean 3.5 — the module delivers a 6-tick lead while only ever guessing 1–6 ticks ahead. Since prediction error grows steeply with depth, halving the average depth buys more than any cleverer estimator at full depth. Each horizon needs exactly six depths (one per sub-tick), so the module maintains a bank of six independent predictors.
+At the default 17 ms horizon ($k = 6$ ticks) the depth $d$ ranges over $\{1,\dots,6\}$ with mean 3.5 — the module delivers a 6-tick lead while only ever guessing 1–6 ticks ahead. Since prediction error grows steeply with depth, halving the average depth buys more than any cleverer estimator at full depth. Each horizon needs exactly six depths (one per sub-tick), so the module maintains a bank of six independent predictors.
 
 ### The predictor bank
 
@@ -302,15 +303,26 @@ where $\gamma$ is the Strength knob (default 150%) and $L$ the Correction limit 
 
 ### Measured behavior
 
-An offline test bench in the repo (`MarvinsAIRARefactored.PredictionLab`) replays real 360 Hz recordings through the exact shipped algorithm and scores three things: RMS error against the true future (normalized so 1.0 = the do-nothing persistence baseline), the *achieved* waveform shift (argmin of the cross-correlation lag — the honest number, immune to amplitude tricks), and high-frequency (>30 Hz) noise gain. Across six cars/tracks at the default K6 / 150% / 5 Nm:
+An offline test bench in the repo (`MarvinsAIRARefactored.PredictionLab`) replays real 360 Hz recordings through the exact shipped algorithm and scores three things: RMS error against the true future (normalized so 1.0 = the do-nothing persistence baseline), the *achieved* waveform shift (argmin of the cross-correlation lag — the honest number, immune to amplitude tricks), and high-frequency (>30 Hz) noise gain. Across six cars/tracks at the default 17 ms / 150% / 5 Nm:
 
 - ≈ 11.5 ms average true shift (worst car 8.6 ms) — versus < 1 ms for the naive predictor this module replaced;
 - RMS ratio ≈ 0.82, and **below 1.0 on every car** — the shifted signal tracks the true future better than doing nothing does;
 - HF gain ≈ 1.24 — mild, and the built-in graph applies prediction to the low-pass body branch only, so no high-frequency noise is amplified at all.
 
-K12 (33 ms) is *not* cleanly achievable — the predictability ceiling bites, and on some cars the shift metric collapses — which is why the default is K6 rather than the maximum.
+The full 33 ms horizon is *not* cleanly achievable at 360 Hz — the predictability ceiling bites, and on some cars the shift metric collapses — which is why the default is 17 ms rather than the maximum.
 
 One caveat you will notice: every preview refresh resets the engine, so the filters relearn across the visible window — the left edge of the preview always shows a weaker effect than the steady state you feel on track.
+
+### The 60 Hz prediction module
+
+The 60 Hz source needed its own design, because both structural facts change at 60 Hz:
+
+- **No frame anchoring.** The 60 Hz signal has one sample per frame — there are no already-known "future" sub-samples to hand out, so every prediction is a true extrapolation at the full horizon depth.
+- **Torque history alone predicts nothing.** Measured on the same recordings, every torque-only predictor at 60 Hz scores *worse* than doing nothing — the useful high-frequency structure lives between the 60 Hz samples. Essentially all the predictive power is in the *other* telemetry channels.
+
+So the 60 Hz module is a single NLMS filter (no bank) whose features combine the recent 60 Hz torque history with your **steering wheel angle**, **steering wheel velocity**, and the car's **lateral velocity** — the steering input *leads* the torque response, and the filter learns that lead per car. It runs once per telemetry frame and holds its correction across the frame's six output sub-ticks (the interpolator downstream smooths the steps).
+
+On the test bench the default 33 ms horizon / 100% strength / 5 Nm limit achieves ≈ 8 ms of true shift, and beats the do-nothing baseline on every recorded car. Two tuning lessons flipped versus 360 Hz: a 33 ms horizon beats 17 ms, and 100% strength beats over-driving it.
 
 ---
 
@@ -340,9 +352,9 @@ The wizard's FFB style step no longer picks an algorithm. Its 7-position slider 
 - **Pin a few settings** on a custom graph (the tiny switch on each setting in the module settings column), confirm they appear above the editor with the right module captions, stay in sync with the settings column, and survive an export/import round trip.
 - **Vibration test buttons:** with the car on track, walk through every vibration node's test button — each should shake the wheel on its own, the gear change one should fire once and re-arm, and all of them should gray out the moment you leave the car.
 - **Try all five built-in graphs** back to back on the same car — especially the one matching the algorithm you used on the released version. Does its graph replacement feel like the algorithm it replaces?
-- **Le Mans Ultimate (if you own it):** the game bridge is newly wired into the FFB graph engine and this combination has had the least real-world time of anything in the alpha. Drive LMU with a few built-in graphs and confirm the forces, soft lock, and the engine RPM vibration all behave like they do in iRacing.
+- **Game bridges (if you own any of the seven supported games):** the bridges are wired into the FFB graph engine and this combination has had the least real-world time of anything in the alpha — the six bridges new in 2.0.478.66 especially. Drive with a few built-in graphs and confirm the forces, soft lock, and the engine RPM vibration all behave like they do in iRacing. Remember the safety warning: keep overall strength low the first time you activate a bridge.
 - **Graph isolation:** disable a module (say the 360 Hz source) in one graph, switch to another graph, and confirm it is NOT disabled there — then switch back and confirm your change stuck. Same for knob values on sources and the Output module.
-- Prediction module: does the wheel feel more connected — less "rubber band" between what the car does and what your hands feel? Try Strength at OFF vs. 150% back to back on the same car. Report any oscillation or buzzing at high Strength/Horizon settings (and which car).
+- Prediction modules: does the wheel feel more connected — less "rubber band" between what the car does and what your hands feel? On the flagship graph try the 360 Hz prediction's Strength at OFF vs. 150%, and on Marvin's native 60 Hz try the 60 Hz prediction's Strength at OFF vs. 100%, back to back on the same car. Report any oscillation or buzzing at high Strength/Horizon settings (and which car).
 - Give the prediction a few corners after loading into a car before judging it — it learns as you drive.
 - Friction feel: bump the wheel at a standstill — it should thunk and hold with zero buzz or oscillation. Try different Stick region values (small = crisp, large = softer before breakaway).
 - Engine RPM vibration: turn its Strength up, play with Roughness (0% pure tone ↔ 100% V8 burble), and confirm it goes silent the moment the engine dies.
