@@ -1905,4 +1905,13 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>تأرجح عجلة القيادة</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (البرنامج الثابت لإضافة الحركة)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (البرنامج الثابت لملحق شد الحزام)</value>
+  </data>
 </root>

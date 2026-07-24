@@ -200,6 +200,7 @@ public partial class MainWindow : Window
 
 			_pedalsPage.UpdateEffectOptions();
 
+			_gTensionerPage.UpdateDeviceTypeOptions();
 			_gTensionerPage.UpdateAxisModeOptions();
 			_gTensionerPage.UpdateSeatOfPantsAlgorithmOptions();
 

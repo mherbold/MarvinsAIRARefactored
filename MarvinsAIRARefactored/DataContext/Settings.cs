@@ -9000,6 +9000,29 @@ public class Settings : INotifyPropertyChanged
 
 	#endregion
 
+	#region G Tensioner - Device type
+
+	private GTensioner.DeviceType _gTensionerDeviceType = GTensioner.DeviceType.MairaSbt;
+
+	public GTensioner.DeviceType GTensionerDeviceType
+	{
+		get => _gTensionerDeviceType;
+
+		set
+		{
+			if ( value != _gTensionerDeviceType )
+			{
+				_gTensionerDeviceType = value;
+
+				OnPropertyChanged();
+
+				App.Instance?.GTensioner.OnDeviceTypeChanged();
+			}
+		}
+	}
+
+	#endregion
+
 	#region G Tensioner - Connect on startup
 
 	private bool _gTensionerConnectOnStartup = false;

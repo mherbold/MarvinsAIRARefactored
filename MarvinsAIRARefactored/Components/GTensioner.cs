@@ -7,6 +7,13 @@ namespace MarvinsAIRARefactored.Components;
 
 public class GTensioner
 {
+	public enum DeviceType
+	{
+		MairaSbt,
+		SimHubDiyMotion,
+		SimHubDiyLegacy
+	}
+
 	public enum AxisMode
 	{
 		Disabled,
@@ -64,11 +71,21 @@ public class GTensioner
 	// SBT sleeps after 1s with no S packet - force a resend every 0.5s (10 updates × 3 ticks @ 60fps)
 	private const int ForceSendInterval = 10;
 
+	// SimHub DIY belt tensioner constants - positions are sent at 60fps from Tick with PC-side vibration synthesis
+	// (neither SimHub firmware has a vibration command, so effects are rendered by oscillating the position stream)
+	private const int SimHubForceSendInterval = 30;    // resend at least every 0.5s so the firmware's idle park/sleep never triggers mid-stint
+	private const int SimHubStaleTickLimit = 60;       // stop sending 1s after the last base position update so the device can park itself (matches the MAIRA SBT sleep behavior)
+	private const float SimHubTickRate = 60f;
+
+	// The SimHub DIY motion addon firmware answers this query frame (0xFF 0xFF cmd=10 0x0A 0x0D) with "Enabled motors:<n>"
+	private static readonly byte[] SimHubMotionEnabledMotorsQuery = [ 0xFF, 0xFF, 10, 0x0A, 0x0D ];
+
 	public bool IsConnected { get; private set; } = false;
 
 	public bool IsTestRunning => _testAxis != TestAxis.None || _vibrationTestEffect != TestVibrationEffect.None;
 
-	private readonly UsbSerialPortHelper _usbSerialPortHelper = new( "MAIRA SBT" );
+	private UsbSerialPortHelper _usbSerialPortHelper = null!;
+	private DeviceType _deviceType = DeviceType.MairaSbt;
 
 	private readonly GTensionerGraph _surgeGraph = new();
 	private readonly GTensionerGraph _swayGraph = new();
@@ -87,6 +104,20 @@ public class GTensioner
 	private int _lastSentLeftEffectAmplitudeDeg = -1;
 	private int _lastSentRightEffectFreqHz = -1;
 	private int _lastSentRightEffectAmplitudeDeg = -1;
+
+	// SimHub DIY device state - base positions from the 20 Hz update plus synthesized vibration oscillators, sent at 60fps
+	private int _simHubBaseLeftTenths = 0;
+	private int _simHubBaseRightTenths = 0;
+	private int _simHubLeftEffectFreqHz = 0;
+	private int _simHubLeftEffectAmplitudeTenths = 0;
+	private int _simHubRightEffectFreqHz = 0;
+	private int _simHubRightEffectAmplitudeTenths = 0;
+	private float _simHubLeftEffectPhase = 0f;
+	private float _simHubRightEffectPhase = 0f;
+	private int _simHubLastSentLeftValue = -1;
+	private int _simHubLastSentRightValue = -1;
+	private int _simHubForceSendCounter = 0;
+	private int _simHubTicksSinceBaseUpdate = SimHubStaleTickLimit + 1;
 
 	private float _longAccelSum = 0f;
 	private float _latAccelSum = 0f;
@@ -153,9 +184,32 @@ public class GTensioner
 
 		app.Logger.WriteLine( "[GTensioner] Constructor >>>" );
 
-		_usbSerialPortHelper.PortClosed += OnPortClosed;
-
 		app.Logger.WriteLine( "[GTensioner] <<< Constructor" );
+	}
+
+	// (Re)creates the serial port helper for the currently selected device type - each device speaks a different
+	// protocol at a different baud rate and is identified by a different handshake:
+	//   MAIRA SBT                       - answers "WHAT ARE YOU?" with its device name at 115200 baud
+	//   SimHub DIY (motion addon fw)    - answers the binary enabled-motors query with "Enabled motors:<n>" at 250000 baud
+	//   SimHub DIY (legacy plugin fw)   - passive; prints its "<n> steppers enabled" boot banner after the DTR reset at 19200 baud
+	private void CreateUsbSerialPortHelper()
+	{
+		if ( _usbSerialPortHelper != null )
+		{
+			_usbSerialPortHelper.PortClosed -= OnPortClosed;
+			_usbSerialPortHelper.Dispose();
+		}
+
+		_deviceType = DataContext.DataContext.Instance.Settings.GTensionerDeviceType;
+
+		_usbSerialPortHelper = _deviceType switch
+		{
+			DeviceType.SimHubDiyMotion => new UsbSerialPortHelper( handshake: "Enabled motors:", baudRate: 250000, handshakeRequestData: SimHubMotionEnabledMotorsQuery ),
+			DeviceType.SimHubDiyLegacy => new UsbSerialPortHelper( handshake: "steppers enabled", baudRate: 19200, handshakeRequestData: [] ),
+			_ => new UsbSerialPortHelper( "MAIRA SBT" )
+		};
+
+		_usbSerialPortHelper.PortClosed += OnPortClosed;
 	}
 
 	public void Initialize()
@@ -163,6 +217,8 @@ public class GTensioner
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[GTensioner] Initialize >>>" );
+
+		CreateUsbSerialPortHelper();
 
 		_usbSerialPortHelper.Initialize();
 
@@ -228,6 +284,55 @@ public class GTensioner
 		app.Logger.WriteLine( "[GTensioner] <<< RetryDevice" );
 	}
 
+	public void OnDeviceTypeChanged()
+	{
+		// Settings are still being deserialized - Initialize() will pick up the new device type
+		if ( _usbSerialPortHelper == null )
+		{
+			return;
+		}
+
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[GTensioner] OnDeviceTypeChanged >>>" );
+
+		Disconnect();
+
+		app.Dispatcher.Invoke( () =>
+		{
+			MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsOn = false;
+			MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsEnabled = false;
+			MainWindow._gTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Collapsed;
+		} );
+
+		Task.Run( () =>
+		{
+			CreateUsbSerialPortHelper();
+
+			_usbSerialPortHelper.Initialize();
+
+			app.Dispatcher.Invoke( () =>
+			{
+				var localization = DataContext.DataContext.Instance.Localization;
+
+				if ( _usbSerialPortHelper.DeviceFound )
+				{
+					MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsEnabled = true;
+					MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = string.Empty;
+					MainWindow._gTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Collapsed;
+				}
+				else
+				{
+					MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsEnabled = false;
+					MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
+					MainWindow._gTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
+				}
+			} );
+		} );
+
+		app.Logger.WriteLine( "[GTensioner] <<< OnDeviceTypeChanged" );
+	}
+
 	public bool Connect()
 	{
 		var app = App.Instance!;
@@ -238,10 +343,17 @@ public class GTensioner
 
 		if ( IsConnected )
 		{
-			SendCalibration();
-			SendMaxMovement();
-			SendInvertedArms();
-			SendVibrationEffect( 0, 0, 0, 0 );
+			if ( _deviceType == DeviceType.MairaSbt )
+			{
+				SendCalibration();
+				SendMaxMovement();
+				SendInvertedArms();
+				SendVibrationEffect( 0, 0, 0, 0 );
+			}
+			else
+			{
+				ResetSimHubState();
+			}
 		}
 
 		app.Dispatcher.Invoke( () =>
@@ -272,7 +384,9 @@ public class GTensioner
 		_lastSentRightEffectFreqHz = -1;
 		_lastSentRightEffectAmplitudeDeg = -1;
 
-		_usbSerialPortHelper.Close();
+		ResetSimHubState();
+
+		_usbSerialPortHelper?.Close();
 
 		app.Dispatcher.Invoke( () =>
 		{
@@ -282,9 +396,26 @@ public class GTensioner
 		app.Logger.WriteLine( "[GTensioner] <<< Disconnect" );
 	}
 
+	private void ResetSimHubState()
+	{
+		_simHubBaseLeftTenths = 0;
+		_simHubBaseRightTenths = 0;
+		_simHubLeftEffectFreqHz = 0;
+		_simHubLeftEffectAmplitudeTenths = 0;
+		_simHubRightEffectFreqHz = 0;
+		_simHubRightEffectAmplitudeTenths = 0;
+		_simHubLeftEffectPhase = 0f;
+		_simHubRightEffectPhase = 0f;
+		_simHubLastSentLeftValue = -1;
+		_simHubLastSentRightValue = -1;
+		_simHubForceSendCounter = 0;
+		_simHubTicksSinceBaseUpdate = SimHubStaleTickLimit + 1;
+	}
+
 	public void SendCalibration()
 	{
-		if ( !IsConnected )
+		// The SimHub DIY firmwares self-calibrate against their hall sensors - the minimum/neutral/maximum window is applied PC-side
+		if ( !IsConnected || _deviceType != DeviceType.MairaSbt )
 		{
 			return;
 		}
@@ -304,7 +435,8 @@ public class GTensioner
 
 	public void SendMaxMovement()
 	{
-		if ( !IsConnected )
+		// The SimHub DIY firmwares use their own speed defaults (the setting still paces the calibration sweep test PC-side)
+		if ( !IsConnected || _deviceType != DeviceType.MairaSbt )
 		{
 			return;
 		}
@@ -319,7 +451,8 @@ public class GTensioner
 
 	public void SendInvertedArms()
 	{
-		if ( !IsConnected )
+		// The SimHub DIY firmwares fix each motor's direction at compile time (and their homing defines the position sense)
+		if ( !IsConnected || _deviceType != DeviceType.MairaSbt )
 		{
 			return;
 		}
@@ -342,6 +475,17 @@ public class GTensioner
 		leftAmplitudeDeg = Math.Clamp( leftAmplitudeDeg, 0, 60 );
 		rightFreqHz = Math.Clamp( rightFreqHz, 0, 50 );
 		rightAmplitudeDeg = Math.Clamp( rightAmplitudeDeg, 0, 60 );
+
+		// The SimHub DIY firmwares have no vibration command - store the effect state for the 60fps position synthesizer instead
+		if ( _deviceType != DeviceType.MairaSbt )
+		{
+			_simHubLeftEffectFreqHz = leftFreqHz;
+			_simHubLeftEffectAmplitudeTenths = leftAmplitudeDeg * 10;
+			_simHubRightEffectFreqHz = rightFreqHz;
+			_simHubRightEffectAmplitudeTenths = rightAmplitudeDeg * 10;
+
+			return;
+		}
 
 		if ( leftFreqHz == _lastSentLeftEffectFreqHz
 			&& leftAmplitudeDeg == _lastSentLeftEffectAmplitudeDeg
@@ -373,6 +517,16 @@ public class GTensioner
 		leftTargetPositionTenths = Math.Clamp( leftTargetPositionTenths, minimumTenths, maximumTenths );
 		rightTargetPositionTenths = Math.Clamp( rightTargetPositionTenths, minimumTenths, maximumTenths );
 
+		// SimHub DIY devices are fed at 60fps from Tick (with vibration synthesis) - just refresh the base positions here
+		if ( _deviceType != DeviceType.MairaSbt )
+		{
+			_simHubBaseLeftTenths = leftTargetPositionTenths;
+			_simHubBaseRightTenths = rightTargetPositionTenths;
+			_simHubTicksSinceBaseUpdate = 0;
+
+			return;
+		}
+
 		_forceSendCounter++;
 
 		if ( _forceSendCounter < ForceSendInterval
@@ -387,6 +541,93 @@ public class GTensioner
 		_lastSentRightTenths = rightTargetPositionTenths;
 
 		_usbSerialPortHelper.WriteLine( $"SL{leftTargetPositionTenths:D4}R{rightTargetPositionTenths:D4}" );
+	}
+
+	// Sends the current positions to a SimHub DIY belt tensioner - called at 60fps from Tick while connected. The synthesized
+	// vibration effect (if any) is overlaid onto the 20 Hz base positions here, then the 0-1800 tenths-of-a-degree scale is
+	// mapped onto the selected firmware's position range. Sending stops 1s after the last base position update so the device
+	// can park/sleep itself, mirroring how the MAIRA SBT goes to sleep when no S packets arrive.
+	private void SendSimHubPositions()
+	{
+		_simHubTicksSinceBaseUpdate++;
+
+		if ( _simHubTicksSinceBaseUpdate > SimHubStaleTickLimit )
+		{
+			return;
+		}
+
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		var minimumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMinimum * 10f ), 0, 900 );
+		var maximumTenths = Math.Clamp( (int) Math.Round( settings.GTensionerMaximum * 10f ), 900, 1800 );
+
+		var leftTenths = (float) _simHubBaseLeftTenths;
+		var rightTenths = (float) _simHubBaseRightTenths;
+
+		if ( _simHubLeftEffectFreqHz > 0 && _simHubLeftEffectAmplitudeTenths > 0 )
+		{
+			_simHubLeftEffectPhase = ( _simHubLeftEffectPhase + 2f * MathF.PI * _simHubLeftEffectFreqHz / SimHubTickRate ) % ( 2f * MathF.PI );
+
+			leftTenths += MathF.Sin( _simHubLeftEffectPhase ) * _simHubLeftEffectAmplitudeTenths;
+		}
+		else
+		{
+			_simHubLeftEffectPhase = 0f;
+		}
+
+		if ( _simHubRightEffectFreqHz > 0 && _simHubRightEffectAmplitudeTenths > 0 )
+		{
+			_simHubRightEffectPhase = ( _simHubRightEffectPhase + 2f * MathF.PI * _simHubRightEffectFreqHz / SimHubTickRate ) % ( 2f * MathF.PI );
+
+			rightTenths += MathF.Sin( _simHubRightEffectPhase ) * _simHubRightEffectAmplitudeTenths;
+		}
+		else
+		{
+			_simHubRightEffectPhase = 0f;
+		}
+
+		var leftClampedTenths = Math.Clamp( (int) MathF.Round( leftTenths ), minimumTenths, maximumTenths );
+		var rightClampedTenths = Math.Clamp( (int) MathF.Round( rightTenths ), minimumTenths, maximumTenths );
+
+		int leftValue;
+		int rightValue;
+
+		if ( _deviceType == DeviceType.SimHubDiyMotion )
+		{
+			// Motion addon firmware positions are unipolar - 0 (released) to 65535 (full travel)
+			leftValue = (int) MathF.Round( leftClampedTenths / 1800f * 65535f );
+			rightValue = (int) MathF.Round( rightClampedTenths / 1800f * 65535f );
+		}
+		else
+		{
+			// Legacy plugin firmware positions are signed - -32768 (released) to +32767 (full travel)
+			leftValue = (int) MathF.Round( ( leftClampedTenths / 1800f * 2f - 1f ) * 32767f );
+			rightValue = (int) MathF.Round( ( rightClampedTenths / 1800f * 2f - 1f ) * 32767f );
+		}
+
+		_simHubForceSendCounter++;
+
+		if ( _simHubForceSendCounter < SimHubForceSendInterval
+			&& leftValue == _simHubLastSentLeftValue
+			&& rightValue == _simHubLastSentRightValue )
+		{
+			return;
+		}
+
+		_simHubForceSendCounter = 0;
+		_simHubLastSentLeftValue = leftValue;
+		_simHubLastSentRightValue = rightValue;
+
+		if ( _deviceType == DeviceType.SimHubDiyMotion )
+		{
+			// Frame: 0xFF 0xFF cmd=1 <left hi> <left lo> <right hi> <right lo> 0x0A 0x0D (motor 1 = left shoulder, motor 2 = right shoulder)
+			_usbSerialPortHelper.Write( [ 0xFF, 0xFF, 1, (byte) ( leftValue >> 8 ), (byte) leftValue, (byte) ( rightValue >> 8 ), (byte) rightValue, 0x0A, 0x0D ] );
+		}
+		else
+		{
+			_usbSerialPortHelper.WriteLine( $"M1 {leftValue}" );
+			_usbSerialPortHelper.WriteLine( $"M2 {rightValue}" );
+		}
 	}
 
 	private void Update( App app )
@@ -1189,6 +1430,11 @@ public class GTensioner
 			_updateCounter = UpdateInterval;
 
 			Update( app );
+		}
+
+		if ( IsConnected && _deviceType != DeviceType.MairaSbt )
+		{
+			SendSimHubPositions();
 		}
 	}
 }

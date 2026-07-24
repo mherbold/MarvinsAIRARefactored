@@ -1918,4 +1918,13 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>กวาดพวงมาลัย</value>
   </data>
+  <data name="GTensionerDeviceMairaSbt" xml:space="preserve">
+    <value>MAIRA SBT</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyMotion" xml:space="preserve">
+    <value>SimHub DIY (เฟิร์มแวร์ส่วนเสริมโมชัน)</value>
+  </data>
+  <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
+    <value>SimHub DIY (เฟิร์มแวร์ปลั๊กอินตัวดึงเข็มขัด)</value>
+  </data>
 </root>
