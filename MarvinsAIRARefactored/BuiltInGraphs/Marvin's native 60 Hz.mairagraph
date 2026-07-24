@@ -5,10 +5,11 @@
   <Graph>
     <GraphId>d75319b27eaa4baeba4bfffedbdb8a40</GraphId>
     <Name>Marvin's native 60 Hz</Name>
+    <Description>iRacing's native 60 Hz force feedback with prediction to tighten things up</Description>
     <IsBuiltIn>false</IsBuiltIn>
     <Modules>
       <FFBModuleData>
-        <ModuleId>78df2d7d2cfe4277913bd53ee022efac</ModuleId>
+        <ModuleId>720eb719f3f84ac5855d8647f4b2bca6</ModuleId>
         <ModuleType>SourceWheelCentering</ModuleType>
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -30,11 +31,12 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>256</NodeX>
         <NodeY>608</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>9053f47142f3445482d8a542d25e3eb6</ModuleId>
+        <ModuleId>bc14c28db57e4625a1c92aadfdf8c795</ModuleId>
         <ModuleType>SourceLFE</ModuleType>
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -56,13 +58,14 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>944</NodeX>
         <NodeY>752</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>9ce82b966c514bd9893a4096dfc5d1be</ModuleId>
+        <ModuleId>3cf36f6c77b340faade800c8f087dcd5</ModuleId>
         <ModuleType>SourceFriction</ModuleType>
-        <InputAModuleId>9053f47142f3445482d8a542d25e3eb6</InputAModuleId>
+        <InputAModuleId>bc14c28db57e4625a1c92aadfdf8c795</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
@@ -78,7 +81,7 @@
               <string>Enabled</string>
             </key>
             <value>
-              <float>1</float>
+              <float>0</float>
             </value>
           </item>
           <item>
@@ -98,11 +101,12 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>256</NodeX>
         <NodeY>704</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>8ad57b7953674b8f96f6252ba0f6a192</ModuleId>
+        <ModuleId>515a5417f2c640d9851bdb2c0793b6a9</ModuleId>
         <ModuleType>SourceSoftLock</ModuleType>
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
@@ -124,6 +128,7 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>944</NodeX>
         <NodeY>848</NodeY>
       </FFBModuleData>
@@ -133,13 +138,14 @@
         <InputAModuleId>Source60</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
         <SettingValues />
+        <PinnedSettings />
         <NodeX>256</NodeX>
         <NodeY>32</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>efd98ea1fd264ed189184ae352feaf88</ModuleId>
+        <ModuleId>a073ab53110b4ea4aa1520017acec4c9</ModuleId>
         <ModuleType>Interpolator</ModuleType>
-        <InputAModuleId>78df2d7d2cfe4277913bd53ee022efac</InputAModuleId>
+        <InputAModuleId>720eb719f3f84ac5855d8647f4b2bca6</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
@@ -151,187 +157,34 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>480</NodeX>
         <NodeY>608</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>9c4071b7a03545f688496216e3f6a22e</ModuleId>
-        <ModuleType>CurbProtection</ModuleType>
-        <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>ForceReduction</string>
-            </key>
-            <value>
-              <float>0.35</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>480</NodeX>
-        <NodeY>32</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>a4e080d79cc842e7a29279368b7da0a5</ModuleId>
-        <ModuleType>UndersteerForce</ModuleType>
-        <InputAModuleId>9c4071b7a03545f688496216e3f6a22e</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Direction</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>976</NodeX>
-        <NodeY>176</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>f740a5729ac44976ad2d6e2154be70dd</ModuleId>
-        <ModuleType>OversteerForce</ModuleType>
-        <InputAModuleId>a4e080d79cc842e7a29279368b7da0a5</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Direction</string>
-            </key>
-            <value>
-              <float>0</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>1024</NodeX>
-        <NodeY>272</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>7be5dcf1c8174992abf65a85414fa97e</ModuleId>
-        <ModuleType>SeatOfPantsForce</ModuleType>
-        <InputAModuleId>f740a5729ac44976ad2d6e2154be70dd</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Direction</string>
-            </key>
-            <value>
-              <float>2</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>Strength</string>
-            </key>
-            <value>
-              <float>0.1</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>1072</NodeX>
-        <NodeY>368</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>c68faede5b604e7b804eb731d780f69d</ModuleId>
-        <ModuleType>CrashProtection</ModuleType>
-        <InputAModuleId>7be5dcf1c8174992abf65a85414fa97e</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>Enabled</string>
-            </key>
-            <value>
-              <float>1</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>1120</NodeX>
-        <NodeY>464</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>4ff8473561934e73b25fc427e1a5b3d1</ModuleId>
-        <ModuleType>SpeedGain</ModuleType>
-        <InputAModuleId>c68faede5b604e7b804eb731d780f69d</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
-        <SettingValues>
-          <item>
-            <key>
-              <string>GainAtMin</string>
-            </key>
-            <value>
-              <float>0.00034722223</float>
-            </value>
-          </item>
-          <item>
-            <key>
-              <string>MaxSpeed</string>
-            </key>
-            <value>
-              <float>8</float>
-            </value>
-          </item>
-        </SettingValues>
-        <NodeX>1168</NodeX>
-        <NodeY>560</NodeY>
-      </FFBModuleData>
-      <FFBModuleData>
-        <ModuleId>419e1a168cf745eea086341ef699c5e9</ModuleId>
+        <ModuleId>c91277e602504d0da2f1e825c2bc8b4c</ModuleId>
         <ModuleType>Interpolator</ModuleType>
-        <InputAModuleId>9ce82b966c514bd9893a4096dfc5d1be</InputAModuleId>
+        <InputAModuleId>3cf36f6c77b340faade800c8f087dcd5</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
         <SettingValues />
+        <PinnedSettings />
         <NodeX>480</NodeX>
         <NodeY>704</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>2351a29dd93b4af18ffb44678d52201d</ModuleId>
+        <ModuleId>d29bbb8bdccf427d8c41fcab427a330b</ModuleId>
         <ModuleType>Add</ModuleType>
-        <InputAModuleId>efd98ea1fd264ed189184ae352feaf88</InputAModuleId>
-        <InputBModuleId>419e1a168cf745eea086341ef699c5e9</InputBModuleId>
+        <InputAModuleId>a073ab53110b4ea4aa1520017acec4c9</InputAModuleId>
+        <InputBModuleId>c91277e602504d0da2f1e825c2bc8b4c</InputBModuleId>
         <SettingValues />
+        <PinnedSettings />
         <NodeX>704</NodeX>
         <NodeY>656</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>8da96bf6dcaf4983ba3807c24e6843fc</ModuleId>
+        <ModuleId>82aec2ae48dc42a2aca34e2a92ff2a24</ModuleId>
         <ModuleType>SpeedGain</ModuleType>
-        <InputAModuleId>2351a29dd93b4af18ffb44678d52201d</InputAModuleId>
+        <InputAModuleId>d29bbb8bdccf427d8c41fcab427a330b</InputAModuleId>
         <InputBModuleId>Source60</InputBModuleId>
         <SettingValues>
           <item>
@@ -359,41 +212,226 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>944</NodeX>
         <NodeY>656</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>e3d7ea619ec3489a885c177d403e9c59</ModuleId>
+        <ModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</ModuleId>
+        <ModuleType>Prediction60Hz</ModuleType>
+        <InputAModuleId>Source60</InputAModuleId>
+        <InputBModuleId>Source60</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>Enabled</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+        </SettingValues>
+        <PinnedSettings />
+        <NodeX>480</NodeX>
+        <NodeY>32</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>e87ca2bc18584cdd9864c34e81d2d187</ModuleId>
+        <ModuleType>CurbProtection</ModuleType>
+        <InputAModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>Enabled</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>ForceReduction</string>
+            </key>
+            <value>
+              <float>0.35</float>
+            </value>
+          </item>
+        </SettingValues>
+        <PinnedSettings />
+        <NodeX>704</NodeX>
+        <NodeY>32</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>5aec4ba836534c349718137c560ea772</ModuleId>
+        <ModuleType>UndersteerForce</ModuleType>
+        <InputAModuleId>e87ca2bc18584cdd9864c34e81d2d187</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>Direction</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Enabled</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+        </SettingValues>
+        <PinnedSettings />
+        <NodeX>976</NodeX>
+        <NodeY>176</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>0ea32cda05de4ec8808d4ce4b9eee2df</ModuleId>
+        <ModuleType>OversteerForce</ModuleType>
+        <InputAModuleId>5aec4ba836534c349718137c560ea772</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>Direction</string>
+            </key>
+            <value>
+              <float>0</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Enabled</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+        </SettingValues>
+        <PinnedSettings />
+        <NodeX>1024</NodeX>
+        <NodeY>272</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>a0663f51703e415a917a363490990cd7</ModuleId>
+        <ModuleType>SeatOfPantsForce</ModuleType>
+        <InputAModuleId>0ea32cda05de4ec8808d4ce4b9eee2df</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>Direction</string>
+            </key>
+            <value>
+              <float>2</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Enabled</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>Strength</string>
+            </key>
+            <value>
+              <float>0.1</float>
+            </value>
+          </item>
+        </SettingValues>
+        <PinnedSettings />
+        <NodeX>1072</NodeX>
+        <NodeY>368</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>2c85470c07d34c10bb78fe5d6a1d276d</ModuleId>
+        <ModuleType>CrashProtection</ModuleType>
+        <InputAModuleId>a0663f51703e415a917a363490990cd7</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>Enabled</string>
+            </key>
+            <value>
+              <float>1</float>
+            </value>
+          </item>
+        </SettingValues>
+        <PinnedSettings />
+        <NodeX>1120</NodeX>
+        <NodeY>464</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>7aacb1d7c2bf40f59917eb096fb151bc</ModuleId>
+        <ModuleType>SpeedGain</ModuleType>
+        <InputAModuleId>2c85470c07d34c10bb78fe5d6a1d276d</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
+        <SettingValues>
+          <item>
+            <key>
+              <string>GainAtMin</string>
+            </key>
+            <value>
+              <float>0.00034722223</float>
+            </value>
+          </item>
+          <item>
+            <key>
+              <string>MaxSpeed</string>
+            </key>
+            <value>
+              <float>8</float>
+            </value>
+          </item>
+        </SettingValues>
+        <PinnedSettings />
+        <NodeX>1168</NodeX>
+        <NodeY>560</NodeY>
+      </FFBModuleData>
+      <FFBModuleData>
+        <ModuleId>86e818b4ee1041eb9f988ed4a50a0892</ModuleId>
         <ModuleType>Add</ModuleType>
-        <InputAModuleId>4ff8473561934e73b25fc427e1a5b3d1</InputAModuleId>
-        <InputBModuleId>8da96bf6dcaf4983ba3807c24e6843fc</InputBModuleId>
+        <InputAModuleId>7aacb1d7c2bf40f59917eb096fb151bc</InputAModuleId>
+        <InputBModuleId>82aec2ae48dc42a2aca34e2a92ff2a24</InputBModuleId>
         <SettingValues />
+        <PinnedSettings />
         <NodeX>1216</NodeX>
         <NodeY>656</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>88482fef538e4c00b385638c3d1cddd2</ModuleId>
+        <ModuleId>facee9f1e2854aae80aaa3c40c3ff764</ModuleId>
         <ModuleType>Add</ModuleType>
-        <InputAModuleId>e3d7ea619ec3489a885c177d403e9c59</InputAModuleId>
-        <InputBModuleId>9053f47142f3445482d8a542d25e3eb6</InputBModuleId>
+        <InputAModuleId>86e818b4ee1041eb9f988ed4a50a0892</InputAModuleId>
+        <InputBModuleId>bc14c28db57e4625a1c92aadfdf8c795</InputBModuleId>
         <SettingValues />
+        <PinnedSettings />
         <NodeX>1264</NodeX>
         <NodeY>752</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>bac5e3b7e7af476d8f7498f0b56e8768</ModuleId>
+        <ModuleId>0b752303efe94e3f870f227473cc3dc3</ModuleId>
         <ModuleType>Add</ModuleType>
-        <InputAModuleId>88482fef538e4c00b385638c3d1cddd2</InputAModuleId>
-        <InputBModuleId>8ad57b7953674b8f96f6252ba0f6a192</InputBModuleId>
+        <InputAModuleId>facee9f1e2854aae80aaa3c40c3ff764</InputAModuleId>
+        <InputBModuleId>515a5417f2c640d9851bdb2c0793b6a9</InputBModuleId>
         <SettingValues />
+        <PinnedSettings />
         <NodeX>1312</NodeX>
         <NodeY>848</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>391ab209b54946f6a4618bb04fc710d3</ModuleId>
+        <ModuleId>a349e0899af742669a52784b8589890f</ModuleId>
         <ModuleType>UndersteerVibration</ModuleType>
-        <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
+        <InputAModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -428,14 +466,15 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>256</NodeX>
         <NodeY>272</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>0385e080f0f24a77abd576b726356662</ModuleId>
+        <ModuleId>4461dffbe0e04ac5976a0928ebed06fe</ModuleId>
         <ModuleType>OversteerVibration</ModuleType>
-        <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
+        <InputAModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -494,14 +533,15 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>480</NodeX>
         <NodeY>272</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>a1492ee99b5a407fa9b5b7aecb2ab577</ModuleId>
+        <ModuleId>14ddc2a3a67b4b13b880ea2a078e1f61</ModuleId>
         <ModuleType>SeatOfPantsVibration</ModuleType>
-        <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
+        <InputAModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -528,14 +568,15 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>704</NodeX>
         <NodeY>272</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>db3dcb8acf094d538cd208850248621d</ModuleId>
+        <ModuleId>704e1948142b451b8b852d5bba00c6ef</ModuleId>
         <ModuleType>ABSVibration</ModuleType>
-        <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
+        <InputAModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -570,14 +611,15 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>704</NodeX>
         <NodeY>368</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>93d19202975040bf9c25bc4557284d8a</ModuleId>
+        <ModuleId>7ec36555711946a090123b5f610f7a73</ModuleId>
         <ModuleType>GearChangeVibration</ModuleType>
-        <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
+        <InputAModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -604,14 +646,15 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>256</NodeX>
         <NodeY>368</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>0f0c3448b2d9472f8212f9ee34fe4669</ModuleId>
+        <ModuleId>8f9245a0892f4b109a777149d1e2f7af</ModuleId>
         <ModuleType>ShiftRPMVibration</ModuleType>
-        <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
+        <InputAModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -646,14 +689,15 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>480</NodeX>
         <NodeY>368</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>00b00b62f5c34946abae420d0f00ed94</ModuleId>
+        <ModuleId>8d8a994abbca4f75b91b59395218679a</ModuleId>
         <ModuleType>RoadTexture</ModuleType>
-        <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
+        <InputAModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -680,14 +724,15 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>480</NodeX>
         <NodeY>464</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>c3c58c8adeec40de8eccdd45a87531d6</ModuleId>
+        <ModuleId>a6524037e0d44c6a91d1a2ee6457f491</ModuleId>
         <ModuleType>SlipTexture</ModuleType>
-        <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
+        <InputAModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -714,14 +759,15 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>256</NodeX>
         <NodeY>464</NodeY>
       </FFBModuleData>
       <FFBModuleData>
-        <ModuleId>feabe4240912480aabd14a811e0d0dd1</ModuleId>
+        <ModuleId>86b649c1dc4e448abb1ae7ecf91aac91</ModuleId>
         <ModuleType>EngineRPMVibration</ModuleType>
-        <InputAModuleId>Source60</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
+        <InputAModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -764,14 +810,15 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>704</NodeX>
         <NodeY>464</NodeY>
       </FFBModuleData>
       <FFBModuleData>
         <ModuleId>Output</ModuleId>
         <ModuleType>Output</ModuleType>
-        <InputAModuleId>bac5e3b7e7af476d8f7498f0b56e8768</InputAModuleId>
-        <InputBModuleId>Source60</InputBModuleId>
+        <InputAModuleId>0b752303efe94e3f870f227473cc3dc3</InputAModuleId>
+        <InputBModuleId>cc1f2d0ebb824b3da2796f88ba8c70f5</InputBModuleId>
         <SettingValues>
           <item>
             <key>
@@ -814,6 +861,7 @@
             </value>
           </item>
         </SettingValues>
+        <PinnedSettings />
         <NodeX>1536</NodeX>
         <NodeY>848</NodeY>
       </FFBModuleData>
