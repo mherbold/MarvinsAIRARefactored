@@ -261,6 +261,13 @@ public class DirectInput
 
 		var app = App.Instance!;
 
+		// track the wheel position on the SELECTED steering device from settings, not on the initialized
+		// force feedback device - force feedback is only initialized once a simulator connects (RacingWheel
+		// runs on the multimedia timer, which is suspended until then), but the wheel position is needed
+		// earlier than that (the game bridge's vJoy steering passthrough runs while the game is still in
+		// its menus, before any telemetry flows)
+		var steeringDeviceInstanceGuid = ( _forceFeedbackDeviceInstanceGuid != Guid.Empty ) ? _forceFeedbackDeviceInstanceGuid : DataContext.DataContext.Instance.Settings.RacingWheelSteeringDeviceGuid;
+
 		if ( _joystickInfoListNeedsToBeUpdated )
 		{
 			_joystickInfoListNeedsToBeUpdated = false;
@@ -300,7 +307,7 @@ public class DirectInput
 
 					joystickInfo._joystickUpdates = joystickInfo._joystick.GetBufferedData();
 
-					if ( joystickInfo._instanceGuid == _forceFeedbackDeviceInstanceGuid )
+					if ( joystickInfo._instanceGuid == steeringDeviceInstanceGuid )
 					{
 						if ( joystickInfo._xAxisProperties != null )
 						{

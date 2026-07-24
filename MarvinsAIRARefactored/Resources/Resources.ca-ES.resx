@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Aquesta funció és molt experimental i encara està en desenvolupament - encara no he tingut l'oportunitat de validar personalment cada pont. Redueix la força general a un nivell baix abans d'activar un pont, perquè el volant no t'arrenqui els braços si alguna cosa no està ben configurada. Diverteix-te!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Envia la direcció al dispositiu vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Alguns jocs (per exemple, Assetto Corsa) no permeten desactivar el seu force feedback integrat. Activa aquesta opció per passar l'eix de direcció de la teva base al joystick virtual vJoy, i configura el joc perquè utilitzi l'eix X de vJoy com a entrada de direcció - el joc enviarà el seu force feedback al dispositiu vJoy en lloc del teu volant real, i MAIRA mantindrà el control total.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>El vJoy no està disponible - instal·la el controlador vJoy i reinicia MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Prova de direcció</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Mentre això està activat, els botons de sota controlen l'eix de direcció de vJoy i la teva base no es transmet. Fes-lo servir quan assignis l'entrada de direcció al joc, perquè només es mogui l'eix de vJoy i el joc no triï el teu volant real per error.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Volant 90° dreta</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Escombrat del volant</value>
+  </data>
 </root>

@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Ez a funkció még nagyon kísérleti és folyamatban lévő munka - még nem volt alkalmam minden hidat személyesen ellenőrizni. Kérlek, csökkentsd az összerőt alacsony szintre, mielőtt aktiválsz egy hidat, hogy a kormány ne tépje le a karjaidat, ha valami nincs jól beállítva. Jó szórakozást!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Kormányzás küldése a vJoy eszközre</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Egyes játékok (például az Assetto Corsa) nem adnak lehetőséget a beépített force feedback kikapcsolására. Kapcsold be ezt, hogy a bázisod kormánytengelye továbbmenjen a vJoy virtuális joystickra, majd állítsd be a játékot úgy, hogy a vJoy X tengelyét használja kormánybemenetként - a játék így a force feedbacket a vJoy eszközre küldi az igazi kormányod helyett, és MAIRA marad a teljes irányításban.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>A vJoy nem érhető el - telepítsd a vJoy illesztőprogramot, és indítsd újra a MAIRA-t!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Kormányzás teszt</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Amíg ez be van kapcsolva, a lenti gombok vezérlik a vJoy kormánytengelyét, és a bázisod nem kerül továbbításra. Használd ezt, amikor a játékban hozzárendeled a kormánybemenetet, hogy csak a vJoy tengelye mozogjon, és a játék véletlenül se a valódi kormányodat válassza.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Kormány 90° jobb</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Kormány ide-oda</value>
+  </data>
 </root>

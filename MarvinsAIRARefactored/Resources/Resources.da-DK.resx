@@ -661,7 +661,7 @@
     <value>Rat højre</value>
   </data>
   <data name="SteeringWheel90Left" xml:space="preserve">
-    <value>Base 90° venstre</value>
+    <value>Rat 90° venstre</value>
   </data>
   <data name="MinThrottle" xml:space="preserve">
     <value>Minimum gas</value>
@@ -2250,5 +2250,26 @@
   </data>
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Denne funktion er i høj grad eksperimentel og stadig under udvikling - jeg har endnu ikke haft mulighed for personligt at validere hver bro. Skru venligst den samlede styrke ned til et lavt niveau, før du aktiverer en bro, så rattet ikke river armene af dig, hvis noget ikke er sat rigtigt op. God fornøjelse!</value>
+  </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Send styring til vJoy-enheden</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Nogle spil (for eksempel Assetto Corsa) giver dig ingen mulighed for at slå deres indbyggede force feedback fra. Slå dette til for at sende din wheelbases styreakse videre til det virtuelle joystick vJoy, og indstil spillet til at bruge vJoy's X-akse som styreinput - spillet sender så sin force feedback til vJoy-enheden i stedet for til dit rigtige rat, og MAIRA beholder den fulde kontrol.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy er ikke tilgængelig - installer vJoy-driveren og genstart MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Styringstest</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Mens dette er slået til, styrer knapperne nedenfor vJoy-styreaksen, og din wheelbase sendes ikke videre. Brug det, når du binder styreinput i spillet, så kun vJoy-aksen bevæger sig, og spillet ikke ved en fejl vælger dit rigtige rat.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Rat 90° højre</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Rat frem og tilbage</value>
   </data>
 </root>

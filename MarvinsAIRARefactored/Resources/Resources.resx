@@ -2246,4 +2246,28 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>This feature is very much experimental and a work in progress - I have not had the chance to personally validate every bridge yet. Please reduce the overall strength to a low level before activating a bridge, so the wheel can't rip your arms off if something is not set up correctly. Have fun!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Send steering to the vJoy device</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Some games (Assetto Corsa, for example) give you no way to turn off their built-in force feedback. Turn this on to pass your wheelbase's steering axis through to the vJoy virtual joystick, then set the game to use the vJoy X axis as its steering input - the game will send its force feedback to the vJoy device instead of to your real wheel, leaving MAIRA in full control.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy is not available - install the vJoy driver and restart MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Steering test</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Steering wheel 90° right</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>While this is on, the buttons below control the vJoy steering axis and your wheelbase is not passed through. Use this when binding the steering input in the game, so only the vJoy axis moves and the game cannot pick your real wheel by mistake.</value>
+  </data>
+  <data name="VJoy" xml:space="preserve">
+    <value>vJoy</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Steering wheel sweep</value>
+  </data>
 </root>

@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Šī funkcija ir ļoti eksperimentāla un vēl tiek izstrādāta - man vēl nav bijusi iespēja personīgi pārbaudīt katru tiltu. Lūdzu, pirms tilta aktivizēšanas samazini kopējo spēku līdz zemam līmenim, lai stūre nenorauj tev rokas, ja kaut kas nav pareizi iestatīts. Izklaidējies!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Sūtīt stūri uz vJoy ierīci</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Dažas spēles (piemēram, Assetto Corsa) nedod iespēju izslēgt to iebūvēto spēka atgriezenisko saiti. Ieslēdz šo, lai tavas stūres bāzes stūres ass tiktu nodota virtuālajai vadības svirai vJoy, un iestati spēli izmantot vJoy X asi kā stūres ievadi - spēle sūtīs savu spēka atgriezenisko saiti uz vJoy ierīci, nevis uz tavu īsto stūri, un MAIRA saglabās pilnu kontroli.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy nav pieejams - instalē vJoy draiveri un restartē MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Stūres tests</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Kamēr tas ir ieslēgts, zemāk esošās pogas vada vJoy stūres asi, un tava stūres bāze netiek nodota. Izmanto to, kad spēlē piesaisti stūres ievadi, lai kustētos tikai vJoy ass un spēle kļūdaini neizvēlētos tavu īsto stūri.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Stūre 90° pa labi</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Stūres šūpošana</value>
+  </data>
 </root>

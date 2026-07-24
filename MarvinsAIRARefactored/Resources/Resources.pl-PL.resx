@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Ta funkcja jest mocno eksperymentalna i wciąż w trakcie prac - nie miałem jeszcze okazji osobiście zweryfikować każdego mostu. Przed aktywacją mostu zmniejsz całkowitą siłę do niskiego poziomu, żeby kierownica nie urwała ci rąk, jeśli coś nie jest poprawnie skonfigurowane. Miłej zabawy!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Wysyłaj kierownicę do urządzenia vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Niektóre gry (na przykład Assetto Corsa) nie dają możliwości wyłączenia wbudowanego force feedbacku. Włącz tę opcję, aby przekazywać oś skrętu twojej bazy do wirtualnego joysticka vJoy, a następnie ustaw w grze oś X vJoy jako wejście kierownicy - gra będzie wysyłać swój force feedback do urządzenia vJoy zamiast do twojej prawdziwej kierownicy, a MAIRA zachowa pełną kontrolę.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy jest niedostępny - zainstaluj sterownik vJoy i uruchom MAIRA ponownie!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Test kierownicy</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Gdy ta opcja jest włączona, przyciski poniżej sterują osią kierownicy vJoy, a twoja baza nie jest przekazywana. Użyj tego podczas przypisywania kierownicy w grze, aby ruszała się tylko oś vJoy i gra przez pomyłkę nie wybrała twojej prawdziwej kierownicy.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Koło kierownicy 90° w prawo</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Kołysanie kierownicą</value>
+  </data>
 </root>

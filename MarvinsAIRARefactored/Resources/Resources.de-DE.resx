@@ -664,7 +664,7 @@ Hier ist der Link zum Spenden:</value>
     <value>Lenkrad rechts</value>
   </data>
   <data name="SteeringWheel90Left" xml:space="preserve">
-    <value>Lenkrad 90 Grad Links</value>
+    <value>Lenkrad 90 Grad links</value>
   </data>
   <data name="MinThrottle" xml:space="preserve">
     <value>Minimale Gasstellung</value>
@@ -2253,5 +2253,26 @@ Hier ist der Link zum Spenden:</value>
   </data>
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Diese Funktion ist noch sehr experimentell und in Arbeit - ich hatte noch keine Gelegenheit, jede Brücke persönlich zu validieren. Bitte reduziere die Gesamtstärke auf ein niedriges Niveau, bevor du eine Brücke aktivierst, damit dir das Lenkrad nicht die Arme abreißt, falls etwas nicht richtig eingerichtet ist. Viel Spaß!</value>
+  </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Lenkung an das vJoy-Gerät senden</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Manche Spiele (zum Beispiel Assetto Corsa) bieten keine Möglichkeit, ihr eingebautes Force Feedback abzuschalten. Aktiviere diese Option, um die Lenkachse deiner Wheelbase an den virtuellen Joystick vJoy durchzureichen, und stelle das Spiel so ein, dass es die X-Achse von vJoy als Lenkeingabe verwendet - das Spiel schickt sein Force Feedback dann an das vJoy-Gerät statt an dein echtes Lenkrad, und MAIRA behält die volle Kontrolle.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy ist nicht verfügbar - installiere den vJoy-Treiber und starte MAIRA neu!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Lenkungstest</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Solange dies aktiviert ist, steuern die Tasten unten die vJoy-Lenkachse und deine Wheelbase wird nicht durchgereicht. Nutze das beim Zuweisen der Lenkeingabe im Spiel, damit sich nur die vJoy-Achse bewegt und das Spiel nicht versehentlich dein echtes Lenkrad auswählt.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Lenkrad 90 Grad rechts</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Lenkrad hin und her</value>
   </data>
 </root>

@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>ฟีเจอร์นี้ยังอยู่ในขั้นทดลองและกำลังพัฒนาอยู่ - ผมยังไม่มีโอกาสตรวจสอบบริดจ์แต่ละตัวด้วยตัวเอง กรุณาลดความแรงโดยรวมลงให้อยู่ในระดับต่ำก่อนเปิดใช้งานบริดจ์ เพื่อไม่ให้พวงมาลัยกระชากแขนของคุณหากมีบางอย่างตั้งค่าไม่ถูกต้อง ขอให้สนุก!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>ส่งพวงมาลัยไปยังอุปกรณ์ vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>บางเกม (เช่น Assetto Corsa) ไม่มีทางให้ปิด force feedback ในตัวของเกมได้ เปิดตัวเลือกนี้เพื่อส่งแกนพวงมาลัยของฐานพวงมาลัยของคุณผ่านไปยังจอยสติ๊กเสมือน vJoy จากนั้นตั้งค่าเกมให้ใช้แกน X ของ vJoy เป็นอินพุตพวงมาลัย - เกมจะส่ง force feedback ไปยังอุปกรณ์ vJoy แทนพวงมาลัยจริงของคุณ และ MAIRA จะยังคงควบคุมได้อย่างเต็มที่</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy ไม่พร้อมใช้งาน - ติดตั้งไดรเวอร์ vJoy แล้วรีสตาร์ต MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>ทดสอบพวงมาลัย</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>ขณะที่เปิดตัวเลือกนี้ ปุ่มด้านล่างจะควบคุมแกนพวงมาลัยของ vJoy และฐานพวงมาลัยของคุณจะไม่ถูกส่งผ่าน ใช้ตัวเลือกนี้ตอนกำหนดปุ่มพวงมาลัยในเกม เพื่อให้มีเพียงแกนของ vJoy ที่ขยับ และเกมจะไม่เลือกพวงมาลัยจริงของคุณโดยผิดพลาด</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>พวงมาลัย 90° ขวา</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>กวาดพวงมาลัย</value>
+  </data>
 </root>

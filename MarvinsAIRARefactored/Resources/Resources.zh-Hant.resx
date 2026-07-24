@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>此功能仍屬高度實驗性質，且仍在開發中 - 我還沒有機會親自驗證每一個橋接。請在啟用橋接之前將整體強度調低，以免在設定不正確時方向盤扯傷您的手臂。玩得開心！</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>將轉向傳送到 vJoy 裝置</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>有些遊戲（例如 Assetto Corsa）沒有提供關閉其內建力回饋的方法。開啟此選項後，您的方向盤底座的轉向軸會傳遞到 vJoy 虛擬搖桿，然後在遊戲中將 vJoy 的 X 軸設定為轉向輸入 - 遊戲會把力回饋傳送到 vJoy 裝置而不是您的真實方向盤，MAIRA 則保持完全控制。</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy 無法使用 - 請安裝 vJoy 驅動程式並重新啟動 MAIRA！</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>轉向測試</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>開啟此選項時，下方按鈕會控制 vJoy 的轉向軸，您的方向盤底座不會被傳遞。在遊戲中綁定轉向輸入時使用它，這樣只有 vJoy 的軸會移動，遊戲就不會誤選您的真實方向盤。</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>方向盤向右 90°</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>方向盤左右擺動</value>
+  </data>
 </root>

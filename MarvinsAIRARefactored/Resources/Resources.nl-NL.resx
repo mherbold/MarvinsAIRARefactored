@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Deze functie is nog zeer experimenteel en volop in ontwikkeling - ik heb nog niet de kans gehad om elke brug persoonlijk te valideren. Zet de totale sterkte op een laag niveau voordat je een brug activeert, zodat het stuur je armen er niet afrukt als iets niet goed is ingesteld. Veel plezier!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Stuur besturing naar het vJoy-apparaat</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Sommige games (bijvoorbeeld Assetto Corsa) bieden geen manier om hun ingebouwde force feedback uit te schakelen. Zet dit aan om de stuuras van je wheelbase door te geven aan de virtuele joystick vJoy, en stel de game in om de X-as van vJoy als stuurinvoer te gebruiken - de game stuurt zijn force feedback dan naar het vJoy-apparaat in plaats van naar je echte stuur, en MAIRA houdt de volledige controle.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy is niet beschikbaar - installeer het vJoy-stuurprogramma en herstart MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Besturingstest</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Zolang dit aanstaat, bedienen de knoppen hieronder de vJoy-stuuras en wordt je wheelbase niet doorgegeven. Gebruik dit bij het toewijzen van de stuurinvoer in de game, zodat alleen de vJoy-as beweegt en de game niet per ongeluk je echte stuur kiest.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Stuur 90° rechts</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Stuur heen en weer</value>
+  </data>
 </root>

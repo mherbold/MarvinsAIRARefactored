@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>תכונה זו ניסיונית מאוד ועדיין בפיתוח - טרם הייתה לי הזדמנות לאמת אישית כל גשר. אנא הפחת את העוצמה הכוללת לרמה נמוכה לפני הפעלת גשר, כדי שההגה לא יתלוש לך את הידיים אם משהו לא מוגדר כראוי. תיהנה!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>שליחת ההיגוי להתקן vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>חלק מהמשחקים (למשל Assetto Corsa) לא מאפשרים לכבות את משוב הכוח המובנה שלהם. הפעל אפשרות זו כדי להעביר את ציר ההיגוי של הבסיס שלך אל הג'ויסטיק הווירטואלי vJoy, ואז הגדר את המשחק להשתמש בציר ה-X של vJoy כקלט ההיגוי - המשחק ישלח את משוב הכוח שלו להתקן vJoy במקום להגה האמיתי שלך, ו-MAIRA תישאר בשליטה מלאה.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy אינו זמין - התקן את מנהל ההתקן של vJoy והפעל מחדש את MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>בדיקת היגוי</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>כשזה פעיל, הכפתורים למטה שולטים בציר ההיגוי של vJoy והבסיס שלך לא מועבר. השתמש בזה בעת שיוך קלט ההיגוי במשחק, כך שרק ציר ה-vJoy יזוז והמשחק לא יבחר בטעות את ההגה האמיתי שלך.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>הגה 90° ימינה</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>הגה הלוך ושוב</value>
+  </data>
 </root>

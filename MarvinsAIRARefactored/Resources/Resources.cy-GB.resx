@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Mae'r nodwedd hon yn arbrofol iawn ac yn waith ar y gweill - nid wyf wedi cael cyfle eto i ddilysu pob pont yn bersonol. Gostyngwch y cryfder cyffredinol i lefel isel cyn actifadu pont, fel na all y llyw rwygo eich breichiau i ffwrdd os nad yw rhywbeth wedi'i osod yn gywir. Mwynhewch!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Anfon y llywio i'r ddyfais vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Nid yw rhai gemau (Assetto Corsa, er enghraifft) yn rhoi unrhyw ffordd i chi ddiffodd eu hadborth grym mewnol. Trowch hyn ymlaen i basio echel lywio eich sylfaen olwyn drwodd i'r ffon reoli rithwir vJoy, yna gosodwch y gêm i ddefnyddio echel X vJoy fel ei mewnbwn llywio - bydd y gêm yn anfon ei hadborth grym i'r ddyfais vJoy yn lle eich olwyn go iawn, gan adael MAIRA mewn rheolaeth lawn.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>Nid yw vJoy ar gael - gosodwch yrrwr vJoy ac ailgychwyn MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Prawf llywio</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Tra bo hyn ymlaen, mae'r botymau isod yn rheoli echel lywio vJoy ac nid yw eich sylfaen olwyn yn cael ei phasio drwodd. Defnyddiwch hyn wrth rwymo'r mewnbwn llywio yn y gêm, fel mai dim ond echel vJoy sy'n symud ac na all y gêm ddewis eich olwyn go iawn ar gam.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Llyw 90° de</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Ysgubo'r llyw</value>
+  </data>
 </root>

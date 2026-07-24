@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Táto funkcia je značne experimentálna a stále vo vývoji - zatiaľ som nemal možnosť osobne overiť každý most. Pred aktiváciou mosta prosím znížte celkovú silu na nízku úroveň, aby vám volant neodtrhol ruky, ak by niečo nebolo správne nastavené. Bavte sa!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Odosielať riadenie do zariadenia vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Niektoré hry (napríklad Assetto Corsa) neponúkajú spôsob, ako vypnúť ich vstavanú silovú spätnú väzbu. Zapnite túto voľbu, aby sa os riadenia vašej základne odovzdávala virtuálnemu joysticku vJoy, a nastavte hru tak, aby ako vstup riadenia používala os X zariadenia vJoy - hra potom bude posielať svoju silovú spätnú väzbu do zariadenia vJoy namiesto do vášho skutočného volantu a MAIRA si zachová plnú kontrolu.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy nie je k dispozícii - nainštalujte ovládač vJoy a reštartujte MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Test riadenia</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Kým je toto zapnuté, tlačidlá nižšie ovládajú os riadenia vJoy a vaša základňa sa neodovzdáva. Použite to pri priraďovaní riadenia v hre, aby sa hýbala len os vJoy a hra si omylom nevybrala váš skutočný volant.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Volant 90° vpravo</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Kývanie volantom</value>
+  </data>
 </root>

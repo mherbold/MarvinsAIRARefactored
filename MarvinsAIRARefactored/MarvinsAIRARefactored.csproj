@@ -196,7 +196,10 @@
     <Resource Include="Artwork\Buttons\square-default.png" />
     <Resource Include="Artwork\Buttons\square-pressed.png" />
     <Resource Include="Artwork\Buttons\steering-wheel-90-left.png" />
+    <Resource Include="Artwork\Buttons\steering-wheel-90-right.png" />
     <Resource Include="Artwork\Buttons\steering-wheel-center.png" />
+    <Resource Include="Artwork\Buttons\steering-wheel-sweep.png" />
+    <Resource Include="Artwork\Buttons\steering-wheel-sweep-orange.png" />
     <Resource Include="Artwork\Buttons\steering-wheel-left.png" />
     <Resource Include="Artwork\Buttons\steering-wheel-right.png" />
     <Resource Include="Artwork\Buttons\stop-calibration.png" />

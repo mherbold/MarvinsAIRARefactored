@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Questa funzione è molto sperimentale e ancora in lavorazione - non ho ancora avuto modo di validare personalmente ogni ponte. Riduci la forza complessiva a un livello basso prima di attivare un ponte, così il volante non ti strappa le braccia se qualcosa non è configurato correttamente. Divertiti!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Invia lo sterzo al dispositivo vJoy</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Alcuni giochi (per esempio Assetto Corsa) non offrono alcun modo per disattivare il loro force feedback integrato. Attiva questa opzione per passare l'asse dello sterzo della tua base al joystick virtuale vJoy, poi imposta il gioco per usare l'asse X di vJoy come input dello sterzo - il gioco invierà il suo force feedback al dispositivo vJoy invece che al tuo volante reale, e MAIRA manterrà il pieno controllo.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy non è disponibile - installa il driver vJoy e riavvia MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Test dello sterzo</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Finché questo è attivo, i pulsanti qui sotto controllano l'asse dello sterzo di vJoy e la tua base non viene trasmessa. Usalo quando assegni l'input dello sterzo nel gioco, così si muove solo l'asse di vJoy e il gioco non sceglie per errore il tuo volante reale.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Volante 90° a destra</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Oscillazione del volante</value>
+  </data>
 </root>

@@ -758,6 +758,7 @@ public partial class App : Application
 						app.Sounds.Tick( app );
 						app.Graph.Tick( app );
 						app.SteeringEffects.Tick( app );
+						app.GameBridge.Tick( app );
 						app.VirtualJoystick.Tick( app );
 						app.TimingMarkers.Tick( app );
 						app.Telemetry.Tick( app );
@@ -765,7 +766,6 @@ public partial class App : Application
 						app.TyphoonWind.Tick( app );
 						app.GTensioner.Tick( app );
 						app.CloudService.Tick( app );
-						app.GameBridge.Tick( app );
 
 						app.GripOMeterWindow?.Tick( app );
 						app.GapMonitorWindow?.Tick( app );

@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>Тази функция е силно експериментална и все още в процес на разработка - още не съм имал възможност лично да валидирам всеки мост. Моля, намалете общата сила до ниско ниво, преди да активирате мост, за да не ви изтръгне воланът ръцете, ако нещо не е настроено правилно. Приятно каране!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Изпращане на волана към vJoy устройството</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Някои игри (например Assetto Corsa) не дават начин да изключите вградената им силова обратна връзка. Включете това, за да предадете оста на волана от вашата основа към виртуалния джойстик vJoy, след което настройте играта да използва оста X на vJoy като вход за волана - играта ще изпраща силовата си обратна връзка към vJoy устройството вместо към истинския ви волан, а MAIRA запазва пълния контрол.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy не е наличен - инсталирайте драйвера vJoy и рестартирайте MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Тест на волана</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Докато това е включено, бутоните по-долу управляват оста на волана на vJoy и вашата основа не се предава. Използвайте го, когато настройвате волана в играта, така че да се движи само оста на vJoy и играта да не избере истинския ви волан по погрешка.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Волан 90° надясно</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Люлеене на волана</value>
+  </data>
 </root>

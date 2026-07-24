@@ -1,4 +1,5 @@
 
+using MarvinsAIRARefactored.Controls;
 using MarvinsAIRARefactored.GameBridges;
 
 using static MarvinsAIRARefactored.Windows.MainWindow;
@@ -124,6 +125,8 @@ public partial class GameBridge
 
 	public void Tick( App app )
 	{
+		UpdateSteeringPassthrough( app );
+
 		ActiveAdapter?.Tick( app );
 
 		_updateCounter--;
@@ -134,6 +137,15 @@ public partial class GameBridge
 		}
 
 		_updateCounter = UpdateInterval;
+
+		// keep the vJoy driver warning and the sweep button's blink fresh while the game bridge page is
+		// showing - the fault is only discovered after the passthrough first tries to initialize the
+		// device, and the sweep can be cancelled by the toggles rather than by its own button
+		if ( MairaAppMenuPopup.CurrentAppPage == AppPage.GameBridge )
+		{
+			_gameBridgePage.UpdateVJoyStatus( app );
+			_gameBridgePage.UpdateSweepButton( app );
+		}
 
 		if ( _transitioning )
 		{
@@ -156,6 +168,86 @@ public partial class GameBridge
 					Activate( app, adapter );
 
 					break;
+				}
+			}
+		}
+	}
+
+	// When enabled, the wheelbase's steering axis is passed through to the vJoy device's X axis every tick.
+	// This is for games that provide no way to disable their built-in force feedback (Assetto Corsa, for
+	// example): the user binds the game's steering input to the vJoy X axis instead of the real wheel, so the
+	// game sends its force feedback to the vJoy device (which discards it) and MAIRA keeps sole control of
+	// the real wheelbase. This tick runs BEFORE VirtualJoystick.Tick in the app worker loop, so the position
+	// written here goes out to vJoy in the same frame.
+	private bool _steeringPassthroughActive = false;
+	private int _steeringPassthroughShutdownCountdown = 0;
+
+	// the steering sweep continuously oscillates the vJoy axis (one full left-right-left cycle every two
+	// seconds) - games like AC ignore controller input while their window is not in the foreground, so the
+	// user arms the sweep in MAIRA, clicks over to the game, and the game then sees the axis moving
+	public bool SteeringSweepActive { get; set; } = false;
+
+	private const double SteeringSweepPeriodSeconds = 2.0;
+
+	private double _steeringSweepPhase = 0.0;
+
+	private void UpdateSteeringPassthrough( App app )
+	{
+		var settings = DataContext.DataContext.Instance.Settings;
+
+		if ( settings.GameBridgeSendSteeringToVJoy || settings.GameBridgeSteeringTestEnabled )
+		{
+			if ( !app.VirtualJoystick.Initialized && !app.VirtualJoystick.Faulted )
+			{
+				app.VirtualJoystick.Initialize();
+			}
+
+			// in steering test mode the vJoy axis is driven by the test buttons on the game bridge page
+			// instead of the real wheel - this lets the user move ONLY the vJoy axis while binding the
+			// steering input in the game, so the game cannot mistake the real wheel for the moving axis
+			if ( !settings.GameBridgeSteeringTestEnabled )
+			{
+				SteeringSweepActive = false;
+
+				app.VirtualJoystick.Steering = app.DirectInput.ForceFeedbackWheelPosition;
+			}
+			else if ( SteeringSweepActive )
+			{
+				_steeringSweepPhase += 2.0 * Math.PI / ( SteeringSweepPeriodSeconds * App.TimerTicksPerSecond );
+
+				app.VirtualJoystick.Steering = (float) Math.Sin( _steeringSweepPhase );
+			}
+			else
+			{
+				_steeringSweepPhase = 0.0;
+			}
+
+			if ( !_steeringPassthroughActive && app.VirtualJoystick.Initialized )
+			{
+				app.Logger.WriteLine( "[GameBridge] vJoy steering passthrough started" );
+			}
+
+			_steeringPassthroughActive = true;
+			_steeringPassthroughShutdownCountdown = 2;
+		}
+		else if ( _steeringPassthroughActive )
+		{
+			// on the way out, center the axis first and give VirtualJoystick.Tick one frame to actually push
+			// the zero to the device before it is released
+			app.VirtualJoystick.Steering = 0f;
+
+			_steeringPassthroughShutdownCountdown--;
+
+			if ( _steeringPassthroughShutdownCountdown <= 0 )
+			{
+				_steeringPassthroughActive = false;
+				SteeringSweepActive = false;
+
+				app.Logger.WriteLine( "[GameBridge] vJoy steering passthrough stopped" );
+
+				if ( app.VirtualJoystick.Initialized )
+				{
+					app.VirtualJoystick.Shutdown();
 				}
 			}
 		}

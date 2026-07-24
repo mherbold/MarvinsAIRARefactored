@@ -1302,7 +1302,9 @@ public class SteeringEffects
 
 				if ( app.Simulator.TrackDisplayName != "Centripetal Circuit" )
 				{
-					if ( app.VirtualJoystick.Initialized )
+					// the game bridge's steering passthrough shares the vJoy device - if it is enabled, leave
+					// the device alone here or the two features would fight over acquire/release every tick
+					if ( app.VirtualJoystick.Initialized && !DataContext.DataContext.Instance.Settings.GameBridgeSendSteeringToVJoy )
 					{
 						app.VirtualJoystick.Shutdown();
 					}

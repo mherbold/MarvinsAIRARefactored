@@ -2251,4 +2251,25 @@
   <data name="GameBridgeWarning" xml:space="preserve">
     <value>See funktsioon on väga eksperimentaalne ja alles arendamisel - mul pole veel olnud võimalust iga silda isiklikult kontrollida. Palun vähenda enne silla aktiveerimist üldine tugevus madalale tasemele, et rool ei rebiks sul käsi otsast, kui midagi pole õigesti seadistatud. Head lõbutsemist!</value>
   </data>
+  <data name="SendSteeringToVJoy" xml:space="preserve">
+    <value>Saada rool vJoy seadmesse</value>
+  </data>
+  <data name="SendSteeringToVJoyDescription" xml:space="preserve">
+    <value>Mõned mängud (näiteks Assetto Corsa) ei võimalda nende sisseehitatud jõutagasisidet välja lülitada. Lülita see sisse, et suunata oma rooli baasi roolitelg virtuaalsesse juhtkangi vJoy, ja seadista mäng kasutama rooli sisendina vJoy X-telge - mäng saadab siis oma jõutagasiside vJoy seadmesse, mitte sinu päris rooli, ja MAIRA jääb täielikult juhtima.</value>
+  </data>
+  <data name="VJoyNotAvailable" xml:space="preserve">
+    <value>vJoy pole saadaval - paigalda vJoy draiver ja taaskäivita MAIRA!</value>
+  </data>
+  <data name="SteeringTest" xml:space="preserve">
+    <value>Roolitest</value>
+  </data>
+  <data name="SteeringTestDescription" xml:space="preserve">
+    <value>Kui see on sees, juhivad allolevad nupud vJoy roolitelge ja sinu rooli baasi ei edastata. Kasuta seda mängus roolisisendi sidumisel, et liiguks ainult vJoy telg ja mäng ei valiks kogemata sinu päris rooli.</value>
+  </data>
+  <data name="SteeringWheel90Right" xml:space="preserve">
+    <value>Rool 90° paremale</value>
+  </data>
+  <data name="SteeringWheelSweep" xml:space="preserve">
+    <value>Rool edasi-tagasi</value>
+  </data>
 </root>
