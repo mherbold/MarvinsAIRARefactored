@@ -5,7 +5,7 @@
   <Graph>
     <GraphId>14970d6d086a4a7f81369e91b484d586</GraphId>
     <Name>Alan Le's slew and total compression</Name>
-    <IsBuiltIn>false</IsBuiltIn>
+    <IsBuiltIn>true</IsBuiltIn>
     <Modules>
       <FFBModuleData>
         <ModuleId>f8a533668f4a4fa595a75c4beb1001c4</ModuleId>

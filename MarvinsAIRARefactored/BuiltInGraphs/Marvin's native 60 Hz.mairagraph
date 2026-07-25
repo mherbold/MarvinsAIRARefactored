@@ -6,7 +6,7 @@
     <GraphId>d75319b27eaa4baeba4bfffedbdb8a40</GraphId>
     <Name>Marvin's native 60 Hz</Name>
     <Description>iRacing's native 60 Hz force feedback with prediction to tighten things up</Description>
-    <IsBuiltIn>false</IsBuiltIn>
+    <IsBuiltIn>true</IsBuiltIn>
     <Modules>
       <FFBModuleData>
         <ModuleId>720eb719f3f84ac5855d8647f4b2bca6</ModuleId>

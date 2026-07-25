@@ -5,7 +5,7 @@
   <Graph>
     <GraphId>eb1200e27491419f9677efa9f82f0b45</GraphId>
     <Name>Alan Le's adaptive hybrid</Name>
-    <IsBuiltIn>false</IsBuiltIn>
+    <IsBuiltIn>true</IsBuiltIn>
     <Modules>
       <FFBModuleData>
         <ModuleId>f949d0232ac949cbb9e378a4e549e2b3</ModuleId>

@@ -6,7 +6,7 @@
     <GraphId>2a29dfcbc2d04dba9608242de14b443e</GraphId>
     <Name>Marvin's easy detail adjustment</Name>
     <Description>Recommended for most drivers - the full 360 Hz FFB signal with prediction to reduce latency. Adjust the gain to increase or decrease the road and tire detail.</Description>
-    <IsBuiltIn>false</IsBuiltIn>
+    <IsBuiltIn>true</IsBuiltIn>
     <Modules>
       <FFBModuleData>
         <ModuleId>Source360</ModuleId>

@@ -5,7 +5,7 @@
   <Graph>
     <GraphId>b6112552140541f8b5de865319836480</GraphId>
     <Name>Alan Le's hybrid</Name>
-    <IsBuiltIn>false</IsBuiltIn>
+    <IsBuiltIn>true</IsBuiltIn>
     <Modules>
       <FFBModuleData>
         <ModuleId>4785423c67f24e7582b3f3d4484779cd</ModuleId>
