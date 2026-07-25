@@ -1,4 +1,4 @@
-<UserControl x:Class="MarvinsAIRARefactored.Pages.DonatePage"
+﻿<UserControl x:Class="MarvinsAIRARefactored.Pages.DonatePage"
              x:Name="Root"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -16,8 +16,8 @@
 
     <StackPanel>
 
-        <controls:MairaGroupBox Label="{Binding Localization.Upper[SuperDonors]}"
-                                SubLabel="❤️❤️❤️">
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[MegaDonors]}"
+                                SubLabel="❤️❤️❤️❤️❤️">
 
             <StackPanel>
 
@@ -29,36 +29,14 @@
                         </Style>
                     </UniformGrid.Resources>
 
-                    <TextBlock Text="Brent" />
+                    <!-- BEGIN GENERATED: MEGA DONORS -->
                     <TextBlock Text="Bruno Cerdeira Santos" />
                     <TextBlock Text="Chad McNeese" />
                     <TextBlock Text="Craig Kirkland" />
-                    <TextBlock Text="Dibbz Maneak" />
-                    <TextBlock Text="DIOGO XAVIER OLIVEIRA" />
-                    <TextBlock Text="dukethejuke" />
-                    <TextBlock Text="Erin Andrusak" />
-                    <TextBlock Text="Fish" />
-                    <TextBlock Text="Herbert Heissenberger" />
-                    <TextBlock Text="Jeromy Balduf" />
-                    <TextBlock Text="Jesse Moseley" />
-                    <TextBlock Text="Joseph Lemmer" />
-                    <TextBlock Text="Ken Osborne" />
                     <TextBlock Text="@lucciano.netto" />
-                    <TextBlock Text="M C Hastrich" />
-                    <TextBlock Text="Marcos Martins de Souza" />
-                    <TextBlock Text="Matt" />
-                    <TextBlock Text="Matthew Davids" />
-                    <TextBlock Text="Matthew Merciez" />
-                    <TextBlock Text="Peter Maddocks" />
-                    <TextBlock Text="PostItNote#9" />
-                    <TextBlock Text="Richard Baxter" />
-                    <TextBlock Text="Robert JL Henry" />
-                    <TextBlock Text="Sean Kaiser" />
-                    <TextBlock Text="supermelon" />
-                    <TextBlock Text="Thiago G de O Morgado" />
                     <TextBlock Text="Thomas Krag" />
-                    <TextBlock Text="Travis Boudreaux" />
-                    <TextBlock Text="@xristospapaxristopoulos" />
+                    <TextBlock Text="Tyler Hagan" />
+                    <!-- END GENERATED: MEGA DONORS -->
 
                 </UniformGrid>
 
@@ -114,11 +92,11 @@
                            TextDecorations="None">
 
                     <InlineUIContainer BaselineAlignment="Center">
-                        
+
                         <Image Source="/MarvinsAIRARefactored;component/Artwork/Misc/buy-me-a-coffee-logo.png"
                                 Height="24"
                                 Margin="0,0,5,0" />
-                        
+
                     </InlineUIContainer>
 
                     <Run Text="{Binding Localization[BuyMeACoffee], Mode=OneWay}" />
@@ -133,6 +111,57 @@
 
         </controls:MairaGroupBox>
 
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[SuperDonors]}"
+                                SubLabel="❤️❤️❤️">
+
+            <UniformGrid Columns="3">
+
+                <UniformGrid.Resources>
+                    <Style TargetType="TextBlock"
+                           BasedOn="{StaticResource MairaTextBlockStyle}">
+                    </Style>
+                </UniformGrid.Resources>
+
+                <!-- BEGIN GENERATED: SUPER DONORS -->
+                <TextBlock Text="Alexander von Kreutz" />
+                <TextBlock Text="Brent" />
+                <TextBlock Text="Christian Elsinger" />
+                <TextBlock Text="David DiLoreto" />
+                <TextBlock Text="Dibbz Maneak" />
+                <TextBlock Text="DIOGO XAVIER OLIVEIRA" />
+                <TextBlock Text="dukethejuke" />
+                <TextBlock Text="Erin Andrusak" />
+                <TextBlock Text="Fish" />
+                <TextBlock Text="Herbert Heissenberger" />
+                <TextBlock Text="Jeff Besnard" />
+                <TextBlock Text="Jeromy Balduf" />
+                <TextBlock Text="Jesse Moseley" />
+                <TextBlock Text="Joseph Lemmer" />
+                <TextBlock Text="karimi" />
+                <TextBlock Text="Ken Osborne" />
+                <TextBlock Text="M C Hastrich" />
+                <TextBlock Text="Marcos Martins de Souza" />
+                <TextBlock Text="Matt" />
+                <TextBlock Text="Matthew Davids" />
+                <TextBlock Text="Matthew Merciez" />
+                <TextBlock Text="Mike M" />
+                <TextBlock Text="Paolo" />
+                <TextBlock Text="Peter Maddocks" />
+                <TextBlock Text="PostItNote#9" />
+                <TextBlock Text="Richard Baxter" />
+                <TextBlock Text="Robert JL Henry" />
+                <TextBlock Text="Sean Kaiser" />
+                <TextBlock Text="Steve Saunders" />
+                <TextBlock Text="supermelon" />
+                <TextBlock Text="Thiago G de O Morgado" />
+                <TextBlock Text="Travis Boudreaux" />
+                <TextBlock Text="@xristospapaxristopoulos" />
+                <!-- END GENERATED: SUPER DONORS -->
+
+            </UniformGrid>
+
+        </controls:MairaGroupBox>
+
         <controls:MairaGroupBox Label="{Binding Localization.Upper[Donors]}"
                                 SubLabel="❤️">
 
@@ -144,9 +173,11 @@
                     </Style>
                 </UniformGrid.Resources>
 
+                <!-- BEGIN GENERATED: DONORS -->
                 <TextBlock Text="2farback" />
+                <TextBlock Text="3Thor" />
                 <TextBlock Text="Adam" />
-                <TextBlock Text="Adam Bambrough" />
+                <TextBlock Text="Adam Races" />
                 <TextBlock Text="Ade" />
                 <TextBlock Text="Adrian G Rubio" />
                 <TextBlock Text="@agesang" />
@@ -162,6 +193,7 @@
                 <TextBlock Text="Andreas Mauchle" />
                 <TextBlock Text="Andrew" />
                 <TextBlock Text="Anker Berg-Sonne" />
+                <TextBlock Text="Anthony - Burnout #64" />
                 <TextBlock Text="Anthony Brown" />
                 <TextBlock Text="arcaias" />
                 <TextBlock Text="Ari D Sherwood" />
@@ -187,6 +219,7 @@
                 <TextBlock Text="BoxBoxDesign" />
                 <TextBlock Text="Brandon Burns" />
                 <TextBlock Text="Brendan Hobbart" />
+                <TextBlock Text="@bretsalmon" />
                 <TextBlock Text="@broch_evans" />
                 <TextBlock Text="Bruno" />
                 <TextBlock Text="BZ" />
@@ -201,7 +234,6 @@
                 <TextBlock Text="Chris Gengaro" />
                 <TextBlock Text="Chris Thomas" />
                 <TextBlock Text="Chris wilson" />
-                <TextBlock Text="Christian Elsinger" />
                 <TextBlock Text="Christian O" />
                 <TextBlock Text="Christian Scherf" />
                 <TextBlock Text="Christopher Harp" />
@@ -218,9 +250,11 @@
                 <TextBlock Text="Daniel Cohen" />
                 <TextBlock Text="Daniel König" />
                 <TextBlock Text="Daniel R" />
+                <TextBlock Text="Dario Lopez" />
                 <TextBlock Text="Darryn Lahner" />
                 <TextBlock Text="Dave Cam" />
                 <TextBlock Text="Dave G" />
+                <TextBlock Text="Dave Marx" />
                 <TextBlock Text="Dave Oliveira - From Brazil" />
                 <TextBlock Text="David" />
                 <TextBlock Text="David Henger" />
@@ -229,10 +263,13 @@
                 <TextBlock Text="david701gibson" />
                 <TextBlock Text="Derek S Tipton" />
                 <TextBlock Text="didier porte" />
+                <TextBlock Text="Dirk" />
                 <TextBlock Text="Dirk Ehrhardt" />
                 <TextBlock Text="Dixxyy" />
                 <TextBlock Text="Don" />
                 <TextBlock Text="Donutz" />
+                <TextBlock Text="Dony" />
+                <TextBlock Text="@douglas.garcia.89" />
                 <TextBlock Text="EatisLee" />
                 <TextBlock Text="Edmund" />
                 <TextBlock Text="Eduardo" />
@@ -267,9 +304,11 @@
                 <TextBlock Text="Grimaldi Jean" />
                 <TextBlock Text="Grimax Racing" />
                 <TextBlock Text="GUIDOTTI" />
+                <TextBlock Text="@gwo" />
                 <TextBlock Text="Halan Williams" />
                 <TextBlock Text="hamilton smith" />
                 <TextBlock Text="Haralambos Babaletskos" />
+                <TextBlock Text="Heiko" />
                 <TextBlock Text="HG Vosmeijer" />
                 <TextBlock Text="Hugo" />
                 <TextBlock Text="Ian JJ Ford" />
@@ -283,16 +322,17 @@
                 <TextBlock Text="James McDonald" />
                 <TextBlock Text="James Pasquariello" />
                 <TextBlock Text="Janekeyu" />
+                <TextBlock Text="Jarno Iprenburg" />
                 <TextBlock Text="jasminfrenette" />
                 <TextBlock Text="Jason" />
+                <TextBlock Text="Jason Mitchell" />
+                <TextBlock Text="Javier" />
                 <TextBlock Text="Javier Montero Isusi" />
                 <TextBlock Text="jay" />
-                <TextBlock Text="Jean Paul Vieira " />
-                <TextBlock Text="Jeff Besnard" />
+                <TextBlock Text="Jean Paul Vieira" />
                 <TextBlock Text="Jeff Fritscher" />
                 <TextBlock Text="Jeff System42" />
                 <TextBlock Text="Jens Carr" />
-                <TextBlock Text="Jeremy" />
                 <TextBlock Text="jeremy" />
                 <TextBlock Text="Jeroni Fajardo" />
                 <TextBlock Text="JERRY" />
@@ -300,6 +340,7 @@
                 <TextBlock Text="Joachim Osbeck" />
                 <TextBlock Text="JOAO BATISTA" />
                 <TextBlock Text="João Carriço" />
+                <TextBlock Text="Joao Correia" />
                 <TextBlock Text="Jochen" />
                 <TextBlock Text="Joe Pearson" />
                 <TextBlock Text="@joeyladouceur" />
@@ -309,6 +350,7 @@
                 <TextBlock Text="John McCallion" />
                 <TextBlock Text="John Millet" />
                 <TextBlock Text="Jonathan E Marshall" />
+                <TextBlock Text="Jose-Paolo Roldan" />
                 <TextBlock Text="@joshgabry182" />
                 <TextBlock Text="joy perez" />
                 <TextBlock Text="Juan Lu" />
@@ -326,6 +368,7 @@
                 <TextBlock Text="LaMont" />
                 <TextBlock Text="Lance Campbell" />
                 <TextBlock Text="@lazaro_morais_ofc" />
+                <TextBlock Text="Leandro Simonato" />
                 <TextBlock Text="Leif Maertens" />
                 <TextBlock Text="Luca" />
                 <TextBlock Text="Lufino" />
@@ -351,6 +394,7 @@
                 <TextBlock Text="Martin Heidenbluth" />
                 <TextBlock Text="Martin Irizar" />
                 <TextBlock Text="Massimo Martiglia" />
+                <TextBlock Text="Matt Simo" />
                 <TextBlock Text="Matt Swift" />
                 <TextBlock Text="Matteo Di Francesxo" />
                 <TextBlock Text="Mattn503" />
@@ -367,10 +411,10 @@
                 <TextBlock Text="Michie" />
                 <TextBlock Text="Miguel Angel Casado González" />
                 <TextBlock Text="Miguel Angel Tome" />
-                <TextBlock Text="Mike M" />
                 <TextBlock Text="miker0n3" />
                 <TextBlock Text="Mikey Polard" />
                 <TextBlock Text="@millsdo" />
+                <TextBlock Text="@minimotojon4605" />
                 <TextBlock Text="Mitchell Bowen" />
                 <TextBlock Text="moretti.m.55" />
                 <TextBlock Text="MR A M HALL" />
@@ -380,6 +424,7 @@
                 <TextBlock Text="Nelson Rivera" />
                 <TextBlock Text="nexoplexo" />
                 <TextBlock Text="Nicholas Williams" />
+                <TextBlock Text="Nick" />
                 <TextBlock Text="Nick Reynolds" />
                 <TextBlock Text="Nikolay Ivanov" />
                 <TextBlock Text="Noah Rusk" />
@@ -390,7 +435,6 @@
                 <TextBlock Text="Omar Carlet" />
                 <TextBlock Text="Pan-Am Racing" />
                 <TextBlock Text="Panayiotis Papaioannou" />
-                <TextBlock Text="Paolo" />
                 <TextBlock Text="parmand" />
                 <TextBlock Text="passx350" />
                 <TextBlock Text="Patrick Park" />
@@ -407,7 +451,8 @@
                 <TextBlock Text="RalphMeyer" />
                 <TextBlock Text="Randy Villalovas" />
                 <TextBlock Text="Raphael" />
-                <TextBlock Text="Ren&eacute; Bo" />
+                <TextBlock Text="RedSquirrel" />
+                <TextBlock Text="René Bo" />
                 <TextBlock Text="Rene Stangl" />
                 <TextBlock Text="Rene Vorwerk" />
                 <TextBlock Text="Renzo Olivieri" />
@@ -436,6 +481,7 @@
                 <TextBlock Text="schmackofatz" />
                 <TextBlock Text="SCOSim" />
                 <TextBlock Text="Scott Bakeeff" />
+                <TextBlock Text="ScrewAholic92" />
                 <TextBlock Text="Sean Sowden" />
                 <TextBlock Text="Sean Symes" />
                 <TextBlock Text="Sebastian" />
@@ -458,7 +504,7 @@
                 <TextBlock Text="Stephen Clay" />
                 <TextBlock Text="Stephen R Horner" />
                 <TextBlock Text="Steve" />
-                <TextBlock Text="Steve  T" />
+                <TextBlock Text="Steve T" />
                 <TextBlock Text="@SteveDyeDrummer" />
                 <TextBlock Text="Steven Barker" />
                 <TextBlock Text="steven slater" />
@@ -481,12 +527,12 @@
                 <TextBlock Text="Tripp Lanier" />
                 <TextBlock Text="Tschimmy" />
                 <TextBlock Text="Twan" />
-                <TextBlock Text="Tyler Hagan" />
                 <TextBlock Text="V A Parnell Jr MD" />
                 <TextBlock Text="Victor" />
                 <TextBlock Text="Wayne Hugo" />
                 <TextBlock Text="Wesley Valerio" />
                 <TextBlock Text="William Daily Jr" />
+                <TextBlock Text="Winter5auce" />
                 <TextBlock Text="Xatosch" />
                 <TextBlock Text="xiaofan shi" />
                 <TextBlock Text="@xmanpkr" />
@@ -495,11 +541,12 @@
                 <TextBlock Text="Yann LE DOUSSAL" />
                 <TextBlock Text="Yevgen Zhylenkov" />
                 <TextBlock Text="zdenek.kaska" />
+                <!-- END GENERATED: DONORS -->
 
             </UniformGrid>
 
         </controls:MairaGroupBox>
-        
+
     </StackPanel>
 
 </UserControl>

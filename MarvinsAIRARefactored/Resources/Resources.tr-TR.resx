@@ -1930,4 +1930,7 @@
   <data name="XtremeScoringWebsite" xml:space="preserve">
     <value>Xtreme Scoring web sitesi</value>
   </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Mega bağışçılar</value>
+  </data>
 </root>

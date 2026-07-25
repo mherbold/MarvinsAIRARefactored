@@ -1933,4 +1933,7 @@
   <data name="XtremeScoringWebsite" xml:space="preserve">
     <value>Xtreme Scoring ウェブサイト</value>
   </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>メガ寄付者</value>
+  </data>
 </root>

@@ -1935,4 +1935,7 @@ Hier ist der Link zum Spenden:</value>
   <data name="XtremeScoringWebsite" xml:space="preserve">
     <value>Xtreme-Scoring-Website</value>
   </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Mega-Spender</value>
+  </data>
 </root>

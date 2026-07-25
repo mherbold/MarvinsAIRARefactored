@@ -1917,4 +1917,7 @@
   <data name="XtremeScoringWebsite" xml:space="preserve">
     <value>Xtreme Scoring 웹사이트</value>
   </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>메가 기부자</value>
+  </data>
 </root>
