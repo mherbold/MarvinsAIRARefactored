@@ -34,7 +34,7 @@ namespace MarvinsAIRARefactored.Controls;
 /// content extent. <see cref="ClampPan"/> bounds that transform so at least one whole node always stays on screen.
 /// Zoom and pan are in-memory view state: they are never serialized.</para>
 /// </summary>
-public partial class FFBGraphEditor : UserControl
+public partial class MairaFFBGraphEditor : UserControl
 {
 	// Geometry shared with the node DataTemplate: the template consumes these via x:Static (node box size,
 	// connector dot size, connector margins), so the XAML visuals and the wire/hit-test math here derive
@@ -99,7 +99,7 @@ public partial class FFBGraphEditor : UserControl
 
 	private bool _canvasRefreshQueued = false;
 
-	public FFBGraphEditor()
+	public MairaFFBGraphEditor()
 	{
 		InitializeComponent();
 
@@ -114,15 +114,15 @@ public partial class FFBGraphEditor : UserControl
 
 		GridDot_EllipseGeometry.Center = new Point( halfGridSize, halfGridSize );
 
-		Loaded += FFBGraphEditor_Loaded;
-		Unloaded += FFBGraphEditor_Unloaded;
+		Loaded += MairaFFBGraphEditor_Loaded;
+		Unloaded += MairaFFBGraphEditor_Unloaded;
 
 		SizeChanged += ( sender, e ) => RedrawWires();
 	}
 
 	#region View-model wiring
 
-	private void FFBGraphEditor_Loaded( object sender, RoutedEventArgs e )
+	private void MairaFFBGraphEditor_Loaded( object sender, RoutedEventArgs e )
 	{
 		if ( _viewModel != null )
 		{
@@ -144,7 +144,7 @@ public partial class FFBGraphEditor : UserControl
 		UpdateStructureLockVisuals();
 	}
 
-	private void FFBGraphEditor_Unloaded( object sender, RoutedEventArgs e )
+	private void MairaFFBGraphEditor_Unloaded( object sender, RoutedEventArgs e )
 	{
 		if ( _viewModel == null )
 		{

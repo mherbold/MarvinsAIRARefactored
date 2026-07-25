@@ -1,4 +1,4 @@
-<UserControl x:Class="MarvinsAIRARefactored.Controls.FFBGraphEditor"
+<UserControl x:Class="MarvinsAIRARefactored.Controls.MairaFFBGraphEditor"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -104,16 +104,39 @@
 
                             <DataTemplate>
 
-                                <!-- node box size and connector metrics come from the FFBGraphEditor constants
+                                <!-- node box size and connector metrics come from the MairaFFBGraphEditor constants
 							     (via x:Static), which the wire drawing and connector hit-testing share -->
-                                <Grid Width="{x:Static local:FFBGraphEditor.NodeWidth}"
-                                      Height="{x:Static local:FFBGraphEditor.NodeHeight}"
+                                <Grid Width="{x:Static local:MairaFFBGraphEditor.NodeWidth}"
+                                      Height="{x:Static local:MairaFFBGraphEditor.NodeHeight}"
                                       Background="Transparent"
                                       Cursor="Hand"
                                       MouseLeftButtonDown="Node_MouseLeftButtonDown"
                                       MouseRightButtonDown="Node_MouseRightButtonDown"
                                       MouseMove="Node_MouseMove"
                                       MouseLeftButtonUp="Node_MouseLeftButtonUp">
+
+                                    <!-- hovering a node shows its description (the localized built-in default, or
+                                         the user's override on a custom graph); nodes without one get no tooltip -->
+                                    <Grid.Style>
+                                        <Style TargetType="Grid">
+                                            <Setter Property="ToolTip">
+                                                <Setter.Value>
+                                                    <ToolTip>
+                                                        <TextBlock Text="{Binding NodeDescription}"
+                                                                   TextWrapping="Wrap"
+                                                                   MaxWidth="360" />
+                                                    </ToolTip>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding NodeDescription}"
+                                                             Value="">
+                                                    <Setter Property="ToolTip"
+                                                            Value="{x:Null}" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Grid.Style>
 
                                     <!-- the border fills the whole layout box so a snapped node sits flush on the
 							     grid; the connector dots straddle its edges via their negative margins -->
@@ -213,8 +236,8 @@
                                     </Border>
 
                                     <!-- input connector A (upper-left on dual-input modules, centered otherwise) -->
-                                    <Ellipse Width="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
-                                             Height="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
+                                    <Ellipse Width="{x:Static local:MairaFFBGraphEditor.ConnectorDiameter}"
+                                             Height="{x:Static local:MairaFFBGraphEditor.ConnectorDiameter}"
                                              Fill="{DynamicResource Brush.Border.Active}"
                                              Stroke="{DynamicResource Brush.Background.Popup}"
                                              StrokeThickness="1"
@@ -225,14 +248,14 @@
                                                 <Setter Property="VerticalAlignment"
                                                         Value="Center" />
                                                 <Setter Property="Margin"
-                                                        Value="{x:Static local:FFBGraphEditor.SingleInputConnectorMargin}" />
+                                                        Value="{x:Static local:MairaFFBGraphEditor.SingleInputConnectorMargin}" />
                                                 <Style.Triggers>
                                                     <DataTrigger Binding="{Binding ShowInputB}"
                                                                  Value="True">
                                                         <Setter Property="VerticalAlignment"
                                                                 Value="Top" />
                                                         <Setter Property="Margin"
-                                                                Value="{x:Static local:FFBGraphEditor.DualInputAConnectorMargin}" />
+                                                                Value="{x:Static local:MairaFFBGraphEditor.DualInputAConnectorMargin}" />
                                                     </DataTrigger>
                                                 </Style.Triggers>
                                             </Style>
@@ -240,26 +263,26 @@
                                     </Ellipse>
 
                                     <!-- input connector B (lower-left, dual-input modules only) -->
-                                    <Ellipse Width="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
-                                             Height="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
+                                    <Ellipse Width="{x:Static local:MairaFFBGraphEditor.ConnectorDiameter}"
+                                             Height="{x:Static local:MairaFFBGraphEditor.ConnectorDiameter}"
                                              Fill="{DynamicResource Brush.Border.Active}"
                                              Stroke="{DynamicResource Brush.Background.Popup}"
                                              StrokeThickness="1"
                                              HorizontalAlignment="Left"
                                              VerticalAlignment="Bottom"
-                                             Margin="{x:Static local:FFBGraphEditor.DualInputBConnectorMargin}"
+                                             Margin="{x:Static local:MairaFFBGraphEditor.DualInputBConnectorMargin}"
                                              Visibility="{Binding ShowInputB, Converter={StaticResource BoolToVisibilityCollapsed}}" />
 
                                     <!-- output connector (right, hidden on the Output module and on the standalone
 							     vibration generator nodes) -->
-                                    <Ellipse Width="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
-                                             Height="{x:Static local:FFBGraphEditor.ConnectorDiameter}"
+                                    <Ellipse Width="{x:Static local:MairaFFBGraphEditor.ConnectorDiameter}"
+                                             Height="{x:Static local:MairaFFBGraphEditor.ConnectorDiameter}"
                                              Fill="{DynamicResource Brush.Border.Active}"
                                              Stroke="{DynamicResource Brush.Background.Popup}"
                                              StrokeThickness="1"
                                              HorizontalAlignment="Right"
                                              VerticalAlignment="Center"
-                                             Margin="{x:Static local:FFBGraphEditor.OutputConnectorMargin}"
+                                             Margin="{x:Static local:MairaFFBGraphEditor.OutputConnectorMargin}"
                                              Visibility="{Binding HasOutputConnector, Converter={StaticResource BoolToVisibilityCollapsed}}" />
 
                                 </Grid>
