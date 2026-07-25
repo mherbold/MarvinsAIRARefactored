@@ -914,7 +914,7 @@ public class GTensioner
 			}
 			else
 			{
-				var rawSop = App.Instance!.SteeringEffects.SeatOfPantsEffect;
+				var rawSop = App.Instance!.SteeringEffects.SeatOfPantsShaped;
 
 				// Apply mode (Normal or Inverted)
 				sop = ApplyAxisMode( rawSop, settings.GTensionerSeatOfPantsMode );

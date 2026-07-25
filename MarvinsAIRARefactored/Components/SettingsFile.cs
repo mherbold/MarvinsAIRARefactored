@@ -124,38 +124,38 @@ public class SettingsFile
 			DataContext.DataContext.Instance.Settings.RacingWheelAutoTargetMigrated = true;
 		}
 
-			// Migrate the old percentage-based auto margin to the new Nm-based auto target (value, scope,
-			// and input mappings). Must run before the controller profiles are initialized/applied so the
-			// renamed profile mapping keys are in place.
-			DataContext.DataContext.Instance.Settings.MigrateAutoMarginToAutoTarget();
+		// Migrate the old percentage-based auto margin to the new Nm-based auto target (value, scope,
+		// and input mappings). Must run before the controller profiles are initialized/applied so the
+		// renamed profile mapping keys are in place.
+		DataContext.DataContext.Instance.Settings.MigrateAutoMarginToAutoTarget();
 
-			// Migrate a pre-profiles settings file (snapshot the existing flat mappings into a
-			// "Default" controller profile) and guarantee a valid active profile.
-			DataContext.DataContext.Instance.Settings.EnsureControllerProfilesInitialized();
+		// Migrate a pre-profiles settings file (snapshot the existing flat mappings into a
+		// "Default" controller profile) and guarantee a valid active profile.
+		DataContext.DataContext.Instance.Settings.EnsureControllerProfilesInitialized();
 
-			// One-time: seed the non-car overlay layout from the existing top-level overlay position/scale values
-			// so users upgrading from a version without per-car overlays keep their current layout.
-			DataContext.DataContext.Instance.Settings.MigrateOverlayLayoutToNonCarBaseline();
+		// One-time: seed the non-car overlay layout from the existing top-level overlay position/scale values
+		// so users upgrading from a version without per-car overlays keep their current layout.
+		DataContext.DataContext.Instance.Settings.MigrateOverlayLayoutToNonCarBaseline();
 
-			Settings.SuppressUpdatingOfContextSettings = false;
+		Settings.SuppressUpdatingOfContextSettings = false;
 
-			PauseSerialization = false;
+		PauseSerialization = false;
 
-			// Sync the AppShowSplashScreen setting with the DisableSplashScreen.txt file state
-			// This ensures the setting reflects reality if the user manually deleted the file
-			var disableSplashScreenFilePath = Path.Combine( App.DocumentsFolder, "DisableSplashScreen.txt" );
-			var fileExists = File.Exists( disableSplashScreenFilePath );
-			var showSplashScreen = !fileExists;
+		// Sync the AppShowSplashScreen setting with the DisableSplashScreen.txt file state
+		// This ensures the setting reflects reality if the user manually deleted the file
+		var disableSplashScreenFilePath = Path.Combine( App.DocumentsFolder, "DisableSplashScreen.txt" );
+		var fileExists = File.Exists( disableSplashScreenFilePath );
+		var showSplashScreen = !fileExists;
 
-			if ( DataContext.DataContext.Instance.Settings.AppShowSplashScreen != showSplashScreen )
-			{
-				app.Logger.WriteLine( $"[SettingsFile] Syncing AppShowSplashScreen setting to {showSplashScreen} based on file presence" );
+		if ( DataContext.DataContext.Instance.Settings.AppShowSplashScreen != showSplashScreen )
+		{
+			app.Logger.WriteLine( $"[SettingsFile] Syncing AppShowSplashScreen setting to {showSplashScreen} based on file presence" );
 
-				DataContext.DataContext.Instance.Settings.AppShowSplashScreen = showSplashScreen;
-			}
-
-			app.Logger.WriteLine( "[SettingsFile] <<< Initialize" );
+			DataContext.DataContext.Instance.Settings.AppShowSplashScreen = showSplashScreen;
 		}
+
+		app.Logger.WriteLine( "[SettingsFile] <<< Initialize" );
+	}
 
 	public void Tick( App app )
 	{

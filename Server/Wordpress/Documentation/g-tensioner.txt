@@ -468,7 +468,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The seat-of-pants effect adds a constant force effect to the belts that is driven by the movement of the car's chassis. This gives a physical sense of the car's behavior through belt tension.</p>
+<p>The seat-of-pants effect adds a constant force effect to the belts that is driven by the movement of the car's chassis. This gives a physical sense of the car's behavior through belt tension. This effect runs independently of the Steering Effects page &mdash; the seat-of-pants steering effect there does not need to be enabled.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

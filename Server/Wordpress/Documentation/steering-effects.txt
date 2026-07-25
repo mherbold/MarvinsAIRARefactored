@@ -42,7 +42,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The calibration file is only needed for the understeer and oversteer effects. The seat-of-pants effect does not use calibration files.</p>
+<p>The calibration file is only needed for the understeer and oversteer effects, and for the skid/slip indicator of the Grip-O-Meter overlay &mdash; these all stay at zero until a calibration file is loaded. The seat-of-pants effect does not use calibration files.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -396,7 +396,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>The Grip-O-Meter is a small overlay window driven by the steering effects above. It shows a skid/slip indicator (based on under/oversteer deviation) and a seat-of-pants ball (based on the seat-of-pants effect).</p>
+<p>The Grip-O-Meter is a small overlay window driven by the steering effects above. It shows a skid/slip indicator (based on under/oversteer deviation) and a seat-of-pants ball (based on the seat-of-pants effect). The skid/slip indicator stays centered until a calibration file is loaded for the current car.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
