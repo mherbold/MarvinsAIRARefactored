@@ -133,62 +133,62 @@ public class SettingsFile
 			DataContext.DataContext.Instance.Settings.RacingWheelAutoTargetMigrated = true;
 		}
 
-			// Migrate the old percentage-based auto margin to the new Nm-based auto target (value, scope,
-			// and input mappings). Must run before the controller profiles are initialized/applied so the
-			// renamed profile mapping keys are in place.
-			DataContext.DataContext.Instance.Settings.MigrateAutoMarginToAutoTarget();
+		// Migrate the old percentage-based auto margin to the new Nm-based auto target (value, scope,
+		// and input mappings). Must run before the controller profiles are initialized/applied so the
+		// renamed profile mapping keys are in place.
+		DataContext.DataContext.Instance.Settings.MigrateAutoMarginToAutoTarget();
 
-			// Migrate a pre-profiles settings file (snapshot the existing flat mappings into a
-			// "Default" controller profile) and guarantee a valid active profile.
-			DataContext.DataContext.Instance.Settings.EnsureControllerProfilesInitialized();
+		// Migrate a pre-profiles settings file (snapshot the existing flat mappings into a
+		// "Default" controller profile) and guarantee a valid active profile.
+		DataContext.DataContext.Instance.Settings.EnsureControllerProfilesInitialized();
 
-			// One-time: seed the non-car overlay layout from the existing top-level overlay position/scale values
-			// so users upgrading from a version without per-car overlays keep their current layout.
-			DataContext.DataContext.Instance.Settings.MigrateOverlayLayoutToNonCarBaseline();
+		// One-time: seed the non-car overlay layout from the existing top-level overlay position/scale values
+		// so users upgrading from a version without per-car overlays keep their current layout.
+		DataContext.DataContext.Instance.Settings.MigrateOverlayLayoutToNonCarBaseline();
 
-			// Every launch: sync the stored built-in graphs against the graph files shipped inside the app
-			// (create missing ones, refresh any whose shipped file changed, purge retired ones) and repair the
-			// selections. If anything changed, remember to persist below (the recorded file hashes must reach
-			// disk or the sync would re-run on every launch).
-			var builtInGraphsChanged = DataContext.DataContext.Instance.Settings.EnsureBuiltInFFBGraphsInitialized();
+		// Every launch: sync the stored built-in graphs against the graph files shipped inside the app
+		// (create missing ones, refresh any whose shipped file changed, purge retired ones) and repair the
+		// selections. If anything changed, remember to persist below (the recorded file hashes must reach
+		// disk or the sync would re-run on every launch).
+		var builtInGraphsChanged = DataContext.DataContext.Instance.Settings.EnsureBuiltInFFBGraphsInitialized();
 
-			// Backfill stable graph identities for any legacy graph that predates them (built-ins already carry
-			// their fixed id from the shipped file). Persisted below so the ids never change across launches.
-			var graphIdentitiesChanged = DataContext.DataContext.Instance.Settings.EnsureGraphIdentitiesAssigned();
+		// Backfill stable graph identities for any legacy graph that predates them (built-ins already carry
+		// their fixed id from the shipped file). Persisted below so the ids never change across launches.
+		var graphIdentitiesChanged = DataContext.DataContext.Instance.Settings.EnsureGraphIdentitiesAssigned();
 
-			// Build the live FFB graph engine from the selected graph so it is ready to drive FFB
-			// immediately; the first per-context reload will rebuild it with this car/track's values.
-			app.RacingWheel.RebuildLiveEngine();
+		// Build the live FFB graph engine from the selected graph so it is ready to drive FFB
+		// immediately; the first per-context reload will rebuild it with this car/track's values.
+		app.RacingWheel.RebuildLiveEngine();
 
-			// Populate the RacingWheelPage graph editor card tree from the selected graph.
-			Settings.RebuildGraphEditorViewModel();
+		// Populate the RacingWheelPage graph editor card tree from the selected graph.
+		Settings.RebuildGraphEditorViewModel();
 
-			Settings.SuppressUpdatingOfContextSettings = false;
+		Settings.SuppressUpdatingOfContextSettings = false;
 
-			PauseSerialization = false;
+		PauseSerialization = false;
 
-			// Persist a launch-time built-in graph sync now that serialization is un-paused (the setter ignores
-			// a queue request while paused), so the recorded graph file hashes reach disk and the sync runs once.
-			if ( builtInGraphsChanged || graphIdentitiesChanged )
-			{
-				QueueForSerialization = true;
-			}
-
-			// Sync the AppShowSplashScreen setting with the DisableSplashScreen.txt file state
-			// This ensures the setting reflects reality if the user manually deleted the file
-			var disableSplashScreenFilePath = Path.Combine( App.DocumentsFolder, "DisableSplashScreen.txt" );
-			var fileExists = File.Exists( disableSplashScreenFilePath );
-			var showSplashScreen = !fileExists;
-
-			if ( DataContext.DataContext.Instance.Settings.AppShowSplashScreen != showSplashScreen )
-			{
-				app.Logger.WriteLine( $"[SettingsFile] Syncing AppShowSplashScreen setting to {showSplashScreen} based on file presence" );
-
-				DataContext.DataContext.Instance.Settings.AppShowSplashScreen = showSplashScreen;
-			}
-
-			app.Logger.WriteLine( "[SettingsFile] <<< Initialize" );
+		// Persist a launch-time built-in graph sync now that serialization is un-paused (the setter ignores
+		// a queue request while paused), so the recorded graph file hashes reach disk and the sync runs once.
+		if ( builtInGraphsChanged || graphIdentitiesChanged )
+		{
+			QueueForSerialization = true;
 		}
+
+		// Sync the AppShowSplashScreen setting with the DisableSplashScreen.txt file state
+		// This ensures the setting reflects reality if the user manually deleted the file
+		var disableSplashScreenFilePath = Path.Combine( App.DocumentsFolder, "DisableSplashScreen.txt" );
+		var fileExists = File.Exists( disableSplashScreenFilePath );
+		var showSplashScreen = !fileExists;
+
+		if ( DataContext.DataContext.Instance.Settings.AppShowSplashScreen != showSplashScreen )
+		{
+			app.Logger.WriteLine( $"[SettingsFile] Syncing AppShowSplashScreen setting to {showSplashScreen} based on file presence" );
+
+			DataContext.DataContext.Instance.Settings.AppShowSplashScreen = showSplashScreen;
+		}
+
+		app.Logger.WriteLine( "[SettingsFile] <<< Initialize" );
+	}
 
 	public void Tick( App app )
 	{

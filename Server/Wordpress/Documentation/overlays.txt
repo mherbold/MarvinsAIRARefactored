@@ -248,7 +248,7 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>The skid/slip indicator is very similar to how this gauge works for aircraft.</p>
+<p>The skid/slip indicator is very similar to how this gauge works for aircraft. It stays centered until a calibration file is loaded for the current car (see the <a href="https://mairapp.com/home/documentation/advanced/steering-effects/" data-type="page" data-id="166">Steering Effects</a> page).</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"setting"} -->

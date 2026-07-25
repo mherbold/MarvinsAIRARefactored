@@ -33,6 +33,7 @@ public class SteeringEffects
 	public float UndersteerEffect { get; private set; } = 0f;
 	public float OversteerEffect { get; private set; } = 0f;
 	public float SeatOfPantsEffect { get; private set; } = 0f;
+	public float SeatOfPantsShaped { get; private set; } = 0f; // shaped like SeatOfPantsEffect but ignores the enabled switch (consumed by the G Tensioner)
 	public float SeatOfPantsRaw { get; private set; } = 0f;
 	public float SkidSlip { get; private set; } = 0f;
 
@@ -175,6 +176,7 @@ public class SteeringEffects
 			UndersteerEffect = 0f;
 			OversteerEffect = 0f;
 			SeatOfPantsEffect = 0f;
+			SeatOfPantsShaped = 0f;
 			SeatOfPantsRaw = 0f;
 			SkidSlip = 0f;
 
@@ -258,7 +260,7 @@ public class SteeringEffects
 
 		var understeerEffect = 0f;
 
-		if ( _calibrationIsValid )
+		if ( _calibrationIsValid && settings.SteeringEffectsUndersteerEnabled )
 		{
 			if ( ( deviation < 0f ) && ( absDeviation >= settings.SteeringEffectsUndersteerMinimumThreshold ) )
 			{
@@ -272,7 +274,7 @@ public class SteeringEffects
 
 		var oversteerEffect = 0f;
 
-		if ( _calibrationIsValid )
+		if ( _calibrationIsValid && settings.SteeringEffectsOversteerEnabled )
 		{
 			if ( ( deviation > 0f ) && ( absDeviation >= settings.SteeringEffectsOversteerMinimumThreshold ) )
 			{
@@ -286,20 +288,23 @@ public class SteeringEffects
 
 		var skidSlip = 0f;
 
-		if ( deviation < 0f )
+		if ( _calibrationIsValid )
 		{
-			skidSlip = -MathZ.InverseLerp( 0f, settings.SteeringEffectsUndersteerMaximumThreshold, absDeviation );
-		}
-		else if ( deviation > 0f )
-		{
-			skidSlip = MathZ.InverseLerp( 0f, settings.SteeringEffectsOversteerMaximumThreshold, absDeviation );
-		}
+			if ( deviation < 0f )
+			{
+				skidSlip = -MathZ.InverseLerp( 0f, settings.SteeringEffectsUndersteerMaximumThreshold, absDeviation );
+			}
+			else if ( deviation > 0f )
+			{
+				skidSlip = MathZ.InverseLerp( 0f, settings.SteeringEffectsOversteerMaximumThreshold, absDeviation );
+			}
 
-		skidSlip = speedFade * skidSlip;
+			skidSlip = speedFade * skidSlip;
 
-		if ( steeringWheelAngleInDegrees > _steeringWheelAngleAtMinimumExpectedYawRate )
-		{
-			skidSlip *= -1;
+			if ( steeringWheelAngleInDegrees > _steeringWheelAngleAtMinimumExpectedYawRate )
+			{
+				skidSlip *= -1;
+			}
 		}
 
 		SkidSlip = Math.Clamp( skidSlip, -1f, 1f );
@@ -342,7 +347,9 @@ public class SteeringEffects
 			seatOfPantsEffect = 0f;
 		}
 
-		SeatOfPantsEffect = speedFade * seatOfPantsEffect;
+		SeatOfPantsShaped = speedFade * seatOfPantsEffect;
+
+		SeatOfPantsEffect = settings.SteeringEffectsSeatOfPantsEnabled ? SeatOfPantsShaped : 0f;
 	}
 
 	public void RunCalibration()
