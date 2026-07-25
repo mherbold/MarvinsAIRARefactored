@@ -562,7 +562,7 @@ public partial class MairaKnob : UserControl
 		if ( _isEditingScaled )
 		{
 			// edit in the DISPLAYED unit (e.g. ms): show exactly the number the user is looking at (the first
-			// number in the display string), so clicking "33 ms" opens "33" — never the raw stored frame count
+			// number in the display string), so clicking "33.3 ms" opens "33.3" — never the raw stored frame count
 			editText = FirstDisplayNumber();
 		}
 		else
@@ -700,7 +700,7 @@ public partial class MairaKnob : UserControl
 		Keyboard.ClearFocus();
 	}
 
-	// The first number in the current display string (e.g. "33" from "33 ms"), or "0" when the display carries no
+	// The first number in the current display string (e.g. "33.3" from "33.3 ms"), or "0" when the display carries no
 	// number (a localized text value like "OFF"). Used by scaled editing so the edit box opens on exactly what
 	// the user sees.
 	private string FirstDisplayNumber()

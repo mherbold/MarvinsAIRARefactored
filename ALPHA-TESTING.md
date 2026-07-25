@@ -22,7 +22,7 @@ This document explains what changed versus the released (main branch) version, a
 Changes since the seventh alpha (2.0.475.54), for testers who already ran it:
 
 - **Everything from released version 2.0.478.66 is now included.** Most notably the **six new game bridges** (Assetto Corsa, Assetto Corsa Competizione, Assetto Corsa EVO, Assetto Corsa Rally, rFactor 2, and RaceRoom Racing Experience), the **vJoy steering passthrough** for games that give you no way to turn off their built-in force feedback, the game bridge safety warning, and the fix for sounds not playing after the audio output device reopens. The new bridges get the same FFB graph engine wiring Le Mans Ultimate already had — reconstructed physical wheel angle for the soft lock / wheel centering / prediction inputs, and the car's redline and engine state for the engine RPM vibration.
-- **New 60 Hz prediction module.** The prediction lineup is now two modules: the existing one is renamed **360 Hz prediction**, and the new **60 Hz prediction** is built for the 60 Hz source. At 60 Hz the torque history alone carries almost no predictive power, so this module learns from your steering and the car's chassis motion instead, runs once per telemetry frame, and holds its correction across the frame. Defaults: 33 ms horizon, 100% strength, 5 Nm limit. See [the math](#inside-the-prediction-modules-the-math).
+- **New 60 Hz prediction module.** The prediction lineup is now two modules: the existing one is renamed **360 Hz prediction**, and the new **60 Hz prediction** is built for the 60 Hz source. At 60 Hz the torque history alone carries almost no predictive power, so this module learns from your steering and the car's chassis motion instead, runs once per telemetry frame, and holds its correction across the frame. Defaults: 33.3 ms horizon, 100% strength, 5 Nm limit. See [the math](#inside-the-prediction-modules-the-math).
 - **Prediction horizons are now in milliseconds.** Both prediction modules show and directly edit their Horizon in ms (previously the 360 Hz module counted K1–K12 ticks).
 - **Marvin's built-in graphs now include prediction out of the box** — Marvin's easy detail adjustment carries the 360 Hz prediction module, and Marvin's native 60 Hz carries the new 60 Hz one.
 
@@ -39,7 +39,7 @@ Changes since the seventh alpha (2.0.475.54), for testers who already ran it:
 | Steering Effects page | Wheel force + vibration groups | Wheel groups moved into the graphs (thresholds/calibration remain) |
 | FFB defaults | Per-algorithm defaults | **Five built-in graphs** shipped with the app, one per old algorithm family |
 | Sharing setups | Not possible | **Export / import** graphs as `.mairagraph` files |
-| Latency compensation | — | **360 Hz and 60 Hz prediction modules** — adaptive lookahead up to 33 ms |
+| Latency compensation | — | **360 Hz and 60 Hz prediction modules** — adaptive lookahead up to 33.3 ms |
 | Recordings | Fixed 60-second, 2 channels | Toggle record up to 5 min, 36 channels, auto-stop on lap completion |
 | Preview | Fixed-width graph | 1 pixel per sample, horizontal zoom, hover zoom + **data readout**, **track map panel** |
 | First-run wizard | Picks an algorithm + preset knobs | Tunes the flagship built-in graph's **detail gain** (25%–200%) |
@@ -113,8 +113,8 @@ All values below are the defaults. Knob values can be click-stepped, dragged, or
 | **Adaptive smoother** | One Euro filter — smooths hard when the signal is calm, opens up during fast changes | Amount (0–100%) |
 | **Transient enhancer** | Outputs amplified attack transients only (nonlinear detail extractor) | Cutoff (7.2 Hz), Gain (1.00×) |
 | **Interpolator** | Replaces a 60 Hz signal's staircase steps with a linear ramp across each frame — pure interpolation between known samples, adds one frame (~16.7 ms) of latency. Use on 60 Hz-derived branches only | — |
-| **360 Hz prediction** | Shifts a 360 Hz signal into the future to counteract latency — an adaptive filter bank that learns each car as you drive (see [Inside the prediction modules](#inside-the-prediction-modules-the-math)) | Horizon (17 ms), Correction limit (5.00 Nm), Strength (150%) |
-| **60 Hz prediction** | The same idea for the 60 Hz source — learns from your steering and the car's chassis motion (torque history alone predicts nothing at 60 Hz), runs once per frame, and holds the correction across the frame | Horizon (33 ms), Correction limit (5.00 Nm), Strength (100%) |
+| **360 Hz prediction** | Shifts a 360 Hz signal into the future to counteract latency — an adaptive filter bank that learns each car as you drive (see [Inside the prediction modules](#inside-the-prediction-modules-the-math)) | Horizon (16.7 ms), Correction limit (5.00 Nm), Strength (150%) |
+| **60 Hz prediction** | The same idea for the 60 Hz source — learns from your steering and the car's chassis motion (torque history alone predicts nothing at 60 Hz), runs once per frame, and holds the correction across the frame | Horizon (33.3 ms), Correction limit (5.00 Nm), Strength (100%) |
 
 #### Mixers (two inputs)
 
@@ -253,7 +253,7 @@ The **track map** is now a permanent panel beside the preview graph: the whole r
 
 ### The problem
 
-Let $y_t$ be iRacing's steering torque sampled at 360 Hz. Every physical path from tire to hand adds delay — telemetry transport, FFB processing, wheelbase drivetrain — so the torque you feel lags the physics. The module's goal is to output an estimate of $y_{t+k}$ at time $t$, shifting the whole waveform $k$ ticks ($k \times 2.78$ ms) earlier. The Horizon knob sets $k$ in milliseconds, from 2.8 to 33 ms in 360 Hz tick steps.
+Let $y_t$ be iRacing's steering torque sampled at 360 Hz. Every physical path from tire to hand adds delay — telemetry transport, FFB processing, wheelbase drivetrain — so the torque you feel lags the physics. The module's goal is to output an estimate of $y_{t+k}$ at time $t$, shifting the whole waveform $k$ ticks ($k \times 2.78$ ms) earlier. The Horizon knob sets $k$ in milliseconds, from 2.8 to 33.3 ms in 360 Hz tick steps.
 
 Two structural facts shape the design:
 
@@ -267,7 +267,7 @@ Naive prediction extrapolates $k$ ticks ahead from every tick. Frame anchoring e
 - **inside the frame** ($i + k \le 5$): the "future" sample is already in hand, and the module outputs it exactly — zero estimation error; or
 - **beyond the frame**: the true extrapolation depth is only $d = i + k - 5$.
 
-At the default 17 ms horizon ($k = 6$ ticks) the depth $d$ ranges over $\{1,\dots,6\}$ with mean 3.5 — the module delivers a 6-tick lead while only ever guessing 1–6 ticks ahead. Since prediction error grows steeply with depth, halving the average depth buys more than any cleverer estimator at full depth. Each horizon needs exactly six depths (one per sub-tick), so the module maintains a bank of six independent predictors.
+At the default 16.7 ms horizon ($k = 6$ ticks) the depth $d$ ranges over $\{1,\dots,6\}$ with mean 3.5 — the module delivers a 6-tick lead while only ever guessing 1–6 ticks ahead. Since prediction error grows steeply with depth, halving the average depth buys more than any cleverer estimator at full depth. Each horizon needs exactly six depths (one per sub-tick), so the module maintains a bank of six independent predictors.
 
 ### The predictor bank
 
@@ -303,13 +303,13 @@ where $\gamma$ is the Strength knob (default 150%) and $L$ the Correction limit 
 
 ### Measured behavior
 
-An offline test bench in the repo (`MarvinsAIRARefactored.PredictionLab`) replays real 360 Hz recordings through the exact shipped algorithm and scores three things: RMS error against the true future (normalized so 1.0 = the do-nothing persistence baseline), the *achieved* waveform shift (argmin of the cross-correlation lag — the honest number, immune to amplitude tricks), and high-frequency (>30 Hz) noise gain. Across six cars/tracks at the default 17 ms / 150% / 5 Nm:
+An offline test bench in the repo (`MarvinsAIRARefactored.PredictionLab`) replays real 360 Hz recordings through the exact shipped algorithm and scores three things: RMS error against the true future (normalized so 1.0 = the do-nothing persistence baseline), the *achieved* waveform shift (argmin of the cross-correlation lag — the honest number, immune to amplitude tricks), and high-frequency (>30 Hz) noise gain. Across six cars/tracks at the default 16.7 ms / 150% / 5 Nm:
 
 - ≈ 11.5 ms average true shift (worst car 8.6 ms) — versus < 1 ms for the naive predictor this module replaced;
 - RMS ratio ≈ 0.82, and **below 1.0 on every car** — the shifted signal tracks the true future better than doing nothing does;
 - HF gain ≈ 1.24 — mild, and the built-in graph applies prediction to the low-pass body branch only, so no high-frequency noise is amplified at all.
 
-The full 33 ms horizon is *not* cleanly achievable at 360 Hz — the predictability ceiling bites, and on some cars the shift metric collapses — which is why the default is 17 ms rather than the maximum.
+The full 33.3 ms horizon is *not* cleanly achievable at 360 Hz — the predictability ceiling bites, and on some cars the shift metric collapses — which is why the default is 16.7 ms rather than the maximum.
 
 One caveat you will notice: every preview refresh resets the engine, so the filters relearn across the visible window — the left edge of the preview always shows a weaker effect than the steady state you feel on track.
 
@@ -322,7 +322,7 @@ The 60 Hz source needed its own design, because both structural facts change at 
 
 So the 60 Hz module is a single NLMS filter (no bank) whose features combine the recent 60 Hz torque history with your **steering wheel angle**, **steering wheel velocity**, and the car's **lateral velocity** — the steering input *leads* the torque response, and the filter learns that lead per car. It runs once per telemetry frame and holds its correction across the frame's six output sub-ticks (the interpolator downstream smooths the steps).
 
-On the test bench the default 33 ms horizon / 100% strength / 5 Nm limit achieves ≈ 8 ms of true shift, and beats the do-nothing baseline on every recorded car. Two tuning lessons flipped versus 360 Hz: a 33 ms horizon beats 17 ms, and 100% strength beats over-driving it.
+On the test bench the default 33.3 ms horizon / 100% strength / 5 Nm limit achieves ≈ 8 ms of true shift, and beats the do-nothing baseline on every recorded car. Two tuning lessons flipped versus 360 Hz: a 33.3 ms horizon beats 16.7 ms, and 100% strength beats over-driving it.
 
 ---
 

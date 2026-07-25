@@ -752,7 +752,7 @@ public sealed class PredictionModule : FFBModule
 /// and adding the predicted change onto its input — computed ONCE per 60 Hz frame and held across the frame's
 /// six 360 Hz sub-ticks (so its output is a clean 60 Hz staircase, like everything on a 60 Hz graph). Place it
 /// directly on the 60 Hz source and smooth AFTER it if needed. Horizon 6 (K6) on the 360 Hz module and Horizon
-/// 1 here both target one 60 Hz frame (~16.7 ms); this module's default is 2 frames (~33 ms).
+/// 1 here both target one 60 Hz frame (~16.7 ms); this module's default is 2 frames (~33.3 ms).
 /// <para>Unlike the 360 Hz module there is NO frame-anchoring shortcut — the 60 Hz stream is one value per
 /// frame, so the module has to extrapolate the whole horizon rather than reuse already-delivered intra-frame
 /// samples. The PredictionLab (--sixty) showed torque history ALONE cannot do this at 60 Hz — least-squares

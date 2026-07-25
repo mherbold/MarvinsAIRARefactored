@@ -123,17 +123,17 @@ public static class FFBValueFormats
 	{
 		var subTicks = (int) MathF.Round( ctx.Value );
 
-		return ( subTicks <= 0 ) ? FFBFormatContext.Localized( "OFF" ) : Fixed( subTicks * 1000f / 360f, 0 ) + FFBFormatContext.Localized( "MillisecondsUnits" );
+		return ( subTicks <= 0 ) ? FFBFormatContext.Localized( "OFF" ) : Fixed( subTicks * 1000f / 360f, 1 ) + FFBFormatContext.Localized( "MillisecondsUnits" );
 	};
 
 	/// <summary>60 Hz prediction horizon in whole 60 Hz frames: localized "OFF" at 0, otherwise the resulting
-	/// look-ahead in milliseconds — each frame is 1000/60 ≈ 16.7 ms, so the value steps 17, 33, 50 ms, and the
-	/// jumps keep the frame quantization visible. The stored value is the frame count; the module rounds it.</summary>
+	/// look-ahead in milliseconds — each frame is 1000/60 ≈ 16.7 ms, so the value steps 16.7, 33.3, 50.0 ms, and
+	/// the jumps keep the frame quantization visible. The stored value is the frame count; the module rounds it.</summary>
 	public static readonly Func<FFBFormatContext, string> PredictionHorizonFrames = ctx =>
 	{
 		var frames = (int) MathF.Round( ctx.Value );
 
-		return ( frames <= 0 ) ? FFBFormatContext.Localized( "OFF" ) : Fixed( frames * 1000f / 60f, 0 ) + FFBFormatContext.Localized( "MillisecondsUnits" );
+		return ( frames <= 0 ) ? FFBFormatContext.Localized( "OFF" ) : Fixed( frames * 1000f / 60f, 1 ) + FFBFormatContext.Localized( "MillisecondsUnits" );
 	};
 
 	private static string Fixed( float value, int decimals ) => value.ToString( "F" + decimals, CultureInfo.CurrentCulture );
