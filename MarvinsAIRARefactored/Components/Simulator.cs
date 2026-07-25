@@ -587,6 +587,10 @@ public partial class Simulator
 			_racingWheelPage.UpdateSteeringDeviceSection();
 		}
 
+		var previousCarScreenName = CarScreenName;
+		var previousTrackDisplayName = TrackDisplayName;
+		var previousTrackConfigName = TrackConfigName;
+
 		foreach ( var driver in sessionInfo.DriverInfo.Drivers )
 		{
 			if ( driver.CarIdx == sessionInfo.DriverInfo.DriverCarIdx )
@@ -656,7 +660,12 @@ public partial class Simulator
 
 		app.MainWindow.UpdateStatus();
 
-		if ( _waitingForFirstSessionInfo )
+		// game bridges can switch the car or track without a disconnect (iRacing always tears the session
+		// down first, so there the first-session-info reload is enough) - a mid-connection change must
+		// reload the context settings and calibration too
+		var contextChanged = !_waitingForFirstSessionInfo && ( ( CarScreenName != previousCarScreenName ) || ( TrackDisplayName != previousTrackDisplayName ) || ( TrackConfigName != previousTrackConfigName ) );
+
+		if ( _waitingForFirstSessionInfo || contextChanged )
 		{
 			DataContext.DataContext.Instance.Settings.UpdateSettings( false );
 
