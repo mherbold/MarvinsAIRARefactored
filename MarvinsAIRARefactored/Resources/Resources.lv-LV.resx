@@ -1905,4 +1905,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Stūres šūpošana</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Saites</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx vietne</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord serveris</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring vietne</value>
+  </data>
 </root>

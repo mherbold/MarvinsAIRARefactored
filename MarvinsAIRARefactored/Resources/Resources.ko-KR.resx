@@ -1905,4 +1905,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>스티어링 휠 스윕</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>링크</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx 웹사이트</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord 서버</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring 웹사이트</value>
+  </data>
 </root>

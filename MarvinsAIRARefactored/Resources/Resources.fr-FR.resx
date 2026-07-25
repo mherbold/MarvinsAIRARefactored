@@ -1934,4 +1934,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Balayage du volant</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Liens</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Site web d'AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Serveur Discord d'AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Site web de Xtreme Scoring</value>
+  </data>
 </root>

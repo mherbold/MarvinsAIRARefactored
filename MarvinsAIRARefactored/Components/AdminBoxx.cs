@@ -93,6 +93,14 @@ public partial class AdminBoxx
 		{ Green, Red, Red, Red, Disabled, Disabled, Disabled, Disabled }
 	};
 
+	private static readonly Color[,] _playbackOnlyColors = new Color[ _numRows, _numColumns ]
+	{
+		{ Red, Red, Red, Red, Red,      Red,      Red,      Red      },
+		{ Red, Red, Red, Red, Red,      Red,      Red,      Red      },
+		{ Red, Red, Red, Red, Red,      Disabled, Green,    Green    },
+		{ Red, Red, Red, Red, Disabled, Disabled, Disabled, Disabled }
+	};
+
 	private static readonly Color[,] _numpadEnabledColors = new Color[ _numRows, _numColumns ]
 	{
 		{ Red, Cyan,   Cyan, Cyan,  Red, Red, Red, Red },
@@ -156,6 +164,9 @@ public partial class AdminBoxx
 	private string? _sequenceDriverNumberToSay = null;
 	private int _sequenceDriverNumberToSayIndex = 0;
 	private int _sequenceDriverNumberState = 0;
+
+	private readonly ConcurrentQueue<string> _numberSoundConcurrentQueue = new();
+	private string? _numberSoundPlaying = null;
 
 	private int _cautionBlinkCounter = 60;
 
@@ -457,6 +468,22 @@ public partial class AdminBoxx
 		UpdateColors( _blueNoiseLedOrder, false );
 	}
 
+	public void DriverIsAdminChanged()
+	{
+		var app = App.Instance!;
+
+		app.Logger.WriteLine( "[AdminBoxx] DriverIsAdminChanged >>>" );
+
+		if ( !app.Simulator.DriverIsAdmin )
+		{
+			LeaveNumpadMode( false );
+		}
+
+		UpdateColors( _blueNoiseLedOrder, false );
+
+		app.Logger.WriteLine( "[AdminBoxx] <<< DriverIsAdminChanged" );
+	}
+
 	public void SessionFlagsChanged()
 	{
 		var app = App.Instance!;
@@ -701,6 +728,10 @@ public partial class AdminBoxx
 			if ( _inNumpadMode )
 			{
 				SetAllLEDsToColorArray( _numpadEnabledColors, pattern, forceUpdate );
+			}
+			else if ( !app.Simulator.DriverIsAdmin )
+			{
+				SetAllLEDsToColorArray( _playbackOnlyColors, pattern, forceUpdate );
 			}
 			else
 			{
@@ -990,6 +1021,18 @@ public partial class AdminBoxx
 
 		app.Logger.WriteLine( $"[AdminBoxx] Button press detected: row={y}, col={x}" );
 
+		if ( !app.Simulator.DriverIsAdmin )
+		{
+			var isPlaybackButton = ( ( y == 2 ) && ( x >= 5 ) ) || ( ( y == 3 ) && ( x >= 4 ) );
+
+			if ( !isPlaybackButton )
+			{
+				app.Logger.WriteLine( "[AdminBoxx] Button ignored - driver does not have admin capabilities" );
+
+				return;
+			}
+		}
+
 		switch ( y )
 		{
 			case 0:
@@ -1086,7 +1129,7 @@ public partial class AdminBoxx
 				case 9: SetLEDToColor( 2, 3, Magenta, false ); break;
 			}
 
-			RunSequence( 0, Tone.AdminBoxx, false, null, 0, 0, $"{number}" );
+			_numberSoundConcurrentQueue.Enqueue( $"{number}" );
 		}
 
 		app.Logger.WriteLine( $"[AdminBoxx] <<< DoNumber( {number} )" );
@@ -1762,6 +1805,20 @@ public partial class AdminBoxx
 
 	public void Tick( App app )
 	{
+		if ( ( _numberSoundPlaying == null ) || !app.AudioManager.IsPlaying( _numberSoundPlaying ) )
+		{
+			if ( _numberSoundConcurrentQueue.TryDequeue( out var numberSound ) )
+			{
+				app.AudioManager.Play( numberSound, DataContext.DataContext.Instance.Settings.AdminBoxxVolume );
+
+				_numberSoundPlaying = numberSound;
+			}
+			else
+			{
+				_numberSoundPlaying = null;
+			}
+		}
+
 		if ( _wavingFlagCounter > 0 )
 		{
 			if ( Interlocked.Decrement( ref _wavingFlagCounter ) == 0 )
@@ -1801,51 +1858,51 @@ public partial class AdminBoxx
 		{
 			if ( Interlocked.Decrement( ref _testCounter ) == 0 )
 			{
-				_testCounter = 120;
-
 				switch ( Interlocked.Increment( ref _testState ) )
 				{
-					case 1:
-						WaveFlag( Yellow, 2 );
+					case 1: // one lap to green
+						WaveFlag( Yellow, 1 );
+						RunSequence( 1, Tone.Telemetry );
+						_testCounter = 120;
 						break;
 
-					case 2:
-						WaveFlag( Green, 2 );
+					case 2: // green flag
+						WaveFlag( Green, 3 );
+						RunSequence( 3, Tone.Telemetry );
+						_testCounter = 240;
 						break;
 
-					case 3:
-						WaveFlag( White, 2 );
+					case 3: // yellow flag / caution flag
+						WaveFlag( Yellow, 3 );
+						RunSequence( 3, Tone.Telemetry );
+						_testCounter = 240;
 						break;
 
-					case 4:
-						WaveFlag( White, 2, true );
+					case 4: // one lap to green
+						WaveFlag( Yellow, 1 );
+						RunSequence( 1, Tone.Telemetry );
+						_testCounter = 120;
 						break;
 
-					case 5:
-						WaveFlag( Gray, 2 );
+					case 5: // green flag
+						WaveFlag( Green, 3 );
+						RunSequence( 3, Tone.Telemetry );
+						_testCounter = 240;
 						break;
 
-					case 6:
-						WaveFlag( Blue, 2 );
+					case 6: // white flag
+						WaveFlag( White, 3 );
+						RunSequence( 3, Tone.Telemetry );
+						_testCounter = 240;
 						break;
 
-					case 7:
-						WaveFlag( Red, 2 );
+					case 7: // checkered flag
+						WaveFlag( White, 5, true );
+						RunSequence( 5, Tone.Telemetry );
+						_testCounter = 360;
 						break;
 
 					case 8:
-						SetAllLEDsToColorArray( _playbackDisabledColors, _blueNoiseLedOrder, false );
-						break;
-
-					case 9:
-						SetAllLEDsToColorArray( _playbackEnabledColors, _blueNoiseLedOrder, false );
-						break;
-
-					case 10:
-						SetAllLEDsToColorArray( _numpadEnabledColors, _blueNoiseLedOrder, false );
-						break;
-
-					case 11:
 						_testCounter = 0;
 						UpdateColors( _blueNoiseLedOrder, false );
 						break;
@@ -1856,34 +1913,37 @@ public partial class AdminBoxx
 		{
 			if ( !_inNumpadMode && app.Simulator.IsConnected && ( ( _sequenceCounter == 0 ) || ( _sequenceState >= 3 ) ) )
 			{
-				if ( ( app.Simulator.SessionFlags & ( IRacingSdkEnum.Flags.Yellow | IRacingSdkEnum.Flags.YellowWaving | IRacingSdkEnum.Flags.Caution | IRacingSdkEnum.Flags.CautionWaving ) ) != 0 )
+				if ( app.Simulator.DriverIsAdmin )
 				{
-					_cautionBlinkCounter--;
-
-					SetLEDToColor( 0, 0, _cautionBlinkCounter >= 30 ? Yellow : Disabled, false );
-
-					if ( _cautionBlinkCounter == 0 )
+					if ( ( app.Simulator.SessionFlags & ( IRacingSdkEnum.Flags.Yellow | IRacingSdkEnum.Flags.YellowWaving | IRacingSdkEnum.Flags.Caution | IRacingSdkEnum.Flags.CautionWaving ) ) != 0 )
 					{
-						_cautionBlinkCounter = 60;
+						_cautionBlinkCounter--;
+
+						SetLEDToColor( 0, 0, _cautionBlinkCounter >= 30 ? Yellow : Disabled, false );
+
+						if ( _cautionBlinkCounter == 0 )
+						{
+							_cautionBlinkCounter = 60;
+						}
 					}
-				}
 
-				if ( _globalChatEnabled )
-				{
-					SetLEDToColor( 0, 7, Green, false );
-				}
-				else
-				{
-					SetLEDToColor( 0, 7, Disabled, false );
-				}
+					if ( _globalChatEnabled )
+					{
+						SetLEDToColor( 0, 7, Green, false );
+					}
+					else
+					{
+						SetLEDToColor( 0, 7, Disabled, false );
+					}
 
-				if ( _singleFilePaceMode )
-				{
-					SetLEDToColor( 1, 0, Yellow, false );
-				}
-				else
-				{
-					SetLEDToColor( 1, 0, Green, false );
+					if ( _singleFilePaceMode )
+					{
+						SetLEDToColor( 1, 0, Yellow, false );
+					}
+					else
+					{
+						SetLEDToColor( 1, 0, Green, false );
+					}
 				}
 
 				if ( _replayEnabled )

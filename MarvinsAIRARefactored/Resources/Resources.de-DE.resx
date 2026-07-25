@@ -1923,4 +1923,16 @@ Hier ist der Link zum Spenden:</value>
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Lenkrad hin und her</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx-Website</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx-Discord-Server</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme-Scoring-Website</value>
+  </data>
 </root>

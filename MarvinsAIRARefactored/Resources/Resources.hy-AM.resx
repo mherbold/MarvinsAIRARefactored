@@ -1918,4 +1918,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ղեկի ճոճում</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Հղումներ</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx կայք</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord սերվեր</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring կայք</value>
+  </data>
 </root>

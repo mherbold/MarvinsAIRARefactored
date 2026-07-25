@@ -1918,4 +1918,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Balansarea volanului</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Linkuri</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Site-ul web AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Serverul Discord AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Site-ul web Xtreme Scoring</value>
+  </data>
 </root>

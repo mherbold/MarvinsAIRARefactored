@@ -54,6 +54,7 @@ public partial class Simulator
 	public int CurrentTireIndex { get; private set; } = -1;
 	public string CurrentTireCompoundType { get; private set; } = string.Empty;
 	public int DisplayUnits { get; private set; } = 0;
+	public bool DriverIsAdmin { get; private set; } = false;
 	public float FrameRate { get; private set; } = 0;
 	public int Gear { get; private set; } = 0;
 	public float GpuUsage { get; private set; } = 0f;
@@ -427,6 +428,7 @@ public partial class Simulator
 		CurrentTireIndex = -1;
 		CurrentTireCompoundType = string.Empty;
 		DisplayUnits = 0;
+		DriverIsAdmin = false;
 		Gear = 0;
 		LongitudinalGForce = 0f;
 		LateralGForce = 0f;
@@ -561,6 +563,17 @@ public partial class Simulator
 		var sessionInfo = _irsdk.Data.SessionInfo;
 
 		CarSetupName = Path.GetFileNameWithoutExtension( sessionInfo.DriverInfo.DriverSetupName ).ToLower();
+
+		var newDriverIsAdmin = ( sessionInfo.DriverInfo.DriverIsAdmin != 0 );
+
+		if ( newDriverIsAdmin != DriverIsAdmin )
+		{
+			app.Logger.WriteLine( $"[Simulator] DriverIsAdmin changed: {DriverIsAdmin} -> {newDriverIsAdmin}" );
+
+			DriverIsAdmin = newDriverIsAdmin;
+
+			app.AdminBoxx.DriverIsAdminChanged();
+		}
 
 		NumForwardGears = sessionInfo.DriverInfo.DriverCarGearNumForward;
 

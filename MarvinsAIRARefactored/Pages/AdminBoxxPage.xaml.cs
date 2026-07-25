@@ -1,4 +1,5 @@
 ﻿
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -80,6 +81,13 @@ public partial class AdminBoxxPage : UserControl
 		var app = App.Instance!;
 
 		app.AdminBoxx.RetryDevice();
+	}
+
+	private void Hyperlink_RequestNavigate( object sender, System.Windows.Navigation.RequestNavigateEventArgs e )
+	{
+		Process.Start( new ProcessStartInfo( e.Uri.AbsoluteUri ) { UseShellExecute = true } );
+
+		e.Handled = true;
 	}
 
 	#endregion

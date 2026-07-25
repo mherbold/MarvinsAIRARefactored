@@ -80,7 +80,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Runs a built-in LED test cycle on the AdminBoxx. This steps through several flag colors/patterns plus the main layout states so you can verify that the LEDs are working correctly.</p>
+<p>Runs a built-in test cycle on the AdminBoxx. This waves a sequence of flags on the LEDs — one lap to green, green, yellow, one lap to green, green, white, and checkered — and plays the same tones you would hear when those flags come out for real, so you can verify that both the LEDs and the audio are working correctly.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
@@ -136,6 +136,14 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"section"} -->
+<p class="section" id="links">LINKS</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Handy links related to AdminBoxx — the main AdminBoxx website, the AdminBoxx Discord server, and the Xtreme Scoring website. Clicking a link opens it in your web browser.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph {"className":"section"} -->
 <p class="section" id="how-adminboxx-works">HOW ADMINBOXX WORKS</p>
 <!-- /wp:paragraph -->
 
@@ -178,7 +186,11 @@
 <!-- /wp:list -->
 
 <!-- wp:paragraph -->
-<p>Some actions require a car number. In those cases, AdminBoxx switches into a numpad entry mode. You enter the driver number on the illuminated keypad and then press Enter to send the command, or Escape to cancel it.</p>
+<p>Some actions require a car number. In those cases, AdminBoxx switches into a numpad entry mode. You enter the driver number on the illuminated keypad and then press Enter to send the command, or Escape to cancel it. Each digit you press is spoken back to you — the spoken digits are queued and played one after another, so nothing gets cut off when you type quickly.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>iRacing tells MAIRA whether you have admin capabilities in the current session. If you do not, only the replay/playback buttons remain functional — all of the admin buttons light up red to show they are disabled, and pressing them does nothing.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->

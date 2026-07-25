@@ -1918,4 +1918,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ratti edestakaisin</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Linkit</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxxin verkkosivusto</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxxin Discord-palvelin</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoringin verkkosivusto</value>
+  </data>
 </root>

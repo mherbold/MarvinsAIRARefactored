@@ -1919,4 +1919,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Barrido del volante</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Enlaces</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Sitio web de AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Servidor de Discord de AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Sitio web de Xtreme Scoring</value>
+  </data>
 </root>

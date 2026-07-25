@@ -1918,4 +1918,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ysgubo'r llyw</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Dolenni</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Gwefan AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Gweinydd Discord AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Gwefan Xtreme Scoring</value>
+  </data>
 </root>

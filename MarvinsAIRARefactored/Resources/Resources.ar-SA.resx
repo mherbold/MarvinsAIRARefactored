@@ -1905,4 +1905,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>تأرجح عجلة القيادة</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>روابط</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>موقع AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>خادم AdminBoxx على Discord</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>موقع Xtreme Scoring</value>
+  </data>
 </root>

@@ -1918,4 +1918,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Kývání volantem</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Odkazy</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Web AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Discord server AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Web Xtreme Scoring</value>
+  </data>
 </root>

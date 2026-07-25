@@ -1918,4 +1918,16 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>הגה הלוך ושוב</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>קישורים</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>אתר AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>שרת ה-Discord של AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>אתר Xtreme Scoring</value>
+  </data>
 </root>
