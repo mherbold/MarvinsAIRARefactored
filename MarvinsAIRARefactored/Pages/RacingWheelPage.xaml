@@ -169,6 +169,34 @@
                 <ItemsControl ItemsSource="{Binding Settings}"
                               ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}" />
 
+                <!-- Node description — the localized built-in default, or the user's override on a custom
+                     graph. The pencil (custom graphs only) opens the description editor window; the same
+                     text is the node's hover tooltip on the graph canvas. -->
+                <Grid Margin="20,0,20,10">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding NodeDescription}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               FontSize="16"
+                               TextWrapping="Wrap"
+                               Foreground="{DynamicResource Brush.Foreground.Muted}" />
+
+                    <controls:MairaButton Grid.Column="1"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          VerticalAlignment="Top"
+                                          Tag="{Binding}"
+                                          Click="EditNodeDescription_MairaButton_Click"
+                                          Visibility="{Binding CanEditNodeDescription, Converter={StaticResource BoolToVisibility}}" />
+
+                </Grid>
+
             </StackPanel>
 
         </DataTemplate>
@@ -466,67 +494,169 @@
 
                 </Grid>
 
-                <!-- Graph description — custom graphs edit it inline (stored in the graph, rides
-                     export/import; commits as you type); built-ins render read-only localized text,
-                     hidden entirely while empty. -->
-                <controls:MairaTextBox FontSize="20"
-                                       Margin="0,0,0,20"
-                                       Value="{Binding RacingWheelGraphViewModel.GraphDescription, Mode=TwoWay}"
-                                       Placeholder="{Binding Localization[GraphDescriptionPlaceholder]}"
-                                       Visibility="{Binding RacingWheelGraphViewModel.IsFFBGraphCustom, Converter={StaticResource BoolToVisibility}}" />
+                <!-- Graph description — read-only wrapped text for every graph (custom and built-in render
+                     identically). Custom graphs are edited via the pencil button, which opens the multi-line
+                     description editor window; built-ins render localized text with no pencil. The row hides
+                     entirely when a built-in has no description; a custom graph with no description shows the
+                     muted placeholder so the pencil has an anchor. -->
+                <Grid Margin="0,0,0,20">
 
-                <TextBlock Text="{Binding RacingWheelGraphViewModel.GraphDescription}"
-                           FontSize="20"
-                           TextWrapping="Wrap"
-                           Margin="0,0,0,20">
-                    <TextBlock.Style>
-                        <Style TargetType="TextBlock"
-                               BasedOn="{StaticResource MairaTextBlockStyle}">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.Style>
+                        <Style TargetType="Grid">
                             <Setter Property="Visibility"
-                                    Value="Collapsed" />
+                                    Value="Visible" />
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding RacingWheelGraphViewModel.IsFFBGraphBuiltIn}"
-                                             Value="True">
-                                    <Setter Property="Visibility"
-                                            Value="Visible" />
-                                </DataTrigger>
-                                <!-- declared last so it wins: no description -> no empty gap -->
-                                <DataTrigger Binding="{Binding RacingWheelGraphViewModel.GraphDescription}"
-                                             Value="">
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding RacingWheelGraphViewModel.IsFFBGraphBuiltIn}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding RacingWheelGraphViewModel.GraphDescription}"
+                                                   Value="" />
+                                    </MultiDataTrigger.Conditions>
                                     <Setter Property="Visibility"
                                             Value="Collapsed" />
-                                </DataTrigger>
+                                </MultiDataTrigger>
                             </Style.Triggers>
                         </Style>
-                    </TextBlock.Style>
-                </TextBlock>
+                    </Grid.Style>
 
-                <!-- Pinned quick controls: the settings the graph's author marked as the graph's main
-                     controls (the pin switches on the module settings cards). Same setting VM instances
-                     as the settings column, so both stay in sync; each control is captioned with its
-                     module's name because labels like "Strength" repeat across modules. -->
-                <!-- Tag marks this as the quick-controls host: the pin-switch style collapses the tiny pin
-                     switches under it, so controls here can't be accidentally un-pinned. -->
-                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.PinnedSettings}"
-                              Tag="QuickControls"
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding RacingWheelGraphViewModel.GraphDescription}"
+                               FontSize="20"
+                               TextWrapping="Wrap">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock"
+                                   BasedOn="{StaticResource MairaTextBlockStyle}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding RacingWheelGraphViewModel.GraphDescription}"
+                                                 Value="">
+                                        <Setter Property="Visibility"
+                                                Value="Collapsed" />
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding Localization[GraphDescriptionPlaceholder]}"
+                               FontSize="20"
+                               TextWrapping="Wrap"
+                               Foreground="{DynamicResource Brush.Foreground.Muted}">
+                        <TextBlock.Style>
+                            <Style TargetType="TextBlock"
+                                   BasedOn="{StaticResource MairaTextBlockStyle}">
+                                <Setter Property="Visibility"
+                                        Value="Collapsed" />
+                                <Style.Triggers>
+                                    <MultiDataTrigger>
+                                        <MultiDataTrigger.Conditions>
+                                            <Condition Binding="{Binding RacingWheelGraphViewModel.IsFFBGraphCustom}"
+                                                       Value="True" />
+                                            <Condition Binding="{Binding RacingWheelGraphViewModel.GraphDescription}"
+                                                       Value="" />
+                                        </MultiDataTrigger.Conditions>
+                                        <Setter Property="Visibility"
+                                                Value="Visible" />
+                                    </MultiDataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </TextBlock.Style>
+                    </TextBlock>
+
+                    <controls:MairaButton Grid.Column="1"
+                                          Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/rename.png"
+                                          IsSmall="True"
+                                          Margin="10,0,0,0"
+                                          VerticalAlignment="Top"
+                                          Click="EditGraphDescription_MairaButton_Click"
+                                          Visibility="{Binding RacingWheelGraphViewModel.IsFFBGraphCustom, Converter={StaticResource BoolToVisibility}}" />
+
+                </Grid>
+
+                <!-- Pinned quick controls, grouped by node: one group per module that has pinned settings
+                     (the pin switches on the module settings cards). Each group shows the node's name and
+                     description once, then that node's pinned settings three across — so pinning several
+                     settings of the same node doesn't repeat the description beside every control. Same
+                     setting VM instances as the settings column, so both stay in sync. -->
+                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.PinnedGroups}"
                               Visibility="{Binding RacingWheelGraphViewModel.HasPinnedSettings, Converter={StaticResource BoolToVisibility}}">
-
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <UniformGrid Columns="3" />
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
+                            <!-- no extra bottom margin — the setting templates already carry a 20px one -->
                             <StackPanel>
-                                <TextBlock Text="{Binding Module.DisplayName}"
-                                           Style="{StaticResource MairaTextBlockStyle}"
-                                           Foreground="{DynamicResource Brush.Foreground.Muted}"
-                                           TextTrimming="CharacterEllipsis"
-                                           Margin="20,0,20,0" />
-                                <ContentControl Content="{Binding Setting}"
-                                                ContentTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}" />
+
+                                <!-- node name with a rule stretching to the page's right edge — same idea as the
+                                     group-box header line, but dotted and fainter so it reads as a sub-heading -->
+                                <Grid>
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+
+                                    <TextBlock Grid.Column="0"
+                                               Text="{Binding Module.DisplayName}"
+                                               Style="{StaticResource MairaTextBlockStyle}"
+                                               TextTrimming="CharacterEllipsis" />
+
+                                    <Rectangle Grid.Column="1"
+                                               Height="1"
+                                               VerticalAlignment="Bottom"
+                                               Margin="10,0,0,5"
+                                               Stroke="{DynamicResource Brush.Foreground.Muted}"
+                                               StrokeThickness="1"
+                                               StrokeDashArray="3 3"
+                                               Opacity="0.4"
+                                               SnapsToDevicePixels="True" />
+
+                                </Grid>
+
+                                <TextBlock Text="{Binding Module.NodeDescription}"
+                                           FontSize="16"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,10">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock"
+                                               BasedOn="{StaticResource MairaTextBlockStyle}">
+                                            <Setter Property="Foreground"
+                                                    Value="{DynamicResource Brush.Foreground.Muted}" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Module.NodeDescription}"
+                                                             Value="">
+                                                    <Setter Property="Visibility"
+                                                            Value="Collapsed" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+
+                                <!-- Tag marks this as the quick-controls host: the pin-switch style collapses
+                                     the tiny pin switches under it, so controls here can't be accidentally
+                                     un-pinned (the style looks for the NEAREST ancestor ItemsControl, which
+                                     is this one, not the outer groups list). -->
+                                <!-- the setting templates carry a 20px inset on both sides (wanted inside the
+                                     bordered settings column) — the negative margin cancels it at the outer
+                                     edges here, so the quick controls line up flush with the rest of the page
+                                     while the 40px gutters between columns remain -->
+                                <ItemsControl ItemsSource="{Binding Settings}"
+                                              Tag="QuickControls"
+                                              Margin="-20,0,-20,0"
+                                              ItemTemplateSelector="{StaticResource FFBGraphSettingTemplateSelector}">
+                                    <ItemsControl.ItemsPanel>
+                                        <ItemsPanelTemplate>
+                                            <UniformGrid Columns="3" />
+                                        </ItemsPanelTemplate>
+                                    </ItemsControl.ItemsPanel>
+                                </ItemsControl>
+
                             </StackPanel>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
@@ -560,7 +690,7 @@
                     <!-- Node graph (its corner tools include the add-module button, which pops the module picker).
                          The whole top row (node graph + module settings column) hides behind the show-node-graph
                          switch above — the preview row below always shows. -->
-                    <controls:FFBGraphEditor Grid.Row="0"
+                    <controls:MairaFFBGraphEditor Grid.Row="0"
                                              Grid.Column="0"
                                              Visibility="{Binding Settings.RacingWheelShowNodeGraph, Converter={StaticResource BoolToVisibility}}" />
 

@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Stūres šūpošana</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Rediģēt aprakstu</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing sākotnējais 60 Hz spēka atgriezeniskās saites signāls — tieši tāds, kādu to sūta simulators.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing augstas frekvences spēka atgriezeniskās saites signāls — seši nolasījumi katrā 60 Hz kadrā, ar visvairāk detaļu.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Simulatora zemo frekvenču efektu (LFE) audio, pārvērsts stūres spēkā. Piejauciet to ar saskaitīšanas moduli.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Spēks, kas pretojas stūres griešanas ātrumam — piejauciet to slāpēšanai.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Īsta sausā berze: stūre paliek tur, kur to atstājat, ar pastāvīgu slīdes pretestību ārpus saķeres zonas.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Spēcīgi pretojas, kad stūre tiek pagriezta pāri auto stūres gala atdurei — kā fizisks ierobežotājs.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Atsperes spēks, kas velk stūri atpakaļ uz centru. Izlaidiet to caur ātruma pastiprinājuma moduli, lai tas darbotos tikai stāvot.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Ķēdes beigas — pārvērš signālu stūres izejā, ar izvēles atbildes līkni un maigo ierobežotāju.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Saglabā signāla lēno pamatni un nogludina visu, kas ātrāks par nogriešanas frekvenci.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Noņem signāla lēno pamatni un patur tikai ātrās detaļas virs nogriešanas frekvences.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Mērogo signālu ar fiksētu reizinātāju — izmantojiet negatīvu pastiprinājumu, lai to invertētu.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Saskaita divus signālus.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Atņem ieeju B no ieejas A — piemēram, atņemot signāla zemfrekvences kopiju, paliek tikai detaļas.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Plūstoši pāriet starp diviem signāliem — 0% ir tikai ieeja A, 100% ir tikai ieeja B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Ierobežo, cik ātri signāls var mainīties — viss zem limita iziet neskarts, ātrākas kustības tiek palēninātas.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Saspiež ātras signāla izmaiņas, nevis stingri tās nogriež — lēnas kustības iziet neskartas.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Saspiež signālu virs sliekšņa, noturot pīķus kontrolē bez cietas apgriešanas.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Izvelk ātrās detaļas un uzsver atakas — grambas un apmales kļūst izteiktākas, nepastiprinot izskaņu.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Viena regulatora gludinātājs, kas pielāgojas signālam — spēcīga gludināšana, kad signāls ir mierīgs, minimāla aizture ātrās pārejās.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Noņem 60 Hz signāla pakāpienus, plūstoši interpolējot katra kadra ietvaros — par viena kadra aiztures cenu.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Nobīda 360 Hz signālu nākotnē, lai kompensētu aizturi — adaptīvs filtrs, kas braucot apgūst katru auto.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Nobīda 60 Hz signālu nākotnē, lai kompensētu aizturi — braucot mācās no jūsu stūrēšanas un auto kustības.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Seko ieejas A detaļām, vienlaikus tiekot vilkts uz ieeju B — vilkme atslābst katrā pīķī, tāpēc pārejas iziet cauri.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Strauji samazina spēku, kad tiek konstatēta avārija, pēc tam plūstoši to atjauno.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Samazina spēku spēcīgos apmaļu triecienos, pēc tam plūstoši to atjauno.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Stūres spēks, ko vada nepietiekamas pagriežamības efekts, lai jūs justu, kā priekšējās riepas zaudē saķeri.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Stūres spēks, ko vada pārmērīgas pagriežamības efekts, lai jūs justu, kā auto aizmugure sāk slīdēt.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Stūres spēks, ko vada ķermeņa izjūtas efekts — sajūta, kā šasija noslogojas.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Vibrē stūri, kad priekšējās riepas sāk slīdēt.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Vibrē stūri, kad aizmugurējās riepas sāk slīdēt.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibrē stūri līdzi šasijas kustībai — svara pārnese, ko var sajust.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Impulsos vibrē stūri, kad dzinējs sasniedz pārslēgšanas apgriezienus.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Īss vibrācijas impulss katrā pārnesumu maiņā.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulsē stūri, kamēr bremžu ABS ir aktīva.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Rūkoņa, kas seko dzinēja apgriezieniem, skanot kā V8 — klusē, kamēr dzinējs ir izslēgts.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Mērogo signālu atkarībā no auto ātruma — pakāpeniski ievadiet vai izvadiet spēkus, auto paātrinoties.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Rūkoņa, kas paātrinās līdz ar auto, kā ceļa seguma tekstūra — klusē, kad auto stāv.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Rūkoņa, kas parādās, kad slīd jebkurš auto gals — to vada nepietiekamas un pārmērīgas pagriežamības efekti.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Pievieno sīku mainīgu diteru zem sliekšņa, lai uzturētu stūres mehānismu kustīgu un atklātu smalkas detaļas.</value>
+  </data>
 </root>

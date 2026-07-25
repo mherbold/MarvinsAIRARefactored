@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Rool edasi-tagasi</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Muuda kirjeldust</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacingu algne 60 Hz jõutagasiside signaal, täpselt sellisena, nagu simulaator selle saadab.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacingu kiire jõutagasiside signaal — kuus näidist iga 60 Hz kaadri kohta, kõige rohkem detaile.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Simulaatori madalsageduslike efektide heli (LFE), muudetud rooli jõuks. Sega see juurde liitmismooduliga.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Jõud, mis töötab vastu rooli keeramise kiirusele — sega see juurde summutuse saamiseks.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Tõeline kuivhõõrdumine: rool jääb sinna, kuhu sa ta jätad, püsiva libisemistakistusega väljaspool haardeala.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Surub tugevalt vastu, kui rooli keeratakse üle auto rooli äärmise asendi, nagu füüsiline lõpupiiraja.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Vedrujõud, mis tõmbab rooli tagasi keskele. Suuna see läbi kiirusvõimenduse mooduli, et see toimiks ainult seisva auto puhul.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Ahela lõpp — muudab signaali rooli väljundiks, koos valikulise reaktsioonikõvera ja pehme piirajaga.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Säilitab signaali aeglase osa ja silub ära kõik, mis on lõikesagedusest kiirem.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Eemaldab signaali aeglase osa ja jätab alles ainult lõikesagedusest kõrgemad kiired detailid.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Korrutab signaali fikseeritud teguriga — kasuta negatiivset võimendust signaali ümberpööramiseks.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Liidab kaks signaali kokku.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Lahutab sisendi B sisendist A — näiteks signaali madalpääskoopia lahutamine jätab alles ainult detailid.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Sujuv üleminek kahe signaali vahel — 0% on ainult sisend A, 100% ainult sisend B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Piirab, kui kiiresti signaal saab muutuda — kõik alla piiri läbib puutumatult, kiirem liikumine pidurdatakse.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Surub kiired signaalimuutused kokku, selle asemel et neid järsult piirata — aeglane liikumine läbib puutumatult.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Surub signaali üle läve kokku, hoides tipud kontrolli all ilma järsu lõikamiseta.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Eraldab kiired detailid ja rõhutab lööke — muhud ja äärekivid tulevad esile, ilma et järelkõla võimenduks.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Ühe nupuga silur, mis kohandub signaaliga — tugev silumine vaiksetel hetkedel, minimaalne viide kiirete transientide puhul.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Eemaldab 60 Hz signaalist trepiastmed, liikudes igas kaadris sujuvalt üle, ühe kaadri lisaviite hinnaga.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Nihutab 360 Hz signaali tulevikku, et viidet kompenseerida — adaptiivne filter, mis õpib iga autot sõidu ajal tundma.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Nihutab 60 Hz signaali tulevikku, et viidet kompenseerida — õpib sõidu ajal sinu roolimisest ja auto liikumisest.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Järgib sisendi A detaile, olles samal ajal tõmmatud sisendi B poole — tõmme lõdveneb igas tipus, nii et transiendid pääsevad läbi.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Vähendab jõudu avarii tuvastamisel tugevalt ja taastab selle seejärel sujuvalt.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Vähendab jõudu tugevate äärekivilöökide ajal ja taastab selle seejärel sujuvalt.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Alajuhitavuse efektist juhitud roolijõud, et tunneksid esirehvide haarde kadumist.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Ülejuhitavuse efektist juhitud roolijõud, et tunneksid auto tagaosa libisema minekut.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Istmetunnetuse efektist juhitud roolijõud — tunnetus, kuidas kere koormub.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Paneb rooli vibreerima, kui esirehvid hakkavad libisema.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Paneb rooli vibreerima, kui tagarehvid hakkavad libisema.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Paneb rooli kere liikumisega kaasa vibreerima — raskuse ülekanne, mida on tunda.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Paneb rooli impulssidena surisema, kui mootor jõuab käiguvahetuspunktini.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Lühike vibratsioonipurse igal käiguvahetusel.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulseerib rooli, kui pidurite ABS töötab.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Mürin, mis järgib mootori pöördeid, V8 kõlaga — vaikne, kui mootor ei tööta.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Skaleerib signaali auto kiiruse järgi — too jõude sujuvalt sisse või välja, kui auto kiirus kasvab.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Mürin, mis kiireneb koos autoga, nagu teekatte tekstuur — vaikne, kui auto seisab.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Mürin, mis tekib alati, kui auto üks ots libiseb — juhituna ala- ja ülejuhitavuse efektidest.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Lisab allpool läve tillukese vahelduva ditheri, mis hoiab rooli mehhanismi ärkvel ja toob esile nõrgad detailid.</value>
+  </data>
 </root>

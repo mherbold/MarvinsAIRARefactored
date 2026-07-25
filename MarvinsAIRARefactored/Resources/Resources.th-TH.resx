@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>กวาดพวงมาลัย</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>แก้ไขคำอธิบาย</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>สัญญาณฟอร์ซฟีดแบ็ก 60 Hz ดั้งเดิมของ iRacing ตรงตามที่ซิมูเลเตอร์ส่งมาทุกประการ</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>สัญญาณฟอร์ซฟีดแบ็กอัตราสูงของ iRacing — หกแซมเปิลต่อเฟรม 60 Hz ให้รายละเอียดมากที่สุด</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>เสียงเอฟเฟกต์ความถี่ต่ำ (LFE) ของซิมูเลเตอร์ที่ถูกแปลงเป็นแรงที่พวงมาลัย ผสมเข้ากับสัญญาณหลักด้วยโมดูลบวก</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>แรงที่ต้านความเร็วในการหมุนพวงมาลัย — ผสมเข้าไปเพื่อใช้เป็นแดมปิง</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>แรงเสียดทานแห้งของจริง: พวงมาลัยจะค้างอยู่ตรงที่คุณปล่อยไว้ และมีแรงต้านการลื่นคงที่เมื่อพ้นช่วงหนืด</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>ดันกลับอย่างแรงเมื่อหมุนพวงมาลัยเกินองศาล็อกพวงมาลัยของรถ เหมือนมีตัวหยุดปลายทางจริง ๆ</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>แรงสปริงที่ดึงพวงมาลัยกลับสู่ศูนย์กลาง ต่อผ่านโมดูลเกนตามความเร็วถ้าต้องการให้ทำงานเฉพาะตอนจอด</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>ปลายทางของเชน — แปลงสัญญาณเป็นเอาต์พุตของพวงมาลัย พร้อมเส้นโค้งการตอบสนองและซอฟต์ลิมิตเตอร์ให้เลือกใช้</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>คงส่วนช้าของสัญญาณไว้ และกรองทุกอย่างที่เร็วกว่าจุดตัดออกอย่างนุ่มนวล</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>ตัดส่วนช้าของสัญญาณออก เหลือเฉพาะรายละเอียดเร็วที่อยู่เหนือจุดตัด</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>ปรับสเกลสัญญาณด้วยตัวคูณคงที่ — ใช้เกนติดลบเพื่อกลับขั้วสัญญาณ</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>รวมสัญญาณสองสัญญาณเข้าด้วยกัน</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>ลบอินพุต B ออกจากอินพุต A — เช่น ลบสำเนาโลว์พาสของสัญญาณออก จะเหลือเฉพาะรายละเอียด</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>ครอสเฟดระหว่างสองสัญญาณ — 0% คืออินพุต A ทั้งหมด 100% คืออินพุต B ทั้งหมด</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>จำกัดความเร็วในการเปลี่ยนแปลงของสัญญาณ — ต่ำกว่าลิมิตผ่านไปตามเดิม ส่วนที่เร็วกว่าจะถูกชะลอ</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>บีบการเปลี่ยนแปลงเร็วของสัญญาณแทนการตัดแบบแข็ง — การเคลื่อนไหวช้าผ่านไปตามเดิม</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>บีบอัดสัญญาณส่วนที่เกินเกณฑ์ ควบคุมพีคโดยไม่เกิดการคลิปแบบแข็ง</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>ดึงรายละเอียดเร็วออกมาและเน้นช่วงกระแทก — หลุมและขอบเคิร์บเด่นขึ้นโดยไม่ขยายช่วงหางเสียง</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>ตัวปรับเรียบแบบปุ่มเดียวที่ปรับตัวตามสัญญาณ — เรียบมากเมื่อสัญญาณนิ่ง หน่วงน้อยที่สุดเมื่อมีทรานเชียนต์เร็ว</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>ขจัดขั้นบันไดของสัญญาณ 60 Hz โดยไล่ระดับอย่างนุ่มนวลตลอดแต่ละเฟรม แลกกับดีเลย์หนึ่งเฟรม</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>เลื่อนสัญญาณ 360 Hz ไปข้างหน้าในเวลาเพื่อหักล้างดีเลย์ — ฟิลเตอร์ปรับตัวที่เรียนรู้รถแต่ละคันขณะคุณขับ</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>เลื่อนสัญญาณ 60 Hz ไปข้างหน้าในเวลาเพื่อหักล้างดีเลย์ — เรียนรู้จากการหมุนพวงมาลัยและการเคลื่อนที่ของรถขณะคุณขับ</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>ตามรายละเอียดของอินพุต A พร้อมถูกดึงเข้าหาอินพุต B — แรงดึงจะผ่อนที่ทุกพีค ทำให้ทรานเชียนต์ผ่านไปได้</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>ลดแรงลงมากเมื่อตรวจพบการชน แล้วค่อย ๆ ไล่กลับอย่างนุ่มนวล</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>ลดแรงเมื่อกระแทกเคิร์บอย่างรุนแรง แล้วค่อย ๆ ไล่กลับอย่างนุ่มนวล</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>แรงที่พวงมาลัยซึ่งขับด้วยเอฟเฟกต์อันเดอร์สเตียร์ ให้คุณรู้สึกได้เมื่อยางหน้าเริ่มสูญเสียการยึดเกาะ</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>แรงที่พวงมาลัยซึ่งขับด้วยเอฟเฟกต์โอเวอร์สเตียร์ ให้คุณรู้สึกได้เมื่อท้ายรถเริ่มปัดออก</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>แรงที่พวงมาลัยซึ่งขับด้วยเอฟเฟกต์ความรู้สึกจากตัวรถ (seat of pants) — สัมผัสของแชสซีที่กำลังรับโหลด</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>สั่นพวงมาลัยเมื่อยางหน้าเริ่มลื่นไถล</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>สั่นพวงมาลัยเมื่อยางหลังเริ่มลื่นไถล</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>สั่นพวงมาลัยตามการเคลื่อนไหวของแชสซี — สัมผัสการถ่ายน้ำหนักได้จากมือ</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>สั่นพวงมาลัยเป็นจังหวะเมื่อรอบเครื่องยนต์ถึงจุดเปลี่ยนเกียร์</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>สั่นสั้น ๆ หนึ่งครั้งทุกครั้งที่เปลี่ยนเกียร์</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>สั่นพวงมาลัยเป็นจังหวะขณะที่ ABS ของเบรกกำลังทำงาน</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>แรงสั่นสะเทือนที่ตามรอบเครื่องยนต์ ให้เสียงแบบ V8 — เงียบเมื่อดับเครื่อง</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>ปรับสเกลสัญญาณตามความเร็วรถ — ค่อย ๆ เพิ่มหรือลดแรงเมื่อรถเร็วขึ้น</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>แรงสั่นสะเทือนที่เร็วขึ้นตามความเร็วรถ เหมือนพื้นผิวถนน — เงียบเมื่อจอดอยู่</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>แรงสั่นสะเทือนที่ปรากฏเมื่อหน้าหรือท้ายรถกำลังลื่นไถล ขับด้วยเอฟเฟกต์อันเดอร์สเตียร์และโอเวอร์สเตียร์</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>เพิ่มดิเทอร์สลับขั้วเล็กน้อยใต้เกณฑ์ที่ตั้งไว้ เพื่อให้กลไกพวงมาลัยตื่นตัวอยู่เสมอและเผยรายละเอียดแผ่วเบา</value>
+  </data>
 </root>

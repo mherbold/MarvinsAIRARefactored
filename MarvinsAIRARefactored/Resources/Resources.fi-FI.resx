@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ratti edestakaisin</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Muokkaa kuvausta</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacingin alkuperäinen 60 Hz:n voimapalautesignaali täsmälleen sellaisena kuin simulaattori sen lähettää.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacingin nopea voimapalautesignaali — kuusi näytettä jokaista 60 Hz:n ruutua kohden, eniten yksityiskohtia.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Simulaattorin matalataajuinen tehosteääni (LFE) muunnettuna ratin voimaksi. Sekoita mukaan summausmoduulilla.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Voima, joka vastustaa ratin kääntönopeutta — sekoita mukaan vaimennusta varten.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Aitoa kuivakitkaa: ratti pysyy siinä, mihin sen jätät, ja tarttumisalueen ulkopuolella liukukitka on vakio.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Työntää voimakkaasti vastaan, kun ratti käännetään auton ohjauksen ääriasennon ohi, kuin fyysinen päätyvaste.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Jousivoima, joka vetää ratin takaisin keskelle. Ohjaa se nopeusvahvistusmoduulin läpi, jotta se vaikuttaa vain auton seistessä.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Ketjun pää — muuntaa signaalin ratin ulostuloksi, valinnaisella vastekäyrällä ja pehmeällä rajoittimella.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Säilyttää signaalin hitaan rungon ja silottaa pois kaiken rajataajuutta nopeamman.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Poistaa signaalin hitaan rungon ja säilyttää vain rajataajuuden yläpuoliset nopeat yksityiskohdat.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Kertoo signaalin kiinteällä kertoimella — käytä negatiivista vahvistusta signaalin kääntämiseen.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Laskee kaksi signaalia yhteen.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Vähentää tulon B tulosta A — esimerkiksi signaalin alipäästökopion vähentäminen jättää jäljelle pelkät yksityiskohdat.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Ristihäivyttää kahden signaalin välillä — 0% on pelkkää tuloa A, 100% pelkkää tuloa B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Rajoittaa, kuinka nopeasti signaali voi muuttua — rajan alle jäävä kulkee koskemattomana läpi, nopeampi liike hidastetaan.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Puristaa nopeita signaalimuutoksia sen sijaan, että katkaisisi ne jyrkästi — hidas liike kulkee koskemattomana läpi.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Puristaa signaalia kynnyksen yläpuolella ja pitää huiput kurissa ilman jyrkkää leikkautumista.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Poimii nopeat yksityiskohdat ja korostaa iskujen alkuja — töyssyt ja reunakivet erottuvat ilman, että jälkisointi voimistuu.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Yhden säätimen silotin, joka mukautuu signaaliin — voimakas silotus rauhallisissa kohdissa, hyvin pieni viive nopeissa transienteissa.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Poistaa 60 Hz:n signaalin porrastuksen liu'uttamalla arvoa tasaisesti jokaisen ruudun yli, yhden ruudun lisäviiveen hinnalla.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Siirtää 360 Hz:n signaalia tulevaisuuteen viiveen kumoamiseksi — adaptiivinen suodatin, joka oppii jokaisen auton ajaessasi.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Siirtää 60 Hz:n signaalia tulevaisuuteen viiveen kumoamiseksi — oppii ohjausliikkeistäsi ja auton liikkeistä ajaessasi.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Seuraa tulon A yksityiskohtia samalla, kun sitä vedetään kohti tuloa B — veto hellittää jokaisessa huipussa, joten transientit pääsevät läpi.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Pudottaa voiman hyvin alas, kun kolari havaitaan, ja palauttaa sen sitten pehmeästi.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Vähentää voimaa kovissa reunakivi-iskuissa ja palauttaa sen sitten pehmeästi.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Aliohjautuvuustehosteen ohjaama ohjausvoima, jotta tunnet eturenkaiden pidon katoamisen.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Yliohjautuvuustehosteen ohjaama ohjausvoima, jotta tunnet auton perän lähtevän.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Istuintuntumatehosteen ohjaama ohjausvoima — tuntuma korin kuormittumisesta.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Värisyttää rattia, kun eturenkaat alkavat liukua.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Värisyttää rattia, kun takarenkaat alkavat liukua.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Värisyttää rattia korin liikkeiden tahdissa — painonsiirtoa, jonka voi tuntea.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Sykäyttää rattia pulsseina, kun moottori saavuttaa vaihtokierrokset.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Lyhyt värinäpurske jokaisen vaihteenvaihdon yhteydessä.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulssittaa rattia, kun jarrujen ABS on aktiivinen.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Jyrinä, joka seuraa moottorin kierroslukua, V8:n äänensävyllä — hiljaa, kun moottori on sammuksissa.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Skaalaa signaalia auton nopeuden mukaan — häivytä voimia sisään tai ulos vauhdin kasvaessa.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Jyrinä, joka kiihtyy auton mukana, kuin tienpinnan tekstuuri — hiljaa auton seistessä.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Jyrinä, joka ilmestyy aina, kun auton jompikumpi pää liukuu — ali- ja yliohjautuvuustehosteiden ohjaamana.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Lisää kynnyksen alapuolelle pikkuriikkisen vuorottelevan ditherin, joka pitää ratin mekanismin hereillä ja tuo esiin heikot yksityiskohdat.</value>
+  </data>
 </root>

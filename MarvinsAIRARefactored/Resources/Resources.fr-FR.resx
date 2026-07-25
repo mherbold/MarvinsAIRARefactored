@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Balayage du volant</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Modifier la description</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Le signal de retour de force natif d'iRacing à 60 Hz, exactement tel que le simulateur l'envoie.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Le signal de retour de force haute fréquence d'iRacing — six échantillons par trame de 60 Hz, avec le maximum de détails.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>L'audio des effets basse fréquence (LFE) du simulateur, converti en force au volant. À mélanger avec un module d'addition.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Une force qui s'oppose à la vitesse de rotation du volant — à mélanger pour un effet d'amortissement.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Une vraie friction sèche : le volant reste là où vous le laissez, avec une traînée de glissement constante au-delà de la zone d'adhérence.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Repousse fermement le volant lorsqu'il dépasse la butée de direction de la voiture, comme une butée mécanique.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Une force de rappel qui ramène le volant vers le centre. Faites-la passer par un module de gain selon la vitesse pour la limiter à l'arrêt.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>La fin de la chaîne — convertit le signal en sortie vers le volant, avec courbe de réponse et limiteur doux en option.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Conserve la partie lente du signal et lisse tout ce qui est plus rapide que la fréquence de coupure.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Supprime la partie lente du signal et ne conserve que les détails rapides au-dessus de la fréquence de coupure.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Multiplie le signal par un facteur fixe — utilisez un gain négatif pour l'inverser.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Additionne deux signaux.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Soustrait l'entrée B de l'entrée A — par exemple, soustraire une copie passe-bas d'un signal ne laisse que les détails.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Effectue un fondu entre deux signaux — 0% correspond à l'entrée A seule, 100% à l'entrée B seule.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Limite la vitesse de variation du signal — tout ce qui reste sous la limite passe intact, les variations plus rapides sont ralenties.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Compresse les variations rapides du signal au lieu de les limiter brutalement — les variations lentes passent intactes.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Compresse le signal au-dessus d'un seuil, gardant les pics sous contrôle sans écrêtage brutal.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Extrait les détails rapides et accentue les attaques — bosses et vibreurs ressortent sans amplifier la retombée.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Lisseur à un seul réglage qui s'adapte au signal — lissage fort quand le signal est calme, latence minimale sur les transitoires rapides.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Élimine l'effet d'escalier d'un signal à 60 Hz grâce à une rampe fluide sur chaque trame, au prix d'une trame de latence.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Décale un signal à 360 Hz vers le futur pour compenser la latence — un filtre adaptatif qui apprend chaque voiture pendant que vous conduisez.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Décale le signal à 60 Hz vers le futur pour compenser la latence — apprend de vos coups de volant et des mouvements de la voiture pendant que vous conduisez.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Suit les détails de l'entrée A tout en étant attiré vers l'entrée B — l'attraction se relâche à chaque pic pour laisser passer les transitoires.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Réduit fortement la force lorsqu'un accident est détecté, puis la ramène progressivement.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Réduit la force lors des gros impacts sur les vibreurs, puis la ramène progressivement.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Une force de direction pilotée par l'effet de sous-virage, pour sentir les pneus avant perdre l'adhérence.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Une force de direction pilotée par l'effet de survirage, pour sentir l'arrière de la voiture décrocher.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Une force de direction pilotée par l'effet de ressenti du châssis — la sensation du châssis qui se charge.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Fait vibrer le volant lorsque les pneus avant commencent à glisser.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Fait vibrer le volant lorsque les pneus arrière commencent à glisser.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Fait vibrer le volant avec les mouvements du châssis — un transfert de masse que l'on ressent.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Fait vibrer le volant par impulsions lorsque le moteur atteint le régime de changement de rapport.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Une brève vibration à chaque changement de rapport.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Fait pulser le volant tant que l'ABS des freins est actif.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Un grondement qui suit le régime moteur, avec une sonorité de V8 — silencieux moteur éteint.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Module le signal selon la vitesse de la voiture — pour faire apparaître ou disparaître des forces à mesure que la voiture accélère.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Un grondement qui s'accélère avec la voiture, comme la texture du revêtement — silencieux à l'arrêt.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Un grondement qui apparaît dès qu'une extrémité de la voiture glisse, piloté par les effets de sous-virage et de survirage.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Ajoute un infime dither alterné sous un seuil pour maintenir le mécanisme du volant en mouvement et révéler les détails les plus fins.</value>
+  </data>
 </root>

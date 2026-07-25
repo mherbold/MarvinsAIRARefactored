@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>方向盘左右摆动</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>编辑描述</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing 原生的 60 Hz 力反馈信号，与模拟器发送的完全一致。</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing 的高速率力反馈信号——每个 60 Hz 帧包含六个采样，细节最丰富。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>将模拟器的低频效果（LFE）音频转换为方向盘力。请用加法模块将其混入。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>一种与方向盘转动速度相反的力——混入后可提供阻尼效果。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>真实的干摩擦：方向盘停在你松手的位置，越过粘滞区后有恒定的滑动阻力。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>当方向盘转过车辆的转向锁止角时强力回推，就像物理限位挡块。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>把方向盘拉回中心的弹簧力。让它经过一个速度增益模块，即可只在停车时生效。</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>信号链的终点——将信号转换为方向盘输出，可选加上响应曲线和软限幅器。</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>保留信号中缓慢的主体部分，平滑去除快于截止频率的一切成分。</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>去除信号中缓慢的主体部分，只保留截止频率以上的快速细节。</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>按固定倍数缩放信号——使用负增益可将信号反相。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>将两个信号相加。</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>用输入 A 减去输入 B——例如，减去信号的低通副本后就只剩下细节。</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>在两个信号之间交叉淡化——0% 时全为输入 A，100% 时全为输入 B。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>限制信号的变化速度——低于限值的部分原样通过，更快的变化会被放慢。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>对快速的信号变化进行压缩而不是硬性限制——缓慢的变化原样通过。</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>压缩超过阈值的信号，在不硬削波的情况下控制峰值。</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>提取快速细节并强调起振——颠簸和路肩更突出，而不会放大衰减部分。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>单旋钮自适应平滑器——信号平静时平滑力度大，快速瞬态时延迟极小。</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>通过在每帧内平滑过渡，消除 60 Hz 信号的阶梯感，代价是一帧的延迟。</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>将 360 Hz 信号向未来偏移以抵消延迟——一种自适应滤波器，会在你驾驶时学习每辆车的特性。</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>将 60 Hz 信号向未来偏移以抵消延迟——在你驾驶时根据转向和车辆运动进行学习。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>跟随输入 A 的细节，同时被拉向输入 B——每到峰值时拉力放松，让瞬态得以通过。</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>检测到撞车时大幅减弱力度，然后平滑恢复。</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>猛烈冲击路肩时降低力度，然后平滑恢复。</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>由转向不足效果驱动的转向力，让你感觉到前轮抓地力的流失。</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>由转向过度效果驱动的转向力，让你感觉到车尾开始甩出。</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>由体感（seat-of-pants）效果驱动的转向力——底盘承受负荷的感觉。</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>前轮开始打滑时使方向盘振动。</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>后轮开始打滑时使方向盘振动。</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>随底盘运动振动方向盘——让你感受到重心转移。</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>发动机转速达到换挡点时，方向盘以脉冲方式振动提示。</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>每次换挡时发出短促的振动。</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>刹车 ABS 工作期间使方向盘脉冲振动。</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>跟随发动机转速的隆隆振动，音色像 V8——发动机熄火时静音。</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>根据车速缩放信号——让力随着车速升高而淡入或淡出。</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>随车速加快的隆隆振动，如同路面纹理——停车时静音。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>只要车头或车尾任意一端打滑就会出现的隆隆振动，由转向不足和转向过度效果驱动。</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>在阈值以下加入微小的交替抖动，保持方向盘机构处于活动状态并呈现微弱细节。</value>
+  </data>
 </root>

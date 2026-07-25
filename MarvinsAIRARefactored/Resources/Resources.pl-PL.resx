@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Kołysanie kierownicą</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Edytuj opis</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Natywny sygnał force feedback iRacing 60 Hz, dokładnie taki, jaki wysyła symulator.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Sygnał force feedback iRacing o wysokiej częstotliwości — sześć próbek na klatkę 60 Hz, z największą ilością detali.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Dźwięk efektów niskoczęstotliwościowych (LFE) symulatora zamieniony w siłę na kierownicy. Wmiksuj go modułem dodawania.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Siła przeciwdziałająca prędkości obracania kierownicy — wmiksuj ją, aby uzyskać tłumienie.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Prawdziwe tarcie suche: kierownica zostaje tam, gdzie ją zostawisz, ze stałym oporem ślizgania poza strefą przylegania.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Mocno stawia opór, gdy kierownica zostanie obrócona poza skrajny skręt auta — jak fizyczny ogranicznik.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Siła sprężyny ściągająca kierownicę z powrotem do środka. Przepuść ją przez moduł wzmocnienia od prędkości, aby działała tylko na postoju.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Koniec łańcucha — zamienia sygnał na wyjście do kierownicy, z opcjonalną krzywą odpowiedzi i miękkim limiterem.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Zachowuje wolną część sygnału i wygładza wszystko szybsze niż częstotliwość odcięcia.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Usuwa wolną część sygnału i zostawia tylko szybkie detale powyżej częstotliwości odcięcia.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Skaluje sygnał przez stały mnożnik — użyj ujemnego wzmocnienia, aby go odwrócić.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Dodaje do siebie dwa sygnały.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Odejmuje wejście B od wejścia A — na przykład odjęcie dolnoprzepustowej kopii sygnału zostawia same detale.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Płynnie przechodzi między dwoma sygnałami — 0% to samo wejście A, 100% to samo wejście B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Ogranicza szybkość zmian sygnału — wszystko poniżej limitu przechodzi bez zmian, szybsze ruchy są spowalniane.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Kompresuje szybkie zmiany sygnału zamiast twardo je ograniczać — wolne ruchy przechodzą bez zmian.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Kompresuje sygnał powyżej progu, trzymając szczyty pod kontrolą bez twardego obcinania.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Wydobywa szybkie detale i podkreśla ataki — wyboje i krawężniki wybijają się bez wzmacniania wybrzmiewania.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Wygładzanie jednym pokrętłem, dopasowujące się do sygnału — mocne wygładzanie przy spokojnym sygnale, minimalne opóźnienie na szybkich transjentach.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Usuwa schodki z sygnału 60 Hz, płynnie przechodząc przez każdą klatkę — kosztem jednej klatki opóźnienia.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Przesuwa sygnał 360 Hz w przyszłość, aby zniwelować opóźnienie — filtr adaptacyjny, który uczy się każdego auta podczas jazdy.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Przesuwa sygnał 60 Hz w przyszłość, aby zniwelować opóźnienie — uczy się z twojego skręcania i ruchu auta podczas jazdy.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Podąża za detalami wejścia A, będąc jednocześnie przyciągany do wejścia B — przyciąganie słabnie przy każdym szczycie, więc transjenty przechodzą bez zmian.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Mocno wycisza siłę po wykryciu wypadku, po czym płynnie ją przywraca.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Zmniejsza siłę przy mocnych uderzeniach w krawężniki, po czym płynnie ją przywraca.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Siła na kierownicy sterowana efektem podsterowności — poczujesz, jak przednie opony tracą przyczepność.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Siła na kierownicy sterowana efektem nadsterowności — poczujesz, jak tył auta ucieka.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Siła na kierownicy sterowana efektem czucia w fotelu — wrażenie dociążania nadwozia.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Wibruje kierownicą, gdy przednie opony zaczynają się ślizgać.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Wibruje kierownicą, gdy tylne opony zaczynają się ślizgać.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Wibruje kierownicą wraz z ruchem nadwozia — transfer masy, który da się poczuć.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Wprawia kierownicę w pulsujące buczenie, gdy silnik osiąga punkt zmiany biegu.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Krótki impuls wibracji przy każdej zmianie biegu.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulsuje kierownicą, gdy działa ABS hamulców.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Pomruk podążający za obrotami silnika, brzmiący jak V8 — cichy przy wyłączonym silniku.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Skaluje sygnał wraz z prędkością auta — płynnie wzmacniaj lub wyciszaj siły w miarę rozpędzania.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Pomruk przyspieszający wraz z autem, jak faktura nawierzchni — cichy na postoju.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Pomruk pojawiający się, gdy którakolwiek oś auta się ślizga — sterowany efektami podsterowności i nadsterowności.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Dodaje drobny naprzemienny dither poniżej progu, aby utrzymać mechanizm kierownicy w ruchu i uwydatnić subtelne detale.</value>
+  </data>
 </root>

@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>स्टीयरिंग व्हील स्वीप</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>विवरण संपादित करें</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing का मूल 60 Hz फ़ोर्स फ़ीडबैक सिग्नल, ठीक वैसा ही जैसा सिम्युलेटर भेजता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing का उच्च-दर फ़ोर्स फ़ीडबैक सिग्नल — हर 60 Hz फ़्रेम में छह सैंपल, सबसे अधिक डिटेल के साथ।</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>सिम्युलेटर का लो-फ़्रीक्वेंसी इफ़ेक्ट्स ऑडियो, व्हील फ़ोर्स में बदला हुआ। इसे ऐड मॉड्यूल से सिग्नल में मिलाएँ।</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>एक फ़ोर्स जो व्हील घुमाने की गति का विरोध करता है — डैम्पिंग के लिए इसे सिग्नल में मिलाएँ।</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>सच्चा ड्राई फ़्रिक्शन: व्हील वहीं टिका रहता है जहाँ आप उसे छोड़ते हैं, और स्टिक क्षेत्र से आगे घुमाने पर स्थिर स्लाइडिंग ड्रैग मिलता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>जब व्हील कार के स्टीयरिंग लॉक से आगे घुमाया जाता है तो ज़ोर से वापस धकेलता है, एक भौतिक एंड स्टॉप की तरह।</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>एक स्प्रिंग फ़ोर्स जो व्हील को वापस केंद्र की ओर खींचता है। इसे केवल खड़ी कार तक सीमित रखने के लिए स्पीड गेन मॉड्यूल से गुज़ारें।</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>चेन का अंत — सिग्नल को व्हील आउटपुट में बदलता है, वैकल्पिक रिस्पॉन्स कर्व और सॉफ्ट लिमिटर के साथ।</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>सिग्नल का धीमा मुख्य भाग रखता है और कटऑफ़ से तेज़ हर चीज़ को चिकना कर देता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>सिग्नल का धीमा मुख्य भाग हटाता है और कटऑफ़ से ऊपर की केवल तेज़ डिटेल रखता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>सिग्नल को एक निश्चित गुणक से स्केल करता है — सिग्नल उलटने के लिए नेगेटिव गेन का उपयोग करें।</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>दो सिग्नलों को आपस में जोड़ता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>इनपुट A में से इनपुट B घटाता है — उदाहरण के लिए, सिग्नल की लो-पास कॉपी घटाने पर केवल डिटेल बचती है।</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>दो सिग्नलों के बीच क्रॉसफ़ेड करता है — 0% पूरा इनपुट A है, 100% पूरा इनपुट B।</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>सिग्नल कितनी तेज़ी से बदल सकता है इसकी सीमा तय करता है — सीमा के भीतर सब कुछ अछूता गुज़रता है, तेज़ बदलाव धीमे कर दिए जाते हैं।</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>तेज़ सिग्नल बदलावों को हार्ड-लिमिट करने के बजाय दबाता है — धीमे बदलाव अछूते गुज़रते हैं।</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>थ्रेशोल्ड से ऊपर सिग्नल को दबाता है, जिससे पीक बिना हार्ड क्लिपिंग के नियंत्रण में रहते हैं।</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>तेज़ डिटेल निकालता है और अटैक पर ज़ोर देता है — उभार और कर्ब बिना डिके को बढ़ाए उभरकर महसूस होते हैं।</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>एक-नॉब स्मूदर जो सिग्नल के अनुसार ढलता है — शांत सिग्नल पर मज़बूत स्मूदिंग, तेज़ ट्रांज़िएंट पर न्यूनतम लैग।</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>हर फ़्रेम में आसानी से रैंप करके 60 Hz सिग्नल की सीढ़ीनुमा पायदानें हटाता है, एक फ़्रेम की लेटेंसी की कीमत पर।</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>लेटेंसी की भरपाई के लिए 360 Hz सिग्नल को भविष्य में शिफ्ट करता है — एक अनुकूली फ़िल्टर जो आपके ड्राइव करते-करते हर कार को सीखता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>लेटेंसी की भरपाई के लिए 60 Hz सिग्नल को भविष्य में शिफ्ट करता है — आपकी स्टीयरिंग और कार की गति से सीखता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>इनपुट A की डिटेल का अनुसरण करता है और साथ ही इनपुट B की ओर खिंचा रहता है — हर पीक पर खिंचाव ढीला पड़ता है ताकि ट्रांज़िएंट गुज़र सकें।</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>क्रैश का पता चलने पर फ़ोर्स को बहुत कम कर देता है, फिर धीरे-धीरे पूरी ताक़त पर लौटाता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>तेज़ कर्ब टकराव के दौरान फ़ोर्स घटाता है, फिर धीरे-धीरे पूरी ताक़त पर लौटाता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>अंडरस्टीयर इफ़ेक्ट से चलने वाला स्टीयरिंग फ़ोर्स, ताकि आप आगे के टायरों की पकड़ छूटती महसूस कर सकें।</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>ओवरस्टीयर इफ़ेक्ट से चलने वाला स्टीयरिंग फ़ोर्स, ताकि आप कार का पिछला हिस्सा फिसलता महसूस कर सकें।</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>सीट-ऑफ़-पैंट्स इफ़ेक्ट से चलने वाला स्टीयरिंग फ़ोर्स — चेसिस पर भार पड़ने का अहसास।</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>जब आगे के टायर फिसलने लगते हैं तो व्हील को कंपाता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>जब पीछे के टायर फिसलने लगते हैं तो व्हील को कंपाता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>चेसिस की गति के साथ व्हील को कंपाता है — वज़न का स्थानांतरण जिसे आप महसूस कर सकते हैं।</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>जब इंजन शिफ्ट पॉइंट पर पहुँचता है तो व्हील को स्पंदनों में कंपाता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>हर गियर बदलाव पर कंपन का एक छोटा झोंका।</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>जब ब्रेक का ABS सक्रिय होता है तो व्हील को स्पंदित करता है।</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>एक गड़गड़ाहट जो इंजन की गति के साथ चलती है, V8 जैसी आवाज़ में — इंजन बंद होने पर मौन।</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>कार की गति के साथ सिग्नल को स्केल करता है — कार की रफ़्तार बढ़ने पर फ़ोर्स को धीरे-धीरे बढ़ाएँ या घटाएँ।</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>एक गड़गड़ाहट जो कार के साथ तेज़ होती है, सड़क की सतह की बनावट जैसी — खड़ी कार में मौन।</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>एक गड़गड़ाहट जो कार का कोई भी सिरा फिसलने पर उभरती है, अंडरस्टीयर और ओवरस्टीयर इफ़ेक्ट्स से चालित।</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>थ्रेशोल्ड के नीचे एक सूक्ष्म बारी-बारी बदलता डिदर जोड़ता है ताकि व्हील का तंत्र सजीव रहे और हल्की डिटेल उभर सके।</value>
+  </data>
 </root>

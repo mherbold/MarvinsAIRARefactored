@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>تأرجح عجلة القيادة</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>تحرير الوصف</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>إشارة الفورس فيدباك الأصلية من iRacing بتردد 60 Hz، تمامًا كما يرسلها المحاكي.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>إشارة الفورس فيدباك عالية المعدل من iRacing — ست عينات لكل إطار 60 Hz، وبأدق التفاصيل.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>صوت المؤثرات منخفضة التردد (LFE) من المحاكي محوَّلًا إلى قوة على عجلة القيادة. امزجه مع الإشارة عبر وحدة الجمع.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>قوة تقاوم سرعة تدوير عجلة القيادة — امزجها للحصول على تخميد.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>احتكاك جاف حقيقي: تبقى العجلة حيث تتركها، مع مقاومة انزلاق ثابتة بعد تجاوز منطقة الثبات.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>يدفع بقوة في الاتجاه المعاكس عند تدوير العجلة إلى ما بعد حد توجيه السيارة، مثل مصد نهاية فعلي.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>قوة نابض تعيد العجلة نحو المنتصف. مرِّرها عبر وحدة كسب حسب السرعة لتعمل فقط أثناء التوقف.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>نهاية السلسلة — تحوِّل الإشارة إلى خرج عجلة القيادة، مع منحنى استجابة ومحدد ناعم اختياريين.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>يحتفظ بالجزء البطيء من الإشارة ويزيل بسلاسة كل ما هو أسرع من تردد القطع.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>يزيل الجزء البطيء من الإشارة ويُبقي فقط التفاصيل السريعة فوق تردد القطع.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>يضرب الإشارة في معامل ثابت — استخدم كسبًا سالبًا لعكس الإشارة.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>يجمع إشارتين معًا.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>يطرح الدخل B من الدخل A — مثلًا، طرح نسخة مرشَّحة بمرشح تمرير منخفض من الإشارة يُبقي التفاصيل فقط.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>يمزج تدريجيًا بين إشارتين — 0% يعني الدخل A بالكامل، و100% يعني الدخل B بالكامل.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>يحدّ من سرعة تغيّر الإشارة — ما دون الحد يمر كما هو، والحركة الأسرع يتم إبطاؤها.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>يضغط التغيرات السريعة في الإشارة بدلًا من قطعها بحدة — الحركة البطيئة تمر كما هي.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>يضغط الإشارة فوق عتبة معيّنة، فيُبقي الذروات تحت السيطرة دون قصّ حاد.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>يستخرج التفاصيل السريعة ويُبرز بدايات الصدمات — فتبرز المطبات وحواف المسار دون تضخيم ذيل الصدمة.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>منعّم بمقبض واحد يتكيّف مع الإشارة — تنعيم قوي عند الهدوء، وتأخير ضئيل عند التغيرات السريعة.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>يزيل الشكل الدرجي من إشارة 60 Hz بالتدرّج السلس عبر كل إطار، مقابل تأخير قدره إطار واحد.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>يزيح إشارة 360 Hz نحو المستقبل لمعادلة التأخير — مرشّح تكيّفي يتعلّم كل سيارة أثناء قيادتك.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>يزيح إشارة 60 Hz نحو المستقبل لمعادلة التأخير — يتعلّم من توجيهك وحركة السيارة أثناء القيادة.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>يتتبع تفاصيل الدخل A بينما يُشدّ نحو الدخل B — يرتخي الشدّ عند كل ذروة لتمر التغيرات السريعة.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>يخفّض القوة بشدة عند اكتشاف حادث، ثم يعيدها تدريجيًا وبسلاسة.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>يقلّل القوة عند الارتطام العنيف بحواف المسار، ثم يعيدها تدريجيًا وبسلاسة.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>قوة توجيه يقودها تأثير نقص الانعطاف، لتشعر بفقدان الإطارات الأمامية لتماسكها.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>قوة توجيه يقودها تأثير زيادة الانعطاف، لتشعر بانزلاق مؤخرة السيارة.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>قوة توجيه يقودها تأثير الإحساس الجسدي — إحساس تحمُّل الهيكل للأوزان.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>يهزّ عجلة القيادة عندما تبدأ الإطارات الأمامية بالانزلاق.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>يهزّ عجلة القيادة عندما تبدأ الإطارات الخلفية بالانزلاق.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>يهزّ عجلة القيادة مع حركة الهيكل — انتقال للوزن يمكنك الشعور به.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>يهزّ العجلة على شكل نبضات عندما تصل دورات المحرك إلى نقطة تغيير الغيار.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>دفعة اهتزاز قصيرة عند كل تغيير غيار.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>يرسل نبضات إلى عجلة القيادة أثناء عمل نظام ABS للمكابح.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>هدير يتتبع دورات المحرك بصوت يشبه محرك V8 — صامت عندما يكون المحرك مطفأً.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>يغيّر مقدار الإشارة حسب سرعة السيارة — لإظهار القوى أو إخفائها تدريجيًا مع تسارع السيارة.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>هدير يتسارع مع سرعة السيارة، مثل ملمس سطح الطريق — صامت أثناء التوقف.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>هدير يظهر متى ما انزلق أي طرف من السيارة، يقوده تأثيرا نقص الانعطاف وزيادته.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>يضيف ذبذبة متناوبة دقيقة تحت عتبة معيّنة لإبقاء آلية العجلة نشطة وإظهار التفاصيل الخافتة.</value>
+  </data>
 </root>

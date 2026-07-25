@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Direksiyon simidi tarama</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Açıklamayı düzenle</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing'in yerel 60 Hz force feedback sinyali — simülatörün gönderdiği haliyle, hiç değiştirilmeden.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing'in yüksek hızlı force feedback sinyali — her 60 Hz karede altı örnek, en yüksek ayrıntıyla.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Simülatörün düşük frekanslı efekt (LFE) sesi, direksiyon kuvvetine dönüştürülmüş halde. Bir toplama modülüyle karışıma ekleyin.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Direksiyonun çevrilme hızına karşı koyan bir kuvvet — sönümleme için karışıma ekleyin.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Gerçek kuru sürtünme: direksiyon bıraktığınız yerde durur ve tutunma bölgesinin ötesinde sabit bir kayma direnci uygular.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Direksiyon aracın direksiyon kilit açısının ötesine çevrildiğinde sert şekilde karşı koyar — fiziksel bir dayanak gibi.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Direksiyonu merkeze geri çeken bir yay kuvveti. Yalnızca park halinde etkili olması için bir hız kazancı modülünden geçirin.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Zincirin sonu — sinyali direksiyon çıkışına dönüştürür; isteğe bağlı tepki eğrisi ve yumuşak sınırlayıcı içerir.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Sinyalin yavaş gövdesini korur ve kesim frekansından hızlı olan her şeyi yumuşatır.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Sinyalin yavaş gövdesini kaldırır ve yalnızca kesim frekansının üzerindeki hızlı ayrıntıyı tutar.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Sinyali sabit bir çarpanla ölçekler — ters çevirmek için negatif kazanç kullanın.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>İki sinyali toplar.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>B girişini A girişinden çıkarır — örneğin sinyalin alçak geçiren bir kopyasını çıkarmak geriye yalnızca ayrıntıyı bırakır.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>İki sinyal arasında yumuşak geçiş yapar — 0% tamamen A girişi, 100% tamamen B girişidir.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Sinyalin ne kadar hızlı değişebileceğini sınırlar — limitin altındaki her şey dokunulmadan geçer, daha hızlı hareketler yavaşlatılır.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Hızlı sinyal değişimlerini sert sınırlamak yerine sıkıştırır — yavaş hareketler dokunulmadan geçer.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Sinyali bir eşiğin üzerinde sıkıştırır, tepe noktalarını sert kırpma olmadan kontrol altında tutar.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Hızlı ayrıntıyı ayıklar ve atakları vurgular — tümsekler ve kerbler, sönüm kuyruğunu güçlendirmeden öne çıkar.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Sinyale uyum sağlayan tek ayarlı yumuşatıcı — sinyal sakinken güçlü yumuşatma, hızlı geçişlerde en az gecikme.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>60 Hz sinyalindeki basamakları, her kare boyunca yumuşak bir rampayla geçerek kaldırır — bedeli bir karelik gecikmedir.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Gecikmeyi dengelemek için 360 Hz sinyalini geleceğe kaydırır — siz sürdükçe her aracı öğrenen uyarlanabilir bir filtre.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Gecikmeyi dengelemek için 60 Hz sinyalini geleceğe kaydırır — siz sürdükçe direksiyon hareketlerinizden ve aracın hareketinden öğrenir.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>A girişinin ayrıntısını izlerken B girişine doğru çekilir — çekim her tepe noktasında gevşer, böylece ani geçişler olduğu gibi geçer.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Kaza algılandığında kuvveti iyice azaltır, ardından yumuşakça geri yükseltir.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Sert kerb darbelerinde kuvveti azaltır, ardından yumuşakça geri yükseltir.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Önden kayma (understeer) efektinin sürdüğü bir direksiyon kuvveti — ön lastiklerin tutunmayı kaybettiğini hissedersiniz.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Arkadan savrulma (oversteer) efektinin sürdüğü bir direksiyon kuvveti — aracın arkasının kaydığını hissedersiniz.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Gövde hissi efektinin sürdüğü bir direksiyon kuvveti — şasinin yüklenme hissi.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Ön lastikler kaymaya başladığında direksiyonu titreştirir.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Arka lastikler kaymaya başladığında direksiyonu titreştirir.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Direksiyonu şasi hareketiyle birlikte titreştirir — hissedebileceğiniz bir ağırlık aktarımı.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Motor vites atma devrine ulaştığında direksiyonu darbeler halinde titreştirir.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Her vites değişiminde kısa bir titreşim darbesi.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Frenlerin ABS'si etkinken direksiyonu darbelerle titreştirir.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Motor devrini takip eden, V8 karakterinde bir gümbürtü — motor kapalıyken sessizdir.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Sinyali araç hızıyla ölçekler — araç hızlandıkça kuvvetleri kademeli olarak devreye alın veya çıkarın.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Araçla birlikte hızlanan, yol yüzeyi dokusu gibi bir gümbürtü — araç park halindeyken sessizdir.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Aracın ön ya da arka ucu kaydığında beliren bir gümbürtü — önden kayma ve arkadan savrulma efektleriyle sürülür.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Direksiyon mekanizmasını canlı tutmak ve zayıf ayrıntıları ortaya çıkarmak için eşiğin altında minik, yön değiştiren bir titreşim (dither) ekler.</value>
+  </data>
 </root>

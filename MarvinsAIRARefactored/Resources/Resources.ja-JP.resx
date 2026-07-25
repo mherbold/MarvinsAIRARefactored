@@ -2275,4 +2275,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>ステアリング スイープ</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>説明を編集</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing ネイティブの 60 Hz フォースフィードバック信号。シミュレーターが送信するそのままの信号です。</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing の高レートフォースフィードバック信号。60 Hz フレームごとに 6 サンプルで、最も細かいディテールを含みます。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>シミュレーターの低周波エフェクト(LFE)オーディオをホイールの力に変換したものです。加算モジュールでミックスして使います。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>ホイールを回す速さに逆らう力です。ミックスするとダンピングとして働きます。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>本物のドライフリクション。手を離した位置でホイールが保持され、静止領域を超えると一定の滑り抵抗がかかります。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>車のステアリングロックを超えてホイールを回すと、物理的なエンドストップのように強く押し返します。</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>ホイールをセンターへ引き戻すスプリング力です。停車時のみ効かせるには速度ゲインモジュールを通してください。</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>チェーンの終端。信号をホイール出力へ変換し、オプションでレスポンスカーブとソフトリミッターを適用できます。</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>信号のゆっくりした成分を残し、カットオフより速い成分を滑らかに取り除きます。</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>信号のゆっくりした成分を取り除き、カットオフより上の速いディテールだけを残します。</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>信号を固定の倍率でスケールします。負のゲインにすると信号が反転します。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>2 つの信号を加算します。</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>入力 A から入力 B を減算します。たとえば信号のローパスコピーを引くと、ディテールだけが残ります。</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>2 つの信号をクロスフェードします。0% で入力 A のみ、100% で入力 B のみになります。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>信号の変化速度に上限をかけます。上限以下はそのまま通り、それより速い動きは減速されます。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>速い信号変化をハードリミットせずに圧縮します。ゆっくりした動きはそのまま通ります。</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>しきい値を超えた信号を圧縮し、ハードクリップさせずにピークを抑えます。</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>速いディテールを抽出してアタックを強調します。減衰部分をブーストせずに、バンプや縁石の感触が際立ちます。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>信号に適応するワンノブのスムーザー。静かなときは強くスムージングし、速いトランジェントでは遅延を最小限にします。</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>各フレームにわたって滑らかにランプさせ、60 Hz 信号の階段状のステップを除去します。代わりに 1 フレーム分の遅延が生じます。</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>360 Hz 信号を未来へシフトして遅延を打ち消します。走行しながら車ごとに学習する適応フィルターです。</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>60 Hz 信号を未来へシフトして遅延を打ち消します。走行中のステアリング操作と車の動きから学習します。</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>入力 A のディテールを追いながら入力 B へ引き寄せられます。ピークごとに引き寄せが緩むので、トランジェントはそのまま通ります。</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>クラッシュを検出すると力を大きくフェードダウンし、その後滑らかに戻します。</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>縁石に強く乗ったときに力を弱め、その後滑らかに戻します。</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>アンダーステアエフェクトで駆動されるステアリング力。フロントタイヤのグリップが失われていくのを感じ取れます。</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>オーバーステアエフェクトで駆動されるステアリング力。リアが流れ出すのを感じ取れます。</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>シートオブパンツ(体感)エフェクトで駆動されるステアリング力。シャシーに荷重がかかっていく感覚です。</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>フロントタイヤが滑り始めるとホイールを振動させます。</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>リアタイヤが滑り始めるとホイールを振動させます。</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>シャシーの動きに合わせてホイールを振動させます。荷重移動を手で感じられます。</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>エンジン回転数がシフトポイントに達すると、ホイールをパルス状に振動させます。</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>ギアチェンジのたびに短い振動を発生させます。</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>ブレーキの ABS が作動している間、ホイールをパルスさせます。</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>エンジン回転数に追従するランブル。V8 らしいサウンドで、エンジン停止中は無音です。</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>車速に応じて信号をスケールします。速度の上昇に合わせて力をフェードイン/フェードアウトできます。</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>車速とともに速くなるランブルで、路面のテクスチャーのような感触です。停車中は無音です。</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>車の前後どちらかが滑っているときに現れるランブル。アンダーステアとオーバーステアのエフェクトで駆動されます。</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>しきい値以下で微小な交互ディザーを加え、ホイール機構を動かし続けてかすかなディテールを感じ取れるようにします。</value>
+  </data>
 </root>

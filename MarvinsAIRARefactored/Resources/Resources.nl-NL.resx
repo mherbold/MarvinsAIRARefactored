@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Stuur heen en weer</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Beschrijving bewerken</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Het eigen 60 Hz force-feedbacksignaal van iRacing, precies zoals de simulator het verstuurt.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Het snelle force-feedbacksignaal van iRacing — zes samples per 60 Hz-frame, met het meeste detail.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>De lagefrequentie-effectenaudio (LFE) van de simulator, omgezet in stuurkracht. Meng deze bij met een optelmodule.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Een kracht die tegenwerkt naarmate het stuur sneller wordt gedraaid — meng deze bij voor demping.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Echte droge wrijving: het stuur blijft staan waar je het loslaat, met constante glijweerstand voorbij het hechtgebied.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Duwt hard terug wanneer het stuur voorbij de stuuruitslag van de auto wordt gedraaid, als een fysieke eindaanslag.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Een veerkracht die het stuur terug naar het midden trekt. Leid deze door een module voor snelheidsafhankelijke versterking om hem alleen bij stilstand actief te houden.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Het einde van de keten — zet het signaal om in stuuruitvoer, met een optionele responscurve en zachte begrenzer.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Behoudt het langzame deel van het signaal en strijkt alles glad wat sneller is dan de afsnijfrequentie.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Verwijdert het langzame deel van het signaal en behoudt alleen het snelle detail boven de afsnijfrequentie.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Schaalt het signaal met een vaste factor — gebruik een negatieve versterking om het te inverteren.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Telt twee signalen bij elkaar op.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Trekt ingang B af van ingang A — door bijvoorbeeld een laagdoorlaatkopie van een signaal af te trekken houd je alleen het detail over.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Mengt vloeiend tussen twee signalen — 0% is volledig ingang A, 100% is volledig ingang B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Begrenst hoe snel het signaal kan veranderen — alles onder de limiet passeert onaangetast, snellere bewegingen worden afgeremd.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Comprimeert snelle signaalveranderingen in plaats van ze hard te begrenzen — langzame bewegingen passeren onaangetast.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Comprimeert het signaal boven een drempel, zodat pieken onder controle blijven zonder harde clipping.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Haalt het snelle detail eruit en benadrukt de attacks — hobbels en kerbstones springen eruit zonder de uitklank te versterken.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Eenknops-gladstrijker die zich aan het signaal aanpast — sterke gladstrijking in rustige stukken, minimale vertraging bij snelle transiënten.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Verwijdert de traptreden uit een 60 Hz-signaal door elk frame vloeiend te overbruggen, ten koste van één frame extra vertraging.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Verschuift een 360 Hz-signaal naar de toekomst om latentie tegen te gaan — een adaptief filter dat elke auto leert kennen terwijl je rijdt.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Verschuift het 60 Hz-signaal naar de toekomst om latentie tegen te gaan — leert van je stuurbewegingen en de beweging van de auto terwijl je rijdt.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Volgt het detail van ingang A terwijl het naar ingang B wordt getrokken — de trekkracht verslapt bij elke piek zodat transiënten doorkomen.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Draait de kracht ver terug wanneer een crash wordt gedetecteerd en bouwt daarna weer soepel op.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Vermindert de kracht bij harde klappen op kerbstones en bouwt daarna weer soepel op.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Een stuurkracht aangestuurd door het onderstuureffect, zodat je de voorbanden grip voelt verliezen.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Een stuurkracht aangestuurd door het overstuureffect, zodat je de achterkant van de auto voelt uitbreken.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Een stuurkracht aangestuurd door het zitvlakgevoel-effect — het gevoel van het chassis dat belast wordt.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Laat het stuur trillen wanneer de voorbanden beginnen te glijden.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Laat het stuur trillen wanneer de achterbanden beginnen te glijden.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Laat het stuur meetrillen met de beweging van het chassis — gewichtsoverdracht die je kunt voelen.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Laat het stuur in pulsen zoemen wanneer de motor het schakelpunt bereikt.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Een korte trillingsstoot bij elke schakeling.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulseert het stuur zolang het ABS van de remmen actief is.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Een gerommel dat het motortoerental volgt, met het karakter van een V8 — stil zolang de motor uit staat.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Schaalt het signaal met de snelheid van de auto — laat krachten geleidelijk op- of afbouwen naarmate de auto sneller gaat.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Een gerommel dat met de auto mee versnelt, als de textuur van het wegdek — stil bij stilstand.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Een gerommel dat opduikt zodra de voor- of achterkant van de auto glijdt, aangestuurd door de onderstuur- en overstuureffecten.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Voegt onder een drempel een minieme wisselende dither toe om het stuurmechanisme levend te houden en subtiel detail voelbaar te maken.</value>
+  </data>
 </root>

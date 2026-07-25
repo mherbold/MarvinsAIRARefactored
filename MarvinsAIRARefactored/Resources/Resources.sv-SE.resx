@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Rat fram och tillbaka</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Redigera beskrivning</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacings inbyggda 60 Hz force feedback-signal, exakt som simulatorn skickar den.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacings högfrekventa force feedback-signal — sex samplingar per 60 Hz-bildruta, med mest detaljer.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Simulatorns lågfrekventa effektljud (LFE), omvandlat till rattkraft. Blanda in den med en additionsmodul.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>En kraft som motverkar hur snabbt ratten vrids — blanda in den för dämpning.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Äkta torrfriktion: ratten stannar där du släpper den, med konstant glidmotstånd utanför greppzonen.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Trycker hårt tillbaka när ratten vrids förbi bilens styrutslag, som ett fysiskt ändstopp.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>En fjäderkraft som drar ratten tillbaka mot mitten. Led den genom en modul med hastighetsberoende förstärkning så att den bara är aktiv när bilen står stilla.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Slutet på kedjan — omvandlar signalen till rattutgång, med valfri responskurva och mjuk begränsare.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Behåller signalens långsamma del och jämnar ut allt som är snabbare än brytfrekvensen.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Tar bort signalens långsamma del och behåller bara de snabba detaljerna ovanför brytfrekvensen.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Skalar signalen med en fast faktor — använd negativ förstärkning för att invertera den.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Adderar två signaler.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Subtraherar ingång B från ingång A — subtraherar man t.ex. en lågpasskopia av en signal återstår bara detaljerna.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Tonar mjukt mellan två signaler — 0% är enbart ingång A, 100% enbart ingång B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Begränsar hur snabbt signalen kan ändras — allt under gränsen passerar orört, snabbare rörelser bromsas.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Komprimerar snabba signaländringar i stället för att hårdbegränsa dem — långsamma rörelser passerar orörda.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Komprimerar signalen ovanför ett tröskelvärde och håller topparna under kontroll utan hård klippning.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Plockar ut de snabba detaljerna och betonar attackerna — gupp och curbs framträder utan att avklingningen förstärks.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>En enknapps-utjämnare som anpassar sig till signalen — kraftig utjämning i lugna partier, minimal fördröjning vid snabba transienter.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Tar bort trappstegen ur en 60 Hz-signal genom att rampa mjukt över varje bildruta, till priset av en bildrutas fördröjning.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Förskjuter en 360 Hz-signal in i framtiden för att motverka latens — ett adaptivt filter som lär sig varje bil medan du kör.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Förskjuter 60 Hz-signalen in i framtiden för att motverka latens — lär sig av din styrning och bilens rörelser medan du kör.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Följer detaljerna i ingång A samtidigt som den dras mot ingång B — dragningen släpper vid varje topp så att transienter tar sig igenom.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Tonar ned kraften rejält när en krasch upptäcks och rampar sedan mjukt upp igen.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Minskar kraften vid hårda curbträffar och rampar sedan mjukt upp igen.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>En styrkraft driven av understyrningseffekten, så att du känner när framdäcken tappar greppet.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>En styrkraft driven av överstyrningseffekten, så att du känner när bilens bakvagn släpper.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>En styrkraft driven av sittkänslo-effekten — känslan av att chassit lastas upp.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Vibrerar ratten när framdäcken börjar glida.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Vibrerar ratten när bakdäcken börjar glida.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibrerar ratten i takt med chassits rörelser — viktförflyttning du kan känna.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Får ratten att surra i pulser när motorn når växlingspunkten.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>En kort vibrationsstöt vid varje växling.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulserar ratten medan bromsarnas ABS är aktivt.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Ett muller som följer motorns varvtal, med karaktären av en V8 — tyst när motorn är avstängd.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Skalar signalen med bilens fart — tona in eller ut krafter i takt med att bilen ökar farten.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Ett muller som ökar med farten, som vägbanans textur — tyst när bilen står stilla.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Ett muller som dyker upp så snart någon ände av bilen glider, drivet av under- och överstyrningseffekterna.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Lägger till en pytteliten alternerande dither under ett tröskelvärde för att hålla rattmekanismen vaken och avslöja svaga detaljer.</value>
+  </data>
 </root>

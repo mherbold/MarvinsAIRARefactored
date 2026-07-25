@@ -67,6 +67,61 @@ public static partial class FFBDisplayNames
 		return Localize( "FFBModule" + typeKey, fallback );
 	}
 
+	// Built-in per-module-type descriptions — the default node description every module carries (shown as the
+	// node's tooltip, under the settings card, and beside the pinned quick controls). Shipped translated via the
+	// FFBModuleDescription{TypeKey} localization keys; this map is the English fallback. A custom graph's node
+	// can override its description (FFBModuleData.Description); built-in graphs always show these defaults.
+	private static readonly Dictionary<string, string> ModuleDescriptions = new( StringComparer.Ordinal )
+	{
+		[ FFBModuleRegistry.Source60HzType ] = "iRacing's native 60 Hz force feedback signal, exactly as the simulator sends it.",
+		[ FFBModuleRegistry.Source360HzType ] = "iRacing's high-rate force feedback signal — six samples per 60 Hz frame, with the most detail.",
+		[ FFBModuleRegistry.SourceLFEType ] = "The simulator's low-frequency effects audio, turned into wheel force. Mix it in with an add module.",
+		[ FFBModuleRegistry.SourceWheelVelocityType ] = "A force that opposes how fast the wheel is being turned — mix it in for damping.",
+		[ FFBModuleRegistry.SourceFrictionType ] = "True dry friction: the wheel holds where you leave it, with constant sliding drag past the stick region.",
+		[ FFBModuleRegistry.SourceSoftLockType ] = "Pushes back hard when the wheel is turned past the car's steering lock, like a physical end stop.",
+		[ FFBModuleRegistry.SourceWheelCenteringType ] = "A spring force that pulls the wheel back toward center. Route it through a speed gain module to keep it parked-only.",
+		[ FFBModuleRegistry.OutputType ] = "The end of the chain — converts the signal to wheel output, with an optional response curve and soft limiter.",
+		[ FFBModuleRegistry.LowPassFilterType ] = "Keeps the slow body of the signal and smooths away everything faster than the cutoff.",
+		[ FFBModuleRegistry.HighPassFilterType ] = "Removes the slow body of the signal and keeps only the fast detail above the cutoff.",
+		[ FFBModuleRegistry.GainType ] = "Scales the signal by a fixed multiplier — use a negative gain to invert it.",
+		[ FFBModuleRegistry.AddType ] = "Adds two signals together.",
+		[ FFBModuleRegistry.SubtractType ] = "Subtracts input B from input A — for example, subtracting a low-pass copy of a signal leaves just the detail.",
+		[ FFBModuleRegistry.BlendType ] = "Crossfades between two signals — 0% is all input A, 100% is all input B.",
+		[ FFBModuleRegistry.SlewLimiterType ] = "Caps how fast the signal can change — anything under the limit passes untouched, faster movement is slowed down.",
+		[ FFBModuleRegistry.SlewCompressorType ] = "Squeezes fast signal changes instead of hard-limiting them — slow movement passes untouched.",
+		[ FFBModuleRegistry.CompressorType ] = "Squeezes the signal above a threshold, keeping peaks under control without hard clipping.",
+		[ FFBModuleRegistry.TransientEnhancerType ] = "Extracts the fast detail and emphasizes attacks — bumps and curbs pop without boosting the decay.",
+		[ FFBModuleRegistry.AdaptiveSmootherType ] = "One-knob smoother that adapts to the signal — strong smoothing when quiet, minimal lag on fast transients.",
+		[ FFBModuleRegistry.InterpolatorType ] = "Removes the staircase steps from a 60 Hz signal by ramping smoothly across each frame, at the cost of one frame of latency.",
+		[ FFBModuleRegistry.PredictionType ] = "Shifts a 360 Hz signal into the future to counteract latency — an adaptive filter that learns each car as you drive.",
+		[ FFBModuleRegistry.Prediction60HzType ] = "Shifts the 60 Hz signal into the future to counteract latency — learns from your steering and the car's motion as you drive.",
+		[ FFBModuleRegistry.AdaptiveBlendType ] = "Follows the detail of input A while being pulled toward input B — the pull relaxes at each peak so transients ride through.",
+		[ FFBModuleRegistry.CrashProtectionType ] = "Fades the force way down when a crash is detected, then ramps back smoothly.",
+		[ FFBModuleRegistry.CurbProtectionType ] = "Reduces force during hard curb strikes, then ramps back smoothly.",
+		[ FFBModuleRegistry.UndersteerForceType ] = "A steering force driven by the understeer effect, so you can feel the front tires losing grip.",
+		[ FFBModuleRegistry.OversteerForceType ] = "A steering force driven by the oversteer effect, so you can feel the rear of the car stepping out.",
+		[ FFBModuleRegistry.SeatOfPantsForceType ] = "A steering force driven by the seat-of-pants effect — the feel of the chassis loading up.",
+		[ FFBModuleRegistry.UndersteerVibrationType ] = "Vibrates the wheel when the front tires start to slide.",
+		[ FFBModuleRegistry.OversteerVibrationType ] = "Vibrates the wheel when the rear tires start to slide.",
+		[ FFBModuleRegistry.SeatOfPantsVibrationType ] = "Vibrates the wheel with the chassis motion — weight transfer you can feel.",
+		[ FFBModuleRegistry.ShiftRPMVibrationType ] = "Buzzes the wheel in pulses when the engine reaches the shift point.",
+		[ FFBModuleRegistry.GearChangeVibrationType ] = "A short vibration burst on every gear change.",
+		[ FFBModuleRegistry.ABSVibrationType ] = "Pulses the wheel while the brakes' ABS is active.",
+		[ FFBModuleRegistry.EngineRPMVibrationType ] = "A rumble that tracks the engine speed, voiced like a V8 — silent while the engine is off.",
+		[ FFBModuleRegistry.SpeedGainType ] = "Scales the signal with car speed — fade forces in or out as the car speeds up.",
+		[ FFBModuleRegistry.RoadTextureType ] = "A rumble that speeds up with the car, like road surface texture — silent when parked.",
+		[ FFBModuleRegistry.SlipTextureType ] = "A rumble that appears whenever either end of the car is sliding, driven by the understeer and oversteer effects.",
+		[ FFBModuleRegistry.TorqueDitherType ] = "Adds a tiny alternating dither below a threshold to keep the wheel mechanism live and reveal faint detail."
+	};
+
+	/// <summary>Localized built-in description for a module type (falls back to the English map, then empty).</summary>
+	public static string ModuleDescription( string typeKey )
+	{
+		var fallback = ModuleDescriptions.TryGetValue( typeKey, out var description ) ? description : string.Empty;
+
+		return Localize( "FFBModuleDescription" + typeKey, fallback );
+	}
+
 	/// <summary>Look up a localization key, falling back to <paramref name="fallback"/> when the key is absent
 	/// (empty), or when the localization table is not yet available (e.g. during very early construction).</summary>
 	public static string Localize( string localizationKey, string fallback )
@@ -543,6 +598,48 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 		}
 	}
 
+	/// <summary>
+	/// The node's description — shown as the node's tooltip on the graph canvas, under the settings on the
+	/// selected module's card, and beside the pinned quick controls. Every module type ships a localized
+	/// built-in default; a node in a CUSTOM graph can override it (stored in the graph, rides export/import,
+	/// edited via the pencil button which opens the description editor window). Clearing the override reverts
+	/// to the built-in default. Nodes of built-in graphs always show the localized default.
+	/// </summary>
+	public string NodeDescription
+	{
+		get
+		{
+			if ( _model.Description == string.Empty )
+			{
+				return FFBDisplayNames.ModuleDescription( _model.ModuleType );
+			}
+
+			// built-in graphs ship their node-description overrides translated (keys maintained by the
+			// update-builtin-graphs skill); the text stored in the graph file is the English fallback
+			return _owner.IsFFBGraphBuiltIn
+				? FFBDisplayNames.Localize( FFBGraphViewModel.NodeDescriptionLocalizationKey( _owner.GraphName, _model.ModuleId ), _model.Description )
+				: _model.Description;
+		}
+
+		set
+		{
+			if ( _owner.IsFFBGraphBuiltIn || ( value == _model.Description ) )
+			{
+				return;
+			}
+
+			_model.Description = value;
+
+			App.Instance!.SettingsFile.QueueForSerialization = true;
+
+			OnPropertyChanged();
+		}
+	}
+
+	/// <summary>Node descriptions are editable on custom graphs only — built-in graphs always show the localized
+	/// per-module-type default (same rule as the graph description itself).</summary>
+	public bool CanEditNodeDescription => !_owner.IsFFBGraphBuiltIn;
+
 	private bool _isSelected = false;
 
 	/// <summary>Whether this module is the one selected in the node editor (drives the node highlight and which
@@ -749,22 +846,31 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	/// <summary>The selected graph's pinned settings — its quick controls, rendered above the editor block in
 	/// module order. Each entry pairs the SHARED setting VM with its owning module VM (for the caption — labels
 	/// like "Strength" repeat across modules). Rebuilt on graph switch and on every pin toggle.</summary>
-	public ObservableCollection<FFBPinnedSettingViewModel> PinnedSettings { get; } = [];
+	public ObservableCollection<FFBPinnedGroupViewModel> PinnedGroups { get; } = [];
 
-	public bool HasPinnedSettings => PinnedSettings.Count > 0;
+	public bool HasPinnedSettings => PinnedGroups.Count > 0;
 
 	public void RefreshPinnedSettings()
 	{
-		PinnedSettings.Clear();
+		PinnedGroups.Clear();
 
 		foreach ( var module in Modules )
 		{
+			FFBPinnedGroupViewModel? group = null;
+
 			foreach ( var setting in module.Settings )
 			{
 				if ( setting.IsPinned )
 				{
-					PinnedSettings.Add( new FFBPinnedSettingViewModel( module, setting ) );
+					group ??= new FFBPinnedGroupViewModel( module );
+
+					group.Settings.Add( setting );
 				}
+			}
+
+			if ( group != null )
+			{
+				PinnedGroups.Add( group );
 			}
 		}
 
@@ -821,6 +927,19 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 	{
 		return "FFBGraphDescription" + string.Concat( graphName.Where( char.IsLetterOrDigit ) );
 	}
+
+	/// <summary>"Marvin's native 60 Hz" + "Source360" -> "FFBNodeDescriptionMarvinsnative60HzSource360" — the
+	/// per-node description override keys for BUILT-IN graphs (same alnum-only derivation as the graph
+	/// description key; module ids are canonical source/output names or GUIDs, both stable across the clone →
+	/// save-over-the-shipped-file update workflow). Maintained by the update-builtin-graphs skill.</summary>
+	public static string NodeDescriptionLocalizationKey( string graphName, string moduleId )
+	{
+		return "FFBNodeDescription" + string.Concat( graphName.Where( char.IsLetterOrDigit ) ) + string.Concat( moduleId.Where( char.IsLetterOrDigit ) );
+	}
+
+	/// <summary>The selected graph's name (empty when no graph is selected) — the module VMs use it to derive
+	/// their built-in node-description localization keys.</summary>
+	public string GraphName => _graph?.Name ?? string.Empty;
 
 	public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -1562,13 +1681,14 @@ public sealed class FFBSettingSpacer
 	public static readonly FFBSettingSpacer Instance = new();
 }
 
-/// <summary>One entry of the quick-controls row above the editor block: the SHARED setting VM (the same
-/// instance the settings column binds, so the two stay in sync) plus the owning module VM for the caption —
-/// labels like "Strength" repeat across modules, so each control is captioned with its module's name.</summary>
-public sealed class FFBPinnedSettingViewModel( FFBModuleViewModel module, FFBModuleSettingViewModel setting )
+/// <summary>One node's group in the quick-controls block above the editor: the owning module VM (for the
+/// group's caption and description — shown once per node, however many of its settings are pinned) plus that
+/// node's pinned setting VMs. The setting VMs are the SHARED instances the settings column binds, so the two
+/// stay in sync.</summary>
+public sealed class FFBPinnedGroupViewModel( FFBModuleViewModel module )
 {
 	public FFBModuleViewModel Module { get; } = module;
-	public FFBModuleSettingViewModel Setting { get; } = setting;
+	public ObservableCollection<FFBModuleSettingViewModel> Settings { get; } = [];
 }
 
 public sealed class FFBSettingTemplateSelector : DataTemplateSelector

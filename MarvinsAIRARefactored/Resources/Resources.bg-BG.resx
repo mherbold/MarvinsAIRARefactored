@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Люлеене на волана</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Редактиране на описанието</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Оригиналният 60 Hz force feedback сигнал на iRacing, точно както го изпраща симулаторът.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Високочестотният force feedback сигнал на iRacing — шест отчета на кадър от 60 Hz, с най-много детайли.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Звукът с нискочестотни ефекти (LFE) на симулатора, превърнат в сила върху волана. Смесете го с модул за събиране.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Сила, която се противопоставя на скоростта на въртене на волана — смесете я за демпфериране.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Истинско сухо триене: воланът остава там, където го оставите, с постоянно съпротивление при плъзгане извън зоната на захващане.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Оказва силно съпротивление, когато воланът бъде завъртян отвъд максималния ъгъл на завиване на колата — като физически ограничител.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Пружинна сила, която връща волана към центъра. Прекарайте я през модул за усилване по скорост, за да действа само на място.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Краят на веригата — преобразува сигнала в изход към волана, с опционална крива на отклик и мек лимитер.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Запазва бавната част на сигнала и изглажда всичко по-бързо от честотата на срязване.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Премахва бавната част на сигнала и запазва само бързите детайли над честотата на срязване.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Мащабира сигнала с фиксиран множител — използвайте отрицателно усилване, за да го обърнете.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Събира два сигнала.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Изважда вход B от вход A — например изваждането на нискочестотно копие на сигнала оставя само детайлите.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Плавно преминава между два сигнала — 0% е само вход A, 100% е само вход B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Ограничава колко бързо може да се променя сигналът — всичко под лимита минава непроменено, по-бързите движения се забавят.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Компресира бързите промени на сигнала, вместо да ги ограничава твърдо — бавните движения минават непроменени.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Компресира сигнала над определен праг, като държи пиковете под контрол без твърдо орязване.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Извлича бързите детайли и подчертава атаките — неравностите и бордюрите изпъкват, без да се усилва затихването.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Изглаждане с един регулатор, което се адаптира към сигнала — силно изглаждане при спокоен сигнал, минимално закъснение при бързи преходи.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Премахва стъпаловидността на 60 Hz сигнал чрез плавен преход през всеки кадър — с цената на един кадър закъснение.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Измества 360 Hz сигнал напред във времето, за да компенсира закъснението — адаптивен филтър, който учи всяка кола, докато карате.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Измества 60 Hz сигнала напред във времето, за да компенсира закъснението — учи се от вашето управление и движението на колата, докато карате.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Следва детайлите на вход A, докато бива придърпван към вход B — придърпването отслабва при всеки пик, така че преходите минават.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Силно намалява силата при засичане на катастрофа, след което плавно я възстановява.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Намалява силата при силни удари в бордюри, след което плавно я възстановява.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Сила върху волана, управлявана от ефекта на подзавиване — усещате как предните гуми губят сцепление.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Сила върху волана, управлявана от ефекта на презавиване — усещате как задницата на колата поднася.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Сила върху волана, управлявана от ефекта „усещане през седалката“ — усещането за натоварване на шасито.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Кара волана да вибрира, когато предните гуми започнат да се плъзгат.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Кара волана да вибрира, когато задните гуми започнат да се плъзгат.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Кара волана да вибрира с движението на шасито — прехвърляне на тежестта, което усещате.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Кара волана да бръмчи на импулси, когато двигателят достигне точката за смяна на предавка.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Кратък изблик на вибрации при всяка смяна на предавка.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Кара волана да пулсира, докато ABS на спирачките е активен.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Тътен, който следва оборотите на двигателя, звучащ като V8 — тих при изключен двигател.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Мащабира сигнала според скоростта на колата — плавно усилва или заглушава силите с набирането на скорост.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Тътен, който се ускорява заедно с колата, като текстура на пътната настилка — тих на място.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Тътен, който се появява, когато която и да е ос на колата се плъзга — управляван от ефектите на подзавиване и презавиване.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Добавя фин редуващ се дитър под определен праг, за да поддържа механизма на волана активен и да разкрива едва доловими детайли.</value>
+  </data>
 </root>

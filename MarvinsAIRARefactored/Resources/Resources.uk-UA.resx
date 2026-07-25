@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Похитування керма</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Редагувати опис</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Рідний сигнал force feedback iRacing із частотою 60 Hz, точно такий, яким його надсилає симулятор.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Високочастотний сигнал force feedback iRacing — шість відліків на кадр 60 Hz, з найбільшою деталізацією.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Звук низькочастотних ефектів (LFE) симулятора, перетворений на зусилля керма. Підмішайте його модулем додавання.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Сила, що протидіє швидкості обертання керма — підмішайте її для демпфування.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Справжнє сухе тертя: кермо тримається там, де ви його залишили, зі сталим опором ковзання поза зоною зчеплення.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Сильно опирається, коли кермо повертають за межу максимального кута повороту авто — як фізичний упор.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Пружинна сила, що повертає кермо до центру. Пропустіть її через модуль підсилення за швидкістю, щоб вона діяла лише на місці.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Кінець ланцюга — перетворює сигнал на вихід до керма, з опціональною кривою відгуку та м'яким лімітером.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Зберігає повільну складову сигналу та згладжує все, що швидше за частоту зрізу.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Прибирає повільну складову сигналу та залишає лише швидкі деталі вище частоти зрізу.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Масштабує сигнал фіксованим множником — від'ємне підсилення інвертує його.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Додає два сигнали разом.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Віднімає вхід B від входу A — наприклад, віднявши низькочастотну копію сигналу, ви залишите самі деталі.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Плавно переходить між двома сигналами — 0% це лише вхід A, 100% це лише вхід B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Обмежує швидкість зміни сигналу — усе, що нижче межі, проходить без змін, швидші рухи сповільнюються.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Стискає швидкі зміни сигналу замість жорсткого обмеження — повільні рухи проходять без змін.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Стискає сигнал вище порога, утримуючи піки під контролем без жорсткого обрізання.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Виділяє швидкі деталі та підкреслює атаки — нерівності й поребрики відчутно виділяються без підсилення загасання.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Згладжувач з одним регулятором, що адаптується до сигналу — сильне згладжування на спокійному сигналі, мінімальна затримка на швидких перехідних процесах.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Прибирає сходинки із сигналу 60 Hz, плавно переходячи через кожен кадр — ціною одного кадру затримки.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Зсуває сигнал 360 Hz у майбутнє, щоб компенсувати затримку — адаптивний фільтр, який вивчає кожне авто під час їзди.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Зсуває сигнал 60 Hz у майбутнє, щоб компенсувати затримку — вчиться на вашому кермуванні та русі авто під час їзди.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Слідує за деталями входу A, водночас притягуючись до входу B — притягання слабшає на кожному піку, тож перехідні процеси проходять без змін.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Різко приглушує силу, коли виявлено аварію, а потім плавно її відновлює.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Зменшує силу під час жорстких ударів об поребрики, а потім плавно її відновлює.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Кермова сила, керована ефектом недостатньої поворотності — ви відчуєте, як передні шини втрачають зчеплення.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Кермова сила, керована ефектом надлишкової поворотності — ви відчуєте, як задня частина авто зривається.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Кермова сила, керована ефектом «відчуття п'ятою точкою» — відчуття навантаження шасі.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Вібрує кермом, коли передні шини починають ковзати.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Вібрує кермом, коли задні шини починають ковзати.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Вібрує кермом разом із рухом шасі — перенесення ваги, яке можна відчути.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Дзижчить кермом імпульсами, коли двигун досягає точки перемикання передачі.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Короткий сплеск вібрації при кожному перемиканні передачі.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Пульсує кермом, поки працює ABS гальм.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Гуркіт, що слідує за обертами двигуна, озвучений як V8 — тихий, поки двигун вимкнено.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Масштабує сигнал зі швидкістю авто — плавно підсилює або приглушує сили в міру розгону.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Гуркіт, що прискорюється разом з авто, наче текстура дорожнього покриття — тихий на місці.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Гуркіт, що з'являється, коли будь-яка вісь авто ковзає — керований ефектами недостатньої та надлишкової поворотності.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Додає крихітний змінний дизеринг нижче порога, щоб механізм керма залишався активним і проявлялися ледь помітні деталі.</value>
+  </data>
 </root>

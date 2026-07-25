@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Varrimento do volante</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Editar descrição</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>O sinal de force feedback nativo do iRacing a 60 Hz, exatamente como o simulador o envia.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>O sinal de force feedback de alta frequência do iRacing — seis amostras por cada frame de 60 Hz, com o máximo de detalhe.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>O áudio de efeitos de baixa frequência (LFE) do simulador, convertido em força no volante. Misture-o com um módulo de soma.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Uma força que se opõe à velocidade de rotação do volante — misture-a para obter amortecimento.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Atrito seco verdadeiro: o volante fica onde o deixar, com um arrasto de deslizamento constante para lá da zona de aderência.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Empurra com força no sentido contrário quando o volante ultrapassa o batente de direção do carro, como um batente físico.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Uma força de mola que puxa o volante de volta ao centro. Encaminhe-a por um módulo de ganho por velocidade para atuar apenas com o carro parado.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>O fim da cadeia — converte o sinal na saída para o volante, com curva de resposta e limitador suave opcionais.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Mantém a parte lenta do sinal e suaviza tudo o que for mais rápido do que a frequência de corte.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Remove a parte lenta do sinal e mantém apenas o detalhe rápido acima da frequência de corte.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Escala o sinal com um multiplicador fixo — use um ganho negativo para o inverter.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Soma dois sinais.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Subtrai a entrada B à entrada A — por exemplo, subtrair uma cópia passa-baixo de um sinal deixa apenas o detalhe.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Faz um fundido entre dois sinais — 0% é só a entrada A, 100% é só a entrada B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Limita a rapidez com que o sinal pode mudar — tudo o que ficar abaixo do limite passa intacto; os movimentos mais rápidos são travados.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Comprime as variações rápidas do sinal em vez de as limitar de forma abrupta — os movimentos lentos passam intactos.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Comprime o sinal acima de um limiar, mantendo os picos sob controlo sem cortes abruptos.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Extrai o detalhe rápido e realça os ataques — as lombas e os corretores sobressaem sem amplificar o decaimento.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Suavizador de um só botão que se adapta ao sinal — suavização forte quando está calmo e atraso mínimo nos transientes rápidos.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Remove os degraus de um sinal de 60 Hz com uma rampa suave em cada frame, à custa de um frame de latência.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Desloca um sinal de 360 Hz para o futuro para compensar a latência — um filtro adaptativo que aprende cada carro enquanto conduz.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Desloca o sinal de 60 Hz para o futuro para compensar a latência — aprende com a sua direção e o movimento do carro enquanto conduz.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Segue o detalhe da entrada A enquanto é puxado para a entrada B — a atração alivia em cada pico para deixar passar os transientes.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Reduz bastante a força quando é detetado um acidente e depois repõe-na suavemente.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Reduz a força durante impactos fortes nos corretores e depois repõe-na suavemente.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Uma força na direção comandada pelo efeito de subviragem, para sentir os pneus dianteiros a perder aderência.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Uma força na direção comandada pelo efeito de sobreviragem, para sentir a traseira do carro a fugir.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Uma força na direção comandada pelo efeito de sensação do chassis — a sensação do chassis a ganhar carga.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Faz o volante vibrar quando os pneus dianteiros começam a deslizar.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Faz o volante vibrar quando os pneus traseiros começam a deslizar.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Faz o volante vibrar com o movimento do chassis — transferências de peso que se sentem.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Faz o volante zumbir em impulsos quando o motor atinge o regime de mudança.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Uma breve rajada de vibração a cada mudança de velocidade.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Faz o volante pulsar enquanto o ABS dos travões está ativo.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Um ronco que acompanha o regime do motor, com uma sonoridade de V8 — silencioso com o motor desligado.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Escala o sinal com a velocidade do carro — faça as forças surgir ou desvanecer à medida que o carro ganha velocidade.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Um ronco que acelera com o carro, como a textura do piso — silencioso com o carro parado.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Um ronco que surge sempre que um dos eixos do carro desliza, comandado pelos efeitos de subviragem e sobreviragem.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Adiciona um dither alternado minúsculo abaixo de um limiar para manter o mecanismo do volante ativo e revelar os detalhes mais ténues.</value>
+  </data>
 </root>

@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Покачивание руля</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Изменить описание</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Собственный 60 Hz сигнал обратной связи iRacing — ровно такой, каким его отправляет симулятор.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Высокочастотный сигнал обратной связи iRacing — шесть отсчётов на каждый кадр 60 Hz, максимум деталей.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Низкочастотный аудиоканал эффектов (LFE) симулятора, преобразованный в усилие на руле. Подмешивайте его через модуль сложения.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Сила, противодействующая скорости вращения руля — подмешайте её для демпфирования.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Настоящее сухое трение: руль остаётся там, где вы его оставили, с постоянным сопротивлением скольжению за пределами зоны сцепления.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Жёстко сопротивляется, когда руль повёрнут за пределы упора рулевого механизма машины — как физический ограничитель.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Пружинная сила, возвращающая руль к центру. Пропустите её через модуль усиления по скорости, чтобы она действовала только на стоянке.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Конец цепочки — преобразует сигнал в выходное усилие руля, с опциональной кривой отклика и мягким ограничителем.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Сохраняет медленную основу сигнала и сглаживает всё, что быстрее частоты среза.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Убирает медленную основу сигнала и оставляет только быстрые детали выше частоты среза.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Умножает сигнал на фиксированный коэффициент — используйте отрицательное усиление, чтобы инвертировать его.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Складывает два сигнала.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Вычитает вход B из входа A — например, вычитание низкочастотной копии сигнала оставляет только детали.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Кроссфейд между двумя сигналами: 0% — только вход A, 100% — только вход B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Ограничивает скорость изменения сигнала — всё, что медленнее предела, проходит без изменений, более быстрые движения замедляются.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Сжимает быстрые изменения сигнала вместо жёсткого ограничения — медленные движения проходят без изменений.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Сжимает сигнал выше порога, удерживая пики под контролем без жёсткого клиппинга.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Выделяет быстрые детали и подчёркивает атаки — кочки и поребрики становятся выразительнее без усиления затухания.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Сглаживание с одной ручкой, подстраивающееся под сигнал — сильное сглаживание на спокойном сигнале, минимальная задержка на быстрых всплесках.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Убирает ступеньки из 60 Hz сигнала, плавно интерполируя внутри каждого кадра — ценой задержки в один кадр.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Сдвигает 360 Hz сигнал в будущее, компенсируя задержку — адаптивный фильтр, который обучается каждой машине по мере езды.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Сдвигает 60 Hz сигнал в будущее, компенсируя задержку — по мере езды обучается по вашему рулению и движению машины.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Следует за деталями входа A, притягиваясь к входу B — притяжение ослабевает на каждом пике, поэтому переходные процессы проходят насквозь.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Резко снижает усилие при обнаружении аварии, затем плавно возвращает его.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Снижает усилие при жёстких ударах о поребрики, затем плавно возвращает его.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Усилие на руле, управляемое эффектом недостаточной поворачиваемости — чтобы вы чувствовали, как передние шины теряют сцепление.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Усилие на руле, управляемое эффектом избыточной поворачиваемости — чтобы вы чувствовали, как задняя ось срывается в занос.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Усилие на руле, управляемое эффектом «пятой точки» — ощущение загрузки шасси.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Вибрирует рулём, когда передние шины начинают скользить.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Вибрирует рулём, когда задние шины начинают скользить.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Вибрирует рулём в такт движению шасси — перенос веса, который можно почувствовать.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Пульсирующая вибрация руля, когда двигатель достигает оборотов переключения.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Короткий импульс вибрации при каждом переключении передачи.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Пульсирует рулём, пока работает ABS тормозов.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Гул, следующий за оборотами двигателя, со звучанием V8 — молчит при заглушённом двигателе.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Масштабирует сигнал в зависимости от скорости машины — плавно вводите или убирайте силы по мере разгона.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Гул, ускоряющийся вместе с машиной, как текстура дорожного покрытия — молчит на стоянке.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Гул, возникающий при скольжении любой из осей машины — управляется эффектами недостаточной и избыточной поворачиваемости.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Добавляет крошечный знакопеременный дизеринг ниже порога, чтобы держать механизм руля в тонусе и проявлять слабые детали.</value>
+  </data>
 </root>

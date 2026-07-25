@@ -2270,4 +2270,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Steering wheel sweep</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Edit description</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing's native 60 Hz force feedback signal, exactly as the simulator sends it.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing's high-rate force feedback signal — six samples per 60 Hz frame, with the most detail.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>The simulator's low-frequency effects audio, turned into wheel force. Mix it in with an add module.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>A force that opposes how fast the wheel is being turned — mix it in for damping.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>True dry friction: the wheel holds where you leave it, with constant sliding drag past the stick region.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Pushes back hard when the wheel is turned past the car's steering lock, like a physical end stop.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>A spring force that pulls the wheel back toward center. Route it through a speed gain module to keep it parked-only.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>The end of the chain — converts the signal to wheel output, with an optional response curve and soft limiter.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Keeps the slow body of the signal and smooths away everything faster than the cutoff.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Removes the slow body of the signal and keeps only the fast detail above the cutoff.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Scales the signal by a fixed multiplier — use a negative gain to invert it.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Adds two signals together.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Subtracts input B from input A — for example, subtracting a low-pass copy of a signal leaves just the detail.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Crossfades between two signals — 0% is all input A, 100% is all input B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Caps how fast the signal can change — anything under the limit passes untouched, faster movement is slowed down.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Squeezes fast signal changes instead of hard-limiting them — slow movement passes untouched.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Squeezes the signal above a threshold, keeping peaks under control without hard clipping.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Extracts the fast detail and emphasizes attacks — bumps and curbs pop without boosting the decay.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>One-knob smoother that adapts to the signal — strong smoothing when quiet, minimal lag on fast transients.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Removes the staircase steps from a 60 Hz signal by ramping smoothly across each frame, at the cost of one frame of latency.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Shifts a 360 Hz signal into the future to counteract latency — an adaptive filter that learns each car as you drive.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Shifts the 60 Hz signal into the future to counteract latency — learns from your steering and the car's motion as you drive.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Follows the detail of input A while being pulled toward input B — the pull relaxes at each peak so transients ride through.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Fades the force way down when a crash is detected, then ramps back smoothly.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Reduces force during hard curb strikes, then ramps back smoothly.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>A steering force driven by the understeer effect, so you can feel the front tires losing grip.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>A steering force driven by the oversteer effect, so you can feel the rear of the car stepping out.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>A steering force driven by the seat-of-pants effect — the feel of the chassis loading up.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Vibrates the wheel when the front tires start to slide.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Vibrates the wheel when the rear tires start to slide.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibrates the wheel with the chassis motion — weight transfer you can feel.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Buzzes the wheel in pulses when the engine reaches the shift point.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>A short vibration burst on every gear change.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulses the wheel while the brakes' ABS is active.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>A rumble that tracks the engine speed, voiced like a V8 — silent while the engine is off.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Scales the signal with car speed — fade forces in or out as the car speeds up.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>A rumble that speeds up with the car, like road surface texture — silent when parked.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>A rumble that appears whenever either end of the car is sliding, driven by the understeer and oversteer effects.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Adds a tiny alternating dither below a threshold to keep the wheel mechanism live and reveal faint detail.</value>
+  </data>
 </root>

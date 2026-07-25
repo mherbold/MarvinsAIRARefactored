@@ -912,6 +912,46 @@ public partial class RacingWheelPage : UserControl
 		}
 	}
 
+	private void EditGraphDescription_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		var app = App.Instance!;
+
+		var graphViewModel = MarvinsAIRARefactored.DataContext.DataContext.Instance.RacingWheelGraphViewModel;
+
+		if ( !graphViewModel.IsFFBGraphCustom )
+		{
+			return;
+		}
+
+		var window = new EditDescriptionWindow( graphViewModel.GraphDescription ) { Owner = app.MainWindow };
+
+		window.ShowDialog();
+
+		if ( window.Confirmed )
+		{
+			graphViewModel.GraphDescription = window.DescriptionText.Trim();
+		}
+	}
+
+	private void EditNodeDescription_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		if ( ( sender is MairaButton mairaButton ) && ( mairaButton.Tag is FFBModuleViewModel moduleViewModel ) && moduleViewModel.CanEditNodeDescription )
+		{
+			var app = App.Instance!;
+
+			// the editor is seeded with the resolved description (the localized default when the node has no
+			// override yet), so the user can start from the shipped text; clearing it reverts to the default
+			var window = new EditDescriptionWindow( moduleViewModel.NodeDescription ) { Owner = app.MainWindow };
+
+			window.ShowDialog();
+
+			if ( window.Confirmed )
+			{
+				moduleViewModel.NodeDescription = window.DescriptionText.Trim();
+			}
+		}
+	}
+
 	private void ChooseRecording_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		var app = App.Instance!;

@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>הגה הלוך ושוב</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>עריכת תיאור</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>אות הפורס פידבק המקורי של iRacing בקצב 60 Hz, בדיוק כפי שהסימולטור שולח אותו.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>אות הפורס פידבק בקצב הגבוה של iRacing — שש דגימות בכל פריים של 60 Hz, עם רמת הפירוט הגבוהה ביותר.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>אודיו אפקטי התדר הנמוך (LFE) של הסימולטור, מומר לכוח בהגה. ערבבו אותו פנימה עם מודול חיבור.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>כוח שמתנגד למהירות שבה מסובבים את ההגה — ערבבו אותו פנימה כדי לקבל ריסון.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>חיכוך יבש אמיתי: ההגה נשאר במקום שבו עזבתם אותו, עם גרר החלקה קבוע מעבר לאזור ההיצמדות.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>דוחף חזרה בחוזקה כשההגה מסובב מעבר לנעילת ההיגוי של הרכב, כמו מעצור קצה פיזי.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>כוח קפיץ שמושך את ההגה חזרה למרכז. העבירו אותו דרך מודול הגבר לפי מהירות כדי שיפעל רק בעמידה.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>סוף השרשרת — ממיר את האות לפלט ההגה, עם עקומת תגובה ומגביל רך אופציונליים.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>שומר על החלק האיטי של האות ומחליק החוצה כל מה שמהיר מתדר החיתוך.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>מסיר את החלק האיטי של האות ומשאיר רק את הפרטים המהירים שמעל תדר החיתוך.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>מכפיל את האות במקדם קבוע — השתמשו בהגבר שלילי כדי להפוך את האות.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>מחבר שני אותות יחד.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>מחסיר את כניסה B מכניסה A — למשל, חיסור עותק מסונן במעביר-נמוכים של האות משאיר רק את הפרטים.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>מבצע מעבר הדרגתי בין שני אותות — 0% הוא כולו כניסה A, ‏100% הוא כולו כניסה B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>מגביל את קצב השינוי של האות — כל מה שמתחת לגבול עובר ללא שינוי, ותנועה מהירה יותר מואטת.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>דוחס שינויים מהירים באות במקום לחתוך אותם בחדות — תנועה איטית עוברת ללא שינוי.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>דוחס את האות מעל סף, ושומר על השיאים בשליטה בלי חיתוך קשה.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>מחלץ את הפרטים המהירים ומדגיש את ההתקפים — מהמורות ואבני שפה קופצות החוצה בלי להגביר את הדעיכה.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>מחליק בכפתור אחד שמסתגל לאות — החלקה חזקה כשהאות שקט, והשהיה מזערית במעברים מהירים.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>מסיר את המדרגות מאות של 60 Hz על ידי מעבר חלק לאורך כל פריים, במחיר של פריים אחד של השהיה.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>מזיז אות 360 Hz קדימה בזמן כדי לפצות על השהיה — מסנן אדפטיבי שלומד כל מכונית תוך כדי נהיגה.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>מזיז את אות ה-60 Hz קדימה בזמן כדי לפצות על השהיה — לומד מההיגוי שלכם ומתנועת המכונית תוך כדי נהיגה.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>עוקב אחרי הפרטים של כניסה A תוך משיכה לעבר כניסה B — המשיכה מתרפה בכל שיא כך שמעברים חדים עוברים.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>מנמיך מאוד את הכוח כשמזוהה תאונה, ואז מחזיר אותו בהדרגה וברכות.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>מפחית את הכוח בפגיעות חזקות באבני שפה, ואז מחזיר אותו בהדרגה וברכות.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>כוח היגוי שמונע מאפקט תת-ההיגוי, כך שתרגישו את הצמיגים הקדמיים מאבדים אחיזה.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>כוח היגוי שמונע מאפקט יתר-ההיגוי, כך שתרגישו את אחורי המכונית מתחיל לברוח.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>כוח היגוי שמונע מאפקט תחושת המושב (seat of pants) — התחושה של השלדה שנטענת במשקל.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>מרטיט את ההגה כשהצמיגים הקדמיים מתחילים להחליק.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>מרטיט את ההגה כשהצמיגים האחוריים מתחילים להחליק.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>מרטיט את ההגה עם תנועת השלדה — העברת משקל שאפשר להרגיש.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>מזמזם את ההגה בפולסים כשהמנוע מגיע לנקודת ההעברה.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>פרץ רטט קצר בכל החלפת הילוך.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>פועם בהגה בזמן שה-ABS של הבלמים פעיל.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>רעד עמוק שעוקב אחרי סל״ד המנוע, בקול שנשמע כמו V8 — שקט כשהמנוע כבוי.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>משנה את עוצמת האות לפי מהירות המכונית — הכניסו או הוציאו כוחות בהדרגה ככל שהמכונית מאיצה.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>רעד שמתגבר עם מהירות המכונית, כמו מרקם פני הכביש — שקט בעמידה.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>רעד שמופיע בכל פעם שאחד מקצות המכונית מחליק, מונע מאפקטי תת-ההיגוי ויתר-ההיגוי.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>מוסיף ריצוד מתחלף זעיר מתחת לסף כדי לשמור על מנגנון ההגה ער ולחשוף פרטים עדינים.</value>
+  </data>
 </root>

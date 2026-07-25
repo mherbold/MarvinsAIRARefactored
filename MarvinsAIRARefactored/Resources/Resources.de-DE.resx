@@ -2275,4 +2275,124 @@ Hier ist der Link zum Spenden:</value>
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Lenkrad hin und her</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Beschreibung bearbeiten</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacings natives 60-Hz-Force-Feedback-Signal, genau so, wie es der Simulator sendet.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacings hochauflösendes Force-Feedback-Signal — sechs Samples pro 60-Hz-Frame, mit den meisten Details.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Das Low-Frequency-Effects-Audio (LFE) des Simulators, in Lenkradkraft umgewandelt. Mit einem Addieren-Modul beimischen.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Eine Kraft, die der Drehgeschwindigkeit des Lenkrads entgegenwirkt — zum Dämpfen beimischen.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Echte trockene Reibung: Das Lenkrad bleibt stehen, wo man es loslässt, mit konstantem Gleitwiderstand jenseits des Haftbereichs.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Drückt kräftig zurück, wenn das Lenkrad über den Lenkanschlag des Autos hinausgedreht wird — wie ein mechanischer Endanschlag.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Eine Federkraft, die das Lenkrad zur Mitte zurückzieht. Über ein Geschwindigkeits-Gain-Modul leiten, damit sie nur im Stand wirkt.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Das Ende der Kette — wandelt das Signal in die Lenkradausgabe um, mit optionaler Kennlinie und Soft-Limiter.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Behält den langsamen Anteil des Signals und glättet alles weg, was schneller als die Grenzfrequenz ist.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Entfernt den langsamen Anteil des Signals und behält nur die schnellen Details oberhalb der Grenzfrequenz.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Skaliert das Signal mit einem festen Faktor — mit negativem Gain wird es invertiert.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Addiert zwei Signale.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Subtrahiert Eingang B von Eingang A — subtrahiert man z. B. eine tiefpassgefilterte Kopie eines Signals, bleiben nur die Details übrig.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Überblendet zwischen zwei Signalen — 0% ist nur Eingang A, 100% nur Eingang B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Begrenzt, wie schnell sich das Signal ändern darf — alles unterhalb des Limits passiert unverändert, schnellere Bewegungen werden gebremst.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Staucht schnelle Signaländerungen, statt sie hart zu begrenzen — langsame Bewegungen passieren unverändert.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Staucht das Signal oberhalb eines Schwellwerts und hält Spitzen unter Kontrolle, ohne hart zu clippen.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Extrahiert die schnellen Details und betont die Attacks — Bodenwellen und Curbs treten hervor, ohne das Ausklingen anzuheben.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Glätter mit nur einem Regler, der sich dem Signal anpasst — starke Glättung in ruhigen Phasen, minimale Verzögerung bei schnellen Transienten.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Entfernt die Treppenstufen aus einem 60-Hz-Signal durch weiches Überblenden über jeden Frame — um den Preis eines Frames Latenz.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Verschiebt ein 360-Hz-Signal in die Zukunft, um Latenz auszugleichen — ein adaptiver Filter, der jedes Auto beim Fahren lernt.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Verschiebt das 60-Hz-Signal in die Zukunft, um Latenz auszugleichen — lernt beim Fahren aus deinen Lenkbewegungen und der Bewegung des Autos.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Folgt den Details von Eingang A und wird dabei zu Eingang B hingezogen — der Zug lässt an jeder Spitze nach, sodass Transienten durchkommen.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Reduziert die Kraft stark, wenn ein Unfall erkannt wird, und blendet sie danach sanft wieder ein.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Reduziert die Kraft bei harten Curb-Schlägen und blendet sie danach sanft wieder ein.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Untersteuern-Effekt gesteuert wird — so spürst du, wenn die Vorderreifen die Haftung verlieren.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Übersteuern-Effekt gesteuert wird — so spürst du, wenn das Heck ausbricht.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Eine Lenkkraft, die vom Popometer-Effekt gesteuert wird — das Gefühl, wie sich das Chassis belastet.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Lässt das Lenkrad vibrieren, wenn die Vorderreifen zu rutschen beginnen.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Lässt das Lenkrad vibrieren, wenn die Hinterreifen zu rutschen beginnen.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Lässt das Lenkrad mit der Chassisbewegung vibrieren — spürbare Gewichtsverlagerung.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Lässt das Lenkrad in Impulsen summen, wenn der Motor den Schaltpunkt erreicht.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Ein kurzer Vibrationsstoß bei jedem Gangwechsel.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Lässt das Lenkrad pulsieren, solange das ABS der Bremsen aktiv ist.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Ein Grollen, das der Motordrehzahl folgt, mit V8-Klangcharakter — still, solange der Motor aus ist.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Skaliert das Signal mit der Fahrzeuggeschwindigkeit — blendet Kräfte mit zunehmendem Tempo ein oder aus.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Ein Grollen, das mit dem Auto schneller wird, wie die Textur der Fahrbahnoberfläche — still im Stand.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Ein Grollen, das auftritt, sobald eine Achse des Autos rutscht — gesteuert vom Untersteuern- und Übersteuern-Effekt.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Fügt unterhalb eines Schwellwerts ein winziges alternierendes Dithering hinzu, das die Lenkradmechanik in Bewegung hält und feinste Details spürbar macht.</value>
+  </data>
 </root>

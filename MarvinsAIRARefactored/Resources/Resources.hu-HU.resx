@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Kormány ide-oda</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Leírás szerkesztése</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Az iRacing natív 60 Hz-es force feedback jele, pontosan úgy, ahogy a szimulátor küldi.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Az iRacing nagy frissítésű force feedback jele — hat minta 60 Hz-es képkockánként, a legtöbb részlettel.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>A szimulátor mélyfrekvenciás effekthangja (LFE) kormányerővé alakítva. Keverd hozzá egy összeadó modullal.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>A kormány forgatási sebességével szemben ható erő — keverd hozzá csillapításhoz.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Valódi száraz súrlódás: a kormány ott marad, ahol hagyod, a tapadási zónán túl állandó csúszási ellenállással.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Erősen visszanyom, ha a kormányt az autó kormányzási végállásán túl forgatod — mint egy fizikai ütköző.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Rugóerő, amely a kormányt visszahúzza középre. Vezesd át egy sebességfüggő erősítés modulon, hogy csak álló helyzetben hasson.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>A lánc vége — a jelet kormánykimenetté alakítja, opcionális válaszgörbével és lágy limiterrel.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Megtartja a jel lassú részét, és elsimít mindent, ami gyorsabb a vágási frekvenciánál.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Eltávolítja a jel lassú részét, és csak a vágási frekvencia feletti gyors részleteket tartja meg.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>A jelet rögzített szorzóval skálázza — negatív erősítéssel megfordíthatod.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Két jelet ad össze.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Kivonja a B bemenetet az A bemenetből — például egy jel aluláteresztett másolatát kivonva csak a részletek maradnak.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Két jel között kever át — 0% csak az A bemenet, 100% csak a B bemenet.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Korlátozza, milyen gyorsan változhat a jel — ami a határ alatt van, érintetlenül átmegy, a gyorsabb mozgás lelassul.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>A gyors jelváltozásokat összenyomja a kemény korlátozás helyett — a lassú mozgás érintetlenül átmegy.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>A küszöb feletti jelet összenyomja, így a csúcsok kontroll alatt maradnak kemény vágás nélkül.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Kiemeli a gyors részleteket és hangsúlyozza a felfutásokat — a bukkanók és kerékvetők átjönnek a lecsengés erősítése nélkül.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Egygombos simító, amely alkalmazkodik a jelhez — erős simítás nyugalomban, minimális késés a gyors tranzienseknél.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Eltünteti a 60 Hz-es jel lépcsőit azzal, hogy minden képkockán simán vezet át — egy képkockányi késleltetés árán.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>A 360 Hz-es jelet a jövőbe tolja a késleltetés ellensúlyozására — adaptív szűrő, amely vezetés közben tanulja meg az egyes autókat.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>A 60 Hz-es jelet a jövőbe tolja a késleltetés ellensúlyozására — vezetés közben tanul a kormányzásodból és az autó mozgásából.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Az A bemenet részleteit követi, miközben a B bemenet felé húz — a húzás minden csúcsnál enged, így a tranziensek átjutnak.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Ütközés észlelésekor az erőt erősen lehalkítja, majd simán visszaengedi.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Csökkenti az erőt az erős kerékvető-ütéseknél, majd simán visszaengedi.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Az alulkormányzottság-effekt által vezérelt kormányerő — érezheted, ahogy az első gumik elvesztik a tapadást.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>A túlkormányzottság-effekt által vezérelt kormányerő — érezheted, ahogy az autó hátulja kitör.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Az ülésen át érzett (seat-of-pants) effekt által vezérelt kormányerő — a kaszni terhelődésének érzete.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Megrezegteti a kormányt, amikor az első gumik csúszni kezdenek.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Megrezegteti a kormányt, amikor a hátsó gumik csúszni kezdenek.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>A kaszni mozgásával rezegteti a kormányt — érezhető súlyáthelyeződés.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Pulzálva berregteti a kormányt, amikor a motor eléri a váltási pontot.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Rövid rezgéslöket minden sebességváltásnál.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulzáltatja a kormányt, amíg a fékek ABS-e aktív.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>A motor fordulatszámát követő morajlás, V8-as hangzással — álló motornál néma.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>A jelet az autó sebességével skálázza — az erők fokozatosan erősödnek vagy halkulnak gyorsulás közben.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Az autóval együtt gyorsuló morajlás, mint az útfelület textúrája — álló helyzetben néma.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Morajlás, amely akkor jelenik meg, ha az autó bármelyik vége csúszik — az alul- és túlkormányzottság-effekt vezérli.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Apró váltakozó dithert ad hozzá egy küszöb alatt, hogy a kormánymechanika mozgásban maradjon, és a halvány részletek is érezhetők legyenek.</value>
+  </data>
 </root>

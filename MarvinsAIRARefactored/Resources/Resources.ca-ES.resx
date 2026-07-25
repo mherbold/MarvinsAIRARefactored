@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Escombrat del volant</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Edita la descripció</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>El senyal natiu de force feedback a 60 Hz d'iRacing, exactament tal com l'envia el simulador.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>El senyal de force feedback d'alta freqüència d'iRacing — sis mostres per cada quadre de 60 Hz, amb el màxim de detall.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>L'àudio d'efectes de baixa freqüència (LFE) del simulador, convertit en força al volant. Barregeu-lo amb un mòdul de suma.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Una força que s'oposa a la velocitat amb què es gira el volant — barregeu-la per obtenir esmorteïment.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Fricció seca real: el volant es queda on el deixeu, amb una resistència de lliscament constant més enllà de la zona d'adherència.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Empeny amb força quan el volant es gira més enllà del límit de direcció del cotxe, com un topall físic.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Una força de molla que torna el volant cap al centre. Passeu-la per un mòdul de guany per velocitat perquè només actuï amb el cotxe aturat.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>El final de la cadena — converteix el senyal en sortida cap al volant, amb una corba de resposta opcional i un limitador suau.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Conserva el cos lent del senyal i suavitza tot el que és més ràpid que la freqüència de tall.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Elimina el cos lent del senyal i conserva només el detall ràpid per sobre de la freqüència de tall.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Escala el senyal amb un multiplicador fix — feu servir un guany negatiu per invertir-lo.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Suma dos senyals.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Resta l'entrada B de l'entrada A — per exemple, restar una còpia passabaix d'un senyal deixa només el detall.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Fa una transició gradual entre dos senyals — 0% és tot entrada A, 100% és tot entrada B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Limita la velocitat de canvi del senyal — tot el que queda per sota del límit passa intacte, i els moviments més ràpids s'alenteixen.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Comprimeix els canvis ràpids del senyal en lloc de limitar-los bruscament — els moviments lents passen intactes.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Comprimeix el senyal per sobre d'un llindar, mantenint els pics sota control sense retallades brusques.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Extreu el detall ràpid i emfatitza els atacs — els sotracs i els pianos ressalten sense potenciar la cua.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Suavitzador d'un sol control que s'adapta al senyal — suavitzat fort quan el senyal és tranquil, latència mínima en els transitoris ràpids.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Elimina els esglaons d'un senyal de 60 Hz fent una rampa suau dins de cada quadre, a canvi d'un quadre de latència.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Desplaça un senyal de 360 Hz cap al futur per contrarestar la latència — un filtre adaptatiu que aprèn cada cotxe mentre conduïu.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Desplaça el senyal de 60 Hz cap al futur per contrarestar la latència — aprèn de la vostra direcció i del moviment del cotxe mentre conduïu.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Segueix el detall de l'entrada A mentre és atret cap a l'entrada B — l'atracció es relaxa a cada pic perquè els transitoris passin sencers.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Redueix molt la força quan es detecta un accident, i després la recupera suaument.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Redueix la força durant els impactes forts contra els pianos, i després la recupera suaument.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Una força de direcció controlada per l'efecte de subviratge, perquè sentiu com les rodes davanteres perden adherència.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Una força de direcció controlada per l'efecte de sobreviratge, perquè sentiu com el cotxe se'n va de darrere.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Una força de direcció controlada per l'efecte de sensació corporal — la sensació del xassís quan es carrega.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Fa vibrar el volant quan les rodes davanteres comencen a lliscar.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Fa vibrar el volant quan les rodes del darrere comencen a lliscar.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Fa vibrar el volant amb el moviment del xassís — una transferència de pes que es pot sentir.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Fa brunzir el volant a impulsos quan el motor arriba al punt de canvi de marxa.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Una ràfega curta de vibració a cada canvi de marxa.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Fa polsar el volant mentre l'ABS dels frens està actiu.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Un retruny que segueix el règim del motor, amb veu de V8 — silenciós quan el motor està apagat.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Escala el senyal amb la velocitat del cotxe — feu aparèixer o desaparèixer forces a mesura que el cotxe agafa velocitat.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Un retruny que s'accelera amb el cotxe, com la textura de l'asfalt — silenciós amb el cotxe aturat.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Un retruny que apareix quan qualsevol extrem del cotxe llisca, controlat pels efectes de subviratge i sobreviratge.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Afegeix un petit dithering altern per sota d'un llindar per mantenir viu el mecanisme del volant i revelar els detalls més febles.</value>
+  </data>
 </root>

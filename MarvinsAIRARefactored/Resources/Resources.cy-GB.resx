@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ysgubo'r llyw</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Golygu'r disgrifiad</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Signal force feedback brodorol 60 Hz iRacing, yn union fel y mae'r efelychydd yn ei anfon.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Signal force feedback cyfradd uchel iRacing — chwe sampl ym mhob ffrâm 60 Hz, gyda'r manylder mwyaf.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Sain effeithiau amledd isel (LFE) yr efelychydd, wedi'i throi'n rym ar yr olwyn. Cymysgwch hi i mewn gyda modiwl adio.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Grym sy'n gwrthwynebu pa mor gyflym mae'r olwyn yn cael ei throi — cymysgwch ef i mewn ar gyfer dampio.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Ffrithiant sych go iawn: mae'r olwyn yn aros lle rydych yn ei gadael, gyda llusgiad llithro cyson y tu hwnt i'r rhanbarth glynu.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Yn gwthio'n ôl yn galed pan gaiff yr olwyn ei throi y tu hwnt i glo llywio'r car, fel stop pen ffisegol.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Grym sbring sy'n tynnu'r olwyn yn ôl tua'r canol. Anfonwch ef drwy fodiwl cynnydd cyflymder i'w gadw ar gyfer parcio'n unig.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Diwedd y gadwyn — yn trosi'r signal yn allbwn i'r olwyn, gyda chromlin ymateb ddewisol a chyfyngydd meddal.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Yn cadw corff araf y signal ac yn llyfnhau popeth sy'n gyflymach na'r amledd torri.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Yn tynnu corff araf y signal ac yn cadw dim ond y manylder cyflym uwchben yr amledd torri.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Yn graddio'r signal â lluosydd sefydlog — defnyddiwch gynnydd negatif i'w wrthdroi.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Yn adio dau signal at ei gilydd.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Yn tynnu mewnbwn B oddi wrth fewnbwn A — er enghraifft, mae tynnu copi pas-isel o signal yn gadael dim ond y manylder.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Yn croes-doddi rhwng dau signal — mae 0% yn fewnbwn A i gyd, ac mae 100% yn fewnbwn B i gyd.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Yn capio pa mor gyflym y gall y signal newid — mae unrhyw beth o dan y terfyn yn pasio heb ei gyffwrdd, a chaiff symudiad cyflymach ei arafu.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Yn gwasgu newidiadau cyflym yn y signal yn hytrach na'u cyfyngu'n galed — mae symudiad araf yn pasio heb ei gyffwrdd.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Yn gwasgu'r signal uwchben trothwy, gan gadw'r brigau dan reolaeth heb glipio caled.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Yn echdynnu'r manylder cyflym ac yn pwysleisio'r ymosodiadau — mae twmpathau a chyrbau'n sefyll allan heb hybu'r dirywiad.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Llyfnydd un nob sy'n addasu i'r signal — llyfnhau cryf pan fo'r signal yn dawel, oedi lleiaf posibl ar drawsnewidiau cyflym.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Yn tynnu'r grisiau o signal 60 Hz drwy rampio'n llyfn ar draws pob ffrâm, ar gost un ffrâm o hwyrni.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Yn symud signal 360 Hz i'r dyfodol i wrthweithio hwyrni — hidlydd addasol sy'n dysgu pob car wrth i chi yrru.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Yn symud y signal 60 Hz i'r dyfodol i wrthweithio hwyrni — yn dysgu o'ch llywio a symudiad y car wrth i chi yrru.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Yn dilyn manylder mewnbwn A tra'n cael ei dynnu tuag at fewnbwn B — mae'r tyniad yn llacio ar bob brig fel bod trawsnewidiau'n mynd drwodd.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Yn pylu'r grym i lawr yn sylweddol pan ganfyddir damwain, yna'n rampio'n ôl yn llyfn.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Yn lleihau'r grym yn ystod trawiadau cyrb caled, yna'n rampio'n ôl yn llyfn.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Grym llywio a yrrir gan yr effaith tanlywio, fel y gallwch deimlo'r teiars blaen yn colli gafael.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Grym llywio a yrrir gan yr effaith gorlywio, fel y gallwch deimlo cefn y car yn llithro allan.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Grym llywio a yrrir gan effaith teimlad y corff — teimlad y siasi'n llwytho.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Yn dirgrynu'r olwyn pan fydd y teiars blaen yn dechrau llithro.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Yn dirgrynu'r olwyn pan fydd y teiars cefn yn dechrau llithro.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Yn dirgrynu'r olwyn gyda symudiad y siasi — trosglwyddiad pwysau y gallwch ei deimlo.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Yn suo'r olwyn mewn pylsau pan fydd yr injan yn cyrraedd y pwynt newid gêr.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Pwl byr o ddirgryniad ar bob newid gêr.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Yn pylsu'r olwyn tra bo ABS y breciau'n weithredol.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Rymblan sy'n dilyn cyflymder yr injan, wedi'i leisio fel V8 — yn dawel tra bo'r injan i ffwrdd.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Yn graddio'r signal gyda chyflymder y car — pylwch rymoedd i mewn neu allan wrth i'r car gyflymu.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Rymblan sy'n cyflymu gyda'r car, fel gwead wyneb y ffordd — yn dawel pan fo'r car wedi'i barcio.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Rymblan sy'n ymddangos pryd bynnag y bydd naill ben neu'r llall o'r car yn llithro, wedi'i yrru gan yr effeithiau tanlywio a gorlywio.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Yn ychwanegu dither bychan bob yn ail o dan drothwy i gadw mecanwaith yr olwyn yn fyw a datgelu manylder gwan.</value>
+  </data>
 </root>

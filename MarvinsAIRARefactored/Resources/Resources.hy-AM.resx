@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Ղեկի ճոճում</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Խմբագրել նկարագրությունը</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing-ի բնօրինակ 60 Hz հետադարձ ուժի (force feedback) ազդանշանը՝ ճիշտ այնպես, ինչպես այն ուղարկում է սիմուլյատորը։</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing-ի բարձր հաճախականության հետադարձ ուժի ազդանշանը՝ վեց նմուշ յուրաքանչյուր 60 Hz կադրում, առավելագույն մանրամասնությամբ։</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Սիմուլյատորի ցածր հաճախականության էֆեկտների (LFE) ձայնը՝ վերածված ղեկի ուժի։ Խառնեք այն գումարման մոդուլի միջոցով։</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Ուժ, որը հակազդում է ղեկի պտտման արագությանը. խառնեք այն՝ մեղմացում (դեմպֆերացում) ստանալու համար։</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Իսկական չոր շփում. ղեկը մնում է այնտեղ, որտեղ թողնում եք, իսկ կպչման գոտուց դուրս գործում է հաստատուն սահքի դիմադրություն։</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Ուժգին հակազդում է, երբ ղեկը պտտվում է մեքենայի ղեկի սահմանից այն կողմ՝ ինչպես ֆիզիկական սահմանափակիչ։</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Զսպանակային ուժ, որը ղեկը վերադարձնում է կենտրոն։ Անցկացրեք այն արագության ուժեղացման մոդուլով, որ գործի միայն կանգնած ժամանակ։</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Շղթայի վերջը. ազդանշանը վերածում է ղեկի ելքային ուժի՝ ընտրովի արձագանքի կորով և փափուկ սահմանափակիչով։</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Պահպանում է ազդանշանի դանդաղ հիմքը և հարթեցնում այն ամենը, ինչ ավելի արագ է, քան կտրման հաճախականությունը։</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Հեռացնում է ազդանշանի դանդաղ հիմքը և պահում միայն կտրման հաճախականությունից բարձր արագ մանրամասները։</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Բազմապատկում է ազդանշանը հաստատուն գործակցով. օգտագործեք բացասական ուժեղացում՝ այն շրջելու համար։</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Գումարում է երկու ազդանշան։</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Հանում է B մուտքը A մուտքից. օրինակ՝ ազդանշանից նրա ցածր հաճախականության պատճենը հանելով՝ մնում են միայն մանրամասները։</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Սահուն անցում է կատարում երկու ազդանշանների միջև. 0%-ը ամբողջությամբ A մուտքն է, 100%-ը՝ ամբողջությամբ B մուտքը։</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Սահմանափակում է, թե որքան արագ կարող է փոխվել ազդանշանը. սահմանից ցածր ամեն ինչ անցնում է անփոփոխ, ավելի արագ շարժումները դանդաղեցվում են։</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Սեղմում է ազդանշանի արագ փոփոխությունները՝ կոշտ սահմանափակելու փոխարեն. դանդաղ շարժումներն անցնում են անփոփոխ։</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Սեղմում է ազդանշանը շեմից բարձր՝ պիկերը վերահսկողության տակ պահելով առանց կոշտ կտրման։</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Առանձնացնում է արագ մանրամասները և ընդգծում կտրուկ սկիզբները. անհարթություններն ու եզրաքարերը ցայտուն են դառնում՝ առանց մարումն ուժեղացնելու։</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Մեկ կոճակով հարթեցնող, որը հարմարվում է ազդանշանին. ուժեղ հարթեցում, երբ ազդանշանը հանգիստ է, նվազագույն ուշացում՝ արագ անցումների ժամանակ։</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Հեռացնում է 60 Hz ազդանշանի «աստիճանները»՝ յուրաքանչյուր կադրի ընթացքում սահուն անցում կատարելով, մեկ կադր ուշացման գնով։</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>360 Hz ազդանշանը տեղաշարժում է դեպի ապագա՝ ուշացումը փոխհատուցելու համար. հարմարվողական ֆիլտր, որը վարելու ընթացքում սովորում է յուրաքանչյուր մեքենա։</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>60 Hz ազդանշանը տեղաշարժում է դեպի ապագա՝ ուշացումը փոխհատուցելու համար. վարելու ընթացքում սովորում է ձեր ղեկավարումից և մեքենայի շարժումից։</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Հետևում է A մուտքի մանրամասներին՝ միաժամանակ ձգվելով դեպի B մուտքը. ձգումը թուլանում է յուրաքանչյուր պիկի ժամանակ, որպեսզի կտրուկ անցումներն անցնեն։</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Վթար հայտնաբերելիս ուժը կտրուկ նվազեցնում է, ապա սահուն վերականգնում։</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Նվազեցնում է ուժը եզրաքարերին ուժեղ հարվածների ժամանակ, ապա սահուն վերականգնում։</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է թերպտույտի (understeer) էֆեկտով, որպեսզի զգաք, թե ինչպես են առջևի անվադողերը կորցնում կառչումը։</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է գերպտույտի (oversteer) էֆեկտով, որպեսզի զգաք, թե ինչպես է մեքենայի հետևը սահում։</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Ղեկի ուժ, որը կառավարվում է «մարմնով զգալու» էֆեկտով՝ շասսիի բեռնվածության զգացողությունը։</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Թրթռացնում է ղեկը, երբ առջևի անվադողերը սկսում են սահել։</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Թրթռացնում է ղեկը, երբ հետևի անվադողերը սկսում են սահել։</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Թրթռացնում է ղեկը շասսիի շարժման հետ. քաշի տեղափոխություն, որը կարող եք զգալ։</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Իմպուլսներով թրթռացնում է ղեկը, երբ շարժիչը հասնում է փոխանցումը փոխելու պտույտներին։</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Կարճ թրթռոց յուրաքանչյուր փոխանցման փոփոխության ժամանակ։</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Իմպուլսներով թրթռացնում է ղեկը, քանի դեռ արգելակների ABS-ն ակտիվ է։</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Դղրդյուն, որը հետևում է շարժիչի պտույտներին՝ V8-ի հնչողությամբ. լուռ է, երբ շարժիչն անջատված է։</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Ազդանշանը մասշտաբավորում է մեքենայի արագությամբ. ուժերը սահուն միացրեք կամ անջատեք՝ մեքենայի արագանալուն զուգընթաց։</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Դղրդյուն, որն արագանում է մեքենայի հետ՝ ինչպես ճանապարհի ծածկույթի հյուսվածք. լուռ է կանգնած ժամանակ։</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Դղրդյուն, որն առաջանում է, երբ մեքենայի առջևը կամ հետևը սահում է. կառավարվում է թերպտույտի և գերպտույտի էֆեկտներով։</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Շեմից ցածր ավելացնում է փոքրիկ փոփոխական դիզերինգ՝ ղեկի մեխանիզմը «կենդանի» պահելու և թույլ մանրամասները բացահայտելու համար։</value>
+  </data>
 </root>

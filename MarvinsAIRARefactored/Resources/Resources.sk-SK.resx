@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Kývanie volantom</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Upraviť popis</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Natívny 60 Hz force feedback signál z iRacingu, presne tak, ako ho simulátor posiela.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Force feedback signál iRacingu s vysokou frekvenciou — šesť vzoriek na snímku 60 Hz, s najviac detailmi.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Zvuk nízkofrekvenčných efektov (LFE) simulátora premenený na silu vo volante. Primiešajte ho modulom sčítania.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>Sila pôsobiaca proti rýchlosti otáčania volantu — primiešajte ju pre tlmenie.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Skutočné suché trenie: volant drží tam, kde ho necháte, so stálym klzným odporom mimo oblasti priľnutia.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Tvrdo kladie odpor, keď volant pretočíte za maximálny rajd auta — ako fyzický doraz.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>Pružinová sila, ktorá vracia volant späť do stredu. Veďte ju cez modul zosilnenia podľa rýchlosti, aby pôsobila len v stoji.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Koniec reťazca — prevádza signál na výstup do volantu, s voliteľnou krivkou odozvy a mäkkým limiterom.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Zachováva pomalú zložku signálu a vyhladzuje všetko rýchlejšie, než je medzná frekvencia.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Odstraňuje pomalú zložku signálu a ponecháva len rýchle detaily nad medznou frekvenciou.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Násobí signál pevným koeficientom — záporným zosilnením ho obrátite.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Sčíta dva signály dohromady.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Odčíta vstup B od vstupu A — napríklad odčítaním dolnopriepustnej kópie signálu zostanú len detaily.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Plynulo prelína dva signály — 0% je len vstup A, 100% je len vstup B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Obmedzuje, ako rýchlo sa signál môže meniť — všetko pod limitom prejde bez zmeny, rýchlejšie pohyby sú spomalené.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Stláča rýchle zmeny signálu namiesto tvrdého obmedzenia — pomalé pohyby prejdú bez zmeny.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Stláča signál nad prahom a drží špičky pod kontrolou bez tvrdého orezania.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Extrahuje rýchle detaily a zdôrazňuje nástupy — hrboly a obrubníky vyniknú bez zosilnenia doznievania.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Vyhladzovanie jedným gombíkom, ktoré sa prispôsobuje signálu — silné vyhladenie v pokoji, minimálne oneskorenie pri rýchlych prechodoch.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Odstraňuje schodíky zo 60 Hz signálu plynulým nábehom cez každú snímku — za cenu oneskorenia jednej snímky.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Posúva 360 Hz signál do budúcnosti, aby vyrovnal latenciu — adaptívny filter, ktorý sa počas jazdy učí každé auto.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Posúva 60 Hz signál do budúcnosti, aby vyrovnal latenciu — učí sa počas jazdy z vášho riadenia a pohybu auta.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Sleduje detaily vstupu A a pritom je priťahovaný k vstupu B — priťahovanie pri každej špičke povolí, takže prechody prejdú.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Pri detekcii nehody silu výrazne stlmí a potom ju plynulo obnoví.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Znižuje silu pri tvrdých nájazdoch na obrubníky a potom ju plynulo obnoví.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>Sila vo volante riadená efektom nedotáčavosti — ucítite, ako predné pneumatiky strácajú priľnavosť.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>Sila vo volante riadená efektom pretáčavosti — ucítite, ako sa zadná časť auta dostáva do šmyku.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>Sila vo volante riadená efektom pocitu zo sedačky — vnem zaťažovania podvozku.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Rozvibruje volant, keď predné pneumatiky začnú kĺzať.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Rozvibruje volant, keď zadné pneumatiky začnú kĺzať.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibruje volantom podľa pohybu podvozku — prenos váhy, ktorý ucítite.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Pulzne rozbzučí volant, keď motor dosiahne bod preraďovania.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>Krátky záchvev vibrácií pri každom preradení.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulzuje volantom, kým je aktívne ABS bŕzd.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Chvenie sledujúce otáčky motora, znejúce ako V8 — pri vypnutom motore je ticho.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Škáluje signál podľa rýchlosti auta — plynulo zosilňuje alebo zoslabuje sily s rastúcou rýchlosťou.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Chvenie zrýchľujúce spolu s autom, ako textúra povrchu vozovky — v stoji je ticho.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Chvenie, ktoré sa objaví, kedykoľvek niektorá náprava auta kĺže — riadené efektmi nedotáčavosti a pretáčavosti.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Pridáva pod prahom drobný striedavý dither, ktorý udržiava mechaniku volantu v pohybe a odhaľuje jemné detaily.</value>
+  </data>
 </root>

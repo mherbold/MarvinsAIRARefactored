@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>Balansarea volanului</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>Editează descrierea</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>Semnalul force feedback nativ de 60 Hz din iRacing, exact așa cum îl trimite simulatorul.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>Semnalul force feedback de înaltă frecvență din iRacing — șase eșantioane pe cadru de 60 Hz, cu cele mai multe detalii.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>Sunetul de efecte de joasă frecvență (LFE) al simulatorului, transformat în forță pe volan. Amestecă-l cu un modul de adunare.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>O forță care se opune vitezei cu care este rotit volanul — amestec-o pentru amortizare.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>Frecare uscată reală: volanul rămâne unde îl lași, cu o rezistență constantă la alunecare dincolo de zona de aderență.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>Opune rezistență puternică atunci când volanul este rotit dincolo de unghiul maxim de bracaj al mașinii — ca un opritor fizic.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>O forță de arc care trage volanul înapoi spre centru. Trece-o printr-un modul de amplificare în funcție de viteză ca să acționeze doar cu mașina oprită.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>Capătul lanțului — convertește semnalul în ieșire către volan, cu o curbă de răspuns opțională și un limitator soft.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>Păstrează partea lentă a semnalului și netezește tot ce este mai rapid decât frecvența de tăiere.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>Elimină partea lentă a semnalului și păstrează doar detaliile rapide de peste frecvența de tăiere.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>Scalează semnalul cu un multiplicator fix — folosește o amplificare negativă pentru a-l inversa.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>Adună două semnale.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>Scade intrarea B din intrarea A — de exemplu, scăzând o copie trecută prin filtru trece-jos rămân doar detaliile.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>Trece treptat între două semnale — 0% este doar intrarea A, 100% este doar intrarea B.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>Limitează cât de repede se poate schimba semnalul — tot ce e sub limită trece neatins, mișcările mai rapide sunt încetinite.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>Comprimă schimbările rapide ale semnalului în loc să le limiteze dur — mișcările lente trec neatinse.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>Comprimă semnalul peste un prag, ținând vârfurile sub control fără tăiere dură.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>Extrage detaliile rapide și accentuează atacurile — denivelările și bordurile ies în evidență fără a amplifica stingerea.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>Netezire dintr-un singur buton, care se adaptează la semnal — netezire puternică în liniște, întârziere minimă la tranzienții rapizi.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>Elimină treptele dintr-un semnal de 60 Hz printr-o tranziție lină pe fiecare cadru, cu prețul unui cadru de latență.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>Deplasează un semnal de 360 Hz în viitor pentru a compensa latența — un filtru adaptiv care învață fiecare mașină pe măsură ce conduci.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>Deplasează semnalul de 60 Hz în viitor pentru a compensa latența — învață din felul în care virezi și din mișcarea mașinii pe măsură ce conduci.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>Urmărește detaliile intrării A în timp ce este tras spre intrarea B — tragerea slăbește la fiecare vârf, astfel încât tranzienții trec nealterați.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>Reduce puternic forța când este detectat un accident, apoi o readuce lin.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>Reduce forța la loviturile dure de bordură, apoi o readuce lin.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>O forță pe volan condusă de efectul de subvirare, ca să simți cum pneurile din față pierd aderența.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>O forță pe volan condusă de efectul de supravirare, ca să simți cum spatele mașinii scapă.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>O forță pe volan condusă de efectul de simț din scaun — senzația șasiului care se încarcă.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>Vibrează volanul când pneurile din față încep să alunece.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>Vibrează volanul când pneurile din spate încep să alunece.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>Vibrează volanul odată cu mișcarea șasiului — transfer de masă pe care îl simți.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>Bâzâie volanul în impulsuri când motorul atinge punctul de schimbare a treptei.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>O scurtă rafală de vibrații la fiecare schimbare de treaptă.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>Pulsează volanul cât timp ABS-ul frânelor este activ.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>Un huruit care urmărește turația motorului, cu sonoritate de V8 — tăcut cât timp motorul este oprit.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>Scalează semnalul cu viteza mașinii — atenuează sau amplifică treptat forțele pe măsură ce mașina prinde viteză.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>Un huruit care se accelerează odată cu mașina, ca textura asfaltului — tăcut când mașina stă pe loc.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>Un huruit care apare ori de câte ori alunecă una dintre punțile mașinii — condus de efectele de subvirare și supravirare.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>Adaugă un dither fin alternant sub un prag, ca să mențină mecanismul volanului activ și să scoată la iveală detaliile fine.</value>
+  </data>
 </root>

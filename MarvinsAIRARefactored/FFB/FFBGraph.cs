@@ -13,6 +13,7 @@ public class FFBModuleData
 {
 	public string ModuleId { get; set; } = "";                          // stable & unique app-wide
 	public string ModuleType { get; set; } = "";                        // registry key, e.g. "DetailBooster"
+	public string Description { get; set; } = "";                       // override of the node's description (rides export/import); empty = the module type's localized default shows; on built-in graphs the override is localized via FFBNodeDescription* keys with this text as the English fallback
 	public string InputAModuleId { get; set; } = FFBGraph.Source360ModuleId;
 	public string InputBModuleId { get; set; } = FFBGraph.Source360ModuleId;
 	public SerializableDictionary<string, float> SettingValues { get; set; } = [];  // bools 0/1, choices as index
@@ -33,6 +34,7 @@ public class FFBModuleData
 	{
 		var clone = new FFBModuleData( ModuleId, ModuleType )
 		{
+			Description = Description,
 			InputAModuleId = InputAModuleId,
 			InputBModuleId = InputBModuleId,
 			NodeX = NodeX,

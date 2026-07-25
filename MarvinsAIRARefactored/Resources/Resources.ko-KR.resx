@@ -2272,4 +2272,124 @@
   <data name="SteeringWheelSweep" xml:space="preserve">
     <value>스티어링 휠 스윕</value>
   </data>
+  <data name="EditDescriptionTitle" xml:space="preserve">
+    <value>설명 편집</value>
+  </data>
+  <data name="FFBModuleDescriptionSource60Hz" xml:space="preserve">
+    <value>iRacing의 기본 60 Hz 포스 피드백 신호로, 시뮬레이터가 보내는 그대로입니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSource360Hz" xml:space="preserve">
+    <value>iRacing의 고속 포스 피드백 신호입니다. 60 Hz 프레임당 6개의 샘플로, 가장 세밀한 디테일을 담고 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceLFE" xml:space="preserve">
+    <value>시뮬레이터의 저주파 효과(LFE) 오디오를 휠의 힘으로 변환한 것입니다. 더하기 모듈로 믹스해서 사용하세요.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelVelocity" xml:space="preserve">
+    <value>휠을 돌리는 속도에 반대로 작용하는 힘입니다. 믹스하면 댐핑 효과를 냅니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceFriction" xml:space="preserve">
+    <value>진짜 건식 마찰: 휠이 놓아둔 위치에 그대로 머무르고, 정지 영역을 벗어나면 일정한 미끄럼 저항이 걸립니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceSoftLock" xml:space="preserve">
+    <value>차량의 조향 락을 넘어 휠을 돌리면 물리적인 엔드 스톱처럼 강하게 밀어냅니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSourceWheelCentering" xml:space="preserve">
+    <value>휠을 중앙으로 되돌리는 스프링 힘입니다. 정차 중에만 작동하게 하려면 속도 게인 모듈을 거치게 하세요.</value>
+  </data>
+  <data name="FFBModuleDescriptionOutput" xml:space="preserve">
+    <value>체인의 끝입니다. 신호를 휠 출력으로 변환하며, 선택적으로 응답 곡선과 소프트 리미터를 적용할 수 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionLowPassFilter" xml:space="preserve">
+    <value>신호의 느린 몸통은 유지하고, 컷오프보다 빠른 성분은 매끄럽게 걸러냅니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionHighPassFilter" xml:space="preserve">
+    <value>신호의 느린 몸통을 제거하고, 컷오프 위의 빠른 디테일만 남깁니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionGain" xml:space="preserve">
+    <value>신호를 고정 배율로 스케일합니다. 음수 게인을 쓰면 신호가 반전됩니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdd" xml:space="preserve">
+    <value>두 신호를 더합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSubtract" xml:space="preserve">
+    <value>입력 A에서 입력 B를 뺍니다. 예를 들어 신호의 로우패스 사본을 빼면 디테일만 남습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionBlend" xml:space="preserve">
+    <value>두 신호를 크로스페이드합니다. 0%는 입력 A만, 100%는 입력 B만 출력됩니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewLimiter" xml:space="preserve">
+    <value>신호가 변할 수 있는 속도에 상한을 둡니다. 상한 이하는 그대로 통과하고, 더 빠른 변화는 느려집니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlewCompressor" xml:space="preserve">
+    <value>빠른 신호 변화를 하드 리미팅 대신 압축합니다. 느린 변화는 그대로 통과합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionCompressor" xml:space="preserve">
+    <value>임계값을 넘는 신호를 압축하여 하드 클리핑 없이 피크를 제어합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionTransientEnhancer" xml:space="preserve">
+    <value>빠른 디테일을 추출해 어택을 강조합니다. 감쇠 부분은 키우지 않으면서 범프와 연석의 느낌이 도드라집니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveSmoother" xml:space="preserve">
+    <value>신호에 적응하는 원 노브 스무더입니다. 신호가 조용할 때는 강하게 스무딩하고, 빠른 트랜지언트에서는 지연을 최소화합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionInterpolator" xml:space="preserve">
+    <value>각 프레임에 걸쳐 매끄럽게 램프시켜 60 Hz 신호의 계단 현상을 제거합니다. 대신 1 프레임의 지연이 생깁니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction" xml:space="preserve">
+    <value>360 Hz 신호를 미래로 이동시켜 지연을 상쇄합니다. 주행하는 동안 차량마다 학습하는 적응 필터입니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionPrediction60Hz" xml:space="preserve">
+    <value>60 Hz 신호를 미래로 이동시켜 지연을 상쇄합니다. 주행 중의 조향과 차량 움직임에서 학습합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionAdaptiveBlend" xml:space="preserve">
+    <value>입력 A의 디테일을 따라가면서 입력 B 쪽으로 끌려갑니다. 피크마다 끌림이 풀리므로 트랜지언트는 그대로 통과합니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionCrashProtection" xml:space="preserve">
+    <value>충돌이 감지되면 힘을 크게 줄였다가 부드럽게 되돌립니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionCurbProtection" xml:space="preserve">
+    <value>연석을 세게 밟았을 때 힘을 줄였다가 부드럽게 되돌립니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerForce" xml:space="preserve">
+    <value>언더스티어 효과로 구동되는 조향력입니다. 앞 타이어의 그립이 빠지는 것을 느낄 수 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerForce" xml:space="preserve">
+    <value>오버스티어 효과로 구동되는 조향력입니다. 차 뒤쪽이 흘러나가는 것을 느낄 수 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsForce" xml:space="preserve">
+    <value>시트 오브 팬츠(체감) 효과로 구동되는 조향력입니다. 섀시에 하중이 실리는 느낌입니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionUndersteerVibration" xml:space="preserve">
+    <value>앞 타이어가 미끄러지기 시작하면 휠을 진동시킵니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionOversteerVibration" xml:space="preserve">
+    <value>뒤 타이어가 미끄러지기 시작하면 휠을 진동시킵니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSeatOfPantsVibration" xml:space="preserve">
+    <value>섀시의 움직임에 맞춰 휠을 진동시킵니다. 무게 이동을 손으로 느낄 수 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionShiftRPMVibration" xml:space="preserve">
+    <value>엔진 회전수가 시프트 포인트에 도달하면 휠을 펄스 형태로 진동시킵니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionGearChangeVibration" xml:space="preserve">
+    <value>기어를 바꿀 때마다 짧은 진동을 냅니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionABSVibration" xml:space="preserve">
+    <value>브레이크의 ABS가 작동하는 동안 휠에 펄스를 보냅니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionEngineRPMVibration" xml:space="preserve">
+    <value>엔진 회전수를 따라가는 럼블로, V8 같은 소리를 냅니다. 엔진이 꺼져 있으면 무음입니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSpeedGain" xml:space="preserve">
+    <value>차량 속도에 따라 신호를 스케일합니다. 속도가 올라감에 따라 힘을 서서히 켜거나 끌 수 있습니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionRoadTexture" xml:space="preserve">
+    <value>차 속도와 함께 빨라지는 럼블로, 노면 텍스처 같은 느낌입니다. 정차 중에는 무음입니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionSlipTexture" xml:space="preserve">
+    <value>차의 앞이나 뒤 어느 쪽이든 미끄러질 때 나타나는 럼블입니다. 언더스티어와 오버스티어 효과로 구동됩니다.</value>
+  </data>
+  <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
+    <value>임계값 이하에서 미세한 교대 디더를 더해 휠 메커니즘을 깨어 있게 유지하고 희미한 디테일을 드러냅니다.</value>
+  </data>
 </root>

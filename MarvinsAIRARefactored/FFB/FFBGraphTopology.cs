@@ -9,7 +9,7 @@ namespace MarvinsAIRARefactored.FFB;
 /// </summary>
 public static class FFBGraphTopology
 {
-	// node box metrics shared between the auto-layout and the FFBGraphEditor control
+	// node box metrics shared between the auto-layout and the MairaFFBGraphEditor control
 	public const float NodeWidth = 192f;
 	public const float NodeHeight = 64f;
 	public const float HorizontalGap = 32f;
