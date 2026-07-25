@@ -578,7 +578,10 @@ public class RFactor2Bridge : GameBridgeAdapter
 		dataSource.SetFloat( varTable.VertAccel, (float) ( telemetry.mLocalAccel.y + Gravity ) );
 		dataSource.SetFloat( varTable.YawRate, (float) ( YawRateSign * telemetry.mLocalRot.y ) );
 
-		var yaw = (float) Math.Atan2( telemetry.mOri[ 2 ].x, telemetry.mOri[ 2 ].z );
+		// mOri[2] is the local rearward axis in world coordinates; the world frame has north = +z and
+		// east = -x, so the compass heading (iRacing YawNorth: 0 = north, clockwise-positive) is
+		// atan2( rear.x, -rear.z ) - with +z the handedness flips and the track map mirrors north/south
+		var yaw = (float) Math.Atan2( telemetry.mOri[ 2 ].x, -telemetry.mOri[ 2 ].z );
 
 		dataSource.SetFloat( varTable.Yaw, yaw );
 		dataSource.SetFloat( varTable.YawNorth, yaw );
