@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>임계값 이하에서 미세한 교대 디더를 더해 휠 메커니즘을 깨어 있게 유지하고 희미한 디테일을 드러냅니다.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>링크</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx 웹사이트</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord 서버</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring 웹사이트</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>메가 기부자</value>
+  </data>
 </root>

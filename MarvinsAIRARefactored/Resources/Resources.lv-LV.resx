@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Pievieno sīku mainīgu diteru zem sliekšņa, lai uzturētu stūres mehānismu kustīgu un atklātu smalkas detaļas.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Saites</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx vietne</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord serveris</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring vietne</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Megaziedotāji</value>
+  </data>
 </root>

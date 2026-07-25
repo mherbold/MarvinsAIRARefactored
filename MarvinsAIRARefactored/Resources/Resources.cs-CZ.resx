@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Přidává pod prahem drobný střídavý dither, který udržuje mechaniku volantu v pohybu a odhaluje jemné detaily.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Odkazy</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Web AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Discord server AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Web Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Mega přispěvatelé</value>
+  </data>
 </root>

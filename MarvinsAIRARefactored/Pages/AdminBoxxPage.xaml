@@ -27,19 +27,16 @@
 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="40" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <Grid Grid.Column="0">
+                <StackPanel Grid.Column="0"
+                            Grid.ColumnSpan="3">
 
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                        <RowDefinition Height="Auto" />
-                    </Grid.RowDefinitions>
-
-                    <StackPanel Grid.Row="0"
-                                Orientation="Horizontal"
+                    <StackPanel Orientation="Horizontal"
                                 HorizontalAlignment="Left"
                                 VerticalAlignment="Center">
 
@@ -57,21 +54,21 @@
                     </StackPanel>
 
                     <controls:MairaSwitch x:Name="ConnectOnStartup_MairaSwitch"
-                                          Grid.Row="1"
                                           Margin="0,10,0,0"
                                           Label="{Binding Localization[ConnectToAdminBoxxOnStartup]}"
                                           IsOn="{Binding Settings.AdminBoxxConnectOnStartup, Mode=TwoWay}" />
 
                     <controls:MairaSwitch x:Name="EnableXsrcIntegration_MairaSwitch"
-                                          Grid.Row="2"
                                           Margin="0,10,0,0"
                                           Label="{Binding Localization[EnableXsrcIntegration]}"
                                           IsOn="{Binding Settings.AdminBoxxEnableXsrcIntegration, Mode=TwoWay}" />
 
-                </Grid>
+                </StackPanel>
 
                 <controls:MairaButton x:Name="Test"
-                                      Grid.Column="1"
+                                      Grid.Column="4"
+                                      HorizontalAlignment="Center"
+                                      VerticalAlignment="Center"
                                       Label="{Binding Localization[Test]}"
                                       Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                       Click="Test_Click"
@@ -134,6 +131,109 @@
                                     DefaultValue="0.75" />
 
             </Grid>
+
+        </controls:MairaGroupBox>
+
+        <controls:MairaGroupBox Label="{Binding Localization.Upper[Links]}">
+
+            <StackPanel Orientation="Horizontal">
+
+                <Border BorderBrush="{DynamicResource Brush.Border.Normal}"
+                        BorderThickness="1"
+                        CornerRadius="5">
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               Padding="15,5">
+
+                        <Hyperlink NavigateUri="https://adminboxx.com"
+                                   RequestNavigate="Hyperlink_RequestNavigate"
+                                   Foreground="{DynamicResource Brush.Foreground.Primary}"
+                                   TextDecorations="None">
+
+                            <InlineUIContainer BaselineAlignment="Center">
+                                <Rectangle Width="24" Height="24"
+                                           Margin="0,0,5,0"
+                                           Fill="{DynamicResource Brush.Foreground.Primary}">
+                                    <Rectangle.OpacityMask>
+                                        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Misc/world-wide-web.png"
+                                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </InlineUIContainer>
+
+                            <Run Text="{Binding Localization[AdminBoxxWebsite], Mode=OneWay}" />
+
+                        </Hyperlink>
+
+                    </TextBlock>
+
+                </Border>
+
+                <Border BorderBrush="{DynamicResource Brush.Border.Normal}"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        Margin="20,0,0,0">
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               Padding="15,5">
+
+                        <Hyperlink NavigateUri="https://discord.gg/JPrHkRYWYt"
+                                   RequestNavigate="Hyperlink_RequestNavigate"
+                                   Foreground="{DynamicResource Brush.Foreground.Primary}"
+                                   TextDecorations="None">
+
+                            <InlineUIContainer BaselineAlignment="Center">
+                                <Rectangle Width="24" Height="24"
+                                           Margin="0,0,5,0"
+                                           Fill="{DynamicResource Brush.Foreground.Primary}">
+                                    <Rectangle.OpacityMask>
+                                        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Misc/discord-logo.png"
+                                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </InlineUIContainer>
+
+                            <Run Text="{Binding Localization[AdminBoxxDiscordServer], Mode=OneWay}" />
+
+                        </Hyperlink>
+
+                    </TextBlock>
+
+                </Border>
+
+                <Border BorderBrush="{DynamicResource Brush.Border.Normal}"
+                        BorderThickness="1"
+                        CornerRadius="5"
+                        Margin="20,0,0,0">
+
+                    <TextBlock Style="{StaticResource MairaTextBlockStyle}"
+                               Padding="15,5">
+
+                        <Hyperlink NavigateUri="https://info.xtremescoring.com/"
+                                   RequestNavigate="Hyperlink_RequestNavigate"
+                                   Foreground="{DynamicResource Brush.Foreground.Primary}"
+                                   TextDecorations="None">
+
+                            <InlineUIContainer BaselineAlignment="Center">
+                                <Rectangle Width="24" Height="24"
+                                           Margin="0,0,5,0"
+                                           Fill="{DynamicResource Brush.Foreground.Primary}">
+                                    <Rectangle.OpacityMask>
+                                        <ImageBrush ImageSource="/MarvinsAIRARefactored;component/Artwork/Misc/world-wide-web.png"
+                                                    RenderOptions.BitmapScalingMode="HighQuality" />
+                                    </Rectangle.OpacityMask>
+                                </Rectangle>
+                            </InlineUIContainer>
+
+                            <Run Text="{Binding Localization[XtremeScoringWebsite], Mode=OneWay}" />
+
+                        </Hyperlink>
+
+                    </TextBlock>
+
+                </Border>
+
+            </StackPanel>
 
         </controls:MairaGroupBox>
 

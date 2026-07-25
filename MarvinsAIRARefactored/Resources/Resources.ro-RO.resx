@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Adaugă un dither fin alternant sub un prag, ca să mențină mecanismul volanului activ și să scoată la iveală detaliile fine.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Linkuri</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Site-ul web AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Serverul Discord AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Site-ul web Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Mega donatori</value>
+  </data>
 </root>

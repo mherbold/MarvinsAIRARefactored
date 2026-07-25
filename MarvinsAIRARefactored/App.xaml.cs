@@ -233,7 +233,7 @@ public partial class App : Application
 	startupWindow?.Show();
 
 	var startupStepIndex = 0;
-	const int startupStepCount = 25;
+	const int startupStepCount = 24;
 
 	void RunStartupStep( string statusKey, Action initializeAction )
 	{
@@ -316,7 +316,6 @@ public partial class App : Application
 				RunStartupStep( "InitializingRecordingManager", RecordingManager.Initialize );
 				RunStartupStep( "InitializingTimingMarkers", TimingMarkers.Initialize );
 				RunStartupStep( "InitializingTelemetry", Telemetry.Initialize );
-				RunStartupStep( "InitializingWind", TyphoonWind.Initialize );
 				RunStartupStep( "InitializingGTensioner", GTensioner.Initialize );
 				RunStartupStep( "InitializingHidHotPlugMonitor", HidHotPlugMonitor.Initialize );
 				RunStartupStep( "InitializingTradingPaints", TradingPaints.Initialize );

@@ -34,9 +34,10 @@ pages to the live WordPress site and verify them.
   imperative/descriptive subject, capitalized, **no trailing period**, no
   `type:` prefix — matching his history (e.g. `Batch and dedupe settings change
   logging`, `Rename wind docs to typhoon-wind`). Add a brief body only if the
-  change genuinely needs explaining. End the message with the
-  `Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>` trailer (drop it only
-  if he asks for clean trailer-free history).
+  change genuinely needs explaining. End the message with a
+  `Co-Authored-By: <the Claude model actually running, e.g. Claude Fable 5>
+  <noreply@anthropic.com>` trailer (drop it only if he asks for clean
+  trailer-free history).
 - **The repo is the source of truth; the live WordPress pages are downstream.**
   Every code change that alters user-facing behavior must be reflected in the
   matching `Server/Wordpress/Documentation/*.txt` **before** committing, and
@@ -113,7 +114,7 @@ on the current branch.
 
 ```bash
 git -C "<repo>" add <the code + doc files for this change>
-git -C "<repo>" commit -m "<subject>" -m "Co-Authored-By: Claude Opus 4.8 <noreply@anthropic.com>"
+git -C "<repo>" commit -m "<subject>" -m "Co-Authored-By: <running Claude model> <noreply@anthropic.com>"
 git -C "<repo>" push
 ```
 

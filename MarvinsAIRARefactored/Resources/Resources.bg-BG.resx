@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Добавя фин редуващ се дитър под определен праг, за да поддържа механизма на волана активен и да разкрива едва доловими детайли.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Връзки</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Уебсайт на AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Discord сървър на AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Уебсайт на Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Мега дарители</value>
+  </data>
 </root>

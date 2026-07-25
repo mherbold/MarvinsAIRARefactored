@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Добавляет крошечный знакопеременный дизеринг ниже порога, чтобы держать механизм руля в тонусе и проявлять слабые детали.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Ссылки</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Сайт AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Discord-сервер AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Сайт Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Мега доноры</value>
+  </data>
 </root>

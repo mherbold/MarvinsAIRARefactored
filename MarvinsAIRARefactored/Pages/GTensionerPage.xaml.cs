@@ -163,7 +163,7 @@ public partial class GTensionerPage : UserControl, INotifyPropertyChanged
 	{
 		var app = App.Instance!;
 
-		app.GTensioner.RetryDevice();
+		app.GTensioner.ScanForDevice();
 	}
 
 	private void SurgeMode_MairaComboBox_SelectionChanged( object sender, SelectionChangedEventArgs e )

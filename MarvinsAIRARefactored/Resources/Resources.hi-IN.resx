@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>थ्रेशोल्ड के नीचे एक सूक्ष्म बारी-बारी बदलता डिदर जोड़ता है ताकि व्हील का तंत्र सजीव रहे और हल्की डिटेल उभर सके।</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>लिंक</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx वेबसाइट</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord सर्वर</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring वेबसाइट</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>मेगा दानदाता</value>
+  </data>
 </root>

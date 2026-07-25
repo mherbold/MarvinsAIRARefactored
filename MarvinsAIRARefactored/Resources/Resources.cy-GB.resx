@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Yn ychwanegu dither bychan bob yn ail o dan drothwy i gadw mecanwaith yr olwyn yn fyw a datgelu manylder gwan.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Dolenni</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Gwefan AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Gweinydd Discord AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Gwefan Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Prif gyfranwyr</value>
+  </data>
 </root>

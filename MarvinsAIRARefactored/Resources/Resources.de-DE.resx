@@ -2395,4 +2395,19 @@ Hier ist der Link zum Spenden:</value>
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Fügt unterhalb eines Schwellwerts ein winziges alternierendes Dithering hinzu, das die Lenkradmechanik in Bewegung hält und feinste Details spürbar macht.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx-Website</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx-Discord-Server</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme-Scoring-Website</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Mega-Spender</value>
+  </data>
 </root>

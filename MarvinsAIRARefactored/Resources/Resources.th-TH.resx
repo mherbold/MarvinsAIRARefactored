@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>เพิ่มดิเทอร์สลับขั้วเล็กน้อยใต้เกณฑ์ที่ตั้งไว้ เพื่อให้กลไกพวงมาลัยตื่นตัวอยู่เสมอและเผยรายละเอียดแผ่วเบา</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>ลิงก์</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>เว็บไซต์ AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>เซิร์ฟเวอร์ Discord ของ AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>เว็บไซต์ Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>ผู้สนับสนุนระดับสูงสุด</value>
+  </data>
 </root>

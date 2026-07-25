@@ -28,6 +28,8 @@ public partial class TyphoonWind
 	private bool _previewActive = false;
 	private float _previewPowerNormalized = 0f;
 
+	private bool _deviceScanAttempted = false;
+
 	private int _updateCounter = UpdateInterval + 7;
 
 	private static readonly Regex _fanRPMRegex = FanRPMRegex();
@@ -47,31 +49,6 @@ public partial class TyphoonWind
 		app.Logger.WriteLine( "[TyphoonWind] <<< Constructor" );
 	}
 
-	public void Initialize()
-	{
-		var app = App.Instance!;
-
-		app.Logger.WriteLine( "[TyphoonWind] Initialize >>>" );
-
-		_usbSerialPortHelper.Initialize();
-
-		if ( !_usbSerialPortHelper.DeviceFound )
-		{
-			app.Logger.WriteLine( "[TyphoonWind] Device not found - disabling TyphoonWindConnectOnStartup" );
-
-			var localization = DataContext.DataContext.Instance.Localization;
-
-			app.Dispatcher.Invoke( () =>
-			{
-				MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.IsEnabled = false;
-				MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
-				MainWindow._typhoonWindPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
-			} );
-		}
-
-		app.Logger.WriteLine( "[TyphoonWind] <<< Initialize" );
-	}
-
 	public void Shutdown()
 	{
 		var app = App.Instance!;
@@ -83,11 +60,15 @@ public partial class TyphoonWind
 		app.Logger.WriteLine( "[TyphoonWind] <<< Shutdown" );
 	}
 
-	public void RetryDevice()
+	// The serial port device scan is slow (WMI enumeration plus handshake probes), so it does not run at
+	// startup - it runs lazily on the first Connect() and on demand from the retry button on the page.
+	public void ScanForDevice()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[TyphoonWind] RetryDevice >>>" );
+		app.Logger.WriteLine( "[TyphoonWind] ScanForDevice >>>" );
+
+		_deviceScanAttempted = true;
 
 		_usbSerialPortHelper.Initialize();
 
@@ -101,11 +82,13 @@ public partial class TyphoonWind
 			}
 			else
 			{
+				MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.IsEnabled = false;
 				MainWindow._typhoonWindPage.ConnectToWind_MairaSwitch.ErrorMessage = _usbSerialPortHelper.LastErrorMessage;
+				MainWindow._typhoonWindPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
 			}
 		} );
 
-		app.Logger.WriteLine( "[TyphoonWind] <<< RetryDevice" );
+		app.Logger.WriteLine( "[TyphoonWind] <<< ScanForDevice" );
 	}
 
 	public bool Connect()
@@ -113,6 +96,11 @@ public partial class TyphoonWind
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[TyphoonWind] Connect >>>" );
+
+		if ( !_deviceScanAttempted )
+		{
+			ScanForDevice();
+		}
 
 		IsConnected = _usbSerialPortHelper.Open();
 

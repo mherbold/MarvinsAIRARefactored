@@ -2395,4 +2395,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>しきい値以下で微小な交互ディザーを加え、ホイール機構を動かし続けてかすかなディテールを感じ取れるようにします。</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>リンク</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx ウェブサイト</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord サーバー</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring ウェブサイト</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>メガ寄付者</value>
+  </data>
 </root>

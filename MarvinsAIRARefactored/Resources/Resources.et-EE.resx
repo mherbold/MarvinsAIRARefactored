@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Lisab allpool läve tillukese vahelduva ditheri, mis hoiab rooli mehhanismi ärkvel ja toob esile nõrgad detailid.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Lingid</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxxi veebisait</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxxi Discordi server</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoringi veebisait</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Megaannetajad</value>
+  </data>
 </root>

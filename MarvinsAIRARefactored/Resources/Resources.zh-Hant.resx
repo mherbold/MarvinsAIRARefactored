@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>在閾值以下加入微小的交替抖動，讓方向盤機構保持活動並呈現微弱的細節。</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>連結</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx 網站</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord 伺服器</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring 網站</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>頂級捐款者</value>
+  </data>
 </root>

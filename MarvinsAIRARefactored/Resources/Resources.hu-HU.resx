@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Apró váltakozó dithert ad hozzá egy küszöb alatt, hogy a kormánymechanika mozgásban maradjon, és a halvány részletek is érezhetők legyenek.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Hivatkozások</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx weboldal</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord szerver</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring weboldal</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Mega támogatók</value>
+  </data>
 </root>

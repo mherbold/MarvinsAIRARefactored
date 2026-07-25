@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Lisää kynnyksen alapuolelle pikkuriikkisen vuorottelevan ditherin, joka pitää ratin mekanismin hereillä ja tuo esiin heikot yksityiskohdat.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Linkit</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxxin verkkosivusto</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxxin Discord-palvelin</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoringin verkkosivusto</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Megalahjoittajat</value>
+  </data>
 </root>

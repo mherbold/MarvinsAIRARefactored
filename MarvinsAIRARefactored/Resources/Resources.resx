@@ -2390,4 +2390,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Adds a tiny alternating dither below a threshold to keep the wheel mechanism live and reveal faint detail.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx website</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord server</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring website</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Mega donors</value>
+  </data>
 </root>

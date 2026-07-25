@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>在阈值以下加入微小的交替抖动，保持方向盘机构处于活动状态并呈现微弱细节。</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>链接</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx 网站</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord 服务器</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring 网站</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>顶级贡献者</value>
+  </data>
 </root>

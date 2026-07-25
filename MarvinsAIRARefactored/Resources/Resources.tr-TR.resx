@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Direksiyon mekanizmasını canlı tutmak ve zayıf ayrıntıları ortaya çıkarmak için eşiğin altında minik, yön değiştiren bir titreşim (dither) ekler.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Bağlantılar</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx web sitesi</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord sunucusu</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring web sitesi</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Mega bağışçılar</value>
+  </data>
 </root>

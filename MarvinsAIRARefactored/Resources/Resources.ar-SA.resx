@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>يضيف ذبذبة متناوبة دقيقة تحت عتبة معيّنة لإبقاء آلية العجلة نشطة وإظهار التفاصيل الخافتة.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>روابط</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>موقع AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>خادم AdminBoxx على Discord</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>موقع Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>كبار المتبرعين</value>
+  </data>
 </root>

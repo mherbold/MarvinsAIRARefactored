@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Շեմից ցածր ավելացնում է փոքրիկ փոփոխական դիզերինգ՝ ղեկի մեխանիզմը «կենդանի» պահելու և թույլ մանրամասները բացահայտելու համար։</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Հղումներ</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx կայք</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord սերվեր</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring կայք</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Մեգա նվիրատուներ</value>
+  </data>
 </root>

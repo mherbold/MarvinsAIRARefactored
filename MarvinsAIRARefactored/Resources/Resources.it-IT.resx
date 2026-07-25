@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Aggiunge un minuscolo dither alternato sotto una soglia per mantenere reattivo il meccanismo del volante e far emergere i dettagli più deboli.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Collegamenti</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Sito web di AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Server Discord di AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Sito web di Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Mega donatori</value>
+  </data>
 </root>

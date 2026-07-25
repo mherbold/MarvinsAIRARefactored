@@ -2392,4 +2392,19 @@
   <data name="FFBModuleDescriptionTorqueDither" xml:space="preserve">
     <value>Legger til en bitteliten vekslende dither under en terskel for å holde rattmekanismen våken og avdekke svake detaljer.</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Lenker</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx-nettsted</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord-server</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring-nettsted</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Megadonorer</value>
+  </data>
 </root>
