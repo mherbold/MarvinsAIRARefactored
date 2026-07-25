@@ -340,6 +340,42 @@ internal static class Program
 		Console.WriteLine( $"corr( steer, steering_force ) = {Correlation( steer, steeringForce ):F3}" );
 		Console.WriteLine( $"corr( angvel.y, accel.x )     = {Correlation( yawRate, latAccel ):F3}" );
 
+		// === yaw handedness check ===
+		// A compass-style heading (iRacing YawNorth: 0 = north, clockwise/right-positive) must INCREASE
+		// while the car turns right. local_angular_velocity.y is right-positive in R3E (validated via the
+		// steering correlation above), so corr( d(yaw)/dt, local_angvel.y ) should be ~+1 if car_orientation.yaw
+		// is compass-style, ~-1 if it is CCW-positive (which would mirror the track map north/south).
+
+		Console.WriteLine();
+		Console.WriteLine( "=== Yaw handedness (driving) ===" );
+
+		var headingRates = new List<double>();
+		var angularVelocities = new List<double>();
+		var cumulativeHeadingChange = 0.0;
+
+		for ( var i = 1; i < driving.Count; i++ )
+		{
+			var deltaSeconds = driving[ i ].Seconds - driving[ i - 1 ].Seconds;
+
+			var deltaHeading = (double) ( driving[ i ].Shared.car_orientation.yaw - driving[ i - 1 ].Shared.car_orientation.yaw );
+
+			while ( deltaHeading > Math.PI ) { deltaHeading -= 2.0 * Math.PI; }
+			while ( deltaHeading < -Math.PI ) { deltaHeading += 2.0 * Math.PI; }
+
+			cumulativeHeadingChange += deltaHeading;
+
+			if ( ( deltaSeconds <= 0.0 ) || ( deltaSeconds > 0.1 ) )
+			{
+				continue;
+			}
+
+			headingRates.Add( deltaHeading / deltaSeconds );
+			angularVelocities.Add( driving[ i ].Shared.player.local_angular_velocity.y );
+		}
+
+		Console.WriteLine( $"corr( d(car_orientation.yaw)/dt, local_angvel.y ) = {Correlation( [ .. headingRates ], [ .. angularVelocities ] ):F3}" );
+		Console.WriteLine( $"cumulative yaw change while driving = {cumulativeHeadingChange * 180.0 / Math.PI:F0} deg" );
+
 		// === materials seen ===
 
 		var materials = new HashSet<int>();
