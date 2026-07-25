@@ -1927,4 +1927,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (vyönkiristinlisäosan laiteohjelmisto)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Linkit</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxxin verkkosivusto</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxxin Discord-palvelin</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoringin verkkosivusto</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Megalahjoittajat</value>
+  </data>
 </root>

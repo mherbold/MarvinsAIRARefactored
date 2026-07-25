@@ -1914,4 +1914,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (安全帶張緊器外掛程式韌體)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>連結</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx 網站</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord 伺服器</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring 網站</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>頂級捐款者</value>
+  </data>
 </root>

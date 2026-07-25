@@ -1927,4 +1927,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (firmware do plugin do tensionador de cinto)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Links</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Site do AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Servidor Discord do AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Site da Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Mega doadores</value>
+  </data>
 </root>

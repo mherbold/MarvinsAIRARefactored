@@ -1933,4 +1933,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (прошивка плагіна натягувача ременів)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Посилання</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Сайт AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Discord-сервер AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Сайт Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Мега донати</value>
+  </data>
 </root>

@@ -11,7 +11,7 @@
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph -->
-<p>Connects/disconnects MAIRA to the Typhoon Wind controller over USB serial port.  If the connection fails, MAIRA displays an error message describing what went wrong and shows a Retry button so you can attempt the connection again after resolving the issue.</p>
+<p>Connects/disconnects MAIRA to the Typhoon Wind controller over USB serial port.  The first connection attempt after MAIRA starts also scans your USB serial ports to find the fan controller, so it can take a few extra seconds.  If the connection fails, MAIRA displays an error message describing what went wrong and shows a Retry button so you can attempt the connection again after resolving the issue.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:paragraph {"className":"default"} -->

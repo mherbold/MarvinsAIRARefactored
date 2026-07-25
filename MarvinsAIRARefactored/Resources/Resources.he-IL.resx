@@ -1927,4 +1927,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (קושחת תוסף מותחן החגורה)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>קישורים</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>אתר AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>שרת ה-Discord של AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>אתר Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>מגה-תורמים</value>
+  </data>
 </root>

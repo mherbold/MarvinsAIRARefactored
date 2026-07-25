@@ -1914,4 +1914,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (البرنامج الثابت لملحق شد الحزام)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>روابط</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>موقع AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>خادم AdminBoxx على Discord</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>موقع Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>كبار المتبرعين</value>
+  </data>
 </root>

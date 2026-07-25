@@ -1914,4 +1914,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (фърмуер на плъгина за обтегач на колана)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Връзки</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Уебсайт на AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Discord сървър на AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Уебсайт на Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Мега дарители</value>
+  </data>
 </root>

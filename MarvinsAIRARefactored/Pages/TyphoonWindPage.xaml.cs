@@ -79,7 +79,7 @@ public partial class TyphoonWindPage : UserControl
 	{
 		var app = App.Instance!;
 
-		app.TyphoonWind.RetryDevice();
+		app.TyphoonWind.ScanForDevice();
 	}
 
 	private void ResetFanPowerCurveToDefaults_MairaButton_Click( object sender, RoutedEventArgs e )

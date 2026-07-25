@@ -1914,4 +1914,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (벨트 텐셔너 플러그인 펌웨어)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>링크</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx 웹사이트</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord 서버</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring 웹사이트</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>메가 기부자</value>
+  </data>
 </root>

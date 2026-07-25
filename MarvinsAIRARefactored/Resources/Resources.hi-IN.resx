@@ -1914,4 +1914,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (बेल्ट टेंशनर प्लगइन फ़र्मवेयर)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>लिंक</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx वेबसाइट</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord सर्वर</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring वेबसाइट</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>मेगा दानदाता</value>
+  </data>
 </root>

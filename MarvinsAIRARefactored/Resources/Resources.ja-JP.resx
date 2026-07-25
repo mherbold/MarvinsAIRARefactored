@@ -1930,4 +1930,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (ベルトテンショナープラグインファームウェア)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>リンク</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx ウェブサイト</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord サーバー</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring ウェブサイト</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>メガ寄付者</value>
+  </data>
 </root>

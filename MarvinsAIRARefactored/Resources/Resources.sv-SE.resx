@@ -1927,4 +1927,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (firmware för bältessträckarplugin)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Länkar</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxx-webbplats</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxx Discord-server</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoring-webbplats</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Megadonatorer</value>
+  </data>
 </root>

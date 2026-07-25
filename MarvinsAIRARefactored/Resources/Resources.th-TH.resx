@@ -1927,4 +1927,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (เฟิร์มแวร์ปลั๊กอินตัวดึงเข็มขัด)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>ลิงก์</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>เว็บไซต์ AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>เซิร์ฟเวอร์ Discord ของ AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>เว็บไซต์ Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>ผู้สนับสนุนระดับสูงสุด</value>
+  </data>
 </root>

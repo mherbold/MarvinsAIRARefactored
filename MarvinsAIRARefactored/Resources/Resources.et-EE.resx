@@ -1914,4 +1914,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (turvavööpinguti plugina püsivara)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Lingid</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>AdminBoxxi veebisait</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>AdminBoxxi Discordi server</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Xtreme Scoringi veebisait</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Megaannetajad</value>
+  </data>
 </root>

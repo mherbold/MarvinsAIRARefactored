@@ -15,7 +15,6 @@
 AppId={{49221926-0B97-4313-B82A-7ADD3B922AED}}
 AppName={#MyAppName}
 AppVersion={#MyAppVersion}
-;AppVerName={#MyAppName} {#MyAppVersion}
 AppPublisher={#MyAppPublisher}
 AppPublisherURL={#MyAppURL}
 AppSupportURL={#MyAppURL}
@@ -102,10 +101,182 @@ Type: files; Name: "{userstartup}\MarvinsAIRA Refactored.lnk"
 var
   GSimHubRoot: string;
   GSimHubExe:  string;
+  GRunningSimHubExe: string;   // exe path captured from the live process (most reliable)
+  GSimHubWasRunning: Boolean;  // restart SimHub after install/uninstall if we closed it
 
 function DirExistsAndHasSimHubExe(const Dir: string): Boolean;
 begin
   Result := FileExists(AddBackslash(Dir) + 'SimHubWPF.exe');
+end;
+
+// ---------------------------------------------------------------------------
+// SimHub process detection and shutdown.
+// Setup replaces plugin DLLs inside the SimHub folder, so SimHub must not be
+// running while files are copied. SimHub hides to the tray and ignores
+// graceful close requests, so Inno's CloseApplications/Restart Manager
+// cannot be relied on for it.
+// ---------------------------------------------------------------------------
+
+// Returns True if SimHubWPF.exe is running; ExePath gets its full path when
+// WMI can provide it (empty otherwise).
+function DetectRunningSimHub(var ExePath: string): Boolean;
+var
+  WbemLocator, WbemServices, ProcList, Proc: Variant;
+  ResultCode: Integer;
+begin
+  Result := False;
+  ExePath := '';
+
+  // Primary: WMI — also yields the exact executable path
+  try
+    WbemLocator := CreateOleObject('WbemScripting.SWbemLocator');
+    WbemServices := WbemLocator.ConnectServer('.', 'root\CIMV2');
+    ProcList := WbemServices.ExecQuery('SELECT ExecutablePath FROM Win32_Process WHERE Name = ''SimHubWPF.exe''');
+    if ProcList.Count > 0 then
+    begin
+      Result := True;
+      try
+        Proc := ProcList.ItemIndex(0);
+        ExePath := Proc.ExecutablePath;
+      except
+        ExePath := '';  // ExecutablePath can be null (e.g. access denied)
+      end;
+    end;
+    Exit;
+  except
+    Log('WMI process query failed; falling back to tasklist.');
+  end;
+
+  // Fallback: tasklist + find (exit code 0 = process found)
+  if Exec(ExpandConstant('{cmd}'),
+          '/C tasklist /NH /FI "IMAGENAME eq SimHubWPF.exe" | find /I "SimHubWPF.exe" >nul',
+          '', SW_HIDE, ewWaitUntilTerminated, ResultCode) then
+    Result := (ResultCode = 0);
+end;
+
+// Polls until SimHub is gone or the timeout elapses. True = it exited.
+function WaitForSimHubToExit(TimeoutMs: Integer): Boolean;
+var
+  Elapsed: Integer;
+  Dummy: string;
+begin
+  Elapsed := 0;
+  while DetectRunningSimHub(Dummy) do
+  begin
+    if Elapsed >= TimeoutMs then
+    begin
+      Result := False;
+      Exit;
+    end;
+    Sleep(500);
+    Elapsed := Elapsed + 500;
+  end;
+  Result := True;
+end;
+
+procedure TaskKillSimHub(Force: Boolean);
+var
+  Params: string;
+  ResultCode: Integer;
+begin
+  if Force then
+    Params := '/F /T /IM SimHubWPF.exe'
+  else
+    Params := '/IM SimHubWPF.exe';
+  Exec(ExpandConstant('{sys}\taskkill.exe'), Params, '', SW_HIDE, ewWaitUntilTerminated, ResultCode);
+  Log(Format('taskkill %s -> exit code %d', [Params, ResultCode]));
+end;
+
+// Closes SimHub: graceful first, then force, then ask the user to intervene.
+// Returns False only if the user cancels.
+function EnsureSimHubClosed: Boolean;
+begin
+  Result := True;
+
+  repeat
+    Log('Asking SimHub to close gracefully...');
+    TaskKillSimHub(False);
+    if WaitForSimHubToExit(5000) then Break;
+
+    Log('Graceful close failed; force-terminating SimHub...');
+    TaskKillSimHub(True);
+    if WaitForSimHubToExit(5000) then Break;
+
+    // Still running — e.g. SimHub is elevated and we are not. Let the user close it.
+    if MsgBox('SimHub must be closed so its plugins can be updated, but it could not be closed automatically.'#13#10#13#10
+              + 'Please close SimHub manually (check the system tray), then click Retry.',
+              mbError, MB_RETRYCANCEL) = IDCANCEL then
+    begin
+      Result := False;
+      Exit;
+    end;
+  until False;
+
+  Log('SimHub is closed.');
+end;
+
+procedure RestartSimHubIfItWasRunning;
+var
+  ExeToStart: string;
+  ResultCode: Integer;
+begin
+  if not GSimHubWasRunning then
+    Exit;
+
+  ExeToStart := GRunningSimHubExe;
+  if (ExeToStart = '') or not FileExists(ExeToStart) then
+    ExeToStart := GSimHubExe;
+
+  if (ExeToStart <> '') and FileExists(ExeToStart) then
+  begin
+    Log('Restarting SimHub: ' + ExeToStart);
+    ExecAsOriginalUser(ExeToStart, '', ExtractFileDir(ExeToStart), SW_SHOWNORMAL, ewNoWait, ResultCode);
+  end
+  else
+    Log('SimHub was running but its exe could not be resolved; not restarting it.');
+end;
+
+function PrepareToInstall(var NeedsRestart: Boolean): String;
+begin
+  Result := '';
+
+  GSimHubWasRunning := DetectRunningSimHub(GRunningSimHubExe);
+  if not GSimHubWasRunning then
+  begin
+    Log('SimHub is not running.');
+    Exit;
+  end;
+
+  if GRunningSimHubExe <> '' then
+    Log('SimHub is running from: ' + GRunningSimHubExe)
+  else
+    Log('SimHub is running (path unknown).');
+
+  if not EnsureSimHubClosed then
+    Result := 'Setup cannot continue while SimHub is running.';
+end;
+
+procedure CurStepChanged(CurStep: TSetupStep);
+begin
+  if CurStep = ssPostInstall then
+    RestartSimHubIfItWasRunning;
+end;
+
+// The uninstaller deletes the plugin DLLs from the SimHub folder, so SimHub
+// must be closed then too.
+function InitializeUninstall(): Boolean;
+begin
+  Result := True;
+
+  GSimHubWasRunning := DetectRunningSimHub(GRunningSimHubExe);
+  if GSimHubWasRunning then
+    Result := EnsureSimHubClosed;
+end;
+
+procedure CurUninstallStepChanged(CurUninstallStep: TUninstallStep);
+begin
+  if CurUninstallStep = usPostUninstall then
+    RestartSimHubIfItWasRunning;
 end;
 
 function TryCheckKeyForPath(RootKey: Integer; const SubKey: string; var OutDir: string): Boolean;
@@ -152,67 +323,65 @@ end;
 
 function TryFindSimHubDirFromUninstall(var Dir: string): Boolean;
 var
-  RootKeys: array[0..1] of Integer;
-  BaseKeys: array[0..1] of String;
-  I, B, J: Integer;
-  UninstKey, SubKey: string;
+  RootKeys: array[0..2] of Integer;
+  BaseKeys: array[0..2] of String;
+  I, J: Integer;
+  SubKey: string;
   SubKeys: TArrayOfString;
 begin
   Result := False;
 
+  // SimHub is a 32-bit per-machine Inno install, so it normally registers under
+  // the HKLM WOW6432Node view; the other views cover unusual setups. (HKCU has
+  // no WOW6432Node view — per-user installs write straight to Software.)
   RootKeys[0] := HKEY_LOCAL_MACHINE;
-  RootKeys[1] := HKEY_CURRENT_USER;
-
-  // Enumerate both 64-bit and WOW6432 uninstall views explicitly
-  BaseKeys[0] := 'Software\Microsoft\Windows\CurrentVersion\Uninstall';
-  BaseKeys[1] := 'Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall';
+  BaseKeys[0] := 'Software\WOW6432Node\Microsoft\Windows\CurrentVersion\Uninstall';
+  RootKeys[1] := HKEY_LOCAL_MACHINE;
+  BaseKeys[1] := 'Software\Microsoft\Windows\CurrentVersion\Uninstall';
+  RootKeys[2] := HKEY_CURRENT_USER;
+  BaseKeys[2] := 'Software\Microsoft\Windows\CurrentVersion\Uninstall';
 
   // Fast path: SimHub's typical Inno key name
   for I := 0 to High(RootKeys) do
-    for B := 0 to High(BaseKeys) do
+  begin
+    SubKey := BaseKeys[I] + '\SimHub_is1';
+    Log('Checking direct key: ' + SubKey);
+    if TryCheckKeyForPath(RootKeys[I], SubKey, Dir) then
     begin
-      UninstKey := BaseKeys[B] + '\SimHub_is1';
-      Log('Checking direct key: ' + UninstKey);
-      if TryCheckKeyForPath(RootKeys[I], UninstKey, Dir) then
-      begin
-        Result := True;
-        Exit;
-      end;
+      Result := True;
+      Exit;
     end;
+  end;
 
   // Fallback: enumerate all uninstall subkeys looking for DisplayName containing "SimHub"
   for I := 0 to High(RootKeys) do
-    for B := 0 to High(BaseKeys) do
-    begin
-      UninstKey := BaseKeys[B];
-      Log('Enumerating uninstall key: ' + UninstKey);
+  begin
+    Log('Enumerating uninstall key: ' + BaseKeys[I]);
 
-      if RegGetSubkeyNames(RootKeys[I], UninstKey, SubKeys) then
+    if RegGetSubkeyNames(RootKeys[I], BaseKeys[I], SubKeys) then
+    begin
+      for J := 0 to GetArrayLength(SubKeys) - 1 do
       begin
-        for J := 0 to GetArrayLength(SubKeys) - 1 do
+        SubKey := BaseKeys[I] + '\' + SubKeys[J];
+        if TryCheckKeyForPath(RootKeys[I], SubKey, Dir) then
         begin
-          SubKey := UninstKey + '\' + SubKeys[J];
-          if TryCheckKeyForPath(RootKeys[I], SubKey, Dir) then
-          begin
-            Result := True;
-            Exit;
-          end;
+          Result := True;
+          Exit;
         end;
-      end
-      else
-        Log('No subkeys under ' + UninstKey + ' or access denied');
-    end;
+      end;
+    end
+    else
+      Log('No subkeys under ' + BaseKeys[I] + ' or access denied');
+  end;
 end;
 
 function TryFindSimHubInCommonLocations(var Dir: string): Boolean;
 var
-  Candidates: array[0..3] of String;
+  Candidates: array[0..1] of String;
   K: Integer;
 begin
-  Candidates[0] := 'C:\Program Files (x86)\SimHub';
-  Candidates[1] := 'C:\Program Files\SimHub';
-  Candidates[2] := ExpandConstant('{pf32}\SimHub');
-  Candidates[3] := ExpandConstant('{pf}\SimHub');
+  Candidates[0] := ExpandConstant('{pf32}\SimHub');
+  Candidates[1] := ExpandConstant('{pf}\SimHub');
 
   for K := 0 to High(Candidates) do
   begin
@@ -234,28 +403,25 @@ begin
   if GSimHubRoot = '' then
   begin
     Log('Starting SimHub detection...');
-    if TryFindSimHubDirFromUninstall(GSimHubRoot) then
+    if (GRunningSimHubExe <> '') and DirExistsAndHasSimHubExe(ExtractFileDir(GRunningSimHubExe)) then
+    begin
+      GSimHubRoot := ExtractFileDir(GRunningSimHubExe);
+      Log('SimHub found via its running process at: ' + GSimHubRoot);
+    end
+    else if TryFindSimHubDirFromUninstall(GSimHubRoot) then
       Log('SimHub found via uninstall registry at: ' + GSimHubRoot)
     else if TryFindSimHubInCommonLocations(GSimHubRoot) then
       Log('SimHub found via common locations at: ' + GSimHubRoot)
     else
       Log('SimHub NOT found; using fallback folder.');
 
+    // Every detection path above verified SimHubWPF.exe exists in the folder
     if GSimHubRoot <> '' then
     begin
-      if DirExistsAndHasSimHubExe(GSimHubRoot) then
-      begin
-        GSimHubExe := AddBackslash(GSimHubRoot) + 'SimHubWPF.exe';
-        Log('SimHub exe resolved to: ' + GSimHubExe);
-      end
-      else
-      begin
-        Log('Warning: Chosen SimHubRoot does not contain SimHubWPF.exe, switching to fallback.');
-        GSimHubRoot := '';
-      end;
-    end;
-
-    if GSimHubRoot = '' then
+      GSimHubExe := AddBackslash(GSimHubRoot) + 'SimHubWPF.exe';
+      Log('SimHub exe resolved to: ' + GSimHubExe);
+    end
+    else
     begin
       // Silent fallback (no UI) — still place the DLL somewhere predictable
       GSimHubRoot := ExpandConstant('{userdocs}\MarvinsAIRA Refactored\SimHub Plugin');
@@ -266,10 +432,4 @@ begin
   end;
 
   Result := GSimHubRoot;
-end;
-
-// Optional helper if you ever want to reference it in [Run]
-function SimHubExe(Param: string): string;
-begin
-  Result := GSimHubExe;
 end;

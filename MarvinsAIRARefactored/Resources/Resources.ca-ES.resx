@@ -1927,4 +1927,19 @@
   <data name="GTensionerDeviceSimHubDiyLegacy" xml:space="preserve">
     <value>SimHub DIY (firmware del connector del tensor del cinturó)</value>
   </data>
+  <data name="Links" xml:space="preserve">
+    <value>Enllaços</value>
+  </data>
+  <data name="AdminBoxxWebsite" xml:space="preserve">
+    <value>Lloc web d'AdminBoxx</value>
+  </data>
+  <data name="AdminBoxxDiscordServer" xml:space="preserve">
+    <value>Servidor de Discord d'AdminBoxx</value>
+  </data>
+  <data name="XtremeScoringWebsite" xml:space="preserve">
+    <value>Lloc web de Xtreme Scoring</value>
+  </data>
+  <data name="MegaDonors" xml:space="preserve">
+    <value>Megadonants</value>
+  </data>
 </root>

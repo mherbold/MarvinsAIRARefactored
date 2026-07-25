@@ -94,6 +94,8 @@ public class GTensioner
 	private readonly GTensionerGraph _leftShoulderGraph = new();
 	private readonly GTensionerGraph _rightShoulderGraph = new();
 
+	private bool _deviceScanAttempted = false;
+
 	private int _updateCounter = UpdateInterval + 2;
 	private int _lastSentLeftTenths = -1;
 	private int _lastSentRightTenths = -1;
@@ -220,8 +222,6 @@ public class GTensioner
 
 		CreateUsbSerialPortHelper();
 
-		_usbSerialPortHelper.Initialize();
-
 		var sbtPage = MainWindow._gTensionerPage;
 
 		_surgeGraph.Initialize( sbtPage.SurgeGraph_Image, 1f, 0.08f, 0.58f );
@@ -230,20 +230,6 @@ public class GTensioner
 
 		_leftShoulderGraph.Initialize( sbtPage.LeftShoulderGraph_Image, 0f, 0f, 1f );
 		_rightShoulderGraph.Initialize( sbtPage.RightShoulderGraph_Image, 1f, 0f, 0f );
-
-		if ( !_usbSerialPortHelper.DeviceFound )
-		{
-			app.Logger.WriteLine( "[GTensioner] Device not found - disabling GTensionerEnabled" );
-
-			var localization = DataContext.DataContext.Instance.Localization;
-
-			app.Dispatcher.Invoke( () =>
-			{
-				MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsEnabled = false;
-				MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
-				MainWindow._gTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
-			} );
-		}
 
 		app.Logger.WriteLine( "[GTensioner] <<< Initialize" );
 	}
@@ -259,11 +245,15 @@ public class GTensioner
 		app.Logger.WriteLine( "[GTensioner] <<< Shutdown" );
 	}
 
-	public void RetryDevice()
+	// The serial port device scan is slow (WMI enumeration plus handshake probes), so it does not run at
+	// startup - it runs lazily on the first Connect() and on demand from the retry button on the page.
+	public void ScanForDevice()
 	{
 		var app = App.Instance!;
 
-		app.Logger.WriteLine( "[GTensioner] RetryDevice >>>" );
+		app.Logger.WriteLine( "[GTensioner] ScanForDevice >>>" );
+
+		_deviceScanAttempted = true;
 
 		_usbSerialPortHelper.Initialize();
 
@@ -277,11 +267,13 @@ public class GTensioner
 			}
 			else
 			{
+				MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsEnabled = false;
 				MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = _usbSerialPortHelper.LastErrorMessage;
+				MainWindow._gTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
 			}
 		} );
 
-		app.Logger.WriteLine( "[GTensioner] <<< RetryDevice" );
+		app.Logger.WriteLine( "[GTensioner] <<< ScanForDevice" );
 	}
 
 	public void OnDeviceTypeChanged()
@@ -309,25 +301,7 @@ public class GTensioner
 		{
 			CreateUsbSerialPortHelper();
 
-			_usbSerialPortHelper.Initialize();
-
-			app.Dispatcher.Invoke( () =>
-			{
-				var localization = DataContext.DataContext.Instance.Localization;
-
-				if ( _usbSerialPortHelper.DeviceFound )
-				{
-					MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsEnabled = true;
-					MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = string.Empty;
-					MainWindow._gTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Collapsed;
-				}
-				else
-				{
-					MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.IsEnabled = false;
-					MainWindow._gTensionerPage.ConnectToGt_MairaSwitch.ErrorMessage = localization[ "DeviceNotFound" ];
-					MainWindow._gTensionerPage.RetryDevice_MairaButton.Visibility = System.Windows.Visibility.Visible;
-				}
-			} );
+			ScanForDevice();
 		} );
 
 		app.Logger.WriteLine( "[GTensioner] <<< OnDeviceTypeChanged" );
@@ -338,6 +312,11 @@ public class GTensioner
 		var app = App.Instance!;
 
 		app.Logger.WriteLine( "[GTensioner] Connect >>>" );
+
+		if ( !_deviceScanAttempted )
+		{
+			ScanForDevice();
+		}
 
 		IsConnected = _usbSerialPortHelper.Open();
 
