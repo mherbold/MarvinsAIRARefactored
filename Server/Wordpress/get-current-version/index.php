@@ -151,7 +151,10 @@ function fetch_latest_release(): array
 
 	if ( ( $downloadUrl === '' ) && ( $currentVersion !== '' ) )
 	{
-		$downloadUrl = 'https://github.com/' . GH_REPO . "/releases/download/$currentVersion/MarvinsAIRARefactored-Setup-$currentVersion.exe";
+		// releases before the 2.1 naming change shipped the installer as MarvinsAIRARefactored-Setup-*.exe
+		$installerName = version_compare( $currentVersion, '2.1', '>=' ) ? "MAIRA-Setup-$currentVersion.exe" : "MarvinsAIRARefactored-Setup-$currentVersion.exe";
+
+		$downloadUrl = 'https://github.com/' . GH_REPO . "/releases/download/$currentVersion/$installerName";
 	}
 
 	// changeLog carries the raw GitHub release body (proper markdown) so the client can render

@@ -28,7 +28,9 @@ public class Misc
 	{
 		var systemVersion = Assembly.GetExecutingAssembly().GetName().Version;
 
-		return systemVersion?.ToString() ?? string.Empty;
+		// the version scheme is three-part (2.1.[buildStamp]) but assembly versions are always stored
+		// four-part with a zero appended - report only the three real fields
+		return systemVersion?.ToString( 3 ) ?? string.Empty;
 	}
 
 	// Asks Windows whether now is a good time to show the user something. Returns true only when the

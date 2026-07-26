@@ -368,4 +368,4 @@ The wizard's FFB style step no longer picks an algorithm. Its 7-position slider 
 - Bind a couple of module knobs to buttons and adjust while driving.
 - Export a graph, send it to another tester, and have them import it.
 
-Report anything odd (with your `Logs` folder from `Documents\MarvinsAIRA Refactored`) through the usual channels. Thank you for testing!
+Report anything odd (with your `Logs` folder from `Documents\MAIRA`) through the usual channels. Thank you for testing!

@@ -21,7 +21,10 @@ public partial class App : Application
 {
 #if !ADMINBOXX
 
-	public const string AppName = "MarvinsAIRA Refactored";
+	public const string AppName = "MAIRA";
+
+	// the documents folder's name before the "Refactored" naming was retired - see MigrateLegacyDocumentsFolder
+	private const string LegacyAppName = "MarvinsAIRA Refactored";
 
 #else
 
@@ -37,6 +40,81 @@ public partial class App : Application
 	{
 		return Path.GetDirectoryName( callerFile ) ?? string.Empty;
 	}
+
+	private static string? _documentsFolderMigrationMessage = null;
+
+	// The documents folder was renamed from "MarvinsAIRA Refactored" to "MAIRA" when the "Refactored" naming
+	// was retired. The installer normally renames the old folder before it copies any files, but handle it
+	// here too for the cases it can't cover (dev builds, or a rename the installer couldn't complete because
+	// something in the folder was locked). Runs before the logger exists, so the outcome is stashed in
+	// _documentsFolderMigrationMessage and logged once the logger is up. Never throws - a failed migration
+	// must not stop the app from starting.
+	private static void MigrateLegacyDocumentsFolder()
+	{
+#if !ADMINBOXX
+		try
+		{
+			var legacyFolder = Path.Combine( Environment.GetFolderPath( Environment.SpecialFolder.MyDocuments ), LegacyAppName );
+
+			if ( !Directory.Exists( legacyFolder ) )
+			{
+				return;
+			}
+
+			if ( !Directory.Exists( DocumentsFolder ) )
+			{
+				Directory.Move( legacyFolder, DocumentsFolder );
+
+				_documentsFolderMigrationMessage = $"Renamed the documents folder from '{legacyFolder}' to '{DocumentsFolder}'";
+			}
+			else
+			{
+				// both folders exist (e.g. the installer's rename was blocked but it still deployed the default
+				// assets into the new folder) - move everything across, preferring the old folder's copy on a
+				// name collision (anything already in the new folder is a freshly installed default, while the
+				// old folder holds the user's data), then remove whatever empty old directories remain
+				MergeMoveDirectory( legacyFolder, DocumentsFolder );
+
+				_documentsFolderMigrationMessage = $"Merged the old documents folder '{legacyFolder}' into '{DocumentsFolder}'";
+			}
+		}
+		catch ( Exception exception )
+		{
+			_documentsFolderMigrationMessage = $"Documents folder migration failed: {exception.Message.Trim()}";
+		}
+#endif
+	}
+
+#if !ADMINBOXX
+
+	private static void MergeMoveDirectory( string sourceFolder, string targetFolder )
+	{
+		Directory.CreateDirectory( targetFolder );
+
+		foreach ( var sourceFilePath in Directory.GetFiles( sourceFolder ) )
+		{
+			try
+			{
+				File.Move( sourceFilePath, Path.Combine( targetFolder, Path.GetFileName( sourceFilePath ) ), overwrite: true );
+			}
+			catch ( Exception )
+			{
+				// a locked file stays behind in the old folder and is retried on the next launch
+			}
+		}
+
+		foreach ( var sourceSubFolder in Directory.GetDirectories( sourceFolder ) )
+		{
+			MergeMoveDirectory( sourceSubFolder, Path.Combine( targetFolder, Path.GetFileName( sourceSubFolder ) ) );
+		}
+
+		if ( Directory.GetFileSystemEntries( sourceFolder ).Length == 0 )
+		{
+			Directory.Delete( sourceFolder );
+		}
+	}
+
+#endif
 
 	private static bool IsInDesignMode => System.ComponentModel.DesignerProperties.GetIsInDesignMode( new DependencyObject() );
 
@@ -210,9 +288,17 @@ public partial class App : Application
 			return;
 		}
 
+		// must run before the logger comes up - the log files live inside the documents folder
+		MigrateLegacyDocumentsFolder();
+
 		Logger = new();
 
 		Logger.Initialize();
+
+		if ( _documentsFolderMigrationMessage != null )
+		{
+			Logger.WriteLine( $"[App] {_documentsFolderMigrationMessage}" );
+		}
 
 		// Mirror every window's layout for right-to-left languages. Registered before any window is
 		// shown so the splash screen and all dialogs/overlays pick it up automatically.

@@ -2,7 +2,7 @@
 
 ## Project Overview
 
-**MarvinsAIRA Refactored** (v2.0) is a Windows desktop application written in **C# 13 / .NET 9** using **WPF** (Windows Presentation Foundation). It is a sim-racing companion tool for **iRacing** that provides advanced force-feedback processing, steering effects, pedal haptics, hardware integrations, and various overlays. A **game bridge** feeds telemetry from other simulators (Le Mans Ultimate, rFactor 2, the Assetto Corsa family, RaceRoom) into the same iRacing-native pipeline.
+**MAIRA** (v2.1, "Marvin's Awesome iRacing App" — the repo keeps its historical `MarvinsAIRARefactored` name) is a Windows desktop application written in **C# 13 / .NET 9** using **WPF** (Windows Presentation Foundation). It is a sim-racing companion tool for **iRacing** that provides advanced force-feedback processing, steering effects, pedal haptics, hardware integrations, and various overlays. A **game bridge** feeds telemetry from other simulators (Le Mans Ultimate, rFactor 2, the Assetto Corsa family, RaceRoom) into the same iRacing-native pipeline.
 
 The project has a second build target called **AdminBoxx**, controlled via the `ADMINBOXX` preprocessor constant. When `ADMINBOXX` is defined, many features are disabled and the app runs as a simpler hardware-controller utility.
 
@@ -80,7 +80,7 @@ $sln = "C:\Users\marvi\OneDrive\Documents\GitHub\MarvinsAIRARefactored\MarvinsAI
 A clean build exits with code 0. The post-build `xcopy` steps use the `/D` flag and will report "0 File(s) copied" when the destination is already up to date — this is normal, not an error.
 
 ### Post-Build Events
-The post-build step copies several asset folders (sounds, recordings, calibration files, STT files, SBT files) to the user's `My Documents\MarvinsAIRA Refactored\` folder using `xcopy`.
+The post-build step copies several asset folders (sounds, recordings, calibration files, STT files, SBT files) to the user's `My Documents\MAIRA\` folder using `xcopy`.
 
 ---
 
