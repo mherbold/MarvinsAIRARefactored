@@ -2408,4 +2408,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Show pinned settings</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B switch</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Use input B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Passes either input A or input B straight through, chosen by the switch — flip it to compare two signal paths instantly.</value>
+  </data>
 </root>

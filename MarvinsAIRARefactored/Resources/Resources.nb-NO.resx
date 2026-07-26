@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Vis festede innstillinger</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B-bryter</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Bruk inngang B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Slipper enten inngang A eller inngang B uendret gjennom, avhengig av bryterens stilling — bytt for å sammenligne to signalveier umiddelbart.</value>
+  </data>
 </root>

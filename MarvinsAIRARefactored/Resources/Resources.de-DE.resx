@@ -2413,4 +2413,13 @@ Hier ist der Link zum Spenden:</value>
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Angepinnte Einstellungen anzeigen</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B-Umschalter</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Eingang B verwenden</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Leitet je nach Schalterstellung entweder Eingang A oder Eingang B unverändert durch — einfach umschalten, um zwei Signalwege sofort zu vergleichen.</value>
+  </data>
 </root>

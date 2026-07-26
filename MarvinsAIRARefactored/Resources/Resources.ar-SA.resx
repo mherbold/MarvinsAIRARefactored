@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>إظهار الإعدادات المثبتة</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>مفتاح A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>استخدام الدخل B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>يمرر الدخل A أو الدخل B كما هو، حسب وضع المفتاح — بدّل للمقارنة الفورية بين مسارَي إشارة.</value>
+  </data>
 </root>

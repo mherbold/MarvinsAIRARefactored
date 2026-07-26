@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>고정된 설정 표시</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B 전환</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>입력 B 사용</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>스위치 상태에 따라 입력 A 또는 입력 B를 그대로 통과시킵니다 — 전환하여 두 신호 경로를 즉시 비교할 수 있습니다.</value>
+  </data>
 </root>

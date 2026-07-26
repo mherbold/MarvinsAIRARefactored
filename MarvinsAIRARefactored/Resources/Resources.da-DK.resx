@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Vis fastgjorte indstillinger</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B-omskifter</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Brug indgang B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Sender enten indgang A eller indgang B uændret igennem afhængigt af kontaktens stilling — skift for straks at sammenligne to signalveje.</value>
+  </data>
 </root>

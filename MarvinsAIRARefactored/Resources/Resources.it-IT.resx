@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Mostra le impostazioni fissate</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>Selettore A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Usa l'ingresso B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Lascia passare inalterato l'ingresso A o l'ingresso B, in base alla posizione dell'interruttore — commuta per confrontare all'istante due percorsi del segnale.</value>
+  </data>
 </root>

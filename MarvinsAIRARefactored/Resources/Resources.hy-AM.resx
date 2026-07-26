@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Ցուցադրել ամրացված կարգավորումները</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B փոխարկիչ</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Օգտագործել B մուտքը</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Փոխարկիչի դիրքից կախված անփոփոխ փոխանցում է կամ A մուտքը, կամ B մուտքը — փոխարկեք՝ երկու ազդանշանային ուղիներն անմիջապես համեմատելու համար:</value>
+  </data>
 </root>

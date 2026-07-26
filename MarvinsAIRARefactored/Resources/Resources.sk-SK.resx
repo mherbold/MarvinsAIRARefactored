@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Zobraziť pripnuté nastavenia</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>Prepínač A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Použiť vstup B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Prepúšťa bez zmeny buď vstup A, alebo vstup B podľa polohy prepínača — prepnutím okamžite porovnáte dve cesty signálu.</value>
+  </data>
 </root>

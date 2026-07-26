@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Rögzített beállítások megjelenítése</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B kapcsoló</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>B bemenet használata</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>A kapcsoló állásától függően az A vagy a B bemenetet engedi át változatlanul — átkapcsolva azonnal összehasonlíthat két jelutat.</value>
+  </data>
 </root>

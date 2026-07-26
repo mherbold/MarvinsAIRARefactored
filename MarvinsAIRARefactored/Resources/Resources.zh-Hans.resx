@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>显示固定的设置</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B 切换</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>使用输入 B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>根据开关位置原样输出输入 A 或输入 B — 切换开关即可立即对比两条信号路径。</value>
+  </data>
 </root>

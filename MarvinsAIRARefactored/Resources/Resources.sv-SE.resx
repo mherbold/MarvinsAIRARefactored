@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Visa fästa inställningar</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B-omkopplare</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Använd ingång B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Släpper igenom antingen ingång A eller ingång B oförändrad beroende på omkopplarens läge — växla för att direkt jämföra två signalvägar.</value>
+  </data>
 </root>

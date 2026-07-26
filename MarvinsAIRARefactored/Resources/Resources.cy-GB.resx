@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Dangos y gosodiadau wedi'u pinio</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>Switsh A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Defnyddio mewnbwn B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Yn pasio naill ai mewnbwn A neu fewnbwn B drwodd heb ei newid, yn ôl safle'r switsh — newidiwch i gymharu dau lwybr signal ar unwaith.</value>
+  </data>
 </root>

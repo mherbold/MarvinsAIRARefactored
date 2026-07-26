@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Näytä kiinnitetyt asetukset</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B-kytkin</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Käytä tuloa B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Päästää joko tulon A tai tulon B läpi muuttumattomana kytkimen asennon mukaan — vaihda vertaillaksesi kahta signaalireittiä välittömästi.</value>
+  </data>
 </root>

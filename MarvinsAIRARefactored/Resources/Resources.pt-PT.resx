@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Mostrar as definições afixadas</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>Comutador A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Usar a entrada B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Deixa passar sem alterações a entrada A ou a entrada B, consoante a posição do comutador — alterne para comparar de imediato dois caminhos de sinal.</value>
+  </data>
 </root>

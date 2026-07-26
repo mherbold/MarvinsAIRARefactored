@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>הצג הגדרות מוצמדות</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>מתג A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>השתמש בכניסה B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>מעביר ללא שינוי את כניסה A או את כניסה B, בהתאם למצב המתג — החליפו כדי להשוות מיד בין שני נתיבי אות.</value>
+  </data>
 </root>

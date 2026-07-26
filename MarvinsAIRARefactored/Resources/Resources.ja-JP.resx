@@ -2413,4 +2413,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>ピン留めした設定を表示</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B切り替え</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>入力Bを使用</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>スイッチの状態に応じて入力Aまたは入力Bをそのまま通します — 切り替えるだけで2つの信号経路を即座に比較できます。</value>
+  </data>
 </root>

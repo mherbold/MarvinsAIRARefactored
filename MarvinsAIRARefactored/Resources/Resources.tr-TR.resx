@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Sabitlenmiş ayarları göster</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B anahtarı</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>B girişini kullan</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Anahtarın konumuna göre A girişini veya B girişini olduğu gibi geçirir — iki sinyal yolunu anında karşılaştırmak için anahtarı değiştirin.</value>
+  </data>
 </root>

@@ -97,7 +97,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.1</float>
+              <float>1</float>
             </value>
           </item>
         </SettingValues>
@@ -343,7 +343,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.1</float>
+              <float>1</float>
             </value>
           </item>
         </SettingValues>
@@ -462,7 +462,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.05</float>
+              <float>0.5</float>
             </value>
           </item>
         </SettingValues>
@@ -529,7 +529,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.05</float>
+              <float>0.5</float>
             </value>
           </item>
         </SettingValues>
@@ -564,7 +564,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.05</float>
+              <float>0.5</float>
             </value>
           </item>
         </SettingValues>
@@ -607,7 +607,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.1</float>
+              <float>1</float>
             </value>
           </item>
         </SettingValues>
@@ -642,7 +642,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.05</float>
+              <float>0.5</float>
             </value>
           </item>
         </SettingValues>
@@ -685,7 +685,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.03</float>
+              <float>0.3</float>
             </value>
           </item>
         </SettingValues>
@@ -720,7 +720,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.01</float>
+              <float>0.1</float>
             </value>
           </item>
         </SettingValues>
@@ -755,7 +755,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.05</float>
+              <float>0.5</float>
             </value>
           </item>
         </SettingValues>
@@ -806,7 +806,7 @@
               <string>Strength</string>
             </key>
             <value>
-              <float>0.01</float>
+              <float>0.1</float>
             </value>
           </item>
         </SettingValues>

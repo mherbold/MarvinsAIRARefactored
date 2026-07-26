@@ -69,7 +69,8 @@ public sealed class SourceWheelVelocityModule : FFBModule
 /// <summary>
 /// Friction source: dry friction via a dragged stick point — the same model wheel firmwares use for their
 /// hardware friction effect. The module latches the wheel angle it is "stuck" at and pulls back toward it
-/// like a spring, saturating at Strength × MaxForce (Nm); when the wheel is turned more than StickRegion
+/// like a spring, saturating at the Strength setting (stored in physical Nm at the wheel — the breakaway /
+/// sliding friction torque); when the wheel is turned more than StickRegion
 /// degrees from the stick point, the point is dragged along at that distance. Turning steadily therefore
 /// feels like constant sliding friction, and at rest the wheel is held planted at the stick point. Because
 /// the model is driven by the wheel's POSITION (no differentiation, no velocity noise) and its torque is
@@ -143,8 +144,10 @@ public sealed class SourceFrictionModule : FFBModule
 		var leadDisplacement = ctx.SteeringWheelAngle + ctx.SteeringWheelVelocity * LeadSeconds - _stickPoint;
 
 		// negated: the angle is positive counterclockwise (like the output convention), and the spring must
-		// pull the wheel BACK toward the stick point
-		return -Math.Clamp( leadDisplacement / _stickRegionRad, -1f, 1f ) * _v[ Strength ] * ctx.MaxForce;
+		// pull the wheel BACK toward the stick point. Strength is physical Nm at the wheel; via WheelForce it
+		// becomes a normalized fraction, then MaxForce lifts it into the Nm main chain so the physical friction
+		// level survives the output normalization regardless of the max force setting
+		return -Math.Clamp( leadDisplacement / _stickRegionRad, -1f, 1f ) * ( _v[ Strength ] / ctx.WheelForce ) * ctx.MaxForce;
 	}
 }
 

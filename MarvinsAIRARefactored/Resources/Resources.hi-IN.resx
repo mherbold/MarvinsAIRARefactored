@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>पिन की गई सेटिंग्स दिखाएँ</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>A/B स्विच</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>इनपुट B उपयोग करें</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>स्विच की स्थिति के अनुसार इनपुट A या इनपुट B को ज्यों का त्यों आगे भेजता है — दो सिग्नल पथों की तुरंत तुलना करने के लिए स्विच बदलें।</value>
+  </data>
 </root>

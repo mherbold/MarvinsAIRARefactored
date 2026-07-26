@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Afișează setările fixate</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>Comutator A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Folosește intrarea B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Lasă să treacă nemodificată fie intrarea A, fie intrarea B, în funcție de poziția comutatorului — comută pentru a compara instantaneu două trasee de semnal.</value>
+  </data>
 </root>

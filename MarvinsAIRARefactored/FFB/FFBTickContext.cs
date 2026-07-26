@@ -44,6 +44,7 @@ public readonly struct FFBTickContext
 	public readonly float Torque360Hz;  // raw 360 Hz ST sample for this tick
 	public readonly FFBTorqueFrame TorqueFrame; // all six raw 360 Hz ST samples of this frame (see FFBTorqueFrame)
 	public readonly float MaxForce;      // RacingWheelMaxForce (Nm) — normalization divisor
+	public readonly float WheelForce;    // RacingWheelWheelForce (Nm) — physical torque of the wheel at full output; Nm-valued strength settings divide by this (floored at 0.1 so a bad value can't blow up)
 
 	// audio / LFE
 
@@ -101,6 +102,7 @@ public readonly struct FFBTickContext
 		float torque360Hz,
 		in FFBTorqueFrame torqueFrame,
 		float maxForce,
+		float wheelForce,
 		float lfeMagnitude,
 		float wheelPosition,
 		float wheelVelocity,
@@ -133,6 +135,7 @@ public readonly struct FFBTickContext
 		Torque360Hz = torque360Hz;
 		TorqueFrame = torqueFrame;
 		MaxForce = maxForce;
+		WheelForce = MathF.Max( 0.1f, wheelForce );
 		LFEMagnitude = lfeMagnitude;
 		WheelPosition = wheelPosition;
 		WheelVelocity = wheelVelocity;
@@ -196,6 +199,7 @@ public readonly struct FFBTickContext
 			torque360Hz: recordingData.InputTorque360Hz,
 			torqueFrame: in torqueFrame,
 			maxForce: maxForce,
+			wheelForce: settings.RacingWheelWheelForce,
 			lfeMagnitude: recordingData.LFEMagnitude,
 			wheelPosition: wheelPosition,
 			wheelVelocity: wheelVelocity,

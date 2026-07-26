@@ -20,30 +20,29 @@
 
         <converters:BooleanToVisibilityCollapsedConverter x:Key="BoolToVisibility" />
         <converters:FractionToStarGridLengthConverter x:Key="FractionToStarWidth" />
+        <converters:InverseScaleThicknessConverter x:Key="HairlineThickness" />
 
         <!-- Module-setting templates for the FFB graph editor cards. DataContext = FFBModuleSettingViewModel.
              Each control carries a tiny pin switch at its top-right (custom graphs only — built-ins ship a
              curated pinned set): pinning surfaces the setting in the quick-controls row above the editor. -->
 
-        <Style x:Key="FFBGraphPinSwitchStyle"
-               TargetType="controls:MairaSwitch">
-            <Setter Property="HorizontalAlignment"
-                    Value="Right" />
+        <!-- the pin affordance: a pin icon sitting inline right after the setting's label — gray when
+             unpinned, MAIRA orange when pinned -->
+        <Style x:Key="FFBGraphPinToggleStyle"
+               TargetType="controls:MairaPinToggle">
             <Setter Property="VerticalAlignment"
-                    Value="Top" />
+                    Value="Center" />
+            <Setter Property="Margin"
+                    Value="6,0,0,0" />
+            <Setter Property="IconSize"
+                    Value="20" />
             <Setter Property="ToolTip"
                     Value="{Binding Localization[PinSetting], Source={x:Static datacontext:DataContext.Instance}}" />
-            <Setter Property="LayoutTransform">
-                <Setter.Value>
-                    <ScaleTransform ScaleX="0.6"
-                                    ScaleY="0.6" />
-                </Setter.Value>
-            </Setter>
             <!-- visibility lives in the style (not a local attribute) so the trigger below can override it -->
             <Setter Property="Visibility"
                     Value="{Binding ShowPinSwitch, Converter={StaticResource BoolToVisibility}}" />
             <Style.Triggers>
-                <!-- never show the pin switch inside the quick-controls row itself — a basic user could
+                <!-- never show the pin toggle inside the quick-controls row itself — a basic user could
                      accidentally un-pin a control there and have no idea how to get it back (pinning is
                      managed from the module settings column only) -->
                 <DataTrigger Binding="{Binding Tag, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
@@ -54,9 +53,19 @@
             </Style.Triggers>
         </Style>
 
+        <!-- each setting template renders the label itself (with the pin toggle inline right after it) and
+             blanks the control's internal label — the controls collapse their own label row when it is
+             empty, so the visual stays the same apart from the pin's placement -->
         <DataTemplate x:Key="FFBGraphKnobTemplate">
-            <Grid Margin="20,0,20,20">
-                <controls:MairaKnob Label="{Binding Label}"
+            <StackPanel Margin="20,0,20,20">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Label}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               TextTrimming="CharacterEllipsis" />
+                    <controls:MairaPinToggle Style="{StaticResource FFBGraphPinToggleStyle}"
+                                             IsOn="{Binding IsPinned, Mode=TwoWay}" />
+                </StackPanel>
+                <controls:MairaKnob Label=""
                                     Value="{Binding Value, Mode=TwoWay}"
                                     ValueString="{Binding ValueString}"
                                     Minimum="{Binding Minimum}"
@@ -68,42 +77,53 @@
                                     ShowCurve="{Binding ShowCurve}"
                                     PlusButtonMappings="{Binding PlusButtonMappings}"
                                     MinusButtonMappings="{Binding MinusButtonMappings}" />
-                <controls:MairaSwitch Style="{StaticResource FFBGraphPinSwitchStyle}"
-                                      IsOn="{Binding IsPinned, Mode=TwoWay}" />
-            </Grid>
+            </StackPanel>
         </DataTemplate>
 
+        <!-- module switches are input-mappable like the knobs: right-click the checkbox to map a button that
+             flips it (stored per "{ModuleId}/{SettingKey}/Toggle" — see App.RebuildButtonMappingIndex) -->
         <DataTemplate x:Key="FFBGraphSwitchTemplate">
-            <Grid Margin="20,0,20,20">
-                <controls:MairaSwitch Label="{Binding Label}"
-                                      LabelPosition="Top"
-                                      IsOn="{Binding IsOn, Mode=TwoWay}" />
-                <controls:MairaSwitch Style="{StaticResource FFBGraphPinSwitchStyle}"
-                                      IsOn="{Binding IsPinned, Mode=TwoWay}" />
-            </Grid>
+            <StackPanel Margin="20,0,20,20">
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,0,0,5">
+                    <TextBlock Text="{Binding Label}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               TextTrimming="CharacterEllipsis" />
+                    <controls:MairaPinToggle Style="{StaticResource FFBGraphPinToggleStyle}"
+                                             IsOn="{Binding IsPinned, Mode=TwoWay}" />
+                </StackPanel>
+                <controls:MairaMappableSwitch IsOn="{Binding IsOn, Mode=TwoWay}"
+                                              ButtonMappings="{Binding ToggleButtonMappings}" />
+            </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="FFBGraphChoiceTemplate">
-            <Grid Margin="20,0,20,20">
-                <controls:MairaComboBox Label="{Binding Label}"
+            <StackPanel Margin="20,0,20,20">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="{Binding Label}"
+                               Style="{StaticResource MairaTextBlockStyle}"
+                               TextTrimming="CharacterEllipsis" />
+                    <controls:MairaPinToggle Style="{StaticResource FFBGraphPinToggleStyle}"
+                                             IsOn="{Binding IsPinned, Mode=TwoWay}" />
+                </StackPanel>
+                <controls:MairaComboBox Label=""
                                         ItemsSource="{Binding ChoiceOptions}"
                                         SelectedValue="{Binding ChoiceIndex, Mode=TwoWay}" />
-                <controls:MairaSwitch Style="{StaticResource FFBGraphPinSwitchStyle}"
-                                      IsOn="{Binding IsPinned, Mode=TwoWay}" />
-            </Grid>
+            </StackPanel>
         </DataTemplate>
 
         <DataTemplate x:Key="FFBGraphSpacerTemplate">
             <Border />
         </DataTemplate>
 
-        <!-- a pinned module Enabled toggle in the quick controls — the switch is the same Enabled state as
-             the module card's header switch (DataContext = FFBPinnedEnabledViewModel) -->
+        <!-- a pinned module Enabled toggle in the quick controls — the switch is the same Enabled state (and
+             the same input mapping) as the module card's header switch (DataContext = FFBPinnedEnabledViewModel) -->
         <DataTemplate x:Key="FFBGraphEnabledTemplate">
             <Grid Margin="20,0,20,20">
-                <controls:MairaSwitch Label="{Binding Label}"
-                                      LabelPosition="Top"
-                                      IsOn="{Binding Module.Enabled, Mode=TwoWay}" />
+                <controls:MairaMappableSwitch Label="{Binding Label}"
+                                              LabelPosition="Top"
+                                              IsOn="{Binding Module.Enabled, Mode=TwoWay}"
+                                              ButtonMappings="{Binding Module.EnabledToggleButtonMappings}" />
             </Grid>
         </DataTemplate>
 
@@ -137,11 +157,14 @@
                         <RowDefinition Height="Auto" />
                     </Grid.RowDefinitions>
 
-                    <controls:MairaSwitch Grid.Row="0"
-                                          Grid.Column="0"
-                                          IsOn="{Binding Enabled, Mode=TwoWay}"
-                                          VerticalAlignment="Center"
-                                          Visibility="{Binding CanToggleEnabled, Converter={StaticResource BoolToVisibility}}" />
+                    <!-- input-mappable like the module setting switches: right-click to map a button that flips
+                         the whole effect on/off (stored under the reserved "Enabled" key) -->
+                    <controls:MairaMappableSwitch Grid.Row="0"
+                                                  Grid.Column="0"
+                                                  IsOn="{Binding Enabled, Mode=TwoWay}"
+                                                  ButtonMappings="{Binding EnabledToggleButtonMappings}"
+                                                  VerticalAlignment="Center"
+                                                  Visibility="{Binding CanToggleEnabled, Converter={StaticResource BoolToVisibility}}" />
 
                     <TextBlock Grid.Row="0"
                                Grid.Column="1"
@@ -167,24 +190,24 @@
                          Generator tests shake the physical wheel, so they gray out while off track (the wheel's
                          FFB fades out there). Removing a module happens via the minus button on the node
                          graph's corner toolbar. -->
-                    <controls:MairaButton Grid.Column="2"
+                    <controls:MairaButton Grid.Column="3"
                                           Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/vibrate.png"
                                           IsSmall="True"
                                           HighlightIcon="{Binding IsTestActive}"
                                           Disabled="{Binding TestDisabled}"
                                           Tag="{Binding}"
                                           Margin="10,0,0,0"
+                                          HorizontalAlignment="Right"
                                           Click="TestModule_MairaButton_Click"
                                           Visibility="{Binding CanTest, Converter={StaticResource BoolToVisibility}}" />
 
-                    <!-- the Enabled toggle's pin switch, tucked against the card's right edge (custom graphs
-                         only) — pinning surfaces the whole effect's on/off in the quick controls; the pin
-                         style's ShowPinSwitch binding resolves against the module VM here -->
-                    <controls:MairaSwitch Grid.Row="0"
-                                          Grid.Column="3"
-                                          Style="{StaticResource FFBGraphPinSwitchStyle}"
-                                          VerticalAlignment="Center"
-                                          IsOn="{Binding IsEnabledPinned, Mode=TwoWay}" />
+                    <!-- the Enabled toggle's pin, right after the node name (custom graphs only) — pinning
+                         surfaces the whole effect's on/off in the quick controls; the pin style's
+                         ShowPinSwitch binding resolves against the module VM here -->
+                    <controls:MairaPinToggle Grid.Row="0"
+                                             Grid.Column="2"
+                                             Style="{StaticResource FFBGraphPinToggleStyle}"
+                                             IsOn="{Binding IsEnabledPinned, Mode=TwoWay}" />
 
                 </Grid>
 
@@ -653,15 +676,20 @@
                                                Style="{StaticResource MairaTextBlockStyle}"
                                                TextTrimming="CharacterEllipsis" />
 
-                                    <Rectangle Grid.Column="1"
-                                               Height="1"
-                                               VerticalAlignment="Bottom"
-                                               Margin="10,0,0,5"
-                                               Stroke="{DynamicResource Brush.Foreground.Muted}"
-                                               StrokeThickness="1"
-                                               StrokeDashArray="3 3"
-                                               Opacity="0.4"
-                                               SnapsToDevicePixels="True" />
+                                    <!-- the hairline's logical thickness is 1/AppUIScale so it always rasterizes as exactly one
+                                         device pixel — a fixed 1px line scaled below 100% becomes a sub-pixel band that can vanish
+                                         at some scroll offsets; aliased edges keep that single pixel row crisp (a stroked Rectangle
+                                         would draw its top AND bottom edges as two overlapping dash rows — a Line draws one) -->
+                                    <Line Grid.Column="1"
+                                          X2="1"
+                                          Stretch="Fill"
+                                          VerticalAlignment="Bottom"
+                                          Margin="10,0,0,5"
+                                          Stroke="{DynamicResource Brush.Foreground.Muted}"
+                                          StrokeThickness="{Binding Settings.AppUIScale, Source={x:Static datacontext:DataContext.Instance}, Converter={StaticResource HairlineThickness}}"
+                                          StrokeDashArray="3 3"
+                                          Opacity="0.4"
+                                          RenderOptions.EdgeMode="Aliased" />
 
                                 </Grid>
 

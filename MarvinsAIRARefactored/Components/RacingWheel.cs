@@ -943,6 +943,7 @@ public class RacingWheel
 		public readonly float SteeringWheelAngleMax;
 		public readonly float SteeringWheelVelocity;
 		public readonly float PitchRate;
+		public readonly float WheelForce;
 
 		public FrameContext( App app, float torque60Hz, float maxForce, bool usingTorqueData )
 		{
@@ -974,6 +975,8 @@ public class RacingWheel
 			// the per-effect enable switches on the steering effects page gate the corresponding FFB modules: a
 			// disabled effect feeds 0, so its force modules pass through and its vibration generators stay silent
 			var settings = DataContext.DataContext.Instance.Settings;
+
+			WheelForce = settings.RacingWheelWheelForce;
 
 			UndersteerEffect = settings.SteeringEffectsUndersteerEnabled ? steeringEffects.UndersteerEffect : 0f;
 			OversteerEffect = settings.SteeringEffectsOversteerEnabled ? steeringEffects.OversteerEffect : 0f;
@@ -1011,6 +1014,7 @@ public class RacingWheel
 			torque360Hz: torque360Hz,
 			torqueFrame: in frameContext.TorqueFrame,
 			maxForce: frameContext.MaxForce,
+			wheelForce: frameContext.WheelForce,
 			lfeMagnitude: lfeMagnitude,
 			wheelPosition: frameContext.WheelPosition,
 			wheelVelocity: frameContext.WheelVelocity,

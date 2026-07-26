@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Pokaż przypięte ustawienia</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>Przełącznik A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Użyj wejścia B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Przepuszcza bez zmian wejście A albo wejście B, zależnie od położenia przełącznika — przełącz, aby natychmiast porównać dwie ścieżki sygnału.</value>
+  </data>
 </root>

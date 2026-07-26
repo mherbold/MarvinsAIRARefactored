@@ -25,6 +25,7 @@ Changes since the seventh alpha (2.0.475.54), for testers who already ran it:
 - **New 60 Hz prediction module.** The prediction lineup is now two modules: the existing one is renamed **360 Hz prediction**, and the new **60 Hz prediction** is built for the 60 Hz source. At 60 Hz the torque history alone carries almost no predictive power, so this module learns from your steering and the car's chassis motion instead, runs once per telemetry frame, and holds its correction across the frame. Defaults: 33.3 ms horizon, 100% strength, 5 Nm limit. See [the math](#inside-the-prediction-modules-the-math).
 - **Prediction horizons are now in milliseconds.** Both prediction modules show and directly edit their Horizon in ms (previously the 360 Hz module counted K1–K12 ticks).
 - **Marvin's built-in graphs now include prediction out of the box** — Marvin's easy detail adjustment carries the 360 Hz prediction module, and Marvin's native 60 Hz carries the new 60 Hz one.
+- **Strength settings are now stored in Nm instead of %.** Every fixed-amplitude strength — all the vibration generators, the understeer/oversteer/seat-of-pants forces, the friction source, and the torque dither — is now a direct torque value in Nm at the wheel. The value no longer changes meaning when you change the wheel force setting, and a shared graph feels the same on a different wheelbase. Gain-like strengths (wheel centering, soft lock, wheel velocity, LFE, prediction) stay in %.
 
 ---
 
@@ -44,7 +45,7 @@ Changes since the seventh alpha (2.0.475.54), for testers who already ran it:
 | Preview | Fixed-width graph | 1 pixel per sample, horizontal zoom, hover zoom + **data readout**, **track map panel** |
 | First-run wizard | Picks an algorithm + preset knobs | Tunes the flagship built-in graph's **detail gain** (25%–200%) |
 | Crash/curb protection | Crash reduces force; curb partial | Both reduce force, both have **recovery time**; new defaults |
-| Button mappings | Fixed set of mappable knobs | Any **module knob** can be bound to controller buttons |
+| Button mappings | Fixed set of mappable knobs | Any **module knob or switch** can be bound to controller buttons |
 
 Everything else (pedals, G Tensioner, Typhoon Wind, commentary, overlays, Trading Paints, AdminBoxx, the Le Mans Ultimate game bridge, …) is unchanged from the released version.
 
@@ -97,7 +98,7 @@ All values below are the defaults. Knob values can be click-stepped, dragged, or
 | **LFE source** | Torque from the low-frequency-effects audio capture | Strength (35%) |
 | **Soft lock source** | Opposing force past the car's steering lock | Strength (25%) |
 | **Wheel velocity source** | Torque proportional to how fast the wheel is turning — a damper (for dry friction use the Friction source) | Strength (100%) |
-| **Friction source** | Dry friction via a dragged stick point (the same model wheel firmwares use): the wheel holds where you leave it, and turning past the stick region gives constant sliding drag — pair with Speed gain for parked steering weight | Strength (10%), Stick region (25°) |
+| **Friction source** | Dry friction via a dragged stick point (the same model wheel firmwares use): the wheel holds where you leave it, and turning past the stick region gives constant sliding drag — pair with Speed gain for parked steering weight | Strength (1.0 Nm), Stick region (25°) |
 | **Wheel centering source** | Spring force pulling the wheel to center | Strength (85%) |
 
 #### Generic DSP
@@ -123,6 +124,7 @@ All values below are the defaults. Knob values can be click-stepped, dragged, or
 | **Add** | A + B | — |
 | **Subtract** | A − B | — |
 | **Blend** | Crossfade between A and B | Mix (50%) |
+| **A/B switch** | Passes input A or input B straight through, chosen by a switch — pin the switch for one-click comparison of two signal paths | Use input B (off) |
 | **Adaptive blend** | Follows B (the anchor), letting A's detail through; direction flips snap the corner down and ease back | Cutoff (20 Hz), Peak cutoff (6 Hz), Hold (28 ms) |
 
 #### Effects
@@ -130,10 +132,10 @@ All values below are the defaults. Knob values can be click-stepped, dragged, or
 | Module | What it does | Settings |
 |---|---|---|
 | **Speed gain** | Ramps gain between two car speeds — parked-strength, fade-ins, friction crossfades | Min/Max speed (0/30 m/s), Gain at min/max (1.00×) |
-| **Torque dither** | Tiny alternating torque below a threshold to keep the wheel mechanism live | Strength (1%), Threshold (10%) |
+| **Torque dither** | Tiny alternating torque below a threshold to keep the wheel mechanism live | Strength (0.10 Nm), Threshold (10%) |
 | **Crash protection** | Cuts force during a crash | Long/Lat G force (8 g / 8 g), Duration (0.2 s), Force reduction (95%), Recovery time (0.2 s) |
 | **Curb protection** | Cuts force over violent curb strikes — now actually reduces force like crash protection | Shock velocity (0.5 m/s), Duration (0.1 s), Force reduction (75%), Recovery time (0.1 s) |
-| **Understeer / Oversteer / Seat-of-pants force** | Increase or decrease force with the steering-effect signal | Direction (understeer: Decrease, oversteer: None, seat-of-pants: Increase), Strength (10%), Curve |
+| **Understeer / Oversteer / Seat-of-pants force** | Increase or decrease force with the steering-effect signal | Direction (understeer: Decrease, oversteer: None, seat-of-pants: Increase), Strength (1.0 Nm), Curve |
 
 Crash protection, curb protection, and speed gain have a **test button** (vibrate icon) on their settings card so you can trigger the effect on demand.
 
@@ -154,15 +156,15 @@ The wheel vibration effects are **generator** modules inside the same FFB graph.
 
 | Module | When it vibrates | Settings |
 |---|---|---|
-| **Understeer vibration** | While the understeer effect is active — amplitude follows the effect strength (smoothly interpolated) | Pattern (sawtooth in), Strength (5%), Frequency (15 Hz), Curve |
-| **Oversteer vibration** | While the oversteer effect is active | Pattern (sawtooth out), Strength (5%), Frequency (10 Hz), Curve |
-| **Seat-of-pants vibration** | With the seat-of-pants (vertical G) effect | Pattern (triangle), Strength (5%), Frequency (12.5 Hz), Curve |
-| **Shift RPM vibration** | Pulses when it's time to shift up | Strength (3%), Frequency (50 Hz), Pulse duration (60 ms) |
-| **Gear change vibration** | A 100 ms buzz on every gear change | Strength (5%), Frequency (31 Hz) |
-| **ABS vibration** | Pulses while ABS is active | Strength (10%), Frequency (25 Hz), Pulse duration (40 ms) |
-| **Engine RPM vibration** | Whenever the engine is running — frequency tracks the RPM up to the redline, voiced like a V8; Roughness at 0% gives a pure sine | Strength (1%), Frequency at redline RPM (50 Hz), Roughness (100%) |
-| **Road texture** | Rumble that speeds up with the car — most of the frequency arrives by 30–60 MPH, topping out at 180 MPH | Strength (1%), Frequency (120 Hz) |
-| **Slip texture** | Rumble driven by the summed understeer + oversteer effects — either end of the car sliding | Strength (5%), Frequency (80 Hz) |
+| **Understeer vibration** | While the understeer effect is active — amplitude follows the effect strength (smoothly interpolated) | Pattern (sawtooth in), Strength (0.5 Nm), Frequency (15 Hz), Curve |
+| **Oversteer vibration** | While the oversteer effect is active | Pattern (sawtooth out), Strength (0.5 Nm), Frequency (10 Hz), Curve |
+| **Seat-of-pants vibration** | With the seat-of-pants (vertical G) effect | Pattern (triangle), Strength (0.5 Nm), Frequency (12.5 Hz), Curve |
+| **Shift RPM vibration** | Pulses when it's time to shift up | Strength (0.3 Nm), Frequency (50 Hz), Pulse duration (60 ms) |
+| **Gear change vibration** | A 100 ms buzz on every gear change | Strength (0.5 Nm), Frequency (31 Hz) |
+| **ABS vibration** | Pulses while ABS is active | Strength (1.0 Nm), Frequency (25 Hz), Pulse duration (40 ms) |
+| **Engine RPM vibration** | Whenever the engine is running — frequency tracks the RPM up to the redline, voiced like a V8; Roughness at 0% gives a pure sine | Strength (0.1 Nm), Frequency at redline RPM (50 Hz), Roughness (100%) |
+| **Road texture** | Rumble that speeds up with the car — most of the frequency arrives by 30–60 MPH, topping out at 180 MPH | Strength (0.1 Nm), Frequency (120 Hz) |
+| **Slip texture** | Rumble driven by the summed understeer + oversteer effects — either end of the car sliding | Strength (0.5 Nm), Frequency (80 Hz) |
 
 Every vibration starts at zero phase when it triggers, and the pulsed ones restart their waveform with each pulse, so each event feels identical. The understeer / oversteer / seat-of-pants nodes (and slip texture) dim with a notice when the corresponding effect is disabled on the steering effects page.
 

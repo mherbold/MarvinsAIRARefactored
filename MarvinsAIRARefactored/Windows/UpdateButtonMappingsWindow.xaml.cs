@@ -77,6 +77,12 @@ public partial class UpdateButtonMappingsWindow : Window
 		// so the change takes effect immediately, regardless of where the editor was opened from.
 		app.RebuildButtonMappingIndex();
 
+		// The right-clicked control refreshes its own orange border, but OTHER controls sharing the same
+		// mappings object (e.g. a module's header Enabled switch and its pinned quick-control copy) would
+		// stay stale until reload — refresh them all.
+		Controls.MairaMappableButton.RefreshAll();
+		Controls.MairaMappableSwitch.RefreshAll();
+
 		WindowIsOpen = false;
 	}
 }

@@ -87,6 +87,7 @@ public static partial class FFBDisplayNames
 		[ FFBModuleRegistry.AddType ] = "Adds two signals together.",
 		[ FFBModuleRegistry.SubtractType ] = "Subtracts input B from input A — for example, subtracting a low-pass copy of a signal leaves just the detail.",
 		[ FFBModuleRegistry.BlendType ] = "Crossfades between two signals — 0% is all input A, 100% is all input B.",
+		[ FFBModuleRegistry.ABSwitchType ] = "Passes either input A or input B straight through, chosen by the switch — flip it to compare two signal paths instantly.",
 		[ FFBModuleRegistry.SlewLimiterType ] = "Caps how fast the signal can change — anything under the limit passes untouched, faster movement is slowed down.",
 		[ FFBModuleRegistry.SlewCompressorType ] = "Squeezes fast signal changes instead of hard-limiting them — slow movement passes untouched.",
 		[ FFBModuleRegistry.CompressorType ] = "Squeezes the signal above a threshold, keeping peaks under control without hard clipping.",
@@ -257,11 +258,12 @@ public sealed class FFBModuleSettingViewModel : INotifyPropertyChanged
 	/// (like their locked structure). Evaluated at bind time; the VM tree is rebuilt on every graph switch.</summary>
 	public bool ShowPinSwitch => !_ownerModule.Owner.IsFFBGraphBuiltIn;
 
-	// Knob-only (only the knob template binds these): the +/- input mappings for this module setting, stored on
-	// Settings keyed "{ModuleId}/{SettingKey}/Plus|Minus" so they survive VM rebuilds but never ride graph
-	// export/import. Created lazily the first time a module card's knob binds them.
+	// The input mappings for this module setting, stored on Settings keyed "{ModuleId}/{SettingKey}/Plus|Minus"
+	// (knob template: +/- nudges) or ".../Toggle" (switch template: flip) so they survive VM rebuilds but never
+	// ride graph export/import. Created lazily the first time a module card's control binds them.
 	public Classes.ButtonMappings PlusButtonMappings => DataContext.DataContext.Instance.Settings.GetFFBModuleButtonMappings( $"{_moduleId}/{_descriptor.Key}/Plus" );
 	public Classes.ButtonMappings MinusButtonMappings => DataContext.DataContext.Instance.Settings.GetFFBModuleButtonMappings( $"{_moduleId}/{_descriptor.Key}/Minus" );
+	public Classes.ButtonMappings ToggleButtonMappings => DataContext.DataContext.Instance.Settings.GetFFBModuleButtonMappings( $"{_moduleId}/{_descriptor.Key}/Toggle" );
 
 	public float Value
 	{
@@ -759,6 +761,11 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 			OnPropertyChanged();
 		}
 	}
+
+	/// <summary>The toggle input mapping for the module's Enabled switch, stored under the same reserved
+	/// "Enabled" key the pin uses ("{ModuleId}/Enabled/Toggle") — dispatched by App.RebuildButtonMappingIndex
+	/// via <see cref="FFBGraphViewModel.ToggleModuleSwitch"/>.</summary>
+	public Classes.ButtonMappings EnabledToggleButtonMappings => DataContext.DataContext.Instance.Settings.GetFFBModuleButtonMappings( $"{_model.ModuleId}/Enabled/Toggle" );
 
 	/// <summary>Pin for the module's Enabled toggle, so a graph author can surface a whole effect's on/off
 	/// switch in the quick controls. Stored under the reserved "Enabled" key in the same PinnedSettings list
@@ -1475,9 +1482,22 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		};
 
 		// the node is placed relative to the module it splices in after and the first module that was consuming
-		// that output (its new downstream neighbor) — captured here, before the splice repoints those inputs
+		// that output (its new downstream neighbor) — captured here, before the splice repoints those inputs.
+		// Only inputs the consumer's descriptor actually uses count: every 1-input module carries a dangling
+		// input B reference (set to the fallback source at add time), and matching those would pick a "neighbor"
+		// that is not visually connected at all
 		var splicedAfterModule = ( wiredFromSelectedModule && ( descriptor.SignalInputCount >= 1 ) ) ? _graph.Modules.Find( existingModule => existingModule.ModuleId == inputSourceId ) : null;
-		var downstreamModule = ( splicedAfterModule != null ) ? _graph.Modules.Find( existingModule => ( existingModule.InputAModuleId == inputSourceId ) || ( existingModule.InputBModuleId == inputSourceId ) ) : null;
+
+		var downstreamModule = ( splicedAfterModule != null ) ? _graph.Modules.Find( existingModule =>
+		{
+			var signalInputCount = FFBModuleRegistry.TryGet( existingModule.ModuleType )?.SignalInputCount ?? 0;
+
+			return ( ( signalInputCount >= 1 ) && ( existingModule.InputAModuleId == inputSourceId ) ) || ( ( signalInputCount >= 2 ) && ( existingModule.InputBModuleId == inputSourceId ) );
+		} ) : null;
+
+		// the selected module's transitive consumers (captured before the splice) — these are the nodes that shift
+		// right when the new node needs the first child's column (see PlaceNewNode)
+		var downstreamModuleIds = ( splicedAfterModule != null ) ? FFBGraphTopology.ReachableFrom( _graph, inputSourceId ) : null;
 
 		// splice the new module INTO the selected module's output wire rather than just hanging off it: every
 		// input (A or B, on any downstream module) that was consuming the selected module's output now consumes
@@ -1500,7 +1520,7 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 			}
 		}
 
-		PlaceNewNode( module, splicedAfterModule, downstreamModule );
+		PlaceNewNode( module, splicedAfterModule, downstreamModule, downstreamModuleIds );
 
 		_selectedModuleId = module.ModuleId;   // select the new node once the rebuild recreates the VMs
 
@@ -1509,30 +1529,67 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		CommitStructureChange();
 	}
 
-	// Place a new node relative to the module it was spliced in after: exactly halfway to the downstream
-	// neighbor when there is one, otherwise one column to the right. When the add wasn't spliced (no usable
-	// selection, or a new source), fall back to just left of the Output node, stepping down until the spot is
-	// free so consecutive adds don't stack on top of each other. An explicit position also keeps
-	// NeedsAutoLayout from re-laying-out the whole graph on the next rebuild.
-	private void PlaceNewNode( FFBModuleData module, FFBModuleData? splicedAfterModule, FFBModuleData? downstreamModule )
+	// Place a new node relative to the module it was spliced in after: on the wire between it and its first
+	// downstream neighbor when there is one — taking the neighbor's column and sliding the downstream subtree
+	// one column right when the wire is too short to fit a node — otherwise one column to the right. When the
+	// add wasn't spliced (no usable selection, or a new source), fall back to just left of the Output node,
+	// stepping down until the spot is free so consecutive adds don't stack on top of each other. An explicit
+	// position also keeps NeedsAutoLayout from re-laying-out the whole graph on the next rebuild.
+	private void PlaceNewNode( FFBModuleData module, FFBModuleData? splicedAfterModule, FFBModuleData? downstreamModule, HashSet<string>? downstreamModuleIds )
 	{
 		if ( _graph == null )
 		{
 			return;
 		}
 
+		var snapToGrid = DataContext.DataContext.Instance.Settings.RacingWheelFFBGraphSnapToGrid;
+
 		if ( splicedAfterModule != null )
 		{
+			float nodeX;
+			float nodeY;
+
 			if ( downstreamModule != null )
 			{
-				module.NodeX = ( splicedAfterModule.NodeX + downstreamModule.NodeX ) / 2f;
-				module.NodeY = ( splicedAfterModule.NodeY + downstreamModule.NodeY ) / 2f;
+				var columnStride = FFBGraphTopology.NodeWidth + FFBGraphTopology.HorizontalGap;
+
+				nodeY = ( splicedAfterModule.NodeY + downstreamModule.NodeY ) / 2f;
+
+				if ( downstreamModule.NodeX >= splicedAfterModule.NodeX + 2f * columnStride )
+				{
+					// the wire is long enough to fit a whole node — drop it midway
+					nodeX = ( splicedAfterModule.NodeX + downstreamModule.NodeX ) / 2f;
+				}
+				else if ( downstreamModule.NodeX > splicedAfterModule.NodeX )
+				{
+					// not enough room — the new node takes the first child's column and every transitive
+					// consumer of the selected module slides one column right to make space (the splice is
+					// about to feed all of them from the new node)
+					nodeX = downstreamModule.NodeX;
+
+					foreach ( var existingModule in _graph.Modules )
+					{
+						if ( ( downstreamModuleIds != null ) && ( existingModule != splicedAfterModule ) && downstreamModuleIds.Contains( existingModule.ModuleId ) )
+						{
+							existingModule.NodeX += columnStride;
+						}
+					}
+				}
+				else
+				{
+					// hand-arranged layout with the child at or left of the parent — there is no clean column
+					// to take, so just sit on the wire midpoint
+					nodeX = ( splicedAfterModule.NodeX + downstreamModule.NodeX ) / 2f;
+				}
 			}
 			else
 			{
-				module.NodeX = splicedAfterModule.NodeX + FFBGraphTopology.NodeWidth + FFBGraphTopology.HorizontalGap;
-				module.NodeY = splicedAfterModule.NodeY;
+				nodeX = splicedAfterModule.NodeX + FFBGraphTopology.NodeWidth + FFBGraphTopology.HorizontalGap;
+				nodeY = splicedAfterModule.NodeY;
 			}
+
+			module.NodeX = snapToGrid ? (float) FFBGraphTopology.Snap( nodeX ) : nodeX;
+			module.NodeY = snapToGrid ? (float) FFBGraphTopology.Snap( nodeY ) : nodeY;
 
 			return;
 		}
@@ -1610,6 +1667,42 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 				if ( ( settingViewModel.Key == settingKey ) && ( settingViewModel.SettingType == FFBSettingType.Knob ) )
 				{
 					settingViewModel.Value += direction * settingViewModel.ClickStepSize;
+
+					return;
+				}
+			}
+
+			return;
+		}
+	}
+
+	/// <summary>Flips a module switch setting — the fire body for mapped module-switch inputs (see
+	/// App.RebuildButtonMappingIndex). The reserved "Enabled" key flips the module's Enabled toggle. No-op when
+	/// the module isn't part of the currently selected graphs, same as <see cref="AdjustModuleKnob"/>.</summary>
+	public void ToggleModuleSwitch( string moduleId, string settingKey )
+	{
+		foreach ( var moduleViewModel in Modules )
+		{
+			if ( moduleViewModel.ModuleId != moduleId )
+			{
+				continue;
+			}
+
+			if ( settingKey == "Enabled" )
+			{
+				if ( moduleViewModel.CanToggleEnabled )
+				{
+					moduleViewModel.Enabled = !moduleViewModel.Enabled;
+				}
+
+				return;
+			}
+
+			foreach ( var settingViewModel in moduleViewModel.Settings )
+			{
+				if ( ( settingViewModel.Key == settingKey ) && ( settingViewModel.SettingType == FFBSettingType.Switch ) )
+				{
+					settingViewModel.IsOn = !settingViewModel.IsOn;
 
 					return;
 				}

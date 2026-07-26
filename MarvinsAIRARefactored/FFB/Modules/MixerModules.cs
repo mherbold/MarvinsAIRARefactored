@@ -30,6 +30,20 @@ public sealed class SubtractModule : FFBModule
 	}
 }
 
+/// <summary>Two-input selector: passes input A or input B through untouched, chosen by the UseInputB switch.
+/// Built for instant A/B comparison of two signal paths — pin the switch to flip from the quick controls.</summary>
+public sealed class ABSwitchModule : FFBModule
+{
+	private const int UseInputB = 1;
+
+	public override void Reset() { }
+
+	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
+	{
+		return _v[ UseInputB ] >= 0.5f ? inputB : inputA;
+	}
+}
+
 /// <summary>Two-input crossfade: <c>Lerp(A, B, Mix)</c> — 0% = all A, 100% = all B.</summary>
 public sealed class BlendModule : FFBModule
 {

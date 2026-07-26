@@ -174,7 +174,10 @@ public sealed class CurbProtectionModule : FFBModule
 }
 
 // Constant-force steering effects. Direction is a Choice: None / DecreaseForce / IncreaseForce (index).
-// DecreaseForce is scale-invariant (lerp toward 0); IncreaseForce is additive and scaled by MaxForce.
+// Strength is stored in physical Nm at the wheel; dividing by ctx.WheelForce recovers the normalized
+// strength fraction. IncreaseForce injects that fraction times MaxForce into the Nm main chain (so the
+// physical push stays the stored Nm regardless of the max force setting); DecreaseForce uses it as the
+// lerp-toward-zero fraction (saturated — a strength above the wheel force can't over-reduce).
 
 /// <summary>Understeer constant force (old 1330–1348). Module Enabled replaces the old wheel-side enable.</summary>
 public sealed class UndersteerForceModule : FFBModule
@@ -201,12 +204,12 @@ public sealed class UndersteerForceModule : FFBModule
 
 		if ( understeerEffect > 0f )
 		{
-			var constantForceTorque = _v[ Strength ] * MathF.Pow( understeerEffect, _curvePower );
+			var constantForceTorque = ( _v[ Strength ] / ctx.WheelForce ) * MathF.Pow( understeerEffect, _curvePower );
 
 			switch ( (RacingWheel.ConstantForceDirection) (int) _v[ Direction ] )
 			{
 				case RacingWheel.ConstantForceDirection.DecreaseForce:
-					return MathZ.Lerp( inputA, 0f, constantForceTorque );
+					return MathZ.Lerp( inputA, 0f, MathZ.Saturate( constantForceTorque ) );
 
 				case RacingWheel.ConstantForceDirection.IncreaseForce:
 					return inputA + MathF.CopySign( constantForceTorque, ctx.VelocityY ) * ctx.MaxForce;
@@ -242,12 +245,12 @@ public sealed class OversteerForceModule : FFBModule
 
 		if ( oversteerEffect > 0f )
 		{
-			var constantForceTorque = _v[ Strength ] * MathF.Pow( oversteerEffect, _curvePower );
+			var constantForceTorque = ( _v[ Strength ] / ctx.WheelForce ) * MathF.Pow( oversteerEffect, _curvePower );
 
 			switch ( (RacingWheel.ConstantForceDirection) (int) _v[ Direction ] )
 			{
 				case RacingWheel.ConstantForceDirection.DecreaseForce:
-					return MathZ.Lerp( inputA, 0f, constantForceTorque );
+					return MathZ.Lerp( inputA, 0f, MathZ.Saturate( constantForceTorque ) );
 
 				case RacingWheel.ConstantForceDirection.IncreaseForce:
 					return inputA + MathF.CopySign( constantForceTorque, ctx.VelocityY ) * ctx.MaxForce;
@@ -284,12 +287,12 @@ public sealed class SeatOfPantsForceModule : FFBModule
 
 		if ( seatOfPantsEffect != 0f )
 		{
-			var constantForceTorque = _v[ Strength ] * MathF.CopySign( MathF.Pow( MathF.Abs( seatOfPantsEffect ), _curvePower ), seatOfPantsEffect );
+			var constantForceTorque = ( _v[ Strength ] / ctx.WheelForce ) * MathF.CopySign( MathF.Pow( MathF.Abs( seatOfPantsEffect ), _curvePower ), seatOfPantsEffect );
 
 			switch ( (RacingWheel.ConstantForceDirection) (int) _v[ Direction ] )
 			{
 				case RacingWheel.ConstantForceDirection.DecreaseForce:
-					return MathZ.Lerp( inputA, 0f, MathF.Abs( constantForceTorque ) );
+					return MathZ.Lerp( inputA, 0f, MathZ.Saturate( MathF.Abs( constantForceTorque ) ) );
 
 				case RacingWheel.ConstantForceDirection.IncreaseForce:
 					return inputA - constantForceTorque * ctx.MaxForce;
@@ -347,7 +350,9 @@ public sealed class TorqueDitherModule : FFBModule
 		{
 			_sign = -_sign;
 
-			return inputA + _sign * _v[ Strength ] * ctx.MaxForce;
+			// Strength is physical Nm at the wheel; via WheelForce it becomes the normalized dither amplitude,
+			// then MaxForce lifts it into the Nm main chain so it survives the output normalization intact
+			return inputA + _sign * ( _v[ Strength ] / ctx.WheelForce ) * ctx.MaxForce;
 		}
 
 		return inputA;

@@ -2410,4 +2410,13 @@
   <data name="ShowPinnedSettings" xml:space="preserve">
     <value>Показати закріплені налаштування</value>
   </data>
+  <data name="FFBModuleABSwitch" xml:space="preserve">
+    <value>Перемикач A/B</value>
+  </data>
+  <data name="FFBSettingUseInputB" xml:space="preserve">
+    <value>Використовувати вхід B</value>
+  </data>
+  <data name="FFBModuleDescriptionABSwitch" xml:space="preserve">
+    <value>Пропускає без змін вхід A або вхід B залежно від положення перемикача — перемикайте, щоб миттєво порівняти два тракти сигналу.</value>
+  </data>
 </root>

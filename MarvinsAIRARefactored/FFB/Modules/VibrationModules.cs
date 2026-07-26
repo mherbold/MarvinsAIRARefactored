@@ -8,7 +8,9 @@ namespace MarvinsAIRARefactored.FFB.Modules;
 // vibration bus, not the main chain — matching the old code where vibrations were summed into a separate
 // vibrationTorque that bypassed the output curve. Under the neutral preview/parity context UsingTorqueData is
 // false and every generator produces 0. Waveform math mirrors the old inline RacingWheel vibration code
-// verbatim, including the per-effect sawtooth sign conventions.
+// verbatim, including the per-effect sawtooth sign conventions. Strength settings are stored in physical Nm
+// at the wheel (portable across wheel force changes and wheelbases); dividing by ctx.WheelForce turns them
+// into the normalized bus amplitude the waveform math expects.
 
 /// <summary>
 /// The steering-effect values (understeer/oversteer/seat-of-pants) update at 60 Hz and hold for the frame's six
@@ -112,7 +114,7 @@ public sealed class UndersteerVibrationModule : FFBModule
 			_timerMS -= _periodMS * MathF.Floor( _timerMS / _periodMS );
 		}
 
-		return effectTorque * _v[ Strength ] * MathF.Pow( understeerEffect, _curvePower );
+		return effectTorque * ( _v[ Strength ] / ctx.WheelForce ) * MathF.Pow( understeerEffect, _curvePower );
 	}
 }
 
@@ -186,7 +188,7 @@ public sealed class OversteerVibrationModule : FFBModule
 			_timerMS -= _periodMS * MathF.Floor( _timerMS / _periodMS );
 		}
 
-		return effectTorque * _v[ Strength ] * MathF.Pow( oversteerEffect, _curvePower );
+		return effectTorque * ( _v[ Strength ] / ctx.WheelForce ) * MathF.Pow( oversteerEffect, _curvePower );
 	}
 }
 
@@ -262,7 +264,7 @@ public sealed class SeatOfPantsVibrationModule : FFBModule
 			_timerMS -= _periodMS * MathF.Floor( _timerMS / _periodMS );
 		}
 
-		return effectTorque * _v[ Strength ] * MathF.Pow( absSeatOfPantsEffect, _curvePower );
+		return effectTorque * ( _v[ Strength ] / ctx.WheelForce ) * MathF.Pow( absSeatOfPantsEffect, _curvePower );
 	}
 }
 
@@ -294,7 +296,7 @@ public sealed class ShiftRPMVibrationModule : FFBModule
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		var strength = _v[ Strength ];
+		var strength = _v[ Strength ] / ctx.WheelForce;
 
 		if ( !ctx.UsingTorqueData || ( strength <= 0f ) )
 		{
@@ -374,7 +376,7 @@ public sealed class GearChangeVibrationModule : FFBModule
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		var strength = _v[ Strength ];
+		var strength = _v[ Strength ] / ctx.WheelForce;
 
 		if ( !ctx.UsingTorqueData || ( strength <= 0f ) )
 		{
@@ -447,7 +449,7 @@ public sealed class ABSVibrationModule : FFBModule
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		var strength = _v[ Strength ];
+		var strength = _v[ Strength ] / ctx.WheelForce;
 
 		if ( !ctx.UsingTorqueData || ( strength <= 0f ) )
 		{
@@ -548,7 +550,7 @@ public sealed class EngineRPMVibrationModule : FFBModule
 
 	public override float Process( in FFBTickContext ctx, float inputA, float inputB )
 	{
-		var strength = _v[ Strength ];
+		var strength = _v[ Strength ] / ctx.WheelForce;
 
 		// EngineRunning (the telemetry stalled flag) is the engine-off test — the raw RPM is useless for it
 		// because iRacing floors the reported RPM at ~300 even with the engine dead. The editor's test toggle
@@ -684,7 +686,7 @@ public sealed class RoadTextureModule : FFBModule
 
 		var speedFactor = MathZ.Saturate( velocityMS / 20f );
 
-		return _current * _v[ Strength ] * speedFactor;
+		return _current * ( _v[ Strength ] / ctx.WheelForce ) * speedFactor;
 	}
 
 	private void AdvanceNoise( float deltaMilliseconds )
@@ -774,6 +776,6 @@ public sealed class SlipTextureModule : FFBModule
 			_current = ( _rng / (float) uint.MaxValue ) * 2f - 1f;
 		}
 
-		return _current * _v[ Strength ] * MathZ.Saturate( slipEffect );
+		return _current * ( _v[ Strength ] / ctx.WheelForce ) * MathZ.Saturate( slipEffect );
 	}
 }
