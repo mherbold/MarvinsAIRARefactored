@@ -2,13 +2,16 @@
 
 ## Project Overview
 
-**MarvinsAIRA Refactored** (v2.0) is a Windows desktop application written in **C# 13 / .NET 9** using **WPF** (Windows Presentation Foundation). It is a sim-racing companion tool for **iRacing** that provides advanced force-feedback processing, steering effects, pedal haptics, hardware integrations, and various overlays.
+**MarvinsAIRA Refactored** (v2.0) is a Windows desktop application written in **C# 13 / .NET 9** using **WPF** (Windows Presentation Foundation). It is a sim-racing companion tool for **iRacing** that provides advanced force-feedback processing, steering effects, pedal haptics, hardware integrations, and various overlays. A **game bridge** feeds telemetry from other simulators (Le Mans Ultimate, rFactor 2, the Assetto Corsa family, RaceRoom) into the same iRacing-native pipeline.
 
 The project has a second build target called **AdminBoxx**, controlled via the `ADMINBOXX` preprocessor constant. When `ADMINBOXX` is defined, many features are disabled and the app runs as a simpler hardware-controller utility.
 
 ---
 
 ## Project Rules
+
+### AI model preferences
+- **Main agent: Fable 5. Sub-agents: Opus 5** — when spawning sub-agents (Agent tool, workflows), pass `model: "opus"` rather than letting them inherit the main-agent model.
 
 ### Editing files
 - **Default to the Edit and Write tools** for normal, one-off code changes — anything that requires reasoning about the code. If an edit can't be applied directly, explain why and stop.
@@ -85,17 +88,17 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
 
 | Package | Purpose |
 |---|---|
-| `IRSDKSharper` (1.1.8) | iRacing SDK wrapper — provides telemetry and session info |
+| `IRSDKSharper` (1.3.0) | iRacing SDK wrapper — provides telemetry and session info |
 | `SharpDX.DirectInput` (4.2.0) | DirectInput for racing wheel / joystick input and FFB |
 | `Accord` / `Accord.Neuro` / `Accord.Statistics` (3.8.0) | Machine-learning / signal-processing utilities |
 | `CsvHelper` (33.1.0) | CSV reading/writing (calibration data, recordings) |
 | `Newtonsoft.Json` (13.0.4) | JSON serialization (cloud service responses) |
 | `OpenMacroBoard.SDK` + `StreamDeckSharp` (6.1.0) | Elgato Stream Deck integration |
-| `Microsoft.Web.WebView2` (1.0.4022.49) | Embedded Chromium browser (Speech-to-Text bridge) |
-| `Microsoft.Windows.CsWin32` (0.3.287) | Source-generated P/Invoke wrappers |
+| `Microsoft.Web.WebView2` (1.0.4078.44) | Embedded Chromium browser (Speech-to-Text bridge) |
+| `Microsoft.Windows.CsWin32` (0.3.287) | Source-generated P/Invoke wrappers (referenced by the `MarvinsAIRARefactored.Win32` companion project) |
 | `SharpZipLib` (1.4.2) | BZip2 decompression (TradingPaints livery downloads) |
-| `System.IO.Ports` (10.0.9) | USB serial communication (AdminBoxx, TyphoonWind, SBT) |
-| `System.Management` (10.0.9) | WMI queries (device enumeration) |
+| `System.IO.Ports` (10.0.10) | USB serial communication (AdminBoxx, TyphoonWind, SBT) |
+| `System.Management` (10.0.10) | WMI queries (device enumeration) |
 | `System.Net.Http` (4.3.4) | Legacy HTTP API compatibility support |
 | `System.Text.RegularExpressions` (4.3.1) | Regex API compatibility support |
 
@@ -105,7 +108,6 @@ The post-build step copies several asset folders (sounds, recordings, calibratio
 | `SimagicHPR.dll` | Simagic HPR pedal haptics API |
 | `vJoyInterfaceWrap.dll` | vJoy virtual joystick output |
 | `vJoyInterface.dll` | Native vJoy runtime dependency |
-| `LogitechSteeringWheelEnginesWrapper.dll` | Logitech wheel LED/effects support |
 | `fmod.dll` / `fmodL.dll` | FMOD native audio runtime libraries |
 
 ---
@@ -154,6 +156,7 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 | Force feedback / wheel | `RacingWheel.cs`, `SteeringEffects.cs`, `DirectInput.cs`, `Drivers.cs` |
 | Pedals & haptics | `Pedals.cs`, `GTensioner.cs`, `GTensionerGraph.cs` |
 | iRacing data | `Telemetry.cs`, `Simulator.cs` |
+| Game bridge | `GameBridge.cs` (adapters for other sims live in `GameBridges/` — LMU, rFactor 2, AC / ACC / AC EVO / AC Rally, RaceRoom) |
 | Audio | `AudioManager.cs`, `Sounds.cs`, `LFE.cs` |
 | Speech / commentary | `SpeechToText.cs`, `TextToSpeech.cs`, `Commentary.cs`, `ChatQueue.cs` |
 | Hardware integrations | `TyphoonWind.cs`, `AdminBoxx.cs`, `StreamDeck.cs`, `VirtualJoystick.cs`, `HidHotPlugMonitor.cs` |
@@ -167,13 +170,18 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 | `ContextSettings.cs` | Per-context (car/track) settings |
 | `Context.cs`, `ContextSwitches.cs` | Context selection and switching logic |
 | `DataContext.cs` | Root WPF binding object |
+| `OverlayLayoutSettings.cs` | Per-context overlay window layout settings |
 | `Localization.cs` | UI string table — source for `Localization["Key"]` lookups |
 
 ### `Pages/` — feature UI (each page pairs with its component)
 | Page | Backing component(s) |
 |---|---|
+| `RacingWheelPage` | `RacingWheel.cs`, `DirectInput.cs` |
 | `SteeringEffectsPage` | `SteeringEffects.cs`, `RacingWheel.cs` |
+| `PedalsPage` | `Pedals.cs` |
 | `GTensionerPage` | `GTensioner.cs` |
+| `GameBridgePage` | `GameBridge.cs`, `GameBridges/` |
+| `ControllerProfilesPage` | `ControllerProfile.cs` (Classes) |
 | `TyphoonWindPage` | `TyphoonWind.cs` |
 | `SoundsPage` | `Sounds.cs`, `AudioManager.cs` |
 | `SpeechToTextPage` | `SpeechToText.cs` |
@@ -184,17 +192,18 @@ All paths are relative to the nested project folder `MarvinsAIRARefactored/` (se
 | `SimulatorPage` | `Simulator.cs`, `Telemetry.cs` |
 | `OverlaysPage` | overlay windows in `Windows/` |
 | `AdminBoxxPage` | `AdminBoxx.cs` |
+| `AppSettingsPage` | `Settings.cs`, `SettingsFile.cs` |
 | `DebugPage` | `Debug.cs` |
 | `ContributePage`, `DonatePage`, `HelpPage` | `CloudService.cs`, `HelpService.cs` |
 
 ### `Windows/` — top-level windows & overlays
-`MainWindow` is the shell. Overlays: `GapMonitorWindow`, `GripOMeterWindow`, `CursorCountdownOverlay`. Dialogs/wizards: `WizardWindow`, `ErrorWindow`, `HelpWindow`, `PickProcessWindow`, `SpeechToTextWindow`, `NewVersionAvailableWindow`, `RunInstallerWindow`, `UpdateButtonMappingsWindow`, `UpdateContextSwitchesWindow`.
+`MainWindow` is the shell; `StartupWindow` shows during launch. Overlays: `GapMonitorWindow`, `DeltaMonitorWindow`, `GripOMeterWindow`, `CursorCountdownOverlay`, plus `OverlaySettingsWindow` for configuring them. Dialogs/wizards: `WizardWindow`, `ErrorWindow`, `HelpWindow`, `PickProcessWindow`, `SpeechToTextWindow`, `NewVersionAvailableWindow`, `RunInstallerWindow`, `UpdateButtonMappingsWindow`, `UpdateContextSwitchesWindow`, `NewControllerProfileWindow`, `RenameControllerProfileWindow`, `DeleteControllerProfileWindow`.
 
 ### `Controls/` — custom `Maira*` controls (use these, never raw WPF equivalents)
-`MairaButton`, `MairaComboBox`, `MairaTextBox`, `MairaSwitch`, `MairaKnob`, `MairaDualSlider`, `MairaExpander`, `MairaGroupBox`, `MairaStatusBar`, `MairaButtonMapping`, `MairaMappableButton`, `MairaAppMenuButton`, `MairaAppMenuPopup`.
+`MairaButton`, `MairaComboBox`, `MairaTextBox`, `MairaSwitch`, `MairaMappableSwitch`, `MairaKnob`, `MairaDualSlider`, `MairaTriangleBalance`, `MairaProgressBar`, `MairaExpander`, `MairaGroupBox`, `MairaTabItem`, `MairaStatusBar`, `MairaButtonMapping`, `MairaMappableButton`, `MairaAppMenuButton`, `MairaAppMenuPopup`.
 
 ### `Classes/` — helpers & data types
-Math/signal: `MathZ.cs`, `RlsWheelVelocityPredictor.cs`. Audio: `CachedSound.cs`, `CachedSoundPlayer.cs`. Recording: `Recording.cs`, `RecordingData.cs`. Serialization: `Serializer.cs`, `SerializableDictionary.cs`. Commentary/voice: `CommentaryTemplates.cs`, `UserCommentaryPhrases.cs`, `VoiceSlotSettings.cs`, `ElevenLabs.cs`, `ElevenLabsKeyStore.cs`. Hardware/util: `UsbSerialPortHelper.cs`, `CpuAffinityHelper.cs`, `ButtonMappings.cs`, `HelpService.cs`, `TextBoxBehaviors.cs`, `Color.cs`, `Misc.cs`.
+Math/signal: `MathZ.cs`, `RlsWheelVelocityPredictor.cs`. Audio: `CachedSound.cs`, `CachedSoundPlayer.cs`. Recording: `Recording.cs`, `RecordingData.cs`. Serialization: `Serializer.cs`, `SerializableDictionary.cs`. Commentary/voice: `CommentaryTemplates.cs`, `UserCommentaryPhrases.cs`, `VoiceSlotSettings.cs`, `ElevenLabs.cs`, `ElevenLabsKeyStore.cs`. Graph: `GraphBase.cs`. Input/mapping: `ButtonMappings.cs`, `MappableActionCatalog.cs`, `ControllerProfile.cs`. Windows/overlays: `WindowScaler.cs`, `OverlayWindowMover.cs`, `OverlayWindowScaler.cs`. App manager: `AppManagerEntry.cs`, `AppManagerStartEntryViewModel.cs`. Hardware/util: `UsbSerialPortHelper.cs`, `CpuAffinityHelper.cs`, `HelpService.cs`, `TextBoxBehaviors.cs`, `TradingPaintsXML.cs`, `Color.cs`, `Misc.cs`.
 
 ### `Themes/`
 `DarkTheme.xaml`, `LightTheme.xaml`, `Generic.xaml`, plus per-control theme resources.

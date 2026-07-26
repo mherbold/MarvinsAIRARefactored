@@ -164,6 +164,8 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		_lastOpenAttemptSeconds = double.MinValue;
 		_nextSubSampleSeconds = 0.0;
 
+		LastDataActivitySeconds = double.MinValue;
+
 		_frameCounter = 0;
 
 		_hasScoring = false;
@@ -259,7 +261,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 			return;
 		}
 
-		UpdateTelemetry();
+		UpdateTelemetry( pumpSeconds );
 
 		_torqueSamples[ _subSampleIndex ] = SteeringTorqueSign * (float) _playerTelemetry.mSteeringShaftTorque;
 
@@ -326,7 +328,7 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		_hasScoring = _playerScoringIndex != -1;
 	}
 
-	private void UpdateTelemetry()
+	private void UpdateTelemetry( double pumpSeconds )
 	{
 		if ( _nativeBuffer[ NativePlayerHasVehicleOffset ] == 0 )
 		{
@@ -350,6 +352,8 @@ public class LeMansUltimateBridge : GameBridgeAdapter
 		{
 			return;
 		}
+
+		LastDataActivitySeconds = pumpSeconds;
 
 		var playerTelemetry = ReadStruct<rF2VehicleTelemetry>( _nativeBuffer, vehicleOffset );
 

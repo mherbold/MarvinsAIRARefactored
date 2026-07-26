@@ -16,6 +16,12 @@ public abstract class GameBridgeAdapter
 
 	public IRacingSdkInMemoryDataSource? DataSource { get; protected set; } = null;
 
+	// stamped with the pump clock every time the game's own physics output actually advances (each adapter's
+	// packet id / elapsed time / simulation time gate) - the shared memory maps stay readable while the game
+	// is paused or sitting in a menu, and the bridge keeps committing frames with the last held values, so a
+	// frozen stamp is the only reliable signal that the game has stopped producing telemetry
+	public double LastDataActivitySeconds { get; protected set; } = double.MinValue;
+
 	public bool IsGameRunning
 	{
 		get

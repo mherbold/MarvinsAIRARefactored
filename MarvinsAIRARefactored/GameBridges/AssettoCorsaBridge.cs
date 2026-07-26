@@ -182,6 +182,8 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 		_previousPacketId = -1;
 		_previousShockSeconds = double.NaN;
 		Array.Clear( _previousSuspensionTravel );
+
+		LastDataActivitySeconds = double.MinValue;
 		Array.Clear( _lastShockVelocities );
 		_hasSuspensionBaseline = false;
 
@@ -263,6 +265,8 @@ public class AssettoCorsaBridge : GameBridgeAdapter
 		if ( _physics.packetId != _previousPacketId )
 		{
 			_previousPacketId = _physics.packetId;
+
+			LastDataActivitySeconds = pumpSeconds;
 
 			UpdateShockVelocities( pumpSeconds );
 		}
