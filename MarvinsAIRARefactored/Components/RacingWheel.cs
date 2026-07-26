@@ -562,7 +562,7 @@ public class RacingWheel
 #if DEBUG
 			var burstEndTimestamp = Stopwatch.GetTimestamp();
 
-			_burstPerfStats.Update( burstEndTimestamp - burstStartTimestamp, burstEndTimestamp );
+			// _burstPerfStats.Update( burstEndTimestamp - burstStartTimestamp, burstEndTimestamp );
 #endif
 
 			// update auto torque
@@ -905,7 +905,7 @@ public class RacingWheel
 #if DEBUG
 			var playoutEndTimestamp = Stopwatch.GetTimestamp();
 
-			_playoutPerfStats.Update( playoutEndTimestamp - playoutStartTimestamp, playoutEndTimestamp );
+			// _playoutPerfStats.Update( playoutEndTimestamp - playoutStartTimestamp, playoutEndTimestamp );
 #endif
 		}
 		catch ( Exception exception )
