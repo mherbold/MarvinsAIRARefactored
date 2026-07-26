@@ -640,7 +640,7 @@
               <string>Frequency</string>
             </key>
             <value>
-              <float>15</float>
+              <float>12</float>
             </value>
           </item>
           <item>
@@ -691,7 +691,7 @@
               <string>Frequency</string>
             </key>
             <value>
-              <float>10</float>
+              <float>15</float>
             </value>
           </item>
           <item>
@@ -715,7 +715,7 @@
               <string>Pattern</string>
             </key>
             <value>
-              <float>5</float>
+              <float>2</float>
             </value>
           </item>
           <item>
@@ -742,7 +742,7 @@
               <string>Frequency</string>
             </key>
             <value>
-              <float>12.5</float>
+              <float>15</float>
             </value>
           </item>
           <item>
