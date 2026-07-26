@@ -166,6 +166,8 @@ public class RFactor2Bridge : GameBridgeAdapter
 		_lastOpenAttemptSeconds = double.MinValue;
 		_nextSubSampleSeconds = 0.0;
 
+		LastDataActivitySeconds = double.MinValue;
+
 		_frameCounter = 0;
 
 		_hasScoring = false;
@@ -257,7 +259,7 @@ public class RFactor2Bridge : GameBridgeAdapter
 	{
 		if ( ( _provider?.TryReadBuffer( LmuBufferType.Telemetry, _telemetryBuffer ) ?? false ) && IsBufferCoherent( _telemetryBuffer ) )
 		{
-			UpdateTelemetry();
+			UpdateTelemetry( pumpSeconds );
 		}
 
 		_torqueSamples[ _subSampleIndex ] = SteeringTorqueSign * (float) _playerTelemetry.mSteeringShaftTorque;
@@ -364,7 +366,7 @@ public class RFactor2Bridge : GameBridgeAdapter
 		return -1;
 	}
 
-	private void UpdateTelemetry()
+	private void UpdateTelemetry( double pumpSeconds )
 	{
 		var numVehicles = Math.Clamp( BitConverter.ToInt32( _telemetryBuffer, TelemetryNumVehiclesOffset ), 0, MaxVehicles );
 
@@ -386,6 +388,8 @@ public class RFactor2Bridge : GameBridgeAdapter
 		{
 			return;
 		}
+
+		LastDataActivitySeconds = pumpSeconds;
 
 		var playerTelemetry = ReadStruct<rF2VehicleTelemetry>( _telemetryBuffer, vehicleOffset );
 
