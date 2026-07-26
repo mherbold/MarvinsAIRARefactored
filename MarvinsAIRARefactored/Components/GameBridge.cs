@@ -26,6 +26,13 @@ public partial class GameBridge
 
 	public bool IsBridgeActive { get => ActiveAdapter != null; }
 
+	// true while a bridge is active but the game's physics output has stopped advancing (paused, in a menu) -
+	// the bridge keeps committing frames with the last held torque in that state, so the racing wheel watches
+	// this flag to fade the FFB out instead of grinding the frozen torque into the soft lock
+	public bool TelemetryDataIsStale { get; private set; } = false;
+
+	private const double StaleDataTimeoutSeconds = 0.25;
+
 	private int _updateCounter = UpdateInterval;
 	private bool _transitioning = false;
 
@@ -106,12 +113,16 @@ public partial class GameBridge
 
 		if ( adapter == null )
 		{
+			TelemetryDataIsStale = false;
+
 			return;
 		}
 
 		try
 		{
 			adapter.Pump( totalSeconds );
+
+			TelemetryDataIsStale = ( adapter.LastDataActivitySeconds != double.MinValue ) && ( totalSeconds - adapter.LastDataActivitySeconds >= StaleDataTimeoutSeconds );
 		}
 		catch ( Exception exception )
 		{

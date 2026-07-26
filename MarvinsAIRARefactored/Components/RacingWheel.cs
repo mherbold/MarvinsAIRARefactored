@@ -1024,11 +1024,15 @@ public class RacingWheel
 				_racingWheelPage.UpdateSteeringDeviceSection();
 			}
 
-			// check if we want to fade in or out the steering wheel torque data
+			// check if we want to fade in or out the steering wheel torque data - a game bridge whose game has
+			// stopped producing telemetry (paused, in a menu) keeps committing frames with the last held torque,
+			// so stale bridge data is treated the same as leaving the track
 
-			if ( UseSteeringWheelTorqueData != _usingSteeringWheelTorqueData )
+			var useSteeringWheelTorqueData = UseSteeringWheelTorqueData && !app.GameBridge.TelemetryDataIsStale;
+
+			if ( useSteeringWheelTorqueData != _usingSteeringWheelTorqueData )
 			{
-				_usingSteeringWheelTorqueData = UseSteeringWheelTorqueData;
+				_usingSteeringWheelTorqueData = useSteeringWheelTorqueData;
 
 				if ( settings.RacingWheelFadeEnabled )
 				{

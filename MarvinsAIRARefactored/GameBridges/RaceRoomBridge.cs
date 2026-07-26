@@ -166,6 +166,8 @@ public class RaceRoomBridge : GameBridgeAdapter
 
 		_previousSimulationTime = 0.0;
 		_previousFuel = 0.0;
+
+		LastDataActivitySeconds = double.MinValue;
 		_fuelUsePerHour = 0f;
 		_layoutChecked = false;
 
@@ -246,7 +248,7 @@ public class RaceRoomBridge : GameBridgeAdapter
 	{
 		if ( _provider?.TryReadBuffer( R3eBufferType.Shared, _sharedBuffer ) ?? false )
 		{
-			UpdateShared();
+			UpdateShared( pumpSeconds );
 		}
 
 		_torqueSamples[ _subSampleIndex ] = _lastTorque;
@@ -282,7 +284,7 @@ public class RaceRoomBridge : GameBridgeAdapter
 
 	#region shared map parsing
 
-	private void UpdateShared()
+	private void UpdateShared( double pumpSeconds )
 	{
 		// cheap direct read to skip unchanged maps before the (allocating) full struct marshal - at the
 		// 360 Hz pump rate the map is unchanged on most sub-samples, so this holds the marshal to the map's
@@ -293,6 +295,8 @@ public class RaceRoomBridge : GameBridgeAdapter
 		{
 			return;
 		}
+
+		LastDataActivitySeconds = pumpSeconds;
 
 		var shared = ReadStruct<R3eShared>( _sharedBuffer, 0 );
 
