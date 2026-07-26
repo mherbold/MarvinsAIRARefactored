@@ -192,7 +192,9 @@ public sealed class RecordingManager : IDisposable
 
 		app.Logger.WriteLine( "[RecordingManager] SaveRecording >>>" );
 
-		var fileName = $"{app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {app.Simulator.TrackConfigName} ({_trackPosition}%)";
+		var gameName = app.GameBridge.ActiveAdapter?.GameName ?? "iRacing";
+
+		var fileName = $"{gameName} - {app.Simulator.CarScreenName} @ {app.Simulator.TrackDisplayName} - {app.Simulator.TrackConfigName} ({_trackPosition}%)";
 
 		var filePath = Path.Combine( _recordingsDirectory, $"{fileName}.csv" );
 
