@@ -1851,6 +1851,23 @@ public class Settings : INotifyPropertyChanged
 	// Shows/hides the top row of the editor block (the node graph and the module settings column). Off by
 	// default: basic users see just the description, the pinned quick controls, and the preview row — advanced
 	// users flip this on for full control of the node graph. Global (not per graph).
+	private bool _racingWheelShowPinnedSettings = true;
+
+	public bool RacingWheelShowPinnedSettings
+	{
+		get => _racingWheelShowPinnedSettings;
+
+		set
+		{
+			if ( value != _racingWheelShowPinnedSettings )
+			{
+				_racingWheelShowPinnedSettings = value;
+
+				OnPropertyChanged();
+			}
+		}
+	}
+
 	private bool _racingWheelShowNodeGraph = false;
 
 	public bool RacingWheelShowNodeGraph

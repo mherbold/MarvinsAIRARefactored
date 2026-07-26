@@ -2410,4 +2410,7 @@ Hier ist der Link zum Spenden:</value>
   <data name="MegaDonors" xml:space="preserve">
     <value>Mega-Spender</value>
   </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Angepinnte Einstellungen anzeigen</value>
+  </data>
 </root>

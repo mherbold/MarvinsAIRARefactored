@@ -760,6 +760,42 @@ public sealed class FFBModuleViewModel : INotifyPropertyChanged
 		}
 	}
 
+	/// <summary>Pin for the module's Enabled toggle, so a graph author can surface a whole effect's on/off
+	/// switch in the quick controls. Stored under the reserved "Enabled" key in the same PinnedSettings list
+	/// as the ordinary setting pins (no setting descriptor uses that key — the toggle is the card's header
+	/// switch, not a descriptor setting), so it rides export/import and the built-in curated sets for free.</summary>
+	public bool IsEnabledPinned
+	{
+		get => _model.PinnedSettings.Contains( "Enabled" );
+
+		set
+		{
+			if ( value == IsEnabledPinned )
+			{
+				return;
+			}
+
+			if ( value )
+			{
+				_model.PinnedSettings.Add( "Enabled" );
+			}
+			else
+			{
+				_model.PinnedSettings.Remove( "Enabled" );
+			}
+
+			App.Instance!.SettingsFile.QueueForSerialization = true;
+
+			OnPropertyChanged();
+
+			_owner.RefreshPinnedSettings();
+		}
+	}
+
+	/// <summary>The Enabled toggle's pin switch — custom graphs only (same rule as the setting pins), and only
+	/// on modules whose toggle exists at all (the Output module has none).</summary>
+	public bool ShowPinSwitch => CanToggleEnabled && !_owner.IsFFBGraphBuiltIn;
+
 	public string InputASelectedId
 	{
 		get => _model.InputAModuleId;
@@ -857,6 +893,14 @@ public sealed class FFBGraphViewModel : INotifyPropertyChanged
 		foreach ( var module in Modules )
 		{
 			FFBPinnedGroupViewModel? group = null;
+
+			// a pinned Enabled toggle leads its group — switching the whole effect on/off comes before tuning it
+			if ( module.IsEnabledPinned && module.CanToggleEnabled )
+			{
+				group = new FFBPinnedGroupViewModel( module );
+
+				group.Settings.Add( new FFBPinnedEnabledViewModel( module ) );
+			}
 
 			foreach ( var setting in module.Settings )
 			{
@@ -1683,12 +1727,21 @@ public sealed class FFBSettingSpacer
 
 /// <summary>One node's group in the quick-controls block above the editor: the owning module VM (for the
 /// group's caption and description — shown once per node, however many of its settings are pinned) plus that
-/// node's pinned setting VMs. The setting VMs are the SHARED instances the settings column binds, so the two
-/// stay in sync.</summary>
+/// node's pinned entries. The setting VMs are the SHARED instances the settings column binds, so the two
+/// stay in sync; a pinned Enabled toggle appears as a leading <see cref="FFBPinnedEnabledViewModel"/>.</summary>
 public sealed class FFBPinnedGroupViewModel( FFBModuleViewModel module )
 {
 	public FFBModuleViewModel Module { get; } = module;
-	public ObservableCollection<FFBModuleSettingViewModel> Settings { get; } = [];
+	public ObservableCollection<object> Settings { get; } = [];
+}
+
+/// <summary>Quick-controls entry for a pinned module Enabled toggle — the toggle lives on the module VM (the
+/// card's header switch), not in the settings list, so this small wrapper adapts it to the pinned templates.</summary>
+public sealed class FFBPinnedEnabledViewModel( FFBModuleViewModel module )
+{
+	public FFBModuleViewModel Module { get; } = module;
+
+	public string Label => FFBDisplayNames.Localize( "Enabled", "Enabled" );
 }
 
 public sealed class FFBSettingTemplateSelector : DataTemplateSelector
@@ -1697,12 +1750,18 @@ public sealed class FFBSettingTemplateSelector : DataTemplateSelector
 	public DataTemplate? SwitchTemplate { get; set; }
 	public DataTemplate? ChoiceTemplate { get; set; }
 	public DataTemplate? SpacerTemplate { get; set; }
+	public DataTemplate? EnabledTemplate { get; set; }
 
 	public override DataTemplate? SelectTemplate( object item, DependencyObject container )
 	{
 		if ( item is FFBSettingSpacer )
 		{
 			return SpacerTemplate;
+		}
+
+		if ( item is FFBPinnedEnabledViewModel )
+		{
+			return EnabledTemplate;
 		}
 
 		if ( item is FFBModuleSettingViewModel settingViewModel )

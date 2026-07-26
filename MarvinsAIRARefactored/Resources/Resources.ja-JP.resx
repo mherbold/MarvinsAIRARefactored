@@ -2410,4 +2410,7 @@
   <data name="MegaDonors" xml:space="preserve">
     <value>メガ寄付者</value>
   </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>ピン留めした設定を表示</value>
+  </data>
 </root>

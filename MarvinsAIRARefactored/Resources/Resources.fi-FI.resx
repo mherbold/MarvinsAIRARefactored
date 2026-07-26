@@ -2407,4 +2407,7 @@
   <data name="MegaDonors" xml:space="preserve">
     <value>Megalahjoittajat</value>
   </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Näytä kiinnitetyt asetukset</value>
+  </data>
 </root>

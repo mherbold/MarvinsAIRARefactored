@@ -2405,4 +2405,7 @@
   <data name="MegaDonors" xml:space="preserve">
     <value>Mega donors</value>
   </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Show pinned settings</value>
+  </data>
 </root>

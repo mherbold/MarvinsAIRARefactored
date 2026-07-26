@@ -2407,4 +2407,7 @@
   <data name="MegaDonors" xml:space="preserve">
     <value>Megadonants</value>
   </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Mostra els paràmetres fixats</value>
+  </data>
 </root>

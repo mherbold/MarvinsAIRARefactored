@@ -2407,4 +2407,7 @@
   <data name="MegaDonors" xml:space="preserve">
     <value>메가 기부자</value>
   </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>고정된 설정 표시</value>
+  </data>
 </root>

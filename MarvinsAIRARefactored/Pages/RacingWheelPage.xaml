@@ -97,11 +97,22 @@
             <Border />
         </DataTemplate>
 
+        <!-- a pinned module Enabled toggle in the quick controls — the switch is the same Enabled state as
+             the module card's header switch (DataContext = FFBPinnedEnabledViewModel) -->
+        <DataTemplate x:Key="FFBGraphEnabledTemplate">
+            <Grid Margin="20,0,20,20">
+                <controls:MairaSwitch Label="{Binding Label}"
+                                      LabelPosition="Top"
+                                      IsOn="{Binding Module.Enabled, Mode=TwoWay}" />
+            </Grid>
+        </DataTemplate>
+
         <ffb:FFBSettingTemplateSelector x:Key="FFBGraphSettingTemplateSelector"
                                         KnobTemplate="{StaticResource FFBGraphKnobTemplate}"
                                         SwitchTemplate="{StaticResource FFBGraphSwitchTemplate}"
                                         ChoiceTemplate="{StaticResource FFBGraphChoiceTemplate}"
-                                        SpacerTemplate="{StaticResource FFBGraphSpacerTemplate}" />
+                                        SpacerTemplate="{StaticResource FFBGraphSpacerTemplate}"
+                                        EnabledTemplate="{StaticResource FFBGraphEnabledTemplate}" />
 
         <!-- Module card. DataContext = FFBModuleViewModel. Lives in the settings column beside the node
              graph, so the settings stack vertically (bound to Settings, not SettingsPresentation — the
@@ -115,8 +126,9 @@
 
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto" />
-                        <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
 
                     <!-- the notice gets its own row so its appearance never moves the switch/name/test row -->
@@ -142,6 +154,7 @@
                          settings column has no room beside it -->
                     <TextBlock Grid.Row="1"
                                Grid.Column="1"
+                               Grid.ColumnSpan="3"
                                Text="{Binding SteeringEffectDisabledNotice}"
                                Style="{StaticResource MairaTextBlockStyle}"
                                FontSize="16"
@@ -163,6 +176,15 @@
                                           Margin="10,0,0,0"
                                           Click="TestModule_MairaButton_Click"
                                           Visibility="{Binding CanTest, Converter={StaticResource BoolToVisibility}}" />
+
+                    <!-- the Enabled toggle's pin switch, tucked against the card's right edge (custom graphs
+                         only) — pinning surfaces the whole effect's on/off in the quick controls; the pin
+                         style's ShowPinSwitch binding resolves against the module VM here -->
+                    <controls:MairaSwitch Grid.Row="0"
+                                          Grid.Column="3"
+                                          Style="{StaticResource FFBGraphPinSwitchStyle}"
+                                          VerticalAlignment="Center"
+                                          IsOn="{Binding IsEnabledPinned, Mode=TwoWay}" />
 
                 </Grid>
 
@@ -584,8 +606,33 @@
                      description once, then that node's pinned settings three across — so pinning several
                      settings of the same node doesn't repeat the description beside every control. Same
                      setting VM instances as the settings column, so both stay in sync. -->
-                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.PinnedGroups}"
-                              Visibility="{Binding RacingWheelGraphViewModel.HasPinnedSettings, Converter={StaticResource BoolToVisibility}}">
+                <!-- Shows/hides the pinned quick controls below. Global setting. -->
+                <controls:MairaSwitch Margin="0,0,0,20"
+                                      IsOn="{Binding Settings.RacingWheelShowPinnedSettings, Mode=TwoWay}"
+                                      Label="{Binding Localization[ShowPinnedSettings]}" />
+
+                <ItemsControl ItemsSource="{Binding RacingWheelGraphViewModel.PinnedGroups}">
+
+                    <!-- shown only while the show-pinned-settings switch above is on AND the graph actually
+                         has pinned settings -->
+                    <ItemsControl.Style>
+                        <Style TargetType="ItemsControl">
+                            <Setter Property="Visibility"
+                                    Value="Collapsed" />
+                            <Style.Triggers>
+                                <MultiDataTrigger>
+                                    <MultiDataTrigger.Conditions>
+                                        <Condition Binding="{Binding Settings.RacingWheelShowPinnedSettings}"
+                                                   Value="True" />
+                                        <Condition Binding="{Binding RacingWheelGraphViewModel.HasPinnedSettings}"
+                                                   Value="True" />
+                                    </MultiDataTrigger.Conditions>
+                                    <Setter Property="Visibility"
+                                            Value="Visible" />
+                                </MultiDataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </ItemsControl.Style>
 
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -637,6 +684,17 @@
                                         </Style>
                                     </TextBlock.Style>
                                 </TextBlock>
+
+                                <!-- same warning the settings card shows while this module's effect is switched
+                                     off on the steering effects page — the pinned controls (especially a pinned
+                                     Enabled toggle) are inert until it is re-enabled there -->
+                                <TextBlock Text="{Binding Module.SteeringEffectDisabledNotice}"
+                                           Style="{StaticResource MairaTextBlockStyle}"
+                                           FontSize="16"
+                                           Foreground="{DynamicResource Brush.Accent}"
+                                           TextWrapping="Wrap"
+                                           Margin="0,0,0,10"
+                                           Visibility="{Binding Module.SteeringEffectDisabled, Converter={StaticResource BoolToVisibility}}" />
 
                                 <!-- Tag marks this as the quick-controls host: the pin-switch style collapses
                                      the tiny pin switches under it, so controls here can't be accidentally

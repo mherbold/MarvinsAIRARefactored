@@ -2407,4 +2407,7 @@
   <data name="MegaDonors" xml:space="preserve">
     <value>Megaziedotāji</value>
   </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>Rādīt piespraustos iestatījumus</value>
+  </data>
 </root>

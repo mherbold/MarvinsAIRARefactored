@@ -2407,4 +2407,7 @@
   <data name="MegaDonors" xml:space="preserve">
     <value>मेगा दानदाता</value>
   </data>
+  <data name="ShowPinnedSettings" xml:space="preserve">
+    <value>पिन की गई सेटिंग्स दिखाएँ</value>
+  </data>
 </root>
