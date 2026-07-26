@@ -883,6 +883,10 @@ public partial class RacingWheelPage : UserControl
 						settings.ApplyImportedGraphValues( matchingGraphName, graph, toCurrentContext: true, toBaseline: true );
 						break;
 
+					case ImportGraphSettingsWindow.Choice.UpdateEverywhere:
+						settings.ApplyImportedGraphValues( matchingGraphName, graph, toCurrentContext: true, toBaseline: false, toEveryContextWithGraphSelected: true );
+						break;
+
 					case ImportGraphSettingsWindow.Choice.NewCopy:
 						settings.ImportFFBGraph( graph, asNewCopy: true );
 						break;

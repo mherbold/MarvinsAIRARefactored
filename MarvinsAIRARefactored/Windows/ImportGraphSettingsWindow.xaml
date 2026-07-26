@@ -54,6 +54,14 @@
                                   Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
                                   Click="UpdateBoth_MairaButton_Click" />
 
+            <controls:MairaButton x:Name="UpdateEverywhere_MairaButton"
+                                  LabelOnRight="True"
+                                  IsSmall="True"
+                                  HorizontalAlignment="Left"
+                                  Margin="0,0,0,12"
+                                  Icon="/MarvinsAIRARefactored;component/Artwork/Buttons/set.png"
+                                  Click="UpdateEverywhere_MairaButton_Click" />
+
             <controls:MairaButton x:Name="NewCopy_MairaButton"
                                   LabelOnRight="True"
                                   IsSmall="True"

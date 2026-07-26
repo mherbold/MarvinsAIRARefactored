@@ -15,6 +15,7 @@ public partial class ImportGraphSettingsWindow : Window
 		UpdateCurrentContext,
 		UpdateBaseline,
 		UpdateBoth,
+		UpdateEverywhere,
 		NewCopy
 	}
 
@@ -33,6 +34,7 @@ public partial class ImportGraphSettingsWindow : Window
 		UpdateCurrentContext_MairaButton.Label = string.Format( localization[ "ImportGraphUpdateCurrentContext" ], contextLabel );
 		UpdateBaseline_MairaButton.Label = localization[ "ImportGraphUpdateBaseline" ];
 		UpdateBoth_MairaButton.Label = string.Format( localization[ "ImportGraphUpdateBoth" ], contextLabel );
+		UpdateEverywhere_MairaButton.Label = localization[ "ImportGraphUpdateEverywhere" ];
 		NewCopy_MairaButton.Label = localization[ "ImportGraphNewCopy" ];
 		Cancel_MairaButton.Label = localization[ "Cancel" ];
 
@@ -74,6 +76,13 @@ public partial class ImportGraphSettingsWindow : Window
 	private void UpdateBoth_MairaButton_Click( object sender, RoutedEventArgs e )
 	{
 		_choice = Choice.UpdateBoth;
+
+		Close();
+	}
+
+	private void UpdateEverywhere_MairaButton_Click( object sender, RoutedEventArgs e )
+	{
+		_choice = Choice.UpdateEverywhere;
 
 		Close();
 	}
